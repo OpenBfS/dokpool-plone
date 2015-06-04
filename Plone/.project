@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ELAN-E-2014</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.python.pydev.PyDevBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.python.pydev.pythonNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>Products.ConPD2</name>
+			<type>2</type>
+			<location>/opt/condat/ConPD2Local/src/Products.ConPD2</location>
+		</link>
+		<link>
+			<name>src/elan.irix/IRIX</name>
+			<type>2</type>
+			<location>/Users/hr/Documents/Projekte/ELAN/04_Projektdokumente/von BfS/IRIX</location>
+		</link>
+	</linkedResources>
+</projectDescription>
