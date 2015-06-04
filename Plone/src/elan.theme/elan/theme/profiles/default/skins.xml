@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="ELAN-E Theme">
+
+ <object name="elantheme_images"
+    meta_type="Filesystem Directory View"
+    directory="elan.theme:skins/elantheme_images"/>
+ <object name="elantheme_templates"
+    meta_type="Filesystem Directory View"
+    directory="elan.theme:skins/elantheme_templates"/>
+ <object name="elantheme_styles"
+    meta_type="Filesystem Directory View"
+    directory="elan.theme:skins/elantheme_styles"/>    
+
+ <skin-path name="ELAN-E Theme" based-on="Plone Default">
+  <layer name="elantheme_images"
+     insert-after="custom"/>
+  <layer name="elantheme_templates"
+     insert-after="elantheme_images"/>
+  <layer name="elantheme_styles"
+     insert-after="elantheme_templates"/>
+ </skin-path>
+
+</object>

@@ -1,0 +1,35 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="wsapi4plone">
+
+    <!-- System calls for Introspection -->
+    <!--
+    <browser:pages
+        for="*"
+        class=".sys.SystemAPI"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View">
+        <browser:page
+            name="get_capabilities"
+            attribute="get_capabilities"
+            />
+        <browser:page
+            name="method_signature"
+            attribute="method_signature"
+            />
+        <browser:page
+            name="list_methods"
+            attribute="list_methods"
+            />
+        <browser:page
+            name="method_help"
+            attribute="method_help"
+            />
+    </browser:pages>
+    -->
+
+    <include file="site.zcml" />
+    <include file="content.zcml" />
+
+</configure>

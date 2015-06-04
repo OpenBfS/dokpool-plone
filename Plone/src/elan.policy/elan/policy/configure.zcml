@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="elan.policy">
+
+    <!-- Include direct package dependencies -->
+    <includeDependencies package="." />
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <genericsetup:registerProfile
+      name="default"
+      title="elan.policy"
+      directory="profiles/default"
+      description="Turn a Plone site into the ELAN site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <i18n:registerTranslations directory="locales"/>
+
+  <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+    <implements interface="collective.quickupload.interfaces.IQuickUploadNotCapable" />
+  </class>
+
+  <class class="Products.CMFPlone.Portal.PloneSite">
+    <implements interface="collective.quickupload.interfaces.IQuickUploadNotCapable" />
+  </class>
+
+</configure>

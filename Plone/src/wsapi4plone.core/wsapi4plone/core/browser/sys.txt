@@ -1,0 +1,49 @@
+==========
+System API
+==========
+
+In all reality, the 'sys' module does nothing useful for this package. The
+plan is/was to use it in introspection of the API using the standard XML-RPC
+Introspection Standard. Zope2 does not have XML-RPC introspection by default,
+so I made my own. :)
+
+The Methods
+----------------
+
+Get the cababilities of the system with the 'get_capabilities' call.
+
+    >>> print http(r"""
+    ... POST /plone HTTP/1.0
+    ... Content-Type: text/xml
+    ... Content-Length: 110
+    ... 
+    ... %s
+    ... """ % format_xmlrpc('get_capabilities'))
+    HTTP/1.0 200 OK
+    Content-Length: 404
+    Content-Type: text/xml
+    ...
+    <BLANKLINE>
+    <?xml version='1.0'?>
+    <methodResponse>
+    <params>
+    <param>
+    <value><struct>
+    <member>
+    <name>specVersion</name>
+    <value><int>1</int></value>
+    </member>
+    <member>
+    <name>specUrl</name>
+    <value><string>http://xmlrpc-c.sourceforge.net/introspection.html</string></value>
+    </member>
+    <member>
+    <name>specId</name>
+    <value><string>introspect</string></value>
+    </member>
+    </struct></value>
+    </param>
+    </params>
+    </methodResponse>
+
+At this point in time the other methods do nothing useful.

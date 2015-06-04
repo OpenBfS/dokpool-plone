@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+from zope.interface import Interface, Attribute
+from docpool.base.content.infofolder import IInfoFolder
+from docpool.base.content.infodocument import IInfoDocument
+from docpool.base.content.infolink import IInfoLink
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.doctype import IDocType
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.doctypes import IDocTypes
+from docpool.base.content.text import IText
+from docpool.base.content.folderbase import IFolderBase
+from docpool.base.content.groupfolder import IGroupFolder
+from docpool.base.content.userfolder import IUserFolder
+from docpool.base.content.groups import IGroups
+from docpool.base.content.users import IUsers
+from docpool.base.content.reviewfolder import IReviewFolder
+from docpool.base.content.collaborationfolder import ICollaborationFolder
+from docpool.base.content.privatefolder import IPrivateFolder
+from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.content.contentarea import IContentArea
+##code-section imports
+from docpool.base import ELAN_EMessageFactory as _
+##/code-section imports
+
+##code-section manual code
+##/code-section manual code

@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="elan.irix">
+    
+    <!-- Ensure Plone's portlets ZCML has already been processed; without
+         this, we may get a permission lookup error
+      -->
+    <include package="plone.app.portlets" />
+    
+    
+        
+            <plone:portlet interface=".irix_navigation.Iirix_navigationPortlet" assignment=".irix_navigation.Assignment" addview=".irix_navigation.AddForm" name="elan.irix.irix_navigation" renderer=".irix_navigation.Renderer" />    
+        
+    
+    
+<!-- ##code-section custom_portlets -->
+
+<!-- ##/code-section custom_portlets -->    
+</configure>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+<!-- Workflow allocation -->
+<!-- ##code-section object -->
+<!-- ##/code-section object -->  
+ <bindings>
+<!-- ##code-section bindings -->
+<!-- ##/code-section bindings -->
+    
+    
+   <type type_id="IRIXReport">
+    <bound-workflow workflow_id="elan_one_state_workflow" />
+   </type>
+   
+    
+ </bindings>
+</object>

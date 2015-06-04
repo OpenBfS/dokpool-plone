@@ -1,0 +1,66 @@
+<object name="portal_types" meta_type="Plone Types Tool">
+    
+ <!-- This file registers new types with portal_types. The types are
+      then configured with the corresponding files in types/*.xml. Note
+      that spaces are allowed in type names, but the corresponding XML file
+      uses an underscore instead. The "Factory-based Type Information with
+      dynamic views" refers to an FTI from Products.CMFDynamicViewFTI,
+      which supports Plone's "display" menu.
+   -->
+     
+     
+     <object name="InfoFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="InfoDocument" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="InfoLink" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="DPDocument" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="DocType" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="SimpleFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="DocTypes" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="Text" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="GroupFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="UserFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="Groups" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="Users" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="ReviewFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="CollaborationFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="PrivateFolder" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="DocumentPool" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="ContentArea" meta_type="Dexterity FTI" />    
+       
+      
+<!-- ##code-section Main -->
+    
+<!-- ##/code-section Main -->  
+</object>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="dp-private-infofolder" meta_type="WorkflowPolicy">
+ <property name="title">DP Private Infos Workflow</property>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="dp_privateinfo_workflow"/>
+  </default>
+  <type type_id="InfoFolder">
+   <bound-workflow workflow_id="dp_privateinfo_workflow"/>
+  </type>
+  <type type_id="InfoDocument">
+   <bound-workflow workflow_id="dp_privateinfo_workflow"/>
+  </type>
+  <type type_id="InfoLink">
+   <bound-workflow workflow_id="dp_privateinfo_workflow"/>
+  </type>
+ </bindings>
+</object>

@@ -1,0 +1,136 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="elan.dbaccess" xml:lang="en"  xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+	<body>
+
+		<div metal:define-macro="subentityliste"
+			tal:define="typ se_typ;
+						filter se_filter;
+	                    seview python:dba.getSEListViewObj(request, context, typ, filter, view);
+	                    label seview/label"
+			class="dbadmin" tal:attributes="class string:dbadmin $label">
+			<h3 tal:content="label" i18n:translate="">List</h3>
+
+			<form action="" method="post" name="stammdaten_liste" id="stammdaten_liste"
+				enctype="multipart/form-data" tal:attributes="action string:${context/absolute_url}/${template/id}"
+				tal:define="b_start seview/getBatchStart;
+                            batch seview/getBatchObj;">
+
+                
+                <div class="gridtable">
+
+				<metal:slot define-slot="elements-slot" />
+
+				<metal:slot define-slot="buttons-slot" />
+				</div>
+			</form>
+		</div>
+
+		<div metal:define-macro="selistbuttons" tal:omit-tag="">
+		<div id="formcontrols">
+			<input type="hidden" name="form.submitted" value="1" />
+			<input type="hidden" name="typ" tal:attributes="value typ" />
+            <input type="hidden" name="bc" tal:attributes="value breadcrumbs" />
+			<input type="hidden" value="" name="fkdefault" tal:attributes="value fkdefault"/>
+            <tal:loop repeat="lb seview/getListButtons">
+			<input id="deletebutton" onclick="this.form.target=''" class="standalone" type="submit"
+				value="Delete" i18n:attributes="value" name="form.button.delete"
+				tal:define="action python:lb[0];
+	                        label python:lb[1];
+	                        js python:lb[2];"
+				tal:attributes="id string:${action}button;
+	                            value label;
+	                            name string:form.button.${action};
+	                            onclick string:${js};" />
+	        </tal:loop>
+		</div>			
+        <div class="clear"></div>
+
+		</div>
+
+		<div metal:define-macro="structedit"
+			tal:define="typ request/typ|context/getStructuredType;
+		             create request/create|python:False;
+		             pk request/pk|context/getPrimaryKey;
+		             dba nocall:context/portal_dbadmin;
+		             view python:dba.getStructuredEditViewObj(request, create, context);
+		             label view/label;
+		             prolog view/prolog;
+		             epilog view/epilog;
+		             allowMinor view/allowMinor;
+		             audit view/audit;
+		             subentities view/subentities;
+		             breadcrumbs view/breadcrumbs;
+		             fkdefault view/fkdefault;"
+			class="dbadmin">
+			<h3 i18n:translate="">Edit <tal:var i18n:name="label" replace="label"/></h3>
+        
+            <p class="prolog" tal:condition="prolog" tal:content="prolog"></p>
+                    
+			<form action="" method="post" name="objekt_edit" id="objekt_edit"
+				enctype="multipart/form-data" tal:attributes="action string:${context/absolute_url}/${template/id}">
+
+				<metal:slot define-slot="fields-slot" />
+				<tal:if condition="allowMinor">
+	               <div class="fafield">
+	               <label class="field_opt" for="minor" i18n:translate="">Minor change? (no notification)</label>
+	               <div class="inputs">
+	               <input id="minor" type="checkbox" value="1" name="minor"/>
+	               </div>
+	               </div>
+				</tal:if>
+                <p class="audit" tal:condition="audit" i18n:translate="">Created by <tal:var replace="audit/en" i18n:name="user"/> on <tal:var replace="audit/ed" i18n:name="date"/>, last modified by <tal:var replace="audit/aen" i18n:name="user2"/> on <tal:var replace="audit/aed" i18n:name="date2"/></p>
+				<metal:slot define-slot="buttons-slot" />
+			</form>
+			<tal:if condition="not:create">
+			<tal:loop repeat="se subentities">
+			<tal:def define="se_typ se/typename;
+					 		 se_filter python:view.fkfilter(se.__name__)">
+			   <div metal:use-macro="context/@@elan.struct.macros/subentityliste">
+			   
+			       <metal:slot fill-slot="elements-slot">
+			            <table>
+			               <tal:fields replace="structure seview/getGridHTML"></tal:fields>
+			            </table>        
+			       </metal:slot>  
+			       <metal:slot fill-slot="buttons-slot">
+			           <metal:macro use-macro="context/@@elan.struct.macros/selistbuttons"/>
+			       </metal:slot>
+			   </div>
+			</tal:def>				
+			</tal:loop>
+			</tal:if>
+            <p class="epilog" tal:condition="epilog" tal:content="epilog"></p>
+		</div>
+
+		<div metal:define-macro="editbuttons" id="formcontrols">
+			<input type="hidden" name="form.submitted" value="1" />
+			<input type="hidden" name="typ" tal:attributes="value typ" />
+            <input type="hidden" name="pk" tal:attributes="value pk" />
+            <input type="hidden" name="bc" tal:attributes="value breadcrumbs" />
+			<input type="hidden" name="create:boolean" tal:attributes="value create" />
+			<input type="hidden" value="" name="herkunft"
+				tal:attributes="value view/herkunft" />
+			<input type="hidden" value="" name="edit_url"
+				tal:attributes="value view/edit_url" />
+			<input type="hidden" value="" name="objsel:list" tal:attributes="value pk" />
+            <tal:loop repeat="eb view/getEditButtons">
+			<input id="submitbutton" class="standalone" type="submit"
+				value="Save" name="form.button.save" i18n:attributes="value"
+				tal:define="
+	                        action python:eb[0];
+	                        label python:eb[1];
+	                        js python:eb[2]"
+				tal:attributes="id string:${action}button;
+	                            value label;
+	                            name string:form.button.${action};
+	                            onclick js;" />
+	        </tal:loop>
+
+			<input id="cancelbutton" class="standalone" type="submit"
+				value="Back" i18n:attributes="value" name="form.button.cancel" />
+		</div>
+
+
+
+	</body>
+
+</html>

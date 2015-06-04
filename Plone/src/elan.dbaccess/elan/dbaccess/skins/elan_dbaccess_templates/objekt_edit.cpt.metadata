@@ -1,0 +1,16 @@
+[default]
+title = Objekt speichern 
+
+[validators]
+validators=
+validators..cancel=
+validators..reload=
+
+[actions]
+action.success = traverse_to:string:objekt_edit
+action.success..save = traverse_to:string:objekt_save
+action.success..cancel = redirect_to:python:'%s' % (request.get('herkunft', None) or object.absolute_url())
+action.success..reload = redirect_to:string:objekt_edit
+action.success..delete = traverse_to:string:objekt_delete?single=1
+action.failure..save = traverse_to:string:objekt_edit
+action.failure = traverse_to:string:objekt_edit

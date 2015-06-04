@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ELAN-E\n"
+"POT-Creation-Date: 2015-05-13 06:54+0000\n"
+"PO-Revision-Date: 2014-06-06 17:29+0100\n"
+"Last-Translator: Henning Rietz <hr@condat.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.base\n"
+"Language: en\n"
+"X-Generator: Poedit 1.6.5\n"
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:48
+msgid "Category/Dates"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+msgid "Content Area"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
+msgid "DPDocument"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:90
+msgid "Delete"
+msgstr "Delete"
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:48
+msgid "Description"
+msgstr "Description"
+
+#: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
+msgid "Document Types"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DocType.xml
+msgid "DocumentType"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DocumentPool.xml
+msgid "Electronic Situation Display"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+msgid "Folder (Collaboration)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/ReviewFolder.xml
+msgid "Folder (Review)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/PrivateFolder.xml
+msgid "Folder (private)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/FolderBase.xml
+msgid "Folder Base"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
+msgid "General information"
+msgstr "General information"
+
+#: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
+msgid "General information (generic type)"
+msgstr "General information"
+
+#: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
+msgid "Group Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.pt:12
+msgid "Group Folder: scenario filter not active!"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Groups.xml
+msgid "Groups Area"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoFolder.xml
+msgid "Info-Folder"
+msgstr "Info-Folder"
+
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt:23
+#: docpool.base/docpool/base/browser/infolinklistitem.pt:21
+msgid "LT"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoLink.xml
+msgid "Link"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:49
+msgid "Main Text"
+msgstr "Main Text"
+
+#: docpool.base/docpool/base/browser/folderbase.pt:13
+msgid "Personal Folder: scenario filter not active!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt:38
+msgid "Show folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/SimpleFolder.xml
+msgid "Simple Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Text.xml
+msgid "Simple pages of text."
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Text.xml
+msgid "Textpage"
+msgstr ""
+
+#: docpool.base/docpool/base/content/simplefolder.py:143
+msgid "The document has been published."
+msgstr ""
+
+#: docpool.base/docpool/base/content/simplefolder.py:158
+msgid "The document state has been changed."
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
+msgid "User Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Users.xml
+msgid "Users Area"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py:19
+msgid "active"
+msgstr "Active"
+
+#: docpool.base/docpool/base/vocabularies.py:19
+msgid "closed"
+msgstr "Closed"
+
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt:27
+#: docpool.base/docpool/base/browser/infolinklistitem.pt:25
+msgid "created:"
+msgstr "created:"
+
+#: docpool.base/docpool/base/content/collaborationfolder.py:48
+msgid "description_collaborationfolder_allowedpartnerdoctypes"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py:58
+msgid "description_contentbase_created_by"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py:76
+msgid "description_contentbase_mdate"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py:67
+msgid "description_contentbase_modified_by"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py:65
+msgid "description_doctype_allowuploads"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py:75
+msgid "description_doctype_publishimmediately"
+msgstr ""
+
+#. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
+#: docpool.base/docpool/base/content/documentpool.py:57
+msgid "description_documentpool_prefix"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py:56
+msgid "description_dpdocument_doctype"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py:66
+msgid "description_dpdocument_text"
+msgstr ""
+
+#. Default: "There are currently no items in this folder."
+#: docpool.base/docpool/base/browser/dp_macros.pt:119
+msgid "description_no_items_in_folder"
+msgstr ""
+
+#. Default: "Leave blank to enable all types configured for the group."
+#: docpool.base/docpool/base/content/simplefolder.py:50
+msgid "description_simplefolder_alloweddoctypes"
+msgstr ""
+
+#: docpool.base/docpool/base/content/text.py:45
+msgid "description_text_text"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py:39
+msgid "don't accept"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py:19
+msgid "inactive"
+msgstr "Inactive"
+
+#. Default: "Cancel"
+#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt:86
+msgid "label_cancel"
+msgstr "Cancel"
+
+#. Default: "Document types allowed for the guest group(s)"
+#: docpool.base/docpool/base/content/collaborationfolder.py:47
+msgid "label_collaborationfolder_allowedpartnerdoctypes"
+msgstr ""
+
+#. Default: "Created by"
+#: docpool.base/docpool/base/content/contentbase.py:57
+msgid "label_contentbase_created_by"
+msgstr ""
+
+#. Default: "Date of last user action"
+#: docpool.base/docpool/base/content/contentbase.py:75
+msgid "label_contentbase_mdate"
+msgstr ""
+
+#. Default: "Modified by"
+#: docpool.base/docpool/base/content/contentbase.py:66
+msgid "label_contentbase_modified_by"
+msgstr ""
+
+#. Default: "Continue with files & images"
+#: docpool.base/docpool/base/browser/dpdocument_forms.py:34
+#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt:78
+msgid "label_continue"
+msgstr "Continue with files & images"
+
+#. Default: "Can contain documents and images"
+#: docpool.base/docpool/base/content/doctype.py:64
+msgid "label_doctype_allowuploads"
+msgstr ""
+
+#. Default: "Publish immediately?"
+#: docpool.base/docpool/base/content/doctype.py:74
+msgid "label_doctype_publishimmediately"
+msgstr ""
+
+#. Default: "Prefix names"
+#: docpool.base/docpool/base/content/documentpool.py:56
+msgid "label_documentpool_prefix"
+msgstr ""
+
+#. Default: "Document Type"
+#: docpool.base/docpool/base/content/dpdocument.py:55
+msgid "label_dpdocument_doctype"
+msgstr ""
+
+#. Default: "Text"
+#: docpool.base/docpool/base/content/dpdocument.py:65
+msgid "label_dpdocument_text"
+msgstr ""
+
+#. Default: "Save"
+#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt:71
+msgid "label_save"
+msgstr "Save"
+
+#. Default: "Document types allowed in this folder"
+#: docpool.base/docpool/base/content/simplefolder.py:49
+msgid "label_simplefolder_alloweddoctypes"
+msgstr ""
+
+#. Default: "Text"
+#: docpool.base/docpool/base/content/text.py:44
+msgid "label_text_text"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt:22
+#: docpool.base/docpool/base/browser/infolinklistitem.pt:20
+msgid "modified:"
+msgstr "modified:"
+
+#: docpool.base/docpool/base/vocabularies.py:39
+msgid "needs confirmation"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py:49
+msgid "publish immediately"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py:29
+msgid "read/write"
+msgstr ""
+
+#. Default: "Content listing"
+#: docpool.base/docpool/base/browser/dp_macros.pt:37
+msgid "summary_content_listing"
+msgstr "Content listing"
+
+#: docpool.base/docpool/base/vocabularies.py:29
+msgid "suspended"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py:29
+msgid "write"
+msgstr ""
+

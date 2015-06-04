@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="wsapi4plone">
+
+    <utility
+        factory=".scrubber.scrub"
+        provides=".interfaces.IScrubber"
+        />
+
+    <utility
+        factory=".builder.builder"
+        provides=".interfaces.IContextBuilder"
+        />
+
+    <utility
+        factory=".lookup.lookup"
+        provides=".interfaces.IServiceLookup"
+        />
+
+    <utility
+        factory=".query.formatter"
+        provides=".interfaces.IFormatQueryResults"
+        />
+
+</configure>

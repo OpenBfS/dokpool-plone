@@ -1,0 +1,52 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="elan.esd">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     
+
+<!-- ##code-section Main -->
+  <grok:grok package="." />
+
+  <subscriber handler=".elanscenario.scenarioAdded" />
+  <subscriber handler=".elanscenario.scenarioChanged" />
+  <subscriber handler=".elanscenario.scenarioPublished" />
+  <subscriber handler=".elaninfos.infosAdded" />
+  <subscriber handler=".elantransferfolder.created" />
+  <subscriber handler=".elantransferfolder.updated" />
+  <subscriber handler=".elantransferfolder.deleted" />
+  <class class=".elanarchive.ELANArchive">
+      <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
+      <implements interface="plone.app.content.interfaces.INameFromTitle" />
+      <implements interface="zope.location.interfaces.IPossibleSite" />
+  </class>
+  <class class=".elansection.ELANSection">
+      <implements interface="Products.CMFPlone.interfaces.breadcrumbs.IHideFromBreadcrumbs" />
+  </class>
+
+  <subscriber handler=".elandoccollection.update_docTypes" />
+  <subscriber handler=".elandoccollection.enableSyndication" />
+
+<!-- ##/code-section Main -->    
+    
+</configure>

@@ -1,0 +1,48 @@
+----------------
+Service Adapters
+----------------
+
+.. _service: `What is a Service`_
+.. _servicecontainer: `What is a ServiceContainer`_
+
+The general idea
+================
+
+The XML-RPC calls are a collection of Zope2 browser views.  The calls do some abstraction by calling up 'service adapters', which are specific to a content-type framework and/or individual content-type that may need special consideration.  A service adapter is a layer of abstraction on a content-type that provides a way of getting information in and out of the content object in a way that the WSAPI calls understand.  There are two types of service adapters.  They are Service_ and ServiceContainer_.  Those respectfully have the interfaces *IService* and *IServiceContainer*, which can be used to adapt content and containers.
+
+.. note:: There is a shortcut for looking up service adapters by using the *ServiceLookup* utility.  This is handy if you are using the service adapters in your own applications.  See *wsapi4plone.core.lookup.ServiceLookup* for usage information.
+
+When to make service adapters
+=============================
+
+For the most part, *you* should never need to make a service adapter, because service adapters should have been created for the content-type framework you are using.  For example, the Archetypes content-types framework has services adapters that are available in *wsapi4plone.core.services* (future location will probably be wsapi4plone.services.archetypes) by default, which should cover the majority of all Archetype content-type needs.
+
+- If *you* have created a content-type from scratch (e.g. maybe using the grok framework), you very well may need to create a service adapter.
+- If *your* content-type has some type of internal data crunching that happens before rendering and does not happen in the view.  
+- If *you* want extra behavior out of your content-type's schema items.
+
+The service adapter interface
+=============================
+
+The reason why the services adapters exist to begin with is so that we can abstract how the content object works with the WSAPI.  This is necessary because not all classes look alike.  However, most content-type classes have similarities because of subclassing; and that is where building service adapters for the content-type framework comes in handy.  
+
+What is a Service
+-----------------
+
+A service is essentially a Zope3 adapter that adapts a content object.  The adapters Interface can give you more information about how the individual methods for the service adapter are suppose to work and what they are to provide as output.  The interface is *wsapi4plone.core.interfaces.IService*.
+
+.. warning:: The get_misc method will be removed in a forth coming release.  The existing get_misc logic will be moved into individual utilities.
+
+What is a ServiceContainer
+--------------------------
+
+A service container subclasses a service.  The service container adapter is an adapter for container content objects.  It adds the functionality for creation and deletion that a content item does not have.  More information can be found in the interface.  The interface is *wsapi4plone.core.interfaces.IServiceContainer*.
+
+How to make service adapters
+============================
+
+:todo: 1. create a test scenario (something that provides ISite)
+       2. create a content and container content-type for that scenario
+       3. create the service adapters for those content-types
+       4. test there info to verify they work as expected
+

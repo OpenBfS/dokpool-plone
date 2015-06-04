@@ -1,0 +1,23 @@
+<tal:block i18n:domain="docpool.base">
+<!-- ##code-section Portlet -->
+<dl class="portlet portletTicker">
+<span tal:condition="python: (context.isSituationDisplay()) and (not context.isArchive()) and (context.restrictedTraverse('contentconfig').ticker.text and len(context.restrictedTraverse('contentconfig').ticker.text.output) > 10 or False)">
+<script type="text/javascript">
+
+/***********************************************
+* IFRAME Scroller script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+//specify path to your external page:
+var iframesrc="show_ticker"
+
+//You may change most attributes of iframe tag below, such as width and height:
+document.write('<iframe id="datamain" src="'+iframesrc+'" width="180px" height="100px" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="1" scrolling="no"><' + '/' + 'iframe>')
+
+</script>
+</span>
+</dl>    
+<!-- ##/code-section Portlet -->    
+</tal:block>

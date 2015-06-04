@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="wsapi4plone">
+
+    <include package="Products.CMFPlone" file="meta.zcml" />
+    <include
+        zcml:condition="have plone-41"
+        package="Products.CMFCore"
+        file="permissions.zcml"
+        />
+
+    <include package="collective.autopermission" />
+    <permission
+        id="wsapi.authenticated"
+        title="WSAPI authenticated"
+        />
+
+</configure>

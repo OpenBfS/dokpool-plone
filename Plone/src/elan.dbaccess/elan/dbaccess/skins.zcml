@@ -1,0 +1,10 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:cmf="http://namespaces.zope.org/cmf" i18n_domain="elan.dbaccess">
+
+   <!-- File System Directory Views registration -->
+    <cmf:registerDirectory name="elan_dbaccess_images"/>
+    <cmf:registerDirectory name="elan_dbaccess_templates"/>
+    <cmf:registerDirectory name="elan_dbaccess_styles"/>
+
+<!-- ##code-section Additional Parameters -->
+<!-- ##/code-section Additional Parameters -->
+</configure>

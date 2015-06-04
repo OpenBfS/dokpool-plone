@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project ELAN-E-Java with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="elan-client-1.0.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="de.bfs.elan.client.ELANService"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ xmlrpc-client-3.1.3.jar xmlrpc-common-3.1.3.jar commons-logging-1.1.jar ws-commons-util-1.0.2.jar xmlrpc-1.1.1.jar xmlrpc-client-1.1.1.jar commons-io-2.4.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="bin"/>
+            <zipfileset dir="lib" includes="xmlrpc-client-3.1.3.jar"/>
+            <zipfileset dir="lib" includes="xmlrpc-common-3.1.3.jar"/>
+            <zipfileset dir="lib" includes="commons-logging-1.1.jar"/>
+            <zipfileset dir="lib" includes="ws-commons-util-1.0.2.jar"/>
+            <zipfileset dir="lib" includes="xmlrpc-1.1.1.jar"/>
+            <zipfileset dir="lib" includes="xmlrpc-client-1.1.1.jar"/>
+            <zipfileset dir="lib" includes="commons-io-2.4.jar"/>
+        </jar>
+    </target>
+</project>

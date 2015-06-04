@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="elan.esd">
+
+    <include package="collective.monkeypatcher" />
+
+    <monkey:patch
+        description="This enables plone.protect for collective.quickupload"
+        class="collective.quickupload.browser.quick_upload.QuickUploadFile"
+        original="quick_upload_file"
+        preserveOriginal="true"
+        replacement=".monkey.patched_quick_upload_file"
+        />
+
+</configure>

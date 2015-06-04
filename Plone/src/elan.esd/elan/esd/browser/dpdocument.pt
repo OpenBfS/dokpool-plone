@@ -1,0 +1,44 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.base" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<!-- ##code-section Head -->
+<!-- ##/code-section Head -->    
+
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core">
+<!-- ##code-section Main -->
+<tal:def define="edit_allowed context/canBeEdited;
+				 elanobj view/elanobject;">
+    <div metal:use-macro="here/@@elan.macros/macros/elandoc"/>   
+    
+    <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
+       <script  type="text/javascript" tal:content="view/javascript">
+      </script>
+      <div class="elanUploaderContainer">
+          <input type="hidden"
+                 name="uploadUrl"
+                 class="uploadUrl"
+                 tal:attributes="value view/getUploadUrl" />
+          <input type="hidden"
+                 name="uploadData"
+                 class="uploadData"
+                 tal:attributes="value view/getDataForUploadUrl" />     
+      </div>
+      <input class="context"
+                  type="submit"
+                  name="form.button.save"
+                  value="Finish uploads and publish"
+                  tal:condition="python:context.publishedImmediately(raw=True) and not context.isIndividual()"
+                  i18n:attributes="value"
+                  onclick="window.location.href='content_status_modify?workflow_action=publish';return false;"
+                  />
+     
+    </tal:if>
+ </tal:def>
+<!-- ##/code-section Main -->    
+</metal:content-core>
+</metal:content-core>
+
+<!-- ##code-section Bottom -->
+<!-- ##/code-section Bottom -->  
+</body>
+</html>

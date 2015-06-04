@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<object name="portal_skins" meta_type="Plone Skins Tool" allow_any="False" cookie_persistence="False" request_varname="plone_skin">
+
+ <object name="elan_folders_images" meta_type="Filesystem Directory View" directory="elan.folders:skins/elan_folders_images"/>
+ <object name="elan_folders_templates" meta_type="Filesystem Directory View" directory="elan.folders:skins/elan_folders_templates"/>
+ <object name="elan_folders_styles" meta_type="Filesystem Directory View" directory="elan.folders:skins/elan_folders_styles"/>
+    
+    <!-- ##code-section object -->
+    
+    <!-- ##/code-section object -->
+
+ <skin-path name="*">
+  <layer name="elan_folders_images" insert-after="custom"/>
+  <layer name="elan_folders_templates" insert-after="custom"/>
+  <layer name="elan_folders_styles" insert-after="custom"/>
+     
+    <!-- ##code-section layer -->
+    
+    <!-- ##/code-section layer -->
+ </skin-path>
+
+
+</object>

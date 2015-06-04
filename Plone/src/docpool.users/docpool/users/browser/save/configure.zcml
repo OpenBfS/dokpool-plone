@@ -1,0 +1,89 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.users">
+
+    <include package="plone.app.contentmenu" />
+
+<!-- ##code-section Main -->
+  <browser:page
+      name="usergroup-userprefs"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups.UsersOverviewControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="usergroups_usersoverview.pt"
+      />
+
+  <browser:page
+      name="usergroup-groupprefs"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups.GroupsOverviewControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="usergroups_groupsoverview.pt"
+      />
+
+  <browser:page
+      name="usergroup-controlpanel"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups.UserGroupsSettingsControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      />
+
+  <browser:page
+      name="usergroup-groupmembership"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups.GroupMembershipControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="usergroups_groupmembership.pt"
+      />
+
+  <browser:page
+      name="usergroup-usermembership"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups.UserMembershipControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="usergroups_usermembership.pt"
+      />
+
+  <browser:page
+      name="usergroup-groupdetails"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups.GroupDetailsControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="usergroups_groupdetails.pt"
+      />
+      
+    <browser:page
+      for="docpool.base.interfaces.IDocumentPool"
+      name="account-macro"
+      class=".account.AccountPanelView"
+      attribute="getMacro"
+      permission="cmf.SetOwnProperties"
+      />
+
+    <browser:page
+      name="user-information"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".personalpreferences.UserDataConfiglet"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="account-configlet.pt"
+      />
+   
+    <browser:page
+      name="new-user"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".register.AddUserForm"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      />      
+
+     <adapter factory=".personalpreferences.PasswordPanelAdapter" />    
+
+    <utility provides="zope.schema.interfaces.IVocabularyFactory"
+             component=".register.getGroupIds"
+             name="ESD Group Ids"/>
+    
+     <adapter
+      provides="plone.app.controlpanel.security.ISecuritySchema"
+      for="docpool.base.interfaces.IDocumentPool"
+      factory=".usergroups.SecurityControlPanelAdapter"
+      />
+<!-- ##/code-section Main -->    
+
+</configure>

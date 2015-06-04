@@ -1,0 +1,6 @@
+<layers>
+    <layer
+        name="wsapi4plone.core"
+        interface="wsapi4plone.core.browser.interfaces.IAPILayer"
+        />
+</layers>

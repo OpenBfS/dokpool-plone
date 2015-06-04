@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<object>
+    <order manager="plone.portalheader" skinname="ELAN-E Theme">
+    	<viewlet name="plone.app.i18n.locales.languageselector" />
+    	<viewlet name="plone.skip_links" />
+		<viewlet name="plone.personal_bar" />
+		<viewlet name="plone.searchbox" />		
+        <viewlet name="elan.esd.time" />
+		<viewlet name="plone.logo" />
+		<viewlet name="elan.esd.scenarios" />
+		<viewlet name="plone.global_sections" />
+    </order>
+</object>

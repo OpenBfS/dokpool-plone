@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="imaging_properties" meta_type="Plone Property Sheet">
+  <property name="title">Image handling properties</property>
+  <property name="allowed_sizes" type="lines">
+   <element value="large 768:768"/>
+   <element value="preview 400:400"/>
+   <element value="mini 200:200"/>
+   <element value="thumb 128:128"/>
+   <element value="tile 64:64"/>
+   <element value="icon 32:32"/>
+   <element value="listing 16:16"/>
+  </property>
+ </object>
+ <object name="jqueryui_properties" meta_type="Plone Property Sheet">
+  <property name="title">JQueryUI properties</property>
+  <property name="global_include" type="boolean">True</property>
+  <property name="example_activated" type="boolean">False</property>
+  <property name="views_and_templates" type="lines">
+   <element value="example.jqueryui"/>
+  </property>
+ </object>
+ <object name="navtree_properties" meta_type="Plone Property Sheet">
+  <property name="title">NavigationTree properties</property>
+  <property name="sortAttribute"
+     type="string">getObjPositionInParent</property>
+  <property name="sortOrder" type="string">asc</property>
+  <property name="sitemapDepth" type="int">4</property>
+  <property name="name" type="string"></property>
+  <property name="root" type="string">/</property>
+  <property name="currentFolderOnlyInNavtree" type="boolean">False</property>
+  <property name="includeTop" type="boolean">True</property>
+  <property name="topLevel" type="int">0</property>
+  <property name="bottomLevel" type="int">0</property>
+  <property name="showAllParents" type="boolean">False</property>
+  <property name="idsNotToList" type="lines"/>
+  <property name="parentMetaTypesNotToQuery" type="lines">
+   <element value="TempFolder"/>
+  </property>
+  <property name="metaTypesNotToList" type="lines">
+   <element value="ATBooleanCriterion"/>
+   <element value="ATCurrentAuthorCriterion"/>
+   <element value="ATDateCriteria"/>
+   <element value="ATDateRangeCriterion"/>
+   <element value="ATListCriterion"/>
+   <element value="ATPathCriterion"/>
+   <element value="ATPortalTypeCriterion"/>
+   <element value="ATReferenceCriterion"/>
+   <element value="ATRelativePathCriterion"/>
+   <element value="ATSelectionCriterion"/>
+   <element value="ATSimpleIntCriterion"/>
+   <element value="ATSimpleStringCriterion"/>
+   <element value="ATSortCriterion"/>
+   <element value="Collection"/>
+   <element value="Discussion Item"/>
+   <element value="Document"/>
+   <element value="DPDocument"/>
+   <element value="DocumentPool"/>
+   <element value="InfoDocument"/>
+   <element value="InfoLink"/>
+   <element value="Event"/>
+   <element value="File"/>
+   <element value="Image"/>
+   <element value="Link"/>
+   <element value="News Item"/>
+   <element value="Plone Site"/>
+   <element value="TempFolder"/>
+   <element value="TemplatedDocument"/>
+   <element value="dbadmin"/>
+  </property>
+  <property name="enable_wf_state_filtering" type="boolean">False</property>
+  <property name="wf_states_to_show" type="lines"/>
+ </object>
+ <object name="quickupload_properties" meta_type="Plone Property Sheet">
+  <property name="title">Quick Upload properties</property>
+  <property name="use_flashupload" type="boolean">False</property>
+  <property name="auto_upload" type="boolean">False</property>
+  <property name="fill_titles" type="boolean">True</property>
+  <property name="fill_descriptions" type="boolean">False</property>
+  <property name="size_limit" type="int">0</property>
+  <property name="sim_upload_limit" type="int">2</property>
+ </object>
+ <object name="site_properties" meta_type="Plone Property Sheet">
+  <property name="title">Site wide properties</property>
+  <property name="allowAnonymousViewAbout" type="boolean">False</property>
+  <property name="localTimeFormat" type="string">%b %d, %Y</property>
+  <property name="localLongTimeFormat"
+     type="string">%b %d, %Y %I:%M %p</property>
+  <property name="localTimeOnlyFormat" type="string">%I:%M %p</property>
+  <property name="default_charset" type="string">utf-8</property>
+  <property name="ext_editor" type="boolean">False</property>
+  <property name="available_editors" type="lines">
+   <element value="CKeditor"/>
+   <element value="TinyMCE"/>
+  </property>
+  <property name="default_editor" type="string">CKeditor</property>
+  <property name="allowRolesToAddKeywords" type="lines">
+   <element value="Manager"/>
+   <element value="Site Administrator"/>
+   <element value="Reviewer"/>
+  </property>
+  <property name="auth_cookie_length" type="int">0</property>
+  <property name="calendar_starting_year" type="int">2001</property>
+  <property name="calendar_future_years_available" type="int">5</property>
+  <property name="invalid_ids" type="lines">
+   <element value="actions"/>
+  </property>
+  <property name="default_page" type="lines">
+   <element value="index_html"/>
+   <element value="index.html"/>
+   <element value="index.htm"/>
+   <element value="FrontPage"/>
+  </property>
+  <property name="search_results_description_length" type="int">160</property>
+  <property name="ellipsis" type="string">...</property>
+  <property name="typesLinkToFolderContentsInFC" type="lines">
+   <element value="Folder"/>
+   <element value="PloneArticleMultiPage"/>
+  </property>
+  <property name="visible_ids" type="boolean">True</property>
+  <property name="exposeDCMetaTags" type="boolean">True</property>
+  <property name="types_not_searched" type="lines">
+   <element value="ATBooleanCriterion"/>
+   <element value="ATCurrentAuthorCriterion"/>
+   <element value="ATDateCriteria"/>
+   <element value="ATDateRangeCriterion"/>
+   <element value="ATListCriterion"/>
+   <element value="ATPathCriterion"/>
+   <element value="ATPortalTypeCriterion"/>
+   <element value="ATReferenceCriterion"/>
+   <element value="ATRelativePathCriterion"/>
+   <element value="ATSelectionCriterion"/>
+   <element value="ATSimpleIntCriterion"/>
+   <element value="ATSimpleStringCriterion"/>
+   <element value="ATSortCriterion"/>
+   <element value="Collection"/>
+   <element value="Discussion Item"/>
+   <element value="Document"/>
+   <element value="ELANArchive"/>
+   <element value="ELANArchives"/>
+   <element value="ELANContentConfig"/>
+   <element value="ELANDocCollection"/>
+   <element value="DocType"/>
+   <element value="DocTypes"/>
+   <element value="ELANCurrentSituation"/>
+   <element value="SimpleFolder"/>
+   <element value="InfoFolder"/>
+   <element value="ELANInfos"/>
+   <element value="ELANScenario"/>
+   <element value="ELANScenarios"/>
+   <element value="ELANSection"/>
+   <element value="IRIXConfig"/>
+   <element value="Event"/>
+   <element value="File"/>
+   <element value="Folder"/>
+   <element value="Image"/>
+   <element value="Link"/>
+   <element value="News Item"/>
+   <element value="Plone Site"/>
+   <element value="TempFolder"/>
+   <element value="TemplatedDocument"/>
+  </property>
+  <property name="search_review_state_for_anon"
+     type="boolean">False</property>
+  <property name="search_enable_title_search" type="lines"/>
+  <property name="search_enable_description_search" type="lines"/>
+  <property name="search_enable_sort_on" type="lines">
+   <element value="auth"/>
+   <element value="anon"/>
+  </property>
+  <property name="search_enable_batch_size" type="lines">
+   <element value="auth"/>
+   <element value="anon"/>
+  </property>
+  <property name="search_collapse_options" type="boolean">True</property>
+  <property name="disable_folder_sections" type="boolean">False</property>
+  <property name="disable_nonfolderish_sections"
+     type="boolean">False</property>
+  <property name="typesUseViewActionInListings" type="lines">
+   <element value="Image"/>
+   <element value="File"/>
+  </property>
+  <property name="verify_login_name" type="boolean">True</property>
+  <property name="many_users" type="boolean">False</property>
+  <property name="many_groups" type="boolean">False</property>
+  <property name="enable_livesearch" type="boolean">True</property>
+  <property name="default_page_types" type="lines">
+   <element value="ELANDocCollection"/>
+  </property>
+  <property name="use_folder_contents" type="lines"/>
+  <property name="forbidden_contenttypes" type="lines">
+   <element value="text/structured"/>
+   <element value="text/restructured"/>
+   <element value="text/x-rst"/>
+   <element value="text/plain"/>
+   <element value="text/plain-pre"/>
+   <element value="text/x-python"/>
+   <element value="text/x-web-markdown"/>
+   <element value="text/x-web-intelligent"/>
+   <element value="text/x-html-captioned"/>
+  </property>
+  <property name="default_contenttype" type="string">text/html</property>
+  <property name="enable_sitemap" type="boolean">False</property>
+  <property name="number_of_days_to_keep" type="int">7</property>
+  <property name="enable_inline_editing" type="boolean">False</property>
+  <property name="lock_on_ttw_edit" type="boolean">True</property>
+  <property name="enable_link_integrity_checks" type="boolean">True</property>
+  <property name="webstats_js" type="text"></property>
+  <property name="external_links_open_new_window"
+     type="string">True</property>
+  <property name="icon_visibility" type="string">enabled</property>
+  <property name="mark_special_links" type="string">true</property>
+  <property name="redirect_links" type="boolean">False</property>
+  <property name="use_email_as_login" type="boolean">False</property>
+  <property name="user_registration_fields" type="lines">
+    <element value="username" />
+    <element value="fullname" />
+    <element value="email" />
+    <element value="password" />
+    <element value="dp" />
+  </property>
+  <property name="allow_external_login_sites" type="lines"/>
+  <property name="external_login_url" type="string"></property>
+  <property name="external_logout_url" type="string"></property>
+  <property name="external_login_iframe" type="boolean">False</property>
+ </object>
+</object>

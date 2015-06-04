@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="docpool.base">
+
+
+  <body>
+
+        <!-- header, h1 of Edit <Type>, schemata links and webdav lock message -->
+
+        <metal:header define-macro="header">
+        </metal:header>
+
+        
+
+        <!-- typedesription, typeDescription from the content type -->
+
+        <metal:typedescription define-macro="typedescription">
+        </metal:typedescription>
+
+
+
+        <!-- body, editform , fields, buttons, the default macro 
+
+             contains a number of slots which usually provide enough
+
+             ways to customise so often I use that macro and just 
+
+             fill the slots
+
+        -->
+
+        <metal:body define-macro="body">
+
+            <metal:default_body use-macro="here/edit_macros/macros/body">
+
+              <!-- inside the fieldset but above all the fields -->
+
+              <metal:block fill-slot="extra_top">
+
+              </metal:block>
+
+              
+
+              <!-- listing of the fields, usually I won't customise this 
+
+              <metal:block fill-slot="widgets">
+
+              </metal:block>
+
+			  -->
+            
+
+
+
+              <!-- below the fields above the formControls (hidden fields for refernce stuff is above buttons) -->
+
+              <metal:block fill-slot="extra_bottom">
+
+              </metal:block>
+
+
+
+              <!-- within the formControls these are the default previous, next, save, cancel buttons -->
+
+              <metal:block fill-slot="buttons">
+              <tal:def define="withUpload context/uploadsAllowed">
+                <input class="context"
+                       type="submit"
+                       name="form.button.save"
+                       value="Save"
+                       i18n:attributes="value label_save;"
+                       tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                       />
+                <input class="context"
+                       type="submit"
+                       name="form.button.save"
+                       value="Continue with files & images"
+                       tal:condition="withUpload"
+                       i18n:attributes="value label_continue;"
+                       tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                       />
+                <input class="standalone"
+                       type="submit"
+                       name="form.button.cancel"
+                       value="Cancel"
+                       i18n:attributes="value label_cancel;"
+                       />
+              </tal:def>
+              </metal:block>
+
+
+
+              <!-- within the formControls a slot for extra buttons -->
+
+              <metal:block fill-slot="extra_buttons">
+
+              </metal:block>
+
+
+
+            </metal:default_body>
+
+        </metal:body>
+
+
+
+        
+
+        <!-- footer, by line created date etc. -->
+
+        <metal:footer define-macro="footer">
+
+        
+
+        </metal:footer>
+
+
+
+  </body>
+
+
+
+</html>
+

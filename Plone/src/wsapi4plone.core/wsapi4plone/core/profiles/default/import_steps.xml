@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step
+     id="wsapi4plone_loadDefaults"
+     version="20091002-01"
+     handler="wsapi4plone.core.setuphandlers.importDefaults"
+     title="Import step for wsapi4plone.core to load the default configuration.">
+    Loads the default configuration for the Web Services API, if necessary.
+  </import-step>
+</import-steps>

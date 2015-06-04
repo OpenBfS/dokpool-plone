@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<portlets>
+   <assignment 
+     remove="true" 
+     name="calendar" 
+     category="context" 
+     key="/" 
+     manager="plone.rightcolumn" 
+     type="portlets.Calendar" 
+     />
+
+   <assignment 
+     remove="true" 
+     name="events" 
+     category="context" 
+     key="/" 
+     manager="plone.rightcolumn" 
+     type="portlets.Events" 
+     />
+ 
+ <assignment
+     remove="true"
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="portlets.Login"
+     name="login"
+     />
+
+  <assignment
+     remove="true"
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Review"
+     name="review"
+     />
+
+</portlets>

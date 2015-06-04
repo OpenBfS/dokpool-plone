@@ -1,0 +1,24 @@
+<tal:block i18n:domain="elan.esd">
+       <div id="mesz" tal:define="DateTime python:modules['DateTime'].DateTime;
+                                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+       <table id="time_table" tal:define="now python:DateTime();
+                          offset python:(float(now.tzoffset())/(3600*24))">
+        <tr class="times">
+            <td class="zone">
+                <tal:var i18n:translate="">LT</tal:var>:
+           </td>
+           <td class="time">
+                <span tal:content="python: toLocalizedTime(now, long_format=1)">LT</span>
+           </td>
+        </tr>       
+        <tr class="times">
+            <td class="zone">
+                <tal:var i18n:translate="">UTC</tal:var>:
+           </td>
+           <td class="time">
+                <span tal:content="python: toLocalizedTime(now.toZone('UTC') - offset, long_format=1)">LT</span>
+           </td>
+        </tr>       
+       </table>
+       </div>
+</tal:block>

@@ -1,0 +1,97 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="elan.esd">
+    
+    <i18n:registerTranslations directory="locales"/>
+    <includeDependencies package="." />
+    <include package="zope.annotation" />
+    
+    <five:registerPackage package="." initialize=".initialize"/>
+    
+    <!-- Include the sub-packages that use their own configure.zcml files. -->
+    
+    <include package=".browser" />
+    <include package=".content" />
+    <include package=".portlets" />
+    
+    <include package="plone.app.relationfield" />
+    <include package="collective.autopermission" />
+    <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />    
+    <!-- grok:grok package="." /-->    
+    
+    <!-- Register the installation GenericSetup extension profile -->
+    
+    
+    <genericsetup:registerProfile name="default" title="elan.esd" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
+    
+
+   <include file="skins.zcml" />
+   
+   
+   <permission id="elan.esd.AddELANInfos" title="ELAN_E: Add ELANInfos" />   
+   
+   
+   <permission id="elan.esd.AddELANDocCollection" title="ELAN_E: Add ELANDocCollection" />   
+   
+   
+   <permission id="elan.esd.AddELANScenario" title="ELAN_E: Add ELANScenario" />   
+   
+   
+   <permission id="elan.esd.AddELANArchive" title="ELAN_E: Add ELANArchive" />   
+   
+   
+   <permission id="elan.esd.AddELANCurrentSituation" title="ELAN_E: Add ELANCurrentSituation" />   
+   
+   
+   <permission id="elan.esd.AddELANSection" title="ELAN_E: Add ELANSection" />   
+   
+   
+   <permission id="elan.esd.AddELANContentConfig" title="ELAN_E: Add ELANContentConfig" />   
+   
+   
+   <permission id="elan.esd.AddELANScenarios" title="ELAN_E: Add ELANScenarios" />   
+   
+   
+   <permission id="elan.esd.AddELANArchives" title="ELAN_E: Add ELANArchives" />   
+   
+   
+   <permission id="elan.esd.AddIRIXConfig" title="ELAN_E: Add IRIXConfig" />   
+   
+   
+   <permission id="elan.esd.AddELANTransferFolder" title="ELAN_E: Add ELANTransferFolder" />   
+   
+   
+   <permission id="elan.esd.AddELANTransfers" title="ELAN_E: Add ELANTransfers" />   
+   
+
+<!-- ##code-section Main -->    
+   <permission id="elan.esd.SendContent" title="ELAN_E: Send Content" />   
+   <permission id="elan.esd.ReceiveContent" title="ELAN_E: Receive Content" />   
+
+  
+  <utility
+    component=".vocabularies.CategoriesVocabularyFactory"
+    name="elan.esd.vocabularies.Categories" />
+
+  <utility
+    component=".vocabularies.ScenarioVocabularyFactory"
+    name="elan.esd.vocabularies.Scenarios"
+    />
+  <utility
+    component=".vocabularies.ScenarioRefVocabularyFactory"
+    name="elan.esd.vocabularies.ScenarioRefs"
+    />
+  <utility
+    component=".vocabularies.ScenarioSubstituteVocabularyFactory"
+    name="elan.esd.vocabularies.ScenarioSubstitutes"
+    />
+  
+   <adapter factory=".db.security.ChannelSecurity"/>    
+   
+    <subscriber handler=".events.esdAdded" />
+    <subscriber handler=".events.esdRemoved" />
+   
+    <include package=".behaviors" />	
+	 
+	<include file="monkey.zcml" />	    
+<!-- ##/code-section Main -->    
+      
+</configure>

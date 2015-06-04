@@ -1,0 +1,72 @@
+<html>
+<head>
+<!-- link rel="StyleSheet" href="base.css" type="text/css" -->
+<meta http-equiv="refresh" content="60">
+</head>
+<body>
+<div id="datacontainer" 
+    tal:define="t nocall: python:context.restrictedTraverse('contentconfig').ticker;
+    toLocalizedTime nocall: context/@@plone/toLocalizedTime;" style="position:absolute;left:1px;top:10px;width:100%" onMouseover="scrollspeed=0" onMouseout="scrollspeed=cache">
+
+<!-- ADD YOUR SCROLLER CONTENT INSIDE HERE -->
+
+<br><br><br><br><br>
+<div style="font-size: 80%">
+<a><span tal:replace="python:t.modified_by or t.created_by"/><br><span tal:replace="python: toLocalizedTime(t.modified(), long_format=1)"></span>:</a>
+<a>
+  <span tal:replace="structure t/text/output" />
+</a>
+</div>
+
+
+<!-- END SCROLLER CONTENT -->
+
+</div>
+
+<script type="text/javascript">
+
+/***********************************************
+* IFRAME Scroller script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+//Specify speed of scroll. Larger=faster (ie: 5)
+var scrollspeed=cache=1
+
+//Specify intial delay before scroller starts scrolling (in miliseconds):
+var initialdelay=300
+
+function initializeScroller(){
+dataobj=document.all? document.all.datacontainer : document.getElementById("datacontainer")
+dataobj.style.top="5px"
+setTimeout("getdataheight()", initialdelay)
+}
+
+function getdataheight(){
+thelength=dataobj.offsetHeight
+if (thelength==0)
+setTimeout("getdataheight()",10)
+else
+scrollDiv()
+}
+
+function scrollDiv(){
+dataobj.style.top=parseInt(dataobj.style.top)-scrollspeed+"px"
+if (parseInt(dataobj.style.top)<thelength*(-1))
+dataobj.style.top="5px"
+setTimeout("scrollDiv()",40)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", initializeScroller, false)
+else if (window.attachEvent)
+window.attachEvent("onload", initializeScroller)
+else
+window.onload=initializeScroller
+
+
+</script>
+</body>
+
+</html>

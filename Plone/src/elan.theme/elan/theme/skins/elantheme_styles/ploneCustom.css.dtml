@@ -1,0 +1,304 @@
+
+/* To change the edit bar color, uncomment the selectors below, and insert *
+ * new color values:                                                        */
+
+/*
+#contentActionMenus,
+dl.actionMenu.activated dd,
+#content-views,
+#edit-bar {
+	background-color: blue;
+	border-color: blue;
+}
+dl.actionMenu a {
+	background-color: blue;
+}
+*/
+
+<dtml-with base_properties>
+
+body {
+	background-color: White;
+    color: #003366;
+    font: 85% "Lucida Grande",Verdana,Lucida,Helvetica,Arial,sans-serif;
+}
+
+body.userrole-manager {
+    background-color: beige;
+}
+
+body.administrator {
+    background-color: lightblue;
+}
+
+#portal-column-content {
+    padding-left: 8px;
+}
+
+dl.portlet ul.navTreeLevel1 .navTreeItem {
+    line-height: 1em;
+    padding-left: 0.5em;
+}
+
+dl.portlet ul.navTreeLevel0 > .navTreeItem > a {
+    background-color: #75AD0A !important;
+    color: white !important;
+    font-weight: bold !important;
+    margin-bottom: 0.2em;
+    margin-left: -1em;
+    padding-left: 1em;
+}
+dl.portlet ul.navTreeLevel0 > .navTreeItem > a:hover {
+    color: #205C90 !important;
+}
+
+dl.portletRecent dd.portletItem {
+	padding: 0 1em 0 1em;
+}
+
+#portal-globalnav li.personal {
+	float: right;	
+}
+
+#portal-globalnav li.personal a {
+	background-color: #003366;
+	color: #DDDDDD;
+}
+
+#portal-globalnav li.transfer a {
+    float: right;
+    background-color: #005599;
+}
+
+#mesz {
+    clear: right;
+    float: right;
+    font-size: 80%;
+}
+
+#mesz .zone {
+    padding-right: 1em;
+}
+
+#mesz .time {
+    padding-right: 1em;
+}
+
+.middle {
+    top: -4em;
+}
+
+#scenario_box {
+	margin-right: 0;
+	padding: 0.5em;
+	font-size: 75%;
+	color: #003366;
+    position: relative;
+/*    top: 5em;	  */
+}
+
+.template-rpopup #scenario_box {
+    top: 0;
+} 
+
+.template-rpopup #scenario_box {
+    font-size: 100%;
+}
+
+.template-rpopup td.form {
+    display: none;
+}
+
+#scenario_box td.form {
+    width:12em;
+}
+
+#scenario_box p {
+    color: red;
+    margin-bottom: 1em;
+    font-size: 110%;
+}
+
+table.scenario_table td {
+	padding: 0.1em;
+	border: 1px solid #003366;
+	border-bottom: none;
+	border-right: none;
+}
+
+table.scenario_table {
+    background-color: #75AD0A;
+    clear: none;
+    width: 100%;
+    border-bottom: 1px solid #003366;
+    border-right: 1px solid #003366;
+}
+
+table.scenario_table .inactive {
+    background-color: #DDDDDD;
+}
+
+table.scenario_table .sselected {
+    font-weight: bold;
+}
+
+form.scenario_selection input {
+	margin-top: 0.5em;
+	margin-left: 0.5em;
+}
+
+.cat_info {
+    display: inline;
+    float: left; 
+    width: 210px;
+}
+
+.cat_filter {
+/*    float: left; */
+}
+
+.cat_scen {
+    display: block;
+    clear: both;
+    margin-bottom: 2em;
+    height: 8em;
+}
+
+form.category_selection {
+    display: inline;
+    float: left;
+}
+
+.arch_scen {
+    float: right;
+    max-width: 600px;
+    font-size:80%;
+    margin-right:2em;
+}
+
+table.elanlisting {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table.elanlisting .top {
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+table.elanlisting th {
+    text-align: left;
+    color: #666;
+    border: 0.1em solid #e7e7e7;
+    border-style: solid solid none;
+    background: #ddd;
+}
+table.elanlisting tr.odd th {
+    border: 0.1em solid #fff;
+    border-style: solid solid none none;
+}
+table.elanlisting tbody th {
+    font-weight: bold;
+}
+table.elanlisting tbody tr {
+    text-align:left;
+}
+table.elanlisting tbody tr.odd {
+    background: #eee;
+}
+table.elanlisting tbody tr td {
+    background: transparent;
+}
+table.elanlisting tbody tr.odd td {
+    background: #eee;
+}
+table.elanlisting td {
+    border-right: 1px solid #ddd;
+}
+table.elanlisting td,
+table.elanlisting th {
+    padding: 0.5em 1em;
+    vertical-align: top;
+}
+
+table.elanlisting a {
+    border: none;
+    display: inline-block;
+    border-bottom: none !important;
+}
+
+table.scenarios {
+    background-color: #B1BEDF; 
+}
+
+.scenarios td {
+    padding: 0.5em;
+    border: 1px solid #000000;
+}
+
+.discussion .documentByLine {
+    color: white;
+    float: none;
+    margin-left: 0.2em;
+}
+
+.discussion .documentByLine a {
+    display: inline;
+}
+
+.commentImage {
+    display: none;
+}
+
+.commentBody {
+    clear: none;
+    padding: 0.3em;
+    box-shadow: 0 0 0.1em 0 #888888;
+    margin: 0 1em 0.2em 0.2em;
+}
+
+.commentDate {
+    padding-top: 0;
+    display: inline;
+}
+
+.replyTreeLevel1, .replyTreeLevel2  {
+    margin-top: 0;
+    margin-left: 2em !important;
+}
+
+.replyTreeLevel2  {
+    margin-left: 4em !important;
+}
+
+.replyTreeLevel3  {
+    margin-left: 6em !important;
+}
+
+.replyTreeLevel4  {
+    margin-left: 8em !important;
+}
+
+.portaltype-elanesd .field.esd, .portaltype-elanesd #formfield-form-esd {
+    display: none;
+}
+
+.template-usergroup-groupdetails .field.email {
+    display: none;
+}
+
+.template-user-information .field.portrait {
+    display: none;
+}
+
+.portaltype-elantransferfolder #selectall,
+.portaltype-elantransferfolder th.id,  
+.portaltype-elantransferfolder td.id, 
+.portaltype-elantransferfolder #import,  
+.portaltype-elantransferfolder #export, 
+.portaltype-elantransferfolder #deletebutton,
+.portaltype-elantransferfolder #createbutton {
+
+    display: none;
+}
+
+</dtml-with>

@@ -1,0 +1,70 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="wsapi4plone">
+
+    <configure zcml:condition="installed plone.app.blob">
+      <include package="plone.app.blob" />
+    </configure>
+
+    <!-- Plone application service adapters -->
+    <adapter factory=".services.PloneRootService" />
+    <adapter factory=".dexterity.DexterityObjectService" />   
+    <adapter factory=".dexterity.DexterityContainerService" />   
+    <!-- END/ Plone application service adapters -->
+
+    <!-- Core Plone Extensions -->
+    <interface
+      interface=".interfaces.IPloneContents"
+      type="wsapi4plone.core.interfaces.IServiceExtension"
+      name="contents"
+      />
+
+    <adapter
+      zcml:condition="installed zope.app.container"
+      name="contents"
+      for="wsapi4plone.core.interfaces.IServiceContainer
+           zope.app.container.interfaces.IContainer"
+      provides=".interfaces.IPloneContents"
+      factory=".extensions.PloneContents"
+      />
+
+    <adapter
+      name="contents"
+      for="wsapi4plone.core.interfaces.IServiceContainer
+           plone.dexterity.interfaces.IDexterityContainer"
+      provides=".interfaces.IPloneContents"
+      factory=".extensions.PloneContents"
+      />
+
+    <adapter
+      zcml:condition="not-installed zope.app.container"
+      name="contents"
+      for="wsapi4plone.core.interfaces.IServiceContainer
+           zope.container.interfaces.IContainer"
+      provides=".interfaces.IPloneContents"
+      factory=".extensions.PloneContents"
+      />
+
+    <adapter
+      zcml:condition="installed zope.app.container"
+      for="zope.app.container.interfaces.IContainer"
+      provides=".interfaces.IContentsQuery"
+      factory=".extensions.PloneFolderContents"
+      />
+
+    <adapter
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      provides=".interfaces.IContentsQuery"
+      factory=".extensions.PloneFolderContents"
+      />
+
+    <adapter
+      zcml:condition="not-installed zope.app.container"
+      for="zope.container.interfaces.IContainer"
+      provides=".interfaces.IContentsQuery"
+      factory=".extensions.PloneFolderContents"
+      />
+    <!-- END/ Core Plone Extensions -->
+
+</configure>

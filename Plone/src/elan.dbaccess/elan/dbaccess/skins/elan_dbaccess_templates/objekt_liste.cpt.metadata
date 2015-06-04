@@ -1,0 +1,20 @@
+[default]
+title = Objekte aus Liste bearbeiten 
+
+[validators]
+validators=
+validators..cancel=
+validators..reload=
+
+[actions]
+action.success = traverse_to:string:objekt_liste
+action.success..delete = traverse_to:string:objekt_delete
+action.success..create = redirect_to:string:${object/absolute_url}/objekt_edit?typ=${request/typ}&create=1
+action.success..save = traverse_to:string:objekte_save
+action.success..activate = traverse_to:string:nutzer_freischalten
+action.success..filter = traverse_to:string:objekt_liste
+action.success..upload = traverse_to:string:objekte_importieren
+action.success..cancel = redirect_to:python:'%s' % (object.absolute_url())
+action.success..export = traverse_to:string:objekte_export
+action.success..report = traverse_to:string:objekte_report
+

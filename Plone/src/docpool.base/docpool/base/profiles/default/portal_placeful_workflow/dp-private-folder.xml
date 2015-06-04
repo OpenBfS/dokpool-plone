@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="dp-private-folder" meta_type="WorkflowPolicy">
+ <property name="title">DP Private Workflow</property>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="dp_private_workflow"/>
+  </default>
+  <type type_id="DPDocument">
+   <bound-workflow workflow_id="dp_private_workflow"/>
+  </type>
+ </bindings>
+</object>

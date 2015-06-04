@@ -1,0 +1,30 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="wsapi4plone">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Web Services API for Plone"
+        description="Extension profile for wsapi4plone.core."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        directory="profiles/default"
+        />
+
+    <genericsetup:registerProfile
+        name="init"
+        title="Initialize the Web Services API for Plone configuration"
+        description="Initialize the configuration for wsapi4plone.core"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        directory="profiles/init"
+        />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="Uninstaller for Web Services API for Plone"
+        description="Extension profile for wsapi4plone.core."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        directory="profiles/uninstall"
+        />
+
+</configure>

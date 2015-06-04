@@ -1,0 +1,145 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ELAN-E\n"
+"POT-Creation-Date: 2014-09-30 13:43+0000\n"
+"PO-Revision-Date: 2014-09-30 15:43+0100\n"
+"Last-Translator: Henning Rietz <hr@condat.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: English\n"
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:46
+msgid "(ascending)"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:54
+msgid "(descending)"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:20
+msgid "All results on one page?"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:110
+#: elan.dbaccess/elan/dbaccess/browser/struct_macros.pt:128
+msgid "Back"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:199
+#: elan.dbaccess/elan/dbaccess/browser/struct_macros.pt:80
+msgid "Created by ${user} on ${date}, last modified by ${user2} on ${date2}"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/profiles/default/types/dbadmin.xml
+msgid "DB Admin Interface"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/skins/elan_dbaccess_templates/struct_delete.cpy:24
+msgid "Data was deleted."
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/content/forms.py:231
+msgid "Delete"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/content/structured.py:129
+msgid "Edit"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:183
+#: elan.dbaccess/elan/dbaccess/browser/struct_macros.pt:64
+msgid "Edit ${label}"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:180
+msgid "Existing duplicates:"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:140
+msgid "Export"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:128
+msgid "Export CSV-File"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:26
+msgid "Filter"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:145
+msgid "HTML-Report"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:122
+msgid "Import"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:116
+msgid "Import CSV-File"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:193
+#: elan.dbaccess/elan/dbaccess/browser/struct_macros.pt:74
+msgid "Minor change? (no notification)"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/content/forms.py:233
+msgid "New"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/skins/elan_dbaccess_templates/struct_save.cpy:34
+msgid "Please correct the following errors."
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:157
+msgid "Produce"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/content/forms.py:400
+msgid "Save"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:60
+msgid "Select/unselect all"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:34
+msgid "Sort on:"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/browser/dbadmin_macros.pt:97
+msgid "Speichern"
+msgstr "Save"
+
+#: elan.dbaccess/elan/dbaccess/skins/elan_dbaccess_templates/struct_save.cpy:23
+msgid "The data was saved."
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/skins/elan_dbaccess_templates/struct_save.cpy:46
+msgid "There is a duplicate for this object!"
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/skins/elan_dbaccess_templates/objekte_save.cpy:21
+msgid "Your data has been saved."
+msgstr ""
+
+#: elan.dbaccess/elan/dbaccess/content/forms.py:402
+msgid "einfachesicherheitsabfrage"
+msgstr "simplesecuritycheck"
+
+#: elan.dbaccess/elan/dbaccess/content/dbadmin.py:127
+msgid "portal_dbadmin Konfiguration"
+msgstr "DB Access Configuration"
+
+#: elan.dbaccess/elan/dbaccess/content/forms.py:231
+msgid "sicherheitsabfrage"
+msgstr "securitycheck"
+

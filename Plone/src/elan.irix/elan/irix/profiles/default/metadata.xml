@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<metadata>
+    <version>1.0.10</version>
+    <dependencies>
+        <dependency>profile-elan.dbaccess:default</dependency>
+    <!-- ##code-section Dependencies -->
+    
+    <!-- ##/code-section Dependencies -->
+    </dependencies>    
+    <!-- ##code-section View -->
+    
+    <!-- ##/code-section View -->
+</metadata>

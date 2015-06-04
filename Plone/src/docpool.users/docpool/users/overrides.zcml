@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="docpool.users">
+
+	<include package=".browser" />
+
+	<browser:page
+	    name="usergroup-groupdetails"
+	    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+	    class=".browser.usergroups_groupdetails.GroupDetailsControlPanel"
+	    permission="plone.app.controlpanel.UsersAndGroups"
+	    template="browser/usergroups_groupdetails.pt"
+	    />
+
+
+</configure>

@@ -1,0 +1,111 @@
+<tal:block i18n:domain="docpool.base"><?xml version="1.0" encoding="UTF-8"?>
+<irix:Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://IRIX/1.1 ../../../../IRIX/Products/XML%20Schemas/irix-7380/site/downloads/schemas/IRIX.xsd"
+ xmlns:irix="http://IRIX/1.1"
+ xmlns:base="http://IRIX/Base/1.0"
+ xmlns:id="http://IRIX/Identification/1.1"
+ xmlns:relay="http://IRIX/RelayInformation/1.0"
+ xmlns:event="http://IRIX/EventInformation/1.0"
+ xmlns:pa="http://IRIX/ProtectiveActions/1.0"
+ xmlns:release="http://IRIX/ReleaseInfo/1.0"
+ xmlns:meteo="http://IRIX/Meteorology/1.0"
+ xmlns:meas="http://IRIX/Measurements/1.0"
+ xmlns:media="http://IRIX/Media/1.0"
+ xmlns:annex="http://IRIX/Annex/1.0"
+ xmlns:loc="http://IRIX/Location/1.0"
+ xmlns:cis="http://IRIX/CIS/1.0"
+ xmlns:html="http://www.w3.org/1999/xhtml" tal:define="ic nocall:view/ic;
+                                                       scenario view/scenario;
+                                                       dummy python:request.RESPONSE.setHeader('Content-Type', 'text/xml;;charset=utf-8');
+                                                       dummy python:request.RESPONSE.setHeader('Content-disposition', 'attachment;; filename=%s' % view.filename())">
+    <id:Identification xmlns="http://IRIX/Identification/1.0">
+        <id:OrganisationReporting xmlns="http://IRIX/Identification/1.0" tal:content="ic/organisationReporting">emergency.cncan.ro</id:OrganisationReporting>
+        <id:DatetimeOfSubmittal tal:content="view/timestamp">2012-11-09T08:00:10Z </id:DatetimeOfSubmittal>
+        <id:ReportContext tal:content="view/scenarioType">Exercise</id:ReportContext>
+        <id:Identifications xmlns="http://IRIX/Identification/1.0">
+                <id:PersonalContactAddress>
+                <id:Name tal:content="ic/contactName">Ms. Adriana Baciu</id:Name>
+                <id:EmailAddress tal:content="ic/contactEmail">adriana.baciu@cncan.ro</id:EmailAddress>
+            </id:PersonalContactAddress>
+            <id:OrganisationContactAddress>
+                <id:Name tal:content="ic/organisationName">National Commission for Nuclear Activities Control (CNCAN)</id:Name>
+                <id:OrganisationID tal:content="ic/organisationId">emergencx.cncan.ro</id:OrganisationID>
+                <id:Country tal:content="ic/organisationCountry">RO</id:Country>
+                <id:WebAddress tal:content="ic/organisationWeb">http://www.cncan.ro</id:WebAddress>
+                <id:EmailAddress tal:content="ic/organisationEmail">office@cncan.ro</id:EmailAddress>
+            </id:OrganisationContactAddress>
+        </id:Identifications>
+    </id:Identification>
+    <event:EventInformation tal:attributes="ValidAt view/mtime" ValidAt="2012-11-09T08:00:00Z"> 
+                <event:TypeOfEventDescription tal:content="scenario/Description|nothing">Severe Incident in NPP Cernavoda. </event:TypeOfEventDescription>
+                <event:DateAndTimeOfEvent tal:content="view/scenarioTime">2012-11-09T07:30:00Z </event:DateAndTimeOfEvent>
+        <event:EventDescription tal:condition="view/isEventDescription" tal:content="view/docText">official information by the authorities in charge - First Notification:  CNCAN was informed about a severe incident in NPP Cernavoda. Further information will follow. </event:EventDescription>
+    </event:EventInformation>
+    <release:Release tal:condition="view/isFutureRelease">
+        <release:ReleaseOccurrence>
+           <release:FutureRelease>
+              <base:Description>
+                <p tal:content="view/docText">Beschreibungstext - Titel Dokument: Haupttext</p>
+              </base:Description>
+           </release:FutureRelease>
+        </release:ReleaseOccurrence>
+    </release:Release>
+    <meas:Measurements tal:condition="view/isDoseRate">
+        <meas:DoseRate>
+           <meas:Measurements>
+                 <meas:Measurements>
+                     <meas:Description tal:content="view/docText">Beschreibungstext - Titel Dokument: Haupttext</meas:Description>
+                 </meas:Measurements>
+          </meas:Measurements>
+        </meas:DoseRate>
+    </meas:Measurements>
+    <meas:Measurements tal:condition="view/isMeasurements">
+        <meas:Sample>
+            <meas:Measurements>
+               <meas:Measurements>
+                   <meas:Description tal:content="view/docText">Beschreibungstext - Titel Dokument: Haupttext</meas:Description>
+               </meas:Measurements>
+            </meas:Measurements>
+        </meas:Sample>
+    </meas:Measurements>
+    <release:Release tal:condition="view/isActualRelease">
+        <release:ReleaseOccurrence>
+            <release:ActualRelease>
+                <base:Description>
+                    <p tal:content="view/docText">Beschreibungstext - Titel Dokument: Haupttext</p>
+                </base:Description>
+            </release:ActualRelease>
+        </release:ReleaseOccurrence>
+    </release:Release>
+    <pa:ProtectiveActions tal:condition="view/isProtectiveActions">
+        <pa:ProtectiveAction>
+           <base:Description tal:content="view/docText">
+               Beschreibungstext - Titel Dokument: Haupttext
+           </base:Description>
+        </pa:ProtectiveAction>
+    </pa:ProtectiveActions>
+    <meteo:Meteorology tal:condition="view/isMeteoInfo">
+        <meteo:MeteoRecord>
+           <meteo:WeatherDescription tal:content="view/docText">
+               Beschreibungstext - Titel Dokument: Haupttext
+           </meteo:WeatherDescription>
+        </meteo:MeteoRecord>
+    </meteo:Meteorology>
+    <annex:Annexes xmlns:annex="http://IRIX/Annex/1.0">
+        <annex:Annotation>
+            <annex:Title>Information Source</annex:Title>
+            <annex:Text tal:content="ic/sourceText">
+                   ELAN-E Romania, Electronic Situation Display for Radiation Emergency Management
+            </annex:Text>
+            <annex:Description tal:content="ic/sourceDescription">http://www.elan-e.ro</annex:Description>
+        </annex:Annotation>
+        <annex:FileEnclosure tal:repeat="file view/attachments">
+            <annex:Title tal:content="file/Title">Initial Notification </annex:Title>
+            <annex:ContentType tal:content="view/irixType" >Event Information </annex:ContentType> 
+            <annex:Filename tal:content="python:file.file.filename">ini_not.pdf </annex:Filename>
+            <annex:MimeType tal:content="python:file.file.contentType">application/pdf  </annex:MimeType>
+            <annex:EnclosedObject tal:content="python:view.base64(file)"></annex:EnclosedObject>
+            <annex:Description tal:content="context/dp_type_name">Notification </annex:Description>
+        </annex:FileEnclosure>
+    </annex:Annexes>
+</irix:Report></tal:block>

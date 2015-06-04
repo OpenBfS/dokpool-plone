@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<metadata>
+    <version>0.0.22</version>
+    <dependencies>
+    <!-- ##code-section Dependencies -->
+       <dependency>profile-plone.app.dexterity:default</dependency>
+       <dependency>profile-plone.app.relationfield:default</dependency>
+       <dependency>profile-plone.app.contenttypes:default</dependency>
+       <dependency>profile-plone.app.contenttypes:plone-content</dependency>   
+    <!-- ##/code-section Dependencies -->
+    </dependencies>    
+    <!-- ##code-section View -->
+    
+    <!-- ##/code-section View -->
+</metadata>

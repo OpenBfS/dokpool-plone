@@ -1,0 +1,185 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="wsapi4plone">
+
+    <!-- Application calls -->
+    <browser:pages
+        zcml:condition="installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".app.ApplicationAPI"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View"
+        >
+        <browser:page
+            name="get_object"
+            attribute="get_object"
+            />
+        <browser:page
+            name="get_schema"
+            attribute="get_schema"
+            />
+    </browser:pages>
+
+    <browser:pages
+        zcml:condition="not-installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".app.ApplicationAPI"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View"
+        >
+        <browser:page
+            name="get_object"
+            attribute="get_object"
+            />
+        <browser:page
+            name="get_schema"
+            attribute="get_schema"
+            />
+    </browser:pages>
+
+    <browser:page
+        zcml:condition="installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        name="get_types"
+        class=".types.Types"
+        attribute="get_types"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        zcml:condition="not-installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        name="get_types"
+        class=".types.Types"
+        attribute="get_types"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        zcml:condition="installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        name="query"
+        class=".query.Query"
+        attribute="query"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        zcml:condition="not-installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        name="query"
+        class=".query.Query"
+        attribute="query"
+        layer=".interfaces.IAPILayer"
+        permission="zope2.View"
+        />
+
+    <!-- Application calls (authenticated) -->
+    <browser:pages
+        zcml:condition="installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".app.ApplicationAPI"
+        layer=".interfaces.IAPILayer"
+        permission="wsapi.authenticated"
+        >
+        <browser:page
+            name="post_object"
+            attribute="post_object"
+            />
+        <browser:page
+            name="put_object"
+            attribute="put_object"
+            />
+        <browser:page
+            name="delete_object"
+            attribute="delete_object"
+            />
+    </browser:pages>
+
+    <browser:pages
+        zcml:condition="not-installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".app.ApplicationAPI"
+        layer=".interfaces.IAPILayer"
+        permission="wsapi.authenticated"
+        >
+        <browser:page
+            name="post_object"
+            attribute="post_object"
+            />
+        <browser:page
+            name="put_object"
+            attribute="put_object"
+            />
+        <browser:page
+            name="delete_object"
+            attribute="delete_object"
+            />
+    </browser:pages>
+
+    <browser:pages
+        zcml:condition="installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".workflow.Workflow"
+        layer=".interfaces.IAPILayer"
+        permission="wsapi.authenticated"
+        >
+        <browser:page
+            name="get_workflow"
+            attribute="get_workflow"
+            />
+        <browser:page
+            name="set_workflow"
+            attribute="set_workflow"
+            />
+    </browser:pages>
+
+     <browser:pages
+        zcml:condition="not-installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".workflow.Workflow"
+        layer=".interfaces.IAPILayer"
+        permission="wsapi.authenticated"
+        >
+        <browser:page
+            name="get_workflow"
+            attribute="get_workflow"
+            />
+        <browser:page
+            name="set_workflow"
+            attribute="set_workflow"
+            />
+    </browser:pages>
+
+    <browser:pages
+        zcml:condition="installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".discussion.Discussion"
+        layer=".interfaces.IAPILayer"
+        permission="wsapi.authenticated"
+        >
+        <browser:page
+            name="get_discussion"
+            attribute="get_discussion"
+            />
+        </browser:pages>
+
+    <browser:pages
+        zcml:condition="not-installed zope.app.container"
+        for="zope.component.interfaces.ISite"
+        class=".discussion.Discussion"
+        layer=".interfaces.IAPILayer"
+        permission="wsapi.authenticated"
+        >
+        <browser:page
+            name="get_discussion"
+            attribute="get_discussion"
+            />
+    </browser:pages>
+
+</configure>

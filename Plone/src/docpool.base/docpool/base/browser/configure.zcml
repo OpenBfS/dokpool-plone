@@ -1,0 +1,163 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.base">
+
+    <include package="plone.app.contentmenu" />
+
+<!-- ##code-section Main -->
+    <grok:grok package="." />
+    
+        <browser:page permission="zope2.View"
+            name="dp.macros"
+            for="*"
+            template="dp_macros.pt" 
+         />    
+
+        <browser:page
+            name="sharing"
+            for="..interfaces.IDocumentPool"
+            class=".sharing.SharingView"
+            permission="plone.DelegateRoles"
+            />
+
+            <browser:page permission="zope2.View" 
+            	name="view" 
+            	for="..interfaces.IFolderBase"
+            	template="folderbase.pt" 
+            	class=".folderbase.FolderBaseView" />
+
+<!-- ##/code-section Main -->    
+
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                
+    
+            <browser:page permission="zope2.View" name="listitem" for="..interfaces.IInfoLink" class=".infolink.InfoLinklistitemView" />
+                    
+                            
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+        
+                
+    
+            <browser:page permission="zope2.View" name="listitem" for="..interfaces.IFolderBase" class=".folderbase.FolderBaselistitemView" />
+                    
+    
+    
+            <browser:page permission="zope2.View" name="rpopup" for="..interfaces.IFolderBase" class=".folderbase.FolderBaserpopupView" />
+                    
+                            
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.IDocumentPool" class=".documentpool.DocumentPoolView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+</configure>

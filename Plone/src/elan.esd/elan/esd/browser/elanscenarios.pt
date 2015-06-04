@@ -1,0 +1,34 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="elan.esd" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<!-- ##code-section Head -->
+<!-- ##/code-section Head -->    
+
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core">
+<!-- ##code-section Main -->
+<table class="scenarios" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+<thead>
+<tr><th i18n:translate="">Title/Date</th><th i18n:translate="">Description</th><th i18n:translate="">Status</th></tr>
+</thead>
+<tbody>
+<tr tal:repeat="scenario python:context.getELANScenarios(sort_on='created', sort_order='reverse')">
+<td tal:define="mi python:scenario.modInfo(show_created=True);
+                date python:mi[0];
+                uinfo python:mi[1];
+                exercise scenario/exercise"><a href="" tal:attributes="href scenario/absolute_url">
+                <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br><br>
+                </tal:if><b><tal:var replace="scenario/Title"/></b><br><tal:var replace="uinfo"/>, <tal:var replace="python:toLocalizedTime(date, long_format=1)"/></a></td>
+<td tal:content="scenario/Description"></td> 
+<td i18n:translate="" tal:content="scenario/status"></td>                
+</tr>
+</tbody>
+</table>
+    
+<!-- ##/code-section Main -->    
+</metal:content-core>
+</metal:content-core>
+
+<!-- ##code-section Bottom -->
+<!-- ##/code-section Bottom -->  
+</body>
+</html>

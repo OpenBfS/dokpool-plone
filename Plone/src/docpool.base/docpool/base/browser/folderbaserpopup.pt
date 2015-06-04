@@ -1,0 +1,5 @@
+<tal:block i18n:domain="docpool.base">
+<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
+    
+<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
+</tal:block>

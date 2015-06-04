@@ -1,0 +1,42 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="docpool.users">
+
+    <include package="collective.monkeypatcher" />
+
+    <monkey:patch
+        description="This enables access to ISecuritySchema"
+        class="Products.CMFPlone.controlpanel.browser.usergroups.UsersGroupsControlPanelView"
+        original="email_as_username"
+        replacement=".monkey.email_as_username"
+        preservedoc="true"
+        />
+
+    <monkey:patch
+        description="Add DP information to users within a DocumentPool"
+        class="plone.app.users.browser.register.BaseRegistrationForm"
+        original="applyProperties"
+        replacement=".monkey.applyProperties"
+        preservedoc="true"
+        preserveOriginal="true"        
+        />
+
+    <monkey:patch
+        description="Add GroupFolder when creating a group"
+        class="Products.PlonePAS.tools.groups.GroupsTool"
+        original="addGroup"
+        replacement=".monkey.addGroup"
+        preservedoc="true"
+        preserveOriginal="true"        
+        />
+
+    <monkey:patch
+        description="Remove GroupFolder when removing a group"
+        class="Products.PlonePAS.tools.groups.GroupsTool"
+        original="removeGroup"
+        replacement=".monkey.removeGroup"
+        preservedoc="true"
+        preserveOriginal="true"        
+        />
+</configure>

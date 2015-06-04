@@ -1,0 +1,28 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="elan.esd">
+    
+    <!-- Ensure Plone's portlets ZCML has already been processed; without
+         this, we may get a permission lookup error
+      -->
+    <include package="plone.app.portlets" />
+    
+            <plone:portlet interface=".ticker.ITickerPortlet" assignment=".ticker.Assignment" addview=".ticker.AddForm" name="elan.esd.Ticker" renderer=".ticker.Renderer" />    
+        
+        
+            <plone:portlet interface=".overview.IOverviewPortlet" assignment=".overview.Assignment" addview=".overview.AddForm" name="elan.esd.Overview" renderer=".overview.Renderer" />    
+        
+        
+            <plone:portlet interface=".recent.IRecentPortlet" assignment=".recent.Assignment" addview=".recent.AddForm" name="elan.esd.Recent" renderer=".recent.Renderer" />    
+        
+        
+            <plone:portlet interface=".collection.ICollectionPortlet" assignment=".collection.Assignment" addview=".collection.AddForm" name="elan.esd.Collection" renderer=".collection.Renderer" />    
+    
+    
+    
+<!-- ##code-section custom_portlets -->
+  <plone:portletRenderer
+      portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
+      layer="elan.theme.browser.interfaces.IThemeSpecific"
+      class=".navigation.Renderer" />
+
+<!-- ##/code-section custom_portlets -->    
+</configure>

@@ -1,0 +1,45 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="elan.esd">
+    
+    <include package="plone.behavior" file="meta.zcml" />
+
+	<grok:grok package="." />    
+    
+    <plone:behavior
+        title="ELAN Document"
+        description="Adds ELAN attributes to DPDocuments"
+        provides=".elandocument.IELANDocument"
+        factory=".elandocument.ELANDocument"
+        for="docpool.base.interfaces.IDPDocument"
+    />
+
+    <plone:behavior
+        title="Transferable"
+        description="Makes documents transferable between pools"
+        provides=".transferable.ITransferable"
+        factory=".transferable.Transferable"
+        for="docpool.base.interfaces.IDPDocument"
+    />
+    
+    <plone:behavior
+        title="ELAN DocType"
+        description="Adds the ability to choose categories to DocTypes"
+        provides=".elandoctype.IELANDocType"
+        factory=".elandoctype.ELANDocType"
+        for="docpool.base.interfaces.IDocType"
+    />
+    
+  	<subscriber handler=".transferable.deleteTransferData" />
+
+    <adapter
+        factory=".indexer.scenarios_indexer"
+        name="scenarios" />
+
+    <adapter
+        factory=".indexer.category_indexer"
+        name="category" />
+
+    <adapter
+        factory=".indexer.cat_path_indexer"
+        name="cat_path" />
+      
+</configure>

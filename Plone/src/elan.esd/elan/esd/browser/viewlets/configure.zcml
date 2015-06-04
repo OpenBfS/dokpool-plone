@@ -1,0 +1,16 @@
+<configure 
+	xmlns="http://namespaces.zope.org/zope" 
+	xmlns:browser="http://namespaces.zope.org/browser">
+
+    <browser:viewlet permission="zope2.View"
+                     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+                     name="elan.esd.scenarios"
+                     layer="elan.theme.browser.interfaces.IThemeSpecific"
+                     class=".common.ScenarioViewlet" />
+
+    <browser:viewlet permission="zope2.View"
+                     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+                     name="elan.esd.time"
+                     layer="elan.theme.browser.interfaces.IThemeSpecific"
+                     class=".common.TimeViewlet" />
+</configure>

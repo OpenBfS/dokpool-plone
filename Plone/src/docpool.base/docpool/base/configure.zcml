@@ -1,0 +1,148 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.base">
+    
+    <i18n:registerTranslations directory="locales"/>
+    <includeDependencies package="." />
+    <include package="zope.annotation" />
+    
+    <five:registerPackage package="." initialize=".initialize"/>
+    
+    <!-- Include the sub-packages that use their own configure.zcml files. -->
+    
+    <include package=".browser" />
+    <include package=".content" />
+    <include package=".portlets" />
+    
+    <include package="plone.app.relationfield" />
+    <include package="collective.autopermission" />
+    <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />    
+    <!-- grok:grok package="." /-->    
+    
+    <!-- Register the installation GenericSetup extension profile -->
+    
+    
+    <genericsetup:registerProfile name="default" title="docpool.base" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
+    
+
+   <include file="skins.zcml" />
+   
+   
+   <permission id="docpool.base.AddInfoFolder" title="ELAN_E: Add InfoFolder" />   
+   
+   
+   <permission id="docpool.base.AddInfoDocument" title="ELAN_E: Add InfoDocument" />   
+   
+   
+   <permission id="docpool.base.AddInfoLink" title="ELAN_E: Add InfoLink" />   
+   
+   
+   <permission id="docpool.base.AddDPDocument" title="ELAN_E: Add DPDocument" />   
+   
+   
+   <permission id="docpool.base.AddDocType" title="ELAN_E: Add DocType" />   
+   
+   
+   <permission id="docpool.base.AddSimpleFolder" title="ELAN_E: Add SimpleFolder" />   
+   
+   
+   <permission id="docpool.base.AddContentBase" title="ELAN_E: Add ContentBase" />   
+   
+   
+   <permission id="docpool.base.AddDocTypes" title="ELAN_E: Add DocTypes" />   
+   
+   
+   <permission id="docpool.base.AddText" title="ELAN_E: Add Text" />   
+   
+   
+   <permission id="docpool.base.AddFolderBase" title="ELAN_E: Add FolderBase" />   
+   
+   
+   <permission id="docpool.base.AddGroupFolder" title="ELAN_E: Add GroupFolder" />   
+   
+   
+   <permission id="docpool.base.AddUserFolder" title="ELAN_E: Add UserFolder" />   
+   
+   
+   <permission id="docpool.base.AddGroups" title="ELAN_E: Add Groups" />   
+   
+   
+   <permission id="docpool.base.AddUsers" title="ELAN_E: Add Users" />   
+   
+   
+   <permission id="docpool.base.AddReviewFolder" title="ELAN_E: Add ReviewFolder" />   
+   
+   
+   <permission id="docpool.base.AddCollaborationFolder" title="ELAN_E: Add CollaborationFolder" />   
+   
+   
+   <permission id="docpool.base.AddPrivateFolder" title="ELAN_E: Add PrivateFolder" />   
+   
+   
+   <permission id="docpool.base.AddDocumentPool" title="ELAN_E: Add DocumentPool" />   
+   
+   
+   <permission id="docpool.base.AddContentArea" title="ELAN_E: Add ContentArea" />   
+   
+
+<!-- ##code-section Main -->
+     <utility
+    component=".vocabularies.StatusVocabularyFactory"
+    name="docpool.base.vocabularies.Status"
+    />
+  <utility
+    component=".vocabularies.PermissionsVocabularyFactory"
+    name="docpool.base.vocabularies.Permissions"
+    />
+  <utility
+    component=".vocabularies.UnknownOptionsVocabularyFactory"
+    name="docpool.base.vocabularies.UnknownOptions"
+    />
+  <utility
+    component=".vocabularies.DTPermOptionsVocabularyFactory"
+    name="docpool.base.vocabularies.DTPermOptions"
+    />
+  <utility
+    component=".vocabularies.DTOptionsVocabularyFactory"
+    name="docpool.base.vocabularies.DTOptions"
+    />
+  <utility
+    component=".vocabularies.DocumentTypesVocabularyFactory"
+    name="docpool.base.vocabularies.DocumentTypes"
+    />
+  <!--utility
+    component=".vocabularies.ScenarioVocabularyFactory"
+    name="elan.esd.vocabularies.Scenarios"
+    /-->
+  <!--utility
+    component=".vocabularies.ScenarioRefVocabularyFactory"
+    name="elan.esd.vocabularies.ScenarioRefs"
+    /-->
+  <!--utility
+    component=".vocabularies.CategoriesVocabularyFactory"
+    name="elan.esd.vocabularies.Categories"
+    /-->
+   <utility
+    component=".vocabularies.DocTypeVocabularyFactory"
+    name="docpool.base.vocabularies.DocType"
+    />  
+   <utility
+    component=".vocabularies.GroupDocTypeVocabularyFactory"
+    name="docpool.base.vocabularies.GroupDocType"
+    />  
+   <utility
+    component=".vocabularies.DocumentPoolVocabularyFactory"
+    name="docpool.base.vocabularies.DocumentPools"
+    />  
+   <utility
+    component=".vocabularies.UserDocumentPoolVocabularyFactory"
+    name="docpool.base.vocabularies.UserDocumentPools"
+    />  
+    
+    <subscriber
+      for="docpool.base.events.IDocumentPoolUndeleteable
+           OFS.interfaces.IObjectWillBeRemovedEvent"
+      handler=".events.delete_handler"
+      /> 
+      
+<!-- ##/code-section Main -->    
+      
+</configure>

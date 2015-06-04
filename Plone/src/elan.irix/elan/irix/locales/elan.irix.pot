@@ -1,0 +1,53 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-11-11 17:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: elan.irix\n"
+
+#: elan.irix/elan/irix/profiles/default/types/IRIXReport.xml
+msgid "IRIX Report"
+msgstr ""
+
+#: elan.irix/elan/irix/db/forms.py:36
+msgid "IRIX Reports"
+msgstr ""
+
+#: elan.irix/elan/irix/profiles/default/types/IRIXReport.xml
+msgid "Represents a single IRIX report whose data is stored in a relational database."
+msgstr ""
+
+#: elan.irix/elan/irix/db/forms.py:30
+msgid "Timestamp"
+msgstr ""
+
+#: elan.irix/elan/irix/db/forms.py:29
+msgid "Title"
+msgstr ""
+
+#. Default: "Database key"
+#: elan.irix/elan/irix/content/irixreport.py:54
+msgid "description_irixreport_dbkey"
+msgstr ""
+
+#: elan.irix/elan/irix/portlets/irix_navigation.py:37
+msgid "irix_navigation"
+msgstr ""
+
+#. Default: "Primary key in relational database"
+#: elan.irix/elan/irix/content/irixreport.py:53
+msgid "label_irixreport_dbkey"
+msgstr ""
+
