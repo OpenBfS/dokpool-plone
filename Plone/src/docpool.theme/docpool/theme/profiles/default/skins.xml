@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="DocPool Theme">
+
+ <object name="docpooltheme_images"
+    meta_type="Filesystem Directory View"
+    directory="docpool.theme:skins/docpooltheme_images"/>
+ <object name="docpooltheme_templates"
+    meta_type="Filesystem Directory View"
+    directory="docpool.theme:skins/docpooltheme_templates"/>
+
+ <skin-path name="DocPool Theme" based-on="Plone Default">
+  <layer name="docpooltheme_images"
+     insert-after="custom"/>
+  <layer name="docpooltheme_templates"
+     insert-after="docpooltheme_images"/>
+ </skin-path>
+
+</object>

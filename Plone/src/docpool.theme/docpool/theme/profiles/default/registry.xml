@@ -1,0 +1,58 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.theme">
+  <records prefix="plone.resources/docpool-base"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++theme++docpool.theme/static/main.js</value>
+      <value key="css">
+        <element>++theme++docpool.theme/static/main.css</element>
+        <element>++theme++docpool.theme/static/styles.less</element>
+      </value>
+      <value key="deps">resource-plone-app-jquerytools-js</value>
+  </records>
+  <records prefix="plone.resources/docpool-anon"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++theme++docpool.theme/static/anonymous.css</element>
+      </value>
+  </records>
+  <records prefix="plone.resources/docpool-nonadmin"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++theme++docpool.theme/static/simplify.css</element>
+      </value>
+  </records>
+  <records prefix="plone.bundles/docpool"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>docpool-base</element>
+    </value>
+    <value key="expression"></value>
+    <value key="compile">True</value>
+    <value key="enabled">True</value>
+    <value key="depends">plone</value>
+    <value key="jscompilation">++plone++static/docpool-compiled.js</value>
+    <value key="csscompilation">++plone++static/docpool-compiled.css</value>    
+  </records>
+  <records prefix="plone.bundles/docpool-anon"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>docpool-anon</element>
+    </value>
+    <value key="expression">python: member is None</value>
+    <value key="enabled">True</value>
+    <value key="depends">docpool</value>
+    <value key="jscompilation">++plone++static/docpool-anon-compiled.js</value>
+    <value key="csscompilation">++plone++static/docpool-anon-compiled.css</value>    
+  </records>
+  <records prefix="plone.bundles/docpool-nonadmin"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>docpool-nonadmin</element>
+    </value>
+    <value key="expression">python:member and not (member.has_role('Manager') or member.has_role('Site Administrator')) or None</value>
+    <value key="enabled">True</value>
+    <value key="depends">docpool</value>
+    <value key="jscompilation">++plone++static/docpool-nonadmin-compiled.js</value>
+    <value key="csscompilation">++plone++static/docpool-nonadmin-compiled.css</value>    
+  </records>
+</registry>

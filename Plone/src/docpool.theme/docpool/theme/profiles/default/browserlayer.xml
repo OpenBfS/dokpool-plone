@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- Register the package-specific browser layer,
+     so that it will be activated
+     when this product is installed. -->
+<layers>
+    <layer name="docpool.theme.customization.layer"
+      interface="docpool.theme.interfaces.ICustomTheme" />
+</layers>

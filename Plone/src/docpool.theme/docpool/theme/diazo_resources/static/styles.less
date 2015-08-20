@@ -1,0 +1,19 @@
+/* Import Barceloneta styles */
+@import "++theme++barceloneta/less/barceloneta.plone.less";
+
+/* Customize navbar color */
+@plone-sitenav-bg: pink;
+@plone-sitenav-link-hover-bg: darken(pink, 20%);
+
+/* Customize navbar text color */
+.plone-nav > li > a {
+  color: @plone-text-color;
+}
+
+/* Customize search button */
+#searchGadget_form .searchButton {
+  /* Re-use mixin from Barceloneta */
+  .button-variant(@plone-text-color, pink, @plone-gray-lighter);
+}
+
+/* Inspect Barceloneta theme (and its less-folder) for more... */

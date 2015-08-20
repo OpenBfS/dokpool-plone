@@ -1,0 +1,35 @@
+<div id="portal-logo">
+<a metal:define-macro="portal_logo"
+   id="portal-logo-img"
+   title="Home"
+   accesskey="1"
+   tal:attributes="href string:${view/portal_url};
+                   title string:DocPool"
+   i18n:domain="elan.esd"
+   i18n:attributes="title">
+        <img src="logo.png" alt=""
+         tal:attributes="alt view/logo_title;
+                         title view/logo_title;
+                         src view/img_src" /></a><p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
+   
+    <tal:esdselect define="mydp context/myDocumentPools|python:[];
+    					   esds python:[('','---')] + mydp;
+                           currentEsd context/myDocumentPool|nothing;
+                           currentEsdUrl python:currentEsd and currentEsd.absolute_url() or None" 
+                   condition="esds">
+    <select class="esdselect" size="1" name="esdselection" onChange=""
+        tal:attributes="onChange string:javascript:window.location.href=this.options[this.selectedIndex].value">
+        <tal:loop repeat="esd esds">
+            <option
+                tal:define="url python:esd[0];
+                            isCurrent python:url == currentEsdUrl;
+                            title python:esd[1];" 
+                tal:attributes="value url;
+                                selected python:isCurrent and 'selected' or ''"
+                tal:content="title">
+            </option>
+        </tal:loop>
+    </select>
+    </tal:esdselect>
+</div>
+    <tal:var replace="structure context/logoutjs|nothing" />

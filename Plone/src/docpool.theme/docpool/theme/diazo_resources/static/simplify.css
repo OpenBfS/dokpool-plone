@@ -1,0 +1,49 @@
+/* Stylesheet for the 'elantheme' Plone theme */
+
+#plone-contentmenu-display {
+	display: none;
+}
+
+.portaltype-templateddocument #contentview-edit, .portaltype-elanesd #contentview-edit {
+	display: none !important;
+}
+
+#contentview-metadata, #contentview-local_roles {
+	display: none !important;
+}
+
+.userrole-site #contentview-local_roles, .userrole-manager #contentview-local_roles {
+    display: inline !important;
+}
+
+ul.formTabs {
+	display: none !important;
+}
+
+div.fieldTextFormat {
+	display: none !important;
+}
+
+#cke_path_text {
+	display: none !important;
+}
+
+#formfield-form-widgets-docType {
+	display: none !important;
+}
+
+a#advanced {
+	display: none !important;
+}
+
+#contentview-user_data-personal-information, #contentview-user_data-personal-preferences {
+	display: none !important;
+}
+
+/*
+#portal-globalnav li.config {
+	display: none !important;
+}
+*/
+
+
