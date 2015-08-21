@@ -18,13 +18,6 @@
                              selected python:scenario.getId() in selected_scenarios;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;" 
                  tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
-            <td class="scenario_desc"><tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em> </tal:if><b tal:content="string:${scenario/Title} ">Scenario1</b><tal:if condition="python: selected and scenario.Description()"> - <tal:var replace="scenario/Description"/><br></tal:if>
-                <tal:def define="mi python:scenario.modInfo();
-                                 date python:mi[0];
-                                 uinfo python:mi[1]">
-                    <span tal:omit-tag="" i18n:translate="">Created/modified: </span> <tal:var tal:condition="uinfo" replace="structure string:${uinfo}, "/> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/>
-                </tal:def>               
-            </td>
             <td>
             <input type="checkbox" name="scnrs:list"
                    tal:attributes="value    scenario/getId;
@@ -33,6 +26,13 @@
                                    checked python:'checked' if scenario.getId() in selected_scenarios else None;"
                    onclick="this.form.submit()"                            
                                     />
+            </td>
+            <td class="scenario_desc"><tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em> </tal:if><b tal:content="string:${scenario/Title} ">Event1</b><tal:if condition="python: selected and scenario.Description()"> - <tal:var replace="scenario/Description"/><br></tal:if>
+                <tal:def define="mi python:scenario.modInfo();
+                                 date python:mi[0];
+                                 uinfo python:mi[1]">
+                    <span tal:omit-tag="" i18n:translate="">Created/modified: </span> <tal:var tal:condition="uinfo" replace="structure string:${uinfo}, "/> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/>
+                </tal:def>               
             </td>
             </tr>
             </tal:loop>

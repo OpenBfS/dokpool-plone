@@ -5,7 +5,7 @@
         <dependency>profile-collective.quickupload:default</dependency>
         <dependency>profile-collective.z3cform.datagridfield:default</dependency>
         <dependency>profile-plone.app.caching:default</dependency>
-        <dependency>profile-elan.theme:default</dependency>
+        <dependency>profile-docpool.theme:default</dependency>
         <dependency>profile-docpool.base:default</dependency>
         <dependency>profile-elan.esd:default</dependency>
         <dependency>profile-docpool.users:default</dependency>

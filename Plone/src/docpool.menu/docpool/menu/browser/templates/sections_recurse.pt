@@ -1,6 +1,5 @@
 <tal:master define="level options/level|python:0;
-                    children options/children | nothing;
-                    plonefour view/is_plone_four"
+                    children options/children | nothing;"
             i18n:domain="plone">
 
 <metal:main define-macro="sections_main">
@@ -8,7 +7,6 @@
 <li tal:define="show_children   node/show_children;
                 children        node/children;
                 item_url        node/getURL;
-                item_icon       node/item_icon;
                 item_class		node/item_class|python:'';
                 is_current      node/currentItem;
                 is_in_path      node/currentParent;
@@ -20,16 +18,13 @@
                 li_class python:children and li_class or li_class"
     tal:attributes="class string:$li_class">
 
-    <tal:level define="show_icons view/conf/show_icons;
-                       a_class python:children and 'hasChildrens' or ''">
+    <tal:level define="a_class python:children and 'hasChildrens' or ''">
 
     <a tal:attributes="href python:(item_type != 'elansection') and item_url or None;
                        title node/Description;
                        class string:${a_class}">
-        <img tal:condition="python: show_icons and not plonefour"
-             tal:replace="structure item_icon/html_tag | nothing" />
         <span tal:content="node/Title"
-              tal:attributes="class python: plonefour and show_icons and item_type and 'contenttype-'+ item_type or nothing">Selected Item Title</span>
+              tal:attributes="class python: item_type and 'contenttype-'+ item_type or nothing">Selected Item Title</span>
     </a>
 
     <ul tal:attributes="class python:'globalSectionsLevel'+str(level)"

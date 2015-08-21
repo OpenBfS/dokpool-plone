@@ -4,7 +4,6 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/main.js</value>
       <value key="css">
-        <element>++theme++docpool.theme/static/main.css</element>
         <element>++theme++docpool.theme/static/styles.less</element>
       </value>
       <value key="deps">resource-plone-app-jquerytools-js</value>
@@ -21,6 +20,7 @@
         <element>++theme++docpool.theme/static/simplify.css</element>
       </value>
   </records>
+  
   <records prefix="plone.bundles/docpool"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="resources">
@@ -40,7 +40,6 @@
     </value>
     <value key="expression">python: member is None</value>
     <value key="enabled">True</value>
-    <value key="depends">docpool</value>
     <value key="jscompilation">++plone++static/docpool-anon-compiled.js</value>
     <value key="csscompilation">++plone++static/docpool-anon-compiled.css</value>    
   </records>
@@ -51,7 +50,6 @@
     </value>
     <value key="expression">python:member and not (member.has_role('Manager') or member.has_role('Site Administrator')) or None</value>
     <value key="enabled">True</value>
-    <value key="depends">docpool</value>
     <value key="jscompilation">++plone++static/docpool-nonadmin-compiled.js</value>
     <value key="csscompilation">++plone++static/docpool-nonadmin-compiled.css</value>    
   </records>

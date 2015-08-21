@@ -169,8 +169,8 @@ msgid "ELAN Folder Base"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
-msgid "ELAN Scenario"
-msgstr "Scenario"
+msgid "ELAN Event"
+msgstr "Event"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANSection.xml
 msgid "ELAN Section"
@@ -320,15 +320,15 @@ msgid "Recently Modified"
 msgstr ""
 
 #: elan.esd/elan/esd/content/elanscenario.py:158
-msgid "Scenario archived"
+msgid "Event archived"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elandocumentlistitem.pt:42
-msgid "Scenario:"
+msgid "Event:"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenarios.xml
-msgid "Scenarios"
+msgid "Events"
 msgstr ""
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:27

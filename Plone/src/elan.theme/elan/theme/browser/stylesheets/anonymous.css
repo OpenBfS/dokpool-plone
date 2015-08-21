@@ -1,6 +1,4 @@
-/* Stylesheet for the 'elantheme' Plone theme */
 
 #portal-searchbox, #portal-breadcrumbs {
-/*	display: none !important; */
-/* Wieder aktivieren wenn Bundle */
+	display: none !important;
 }

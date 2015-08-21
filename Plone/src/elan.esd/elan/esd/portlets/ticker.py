@@ -53,6 +53,9 @@ class Renderer(base.Renderer):
     render = ViewPageTemplateFile('ticker.pt')
        
     ##code-section renderer-methods    
+    @property
+    def available(self):
+        return (not self.context.isArchive()) and self.context.isSituationDisplay()
     ##/code-section renderer-methods
  
 ##code-section forms    

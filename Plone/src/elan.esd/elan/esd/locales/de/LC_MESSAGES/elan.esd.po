@@ -27,11 +27,11 @@ msgstr ". Dokumenttyp nicht akzeptiert."
 
 #: elan.esd/elan/esd/content/elandocument.py:312
 msgid ". Document has no scenario."
-msgstr ". Dokument hat keine Szenariozuordnung."
+msgstr ". Dokument hat keine Ereigniszuordnung."
 
 #: elan.esd/elan/esd/content/elandocument.py:308
 msgid ". Unknown scenario not accepted."
-msgstr ". Unbekanntes Szenario nicht akzeptiert."
+msgstr ". Unbekanntes Ereignis nicht akzeptiert."
 
 #: elan.esd/elan/esd/portlets/collection.py:129
 msgid "Add Collection Portlet"
@@ -69,7 +69,7 @@ msgstr "Bereich für allgemeine Informationen"
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:166
 msgid "Belongs to scenario:"
-msgstr "Zu Szenario:"
+msgstr "Zu Ereignis:"
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:105
 #: elan.esd/elan/esd/browser/elanfolderbase.pt:57
@@ -169,8 +169,8 @@ msgid "ELAN Folder Base"
 msgstr "ELAN Basisordner"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
-msgid "ELAN Scenario"
-msgstr "Szenario"
+msgid "ELAN Event"
+msgstr "Ereignis"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANSection.xml
 msgid "ELAN Section"
@@ -194,7 +194,7 @@ msgstr "Unbekannten Dokumenttyp bearbeiten"
 
 #: elan.esd/elan/esd/browser/elandocumentlistitem.pt:35
 msgid "Edit unknown scenario"
-msgstr "Unbekanntes Szenario bearbeiten"
+msgstr "Unbekanntes Ereignis bearbeiten"
 
 #: elan.esd/elan/esd/content/elanscenario.py:289
 #: elan.esd/elan/esd/profiles/default/types/ELANESD.xml
@@ -227,7 +227,7 @@ msgstr "Gruppenordner"
 
 #: elan.esd/elan/esd/browser/elanfolderbase.pt:12
 msgid "Group Folder: scenario filter not active!"
-msgstr "Gruppenordner: Szenariofilter nicht aktiv!"
+msgstr "Gruppenordner: Ereignisfilter nicht aktiv!"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANGroups.xml
 msgid "Groups Area"
@@ -301,15 +301,15 @@ msgstr "Übertragungsrechte"
 
 #: elan.esd/elan/esd/browser/elanfolderbase.pt:13
 msgid "Personal Folder: scenario filter not active!"
-msgstr "Persönlicher Ordner: Szenariofilter nicht aktiv!"
+msgstr "Persönlicher Ordner: Ereignisfilter nicht aktiv!"
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:13
 msgid "Please select at least one scenario!"
-msgstr "Bitte wählen Sie mindestens ein Szenario!"
+msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:20
 msgid "Purge"
-msgstr "Inhalte des Szenarios löschen"
+msgstr "Inhalte des Ereignisses löschen"
 
 #: elan.esd/elan/esd/portlets/recent.py:43
 msgid "Recent"
@@ -320,16 +320,16 @@ msgid "Recently Modified"
 msgstr "Kürzlich geändert"
 
 #: elan.esd/elan/esd/content/elanscenario.py:158
-msgid "Scenario archived"
-msgstr "Szenario archiviert"
+msgid "Event archived"
+msgstr "Ereignis archiviert"
 
 #: elan.esd/elan/esd/browser/elandocumentlistitem.pt:42
-msgid "Scenario:"
-msgstr "Szenario:"
+msgid "Event:"
+msgstr "Ereignis:"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenarios.xml
-msgid "Scenarios"
-msgstr "Szenarios"
+msgid "Events"
+msgstr "Ereignisse"
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:27
 msgid "Select"
@@ -393,7 +393,7 @@ msgstr "Es liegen Kommentare vor."
 
 #: elan.esd/elan/esd/content/elanscenario.py:343
 msgid "There are no more documents for this scenario."
-msgstr "Diesem Szenario sind keine Dokumente mehr zugeordnet."
+msgstr "Diesem Ereignis sind keine Dokumente mehr zugeordnet."
 
 #: elan.esd/elan/esd/monkey.py:53
 msgid "There was an existing group folder of the same name. Please check!"
@@ -474,7 +474,7 @@ msgstr "Wollen Sie das Dokument veröffentlichen?"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:22
 msgid "archive_confirm_msg"
-msgstr "Wollen Sie dieses Szenario wirklich archivieren?"
+msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
 #. Default: "No items changed yet."
 #: elan.esd/elan/esd/portlets/collection.pt:40
@@ -582,7 +582,7 @@ msgstr ""
 #. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
 #: elan.esd/elan/esd/content/elanscenario.py:101
 msgid "description_elanscenario_substitute"
-msgstr "Nur relevant für private Szenarios, die von einer anderen Lagedarstellung übernommen wurden. Das erlaubt Ihnen, Dokumente zu diesem Szenario automatisch einem anderen Szenario zuzuordnen."
+msgstr "Nur relevant für private Ereignisse, die von einer anderen Lagedarstellung übernommen wurden. Das erlaubt Ihnen, Dokumente zu diesem Ereignis automatisch einem anderen Ereignis zuzuordnen."
 
 #: elan.esd/elan/esd/content/elanscenario.py:92
 msgid "description_elanscenario_timeofevent"
@@ -733,7 +733,7 @@ msgstr "Dokumenttyp"
 #. Default: "Belongs to scenarios"
 #: elan.esd/elan/esd/content/elandocument.py:74
 msgid "label_elandocument_scenarios"
-msgstr "Gehört zu folgenden Szenarios"
+msgstr "Gehört zu folgenden Ereignissen"
 
 #. Default: "Text"
 #: elan.esd/elan/esd/content/elandocument.py:84
@@ -778,7 +778,7 @@ msgstr "Status"
 #. Default: "Substitute scenario"
 #: elan.esd/elan/esd/content/elanscenario.py:100
 msgid "label_elanscenario_substitute"
-msgstr "Ersatzszenario"
+msgstr "Ersatzereignis"
 
 #. Default: "Time of event"
 #: elan.esd/elan/esd/content/elanscenario.py:91
@@ -808,7 +808,7 @@ msgstr "Vorgabe für unbekannte Dokumenttypen"
 #. Default: "Default for unknown scenarios"
 #: elan.esd/elan/esd/content/elantransferfolder.py:104
 msgid "label_elantransferfolder_unknownscendefault"
-msgstr "Vorgabe für unbekannte Szenarios"
+msgstr "Vorgabe für unbekannte Ereignisse"
 
 #. Default: "Email of contact"
 #: elan.esd/elan/esd/content/irixconfig.py:61
@@ -897,7 +897,7 @@ msgstr "Veröffentlicht"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:23
 msgid "purge_confirm_msg"
-msgstr "Wollen Sie wirklich alle Dokumente aus diesem Szenario entfernen?"
+msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
 
 #: elan.esd/elan/esd/vocabularies.py:28
 msgid "read/write"

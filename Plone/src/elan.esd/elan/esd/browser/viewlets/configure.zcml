@@ -5,12 +5,7 @@
     <browser:viewlet permission="zope2.View"
                      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
                      name="elan.esd.scenarios"
-                     layer="elan.theme.browser.interfaces.IThemeSpecific"
+                     layer="docpool.theme.interfaces.ICustomTheme"
                      class=".common.ScenarioViewlet" />
 
-    <browser:viewlet permission="zope2.View"
-                     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-                     name="elan.esd.time"
-                     layer="elan.theme.browser.interfaces.IThemeSpecific"
-                     class=".common.TimeViewlet" />
 </configure>

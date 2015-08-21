@@ -10,7 +10,7 @@
     
     
     
-       <assignment name="Ticker" category="context" key="/" manager="plone.rightcolumn" type="elan.esd.Ticker" />        
+       <assignment name="Ticker" category="context" key="/" manager="plone.leftcolumn" type="elan.esd.Ticker" />        
     
     
     
@@ -20,7 +20,7 @@
     
     
     
-       <assignment name="Overview" category="context" key="/" manager="plone.rightcolumn" type="elan.esd.Overview" />        
+       <assignment name="Overview" category="context" key="/" manager="plone.leftcolumn" type="elan.esd.Overview" />        
     
     
     
@@ -30,7 +30,7 @@
     
     
     
-       <assignment name="Recent" category="context" key="/" manager="plone.rightcolumn" type="elan.esd.Recent" />        
+       <assignment name="Recent" category="context" key="/" manager="plone.leftcolumn" type="elan.esd.Recent" />        
     
     
     

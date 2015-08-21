@@ -114,13 +114,6 @@ p.version {
 
 /* Aus ploneCustom.css */
 
-body.userrole-manager {
-    background-color: beige;
-}
-
-body.administrator {
-    background-color: lightblue;
-}
 
 #portal-globalnav li ul {
 	padding-left: 0;

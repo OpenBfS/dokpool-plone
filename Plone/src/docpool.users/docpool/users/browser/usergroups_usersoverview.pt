@@ -7,6 +7,8 @@
     i18n:domain="plone">
 
 <body>
+<metal:block fill-slot="column_one_slot" />
+<metal:block fill-slot="column_two_slot" />
 
 <metal:main fill-slot="content"
     tal:define="template_id string:@@usergroup-userprefs;
@@ -15,9 +17,16 @@
                 b_start python:0 if showAll or view.newSearch else request.get('b_start',0);
                 b_size python:showAll and len(view.searchResults) or 20;
                 portal_roles view/portal_roles;
-                portal_url context/dp_url;">
+                 portal_url context/dp_url;
+                 pportal_url context/portal_url">
 
   <article id="content">
+    <a href=""
+       id="setup-link"
+       tal:attributes="href string:$pportal_url/plone_control_panel"
+       i18n:translate="">
+      Site Setup
+    </a>
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_users_overview">Users Overview</h1>

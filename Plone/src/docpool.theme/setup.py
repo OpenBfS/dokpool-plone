@@ -28,7 +28,7 @@ setup(name='docpool.theme',
           'setuptools',
           'z3c.jbot',
           # -*- Extra requirements: -*-
-          'quintagroup.dropdownmenu',          
+          'docpool.menu',          
       ],
       entry_points="""
       # -*- Entry points: -*-

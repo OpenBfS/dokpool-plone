@@ -1,8 +1,8 @@
 <tal:block i18n:domain="elan.esd">
-<tal:if condition="not:here/isArchive">
+<tal:if condition="not:here/isArchive|python:True">
 <div metal:use-macro="here/@@elan.macros/macros/scenario_table"/>
 </tal:if>
-<tal:if condition="here/isArchive">
+<tal:if condition="here/isArchive|nothing">
 <tal:def define="a_obj here/myELANArchive|nothing" condition="nocall: a_obj">
 <div class="arch_scen">
 <h1><i18n:var translate=""> Archive</i18n:var> <tal:var replace="a_obj/Title"/></h1>

@@ -1,9 +1,17 @@
 <?xml version="1.0"?>
 <object>
  <hidden manager="plone.portalfooter"
-         skinname="DocPool Theme">
+         skinname="docpool.theme">
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.analytics"/>
  </hidden>
+  <order manager="plone.portalheader" skinname="docpool.theme">
+    <viewlet name="plone.logo" />
+    <viewlet name="docpool.time" />
+    <viewlet name="plone.searchbox" />
+    <viewlet name="plone.anontools" />
+    <viewlet name="plone.app.i18n.locales.languageselector" />
+  </order>
+ 
 </object>

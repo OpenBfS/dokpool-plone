@@ -21,7 +21,7 @@
 <!-- ##code-section custom_portlets -->
   <plone:portletRenderer
       portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
-      layer="elan.theme.browser.interfaces.IThemeSpecific"
+      layer="docpool.theme.interfaces.ICustomTheme"
       class=".navigation.Renderer" />
 
 <!-- ##/code-section custom_portlets -->    

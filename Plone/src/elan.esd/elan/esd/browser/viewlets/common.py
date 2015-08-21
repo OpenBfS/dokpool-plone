@@ -20,10 +20,6 @@ class ScenarioViewlet(ViewletBase):
         self.open_scenarios = [ s.getObject() for s in scs ]
         scs = getScenariosForCurrentUser(self.context)
         self.selected_scenarios = scs
-        
-class TimeViewlet(ViewletBase):
-    index = ViewPageTemplateFile('time.pt')
     
-allow_class(TimeViewlet)
         
     

@@ -24,7 +24,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
 from Products.CMFCore.utils import getToolByName
-from plone.app.content.browser.folder import FolderContentsView, TUS_ENABLED
+from plone.app.content.browser.contents import FolderContentsView, TUS_ENABLED
 from plone.app.content.browser.interfaces import IFolderContentsView
 from zope.interface import implementer
 ##/code-section imports

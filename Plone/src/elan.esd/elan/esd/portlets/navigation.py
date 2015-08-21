@@ -10,9 +10,7 @@ from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFCore.utils import getToolByName
-from elan.esd.utils import _folderTree
-from docpool.base.utils import getGroupsForCurrentUser
-from elan.esd.utils import getFoldersForCurrentUser
+from docpool.menu.utils import getFoldersForCurrentUser
 
 class Renderer(navigation.Renderer):
 
@@ -32,6 +30,11 @@ class Renderer(navigation.Renderer):
         ft = buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
         #print ft
         return ft
+    
+    @property
+    def available(self):
+        return (not self.context.isArchive()) and self.context.isSituationDisplay()
+    
     
 class SitemapQueryBuilder(NavtreeQueryBuilder):
     """Build tree for ELAN Sitemap considering archive structures

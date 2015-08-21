@@ -7,6 +7,8 @@
       i18n:domain="plone">
 
 <body>
+<metal:block fill-slot="column_one_slot" />
+<metal:block fill-slot="column_two_slot" />
 
 <metal:main fill-slot="content"
      tal:define="template_id string:@@usergroup-groupprefs;
@@ -19,12 +21,13 @@
                  b_size python:showAll and len(search_results) or 20;
                  batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;
                  batchformkeys python:['searchstring','_authenticator'];
-                 portal_url context/dp_url;">
+                 portal_url context/dp_url;
+                 pportal_url context/portal_url">
 
   <article id="content">
     <a href=""
        id="setup-link"
-       tal:attributes="href string:$portal_url/plone_control_panel"
+       tal:attributes="href string:$pportal_url/plone_control_panel"
        i18n:translate="">
       Site Setup
     </a>

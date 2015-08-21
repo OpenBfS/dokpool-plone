@@ -65,7 +65,7 @@ class Renderer(base.Renderer):
     
     @property
     def available(self):
-        return (not self.context.isArchive()) and self.collection is not None
+        return (not self.context.isArchive()) and self.collection is not None and self.context.isSituationDisplay()
 
     def recent_items(self):
         return self._data()
@@ -77,7 +77,7 @@ class Renderer(base.Renderer):
     @memoize
     def _data(self):
         try:
-            return self.collection.results(batch=True, b_start=0, b_size=10, sort_on=None, brains=True)
+            return self.collection.results(batch=True, b_start=0, b_size=5, sort_on=None, brains=True)
         except:
             return []
     ##/code-section renderer-methods

@@ -35,25 +35,25 @@ function go_to(url) {
   }
 
 function loadDyn () {
-	jQuery("#mesz").load ("refresh_time #time_table");
-	jQuery("dl.portletRecent").load ("refresh_recent #recent_content");
+	$("#mesz").load ("refresh_time #time_table");
+	$("dl.portletRecent").load ("refresh_recent #recent_content");
 }
 
-jQuery(document).ready ( function () {
+$(document).ready ( function () {
 	myDynTimer = setInterval ( loadDyn, 60000 );
-	jQuery('.documentByLine a').removeAttr('href').addClass('commentator');
-	var type = jQuery('#form-widgets-docType')
+	$('.documentByLine a').removeAttr('href').addClass('commentator');
+	var type = $('#form-widgets-docType')
 	if (type[0] != null) {
 		var option = type[0].options[type[0].selectedIndex];
 		var value = option.text;
-		var title = jQuery('h1.documentFirstHeading').text();
-		jQuery('h1.documentFirstHeading').text(title + ' (' + value + ')'); 
+		var title = $('h1.documentFirstHeading').text();
+		$('h1.documentFirstHeading').text(title + ' (' + value + ')'); 
 	}
 } );
 
 
-jQuery(document).ready(function() {
-	jQuery('table.elanlisting a.transfer').prepOverlay({
+$(document).ready(function() {
+	$('table.elanlisting a.transfer').prepOverlay({
 	    subtype: 'ajax',
 	    //filter: '#content>*',
 	    formselector: 'form[name="transferform"]',
@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
 	    //noform: function(el) {return jq.plonepopups.noformerrorshow(el, 'reload');}
 	    //noform: function(el) {return jq.plonepopups.noformerrorshow(el, 'close');}
 	    /*noform: 'redirect',*/
-	    redirect: jQuery('#redirecturl').text()
+	    redirect: $('#redirecturl').text()
 	    
 	});
 });

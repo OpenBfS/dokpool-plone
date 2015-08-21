@@ -1,0 +1,24 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.theme">
+  <records prefix="plone.resources/docpool-menu"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++docpool.menu/responsive-menu.js</value>
+      <value key="css">
+        <element>++resource++docpool.menu/responsive-menu.less</element>
+      </value>
+      <value key="deps">jquery</value>
+  </records>
+  <records prefix="plone.bundles/docpool-menu"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>docpool-menu</element>
+    </value>
+    <value key="expression"></value>
+    <value key="compile">True</value>
+    <value key="enabled">True</value>
+    <value key="depends">plone</value>
+    <value key="jscompilation">++plone++static/docpool-menu-compiled.js</value>
+    <value key="csscompilation">++plone++static/docpool-menu-compiled.css</value>    
+  </records>
+
+</registry>

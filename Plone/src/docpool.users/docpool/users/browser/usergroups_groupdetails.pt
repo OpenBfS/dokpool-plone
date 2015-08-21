@@ -8,6 +8,9 @@
 
 <body>
 
+<metal:block fill-slot="column_one_slot" />
+<metal:block fill-slot="column_two_slot" />
+
 <metal:main fill-slot="content"
      tal:define="template_id string:@@usergroup-groupdetails;
                  portal_roles view/portal_roles;

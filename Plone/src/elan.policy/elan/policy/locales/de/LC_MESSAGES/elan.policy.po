@@ -21,8 +21,8 @@ msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Scenarios"
-msgstr "Szenarios bearbeiten"
+msgid "Edit Events"
+msgstr "Ereignisse bearbeiten"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "Edit Ticker"

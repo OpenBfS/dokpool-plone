@@ -40,7 +40,7 @@
                     ><img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> </a>
                     </tal:cond>
 
-                        <b><tal:var i18n:translate="">Scenario:</tal:var> <tal:var content="python:', '.join(scns)" /></b><br></tal:if>
+                        <b><tal:var i18n:translate="">Event:</tal:var> <tal:var content="python:', '.join(scns)" /></b><br></tal:if>
 
                         <tal:if condition="item_type">
                          <tal:cond condition="python: not (isCollection or context.isArchive())">

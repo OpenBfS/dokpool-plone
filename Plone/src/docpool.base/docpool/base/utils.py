@@ -163,22 +163,6 @@ def deleteMemberFolders(self, member_ids):
             log_exc(e)
 
 
-# from quintagroup.dropdownmenu.browser.menu import DropDownMenuQueryBuilder
-# from zope.component import getMultiAdapter
-# from plone.app.layout.navigation.interfaces import INavtreeStrategy
-# from plone.app.layout.navigation.navtree import buildFolderTree
-# 
-# def _folderTree(context, path):
-#     """Return tree of tabs based on content structure"""
-# 
-#     queryBuilder = DropDownMenuQueryBuilder(context)
-#     strategy = getMultiAdapter((context, None), INavtreeStrategy)
-#     strategy.rootPath = path
-#     query = queryBuilder()
-#     query['path'] = {'query': path, 'depth': 3, 'navtree' : 1, 'navtree_start' : 2}
-#     return buildFolderTree(context, obj=context, query=query,
-#                            strategy=strategy)
-    
 def getUserInfo(self, username=None):
     mtool = getToolByName(self, "portal_membership")
     if username:

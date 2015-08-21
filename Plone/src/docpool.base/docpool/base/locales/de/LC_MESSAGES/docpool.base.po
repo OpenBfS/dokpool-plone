@@ -78,7 +78,7 @@ msgstr "Gruppenordner"
 
 #: docpool.base/docpool/base/browser/folderbase.pt:12
 msgid "Group Folder: scenario filter not active!"
-msgstr "Gruppenordner: Szenariofilter nicht aktiv!"
+msgstr "Gruppenordner: Ereignisfilter nicht aktiv!"
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
 msgid "Groups Area"
@@ -103,7 +103,7 @@ msgstr "Haupttext"
 
 #: docpool.base/docpool/base/browser/folderbase.pt:13
 msgid "Personal Folder: scenario filter not active!"
-msgstr "Persönlicher Ordner: Szenariofilter nicht aktiv!"
+msgstr "Persönlicher Ordner: Ereignisfilter nicht aktiv!"
 
 #: docpool.base/docpool/base/browser/folderbaselistitem.pt:38
 msgid "Show folder"

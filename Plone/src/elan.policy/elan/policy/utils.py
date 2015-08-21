@@ -129,10 +129,10 @@ def setFrontpage(self):
     """
     ttool = getToolByName(self, "portal_types")
     obj = ttool._getOb("Plone Site")
-    obj._updateProperty("default_view", "redirect")
-    obj._updateProperty("immediate_view", "redirect")
+#    obj._updateProperty("default_view", "redirect")
+#    obj._updateProperty("immediate_view", "redirect")
     obj.reindexObject()
-    self.setDefaultPage("redirect")
+#    self.setDefaultPage("redirect")
     self.esd.setDefaultPage("front-page")
         
 def connectTypesAndCategories(self):

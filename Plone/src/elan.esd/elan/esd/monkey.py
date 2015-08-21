@@ -15,32 +15,12 @@ from Products.Archetypes.utils import shasattr
 
 # Patches for the dropdown menu to include personal and group folders
 
-from quintagroup.dropdownmenu.browser.viewlets import GlobalSectionsViewlet
 from docpool.base.content.documentpool import DocumentPool
 from elan.esd.testdata import deleteTestData, createGroupsAndUsers,\
     createTestDocuments
 import datetime
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
-
-def portal_tabs(self):
-    from elan.esd.utils import getFoldersForCurrentUser
-    tabs = self.original_portal_tabs()
-    for tab in tabs:
-        if tab['id'].find('config') != -1:
-            tab['item_class'] = "config"
-    if not self.context.isArchive():
-        ffu = getFoldersForCurrentUser(self.context)
-        if ffu:
-            for f in ffu:
-                if not f.has_key('item_class'):
-                    f['item_class'] = "personal"
-            tabs.extend(ffu)
-    return tabs
-
-if not hasattr(GlobalSectionsViewlet, "original_portal_tabs"):
-    GlobalSectionsViewlet.original_portal_tabs = GlobalSectionsViewlet.portal_tabs
-    GlobalSectionsViewlet.portal_tabs = portal_tabs
 
 
 from plone.protect import CheckAuthenticator

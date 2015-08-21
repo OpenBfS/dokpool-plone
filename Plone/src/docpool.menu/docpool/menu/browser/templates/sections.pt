@@ -1,0 +1,19 @@
+<tal:tabs tal:define="menu view/createMenu"
+          tal:condition="menu"
+          i18n:domain="plone">
+	<p class="hiddenStructure" i18n:translate="heading_sections">Navigation</p>
+	<div id="globalnav-wrapper" class="rm-container">
+        <a class="rm-toggle rm-button rm-nojs" href="#">Menu</a>      
+        <nav class="rm-nav rm-nojs rm-lighten">
+        	<ul id="portal-globalnav" class="globalnav">
+        		<li tal:replace="structure menu">DropDown Menu</li>
+        	</ul>
+        </nav>
+    </div>
+	<script type="text/javascript" src="${context/portal_url}/++resource++docpool.menu/responsive-menu.js">
+
+	</script>
+	<script type="text/javascript" src="${context/portal_url}/++resource++docpool.menu/init-menu.js">
+
+	</script>
+</tal:tabs>
