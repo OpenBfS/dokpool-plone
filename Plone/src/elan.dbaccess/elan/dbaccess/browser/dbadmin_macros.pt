@@ -83,7 +83,7 @@
 		</div>
 
 		<div metal:define-macro="listbuttons" tal:omit-tag="">
-		<div id="formcontrols">
+		<div id="formcontrols" class="formControls">
 			<input type="hidden" name="form.submitted" value="1" />
 			<input type="hidden" name="typ" tal:attributes="value typ" />
 			<input type="hidden" name="last_referer"

@@ -2,11 +2,17 @@
           i18n:domain="docpool.theme">
   <records prefix="plone.resources/docpool-menu"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js">++resource++docpool.menu/responsive-menu.js</value>
+      <value key="js">++resource++docpool.menu/init-menu.js</value>
       <value key="css">
         <element>++resource++docpool.menu/responsive-menu.less</element>
       </value>
+      <value key="deps">docpool-menu-plugin</value>
+  </records>
+  <records prefix="plone.resources/docpool-menu-plugin"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++docpool.menu/responsive-menu.js</value>
       <value key="deps">jquery</value>
+      <value key="export"></value>
   </records>
   <records prefix="plone.bundles/docpool-menu"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>

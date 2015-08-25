@@ -4,10 +4,7 @@
          this, we may get a permission lookup error
       -->
     <include package="plone.app.portlets" />
-    
-            <plone:portlet interface=".ticker.ITickerPortlet" assignment=".ticker.Assignment" addview=".ticker.AddForm" name="elan.esd.Ticker" renderer=".ticker.Renderer" />    
-        
-        
+            
             <plone:portlet interface=".overview.IOverviewPortlet" assignment=".overview.Assignment" addview=".overview.AddForm" name="elan.esd.Overview" renderer=".overview.Renderer" />    
         
         

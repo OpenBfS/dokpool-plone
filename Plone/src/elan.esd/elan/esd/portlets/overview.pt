@@ -1,6 +1,6 @@
 <tal:block i18n:domain="docpool.base">
 <!-- ##code-section Portlet -->
-   <dl class="portlet" id="overviewportlet" tal:condition="context/isSituationDisplay" tal:define="DateTime python:modules['DateTime'].DateTime">
+   <dl class="portlet" id="overviewportlet" tal:define="DateTime python:modules['DateTime'].DateTime">
        <dt class="portletHeader">
            <a href="#" onclick="makePopUp(800, 1000, this.href, 'Overview', 200, 200, 1, 1); return false;" tal:attributes="href string:${context/esd/absolute_url}/overview/@@rpopup?popup_load=1" i18n:translate="">Chronological Overview</a>
        </dt>

@@ -45,9 +45,10 @@
         </table>
     <span style="display:none;" id="redirecturl" tal:content="context/absolute_url"></span>
     <input type="hidden" name="elandocid" value="1" tal:attributes="value docid" />       
+    <div class="formControls">
     <input type="submit" title="Absenden des Formulares" class="input-sichern" name="form.button.submit" value="Submit" i18n:attributes="value submitbutton;title submittitle"/>
     <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value cancelbutton;title canceltitle"/>
-        
+        </div>
       </form>
 </tal:def>    
 <!-- ##/code-section Main -->    

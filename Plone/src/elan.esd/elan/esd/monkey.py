@@ -165,11 +165,11 @@ def createTestData(self, count=100, prune=False):
         deleteTestData(self)
     createGroupsAndUsers(self)
     try:
-        self.contentconfig.scen.invokeFactory(id="scenario1", type_name="ELANScenario", title="Scenario 1", status="active", timeOfEvent=datetime.datetime.today())
+        self.contentconfig.scen.invokeFactory(id="scenario1", type_name="ELANScenario", title="Scenario 1", description="This is scenario 1", status="active", timeOfEvent=datetime.datetime.today())
     except:
         pass
     try:
-        self.contentconfig.scen.invokeFactory(id="scenario2", type_name="ELANScenario", title="Scenario 2", status="active", timeOfEvent=datetime.datetime.today())
+        self.contentconfig.scen.invokeFactory(id="scenario2", type_name="ELANScenario", title="Scenario 2", description="This is scenario 2", status="active", exercise=True, timeOfEvent=datetime.datetime.today())
     except:
         pass
     createTestDocuments(self, count)

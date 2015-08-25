@@ -6,7 +6,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-from elan.esd.behaviors.elandocument import IELANDocument
 
 __author__ = ''
 __docformat__ = 'plaintext'
@@ -42,6 +41,8 @@ from docpool.base.events import DocumentPoolInitializedEvent,\
     DocumentPoolRemovedEvent
 from docpool.base.structures import docPoolAdded as docPoolAddedExtern, docPoolRemoved as docPoolRemovedExtern
 #from docpool.base.utils import _copyPaste, queryForObjects
+from plone.app.textfield.value import RichTextValue
+from plone.protect.auto import safeWrite
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -118,6 +119,14 @@ class DocumentPool(Container):
         """
         """
         return "/".join(self.getPhysicalPath())
+    
+
+    def deleteText(self, obj):
+        """
+        """
+        safeWrite(obj, self.REQUEST)
+        obj.text = RichTextValue(u"", 'text/plain', 'text/html')
+        
 ##/code-section methods 
 
     def myDocumentPool(self):

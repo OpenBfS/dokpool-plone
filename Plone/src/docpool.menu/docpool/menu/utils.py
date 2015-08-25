@@ -70,7 +70,6 @@ def getFoldersForCurrentUser(self, user=None):
             return None
         user = api.user.get_current()
     res = []
-    print self
     if not shasattr(self, "content", True):
         return res
     rres = []
@@ -81,7 +80,6 @@ def getFoldersForCurrentUser(self, user=None):
         rres[0]['item_class'] = 'personal transfer'
         res = rres
     groups = getGroupsForCurrentUser(self, user)
-    print groups
     if not groups: # User is reader only
         return res
     # strangely, member folders for users with '-' in their username 
@@ -97,17 +95,17 @@ def getFoldersForCurrentUser(self, user=None):
     for group in groups:
         if group['etypes']: # Group is ELAN group which can produce documents
             hasGroup = True
-            print group, "isELAN"
+#            print group, "isELAN"
             if shasattr(g, group['id']): # only when the folder really exists
-                print "exists"
+#                print "exists"
                 gft = _folderTree(self, "%s/%s" % (gpath, group['id']))
-                print gft
+#                print gft
                 if gft.has_key("show_children"):
                     gres.append(gft)
     res.extend(gres)
     mfolder = [ _folderTree(self, "%s/%s" % (mpath,user_name)) ]
     if mfolder and not mfolder[0].has_key("show_children"): # A folder for the user has not been found, e.g. in archive
-        print "has no user folder"
+#        print "has no user folder"
         mfolder = []
     res.extend(mfolder)
     res.reverse()

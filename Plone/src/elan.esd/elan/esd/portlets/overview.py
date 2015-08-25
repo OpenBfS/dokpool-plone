@@ -25,7 +25,7 @@ from docpool.base import ELAN_EMessageFactory as _
 
 class IOverviewPortlet(IPortletDataProvider):
 ##code-section interface
-	pass
+    pass
 ##/code-section interface
 
 # The assignment is a persistent object used to store the configuration of
@@ -53,6 +53,9 @@ class Renderer(base.Renderer):
     render = ViewPageTemplateFile('overview.pt')
        
     ##code-section renderer-methods    
+    @property
+    def available(self):
+        return self.context.isSituationDisplay()
     ##/code-section renderer-methods
  
 ##code-section forms    

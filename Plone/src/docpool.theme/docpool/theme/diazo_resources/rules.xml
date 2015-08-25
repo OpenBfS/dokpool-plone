@@ -11,7 +11,6 @@
   <!-- hero unit never -->
   <drop css:theme="div.principal" />
 
-
   <rules css:if-content="#visual-portal-wrapper">
     <!-- Placeholder for your own additional rules -->
   </rules>

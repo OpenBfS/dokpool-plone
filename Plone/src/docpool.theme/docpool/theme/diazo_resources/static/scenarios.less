@@ -4,7 +4,21 @@
     position: relative;
     width: 50%;
     float: left;
+    top: -0.5em;
 }
+
+#scenario_box .uinfo {
+	display: none;
+}
+
+@media (min-width: @plone-screen-sm-min) { #scenario_box {width: 30%}}
+@media (min-width: @plone-screen-md-min) { 
+	#scenario_box {width: 45%}
+	#scenario_box .uinfo {
+		display: inline;
+	}	
+}
+@media (min-width: @plone-screen-lg-min) { #scenario_box {width: 55%}}
 
 .template-rpopup #scenario_box {
     top: 0;
@@ -45,6 +59,6 @@ table.scenario_table .sselected {
 }
 
 form.scenario_selection input {
-	margin-top: 0.5em;
-	margin-left: 0.5em;
+	padding: 2px;
+	margin: 0;
 }

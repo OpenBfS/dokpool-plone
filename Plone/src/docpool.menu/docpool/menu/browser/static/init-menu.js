@@ -1,13 +1,17 @@
-require(['jquery',
-         'docpool-menu'
-         ], function($, Registry) {
+define(['jquery',
+         'docpool-menu-plugin'
+         ], function($) {
 	'use strict';
 
-	$().ready(function() {
+	jQuery(function($) {
 		var menu = $('.rm-nav').rMenu({
-			minWidth: '960px',
+			minWidth: '768px',
 			toggleBtnBool: false,
 		});
 	});
 
+});
+
+jQuery(function($) {
+	  require(['docpool-menu']);
 });

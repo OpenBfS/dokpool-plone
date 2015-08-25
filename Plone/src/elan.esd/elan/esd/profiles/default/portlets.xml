@@ -5,13 +5,6 @@
      of this file for more information.
   -->
 <portlets>
-        <portlet description="" addview="elan.esd.Ticker" title="Ticker" />
-            
-    
-    
-    
-       <assignment name="Ticker" category="context" key="/" manager="plone.leftcolumn" type="elan.esd.Ticker" />        
-    
     
     
     

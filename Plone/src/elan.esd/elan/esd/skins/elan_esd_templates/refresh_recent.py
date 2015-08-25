@@ -8,5 +8,6 @@
 ##title=
 ##
 from elan.esd.portlets.recent import Renderer
+
 rp = Renderer(context, context.REQUEST, None, None, None)
 return rp.render()

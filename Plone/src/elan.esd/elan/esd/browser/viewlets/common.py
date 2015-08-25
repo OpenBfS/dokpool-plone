@@ -21,5 +21,11 @@ class ScenarioViewlet(ViewletBase):
         scs = getScenariosForCurrentUser(self.context)
         self.selected_scenarios = scs
     
+class TickerViewlet(ViewletBase):
+    index = ViewPageTemplateFile('ticker.pt')
+    
+    @property
+    def available(self):
+        return (not self.context.isArchive()) and self.context.isSituationDisplay()
         
     

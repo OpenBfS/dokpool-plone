@@ -1,8 +1,8 @@
 <tal:block i18n:domain="docpool.base">
 <!-- ##code-section Portlet -->
-<section class="portlet portletRecent" role="section" tal:condition="python: (context.isSituationDisplay()) and (not context.isArchive())"
+<section class="portlet portletRecent" role="section" 
     i18n:domain="plone">
-
+<div id="recent_content">
     <header class="portletHeader">
         <a href="#"
             tal:attributes="href view/recently_modified_link"
@@ -57,7 +57,7 @@
            All recent changes&hellip;
         </a>
     </footer>
-
+</div>
 </section>
 
 <!-- ##/code-section Portlet -->    
