@@ -51,8 +51,7 @@
 
             <tbody>
                 <tal:items tal:repeat="edoc batch">
-                   <tr tal:define="oddrow  repeat/edoc/odd;
-                                   item_id edoc/id|edoc/getId;
+                   <tr tal:define="item_id edoc/id|edoc/getId;
                                    item_obj edoc/getObject|nothing;
                 				   isFolder edoc/is_folderish;
                 				   item_folder_class python:isFolder and 'folder' or ''"

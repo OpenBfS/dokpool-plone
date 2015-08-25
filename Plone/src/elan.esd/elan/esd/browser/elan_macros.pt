@@ -90,36 +90,36 @@
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                              show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                              navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                             pas_member context/@@pas_member;">
+                             pas_member context/@@pas_member;
+                             buttons python:[]">
         <tal:listing condition="batch">
 
           <table id="sortable"
-                 class="elanlisting"
+                 class="listing responsive"
                  summary="Content listing"
                  i18n:attributes="summary summary_content_listing;"
                  tal:define="isOverview python:here.getId()=='overview'">
             <thead>
-              <metal:block tal:condition="batch|not:standalone|nothing">
-                <tr>
-                  <metal:header_slot metal:define-slot="listingheader">
-                    <th class="nosort"><i18n:txt translate="">Category/Dates</i18n:txt><br><i18n:txt translate="">Description</i18n:txt></th>
-                    <th class="nosort" i18n:translate="">Main Text</th>
-                 </metal:header_slot>
-                </tr>
-              </metal:block>
+               <metal:header_slot metal:define-slot="listingheader">
+                 <th class="nosort actions"></th>
+                 <th class="nosort title" i18n:translate="">Title / Description / Text</th>
+                 <th class="nosort metadata" i18n:translate="">Metadata</th>
+              </metal:header_slot>
             </thead>
 
             <tbody >
                 <tal:items tal:repeat="edoc batch">
                    <tr tal:define="oddrow  python:repeat['edoc'].index % 2 == 0;
                    				   item_id edoc/getId;
-                   				   item_obj edoc/getObject|nothing"
-                       tal:attributes="class python:oddrow and 'notDraggable  even' or 'notDraggable odd';
+                   				   item_obj edoc/getObject|nothing;
+                   				   isFolder edoc/is_folderish;
+                				   item_folder_class python:isFolder and 'folder' or ''"
+                       tal:attributes="class string:itemRow $item_folder_class';
                                        id item_id;" >
                      
                            <metal:block define-slot="entry">
                             <tal:if condition="nocall:item_obj">
-       						<tal:insertview replace="structure python:item_obj.restrictedTraverse('@@listitem')(edoc=edoc,isOverview=isOverview,isCollection=True,myfolder=context)"/>
+       						<tal:insertview replace="structure python:item_obj.restrictedTraverse('@@listitem')(edoc=edoc,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
                     	   </tal:if>
                     	   </metal:block>
                    </tr>

@@ -23,6 +23,10 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/jquery.marquee.js</value>
   </records>
+  <records prefix="plone.resources/docpool-functions"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++theme++docpool.theme/static/functions.js</value>
+  </records>
   
   <records prefix="plone.bundles/docpool"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>

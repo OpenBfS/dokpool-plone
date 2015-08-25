@@ -22,6 +22,7 @@ from zope.event import notify
 from DateTime import DateTime
 import datetime
 from docpool.base.events import IDocumentPoolUndeleteable
+from Products.PythonScripts.PythonScript import PythonScript
 
 def install(self):
     """
@@ -132,7 +133,18 @@ def setFrontpage(self):
 #    obj._updateProperty("default_view", "redirect")
 #    obj._updateProperty("immediate_view", "redirect")
     obj.reindexObject()
-#    self.setDefaultPage("redirect")
+    r = "redirect"
+    try:
+        id = self._setObject(r, PythonScript(r))
+    except:
+        pass
+    ps = self._getOb(r)
+    ps.write("""
+if not context.isAdmin():
+    container.REQUEST.RESPONSE.redirect(context.myFirstDocumentPool())    
+    """)
+    self.setDefaultPage(r)
+    
     self.esd.setDefaultPage("front-page")
         
 def connectTypesAndCategories(self):
@@ -258,7 +270,7 @@ INTERNATIONALSTRUCTURE = [{TYPE: 'InfoFolder', TITLE: u'SYSTEMS', ID: 'systems',
                          ]
         
 BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Template', ID: 'esd', CHILDREN: [ 
-                         {TYPE: 'Document', TITLE: u'Electronic Situation Display', ID: 'front-page', 'setText': FRONTPAGE, CHILDREN: [] }                                                                        
+                         {TYPE: 'Document', TITLE: u'Electronic Situation Display', ID: 'front-page', 'text': FRONTPAGE, CHILDREN: [] }                                                                        
                                                                                                  ]},
                   ]
 
@@ -270,8 +282,7 @@ ADMINSTRUCTURE = [
                         ]}
                  ]
 
-BASICSTRUCTURE2 = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Template', ID: 'esd', CHILDREN: ESDCOLLECTIONS}
-                 
+BASICSTRUCTURE2 = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Template', ID: 'esd', CHILDREN: ESDCOLLECTIONS},
                   ]
 
 

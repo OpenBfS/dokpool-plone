@@ -29,5 +29,14 @@
 
   <include package=".browser" />
   <include file="skins.zcml" />
+  
+  <browser:page
+      for="*"
+      name="main_template"
+      class=".main_template.MainTemplate"
+      layer=".interfaces.ICustomTheme"
+      permission="zope.Public"
+      />
+  
 
 </configure>

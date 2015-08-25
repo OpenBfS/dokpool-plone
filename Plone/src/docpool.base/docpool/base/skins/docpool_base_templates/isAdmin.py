@@ -1,4 +1,4 @@
-## Script (Python) "isContentAdmin.py"
+## Script (Python) "isAdmin.py"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
