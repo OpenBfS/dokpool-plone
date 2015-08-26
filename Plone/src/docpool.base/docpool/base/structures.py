@@ -1,23 +1,14 @@
 # -*- coding: utf-8 -*-
 import transaction
-from elan.policy.utils import createPloneObjects, CHILDREN, ID, TITLE, TYPE
 from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from zExceptions import BadRequest
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone.utils import log, log_exc
 from elan.esd import ELAN_EMessageFactory as _
+from docpool.config.local import createContentArea, createUsers, createGroups,\
+    setLocalRoles, navSettings
 
-specialAttributes=(TYPE, TITLE, ID, CHILDREN)
-
-TRANSFER_AREA = [
-                  {TYPE: 'ContentArea', TITLE: u'Content Area', ID: 'content', "setExcludeFromNav": True, CHILDREN: [
-                    {TYPE: 'Users', TITLE: u'Members', ID: 'Members', CHILDREN: []},                                                                                              
-                    {TYPE: 'Groups', TITLE: u'Groups', ID: 'Groups', CHILDREN: []},                                                                                              
-                                                                                              ]},
-                  ]
-                            
-PLONE_UTILS=None
 
 
 def docPoolAdded(obj, event=None):
@@ -40,11 +31,6 @@ def docPoolRemoved(obj, event=None):
     deleteUsers(self)
 # documentpool.esdRemoved = esdRemoved
 
-def createContentArea(self, fresh):
-    """
-    """
-    createPloneObjects(self, TRANSFER_AREA, fresh)
-    
 def deleteGroups(self):
     """
     """
@@ -56,20 +42,6 @@ def deleteGroups(self):
     for gid in gids:
         if gid.startswith(prefix):
             gtool.removeGroup(gid) # also deletes the group folder via event subscribers
-
-
-def createUsers(self):    
-    # Set type for user folders
-    mtool = getToolByName(self,"portal_membership")
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    title = self.Title()
-    mtool.addMember('%s_dpadmin' % prefix, 'DocPool Administrator (%s)' % title, ['Member'], [])
-    dpadmin = mtool.getMemberById('%s_dpadmin' % prefix)
-    dpadmin.setMemberProperties(
-        {"fullname": 'DocPool Administrator (%s)' % title,
-         "dp": self.UID()})
-    dpadmin.setSecurityProfile(password="admin")
 
 def deleteUsers(self):
     """
@@ -86,40 +58,4 @@ def deleteUsers(self):
             except Exception, e:
                 log_exc(e)
 
-def setLocalRoles(self):
-    """
-    Normal local members: Reader
-    Administrators: Site Administrator
-    ContentAdministrators: Reviewer
-    Receivers: Owner, Editor
-    Senders: Contributor
-    """
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    self.manage_setLocalRoles("%s_Members" % prefix, ["Reader"])
-    self.manage_setLocalRoles("%s_Administrators" % prefix, ["Site Administrator"])
 
-def createGroups(self):
-    # We need local groups for
-    # - General access to the ESD
-    # - Administration
-    # - Content Administration
-    # - Receiving content from others
-    # - Sending content to others
-    
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    title = self.Title()
-    gtool = getToolByName(self, 'portal_groups')
-    props = { 'allowedDocTypes' : [], 'title' : 'Members (%s)' % title, 'description': 'Users of the DocPool.', 'dp': self.UID() }
-    gtool.addGroup("%s_Members" % prefix, 
-                   properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_Members' % prefix)
-    props = { 'allowedDocTypes' : [], 'title' : 'Administrators (%s)' % title, 'description': 'Responsible for the administration of the DocPool.', 'dp': self.UID() }
-    gtool.addGroup("%s_Administrators" % prefix, 
-                   properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_Administrators' % prefix)
-
-def navSettings(self):    
-    IExcludeFromNavigation(self.content).exclude_from_nav = True
-    self.content.reindexObject()

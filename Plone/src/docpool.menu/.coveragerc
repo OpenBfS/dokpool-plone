@@ -1,6 +1,0 @@
-[report]
-include =
-    src/docpool/*
-omit =
-    */test*
-    */upgrades/*

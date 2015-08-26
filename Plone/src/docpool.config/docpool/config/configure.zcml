@@ -1,0 +1,45 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="docpool.config">
+
+  <includeDependencies package="." />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <include package=".browser" />
+
+
+  <genericsetup:registerProfile
+      name="default"
+      title="docpool.config"
+      directory="profiles/default"
+      description="Installs the docpool.config add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="docpool.config-postInstall"
+      title="docpool.config post_install import step"
+      description="Post install import step from docpool.config"
+      handler=".setuphandlers.post_install">
+  </genericsetup:importStep>
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="docpool.config"
+      directory="profiles/uninstall"
+      description="Uninstalls the docpool.config add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="docpool.config-uninstall"
+      title="docpool.config uninstall import step"
+      description="Import step run during ininstalling docpool.config"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+
+</configure>

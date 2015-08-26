@@ -1,0 +1,5 @@
+====================
+docpool.config
+====================
+
+User documentation

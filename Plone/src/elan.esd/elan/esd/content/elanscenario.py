@@ -7,6 +7,7 @@
 #            http://www.condat.de
 #
 from docpool.base.structures import navSettings
+from docpool.config.local import ARCHIVESTRUCTURE, TRANSFER_AREA
 
 __author__ = ''
 __docformat__ = 'plaintext'
@@ -32,7 +33,8 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from DateTime import DateTime
-from elan.policy.utils import TYPE, TITLE, ID, CHILDREN, DOCTYPES, createPloneObjects, ploneId
+from docpool.config.utils import TYPE, TITLE, ID, CHILDREN, createPloneObjects, ploneId
+from docpool.config.general import DOCTYPES
 from Products.CMFPlone.utils import parent
 from Products.CMFPlone.utils import log
 from docpool.base.utils import portalMessage
@@ -286,28 +288,17 @@ class ELANScenario(Item, ContentBase):
         arc = a._getOb(id) # get new empty archive
         arc.setDescription(self.Description())
         # create the document folders
-        f = [
-             {TYPE: 'ELANCurrentSituation', TITLE: _('Electronic Situation Display'), ID: 'esd', CHILDREN: [
-                  {TYPE: 'ELANDocCollection', TITLE: _('Overview'), ID: 'overview', "setExcludeFromNav": True, DOCTYPES: [], CHILDREN: [] },                                                                                                          
-             
-             ]},    
-             {TYPE: 'ELANContentArea', TITLE: u'Content Area', ID: 'content', "setExcludeFromNav": True, CHILDREN: [
-                 {TYPE: 'ELANUsers', TITLE: u'Members', ID: 'Members', CHILDREN: []},                                                                                              
-                 {TYPE: 'ELANGroups', TITLE: u'Groups', ID: 'Groups', CHILDREN: []},                                                                                              
-                 {TYPE: 'ELANTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []},                                                                                                                                                                                            
-             ]},
-        ]
-        createPloneObjects(arc, f)
-        
+        createPloneObjects(arc, ARCHIVESTRUCTURE)
+        createPloneObjects(arc.content, TRANSFER_AREA)
+
         navSettings(arc)
 
-        arc.esd.setDefaultPage("overview")
         # copy the ESD folders
         objs = [o.getId for o in e.getFolderContents({'portal_type': ['ELANSection', 'ELANDocCollection']})]
         # print objs
         cb_copy_data = e.manage_copyObjects(objs) # Copy aus der Quelle
         result = arc.esd.manage_pasteObjects(cb_copy_data)
-#        arc.esd.correctAllDocTypes()
+        arc.esd.setDefaultPage("overview")
 
         return arc   
         
