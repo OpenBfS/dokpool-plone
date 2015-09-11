@@ -31,7 +31,42 @@ from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 from Products.PageTemplates.PageTemplate import PageTemplate
 ##/code-section imports
 
-class DPDocumentView(BrowserView):
+class FlexibleView(BrowserView):
+
+    def myViewSource(self, vtype):
+        """
+        """
+        doc = self.context
+        dto = doc.docTypeObj()
+        app = doc.currentApplication()
+        dtid = dto.getId()
+        data = ""
+        
+        for n in [
+                  "%s_doc_%s_%s" % (app, dtid, vtype),
+                  "%s_doc_%s" % (app, vtype),
+                  "doc_%s_%s" % (dtid, vtype),
+                  "doc_%s" % vtype
+                  ]:
+            if shasattr(dto, n, acquire=True):
+                o = aq_base(getattr(dto, n))
+                if IFile.providedBy(o):
+                    f = o.file.open()
+                    data = f.read()
+                elif IPageTemplateSubclassing.providedBy(o):
+                    data = o.read()
+                return data
+        return data
+
+    def myView(self, vtype, **options):
+        """
+        """
+        src = self.myViewSource(vtype)
+        template = PageTemplate()
+        template.pt_edit(src, "text/html")
+        return template(view=self, context=self.context, **options)
+
+class DPDocumentView(FlexibleView):
     """Default view
     """
  
@@ -57,7 +92,7 @@ class DPDocumentView(BrowserView):
         return data_url
 
     def javascript(self):
-        # PLONE5: plone.protect verlangt CSRF Tokens im Request :-)
+        # PLONE5: plone.protect 
         token = createToken()
         return """
   // workaround this MSIE bug :
@@ -93,44 +128,11 @@ class DPDocumentView(BrowserView):
         """
         return urllib.quote_plus(string)
     
-    def myViewSource(self):
-        """
-        """
-        doc = self.context
-        dto = doc.docTypeObj()
-        app = doc.currentApplication()
-        dtid = dto.getId()
-        data = ""
-        
-        for n in [
-                  "%s_doc_%s_%s" % (app, dtid, "full"),
-                  "%s_doc_%s" % (app, "full"),
-                  "doc_%s_%s" % (dtid, "full"),
-                  "doc_%s" % "full"
-                  ]:
-            print n
-            if shasattr(dto, n, acquire=True):
-                o = aq_base(getattr(dto, n))
-                if IFile.providedBy(o):
-                    print "Datei"
-                    f = o.file.open()
-                    data = f.read()
-                elif IPageTemplateSubclassing.providedBy(o):
-                    print "PageTemplate"
-                    data = o.read()
-                return data
             
-    def myView(self):
-        """
-        """
-        src = self.myViewSource()
-        template = PageTemplate()
-        template.pt_edit(src, "text/html")
-        return template(view=self, context=self.context)
         
     ##/code-section methods1     
 
-class DPDocumentlistitemView(BrowserView):
+class DPDocumentlistitemView(FlexibleView):
     """Additional View
     """
     
@@ -150,7 +152,7 @@ class DPDocumentlistitemView(BrowserView):
         
     ##/code-section methodslistitem     
 
-class DPDocumentinlineView(BrowserView):
+class DPDocumentinlineView(FlexibleView):
     """Additional View
     """
     

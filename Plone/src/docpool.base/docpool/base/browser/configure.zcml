@@ -24,6 +24,21 @@
             	template="folderbase.pt" 
             	class=".folderbase.FolderBaseView" />
 
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentView" />
+        
+        
+        
+        
+                
+    
+            <browser:page permission="zope2.View" name="listitem" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentlistitemView" />
+                    
+    
+    
+            <browser:page permission="zope2.View" name="inline" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentinlineView" />
+                    
+                            
 <!-- ##/code-section Main -->    
 
     
@@ -52,21 +67,6 @@
                             
     
     
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentView" />
-        
-        
-        
-        
-                
-    
-            <browser:page permission="zope2.View" name="listitem" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentlistitemView" />
-                    
-    
-    
-            <browser:page permission="zope2.View" name="inline" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentinlineView" />
-                    
-                            
     
     
         

@@ -110,12 +110,9 @@ class DPDocument(Container, Document, ContentBase):
             self.reindexObjectSecurity()
             
     def getAllowedSubTypes(self):
-        print "ast"
         dto = self.docTypeObj()
-        print dto
         if dto:
             adt = dto.allowedDocTypes
-            print adt
             if adt:
                 return [ dt.to_object for dt in adt ]
         return []
@@ -137,7 +134,7 @@ class DPDocument(Container, Document, ContentBase):
             if menu_item.get('id') == 'DPDocument':
                 for dt in dts:
                     res.append({'extra': 
-     {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 
+                               {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 
                                 'submenu': None, 
                                 'description': '', 
                                 'title': dt.Title, 
