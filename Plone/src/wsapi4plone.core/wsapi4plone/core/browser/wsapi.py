@@ -3,6 +3,9 @@ from logging import getLogger
 from zope.component import getUtility
 
 from wsapi4plone.core.interfaces import IContextBuilder
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
+
 
 
 class WSAPI(object):
@@ -12,4 +15,6 @@ class WSAPI(object):
         """Typical browser view instantiation."""
         self.context = context
         self.request = request
+        alsoProvides(request, IDisableCSRFProtection)
+        
         self.builder = getUtility(IContextBuilder)

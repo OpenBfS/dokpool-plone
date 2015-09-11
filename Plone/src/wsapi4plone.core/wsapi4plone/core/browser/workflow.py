@@ -6,6 +6,8 @@ from zope.interface import implements
 
 from interfaces import IWorkflow
 from wsapi import WSAPI
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
 
 class Workflow(WSAPI):
     implements(IWorkflow)
@@ -14,6 +16,8 @@ class Workflow(WSAPI):
         """
         @param path - string to the path of the wanted object
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         obj = self.builder(self.context, path)
         portal_workflow = getSite().portal_workflow
         results = {}
@@ -30,6 +34,7 @@ class Workflow(WSAPI):
         @param transition - string representing the workflow transition action
         @param path - string to the path of the wanted object
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         obj = self.builder(self.context, path)
         portal_workflow = getSite().portal_workflow
 

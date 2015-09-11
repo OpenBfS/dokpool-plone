@@ -12,6 +12,8 @@ from wsapi4plone.core.browser.wsapi import WSAPI
 from wsapi4plone.core.interfaces import IScrubber, IService, IServiceContainer
 from plone import api
 from Products.CMFCore.utils import getToolByName
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
 
 class ApplicationAPI(WSAPI):
     implements(IApplicationAPI)
@@ -77,6 +79,8 @@ class ApplicationAPI(WSAPI):
         """
         Creates a document under folderpath.
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         params = { folderpath + "/" + id : [ { "title": title, 
                                    "description" : description,
                                    "text" : text,
@@ -87,6 +91,8 @@ class ApplicationAPI(WSAPI):
         return res[0] # just the path
     
     def upload_file(self, path, id, title, description, data, filename):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         params = { path + "/" + id : [ { "title": title, 
                                    "description" : description,
                                    "file" : (data, filename)} , "File"] }
@@ -95,6 +101,8 @@ class ApplicationAPI(WSAPI):
         return res[0] # just the path
         
     def upload_image(self, path, id, title, description, data, filename):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         params = { path + "/" + id : [ { "title": title, 
                                    "description" : description,
                                    "image" : (data, filename)} , "Image"] }
@@ -105,6 +113,8 @@ class ApplicationAPI(WSAPI):
     def post_user(self, username, password, fullname, esdpath):
         """
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         properties = {"fullname":fullname}
         esd = api.content.get(esdpath, None)
         if esd:
@@ -127,6 +137,8 @@ class ApplicationAPI(WSAPI):
     def post_group(self, groupname, title, description, esdpath):
         """
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         esd = api.content.get(esdpath, None)
         groupprops = {'title': title,
                       'description': description}
@@ -142,6 +154,8 @@ class ApplicationAPI(WSAPI):
     def put_group(self, groupname, title, description, esdpath, allowedDocTypes):
         """
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         props = { 'allowedDocTypes' : allowedDocTypes,
                   'title' : title,
                   'description': description}
@@ -165,6 +179,8 @@ class ApplicationAPI(WSAPI):
     def add_user_to_group(self, username, groupname):
         """
         """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        
         api.group.add_user(groupname=groupname, group=None, username=username, user=None)
         group = api.group.get(groupname)
         message = "notAdded"
