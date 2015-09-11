@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.0.22'
+version = '0.0.27'
 
 setup(name='docpool.base',
       version=version,
@@ -39,6 +39,7 @@ setup(name='docpool.base',
           'plone.app.referenceablebehavior',
           'plone.api','plone.formwidget.querystring'
           ##code-section dependencies
+          , 'collective.pdfpeek [dexterity]'
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      

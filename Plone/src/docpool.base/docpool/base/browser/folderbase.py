@@ -13,7 +13,7 @@ view of that content type.
 """
 
 
-from Products.Five import BrowserView
+from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.memoize.instance import memoize
@@ -29,12 +29,33 @@ from plone.app.content.browser.interfaces import IFolderContentsView
 from zope.interface import implementer
 ##/code-section imports
 
+
+class FolderBaselistitemView(BrowserView):
+    """Additional View
+    """
+    
+    __call__ = ViewPageTemplateFile('folderbaselistitem.pt')
+    
+    ##code-section methodslistitem
+    ##/code-section methodslistitem     
+
+class FolderBaserpopupView(BrowserView):
+    """Additional View
+    """
+    
+    __call__ = ViewPageTemplateFile('folderbaserpopup.pt')
+    
+    ##code-section methodsrpopup
+    ##/code-section methodsrpopup     
+
+
+
+##code-section bottom
 @implementer(IFolderContentsView)
 class FolderBaseView(BrowserView):
     """Default view
     """
     
-    ##code-section methods1
     def dp_buttons(self, items):
         """
         Determine the available buttons by calling the original method from the 
@@ -86,27 +107,4 @@ class FolderBaseView(BrowserView):
         res.extend([b for b in self.context.getFolderContents(kwargs)])
         # print res
         return res
-    ##/code-section methods1     
-
-class FolderBaselistitemView(BrowserView):
-    """Additional View
-    """
-    
-    __call__ = ViewPageTemplateFile('folderbaselistitem.pt')
-    
-    ##code-section methodslistitem
-    ##/code-section methodslistitem     
-
-class FolderBaserpopupView(BrowserView):
-    """Additional View
-    """
-    
-    __call__ = ViewPageTemplateFile('folderbaserpopup.pt')
-    
-    ##code-section methodsrpopup
-    ##/code-section methodsrpopup     
-
-
-
-##code-section bottom
 ##/code-section bottom

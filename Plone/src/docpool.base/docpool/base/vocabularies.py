@@ -91,7 +91,7 @@ class DocTypeVocabulary(object):
     """
     implements(IVocabularyFactory)
     
-    def __call__(self, context, raw=False):
+    def __call__(self, context, raw=False, filtered=False):
         # print context
         esd = getDocumentPoolSite(context)        
         path = "/".join(esd.getPhysicalPath()) + "/config"
@@ -103,10 +103,17 @@ class DocTypeVocabulary(object):
                 return []
         types = cat({"portal_type":"DocType", "sort_on": "sortable_title", "path": path})
         # print len(types)
-        if not raw:
-            types = [ (brain.getObject(), brain.Title) for brain in types] 
+        if filtered:
+            if not raw:
+                types = [ (brain.getObject(), brain.Title) for brain in types ] 
+            else:
+                types = [ (brain.getId, brain.Title) for brain in types ] 
         else:
-            types = [ (brain.getId, brain.Title) for brain in types] 
+            if not raw:
+                types = [ (brain.getObject(), brain.Title) for brain in types ] 
+            else:
+                types = [ (brain.getId, brain.Title) for brain in types ] 
+            
         # print types
         if not raw:
             items = [SimpleTerm(i[0], i[0], i[1]) for i in types]

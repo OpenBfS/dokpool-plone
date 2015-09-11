@@ -12,7 +12,7 @@ from docpool.base.vocabularies import DocTypeVocabulary
 
 aedt = DocTypeVocabulary()
 #return [ a[0] for a in aedt(context, raw=True)]
-return [ "%s|%s" % (a[0],a[1]) for a in aedt(context, raw=True)]
+return [ "%s|%s" % (a[0],a[1]) for a in aedt(context, raw=True, filtered=True)]
 
 
 # 

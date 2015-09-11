@@ -1,0 +1,145 @@
+<tal:block i18n:domain="docpool.base">
+<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
+<tal:def define="edoc options/edoc;
+                 item_id edoc/id|edoc/getId;
+                 item_title edoc/Title|edoc/title_or_id;
+                 title_or_id python:item_title or item_id;                 
+                 buttons options/buttons|nothing;
+                 edocobj edoc/getObject;
+                 elanobj view/elanobject;
+                 isOverview options/isOverview;
+                 isCollection options/isCollection;
+                 individual context/isIndividual;
+                 myfolder nocall:options/myfolder;
+                 item_description edoc/Description;
+                 item_url python:isCollection and '%s/@@dview?d=%s&disable_border=1' % (myfolder.absolute_url(), edoc.UID) or edoc.getURL(original=True);
+                 item_url python:isOverview and edoc.getURL() or item_url;
+                 item_modified edoc/getMdate;
+                 item_created edoc/CreationDate;
+                 item_creator edoc/Creator;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                 pas_member context/@@pas_member;
+                 author python:pas_member.info(item_creator);
+                 creator_fullname author/name_or_id;
+                 tac elanobj/typeAndCat;
+                 item_type python:tac[0];
+                 item_cat python:tac[1];
+                 item_cat python:', '.join(item_cat);
+                 item_ptype edoc/portal_type;
+                 normalizeString nocall: context/plone_utils/normalizeString;
+                 item_type_class python:'contenttype-' + normalizeString(item_ptype);
+                 rs edoc/review_state;
+                 item_wf_state_class python:'state-' + normalizeString(rs);              
+                 transferable python: not (individual or isOverview) and elanobj.transferable();
+                 transferred context/transferred;
+                 unknown_scen python:transferred and elanobj.unknownScenario() or None;
+                 unknown_dt python:transferred and context.unknownDocType() or None;
+                 unknown python: unknown_scen or unknown_dt;
+                 navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                 ">
+                <td class="actions">
+                    <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
+                        <tal:if condition="python: not (isCollection or individual or unknown) and not context.isArchive()">
+                            <tal:loop repeat="action actions" define="actions context/workflowActions">
+                                <a  class="wf_action action" href=""
+                                onclick=""
+                                title=""
+                                tal:define="a_id action/id;
+                                    a_title action/title;
+                                    a_icon action/icon;
+                                    alert_msg python:context.translate('alert_' + a_id + '_popup', default='Do you really want to publish this document?', domain='elan.esd', escape_for_js=True)"
+                                tal:attributes="onclick string:return confirm('${context/Title}: ${alert_msg}');
+                                    href python:'%s/change_state?id=%s&action=%s' % (myfolder.absolute_url(), context.getId(), a_id);
+                                    title a_title;
+                                    ">
+                                <img src="" tal:attributes="src string:${context/portal_url}/${a_icon}"/> 
+                               </a>
+                        </tal:loop>
+                       </tal:if>
+                       <tal:if condition="python: not context.isArchive() and transferable and elanobj.allowedTargets()">
+                        <a class="transfer action pat-plone-modal" tal:condition="python: not context.isIndividual()" 
+                            href=""
+                            title="Transfer"
+                            tal:attributes="href python:'%s/elandocument_transfer_form?id=%s' % ('/'.join(edocobj.absolute_url().split('/')[:-1]), context.getId())"
+                            i18n:attributes="title">
+                            <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+                        </a>
+                      </tal:if>                        
+                </td>
+                <td class="title">
+                    <a href="" 
+                        title="Show document" 
+                        i18n:attributes="title" 
+                        tal:attributes="href string:javascript:go_to('${item_url}');
+                                        class string:$item_type_class $item_wf_state_class"
+                        tal:content="edoc/Title">Title                         
+                    </a>
+                    <div class="description" tal:condition="python:item_description"
+                          tal:content="structure string:$item_description"> description </div>
+
+                       <div class= "fulltext" tal:content="structure python:edocobj.text.output" />
+
+                       <div class="file" tal:define="files context/getFiles" tal:condition="files"
+                              tal:repeat="d files">
+                        <a href="" 
+                            target="_blank" 
+                            title="" 
+                            tal:attributes="title python:'open attachment';
+                                               href python:d.absolute_url()"
+                               tal:content="python:d.title_or_id()">documents
+                           </a>
+                           (<span tal:content="python:view.ctype_short(d)" />,&nbsp;<span tal:content="python:d.getObjSize(None, d.file.size)" />)
+                       </div>
+                       <div class="images" tal:define="images context/getImages" tal:condition="images">
+                           <div tal:repeat="b images" class="image">
+                               <a href="" tal:attributes="href python:b.absolute_url();title python:'show image';" target="_blank">
+                                  <img tal:attributes="src python:'/'.join(b.getPhysicalPath())">
+                               </a>
+                               <div class="imgdata"><span tal:content="structure python:b.title_or_id()" />(<span tal:content="python:b.getObjSize(None, b.image.size)" />)</div>
+                          </div>
+                       </div>
+                </td>
+                <td class="metadata">
+                    <tal:if tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
+                        <tal:cond condition="python: not (isCollection or context.isArchive())">
+                            <a tal:condition="nocall:unknown_scen" href=""
+                                title="Edit unknown scenario"
+                                tal:attributes="href unknown_scen/absolute_url"
+                                i18n:attributes="title">
+                                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+                            </a>
+                        </tal:cond>
+                        <b><tal:var i18n:translate="">Event:</tal:var> <tal:var content="python:', '.join(scns)" /></b><br>
+                    </tal:if>
+                       <tal:if condition="item_type">
+                            <tal:cond condition="python: not (isCollection or context.isArchive())">
+                            <a tal:condition="nocall:unknown_dt" href=""
+                                title="Edit unknown doc type"
+                                tal:attributes="href unknown_dt/absolute_url"
+                                i18n:attributes="title">
+                                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+                            </a>
+                        </tal:cond>
+                        <i><span tal:content="string:${item_cat} (${item_type})" /></i>
+                       </tal:if>
+                      <span tal:condition="python:item_modified and (toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1))">
+                        <i18n:txt translate="">modified:</i18n:txt>
+                        <span><tal:var replace="python:str(toLocalizedTime(item_modified, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>,
+                        <span tal:content="structure python:context.modified_by" />
+                        <br>
+                     </span>
+                     <i18n:txt translate="">created:</i18n:txt>
+                     <span><tal:var replace="python:str(toLocalizedTime(item_created, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span><br>
+                     <span tal:content="structure python:context.created_by" />                                 
+                     <span tal:condition="context/hasComments">
+                         <b><u><a href="" title="" tal:attributes="title python:'show document';
+                                                             href string:javascript:go_to('${item_url}');">
+                              <i18n:txt translate="">There are comments.</i18n:txt>
+                         </a></u></b>
+                     </span>
+                     <div metal:use-macro="here/@@elan.macros/macros/transferEvents"/>
+                </td>
+</tal:def>
+<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
+</tal:block>

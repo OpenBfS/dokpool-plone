@@ -23,11 +23,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Products.ConPD2</name>
-			<type>2</type>
-			<location>/opt/condat/ConPD2Local/src/Products.ConPD2</location>
-		</link>
-		<link>
 			<name>plonetheme.barceloneta-1.6.8-py2.7.egg</name>
 			<type>2</type>
 			<location>/Users/hr/.buildout/eggs/plonetheme.barceloneta-1.6.8-py2.7.egg</location>

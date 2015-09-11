@@ -24,7 +24,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
-from plone.dexterity.content import Item
+from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
@@ -78,14 +78,66 @@ class IDocType(form.Schema):
 ##code-section field_publishImmediately
 ##/code-section field_publishImmediately                           
     )
+        
+        
+    globalAllow = schema.Bool(
+                        title=_(u'label_doctype_globalallow', default=u'Can be used everywhere (not only as part of another type)'),
+                        description=_(u'description_doctype_globalallow', default=u''),
+                        required=False,
+                        default=True,
+##code-section field_globalAllow
+##/code-section field_globalAllow                           
+    )
     
+        
+    allowedDocTypes = RelationList(
+                        title=_(u'label_doctype_alloweddoctypes', default=u'Types are allowed as part of this type'),
+                        description=_(u'description_doctype_alloweddoctypes', default=u''),
+                        required=False,
+##code-section field_allowedDocTypes
+                        value_type=RelationChoice(
+                                                      title=_("Document Types"),
+                                                    source = "docpool.base.vocabularies.DocType",
+
+                                                     ),
+
+##/code-section field_allowedDocTypes                           
+    )
+    
+        
+    partsPattern = schema.TextLine(
+                        title=_(u'label_doctype_partspattern', default=u'Name pattern for files and images belonging to this type'),
+                        description=_(u'description_doctype_partspattern', default=u'Used for automatically creating objects of this type from collections of files and images.'),
+                        required=False,
+##code-section field_partsPattern
+##/code-section field_partsPattern                           
+    )
+    
+        
+    pdfPattern = schema.TextLine(
+                        title=_(u'label_doctype_pdfpattern', default=u'Name pattern for representative PDF'),
+                        description=_(u'description_doctype_pdfpattern', default=u'If PDF exists, an image will be created from its first page as a visual representation for objects of this type.'),
+                        required=False,
+##code-section field_pdfPattern
+##/code-section field_pdfPattern                           
+    )
+    
+        
+    imgPattern = schema.TextLine(
+                        title=_(u'label_doctype_imgpattern', default=u'Name pattern for representative image'),
+                        description=_(u'description_doctype_imgpattern', default=u'If image exists, it will be used as a visual representation for objects of this type.'),
+                        required=False,
+##code-section field_imgPattern
+##/code-section field_imgPattern                           
+    )
     
 
 ##code-section interface
+    form.widget(allowedDocTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
 ##/code-section interface
 
 
-class DocType(Item):
+class DocType(Container):
     """
     """
     security = ClassSecurityInfo()
@@ -95,6 +147,39 @@ class DocType(Item):
 ##code-section methods
         
 ##/code-section methods 
+
+    def myDocType(self):
+        """
+        """
+        return self
+
+    def getFirstChild(self):
+        """
+        """
+        fc = self.getFolderContents()
+        if len(fc) > 0:
+            return fc[0].getObject()
+        else:
+            return None
+
+    def getAllContentObjects(self):
+        """
+        """
+        return [obj.getObject() for obj in self.getFolderContents()]
+
+    def getFiles(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'File'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
+    def getImages(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'Image'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
 
 ##code-section bottom

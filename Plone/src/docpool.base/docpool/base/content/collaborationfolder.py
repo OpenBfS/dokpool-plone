@@ -100,7 +100,9 @@ class CollaborationFolder(Container, SimpleFolder):
             for menu_item in menu_items:
                 if menu_item.get('id') == 'DPDocument':
                     for dt in dts:
-                        print dt.id
+                        #print dt.id
+                        if not dt.getObject().globalAllow: # only generally allowed doctypes
+                            continue                        
                         if not filter or dt.id in self.allowedPartnerDocTypes:
                             res.append({'extra': 
              {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 

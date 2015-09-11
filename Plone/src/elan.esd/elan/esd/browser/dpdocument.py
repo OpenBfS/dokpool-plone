@@ -19,120 +19,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.memoize.instance import memoize
 
 ##code-section imports
-from Acquisition import aq_inner
-import urllib
+from elan.esd.behaviors.elandocument import IELANDocument
+from base64 import b64encode
 from datetime import datetime
 from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
-from plone.app.layout.globals.interfaces import IViewView
-from zope.interface import implements
-from zope.interface import alsoProvides
-from base64 import b64encode
-from plone.protect.authenticator import createToken
-from elan.esd.behaviors.elandocument import IELANDocument
 ##/code-section imports
-
-class DPDocumentView(BrowserView):
-    """Default view
-    """
- 
-    __call__ = ViewPageTemplateFile('dpdocument.pt')
-   
-    ##code-section methods1
-    def base_url(self):
-        """
-        """
-        context = aq_inner(self.context)
-        return context.restrictedTraverse('@@plone').getCurrentFolderUrl()
-    
-    def getUploadUrl(self):
-        """
-        return upload url
-        in current folder
-        """
-        folder_url = self.base_url()
-        return '%s/@@quick_upload' %folder_url
-
-    def getDataForUploadUrl(self):
-        data_url = ''
-        return data_url
-
-    def elanobject(self):
-        return IELANDocument(self.context)
-
-    def javascript(self):
-        # PLONE5: plone.protect verlangt CSRF Tokens im Request :-)
-        token = createToken()
-        return """
-  // workaround this MSIE bug :
-  // https://dev.plone.org/plone/ticket/10894
-  if (navigator.userAgent.match(/msie|trident/i)) jQuery("#settings").remove();
-  var Browser = {};
-  Browser.onUploadComplete = function() {
-      window.location.reload();
-  }
-  loadUploader = function() {
-      var ulContainer = jQuery('.elanUploaderContainer');
-      ulContainer.each(function(){
-          var uploadUrl =  jQuery('.uploadUrl', this).val();
-          var uploadData =  jQuery('.uploadData', this).val();
-          var UlDiv = jQuery(this);
-          jQuery.ajax({
-                     type: 'GET',
-                     url: uploadUrl,
-                     data: uploadData,
-                     dataType: 'html',
-                     contentType: 'text/html; charset=utf-8',
-                     headers: { 'X-CSRF-TOKEN': '%s' },
-                     success: function(html) {
-                        UlDiv.html(html);
-                     } });
-      });
-  }
-  jQuery(document).ready(loadUploader);
-""" % token
-
-    def quote_plus(self, string):
-        """
-        """
-        return urllib.quote_plus(string)
-    ##/code-section methods1     
-
-class DPDocumentinlineView(BrowserView):
-    """Additional View
-    """
-    
-    __call__ = ViewPageTemplateFile('dpdocumentinline.pt')
-    
-    ##code-section methodsinline
-    implements(IViewView)
-        
-    def elanobject(self):
-        return IELANDocument(self.context)
-    ##/code-section methodsinline     
-
-class DPDocumentlistitemView(BrowserView):
-    """Additional View
-    """
-    
-    __call__ = ViewPageTemplateFile('dpdocumentlistitem.pt')
-    
-    ##code-section methodslistitem
-    def ctype_short(self, file):
-        """
-        """
-        # print file
-        ctype = str(file.file.contentType)
-        s = ctype.split('/')
-        if len(s) == 2:
-            return s[1]
-        else:
-            return s[0]
-        
-    def elanobject(self):
-        return IELANDocument(self.context)
-    ##/code-section methodslistitem     
-
 
 
 ##code-section bottom

@@ -59,7 +59,7 @@ class IDPDocument(form.Schema, IDocument, IContentBase):
                         source="docpool.base.vocabularies.DocumentTypes",
 ##/code-section field_docType                           
     )
-        
+    
     dexteritytextindexer.searchable('text')    
     text = RichText(
                         title=_(u'label_dpdocument_text', default=u'Text'),
@@ -69,7 +69,7 @@ class IDPDocument(form.Schema, IDocument, IContentBase):
 ##/code-section field_text                           
     )
     
-        
+
 ##code-section interface
 ##/code-section interface
 
@@ -108,19 +108,46 @@ class DPDocument(Container, Document, ContentBase):
             config.setPolicyBelow(policy=placefulWfName, update_security=False)
             self.reindexObject()
             self.reindexObjectSecurity()
+            
+    def getAllowedSubTypes(self):
+        print "ast"
+        dto = self.docTypeObj()
+        print dto
+        if dto:
+            adt = dto.allowedDocTypes
+            print adt
+            if adt:
+                return [ dt.to_object for dt in adt ]
+        return []
 
     def customMenu(self, menu_items):
         """
         """
-        if self.uploadsAllowed():
-            return menu_items
-        else:
-            res = []
+        res1 = []
+        if not self.uploadsAllowed():
             for menu_item in menu_items:
                 if (menu_item.get('id') in ['File', 'Image']):
                     continue
+                res1.append(menu_item)
+        else:
+            res1 = menu_items
+        dts = self.getAllowedSubTypes()
+        res = []
+        for menu_item in res1:
+            if menu_item.get('id') == 'DPDocument':
+                for dt in dts:
+                    res.append({'extra': 
+     {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 
+                                'submenu': None, 
+                                'description': '', 
+                                'title': dt.Title, 
+                                'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id), 
+                                'selected': False, 
+                                'id': dt.id, 
+                                'icon': None})
+            else:
                 res.append(menu_item)
-            return res
+        return res
     
     def workflowActions(self):
         """
@@ -316,6 +343,13 @@ class DPDocument(Container, Document, ContentBase):
         """
         """
         return [obj.getObject() for obj in self.getFolderContents()]
+
+    def getDPDocuments(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'DPDocument'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
     def getFiles(self, **kwargs):
         """

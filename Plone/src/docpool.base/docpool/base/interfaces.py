@@ -19,6 +19,7 @@ from docpool.base.content.collaborationfolder import ICollaborationFolder
 from docpool.base.content.privatefolder import IPrivateFolder
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.contentarea import IContentArea
+from docpool.base.content.dpapplication import IDPApplication
 ##code-section imports
 from docpool.base import ELAN_EMessageFactory as _
 ##/code-section imports

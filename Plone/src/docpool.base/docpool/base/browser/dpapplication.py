@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: documentpool.py
+# File: dpapplication.py
 #
 # Copyright (c) 2015 by Condat AG
 # Generator: ConPD2
@@ -21,11 +21,11 @@ from plone.memoize.instance import memoize
 ##code-section imports
 ##/code-section imports
 
-class DocumentPoolView(BrowserView):
+class DPApplicationView(BrowserView):
     """Default view
     """
  
-    __call__ = ViewPageTemplateFile('documentpool.pt')
+    __call__ = ViewPageTemplateFile('dpapplication.pt')
    
     ##code-section methods1
     ##/code-section methods1     

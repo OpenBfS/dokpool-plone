@@ -53,7 +53,7 @@ def initialize(context):
     # course, even if we import the module several times, it is only run
     # once!
 
-    from content import infofolder, infodocument, infolink, dpdocument, doctype, simplefolder, contentbase, doctypes, text, folderbase, groupfolder, userfolder, groups, users, reviewfolder, collaborationfolder, privatefolder, documentpool, contentarea    
+    from content import infofolder, infodocument, infolink, dpdocument, doctype, simplefolder, contentbase, doctypes, text, folderbase, groupfolder, userfolder, groups, users, reviewfolder, collaborationfolder, privatefolder, documentpool, contentarea, dpapplication    
         
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),

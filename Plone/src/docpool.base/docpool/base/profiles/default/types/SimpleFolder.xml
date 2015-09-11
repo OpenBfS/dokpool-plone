@@ -16,14 +16,6 @@
          
              <element value="SimpleFolder" />
          
-
-             <element value="CollaborationFolder" />
-
-
-             <element value="PrivateFolder" />
-
-
-             <element value="ReviewFolder" />
      
  </property>
  <!-- schema interface -->

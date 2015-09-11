@@ -1,0 +1,21 @@
+<tal:block i18n:domain="docpool.base">
+<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="elan.esd" xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+    <tal:def define="edit_allowed python:False;
+                     elanobj view/elanobject">
+    <div metal:use-macro="here/@@elan.macros/macros/elandoc"/>
+    </tal:def>  
+</metal:content-core>
+</metal:content-core>
+</body>
+</html>
+<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
+</tal:block>

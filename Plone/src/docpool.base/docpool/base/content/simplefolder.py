@@ -6,7 +6,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-from elan.esd.behaviors.elandocument import IELANDocument
 
 __author__ = ''
 __docformat__ = 'plaintext'
@@ -78,6 +77,8 @@ class SimpleFolder(Container, FolderBase):
         for menu_item in menu_items:
             if menu_item.get('id') == 'DPDocument':
                 for dt in dts:
+                    if not dt.getObject().globalAllow: # only generally allowed doctypes
+                        continue
                     if not filter or dt.id in self.allowedDocTypes:
                         res.append({'extra': 
          {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 

@@ -82,6 +82,9 @@
    
    <permission id="docpool.base.AddContentArea" title="ELAN_E: Add ContentArea" />   
    
+   
+   <permission id="docpool.base.AddDPApplication" title="ELAN_E: Add DPApplication" />   
+   
 
 <!-- ##code-section Main -->
      <utility

@@ -10,6 +10,13 @@
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
      
+         
+             <element value="File" />
+         
+         
+             <element value="Image" />
+         
+     
  </property>
  <!-- schema interface -->
  <property name="schema">docpool.base.content.doctype.IDocType</property>

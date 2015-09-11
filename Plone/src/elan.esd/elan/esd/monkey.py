@@ -26,11 +26,15 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.protect import CheckAuthenticator
 from zExceptions import Forbidden
 import logging
-logger = logging.getLogger('plone.app.controlpanel')
 from Products.CMFPlone import PloneMessageFactory as _
 from elan.esd.utils import getScenariosForCurrentUser
 from docpool.base.utils import deleteMemberFolders
-    
+from elan.esd.behaviors.elandocument import IELANDocument
+from docpool.base.browser.dpdocument import DPDocumentView,\
+    DPDocumentlistitemView, DPDocumentinlineView
+
+logger = logging.getLogger('plone.app.controlpanel')
+
 # Patch to change password reset behaviour. Set password to username.   
 def manageUser(self, users=None, resetpassword=None, delete=None):
     if users is None:
@@ -209,5 +213,10 @@ def patched_quick_upload_file(self):
     # we set another Content Type to correct problems with collective quickupload
     response.setHeader('Content-Type', 'text/json; charset=utf-8')
     return result
-    
-    
+
+def elanobject(self):
+    return IELANDocument(self.context)
+
+DPDocumentView.elanobject = elanobject
+DPDocumentlistitemView.elanobject = elanobject
+DPDocumentinlineView.elanobject = elanobject

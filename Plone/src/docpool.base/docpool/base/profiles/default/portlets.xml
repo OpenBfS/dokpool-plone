@@ -4,9 +4,7 @@
      be used to register completely new column types. See CMFPlone's version
      of this file for more information.
   -->
-<portlets>    
-    
-    
+<portlets>
     
 <!-- ##code-section custom_portlets -->
 <assignment remove="true" name="calendar" category="context" key="/" manager="plone.rightcolumn" type="portlets.Calendar" />
