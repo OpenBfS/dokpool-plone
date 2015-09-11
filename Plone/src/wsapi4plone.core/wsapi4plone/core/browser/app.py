@@ -1,4 +1,5 @@
 import random
+from plone.protect.auto import safeWrite
 
 try:
     from zope.component.hooks import getSite
@@ -41,7 +42,6 @@ class ApplicationAPI(WSAPI):
         =returns [path, ...]
         """
         assert type(params) == dict, "The first agument must be a dictionary."
-
         results = []
         for path in params:
             try:
@@ -66,6 +66,9 @@ class ApplicationAPI(WSAPI):
 
             # set the additional values
             created_obj = self.builder(obj, created_obj_id)
+            # CONDAT: disable CSRF protection
+            safeWrite(created_obj, self.context.REQUEST)
+            
             serviced_created_obj = IService(created_obj)
             serviced_created_obj.set_properties(properties)
             self.logger.info("- post_object - Set properties for %s." % repr(created_obj))
@@ -85,6 +88,8 @@ class ApplicationAPI(WSAPI):
         for path in params:
             properties = params[path][0]
             obj = self.builder(self.context, path)
+            safeWrite(obj, self.context.REQUEST)
+
             serviced_obj = IService(obj)
             self.logger.info("- put_object - Set properties for %s." % repr(obj))
             serviced_obj.set_properties(properties)
@@ -106,6 +111,7 @@ class ApplicationAPI(WSAPI):
             path = '/'.join(path)
 
             obj = self.builder(self.context, path)
+            safeWrite(obj, self.context.REQUEST)            
             parent_serviced_obj = IServiceContainer(obj)
             self.logger.info("- delete_object - Deleting %s from %s." % (delete_id, repr(obj)))
             parent_serviced_obj.delete_object(delete_id)
@@ -123,6 +129,7 @@ class ApplicationAPI(WSAPI):
         context = self.builder(self.context, path)
         uid = 'tmp_' + type_name + '_' + str(random.randint(1, 1000000))
         parent_serviced_obj = IServiceContainer(context)
+        safeWrite(context, self.context.REQUEST)            
 
         id_ = parent_serviced_obj.create_object(type_name, uid)
         self.logger.info("- get_schema - Getting schema for %s type with temporary name %s on %s." % (type_name, id_, context))
