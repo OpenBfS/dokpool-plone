@@ -37,4 +37,26 @@ if not hasattr(ConversationView, "original_enabled"):
     ConversationView.original_enabled = ConversationView.enabled
     ConversationView.enabled = enabled
 
+def getURL(self, relative=0, original=False):
+    """
+    Patched so we can provide special URLs for ELAN documents in listings such as livesearch.
+    Also we make sure that sections don't get an URL, so they are not linked to in the navigation.
+    """
+    request = aq_get(self, 'REQUEST', None)
+    if request is None and _GLOBALREQUEST_INSTALLED:
+        request = getRequest()
+    if (not original) and self.portal_type == 'DPDocument':
+        if self.cat_path:
+            # This is it: we use the path of the category
+            return "%s/@@dview?d=%s&disable_border=1" % (self.cat_path, self.UID)
+    # The following leads to errors in the folder_contents view of esd.
+    #if (not original) and self.portal_type == "ELANSection":
+    #    return None
+    
+    # This is the normal implementation
+    return request.physicalPathToURL(self.getPath(), relative)
+
+if not hasattr(AbstractCatalogBrain, "original_getURL"):
+    AbstractCatalogBrain.original_getURL = AbstractCatalogBrain.getURL
+    AbstractCatalogBrain.getURL = getURL
 

@@ -78,7 +78,7 @@ class IDocType(form.Schema):
 ##code-section field_publishImmediately
 ##/code-section field_publishImmediately                           
     )
-        
+    
         
     globalAllow = schema.Bool(
                         title=_(u'label_doctype_globalallow', default=u'Can be used everywhere (not only as part of another type)'),

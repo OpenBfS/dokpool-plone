@@ -129,7 +129,6 @@ class ELANDocument(Transferable):
         """
         """
         dto = self.context.docTypeObj()
-#        print dto
         if dto:
             return dto.title, IELANDocType(dto).categories()
         else:

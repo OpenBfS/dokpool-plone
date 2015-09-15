@@ -117,7 +117,6 @@
    <element value="Folder"/>
    <element value="PloneArticleMultiPage"/>
   </property>
-  <property name="visible_ids" type="boolean">True</property>
   <property name="exposeDCMetaTags" type="boolean">True</property>
   <property name="types_not_searched" type="lines">
    <element value="ATBooleanCriterion"/>

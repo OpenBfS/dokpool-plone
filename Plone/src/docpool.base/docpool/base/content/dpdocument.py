@@ -41,6 +41,11 @@ from zope.component import adapter
 from plone import api
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zExceptions import BadRequest
+from plone.memoize import ram
+import re
+from docpool.base.pdfconversion import get_images, metadata, pdfobj
+from zope.annotation.interfaces import IAnnotations
+from BTrees.OOBTree import OOBTree
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -199,13 +204,17 @@ class DPDocument(Container, Document, ContentBase):
         """
         return self.docType
     
+    def _docTypeObj_cachekey(method, self):
+        return (self.absolute_url_path(), self.modified)
+    
+    #@ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """
         """
         et = self.dp_type()
         if not et: # The object is just being initialized and the attributes have not yet been saved
             et = self.REQUEST.get('docType','')
-        #print et
+        print et
         #dto = queryForObject(self, id=et)
         dto = None
         try:
@@ -319,6 +328,56 @@ class DPDocument(Container, Document, ContentBase):
         stsub = [ obj.SearchableText() for obj in self.getAllContentObjects()]
         return st + " " + " ".join(stsub)
     
+    def getRepresentativeImage(self):
+        """
+        """
+        imgPattern = self.docTypeObj().imgPattern
+        if imgPattern:
+            p = re.compile(imgPattern, re.IGNORECASE)
+            images = self.getImages()
+            for image in images:
+                if p.match(image.getId()):
+                    return image
+        else:
+            return None
+        
+    def getRepresentativePDF(self):
+        """
+        """
+        pdfPattern = self.docTypeObj().pdfPattern
+        if pdfPattern:
+            p = re.compile(pdfPattern, re.IGNORECASE)
+            files = self.getFiles()
+            for f in files:
+                if p.match(f.getId()):
+                    return f
+        else:
+            return None
+        
+    def generatePdfImage(self, pdffile):
+        """
+        """
+        pdf = pdfobj(pdffile)
+        # Use BTrees
+        storage = OOBTree()
+        storage['image_thumbnails'] = get_images(pdffile, 0, 1)
+        storage['metadata'] = metadata(pdf)
+
+        annotations = IAnnotations(self)
+        annotations['pdfimages'] = storage
+
+        self.reindexObject()
+        
+        
+    def pdfImage(self):
+        """
+        """
+        annotations = IAnnotations(self)
+        if 'pdfimages' in annotations:
+            image = annotations['pdfimages']['image_thumbnails']["1_preview"]
+            return image
+        else:
+            return None
         
 ##/code-section methods 
 

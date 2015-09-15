@@ -1,4 +1,4 @@
-<tal:block i18n:domain="docpool.base" tal:condition="view/available">
+<tal:block i18n:domain="docpool.base" tal:condition="view/available|nothing">
 <aside class="marquee"
 	tal:define="t nocall: python:context.restrictedTraverse('contentconfig').ticker;
 				toLocalizedTime nocall: context/@@plone/toLocalizedTime;" 

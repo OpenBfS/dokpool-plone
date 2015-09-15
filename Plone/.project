@@ -23,6 +23,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>collective.pdfpeek-2.0.0-py2.7.egg</name>
+			<type>2</type>
+			<location>/Users/hr/.buildout/eggs/collective.pdfpeek-2.0.0-py2.7.egg</location>
+		</link>
+		<link>
 			<name>plonetheme.barceloneta-1.6.8-py2.7.egg</name>
 			<type>2</type>
 			<location>/Users/hr/.buildout/eggs/plonetheme.barceloneta-1.6.8-py2.7.egg</location>

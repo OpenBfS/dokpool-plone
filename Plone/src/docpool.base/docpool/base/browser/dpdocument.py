@@ -25,10 +25,13 @@ from plone.app.layout.globals.interfaces import IViewView
 from zope.interface import implements
 from zope.interface import alsoProvides
 from plone.protect.authenticator import createToken
-from Products.Archetypes.utils import shasattr
+from Products.Archetypes.utils import shasattr, contentDispositionHeader
 from plone.app.contenttypes.interfaces import IFile
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 from Products.PageTemplates.PageTemplate import PageTemplate
+from plone.protect.interfaces import IDisableCSRFProtection
+from docpool.base.utils import execute_under_special_role
+from docpool.base.content.dpdocument import DPDocument
 ##/code-section imports
 
 class FlexibleView(BrowserView):
@@ -163,6 +166,48 @@ class DPDocumentinlineView(FlexibleView):
         
     ##/code-section methodsinline     
 
+class DPDocumentdocimageView(BrowserView):
+    """Additional View
+    """
+    
+    
+    ##code-section methodsdocimage
+    def __call__(self):
+        """
+        """
+        request = self.request
+        alsoProvides(request, IDisableCSRFProtection)        
+        refresh = request.get("refresh", False)
+        response = request.RESPONSE
+        response.setHeader('Content-Type', 'image/png')
+        print "docimage"
+        doc = self.context
+        img = doc.getRepresentativeImage()
+        if img:
+            dateiname = '%s.%s' % (img.getId(), "png")
+            header_value= contentDispositionHeader('inline', filename=dateiname, charset='latin-1')
+            response.setHeader('Content-disposition', header_value)
+            response.setHeader('Content-Length', len(img.image.data))
+            return img.image.data
+        img = doc.pdfImage()
+        if img and not refresh:
+            dateiname = '%s.%s' % (img.getId(), "png")
+            header_value= contentDispositionHeader('inline', filename=dateiname, charset='latin-1')
+            response.setHeader('Content-disposition', header_value)
+            response.setHeader('Content-Length', len(img.data))
+            return img.data
+            
+        pdf = doc.getRepresentativePDF()
+        if pdf:
+            execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf )
+            img = doc.pdfImage()
+            dateiname = '%s.%s' % (img.getId(), "png")
+            header_value= contentDispositionHeader('inline', filename=dateiname, charset='latin-1')
+            response.setHeader('Content-disposition', header_value)
+            response.setHeader('Content-Length', len(img.data))
+            return img.data
+        # TODO: support default image in DocType
+    ##/code-section methodsdocimage     
 
 
 ##code-section bottom
