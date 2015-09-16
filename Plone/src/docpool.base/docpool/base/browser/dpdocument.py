@@ -47,13 +47,15 @@ class FlexibleView(BrowserView):
         doc = self.context
         dto = doc.docTypeObj()
         app = doc.currentApplication()
-        dtid = dto.getId()
+        dtid = dto.customViewTemplate
+        if not dtid:
+            dtid = dto.getId()
         data = ""
         
         for n in [
-                  "%s_doc_%s_%s" % (app, dtid, vtype),
-                  "%s_doc_%s" % (app, vtype),
-                  "doc_%s_%s" % (dtid, vtype),
+                  "%s_%s_%s" % (app, dtid, vtype),
+                  "%s_%s" % (app, vtype),
+                  "%s_%s" % (dtid, vtype),
                   "doc_%s" % vtype
                   ]:
             if shasattr(dto, n, acquire=True):
@@ -190,7 +192,6 @@ class DPDocumentdocimageView(BrowserView):
         refresh = request.get("refresh", False)
         response = request.RESPONSE
         response.setHeader('Content-Type', 'image/png')
-        print "docimage"
         doc = self.context
         img = doc.getRepresentativeImage()
         if img:

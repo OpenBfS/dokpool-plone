@@ -273,7 +273,7 @@
        <div class="images" tal:define="images context/getImages" tal:condition="images">
            <div tal:repeat="b images" class="image">
                <a href="" tal:attributes="href python:b.absolute_url();title python:'show image';" target="_blank">
-                  <img tal:attributes="src python:'/'.join(b.getPhysicalPath())">
+                  <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
                </a>
                <div class="imgdata"><span tal:content="structure python:b.title_or_id()" />(<span tal:content="python:b.getObjSize(None, b.image.size)" />)</div>
           </div>

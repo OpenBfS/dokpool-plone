@@ -376,6 +376,8 @@
       <element>ELANScenarios</element>
       <element>Document</element>
       <element>Event</element>
+      <element>DashboardsConfig</element>
+      <element>DashboardCollection</element>
     </value>
   </record>  
 </registry>

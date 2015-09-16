@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<metadata>
+    <version>1.0.4</version>
+    <dependencies>
+        <dependency>profile-docpool.base:default</dependency>
+        <dependency>profile-elan.esd:default</dependency>
+    <!-- ##code-section Dependencies -->
+    
+    <!-- ##/code-section Dependencies -->
+    </dependencies>    
+    <!-- ##code-section View -->
+    
+    <!-- ##/code-section View -->
+</metadata>

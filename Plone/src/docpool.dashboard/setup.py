@@ -2,9 +2,9 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.0.29'
+version = '1.0.4'
 
-setup(name='docpool.base',
+setup(name='docpool.dashboard',
       version=version,
       description="",
       long_description="""\
@@ -37,9 +37,8 @@ setup(name='docpool.base',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'plone.api','plone.formwidget.querystring'
+          'docpool.base','elan.esd'
           ##code-section dependencies
-          ,' PyPDF2'
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      

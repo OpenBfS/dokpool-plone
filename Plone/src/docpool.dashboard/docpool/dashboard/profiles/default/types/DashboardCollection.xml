@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.base" name="InfoFolder">
+<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.dashboard" name="DashboardCollection">
 
  <!-- Basic metadata -->    
- <property name="title" i18n:translate="">Info-Folder</property>
+ <property name="title" i18n:translate="">Dashboard Collection</property>
  <property name="description" i18n:translate=""></property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>
@@ -10,25 +10,15 @@
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
      
-         
-             <element value="InfoLink" />
-         
-         
-             <element value="InfoDocument" />
-         
-         
-             <element value="InfoFolder" />
-         
-     
  </property>
  <!-- schema interface -->
- <property name="schema">docpool.base.content.infofolder.IInfoFolder</property>
+ <property name="schema">docpool.dashboard.content.dashboardcollection.IDashboardCollection</property>
 
  <!-- class used for content items -->
- <property name="klass">docpool.base.content.infofolder.InfoFolder</property>
+ <property name="klass">docpool.dashboard.content.dashboardcollection.DashboardCollection</property>
 
  <!-- add permission -->
- <property name="add_permission">docpool.base.AddInfoFolder</property>
+ <property name="add_permission">docpool.dashboard.AddDashboardCollection</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">
@@ -38,6 +28,8 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
+     <element value="plone.app.contenttypes.behaviors.collection.ICollection"/>
+     <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>     
 ##/code-section behaviors
 </property>
 
@@ -48,10 +40,6 @@
   <element value="view" />
 ##code-section view_methods
   <element value="base_view" />
-  
-  <element value="folder_summary_view" />
-  <element value="folder_tabular_view" />
-  <element value="folder_listing" />
     
 ##/code-section view_methods
  </property>

@@ -248,12 +248,12 @@ def fillBasicPortalStructure(plonesite, fresh):
     # Correct addable types now that the structures has been created.
     # We only allow more Sections in the esd node.
     #print plonesite.esd
-    
-    BASETYPES = ['ELANSection']
-    esdBehavior = ISelectableConstrainTypes(plonesite.esd)
-    esdBehavior.setConstrainTypesMode(constrains.ENABLED)
-    esdBehavior.setLocallyAllowedTypes(BASETYPES)
-    esdBehavior.setImmediatelyAddableTypes(BASETYPES)
+    # no more restrictions because of new dashboards, 16.09.2015
+    #BASETYPES = ['ELANSection']
+    #esdBehavior = ISelectableConstrainTypes(plonesite.esd)
+    #esdBehavior.setConstrainTypesMode(constrains.ENABLED)
+    #esdBehavior.setLocallyAllowedTypes(BASETYPES)
+    #esdBehavior.setImmediatelyAddableTypes(BASETYPES)
     
 #     plonesite.esd.setConstrainTypesMode(1) # manually constrained
 #     plonesite.esd.setLocallyAllowedTypes(['ELANSection'])

@@ -107,3 +107,4 @@ class GroupDetailsControlPanel(UsersGroupsControlPanelView):
                 return ''
 
         return self.index()
+

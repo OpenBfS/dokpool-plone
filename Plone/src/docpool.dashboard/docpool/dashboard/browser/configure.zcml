@@ -1,0 +1,32 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.dashboard">
+
+    <include package="plone.app.contentmenu" />
+
+<!-- ##code-section Main -->
+    
+<!-- ##/code-section Main -->    
+
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.IDashboard" class=".dashboard.DashboardView" />
+        
+        
+        
+        
+                                        
+    
+</configure>

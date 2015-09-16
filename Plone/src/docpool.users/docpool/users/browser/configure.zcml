@@ -84,6 +84,11 @@
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       factory=".userdataschema.EnhancedUserDataSchemaAdapter"
       />    
+      
+  <adapter
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"  
+    factory="Products.CMFPlone.controlpanel.bbb.usergroups.UserGroupsSettingsControlPanelAdapter" />
+      
 <!-- ##/code-section Main -->    
 
 </configure>

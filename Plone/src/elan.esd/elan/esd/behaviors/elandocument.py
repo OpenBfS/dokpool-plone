@@ -128,8 +128,10 @@ class ELANDocument(Transferable):
     def typeAndCat(self):
         """
         """
+#        print self
         dto = self.context.docTypeObj()
         if dto:
+#            print dto
             return dto.title, IELANDocType(dto).categories()
         else:
             return ("", [])

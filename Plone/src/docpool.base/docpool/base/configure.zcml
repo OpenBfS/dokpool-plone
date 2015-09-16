@@ -111,18 +111,6 @@
     component=".vocabularies.DocumentTypesVocabularyFactory"
     name="docpool.base.vocabularies.DocumentTypes"
     />
-  <!--utility
-    component=".vocabularies.ScenarioVocabularyFactory"
-    name="elan.esd.vocabularies.Scenarios"
-    /-->
-  <!--utility
-    component=".vocabularies.ScenarioRefVocabularyFactory"
-    name="elan.esd.vocabularies.ScenarioRefs"
-    /-->
-  <!--utility
-    component=".vocabularies.CategoriesVocabularyFactory"
-    name="elan.esd.vocabularies.Categories"
-    /-->
    <utility
     component=".vocabularies.DocTypeVocabularyFactory"
     name="docpool.base.vocabularies.DocType"

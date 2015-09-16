@@ -131,6 +131,15 @@ class IDocType(form.Schema):
 ##/code-section field_imgPattern                           
     )
     
+        
+    customViewTemplate = schema.TextLine(
+                        title=_(u'label_doctype_customviewtemplate', default=u'Custom View Template'),
+                        description=_(u'description_doctype_customviewtemplate', default=u''),
+                        required=False,
+##code-section field_customViewTemplate
+##/code-section field_customViewTemplate                           
+    )
+    
 
 ##code-section interface
     form.widget(allowedDocTypes='z3c.form.browser.select.CollectionSelectFieldWidget')

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+<!-- Workflow allocation -->
+<!-- ##code-section object -->
+<!-- ##/code-section object -->  
+ <bindings>
+<!-- ##code-section bindings -->
+<!-- ##/code-section bindings -->
+    
+    
+   <type type_id="DashboardCollection">
+    <bound-workflow workflow_id="dp_one_state_workflow" />
+   </type>
+   
+    
+    
+    
+   <type type_id="DashboardsConfig">
+    <bound-workflow workflow_id="dp_admin_workflow" />
+   </type>
+   
+    
+    
+    
+   <type type_id="Dashboard">
+    <bound-workflow workflow_id="dp_one_state_workflow" />
+   </type>
+   
+    
+ </bindings>
+</object>

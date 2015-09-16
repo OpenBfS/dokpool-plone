@@ -1,0 +1,25 @@
+<object name="portal_types" meta_type="Plone Types Tool">
+    
+ <!-- This file registers new types with portal_types. The types are
+      then configured with the corresponding files in types/*.xml. Note
+      that spaces are allowed in type names, but the corresponding XML file
+      uses an underscore instead. The "Factory-based Type Information with
+      dynamic views" refers to an FTI from Products.CMFDynamicViewFTI,
+      which supports Plone's "display" menu.
+   -->
+     
+     
+     <object name="DashboardCollection" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="DashboardsConfig" meta_type="Dexterity FTI" />    
+     
+     
+     <object name="Dashboard" meta_type="Dexterity FTI" />    
+       
+      
+<!-- ##code-section Main -->
+     <object name="DocTypes" meta_type="Dexterity FTI" />    
+     <object name="ELANCurrentSituation" meta_type="Dexterity FTI" />    
+<!-- ##/code-section Main -->  
+</object>
