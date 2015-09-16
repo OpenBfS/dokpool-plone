@@ -110,6 +110,18 @@ class ApplicationAPI(WSAPI):
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0] # just the path
         
+    def autocreate_subdocuments(self, path):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        # Delegate to post_object
+        doc = self.context.restrictedTraverse(path)
+        return doc.autocreateSubdocuments() # just the path
+
+    def read_properties_from_file(self, path):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        # Delegate to post_object
+        doc = self.context.restrictedTraverse(path)
+        return doc.readPropertiesFromFile() # just the path
+
     def post_user(self, username, password, fullname, esdpath):
         """
         """

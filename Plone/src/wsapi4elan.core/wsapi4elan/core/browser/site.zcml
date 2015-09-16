@@ -44,6 +44,14 @@
             attribute="upload_image"
             />
         <browser:page
+            name="autocreate_subdocuments"
+            attribute="autocreate_subdocuments"
+            />
+        <browser:page
+            name="read_properties_from_file"
+            attribute="read_properties_from_file"
+            />
+        <browser:page
             name="post_user"
             attribute="post_user"
             />

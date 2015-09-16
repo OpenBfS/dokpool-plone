@@ -6,7 +6,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -43,9 +42,10 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zExceptions import BadRequest
 from plone.memoize import ram
 import re
-from docpool.base.pdfconversion import get_images, metadata, pdfobj
+from docpool.base.pdfconversion import get_images, metadata, pdfobj, data
 from zope.annotation.interfaces import IAnnotations
 from BTrees.OOBTree import OOBTree
+from StringIO import StringIO
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -207,14 +207,13 @@ class DPDocument(Container, Document, ContentBase):
     def _docTypeObj_cachekey(method, self):
         return (self.absolute_url_path(), self.modified)
     
-    #@ram.cache(_docTypeObj_cachekey)
+    @ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """
         """
         et = self.dp_type()
         if not et: # The object is just being initialized and the attributes have not yet been saved
             et = self.REQUEST.get('docType','')
-        print et
         #dto = queryForObject(self, id=et)
         dto = None
         try:
@@ -379,6 +378,72 @@ class DPDocument(Container, Document, ContentBase):
         else:
             return None
         
+    def autocreateSubdocuments(self):
+        """
+        TODO: specifically for XMLRPC usage
+        """
+        # * Von den allowed Types alle autocreatable Types durchgehen und ihre Muster "ausprobieren"
+        # * Wenn Files oder Images gefunden zu einem Muster: entsprechendes DPDocument erzeugen und Files/Images verschieben
+        return "ok"
+        
+    def setDPProperty(self, name, value, ptype="string"):
+        """
+        """
+        if not shasattr(self, "_props", acquire=False):
+            self._props = {}
+        if ptype == "xxxx":
+            pass
+        self._props[name] = value
+        self._p_changed = True
+        
+    
+    def deleteDPProperty(self, name):
+        """
+        """
+        if not shasattr(self, "_props", acquire=False):
+            return
+        if self._props.has_key(name):
+            del self._props[name]
+        self._p_changed = True
+        
+    def getDPProperty(self, name):
+        """
+        """
+        if not shasattr(self, "_props", acquire=False):
+            return None
+        return self._props.get(name, None)
+    
+    def getDPProperties(self):
+        """
+        """
+        if not shasattr(self, "_props", acquire=False):
+            return None
+        p = self._props.copy()
+        return p
+        
+    def readPropertiesFromFile(self):
+        """
+        """
+        files = self.getFiles()
+        msg = "none"
+        for f in files:
+            if f.getId() == "properties.txt":
+                d = StringIO(data(f))
+                props = d.readlines()
+                for prop in props:
+                    if prop and len(prop) > 2:
+                        name, value = prop.split("=")
+                        name = name.strip()
+                        value = value.strip()
+                        ptype = "string"
+                        try:
+                            name, ptype = name.split(":")
+                        except:
+                            pass
+                        self.setDPProperty(name, value, ptype)
+                        msg = "set"
+        return msg
+
 ##/code-section methods 
 
     def myDPDocument(self):

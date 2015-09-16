@@ -257,6 +257,28 @@
 	      <br><br>
 	     </span>
     </div>        
+      
+    <div tal:omit-tag="" metal:define-macro="fileimagelist">
+       <div class="file" tal:define="files context/getFiles" tal:condition="files"
+              tal:repeat="d files">
+        <a href="" 
+            target="_blank" 
+            title="" 
+            tal:attributes="title python:'open attachment';
+                               href python:d.absolute_url()"
+               tal:content="python:d.title_or_id()">documents
+           </a>
+           (<span tal:content="python:view.ctype_short(d)" />,&nbsp;<span tal:content="python:d.getObjSize(None, d.file.size)" />)
+       </div>
+       <div class="images" tal:define="images context/getImages" tal:condition="images">
+           <div tal:repeat="b images" class="image">
+               <a href="" tal:attributes="href python:b.absolute_url();title python:'show image';" target="_blank">
+                  <img tal:attributes="src python:'/'.join(b.getPhysicalPath())">
+               </a>
+               <div class="imgdata"><span tal:content="structure python:b.title_or_id()" />(<span tal:content="python:b.getObjSize(None, b.image.size)" />)</div>
+          </div>
+       </div>
+    </div>    
         							
     </body>
 </html>

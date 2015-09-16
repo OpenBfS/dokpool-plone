@@ -19,7 +19,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.memoize.instance import memoize
 
 ##code-section imports
-from Acquisition import aq_inner, aq_base
+from Acquisition import aq_inner, aq_base, ImplicitAcquisitionWrapper
 import urllib
 from plone.app.layout.globals.interfaces import IViewView
 from zope.interface import implements
@@ -32,9 +32,14 @@ from Products.PageTemplates.PageTemplate import PageTemplate
 from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.base.utils import execute_under_special_role
 from docpool.base.content.dpdocument import DPDocument
+import Acquisition
 ##/code-section imports
 
+class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
+    pass
+
 class FlexibleView(BrowserView):
+    __allow_access_to_unprotected_subobjects__ = 1
 
     def myViewSource(self, vtype):
         """
@@ -65,9 +70,14 @@ class FlexibleView(BrowserView):
         """
         """
         src = self.myViewSource(vtype)
-        template = PageTemplate()
+        template = OnTheFlyTemplate()
+        template = template.__of__(aq_base(self.context))
         template.pt_edit(src, "text/html")
-        return template(view=self, context=self.context, **options)
+#        template.id = "flexible"
+        # This "view" will run with security restrictions. The code will not be able
+        # to access protected attributes and functions.
+        # BUT: code included via macros works!
+        return template(view=self, context=self.context, request=self.request, **options)
 
 class DPDocumentView(FlexibleView):
     """Default view
@@ -138,7 +148,7 @@ class DPDocumentView(FlexibleView):
 class DPDocumentlistitemView(FlexibleView):
     """Additional View
     """
-    
+    __allow_access_to_unprotected_subobjects__ = 1
     __call__ = ViewPageTemplateFile('dpdocumentlistitem.pt')
     
     ##code-section methodslistitem
