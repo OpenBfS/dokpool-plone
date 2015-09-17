@@ -104,7 +104,7 @@ public class DocpoolBaseService {
 		List<Folder> gf = myDocumentPool.getGroupFolders();
 		List<Folder> tf = myDocumentPool.getTransferFolders();
 		log.info(gf.size());
-		Document d = userfolder.createDocument("ausjava", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario2");
+		Document d = userfolder.createDocument("ausjava2", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario2");
 		log.info(d.getTitle());
 		java.io.File file = new java.io.File("/opt/condat/elan/Plone/src/wsapi4elan.core/wsapi4elan/core/tests/test.pdf");
 		d.uploadFile("neue_datei", "Neue Datei", "Datei Beschreibung", FileUtils.readFileToByteArray(file), "test.pdf");
@@ -112,7 +112,7 @@ public class DocpoolBaseService {
 		d.uploadImage("neues_bild", "Neues Bild", "Bild Beschreibung", FileUtils.readFileToByteArray(file), "test.jpg");
 		log.info(d.getWorkflowStatus());
 		Folder mygf = gf.get(0);
-		d = mygf.createDocument("ausjava", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario2");
+		d = mygf.createDocument("ausjava2", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario2");
 		log.info(d.getWorkflowStatus());
 		d.setWorkflowStatus("publish");
 		log.info(d.getWorkflowStatus());

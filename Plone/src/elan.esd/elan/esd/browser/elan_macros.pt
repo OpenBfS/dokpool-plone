@@ -151,8 +151,8 @@
           </span>
       </div>  
         
-      <div tal:omit-tag="" metal:define-macro="elandoc" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-      
+
+    <metal:macro define-macro="docdata" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
           <span tal:condition="python:context.mdate and (toLocalizedTime(context.mdate, long_format=1) != toLocalizedTime(context.created, long_format=1))">
              <i18n:txt translate="">modified:</i18n:txt>
              <span><tal:var replace="python:str(toLocalizedTime(context.mdate, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>, <span tal:content="structure python:context.modified_by" />
@@ -160,22 +160,29 @@
           <br>
           <i18n:txt translate="">created:</i18n:txt>
           <span><tal:var replace="python:str(toLocalizedTime(context.created(), long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>, <span tal:content="structure python:context.created_by" />
-          <br><br>
+          <br>
         
           <tal:if tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
           <label i18n:translate="">Belongs to scenario:</label>
           <span tal:content="python:', '.join(scns)" />
-          <br> <br>
+          <br>
           </tal:if>
           <tal:if condition="cat" define="cat elanobj/category">
-	      <label i18n:translate="">Content from:</label>
-	      <span tal:content="python: ', '.join(cat)" />
-	      <br> <br>
-	      </tal:if>
-	      <div metal:use-macro="here/@@elan.macros/macros/transferEvents"/>   
-	      <br>
-	      <label i18n:translate="">Content:</label>
-	      <span tal:content="structure context/text/output" />
+          <label i18n:translate="">Content from:</label>
+          <span tal:content="python: ', '.join(cat)" />
+          <br>
+          </tal:if>
+          <div metal:use-macro="here/@@elan.macros/macros/transferEvents"/>   
+          <br>
+          <tal:if condition="htmltext" define="htmltext context/text/output">
+          <label i18n:translate="">Content:</label>
+          <span tal:content="structure htmltext" />
+          </tal:if>
+    </metal:macro>
+
+      <div tal:omit-tag="" metal:define-macro="elandoc">
+      
+	      <div metal:use-macro="here/@@elan.macros/macros/docdata"/>    
 	       
 	      <br><br>
 	      

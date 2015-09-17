@@ -24,13 +24,11 @@ class DashboardCollectionsVocabulary(object):
             else:
                 return []
         types = cat({"portal_type":"DashboardCollection", "sort_on": "sortable_title", "path": path})
-        # print len(types)
         if not raw:
             types = [ (brain.getObject(), brain.Title) for brain in types ] 
         else:
             types = [ (brain.getId, brain.Title) for brain in types ] 
             
-        # print types
         if not raw:
             items = [SimpleTerm(i[0], i[0], i[1]) for i in types]
             return SimpleVocabulary(items)

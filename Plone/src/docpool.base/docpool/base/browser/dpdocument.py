@@ -192,6 +192,8 @@ class DPDocumentdocimageView(BrowserView):
         refresh = request.get("refresh", False)
         response = request.RESPONSE
         response.setHeader('Content-Type', 'image/png')
+        response.setHeader('Cache-control', 'max-age=300,s-maxage=300,must-revalidate')
+        
         doc = self.context
         img = doc.getRepresentativeImage()
         if img:
@@ -217,7 +219,11 @@ class DPDocumentdocimageView(BrowserView):
             response.setHeader('Content-disposition', header_value)
             response.setHeader('Content-Length', len(img.data))
             return img.data
-        # TODO: support default image in DocType
+        # TODO: Idea: support default image in DocType
+        
+        # Show Default image, if no other image is available
+        img = getattr(self.context,'docdefaultimage.png')
+        return img._data
     ##/code-section methodsdocimage     
 
 

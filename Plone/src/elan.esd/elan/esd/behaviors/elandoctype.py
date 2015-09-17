@@ -113,7 +113,7 @@ class ELANDocType(object):
         """
 #         colls = self.getBackReferences(relationship='doctypes')
         colls = back_references(self.context, "docTypes")
-        return list(set([coll.title for coll in colls if coll and not coll.isArchive()]))
+        return list(set([coll.title for coll in colls if coll and not coll.isArchive() and coll.getPortalTypeName() == 'ELANDocCollection']))
     
     def getCategories(self):
         """

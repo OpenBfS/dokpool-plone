@@ -1,0 +1,74 @@
+@import "++theme++barceloneta/less/variables.plone.less";
+
+.dashboard {
+    .doctile {
+            border: 1px solid;
+            float: left;
+            padding: 0 10px 10px;
+            width: 300px;
+            height: 450px;
+            
+            .dbimage {
+                width: 280px;
+                height: 390px;
+                overflow: scroll;
+                img {
+                    max-width: 280px;
+                    height: auto;
+                }
+            }
+            .metadata {
+                vertical-align: bottom;
+            }
+        }
+}
+
+.portaltype-dashboard {
+    #sidebar {
+        display: none;
+    }
+    .col-sm-9 {
+        width: 100%;
+    }
+    #viewlet-below-content-body {
+        clear: both;
+    }
+}
+@media (min-width: @plone-screen-sm-min) { 
+    
+}
+@media (min-width: @plone-screen-md-min) { 
+    .dashboard {
+        .doctile {
+                width: 400px;
+                height: 600px;
+                
+                .dbimage {
+                    width: 380px;
+                    height: 540px;
+
+                    img {
+                        max-width: 380px;
+                        height: auto;
+                    }
+                }
+            }
+    }
+}
+@media (min-width: @plone-screen-lg-min) { 
+    .dashboard {
+        .doctile {
+                width: 500px;
+                height: 750px;
+                
+                .dbimage {
+                    width: 480px;
+                    height: 690px;
+                    img {
+                        max-width: 480px;
+                        height: auto;
+                    }                    
+                }
+            }
+    }
+}

@@ -1,0 +1,60 @@
+@import "++theme++barceloneta/less/variables.plone.less";
+
+.visualization {
+    .pdflink {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .map {
+        img {
+                max-width: 180px;
+                height: auto;
+            }                    
+            float: left;
+           }
+    .legend {
+        img {
+                max-width: 100px;
+                height: auto;
+            }                    
+        }
+}
+
+
+@media (min-width: @plone-screen-sm-min) { 
+    
+}
+@media (min-width: @plone-screen-md-min) { 
+    .visualization {
+        .map {
+            img {
+                    max-width: 360px;
+                    height: auto;
+                }                    
+                float: left;
+               }
+        .legend {
+            img {
+                    max-width: 200px;
+                    height: auto;
+                }                    
+            }
+    }
+}
+@media (min-width: @plone-screen-lg-min) { 
+    .visualization {
+        .map {
+            img {
+                    max-width: 540px;
+                    height: auto;
+                }                    
+                float: left;
+               }
+        .legend {
+            img {
+                    max-width: 300px;
+                    height: auto;
+                }                    
+            }
+    }
+}

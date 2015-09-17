@@ -66,6 +66,22 @@ class Dashboard(Item):
     implements(IDashboard)
     
 ##code-section methods
+    def currentDocuments(self):
+        """
+        Loop through all configured collections,
+        get the most recent document (if available).
+        """
+        res = []
+        for c in self.dbCollections:
+            coll = c.to_object
+            docs = coll.results(b_size=1)
+            if len(docs) > 0:
+                res.append((coll.Title(), docs[0]))
+            else:
+                res.append((coll.Title(), None))
+#        print res
+        return res
+            
 ##/code-section methods 
 
 

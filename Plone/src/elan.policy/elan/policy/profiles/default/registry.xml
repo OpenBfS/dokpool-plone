@@ -377,7 +377,7 @@
       <element>Document</element>
       <element>Event</element>
       <element>DashboardsConfig</element>
-      <element>DashboardCollection</element>
+      <element>Dashboard</element>
     </value>
   </record>  
 </registry>

@@ -47,6 +47,7 @@ from docpool.base.pdfconversion import get_images, metadata, pdfobj, data
 from zope.annotation.interfaces import IAnnotations
 from BTrees.OOBTree import OOBTree
 from StringIO import StringIO
+from docpool.base import ELAN_EMessageFactory as _
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -445,6 +446,30 @@ class DPDocument(Container, Document, ContentBase):
                         msg = "set"
         return msg
 
+    def getFileOrImageByPattern(self, pattern):
+        """
+        """
+        #print pattern
+        p = re.compile(pattern, re.IGNORECASE)
+        for obj in self.getAllContentObjects():
+            #print obj.getId()
+            if p.match(obj.getId()):
+                # print obj
+                return obj
+            
+    def getMapImage(self):
+        img = self.getFileOrImageByPattern(".*[-_]map\..*")
+        if img:
+            return "<img src='%s' />" % img.absolute_url()
+        else:
+            return _(u"No map image")
+
+    def getLegendImage(self):
+        img = self.getFileOrImageByPattern(".*[-_]legend\..*")
+        if img:
+            return "<img src='%s' />" % img.absolute_url()
+        else:
+            return _(u"No legend image")
 ##/code-section methods 
 
     def myDPDocument(self):

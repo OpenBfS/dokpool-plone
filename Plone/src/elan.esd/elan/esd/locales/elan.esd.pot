@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-11-11 19:28+0000\n"
+"POT-Creation-Date: 2015-09-17 06:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,24 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: elan.esd\n"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:21
+#: elan.esd/elan/esd/browser/elan_macros.pt:33
 #: elan.esd/elan/esd/browser/elanscenarios.pt:19
 msgid "++++ Exercise ++++"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:296
+#: elan.esd/elan/esd/behaviors/transferable.py:222
 msgid ". Doc type not accepted."
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:312
+#: elan.esd/elan/esd/behaviors/transferable.py:238
 msgid ". Document has no scenario."
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:308
+#: elan.esd/elan/esd/behaviors/transferable.py:234
 msgid ". Unknown scenario not accepted."
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:129
+#: elan.esd/elan/esd/portlets/collection.py:128
 msgid "Add Collection Portlet"
 msgstr ""
 
@@ -42,12 +42,12 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/viewlets/scenarios.pt:11
+#: elan.esd/elan/esd/browser/viewlets/scenarios.pt:10
 msgid "All Archives"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elandoccollectionrpopup.pt:31
-#: elan.esd/elan/esd/browser/viewlets/scenarios.pt:9
+#: elan.esd/elan/esd/browser/viewlets/scenarios.pt:8
 #: elan.esd/elan/esd/profiles/default/types/ELANArchive.xml
 msgid "Archive"
 msgstr ""
@@ -72,12 +72,7 @@ msgstr ""
 msgid "Belongs to scenario:"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:105
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:57
-msgid "Category/Dates"
-msgstr ""
-
-#: elan.esd/elan/esd/monkey.py:209
+#: elan.esd/elan/esd/monkey.py:74
 msgid "Changes applied."
 msgstr ""
 
@@ -85,28 +80,16 @@ msgstr ""
 msgid "Channels"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/overview.pt:5
-msgid "Chronological Overview"
-msgstr ""
-
-#: elan.esd/elan/esd/portlets/collection.py:76
+#: elan.esd/elan/esd/portlets/collection.py:75
 msgid "Collection"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANContentArea.xml
-msgid "Content Area"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:171
 msgid "Content from:"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:177
+#: elan.esd/elan/esd/browser/elan_macros.pt:178
 msgid "Content:"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elan_macros.pt:25
-msgid "Created/modified:"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:78
@@ -121,12 +104,6 @@ msgstr ""
 msgid "Dates"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:99
-msgid "Delete"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elan_macros.pt:105
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:57
 #: elan.esd/elan/esd/browser/elanscenarios.pt:11
 msgid "Description"
 msgstr ""
@@ -139,13 +116,11 @@ msgstr ""
 msgid "Doc. type short"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elantransferfolder.py:39
+#: elan.esd/elan/esd/browser/elantransferfolder.py:40
 msgid "Document Type"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py:76
-#: elan.esd/elan/esd/content/elanesd.py:279
-#: elan.esd/elan/esd/profiles/default/types/ELANDocTypes.xml
+#: elan.esd/elan/esd/content/elandoccollection.py:75
 msgid "Document Types"
 msgstr ""
 
@@ -155,18 +130,6 @@ msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANContentConfig.xml
 msgid "ELAN Content Configuration"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANDocType.xml
-msgid "ELAN DocumentType"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANFolder.xml
-msgid "ELAN Folder"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANFolderBase.xml
-msgid "ELAN Folder Base"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
@@ -181,57 +144,20 @@ msgstr ""
 msgid "ELANCurrentSituation"
 msgstr ""
 
-#: elan.esd/elan/esd/profiles/default/types/ELANDocument.xml
-msgid "ELANDocument"
-msgstr ""
-
-#: elan.esd/elan/esd/portlets/collection.py:138
+#: elan.esd/elan/esd/portlets/collection.py:137
 msgid "Edit Collection Portlet"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:47
-msgid "Edit unknown doc type"
+#: elan.esd/elan/esd/browser/elantransferfolder.pt:12
+msgid "Edit Permissions"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:35
-msgid "Edit unknown scenario"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanscenario.py:289
-#: elan.esd/elan/esd/profiles/default/types/ELANESD.xml
-msgid "Electronic Situation Display"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elan_macros.pt:183
+#: elan.esd/elan/esd/browser/elan_macros.pt:190
 msgid "Files:"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:40
 msgid "Filter"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elandocument.pt:25
-msgid "Finish uploads and publish"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANInfo.xml
-msgid "General information"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANInfo.xml
-msgid "General information (generic type)"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANGroupFolder.xml
-msgid "Group Folder"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:12
-msgid "Group Folder: scenario filter not active!"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANGroups.xml
-msgid "Groups Area"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:18
@@ -246,26 +172,12 @@ msgstr ""
 msgid "IRIX base configuration"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:216
+#: elan.esd/elan/esd/browser/elan_macros.pt:223
 msgid "Images:"
 msgstr ""
 
-#: elan.esd/elan/esd/profiles/default/types/ELANInfoFolder.xml
-msgid "Info-Folder"
-msgstr ""
-
 #: elan.esd/elan/esd/browser/elan_macros.pt:158
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:84
-#: elan.esd/elan/esd/browser/elanfolderbaselistitem.pt:23
 msgid "LT"
-msgstr ""
-
-#: elan.esd/elan/esd/portlets/collection.pt:9
-msgid "Latest from"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANLink.xml
-msgid "Link"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
@@ -273,24 +185,19 @@ msgid "Location"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:106
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:58
-msgid "Main Text"
-msgstr ""
-
 #: elan.esd/elan/esd/profiles/default/registry.xml
 msgid "Metadata"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:296
+#: elan.esd/elan/esd/behaviors/transferable.py:222
 msgid "No transfer to"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:290
 #: elan.esd/elan/esd/portlets/overview.py:42
 msgid "Overview"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elantransferfolder.py:39
+#: elan.esd/elan/esd/browser/elantransferfolder.py:40
 #: elan.esd/elan/esd/db/forms.py:50
 msgid "Permission"
 msgstr ""
@@ -298,10 +205,6 @@ msgstr ""
 #: elan.esd/elan/esd/db/forms.py:92
 #: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
 msgid "Permissions"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:13
-msgid "Personal Folder: scenario filter not active!"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:13
@@ -316,68 +219,28 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/recent.pt:7
-msgid "Recently Modified"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanscenario.py:158
+#: elan.esd/elan/esd/content/elanscenario.py:161
 msgid "Scenario archived"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:42
-msgid "Scenario:"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenarios.xml
 msgid "Scenarios"
 msgstr ""
 
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:27
+#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:29
 msgid "Select"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:111
-msgid "Show document"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/elanfolderbaselistitem.pt:38
-msgid "Show folder"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANText.xml
-msgid "Simple pages of text."
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanesd.py:268
-msgid "Situation Display"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:21
 msgid "Snapshot"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:179
+#: elan.esd/elan/esd/content/elanscenario.py:182
 msgid "Snapshot created"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elanscenarios.pt:11
 msgid "Status"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANText.xml
-msgid "Textpage"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanfolder.py:144
-msgid "The document has been published."
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanfolder.py:159
-msgid "The document state has been changed."
-msgstr ""
-
-#: elan.esd/elan/esd/monkey.py:86
-msgid "The group folder could not be deleted because of protected documents. Please check!"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
@@ -388,24 +251,12 @@ msgstr ""
 msgid "The time and date an item was last modified by a user"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:100
-msgid "There are comments."
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanscenario.py:343
+#: elan.esd/elan/esd/content/elanscenario.py:335
 msgid "There are no more documents for this scenario."
 msgstr ""
 
-#: elan.esd/elan/esd/monkey.py:53
-msgid "There was an existing group folder of the same name. Please check!"
-msgstr ""
-
-#: elan.esd/elan/esd/portlets/collection.py:130
+#: elan.esd/elan/esd/portlets/collection.py:129
 msgid "This portlet displays recently modified content from a collection."
-msgstr ""
-
-#: elan.esd/elan/esd/portlets/ticker.py:42
-msgid "Ticker"
 msgstr ""
 
 #: elan.esd/elan/esd/db/forms.py:105
@@ -416,16 +267,20 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:105
+msgid "Title / Description / Text"
+msgstr ""
+
 #: elan.esd/elan/esd/browser/elanscenarios.pt:11
 msgid "Title/Date"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:75
-msgid "Transfer"
-msgstr ""
-
 #: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
 msgid "Transfer Folder"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elantransferfolder.pt:11
+msgid "Transfer Folder: scenario filter not active!"
 msgstr ""
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/transferELANDocument.cpy:18
@@ -436,32 +291,19 @@ msgstr ""
 msgid "Transfer executed"
 msgstr ""
 
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:28
+#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:30
 msgid "Transfer to<br>"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:366
+#: elan.esd/elan/esd/behaviors/transferable.py:292
 msgid "Transferred to"
-msgstr ""
-
-#: elan.esd/elan/esd/browser/viewlets/time.pt:16
-msgid "UTC"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANUserFolder.xml
-msgid "User Folder"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/ELANUsers.xml
-msgid "Users Area"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elandoccollectiondoc.pt:16
 msgid "View the document in its folder"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:128
-#: elan.esd/elan/esd/vocabularies.py:18
+#: elan.esd/elan/esd/content/elanscenario.py:131
 msgid "active"
 msgstr ""
 
@@ -477,135 +319,87 @@ msgstr ""
 msgid "archive_confirm_msg"
 msgstr ""
 
-#. Default: "No items changed yet."
-#: elan.esd/elan/esd/portlets/collection.pt:40
-#: elan.esd/elan/esd/portlets/recent.pt:40
-msgid "box_recent_no_items"
-msgstr ""
-
 #. Default: "Cancel"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:47
+#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:50
 msgid "cancelbutton"
 msgstr ""
 
 #. Default: "Verlassen des Formulars"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:47
+#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:50
 msgid "canceltitle"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:128
-#: elan.esd/elan/esd/vocabularies.py:18
+#: elan.esd/elan/esd/content/elanscenario.py:131
 msgid "closed"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:161
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:88
-#: elan.esd/elan/esd/browser/elanfolderbaselistitem.pt:27
 msgid "created:"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elancontent.py:57
-msgid "description_elancontent_created_by"
+#: elan.esd/elan/esd/behaviors/elandoctype.py:59
+msgid "description_doctype_allowtransfer"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elancontent.py:75
-msgid "description_elancontent_mdate"
+#: elan.esd/elan/esd/behaviors/elandoctype.py:45
+msgid "description_doctype_contentcategory"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elancontent.py:66
-msgid "description_elancontent_modified_by"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandoccollection.py:72
-msgid "description_elandoccollection_doctypes"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandoctype.py:86
-msgid "description_elandoctype_allowtransfer"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandoctype.py:66
-msgid "description_elandoctype_allowuploads"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandoctype.py:96
-msgid "description_elandoctype_contentcategory"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandoctype.py:76
-msgid "description_elandoctype_publishimmediately"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandocument.py:65
-#: elan.esd/elan/esd/portlets/collection.py:57
-msgid "description_elandocument_doctype"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandocument.py:75
-msgid "description_elandocument_scenarios"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandocument.py:85
-msgid "description_elandocument_text"
+#: elan.esd/elan/esd/behaviors/elandocument.py:28
+msgid "description_dpdocument_scenarios"
 msgstr ""
 
 #. Default: "Only used for archived documents."
-#: elan.esd/elan/esd/content/elandocument.py:112
-msgid "description_elandocument_transferlog"
+#: elan.esd/elan/esd/behaviors/transferable.py:61
+msgid "description_dpdocument_transferlog"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:103
-msgid "description_elandocument_transferred"
+#: elan.esd/elan/esd/behaviors/transferable.py:52
+msgid "description_dpdocument_transferred"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandocument.py:94
-msgid "description_elandocument_transferred_by"
+#: elan.esd/elan/esd/behaviors/transferable.py:43
+msgid "description_dpdocument_transferred_by"
 msgstr ""
 
-#. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
-#: elan.esd/elan/esd/content/elanesd.py:53
-msgid "description_elanesd_prefix"
+#: elan.esd/elan/esd/content/elandoccollection.py:71
+msgid "description_elandoccollection_doctypes"
 msgstr ""
 
-#. Default: "Leave blank to enable all types configured for the group."
-#: elan.esd/elan/esd/content/elanfolder.py:49
-msgid "description_elanfolder_alloweddoctypes"
+#: elan.esd/elan/esd/portlets/collection.py:56
+msgid "description_elandocument_doctype"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:83
+#: elan.esd/elan/esd/content/elanscenario.py:85
 msgid "description_elanscenario_exercise"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:73
+#: elan.esd/elan/esd/content/elanscenario.py:75
 msgid "description_elanscenario_status"
 msgstr ""
 
 #. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
-#: elan.esd/elan/esd/content/elanscenario.py:101
+#: elan.esd/elan/esd/content/elanscenario.py:103
 msgid "description_elanscenario_substitute"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:92
+#: elan.esd/elan/esd/content/elanscenario.py:94
 msgid "description_elanscenario_timeofevent"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantext.py:46
-msgid "description_elantext_text"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elantransferfolder.py:83
+#: elan.esd/elan/esd/content/elantransferfolder.py:82
 msgid "description_elantransferfolder_permlevel"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:73
+#: elan.esd/elan/esd/content/elantransferfolder.py:72
 msgid "description_elantransferfolder_sendingesd"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:94
+#: elan.esd/elan/esd/content/elantransferfolder.py:93
 msgid "description_elantransferfolder_unknowndtdefault"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:105
+#: elan.esd/elan/esd/content/elantransferfolder.py:104
 msgid "description_elantransferfolder_unknownscendefault"
 msgstr ""
 
@@ -655,159 +449,99 @@ msgstr ""
 
 #. Default: "There are currently no items in this folder."
 #: elan.esd/elan/esd/browser/elan_macros.pt:133
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:128
 msgid "description_no_items_in_folder"
 msgstr ""
 
 #: elan.esd/elan/esd/db/forms.py:27
-#: elan.esd/elan/esd/vocabularies.py:38
 msgid "don't accept"
 msgstr ""
 
 #. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py:246
+#: elan.esd/elan/esd/monkey.py:111
 msgid "failed_passwords_msg"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:128
-#: elan.esd/elan/esd/vocabularies.py:18
+#: elan.esd/elan/esd/content/elanscenario.py:131
 msgid "inactive"
 msgstr ""
 
-#. Default: "Cancel"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_edit.pt:86
-msgid "label_cancel"
-msgstr ""
-
-#. Default: "Continue with files & images"
-#: elan.esd/elan/esd/browser/elandocument_forms.py:34
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_edit.pt:78
-msgid "label_continue"
-msgstr ""
-
-#. Default: "Created by"
-#: elan.esd/elan/esd/content/elancontent.py:56
-msgid "label_elancontent_created_by"
-msgstr ""
-
-#. Default: "Date of last user action"
-#: elan.esd/elan/esd/content/elancontent.py:74
-msgid "label_elancontent_mdate"
-msgstr ""
-
-#. Default: "Modified by"
-#: elan.esd/elan/esd/content/elancontent.py:65
-msgid "label_elancontent_modified_by"
-msgstr ""
-
-#. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py:71
-msgid "label_elandoccollection_doctypes"
-msgstr ""
-
 #. Default: "Can documents of this type be sent to other ESDs?"
-#: elan.esd/elan/esd/content/elandoctype.py:85
-msgid "label_elandoctype_allowtransfer"
-msgstr ""
-
-#. Default: "Can contain documents and images"
-#: elan.esd/elan/esd/content/elandoctype.py:65
-msgid "label_elandoctype_allowuploads"
+#: elan.esd/elan/esd/behaviors/elandoctype.py:58
+msgid "label_doctype_allowtransfer"
 msgstr ""
 
 #. Default: "Choose category for this type "
-#: elan.esd/elan/esd/content/elandoctype.py:95
-msgid "label_elandoctype_contentcategory"
-msgstr ""
-
-#. Default: "Publish immediately?"
-#: elan.esd/elan/esd/content/elandoctype.py:75
-msgid "label_elandoctype_publishimmediately"
-msgstr ""
-
-#. Default: "Document Type"
-#: elan.esd/elan/esd/content/elandocument.py:64
-#: elan.esd/elan/esd/portlets/collection.py:56
-msgid "label_elandocument_doctype"
+#: elan.esd/elan/esd/behaviors/elandoctype.py:44
+msgid "label_doctype_contentcategory"
 msgstr ""
 
 #. Default: "Belongs to scenarios"
-#: elan.esd/elan/esd/content/elandocument.py:74
-msgid "label_elandocument_scenarios"
-msgstr ""
-
-#. Default: "Text"
-#: elan.esd/elan/esd/content/elandocument.py:84
-msgid "label_elandocument_text"
+#: elan.esd/elan/esd/behaviors/elandocument.py:27
+msgid "label_dpdocument_scenarios"
 msgstr ""
 
 #. Default: "Transfer log"
-#: elan.esd/elan/esd/content/elandocument.py:111
-msgid "label_elandocument_transferlog"
+#: elan.esd/elan/esd/behaviors/transferable.py:60
+msgid "label_dpdocument_transferlog"
 msgstr ""
 
 #. Default: "Date of last transfer"
-#: elan.esd/elan/esd/content/elandocument.py:102
-msgid "label_elandocument_transferred"
+#: elan.esd/elan/esd/behaviors/transferable.py:51
+msgid "label_dpdocument_transferred"
 msgstr ""
 
 #. Default: "Transferred by"
-#: elan.esd/elan/esd/content/elandocument.py:93
-msgid "label_elandocument_transferred_by"
+#: elan.esd/elan/esd/behaviors/transferable.py:42
+msgid "label_dpdocument_transferred_by"
 msgstr ""
 
-#. Default: "Prefix names"
-#: elan.esd/elan/esd/content/elanesd.py:52
-msgid "label_elanesd_prefix"
+#. Default: "Document Types"
+#: elan.esd/elan/esd/content/elandoccollection.py:70
+msgid "label_elandoccollection_doctypes"
 msgstr ""
 
-#. Default: "Document types allowed in this folder"
-#: elan.esd/elan/esd/content/elanfolder.py:48
-msgid "label_elanfolder_alloweddoctypes"
+#. Default: "Document Type"
+#: elan.esd/elan/esd/portlets/collection.py:55
+msgid "label_elandocument_doctype"
 msgstr ""
 
 #. Default: "Is this an exercise?"
-#: elan.esd/elan/esd/content/elanscenario.py:82
+#: elan.esd/elan/esd/content/elanscenario.py:84
 msgid "label_elanscenario_exercise"
 msgstr ""
 
 #. Default: "Status of the scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:72
+#: elan.esd/elan/esd/content/elanscenario.py:74
 msgid "label_elanscenario_status"
 msgstr ""
 
 #. Default: "Substitute scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:100
+#: elan.esd/elan/esd/content/elanscenario.py:102
 msgid "label_elanscenario_substitute"
 msgstr ""
 
 #. Default: "Time of event"
-#: elan.esd/elan/esd/content/elanscenario.py:91
+#: elan.esd/elan/esd/content/elanscenario.py:93
 msgid "label_elanscenario_timeofevent"
 msgstr ""
 
-#. Default: "Text"
-#: elan.esd/elan/esd/content/elantext.py:45
-msgid "label_elantext_text"
-msgstr ""
-
 #. Default: "Permission level"
-#: elan.esd/elan/esd/content/elantransferfolder.py:82
+#: elan.esd/elan/esd/content/elantransferfolder.py:81
 msgid "label_elantransferfolder_permlevel"
 msgstr ""
 
 #. Default: "The organisation sending content via this transfer folder"
-#: elan.esd/elan/esd/content/elantransferfolder.py:72
+#: elan.esd/elan/esd/content/elantransferfolder.py:71
 msgid "label_elantransferfolder_sendingesd"
 msgstr ""
 
 #. Default: "Default for unknown document types"
-#: elan.esd/elan/esd/content/elantransferfolder.py:93
+#: elan.esd/elan/esd/content/elantransferfolder.py:92
 msgid "label_elantransferfolder_unknowndtdefault"
 msgstr ""
 
 #. Default: "Default for unknown scenarios"
-#: elan.esd/elan/esd/content/elantransferfolder.py:104
+#: elan.esd/elan/esd/content/elantransferfolder.py:103
 msgid "label_elantransferfolder_unknownscendefault"
 msgstr ""
 
@@ -866,19 +600,11 @@ msgstr ""
 msgid "label_irixconfig_typemapping"
 msgstr ""
 
-#. Default: "Save"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_edit.pt:71
-msgid "label_save"
-msgstr ""
-
 #: elan.esd/elan/esd/browser/elan_macros.pt:157
-#: elan.esd/elan/esd/browser/elandocumentlistitem.pt:83
-#: elan.esd/elan/esd/browser/elanfolderbaselistitem.pt:22
 msgid "modified:"
 msgstr ""
 
 #: elan.esd/elan/esd/db/forms.py:27
-#: elan.esd/elan/esd/vocabularies.py:38
 msgid "needs confirmation"
 msgstr ""
 
@@ -887,7 +613,6 @@ msgid "private"
 msgstr ""
 
 #: elan.esd/elan/esd/db/forms.py:27
-#: elan.esd/elan/esd/vocabularies.py:48
 msgid "publish immediately"
 msgstr ""
 
@@ -899,46 +624,33 @@ msgstr ""
 msgid "purge_confirm_msg"
 msgstr ""
 
-#: elan.esd/elan/esd/vocabularies.py:28
-msgid "read/write"
-msgstr ""
-
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py:237
+#: elan.esd/elan/esd/monkey.py:102
 msgid "reset_passwords_msg"
 msgstr ""
 
 #. Default: "Submit"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:46
+#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:49
 msgid "submitbutton"
 msgstr ""
 
 #. Default: "Absenden des Formulares"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:46
+#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:49
 msgid "submittitle"
 msgstr ""
 
 #. Default: "Content listing"
-#: elan.esd/elan/esd/browser/elan_macros.pt:96
-#: elan.esd/elan/esd/browser/elanfolderbase.pt:46
+#: elan.esd/elan/esd/browser/elan_macros.pt:97
 msgid "summary_content_listing"
 msgstr ""
 
-#: elan.esd/elan/esd/vocabularies.py:28
-msgid "suspended"
-msgstr ""
-
 #. Default: "Move item down"
-#: elan.esd/elan/esd/browser/elan_macros.pt:200
+#: elan.esd/elan/esd/browser/elan_macros.pt:207
 msgid "title_move_item_down"
 msgstr ""
 
 #. Default: "Move item up"
-#: elan.esd/elan/esd/browser/elan_macros.pt:193
+#: elan.esd/elan/esd/browser/elan_macros.pt:200
 msgid "title_move_item_up"
-msgstr ""
-
-#: elan.esd/elan/esd/vocabularies.py:28
-msgid "write"
 msgstr ""
 

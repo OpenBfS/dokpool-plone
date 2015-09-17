@@ -6,7 +6,33 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
-    
+<div class="dashboard" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+	<tal:loop repeat="doc context/currentDocuments">
+	   <div class="doctile" tal:define="colltitle python:doc[0];
+	                                    doc python:doc[1];
+	                                    doc python:doc and doc.getObject() or None;">
+	       <h4 class="collection">${colltitle}</h4>
+	       <tal:if condition="nocall:doc">
+	       <div class="dbimage">
+	           <a href="${doc/absolute_url}" target="_blank"><img src="${python:doc.absolute_url() + '/@@docimage'}" /></a>
+	       </div>
+	       <div class="metadata" i18n:domain="docpool.base"><a href="${doc/absolute_url}" target="_blank"><span class="title">${doc/Title}</span> - <i18n:txt translate="">modified:</i18n:txt><span class="time"><tal:var replace="python:str(toLocalizedTime(doc.getMdate(), long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span></a></div>
+	       </tal:if>
+	       <tal:if condition="not:nocall:doc" i18n:translate="">
+	       No current data
+	       </tal:if>
+	   </div>
+	</tal:loop>
+</div>
+<script>
+function refreshPage() {
+	location.reload();
+}
+
+$(document).ready ( function () {
+    myDynTimer = setInterval ( refreshPage, 300000 );
+});
+</script>
 <!-- ##/code-section Main -->    
 </metal:content-core>
 </metal:content-core>

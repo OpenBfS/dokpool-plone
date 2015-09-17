@@ -115,7 +115,8 @@ class DexterityObjectService(PloneService):
                 params[par] = params[par].data
             elif par == 'creators':
                 params[par] = tuple(params[par])
-            elif isinstance(params[par], str):
+            elif isinstance(params[par], str) and par != 'id':
+                #print "set_properties", par
                 params[par] = unicode(params[par])
             # elif isinstance(self.context[attr], BaseUnit):
             #     self.context[par].update(params[par], self.context[par])
@@ -150,17 +151,17 @@ class DexterityObjectService(PloneService):
                     field_name = field_info[0]
                     field = field_info[1]
                     field_schema = getattr(field, 'schema', None)
-                    print field_schema, field_schema and field_schema.getName()
+                    #print field_schema, field_schema and field_schema.getName()
                     if field_name == k:
                         if field_schema and field_schema.getName() in ['INamedBlobImage', 'INamedBlobFile']:
                             found = True
                             filename = ''
-                            print type(v)
+                            #print type(v)
                             if type(v) == type(()):
-                                print "mod"
+                                #print "mod"
                                 filename = safe_unicode(v[1])
                                 v = v[0].data
-                            print len(v), filename    
+                            #print len(v), filename    
                             if field_schema.getName() == 'INamedBlobImage':
                                 v = NamedBlobImage(data=v, filename=filename)
                             elif field_schema.getName() == 'INamedBlobFile':

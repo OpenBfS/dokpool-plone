@@ -4,6 +4,11 @@
 
 <!-- ##code-section Main -->
     
+   <browser:resourceDirectory
+      name="docpool.dashboard.stylesheets"
+      directory="stylesheets"
+      />
+
 <!-- ##/code-section Main -->    
 
     

@@ -37,7 +37,8 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation'}
           {TYPE: 'DocType', TITLE: u'Situation Report', ID: 'situationreport'},
           {TYPE: 'DocType', TITLE: u'Instructions to the Public', ID: 'instructions'},
           {TYPE: 'DocType', TITLE: u'Protective Actions', ID: 'protectiveactions'},
-          {TYPE: 'DocType', TITLE: u'Media Release', ID: 'mediarelease'}
+          {TYPE: 'DocType', TITLE: u'Media Release', ID: 'mediarelease'},
+          {TYPE: 'DashboardsConfig', TITLE: u'Dashboard Configuration', ID: 'dbconfig'}
           ]
 
 ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHILDREN: [
@@ -72,6 +73,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHIL
                                                                             ]},  
                   {TYPE: 'ELANDocCollection', TITLE: 'Overview', ID: 'overview', "setExcludeFromNav": True, DOCTYPES: [], CHILDREN: [] },            
                   {TYPE: 'ELANDocCollection', TITLE: 'All documents', ID: 'recent', DOCTYPES: [], CHILDREN: [] },            
+                  {TYPE: 'Dashboard', TITLE: 'Dashboard', ID: 'dashboard'},            
               ]
        
 def connectTypesAndCategories(self):

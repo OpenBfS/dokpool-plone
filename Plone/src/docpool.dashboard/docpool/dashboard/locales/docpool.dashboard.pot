@@ -1,0 +1,49 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-09-16 18:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.dashboard\n"
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/Dashboard.xml
+msgid "Dashboard"
+msgstr ""
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/DashboardCollection.xml
+msgid "Dashboard Collection"
+msgstr ""
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/DashboardsConfig.xml
+msgid "Dashboards Configuration"
+msgstr ""
+
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py:48
+msgid "Document Types"
+msgstr ""
+
+#: docpool.dashboard/docpool/dashboard/browser/dashboard.pt:21
+msgid "No current data"
+msgstr ""
+
+#. Default: "Select the document types you want to show in this dashboard."
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py:44
+msgid "description_dashboard_dbcollections"
+msgstr ""
+
+#. Default: "Document Types"
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py:43
+msgid "label_dashboard_dbcollections"
+msgstr ""
+

@@ -52,7 +52,7 @@ def getAllowedDocumentTypes(self):
     tids = list(set(dts))
     cat = getToolByName(self, "portal_catalog")
     esd = getDocumentPoolSite(self)
-    print tids
+    # print tids
     res = cat(path="/".join(esd.getPhysicalPath()) + "/config", portal_type = 'DocType', id=tids, sort_on="sortable_title")
     return res
 
@@ -149,7 +149,7 @@ def getGroupsForCurrentUser(self, user=None):
             title = grp.getProperty('title','')
             res.append({'id': g.id, 'title' : title, 'etypes' : etypes})
         except Exception, e:
-            print e
+            log_exc(e)
     return res
 
 def deleteMemberFolders(self, member_ids):
@@ -319,7 +319,7 @@ def checkLocalRole(context, role='Manager'):
         return False
     else:
         roles = api.user.get_roles(obj=context)
-        print "checking", roles
+        #print "checking", roles
         if role in roles or 'Manager' in roles:
             return True
         else:

@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ELAN-E\n"
+"POT-Creation-Date: 2015-09-16 18:25+0000\n"
+"PO-Revision-Date: 2015-09-16 20:18+0100\n"
+"Last-Translator: Henning Rietz <hr@condat.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: de\n"
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/Dashboard.xml
+msgid "Dashboard"
+msgstr "Pinnwand"
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/DashboardCollection.xml
+msgid "Dashboard Collection"
+msgstr "Pinnwand Dokumentsammlung"
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/DashboardsConfig.xml
+msgid "Dashboards Configuration"
+msgstr "Pinnwand Konfiguration"
+
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py:48
+msgid "Document Types"
+msgstr "Dokumenttypen"
+
+#: docpool.dashboard/docpool/dashboard/browser/dashboard.pt:21
+msgid "No current data"
+msgstr "Keine aktuellen Daten"
+
+#. Default: "Select the document types you want to show in this dashboard."
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py:44
+msgid "description_dashboard_dbcollections"
+msgstr "Wählen Sie die Dokumenttypen, welche Sie auf dieser Pinnwand zeigen wollen."
+
+#. Default: "Document Types"
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py:43
+msgid "label_dashboard_dbcollections"
+msgstr "Dokumenttypen"
+
