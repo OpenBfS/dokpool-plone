@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-09-17 06:47+0000\n"
+"POT-Creation-Date: 2015-09-17 14:01+0000\n"
 "PO-Revision-Date: 2015-09-17 08:47+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -133,7 +133,7 @@ msgstr "Inhaltskonfiguration"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
 msgid "ELAN Scenario"
-msgstr "ELAN Szenario"
+msgstr "ELAN Ereignis"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANSection.xml
 msgid "ELAN Section"
@@ -150,6 +150,18 @@ msgstr "Portlet für Collection bearbeiten"
 #: elan.esd/elan/esd/browser/elantransferfolder.pt:12
 msgid "Edit Permissions"
 msgstr "Rechte bearbeiten"
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:311
+msgid "Edit unknown doc type"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:300
+msgid "Edit unknown scenario"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:307
+msgid "Event:"
+msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:190
 msgid "Files:"
@@ -220,11 +232,11 @@ msgstr "Letzte Änderungen"
 
 #: elan.esd/elan/esd/content/elanscenario.py:161
 msgid "Scenario archived"
-msgstr "Szenario archiviert"
+msgstr "Ereignis archiviert"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenarios.xml
 msgid "Scenarios"
-msgstr "Szenarios"
+msgstr "Ereignisse"
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:29
 msgid "Select"
@@ -250,6 +262,10 @@ msgstr "Der Ortsbezug eines Inhalts"
 msgid "The time and date an item was last modified by a user"
 msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:332
+msgid "There are comments."
+msgstr ""
+
 #: elan.esd/elan/esd/content/elanscenario.py:335
 msgid "There are no more documents for this scenario."
 msgstr "Diesem Ereignis sind keine Dokumente mehr zugeordnet."
@@ -274,13 +290,17 @@ msgstr "Titel / Kurzbeschreibung / Text"
 msgid "Title/Date"
 msgstr "Titel/Datum"
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:287
+msgid "Transfer"
+msgstr ""
+
 #: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
 msgid "Transfer Folder"
 msgstr "Ordner zum Empfang von anderen Lagedarstellungen"
 
 #: elan.esd/elan/esd/browser/elantransferfolder.pt:11
 msgid "Transfer Folder: scenario filter not active!"
-msgstr "Transfer Order: Szenariofilter nicht aktiv!"
+msgstr "Transfer Order: Ereignisfilter nicht aktiv!"
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/transferELANDocument.cpy:18
 msgid "Transfer error: "

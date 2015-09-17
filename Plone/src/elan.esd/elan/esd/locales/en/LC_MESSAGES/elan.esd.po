@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-09-17 06:47+0000\n"
-"PO-Revision-Date: 2014-06-06 17:29+0100\n"
+"POT-Creation-Date: 2015-09-17 14:01+0000\n"
+"PO-Revision-Date: 2015-09-17 16:01+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -27,11 +27,11 @@ msgstr ""
 
 #: elan.esd/elan/esd/behaviors/transferable.py:238
 msgid ". Document has no scenario."
-msgstr ""
+msgstr ". Document has no event."
 
 #: elan.esd/elan/esd/behaviors/transferable.py:234
 msgid ". Unknown scenario not accepted."
-msgstr ""
+msgstr ". Unknown event not accepted."
 
 #: elan.esd/elan/esd/portlets/collection.py:128
 msgid "Add Collection Portlet"
@@ -69,7 +69,7 @@ msgstr "Area for general information"
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:166
 msgid "Belongs to scenario:"
-msgstr ""
+msgstr "Belongs to event:"
 
 #: elan.esd/elan/esd/monkey.py:74
 msgid "Changes applied."
@@ -133,15 +133,15 @@ msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
 msgid "ELAN Scenario"
-msgstr ""
+msgstr "Event"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANSection.xml
 msgid "ELAN Section"
-msgstr ""
+msgstr "Section"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANCurrentSituation.xml
 msgid "ELANCurrentSituation"
-msgstr ""
+msgstr "Current Situation"
 
 #: elan.esd/elan/esd/portlets/collection.py:137
 msgid "Edit Collection Portlet"
@@ -149,6 +149,18 @@ msgstr ""
 
 #: elan.esd/elan/esd/browser/elantransferfolder.pt:12
 msgid "Edit Permissions"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:311
+msgid "Edit unknown doc type"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:300
+msgid "Edit unknown scenario"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:307
+msgid "Event:"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:190
@@ -208,7 +220,7 @@ msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:13
 msgid "Please select at least one scenario!"
-msgstr ""
+msgstr "Please select at least one event!"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:20
 msgid "Purge"
@@ -220,11 +232,11 @@ msgstr ""
 
 #: elan.esd/elan/esd/content/elanscenario.py:161
 msgid "Scenario archived"
-msgstr ""
+msgstr "Event archived"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANScenarios.xml
 msgid "Scenarios"
-msgstr ""
+msgstr "Events"
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:29
 msgid "Select"
@@ -250,9 +262,13 @@ msgstr ""
 msgid "The time and date an item was last modified by a user"
 msgstr ""
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:332
+msgid "There are comments."
+msgstr ""
+
 #: elan.esd/elan/esd/content/elanscenario.py:335
 msgid "There are no more documents for this scenario."
-msgstr ""
+msgstr "There are no more documents for this event."
 
 #: elan.esd/elan/esd/portlets/collection.py:129
 msgid "This portlet displays recently modified content from a collection."
@@ -274,13 +290,17 @@ msgstr ""
 msgid "Title/Date"
 msgstr ""
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:287
+msgid "Transfer"
+msgstr ""
+
 #: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
 msgid "Transfer Folder"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elantransferfolder.pt:11
 msgid "Transfer Folder: scenario filter not active!"
-msgstr ""
+msgstr "Transfer Folder: event filter not active!"
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/transferELANDocument.cpy:18
 msgid "Transfer error: "
@@ -381,7 +401,7 @@ msgstr ""
 #. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
 #: elan.esd/elan/esd/content/elanscenario.py:103
 msgid "description_elanscenario_substitute"
-msgstr ""
+msgstr "Only relevant for unpublished events received from another organisation. Allows you map content for this event to one of you own events."
 
 #: elan.esd/elan/esd/content/elanscenario.py:94
 msgid "description_elanscenario_timeofevent"
@@ -478,7 +498,7 @@ msgstr ""
 #. Default: "Belongs to scenarios"
 #: elan.esd/elan/esd/behaviors/elandocument.py:27
 msgid "label_dpdocument_scenarios"
-msgstr ""
+msgstr "Belongs to events"
 
 #. Default: "Transfer log"
 #: elan.esd/elan/esd/behaviors/transferable.py:60
@@ -518,7 +538,7 @@ msgstr "Status"
 #. Default: "Substitute scenario"
 #: elan.esd/elan/esd/content/elanscenario.py:102
 msgid "label_elanscenario_substitute"
-msgstr ""
+msgstr "Substitute event"
 
 #. Default: "Time of event"
 #: elan.esd/elan/esd/content/elanscenario.py:93
@@ -543,7 +563,7 @@ msgstr ""
 #. Default: "Default for unknown scenarios"
 #: elan.esd/elan/esd/content/elantransferfolder.py:103
 msgid "label_elantransferfolder_unknownscendefault"
-msgstr ""
+msgstr "Default for unknown events"
 
 #. Default: "Email of contact"
 #: elan.esd/elan/esd/content/irixconfig.py:61

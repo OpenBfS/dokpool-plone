@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-09-17 11:09+0000\n"
+"POT-Creation-Date: 2015-09-17 14:00+0000\n"
 "PO-Revision-Date: 2015-09-17 13:10+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -198,23 +198,17 @@ msgstr ""
 #. Default: "If image exists, it will be used as a visual representation for objects of this type."
 #: docpool.base/docpool/base/content/doctype.py:128
 msgid "description_doctype_imgpattern"
-msgstr ""
-"Wenn das Bild existiert, wird es als visuelle Repräsentation für ein Objekt "
-"dieses Typs genutzt."
+msgstr "Wenn das Bild existiert, wird es als visuelle Repräsentation für ein Objekt dieses Typs genutzt."
 
 #. Default: "Used for automatically creating objects of this type from collections of files and images."
 #: docpool.base/docpool/base/content/doctype.py:110
 msgid "description_doctype_partspattern"
-msgstr ""
-"Anhand dieses Musters können automatisch aus zusammengehörigen Dateien "
-"Objekte dieses Typs erzeugt werden."
+msgstr "Anhand dieses Musters können automatisch aus zusammengehörigen Dateien Objekte dieses Typs erzeugt werden."
 
 #. Default: "If PDF exists, an image will be created from its first page as a visual representation for objects of this type."
 #: docpool.base/docpool/base/content/doctype.py:119
 msgid "description_doctype_pdfpattern"
-msgstr ""
-"Wenn das PDF existiert, wird bei Bedarf automatisch ein Bild von seiner "
-"ersten Seite erzeugt und als repräsentatives Bild genutzt."
+msgstr "Wenn das PDF existiert, wird bei Bedarf automatisch ein Bild von seiner ersten Seite erzeugt und als repräsentatives Bild genutzt."
 
 #: docpool.base/docpool/base/content/doctype.py:75
 msgid "description_doctype_publishimmediately"
@@ -223,9 +217,7 @@ msgstr ""
 #. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
 #: docpool.base/docpool/base/content/documentpool.py:58
 msgid "description_documentpool_prefix"
-msgstr ""
-"Wird genutzt, um Nutzer- und Gruppennamen zu bilden. Bleibt dieses Feld "
-"leer, wird der Kurzname des DokPools genutzt."
+msgstr "Wird genutzt, um Nutzer- und Gruppennamen zu bilden. Bleibt dieses Feld leer, wird der Kurzname des DokPools genutzt."
 
 #: docpool.base/docpool/base/content/dpdocument.py:63
 msgid "description_dpdocument_doctype"
@@ -243,8 +235,7 @@ msgstr "Dieser Ordner hat keinen Inhalt."
 #. Default: "Leave blank to enable all types configured for the group."
 #: docpool.base/docpool/base/content/simplefolder.py:49
 msgid "description_simplefolder_alloweddoctypes"
-msgstr ""
-"Frei lassen, um alle Typen zuzulassen, welche für die Gruppe erlaubt sind."
+msgstr "Frei lassen, um alle Typen zuzulassen, welche für die Gruppe erlaubt sind."
 
 #: docpool.base/docpool/base/content/text.py:45
 msgid "description_text_text"
@@ -307,9 +298,7 @@ msgstr "Spezielles Template zur Darstellung"
 #. Default: "Can be used everywhere (not only as part of another type)"
 #: docpool.base/docpool/base/content/doctype.py:84
 msgid "label_doctype_globalallow"
-msgstr ""
-"Kann grundsätzlich frei zugefügt werden (und nicht nur innerhalb eines "
-"anderen Typs)"
+msgstr "Kann grundsätzlich frei zugefügt werden (und nicht nur innerhalb eines anderen Typs)"
 
 #. Default: "Name pattern for representative image"
 #: docpool.base/docpool/base/content/doctype.py:127
@@ -390,3 +379,4 @@ msgstr "momentan deaktiviert"
 #: docpool.base/docpool/base/vocabularies.py:29
 msgid "write"
 msgstr "schreiben"
+

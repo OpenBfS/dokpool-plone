@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-17 06:47+0000\n"
+"POT-Creation-Date: 2015-09-17 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,6 +152,18 @@ msgstr ""
 msgid "Edit Permissions"
 msgstr ""
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:311
+msgid "Edit unknown doc type"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:300
+msgid "Edit unknown scenario"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:307
+msgid "Event:"
+msgstr ""
+
 #: elan.esd/elan/esd/browser/elan_macros.pt:190
 msgid "Files:"
 msgstr ""
@@ -251,6 +263,10 @@ msgstr ""
 msgid "The time and date an item was last modified by a user"
 msgstr ""
 
+#: elan.esd/elan/esd/browser/elan_macros.pt:332
+msgid "There are comments."
+msgstr ""
+
 #: elan.esd/elan/esd/content/elanscenario.py:335
 msgid "There are no more documents for this scenario."
 msgstr ""
@@ -273,6 +289,10 @@ msgstr ""
 
 #: elan.esd/elan/esd/browser/elanscenarios.pt:11
 msgid "Title/Date"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/elan_macros.pt:287
+msgid "Transfer"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml

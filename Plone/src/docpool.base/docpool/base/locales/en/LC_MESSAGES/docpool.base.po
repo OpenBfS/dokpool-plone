@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-09-17 11:09+0000\n"
-"PO-Revision-Date: 2014-06-06 17:29+0100\n"
+"POT-Creation-Date: 2015-09-17 14:00+0000\n"
+"PO-Revision-Date: 2015-09-17 15:55+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
 msgid "DPDocument"
-msgstr ""
+msgstr "Document"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:114
 msgid "Delete"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
-msgstr ""
+msgstr "Document Type"
 
 #: docpool.base/docpool/base/profiles/default/types/DocumentPool.xml
 msgid "Electronic Situation Display"
@@ -75,7 +75,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.pt:12
 msgid "Group Folder: scenario filter not active!"
-msgstr ""
+msgstr "Group Folder: event filter not active!"
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
 msgid "Groups Area"
@@ -108,7 +108,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.pt:13
 msgid "Personal Folder: scenario filter not active!"
-msgstr ""
+msgstr "Personal Folder: event filter not active!"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:149
 msgid "Show document"
@@ -217,7 +217,7 @@ msgstr ""
 #. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
 #: docpool.base/docpool/base/content/documentpool.py:58
 msgid "description_documentpool_prefix"
-msgstr ""
+msgstr "Will be used to construct user and group names. If left blank, the id of the DocPool will be used."
 
 #: docpool.base/docpool/base/content/dpdocument.py:63
 msgid "description_dpdocument_doctype"
@@ -283,7 +283,7 @@ msgstr "Continue with files & images"
 #. Default: "Types are allowed as part of this type"
 #: docpool.base/docpool/base/content/doctype.py:94
 msgid "label_doctype_alloweddoctypes"
-msgstr ""
+msgstr "Types that are allowed as part of this type"
 
 #. Default: "Can contain documents and images"
 #: docpool.base/docpool/base/content/doctype.py:64
