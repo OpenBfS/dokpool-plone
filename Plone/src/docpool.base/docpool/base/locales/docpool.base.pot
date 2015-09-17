@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-13 06:54+0000\n"
+"POT-Creation-Date: 2015-09-17 11:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,6 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.base\n"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:48
-msgid "Category/Dates"
-msgstr ""
-
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
 msgid "Content Area"
 msgstr ""
@@ -29,14 +25,15 @@ msgstr ""
 msgid "DPDocument"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:90
+#: docpool.base/docpool/base/browser/dp_macros.pt:114
 msgid "Delete"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:48
-msgid "Description"
+#: docpool.base/docpool/base/profiles/default/types/DPApplication.xml
+msgid "Docpool Application"
 msgstr ""
 
+#: docpool.base/docpool/base/content/doctype.py:99
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
 msgid "Document Types"
 msgstr ""
@@ -98,12 +95,24 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:49
-msgid "Main Text"
+#: docpool.base/docpool/base/browser/dp_macros.pt:47
+msgid "Metadata"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py:472
+msgid "No legend image"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py:465
+msgid "No map image"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.pt:13
 msgid "Personal Folder: scenario filter not active!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:149
+msgid "Show document"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbaselistitem.pt:38
@@ -122,12 +131,16 @@ msgstr ""
 msgid "Textpage"
 msgstr ""
 
-#: docpool.base/docpool/base/content/simplefolder.py:143
+#: docpool.base/docpool/base/content/simplefolder.py:144
 msgid "The document has been published."
 msgstr ""
 
-#: docpool.base/docpool/base/content/simplefolder.py:158
+#: docpool.base/docpool/base/content/simplefolder.py:159
 msgid "The document state has been changed."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:46
+msgid "Title / Description / Text"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
@@ -167,8 +180,35 @@ msgstr ""
 msgid "description_contentbase_modified_by"
 msgstr ""
 
+#: docpool.base/docpool/base/content/doctype.py:95
+msgid "description_doctype_alloweddoctypes"
+msgstr ""
+
 #: docpool.base/docpool/base/content/doctype.py:65
 msgid "description_doctype_allowuploads"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py:137
+msgid "description_doctype_customviewtemplate"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py:85
+msgid "description_doctype_globalallow"
+msgstr ""
+
+#. Default: "If image exists, it will be used as a visual representation for objects of this type."
+#: docpool.base/docpool/base/content/doctype.py:128
+msgid "description_doctype_imgpattern"
+msgstr ""
+
+#. Default: "Used for automatically creating objects of this type from collections of files and images."
+#: docpool.base/docpool/base/content/doctype.py:110
+msgid "description_doctype_partspattern"
+msgstr ""
+
+#. Default: "If PDF exists, an image will be created from its first page as a visual representation for objects of this type."
+#: docpool.base/docpool/base/content/doctype.py:119
+msgid "description_doctype_pdfpattern"
 msgstr ""
 
 #: docpool.base/docpool/base/content/doctype.py:75
@@ -176,25 +216,25 @@ msgid "description_doctype_publishimmediately"
 msgstr ""
 
 #. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
-#: docpool.base/docpool/base/content/documentpool.py:57
+#: docpool.base/docpool/base/content/documentpool.py:58
 msgid "description_documentpool_prefix"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:56
+#: docpool.base/docpool/base/content/dpdocument.py:63
 msgid "description_dpdocument_doctype"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:66
+#: docpool.base/docpool/base/content/dpdocument.py:73
 msgid "description_dpdocument_text"
 msgstr ""
 
 #. Default: "There are currently no items in this folder."
-#: docpool.base/docpool/base/browser/dp_macros.pt:119
+#: docpool.base/docpool/base/browser/dp_macros.pt:83
 msgid "description_no_items_in_folder"
 msgstr ""
 
 #. Default: "Leave blank to enable all types configured for the group."
-#: docpool.base/docpool/base/content/simplefolder.py:50
+#: docpool.base/docpool/base/content/simplefolder.py:49
 msgid "description_simplefolder_alloweddoctypes"
 msgstr ""
 
@@ -241,9 +281,39 @@ msgstr ""
 msgid "label_continue"
 msgstr ""
 
+#. Default: "Types are allowed as part of this type"
+#: docpool.base/docpool/base/content/doctype.py:94
+msgid "label_doctype_alloweddoctypes"
+msgstr ""
+
 #. Default: "Can contain documents and images"
 #: docpool.base/docpool/base/content/doctype.py:64
 msgid "label_doctype_allowuploads"
+msgstr ""
+
+#. Default: "Custom View Template"
+#: docpool.base/docpool/base/content/doctype.py:136
+msgid "label_doctype_customviewtemplate"
+msgstr ""
+
+#. Default: "Can be used everywhere (not only as part of another type)"
+#: docpool.base/docpool/base/content/doctype.py:84
+msgid "label_doctype_globalallow"
+msgstr ""
+
+#. Default: "Name pattern for representative image"
+#: docpool.base/docpool/base/content/doctype.py:127
+msgid "label_doctype_imgpattern"
+msgstr ""
+
+#. Default: "Name pattern for files and images belonging to this type"
+#: docpool.base/docpool/base/content/doctype.py:109
+msgid "label_doctype_partspattern"
+msgstr ""
+
+#. Default: "Name pattern for representative PDF"
+#: docpool.base/docpool/base/content/doctype.py:118
+msgid "label_doctype_pdfpattern"
 msgstr ""
 
 #. Default: "Publish immediately?"
@@ -252,17 +322,17 @@ msgid "label_doctype_publishimmediately"
 msgstr ""
 
 #. Default: "Prefix names"
-#: docpool.base/docpool/base/content/documentpool.py:56
+#: docpool.base/docpool/base/content/documentpool.py:57
 msgid "label_documentpool_prefix"
 msgstr ""
 
 #. Default: "Document Type"
-#: docpool.base/docpool/base/content/dpdocument.py:55
+#: docpool.base/docpool/base/content/dpdocument.py:62
 msgid "label_dpdocument_doctype"
 msgstr ""
 
 #. Default: "Text"
-#: docpool.base/docpool/base/content/dpdocument.py:65
+#: docpool.base/docpool/base/content/dpdocument.py:72
 msgid "label_dpdocument_text"
 msgstr ""
 
@@ -272,7 +342,7 @@ msgid "label_save"
 msgstr ""
 
 #. Default: "Document types allowed in this folder"
-#: docpool.base/docpool/base/content/simplefolder.py:49
+#: docpool.base/docpool/base/content/simplefolder.py:48
 msgid "label_simplefolder_alloweddoctypes"
 msgstr ""
 
@@ -299,7 +369,7 @@ msgid "read/write"
 msgstr ""
 
 #. Default: "Content listing"
-#: docpool.base/docpool/base/browser/dp_macros.pt:37
+#: docpool.base/docpool/base/browser/dp_macros.pt:36
 msgid "summary_content_listing"
 msgstr ""
 

@@ -122,6 +122,43 @@
                ><img src="" tal:attributes="src string:${navigation_root_url}/delete_icon.gif"/> </a>
            </tal:if>
         </metal:delmacro>			
+        
+    <div tal:omit-tag="" metal:define-macro="fileimagelist">
+       <div class="file" tal:define="files context/getFiles" tal:condition="files"
+              tal:repeat="d files">
+        <a href="" 
+            target="_blank" 
+            title="" 
+            tal:attributes="title python:'open attachment';
+                               href python:d.absolute_url()"
+               tal:content="python:d.title_or_id()">documents
+           </a>
+           (<span tal:content="python:view.ctype_short(d)" />,&nbsp;<span tal:content="python:d.getObjSize(None, d.file.size)" />)
+       </div>
+       <div class="images" tal:define="images context/getImages" tal:condition="images">
+           <div tal:repeat="b images" class="image">
+               <a href="" tal:attributes="href python:b.absolute_url();title python:'show image';" target="_blank">
+                  <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
+               </a>
+               <div class="imgdata"><span tal:content="structure python:b.title_or_id()" />(<span tal:content="python:b.getObjSize(None, b.image.size)" />)</div>
+          </div>
+       </div>
+    </div>    
+        
+        <metal:macro define-macro="doccontent">
+           <a href="" 
+               title="Show document" 
+               i18n:attributes="title" 
+               tal:attributes="href string:javascript:go_to('${item_url}');
+                               class string:$item_type_class $item_wf_state_class"
+               tal:content="edoc/Title">Title                         
+           </a>
+           <div class="description" tal:condition="python:item_description"
+                 tal:content="structure string:$item_description"> description </div>
+
+              <div class= "fulltext" tal:content="structure python:edocobj.text.output" />
+
+        </metal:macro>
         							
     </body>
 </html>

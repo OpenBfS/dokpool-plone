@@ -457,17 +457,17 @@ class DPDocument(Container, Document, ContentBase):
                 # print obj
                 return obj
             
-    def getMapImage(self):
+    def getMapImage(self, scale=""):
         img = self.getFileOrImageByPattern(".*[-_]map\..*")
         if img:
-            return "<img src='%s' />" % img.absolute_url()
+            return "<img src='%s%s' />" % (img.absolute_url(), scale)
         else:
             return _(u"No map image")
 
-    def getLegendImage(self):
+    def getLegendImage(self, scale=""):
         img = self.getFileOrImageByPattern(".*[-_]legend\..*")
         if img:
-            return "<img src='%s' />" % img.absolute_url()
+            return "<img src='%s%s' />" % (img.absolute_url(), scale)
         else:
             return _(u"No legend image")
 ##/code-section methods 
