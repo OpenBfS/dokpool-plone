@@ -4,6 +4,7 @@
                    here nocall:context">
     <tal:def define="edoc options/edoc;
                  euid edoc/UID;
+                 eurl edoc/getURL;
                  item_id edoc/id|edoc/getId;
                  item_title edoc/Title|edoc/title_or_id;
                  title_or_id python:item_title or item_id;                 
@@ -16,7 +17,7 @@
                  myfolder nocall:options/myfolder;
                  item_description edoc/Description;
                  item_url python:isCollection and '%s/@@dview?d=%s&disable_border=1' % (myfolder.absolute_url(), euid) or edoc.getURL(original=True);
-                 item_url python:isOverview and edoc.getURL() or item_url;
+                 item_url python:isOverview and eurl or item_url;
                  item_modified edoc/getMdate;
                  item_created edoc/CreationDate;
                  item_creator edoc/Creator;
