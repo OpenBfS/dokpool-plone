@@ -47,9 +47,13 @@ class FlexibleView(BrowserView):
         doc = self.context
         dto = doc.docTypeObj()
         app = doc.currentApplication()
-        dtid = dto.customViewTemplate
-        if not dtid:
-            dtid = dto.getId()
+        dtid = doc.getPortalTypeName().lower()
+        if dto:
+            dtid = dto.customViewTemplate
+            if not dtid:
+                dtid = dto.getId()
+        else:
+            dto = doc # so that we can acquire stuff below
         data = ""
         
         for n in [

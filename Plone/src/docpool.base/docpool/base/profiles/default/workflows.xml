@@ -164,5 +164,12 @@
    </type>
    
     
+    
+    
+   <type type_id="DPConfig">
+    <bound-workflow workflow_id="dp_admin_workflow" />
+   </type>
+   
+    
  </bindings>
 </object>

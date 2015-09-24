@@ -20,5 +20,6 @@
     <value key="jscompilation">++plone++static/docpool-dashboard-compiled.js</value>
     <value key="csscompilation">++plone++static/docpool-dashboard-compiled.css</value>    
   </records>
->
+
+
 </registry>

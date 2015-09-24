@@ -1,0 +1,121 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="elan.sitrep">
+
+    <include package="plone.app.contentmenu" />
+
+<!-- ##code-section Main -->
+    
+<!-- ##/code-section Main -->    
+
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRConfig" class=".srconfig.SRConfigView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRScenario" class=".srscenario.SRScenarioView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRPhase" class=".srphase.SRPhaseView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRModuleConfig" class=".srmoduleconfig.SRModuleConfigView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISituationOverview" class=".situationoverview.SituationOverviewView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRModule" class=".srmodule.SRModuleView" />
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+        
+        
+        
+                                        
+    
+    
+        
+            <browser:page permission="zope2.View" name="view" for="..interfaces.ISituationReport" class=".situationreport.SituationReportView" />
+        
+        
+        
+        
+                                        
+    
+</configure>

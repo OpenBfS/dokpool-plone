@@ -85,6 +85,9 @@
    
    <permission id="docpool.base.AddDPApplication" title="ELAN_E: Add DPApplication" />   
    
+   
+   <permission id="docpool.base.AddDPConfig" title="ELAN_E: Add DPConfig" />   
+   
 
 <!-- ##code-section Main -->
      <utility

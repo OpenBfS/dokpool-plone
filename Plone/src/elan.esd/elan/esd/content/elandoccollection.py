@@ -144,7 +144,7 @@ class ELANDocCollection(Item, Collection):
                 if t:
                     tid = t.getId()
                     try:
-                        new = self.config[tid]
+                        new = self.config.dtypes[tid]
                     except:
                         pass
                     if new:
@@ -185,12 +185,12 @@ class ELANDocCollection(Item, Collection):
         """
         We use this index to mark those collections which actually serve as categories.
         """
-        print self
+        #print self
         if self.docTypes:
-            print "active"
+        #    print "active"
             return "active"
         else:
-            print "inactive"
+        #    print "inactive"
             return "inactive"
     
     security.declareProtected(View, 'synContentValues')

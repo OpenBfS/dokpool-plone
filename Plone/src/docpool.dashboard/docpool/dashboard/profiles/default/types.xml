@@ -19,7 +19,7 @@
        
       
 <!-- ##code-section Main -->
-     <object name="DocTypes" meta_type="Dexterity FTI" />    
+     <object name="DPConfig" meta_type="Dexterity FTI" />    
      <object name="ELANCurrentSituation" meta_type="Dexterity FTI" />    
 <!-- ##/code-section Main -->  
 </object>

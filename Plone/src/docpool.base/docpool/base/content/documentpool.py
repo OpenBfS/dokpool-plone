@@ -163,10 +163,10 @@ class DocumentPool(Container):
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 
-    def getDocTypess(self, **kwargs):
+    def getDPConfigs(self, **kwargs):
         """
         """
-        args = {'portal_type':'DocTypes'}
+        args = {'portal_type':'DPConfig'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 

@@ -36,6 +36,7 @@ setup(name='elan.policy',
           'docpool.dashboard',
           'elan.esd',
           'elan.dbaccess',
+          'elan.sitrep',
           'Products.CMFPlacefulWorkflow',
       ],
       entry_points="""

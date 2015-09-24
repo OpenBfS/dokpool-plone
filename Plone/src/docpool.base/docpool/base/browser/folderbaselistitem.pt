@@ -14,35 +14,20 @@
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  pas_member context/@@pas_member;
                  author python:pas_member.info(item_creator);
-                 creator_fullname author/name_or_id">
+                 creator_fullname author/name_or_id;
+                 item_ptype edoc/portal_type;
+                 item_type_class python:'contenttype-' + normalizeString(item_ptype);
+                 ">
                     
+                <td class="actions">
+                </td>
+                <td class="title">
+                    <div metal:use-macro="here/@@dp.macros/macros/foldercontent"/> 
+                </td>
+                <td class="metadata">
+                    <div metal:use-macro="here/@@dp.macros/macros/content-metadata"/> 
+                </td>
 
-                    <td valign="top">
-                      <span tal:condition="python:toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1)">
-                         <i18n:txt translate="">modified:</i18n:txt> 
-                         <span><tal:var replace="python:str(toLocalizedTime(item_modified, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>, 
-                         <span tal:content="structure python:context.modified_by" />
-                         <br><br>
-                      </span>
-                      <i18n:txt translate="">created:</i18n:txt> 
-                      <span><tal:var replace="python:str(toLocalizedTime(item_created, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>,     
-                      <span tal:content="structure python:context.created_by" />
-                        <br><br><span tal:condition="python:item_description"
-                              tal:content="structure item_description"> description </span>              
-                    </td>
-
-
-                   <td valign="top">
-                         
-                       <b>
-                         <img src="" tal:attributes="src string:${context/portal_url}/folder_icon.png"/>&nbsp;<a href="" title="Show folder" i18n:attributes="title" tal:attributes="href python:item_url">
-                               <span tal:attributes="class string:${item_wf_state_class};"
-                                     tal:content="edoc/Title" /></a>
-
-                       </b>
- 
-                         
-                    </td>
 </tal:def>    
 <tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

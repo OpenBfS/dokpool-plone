@@ -20,6 +20,7 @@ from docpool.base.content.privatefolder import IPrivateFolder
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.contentarea import IContentArea
 from docpool.base.content.dpapplication import IDPApplication
+from docpool.base.content.dpconfig import IDPConfig
 ##code-section imports
 from docpool.base import ELAN_EMessageFactory as _
 ##/code-section imports

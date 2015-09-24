@@ -18,7 +18,7 @@ def checkUpload(form):
         dp_type = context.REQUEST.get("form.widgets.docType")
         if dp_type:    
             try:
-                dto = context.config[dp_type[0]]
+                dto = context.config.dtypes[dp_type[0]]
                 # print dto
                 if dto.allowUploads:
                     return True

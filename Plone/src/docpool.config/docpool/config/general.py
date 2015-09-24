@@ -38,7 +38,6 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation'}
           {TYPE: 'DocType', TITLE: u'Instructions to the Public', ID: 'instructions'},
           {TYPE: 'DocType', TITLE: u'Protective Actions', ID: 'protectiveactions'},
           {TYPE: 'DocType', TITLE: u'Media Release', ID: 'mediarelease'},
-          {TYPE: 'DashboardsConfig', TITLE: u'Dashboard Configuration', ID: 'dbconfig'}
           ]
 
 ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHILDREN: [
@@ -81,83 +80,83 @@ def connectTypesAndCategories(self):
     """
     from elan.esd.behaviors.elandoctype import IELANDocType
     try:
-        IELANDocType(self.config.eventinformation).setCCategory('event-npp-information')
+        IELANDocType(self.config.dtypes.eventinformation).setCCategory('event-npp-information')
     except:
         pass
     try:
-        IELANDocType(self.config.weatherinformation).setCCategory('weather-information')
+        IELANDocType(self.config.dtypes.weatherinformation).setCCategory('weather-information')
     except:
         pass
     try:
-        IELANDocType(self.config.trajectory).setCCategory('trajectories')
+        IELANDocType(self.config.dtypes.trajectory).setCCategory('trajectories')
     except:
         pass
     try:
-        IELANDocType(self.config.cncanprojection).setCCategory('cncan-projections')
+        IELANDocType(self.config.dtypes.cncanprojection).setCCategory('cncan-projections')
     except:
         pass
     try:
-        IELANDocType(self.config.ifinprojection).setCCategory('ifin-projections')
+        IELANDocType(self.config.dtypes.ifinprojection).setCCategory('ifin-projections')
     except:
         pass
     try:
-        IELANDocType(self.config.nppprojection).setCCategory('npp-projections')
+        IELANDocType(self.config.dtypes.nppprojection).setCCategory('npp-projections')
     except:
         pass
     try:
-        IELANDocType(self.config.rodosprojection).setCCategory('rodos')
+        IELANDocType(self.config.dtypes.rodosprojection).setCCategory('rodos')
     except:
         pass
     try:
-        IELANDocType(self.config.otherprojection).setCCategory('other')
+        IELANDocType(self.config.dtypes.otherprojection).setCCategory('other')
     except:
         pass
     try:
-        IELANDocType(self.config.gammadoserate).setCCategory('gamma-dose-rate')
+        IELANDocType(self.config.dtypes.gammadoserate).setCCategory('gamma-dose-rate')
     except:
         pass
     try:
-        IELANDocType(self.config.airactivity).setCCategory('air-activity')
+        IELANDocType(self.config.dtypes.airactivity).setCCategory('air-activity')
     except:
         pass
     try:
-        IELANDocType(self.config.groundcontamination).setCCategory('ground-contamination')
+        IELANDocType(self.config.dtypes.groundcontamination).setCCategory('ground-contamination')
     except:
         pass
     try:
-        IELANDocType(self.config.mresult_feed).setCCategory('food-and-feed')
+        IELANDocType(self.config.dtypes.mresult_feed).setCCategory('food-and-feed')
     except:
         pass
     try:
-        IELANDocType(self.config.mresult_food).setCCategory('food-and-feed')
+        IELANDocType(self.config.dtypes.mresult_food).setCCategory('food-and-feed')
     except:
         pass
     try:
-        IELANDocType(self.config.mresult_water).setCCategory('water')
+        IELANDocType(self.config.dtypes.mresult_water).setCCategory('water')
     except:
         pass
     try:
-        IELANDocType(self.config.situationreport).setCCategory('situation-reports')
+        IELANDocType(self.config.dtypes.situationreport).setCCategory('situation-reports')
     except:
         pass
     try:
-        IELANDocType(self.config.protectiveactions).setCCategory('protective-actions')
+        IELANDocType(self.config.dtypes.protectiveactions).setCCategory('protective-actions')
     except:
         pass
     try:
-        IELANDocType(self.config.mediarelease).setCCategory('media-releases')
+        IELANDocType(self.config.dtypes.mediarelease).setCCategory('media-releases')
     except:
         pass
     try:
-        IELANDocType(self.config.instructions).setCCategory('instructions-to-the-public')
+        IELANDocType(self.config.dtypes.instructions).setCCategory('instructions-to-the-public')
     except:
         pass
     try:
-        IELANDocType(self.config.notification).setCCategory('notifications')
+        IELANDocType(self.config.dtypes.notification).setCCategory('notifications')
     except:
         pass
     try:
-        IELANDocType(self.config.nppinformation).setCCategory('event-npp-information')
+        IELANDocType(self.config.dtypes.nppinformation).setCCategory('event-npp-information')
     except:
         pass
 
@@ -172,8 +171,11 @@ BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Templ
                                                                                                  ]},
                   ]
 
-ADMINSTRUCTURE = [
-                  {TYPE: 'DocTypes', TITLE: u'Global Document Types', ID: 'config', CHILDREN: DTYPES},                                                         
+ADMINSTRUCTURE = [{TYPE: 'DPConfig', TITLE: u'Global Configuration', ID: 'config', CHILDREN: [
+                         {TYPE: 'DocTypes', TITLE: u'Global Document Types', ID: 'dtypes', CHILDREN: DTYPES},
+                         {TYPE: 'DashboardsConfig', TITLE: u'Dashboard Configuration', ID: 'dbconfig', CHILDREN: []},
+                                                                                               ]},
+                                                                           
                   {TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
                         {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
                         {TYPE: 'Text', TITLE: u'Help', ID: 'help', CHILDREN: []},

@@ -209,7 +209,7 @@ class DPDocument(Container, Document, ContentBase):
     def _docTypeObj_cachekey(method, self):
         return (self.absolute_url_path(), self.modified)
     
-    @ram.cache(_docTypeObj_cachekey)
+    #@ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """
         """
@@ -219,7 +219,7 @@ class DPDocument(Container, Document, ContentBase):
         #dto = queryForObject(self, id=et)
         dto = None
         try:
-            dto = self.config[et]
+            dto = self.config.dtypes[et]
         except Exception, e:
             # et can be empty
             pass

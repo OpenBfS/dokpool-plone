@@ -165,13 +165,15 @@ def createBasicPortalStructure(plonesite, fresh):
 def copyDocTypes(self, fresh):
     """
     """
-    if shasattr(self, "config"):
+    if shasattr(self, "config", acquire=False):
         return
     config = self.config
     from docpool.base.utils import _copyPaste
     _copyPaste(config, self)
-    self.config.setTitle(_("Document Types"))
+    self.config.setTitle(_("Configuration"))
     self.config.reindexObject()
+    self.config.dtypes.setTitle(_("Document Types"))
+    self.config.dtypes.reindexObject()
 
 def createContentConfig(plonesite, fresh):
     """

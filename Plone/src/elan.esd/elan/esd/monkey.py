@@ -177,6 +177,7 @@ def createTestData(self, count=100, prune=False):
         pass
     createTestDocuments(self, count)
     self.reindexAll()
+    return self.restrictedTraverse('@@view')()
 
 if not hasattr(DocumentPool, "createTestData"):
     DocumentPool.createTestData = createTestData
