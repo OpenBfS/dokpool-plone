@@ -374,6 +374,7 @@
       <element>SRCollections</element>
       <element>SRTextBlocks</element>
       <element>SituationOverview</element>
+      <element>SRFolder</element>
     </value>
   </record>
   <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">

@@ -71,7 +71,18 @@ class SRModule(Container, DPDocument):
     implements(ISRModule)
     
 ##code-section methods
+    def customMenu(self, menu_items):
+        """
+        """
+        return menu_items
     
+    def getModuleTitle(self):
+        """
+        """
+        if self.currentReport:
+            return "%s: %s" % (self.currentReport.to_object.Title(), self.Title())
+        else:
+            return self.Title()
 ##/code-section methods 
 
     def mySRModule(self):

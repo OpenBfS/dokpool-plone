@@ -18,6 +18,7 @@ from elan.esd import ELAN_EMessageFactory as _
 from elan.esd.behaviors.elandoctype import IELANDocType
 from zope.interface.interface import Interface
 from Acquisition import aq_inner
+from docpool.base.content.doctype import IDocType
 
 @provider(IFormFieldProvider)
 class IELANDocument(ITransferable):
@@ -132,7 +133,10 @@ class ELANDocument(Transferable):
         dto = self.context.docTypeObj()
         if dto:
 #            print dto
-            return dto.title, IELANDocType(dto).categories()
+            if IDocType.providedBy(dto):
+                return dto.title, IELANDocType(dto).categories()
+            else:
+                return dto.title, []
         else:
             return ("", [])
     

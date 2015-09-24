@@ -85,6 +85,10 @@ class SituationReport(Container, DPDocument):
     implements(ISituationReport)
     
 ##code-section methods
+    def customMenu(self, menu_items):
+        """
+        """
+        return menu_items
 ##/code-section methods 
 
     def mySituationReport(self):

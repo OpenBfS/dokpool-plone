@@ -50,6 +50,10 @@ SCENARIOS = [
              {TYPE: 'SRScenario', TITLE: 'Scenario 2', ID: 'scenario2', CHILDREN: PHASES}, 
              {TYPE: 'SRScenario', TITLE: 'Scenario 3', ID: 'scenario3', CHILDREN: PHASES}, 
              ]
+
+MODTYPES = [
+            {TYPE: 'SRModuleTypes', TITLE: 'SR Module Types', ID: 'mtypes', CHILDREN: MODULE_TYPES },            
+            ]
 SRCONFIG = [
             {TYPE: 'SRConfig', TITLE: 'SR Configuration', ID: 'srconfig', CHILDREN: SCENARIOS },
             {TYPE: 'SRCollections', TITLE: 'SR Collections', ID: 'colls', CHILDREN: [] },
@@ -59,7 +63,7 @@ SRCONFIG = [
 def createModuleTypes(self, fresh):
     """
     """
-    createPloneObjects(self.config.dtypes, MODULE_TYPES, fresh)
+    createPloneObjects(self.config, MODTYPES, fresh)
     
 def createSRConfig(self, fresh):
     """

@@ -30,6 +30,7 @@ from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -53,6 +54,30 @@ class SRFolder(Container, SimpleFolder):
     implements(ISRFolder)
     
 ##code-section methods
+    def modTypes(self):
+        """
+        """
+        return ModuleTypesVocabularyFactory(self, raw=True)
+
+    def customMenu(self, menu_items):
+        """
+        """
+        res = []
+        for menu_item in menu_items:
+            if menu_item.get('id') == 'SRModule':
+                for mt in self.modTypes():
+                    res.append({'extra': 
+                                {'separator': None, 'id': mt[0], 'class': 'contenttype-%s' % mt[0]}, 
+                                'submenu': None, 
+                                'description': '', 
+                                'title': mt[1], 
+                                'action': '%s/++add++SRModule?form.widgets.docType:list=%s' % (self.absolute_url(), mt[0]), 
+                                'selected': False, 
+                                'id': mt[0], 
+                                'icon': None})
+            else:
+                res.append(menu_item)
+        return res
 ##/code-section methods 
 
     def mySRFolder(self):

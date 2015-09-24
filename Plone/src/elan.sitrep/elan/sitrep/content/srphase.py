@@ -64,6 +64,11 @@ class SRPhase(Container):
         Index method
         """
         return [ self.UID() ]
+    
+    def getPhaseTitle(self):
+        """
+        """
+        return "%s: %s" % (self.mySRScenario().Title(), self.Title())
 ##/code-section methods 
 
     def mySRPhase(self):
