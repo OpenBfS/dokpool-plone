@@ -4,6 +4,11 @@ syntax: regexp
 syntax: regexp
 ^Plone/develop-eggs$
 syntax: regexp
+^Plone/eggs$
+syntax: glob
+*.pyc
+*.mo
+syntax: regexp
 ^Plone/parts$
 syntax: regexp
 ^Plone/var$
