@@ -31,6 +31,7 @@ from Products.CMFCore.utils import getToolByName
 ##code-section imports
 from zope.component import adapter
 from plone.dexterity.interfaces import IEditFinishedEvent
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -64,6 +65,16 @@ class SRScenario(Container):
         Index Method
         """
         return [ self.UID() ]
+
+    def modTypes(self):
+        """
+        """
+        return ModuleTypesVocabularyFactory(self, raw=True)
+    
+    def modTypeIds(self):
+        mtypes = self.modTypes()
+        return [ mt[0] for mt in mtypes ]
+    
 ##/code-section methods 
 
     def mySRScenario(self):

@@ -1,3 +1,25 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="elan.sitrep">
+  <records prefix="plone.resources/elan-sitrep"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js"></value>
+      <value key="css">
+        <element>++resource++elan.sitrep.stylesheets/sitrep.less</element>
+      </value>
+  </records>
+  
+  <records prefix="plone.bundles/elan-sitrep"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>elan-sitrep</element>
+    </value>
+    <value key="expression"></value>
+    <value key="compile">True</value>
+    <value key="enabled">True</value>
+    <value key="depends">docpool</value>
+    <value key="jscompilation">++plone++static/elan-sitrep-compiled.js</value>
+    <value key="csscompilation">++plone++static/elan-sitrep-compiled.css</value>    
+  </records>
+
+
 </registry>

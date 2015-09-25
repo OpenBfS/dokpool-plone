@@ -3,6 +3,10 @@
     <include package="plone.app.contentmenu" />
 
 <!-- ##code-section Main -->
+   <browser:resourceDirectory
+      name="elan.sitrep.stylesheets"
+      directory="stylesheets"
+      />
     
 <!-- ##/code-section Main -->    
 

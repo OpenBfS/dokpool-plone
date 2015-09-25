@@ -19,6 +19,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.memoize.instance import memoize
 
 ##code-section imports
+from elan.esd.behaviors.elandocument import IELANDocument
 ##/code-section imports
 
 class SRModuleView(BrowserView):
@@ -28,6 +29,8 @@ class SRModuleView(BrowserView):
     __call__ = ViewPageTemplateFile('srmodule.pt')
    
     ##code-section methods1
+    def elanobject(self):
+        return IELANDocument(self.context)
     ##/code-section methods1     
 
 

@@ -83,6 +83,14 @@ class SRModule(Container, DPDocument):
             return "%s: %s" % (self.currentReport.to_object.Title(), self.Title())
         else:
             return self.Title()
+    
+    def myReport(self):
+        """
+        """
+        if self.currentReport:
+            return self.currentReport.to_object
+        else:
+            return None
 ##/code-section methods 
 
     def mySRModule(self):

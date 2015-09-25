@@ -99,7 +99,7 @@ class ModuleTypesVocabulary(object):
 
     def __call__(self, context, raw=False):
         # print context
-        return _createVocab(context, raw, "SRModuleType", "/config", identifier="id")
+        return _createVocab(context, raw, "SRModuleType", "/config", sort_on="id", identifier="id")
     
 ModuleTypesVocabularyFactory = ModuleTypesVocabulary()
 

@@ -69,6 +69,19 @@ class SRPhase(Container):
         """
         """
         return "%s: %s" % (self.mySRScenario().Title(), self.Title())
+
+    
+    def availableModuleConfigs(self):
+        mtypes = self.modTypes()
+        res = {}
+        for mt in mtypes:
+            res[mt[0]] = None
+        mcs = self.getSRModuleConfigs()
+        for mc in mcs:
+            res[mc.modType] = mc
+        return res
+        
+    
 ##/code-section methods 
 
     def mySRPhase(self):
