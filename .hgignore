@@ -9,6 +9,8 @@ syntax: glob
 *.pyc
 *.mo
 syntax: regexp
+^Plone/.pydevproject$
+syntax: regexp
 ^Plone/parts$
 syntax: regexp
 ^Plone/var$
