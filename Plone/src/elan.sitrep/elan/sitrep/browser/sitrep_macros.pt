@@ -1,0 +1,82 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal" 
+     xmlns:metal="http://xml.zope.org/namespaces/metal" 
+     i18n:domain="elan.esd">
+    <body>
+       
+	 <metal:macro define-macro="module">  
+		<tal:def define="edit_allowed context/canBeEdited;
+		                 elanobj view/elanobject;
+		                 rs context/myState;">
+		  <tal:if condition="python:rs=='private'">
+		    <span tal:define="report context/myReport;" class="report" tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
+		        tal:attributes="href report/absolute_url"></a>
+            <div class="formControls" tal:condition="edit_allowed" tal:omit-tag="">
+            <a id="form-buttons-publish" class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishModule" i18n:translate="">Publish</a>
+            </div>     
+		        
+		        <br><br></span>
+		        
+		  </tal:if>
+		  <tal:if condition="python:rs=='published'">
+		    <span tal:define="reports context/usingReports" class="report" tal:condition="nocall:reports"><i18n:txt translate="">Used in report(s): </i18n:txt> 
+		    <ul>
+		        <li tal:repeat="report reports"><a href="" tal:content="report/Title"
+		        tal:attributes="href report/absolute_url"></a></li>
+		    </ul>
+		    <br><br></span>
+		  </tal:if>
+		    <div metal:use-macro="here/@@elan.macros/macros/docdata"/>    
+		                 
+		</tal:def>
+     </metal:macro>
+     			
+    <metal:macro define-macro="scenario_configs">
+		<tal:loop repeat="scenario context/getSRScenarios">
+		<h3><a href="${scenario/absolute_url}">${scenario/Title}</a></h3>
+		<table class="srscenario listing">
+		<thead>
+		<tr>
+		    <th i18n:translate="">Phase</th>
+		    <tal:loop repeat="mt scenario/modTypes">
+		        <th>${python:mt[1]}</th>
+		    </tal:loop>
+		</tr>
+		</thead>
+		<tbody>
+		    <tal:loop repeat="phase scenario/getSRPhases">
+		    <tr><td><a href="${phase/absolute_url}">${phase/Title}</a></td>
+		    <tal:loop define="mconfigs phase/availableModuleConfigs" repeat="mtid scenario/modTypeIds">
+		       <td tal:define="mc python:mconfigs[mtid]"><tal:if condition="nocall:mc">
+		       <a href="${mc/absolute_url}">${mc/Title}</a>
+		       <ul tal:define="tbs mc/textBlocks" tal:condition="tbs">
+		           <tal:loop repeat="tb tbs">
+		               <li><a href="${python:tb.to_object.absolute_url()}">${python:tb.to_object.Title()}</a></li>
+		           </tal:loop>
+		       </ul>
+		       </tal:if></td>
+		    </tal:loop>
+		    </tr>
+		    </tal:loop>
+		</tbody>
+		</table>
+		
+		</tal:loop>
+    </metal:macro>
+     			
+    <metal:macro define-macro="selectwidget">
+       <label class="" for="scenario" i18n:translate="" tal:attributes="for wname" tal:content="wtitle"></label>
+       <select name="selection" 
+           tal:attributes="name wname;
+                           class wname">
+           <tal:values repeat="option options">
+             <tal:var define="value python:option[0];
+                              opt python:option[1]">
+               <option tal:attributes="SELECTED python:'SELECTED' if f_value==value else None;
+                                       value value"
+                   tal:content="opt">displayname</option>
+             </tal:var>
+           </tal:values>
+       </select>
+    </metal:macro>
+    </body>
+</html>

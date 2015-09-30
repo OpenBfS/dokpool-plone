@@ -41,7 +41,7 @@ class ISituationReport(form.Schema, IDPDocument):
     """
         
     phase = RelationChoice(
-                        title=_(u'label_situationreport_phase', default=u'Phase (situation-specific)'),
+                        title=_(u'label_situationreport_phase', default=u'Phase (scenario-specific)'),
                         description=_(u'description_situationreport_phase', default=u''),
                         required=False,
 ##code-section field_phase
@@ -89,6 +89,21 @@ class SituationReport(Container, DPDocument):
         """
         """
         return menu_items
+    
+    def myPhaseConfig(self):
+        """
+        """
+        if self.phase:
+            return self.phase.to_object
+        else:
+            return None
+        
+        
+    def myModules(self):
+        """
+        """
+        return [ m.to_object for m in (self.currentModules or [])]
+            
 ##/code-section methods 
 
     def mySituationReport(self):

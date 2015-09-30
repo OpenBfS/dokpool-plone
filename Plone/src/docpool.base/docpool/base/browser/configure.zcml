@@ -41,6 +41,14 @@
                             
             <browser:page permission="zope2.View" name="docimage" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentdocimageView" />
 
+  <browser:page
+    name="images"
+    for="..interfaces.IDPDocument"
+    class=".scaling.ImageScaling"
+    allowed_attributes="scale"
+    permission="zope2.View"
+    />
+
 <!-- ##/code-section Main -->    
 
     

@@ -8,6 +8,7 @@ from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.Archetypes.utils import shasattr
 from elan.sitrep.content.situationreport import ISituationReport
 from elan.sitrep.content.srmodule import ISRModule
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SituationReportEditForm(EditForm):
@@ -19,7 +20,11 @@ class SituationReportAddForm(AddForm):
 
 class SRModuleEditForm(EditForm):
     context(ISRModule)
-    
-        
+                
 class SRModuleAddForm(AddForm):
     name('SRModule')
+ 
+    def updateWidgets(self):
+        super(SRModuleAddForm, self).updateWidgets()
+        del self.widgets['text']
+     

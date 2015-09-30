@@ -55,7 +55,14 @@ class Renderer(base.Renderer):
     ##code-section renderer-methods    
     @property
     def available(self):
-        return self.context.isSituationDisplay()
+        return self.context.isSituationDisplay() and not self.isEditMode()
+    
+    def isEditMode(self):
+        """
+        """    
+        path = self.request.get("PATH_INFO", "")
+        if path.endswith("/edit") or path.endswith("/@@edit"):
+            return True        
     ##/code-section renderer-methods
  
 ##code-section forms    

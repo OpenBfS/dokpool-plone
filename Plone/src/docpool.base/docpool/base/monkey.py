@@ -45,7 +45,8 @@ def getURL(self, relative=0, original=False):
     request = aq_get(self, 'REQUEST', None)
     if request is None and _GLOBALREQUEST_INSTALLED:
         request = getRequest()
-    if (not original) and self.portal_type == 'DPDocument':
+    
+    if (not original) and self.portal_type == 'DPDocument' and not request['URL'].find('resolveuid') > -1:
         if self.cat_path:
             # This is it: we use the path of the category
             return "%s/@@dview?d=%s&disable_border=1" % (self.cat_path, self.UID)

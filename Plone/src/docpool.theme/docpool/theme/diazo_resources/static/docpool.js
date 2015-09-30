@@ -1,5 +1,6 @@
 ﻿require(['jquery',
          'jquery-marquee',
+         'intercom',
          'docpool-functions'
          ], function($) {
 	'use strict';

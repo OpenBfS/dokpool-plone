@@ -28,6 +28,8 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
+     <element value="plone.app.contenttypes.behaviors.collection.ICollection"/>
+     <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
 ##/code-section behaviors
 </property>
 

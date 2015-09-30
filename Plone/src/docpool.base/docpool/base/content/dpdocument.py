@@ -38,7 +38,7 @@ from plone.app.discussion.interfaces import IConversation
 from Products.Archetypes.utils import DisplayList, shasattr
 from zope.container.interfaces import IContainerModifiedEvent, IObjectRemovedEvent
 from zope.component import adapter
-from plone import api
+from plone import api, namedfile
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zExceptions import BadRequest
 from plone.memoize import ram
@@ -48,6 +48,8 @@ from zope.annotation.interfaces import IAnnotations
 from BTrees.OOBTree import OOBTree
 from StringIO import StringIO
 from docpool.base import ELAN_EMessageFactory as _
+from Acquisition import aq_base, aq_parent
+from plone.dexterity.utils import safe_unicode
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -218,10 +220,12 @@ class DPDocument(Container, Document, ContentBase):
             et = self.REQUEST.get('docType','')
         #dto = queryForObject(self, id=et)
         dto = None
+        print et
         try:
             dto = self.config.dtypes[et]
         except Exception, e:
             # et can be empty
+            print e
             pass
         if not dto:
             log("No DocType Object for type name '%s'" % self.dp_type())
@@ -470,6 +474,38 @@ class DPDocument(Container, Document, ContentBase):
             return "<img src='%s%s' />" % (img.absolute_url(), scale)
         else:
             return _(u"No legend image")
+
+    def getMyImage(self, refresh=False):
+        """
+        """
+        doc = self
+        img = doc.getRepresentativeImage()
+        if img:
+            dateiname = '%s.%s' % (img.getId(), "png")
+            return img.image.data, dateiname
+        img = doc.pdfImage()
+        if img and not refresh:
+            dateiname = '%s.%s' % (img.getId(), "png")
+            return img.data, dateiname
+            
+        pdf = doc.getRepresentativePDF()
+        if pdf:
+            execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf )
+            img = doc.pdfImage()
+            dateiname = '%s.%s' % (img.getId(), "png")
+            return img.data, dateiname
+        # TODO: Idea: support default image in DocType
+        # Show Default image, if no other image is available
+        img = getattr(self,'docdefaultimage.png')
+        return img._data, 'docdefaultimage.png'
+        
+
+    def image(self):
+        """
+        """
+        data, filename = self.getMyImage(False)
+        return namedfile.NamedImage(data, filename=safe_unicode(filename))
+        
 ##/code-section methods 
 
     def myDPDocument(self):

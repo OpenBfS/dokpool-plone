@@ -11,10 +11,10 @@
  <property name="allowed_content_types">
      
          
-             <element value="SituationReport" />
-         
-         
              <element value="SRModule" />
+         
+         
+             <element value="SituationReport" />
          
          
              <element value="SRFolder" />

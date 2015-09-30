@@ -65,7 +65,7 @@ class Renderer(base.Renderer):
     
     @property
     def available(self):
-        return (not self.context.isArchive()) and self.collection is not None and self.context.isSituationDisplay()
+        return (not self.context.isArchive()) and self.collection is not None and self.context.isSituationDisplay() and not self.isEditMode()
 
     def recent_items(self):
         return self._data()
@@ -73,6 +73,12 @@ class Renderer(base.Renderer):
     def recently_modified_link(self):
         return self.collection.absolute_url()
 
+    def isEditMode(self):
+        """
+	    """	
+        path = self.request.get("PATH_INFO", "")
+        if path.endswith("/edit") or path.endswith("/@@edit"):
+            return True	
 
     @memoize
     def _data(self):

@@ -6,7 +6,7 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
-    
+    <div metal:use-macro="here/@@sitrep.macros/macros/scenario_configs"/>    
 <!-- ##/code-section Main -->    
 </metal:content-core>
 </metal:content-core>

@@ -100,6 +100,21 @@ class SRModuleConfig(Item):
         Index Method
         """
         return [ self.UID() ]
+    
+    def currentDocuments(self):
+        """
+        Return the documents from the referenced collection - if any.
+        """
+        if self.docSelection:
+            coll = self.docSelection.to_object
+            return coll.results(batch=False)
+        else:
+            return []
+        
+    def currentTextBlocks(self):
+        """
+        """
+        return [ tb.to_object for tb in ( self.textBlocks or [] )]
 ##/code-section methods 
 
 

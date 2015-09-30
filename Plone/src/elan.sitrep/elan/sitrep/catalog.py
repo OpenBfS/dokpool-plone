@@ -52,6 +52,7 @@ class SRCatalog(CatalogTool):
             ('phaseRefs', 'KeywordIndex', ('getSRPhaseRefs')),
             ('moduleRefs', 'KeywordIndex', ('getSRModuleRefs')),
             ('review_state', 'FieldIndex', ()),
+            ('sortable_title', 'FieldIndex', ()),
             ('allowedRolesAndUsers', 'DPLARAUIndex', ()),
             )
         

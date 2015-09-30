@@ -75,6 +75,11 @@ class SRScenario(Container):
         mtypes = self.modTypes()
         return [ mt[0] for mt in mtypes ]
     
+    def getSRScenarios(self):
+        """
+        """
+        return [ self ]
+
 ##/code-section methods 
 
     def mySRScenario(self):

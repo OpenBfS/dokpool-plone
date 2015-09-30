@@ -176,7 +176,7 @@
           <br>
           <tal:if condition="htmltext" define="htmltext context/text/output">
           <label i18n:translate="">Content:</label>
-          <span tal:content="structure htmltext" />
+          <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
           </tal:if>
     </metal:macro>
 

@@ -3,11 +3,18 @@
     <include package="plone.app.contentmenu" />
 
 <!-- ##code-section Main -->
-   <browser:resourceDirectory
+    <grok:grok package="." />
+    
+    <browser:resourceDirectory
       name="elan.sitrep.stylesheets"
       directory="stylesheets"
       />
     
+        <browser:page permission="zope2.View"
+            name="sitrep.macros"
+            for="*"
+            template="sitrep_macros.pt" 
+         />    
 <!-- ##/code-section Main -->    
 
     
@@ -30,16 +37,12 @@
     
     
         
-            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRPhase" class=".srphase.SRPhaseView" />
-        
         
         
         
                                         
     
     
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.ISRModuleConfig" class=".srmoduleconfig.SRModuleConfigView" />
         
         
         
@@ -97,7 +100,11 @@
         
         
         
-                                        
+                
+    
+            <browser:page permission="zope2.View" name="material" for="..interfaces.ISRModule" class=".srmodule.SRModulematerialView" />
+                    
+                            
     
     
         

@@ -30,6 +30,9 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from docpool.base.utils import queryForObjects, back_references
+from plone.api import content
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -71,6 +74,11 @@ class SRModule(Container, DPDocument):
     implements(ISRModule)
     
 ##code-section methods
+    def myState(self):
+        """
+        """
+        return content.get_state(self, "None")
+
     def customMenu(self, menu_items):
         """
         """
@@ -91,6 +99,132 @@ class SRModule(Container, DPDocument):
             return self.currentReport.to_object
         else:
             return None
+        
+    def previousVersions(self):
+        """
+        """
+        path = self.dpSearchPath()
+        brains = queryForObjects(self, path=path, portal_type='SRModule', dp_type=self.docType,review_state='published', sort_on='changed', sort_order='reverse')        
+        return brains
+    
+    def previousVersion(self):
+        """
+        The previous version is the instance youngest published instance of SRModule with the same Module Type.
+        """
+        pv = self.previousVersions()
+        if len(pv) > 0:
+            return pv[0].getObject()
+        else:
+            return None
+        
+    def defaultFilter(self):
+        """
+        Determines all default filter criteria for text blocks by looking at the currentReport and module type.
+        """
+        modType = self.docType
+        res = { 'scenario' : None,
+                'phase' : None,
+                'module_type' : modType,
+                'mandatory' : False,
+                'config' : None }
+        r = self.myReport()
+        if r:
+            p = r.myPhaseConfig()
+            if p:
+                res['phase'] = p.getId()
+                res['scenario'] = p.mySRScenario().getId()
+                # my module is mandatory if the designated phase has a moduleconfig for my type
+                mcs = p.availableModuleConfigs()
+                if mcs.get(modType, None):
+                    res['mandatory'] = True
+                    res['config'] = mcs.get(modType, None)
+        return res
+    
+    def getFilter(self, request):
+        """
+        """
+        df = self.defaultFilter()
+        scenario = request.get('scenario', df['scenario'])
+        phase = request.get('phase', df['phase'])
+        module_type = request.get('module_type', df['module_type'])
+        return scenario, phase, module_type
+    
+    def possibleSRScenarios(self):
+        """
+        """
+        path = self.dpSearchPath()
+        return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in queryForObjects(self, path=path, portal_type='SRScenario', sort_on='sortable_title') ]
+
+    def possibleSRPhases(self):
+        """
+        """
+        path = self.dpSearchPath()
+        raw = queryForObjects(self, path=path, portal_type='SRPhase', sort_on='sortable_title')
+        ids = []
+        res = []
+        for p in raw:
+            if p.getId in ids:
+                continue
+            else:
+                ids.append(p.getId)
+                res.append(p)
+        return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in res ]
+        
+    def possibleSRModuleTypes(self):
+        """
+        """
+        return [ ( "", '---') ] + ModuleTypesVocabularyFactory(self, raw=True)
+
+    def usingReports(self):
+        """
+        Which reports am I being used in?
+        """
+        reports = back_references(self, "currentModules")
+        return reports
+    
+    def visualisations(self):
+        """
+        """
+        df = self.defaultFilter()
+        mc = df['config']
+        if mc:
+            return mc.currentDocuments()[:20]
+        else:
+            return []
+        
+    def textBlocks(self):
+        """
+        """
+        request = self.REQUEST
+        path = self.dpSearchPath()
+        scenario, phase, module_type = None, None, None
+        if request.get('filtered', False):
+            scenario, phase, module_type = self.getFilter(request)
+        else:
+            df = self.defaultFilter()
+            mc = df['config']
+            if mc:
+                return mc.currentTextBlocks()
+        args = {'portal_type':'SRTextBlock', 'sort_on':'sortable_title', 'path': path }
+        if scenario:
+            args['scenarios'] = scenario
+        if phase:
+            args['phases'] = phase
+        if module_type:
+            args['modules'] = module_type
+        #print args
+        sr_cat = getToolByName(self, 'sr_catalog')
+        if scenario or phase or module_type:
+            return [ brain.getObject() for brain in sr_cat(**args) ]
+        else:
+            return []
+        
+    def publishModule(self):
+        """
+        """
+        new_version = content.copy(source=self, id=self.getId(), safe_id=True)
+        content.transition(new_version, transition="publish")
+        return self.restrictedTraverse("@@view")()
 ##/code-section methods 
 
     def mySRModule(self):

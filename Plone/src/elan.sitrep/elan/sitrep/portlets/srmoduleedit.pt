@@ -1,0 +1,14 @@
+<tal:block i18n:domain="elan.sitrep">
+<!-- ##code-section Portlet -->
+    <script>
+    var intercom = Intercom.getInstance();
+    intercom.on('notice', function(data) {
+    	var editor = tinymce.activeEditor;
+    	console.log(data.message);
+    	editor.execCommand('mceInsertContent', false, data.message);
+    });    
+    </script>
+    <a i18n:translate="" onclick="" class="submit-widget button-field context"
+    tal:attributes="onclick python:'window.open(\'%s/@@material?popup_load=1\',\'ModuleMaterial\')' % context.absolute_url();">Open building blocks window</a>
+<!-- ##/code-section Portlet -->    
+</tal:block>

@@ -25,6 +25,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Item
+from docpool.base.content.contentbase import ContentBase, IContentBase
 
 from Products.CMFCore.utils import getToolByName
 
@@ -39,7 +40,7 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import ELAN_EMessageFactory as _
 
-class ISRTextBlock(form.Schema):
+class ISRTextBlock(form.Schema, IContentBase):
     """
     """
     dexteritytextindexer.searchable('text')    
@@ -56,7 +57,7 @@ class ISRTextBlock(form.Schema):
 ##/code-section interface
 
 
-class SRTextBlock(Item):
+class SRTextBlock(Item, ContentBase):
     """
     """
     security = ClassSecurityInfo()

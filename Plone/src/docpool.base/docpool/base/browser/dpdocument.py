@@ -197,37 +197,13 @@ class DPDocumentdocimageView(BrowserView):
         response = request.RESPONSE
         response.setHeader('Content-Type', 'image/png')
         response.setHeader('Cache-control', 'max-age=300,s-maxage=300,must-revalidate')
-        
-        doc = self.context
-        img = doc.getRepresentativeImage()
-        if img:
-            dateiname = '%s.%s' % (img.getId(), "png")
-            header_value= contentDispositionHeader('inline', filename=dateiname, charset='latin-1')
-            response.setHeader('Content-disposition', header_value)
-            response.setHeader('Content-Length', len(img.image.data))
-            return img.image.data
-        img = doc.pdfImage()
-        if img and not refresh:
-            dateiname = '%s.%s' % (img.getId(), "png")
-            header_value= contentDispositionHeader('inline', filename=dateiname, charset='latin-1')
-            response.setHeader('Content-disposition', header_value)
-            response.setHeader('Content-Length', len(img.data))
-            return img.data
-            
-        pdf = doc.getRepresentativePDF()
-        if pdf:
-            execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf )
-            img = doc.pdfImage()
-            dateiname = '%s.%s' % (img.getId(), "png")
-            header_value= contentDispositionHeader('inline', filename=dateiname, charset='latin-1')
-            response.setHeader('Content-disposition', header_value)
-            response.setHeader('Content-Length', len(img.data))
-            return img.data
-        # TODO: Idea: support default image in DocType
-        
-        # Show Default image, if no other image is available
-        img = getattr(self.context,'docdefaultimage.png')
-        return img._data
+
+        data, filename = self.context.getMyImage(refresh)
+                
+        header_value= contentDispositionHeader('inline', filename=filename, charset='latin-1')
+        response.setHeader('Content-disposition', header_value)
+        response.setHeader('Content-Length', len(data))
+        return data
     ##/code-section methodsdocimage     
 
 
