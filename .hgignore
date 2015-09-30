@@ -4,13 +4,6 @@ syntax: regexp
 syntax: regexp
 ^Plone/develop-eggs$
 syntax: regexp
-^Plone/eggs$
-syntax: glob
-*.pyc
-*.mo
-syntax: regexp
-^Plone/.pydevproject$
-syntax: regexp
 ^Plone/parts$
 syntax: regexp
 ^Plone/var$
@@ -38,3 +31,9 @@ syntax: regexp
 ^Plone/\.mr\.developer\.cfg$
 syntax: regexp
 ^Plone/\.settings$
+syntax: regexp
+^Plone/\.pydevproject\.bak$
+syntax: regexp
+^Plone/\.pydevproject$
+syntax: regexp
+\.DS_Store$
