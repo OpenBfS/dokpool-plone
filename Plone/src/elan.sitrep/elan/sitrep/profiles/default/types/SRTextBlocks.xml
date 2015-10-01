@@ -13,6 +13,9 @@
          
              <element value="SRTextBlock" />
          
+         
+             <element value="SRTextBlocks" />
+         
      
  </property>
  <!-- schema interface -->

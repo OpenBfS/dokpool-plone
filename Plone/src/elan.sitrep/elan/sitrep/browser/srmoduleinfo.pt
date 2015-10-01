@@ -1,6 +1,8 @@
-<tal:block i18n:domain="elan.sitrep" define="elanobj view/elanobject;">
+<tal:block i18n:domain="elan.sitrep">
 <tal:var replace="nothing"><!-- ##code-section View --></tal:var>
+<tal:def define="elanobj view/elanobject;">
    <h4><a target="_blank" href="${context/absolute_url}">${context/Title}</a></h4>
-   <div metal:use-macro="here/@@elan.macros/macros/docdata"/>    
+   <div metal:use-macro="here/@@elan.macros/macros/docdata"/>
+</tal:def>    
 <tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

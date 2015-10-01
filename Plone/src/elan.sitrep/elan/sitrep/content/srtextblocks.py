@@ -79,6 +79,13 @@ class SRTextBlocks(Container):
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 
+    def getSRTextBlockss(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'SRTextBlocks'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
 
 ##code-section bottom
 ##/code-section bottom 
