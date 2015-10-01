@@ -126,8 +126,6 @@
     
     
         
-            <browser:page permission="zope2.View" name="view" for="..interfaces.ISituationReport" class=".situationreport.SituationReportView" />
-        
         
         
         

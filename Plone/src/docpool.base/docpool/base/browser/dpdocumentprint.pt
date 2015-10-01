@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<tal:block i18n:domain="docpool.base">
+<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
+<html>
+    <head>
+<style>
+@page {
+    size: a4 portrait;
+    @frame header_frame {
+        -pdf-frame-content: header_content;
+        left: 50pt; width: 512pt; top: 30pt; height: 58pt;
+     /*   -pdf-frame-border: 1; */
+    }    
+    @frame content_frame {
+        left: 50pt; width: 512pt; top: 90pt; height: 710pt;
+     /*   -pdf-frame-border: 1; */
+    }
+     @frame footer_frame {
+        -pdf-frame-content: footer_content;
+        left: 50pt; width: 512pt; top: 800pt; height: 58pt;
+     /*   -pdf-frame-border: 1; */
+    }
+}
+</style>
+<style type="text/css">
+
+body {
+    font-family: Arial;
+    color: #000000;
+}
+    
+    
+p {
+    line-height: 14px;
+    font-size: 12px;
+    margin: 0 0 0 0;
+}
+
+    
+</style>
+
+    </head>
+    <body> 
+    <tal:insert replace="structure python:view.myView('print', **options)" />
+    </body>
+    </html>
+<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
+</tal:block>

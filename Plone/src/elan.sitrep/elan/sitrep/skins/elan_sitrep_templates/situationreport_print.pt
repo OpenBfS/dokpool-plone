@@ -1,0 +1,29 @@
+<tal:block i18n:domain="elan.sitrep"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context">
+<tal:def define="edit_allowed context/canBeEdited;
+                 elanobj view/elanobject;">
+        <div id="header_content">
+        </div>
+        <div id="content">
+        <h2 tal:content="context/Title"></h2>
+          <div metal:use-macro="here/@@elan.macros/macros/docdata_meta"/>   
+          <div metal:use-macro="here/@@elan.macros/macros/transferEvents"/>   
+          
+          <tal:if condition="htmltext" define="htmltext context/text/output">
+          <h3 i18n:translate="">Summary</h3>
+          <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
+          </tal:if>
+          
+          <tal:loop repeat="m context/myModules">
+          <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>
+          <tal:if condition="htmltext" define="htmltext m/text/output">
+          <span tal:attributes="id string:mod_${m/getId}" tal:content="structure htmltext" />
+          </tal:if>
+          </tal:loop>
+        </div>
+        <div id="footer_content">
+        </div>    
+ </tal:def>
+</tal:block>

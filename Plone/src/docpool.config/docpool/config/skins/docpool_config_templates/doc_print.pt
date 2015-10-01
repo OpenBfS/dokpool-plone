@@ -1,0 +1,9 @@
+<tal:block i18n:domain="docpool.base"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context">
+    <tal:def define="edit_allowed python:False;
+                     elanobj view/elanobject">
+    <div metal:use-macro="here/@@elan.macros/macros/elandoc"/>
+    </tal:def>  
+</tal:block>

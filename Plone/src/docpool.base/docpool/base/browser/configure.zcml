@@ -7,7 +7,7 @@
     
         <browser:page permission="zope2.View"
             name="pdfprint"
-            for="*"
+            for="..interfaces.IDPDocument"
             class=".printview.PrintView"
          />    
 
@@ -43,6 +43,7 @@
     
     
             <browser:page permission="zope2.View" name="inline" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentinlineView" />
+            <browser:page permission="zope2.View" name="print" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentprintView" />
                     
                             
             <browser:page permission="zope2.View" name="docimage" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentdocimageView" />

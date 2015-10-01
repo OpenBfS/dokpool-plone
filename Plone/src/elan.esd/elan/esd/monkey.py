@@ -30,7 +30,7 @@ from elan.esd.utils import getScenariosForCurrentUser
 from docpool.base.utils import deleteMemberFolders
 from elan.esd.behaviors.elandocument import IELANDocument
 from docpool.base.browser.dpdocument import DPDocumentView,\
-    DPDocumentlistitemView, DPDocumentinlineView
+    DPDocumentlistitemView, DPDocumentinlineView, DPDocumentprintView
 
 logger = logging.getLogger('plone.app.controlpanel')
 
@@ -198,3 +198,4 @@ def elanobject(self):
 DPDocumentView.elanobject = elanobject
 DPDocumentlistitemView.elanobject = elanobject
 DPDocumentinlineView.elanobject = elanobject
+DPDocumentprintView.elanobject = elanobject

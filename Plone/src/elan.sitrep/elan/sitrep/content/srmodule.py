@@ -33,6 +33,7 @@ from Products.CMFCore.utils import getToolByName
 from docpool.base.utils import queryForObjects, back_references, portalMessage
 from plone.api import content
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from DateTime import DateTime
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -88,7 +89,7 @@ class SRModule(Container, DPDocument):
         """
         """
         if self.currentReport:
-            return "%s: %s" % (self.currentReport.to_object.Title(), self.Title())
+            return "%s: %s (%s)" % (self.currentReport.to_object.Title(), self.Title(), self.toLocalizedTime(DateTime(self.changed()), long_format=1))
         else:
             return self.Title()
     

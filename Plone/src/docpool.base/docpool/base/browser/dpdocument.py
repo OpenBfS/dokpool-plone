@@ -182,6 +182,17 @@ class DPDocumentinlineView(FlexibleView):
         
     ##/code-section methodsinline     
 
+class DPDocumentprintView(FlexibleView):
+    """Additional View
+    """
+    
+    __call__ = ViewPageTemplateFile('dpdocumentprint.pt')
+    
+    ##code-section methodsinline
+    implements(IViewView)
+        
+    ##/code-section methodsinline     
+
 class DPDocumentdocimageView(BrowserView):
     """Additional View
     """
