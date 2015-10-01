@@ -6,7 +6,74 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
+<div class="dashboard" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                                   reports context/availableSituationReports;
+                                   reportslist python:reports[0];
+                                   reportsdict python:reports[1];
+                                   reportuid request/reportuid|nothing;
+                                   reportuid python:reportuid != 'userdefined' and reportuid or None;
+                                   modules python:context.availableModules(reportUID=reportuid);
+                                   moduids python:modules[1];
+                                   modules python:modules[0];
+                                   mtypes context/modTypes;">
+       <form class="reportselection" action="/" method="post" accept-charset="UTF-8" tal:attributes="action context/absolute_url">
+    <tal:widget define="wname string:reportuid;
+                        wtitle string:Report;
+                        options reportslist;
+                        f_value reportuid;
+                        do_submit python:False">
+         <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
+    </tal:widget>
+    <a onclick="window.location.href = window.location.pathname + window.location.search;" class="submit-widget context button-field" i18n:translate="">Reload current situation</a>
     
+    </form>
+                                   
+    <tal:loop repeat="mtype mtypes">
+       <div class="doctile" tal:define="mtitle python:mtype[1];
+                                        mid python:mtype[0];
+                                        versions python:modules[mid];
+                                        versionlist python:versions[0];
+                                        hasCurrent python: versions[1] is not None;
+                                        ">
+           <h4 class="collection">${mtitle}</h4>
+           
+		    <tal:widget define="wname mid;
+		                        wtitle string:Version;
+		                        options versionlist;
+		                        f_value python:moduids[mid];">
+		     <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>
+		     <span class="current" tal:condition="hasCurrent" i18n:translate="">There is a current working version.</span>            
+		    </tal:widget>
+           <div class="modulecontent" tal:attributes="id string:mod_${mid}">
+                <span i18n:translate="">No current content.</span>    
+           </div>
+       </div>
+    </tal:loop>
+</div>
+<script>
+$(document).ready ( function () {
+	$('.doctile').each(function( index ) {
+		  var s = $(this).children('select')[0];
+		  var d = $(this).children('.modulecontent')[0];
+		  var uid = $(s).val();
+		  if (uid != null) {
+			$(d).load('${context/absolute_url}/modinfo?moduid=' + uid);  
+		  };
+	});
+	$( ".reportuid" ).change(function() {
+		this.form.submit();
+	});
+   $( ".doctile select" ).change(function() {
+       var d = $(this).parent().children('.modulecontent')[0];
+       var uid = $(this).val();
+       if (uid != null) {
+         $(d).load('${context/absolute_url}/modinfo?moduid=' + uid);
+         $(".reportuid").val('userdefined');
+       };
+    }); 
+
+});
+</script>
 <!-- ##/code-section Main -->    
 </metal:content-core>
 </metal:content-core>

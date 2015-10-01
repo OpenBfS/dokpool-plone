@@ -53,6 +53,10 @@ class Renderer(base.Renderer):
     render = ViewPageTemplateFile('srmoduleedit.pt')
        
     ##code-section renderer-methods    
+    @property
+    def available(self):
+        return self.isEditMode()
+
     def isEditMode(self):
         """
     	"""    

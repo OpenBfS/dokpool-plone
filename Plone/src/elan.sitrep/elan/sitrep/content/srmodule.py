@@ -30,7 +30,7 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from docpool.base.utils import queryForObjects, back_references
+from docpool.base.utils import queryForObjects, back_references, portalMessage
 from plone.api import content
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 ##/code-section imports 
@@ -224,6 +224,7 @@ class SRModule(Container, DPDocument):
         """
         new_version = content.copy(source=self, id=self.getId(), safe_id=True)
         content.transition(new_version, transition="publish")
+        portalMessage(self, _("The module has been published."), "info")
         return self.restrictedTraverse("@@view")()
 ##/code-section methods 
 

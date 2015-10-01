@@ -104,6 +104,10 @@
     
             <browser:page permission="zope2.View" name="material" for="..interfaces.ISRModule" class=".srmodule.SRModulematerialView" />
                     
+    
+    
+            <browser:page permission="zope2.View" name="info" for="..interfaces.ISRModule" class=".srmodule.SRModuleinfoView" />
+                    
                             
     
     

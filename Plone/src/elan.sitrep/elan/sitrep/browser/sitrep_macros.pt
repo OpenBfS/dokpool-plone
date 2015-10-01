@@ -1,5 +1,6 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal" 
      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
      i18n:domain="elan.esd">
     <body>
        
@@ -11,7 +12,10 @@
 		    <span tal:define="report context/myReport;" class="report" tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
 		        tal:attributes="href report/absolute_url"></a>
             <div class="formControls" tal:condition="edit_allowed" tal:omit-tag="">
-            <a id="form-buttons-publish" class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishModule" i18n:translate="">Publish</a>
+            <a id="form-buttons-publish" 
+                onclick="return confirm('${context/Title}: ${alert_msg}');"
+               tal:define="alert_msg python:context.translate('module_publish_popup', default='Do you really want to create a published version of this module?', domain='elan.sitrep', escape_for_js=True)"
+            class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishModule" i18n:translate="">Publish</a>
             </div>     
 		        
 		        <br><br></span>
@@ -63,11 +67,12 @@
 		</tal:loop>
     </metal:macro>
      			
-    <metal:macro define-macro="selectwidget">
+    <metal:macro define-macro="selectwidget" tal:define="do_submit do_submit|nothing">
        <label class="" for="scenario" i18n:translate="" tal:attributes="for wname" tal:content="wtitle"></label>
        <select name="selection" 
            tal:attributes="name wname;
-                           class wname">
+                           class wname;
+                           onclick python:do_submit and 'javascript:this.form.submit()' or None">
            <tal:values repeat="option options">
              <tal:var define="value python:option[0];
                               opt python:option[1]">

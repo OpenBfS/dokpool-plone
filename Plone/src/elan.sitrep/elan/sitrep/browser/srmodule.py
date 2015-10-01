@@ -44,6 +44,17 @@ class SRModulematerialView(BrowserView):
         return IELANDocument(self.context)
     ##/code-section methodsmaterial     
 
+class SRModuleinfoView(BrowserView):
+    """Additional View
+    """
+    
+    __call__ = ViewPageTemplateFile('srmoduleinfo.pt')
+    
+    ##code-section methodsinfo
+    def elanobject(self):
+        return IELANDocument(self.context)
+    ##/code-section methodsinfo     
+
 
 
 ##code-section bottom

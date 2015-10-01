@@ -1,0 +1,44 @@
+<tal:block i18n:domain="elan.esd">
+<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
+<tal:def define="dummy python:request.set('ajax_load',1);
+                 dummy python:request.set('ajax_include_head',1);">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="elan.esd">
+
+<head>
+  <metal:block metal:fill-slot="head_slot">
+  </metal:block>
+
+  <metal:block fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1);
+                           disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                           disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+
+  <div id="content-core" metal:fill-slot="main">
+    <tal:if condition="python:context.isOverview()">
+    <h3 style="float: right;margin-right:2em;" tal:condition="here/isArchive"><i18n:var translate=""> Archive</i18n:var> <tal:var define="a_obj here/myELANArchive|nothing" replace="python:a_obj and a_obj.Title() or ''"/></h3>
+    <tal:if condition="not:here/isArchive">
+        <tal:def define="view view/scenario_view">
+            <div metal:use-macro="here/@@elan.macros/macros/scenario_table"/>
+        </tal:def>   
+    </tal:if>
+    <div class="cat_scen">
+    <div metal:use-macro="here/@@elan.macros/macros/cat_filter"/>
+    </div>
+    </tal:if>
+    <div metal:use-macro="here/@@elan.macros/macros/doccollection"/>    
+  </div>
+
+</body>
+</html>
+</tal:def>
+<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
+</tal:block>

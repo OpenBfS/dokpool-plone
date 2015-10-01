@@ -6,6 +6,12 @@
     <grok:grok package="." />
     
         <browser:page permission="zope2.View"
+            name="pdfprint"
+            for="*"
+            class=".printview.PrintView"
+         />    
+
+        <browser:page permission="zope2.View"
             name="dp.macros"
             for="*"
             template="dp_macros.pt" 
