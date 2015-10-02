@@ -220,13 +220,14 @@ class SRModule(Container, DPDocument):
         else:
             return []
         
-    def publishModule(self):
+    def publishModule(self, justDoIt=False):
         """
         """
         new_version = content.copy(source=self, id=self.getId(), safe_id=True)
         content.transition(new_version, transition="publish")
-        portalMessage(self, _("The module has been published."), "info")
-        return self.restrictedTraverse("@@view")()
+        if not justDoIt:
+            portalMessage(self, _("The module has been published."), "info")
+            return self.restrictedTraverse("@@view")()
 ##/code-section methods 
 
     def mySRModule(self):

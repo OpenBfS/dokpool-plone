@@ -24,7 +24,6 @@ def _createVocab(context, raw, ptype, path="", sort_on="sortable_title", add_que
     query = {"portal_type":ptype, "sort_on": sort , "path": path}
     query.update(add_query)
     types = cat(query)
-    print len(types)
     if identifier == "UID":
         types = [ (brain.UID, title_method(brain)) for brain in types ]
     elif identifier == "id": 
@@ -38,7 +37,6 @@ def _createVocab(context, raw, ptype, path="", sort_on="sortable_title", add_que
             items = [SimpleTerm(i[0], i[2], i[1]) for i in types]
         else:
             items = [SimpleTerm(i[0], i[0], i[1]) for i in types]
-        print items
         return SimpleVocabulary(items)
     else:
         return types

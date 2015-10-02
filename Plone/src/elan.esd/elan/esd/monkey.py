@@ -12,7 +12,7 @@ from Products.PlonePAS.tools.membership import MembershipTool
 
 from Products.Archetypes.utils import shasattr
 
-
+from plone.protect.interfaces import IDisableCSRFProtection
 # Patches for the dropdown menu to include personal and group folders
 
 from docpool.base.content.documentpool import DocumentPool
@@ -164,6 +164,9 @@ def createTestData(self, count=100, prune=False):
     If 'prune' is True, then all existing (test)data will be deleted
     before it is created afresh.
     """
+    request = self.REQUEST
+    alsoProvides(request, IDisableCSRFProtection)        
+    
     if prune:
         deleteTestData(self)
     createGroupsAndUsers(self)

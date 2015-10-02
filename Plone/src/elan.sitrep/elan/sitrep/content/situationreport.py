@@ -30,6 +30,8 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from plone.api import content
+from docpool.base.utils import portalMessage
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -104,6 +106,14 @@ class SituationReport(Container, DPDocument):
         """
         return [ m.to_object for m in (self.currentModules or [])]
             
+    def publishReport(self, justDoIt=False):
+        """
+        """
+        new_version = content.copy(source=self, id=self.getId(), safe_id=True)
+        content.transition(new_version, transition="publish")
+        if not justDoIt:
+            portalMessage(self, _("The report has been published."), "info")
+            return self.restrictedTraverse("@@view")()
 ##/code-section methods 
 
     def mySituationReport(self):

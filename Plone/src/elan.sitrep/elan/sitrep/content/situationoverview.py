@@ -73,7 +73,8 @@ class SituationOverview(Item):
         * Determine "missing" modules
         """
         uss = getScenariosForCurrentUser(self)
-        reports = queryForObjects(self, portal_type='SituationReport', sort_on='changed', sort_order='reverse', review_state='published', changed={
+        path = self.dpSearchPath()
+        reports = queryForObjects(self, path=path, portal_type='SituationReport', sort_on='changed', sort_order='reverse', review_state='published', changed={
                  'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
                  'range': 'min' },
                                   scenarios=uss
@@ -106,10 +107,12 @@ class SituationOverview(Item):
         """
         res = {}
         moduids = {}
-        uss = getScenariosForCurrentUser(self)        
+        uss = getScenariosForCurrentUser(self)       
+        path = self.dpSearchPath()
+ 
         for mt in self.modTypes():
                 moduids[mt[0]] = None
-                mods = queryForObjects(self, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
+                mods = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
                                        review_state='published', changed={
                  'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
                  'range': 'min' },
@@ -119,7 +122,7 @@ class SituationOverview(Item):
                 latest = mods and mods[0].changed or (DateTime() - 14).asdatetime().replace(tzinfo=None)
                 if mods:
                     moduids[mt[0]] = mods[0].UID
-                current = queryForObjects(self, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
+                current = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
                                        review_state='private', changed={
                  'query' : latest,
                  'range': 'min' },
