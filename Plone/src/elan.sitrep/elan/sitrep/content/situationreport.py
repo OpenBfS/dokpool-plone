@@ -31,7 +31,17 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from plone.api import content
-from docpool.base.utils import portalMessage
+from docpool.base.utils import portalMessage, queryForObject
+from elan.sitrep.content.situationoverview import _availableModules
+from datetime import datetime
+import re
+from plone.namedfile import NamedBlobFile 
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.dexterity.utils import safe_unicode
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from z3c.relationfield.relation import RelationValue
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -74,7 +84,7 @@ class ISituationReport(form.Schema, IDPDocument):
     form.mode(docType='hidden')
     docType = schema.TextLine(
             title=u"Document Type",
-            default=u"situationreport"
+            default=u""
         )    
 ##/code-section interface
 
@@ -104,16 +114,83 @@ class SituationReport(Container, DPDocument):
     def myModules(self):
         """
         """
-        return [ m.to_object for m in (self.currentModules or [])]
+        copied_modules = self.getSRModules()
+        if copied_modules: # should we ever use that
+            return copied_modules
+        else: # report under construction
+            return [ m.to_object for m in (self.currentModules or [])]
             
-    def publishReport(self, justDoIt=False):
+    def publishReport(self, justDoIt=False, duplicate=False):
         """
         """
-        new_version = content.copy(source=self, id=self.getId(), safe_id=True)
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)
+        new_version = self
+        if duplicate:
+            new_version = content.copy(source=self, id=self.getId(), safe_id=True)
+        # copy modules into the report?
+        # We would lose all the reference information, which is important for the situation overview
+        #mods = self.myModules()
+        #for mod in mods:
+        #    content.copy(source=mod, target=new_version, safe_id=True)
+        # create PDF, upload it
+        data = self.restrictedTraverse("@@pdfprint")._generatePDF(raw=True)
+        nice_filename = 'report_%s_%s.pdf' % (self.getId(), datetime.now().strftime('%Y%m%d'))
+        nice_filename = safe_unicode(nice_filename)
+        field = NamedBlobFile(data=data, filename=nice_filename)
+        fid = new_version.invokeFactory(id=nice_filename, type_name="File", title=self.Title(), description="")
+        f = new_version._getOb(fid)
+        f.file = field
+        f.reindexObject()
+        
         content.transition(new_version, transition="publish")
         if not justDoIt:
             portalMessage(self, _("The report has been published."), "info")
             return self.restrictedTraverse("@@view")()
+        
+    def mirrorOverview(self):
+        """
+        """
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)
+        intids = getUtility(IIntIds)
+        
+        modules = _availableModules(self)
+        modules = modules and modules[0] or {}
+        # link to current modules
+        refs = []
+        for mt in self.modTypes():
+            #print idx
+            mod = modules.get(mt[0], None)
+            if mod:
+                print mod
+                moduid = mod[0][0]
+                module = queryForObject(self, UID=moduid)
+                print module
+                if module:
+                    to_id = intids.getId(module)
+                    refs.append(RelationValue(to_id))
+
+        if refs:
+            self.currentModules = refs
+            self.reindexObject()   
+            portalMessage(self, _("Modules have been replaced with current situation overview."), "info")
+        else:
+            portalMessage(self, _("No modules found in current situation overview."), "warn")
+        return self.restrictedTraverse("@@view")()
+        
+    def getRepresentativePDF(self):
+        """
+        """
+        pdfPattern = "report.*\.pdf"
+        p = re.compile(pdfPattern, re.IGNORECASE)
+        files = self.getFiles()
+        for f in files:
+            if p.match(f.getId()):
+                return f
+        else:
+            return None
+        
 ##/code-section methods 
 
     def mySituationReport(self):
@@ -134,6 +211,13 @@ class SituationReport(Container, DPDocument):
         """
         """
         return [obj.getObject() for obj in self.getFolderContents()]
+
+    def getFiles(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'File'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
     def getSRModules(self, **kwargs):
         """

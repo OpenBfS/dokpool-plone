@@ -34,6 +34,8 @@ from docpool.base.utils import queryForObjects, back_references, portalMessage
 from plone.api import content
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from DateTime import DateTime
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -75,11 +77,6 @@ class SRModule(Container, DPDocument):
     implements(ISRModule)
     
 ##code-section methods
-    def myState(self):
-        """
-        """
-        return content.get_state(self, "None")
-
     def customMenu(self, menu_items):
         """
         """
@@ -223,11 +220,17 @@ class SRModule(Container, DPDocument):
     def publishModule(self, justDoIt=False):
         """
         """
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)        
+
         new_version = content.copy(source=self, id=self.getId(), safe_id=True)
         content.transition(new_version, transition="publish")
         if not justDoIt:
             portalMessage(self, _("The module has been published."), "info")
             return self.restrictedTraverse("@@view")()
+        
+    def transferable(self):
+        return 1
 ##/code-section methods 
 
     def mySRModule(self):

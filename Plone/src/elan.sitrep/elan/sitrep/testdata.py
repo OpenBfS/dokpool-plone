@@ -170,7 +170,7 @@ def createSituationReport(self):
         d.currentModules=refs
         IELANDocument(d).scenarios = ["scenario1", "scenario2"]            
         d.reindexObject()
-        d.publishReport(justDoIt=True)
+        d.publishReport(justDoIt=True, duplicate=True)
     
             
     

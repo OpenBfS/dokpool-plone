@@ -13,6 +13,9 @@
          
              <element value="SRModule" />
          
+         
+             <element value="File" />
+         
      
  </property>
  <!-- schema interface -->

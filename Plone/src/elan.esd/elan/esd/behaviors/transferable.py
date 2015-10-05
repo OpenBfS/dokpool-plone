@@ -35,6 +35,7 @@ from elan.esd import ELAN_EMessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 from Acquisition import aq_inner
+from Products.Archetypes.utils import shasattr
 
 class ITransferable(model.Schema):
     
@@ -136,6 +137,7 @@ class Transferable(object):
         If not created by a transfer
         If published
         If DocType allows it
+        If Object allows it directly
         """
         if not self.context.isSender():
             return False
@@ -147,6 +149,8 @@ class Transferable(object):
         dto = self.context.docTypeObj()
         if dto and dto.allowTransfer:
             return True
+        if shasattr(self.context, "transferable"):
+            return self.context.transferable()
         return False
 
     def allowedTargets(self):

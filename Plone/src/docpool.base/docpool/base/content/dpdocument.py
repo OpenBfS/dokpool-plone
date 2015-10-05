@@ -50,6 +50,7 @@ from StringIO import StringIO
 from docpool.base import ELAN_EMessageFactory as _
 from Acquisition import aq_base, aq_parent
 from plone.dexterity.utils import safe_unicode
+from plone.api import content
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -505,6 +506,11 @@ class DPDocument(Container, Document, ContentBase):
         """
         data, filename = self.getMyImage(False)
         return namedfile.NamedImage(data, filename=safe_unicode(filename))
+
+    def myState(self):
+        """
+        """
+        return content.get_state(self, "None")
         
 ##/code-section methods 
 

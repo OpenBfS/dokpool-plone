@@ -56,9 +56,6 @@ class SituationOverview(Item):
     implements(ISituationOverview)
     
 ##code-section methods
-    def srConfig(self):
-        pass # TODO:
-    
 
     def modTypes(self):
         """
@@ -79,7 +76,7 @@ class SituationOverview(Item):
                  'range': 'min' },
                                   scenarios=uss
             )
-        mtypes = self.modTypes()
+        #mtypes = self.modTypes()
         res1 = []
         res2 = {}
         for report in [ r.getObject() for r in reports]:
@@ -105,42 +102,8 @@ class SituationOverview(Item):
         If reportUID is given, determine the UIDs for that report's modules, otherwise determine the UID of the
         most recent module for each type.
         """
-        res = {}
-        moduids = {}
-        uss = getScenariosForCurrentUser(self)       
-        path = self.dpSearchPath()
- 
-        for mt in self.modTypes():
-                moduids[mt[0]] = None
-                mods = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
-                                       review_state='published', changed={
-                 'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
-                 'range': 'min' },
-                                       scenarios=uss
-                                       )
-                modres = [ (m.UID, "%s %s" % (m.Title, self.toLocalizedTime(DateTime(m.changed), long_format=1))) for m in mods]
-                latest = mods and mods[0].changed or (DateTime() - 14).asdatetime().replace(tzinfo=None)
-                if mods:
-                    moduids[mt[0]] = mods[0].UID
-                current = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
-                                       review_state='private', changed={
-                 'query' : latest,
-                 'range': 'min' },
-                                       scenarios=uss
-                                       )
-                if current:
-                    current = current[0].getObject()
-                else:
-                    current = None
-                res[mt[0]] = ( modres, current )
-        if reportUID:
-            report = queryForObject(self, UID=reportUID)
-            if report:
-                ms = report.myModules()
-                for m in ms:
-                    moduids[m.docType] = m.UID()                
-        return res, moduids
-        
+        return _availableModules(self, reportUID)
+    
     def modinfo(self, moduid=None):
         """
         """
@@ -154,4 +117,41 @@ class SituationOverview(Item):
 
 
 ##code-section bottom
+def _availableModules(self, reportUID=None):
+    res = {}
+    moduids = {}
+    uss = getScenariosForCurrentUser(self)       
+    path = self.dpSearchPath()
+    
+    for mt in self.modTypes():
+            moduids[mt[0]] = None
+            mods = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
+                                   review_state='published', changed={
+             'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
+             'range': 'min' },
+                                   scenarios=uss
+                                   )
+            modres = [ (m.UID, "%s %s" % (m.Title, self.toLocalizedTime(DateTime(m.changed), long_format=1))) for m in mods]
+            latest = mods and mods[0].changed or (DateTime() - 14).asdatetime().replace(tzinfo=None)
+            if mods:
+                moduids[mt[0]] = mods[0].UID
+            current = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
+                                   review_state='private', changed={
+             'query' : latest,
+             'range': 'min' },
+                                   scenarios=uss
+                                   )
+            if current:
+                current = current[0].getObject()
+            else:
+                current = None
+            res[mt[0]] = ( modres, current )
+    if reportUID:
+        report = queryForObject(self, UID=reportUID)
+        if report:
+            ms = report.myModules()
+            for m in ms:
+                moduids[m.docType] = m.UID()                
+    return res, moduids
+    
 ##/code-section bottom 

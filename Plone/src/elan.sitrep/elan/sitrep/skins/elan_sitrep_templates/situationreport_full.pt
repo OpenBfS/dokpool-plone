@@ -3,8 +3,27 @@
                    context nocall:options/context;
                    here nocall:context">
 <tal:def define="edit_allowed context/canBeEdited;
-                 elanobj view/elanobject;">
+                 elanobj view/elanobject;
+                 rs context/myState;">
 
+<tal:if condition="python:rs=='private'">
+            <div class="formControls publish" tal:condition="edit_allowed">
+            <a id="form-buttons-publish" 
+                onclick="return confirm('${context/Title}: ${alert_msg}');"
+               tal:define="alert_msg python:context.translate('report_publish_popup', default='Do you really want to create a published version of this report?', domain='elan.sitrep', escape_for_js=True)"
+            class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishReport" i18n:translate="">Publish</a>
+            <a id="form-buttons-create" 
+                onclick="return confirm('${context/Title}: ${alert_msg}');"
+               tal:define="alert_msg python:context.translate('report_mirror_popup', default='Do you really want to define this report based on the current overview?', domain='elan.sitrep', escape_for_js=True)"
+            class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/mirrorOverview" i18n:translate="">Mirror Overview</a>
+            </div>     
+
+</tal:if>
+<tal:if condition="python:rs=='published'">
+        <div class="pdflink" tal:define="pdf context/getRepresentativePDF" tal:condition="nocall:pdf">
+            <a href="${pdf/absolute_url}" target="_blank" i18n:domain="elan.sitrep" i18n:translate="">Printable version</a>
+        </div>
+</tal:if>
           <div metal:use-macro="here/@@elan.macros/macros/docdata_meta"/>   
           <div metal:use-macro="here/@@elan.macros/macros/transferEvents"/>   
           
