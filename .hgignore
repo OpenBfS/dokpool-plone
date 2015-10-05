@@ -37,3 +37,5 @@ syntax: regexp
 ^Plone/\.pydevproject$
 syntax: regexp
 \.DS_Store$
+syntax: regexp
+^Java/elan-client-1\.0\.jar$
