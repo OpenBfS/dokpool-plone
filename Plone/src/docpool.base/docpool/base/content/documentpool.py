@@ -43,6 +43,7 @@ from docpool.base.structures import docPoolAdded as docPoolAddedExtern, docPoolR
 #from docpool.base.utils import _copyPaste, queryForObjects
 from plone.app.textfield.value import RichTextValue
 from plone.protect.auto import safeWrite
+from docpool.base.content.doctype import IDocType
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -99,7 +100,7 @@ class DocumentPool(Container):
         """
         """
         cat = getToolByName(self, "portal_catalog")
-        res = cat(path=self.dpSearchPath(),portal_type="DocType",sort_on="getId")
+        res = cat(path=self.dpSearchPath(),object_provides=IDocType.__identifier__,sort_on="getId")
         if ids_only:
             return [ dt.getId for dt in res ]
         else:

@@ -120,6 +120,11 @@ class SRTextBlock(Item, ContentBase):
         Index Method
         """
         return [ mod.UID() for mod in self.moduleConfigs() ]
+    
+    def createActions(self):
+        sr_cat = getToolByName(self, "sr_catalog")
+        sr_cat.reindexObject(self)
+        
 ##/code-section methods 
 
 

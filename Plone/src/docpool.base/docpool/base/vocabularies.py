@@ -20,35 +20,6 @@ class StatusVocabulary(object):
     
 StatusVocabularyFactory = StatusVocabulary()
 
-class PermissionsVocabulary(object):
-    """
-    """
-    implements(IVocabularyFactory)
-    
-    def __call__(self, context):
-        return SimpleVocabulary([SimpleTerm('write', title=_('write')),SimpleTerm('read/write', title=_('read/write')),SimpleTerm('suspend', title=_('suspended'))])
-    
-PermissionsVocabularyFactory = PermissionsVocabulary()
-
-class UnknownOptionsVocabulary(object):
-    """
-    """
-    implements(IVocabularyFactory)
-    
-    def __call__(self, context):
-        return SimpleVocabulary([SimpleTerm('block', title=_('don\'t accept')),SimpleTerm('confirm', title=_('needs confirmation'))])
-    
-UnknownOptionsVocabularyFactory = UnknownOptionsVocabulary()
-
-class DTPermOptionsVocabulary(object):
-    """
-    """
-    implements(IVocabularyFactory)
-    
-    def __call__(self, context):
-        return SimpleVocabulary([SimpleTerm('block', title=_('don\'t accept')),SimpleTerm('confirm', title=_('needs confirmation')),SimpleTerm('publish', title=_('publish immediately'))])
-    
-DTPermOptionsVocabularyFactory = DTPermOptionsVocabulary()
 
 class DTOptionsVocabulary(object):
     """

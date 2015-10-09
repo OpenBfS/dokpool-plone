@@ -66,6 +66,18 @@
    <permission id="elan.esd.SendContent" title="ELAN_E: Send Content" />   
    <permission id="elan.esd.ReceiveContent" title="ELAN_E: Receive Content" />   
 
+  <utility
+    component=".vocabularies.PermissionsVocabularyFactory"
+    name="elan.esd.vocabularies.Permissions"
+    />
+  <utility
+    component=".vocabularies.UnknownOptionsVocabularyFactory"
+    name="elan.esd.vocabularies.UnknownOptions"
+    />
+  <utility
+    component=".vocabularies.DTPermOptionsVocabularyFactory"
+    name="elan.esd.vocabularies.DTPermOptions"
+    />
   
   <utility
     component=".vocabularies.CategoriesVocabularyFactory"

@@ -95,18 +95,6 @@
     name="docpool.base.vocabularies.Status"
     />
   <utility
-    component=".vocabularies.PermissionsVocabularyFactory"
-    name="docpool.base.vocabularies.Permissions"
-    />
-  <utility
-    component=".vocabularies.UnknownOptionsVocabularyFactory"
-    name="docpool.base.vocabularies.UnknownOptions"
-    />
-  <utility
-    component=".vocabularies.DTPermOptionsVocabularyFactory"
-    name="docpool.base.vocabularies.DTPermOptions"
-    />
-  <utility
     component=".vocabularies.DTOptionsVocabularyFactory"
     name="docpool.base.vocabularies.DTOptions"
     />

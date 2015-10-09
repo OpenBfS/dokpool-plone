@@ -43,7 +43,7 @@ class IELANDocType(model.Schema):
     contentCategory = RelationChoice(
                         title=_(u'label_doctype_contentcategory', default=u'Choose category for this type '),
                         description=_(u'description_doctype_contentcategory', default=u''),
-                        required=True,
+                        required=False,
 ##code-section field_contentCategory
                         source = "elan.esd.vocabularies.Categories",
 ##/code-section field_contentCategory                           

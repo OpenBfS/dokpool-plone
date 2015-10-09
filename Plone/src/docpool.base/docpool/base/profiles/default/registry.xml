@@ -1,3 +1,9 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.base">
+  <record name="plone.image_objects" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="image_objects">
+    <value>
+      <element>Image</element>
+      <element>DPDocument</element>
+    </value>
+  </record>          
 </registry>

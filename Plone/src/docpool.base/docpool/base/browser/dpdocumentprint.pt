@@ -36,6 +36,9 @@ p {
     margin: 0 0 0 0;
 }
 
+.image .caption {
+    display: block;
+}
     
 </style>
 

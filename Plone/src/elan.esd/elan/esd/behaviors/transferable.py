@@ -147,6 +147,7 @@ class Transferable(object):
         if wftool.getInfoFor(self.context, 'review_state') != 'published':
             return False
         dto = self.context.docTypeObj()
+        #print dto, dto and dto.allowTransfer
         if dto and dto.allowTransfer:
             return True
         if shasattr(self.context, "transferable"):
@@ -161,8 +162,10 @@ class Transferable(object):
         and my current version must not have been transferred.
         """
         esd_uid = self.context.myDocumentPool().UID()
+        print esd_uid
         dto = self.context.docTypeObj()
         dt_id = dto and dto.id or '---'
+        print dt_id
         m = self.context.getMdate()
         #print m
         q = __session__.query(Channel).outerjoin(Channel.permissions).outerjoin(Channel.sends).\
@@ -174,8 +177,9 @@ class Transferable(object):
                                 ), 
                                 ~Channel.sends.any(and_(SenderLog.document_uid==self.context.UID(), SenderLog.timestamp > m))))\
                                                    .order_by('esd_from_title')
-                                                   
+        #print q.statement                             
         targets = q.all()
+        #print len(targets)
         return targets
                     
     security.declareProtected("ELAN_E: Send Content", "transferToAll")    

@@ -36,6 +36,7 @@ from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from DateTime import DateTime
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
+from plone.app.textfield.value import RichTextValue
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -66,17 +67,24 @@ class ISRModule(form.Schema, IDPDocument):
     )
     form.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
 
+
 ##/code-section interface
 
 
 class SRModule(Container, DPDocument):
     """
     """
+
+
     security = ClassSecurityInfo()
     
     implements(ISRModule)
     
 ##code-section methods
+    def createActions(self):
+        super(DPDocument, self).createActions()
+        self.text = RichTextValue(_(u"No information."), 'text/plain', 'text/html')
+
     def customMenu(self, menu_items):
         """
         """
@@ -229,8 +237,24 @@ class SRModule(Container, DPDocument):
             portalMessage(self, _("The module has been published."), "info")
             return self.restrictedTraverse("@@view")()
         
-    def transferable(self):
-        return 1
+
+    def docTypeObj(self):
+        mt = self.dp_type()
+        if not mt: # The object is just being initialized and the attributes have not yet been saved
+            mt = self.REQUEST.get('docType','')
+        #dto = queryForObject(self, id=et)
+        dto = None
+#        print mt
+        try:
+            dto = self.config.mtypes[mt]
+        except Exception, e:
+            # et can be empty
+            print e
+            pass
+        if not dto:
+            log("No ModuleType Object for type name '%s'" % self.dp_type())
+        return dto
+    
 ##/code-section methods 
 
     def mySRModule(self):

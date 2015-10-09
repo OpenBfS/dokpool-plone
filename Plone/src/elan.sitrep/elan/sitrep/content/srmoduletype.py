@@ -24,7 +24,8 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
-from plone.dexterity.content import Item
+from plone.dexterity.content import Container
+from docpool.base.content.doctype import DocType, IDocType
 
 from Products.CMFCore.utils import getToolByName
 
@@ -35,15 +36,23 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import ELAN_EMessageFactory as _
 
-class ISRModuleType(form.Schema):
+class ISRModuleType(form.Schema, IDocType):
     """
     """
 
 ##code-section interface
+    form.mode(allowUploads='hidden')
+    form.mode(publishImmediately='hidden')
+    form.mode(globalAllow='hidden')
+    form.mode(allowedDocTypes='hidden')
+    form.mode(partsPattern='hidden')
+    form.mode(pdfPattern='hidden')
+    form.mode(imgPattern='hidden')
+    form.mode(customViewTemplate='hidden')
 ##/code-section interface
 
 
-class SRModuleType(Item):
+class SRModuleType(Container, DocType):
     """
     """
     security = ClassSecurityInfo()
@@ -52,6 +61,39 @@ class SRModuleType(Item):
     
 ##code-section methods
 ##/code-section methods 
+
+    def mySRModuleType(self):
+        """
+        """
+        return self
+
+    def getFirstChild(self):
+        """
+        """
+        fc = self.getFolderContents()
+        if len(fc) > 0:
+            return fc[0].getObject()
+        else:
+            return None
+
+    def getAllContentObjects(self):
+        """
+        """
+        return [obj.getObject() for obj in self.getFolderContents()]
+
+    def getFiles(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'File'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
+    def getImages(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'Image'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
 
 ##code-section bottom

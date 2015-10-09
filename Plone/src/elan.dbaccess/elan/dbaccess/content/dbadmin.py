@@ -451,7 +451,7 @@ class dbadmin(object):
         if limit:
             q = q.limit(limit)
         
-        print q.statement
+        #print q.statement
         return q.all()
         
     def _extractData(self, request, typ):

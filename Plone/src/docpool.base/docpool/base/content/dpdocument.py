@@ -51,6 +51,7 @@ from docpool.base import ELAN_EMessageFactory as _
 from Acquisition import aq_base, aq_parent
 from plone.dexterity.utils import safe_unicode
 from plone.api import content
+from PIL import Image
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -454,32 +455,72 @@ class DPDocument(Container, Document, ContentBase):
     def getFileOrImageByPattern(self, pattern):
         """
         """
-        #print pattern
+        print pattern
+        print self.getAllContentObjects()
         p = re.compile(pattern, re.IGNORECASE)
         for obj in self.getAllContentObjects():
-            #print obj.getId()
+            print obj.getId()
             if p.match(obj.getId()):
-                # print obj
+                print obj
                 return obj
+    
+    def getMapImageObj(self):
+        """
+        """
+        return self.getFileOrImageByPattern(".*[-_]map\..*")
             
     def getMapImage(self, scale=""):
-        img = self.getFileOrImageByPattern(".*[-_]map\..*")
+        """
+        """
+        img = self.getMapImageObj()
         if img:
             return "<img src='%s%s' />" % (img.absolute_url(), scale)
         else:
             return _(u"No map image")
 
+    def getLegendImageObj(self):
+        """
+        """
+        return self.getFileOrImageByPattern(".*[-_]legend\..*")
+    
     def getLegendImage(self, scale=""):
-        img = self.getFileOrImageByPattern(".*[-_]legend\..*")
+        """
+        """
+        img = self.getLegendImageObj()
         if img:
             return "<img src='%s%s' />" % (img.absolute_url(), scale)
         else:
             return _(u"No legend image")
 
-    def getMyImage(self, refresh=False):
+    def getMyImage(self, refresh=False, full=True):
         """
+        refresh = True --> generate afresh from PDF is necessary
+        full = True --> combine map & legend images
         """
         doc = self
+        mapimg = self.getMapImageObj()
+        if mapimg:
+            legendimg = self.getLegendImageObj()
+            dateiname = '%s.%s' % (mapimg.getId(), "png")
+            if not full or not legendimg:
+                return mapimg.image.data, dateiname
+            else:
+                #combine into one image if full=True and legend available
+                images = map(Image.open, [StringIO(mapimg.image.data), StringIO(legendimg.image.data)])
+                w = sum(i.size[0] for i in images)
+                mh = max(i.size[1] for i in images)
+                
+                result = Image.new("RGBA", (w, mh), "white")
+                
+                x = 0
+                for i in images:
+                    result.paste(i, (x, 0))
+                    x += i.size[0]
+                res = StringIO()
+                result.save(res, 'PNG')
+                return res.getvalue(), dateiname
+
+                      
         img = doc.getRepresentativeImage()
         if img:
             dateiname = '%s.%s' % (img.getId(), "png")
@@ -504,7 +545,9 @@ class DPDocument(Container, Document, ContentBase):
     def image(self):
         """
         """
-        data, filename = self.getMyImage(False)
+        # We need to acquire Manager rights here, since we are called in traversal code,
+        # which unfortunately comes as Anoymous
+        data, filename = execute_under_special_role(self, "Manager", self.getMyImage, False)
         return namedfile.NamedImage(data, filename=safe_unicode(filename))
 
     def myState(self):

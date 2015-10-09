@@ -83,7 +83,7 @@ class IELANTransferFolder(form.Schema, IFolderBase):
                         required=True,
                         default="read/write",
 ##code-section field_permLevel
-                        source="docpool.base.vocabularies.Permissions"
+                        source="elan.esd.vocabularies.Permissions"
 ##/code-section field_permLevel                           
     )
     
@@ -94,7 +94,7 @@ class IELANTransferFolder(form.Schema, IFolderBase):
                         required=True,
                         default="block",
 ##code-section field_unknownDtDefault
-                        source="docpool.base.vocabularies.UnknownOptions"
+                        source="elan.esd.vocabularies.UnknownOptions"
 ##/code-section field_unknownDtDefault                           
     )
     
@@ -105,7 +105,7 @@ class IELANTransferFolder(form.Schema, IFolderBase):
                         required=True,
                         default="block",
 ##code-section field_unknownScenDefault
-                        source="docpool.base.vocabularies.UnknownOptions"
+                        source="elan.esd.vocabularies.UnknownOptions"
 ##/code-section field_unknownScenDefault                           
     )
     
@@ -153,6 +153,8 @@ class ELANTransferFolder(Container, FolderBase):
             esd = self.getSendingESD()
             theirDts = esd.myDocumentTypes(ids_only=True)
             myDts = self.myDocumentTypes()
+            #print theirDts
+            #print myDts
             if ids_only:
                 return [ dt[0] for dt in myDts if dt[0] in theirDts]
             else:    
@@ -165,7 +167,7 @@ class ELANTransferFolder(Container, FolderBase):
         #print "ensureMatching"
         channel_id = self.channelId()
         dts = self.getMatchingDocumentTypes(ids_only=True)
-        # print dts
+        #print dts
         # first delete
         permissions = self.permissions()
         dbdts = [ perm.doc_type for perm in permissions]

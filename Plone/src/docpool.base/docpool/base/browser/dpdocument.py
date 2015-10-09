@@ -201,6 +201,7 @@ class DPDocumentdocimageView(BrowserView):
     ##code-section methodsdocimage
     def __call__(self):
         """
+        This is the image - if possible without the legend
         """
         request = self.request
         alsoProvides(request, IDisableCSRFProtection)        
@@ -209,7 +210,8 @@ class DPDocumentdocimageView(BrowserView):
         response.setHeader('Content-Type', 'image/png')
         response.setHeader('Cache-control', 'max-age=300,s-maxage=300,must-revalidate')
 
-        data, filename = self.context.getMyImage(refresh)
+        # Get doc image but without legend
+        data, filename = self.context.getMyImage(refresh=refresh, full=False)
                 
         header_value= contentDispositionHeader('inline', filename=filename, charset='latin-1')
         response.setHeader('Content-disposition', header_value)

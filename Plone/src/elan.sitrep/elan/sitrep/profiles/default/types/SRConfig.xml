@@ -11,13 +11,13 @@
  <property name="allowed_content_types">
      
          
-             <element value="SRScenario" />
+             <element value="SRCollections" />
          
          
              <element value="SRTextBlocks" />
          
          
-             <element value="SRCollections" />
+             <element value="SRScenario" />
          
      
  </property>

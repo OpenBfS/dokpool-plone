@@ -10,6 +10,13 @@
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
      
+         
+             <element value="File" />
+         
+         
+             <element value="Image" />
+         
+     
  </property>
  <!-- schema interface -->
  <property name="schema">elan.sitrep.content.srmoduletype.ISRModuleType</property>
@@ -28,6 +35,7 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
+     <element value="elan.esd.behaviors.elandoctype.IELANDocType" />
 ##/code-section behaviors
 </property>
 
