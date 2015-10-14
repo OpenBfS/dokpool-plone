@@ -7,17 +7,25 @@
                  rs context/myState;">
 
 <tal:if condition="python:rs=='private'">
-            <div class="formControls publish" tal:condition="edit_allowed">
-            <a id="form-buttons-publish" 
-                onclick="return confirm('${context/Title}: ${alert_msg}');"
-               tal:define="alert_msg python:context.translate('report_publish_popup', default='Do you really want to create a published version of this report?', domain='elan.sitrep', escape_for_js=True)"
-            class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishReport" i18n:translate="">Publish</a>
-            <a id="form-buttons-create" 
-                onclick="return confirm('${context/Title}: ${alert_msg}');"
-               tal:define="alert_msg python:context.translate('report_mirror_popup', default='Do you really want to define this report based on the current overview?', domain='elan.sitrep', escape_for_js=True)"
-            class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/mirrorOverview" i18n:translate="">Mirror Overview</a>
-            </div>     
-
+   <div class="formControls publish" tal:condition="edit_allowed">
+   <tal:def define="missingModules context/missingModules">
+       <tal:missing condition="missingModules">
+       <h4 i18n:translate="">Module types missing (preventing publication)</h4>
+       <ul>
+        <li tal:repeat="mt missingModules">${mt}</li>
+       </ul>
+       </tal:missing>
+	   <a id="form-buttons-publish" 
+	       tal:condition="not:missingModules"
+	       onclick="return confirm('${context/Title}: ${alert_msg}');"
+	      tal:define="alert_msg python:context.translate('report_publish_popup', default='Do you really want to create a published version of this report?', domain='elan.sitrep', escape_for_js=True)"
+	   class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishReport" i18n:translate="">Publish</a>
+	   <a id="form-buttons-create" 
+	       onclick="return confirm('${context/Title}: ${alert_msg}');"
+	      tal:define="alert_msg python:context.translate('report_mirror_popup', default='Do you really want to define this report based on the current overview?', domain='elan.sitrep', escape_for_js=True)"
+	   class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/mirrorOverview" i18n:translate="">Mirror Overview</a>
+   </tal:def>
+   </div>
 </tal:if>
 <tal:if condition="python:rs=='published'">
         <div class="pdflink" tal:define="pdf context/getRepresentativePDF" tal:condition="nocall:pdf">

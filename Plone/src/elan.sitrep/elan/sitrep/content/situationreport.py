@@ -84,7 +84,7 @@ class ISituationReport(form.Schema, IDPDocument):
     form.mode(docType='hidden')
     docType = schema.TextLine(
             title=u"Document Type",
-            default=u""
+            default=u"sitrep"
         )    
 ##/code-section interface
 
@@ -119,6 +119,22 @@ class SituationReport(Container, DPDocument):
             return copied_modules
         else: # report under construction
             return [ m.to_object for m in (self.currentModules or [])]
+        
+    def missingModules(self):
+        myMods = self.myModules()
+        mts = self.modTypes()
+        missing = {}
+        # As a start, all modules are missing
+        for mt in mts:
+            missing[mt[0]] = mt[1]
+        # Now remove those, we actually have
+        for mod in myMods:
+            try:
+                del missing[mod.docType]
+            except:
+                pass
+        res = missing.values()
+        return sorted(res)
             
     def publishReport(self, justDoIt=False, duplicate=False):
         """
@@ -163,10 +179,10 @@ class SituationReport(Container, DPDocument):
             #print idx
             mod = modules.get(mt[0], None)
             if mod:
-                print mod
+                #print mod
                 moduid = mod[0][0]
                 module = queryForObject(self, UID=moduid)
-                print module
+                #print module
                 if module:
                     to_id = intids.getId(module)
                     refs.append(RelationValue(to_id))
