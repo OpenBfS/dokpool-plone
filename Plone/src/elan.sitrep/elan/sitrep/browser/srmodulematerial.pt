@@ -154,10 +154,12 @@ function insertTextblock (selector) {
              </tr>
              </tal:loop>
             </tbody>
+            </table>
            </section>
 	   </div>
 </div>
 </body>
 </html>
+</tal:def>
 <tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

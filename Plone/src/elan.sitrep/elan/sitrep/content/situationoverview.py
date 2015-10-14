@@ -33,7 +33,6 @@ from docpool.base.utils import queryForObjects, queryForObject
 from DateTime import DateTime
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from elan.esd.utils import getScenariosForCurrentUser
-from Products.CMFPlone.i18nl10n import utranslate
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -88,8 +87,8 @@ class SituationOverview(Item):
             #    mods[m.docType] = m
             #res2[report.UID()] = ( report, mods )
             res1.append((report.UID(), "%s %s" % (report.Title(), self.toLocalizedTime(DateTime(report.changed()), long_format=1))))
-        default = [ ( "", utranslate("elan.sitrep", "Current situation", context=self) ) ]
-        ud = [ ( "userdefined", utranslate("elan.sitrep", "User defined", context=self) ) ]
+        default = [ ( "", _("Current situation") ) ]
+        ud = [ ( "userdefined", _("User defined") ) ]
         return default + res1 + ud, res2
                     
     def availableModules(self, reportUID=None):
@@ -111,7 +110,7 @@ class SituationOverview(Item):
             module = queryForObject(self, UID=moduid)
             if module:
                 return module.restrictedTraverse("@@info")()
-        return utranslate("elan.sitrep", "No content found", context=self)
+        return _("No content found")
             
 ##/code-section methods 
 

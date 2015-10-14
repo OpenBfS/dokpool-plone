@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-09-17 14:01+0000\n"
-"PO-Revision-Date: 2015-09-17 08:47+0100\n"
+"POT-Creation-Date: 2015-10-14 09:40+0000\n"
+"PO-Revision-Date: 2015-10-14 11:39+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,20 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:33
+#: elan.esd/elan/esd/browser/elan_macros.pt:34
 #: elan.esd/elan/esd/browser/elanscenarios.pt:19
 msgid "++++ Exercise ++++"
 msgstr "++++ &Uuml;bung ++++"
 
-#: elan.esd/elan/esd/behaviors/transferable.py:222
+#: elan.esd/elan/esd/behaviors/transferable.py:230
 msgid ". Doc type not accepted."
 msgstr ". Dokumenttyp nicht akzeptiert."
 
-#: elan.esd/elan/esd/behaviors/transferable.py:238
+#: elan.esd/elan/esd/behaviors/transferable.py:246
 msgid ". Document has no scenario."
 msgstr ". Dokument hat keine Ereigniszuordnung."
 
-#: elan.esd/elan/esd/behaviors/transferable.py:234
+#: elan.esd/elan/esd/behaviors/transferable.py:242
 msgid ". Unknown scenario not accepted."
 msgstr ". Unbekanntes Ereignis nicht akzeptiert."
 
@@ -37,7 +37,7 @@ msgstr ". Unbekanntes Ereignis nicht akzeptiert."
 msgid "Add Collection Portlet"
 msgstr "Portlet für Collection zufügen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:70
+#: elan.esd/elan/esd/browser/elan_macros.pt:71
 msgid "All"
 msgstr "Alle"
 
@@ -83,15 +83,15 @@ msgstr "Übertragungswege"
 msgid "Collection"
 msgstr "ELAN Collection"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:171
+#: elan.esd/elan/esd/browser/elan_macros.pt:175
 msgid "Content from:"
 msgstr "Kategorie:"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:178
+#: elan.esd/elan/esd/browser/elan_macros.pt:182
 msgid "Content:"
 msgstr "Inhalt:"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:78
+#: elan.esd/elan/esd/browser/elan_macros.pt:79
 msgid "Current filter:"
 msgstr "Aktueller Filter:"
 
@@ -151,23 +151,23 @@ msgstr "Portlet für Collection bearbeiten"
 msgid "Edit Permissions"
 msgstr "Rechte bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:311
+#: elan.esd/elan/esd/browser/elan_macros.pt:315
 msgid "Edit unknown doc type"
-msgstr ""
+msgstr "Unbekannten Dokumenttyp bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:300
+#: elan.esd/elan/esd/browser/elan_macros.pt:304
 msgid "Edit unknown scenario"
-msgstr ""
+msgstr "Unbekanntes Szenario bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:307
+#: elan.esd/elan/esd/browser/elan_macros.pt:311
 msgid "Event:"
-msgstr ""
+msgstr "Ereignis:"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:190
+#: elan.esd/elan/esd/browser/elan_macros.pt:194
 msgid "Files:"
 msgstr "Dateien:"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:40
+#: elan.esd/elan/esd/browser/elan_macros.pt:41
 msgid "Filter"
 msgstr "Filter"
 
@@ -183,7 +183,7 @@ msgstr "IRIX Konfiguration"
 msgid "IRIX base configuration"
 msgstr "IRIX Basis Konfiguration"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:223
+#: elan.esd/elan/esd/browser/elan_macros.pt:227
 msgid "Images:"
 msgstr "Bilder:"
 
@@ -195,12 +195,12 @@ msgstr "Ortszeit"
 msgid "Location"
 msgstr "Ort"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:106
+#: elan.esd/elan/esd/browser/elan_macros.pt:107
 #: elan.esd/elan/esd/profiles/default/registry.xml
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: elan.esd/elan/esd/behaviors/transferable.py:222
+#: elan.esd/elan/esd/behaviors/transferable.py:230
 msgid "No transfer to"
 msgstr "Keine Übertragung zu"
 
@@ -218,7 +218,7 @@ msgstr "Übertragungsrecht"
 msgid "Permissions"
 msgstr "Übertragungsrechte"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:13
+#: elan.esd/elan/esd/browser/elan_macros.pt:14
 msgid "Please select at least one scenario!"
 msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
@@ -262,9 +262,9 @@ msgstr "Der Ortsbezug eines Inhalts"
 msgid "The time and date an item was last modified by a user"
 msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:332
+#: elan.esd/elan/esd/browser/elan_macros.pt:336
 msgid "There are comments."
-msgstr ""
+msgstr "Es gibt Kommentare."
 
 #: elan.esd/elan/esd/content/elanscenario.py:335
 msgid "There are no more documents for this scenario."
@@ -282,7 +282,7 @@ msgstr "Zeitstempel"
 msgid "Title"
 msgstr "Titel"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:105
+#: elan.esd/elan/esd/browser/elan_macros.pt:106
 msgid "Title / Description / Text"
 msgstr "Titel / Kurzbeschreibung / Text"
 
@@ -290,9 +290,9 @@ msgstr "Titel / Kurzbeschreibung / Text"
 msgid "Title/Date"
 msgstr "Titel/Datum"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:287
+#: elan.esd/elan/esd/browser/elan_macros.pt:291
 msgid "Transfer"
-msgstr ""
+msgstr "Übertragen"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
 msgid "Transfer Folder"
@@ -314,7 +314,7 @@ msgstr "Übertragung durchgeführt"
 msgid "Transfer to<br>"
 msgstr "Übertragen an<br>"
 
-#: elan.esd/elan/esd/behaviors/transferable.py:292
+#: elan.esd/elan/esd/behaviors/transferable.py:300
 msgid "Transferred to"
 msgstr "Übertragen an"
 
@@ -364,20 +364,20 @@ msgstr ""
 msgid "description_doctype_contentcategory"
 msgstr ""
 
-#: elan.esd/elan/esd/behaviors/elandocument.py:28
+#: elan.esd/elan/esd/behaviors/elandocument.py:29
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
 #. Default: "Only used for archived documents."
-#: elan.esd/elan/esd/behaviors/transferable.py:61
+#: elan.esd/elan/esd/behaviors/transferable.py:62
 msgid "description_dpdocument_transferlog"
 msgstr "Nur genutzt für archivierte Dokumente."
 
-#: elan.esd/elan/esd/behaviors/transferable.py:52
+#: elan.esd/elan/esd/behaviors/transferable.py:53
 msgid "description_dpdocument_transferred"
 msgstr ""
 
-#: elan.esd/elan/esd/behaviors/transferable.py:43
+#: elan.esd/elan/esd/behaviors/transferable.py:44
 msgid "description_dpdocument_transferred_by"
 msgstr ""
 
@@ -467,11 +467,12 @@ msgid "description_irixconfig_typemapping"
 msgstr ""
 
 #. Default: "There are currently no items in this folder."
-#: elan.esd/elan/esd/browser/elan_macros.pt:133
+#: elan.esd/elan/esd/browser/elan_macros.pt:134
 msgid "description_no_items_in_folder"
 msgstr "Dieser Ordner hat keinen Inhalt."
 
 #: elan.esd/elan/esd/db/forms.py:27
+#: elan.esd/elan/esd/vocabularies.py:30
 msgid "don't accept"
 msgstr "nicht annehmen"
 
@@ -495,22 +496,22 @@ msgid "label_doctype_contentcategory"
 msgstr "Kategorie für diesen Typ"
 
 #. Default: "Belongs to scenarios"
-#: elan.esd/elan/esd/behaviors/elandocument.py:27
+#: elan.esd/elan/esd/behaviors/elandocument.py:28
 msgid "label_dpdocument_scenarios"
 msgstr "Gehört zu folgenden Szenarien"
 
 #. Default: "Transfer log"
-#: elan.esd/elan/esd/behaviors/transferable.py:60
+#: elan.esd/elan/esd/behaviors/transferable.py:61
 msgid "label_dpdocument_transferlog"
 msgstr "Transfer Protokoll"
 
 #. Default: "Date of last transfer"
-#: elan.esd/elan/esd/behaviors/transferable.py:51
+#: elan.esd/elan/esd/behaviors/transferable.py:52
 msgid "label_dpdocument_transferred"
 msgstr "Zeitpunkt der letzten Übertragung"
 
 #. Default: "Transferred by"
-#: elan.esd/elan/esd/behaviors/transferable.py:42
+#: elan.esd/elan/esd/behaviors/transferable.py:43
 msgid "label_dpdocument_transferred_by"
 msgstr "Übertragen von"
 
@@ -625,6 +626,7 @@ msgid "modified:"
 msgstr "geändert:"
 
 #: elan.esd/elan/esd/db/forms.py:27
+#: elan.esd/elan/esd/vocabularies.py:30
 msgid "needs confirmation"
 msgstr "benötigt Bestätigung"
 
@@ -633,6 +635,7 @@ msgid "private"
 msgstr "privat"
 
 #: elan.esd/elan/esd/db/forms.py:27
+#: elan.esd/elan/esd/vocabularies.py:40
 msgid "publish immediately"
 msgstr "sofort veröffentlichen"
 
@@ -643,6 +646,10 @@ msgstr "Veröffentlicht"
 #: elan.esd/elan/esd/browser/i18ndummy.pt:23
 msgid "purge_confirm_msg"
 msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
+
+#: elan.esd/elan/esd/vocabularies.py:20
+msgid "read/write"
+msgstr "lesen/schreiben"
 
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
 #: elan.esd/elan/esd/monkey.py:102
@@ -660,17 +667,25 @@ msgid "submittitle"
 msgstr "Absenden"
 
 #. Default: "Content listing"
-#: elan.esd/elan/esd/browser/elan_macros.pt:97
+#: elan.esd/elan/esd/browser/elan_macros.pt:98
 msgid "summary_content_listing"
 msgstr "Inhalt"
 
+#: elan.esd/elan/esd/vocabularies.py:20
+msgid "suspended"
+msgstr "unterbrochen"
+
 #. Default: "Move item down"
-#: elan.esd/elan/esd/browser/elan_macros.pt:207
+#: elan.esd/elan/esd/browser/elan_macros.pt:211
 msgid "title_move_item_down"
 msgstr "Nach unten"
 
 #. Default: "Move item up"
-#: elan.esd/elan/esd/browser/elan_macros.pt:200
+#: elan.esd/elan/esd/browser/elan_macros.pt:204
 msgid "title_move_item_up"
 msgstr "Nach oben"
+
+#: elan.esd/elan/esd/vocabularies.py:20
+msgid "write"
+msgstr "schreiben"
 

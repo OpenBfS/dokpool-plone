@@ -1,0 +1,284 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-10-14 10:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: elan.sitrep\n"
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:71
+msgid "Current Modules"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationoverview.py:90
+msgid "Current situation"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:146
+msgid "Fig."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:62
+msgid "Filter"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:12
+msgid "Meant for report:"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:77
+msgid "Metadata"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:23
+msgid "Mirror Overview"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleType.xml
+msgid "Module Type"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleTypes.xml
+msgid "Module Types"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:13
+msgid "Module types missing (preventing publication)"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:193
+msgid "Modules have been replaced with current situation overview."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationoverview.py:113
+msgid "No content found"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/situationoverview.pt:48
+msgid "No current content."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srmodule.py:86
+msgid "No information."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:195
+msgid "No modules found in current situation overview."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/portlets/srmoduleedit.pt:11
+msgid "Open building blocks window"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:85
+msgid "Paste"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:111
+msgid "Paste to module editor"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:43
+msgid "Phase"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:107
+msgid "Previous version"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:32
+msgid "Printable version"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:15
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:18
+msgid "Publish"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/situationoverview.pt:27
+msgid "Reload current situation"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:63
+msgid "Reset"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/portlets/srmoduleedit.py:42
+msgid "SRModuleEdit"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SituationOverview.xml
+msgid "Situation Overview"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRPhase.xml
+msgid "Situation Phase"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SituationReport.xml
+msgid "Situation Report"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRCollection.xml
+msgid "Situation Report Collection"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRCollections.xml
+msgid "Situation Report Collections"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRConfig.xml
+msgid "Situation Report Configuration"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRFolder.xml
+msgid "Situation Report Folder"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRModule.xml
+msgid "Situation Report Module"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleConfig.xml
+msgid "Situation Report Module Configuration"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRScenario.xml
+msgid "Situation Scenario"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:39
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_print.pt:15
+msgid "Summary"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRTextBlock.xml
+msgid "Text Block"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:70
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRTextBlocks.xml
+msgid "Text Blocks"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:37
+msgid "Text blocks"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srmodule.py:237
+msgid "The module has been published."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:164
+msgid "The report has been published."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/situationoverview.pt:45
+msgid "There is a current working version."
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:125
+msgid "Title / Description / Image"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:76
+msgid "Title / Description / Text"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:25
+msgid "Used in report(s):"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationoverview.py:91
+msgid "User defined"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:117
+msgid "Visualisations"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:67
+msgid "description_situationreport_currentmodules"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:57
+msgid "description_situationreport_phase"
+msgstr ""
+
+#. Default: "If selected this report defines helpful defaults (text blocks, documents) for the content of this module."
+#: elan.sitrep/elan/sitrep/content/srmodule.py:52
+msgid "description_srmodule_currentreport"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srmodule.py:64
+msgid "description_srmodule_doctype"
+msgstr ""
+
+#. Default: "This collection defines a pre-selection of possible documents to reference within this module."
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:56
+msgid "description_srmoduleconfig_docselection"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:46
+msgid "description_srmoduleconfig_modtype"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:66
+msgid "description_srmoduleconfig_textblocks"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/srtextblock.py:49
+msgid "description_srtextblock_text"
+msgstr ""
+
+#. Default: "Current Modules"
+#: elan.sitrep/elan/sitrep/content/situationreport.py:66
+msgid "label_situationreport_currentmodules"
+msgstr ""
+
+#. Default: "Phase (scenario-specific)"
+#: elan.sitrep/elan/sitrep/content/situationreport.py:56
+msgid "label_situationreport_phase"
+msgstr ""
+
+#. Default: "Current report"
+#: elan.sitrep/elan/sitrep/content/srmodule.py:51
+msgid "label_srmodule_currentreport"
+msgstr ""
+
+#. Default: "Module Type"
+#: elan.sitrep/elan/sitrep/content/srmodule.py:63
+msgid "label_srmodule_doctype"
+msgstr ""
+
+#. Default: "Collection for relevant documents"
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:55
+msgid "label_srmoduleconfig_docselection"
+msgstr ""
+
+#. Default: "Module Type"
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:45
+msgid "label_srmoduleconfig_modtype"
+msgstr ""
+
+#. Default: "Text Blocks"
+#: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:65
+msgid "label_srmoduleconfig_textblocks"
+msgstr ""
+
+#. Default: "Text"
+#: elan.sitrep/elan/sitrep/content/srtextblock.py:48
+msgid "label_srtextblock_text"
+msgstr ""
+

@@ -1,7 +1,7 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal" 
      xmlns:metal="http://xml.zope.org/namespaces/metal" 
      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-     i18n:domain="elan.esd">
+     i18n:domain="elan.sitrep">
     <body>
        
 	 <metal:macro define-macro="module">  

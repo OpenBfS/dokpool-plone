@@ -36,7 +36,10 @@ import Acquisition
 ##/code-section imports
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
-    pass
+    def __call__(self, request, *args, **kwargs):
+        if not kwargs.has_key('args'):
+            kwargs['args'] = args
+        return self.pt_render(extra_context={'options': kwargs, 'request': request })
 
 class FlexibleView(BrowserView):
     __allow_access_to_unprotected_subobjects__ = 1
