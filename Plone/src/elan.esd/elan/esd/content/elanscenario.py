@@ -6,8 +6,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-from docpool.base.structures import navSettings
-from docpool.config.local import ARCHIVESTRUCTURE, TRANSFER_AREA
 
 __author__ = ''
 __docformat__ = 'plaintext'
@@ -48,6 +46,9 @@ from Products.CMFPlone.i18nl10n import utranslate
 import datetime
 from five import grok
 from zope.schema.interfaces import IContextSourceBinder
+from docpool.base.structures import navSettings
+from docpool.config.local import ARCHIVESTRUCTURE, TRANSFER_AREA
+from docpool.base.content.dpdocument import IDPDocument
 
 @grok.provider(IContextSourceBinder)
 def availableScenarios(context):
@@ -267,7 +268,7 @@ class ELANScenario(Item, ContentBase):
         """
         Helper function for catalog queries
         """
-        args = {'portal_type':'DPDocument', 'scenarios': self.getId()}
+        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
         args.update(kwargs)
         cat = getToolByName(self, "portal_catalog")
         return cat(args) 
