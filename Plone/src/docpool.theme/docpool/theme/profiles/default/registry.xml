@@ -52,7 +52,7 @@
     <value key="expression">python: member is None</value>
     <value key="compile">True</value>
     <value key="enabled">True</value>
-    <value key="jscompilation">++plone++static/docpool-anon-compiled.js</value>
+    <value key="jscompilation"></value>
     <value key="csscompilation">++plone++static/docpool-anon-compiled.css</value>    
   </records>
   <records prefix="plone.bundles/docpool-nonadmin"
@@ -63,7 +63,7 @@
     <value key="expression">python:member and not (member.has_role('Manager') or member.has_role('Site Administrator')) or None</value>
     <value key="compile">True</value>
     <value key="enabled">True</value>
-    <value key="jscompilation">++plone++static/docpool-nonadmin-compiled.js</value>
+    <value key="jscompilation"></value>
     <value key="csscompilation">++plone++static/docpool-nonadmin-compiled.css</value>    
   </records>
 </registry>
