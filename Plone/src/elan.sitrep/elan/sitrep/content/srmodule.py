@@ -74,8 +74,6 @@ class ISRModule(form.Schema, IDPDocument):
 class SRModule(Container, DPDocument):
     """
     """
-
-
     security = ClassSecurityInfo()
     
     implements(ISRModule)
@@ -193,10 +191,14 @@ class SRModule(Container, DPDocument):
         """
         df = self.defaultFilter()
         mc = df['config']
+        res = []
         if mc:
-            return mc.currentDocuments()[:20]
-        else:
-            return []
+            res = mc.currentDocuments()[:20]
+        if not res:
+            mt = self.docTypeObj()
+            if mt:
+                res = mt.currentDocuments()[:20]
+        return res 
         
     def textBlocks(self):
         """

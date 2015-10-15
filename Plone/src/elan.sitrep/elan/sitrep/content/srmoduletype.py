@@ -39,8 +39,19 @@ from elan.sitrep import ELAN_EMessageFactory as _
 class ISRModuleType(form.Schema, IDocType):
     """
     """
+        
+    docSelection = RelationChoice(
+                        title=_(u'label_srmoduletype_docselection', default=u'Collection for relevant documents'),
+                        description=_(u'description_srmoduletype_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
+                        required=False,
+##code-section field_docSelection
+                        source = "elan.sitrep.vocabularies.Collections",
+##/code-section field_docSelection                           
+    )
+    
 
 ##code-section interface
+    form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
     form.mode(allowUploads='hidden')
     form.mode(publishImmediately='hidden')
     form.mode(globalAllow='hidden')
@@ -60,6 +71,15 @@ class SRModuleType(Container, DocType):
     implements(ISRModuleType)
     
 ##code-section methods
+    def currentDocuments(self):
+        """
+        Return the documents from the referenced collection - if any.
+        """
+        if self.docSelection:
+            coll = self.docSelection.to_object
+            return coll.results(batch=False)
+        else:
+            return []
 ##/code-section methods 
 
     def mySRModuleType(self):
