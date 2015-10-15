@@ -494,7 +494,7 @@ class DPDocument(Container, Document, ContentBase):
 
     def getMyImage(self, refresh=False, full=True):
         """
-        refresh = True --> generate afresh from PDF is necessary
+        refresh = True --> generate afresh from PDF if necessary
         full = True --> combine map & legend images
         """
         doc = self
