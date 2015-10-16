@@ -9,8 +9,8 @@
 		                 elanobj view/elanobject;
 		                 rs context/myState;">
 		  <tal:if condition="python:rs=='private'">
-		    <span tal:define="report context/myReport;" class="report" tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
-		        tal:attributes="href report/absolute_url"></a>
+		    <span tal:define="report context/myReport;" class="report"><tal:if tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
+		        tal:attributes="href report/absolute_url"></a></tal:if>
             <div class="formControls" tal:condition="edit_allowed" tal:omit-tag="">
             <a id="form-buttons-publish" 
                 onclick="return confirm('${context/Title}: ${alert_msg}');"
@@ -18,7 +18,8 @@
             class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishModule" i18n:translate="">Publish</a>
             </div>     
 		        
-		        <br><br></span>
+		        <br><br>
+		     </span>
 		        
 		  </tal:if>
 		  <tal:if condition="python:rs=='published'">
