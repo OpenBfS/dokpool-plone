@@ -11,13 +11,22 @@
  <property name="allowed_content_types">
      
          
-             <element value="DPDocument" />
+             <element value="ReviewFolder" />
          
          
-             <element value="SimpleFolder" />
+             <element value="CollaborationFolder" />
          
          
              <element value="InfoFolder" />
+         
+         
+             <element value="DPDocument" />
+         
+         
+             <element value="PrivateFolder" />
+         
+         
+             <element value="SimpleFolder" />
          
      
  </property>

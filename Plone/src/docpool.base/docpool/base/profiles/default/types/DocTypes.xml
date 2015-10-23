@@ -13,6 +13,9 @@
          
              <element value="DocType" />
          
+         
+             <element value="SRModuleType" />
+         
      
  </property>
  <!-- schema interface -->

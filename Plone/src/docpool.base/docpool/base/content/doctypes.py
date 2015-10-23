@@ -79,6 +79,13 @@ class DocTypes(Container):
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 
+    def getSRModuleTypes(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'SRModuleType'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
 
 ##code-section bottom
 ##/code-section bottom 

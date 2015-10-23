@@ -79,6 +79,13 @@ class GroupFolder(Container, SimpleFolder):
         """
         return [obj.getObject() for obj in self.getFolderContents()]
 
+    def getCollaborationFolders(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'CollaborationFolder'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
     def getDPDocuments(self, **kwargs):
         """
         """
@@ -90,6 +97,20 @@ class GroupFolder(Container, SimpleFolder):
         """
         """
         args = {'portal_type':'InfoFolder'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
+    def getPrivateFolders(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'PrivateFolder'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
+    def getReviewFolders(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'ReviewFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 
