@@ -126,6 +126,8 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         for tab in tabs:
             if tab['id'].find('config') != -1:
                 tab['item_class'] = "config"
+            elif tab['id'] == 'content':
+                tab['item_class'] = "hide"
 
         apds = getApplicationDocPoolsForCurrentUser(self.context)
         if apds:
