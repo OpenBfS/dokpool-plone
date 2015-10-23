@@ -55,7 +55,7 @@ class Renderer(base.Renderer):
     ##code-section renderer-methods    
     @property
     def available(self):
-        return self.context.isSituationDisplay() and not self.isEditMode()
+        return self.context.isCurrentSituation() and not self.isEditMode()
     
     def isEditMode(self):
         """

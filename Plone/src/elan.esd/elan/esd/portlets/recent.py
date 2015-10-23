@@ -65,7 +65,7 @@ class Renderer(base.Renderer):
     
     @property
     def available(self):
-        return (not self.context.isArchive()) and self.collection is not None and self.context.isSituationDisplay() and not self.isEditMode()
+        return (not self.context.isArchive()) and self.collection is not None and self.context.isCurrentSituation() and not self.isEditMode()
 
     def recent_items(self):
         return self._data()
