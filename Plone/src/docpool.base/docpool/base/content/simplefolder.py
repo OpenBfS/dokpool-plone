@@ -34,6 +34,8 @@ from elan.esd.utils import getScenariosForCurrentUser
 from docpool.base.utils import queryForObjects, portalMessage, execute_under_special_role, \
 getAllowedDocumentTypes
 from Products.CMFPlone.utils import parent
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -132,6 +134,8 @@ class SimpleFolder(Container, FolderBase):
     def publish_doc(self, id, REQUEST=None):
         """
         """
+        if REQUEST:
+            alsoProvides(REQUEST, IDisableCSRFProtection)        
         doc = None
         try:
             doc = self._getOb(id)
@@ -147,6 +151,9 @@ class SimpleFolder(Container, FolderBase):
     def change_state(self, id, action, REQUEST=None):
         """
         """
+        if REQUEST:
+            alsoProvides(REQUEST, IDisableCSRFProtection)        
+            
         doc = None
         try:
             doc = self._getOb(id)
