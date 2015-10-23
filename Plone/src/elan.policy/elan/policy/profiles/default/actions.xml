@@ -149,6 +149,12 @@
   </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
+  <object name="ical_import_enable" meta_type="CMF Action" i18n:domain="plone.app.event">
+   <property name="visible">False</property>
+  </object>
+  <object name="ical_import_disable" meta_type="CMF Action" i18n:domain="plone.app.event">
+   <property name="visible">False</property>
+  </object>
   <property name="title"></property>
   <object name="copy" meta_type="CMF Action" i18n:domain="plone">
    <property name="visible">False</property>
@@ -201,5 +207,5 @@
   <object name="change_state" meta_type="CMF Action" i18n:domain="plone">
     <property name="visible">False</property>
   </object> 
- </object>
+ </object> 
 </object>
