@@ -79,7 +79,7 @@ def createModuleTypes(self, fresh):
 def createSRConfig(self, fresh):
     """
     """
-    createPloneObjects(self.config, SRCONFIG, fresh)
+    createPloneObjects(self.contentconfig, SRCONFIG, fresh)
 
 def createSO(self, fresh):
     """
@@ -90,7 +90,7 @@ def createSO(self, fresh):
 def createTextBlocks(self, count=20):
     """
     """
-    path = self.config.srconfig.textblocks
+    path = self.contentconfig.srconfig.textblocks
     for i in range(0, count):
         # random user
         docid = "tb_%d" % i
@@ -108,7 +108,7 @@ def createTextBlocks(self, count=20):
 def referenceTextBlocksAndCollections(self):
     """
     """
-    path = self.dpSearchPath() + "/config"
+    path = self.dpSearchPath() + "/contentconfig"
     mconfigs = [ mc.getObject() for mc in queryForObjects(self, path = path, portal_type='SRModuleConfig') ] 
     tbs = [ tb.getObject() for tb in queryForObjects(self, path = path, portal_type='SRTextBlock') ]
     colls = [ coll.getObject() for coll in queryForObjects(self, path = path, portal_type='SRCollection') ]
@@ -158,7 +158,7 @@ def createSituationReport(self):
         d = path._getOb("lage")
         t = "<p>" + "</p><p>".join(get_paragraphs(3)) + "</p>"
         d.text = RichTextValue(safe_unicode(t))
-        phase = self.config.srconfig.scenario1.phase1
+        phase = self.contentconfig.srconfig.scenario1.phase1
         to_id = intids.getId(phase)
         d.phase = RelationValue(to_id)
         mods = [ m.getObject() for m in queryForObjects(self, path = "/".join(path.getPhysicalPath()), portal_type='SRModule', review_state='published', sort_on='getId') ] 
@@ -172,9 +172,6 @@ def createSituationReport(self):
         d.reindexObject()
         d.publishReport(justDoIt=True, duplicate=True)
     
-            
-    
-
     
 def deleteTestData(context):
     """
