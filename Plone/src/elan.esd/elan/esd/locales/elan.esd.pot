@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-14 09:40+0000\n"
+"POT-Creation-Date: 2015-10-27 19:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Archives"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:19
+#: elan.esd/elan/esd/browser/i18ndummy.pt:22
 msgid "Archiving"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:18
+#: elan.esd/elan/esd/browser/i18ndummy.pt:21
 msgid "Home"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr ""
 msgid "Please select at least one scenario!"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:20
+#: elan.esd/elan/esd/browser/i18ndummy.pt:23
 msgid "Purge"
 msgstr ""
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:161
+#: elan.esd/elan/esd/content/elanscenario.py:162
 msgid "Scenario archived"
 msgstr ""
 
@@ -243,11 +243,11 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:21
+#: elan.esd/elan/esd/browser/i18ndummy.pt:24
 msgid "Snapshot"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:182
+#: elan.esd/elan/esd/content/elanscenario.py:183
 msgid "Snapshot created"
 msgstr ""
 
@@ -267,7 +267,7 @@ msgstr ""
 msgid "There are comments."
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:335
+#: elan.esd/elan/esd/content/elanscenario.py:336
 msgid "There are no more documents for this scenario."
 msgstr ""
 
@@ -323,7 +323,7 @@ msgstr ""
 msgid "View the document in its folder"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:131
+#: elan.esd/elan/esd/content/elanscenario.py:132
 msgid "active"
 msgstr ""
 
@@ -331,11 +331,23 @@ msgstr ""
 msgid "alert_delete_popup"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:17
+#: elan.esd/elan/esd/browser/i18ndummy.pt:20
 msgid "alert_publish_popup"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:22
+#: elan.esd/elan/esd/browser/i18ndummy.pt:17
+msgid "alert_reject_popup"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/i18ndummy.pt:18
+msgid "alert_retract_popup"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/i18ndummy.pt:19
+msgid "alert_submit_popup"
+msgstr ""
+
+#: elan.esd/elan/esd/browser/i18ndummy.pt:25
 msgid "archive_confirm_msg"
 msgstr ""
 
@@ -349,7 +361,7 @@ msgstr ""
 msgid "canceltitle"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:131
+#: elan.esd/elan/esd/content/elanscenario.py:132
 msgid "closed"
 msgstr ""
 
@@ -390,20 +402,20 @@ msgstr ""
 msgid "description_elandocument_doctype"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:85
+#: elan.esd/elan/esd/content/elanscenario.py:86
 msgid "description_elanscenario_exercise"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:75
+#: elan.esd/elan/esd/content/elanscenario.py:76
 msgid "description_elanscenario_status"
 msgstr ""
 
 #. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
-#: elan.esd/elan/esd/content/elanscenario.py:103
+#: elan.esd/elan/esd/content/elanscenario.py:104
 msgid "description_elanscenario_substitute"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:94
+#: elan.esd/elan/esd/content/elanscenario.py:95
 msgid "description_elanscenario_timeofevent"
 msgstr ""
 
@@ -482,7 +494,7 @@ msgstr ""
 msgid "failed_passwords_msg"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:131
+#: elan.esd/elan/esd/content/elanscenario.py:132
 msgid "inactive"
 msgstr ""
 
@@ -527,22 +539,22 @@ msgid "label_elandocument_doctype"
 msgstr ""
 
 #. Default: "Is this an exercise?"
-#: elan.esd/elan/esd/content/elanscenario.py:84
+#: elan.esd/elan/esd/content/elanscenario.py:85
 msgid "label_elanscenario_exercise"
 msgstr ""
 
 #. Default: "Status of the scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:74
+#: elan.esd/elan/esd/content/elanscenario.py:75
 msgid "label_elanscenario_status"
 msgstr ""
 
 #. Default: "Substitute scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:102
+#: elan.esd/elan/esd/content/elanscenario.py:103
 msgid "label_elanscenario_substitute"
 msgstr ""
 
 #. Default: "Time of event"
-#: elan.esd/elan/esd/content/elanscenario.py:93
+#: elan.esd/elan/esd/content/elanscenario.py:94
 msgid "label_elanscenario_timeofevent"
 msgstr ""
 
@@ -643,7 +655,7 @@ msgstr ""
 msgid "published"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:23
+#: elan.esd/elan/esd/browser/i18ndummy.pt:26
 msgid "purge_confirm_msg"
 msgstr ""
 
