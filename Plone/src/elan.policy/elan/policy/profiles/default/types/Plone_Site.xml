@@ -2,6 +2,7 @@
 <object name="Plone Site"
    meta_type="Factory-based Type Information with dynamic views"
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
    <element value="DocumentPool"/>
    <element value="DPApplication"/>

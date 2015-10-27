@@ -95,6 +95,7 @@ ADMINSTRUCTURE = [
                                                                                              ]},                                                            
                         {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
                         {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
+                        {TYPE: 'DashboardsConfig', TITLE: u'Dashboard Configuration', ID: 'dbconfig', CHILDREN: []},
                         {TYPE: 'IRIXConfig', TITLE: u'IRIX Configuration', ID: 'irix', 
                          'organisationReporting':'www.yourorganisation.org',
                          'contactName': 'Your Contact Name',

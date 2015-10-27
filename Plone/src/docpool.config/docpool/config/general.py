@@ -173,7 +173,6 @@ BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Templ
 
 ADMINSTRUCTURE = [{TYPE: 'DPConfig', TITLE: u'Global Configuration', ID: 'config', CHILDREN: [
                          {TYPE: 'DocTypes', TITLE: u'Global Document Types', ID: 'dtypes', CHILDREN: DTYPES},
-                         {TYPE: 'DashboardsConfig', TITLE: u'Dashboard Configuration', ID: 'dbconfig', CHILDREN: []},
                                                                                                ]},
                                                                            
                   {TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
