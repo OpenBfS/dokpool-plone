@@ -16,7 +16,7 @@ class DashboardCollectionsVocabulary(object):
     def __call__(self, context, raw=False):
         # print context
         esd = getDocumentPoolSite(context)        
-        path = "/".join(esd.getPhysicalPath()) + "/config"
+        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
         cat = getToolByName(esd, 'portal_catalog', None)
         if cat is None:
             if not raw:

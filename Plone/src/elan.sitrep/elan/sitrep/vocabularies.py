@@ -51,7 +51,7 @@ class PhasesVocabulary(object):
 
     def __call__(self, context, raw=False):
         # print context
-        return _createVocab(context, raw, "SRPhase", "/config", sort_on="Title", title_method=phase_title)
+        return _createVocab(context, raw, "SRPhase", "/contentconfig", sort_on="Title", title_method=phase_title)
     
 PhasesVocabularyFactory = PhasesVocabulary()
 
@@ -109,7 +109,7 @@ class CollectionsVocabulary(object):
 
     def __call__(self, context, raw=False):
         # print context
-        return _createVocab(context, raw, "SRCollection", "/config")
+        return _createVocab(context, raw, "SRCollection", "/contentconfig")
     
 CollectionsVocabularyFactory = CollectionsVocabulary()
 
@@ -120,7 +120,7 @@ class TextBlocksVocabulary(object):
 
     def __call__(self, context, raw=False):
         # print context
-        return _createVocab(context, raw, "SRTextBlock", "/config")
+        return _createVocab(context, raw, "SRTextBlock", "/contentconfig")
     
 TextBlocksVocabularyFactory = TextBlocksVocabulary()
 
