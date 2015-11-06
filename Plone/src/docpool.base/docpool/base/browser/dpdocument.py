@@ -51,6 +51,8 @@ class FlexibleView(BrowserView):
         dto = doc.docTypeObj()
         app = doc.currentApplication()
         dtid = doc.getPortalTypeName().lower()
+        if shasattr(doc, "typeName"):
+            dtid = doc.typeName()
         if dto:
             dtid = dto.customViewTemplate
             if not dtid:

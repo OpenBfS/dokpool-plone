@@ -15,7 +15,7 @@ def determineTransferFolderObject(self, channel):
 
 def ensureDocTypeInTarget(original, copy):
     my_dt = original.docType
-    config = copy.myDocumentPool().config
+    config = copy.myDocumentPool().config.dtypes
     if config.hasObject(my_dt):
         return
     dtObj = original.docTypeObj()

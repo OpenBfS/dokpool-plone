@@ -97,6 +97,9 @@ class SituationReport(Container, DPDocument):
     implements(ISituationReport)
     
 ##code-section methods
+    def typeName(self):
+        return "sitrep"
+    
     def customMenu(self, menu_items):
         """
         """

@@ -11,6 +11,7 @@ from plone.app.portlets.portlets import navigation
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFCore.utils import getToolByName
 from docpool.menu.utils import getFoldersForCurrentUser
+from Products.Archetypes.utils import shasattr
 
 class Renderer(navigation.Renderer):
 
@@ -35,6 +36,10 @@ class Renderer(navigation.Renderer):
     def available(self):
         return (not self.context.isArchive()) and self.context.isSituationDisplay()
     
+    def navigation_root(self):
+        if shasattr(self.context, "myDocumentPool"):
+            return self.context.myDocumentPool()
+        return self.getNavRoot()
     
 class SitemapQueryBuilder(NavtreeQueryBuilder):
     """Build tree for ELAN Sitemap considering archive structures

@@ -153,7 +153,8 @@ class SimpleFolder(Container, FolderBase):
         """
         if REQUEST:
             alsoProvides(REQUEST, IDisableCSRFProtection)        
-            
+        if not action:
+            return self.restrictedTraverse("@@view")()
         doc = None
         try:
             doc = self._getOb(id)
@@ -161,7 +162,10 @@ class SimpleFolder(Container, FolderBase):
             pass
         if doc:
             wftool = getToolByName(self, 'portal_workflow')
-            wftool.doActionFor(doc, action)
+            try:
+                wftool.doActionFor(doc, action)
+            except:
+                return self.restrictedTraverse("@@view")()
             if REQUEST:
                 portalMessage(self, _("The document state has been changed."), "info")
                 return self.restrictedTraverse("@@view")()

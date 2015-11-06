@@ -7,6 +7,12 @@ from plone.app.users.browser.register import BaseRegistrationForm
 from Products.PlonePAS.tools.groups import GroupsTool
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log
+from plone.app.users.browser.schemaeditor import getFromBaseSchema
+from plone.app.users.schema import IUserDataSchema
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
+from zope.component.globalregistry import provideAdapter
+from docpool.base.content.documentpool import IDocumentPool
 
 def email_as_username(self):
     # We need to set the right context here - the portal root
@@ -100,4 +106,21 @@ def removeGroup(self, group_id, REQUEST=None):
             else:
                 portalMessage(context, _("The group folder could not be deleted because of protected documents. Please check!"), "error")
     return ret
+
+def getUserDataSchema():
+    portal = getSite()
+    schema = getattr(portal, '_v_userdata_schema', None)
+    if schema is None:
+        portal._v_userdata_schema = schema = getFromBaseSchema(
+            IUserDataSchema,
+            form_name=u'In User Profile'
+        )
+        # as schema is a generated supermodel,
+        # needed adapters can only be registered at run time
+        provideAdapter(UserDataPanelAdapter, (IPloneSiteRoot,), schema)
+        provideAdapter(UserDataPanelAdapter, (IDocumentPool,), schema)
+    return schema
+
+from plone.app.users.browser import userdatapanel
+userdatapanel.getUserDataSchema = getUserDataSchema
 
