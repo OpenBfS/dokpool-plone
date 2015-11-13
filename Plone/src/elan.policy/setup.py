@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 import os
 
@@ -17,7 +18,7 @@ setup(name='elan.policy',
       author='Condat AG',
       author_email='hr@condat.de',
       url='http://xservice.condat.de/vportal/elan-e',
-      license='Commercial',
+      license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['elan'],
       include_package_data=True,
