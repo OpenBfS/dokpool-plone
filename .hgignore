@@ -2,6 +2,8 @@
 syntax: regexp
 ^Plone/bin$
 syntax: regexp
+^Plone/eggs$
+syntax: regexp
 ^Plone/develop-eggs$
 syntax: regexp
 ^Plone/parts$
