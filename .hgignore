@@ -25,6 +25,10 @@ syntax: regexp
 ^Plone/src/docpool\.visualization/docpool\.visualization\.egg-info$
 syntax: glob
 *.egg-info
+syntax: glob
+*.pyc
+syntax: glob
+*.mo
 syntax: regexp
 ^Plone/start_pg$
 syntax: regexp
