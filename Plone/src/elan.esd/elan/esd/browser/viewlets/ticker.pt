@@ -5,7 +5,7 @@
 	tal:condition="python:t is not None and t.text and len(t.text.output) > 10 or False">
 	<tal:def define="ttext t/text/output;
 					 ttext python:ttext[3:-4]">
-		<span tal:replace="python:t.modified_by or t.created_by"/> <span tal:replace="python: toLocalizedTime(t.modified(), long_format=1)"></span>: <span tal:replace="structure ttext" />
+		<span tal:replace="python:t.modified_by or t.created_by"/> <span tal:replace="python: toLocalizedTime(t.modified(), long_format=1)"></span><tal:var i18n:translate="">LT</tal:var>: <span tal:replace="structure ttext" />
 	</tal:def>
 </aside>
 </tal:block>
