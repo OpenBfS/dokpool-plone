@@ -17,7 +17,7 @@
                 uinfo python:mi[1];
                 exercise scenario/exercise"><a href="" tal:attributes="href scenario/absolute_url">
                 <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br><br>
-                </tal:if><b><tal:var replace="scenario/Title"/></b><br><tal:var replace="uinfo"/>, <tal:var replace="python:toLocalizedTime(date, long_format=1)"/></a></td>
+                </tal:if><b><tal:var replace="scenario/Title"/></b><br><tal:var replace="uinfo"/>, <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</a></td>
 <td tal:content="scenario/Description"></td> 
 <td i18n:translate="" tal:content="scenario/status"></td>                
 </tr>

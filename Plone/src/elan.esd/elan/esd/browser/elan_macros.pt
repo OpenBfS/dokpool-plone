@@ -32,7 +32,7 @@
 			                           date python:mi[0];
 			                           uinfo python:mi[1]">            
             <td class="scenario_desc"><tal:if condition="exercise"><span class="exerciseflag" i18n:translate="">++++ Exercise ++++</span> </tal:if><span class="scentitle" tal:attributes="title python:'%s %s ' % (uinfo, toLocalizedTime(date, long_format=1))" tal:content="string:${scenario/Title}">Event1</span><tal:if condition="python: selected and scenario.Description()"><span class="scendesc"> - <tal:var replace="scenario/Description"/></span></tal:if>
-                    <span class="uinfo"><tal:var tal:condition="uinfo" replace="structure string:${uinfo}, "/> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/></span>
+                    <span class="uinfo"><tal:var tal:condition="uinfo" replace="structure string:${uinfo}, "/> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</span>
             </td>
             </tal:def>               
             </tr>
