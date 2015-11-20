@@ -60,3 +60,6 @@ class AddUserFormExtender(extensible.FormExtender):
         fields = field.Fields(IEnhancedUserDataSchema)
         self.add(fields)
         self.form.fields['email'].field.required = False
+        
+
+        

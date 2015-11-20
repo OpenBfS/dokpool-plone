@@ -92,6 +92,10 @@
                         </metal:bodytext>
                     </article>
                 </metal:slot>
+		      <footer>
+		        <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" />
+                <input type="hidden" name="popup_load" value="${request/popup_load|nothing}"/>
+		      </footer>
 
             </div>
         </metal:block>

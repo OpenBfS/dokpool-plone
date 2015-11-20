@@ -1,6 +1,6 @@
 /* Sicherheitsabfrage vor dem Loeschen von Datensaetzen. */
 function sicherheitsabfrage(){
-    checkboxen = jq('.dbadmin .gridtable .check input:checked');
+    checkboxen = jQuery('.dbadmin .gridtable .check input:checked');
     anzahl = checkboxen.length;
     if (anzahl > 0) {
         text = escape('Wollen Sie ' + anzahl + ' Objekt(e) ' + unescape('l%F6schen%3F'));
@@ -15,7 +15,7 @@ function einfachesicherheitsabfrage(){
 }
 
 function securitycheck(){
-    checkboxen = jq('.dbadmin .gridtable .check input:checked');
+    checkboxen = jQuery('.dbadmin .gridtable .check input:checked');
     anzahl = checkboxen.length;
     if (anzahl > 0) {
         text = escape('Do you want to delete ' + anzahl + ' object(s) ?');

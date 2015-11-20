@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.discussion\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-12-21 13:29+0100\n"
-"Last-Translator: Timo Stollenwerk <contact@timostollenwerk.net>\n"
+"PO-Revision-Date: 2015-11-20 14:37+0100\n"
+"Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: Deutsch <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -141,7 +141,7 @@ msgstr "Ihr Kommentar muss noch vom Moderator freigegeben werden."
 #. Default: "Comment"
 #: ../browser/comments.py:123
 msgid "add_comment_button"
-msgstr "Kommentieren"
+msgstr "Kommentar abgeben"
 
 #. Default: "Delete"
 #: ../browser/moderation.pt:68
@@ -306,6 +306,9 @@ msgstr "Captcha"
 #: ../interfaces.py:275
 msgid "label_comment"
 msgstr "Kommentar"
+
+msgid "label_add_comment"
+msgstr "Kommentor abgeben"
 
 #. Default: "Commenting has been disabled."
 #: ../browser/comments.pt:130

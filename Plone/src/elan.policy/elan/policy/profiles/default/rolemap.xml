@@ -296,6 +296,7 @@
     </permission>
     <permission name="ELAN_E: Add ELANTransferFolder" acquire="True">
       <role name="Manager"/>
+      <role name="Reviewer"/>
       <role name="Site Administrator"/>
     </permission>
     <permission name="ELAN_E: Add ELANTransfers" acquire="True">
@@ -413,6 +414,7 @@
 	<permission name="Sharing page: Delegate roles" acquire="False">
       <role name="Manager"/>
       <role name="Site Administrator"/>
+      <role name="Reviewer"/>      
       <role name="Owner"/>
 	</permission>
     <permission name="Undo changes" acquire="True">

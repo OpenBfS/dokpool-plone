@@ -72,7 +72,7 @@ class UsersOverviewControlPanel(UOCP):
                         raise Forbidden
 
                 acl_users.userFolderEditUser(user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST)
-                if pw:
+                if pw and pw != user.id:
                     context.REQUEST.form['new_password'] = pw
                     regtool.mailPassword(user.id, context.REQUEST)
                     users_with_reset_passwords.append(user.id)

@@ -13,6 +13,10 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
 from zope.component.globalregistry import provideAdapter
 from docpool.base.content.documentpool import IDocumentPool
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from Products.CMFPlone.utils import normalizeString, safe_unicode
+from AccessControl import getSecurityManager
+from Products.CMFCore.permissions import ManagePortal
 
 def email_as_username(self):
     # We need to set the right context here - the portal root
@@ -124,3 +128,37 @@ def getUserDataSchema():
 from plone.app.users.browser import userdatapanel
 userdatapanel.getUserDataSchema = getUserDataSchema
 
+def getGroupIds(self, context):
+    site = getSite()
+    groups_tool = getToolByName(site, 'portal_groups')
+    groups = groups_tool.listGroups()
+    # Get group id, title tuples for each, omitting virtual group
+    # 'AuthenticatedUsers'
+    terms = []
+    for g in groups:
+        # Filter local groups
+        
+        if context.getPortalTypeName() == "DocumentPool" and not g.getProperty("dp") == context.UID():
+            continue
+        if g.id.find("Members") > -1:
+            continue
+        if g.id == 'AuthenticatedUsers':
+            continue
+        is_zope_manager = getSecurityManager().checkPermission(
+            ManagePortal, context)
+        if 'Manager' in g.getRoles() and not is_zope_manager:
+            continue
+
+        group_title = safe_unicode(g.getGroupTitleOrName())
+        if group_title != g.id:
+            title = u'%s (%s)' % (group_title, g.id)
+        else:
+            title = group_title
+        terms.append(SimpleTerm(g.id, g.id, title))
+    # Sort by title
+    terms.sort(key=lambda x: normalizeString(x.title))
+    return SimpleVocabulary(terms)
+
+from plone.app.users.vocabularies import GroupIdVocabulary
+
+GroupIdVocabulary.__call__ = getGroupIds

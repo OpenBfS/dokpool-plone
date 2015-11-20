@@ -66,6 +66,13 @@
       class=".userdatapanel.UserDataConfiglet"
       permission="plone.app.controlpanel.UsersAndGroups"
     />
+    
+  <browser:page
+      name="overview-controlpanel"
+      for="docpool.base.interfaces.IDocumentPool"
+      class="Products.CMFPlone.controlpanel.browser.overview.OverviewControlPanel"
+      permission="plone.app.controlpanel.Overview"
+      />
 
   <adapter
       factory=".userdataschema.UserDataPanelExtender"
@@ -88,7 +95,7 @@
   <adapter
     for="plone.app.layout.navigation.interfaces.INavigationRoot"  
     factory="Products.CMFPlone.controlpanel.bbb.usergroups.UserGroupsSettingsControlPanelAdapter" />
-      
+            
 <!-- ##/code-section Main -->    
 
 </configure>

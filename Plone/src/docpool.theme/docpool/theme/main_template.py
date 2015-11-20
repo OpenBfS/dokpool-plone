@@ -12,7 +12,7 @@ class MainTemplate(OrigMainTemplate):
 
     @property
     def template(self):
-        if self.request.form.get('popup_load'):
+        if self.request.form.get('popup_load') or self.request['URL'].find('@@inline') > - 1:
             return self.popup_template
         elif self.request.form.get('ajax_load'):
             return OrigMainTemplate.ajax_template
