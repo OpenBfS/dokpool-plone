@@ -78,10 +78,9 @@ def getFoldersForCurrentUser(self, user=None):
         tpath = "/".join(t.getPhysicalPath())
         rres = [ _folderTree(self, "%s" % (tpath))]
         rres[0]['item_class'] = 'personal transfer'
-        res = rres
     groups = getGroupsForCurrentUser(self, user)
     if not groups: # User is reader only
-        return res
+        return rres
     # strangely, member folders for users with '-' in their username 
     # are created with double dashes
     user_name = user.getUserName()
@@ -109,6 +108,7 @@ def getFoldersForCurrentUser(self, user=None):
         mfolder = []
     res.extend(mfolder)
     res.reverse()
+    res.extend(rres)
     if gres: # Has groups, so return all the folders
         return res
     elif hasGroup: # If the groups are not navigable (i.e. in archive): only member folder

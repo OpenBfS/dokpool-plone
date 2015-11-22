@@ -105,7 +105,7 @@
    <property name="title" i18n:translate="">Edit Ticker</property>
    <property name="description" i18n:translate=""></property>
    <property
-      name="url_expr">string:${context/dp_url}/contentconfig/ticker/edit</property>
+      name="url_expr">string:${context/dp_url}/contentconfig/ticker</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property name="available_expr">here/isContentAdmin</property>
