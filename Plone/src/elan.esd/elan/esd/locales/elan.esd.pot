@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-27 19:40+0000\n"
+"POT-Creation-Date: 2015-11-22 07:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,6 +189,8 @@ msgid "Images:"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:158
+#: elan.esd/elan/esd/browser/elanscenarios.pt:20
+#: elan.esd/elan/esd/browser/viewlets/ticker.pt:8
 msgid "LT"
 msgstr ""
 
