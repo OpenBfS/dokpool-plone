@@ -68,7 +68,7 @@
 			                            class="context"
 			                            value="Filter"
 			                            i18n:attributes="value" />
-                <input onclick="jq('#cat_select option').removeAttr('selected');"
+                <input onclick="jQuery('#cat_select option').removeAttr('selected');"
                                         type="submit"
                                         name="form.button.Save"
                                         class="context"
@@ -102,7 +102,7 @@
                  tal:define="isOverview python:here.getId()=='overview'">
             <thead>
                <metal:header_slot metal:define-slot="listingheader">
-                 <th class="nosort actions"></th>
+                 <th class="nosort actions" tal:condition="not:isOverview"></th>
                  <th class="nosort title" i18n:translate="">Title / Description / Text</th>
                  <th class="nosort metadata" i18n:translate="">Metadata</th>
               </metal:header_slot>
@@ -232,7 +232,7 @@
 	          <td width="120" valign="top">
 	          <span tal:content="structure python:b.title_or_id()">images</span>&nbsp;&nbsp;<br><br>
 	          <a href="" tal:attributes="href python:b.absolute_url()" target="_blank">             
-	             <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'" border="0" width="80%" height="80%"><br>
+	             <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview'" border="0" width="80%" height="80%"><br>
 	          </a>
 	          <font size="1">
 	             <span tal:content="python:b.image.contentType" /><br>
