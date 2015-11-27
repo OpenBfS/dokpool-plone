@@ -8,6 +8,7 @@ from zExceptions import BadRequest
 from Products.CMFPlone.utils import log_exc
 from docpool.config.general import DOCTYPES
 from docpool.config import _
+from datetime import datetime
 # General Docpool structures
 
 CONTENT_AREA = {TYPE: 'ContentArea', TITLE: u'Content Area', ID: 'content', "setExcludeFromNav": True, CHILDREN: [
@@ -91,7 +92,7 @@ ARCHIVESTRUCTURE =  [ {TYPE: 'ELANCurrentSituation', TITLE: 'Electronic Situatio
 ADMINSTRUCTURE = [
                   {TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
                          {TYPE: 'ELANScenarios', TITLE: u'Scenarios', ID: 'scen', CHILDREN: [
-                                 {TYPE: 'ELANScenario', TITLE: u'Routine mode', ID: 'routinemode', "status": "active", CHILDREN:[] }                                                            
+                                 {TYPE: 'ELANScenario', TITLE: u'Routine mode', ID: 'routinemode', "status": "active", "timeOfEvent": datetime.now(), CHILDREN:[] }                                                            
                                                                                              ]},                                                            
                         {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
                         {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
