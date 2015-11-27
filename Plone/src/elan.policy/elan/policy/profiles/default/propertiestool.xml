@@ -81,8 +81,6 @@
   <property name="sim_upload_limit" type="int">2</property>
   <property name="object_override" type="boolean">False</property>
  </object>
-  
- </object>
  <object name="site_properties" meta_type="Plone Property Sheet">
   <property name="title">Site wide properties</property>
   <property name="allowAnonymousViewAbout" type="boolean">False</property>
