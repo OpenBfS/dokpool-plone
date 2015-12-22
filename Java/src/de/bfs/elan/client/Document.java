@@ -55,6 +55,18 @@ public class Document extends Folder {
 		String newpath = (String)execute("upload_image", params);
 		return new Image(client, newpath, null);
 	}
-
+	public String autocreateSubdocuments() {
+		Vector<Object> params = new Vector<Object>();
+		params.add(path);
+		String msg = (String)execute("autocreate_subdocuments", params);
+		return msg;
+	 }
+	 
+	 public String readPropertiesFromFile() {
+		Vector<Object> params = new Vector<Object>();
+		params.add(path);
+		String msg = (String)execute("read_properties_from_file", params);
+		return msg;
+	 }
 
 }
