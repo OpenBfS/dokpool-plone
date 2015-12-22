@@ -38,10 +38,11 @@ public class Group extends BaseObject {
 		}
 	}
 	
-	public void addUser(User user) {
+	public void addUser(User user,String esd) {
 		Vector<String> params = new Vector<String>();
 		params.add(user.getUserId());
 		params.add(groupId);
+		params.add(esd);
 		Object o = execute("add_user_to_group", params);
 		if (((String) o).equals("added")) {
 			members.add(user);

@@ -92,7 +92,7 @@ public class DocpoolBaseService {
 	public static void main(String[] args) throws IOException {
 	    Log log = LogFactory.getLog(DocpoolBaseService.class);
 		
-		DocpoolBaseService baseService = new DocpoolBaseService("http://10.1.20.43:8081/Plone", "condat_user1", "user1");
+		DocpoolBaseService baseService = new DocpoolBaseService("http://localhost:8081/Dpool", "auto", "demo1");
 		List<DocumentPool> documentpools = baseService.getDocumentPools();
 		DocumentPool myDocumentPool = baseService.getPrimaryDocumentPool();
 		log.info(myDocumentPool.getTitle());
@@ -104,18 +104,19 @@ public class DocpoolBaseService {
 		List<Folder> gf = myDocumentPool.getGroupFolders();
 		List<Folder> tf = myDocumentPool.getTransferFolders();
 		log.info(gf.size());
-		Document d = userfolder.createDocument("ausjava2", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario2");
+		Document d = userfolder.createDocument("ausjava8", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario1");
 		log.info(d.getTitle());
-		java.io.File file = new java.io.File("/opt/condat/elan/Plone/src/wsapi4elan.core/wsapi4elan/core/tests/test.pdf");
+		java.io.File file = new java.io.File("test.pdf");
 		d.uploadFile("neue_datei", "Neue Datei", "Datei Beschreibung", FileUtils.readFileToByteArray(file), "test.pdf");
-		file = new java.io.File("/opt/condat/elan/Plone/src/wsapi4elan.core/wsapi4elan/core/tests/test.jpg");
+		file = new java.io.File("test.jpg");
 		d.uploadImage("neues_bild", "Neues Bild", "Bild Beschreibung", FileUtils.readFileToByteArray(file), "test.jpg");
 		log.info(d.getWorkflowStatus());
 		Folder mygf = gf.get(0);
-		d = mygf.createDocument("ausjava2", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario2");
+		d = mygf.createDocument("ausjava9", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario1");
 		log.info(d.getWorkflowStatus());
 		d.setWorkflowStatus("publish");
 		log.info(d.getWorkflowStatus());
+		System.out.println(myDocumentPool.path);
 		User user = myDocumentPool.createUser("testuserxml", "testuserxml", "XMLTESTER", myDocumentPool.path);
 		if (user == null) {
 			log.error("Kein Nutzer angelegt!");
@@ -129,7 +130,7 @@ public class DocpoolBaseService {
 			log.info("Gruppe " + group.getGroupId() + " angelegt.");
 		}
 		//user.addToGroup(group);
-		group.addUser(user);
+		group.addUser(user,myDocumentPool.path);
 		String[] docTypes = {"airactivity", "ifinprojection", "protectiveactions"};
 		group.setAllowedDocTypes(docTypes);
 		List<String> gDoctypes = group.getAllowedDocTypes();

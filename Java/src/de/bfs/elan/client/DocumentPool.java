@@ -103,6 +103,7 @@ public class DocumentPool extends Folder {
 		params.add(description);
 		params.add(esd);
 		Object o = execute("post_group", params);
+		System.out.println((String) o+"  "+groupId);
 		if (((String) o).equals(groupId)) {
 			group = new Group(client, path, groupId, title, description, esd);
 		}

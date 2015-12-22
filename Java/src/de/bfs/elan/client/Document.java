@@ -24,6 +24,7 @@ public class Document extends Folder {
 	 */
 	public File uploadFile(String id, String title, String description, byte[] data, String filename) {
 		Vector<Object> params = new Vector<Object>();
+		System.out.println("Dokument: "+id+title+description+filename);
 		params.add(path);
 		params.add(id);
 		params.add(title);
@@ -44,6 +45,7 @@ public class Document extends Folder {
 	 * @return
 	 */	public Image uploadImage(String id, String title, String description, byte[] data, String filename) {
 		Vector<Object> params = new Vector<Object>();
+		System.out.println("Dokument: "+id+title+description+filename);
 		params.add(path);
 		params.add(id);
 		params.add(title);
@@ -54,17 +56,5 @@ public class Document extends Folder {
 		return new Image(client, newpath, null);
 	}
 
-	 public String autocreateSubdocuments() {
-		Vector<Object> params = new Vector<Object>();
-		params.add(path);
-		String msg = (String)execute("autocreate_subdocuments", params);
-		return msg;
-	 }
-	 
-	 public String readPropertiesFromFile() {
-		Vector<Object> params = new Vector<Object>();
-		params.add(path);
-		String msg = (String)execute("read_properties_from_file", params);
-		return msg;
-	 }
+
 }
