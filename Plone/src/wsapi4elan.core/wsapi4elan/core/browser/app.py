@@ -153,19 +153,31 @@ class ApplicationAPI(WSAPI):
     def post_group(self, groupname, title, description, esdpath):
         """
         """
+        
+
+
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
         esd = api.content.get(esdpath, None)
+        prefix = esd.prefix
+        prefix = str(prefix)
         groupprops = {'title': title,
                       'description': description}
         if esd:
             groupprops['dp'] = esd.UID()
             title += " ({})".format(esd.Title())
             groupprops['title'] = title
-        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
-        if groupprops:
-            group.setGroupProperties(groupprops)
-        return group.getId()
+#        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
+        gtool = getToolByName(self, 'portal_groups')
+        group = gtool.addGroup("%s_%s" % (prefix, groupname),
+                   properties=groupprops)
+
+#        if groupprops:
+#            group.setGroupProperties(groupprops)
+        if group:
+             return  groupname
+        else:
+             return "fail"
     
     def put_group(self, groupname, title, description, esdpath, allowedDocTypes):
         """
@@ -192,11 +204,16 @@ class ApplicationAPI(WSAPI):
                 message = "changed" 
         return message
         
-    def add_user_to_group(self, username, groupname):
+    def add_user_to_group(self, username, groupname, esdpath):
         """
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
+        esd = api.content.get(esdpath, None)
+        prefix = esd.prefix
+        prefix = str(prefix)
+
+        groupname = prefix + "_" + groupname
         api.group.add_user(groupname=groupname, group=None, username=username, user=None)
         group = api.group.get(groupname)
         message = "notAdded"
