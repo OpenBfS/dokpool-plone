@@ -20,14 +20,24 @@ MAINTAINER Marco Lechner<mlechner@bfs.de>
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install python postgresql-server-dev-9.3 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install mercurial python-dev
 RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/plone --gecos "Plone system user" plone
-RUN mkdir -p /opt/bfs
-# the following clone will only work from within BfS net due to mandatory proxy authentication to access repo.
-# You can modify the URL by adding https://<username>:pass@... - but do never push this to a repo!
-RUN cd /opt/bfs/ && hg clone "https://redmine-koala.bfs.de/hg/elan"
+
+#
+# install ELAN
+#
+
+RUN mkdir -p /opt/bfs/elan
+ADD . /opt/bfs/elan/
+WORKDIR /opt/bfs/elan/Plone
 RUN cd /opt/bfs/elan/Plone && python bootstrap.py
 RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout.cfg
-ADD initialELAN-backup.tgz /opt/bfs/elan/Plone/var/
-RUN cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n
+
+#
+# restore backup if initialELAN-backup.tgz exists
+#
+
+RUN if [ -f /opt/bfs/elan/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/elan/initialELAN-backup.tgz -C /opt/bfs/elan/Plone/var/ && cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n ; fi
+
+
 RUN chown -R plone.plone /opt/bfs
 USER plone
 ENV HOME /home/plone
