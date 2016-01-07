@@ -37,7 +37,6 @@ RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout.cfg
 
 RUN if [ -f /opt/bfs/elan/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/elan/initialELAN-backup.tgz -C /opt/bfs/elan/Plone/var/ && cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n ; fi
 
-
 RUN chown -R plone.plone /opt/bfs
 USER plone
 ENV HOME /home/plone
