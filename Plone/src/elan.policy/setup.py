@@ -26,6 +26,7 @@ setup(name='elan.policy',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'Products.CMFPlacefulWorkflow',
           'collective.quickupload',
           'collective.easytemplate',
           'plone.app.caching',
@@ -38,7 +39,6 @@ setup(name='elan.policy',
           'elan.esd',
           'elan.dbaccess',
           'elan.sitrep',
-          'Products.CMFPlacefulWorkflow',
       ],
       entry_points="""
       # -*- Entry points: -*-
