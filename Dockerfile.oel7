@@ -24,7 +24,7 @@ RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt
 # You can modify the URL by adding https://<username>:pass@... - but do never push this to a repo!
 RUN cd /opt/bfs/ && hg clone "https://redmine-koala.bfs.de/hg/elan"
 RUN cd /opt/bfs/elan/Plone && python bootstrap.py
-RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc docker_standalone.cfg
+RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout_docker.cfg
 ADD initialELAN-backup.tgz /opt/bfs/elan/Plone/var/
 RUN cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n
 RUN chown -R plone.plone /opt/bfs
