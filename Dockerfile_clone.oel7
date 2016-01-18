@@ -7,10 +7,12 @@
 # This Container runs standalone using sqlite- and zope-Databses as backend.
 # No need for PostgreSQL, but not recommended for production use
 #
-# If you want to restore a transfer-Db (based on sqlite) just place a elan_transfer.sqlite file next to this
-# Dockerfile. See ./Plone/buildout_docker.cfg where elan_transfer.sqlite is expected to be in running container
+# If you want to restore a transfer-Db (based on sqlite) uncomment the line above where elan_transfer.sqlite is added:
+# ADD elan_transfer.sqlite /opt/bfs/elan/
+# and place the elan_transfer.sqlite file next to this Dockerfile
+# see ./Plone/buildout_docker.cfg where elan_transfer.sqlite is expected to be in running container
 #
-# build with e.g. `docker build --force-rm=true -t bfs/elan5oel7 -f Dockerfile.oel7 .',
+# build with e.g. `docker build --force-rm=true -t bfs/elan5oel7 -f Dockerfile_clone.oel7 .',
 # then run with e.g.
 # `docker run --name bfs_elan5_oel7 -dp 18081:8081 bfs/elan5oel7:latest'
 #
@@ -25,15 +27,20 @@ RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone syste
 #
 # install ELAN
 #
-RUN mkdir -p /opt/bfs/elan
-ADD . /opt/bfs/elan/
+RUN mkdir -p /opt/bfs
+# the following clone will only work from within BfS net due to mandatory proxy authentication to access repo.
+# You can modify the URL by adding https://<username>:pass@... - but do never push this to a repo!
+RUN cd /opt/bfs/ && hg clone "https://redmine-koala.bfs.de/hg/elan"
+ADD initialELAN-backup.tgz /opt/bfs/elan/Plone/var/
 WORKDIR /opt/bfs/elan/Plone
 RUN cd /opt/bfs/elan/Plone && python bootstrap.py
 RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout_docker.cfg
 #
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
 #
-RUN if [ -f /opt/bfs/elan/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/elan/initialELAN-backup.tgz -C /opt/bfs/elan/Plone/var/ && cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n ; fi
+
+# ADD elan_transfer.sqlite /opt/bfs/elan/ 
+RUN cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n
 RUN chown -R plone.plone /opt/bfs
 USER plone
 ENV HOME /home/plone
