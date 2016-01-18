@@ -74,7 +74,7 @@
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Owner</permission-role>  
+   <permission-role>Manager</permission-role>  
   </permission-map>
   <permission-map name="Sharing page: Delegate roles" acquired="False">
   </permission-map>
