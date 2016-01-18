@@ -13,6 +13,7 @@ from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from zope.component.hooks import getSite
 from plone import api
 from zope.component import getMultiAdapter
+from Acquisition import aq_base, aq_inner
 
 def queryForObject(self, **kwa):
     """
@@ -222,8 +223,8 @@ def back_references(source_object, attribute_name):
         log_exc(e)
         return []
     
-def _copyPaste(source_obj, target_folder_obj):
-    result = api.content.copy(source=source_obj, target=target_folder_obj, safe_id=True)    
+def _copyPaste(source_obj, target_folder_obj, safe=True):
+    result = api.content.copy(source=aq_inner(source_obj), target=target_folder_obj, safe_id=safe)    
     if result:
         return result.getId()
     return None

@@ -52,10 +52,11 @@ class ISRModuleType(form.Schema, IDocType):
 
 ##code-section interface
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
+    
     form.mode(allowUploads='hidden')
     form.mode(publishImmediately='hidden')
     form.mode(globalAllow='hidden')
-    form.mode(allowedDocTypes='hidden')
+#    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
     form.mode(partsPattern='hidden')
     form.mode(pdfPattern='hidden')
     form.mode(imgPattern='hidden')

@@ -1,0 +1,13 @@
+<tal:block i18n:domain="docpool.base"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context">
+    <div class="visualization">
+	    <div class="map">
+	       <tal:insert replace="structure context/getMapImage" />
+	    </div>
+        <div class="legend">
+           <tal:insert replace="structure context/getLegendImage" />
+        </div>
+    </div>
+</tal:block>

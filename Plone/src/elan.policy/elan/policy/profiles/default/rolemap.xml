@@ -212,6 +212,31 @@
       <role name="Site Administrator"/>
       <role name="Reviewer"/>
     </permission>
+    <permission name="ELAN_E: Add SRModuleTypes" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="ELAN_E: Add SRModuleType" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="ELAN_E: Add SRCollections" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="ELAN_E: Add SRConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Reviewer"/>
+    </permission>    
+    <permission name="ELAN_E: Add SRFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>    
     <permission name="ELAN_E: Add DocType" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
@@ -414,8 +439,6 @@
 	<permission name="Sharing page: Delegate roles" acquire="False">
       <role name="Manager"/>
       <role name="Site Administrator"/>
-      <role name="Reviewer"/>      
-      <role name="Owner"/>
 	</permission>
     <permission name="Undo changes" acquire="True">
       <role name="Manager"/>
