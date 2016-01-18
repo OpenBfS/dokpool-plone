@@ -296,29 +296,28 @@
               <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
           </a>
         </tal:if>
+        <tal:cond condition="python: not (isCollection or context.isArchive())">
+            <a tal:condition="nocall:unknown_scen" href=""
+                title="Edit unknown scenario"
+                tal:attributes="href unknown_scen/absolute_url"
+                i18n:attributes="title">
+                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+            </a>
+            <a tal:condition="nocall:unknown_dt" href=""
+                title="Edit unknown doc type"
+                tal:attributes="href unknown_dt/absolute_url"
+                i18n:attributes="title">
+                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+            </a>
+        </tal:cond>
+        
      </metal:macro>
      
      <metal:macro define-macro="docmetadata" i18n:domain="elan.esd">
          <tal:if i18n:domain="elan.esd" tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
-             <tal:cond condition="python: not (isCollection or context.isArchive())">
-                 <a tal:condition="nocall:unknown_scen" href=""
-                     title="Edit unknown scenario"
-                     tal:attributes="href unknown_scen/absolute_url"
-                     i18n:attributes="title">
-                     <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
-                 </a>
-             </tal:cond>
              <b><tal:var i18n:translate="">Event:</tal:var> <tal:var content="python:', '.join(scns)" /></b><br>
          </tal:if>
             <tal:if condition="item_type">
-                 <tal:cond condition="python: not (isCollection or context.isArchive())">
-                 <a tal:condition="nocall:unknown_dt" href=""
-                     title="Edit unknown doc type"
-                     tal:attributes="href unknown_dt/absolute_url"
-                     i18n:attributes="title">
-                     <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
-                 </a>
-             </tal:cond>
              <i><span tal:content="string:${item_cat} (${item_type})" /></i>
             </tal:if>
            <span tal:condition="python:item_modified and (toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1))">
