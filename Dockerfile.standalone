@@ -29,7 +29,7 @@ RUN mkdir -p /opt/bfs/elan
 ADD . /opt/bfs/elan/
 WORKDIR /opt/bfs/elan/Plone
 RUN cd /opt/bfs/elan/Plone && python bootstrap.py
-RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout.cfg
+RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc docker_standalone.cfg
 
 #
 # restore backup if initialELAN-backup.tgz exists
@@ -41,7 +41,6 @@ RUN chown -R plone.plone /opt/bfs
 USER plone
 ENV HOME /home/plone
 # try to use sqlite instead of postgreSQL as DB backend for transfer
-ENV ELANENGINE sqlite:////tmp/elan.db
 WORKDIR /opt/bfs/elan/Plone
 EXPOSE 8081
 CMD [ "/opt/bfs/elan/Plone/bin/instance", "fg"]
