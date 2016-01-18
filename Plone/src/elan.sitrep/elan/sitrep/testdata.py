@@ -130,7 +130,11 @@ def createSituationReport(self):
     """
     prefix = self.prefix or self.getId()
     gname = "%s_Group%d" % (prefix, 2)
-    g = self.content.Groups[gname]
+    g = None
+    try:
+        g = self.content.Groups[gname]
+    except:
+        return
     createPloneObjects(g, [ {TYPE: 'SRFolder', TITLE: 'Lagebericht', ID: 'lagebericht', CHILDREN: [] } ])
     path = g.lagebericht
     intids = getUtility(IIntIds)
@@ -183,7 +187,6 @@ def createTestData(context, fresh=1):
     """
     createModuleTypes(context, fresh)
     createSRConfig(context, fresh)
-    createSO(context, fresh)
     createTextBlocks(context, count=20)
     transaction.commit()
     referenceTextBlocksAndCollections(context)

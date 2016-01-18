@@ -213,7 +213,7 @@ def setELANLocalRoles(self):
     prefix = str(prefix)
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Reviewer"])
     self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
-    self.esd.manage_setLocalRoles("%s_Receivers" % prefix, ["Reviewer"])
+    self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Reviewer"]) 
     self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
     self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["Editor"])
     self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["Editor"])
@@ -252,7 +252,7 @@ def copyCurrentSituation(self, fresh):
         return
     esd = self.esd
     from docpool.base.utils import _copyPaste
-    _copyPaste(esd, self)
+    _copyPaste(esd, self, safe=False)
     self.esd.setTitle(_("Situation Display"))
     self.esd.reindexObject()
     

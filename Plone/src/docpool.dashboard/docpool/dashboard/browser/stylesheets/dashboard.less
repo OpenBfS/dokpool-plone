@@ -9,15 +9,25 @@
             height: 300px;
             overflow-x: scroll;
             
-            .dbimage {
-                width: 280px;
-                height: 240px;
-                overflow: scroll;
-                img {
-                    max-width: 280px;
-                    height: auto;
-                }
+            .visualization {
+                .map {
+                    img {
+                            width: 100%;
+                        }                    
+                        max-width: 66%;
+                        height: auto;
+                        float: left;
+                       }
+                .legend {
+                    img {
+                            width: 100%;
+                        }                    
+                        max-width: 34%;
+                        height: auto;
+                        float: left;
+                    }
             }
+
             .metadata {
                 vertical-align: bottom;
             }
@@ -42,17 +52,7 @@
     .dashboard {
         .doctile {
                 width: 400px;
-                height: 400px;
-                
-                .dbimage {
-                    width: 380px;
-                    height: 340px;
-
-                    img {
-                        max-width: 380px;
-                        height: auto;
-                    }
-                }
+                height: 320px;
             }
     }
 }
@@ -60,16 +60,7 @@
     .dashboard {
         .doctile {
                 width: 500px;
-                height: 500px;
-                
-                .dbimage {
-                    width: 480px;
-                    height: 440px;
-                    img {
-                        max-width: 480px;
-                        height: auto;
-                    }                    
-                }
+                height: 400px;
             }
     }
 }
