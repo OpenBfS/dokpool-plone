@@ -223,23 +223,16 @@ def back_references(source_object, attribute_name):
         return []
     
 def _copyPaste(source_obj, target_folder_obj):
-    source_id = source_obj.getId()
-    p = parent(source_obj)
-    cb_copy_data = p.manage_copyObjects(source_obj.getId())
-    result = target_folder_obj.manage_pasteObjects(cb_copy_data)
+    result = api.content.copy(source=source_obj, target=target_folder_obj, safe_id=True)    
     if result:
-        for r in result:
-            if r['id'] == source_id:
-                return r['new_id']
+        return result.getId()
     return None
 
 def _cutPaste(source_obj, target_folder_obj, unique=False):
     if unique:
         if target_folder_obj.hasObject(source_obj.getId()):
             return
-    p = parent(source_obj)
-    cb_copy_data = p.manage_cutObjects(source_obj.getId())
-    result = target_folder_obj.manage_pasteObjects(cb_copy_data)
+    result = api.content.move(source=source_obj, target=target_folder_obj, safe_id=True)    
     
 def getDocumentPoolSite(context):
     """
