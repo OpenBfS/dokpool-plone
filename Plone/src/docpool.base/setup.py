@@ -39,7 +39,7 @@ setup(name='docpool.base',
           'plone.app.referenceablebehavior',
           'plone.api','plone.formwidget.querystring'
           ##code-section dependencies
-          ,' PyPDF2', 'xhtml2pdf',
+          ,' PyPDF2', 'xhtml2pdf', 'Products.CMFPlacefulWorkflow'
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      

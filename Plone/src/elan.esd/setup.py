@@ -39,6 +39,7 @@ setup(name='elan.esd',
           'plone.app.referenceablebehavior',
           'plone.api','plone.formwidget.querystring', 'collective.monkeypatcher',
           ##code-section dependencies
+          'Products.CMFPlacefulWorkflow'
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      
