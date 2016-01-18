@@ -148,27 +148,6 @@ class SimpleFolder(Container, FolderBase):
                 portalMessage(self, _("The document has been published."), "info")
                 return self.restrictedTraverse("@@view")()
             
-    def change_state(self, id, action, REQUEST=None):
-        """
-        """
-        if REQUEST:
-            alsoProvides(REQUEST, IDisableCSRFProtection)        
-        if not action:
-            return self.restrictedTraverse("@@view")()
-        doc = None
-        try:
-            doc = self._getOb(id)
-        except:
-            pass
-        if doc:
-            wftool = getToolByName(self, 'portal_workflow')
-            try:
-                wftool.doActionFor(doc, action)
-            except:
-                return self.restrictedTraverse("@@view")()
-            if REQUEST:
-                portalMessage(self, _("The document state has been changed."), "info")
-                return self.restrictedTraverse("@@view")()
         
         
 ##/code-section methods 

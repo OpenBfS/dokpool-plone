@@ -4,6 +4,7 @@ from elan.esd.db.model import Channel, ChannelPermissions
 from elan.dbaccess.dbinit import __session__
 from Products.CMFCore.utils import getToolByName
 from plone import api
+from elan.esd.behaviors.elandoctype import IELANDocType
 
 def determineChannels(transfer_ids):
     channels = __session__.query(Channel).filter(Channel.id.in_(transfer_ids)).all()
@@ -21,9 +22,12 @@ def ensureDocTypeInTarget(original, copy):
     dtObj = original.docTypeObj()
     id = _copyPaste(dtObj,config)
     new_dt = config._getOb(id)
-    new_dt.setCCategory('recent') # Set intermediate category
+    IELANDocType(new_dt).setCCategory('recent') # Set intermediate category
     wftool = getToolByName(original, 'portal_workflow')
     wftool.doActionFor(new_dt, 'retract')
+    new_dt.reindexObject()
+    new_dt.reindexObjectSecurity()
+    config.reindexObject()
     
 def ensureScenariosInTarget(original, copy):
     from elan.esd.behaviors.elandocument import IELANDocument

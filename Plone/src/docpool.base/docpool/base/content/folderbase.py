@@ -30,6 +30,8 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -52,6 +54,28 @@ class FolderBase(Container, ContentBase):
     implements(IFolderBase)
     
 ##code-section methods
+    def change_state(self, id, action, REQUEST=None):
+        """
+        """
+        if REQUEST:
+            alsoProvides(REQUEST, IDisableCSRFProtection)        
+        if not action:
+            return self.restrictedTraverse("@@view")()
+        doc = None
+        try:
+            doc = self._getOb(id)
+        except:
+            pass
+        if doc:
+            wftool = getToolByName(self, 'portal_workflow')
+            try:
+                wftool.doActionFor(doc, action)
+            except:
+                return self.restrictedTraverse("@@view")()
+            if REQUEST:
+                portalMessage(self, _("The document state has been changed."), "info")
+                return self.restrictedTraverse("@@view")()
+
     def canBeDeleted(self, principal_deleted=False):
         """
         """
