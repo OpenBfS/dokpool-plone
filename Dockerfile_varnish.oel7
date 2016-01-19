@@ -23,7 +23,7 @@ MAINTAINER Marco Lechner<mlechner@bfs.de>
 RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel 
 # additional packages for varnish
 RUN yum install -y gcc-c++ make
-RUN adduser --system --shell /bin/bash --home /home/zope --comment "Zope/Plone system user" zope
+RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone system user" plone
 #
 # install ELAN
 #
@@ -36,12 +36,11 @@ RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc deployment_docker.cfg
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
 #
 RUN if [ -f /opt/bfs/elan/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/elan/initialELAN-backup.tgz -C /opt/bfs/elan/Plone/var/ && cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n ; fi
-RUN chown -R zope.zope /opt/bfs
-USER zope
-ENV HOME /home/zope
+RUN chown -R plone.plone /opt/bfs
+USER plone
+ENV HOME /home/plone
 # try to use sqlite instead of postgreSQL as DB backend for transfer
 WORKDIR /opt/bfs/elan/Plone
-EXPOSE 8081
-EXPOSE 9001 8081 8100
+EXPOSE 8081 8082 8083 8100 8881 9001
 CMD [ "/opt/bfs/elan/Plone/bin/supervisord", "-n"]
 
