@@ -98,13 +98,13 @@ class ScenarioSubstituteVocabulary(object):
 
 ScenarioSubstituteVocabularyFactory = ScenarioSubstituteVocabulary()
 
-class CategoriesVocabulary(object):
+class CategoryVocabulary(object):
     """    
     """
     implements(IVocabularyFactory)
 
     def __call__(self, context):
-        print context
+        #print context
         esd = getDocumentPoolSite(context)        
         path = "/".join(esd.getPhysicalPath()) + "/esd"
         cat = getToolByName(esd, 'portal_catalog', None)
@@ -116,8 +116,27 @@ class CategoriesVocabulary(object):
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
-CategoriesVocabularyFactory = CategoriesVocabulary()
+CategoryVocabularyFactory = CategoryVocabulary()
 
+class CategoriesVocabulary(object):
+    """    
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        #print context
+        esd = getDocumentPoolSite(context)        
+        path = "/".join(esd.getPhysicalPath()) + "/esd"
+        cat = getToolByName(esd, 'portal_catalog', None)
+        if cat is None:
+            return SimpleVocabulary([])
+
+        items = [ (t.Title, t.getId ) for t in cat({"portal_type": "ELANDocCollection","path": path})]
+        items.sort()
+        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+        return SimpleVocabulary(items)
+
+CategoriesVocabularyFactory = CategoriesVocabulary()
 
 # class ELANDocTypeVocabulary(object):
 #     """

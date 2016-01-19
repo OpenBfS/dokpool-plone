@@ -45,7 +45,7 @@ class IELANDocType(model.Schema):
                         description=_(u'description_doctype_contentcategory', default=u''),
                         required=False,
 ##code-section field_contentCategory
-                        source = "elan.esd.vocabularies.Categories",
+                        source = "elan.esd.vocabularies.Category",
 ##/code-section field_contentCategory                           
     )
 

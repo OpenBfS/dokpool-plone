@@ -84,6 +84,10 @@
     name="elan.esd.vocabularies.Categories" />
 
   <utility
+    component=".vocabularies.CategoryVocabularyFactory"
+    name="elan.esd.vocabularies.Category" />
+
+  <utility
     component=".vocabularies.ScenarioVocabularyFactory"
     name="elan.esd.vocabularies.Scenarios"
     />

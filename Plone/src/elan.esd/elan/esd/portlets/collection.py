@@ -56,7 +56,7 @@ class ICollectionPortlet(IPortletDataProvider):
                         description=_(u'description_elandocument_doctype', default=u''),
                         required=True,
 ##code-section field_docType
-                        source="elan.esd.vocabularies.Categories")
+                        source="elan.esd.vocabularies.Category")
 ##/code-section interface
 
 # The assignment is a persistent object used to store the configuration of
