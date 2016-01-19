@@ -62,7 +62,14 @@ class Renderer(base.Renderer):
         """    
         path = self.request.get("PATH_INFO", "")
         if path.endswith("/edit") or path.endswith("/@@edit"):
-            return True        
+            return True
+        
+    def specialObjects(self):
+        """
+        """
+        cs = self.context.myELANCurrentSituation()
+        fc = cs.getFolderContents({'portal_type' : ['ELANDocCollection','Dashboard','SituationOverview'] })
+        return [ o for o in fc if o.id not in ('recent', 'overview')]
     ##/code-section renderer-methods
  
 ##code-section forms    
