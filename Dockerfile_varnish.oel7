@@ -1,4 +1,4 @@
-# Dockerfile for running instance of ELAN as Standalone Container
+# Dockerfile for running instance of ELAN as Standalone Container incl. varnish
 #
 # Requirements:
 # Place an zodb-Backup (created with plonebackup) next to this Dockerfile and name it initialELAN-backup.tgz
@@ -8,19 +8,19 @@
 # No need for PostgreSQL, but not recommended for production use
 #
 # If you want to restore a transfer-Db (based on sqlite) just place a elan_transfer.sqlite file next to this
-# Dockerfile. See ./Plone/buildout_docker.cfg where elan_transfer.sqlite is expected to be in running container
+# Dockerfile. See ./Plone/deployment_docker.cfg where elan_transfer.sqlite is expected to be in running container
 #
-# build with e.g. `docker build --force-rm=true -t bfs/elan5oel7 -f Dockerfile.oel7 .',
+# build with e.g. `docker build --force-rm=true -t bfs/elan5_oel7varnish -f Dockerfile_varnish.oel7 .',
 # then run with e.g.
-# `docker run --name bfs_elan5_oel7 -dp 18081:8081 bfs/elan5oel7:latest'
+# `docker run --name bfs_elan5oel7_varnish -dp 18081:8081 -p 18082:8082 -p 18083:8083 -p 18100:8100 -p 18881:18881 -p 19001:9001 bfs/elan5_oel7varnish:latest'
 #
 # In case you want to interact with the container, use e.g.
-# `docker exec -it bfs_elan5_oel7 "/bin/bash"'
+# `docker exec -it bfs_elan5_oel7varnish "/bin/bash"'
 #
 FROM oraclelinux:latest
 MAINTAINER Marco Lechner<mlechner@bfs.de>
 
-RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel 
+RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel tar
 # additional packages for varnish
 RUN yum install -y gcc-c++ make
 RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone system user" plone
