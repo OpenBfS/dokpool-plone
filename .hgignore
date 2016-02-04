@@ -4,6 +4,8 @@ syntax: regexp
 syntax: regexp
 ^Plone/downloads$
 syntax: regexp
+^Plone/blobs$
+syntax: regexp
 ^Plone/eggs$
 syntax: regexp
 ^Plone/develop-eggs$
