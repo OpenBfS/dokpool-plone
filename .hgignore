@@ -2,6 +2,8 @@
 syntax: regexp
 ^Plone/bin$
 syntax: regexp
+^Plone/downloads$
+syntax: regexp
 ^Plone/eggs$
 syntax: regexp
 ^Plone/develop-eggs$
@@ -47,3 +49,6 @@ syntax: regexp
 \.DS_Store$
 syntax: regexp
 ^Java/elan-client-1\.0\.jar$
+syntax: regexp
+^Plone/etc/varnish.vcl
+^Plone/etc/zodbpack.conf
