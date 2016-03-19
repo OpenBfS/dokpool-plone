@@ -299,6 +299,8 @@ class DPDocument(Container, Document, ContentBase):
         """
         Move a file or an image within the document.
         """
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)                
         position=position.lower()
         # we need to find all other ids for the same type
         ssids = [o.getId for o in self.getFolderContents({'portal_type':ptype})]
