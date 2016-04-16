@@ -11,10 +11,10 @@
  <property name="allowed_content_types">
      
          
-             <element value="ContentArea" />
-         
-         
              <element value="DPConfig" />
+         
+         
+             <element value="ContentArea" />
          
      
  </property>
