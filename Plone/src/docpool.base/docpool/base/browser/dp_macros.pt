@@ -171,7 +171,19 @@
                  tal:content="structure string:$item_description"> description </div>
 
         </metal:macro>
-        
+        <metal:macro define-macro="fileupload">
+		    <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
+		      <form action="${context/absolute_url}/@@upload">
+		        <div id="uploader" class="pat-upload" data-pat-upload='ajaxUpload: false; autoCleanResults: false;'>
+		        </div>
+		      </form>       
+		      <script type="text/javascript">
+		      jQuery('#uploader').bind('uploadAllCompleted', function (e, data) {
+		          window.location.reload(true);
+		      });
+		      </script>      
+		    </tal:if>        
+        </metal:macro>
         <metal:macro define-macro="content-metadata">
            <span tal:condition="python:item_modified and (toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1))">
              <i18n:txt translate="">modified:</i18n:txt>

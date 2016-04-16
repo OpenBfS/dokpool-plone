@@ -25,7 +25,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Container
-from plone.app.contenttypes.content import Document,IDocument
+from docpool.base.content.dpdocument import DPDocument, IDPDocument
 
 from Products.CMFCore.utils import getToolByName
 
@@ -36,24 +36,20 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import ELAN_EMessageFactory as _
 
-class IInfoDocument(form.Schema, IDocument):
+class IInfoDocument(form.Schema, IDPDocument):
     """
     """
-    dexteritytextindexer.searchable('text')    
-    text = RichText(
-                        title=_(u'label_infodocument_text', default=u'Text'),
-                        description=_(u'description_infodocument_text', default=u''),
-                        required=True,
-##code-section field_text
-##/code-section field_text                           
-    )
-    
 
 ##code-section interface
+    form.mode(docType='hidden')
+    docType = schema.TextLine(
+            title=u"Document Type",
+            default=u"infodoc"
+        )    
 ##/code-section interface
 
 
-class InfoDocument(Container, Document):
+class InfoDocument(Container, DPDocument):
     """
     """
     security = ClassSecurityInfo()
@@ -102,6 +98,13 @@ class InfoDocument(Container, Document):
         """
         """
         return [obj.getObject() for obj in self.getFolderContents()]
+
+    def getDPDocuments(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'DPDocument'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
     def getFiles(self, **kwargs):
         """

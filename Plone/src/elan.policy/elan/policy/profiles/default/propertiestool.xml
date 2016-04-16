@@ -71,16 +71,6 @@
   <property name="enable_wf_state_filtering" type="boolean">False</property>
   <property name="wf_states_to_show" type="lines"/>
  </object>
- <object name="quickupload_properties" meta_type="Plone Property Sheet">
-  <property name="title">Quick Upload properties</property>
-  <property name="use_flashupload" type="boolean">False</property>
-  <property name="auto_upload" type="boolean">False</property>
-  <property name="fill_titles" type="boolean">True</property>
-  <property name="fill_descriptions" type="boolean">False</property>
-  <property name="size_limit" type="int">0</property>
-  <property name="sim_upload_limit" type="int">2</property>
-  <property name="object_override" type="boolean">False</property>
- </object>
  <object name="site_properties" meta_type="Plone Property Sheet">
   <property name="title">Site wide properties</property>
   <property name="allowAnonymousViewAbout" type="boolean">False</property>

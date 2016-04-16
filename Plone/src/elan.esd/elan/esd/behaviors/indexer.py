@@ -6,12 +6,21 @@ from elan.esd.behaviors.elandocument import IELANDocument
 
 @indexer(IDPDocument)
 def scenarios_indexer(obj):
-    return IELANDocument(obj).scenarioIndex()
+    try:
+        return IELANDocument(obj).scenarioIndex()
+    except:
+        pass
 
 @indexer(IDPDocument)
 def category_indexer(obj):
-    return IELANDocument(obj).category()
+    try:
+        return IELANDocument(obj).category()
+    except:
+        pass
 
 @indexer(IDPDocument)
 def cat_path_indexer(obj):
-    return IELANDocument(obj).cat_path()
+    try:
+        return IELANDocument(obj).cat_path()
+    except:
+        pass

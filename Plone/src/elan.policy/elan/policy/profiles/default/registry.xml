@@ -94,6 +94,7 @@
       <element>Image</element>
       <element>InfoFolder</element>
       <element>InfoLink</element>
+      <element>InfoDocument</element>
       <element>Link</element>
       <element>Document</element>
       <element>ELANScenarios</element>

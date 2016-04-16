@@ -30,6 +30,11 @@
             	template="folderbase.pt" 
             	class=".folderbase.FolderBaseView" />
 
+            <browser:page permission="zope2.View" 
+                name="upload" 
+                for="..interfaces.IDPDocument"
+                class=".dpdocument.FileUploadView" />
+
         
             <browser:page permission="zope2.View" name="view" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentView" />
         
