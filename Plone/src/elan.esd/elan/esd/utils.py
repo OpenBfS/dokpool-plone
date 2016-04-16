@@ -14,60 +14,7 @@ from zope.component.hooks import getSite
 from plone import api
 from docpool.base.utils import getDocumentPoolSite, getGroupsForCurrentUser
 
-# def queryForObject(self, **kwa):
-#     """
-#     """
-#     cat = getToolByName(self, "portal_catalog")
-#     # print kwa
-#     res = cat(kwa)
-#     if len(res) == 1:
-#         return res[0].getObject()
-#     else:
-#         return None
-# 
-# def queryForObjects(self, **kwa):
-#     """
-#     """
-#     cat = getToolByName(self, "portal_catalog")
-#     #print kwa
-#     res = cat(kwa)
-#     return res
-#     
-# def getAllowedELANDocumentTypes(self):
-#     """
-#     Determine the ELAN document types allowed for the current user in the current context
-#     """
-#     # if in a group folder, only allow the types for this group
-#     isGF = self.isGroupFolder()
-#         
-#     grps = getGroupsForCurrentUser(self)
-#     dts = []
-#     # Determine the union of the allowed documents for each of the user's groups
-#     if grps:
-#         for grp in grps:
-#             if not isGF or grp['id'] in self.getPhysicalPath():
-#                 dts.extend(grp['etypes'])
-#     tids = list(set(dts))
-#     cat = getToolByName(self, "portal_catalog")
-#     esd = getDocumentPoolSite(self)
-#     res = cat(path="/".join(esd.getPhysicalPath()) + "/config", portal_type = 'DocType', id=tids, sort_on="sortable_title")
-#     return res
-# 
-# def getAllowedELANDocumentTypesForGroup(self):
-#     """
-#     """
-#     isGF = self.isGroupFolder()
-#     dts = []
-#     if isGF:
-#         grp = self.getGroupOfFolder()
-#         dts.extend(grp.getProperty('allowedDocTypes', []))
-#     else:
-#         return getAllowedELANDocumentTypes(self)
-#     tids = list(set(dts))
-#     cat = getToolByName(self, "portal_catalog")
-#     esd = getDocumentPoolSite(self)
-#     res = cat(path="/".join(esd.getPhysicalPath()) + "/config", portal_type = 'DocType', id=tids, sort_on="sortable_title")
-#     return res
+
 
 def getActiveScenarios(self):
     cat = getToolByName(self, "portal_catalog")

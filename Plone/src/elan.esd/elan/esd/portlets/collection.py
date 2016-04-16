@@ -27,7 +27,6 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from elan.esd.content.elandoccollection import IELANDocCollection
 from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
-from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
 from docpool.base.utils import getDocumentPoolSite
 
 @grok.provider(IContextSourceBinder)
@@ -51,7 +50,7 @@ def availableCategories(context):
 
 class ICollectionPortlet(IPortletDataProvider):
 ##code-section interface
-	collection = schema.Choice(
+    collection = schema.Choice(
                         title=_(u'label_elandocument_doctype', default=u'Document Type'),
                         description=_(u'description_elandocument_doctype', default=u''),
                         required=True,

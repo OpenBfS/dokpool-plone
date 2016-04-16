@@ -109,49 +109,6 @@ class DPDocumentView(FlexibleView):
         context = aq_inner(self.context)
         return context.restrictedTraverse('@@plone').getCurrentFolderUrl()
     
-    def getUploadUrl(self):
-        """
-        return upload url
-        in current folder
-        """
-        folder_url = self.base_url()
-        return '%s/@@quick_upload' %folder_url
-
-    def getDataForUploadUrl(self):
-        data_url = ''
-        return data_url
-
-    def javascript(self):
-        # PLONE5: plone.protect 
-        token = createToken()
-        return """
-  // workaround this MSIE bug :
-  // https://dev.plone.org/plone/ticket/10894
-  if (navigator.userAgent.match(/msie|trident/i)) jQuery("#settings").remove();
-  var Browser = {};
-  Browser.onUploadComplete = function() {
-      window.location.reload();
-  }
-  loadUploader = function() {
-      var ulContainer = jQuery('.elanUploaderContainer');
-      ulContainer.each(function(){
-          var uploadUrl =  jQuery('.uploadUrl', this).val();
-          var uploadData =  jQuery('.uploadData', this).val();
-          var UlDiv = jQuery(this);
-          jQuery.ajax({
-                     type: 'GET',
-                     url: uploadUrl,
-                     data: uploadData,
-                     dataType: 'html',
-                     contentType: 'text/html; charset=utf-8',
-                     headers: { 'X-CSRF-TOKEN': '%s' },
-                     success: function(html) {
-                        UlDiv.html(html);
-                     } });
-      });
-  }
-  jQuery(document).ready(loadUploader);
-""" % token
 
     def quote_plus(self, string):
         """

@@ -4,7 +4,6 @@ from zope import schema
 from plone.app.users.schema import checkEmailAddress
 from Products.CMFPlone import PloneMessageFactory as _p
 from docpool.users import ELAN_EMessageFactory as _
-from Products.CMFDefault.formlib.schema import FileUpload
 from plone.supermodel import model
 
 from plone.app.users.browser.account import AccountPanelSchemaAdapter

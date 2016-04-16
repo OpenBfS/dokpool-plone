@@ -147,8 +147,9 @@ def getGroupsForCurrentUser(self, user=None):
         try:
             grp = gtool.getGroupById(g.id)
             etypes = grp.getProperty('allowedDocTypes', []) 
-            title = grp.getProperty('title','')
-            res.append({'id': g.id, 'title' : title, 'etypes' : etypes})
+            if etypes:
+                title = grp.getProperty('title','')
+                res.append({'id': g.id, 'title' : title, 'etypes' : etypes})
         except Exception, e:
             log_exc(e)
     return res
@@ -283,7 +284,8 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
 
     portal_state = getMultiAdapter((context, context.REQUEST), name=u'plone_portal_state')
     portal = portal_state.portal()
-
+    if not portal:
+        return
     sm = getSecurityManager()
 
     try:

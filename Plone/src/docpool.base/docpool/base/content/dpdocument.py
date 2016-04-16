@@ -52,6 +52,8 @@ from Acquisition import aq_base, aq_parent
 from plone.dexterity.utils import safe_unicode
 from plone.api import content
 from PIL import Image
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
