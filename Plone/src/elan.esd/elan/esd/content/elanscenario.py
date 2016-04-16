@@ -30,6 +30,9 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.dexterity.utils import safe_unicode
 from DateTime import DateTime
 from docpool.config.utils import TYPE, TITLE, ID, CHILDREN, createPloneObjects, ploneId
 from docpool.config.general import DOCTYPES
@@ -155,6 +158,7 @@ class ELANScenario(Item, ContentBase):
         Saves all content for this scenario to an archive, deletes the original content,
         and sets the scenario to state "closed".
         """
+        alsoProvides(REQUEST, IDisableCSRFProtection)                
         self.snapshot()
         self.purge()
         self.status='closed'
@@ -168,9 +172,10 @@ class ELANScenario(Item, ContentBase):
         Saves all content for this scenario to a new archive, but does not delete any files.
         Status is unchanged.
         """
+        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)                
         arc = self._createArchiveFolders()
         # TODO
-        m = self.getELANContentAreas()[0]
+        m = self.content
         mpath = "/".join(m.getPhysicalPath())
         arc_m = arc.content
         # We now query the catalog for all documents belonging to this scenario within
@@ -281,9 +286,9 @@ class ELANScenario(Item, ContentBase):
         """
         a = self.archive # Acquire root for archives
         e = self.esd # Acquire esd root
-        now = self.toLocalizedTime(DateTime(), long_format=1)
+        now = safe_unicode(self.toLocalizedTime(DateTime(), long_format=1))
         id = ploneId(self, "%s_%s" % (self.getId(), now))
-        title = "%s %s" % (self.Title(), now)
+        title = u"%s %s" % (safe_unicode(self.Title()), now)
         # create the archive root
         a.invokeFactory(id=id, type_name="ELANArchive", title=title)
         arc = a._getOb(id) # get new empty archive
@@ -310,6 +315,7 @@ class ELANScenario(Item, ContentBase):
         Documents are deleted if they are not part of any other scenario.
         If they are part of another scenario, only the tag for the current scenario is removed.
         """
+        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)                
         #TODO im EVENT auf Elandoc DB-Eintraege loeschen.
         m = self.content.Members
         mpath = "/".join(m.getPhysicalPath())

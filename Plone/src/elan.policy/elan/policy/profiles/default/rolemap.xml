@@ -16,6 +16,7 @@
     <permission name="ATContentTypes: Add Document" acquire="False">
       <role name="Contributor"/>
       <role name="Manager"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="ATContentTypes: Add Event" acquire="False">
       <role name="Manager"/>
@@ -23,6 +24,7 @@
     <permission name="ATContentTypes: Add File" acquire="False">
       <role name="Manager"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>      
     </permission>
     <permission name="ATContentTypes: Add Folder" acquire="False">
       <role name="Contributor"/>
@@ -34,6 +36,7 @@
     <permission name="ATContentTypes: Add Image" acquire="False">
       <role name="Manager"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>      
     </permission>
     <permission name="ATContentTypes: Add Link" acquire="False">
       <role name="Contributor"/>
@@ -93,6 +96,7 @@
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="CMFEditions: Apply version control" acquire="True">
       <role name="Contributor"/>
@@ -100,18 +104,21 @@
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="CMFEditions: Checkout to location" acquire="True">
       <role name="Editor"/>
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="CMFEditions: Revert to previous versions" acquire="True">
       <role name="Editor"/>
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="CMFEditions: Save new version" acquire="True">
       <role name="Contributor"/>
@@ -119,6 +126,7 @@
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Reviewer"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="CMFPlacefulWorkflow: Manage workflow policies" acquire="True">
       <role name="Manager"/>
@@ -271,6 +279,7 @@
     </permission>
     <permission name="ELAN_E: Add Groups" acquire="True">
       <role name="Manager"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="ELAN_E: Add InfoDocument" acquire="True">
       <role name="Manager"/>
@@ -334,6 +343,7 @@
     </permission>
     <permission name="ELAN_E: Add Users" acquire="True">
       <role name="Manager"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="ELAN_E: Add IRIXConfig" acquire="True">
       <role name="Manager"/>

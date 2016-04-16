@@ -158,10 +158,14 @@ def deleteMemberFolders(self, member_ids):
     """
     for mid in member_ids:
         try:
-            # TODO
-            self.portal_membership.getMembersFolder().manage_delObjects([mid.replace("-","--")])
+            members = self.content.Members
+            members.manage_delObjects([mid.replace("-","--")])
         except Exception, e:
             log_exc(e)
+            try:
+                self.portal_membership.getMembersFolder().manage_delObjects([mid.replace("-","--")])
+            except Exception, e:
+                log_exc(e)
 
 
 def getUserInfo(self, username=None):
@@ -198,7 +202,7 @@ def getUserInfo(self, username=None):
 #         # print obj.portal_url.getRelativeUrl(obj)
 #         return obj.portal_url.getRelativeUrl(obj)
 
-def portalMessage(self, msg, type):
+def portalMessage(self, msg, type='info'):
     ptool = getToolByName(self, "plone_utils")
     ptool.addPortalMessage(msg, type)
     

@@ -46,7 +46,8 @@ def getURL(self, relative=0, original=False):
     if request is None and _GLOBALREQUEST_INSTALLED:
         request = getRequest()
     
-    if (not original) and self.portal_type == 'DPDocument' and not request['URL'].find('resolveuid') > -1:
+    if (not original) and self.portal_type == 'DPDocument' and not request['URL'].find('resolveuid') > -1 \
+        and not request['URL'].find('/content/'):
         if self.cat_path:
             # This is it: we use the path of the category
             return "%s/@@dview?d=%s&disable_border=1" % (self.cat_path, self.UID)

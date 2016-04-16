@@ -32,6 +32,7 @@ from Products.CMFCore.utils import getToolByName
 ##code-section imports
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
+from docpool.base.utils import portalMessage
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
