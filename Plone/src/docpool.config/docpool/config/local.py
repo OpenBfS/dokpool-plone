@@ -261,6 +261,8 @@ def createTransferArea(self, fresh):
     """
     """
     createPloneObjects(self.content, TRANSFER_AREA, fresh)
+    # Move to first position
+    self.content.moveObject("Transfers", 0)
     placeful_wf = getToolByName(self, 'portal_placeful_workflow')
     try:
         self.content.Transfers.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()

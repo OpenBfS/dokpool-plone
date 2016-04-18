@@ -558,6 +558,14 @@ class DPDocument(Container, Document, ContentBase):
         """
         """
         return content.get_state(self, "None")
+    
+    def getFirstImage(self, scale=""):
+        imgs = self.getImages()
+        if imgs:
+            img = imgs[0]
+            return "<img src='%s%s' />" % (img.absolute_url(), scale)
+        else:
+            return None
         
 ##/code-section methods 
 

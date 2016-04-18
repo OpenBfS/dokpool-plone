@@ -71,8 +71,8 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHIL
                                                                             {TYPE: 'ELANDocCollection', TITLE: u'INSTRUCTIONS TO THE PUBLIC', ID: 'instructions-to-the-public', CHILDREN: [], DOCTYPES: ['instructions']},
                                                                             ]},  
                   {TYPE: 'ELANDocCollection', TITLE: 'Overview', ID: 'overview', "setExcludeFromNav": True, DOCTYPES: [], CHILDREN: [] },            
-                  {TYPE: 'ELANDocCollection', TITLE: 'All documents', ID: 'recent', DOCTYPES: [], CHILDREN: [] },            
-                  {TYPE: 'Dashboard', TITLE: 'Dashboard', ID: 'dashboard'},            
+                  {TYPE: 'ELANDocCollection', TITLE: 'All documents', ID: 'recent', "setExcludeFromNav": True, DOCTYPES: [], CHILDREN: [] },            
+                  {TYPE: 'Dashboard', TITLE: 'Dashboard', ID: 'dashboard', "setExcludeFromNav": True},            
               ]
        
 def connectTypesAndCategories(self):
