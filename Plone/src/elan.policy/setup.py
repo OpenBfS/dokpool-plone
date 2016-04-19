@@ -28,6 +28,7 @@ setup(name='elan.policy',
           # -*- Extra requirements: -*-
           'Products.CMFPlacefulWorkflow',
           'plone.app.caching',
+          'plone.app.upgrade',
           'plone.formwidget.contenttree',
           'docpool.theme',
           'docpool.base',
