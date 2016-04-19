@@ -87,8 +87,6 @@
  </state>
  <state state_id="published" title="Published">
   <description>Visible to everyone, editable by the owner.</description>
-  <exit-transition transition_id="retract"/>
-  <exit-transition transition_id="reject"/>
   <permission-map name="ATContentTypes: Add File" acquired="False">
   </permission-map>
   <permission-map name="ATContentTypes: Add Image" acquired="False">

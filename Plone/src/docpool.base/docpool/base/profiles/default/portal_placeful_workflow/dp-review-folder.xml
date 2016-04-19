@@ -8,5 +8,8 @@
   <type type_id="DPDocument">
    <bound-workflow workflow_id="dp_review_workflow"/>
   </type>
+  <type type_id="ReviewFolder">
+   <bound-workflow workflow_id="dp_review_workflow"/>
+  </type>
  </bindings>
 </object>
