@@ -133,9 +133,6 @@ def getAllowedDocumentTypesForGroup(self):
 def getGroupsForCurrentUser(self, user=None):
     """
     """
-    if not user:
-        mtool = getToolByName(self, "portal_membership")
-        user = mtool.getAuthenticatedMember()
     g = self.content.Groups
 #    gpath = "/".join(g.getPhysicalPath())
     gordner = g.getFolderContents()

@@ -86,6 +86,7 @@
    <property name="title" i18n:translate="">Change Password</property>
    <property
       name="url_expr">string:${context/dp_url}/@@change-password</property>
+   <property name="available_expr">here/canChangePassword</property>
    <property name="visible">True</property>
   </object>
   <object name="review-comments" meta_type="CMF Action" i18n:domain="plone">
