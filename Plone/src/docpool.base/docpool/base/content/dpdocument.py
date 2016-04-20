@@ -458,13 +458,13 @@ class DPDocument(Container, Document, ContentBase):
     def getFileOrImageByPattern(self, pattern):
         """
         """
-        print pattern
-        print self.getAllContentObjects()
+#        print pattern
+#        print self.getAllContentObjects()
         p = re.compile(pattern, re.IGNORECASE)
         for obj in self.getAllContentObjects():
-            print obj.getId()
+#            print obj.getId()
             if p.match(obj.getId()):
-                print obj
+#                print obj
                 return obj
     
     def getMapImageObj(self):
