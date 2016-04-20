@@ -46,9 +46,9 @@ syntax: regexp
 syntax: regexp
 ^Plone/\.pydevproject$
 syntax: regexp
-^\.project/*
+\.project/*
 syntax: regexp
-^\.idea/*
+\.idea/*
 syntax: regexp
 \.DS_Store$
 syntax: regexp
