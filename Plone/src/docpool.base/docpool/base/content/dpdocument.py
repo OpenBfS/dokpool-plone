@@ -224,7 +224,6 @@ class DPDocument(Container, Document, ContentBase):
             et = self.REQUEST.get('docType','')
         #dto = queryForObject(self, id=et)
         dto = None
-        print et
         try:
             dto = self.config.dtypes[et]
         except Exception, e:
