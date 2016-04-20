@@ -15,7 +15,12 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Language: de\n"
 
-#: docpool.config/docpool/config/local.py:173
+#: docpool.config/docpool/config/general.py:170
+msgid "Electronic Situation Display"
+msgstr "Elektronische Lagedarstellung"
+
+
+#: docpool.config/docpool/config/local.py:177
 msgid "Document Types"
 msgstr "Dokumenttypen"
 
@@ -24,7 +29,27 @@ msgstr "Dokumenttypen"
 msgid "Printable version"
 msgstr "Druckversion"
 
-#: docpool.config/docpool/config/local.py:252
+#: docpool.config/docpool/config/local.py:256
 msgid "Situation Display"
 msgstr "Lagedarstellung"
+
+#: docpool.config/docpool/config/local.py:95
+msgid "Routine mode"
+msgstr "Normalbetrieb"
+
+#: docpool.config/docpool/config/local.py:99
+msgid "Dashboard Configuration"
+msgstr "Konfiguration Pinnwand"
+
+#: docpool.config/docpool/config/general.py:73
+msgid "Overview"
+msgstr "Chronologie"
+
+#: docpool.config/docpool/config/general.py:74
+msgid "All documents"
+msgstr "Alle Dokumente"
+
+#: docpool.config/docpool/config/general.py:75
+msgid "Dashboard"
+msgstr "Pinnwand"
 

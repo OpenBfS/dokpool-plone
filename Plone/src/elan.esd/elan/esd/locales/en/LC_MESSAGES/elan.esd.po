@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-11-22 07:29+0000\n"
+"POT-Creation-Date: 2016-04-15 07:13+0000\n"
 "PO-Revision-Date: 2015-10-27 20:26+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -35,6 +35,14 @@ msgstr ". Unknown event not accepted."
 
 #: elan.esd/elan/esd/portlets/collection.py:128
 msgid "Add Collection Portlet"
+msgstr ""
+
+#: elan.esd/elan/esd/behaviors/configure.zcml:13
+msgid "Adds ELAN attributes to DPDocuments"
+msgstr ""
+
+#: elan.esd/elan/esd/behaviors/configure.zcml:29
+msgid "Adds the ability to choose categories to DocTypes"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:71
@@ -131,6 +139,14 @@ msgstr "ELAN Collection"
 msgid "ELAN Content Configuration"
 msgstr ""
 
+#: elan.esd/elan/esd/behaviors/configure.zcml:29
+msgid "ELAN DocType"
+msgstr ""
+
+#: elan.esd/elan/esd/behaviors/configure.zcml:13
+msgid "ELAN Document"
+msgstr ""
+
 #: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
 msgid "ELAN Scenario"
 msgstr "Event"
@@ -151,15 +167,15 @@ msgstr ""
 msgid "Edit Permissions"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:315
+#: elan.esd/elan/esd/browser/elan_macros.pt:306
 msgid "Edit unknown doc type"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:304
+#: elan.esd/elan/esd/browser/elan_macros.pt:300
 msgid "Edit unknown scenario"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:311
+#: elan.esd/elan/esd/browser/elan_macros.pt:318
 msgid "Event:"
 msgstr ""
 
@@ -187,14 +203,17 @@ msgstr ""
 msgid "Images:"
 msgstr "Images:"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:158
+#: elan.esd/elan/esd/browser/elan_macros.pt:35
 #: elan.esd/elan/esd/browser/elanscenarios.pt:20
-#: elan.esd/elan/esd/browser/viewlets/ticker.pt:8
 msgid "LT"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
 msgid "Location"
+msgstr ""
+
+#: elan.esd/elan/esd/behaviors/configure.zcml:21
+msgid "Makes documents transferable between pools"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:107
@@ -264,7 +283,7 @@ msgstr ""
 msgid "The time and date an item was last modified by a user"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:336
+#: elan.esd/elan/esd/browser/elan_macros.pt:335
 msgid "There are comments."
 msgstr ""
 
@@ -314,6 +333,10 @@ msgstr ""
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:30
 msgid "Transfer to<br>"
+msgstr ""
+
+#: elan.esd/elan/esd/behaviors/configure.zcml:21
+msgid "Transferable"
 msgstr ""
 
 #: elan.esd/elan/esd/behaviors/transferable.py:300
@@ -489,6 +512,10 @@ msgstr ""
 #: elan.esd/elan/esd/db/forms.py:27
 #: elan.esd/elan/esd/vocabularies.py:30
 msgid "don't accept"
+msgstr ""
+
+#: elan.esd/elan/esd/configure.zcml:23
+msgid "elan.esd"
 msgstr ""
 
 #. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
@@ -702,4 +729,3 @@ msgstr "Move up"
 #: elan.esd/elan/esd/vocabularies.py:20
 msgid "write"
 msgstr ""
-
