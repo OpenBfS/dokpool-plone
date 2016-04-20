@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -60,6 +61,15 @@ class IDocumentPool(form.Schema):
                         required=False,
 ##code-section field_prefix
 ##/code-section field_prefix                           
+    )
+    
+        
+    customLogo = NamedBlobImage(
+                        title=_(u'label_documentpool_customlogo', default=u'Bereichsspezifisches Logo'),
+                        description=_(u'description_documentpool_customlogo', default=u''),
+                        required=False,
+##code-section field_customLogo
+##/code-section field_customLogo                           
     )
     
 

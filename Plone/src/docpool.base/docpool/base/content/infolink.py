@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
