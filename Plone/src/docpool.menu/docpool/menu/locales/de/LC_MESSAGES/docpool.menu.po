@@ -14,3 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: docpool.menu/docpool/menu/utils.py:32
+msgid "Applications"
+msgstr "Anwendungen"
+

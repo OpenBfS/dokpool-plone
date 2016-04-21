@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.config/docpool/config/local.py:173
+#: docpool.config/docpool/config/local.py:177
 msgid "Document Types"
 msgstr ""
 
@@ -27,3 +27,22 @@ msgstr ""
 msgid "Situation Display"
 msgstr ""
 
+#: docpool.config/docpool/config/local.py:95
+msgid "Routine mode"
+msgstr ""
+
+#: docpool.config/docpool/config/local.py:99
+msgid "Dashboard Configuration"
+msgstr ""
+
+#: docpool.config/docpool/config/general.py:73
+msgid "Overview"
+msgstr ""
+
+#: docpool.config/docpool/config/general.py:74
+msgid "All documents"
+msgstr ""
+
+#: docpool.config/docpool/config/general.py:75
+msgid "Dashboard"
+msgstr ""

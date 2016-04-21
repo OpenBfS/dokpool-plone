@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2014-10-11 16:47+0000\n"
+"POT-Creation-Date: 2016-04-15 07:13+0000\n"
 "PO-Revision-Date: 2014-05-22 12:05+0100\n"
 "Last-Translator: Christian Trauernicht <cht@condat.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Events"
+msgid "Edit Scenarios"
 msgstr "Ereignisse bearbeiten"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
@@ -40,7 +40,14 @@ msgstr "IRIX Export"
 msgid "Impressum"
 msgstr "Impressum"
 
+#: elan.policy/elan/policy/configure.zcml:19
+msgid "Turn a Plone site into the ELAN site."
+msgstr "Eine Plone Site zu ELAN umwandeln."
+
 #: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "User Management"
 msgstr "Nutzerverwaltung"
 
+#: elan.policy/elan/policy/configure.zcml:19
+msgid "elan.policy"
+msgstr ""

@@ -107,8 +107,8 @@ def getFoldersForCurrentUser(self, user=None):
 #        print "has no user folder"
         mfolder = []
     res.extend(mfolder)
-    res.reverse()
     res.extend(rres)
+    res.reverse()
     if gres: # Has groups, so return all the folders
         return res
     elif hasGroup: # If the groups are not navigable (i.e. in archive): only member folder
