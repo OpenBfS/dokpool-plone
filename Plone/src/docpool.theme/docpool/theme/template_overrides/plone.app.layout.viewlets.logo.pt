@@ -10,7 +10,7 @@
         <img src="logo.png" alt=""
          tal:attributes="alt view/logo_title;
                          title view/logo_title;
-                         src view/img_src" /></a><p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
+                         src python:context.logoSrc() or view.img_src" /></a><p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
    
 </div>
     <tal:var replace="structure context/logoutjs|nothing" />

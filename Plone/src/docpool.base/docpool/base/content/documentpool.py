@@ -85,6 +85,11 @@ class DocumentPool(Container):
     implements(IDocumentPool)
     
 ##code-section methods
+    def logoSrc(self):
+        if self.customLogo:
+            return "%s/@@images/customLogo/preview" % self.absolute_url()
+        else:
+            return None
     
     def configure(self):
         """
