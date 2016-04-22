@@ -214,8 +214,10 @@ class ELANScenario(Item, ContentBase):
         hasFolder = aroot.hasObject(fname)
         # 4. if it doesn't exist: create it
         if not hasFolder:
-            print aroot
-            folderType = "ELANFolder"
+            if isGroup:
+                folderType = "GroupFolder"
+            if isMember:
+                folderType = "UserFolder"
             if isTransfer:
                 folderType = "ELANTransferFolder"
             aroot.invokeFactory(folderType, id=fname) # if not we create a new folder
@@ -240,6 +242,7 @@ class ELANScenario(Item, ContentBase):
         """
         Copy utility
         """
+        from elan.esd.behaviors.transferable import ITransferable
         #TODO: transferLog fuellen und DB Eintraege loeschen
         # print source_brain.getId
         source_obj = source_brain.getObject()
@@ -262,7 +265,7 @@ class ELANScenario(Item, ContentBase):
             if wf_state == "published" and wftool.getInfoFor(copied_obj, 'review_state') != 'published':
                 wftool.doActionFor(copied_obj, 'publish')
             copied_obj.setModificationDate(mdate)
-            events = source_obj.transferEvents()
+            events = ITransferable(source_obj).transferEvents()
             copied_obj.transferLog = str(events)
             copied_obj.reindexObject()
             copied_obj.reindexObjectSecurity()
@@ -273,7 +276,8 @@ class ELANScenario(Item, ContentBase):
         """
         Helper function for catalog queries
         """
-        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
+#        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
+        args = {'portal_type':"DPDocument", 'scenarios': self.getId()}
         args.update(kwargs)
         cat = getToolByName(self, "portal_catalog")
         return cat(args) 
