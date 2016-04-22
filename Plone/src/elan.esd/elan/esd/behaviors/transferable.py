@@ -265,7 +265,7 @@ class Transferable(object):
                 l = SenderLog(document_uid=document_uid,
                               document_title=document_title,
                               timestamp=timestamp,
-                              user=user,
+                              user=self.context._getUserInfoString(),
                               scenario_ids=scenario_ids,
                               channel=target
                               )
@@ -293,7 +293,7 @@ class Transferable(object):
                 r = ReceiverLog(document_uid=document_uid,
                               document_title=document_title,
                               timestamp=timestamp,
-                              user=user,
+                              user=self.context._getUserInfoString(),
                               scenario_ids=scenario_ids,
                               channel=target
                               )
