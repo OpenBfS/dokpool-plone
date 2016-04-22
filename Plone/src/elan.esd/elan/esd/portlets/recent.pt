@@ -36,7 +36,7 @@
                 tal:attributes="href string:${obj/dp_url}/esd/${obj/getURL};
                                 title python:mouseover5;
                                 class string:$item_wf_state_class tile $item_class">
-                 <img tal:replace="structure item_icon/html_tag" />
+<!--                 <img tal:replace="structure item_icon/html_tag" /> -->
                  <tal:title content="obj/pretty_title_or_id">
                      Title
                  </tal:title>
