@@ -1,0 +1,43 @@
+# Dockerfile for running instance of ELAN as Standalone Container
+#
+# Requirements:
+# A running postgres-Service on (linked) machine elan_db having (empty() zodb and elan DBs.
+#
+# Info:
+# This Container runs using postgreSQl-Databases as backend.
+#
+# build with e.g. `docker build --force-rm=true -t bfs/elan5varnish -f Dockerfile_varnish .',
+# then run with e.g.
+# `docker run --name bfs_elan5_varnish --link elan_db:elan_db  -dp 18081:8081 bfs/elan5varnish:latest'
+#
+# In case you want to interact with the container, use e.g.
+# `docker exec -it bfs_elan5_varnish "/bin/bash"'
+#
+FROM ubuntu:trusty
+MAINTAINER Marco Lechner<mlechner@bfs.de>
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install python postgresql-server-dev-9.3 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install mercurial python-dev
+RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/zope --gecos "Zope/Plone system user" zope
+#
+# install ELAN
+#
+RUN mkdir -p /opt/bfs/elan
+ADD . /opt/bfs/elan/
+WORKDIR /opt/bfs/elan/Plone
+RUN cd /opt/bfs/elan/Plone && python bootstrap.py
+RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc relstorage_docker.cfg
+
+RUN chown -R zope.zope /opt/bfs
+USER zope
+ENV HOME /home/zope
+# try to use sqlite instead of postgreSQL as DB backend for transfer
+WORKDIR /opt/bfs/elan/Plone
+
+# run singleinstance
+#EXPOSE 8081
+#CMD [ "/opt/bfs/elan/Plone/bin/instance", "fg"]
+# run using varnish
+EXPOSE 8081 8082 8083 8100 8881 9001
+CMD [ "/opt/bfs/elan/Plone/bin/supervisord", "-n"]
+
