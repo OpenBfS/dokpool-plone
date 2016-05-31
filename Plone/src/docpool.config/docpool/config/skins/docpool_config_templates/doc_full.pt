@@ -7,18 +7,8 @@
     <div metal:use-macro="here/@@elan.macros/macros/elandoc"/>   
     
     <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
-       <script  type="text/javascript" tal:content="view/javascript">
-      </script>
-      <div class="elanUploaderContainer">
-          <input type="hidden"
-                 name="uploadUrl"
-                 class="uploadUrl"
-                 tal:attributes="value view/getUploadUrl" />
-          <input type="hidden"
-                 name="uploadData"
-                 class="uploadData"
-                 tal:attributes="value view/getDataForUploadUrl" />     
-      </div>
+      <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>   
+
       <input class="context"
                   type="submit"
                   name="form.button.save"

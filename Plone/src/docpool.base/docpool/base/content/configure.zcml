@@ -46,13 +46,6 @@
 <!-- ##code-section Main -->
     <grok:grok package="." />
 
-  <class class=".dpdocument.DPDocument">
-    <implements interface="collective.quickupload.interfaces.IQuickUploadCapable" />
-  </class>
-  <class class=".simplefolder.SimpleFolder">
-    <implements interface="collective.quickupload.interfaces.IQuickUploadNotCapable" />
-  </class>
-
   <subscriber handler=".contentbase.markCreateEvent" />
   <subscriber handler=".contentbase.updateCreated" />
   <subscriber handler=".contentbase.updateModified" />

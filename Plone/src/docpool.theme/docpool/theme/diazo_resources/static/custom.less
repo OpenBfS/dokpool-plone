@@ -90,7 +90,7 @@ div.overlay #doctransferform {
 
 p.version {
 	position: relative;
-	top: -2em;
+	top: 0em;
     left: 0.7em;
 }
 
@@ -243,7 +243,7 @@ table.elanlisting a {
 }
 
 table.scenarios {
-    background-color: #B1BEDF; 
+    background-color: #D9D9D9; 
 }
 
 .scenarios td {
@@ -306,6 +306,10 @@ table.scenarios {
     display: none;
 }
 
+.template-usergroup-groupprefs form, .template-usergroup-userprefs form {
+    overflow: hidden;
+}
+
 .portaltype-elantransferfolder #selectall,
 .portaltype-elantransferfolder th.id,  
 .portaltype-elantransferfolder td.id, 
@@ -348,6 +352,13 @@ body#visual-portal-wrapper.pat-plone #edit-zone [class*="contenttype-"] {
     width: 240px;
 }
 
-.elanUploaderContainer .uploadifybutton {
-    background-color: #1b6899;
+.elanUploaderContainer {
+    .uploadifybutton {
+        background-color: #1b6899;
+    }
+    .uploadField input {
+        font-size: 12px;
+        height: 34px;
+        width: 65%;
+    }
 }

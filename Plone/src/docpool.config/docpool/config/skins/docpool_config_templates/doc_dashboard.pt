@@ -2,12 +2,15 @@
            define="view nocall:options/view;
                    context nocall:options/context;
                    here nocall:context">
-    <div class="visualization">
+    <div class="visualization" tal:define="mi context/getMapImageObj;
+                                           li context/getLegendImageObj;
+                                           fi context/getFirstImage" >
 	    <div class="map">
-	       <tal:insert replace="structure context/getMapImage" />
+	       <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi" />
+	       <tal:insert replace="structure context/getFirstImage" tal:condition="python:mi is None and fi" />
 	    </div>
         <div class="legend">
-           <tal:insert replace="structure context/getLegendImage" />
+           <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
         </div>
     </div>
 </tal:block>

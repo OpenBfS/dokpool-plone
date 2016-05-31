@@ -2,7 +2,7 @@
 #
 # File: folderbase.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -32,6 +33,7 @@ from Products.CMFCore.utils import getToolByName
 ##code-section imports
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
+from docpool.base.utils import portalMessage
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME

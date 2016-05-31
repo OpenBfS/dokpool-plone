@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-import os
 
 version = '1.1'
 
@@ -27,9 +26,8 @@ setup(name='elan.policy',
           'setuptools',
           # -*- Extra requirements: -*-
           'Products.CMFPlacefulWorkflow',
-          'collective.quickupload',
-          'collective.easytemplate',
           'plone.app.caching',
+          'plone.app.upgrade',
           'plone.formwidget.contenttree',
           'docpool.theme',
           'docpool.base',

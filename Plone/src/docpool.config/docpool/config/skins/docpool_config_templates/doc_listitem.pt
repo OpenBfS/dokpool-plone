@@ -41,7 +41,7 @@
                  unknown python: unknown_scen or unknown_dt;
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
-                <td class="actions" tal:condition="not:isOverview">
+                <td class="actions" tal:condition="python:not isOverview and not isCollection">
                     <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
                     <div metal:use-macro="here/@@elan.macros/macros/docactions"/> 

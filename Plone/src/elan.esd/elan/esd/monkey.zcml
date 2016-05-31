@@ -5,12 +5,5 @@
 
     <include package="collective.monkeypatcher" />
 
-    <monkey:patch
-        description="This enables plone.protect for collective.quickupload"
-        class="collective.quickupload.browser.quick_upload.QuickUploadFile"
-        original="quick_upload_file"
-        preserveOriginal="true"
-        replacement=".monkey.patched_quick_upload_file"
-        />
 
 </configure>

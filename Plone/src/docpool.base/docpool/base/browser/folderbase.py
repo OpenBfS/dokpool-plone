@@ -2,7 +2,7 @@
 #
 # File: folderbase.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -24,7 +24,6 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
 from Products.CMFCore.utils import getToolByName
-from plone.app.content.browser.contents import FolderContentsView, TUS_ENABLED
 from plone.app.content.browser.interfaces import IFolderContentsView
 from zope.interface import implementer
 ##/code-section imports
@@ -99,12 +98,13 @@ class FolderBaseView(BrowserView):
     def getFolderContents(self, kwargs):
         """
         """
-        # print "getFolderContents"
+        print "getFolderContents"
         kwargs["object_provides"] = IFolderBase.__identifier__
         res = [ b for b in self.context.getFolderContents(kwargs)]
         # print res
         kwargs["object_provides"] = [IDPDocument.__identifier__, IInfoLink.__identifier__]
         res.extend([b for b in self.context.getFolderContents(kwargs)])
-        #print res
+        print res
         return res
+
 ##/code-section bottom

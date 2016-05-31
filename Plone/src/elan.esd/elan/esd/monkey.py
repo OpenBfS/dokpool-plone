@@ -186,15 +186,6 @@ if not hasattr(DocumentPool, "createTestData"):
     DocumentPool.createTestData = createTestData
     
 
-def patched_quick_upload_file(self):
-    from collective.quickupload.browser.quick_upload import QuickUploadFile
-    result = QuickUploadFile._old_quick_upload_file(self) # Convention from collective.monkeypatcher
-    request = self.request
-    response = request.RESPONSE
-    # we set another Content Type to correct problems with collective quickupload
-    response.setHeader('Content-Type', 'text/json; charset=utf-8')
-    return result
-
 def elanobject(self):
     return IELANDocument(self.context)
 

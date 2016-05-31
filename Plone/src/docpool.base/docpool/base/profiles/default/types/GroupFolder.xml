@@ -11,6 +11,12 @@
  <property name="allowed_content_types">
      
          
+             <element value="PrivateFolder" />
+         
+         
+             <element value="SimpleFolder" />
+         
+         
              <element value="ReviewFolder" />
          
          
@@ -21,12 +27,6 @@
          
          
              <element value="DPDocument" />
-         
-         
-             <element value="PrivateFolder" />
-         
-         
-             <element value="SimpleFolder" />
          
      
  </property>

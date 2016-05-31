@@ -2,7 +2,7 @@
 #
 # File: documentpool.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -62,6 +63,15 @@ class IDocumentPool(form.Schema):
 ##/code-section field_prefix                           
     )
     
+        
+    customLogo = NamedBlobImage(
+                        title=_(u'label_documentpool_customlogo', default=u'Bereichsspezifisches Logo'),
+                        description=_(u'description_documentpool_customlogo', default=u''),
+                        required=False,
+##code-section field_customLogo
+##/code-section field_customLogo                           
+    )
+    
 
 ##code-section interface
 ##/code-section interface
@@ -75,6 +85,11 @@ class DocumentPool(Container):
     implements(IDocumentPool)
     
 ##code-section methods
+    def logoSrc(self):
+        if self.customLogo:
+            return "%s/@@images/customLogo/preview" % self.absolute_url()
+        else:
+            return None
     
     def configure(self):
         """

@@ -27,7 +27,11 @@ msgstr "Wollen Sie dieses Objekt wirklich löschen?"
 #: plone.app.controlpanel/plone/app/controlpanel/usergroups_usersoverview.pt:138
 #: plone.app.users/plone/app/users/browser/personalpreferences.py:425
 msgid "listingheader_reset_password"
-msgstr "Passwort ändern"
+msgstr "Passwort zurücksetzen"
+
+#: plone.app.controlpanel/plone/app/controlpanel/usergroups_usersoverview.pt:139
+msgid "listingheader_remove_user"
+msgstr "Benutzer löschen"
 
 #: plone.app.search/plone/app/search/search.pt:59
 msgid "Search results"
@@ -52,3 +56,7 @@ msgstr "und"
 
 msgid "Groups"
 msgstr "Gruppen"
+
+#: plone.app.discussion-2.4.8-py2.7.egg/plone/app/discussion/browser/comments.pt
+msgid "label_add_comment"
+msgstr "Kommentar hinzufügen"

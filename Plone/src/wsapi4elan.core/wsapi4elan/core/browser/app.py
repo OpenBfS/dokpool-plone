@@ -133,6 +133,11 @@ class ApplicationAPI(WSAPI):
         
         properties = {"fullname":fullname}
         esd = api.content.get(esdpath, None)
+
+        prefix = esd.prefix
+        prefix = str(prefix)
+
+        membergroupname = prefix + "_Members"
         if esd:
             properties['dp'] = esd.UID()
             properties['fullname'] = "{} ({})".format(fullname, esd.Title()) 
@@ -169,13 +174,18 @@ class ApplicationAPI(WSAPI):
             groupprops['title'] = title
 #        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
         gtool = getToolByName(self, 'portal_groups')
+# trying to add new group with prefix
         group = gtool.addGroup("%s_%s" % (prefix, groupname),
                    properties=groupprops)
+        if group:
+            return groupname
+# seems that adding group was not succesfulr. asuming group already exists
+        group = api.group.get("%s_%s" % (prefix, groupname))
 
 #        if groupprops:
 #            group.setGroupProperties(groupprops)
         if group:
-             return  groupname
+             return groupname
         else:
              return "fail"
     
@@ -188,6 +198,11 @@ class ApplicationAPI(WSAPI):
                   'title' : title,
                   'description': description}
         esd = api.content.get(esdpath, None)
+
+        prefix = esd.prefix
+        prefix = str(prefix)
+
+        groupname = prefix + "_" + groupname
         if esd:
             title = "{} ({})".format(props['title'], esd.Title())
             props['dp'] = esd.UID()
@@ -224,4 +239,3 @@ class ApplicationAPI(WSAPI):
         
         
         
-

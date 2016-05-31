@@ -1,0 +1,17 @@
+<tal:block i18n:domain="docpool.base"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context">
+<tal:def define="edit_allowed context/canBeEdited;">
+    <tal:if condition="htmltext" define="htmltext context/text/output">
+    <label i18n:translate="">Content:</label>
+    <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
+    </tal:if>
+          <br><br>
+          <div metal:use-macro="here/@@elan.macros/macros/docfiles"/>   
+          <br><br>  
+          <div metal:use-macro="here/@@elan.macros/macros/docimages"/>   
+          <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>   
+    
+ </tal:def>
+</tal:block>

@@ -6,6 +6,7 @@ from zope.intid.interfaces import IIntIds
 from z3c.relationfield.relation import RelationValue
 from zope.event import notify
 from Products.CMFCore.utils import getToolByName
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 
 
 TYPE='type'
@@ -25,12 +26,12 @@ def createPloneObjects(parent, definitions, fresh=False):
             id = objdef[ID]
         else:
             id = ploneId(parent, title) 
-        print objdef
-        print id
-        print parent    
+#        print objdef
+#        print id
+#        print parent    
         # Objekt erzeugen, wenn noch nicht vorhanden
         if (not parent.hasObject(id)):
-            print parent
+#            print parent
             parent.invokeFactory(id=id, type_name=objdef[TYPE], title=title)
             print "createBasicPortalStructure - %s %s erzeugt" % (objdef[TYPE], id)
         else:
@@ -77,9 +78,11 @@ def setAttributes(obj, objdef):
                 
                 getattr(obj,method)(values)
             else:
+                if attr == 'setExcludeFromNav':
+                    IExcludeFromNavigation(obj).exclude_from_nav = True
                 #print obj.id, attr, objdef[attr]
                 #print obj
-                if obj.getPortalTypeName() in ['TemplatedDocument']:
+                elif obj.getPortalTypeName() in ['TemplatedDocument']:
                     #Archetypes based
                     setter = getattr(obj, attr)
                     setter(objdef[attr])

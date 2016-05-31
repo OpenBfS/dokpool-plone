@@ -58,7 +58,7 @@
    <property name="title" i18n:translate="">Help</property>
    <property name="description" i18n:translate=""></property>
    <property
-      name="url_expr">string:$portal_url/contentconfig/help</property>
+      name="url_expr">string:${context/dp_url}/@@help</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property name="available_expr"></property>
@@ -86,6 +86,7 @@
    <property name="title" i18n:translate="">Change Password</property>
    <property
       name="url_expr">string:${context/dp_url}/@@change-password</property>
+   <property name="available_expr">here/canChangePassword</property>
    <property name="visible">True</property>
   </object>
   <object name="review-comments" meta_type="CMF Action" i18n:domain="plone">

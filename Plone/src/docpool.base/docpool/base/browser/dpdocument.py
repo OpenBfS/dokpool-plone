@@ -33,6 +33,12 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.base.utils import execute_under_special_role
 from docpool.base.content.dpdocument import DPDocument
 import Acquisition
+from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
+import json
+from plone.app.dexterity.interfaces import IDXFileFactory
+from plone.uuid.interfaces import IUUID
+import mimetypes
+from plone import api
 ##/code-section imports
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
@@ -103,49 +109,6 @@ class DPDocumentView(FlexibleView):
         context = aq_inner(self.context)
         return context.restrictedTraverse('@@plone').getCurrentFolderUrl()
     
-    def getUploadUrl(self):
-        """
-        return upload url
-        in current folder
-        """
-        folder_url = self.base_url()
-        return '%s/@@quick_upload' %folder_url
-
-    def getDataForUploadUrl(self):
-        data_url = ''
-        return data_url
-
-    def javascript(self):
-        # PLONE5: plone.protect 
-        token = createToken()
-        return """
-  // workaround this MSIE bug :
-  // https://dev.plone.org/plone/ticket/10894
-  if (navigator.userAgent.match(/msie|trident/i)) jQuery("#settings").remove();
-  var Browser = {};
-  Browser.onUploadComplete = function() {
-      window.location.reload();
-  }
-  loadUploader = function() {
-      var ulContainer = jQuery('.elanUploaderContainer');
-      ulContainer.each(function(){
-          var uploadUrl =  jQuery('.uploadUrl', this).val();
-          var uploadData =  jQuery('.uploadData', this).val();
-          var UlDiv = jQuery(this);
-          jQuery.ajax({
-                     type: 'GET',
-                     url: uploadUrl,
-                     data: uploadData,
-                     dataType: 'html',
-                     contentType: 'text/html; charset=utf-8',
-                     headers: { 'X-CSRF-TOKEN': '%s' },
-                     success: function(html) {
-                        UlDiv.html(html);
-                     } });
-      });
-  }
-  jQuery(document).ready(loadUploader);
-""" % token
 
     def quote_plus(self, string):
         """
@@ -226,4 +189,63 @@ class DPDocumentdocimageView(BrowserView):
 
 
 ##code-section bottom
+class FileUploadView(BaseFileUploadView):
+    """Redirect to the workspace view so we can inject."""
+
+    def __call__(self):
+        result = self.process_request()
+        if self.request.get_header('HTTP_ACCEPT') == 'application/json':
+            self.request.response.setHeader("Content-type", "application/json")
+            return json.dumps(result)
+        else:
+            self.request.response.redirect(self.context.absolute_url())
+
+    def process_request(self):
+        # XXX: We don't support the TUS resumable file upload protocol.
+        # The pat-upload pattern supports it (due to mockup) and
+        # plone.app.content.browser.file.py also supports it, but at the cost
+        # of not being able to upload multiple files at once. We decided that
+        # that's more important at the moment.
+        if self.request.REQUEST_METHOD != 'POST':
+            return []
+        result = []
+        form = self.request.form
+        for name in [k for k in form.keys() if k.startswith('file')]:
+            output = self.create_file_from_request(name)
+            if output:
+                result.append(output)
+        return result
+
+    def create_file_from_request(self, name):
+        context = self.context
+        filedata = self.request.form.get(name, None)
+        if not filedata:
+            return
+        filename = filedata.filename
+        content_type = mimetypes.guess_type(filename)[0] or ""
+        # Determine if the default file/image types are DX or AT based
+        ctr = api.portal.get_tool('content_type_registry')
+        type_ = ctr.findTypeName(filename.lower(), '', '') or 'File'
+        pt = api.portal.get_tool('portal_types')
+
+        obj = IDXFileFactory(context)(filename, content_type, filedata)
+        if hasattr(obj, 'file'):
+            size = obj.file.getSize()
+            content_type = obj.file.contentType
+        elif hasattr(obj, 'image'):
+            size = obj.image.getSize()
+            content_type = obj.image.contentType
+        else:
+            return
+        result = {
+            "type": content_type,
+            "size": size
+        }
+        result.update({
+            'url': obj.absolute_url(),
+            'name': obj.getId(),
+            'UID': IUUID(obj),
+            'filename': filename
+        })
+        return result    
 ##/code-section bottom

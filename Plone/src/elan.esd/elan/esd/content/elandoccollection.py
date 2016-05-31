@@ -44,6 +44,8 @@ from zope.intid.interfaces import IIntIds
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.event import updateRelations
 from docpool.base.content.doctype import IDocType
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 
 @grok.provider(IContextSourceBinder)
 def availableTypes(context):
@@ -134,6 +136,8 @@ class ELANDocCollection(Item, Collection):
         """
         Replace references to global doc types with references to local doc types.
         """
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)        
         dts = self.docTypes
         res = []
         intids = getUtility(IIntIds)
@@ -207,9 +211,11 @@ class ELANDocCollection(Item, Collection):
         from plone.app.querystring.querybuilder import QueryBuilder
         from elan.esd.utils import getRelativePath
         #print "modified get"
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)        
         raw = kwargs.get('raw', None)
         implicit_filter = kwargs.get('implicit', False)
-        value = self.query#.raw #TODO: raw-Attribut gibt es nicht, Entsprechung?
+        value = self.query#.raw 
         if not value:
             self.setDocTypesUpdateCollection() # Not yet initialized
             value = self.query

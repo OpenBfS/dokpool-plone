@@ -2,7 +2,7 @@
 #
 # File: dpdocument.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -52,6 +53,8 @@ from Acquisition import aq_base, aq_parent
 from plone.dexterity.utils import safe_unicode
 from plone.api import content
 from PIL import Image
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -222,7 +225,6 @@ class DPDocument(Container, Document, ContentBase):
             et = self.REQUEST.get('docType','')
         #dto = queryForObject(self, id=et)
         dto = None
-        print et
         try:
             dto = self.config.dtypes[et]
         except Exception, e:
@@ -299,6 +301,8 @@ class DPDocument(Container, Document, ContentBase):
         """
         Move a file or an image within the document.
         """
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)                
         position=position.lower()
         # we need to find all other ids for the same type
         ssids = [o.getId for o in self.getFolderContents({'portal_type':ptype})]
@@ -455,13 +459,13 @@ class DPDocument(Container, Document, ContentBase):
     def getFileOrImageByPattern(self, pattern):
         """
         """
-        print pattern
-        print self.getAllContentObjects()
+#        print pattern
+#        print self.getAllContentObjects()
         p = re.compile(pattern, re.IGNORECASE)
         for obj in self.getAllContentObjects():
-            print obj.getId()
+#            print obj.getId()
             if p.match(obj.getId()):
-                print obj
+#                print obj
                 return obj
     
     def getMapImageObj(self):
@@ -554,6 +558,14 @@ class DPDocument(Container, Document, ContentBase):
         """
         """
         return content.get_state(self, "None")
+    
+    def getFirstImage(self, scale=""):
+        imgs = self.getImages()
+        if imgs:
+            img = imgs[0]
+            return "<img src='%s%s' />" % (img.absolute_url(), scale)
+        else:
+            return None
         
 ##/code-section methods 
 

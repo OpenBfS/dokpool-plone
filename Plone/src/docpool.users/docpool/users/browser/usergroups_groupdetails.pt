@@ -67,7 +67,7 @@
       <div id="content-core">
         <div class="autotabs">
          
-          <nav class="autotoc-nav">
+          <nav class="autotoc-nav" tal:condition="view/group | nothing">
             <a href="${portal_url}/@@usergroup-groupmembership?${groupquery}"
                i18n:translate="label_group_members">Group Members</a>
             <a class="active"

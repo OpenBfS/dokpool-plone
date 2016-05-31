@@ -8,5 +8,8 @@
   <type type_id="DPDocument">
    <bound-workflow workflow_id="dp_private_workflow"/>
   </type>
+  <type type_id="InfoDocument">
+   <bound-workflow workflow_id="dp_private_workflow"/>
+  </type>
  </bindings>
 </object>

@@ -15,8 +15,9 @@
                  individual context/isIndividual;
                  myfolder nocall:options/myfolder;
                  item_description edoc/Description;
+                 eurl edoc/getURL;
                  item_url python:isCollection and '%s/@@dview?d=%s&disable_border=1' % (myfolder.absolute_url(), euid) or edoc.getURL(original=True);
-                 item_url python:isOverview and edoc.getURL() or item_url;
+                 item_url python:isOverview and eurl or item_url;
                  item_modified edoc/getMdate;
                  item_created edoc/CreationDate;
                  item_creator edoc/Creator;
@@ -40,7 +41,7 @@
                  unknown python: unknown_scen or unknown_dt;
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
-                <td class="actions">
+                <td class="actions" tal:condition="python:not isOverview and not isCollection">
                     <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
                     <div metal:use-macro="here/@@elan.macros/macros/docactions"/> 

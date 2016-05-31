@@ -5,6 +5,9 @@
   <default>
    <bound-workflow workflow_id="dp_collaboration_workflow"/>
   </default>
+  <type type_id="CollaborationFolder">
+   <bound-workflow workflow_id="dp_collaboration_workflow"/>
+  </type>
   <type type_id="DPDocument">
    <bound-workflow workflow_id="dp_collaboration_workflow"/>
   </type>

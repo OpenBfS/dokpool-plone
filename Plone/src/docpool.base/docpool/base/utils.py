@@ -133,9 +133,6 @@ def getAllowedDocumentTypesForGroup(self):
 def getGroupsForCurrentUser(self, user=None):
     """
     """
-    if not user:
-        mtool = getToolByName(self, "portal_membership")
-        user = mtool.getAuthenticatedMember()
     g = self.content.Groups
 #    gpath = "/".join(g.getPhysicalPath())
     gordner = g.getFolderContents()
@@ -147,8 +144,9 @@ def getGroupsForCurrentUser(self, user=None):
         try:
             grp = gtool.getGroupById(g.id)
             etypes = grp.getProperty('allowedDocTypes', []) 
-            title = grp.getProperty('title','')
-            res.append({'id': g.id, 'title' : title, 'etypes' : etypes})
+            if etypes:
+                title = grp.getProperty('title','')
+                res.append({'id': g.id, 'title' : title, 'etypes' : etypes})
         except Exception, e:
             log_exc(e)
     return res
@@ -158,10 +156,14 @@ def deleteMemberFolders(self, member_ids):
     """
     for mid in member_ids:
         try:
-            # TODO
-            self.portal_membership.getMembersFolder().manage_delObjects([mid.replace("-","--")])
+            members = self.content.Members
+            members.manage_delObjects([mid.replace("-","--")])
         except Exception, e:
             log_exc(e)
+            try:
+                self.portal_membership.getMembersFolder().manage_delObjects([mid.replace("-","--")])
+            except Exception, e:
+                log_exc(e)
 
 
 def getUserInfo(self, username=None):
@@ -198,7 +200,7 @@ def getUserInfo(self, username=None):
 #         # print obj.portal_url.getRelativeUrl(obj)
 #         return obj.portal_url.getRelativeUrl(obj)
 
-def portalMessage(self, msg, type):
+def portalMessage(self, msg, type='info'):
     ptool = getToolByName(self, "plone_utils")
     ptool.addPortalMessage(msg, type)
     
@@ -279,7 +281,8 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
 
     portal_state = getMultiAdapter((context, context.REQUEST), name=u'plone_portal_state')
     portal = portal_state.portal()
-
+    if not portal:
+        return
     sm = getSecurityManager()
 
     try:

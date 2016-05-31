@@ -32,19 +32,22 @@ class ChannelSecurity(DefaultSecurity):
                 return True
             else:
                 return False
-        return checkLocalRole(context, "Site Administrator")
+        return self.can_delete_all() or checkLocalRole(context, "Site Administrator")
             
     def can_delete(self, item):
         """
         """
-        return self.isManager
+        return self.can_delete_all()
     
     def can_delete_all(self):
         """
         """
-        return self.isManager          
+        print "can_delete_all"
+        print self.user
+        print self.context
+        return self.isManager or self.user.has_role("Owner", self.getContextObj())
     
     def can_update(self, item):
         """
         """
-        return self.can_access()
+        return self.can_delete_all()
