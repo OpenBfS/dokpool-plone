@@ -1,6 +1,7 @@
 # Docker file for a running postgres instance with the dosrec DB
 #
-# build with e.g. `docker build --force-rm=true -t bfs/elan_pgsql .',
+# build from root dir of this repo with e.g.
+# `docker build --force-rm=true -t bfs/elan_pgsql -f ../Docker/ubuntu14pgsql/Dockerfile.pgsql ./Docker/ubuntu14pgsql/ ',
 # then run with e.g.
 # `docker run --name elan_db -dp 2345:5432 bfs/elan_pgsql:latest'
 #
