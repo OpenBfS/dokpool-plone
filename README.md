@@ -13,7 +13,8 @@ If you want to run ELAN5 there are several ways. Run ELAN5 in a production envir
 For rapid simple testing/demonstrations we provide Dockerfiles as well. See Docker (https://www.docker.com) for further information on this Container technology.
 
 ### Build your own standalone ELAN5 using Docker
-To build ELAN5 running in a Dockercontainer we provide a Version based on latest Ubuntu (Dockerfile.standalone) and a Version build on top of latest Oracle Linux (Dockerfile.oel7).
+To build ELAN5 running in a Dockercontainer we provide a Version based on latest Ubuntu (Dockerfile.standalone) and a Version build on top of latest Oracle Linux (Dockerfile.oel7).Various Dockerfiles are located in the Docker Folder of this Repo.
+TODO fix following introductions or split and move them in specific subfolders of Docker folder.
 
 #### Requirements:
 Place an zodb-Backup (created with plonebackup) next to this Dockerfile and name it initialELAN-backup.tgz (or get one from the ELAN5 Repository)
