@@ -110,12 +110,11 @@ def infosAdded(obj, event=None):
     """
     Set local role for Content Administrators
     """
-    print "infosAdded"
     self = obj
     esd = self.myDocumentPool()
     prefix = esd.prefix or esd.getId()
     prefix = str(prefix)
-    self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Reviewer"])
+    self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     
     
 ##/code-section bottom 

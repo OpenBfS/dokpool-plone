@@ -25,6 +25,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
@@ -38,6 +39,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
@@ -50,6 +52,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published">
@@ -72,10 +75,12 @@
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>  
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Sharing page: Delegate roles" acquired="False">
   </permission-map>
@@ -83,6 +88,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
  </state>
  <transition transition_id="auto_publish" title="" new_state="published" trigger="AUTOMATIC" before_script="" after_script="">

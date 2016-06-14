@@ -211,13 +211,13 @@ def setELANLocalRoles(self):
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
-    self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Reviewer"])
+    self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
-    self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Reviewer"]) 
+    self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
-    self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["Editor"])
-    self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["Editor"])
-    self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["Contributor"])
+    self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
+    self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
+    self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
 
 def createELANGroups(self):
     # We need local groups for

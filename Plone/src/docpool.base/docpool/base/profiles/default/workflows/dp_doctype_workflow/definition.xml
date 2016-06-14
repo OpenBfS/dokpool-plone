@@ -11,36 +11,36 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Editor</permission-role>
+   <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Editor</permission-role>
+   <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Editor</permission-role>
+   <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Editor</permission-role>
+   <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published">
@@ -51,30 +51,31 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Reader</permission-role>
-   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>ContentReceiver</permission-role>
    <permission-role>Reader</permission-role>
-   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
  </state>
  <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="">
@@ -83,8 +84,8 @@
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Site Administrator</guard-role>
-   <guard-role>Reviewer</guard-role>
-   <guard-role>Editor</guard-role>
+   <guard-role>DocPoolAdmin</guard-role>
+   <guard-role>ContentReceiver</guard-role>
   </guard>
  </transition>
  <transition transition_id="retract" title="Member retracts submission" new_state="private" trigger="USER" before_script="" after_script="">

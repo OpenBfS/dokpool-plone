@@ -30,6 +30,7 @@
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
@@ -58,6 +59,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
@@ -71,6 +73,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
@@ -83,6 +86,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published">
@@ -103,6 +107,7 @@
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Owner</permission-role>  
@@ -122,6 +127,7 @@
    <guard-role>Reviewer</guard-role>
    <guard-role>Manager</guard-role>
    <guard-role>Site Administrator</guard-role>
+   <guard-role>DocPoolAdmin</guard-role>
   </guard>
  </transition>
  <transition transition_id="reject" title="Reviewer sends content back for re-drafting" new_state="private" trigger="USER" before_script="" after_script="">
