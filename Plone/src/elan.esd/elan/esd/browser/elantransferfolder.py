@@ -22,7 +22,7 @@ from plone.memoize.instance import memoize
 from elan.dbaccess.dbinit import __session__, __metadata__
 from formalchemy import Grid
 from elan.esd.db.model import ChannelPermissions, DocTypePermission
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from docpool.base.browser.folderbase import FolderBaseView
 ##/code-section imports
 

@@ -11,7 +11,7 @@
 from elan.dbaccess.utils import portalMessage, getTool
 from Products.CMFPlone.utils import log, log_exc, safe_unicode
 from elan.dbaccess import ObjectDuplicateException
-from elan.dbaccess import ELAN_EMessageFactory as _
+from elan.dbaccess import DocpoolMessageFactory as _
 
 
 request = context.REQUEST

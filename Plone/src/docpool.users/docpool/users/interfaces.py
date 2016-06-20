@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 ##code-section imports
-from docpool.users import ELAN_EMessageFactory as _
+from docpool.users import DocpoolMessageFactory as _
 ##/code-section imports
 
 ##code-section manual code

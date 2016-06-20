@@ -49,7 +49,7 @@ from docpool.base.content.doctype import IDocType
 
 from docpool.base.config import PROJECTNAME
 
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 
 class IDocumentPool(form.Schema):
     """

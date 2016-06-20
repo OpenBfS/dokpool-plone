@@ -33,7 +33,7 @@ from Products.CMFCore.utils import getToolByName
 
 from elan.esd.config import PROJECTNAME
 
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 
 class IELANArchive(form.Schema):
     """

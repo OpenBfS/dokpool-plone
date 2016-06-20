@@ -36,7 +36,7 @@ from docpool.base.utils import execute_under_special_role, _cutPaste
 
 from docpool.base.config import PROJECTNAME
 
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 
 class IUserFolder(form.Schema, ISimpleFolder):
     """

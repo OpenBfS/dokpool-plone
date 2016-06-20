@@ -26,7 +26,7 @@ from elan.dbaccess.security import DefaultSecurity
 from elan.dbaccess.interfaces import IDataSecurity, IProtectedEntityClass, IAuditing
 from elan.dbaccess.utils import stringFromDatetime
 from Products.Archetypes.utils import shasattr
-from elan.dbaccess import ELAN_EMessageFactory as _
+from elan.dbaccess import DocpoolMessageFactory as _
 
 from AccessControl import Unauthorized
 

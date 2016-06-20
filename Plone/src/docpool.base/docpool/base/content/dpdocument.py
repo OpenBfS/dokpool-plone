@@ -48,7 +48,7 @@ from docpool.base.pdfconversion import get_images, metadata, pdfobj, data
 from zope.annotation.interfaces import IAnnotations
 from BTrees.OOBTree import OOBTree
 from StringIO import StringIO
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from Acquisition import aq_base, aq_parent
 from plone.dexterity.utils import safe_unicode
 from plone.api import content
@@ -59,7 +59,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 
 from docpool.base.config import PROJECTNAME
 
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 
 class IDPDocument(form.Schema, IDocument, IContentBase):
     """

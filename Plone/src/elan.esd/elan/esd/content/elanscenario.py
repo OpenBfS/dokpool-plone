@@ -44,7 +44,7 @@ from Products.Archetypes.utils import DisplayList
 from zope.component import adapter
 from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectMovedEvent, IObjectRemovedEvent, IObjectModifiedEvent
 from Products.CMFCore.interfaces import IActionSucceededEvent
-from elan.esd import ELAN_EMessageFactory
+from elan.esd import DocpoolMessageFactory
 from Products.CMFPlone.i18nl10n import utranslate
 import datetime
 from five import grok
@@ -68,7 +68,7 @@ def availableScenarios(context):
 
 from elan.esd.config import PROJECTNAME
 
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 
 class IELANScenario(form.Schema, IContentBase):
     """

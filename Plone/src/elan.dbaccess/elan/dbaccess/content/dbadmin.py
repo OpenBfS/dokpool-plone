@@ -91,7 +91,7 @@ from zope.component.hooks import getSite
 
 from elan.dbaccess.config import PROJECTNAME
 
-from elan.dbaccess import ELAN_EMessageFactory as _
+from elan.dbaccess import DocpoolMessageFactory as _
 
 
 ##code-section schema

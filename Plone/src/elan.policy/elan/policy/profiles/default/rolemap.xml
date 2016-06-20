@@ -144,256 +144,256 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANArchive" acquire="True">
+    <permission name="Docpool: Add ELANArchive" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANArchives" acquire="True">
+    <permission name="Docpool: Add ELANArchives" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add CollaborationFolder" acquire="True">
+    <permission name="Docpool: Add CollaborationFolder" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ContentArea" acquire="True">
+    <permission name="Docpool: Add ContentArea" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANContentConfig" acquire="True">
+    <permission name="Docpool: Add ELANContentConfig" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANCurrentSituation" acquire="True">
+    <permission name="Docpool: Add ELANCurrentSituation" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANDocCollection" acquire="True">
+    <permission name="Docpool: Add ELANDocCollection" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add Dashboard" acquire="True">
+    <permission name="Docpool: Add Dashboard" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add SituationOverview" acquire="True">
+    <permission name="Docpool: Add SituationOverview" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add DashboardCollection" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="Reviewer"/>
-    </permission>
-    <permission name="ELAN_E: Add SRCollection" acquire="True">
+    <permission name="Docpool: Add DashboardCollection" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRScenario" acquire="True">
+    <permission name="Docpool: Add SRCollection" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRPhase" acquire="True">
+    <permission name="Docpool: Add SRScenario" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRModuleConfig" acquire="True">
+    <permission name="Docpool: Add SRPhase" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRTextBlock" acquire="True">
+    <permission name="Docpool: Add SRModuleConfig" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRModuleTypes" acquire="True">
+    <permission name="Docpool: Add SRTextBlock" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRModuleType" acquire="True">
+    <permission name="Docpool: Add SRModuleTypes" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRCollections" acquire="True">
+    <permission name="Docpool: Add SRModuleType" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>
-    <permission name="ELAN_E: Add SRConfig" acquire="True">
+    <permission name="Docpool: Add SRCollections" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="Docpool: Add SRConfig" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
     </permission>    
-    <permission name="ELAN_E: Add SRFolder" acquire="True">
+    <permission name="Docpool: Add SRFolder" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Owner"/>
     </permission>    
-    <permission name="ELAN_E: Add DocType" acquire="True">
+    <permission name="Docpool: Add DocType" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add DocTypes" acquire="True">
+    <permission name="Docpool: Add DocTypes" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add DPDocument" acquire="True">
+    <permission name="Docpool: Add DPDocument" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
     </permission>
-    <permission name="ELAN_E: Add SRModule" acquire="True">
+    <permission name="Docpool: Add SRModule" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
     </permission>
-    <permission name="ELAN_E: Add SituationReport" acquire="True">
+    <permission name="Docpool: Add SituationReport" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
     </permission>
-    <permission name="ELAN_E: Add DocumentPool" acquire="True">
+    <permission name="Docpool: Add DocumentPool" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
     </permission>
-    <permission name="ELAN_E: Add SimpleFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add GroupFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add Groups" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add InfoDocument" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add InfoFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add ELANInfos" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add InfoLink" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add PrivateFolder" acquire="True">
+    <permission name="Docpool: Add SimpleFolder" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ReviewFolder" acquire="True">
+    <permission name="Docpool: Add GroupFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add Groups" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add InfoDocument" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add InfoFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANInfos" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add InfoLink" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add PrivateFolder" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANScenario" acquire="True">
+    <permission name="Docpool: Add ReviewFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANScenario" acquire="True">
       <role name="Manager"/>
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANScenarios" acquire="True">
+    <permission name="Docpool: Add ELANScenarios" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANSection" acquire="True">
+    <permission name="Docpool: Add ELANSection" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add Text" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add ELANTransferFolder" acquire="True">
+    <permission name="Docpool: Add Text" acquire="True">
       <role name="Manager"/>
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add ELANTransfers" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add UserFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add Users" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="ELAN_E: Add IRIXConfig" acquire="True">
+    <permission name="Docpool: Add ELANTransferFolder" acquire="True">
       <role name="Manager"/>
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Add IRIXReport" acquire="True">
+    <permission name="Docpool: Add ELANTransfers" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Receive Content" acquire="True">
+    <permission name="Docpool: Add UserFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add Users" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add IRIXConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add IRIXReport" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Receive Content" acquire="True">
       <role name="Contributor"/>
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="ELAN_E: Send Content" acquire="True">
+    <permission name="Docpool: Send Content" acquire="True">
       <role name="Contributor"/>
       <role name="Manager"/>
       <role name="Site Administrator"/>

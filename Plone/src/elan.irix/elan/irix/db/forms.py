@@ -22,7 +22,7 @@ from formalchemy.fields import HiddenFieldRenderer
 
 from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.utils import safe_unicode
-from elan.irix import ELAN_EMessageFactory as _
+from elan.irix import DocpoolMessageFactory as _
 
 def cListe(context=None):
     g = Grid(IRIXReport, session=__session__)

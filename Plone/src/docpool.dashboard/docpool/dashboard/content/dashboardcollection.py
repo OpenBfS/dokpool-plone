@@ -34,7 +34,7 @@ from Products.CMFCore.utils import getToolByName
 
 from docpool.dashboard.config import PROJECTNAME
 
-from docpool.dashboard import ELAN_EMessageFactory as _
+from docpool.dashboard import DocpoolMessageFactory as _
 
 class IDashboardCollection(form.Schema, IELANDocCollection):
     """

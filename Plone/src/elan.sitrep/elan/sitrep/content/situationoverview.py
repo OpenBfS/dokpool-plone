@@ -37,7 +37,7 @@ from elan.esd.utils import getScenariosForCurrentUser
 
 from elan.sitrep.config import PROJECTNAME
 
-from elan.sitrep import ELAN_EMessageFactory as _
+from elan.sitrep import DocpoolMessageFactory as _
 
 class ISituationOverview(form.Schema):
     """

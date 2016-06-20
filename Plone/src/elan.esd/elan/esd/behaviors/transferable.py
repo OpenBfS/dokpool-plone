@@ -9,7 +9,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import provider, implementer
 from zope.component import adapter
 from zope import schema
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from elan.esd.content.elandoccollection import IELANDocCollection
 from five import grok
 from plone.indexer.interfaces import IIndexer
@@ -31,7 +31,7 @@ from docpool.base.utils import execute_under_special_role,\
 
 from plone import api
 from Products.CMFPlone.utils import log, log_exc
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 from Acquisition import aq_inner
@@ -182,7 +182,7 @@ class Transferable(object):
         #print len(targets)
         return targets
                     
-    security.declareProtected("ELAN_E: Send Content", "transferToAll")    
+    security.declareProtected("Docpool: Send Content", "transferToAll")
     def transferToAll(self):
         """
         """
@@ -190,7 +190,7 @@ class Transferable(object):
         self.transferToTargets(targets)
         return self.context.restrictedTraverse('@@view')()
         
-    security.declareProtected("ELAN_E: Send Content", "manage_transfer")     
+    security.declareProtected("Docpool: Send Content", "manage_transfer")
     def manage_transfer(self, target_ids=[]):
         """
         Performs the transfer for a list of Channel ids.
@@ -198,7 +198,7 @@ class Transferable(object):
         channels = determineChannels(target_ids)
         self.transferToTargets(channels)
     
-    security.declareProtected("ELAN_E: Send Content", "transferToTargets")    
+    security.declareProtected("Docpool: Send Content", "transferToTargets")
     def transferToTargets(self, targets=[]):
         """
         1) Determine all transfer folder objects.

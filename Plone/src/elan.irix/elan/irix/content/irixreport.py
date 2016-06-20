@@ -46,7 +46,7 @@ from urllib import quote
 
 from elan.irix.config import PROJECTNAME
 
-from elan.irix import ELAN_EMessageFactory as _
+from elan.irix import DocpoolMessageFactory as _
 
 class IIRIXReport(form.Schema, IContentBase):
     """

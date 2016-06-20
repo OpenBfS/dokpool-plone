@@ -2,7 +2,7 @@
 <dc-workflow workflow_id="dp_collaboration_workflow" title="DP Collaboration Workflow" description="" state_variable="review_state" initial_state="private" manager_bypass="False">
  <permission>Access contents information</permission>
  <permission>Change portal events</permission>
- <permission>ELAN_E: Add DPDocument</permission>
+ <permission>Docpool: Add DPDocument</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Add portal content</permission>
@@ -32,7 +32,7 @@
    <permission-role>Contributor</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
-  <permission-map name="ELAN_E: Add DPDocument" acquired="True">
+  <permission-map name="Docpool: Add DPDocument" acquired="True">
    <permission-role>Manager</permission-role>
    <permission-role>Contributor</permission-role>
    <permission-role>Owner</permission-role>

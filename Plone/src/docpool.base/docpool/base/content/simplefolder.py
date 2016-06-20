@@ -41,7 +41,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 
 from docpool.base.config import PROJECTNAME
 
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 
 class ISimpleFolder(form.Schema, IFolderBase):
     """

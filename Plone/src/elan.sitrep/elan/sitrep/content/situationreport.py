@@ -46,7 +46,7 @@ from z3c.relationfield.relation import RelationValue
 
 from elan.sitrep.config import PROJECTNAME
 
-from elan.sitrep import ELAN_EMessageFactory as _
+from elan.sitrep import DocpoolMessageFactory as _
 
 class ISituationReport(form.Schema, IDPDocument):
     """

@@ -14,7 +14,7 @@ from Products.CMFCore.utils import getToolByName
 
 
 
-from elan.irix import ELAN_EMessageFactory as _
+from elan.irix import DocpoolMessageFactory as _
 
 ##code-section imports
 ##/code-section imports 

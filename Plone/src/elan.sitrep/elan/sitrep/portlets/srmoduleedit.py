@@ -14,7 +14,7 @@ from Products.CMFCore.utils import getToolByName
 
 
 
-from elan.sitrep import ELAN_EMessageFactory as _
+from elan.sitrep import DocpoolMessageFactory as _
 
 ##code-section imports
 ##/code-section imports 

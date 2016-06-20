@@ -26,46 +26,46 @@
    <include file="skins.zcml" />
    
    
-   <permission id="elan.sitrep.AddSRConfig" title="ELAN_E: Add SRConfig" />   
+   <permission id="elan.sitrep.AddSRConfig" title="Docpool: Add SRConfig" />
    
    
-   <permission id="elan.sitrep.AddSRScenario" title="ELAN_E: Add SRScenario" />   
+   <permission id="elan.sitrep.AddSRScenario" title="Docpool: Add SRScenario" />
    
    
-   <permission id="elan.sitrep.AddSRPhase" title="ELAN_E: Add SRPhase" />   
+   <permission id="elan.sitrep.AddSRPhase" title="Docpool: Add SRPhase" />
    
    
-   <permission id="elan.sitrep.AddSRModuleConfig" title="ELAN_E: Add SRModuleConfig" />   
+   <permission id="elan.sitrep.AddSRModuleConfig" title="Docpool: Add SRModuleConfig" />
    
    
-   <permission id="elan.sitrep.AddSRCollections" title="ELAN_E: Add SRCollections" />   
+   <permission id="elan.sitrep.AddSRCollections" title="Docpool: Add SRCollections" />
    
    
-   <permission id="elan.sitrep.AddSRCollection" title="ELAN_E: Add SRCollection" />   
+   <permission id="elan.sitrep.AddSRCollection" title="Docpool: Add SRCollection" />
    
    
-   <permission id="elan.sitrep.AddSRTextBlocks" title="ELAN_E: Add SRTextBlocks" />   
+   <permission id="elan.sitrep.AddSRTextBlocks" title="Docpool: Add SRTextBlocks" />
    
    
-   <permission id="elan.sitrep.AddSRTextBlock" title="ELAN_E: Add SRTextBlock" />   
+   <permission id="elan.sitrep.AddSRTextBlock" title="Docpool: Add SRTextBlock" />
    
    
-   <permission id="elan.sitrep.AddSituationOverview" title="ELAN_E: Add SituationOverview" />   
+   <permission id="elan.sitrep.AddSituationOverview" title="Docpool: Add SituationOverview" />
    
    
-   <permission id="elan.sitrep.AddSRFolder" title="ELAN_E: Add SRFolder" />   
+   <permission id="elan.sitrep.AddSRFolder" title="Docpool: Add SRFolder" />
    
    
-   <permission id="elan.sitrep.AddSRModule" title="ELAN_E: Add SRModule" />   
+   <permission id="elan.sitrep.AddSRModule" title="Docpool: Add SRModule" />
    
    
-   <permission id="elan.sitrep.AddSRModuleTypes" title="ELAN_E: Add SRModuleTypes" />   
+   <permission id="elan.sitrep.AddSRModuleTypes" title="Docpool: Add SRModuleTypes" />
    
    
-   <permission id="elan.sitrep.AddSRModuleType" title="ELAN_E: Add SRModuleType" />   
+   <permission id="elan.sitrep.AddSRModuleType" title="Docpool: Add SRModuleType" />
    
    
-   <permission id="elan.sitrep.AddSituationReport" title="ELAN_E: Add SituationReport" />   
+   <permission id="elan.sitrep.AddSituationReport" title="Docpool: Add SituationReport" />
    
 
 <!-- ##code-section Main -->

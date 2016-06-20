@@ -14,7 +14,7 @@ from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
 from Products.CMFCore.utils import getToolByName
 from plone import api
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from elan.esd.behaviors.elandoctype import IELANDocType
 from zope.interface.interface import Interface
 from Acquisition import aq_inner

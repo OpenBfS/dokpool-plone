@@ -13,7 +13,7 @@ from sqlalchemy.orm import class_mapper
 from formalchemy import FieldSet, Grid, Field
 from formalchemy import types
 from sqlalchemy.orm.properties import RelationProperty
-from elan.dbaccess import ELAN_EMessageFactory as _
+from elan.dbaccess import DocpoolMessageFactory as _
 
 
 

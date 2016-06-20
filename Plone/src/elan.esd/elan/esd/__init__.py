@@ -51,8 +51,8 @@ api.group.__allow_access_to_unprotected_subobjects__ = 1
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
 
-ELAN_EMessageFactory = MessageFactory('elan.esd')
-allow_class(ELAN_EMessageFactory)
+DocpoolMessageFactory = MessageFactory('elan.esd')
+allow_class(DocpoolMessageFactory)
 
 ##code-section security
 import monkey

@@ -27,8 +27,8 @@ import monkey
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
 
-ELAN_EMessageFactory = MessageFactory('docpool.base')
-allow_class(ELAN_EMessageFactory)
+DocpoolMessageFactory = MessageFactory('docpool.base')
+allow_class(DocpoolMessageFactory)
 
 ##code-section security
 ##/code-section security 

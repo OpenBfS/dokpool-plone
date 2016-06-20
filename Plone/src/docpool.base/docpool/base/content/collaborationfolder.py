@@ -38,7 +38,7 @@ from plone.api import user
 
 from docpool.base.config import PROJECTNAME
 
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 
 class ICollaborationFolder(form.Schema, ISimpleFolder):
     """

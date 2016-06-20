@@ -22,7 +22,7 @@ from docpool.base.content.contentarea import IContentArea
 from docpool.base.content.dpapplication import IDPApplication
 from docpool.base.content.dpconfig import IDPConfig
 ##code-section imports
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 ##/code-section imports
 
 ##code-section manual code

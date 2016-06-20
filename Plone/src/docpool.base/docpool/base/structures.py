@@ -5,7 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from zExceptions import BadRequest
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone.utils import log, log_exc
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from docpool.config.local import createContentArea, createUsers, createGroups,\
     setLocalRoles, navSettings
 

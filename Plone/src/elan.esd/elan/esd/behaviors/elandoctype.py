@@ -22,7 +22,7 @@ from five import grok
 from zope.schema.interfaces import IContextSourceBinder
 
 from plone import api
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 
 from Acquisition import aq_inner
 

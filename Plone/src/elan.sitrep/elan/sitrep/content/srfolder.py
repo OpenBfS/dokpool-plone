@@ -35,7 +35,7 @@ from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 
 from elan.sitrep.config import PROJECTNAME
 
-from elan.sitrep import ELAN_EMessageFactory as _
+from elan.sitrep import DocpoolMessageFactory as _
 
 class ISRFolder(form.Schema, ISimpleFolder):
     """

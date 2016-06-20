@@ -26,67 +26,67 @@
    <include file="skins.zcml" />
    
    
-   <permission id="docpool.base.AddInfoFolder" title="ELAN_E: Add InfoFolder" />   
+   <permission id="docpool.base.AddInfoFolder" title="Docpool: Add InfoFolder" />
    
    
-   <permission id="docpool.base.AddInfoDocument" title="ELAN_E: Add InfoDocument" />   
+   <permission id="docpool.base.AddInfoDocument" title="Docpool: Add InfoDocument" />
    
    
-   <permission id="docpool.base.AddInfoLink" title="ELAN_E: Add InfoLink" />   
+   <permission id="docpool.base.AddInfoLink" title="Docpool: Add InfoLink" />
    
    
-   <permission id="docpool.base.AddDPDocument" title="ELAN_E: Add DPDocument" />   
+   <permission id="docpool.base.AddDPDocument" title="Docpool: Add DPDocument" />
    
    
-   <permission id="docpool.base.AddDocType" title="ELAN_E: Add DocType" />   
+   <permission id="docpool.base.AddDocType" title="Docpool: Add DocType" />
    
    
-   <permission id="docpool.base.AddSimpleFolder" title="ELAN_E: Add SimpleFolder" />   
+   <permission id="docpool.base.AddSimpleFolder" title="Docpool: Add SimpleFolder" />
    
    
-   <permission id="docpool.base.AddContentBase" title="ELAN_E: Add ContentBase" />   
+   <permission id="docpool.base.AddContentBase" title="Docpool: Add ContentBase" />
    
    
-   <permission id="docpool.base.AddDocTypes" title="ELAN_E: Add DocTypes" />   
+   <permission id="docpool.base.AddDocTypes" title="Docpool: Add DocTypes" />
    
    
-   <permission id="docpool.base.AddText" title="ELAN_E: Add Text" />   
+   <permission id="docpool.base.AddText" title="Docpool: Add Text" />
    
    
-   <permission id="docpool.base.AddFolderBase" title="ELAN_E: Add FolderBase" />   
+   <permission id="docpool.base.AddFolderBase" title="Docpool: Add FolderBase" />
    
    
-   <permission id="docpool.base.AddGroupFolder" title="ELAN_E: Add GroupFolder" />   
+   <permission id="docpool.base.AddGroupFolder" title="Docpool: Add GroupFolder" />
    
    
-   <permission id="docpool.base.AddUserFolder" title="ELAN_E: Add UserFolder" />   
+   <permission id="docpool.base.AddUserFolder" title="Docpool: Add UserFolder" />
    
    
-   <permission id="docpool.base.AddGroups" title="ELAN_E: Add Groups" />   
+   <permission id="docpool.base.AddGroups" title="Docpool: Add Groups" />
    
    
-   <permission id="docpool.base.AddUsers" title="ELAN_E: Add Users" />   
+   <permission id="docpool.base.AddUsers" title="Docpool: Add Users" />
    
    
-   <permission id="docpool.base.AddReviewFolder" title="ELAN_E: Add ReviewFolder" />   
+   <permission id="docpool.base.AddReviewFolder" title="Docpool: Add ReviewFolder" />
    
    
-   <permission id="docpool.base.AddCollaborationFolder" title="ELAN_E: Add CollaborationFolder" />   
+   <permission id="docpool.base.AddCollaborationFolder" title="Docpool: Add CollaborationFolder" />
    
    
-   <permission id="docpool.base.AddPrivateFolder" title="ELAN_E: Add PrivateFolder" />   
+   <permission id="docpool.base.AddPrivateFolder" title="Docpool: Add PrivateFolder" />
    
    
-   <permission id="docpool.base.AddDocumentPool" title="ELAN_E: Add DocumentPool" />   
+   <permission id="docpool.base.AddDocumentPool" title="Docpool: Add DocumentPool" />
    
    
-   <permission id="docpool.base.AddContentArea" title="ELAN_E: Add ContentArea" />   
+   <permission id="docpool.base.AddContentArea" title="Docpool: Add ContentArea" />
    
    
-   <permission id="docpool.base.AddDPApplication" title="ELAN_E: Add DPApplication" />   
+   <permission id="docpool.base.AddDPApplication" title="Docpool: Add DPApplication" />
    
    
-   <permission id="docpool.base.AddDPConfig" title="ELAN_E: Add DPConfig" />   
+   <permission id="docpool.base.AddDPConfig" title="Docpool: Add DPConfig" />
    
 
 <!-- ##code-section Main -->

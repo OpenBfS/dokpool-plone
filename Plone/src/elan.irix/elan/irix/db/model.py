@@ -16,7 +16,7 @@ from sqlalchemy.orm import mapper, class_mapper, relation, backref, column_prope
 from sqlalchemy.orm.properties import RelationProperty
 import logging
 from datetime import datetime
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from elan.esd.db.security import IELANProtectedEntityClass
 from elan.dbaccess.content.structured import StructuredEntity
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 ##code-section imports
-from elan.dbaccess import ELAN_EMessageFactory as _
+from elan.dbaccess import DocpoolMessageFactory as _
 ##/code-section imports
 
 class Idbadmin(Interface):

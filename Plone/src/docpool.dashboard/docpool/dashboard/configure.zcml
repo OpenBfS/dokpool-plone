@@ -26,13 +26,13 @@
    
    
    
-   <permission id="docpool.dashboard.AddDashboardCollection" title="ELAN_E: Add DashboardCollection" />   
+   <permission id="docpool.dashboard.AddDashboardCollection" title="Docpool: Add DashboardCollection" />
    
    
-   <permission id="docpool.dashboard.AddDashboardsConfig" title="ELAN_E: Add DashboardsConfig" />   
+   <permission id="docpool.dashboard.AddDashboardsConfig" title="Docpool: Add DashboardsConfig" />
    
    
-   <permission id="docpool.dashboard.AddDashboard" title="ELAN_E: Add Dashboard" />   
+   <permission id="docpool.dashboard.AddDashboard" title="Docpool: Add Dashboard" />
    
 
 <!-- ##code-section Main -->

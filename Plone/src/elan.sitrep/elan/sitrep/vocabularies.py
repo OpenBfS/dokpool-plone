@@ -3,7 +3,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from Products.CMFCore.utils import getToolByName
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from AccessControl.SecurityInfo import allow_module, allow_class
 from docpool.base.utils import getDocumentPoolSite
 

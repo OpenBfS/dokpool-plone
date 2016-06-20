@@ -62,7 +62,7 @@ def availableTypes(context):
 
 from elan.esd.config import PROJECTNAME
 
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 
 class IELANDocCollection(form.Schema, ICollection):
     """

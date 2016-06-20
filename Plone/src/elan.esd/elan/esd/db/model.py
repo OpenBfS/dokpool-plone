@@ -15,7 +15,7 @@ from sqlalchemy import or_, and_, join
 from sqlalchemy.orm import mapper, class_mapper, relation, backref, column_property, ColumnProperty
 import logging
 from datetime import datetime
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 from elan.esd.db.security import IELANProtectedEntityClass
 
 DEBUG = 0

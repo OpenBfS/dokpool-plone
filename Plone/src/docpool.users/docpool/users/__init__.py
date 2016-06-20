@@ -18,8 +18,8 @@ from AccessControl import allow_class
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
 
-ELAN_EMessageFactory = MessageFactory('docpool.users')
-allow_class(ELAN_EMessageFactory)
+DocpoolMessageFactory = MessageFactory('docpool.users')
+allow_class(DocpoolMessageFactory)
 
 ##code-section security
 ##/code-section security 

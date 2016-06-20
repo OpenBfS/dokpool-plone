@@ -41,7 +41,7 @@ from plone.app.textfield.value import RichTextValue
 
 from elan.sitrep.config import PROJECTNAME
 
-from elan.sitrep import ELAN_EMessageFactory as _
+from elan.sitrep import DocpoolMessageFactory as _
 
 class ISRModule(form.Schema, IDPDocument):
     """

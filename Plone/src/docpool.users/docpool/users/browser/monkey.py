@@ -39,7 +39,7 @@ def applyProperties(self, userid, data):
 
 def addGroup(self, id, roles=[], groups=[], properties=None,
                  REQUEST=None, *args, **kw):
-    from docpool.base import ELAN_EMessageFactory as _
+    from docpool.base import DocpoolMessageFactory as _
     from docpool.base.utils import portalMessage
     log("Adding group %s" % id)
     ret = GroupsTool._old_addGroup(self, id, roles=roles, groups=groups, properties=properties,
@@ -84,7 +84,7 @@ def addGroup(self, id, roles=[], groups=[], properties=None,
     return ret
 
 def removeGroup(self, group_id, REQUEST=None):
-    from docpool.base import ELAN_EMessageFactory as _
+    from docpool.base import DocpoolMessageFactory as _
     from docpool.base.utils import portalMessage
     # we should get this, before we delete...
     g = self.getGroupById(group_id)

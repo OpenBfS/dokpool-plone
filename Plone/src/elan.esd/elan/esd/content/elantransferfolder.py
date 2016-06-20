@@ -46,7 +46,7 @@ from elan.dbaccess.dbinit import __metadata__, __session__
 from elan.esd.db.model import Channel, DocTypePermission, ChannelPermissions
 
 
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 #class ITypeRowSchema(Interface):
 #    dt = schema.TextLine(title=u"Document Type",
 #                         required=True,
@@ -61,7 +61,7 @@ from elan.esd import ELAN_EMessageFactory as _
 
 from elan.esd.config import PROJECTNAME
 
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 
 class IELANTransferFolder(form.Schema, IFolderBase):
     """

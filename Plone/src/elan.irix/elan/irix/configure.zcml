@@ -26,7 +26,7 @@
    
    
    
-   <permission id="elan.irix.AddIRIXReport" title="ELAN_E: Add IRIXReport" />   
+   <permission id="elan.irix.AddIRIXReport" title="Docpool: Add IRIXReport" />
    
 
 <!-- ##code-section Main -->

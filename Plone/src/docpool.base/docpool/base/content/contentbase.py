@@ -48,7 +48,7 @@ from Acquisition import aq_base, aq_inner, aq_parent
 
 from docpool.base.config import PROJECTNAME
 
-from docpool.base import ELAN_EMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 
 class IContentBase(form.Schema):
     """

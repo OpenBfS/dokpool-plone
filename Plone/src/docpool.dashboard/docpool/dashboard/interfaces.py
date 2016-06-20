@@ -4,7 +4,7 @@ from docpool.dashboard.content.dashboardcollection import IDashboardCollection
 from docpool.dashboard.content.dashboardsconfig import IDashboardsConfig
 from docpool.dashboard.content.dashboard import IDashboard
 ##code-section imports
-from docpool.dashboard import ELAN_EMessageFactory as _
+from docpool.dashboard import DocpoolMessageFactory as _
 ##/code-section imports
 
 ##code-section manual code

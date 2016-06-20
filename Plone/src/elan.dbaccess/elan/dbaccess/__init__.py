@@ -19,8 +19,8 @@ from AccessControl import allow_module
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
 
-ELAN_EMessageFactory = MessageFactory('elan.dbaccess')
-allow_class(ELAN_EMessageFactory)
+DocpoolMessageFactory = MessageFactory('elan.dbaccess')
+allow_class(DocpoolMessageFactory)
 
 ##code-section security
 from elan.dbaccess.content.errors import ObjectDuplicateException

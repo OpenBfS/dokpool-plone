@@ -20,7 +20,7 @@ PROJECTNAME = "elan.dbaccess"
 # easier to find permissions in the Security tab in the ZMI.
 
 ADD_PERMISSIONS = {
-    "dbadmin" : "ELAN_E: Add dbadmin",
+    "dbadmin" : "Docpool: Add dbadmin",
 }
 
 ##code-section config

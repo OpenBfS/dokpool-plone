@@ -13,7 +13,7 @@ from elan.esd.content.irixconfig import IIRIXConfig
 from elan.esd.content.elantransferfolder import IELANTransferFolder
 from elan.esd.content.elantransfers import IELANTransfers
 ##code-section imports
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 ##/code-section imports
 
 ##code-section manual code

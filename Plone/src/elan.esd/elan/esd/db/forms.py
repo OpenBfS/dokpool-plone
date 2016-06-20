@@ -22,7 +22,7 @@ from formalchemy.fields import HiddenFieldRenderer
 
 from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.utils import safe_unicode
-from elan.esd import ELAN_EMessageFactory as _
+from elan.esd import DocpoolMessageFactory as _
 
 perm_options = [  (_(u'publish immediately'), 'publish'), (_(u'don\'t accept'), 'block'), (_(u'needs confirmation'), 'confirm')]    
         
