@@ -20,7 +20,7 @@
 FROM ubuntu:xenial
 MAINTAINER Marco Lechner<mlechner@bfs.de>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar gcc python-dev libjpeg-turbo8-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc && apt-get autoclean
 RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/zope --gecos "Zope/Plone system user" zope
 #
 # install ELAN
