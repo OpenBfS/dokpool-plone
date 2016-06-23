@@ -17,11 +17,10 @@
 # In case you want to interact with the container, use e.g.
 # `docker exec -it bfs_elan5_standalone "/bin/bash"'
 #
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 MAINTAINER Marco Lechner<mlechner@bfs.de>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install python postgresql-server-dev-9.4 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install mercurial python-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar gcc python-dev libjpeg-turbo8-dev
 RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/zope --gecos "Zope/Plone system user" zope
 #
 # install ELAN
