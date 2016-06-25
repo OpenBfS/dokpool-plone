@@ -1,0 +1,12 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="docpool.transfers">
+
+  
+  
+  
+     
+
+<!-- ##code-section Main -->
+  	<subscriber handler=".transferable.deleteTransferData" />
+<!-- ##/code-section Main -->    
+    
+</configure>
