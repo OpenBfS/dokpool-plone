@@ -48,7 +48,7 @@ from elan.esd.content.transfers import determineChannels, determineTransferFolde
     ensureScenariosInTarget
 from elan.esd.db.model import ChannelReceives, ChannelSends, Channel, DocTypePermission, SenderLog, ReceiverLog, \
     ChannelPermissions
-##/code-section imports
+##/code-section imports 
 
 from docpool.transfers.config import PROJECTNAME
 
@@ -368,7 +368,7 @@ class Transferable(Item, DocumentExtension):
             log('received or send')
             __session__.flush()
 
-##/code-section methods
+##/code-section methods 
 
 
 ##code-section bottom
@@ -379,4 +379,4 @@ def deleteTransferData(obj, event=None):
     #TODO: Check ob nur beim Loeschen ausgefuehrt wird oder auch beim move!?
     log('deleteTransferData %s from %s' % (obj.Title(), obj.absolute_url()))
     obj.deleteTransferDataInDB()
-##/code-section bottom
+##/code-section bottom 

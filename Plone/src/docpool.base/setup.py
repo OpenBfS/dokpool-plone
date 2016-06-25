@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.1.10'
+version = '1.1.12'
 
 setup(name='docpool.base',
       version=version,
@@ -37,7 +37,7 @@ setup(name='docpool.base',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'plone.api','plone.formwidget.querystring','collective.monkeypatcher','Products.CMFPlacefulWorkflow'
+          'plone.api','plone.formwidget.querystring','collective.monkeypatcher','Products.CMFPlacefulWorkflow','docpool.users'
           ##code-section dependencies
           ,' PyPDF2', 'xhtml2pdf', 'Products.CMFPlacefulWorkflow'
 	      ##/code-section dependencies

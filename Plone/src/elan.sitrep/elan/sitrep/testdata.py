@@ -154,7 +154,7 @@ def createSituationReport(self):
             d = path._getOb(docid)
             d.text = RichTextValue(safe_unicode(t))
             d.docType = mt[0]
-            d.extension(ELAN_APP).scenarios = ["scenario1", "scenario2"]
+            d.extension(ELAN_APP, create=True).scenarios = ["scenario1", "scenario2"]
             d.reindexObject()
             d.publishModule(justDoIt=True)
     

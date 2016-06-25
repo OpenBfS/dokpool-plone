@@ -11,6 +11,9 @@
  <property name="allowed_content_types">
      
          
+             <element value="DashboardCollection" />
+         
+         
              <element value="ELANSection" />
          
          
@@ -18,9 +21,6 @@
          
          
              <element value="ELANDocCollection" />
-         
-         
-             <element value="DashboardCollection" />
          
          
              <element value="Document" />

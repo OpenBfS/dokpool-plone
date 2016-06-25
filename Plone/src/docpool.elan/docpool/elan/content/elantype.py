@@ -36,7 +36,7 @@ from Products.Archetypes.utils import shasattr, DisplayList
 from z3c.relationfield import RelationValue
 from zope.intid import IIntIds
 from zope.component import getUtility
-##/code-section imports
+##/code-section imports 
 
 from docpool.elan.config import PROJECTNAME
 
@@ -132,7 +132,7 @@ class ELANType(Item, DocTypeExtension):
         to_id = intids.getId(o)
         self.contentCategory = RelationValue(to_id)
 
-##/code-section methods
+##/code-section methods 
 
 
 ##code-section bottom

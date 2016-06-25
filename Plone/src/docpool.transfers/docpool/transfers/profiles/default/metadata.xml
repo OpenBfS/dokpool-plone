@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <metadata>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <dependencies>
+        <dependency>profile-docpool.base:default</dependency>
     <!-- ##code-section Dependencies -->
     
     <!-- ##/code-section Dependencies -->

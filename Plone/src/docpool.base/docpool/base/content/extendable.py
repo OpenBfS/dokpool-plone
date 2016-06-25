@@ -31,7 +31,7 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from docpool.base.appregistry import createTypeObject, createDocumentObject
-##/code-section imports
+##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -73,7 +73,7 @@ class Extendable(Item):
 
     def contextObject(self):
         return self
-##/code-section methods
+##/code-section methods 
 
 
 ##code-section bottom

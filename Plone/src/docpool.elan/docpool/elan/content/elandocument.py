@@ -36,7 +36,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from plone import api
 from docpool.base.content.doctype import IDocType
 from docpool.transfers.config import TRANSFERS_APP
-##/code-section imports
+##/code-section imports 
 
 from docpool.elan.config import PROJECTNAME
 
@@ -149,7 +149,7 @@ class ELANDocument(Item, DocumentExtension):
                 return dto.title, []
         else:
             return ("", [])
-##/code-section methods
+##/code-section methods 
 
 
 ##code-section bottom

@@ -17,6 +17,6 @@
     <adapter
         factory=".indexer.cat_path_indexer"
         name="cat_path" />
-<!-- ##/code-section Main -->
+<!-- ##/code-section Main -->    
     
 </configure>

@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.1.153'
+version = '0.1.155'
 
 setup(name='elan.esd',
       version=version,
