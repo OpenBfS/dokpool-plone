@@ -2,7 +2,7 @@
 #
 # File: srmodule.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -19,7 +19,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.memoize.instance import memoize
 
 ##code-section imports
-from elan.esd.behaviors.elandocument import IELANDocument
+from docpool.elan.config import ELAN_APP
 ##/code-section imports
 
 class SRModuleView(BrowserView):
@@ -30,7 +30,7 @@ class SRModuleView(BrowserView):
    
     ##code-section methods1
     def elanobject(self):
-        return IELANDocument(self.context)
+        return self.context.extension(ELAN_APP)
     ##/code-section methods1     
 
 class SRModulematerialView(BrowserView):
@@ -41,7 +41,7 @@ class SRModulematerialView(BrowserView):
     
     ##code-section methodsmaterial
     def elanobject(self):
-        return IELANDocument(self.context)
+        return self.context.extension(ELAN_APP)
     ##/code-section methodsmaterial     
 
 class SRModuleinfoView(BrowserView):
@@ -52,7 +52,7 @@ class SRModuleinfoView(BrowserView):
     
     ##code-section methodsinfo
     def elanobject(self):
-        return IELANDocument(self.context)
+        return self.context.extension(ELAN_APP)
     ##/code-section methodsinfo     
 
 

@@ -1,4 +1,4 @@
-<tal:block i18n:domain="docpool.base">
+<tal:block i18n:domain="elan.esd">
 <!-- ##code-section Portlet -->
    <dl class="portlet" id="overviewportlet" tal:define="DateTime python:modules['DateTime'].DateTime">
        <dt class="portletHeader">

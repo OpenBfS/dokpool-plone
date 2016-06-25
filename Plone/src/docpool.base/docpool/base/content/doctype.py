@@ -26,6 +26,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Container
+from docpool.base.content.extendable import Extendable, IExtendable
 
 from Products.CMFCore.utils import getToolByName
 
@@ -57,7 +58,7 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
-class IDocType(form.Schema):
+class IDocType(form.Schema, IExtendable):
     """
     """
         
@@ -147,7 +148,7 @@ class IDocType(form.Schema):
 ##/code-section interface
 
 
-class DocType(Container):
+class DocType(Container, Extendable):
     """
     """
     security = ClassSecurityInfo()

@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.0.17'
+version = '1.0.18'
 
 setup(name='elan.sitrep',
       version=version,

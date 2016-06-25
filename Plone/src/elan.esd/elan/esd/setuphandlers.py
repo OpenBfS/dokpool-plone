@@ -19,8 +19,8 @@ def setupVarious(context):
     cat = getToolByName(context.getSite(), "portal_catalog")
     
     extend_allowed_types(context.getSite(), 'DocumentPool', ["ELANContentConfig","ELANArchives","ELANCurrentSituation","ELANInfos"])
-    extend_behaviors(context.getSite(), 'DPDocument', ['elan.esd.behaviors.elandocument.IELANDocument'])
-    extend_behaviors(context.getSite(), 'DocType', ['elan.esd.behaviors.elandoctype.IELANDocType'])
+#    extend_behaviors(context.getSite(), 'DPDocument', ['elan.esd.behaviors.elandocument.IELANDocument'])
+#    extend_behaviors(context.getSite(), 'DocType', ['elan.esd.behaviors.elandoctype.IELANDocType'])
     cat.reindexIndex(["scenarios", "category"], REQUEST=context.getSite().REQUEST)
 #    cat.refreshCatalog(clear=False,pghandler=ZLogHandler(100))
     

@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.0.10'
+version = '1.0.11'
 
 setup(name='elan.irix',
       version=version,
@@ -37,7 +37,7 @@ setup(name='elan.irix',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'elan.dbaccess',
+          'elan.dbaccess'
           ##code-section dependencies
 	      ##/code-section dependencies
       ],

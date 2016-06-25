@@ -11,13 +11,13 @@
  <property name="allowed_content_types">
      
          
-             <element value="InfoDocument" />
+             <element value="InfoLink" />
          
          
              <element value="InfoFolder" />
          
          
-             <element value="InfoLink" />
+             <element value="InfoDocument" />
          
          
              <element value="InfoFolder" />

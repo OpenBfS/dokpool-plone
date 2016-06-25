@@ -6,14 +6,12 @@
   -->
 <portlets>
     
-    
-    
         <portlet description="" addview="elan.esd.Overview" title="Overview" />
             
     
     
     
-       <assignment name="Overview" category="context" key="/" manager="plone.leftcolumn" insert-before="portlets.Navigation" type="elan.esd.Overview" />        
+       <assignment name="Overview" category="context" key="/" manager="plone.leftcolumn" type="elan.esd.Overview" />        
     
     
     
@@ -23,14 +21,19 @@
     
     
     
-       <assignment name="Recent" category="context" key="/" manager="plone.leftcolumn" insert-before="portlets.Navigation" type="elan.esd.Recent" />        
+       <assignment name="Recent" category="context" key="/" manager="plone.leftcolumn" type="elan.esd.Recent" />        
     
     
     
     
         <portlet description="" addview="elan.esd.Collection" title="Collection" />
             
-        
+    
+    
+    
+    
+    
+    
 <!-- ##code-section custom_portlets -->
 <!-- ##/code-section custom_portlets -->    
   

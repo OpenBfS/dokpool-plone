@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
     <dependencies>
         <dependency>profile-elan.dbaccess:default</dependency>
     <!-- ##code-section Dependencies -->

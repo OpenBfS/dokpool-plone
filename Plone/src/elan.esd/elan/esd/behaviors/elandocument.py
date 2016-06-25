@@ -117,7 +117,7 @@ class ELANDocument(Transferable):
             if dto:
 #                print "DTO"
 #                print dto.Title()
-                cat = IELANDocType(dto).contentCategory
+                cat = dto.extension(ELAN_APP).contentCategory
                 if cat:
                     aup = cat.to_path
 #                    print aup
@@ -134,7 +134,7 @@ class ELANDocument(Transferable):
         if dto:
 #            print dto
             if IDocType.providedBy(dto):
-                return dto.title, IELANDocType(dto).categories()
+                return dto.title, dto.extension(ELAN_APP).categories()
             else:
                 return dto.title, []
         else:

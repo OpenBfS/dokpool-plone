@@ -144,7 +144,7 @@
         </div>
         
       <div tal:omit-tag="" metal:define-macro="transferEvents">  
-          <span tal:define="transfers elanobj/transferEvents" tal:condition="transfers">
+          <span tal:define="transfers transfersobj/transferEvents" tal:condition="transfers">
           <tal:loop repeat="transfer transfers">
           <span class="transferlog" tal:attributes="title string:${transfer/by} ${transfer/time}"
               tal:content="python:transfer['type'] == 'send' and '--> %s' % transfer['esd'] or '<-- %s' % transfer['esd']"></span>

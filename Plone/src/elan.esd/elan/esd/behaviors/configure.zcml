@@ -4,7 +4,7 @@
 
 	<grok:grok package="." />    
     
-    <plone:behavior
+    <!--plone:behavior
         title="ELAN Document"
         description="Adds ELAN attributes to DPDocuments"
         provides=".elandocument.IELANDocument"
@@ -40,6 +40,6 @@
 
     <adapter
         factory=".indexer.cat_path_indexer"
-        name="cat_path" />
+        name="cat_path" /-->
       
 </configure>

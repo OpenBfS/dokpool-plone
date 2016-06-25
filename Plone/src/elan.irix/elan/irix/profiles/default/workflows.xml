@@ -9,7 +9,7 @@
     
     
    <type type_id="IRIXReport">
-    <bound-workflow workflow_id="elan_one_state_workflow" />
+    <bound-workflow workflow_id="dp_one_state_workflow" />
    </type>
    
     

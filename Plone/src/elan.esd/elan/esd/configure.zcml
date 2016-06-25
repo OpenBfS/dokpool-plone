@@ -26,43 +26,43 @@
    <include file="skins.zcml" />
    
    
-   <permission id="elan.esd.AddELANInfos" title="Docpool: Add ELANInfos" />
+   <permission id="elan.esd.AddELANInfos" title="Docpool: Add ELANInfos" />   
    
    
-   <permission id="elan.esd.AddELANDocCollection" title="Docpool: Add ELANDocCollection" />
+   <permission id="elan.esd.AddELANDocCollection" title="Docpool: Add ELANDocCollection" />   
    
    
-   <permission id="elan.esd.AddELANScenario" title="Docpool: Add ELANScenario" />
+   <permission id="elan.esd.AddELANScenario" title="Docpool: Add ELANScenario" />   
    
    
-   <permission id="elan.esd.AddELANArchive" title="Docpool: Add ELANArchive" />
+   <permission id="elan.esd.AddELANArchive" title="Docpool: Add ELANArchive" />   
    
    
-   <permission id="elan.esd.AddELANCurrentSituation" title="Docpool: Add ELANCurrentSituation" />
+   <permission id="elan.esd.AddELANCurrentSituation" title="Docpool: Add ELANCurrentSituation" />   
    
    
-   <permission id="elan.esd.AddELANSection" title="Docpool: Add ELANSection" />
+   <permission id="elan.esd.AddELANSection" title="Docpool: Add ELANSection" />   
    
    
-   <permission id="elan.esd.AddELANContentConfig" title="Docpool: Add ELANContentConfig" />
+   <permission id="elan.esd.AddELANContentConfig" title="Docpool: Add ELANContentConfig" />   
    
    
-   <permission id="elan.esd.AddELANScenarios" title="Docpool: Add ELANScenarios" />
+   <permission id="elan.esd.AddELANScenarios" title="Docpool: Add ELANScenarios" />   
    
    
-   <permission id="elan.esd.AddELANArchives" title="Docpool: Add ELANArchives" />
+   <permission id="elan.esd.AddELANArchives" title="Docpool: Add ELANArchives" />   
    
    
-   <permission id="elan.esd.AddIRIXConfig" title="Docpool: Add IRIXConfig" />
+   <permission id="elan.esd.AddIRIXConfig" title="Docpool: Add IRIXConfig" />   
    
    
-   <permission id="elan.esd.AddELANTransferFolder" title="Docpool: Add ELANTransferFolder" />
+   <permission id="elan.esd.AddELANTransferFolder" title="Docpool: Add ELANTransferFolder" />   
    
    
-   <permission id="elan.esd.AddELANTransfers" title="Docpool: Add ELANTransfers" />
+   <permission id="elan.esd.AddELANTransfers" title="Docpool: Add ELANTransfers" />   
    
 
-<!-- ##code-section Main -->    
+<!-- ##code-section Main -->
    <permission id="elan.esd.SendContent" title="Docpool: Send Content" />
    <permission id="elan.esd.ReceiveContent" title="Docpool: Receive Content" />
 

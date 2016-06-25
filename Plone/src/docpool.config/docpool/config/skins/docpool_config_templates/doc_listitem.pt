@@ -10,7 +10,8 @@
                  title_or_id python:item_title or item_id;                 
                  buttons options/buttons|nothing;
                  edocobj edoc/getObject;
-                 elanobj view/elanobject;
+                 elanobj python:edocobj.extension('elan');
+                 transfersobj python:edocobj.extension('transfers');
                  isOverview options/isOverview;
                  isCollection options/isCollection;
                  individual context/isIndividual;
@@ -34,8 +35,8 @@
                  item_type_class python:'contenttype-' + normalizeString(item_ptype);
                  rs edoc/review_state;
                  item_wf_state_class python:'state-' + normalizeString(rs);              
-                 transferable python: not (individual or isOverview) and elanobj.transferable();
-                 transferred context/transferred;
+                 transferable python: not (individual or isOverview) and transfersobj.transferable();
+                 transferred transfersobj/transferred;
                  unknown_scen python:transferred and elanobj.unknownScenario() or None;
                  unknown_dt python:transferred and context.unknownDocType() or None;
                  unknown python: unknown_scen or unknown_dt;

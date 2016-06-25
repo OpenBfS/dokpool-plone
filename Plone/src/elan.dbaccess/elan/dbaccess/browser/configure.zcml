@@ -21,13 +21,4 @@
                 directory="stylesheets" />    
 <!-- ##/code-section Main -->    
 
-    
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.Idbadmin" class=".dbadmin.dbadminView" />
-        
-        
-        
-        
-                                        
-    
 </configure>

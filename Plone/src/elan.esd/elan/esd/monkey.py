@@ -16,6 +16,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 # Patches for the dropdown menu to include personal and group folders
 
 from docpool.base.content.documentpool import DocumentPool
+from docpool.elan.config import ELAN_APP
 from elan.esd.testdata import deleteTestData, createGroupsAndUsers,\
     createTestDocuments
 import datetime
@@ -187,7 +188,7 @@ if not hasattr(DocumentPool, "createTestData"):
     
 
 def elanobject(self):
-    return IELANDocument(self.context)
+    return self.context.extension(ELAN_APP)
 
 DPDocumentView.elanobject = elanobject
 DPDocumentlistitemView.elanobject = elanobject

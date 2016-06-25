@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.0.11'
+version = '1.0.12'
 
 setup(name='elan.dbaccess',
       version=version,
@@ -21,7 +21,7 @@ setup(name='elan.dbaccess',
       author='Condat AG',
       author_email='hr@condat.de',
       url='http://www.condat.de',
-      license='GPL',
+      license='Commercial',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['elan'],
       include_package_data=True,

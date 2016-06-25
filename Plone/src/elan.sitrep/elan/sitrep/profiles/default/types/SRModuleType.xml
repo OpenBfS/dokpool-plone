@@ -35,7 +35,6 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
-     <element value="elan.esd.behaviors.elandoctype.IELANDocType" />
 ##/code-section behaviors
 </property>
 

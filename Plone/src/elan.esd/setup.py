@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.1.152'
+version = '0.1.153'
 
 setup(name='elan.esd',
       version=version,
@@ -37,9 +37,8 @@ setup(name='elan.esd',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'plone.api','plone.formwidget.querystring', 'collective.monkeypatcher',
+          'docpool.elan'
           ##code-section dependencies
-          'Products.CMFPlacefulWorkflow'
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      

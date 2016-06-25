@@ -26,6 +26,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Container
+from docpool.base.content.extendable import Extendable, IExtendable
 from docpool.base.content.contentbase import ContentBase, IContentBase
 from plone.app.contenttypes.content import Document,IDocument
 
@@ -61,7 +62,7 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
-class IDPDocument(form.Schema, IDocument, IContentBase):
+class IDPDocument(form.Schema, IDocument, IExtendable, IContentBase):
     """
     """
         
@@ -88,7 +89,7 @@ class IDPDocument(form.Schema, IDocument, IContentBase):
 ##/code-section interface
 
 
-class DPDocument(Container, Document, ContentBase):
+class DPDocument(Container, Document, Extendable, ContentBase):
     """
     """
     security = ClassSecurityInfo()

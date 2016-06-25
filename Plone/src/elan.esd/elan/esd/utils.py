@@ -13,7 +13,7 @@ from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from zope.component.hooks import getSite
 from plone import api
 from docpool.base.utils import getDocumentPoolSite, getGroupsForCurrentUser
-
+from docpool.elan.config import ELAN_APP
 
 
 def getActiveScenarios(self):
@@ -99,4 +99,4 @@ def getTupleForTransfer(self, id):
     """
     from elan.esd.behaviors.elandocument import IELANDocument
     doc = self._getOb(id)
-    return doc, IELANDocument(doc)
+    return doc, doc.extension(ELAN_APP)

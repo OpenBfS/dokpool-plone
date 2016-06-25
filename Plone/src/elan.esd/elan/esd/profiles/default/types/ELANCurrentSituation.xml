@@ -14,7 +14,13 @@
              <element value="ELANSection" />
          
          
+             <element value="SRCollection" />
+         
+         
              <element value="ELANDocCollection" />
+         
+         
+             <element value="DashboardCollection" />
          
          
              <element value="Document" />

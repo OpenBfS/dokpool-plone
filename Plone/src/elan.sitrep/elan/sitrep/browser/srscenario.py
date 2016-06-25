@@ -2,7 +2,7 @@
 #
 # File: srscenario.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #

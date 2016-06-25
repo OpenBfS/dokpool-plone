@@ -11,6 +11,8 @@ from plone.app.textfield.value import RichTextValue
 import datetime
 from Products.CMFCore.utils import getToolByName
 import random
+
+from docpool.elan.config import ELAN_APP
 from elan.policy.chomsky import chomsky
 from loremipsum import get_paragraphs
 from elan.esd.behaviors.elandocument import IELANDocument
@@ -84,7 +86,7 @@ def createTestDocuments(context, count):
         d.docType = etype
         d.text = RichTextValue(safe_unicode(t))
         s = int(round(random.random() + 1.0))
-        IELANDocument(d).scenarios = ["scenario%d" % s]
+        d.extension(ELAN_APP, create=True).scenarios = ["scenario%d" % s]
         d.reindexObject()
     
 def createGroupsAndUsers(context):    

@@ -11,6 +11,8 @@ from plone.app.textfield.value import RichTextValue
 import datetime
 from Products.CMFCore.utils import getToolByName
 import random
+
+from docpool.elan.config import ELAN_APP
 from elan.policy.chomsky import chomsky
 from loremipsum import get_paragraphs
 from elan.esd.behaviors.elandocument import IELANDocument
@@ -152,7 +154,7 @@ def createSituationReport(self):
             d = path._getOb(docid)
             d.text = RichTextValue(safe_unicode(t))
             d.docType = mt[0]
-            IELANDocument(d).scenarios = ["scenario1", "scenario2"]            
+            d.extension(ELAN_APP).scenarios = ["scenario1", "scenario2"]
             d.reindexObject()
             d.publishModule(justDoIt=True)
     
@@ -172,7 +174,7 @@ def createSituationReport(self):
             to_id = intids.getId(mod)
             refs.append(RelationValue(to_id))
         d.currentModules=refs
-        IELANDocument(d).scenarios = ["scenario1", "scenario2"]            
+        d.extension(ELAN_APP).scenarios = ["scenario1", "scenario2"]
         d.reindexObject()
         d.publishReport(justDoIt=True, duplicate=True)
     

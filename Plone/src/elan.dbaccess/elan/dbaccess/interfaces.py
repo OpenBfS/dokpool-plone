@@ -4,11 +4,13 @@ from zope.interface import Interface, Attribute
 from elan.dbaccess import DocpoolMessageFactory as _
 ##/code-section imports
 
+##code-section manual code
 class Idbadmin(Interface):
-    """Marker interface for .dbadmin
+    """
+    Marker interface for .dbadmin
     """
 
-##code-section manual code
+
 class IProtectedEntityClass(Interface):
     """
     Marker-Interface fuer alle Entity-KLASSEN, welche ueber

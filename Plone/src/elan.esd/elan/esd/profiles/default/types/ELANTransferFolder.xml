@@ -11,7 +11,13 @@
  <property name="allowed_content_types">
      
          
+             <element value="SRModule" />
+         
+         
              <element value="DPDocument" />
+         
+         
+             <element value="SituationReport" />
          
          
              <element value="File" />

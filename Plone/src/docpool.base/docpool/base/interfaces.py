@@ -3,6 +3,9 @@ from zope.interface import Interface, Attribute
 from docpool.base.content.infofolder import IInfoFolder
 from docpool.base.content.infodocument import IInfoDocument
 from docpool.base.content.infolink import IInfoLink
+from docpool.base.content.doctypeextension import IDocTypeExtension
+from docpool.base.content.documentextension import IDocumentExtension
+from docpool.base.content.extendable import IExtendable
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.simplefolder import ISimpleFolder

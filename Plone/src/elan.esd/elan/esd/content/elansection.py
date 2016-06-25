@@ -2,7 +2,7 @@
 #
 # File: elansection.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -72,10 +73,24 @@ class ELANSection(Container):
         """
         return [obj.getObject() for obj in self.getFolderContents()]
 
+    def getDashboardCollections(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'DashboardCollection'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
     def getELANDocCollections(self, **kwargs):
         """
         """
         args = {'portal_type':'ELANDocCollection'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
+    def getSRCollections(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'SRCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from docpool.base.utils import queryForObject, _copyPaste
+from docpool.elan.config import ELAN_APP
 from elan.esd.db.model import Channel, ChannelPermissions
 from elan.dbaccess.dbinit import __session__
 from Products.CMFCore.utils import getToolByName
@@ -22,7 +23,7 @@ def ensureDocTypeInTarget(original, copy):
     dtObj = original.docTypeObj()
     id = _copyPaste(dtObj,config)
     new_dt = config._getOb(id)
-    IELANDocType(new_dt).setCCategory('recent') # Set intermediate category
+    new_dt.extension(ELAN_APP).setCCategory('recent') # Set intermediate category
     wftool = getToolByName(original, 'portal_workflow')
     wftool.doActionFor(new_dt, 'retract')
     new_dt.reindexObject()
@@ -30,8 +31,7 @@ def ensureDocTypeInTarget(original, copy):
     config.reindexObject()
     
 def ensureScenariosInTarget(original, copy):
-    from elan.esd.behaviors.elandocument import IELANDocument
-    my_scenarios = IELANDocument(original).scenarios
+    my_scenarios = original.extension(ELAN_APP).scenarios
     scen_source = original.myDocumentPool().contentconfig.scen
     scen = copy.myDocumentPool().contentconfig.scen
     new_scenarios = []
@@ -55,6 +55,6 @@ def ensureScenariosInTarget(original, copy):
             wftool = getToolByName(original, 'portal_workflow')
             wftool.doActionFor(new_scen, 'retract')
             new_scenarios.append(id)
-    IELANDocument(copy).scenarios = new_scenarios
+    copy.extension(ELAN_APP).scenarios = new_scenarios
     copy.reindexObject()
 

@@ -2,7 +2,7 @@
 #
 # File: elanscenario.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2016 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
 from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -51,7 +52,7 @@ from five import grok
 from zope.schema.interfaces import IContextSourceBinder
 from docpool.base.structures import navSettings
 from docpool.config.local import ARCHIVESTRUCTURE, TRANSFER_AREA
-from docpool.base.content.dpdocument import IDPDocument
+from docpool.transfers.config import TRANSFERS_APP
 
 @grok.provider(IContextSourceBinder)
 def availableScenarios(context):
@@ -265,7 +266,7 @@ class ELANScenario(Item, ContentBase):
             if wf_state == "published" and wftool.getInfoFor(copied_obj, 'review_state') != 'published':
                 wftool.doActionFor(copied_obj, 'publish')
             copied_obj.setModificationDate(mdate)
-            events = ITransferable(source_obj).transferEvents()
+            events = source_obj.extension(TRANSFERS_APP).transferEvents()
             copied_obj.transferLog = str(events)
             copied_obj.reindexObject()
             copied_obj.reindexObjectSecurity()
