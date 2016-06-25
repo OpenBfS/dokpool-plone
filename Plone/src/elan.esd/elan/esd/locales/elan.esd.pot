@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-11-22 07:29+0000\n"
+"POT-Creation-Date: 2016-06-25 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid ". Unknown scenario not accepted."
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:128
+#: elan.esd/elan/esd/portlets/collection.py:127
 msgid "Add Collection Portlet"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Belongs to scenario:"
 msgstr ""
 
-#: elan.esd/elan/esd/monkey.py:74
+#: elan.esd/elan/esd/monkey.py:75
 msgid "Changes applied."
 msgstr ""
 
@@ -80,7 +80,11 @@ msgstr ""
 msgid "Channels"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:75
+#: elan.esd/elan/esd/portlets/overview.pt:5
+msgid "Chronological Overview"
+msgstr ""
+
+#: elan.esd/elan/esd/portlets/collection.py:74
 msgid "Collection"
 msgstr ""
 
@@ -120,7 +124,7 @@ msgstr ""
 msgid "Document Type"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py:75
+#: elan.esd/elan/esd/content/elandoccollection.py:78
 msgid "Document Types"
 msgstr ""
 
@@ -144,7 +148,7 @@ msgstr ""
 msgid "ELANCurrentSituation"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:137
+#: elan.esd/elan/esd/portlets/collection.py:136
 msgid "Edit Collection Portlet"
 msgstr ""
 
@@ -152,19 +156,19 @@ msgstr ""
 msgid "Edit Permissions"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:315
+#: elan.esd/elan/esd/browser/elan_macros.pt:312
 msgid "Edit unknown doc type"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:304
+#: elan.esd/elan/esd/browser/elan_macros.pt:306
 msgid "Edit unknown scenario"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:311
+#: elan.esd/elan/esd/browser/elan_macros.pt:324
 msgid "Event:"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:194
+#: elan.esd/elan/esd/browser/elan_macros.pt:189
 msgid "Files:"
 msgstr ""
 
@@ -184,14 +188,17 @@ msgstr ""
 msgid "IRIX base configuration"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:227
+#: elan.esd/elan/esd/browser/elan_macros.pt:222
 msgid "Images:"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:158
+#: elan.esd/elan/esd/browser/elan_macros.pt:35
 #: elan.esd/elan/esd/browser/elanscenarios.pt:20
-#: elan.esd/elan/esd/browser/viewlets/ticker.pt:8
 msgid "LT"
+msgstr ""
+
+#: elan.esd/elan/esd/portlets/collection.pt:9
+msgid "Latest from"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
@@ -233,7 +240,7 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:162
+#: elan.esd/elan/esd/content/elanscenario.py:167
 msgid "Scenario archived"
 msgstr ""
 
@@ -249,7 +256,7 @@ msgstr ""
 msgid "Snapshot"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:183
+#: elan.esd/elan/esd/content/elanscenario.py:189
 msgid "Snapshot created"
 msgstr ""
 
@@ -265,15 +272,15 @@ msgstr ""
 msgid "The time and date an item was last modified by a user"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:336
+#: elan.esd/elan/esd/browser/elan_macros.pt:335
 msgid "There are comments."
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:336
+#: elan.esd/elan/esd/content/elanscenario.py:347
 msgid "There are no more documents for this scenario."
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:129
+#: elan.esd/elan/esd/portlets/collection.py:128
 msgid "This portlet displays recently modified content from a collection."
 msgstr ""
 
@@ -293,7 +300,7 @@ msgstr ""
 msgid "Title/Date"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:291
+#: elan.esd/elan/esd/browser/elan_macros.pt:297
 msgid "Transfer"
 msgstr ""
 
@@ -325,7 +332,7 @@ msgstr ""
 msgid "View the document in its folder"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:132
+#: elan.esd/elan/esd/content/elanscenario.py:136
 msgid "active"
 msgstr ""
 
@@ -353,6 +360,11 @@ msgstr ""
 msgid "archive_confirm_msg"
 msgstr ""
 
+#. Default: "No items changed yet."
+#: elan.esd/elan/esd/portlets/collection.pt:40
+msgid "box_recent_no_items"
+msgstr ""
+
 #. Default: "Cancel"
 #: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:50
 msgid "cancelbutton"
@@ -363,7 +375,7 @@ msgstr ""
 msgid "canceltitle"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:132
+#: elan.esd/elan/esd/content/elanscenario.py:136
 msgid "closed"
 msgstr ""
 
@@ -396,88 +408,88 @@ msgstr ""
 msgid "description_dpdocument_transferred_by"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py:71
+#: elan.esd/elan/esd/content/elandoccollection.py:74
 msgid "description_elandoccollection_doctypes"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:56
+#: elan.esd/elan/esd/portlets/collection.py:55
 msgid "description_elandocument_doctype"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:86
+#: elan.esd/elan/esd/content/elanscenario.py:90
 msgid "description_elanscenario_exercise"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:76
+#: elan.esd/elan/esd/content/elanscenario.py:80
 msgid "description_elanscenario_status"
 msgstr ""
 
 #. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
-#: elan.esd/elan/esd/content/elanscenario.py:104
+#: elan.esd/elan/esd/content/elanscenario.py:108
 msgid "description_elanscenario_substitute"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:95
+#: elan.esd/elan/esd/content/elanscenario.py:99
 msgid "description_elanscenario_timeofevent"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:82
+#: elan.esd/elan/esd/content/elantransferfolder.py:83
 msgid "description_elantransferfolder_permlevel"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:72
+#: elan.esd/elan/esd/content/elantransferfolder.py:73
 msgid "description_elantransferfolder_sendingesd"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:93
+#: elan.esd/elan/esd/content/elantransferfolder.py:94
 msgid "description_elantransferfolder_unknowndtdefault"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elantransferfolder.py:104
+#: elan.esd/elan/esd/content/elantransferfolder.py:105
 msgid "description_elantransferfolder_unknownscendefault"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:62
+#: elan.esd/elan/esd/content/irixconfig.py:63
 msgid "description_irixconfig_contactemail"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:53
+#: elan.esd/elan/esd/content/irixconfig.py:54
 msgid "description_irixconfig_contactname"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:89
+#: elan.esd/elan/esd/content/irixconfig.py:90
 msgid "description_irixconfig_organisationcountry"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:107
+#: elan.esd/elan/esd/content/irixconfig.py:108
 msgid "description_irixconfig_organisationemail"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:80
+#: elan.esd/elan/esd/content/irixconfig.py:81
 msgid "description_irixconfig_organisationid"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:71
+#: elan.esd/elan/esd/content/irixconfig.py:72
 msgid "description_irixconfig_organisationname"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:44
+#: elan.esd/elan/esd/content/irixconfig.py:45
 msgid "description_irixconfig_organisationreporting"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:98
+#: elan.esd/elan/esd/content/irixconfig.py:99
 msgid "description_irixconfig_organisationweb"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:125
+#: elan.esd/elan/esd/content/irixconfig.py:126
 msgid "description_irixconfig_sourcedescription"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:116
+#: elan.esd/elan/esd/content/irixconfig.py:117
 msgid "description_irixconfig_sourcetext"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:134
+#: elan.esd/elan/esd/content/irixconfig.py:135
 msgid "description_irixconfig_typemapping"
 msgstr ""
 
@@ -491,12 +503,16 @@ msgstr ""
 msgid "don't accept"
 msgstr ""
 
+#: elan.esd/elan/esd/configure.zcml:23
+msgid "elan.esd"
+msgstr ""
+
 #. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py:111
+#: elan.esd/elan/esd/monkey.py:112
 msgid "failed_passwords_msg"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elanscenario.py:132
+#: elan.esd/elan/esd/content/elanscenario.py:136
 msgid "inactive"
 msgstr ""
 
@@ -531,107 +547,107 @@ msgid "label_dpdocument_transferred_by"
 msgstr ""
 
 #. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py:70
+#: elan.esd/elan/esd/content/elandoccollection.py:73
 msgid "label_elandoccollection_doctypes"
 msgstr ""
 
 #. Default: "Document Type"
-#: elan.esd/elan/esd/portlets/collection.py:55
+#: elan.esd/elan/esd/portlets/collection.py:54
 msgid "label_elandocument_doctype"
 msgstr ""
 
 #. Default: "Is this an exercise?"
-#: elan.esd/elan/esd/content/elanscenario.py:85
+#: elan.esd/elan/esd/content/elanscenario.py:89
 msgid "label_elanscenario_exercise"
 msgstr ""
 
 #. Default: "Status of the scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:75
+#: elan.esd/elan/esd/content/elanscenario.py:79
 msgid "label_elanscenario_status"
 msgstr ""
 
 #. Default: "Substitute scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:103
+#: elan.esd/elan/esd/content/elanscenario.py:107
 msgid "label_elanscenario_substitute"
 msgstr ""
 
 #. Default: "Time of event"
-#: elan.esd/elan/esd/content/elanscenario.py:94
+#: elan.esd/elan/esd/content/elanscenario.py:98
 msgid "label_elanscenario_timeofevent"
 msgstr ""
 
 #. Default: "Permission level"
-#: elan.esd/elan/esd/content/elantransferfolder.py:81
+#: elan.esd/elan/esd/content/elantransferfolder.py:82
 msgid "label_elantransferfolder_permlevel"
 msgstr ""
 
 #. Default: "The organisation sending content via this transfer folder"
-#: elan.esd/elan/esd/content/elantransferfolder.py:71
+#: elan.esd/elan/esd/content/elantransferfolder.py:72
 msgid "label_elantransferfolder_sendingesd"
 msgstr ""
 
 #. Default: "Default for unknown document types"
-#: elan.esd/elan/esd/content/elantransferfolder.py:92
+#: elan.esd/elan/esd/content/elantransferfolder.py:93
 msgid "label_elantransferfolder_unknowndtdefault"
 msgstr ""
 
 #. Default: "Default for unknown scenarios"
-#: elan.esd/elan/esd/content/elantransferfolder.py:103
+#: elan.esd/elan/esd/content/elantransferfolder.py:104
 msgid "label_elantransferfolder_unknownscendefault"
 msgstr ""
 
 #. Default: "Email of contact"
-#: elan.esd/elan/esd/content/irixconfig.py:61
+#: elan.esd/elan/esd/content/irixconfig.py:62
 msgid "label_irixconfig_contactemail"
 msgstr ""
 
 #. Default: "Name of contact"
-#: elan.esd/elan/esd/content/irixconfig.py:52
+#: elan.esd/elan/esd/content/irixconfig.py:53
 msgid "label_irixconfig_contactname"
 msgstr ""
 
 #. Default: "Country code"
-#: elan.esd/elan/esd/content/irixconfig.py:88
+#: elan.esd/elan/esd/content/irixconfig.py:89
 msgid "label_irixconfig_organisationcountry"
 msgstr ""
 
 #. Default: "Email address"
-#: elan.esd/elan/esd/content/irixconfig.py:106
+#: elan.esd/elan/esd/content/irixconfig.py:107
 msgid "label_irixconfig_organisationemail"
 msgstr ""
 
 #. Default: "ID of organisation"
-#: elan.esd/elan/esd/content/irixconfig.py:79
+#: elan.esd/elan/esd/content/irixconfig.py:80
 msgid "label_irixconfig_organisationid"
 msgstr ""
 
 #. Default: "Name of organisation"
-#: elan.esd/elan/esd/content/irixconfig.py:70
+#: elan.esd/elan/esd/content/irixconfig.py:71
 msgid "label_irixconfig_organisationname"
 msgstr ""
 
 #. Default: "Reporting State / Organisation"
-#: elan.esd/elan/esd/content/irixconfig.py:43
+#: elan.esd/elan/esd/content/irixconfig.py:44
 msgid "label_irixconfig_organisationreporting"
 msgstr ""
 
 #. Default: "Web address"
-#: elan.esd/elan/esd/content/irixconfig.py:97
+#: elan.esd/elan/esd/content/irixconfig.py:98
 msgid "label_irixconfig_organisationweb"
 msgstr ""
 
 #. Default: "Information source description"
-#: elan.esd/elan/esd/content/irixconfig.py:124
+#: elan.esd/elan/esd/content/irixconfig.py:125
 msgid "label_irixconfig_sourcedescription"
 msgstr ""
 
 #. Default: "Information source text"
-#: elan.esd/elan/esd/content/irixconfig.py:115
+#: elan.esd/elan/esd/content/irixconfig.py:116
 msgid "label_irixconfig_sourcetext"
 msgstr ""
 
 #. Default: " ELAN types 2 IRIX type mapping"
-#: elan.esd/elan/esd/content/irixconfig.py:133
+#: elan.esd/elan/esd/content/irixconfig.py:134
 msgid "label_irixconfig_typemapping"
 msgstr ""
 
@@ -666,7 +682,7 @@ msgid "read/write"
 msgstr ""
 
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py:102
+#: elan.esd/elan/esd/monkey.py:103
 msgid "reset_passwords_msg"
 msgstr ""
 
@@ -690,16 +706,15 @@ msgid "suspended"
 msgstr ""
 
 #. Default: "Move item down"
-#: elan.esd/elan/esd/browser/elan_macros.pt:211
+#: elan.esd/elan/esd/browser/elan_macros.pt:206
 msgid "title_move_item_down"
 msgstr ""
 
 #. Default: "Move item up"
-#: elan.esd/elan/esd/browser/elan_macros.pt:204
+#: elan.esd/elan/esd/browser/elan_macros.pt:199
 msgid "title_move_item_up"
 msgstr ""
 
 #: elan.esd/elan/esd/vocabularies.py:20
 msgid "write"
 msgstr ""
-
