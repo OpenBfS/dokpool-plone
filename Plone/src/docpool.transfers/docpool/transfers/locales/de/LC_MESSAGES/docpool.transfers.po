@@ -1,0 +1,84 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-06-25 14:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:243
+msgid ". Doc type not accepted."
+msgstr ". Dokumenttyp nicht akzeptiert."
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:262
+msgid ". Document has no scenario."
+msgstr ". Dokument hat keine Ereigniszuordnung."
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:256
+msgid ". Unknown scenario not accepted."
+msgstr ". Unbekanntes Ereignis nicht akzeptiert."
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:243
+msgid "No transfer to"
+msgstr "Keine Übertragung zu"
+
+#: docpool.transfers/docpool/transfers/profiles/default/types/Transferable.xml
+msgid "Transferable"
+msgstr "Übertragbar"
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:317
+msgid "Transferred to"
+msgstr "Übertragen an"
+
+#: docpool.transfers/docpool/transfers/profiles/default/types/TransfersType.xml
+msgid "TransfersType"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/transferstype.py:47
+msgid "description_doctype_allowtransfer"
+msgstr ""
+
+#. Default: "Only used for archived documents."
+#: docpool.transfers/docpool/transfers/content/transferable.py:84
+msgid "description_dpdocument_transferlog"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:75
+msgid "description_dpdocument_transferred"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/transferable.py:64
+msgid "description_dpdocument_transferred_by"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/configure.zcml:23
+msgid "docpool.transfers"
+msgstr ""
+
+#. Default: "Can documents of this type be sent to other ESDs?"
+#: docpool.transfers/docpool/transfers/content/transferstype.py:46
+msgid "label_doctype_allowtransfer"
+msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
+
+#. Default: "Transfer log"
+#: docpool.transfers/docpool/transfers/content/transferable.py:83
+msgid "label_dpdocument_transferlog"
+msgstr "Transfer Protokoll"
+
+#. Default: "Date of last transfer"
+#: docpool.transfers/docpool/transfers/content/transferable.py:74
+msgid "label_dpdocument_transferred"
+msgstr "Zeitpunkt der letzten Übertragung"
+
+#. Default: "Transferred by"
+#: docpool.transfers/docpool/transfers/content/transferable.py:63
+msgid "label_dpdocument_transferred_by"
+msgstr "Übertragen von"
