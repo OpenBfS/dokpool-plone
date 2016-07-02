@@ -31,7 +31,8 @@ DocpoolMessageFactory = MessageFactory('docpool.base')
 allow_class(DocpoolMessageFactory)
 
 ##code-section security
-##/code-section security 
+import appregistration
+##/code-section security
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

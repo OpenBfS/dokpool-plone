@@ -2,6 +2,7 @@
 from Products.Archetypes.utils import shasattr
 
 from docpool.base.appregistry import registerApp, createTypeObject, createDocumentObject
+from docpool.config.local.elan import dpAdded, dpRemoved
 from docpool.elan.config import ELAN_APP
 from docpool.transfers.config import TRANSFERS_APP
 
@@ -16,4 +17,4 @@ def createELANDocument(self):
         self.invokeFactory(id=ELAN_APP, type_name="ELANDocument", title="ELANDocument")
     createDocumentObject(TRANSFERS_APP, self)
 
-registerApp(ELAN_APP, createELANType, createELANDocument)
+registerApp(ELAN_APP, createELANType, createELANDocument, dpAdded, dpRemoved)

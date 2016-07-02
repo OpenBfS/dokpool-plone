@@ -14,6 +14,8 @@ def setupVarious(context):
         return
 ##code-section setupcode
     # Add additional setup code here
+    from docpool.config.general.transfers import install
+    install(context.getSite())
 ##/code-section setupcode
 
 ##code-section Main

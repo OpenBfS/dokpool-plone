@@ -232,6 +232,13 @@ class SituationReport(Container, DPDocument):
         """
         return [obj.getObject() for obj in self.getFolderContents()]
 
+    def getELANDocuments(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'ELANDocument'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
     def getFiles(self, **kwargs):
         """
         """
@@ -243,6 +250,13 @@ class SituationReport(Container, DPDocument):
         """
         """
         args = {'portal_type':'SRModule'}
+        args.update(kwargs)
+        return [obj.getObject() for obj in self.getFolderContents(args)] 
+
+    def getTransferables(self, **kwargs):
+        """
+        """
+        args = {'portal_type':'Transferable'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 

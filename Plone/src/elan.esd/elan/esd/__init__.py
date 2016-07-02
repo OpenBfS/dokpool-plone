@@ -56,8 +56,7 @@ allow_class(DocpoolMessageFactory)
 
 ##code-section security
 import monkey
-import structures
-##/code-section security 
+##/code-section security
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

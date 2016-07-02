@@ -11,7 +11,13 @@
  <property name="allowed_content_types">
      
          
+             <element value="Transferable" />
+         
+         
              <element value="SRModule" />
+         
+         
+             <element value="ELANDocument" />
          
          
              <element value="File" />

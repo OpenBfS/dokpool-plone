@@ -3,4 +3,7 @@
  <property name="allowed_content_types" purge="False">
              <element value="ELANDocument" />
  </property>
+ <property name="behaviors" purge="False">
+     <element value="docpool.elan.behaviors.elandocument.IELANDocument" />
+ </property>
 </object>

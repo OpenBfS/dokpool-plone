@@ -33,7 +33,8 @@
    
 
 <!-- ##code-section Main -->
-    
-<!-- ##/code-section Main -->    
+   <permission id="docpool.transfers.AccessTransfers" title="Docpool: Access Transfer Functions" />
+   <include package=".behaviors" />
+<!-- ##/code-section Main -->
       
 </configure>

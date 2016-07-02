@@ -3,4 +3,7 @@
  <property name="allowed_content_types" purge="False">
              <element value="TransfersType" />
  </property>
+ <property name="behaviors" purge="False">
+     <element value="docpool.transfers.behaviors.transferstype.ITransfersType" />
+ </property>
 </object>

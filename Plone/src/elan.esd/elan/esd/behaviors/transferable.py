@@ -10,6 +10,7 @@ from zope.interface import provider, implementer
 from zope.component import adapter
 from zope import schema
 from docpool.base import DocpoolMessageFactory as _
+from docpool.transfers.config import TRANSFERS_APP
 from elan.esd.content.elandoccollection import IELANDocCollection
 from five import grok
 from plone.indexer.interfaces import IIndexer
@@ -75,281 +76,35 @@ class Transferable(object):
         self.context = context
     
     def _get_transferred_by(self):
-        return self.context.transferred_by
+        return self.context.extension(TRANSFERS_APP).transferred_by
 
     def _set_transferred_by(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.transferred_by = value
+        context.extension(TRANSFERS_APP).transferred_by = value
     
     transferred_by = property(_get_transferred_by, _set_transferred_by)
 
     def _get_transferred(self):
-        return self.context.transferred
+        return self.context.extension(TRANSFERS_APP).transferred
 
     def _set_transferred(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.transferred = value
+        context.extension(TRANSFERS_APP).transferred = value
     
     transferred = property(_get_transferred, _set_transferred)
 
     def _get_transferLog(self):
-        return self.context.transferLog
+        return self.context.extension(TRANSFERS_APP).transferLog
 
     def _set_transferLog(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.transferLog = value
+        context.extension(TRANSFERS_APP).transferLog = value
     
     transferLog = property(_get_transferLog, _set_transferLog)
 
-    def changed(self):
-        """
-        """
-        return self.context.transferred or self.context.getMdate() 
-    
-    def checkTransferLog(self):
-        """
-        """
-        return self.context.transferLog
-        
-    def transferEvents(self):
-        """
-        """
-        if self.context.isArchive():
-            return eval(self.context.transferLog)
-        else:
-            if self.context.transferred:
-                # We need the receiving side
-                events = __session__.query(ChannelReceives).filter(ChannelReceives.document_uid==self.context.UID()).order_by(desc(ChannelReceives.etimestamp)).all()
-                return [ { "type": "receive", "by": event.user, "esd": event.esd_from_title, "time": self.context.toLocalizedTime(DateTime(event.etimestamp), long_format=1) } for event in events]
-            else:
-                # We need the sending side
-                events = __session__.query(ChannelSends).filter(ChannelSends.document_uid==self.context.UID()).order_by(desc(ChannelSends.etimestamp)).all()
-                return [ { "type": "send", "by": event.user, "esd": event.esd_to_title, "time": self.context.toLocalizedTime(DateTime(event.etimestamp), long_format=1) } for event in events]
-        
-    def transferable(self):
-        """
-        If not created by a transfer
-        If published
-        If DocType allows it
-        If Object allows it directly
-        """
-        if not self.context.isSender():
-            return False
-        if self.context.transferred or self.context.isArchive():
-            return False
-        wftool = getToolByName(self.context, 'portal_workflow')
-        if wftool.getInfoFor(self.context, 'review_state') != 'published':
-            return False
-        dto = self.context.docTypeObj()
-        #print dto, dto and dto.allowTransfer
-        if dto and dto.allowTransfer:
-            return True
-        if shasattr(self.context, "transferable"):
-            return self.context.transferable()
-        return False
-
-    def allowedTargets(self):
-        """
-        Other ESD must have allowed communication with my ESD,
-        my DocType is known and must be accepted
-            or the DocType is not defined in the other ESD (will be checked later)
-        and my current version must not have been transferred.
-        """
-        esd_uid = self.context.myDocumentPool().UID()
-        print esd_uid
-        dto = self.context.docTypeObj()
-        dt_id = dto and dto.id or '---'
-        print dt_id
-        m = self.context.getMdate()
-        #print m
-        q = __session__.query(Channel).outerjoin(Channel.permissions).outerjoin(Channel.sends).\
-                    filter(and_(Channel.esd_from_uid == esd_uid, 
-                                or_(and_(DocTypePermission.doc_type == dt_id, 
-                                    DocTypePermission.perm != 'block'),
-                                    ~Channel.permissions.any(DocTypePermission.doc_type == dt_id
-                                    ),
-                                ), 
-                                ~Channel.sends.any(and_(SenderLog.document_uid==self.context.UID(), SenderLog.timestamp > m))))\
-                                                   .order_by('esd_from_title')
-        #print q.statement                             
-        targets = q.all()
-        #print len(targets)
-        return targets
-                    
-    security.declareProtected("Docpool: Send Content", "transferToAll")
-    def transferToAll(self):
-        """
-        """
-        targets = self.allowedTargets()
-        self.transferToTargets(targets)
-        return self.context.restrictedTraverse('@@view')()
-        
-    security.declareProtected("Docpool: Send Content", "manage_transfer")
-    def manage_transfer(self, target_ids=[]):
-        """
-        Performs the transfer for a list of Channel ids.
-        """
-        channels = determineChannels(target_ids)
-        self.transferToTargets(channels)
-    
-    security.declareProtected("Docpool: Send Content", "transferToTargets")
-    def transferToTargets(self, targets=[]):
-        """
-        1) Determine all transfer folder objects.
-        2) Put a copy of me in each of them, preserving timestamps.
-        3) Add transfer information the copies.
-        4) Add log entry to sender log.
-        5) If my document type is unknown in the target ESD, 
-           copy it to the target setting it to private state.
-        6) If my scenarios are unknown in the target ESD,
-           copy them to the target setting them to private state.
-           If there is an equivalent scenario in the target,
-           but it is in private state, check if it defines
-           a published substitute scenario. If it does,
-           change the scenario for the copy to that one.
-        7) Add entry to receiver log.
-        """
-        from elan.esd.behaviors.elandocument import IELANDocument
-        def doIt():
-            # 1) Determine all transfer folder objects.
-            for target in targets:
-                transfer_folder = determineTransferFolderObject(self.context, target)
-                # Check permissions:
-                # a) Is my DocType accepted, are unknown DocTypes accepted?
-                udt_ok = transfer_folder.unknownDtDefault != 'block'
-                if not udt_ok:
-                    # check my precise DocType
-                    dto = self.context.docTypeObj()
-                    if not transfer_folder.acceptsDT(dto.getId()):
-                        portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(". Doc type not accepted."), type='error')
-                        # Message
-                        continue
-                # b) Is my Scenario known, are unknown Scenarios accepted?
-                scen_ok = transfer_folder.unknownScenDefault != 'block'
-                if not scen_ok:
-                    # check my precise Scenario
-                    scens = IELANDocument(self.context).myScenarioObjects()
-                    if scens:
-                        scen_id = scens[0].getId()
-                        if not transfer_folder.knowsScen(scen_id):
-                            # Message
-                            portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(". Unknown scenario not accepted."), type='error')
-                            continue
-                    else:
-                        # Message
-                        portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(". Document has no scenario."), type='error')
-                        continue
-                
-                # 2) Put a copy of me in each of them, preserving timestamps.
-                new_id = _copyPaste(self.context, transfer_folder)
-                my_copy = transfer_folder._getOb(new_id)
-                                
-                # 3) Add transfer information to the copies.
-                my_copy.transferred = datetime.now()
-                my_copy.transferred_by = self.context._getUserInfoString()
-                
-
-                # 4) Add log entries to sender log.
-                userid, fullname, primary_group = getUserInfo(self.context)
-                document_uid = self.context.UID()
-                document_title = self.context.Title()
-                timestamp = datetime.now()
-                user = userid
-                scenario_ids = IELANDocument(self.context).scenarios and ", ".join(IELANDocument(self.context).scenarios) or ""
-                l = SenderLog(document_uid=document_uid,
-                              document_title=document_title,
-                              timestamp=timestamp,
-                              user=self.context._getUserInfoString(),
-                              scenario_ids=scenario_ids,
-                              channel=target
-                              )
-                # 5) If my document type is unknown in the target ESD, 
-                #    copy it to the target setting it to private state.
-                ensureDocTypeInTarget(self.context, my_copy)
-                # 6) If my scenarios are unknown in the target ESD,
-                #    copy them to the target setting them to private state.
-                #    If there is an equivalent scenario in the target,
-                #    but it is in private state, check if it defines
-                #    a published substitute scenario. If it does,
-                #    change the scenario for the copy to that one.
-                ensureScenariosInTarget(self.context, my_copy)
-                # Make sure workflow state of the copy is published,
-                # if there is no restriction on the transfer folder (permission = publish)
-                # Make sure workflow state of the copy is private,
-                # if permission is 'needs confirmation'
-                ITransferable(my_copy).ensureState()
-                my_copy.reindexObject()
-                # 7) Add entry to receiver log.
-                document_uid = my_copy.UID()
-                document_title = my_copy.Title()
-                timestamp = datetime.now()
-                scenario_ids = IELANDocument(my_copy).scenarios and ", ".join(IELANDocument(my_copy).scenarios) or ""
-                r = ReceiverLog(document_uid=document_uid,
-                              document_title=document_title,
-                              timestamp=timestamp,
-                              user=self.context._getUserInfoString(),
-                              scenario_ids=scenario_ids,
-                              channel=target
-                              )
-                portalMessage(self.context, _(u"Transferred to") + " " + target.esd_to_title, type='info')
-        execute_under_special_role(self.context, "Manager", doIt)
-    
-    def ensureState(self):
-        """
-        If this object is in a transfer folder,
-        make sure it is in a state corresponding to the permission.
-        """
-        from elan.esd.behaviors.elandocument import IELANDocument
-        if self.transferred:
-            tf = self.context.myELANTransferFolder()
-            dtObj = self.context.docTypeObj()
-            tstate = api.content.get_state(obj=dtObj)
-            if tstate == 'published': # we do this for valid types only
-                # determine the applicable permission
-                perm = __session__.query(ChannelPermissions).filter(ChannelPermissions.tf_uid == tf.UID(), ChannelPermissions.doc_type==dtObj.getId()).all()
-                if perm:
-                    perm = perm[0].perm
-                dstate = api.content.get_state(self.context)
-                if dstate == 'private' and perm == 'publish':
-                    api.content.transition(self.context, 'publish')
-                if dstate == 'published' and perm == 'confirm':
-                    api.content.transition(self.context, 'retract')
-            uscn = IELANDocument(self.context).unknownScenario()
-            if uscn:
-                # Documents with unknown scenarios must be private
-                try:
-                    api.content.transition(self.context, 'retract')
-                except:
-                    pass
-
-    def deleteTransferDataInDB(self):
-        """
-        """
-        received = __session__.query(ReceiverLog).filter(ReceiverLog.document_uid==self.UID()).order_by(desc(ReceiverLog.timestamp)).all()
-        send = __session__.query(SenderLog).filter(SenderLog.document_uid==self.UID()).order_by(desc(SenderLog.timestamp)).all()
-        if received:
-            log(received)
-            for r in received:
-                __session__.delete(r)
-        if send:
-            log(send)
-            for s in send:
-                __session__.delete(s)
-        if received or send:
-            log('received or send')
-            __session__.flush()
-
-
-@adapter(ITransferable, IObjectRemovedEvent)
-def deleteTransferData(obj, event=None):
-    """
-    """
-    #TODO: Check ob nur beim Loeschen ausgefuehrt wird oder auch beim move!?
-    log('deleteTransferData %s from %s' % (obj.Title(), obj.absolute_url()))
-    obj.deleteTransferDataInDB()

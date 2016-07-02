@@ -8,7 +8,7 @@
    i18n:domain="elan.esd"
    i18n:attributes="title">
         <img src="logo.png" alt=""
-             tal:define="logo context/logoSrc;
+             tal:define="logo context/logoSrc|nothing;
                          logo python:logo or view.img_src;"
          tal:attributes="alt view/logo_title;
                          title view/logo_title;

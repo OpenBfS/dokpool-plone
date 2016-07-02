@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="elan.esd">
+    
+    <include package="plone.behavior" file="meta.zcml" />
+
+	<grok:grok package="." />    
+    
+
+    <plone:behavior
+        title="Transferable"
+        description="Makes documents transferable between pools"
+        provides=".transferable.ITransferable"
+        factory=".transferable.Transferable"
+        for="docpool.base.interfaces.IDPDocument"
+    />
+    
+
+</configure>

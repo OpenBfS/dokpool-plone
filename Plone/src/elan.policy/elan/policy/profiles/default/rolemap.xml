@@ -9,6 +9,7 @@
     <role name="ContentReceiver"/>
     <role name="ContentSender"/>
     <role name="ELANUser"/>
+    <role name="TransferUser"/>
     <role name="DokSysUser"/>
     <role name="DocPoolUser"/>
     <role name="Editor"/>

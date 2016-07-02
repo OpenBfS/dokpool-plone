@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 
-from plone.autoform.directives import read_permission
+from plone.autoform.directives import read_permission, write_permission
 from zope.interface import provider, implementer
 from zope.component import adapter
 from plone.autoform.interfaces import IFormFieldProvider
@@ -24,7 +24,7 @@ from Acquisition import aq_inner
 from docpool.base.content.doctype import IDocType
 
 @provider(IFormFieldProvider)
-class IELANDocument(ITransferable):
+class IELANDocument(model.Schema):
     """
     """
     scenarios = schema.List(
@@ -34,6 +34,7 @@ class IELANDocument(ITransferable):
         value_type=schema.Choice(source="elan.esd.vocabularies.Scenarios"),
     )
     read_permission(scenarios='docpool.elan.AccessELAN')
+    write_permission(scenarios='docpool.elan.AccessELAN')
     form.widget(scenarios=CheckBoxFieldWidget)
 
 

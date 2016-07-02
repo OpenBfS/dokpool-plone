@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from utils import install
 from Products.CMFCore.utils import getToolByName
 from Products.ZCatalog.ProgressHandler import ZLogHandler
 
@@ -13,7 +12,6 @@ def setupVarious(context):
     if context.readDataFile('elan.policy_various.txt') is None:
         return
     portal = context.getSite()
-    install(portal)
     wtool = getToolByName(portal, 'portal_workflow')
     wtool.updateRoleMappings()    
     cat = getToolByName(context.getSite(), "portal_catalog")

@@ -101,10 +101,7 @@
     />
   
    <adapter factory=".db.security.ChannelSecurity"/>    
-   
-    <subscriber handler=".events.esdAdded" />
-    <subscriber handler=".events.esdRemoved" />
-   
+
     <include package=".behaviors" />	
 	 
 	<include file="monkey.zcml" />	    

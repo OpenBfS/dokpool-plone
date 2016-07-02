@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from docpool.config.utils import ID, TITLE, TYPE, CHILDREN, createPloneObjects
-from docpool.config.general import DOCTYPES
 
 
 SITUATION_OVERVIEW =  [{TYPE: 'SituationOverview', TITLE: 'Situation Overview', ID: 'sitview'}]

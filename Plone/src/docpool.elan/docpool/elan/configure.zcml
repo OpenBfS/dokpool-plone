@@ -33,7 +33,9 @@
    
 
 <!-- ##code-section Main -->
-    
+   <permission id="docpool.elan.AccessELAN" title="Docpool: Access ELAN Content" />
+   <include package=".behaviors" />
+
 <!-- ##/code-section Main -->    
       
 </configure>

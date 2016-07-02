@@ -36,7 +36,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.dexterity.utils import safe_unicode
 from DateTime import DateTime
 from docpool.config.utils import TYPE, TITLE, ID, CHILDREN, createPloneObjects, ploneId
-from docpool.config.general import DOCTYPES
+from docpool.config.general.elan import DOCTYPES
 from Products.CMFPlone.utils import parent
 from Products.CMFPlone.utils import log
 from docpool.base.utils import portalMessage
@@ -50,8 +50,9 @@ from Products.CMFPlone.i18nl10n import utranslate
 import datetime
 from five import grok
 from zope.schema.interfaces import IContextSourceBinder
-from docpool.base.structures import navSettings
-from docpool.config.local import ARCHIVESTRUCTURE, TRANSFER_AREA
+from docpool.config.local.base import navSettings
+from docpool.config.local.elan import ARCHIVESTRUCTURE
+from docpool.config.local.transfers import TRANSFER_AREA
 from docpool.transfers.config import TRANSFERS_APP
 
 @grok.provider(IContextSourceBinder)

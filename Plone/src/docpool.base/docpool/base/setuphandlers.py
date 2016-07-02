@@ -15,27 +15,11 @@ def setupVarious(context):
         return
 ##code-section setupcode
     # Add additional setup code here
+    from docpool.config.general.base import install
+    install(context.getSite())
     cat = getToolByName(context.getSite(), "portal_catalog")
     cat.reindexIndex(["dp_type", "mdate", "changed"], REQUEST=context.getSite().REQUEST)
-#    cat.refreshCatalog(clear=False,pghandler=ZLogHandler(100))
-    
-    portal = context.getSite()
-    extend_allowed_types(portal, "SimpleFolder")
-    extend_allowed_types(portal, "UserFolder")
-    extend_allowed_types(portal, "GroupFolder")
-    
-    
-def extend_allowed_types(context, type_name):
-    ttool = getToolByName(context, "portal_types")
-    obj = ttool._getOb(type_name)
-    allowed_types = list(obj.getProperty("allowed_content_types"))
-    allowed_types.append("CollaborationFolder")
-    allowed_types.append("PrivateFolder")
-    allowed_types.append("ReviewFolder")
-    obj._updateProperty("allowed_content_types", allowed_types)
-    obj.reindexObject()
-    
-    
+
 ##/code-section setupcode
 
 ##code-section Main

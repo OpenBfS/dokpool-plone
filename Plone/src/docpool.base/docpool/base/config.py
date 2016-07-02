@@ -6,4 +6,5 @@ PROJECTNAME = "docpool.base"
 
 
 ##code-section config
+BASE_APP = "base"
 ##/code-section config

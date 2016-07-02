@@ -21,7 +21,7 @@ from docpool.base.utils import queryForObjects
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 from z3c.relationfield.relation import RelationValue
-from docpool.config.general import DOCTYPES
+from docpool.config.general.elan import DOCTYPES
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 
     
@@ -174,7 +174,7 @@ def createSituationReport(self):
             to_id = intids.getId(mod)
             refs.append(RelationValue(to_id))
         d.currentModules=refs
-        d.extension(ELAN_APP).scenarios = ["scenario1", "scenario2"]
+        d.extension(ELAN_APP, create=True).scenarios = ["scenario1", "scenario2"]
         d.reindexObject()
         d.publishReport(justDoIt=True, duplicate=True)
     

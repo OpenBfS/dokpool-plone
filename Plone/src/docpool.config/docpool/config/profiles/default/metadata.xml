@@ -2,5 +2,7 @@
 <metadata>
   <version>1000</version>
   <dependencies>
+        <dependency>profile-docpool.elan:default</dependency>
+        <dependency>profile-docpool.transfers:default</dependency>
   </dependencies>
 </metadata>

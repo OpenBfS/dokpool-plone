@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.0.18'
+version = '1.0.19'
 
 setup(name='elan.sitrep',
       version=version,
@@ -37,7 +37,7 @@ setup(name='elan.sitrep',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          ''
+          'elan.esd'
           ##code-section dependencies
 	      ##/code-section dependencies
       ],
