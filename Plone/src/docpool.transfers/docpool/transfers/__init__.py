@@ -12,8 +12,9 @@ from Products.CMFCore.permissions import setDefaultRoles
 from AccessControl import allow_class
 
 ##code-section imports
-import appregistration
-##/code-section imports 
+from AccessControl import allow_module
+allow_module("docpool.transfers.config");
+##/code-section imports
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
@@ -23,7 +24,8 @@ DocpoolMessageFactory = MessageFactory('docpool.transfers')
 allow_class(DocpoolMessageFactory)
 
 ##code-section security
-##/code-section security 
+import appregistration
+##/code-section security
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

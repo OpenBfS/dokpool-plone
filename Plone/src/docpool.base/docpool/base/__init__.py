@@ -15,6 +15,7 @@ from AccessControl import allow_class
 from AccessControl import allow_module
 allow_module("Products.CMFQuickInstallerTool.QuickInstallerTool");
 allow_module("docpool.base");
+allow_module("docpool.base.config");
 allow_module("docpool.base.utils");
 from plone import api
 api.__allow_access_to_unprotected_subobjects__ = 1
@@ -32,7 +33,7 @@ allow_class(DocpoolMessageFactory)
 
 ##code-section security
 import appregistration
-##/code-section security
+##/code-section security 
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

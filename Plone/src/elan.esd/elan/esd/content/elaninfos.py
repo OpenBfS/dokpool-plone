@@ -33,6 +33,9 @@ from Products.CMFCore.utils import getToolByName
 ##code-section imports
 from zope.component import adapter
 from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
+from docpool.base.interfaces import IApplicationAware
+from docpool.elan.config import ELAN_APP
+from zope.interface.declarations import classImplements
 ##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
@@ -55,6 +58,7 @@ class ELANInfos(Container, InfoFolder):
     implements(IELANInfos)
     
 ##code-section methods
+    APP = ELAN_APP
 ##/code-section methods 
 
     def myELANInfos(self):
@@ -106,6 +110,9 @@ class ELANInfos(Container, InfoFolder):
 
 
 ##code-section bottom
+classImplements(ELANInfos,IApplicationAware)
+
+
 @adapter(IELANInfos, IObjectAddedEvent)
 def infosAdded(obj, event=None):
     """

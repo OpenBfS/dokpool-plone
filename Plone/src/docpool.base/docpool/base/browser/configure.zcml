@@ -73,6 +73,13 @@
     permission="zope2.View"
     />
 
+    <browser:page
+      name="dp_app_state"
+      for="*"
+      permission="zope.Public"
+      class=".context.ApplicationState"
+    />
+
 <!-- ##/code-section Main -->    
 
     

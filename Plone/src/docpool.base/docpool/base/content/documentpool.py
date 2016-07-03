@@ -40,11 +40,13 @@ from loremipsum import get_paragraphs
 from zope.event import notify
 from docpool.base.events import DocumentPoolInitializedEvent,\
     DocumentPoolRemovedEvent
-from docpool.base.structures import docPoolAdded as docPoolAddedExtern, docPoolRemoved as docPoolRemovedExtern
-#from docpool.base.utils import _copyPaste, queryForObjects
 from plone.app.textfield.value import RichTextValue
 from plone.protect.auto import safeWrite
 from docpool.base.content.doctype import IDocType
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.config import BASE_APP
+from plone.dexterity.interfaces import IEditFinishedEvent
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -72,8 +74,20 @@ class IDocumentPool(form.Schema):
 ##/code-section field_customLogo                           
     )
     
+        
+    supportedApps = schema.List(
+                        title=_(u'label_documentpool_supportedapps', default=u'Applications supported in this document pool'),
+                        description=_(u'description_documentpool_supportedapps', default=u''),
+                        required=False,
+##code-section field_supportedApps
+                        missing_value=(),
+                        value_type=schema.Choice(source="docpool.base.vocabularies.ExtendingApps"),
+##/code-section field_supportedApps                           
+    )
+    
 
 ##code-section interface
+    form.widget(supportedApps=CheckBoxFieldWidget)
 ##/code-section interface
 
 
@@ -150,6 +164,13 @@ class DocumentPool(Container):
             return self.myDPApplication().getId()
         else:
             return "elan"
+
+    def allSupportedApps(self):
+        """
+        For acquisition.
+        @return:
+        """
+        return self.supportedApps
         
 ##/code-section methods 
 
@@ -193,15 +214,40 @@ def docPoolAdded(obj, event=None):
     """
     """
     self = obj
-    docPoolAddedExtern(obj, event)
+    # Trigger my own method
+    APP_REGISTRY[BASE_APP]['dpAddedMethod'](self)
+    # Trigger configs for all supported applications
+    for app in self.supportedApps:
+        APP_REGISTRY[app]['dpAddedMethod'](self)
     notify(DocumentPoolInitializedEvent(self))
  
+@adapter(IDocumentPool, IEditFinishedEvent)
+def docPoolModified(obj, event=None):
+    """
+    The range of supportedApps might have changed. So we trigger initialization for all apps.
+    The methods are required to support this repetitive pattern.
+    @param obj:
+    @param event:
+    @return:
+    """
+    self = obj
+    # Trigger configs for all supported applications
+    if self.supportedApps:
+        for app in self.supportedApps:
+            APP_REGISTRY[app]['dpAddedMethod'](self)
+
+
 @adapter(IDocumentPool, IObjectRemovedEvent)
 def docPoolRemoved(obj, event=None):
     """
     """
     self = obj
-    docPoolRemovedExtern(obj, event)
+    # Trigger my own method
+    APP_REGISTRY[BASE_APP]['dpRemovedMethod'](self)
+    # Trigger configs for all applications
+    if self.supportedApps:
+        for app in self.supportedApps:
+            APP_REGISTRY[app]['dpRemovedMethod'](self)
     notify(DocumentPoolRemovedEvent(self))
 
 

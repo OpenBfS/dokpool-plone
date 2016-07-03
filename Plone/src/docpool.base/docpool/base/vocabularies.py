@@ -9,6 +9,29 @@ from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getAllowedDocumentTypesForGroup
+from docpool.base.appregistry import activeApps, extendingApps
+
+class ActiveAppsVocabulary(object):
+    """
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in activeApps()])
+
+ActiveAppsVocabularyFactory = ActiveAppsVocabulary()
+
+class ExtendingAppsVocabulary(object):
+    """
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in extendingApps()])
+
+ExtendingAppsVocabularyFactory = ExtendingAppsVocabulary()
 
 class StatusVocabulary(object):
     """

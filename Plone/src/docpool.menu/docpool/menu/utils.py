@@ -73,11 +73,13 @@ def getFoldersForCurrentUser(self, user=None):
     if not shasattr(self, "content", True):
         return res
     rres = []
+    # FIXME: this code knows about a specific application
     if self.isReceiver():
-        t = self.content.Transfers
-        tpath = "/".join(t.getPhysicalPath())
-        rres = [ _folderTree(self, "%s" % (tpath))]
-        rres[0]['item_class'] = 'personal transfer'
+        if shasattr(self.content, "Transfers", acquire=False):
+            t = self.content.Transfers
+            tpath = "/".join(t.getPhysicalPath())
+            rres = [ _folderTree(self, "%s" % (tpath))]
+            rres[0]['item_class'] = 'personal transfer'
     groups = getGroupsForCurrentUser(self, user)
     if not groups: # User is reader only
         return rres

@@ -1,5 +1,5 @@
 <tal:block i18n:domain="elan.esd">
-<tal:if condition="not:here/isArchive|python:True">
+<tal:if tal:condition="view/available|nothing">
 <div metal:use-macro="here/@@elan.macros/macros/scenario_table"/>
 </tal:if>
 <tal:if condition="here/isArchive|nothing">

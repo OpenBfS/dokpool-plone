@@ -30,6 +30,9 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from docpool.elan.config import ELAN_APP
+from docpool.base.interfaces import IApplicationAware
+from zope.interface.declarations import classImplements
 ##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
@@ -52,6 +55,8 @@ class ELANScenarios(Container):
     implements(IELANScenarios)
     
 ##code-section methods
+    APP = ELAN_APP
+
 ##/code-section methods 
 
     def myELANScenarios(self):
@@ -82,4 +87,5 @@ class ELANScenarios(Container):
 
 
 ##code-section bottom
+classImplements(ELANScenarios,IApplicationAware)
 ##/code-section bottom 

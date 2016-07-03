@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Products.Archetypes.utils import shasattr
 from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects
 from zExceptions import BadRequest
 from Products.CMFPlone.utils import log_exc
@@ -12,7 +13,8 @@ def dpAdded(self):
     if self.content.hasObject("Transfers"):
         fresh = False # It's a reinstall
     createTransferArea(self, fresh)
-    createTransfersGroups(self)
+    if fresh:
+        createTransfersGroups(self)
     setTransfersLocalRoles(self)
 
 TRANSFER_AREA = [
@@ -26,7 +28,7 @@ def setTransfersLocalRoles(self):
     prefix = str(prefix)
     self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
     self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
-    if hasattr(self, 'contentconfig'):
+    if shasattr(self, 'contentconfig', acquire=False):
         self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])

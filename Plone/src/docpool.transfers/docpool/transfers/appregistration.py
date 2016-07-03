@@ -13,4 +13,4 @@ def createTransferable(self):
     if not shasattr(self, TRANSFERS_APP, acquire=False):
         self.invokeFactory(id=TRANSFERS_APP, type_name="Transferable", title="Transferable")
 
-registerApp(TRANSFERS_APP, createTransfersType, createTransferable, dpAdded, dpRemoved)
+registerApp(TRANSFERS_APP, u"Transfer Support", createTransfersType, createTransferable, dpAdded, dpRemoved)

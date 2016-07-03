@@ -12,6 +12,8 @@ from Products.CMFCore.permissions import setDefaultRoles
 from AccessControl import allow_class
 
 ##code-section imports
+from AccessControl import allow_module
+allow_module("docpool.elan.config");
 ##/code-section imports 
 
 # Define a message factory for when this product is internationalised.

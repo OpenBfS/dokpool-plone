@@ -30,6 +30,9 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from docpool.elan.config import ELAN_APP
+from docpool.base.interfaces import IApplicationAware
+from zope.interface.declarations import classImplements
 ##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
@@ -52,6 +55,8 @@ class ELANArchives(Container):
     implements(IELANArchives)
     
 ##code-section methods
+    APP = ELAN_APP
+
     def isSituationDisplay(self):
         """
         Marker for portlets
@@ -87,4 +92,5 @@ class ELANArchives(Container):
 
 
 ##code-section bottom
+classImplements(ELANArchives, IApplicationAware)
 ##/code-section bottom 

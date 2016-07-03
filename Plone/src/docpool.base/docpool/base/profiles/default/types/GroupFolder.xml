@@ -11,6 +11,9 @@
  <property name="allowed_content_types">
      
          
+             <element value="InfoFolder" />
+         
+         
              <element value="DPDocument" />
          
          
@@ -24,9 +27,6 @@
          
          
              <element value="CollaborationFolder" />
-         
-         
-             <element value="InfoFolder" />
          
      
  </property>

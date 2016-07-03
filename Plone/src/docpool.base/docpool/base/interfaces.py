@@ -25,8 +25,10 @@ from docpool.base.content.contentarea import IContentArea
 from docpool.base.content.dpapplication import IDPApplication
 from docpool.base.content.dpconfig import IDPConfig
 ##code-section imports
-from docpool.base import DocpoolMessageFactory as _
 ##/code-section imports
 
 ##code-section manual code
+class IApplicationAware(Interface):
+    """Marker for types that only apply when their application is active.
+    """
 ##/code-section manual code

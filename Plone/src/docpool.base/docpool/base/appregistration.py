@@ -6,4 +6,5 @@ from docpool.config.local.base import dpAdded, dpRemoved
 from docpool.base.config import BASE_APP
 
 
-registerApp(BASE_APP, None, None, dpAdded, dpRemoved)
+registerApp(BASE_APP, u"Docpool Base", None, None, dpAdded, dpRemoved)
+# "None" means: no extension support

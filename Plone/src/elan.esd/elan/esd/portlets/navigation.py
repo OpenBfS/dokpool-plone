@@ -31,11 +31,7 @@ class Renderer(navigation.Renderer):
         ft = buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
         #print ft
         return ft
-    
-    @property
-    def available(self):
-        return (not self.context.isArchive()) and self.context.isSituationDisplay()
-    
+
     def navigation_root(self):
         if shasattr(self.context, "myDocumentPool"):
             return self.context.myDocumentPool()

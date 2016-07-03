@@ -12,6 +12,11 @@
 <tr><td rowspan="1" colspan="3">ELAN Installation</td></tr>
 </thead><tbody>
 <tr>
+	<td>setTimeout</td>
+	<td>120000</td>
+	<td>120000</td>
+</tr>
+<tr>
 	<td>open</td>
 	<td>/manage</td>
 	<td></td>
@@ -262,6 +267,16 @@
 	<td>BfS</td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=form-widgets-supportedApps-0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=form-widgets-supportedApps-1</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>id=form-buttons-save</td>
 	<td></td>
@@ -287,9 +302,94 @@
 	<td>Condat</td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=form-widgets-supportedApps-0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=form-widgets-supportedApps-1</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>id=form-buttons-save</td>
 	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Plone site&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//li[@id='plone-contentmenu-factories']/a/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=documentpool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form-widgets-IDublinCore-title</td>
+	<td>Nur ELAN</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form-widgets-prefix</td>
+	<td>elan</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=form-widgets-supportedApps-0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form-buttons-save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Plone site&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//li[@id='plone-contentmenu-factories']/a/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=documentpool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form-widgets-IDublinCore-title</td>
+	<td>Nur Transfers</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form-widgets-prefix</td>
+	<td>transfers</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=form-widgets-supportedApps-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form-buttons-save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>120000</td>
+	<td>120000</td>
 </tr>
 <tr>
 	<td>open</td>
@@ -305,6 +405,11 @@
 	<td>open</td>
 	<td>/Plone/bfs/createSRTestData</td>
 	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>120000</td>
+	<td>120000</td>
 </tr>
 <tr>
 	<td>open</td>
@@ -381,7 +486,6 @@
 	<td>name=form.button.Add</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

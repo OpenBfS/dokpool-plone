@@ -12,5 +12,8 @@
         <indexed_attr value="changed"/>
     </index>
     <column value="changed"/>
-    
+    <index name="apps_supported" meta_type="KeywordIndex">
+        <indexed_attr value="apps_supported"/>
+    </index>
+    <column value="apps_supported"/>
 </object>

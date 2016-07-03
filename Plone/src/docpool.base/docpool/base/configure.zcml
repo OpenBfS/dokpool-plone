@@ -99,7 +99,15 @@
    
 
 <!-- ##code-section Main -->
-     <utility
+  <utility
+    component=".vocabularies.ActiveAppsVocabularyFactory"
+    name="docpool.base.vocabularies.ActiveApps"
+    />
+  <utility
+    component=".vocabularies.ExtendingAppsVocabularyFactory"
+    name="docpool.base.vocabularies.ExtendingApps"
+    />
+  <utility
     component=".vocabularies.StatusVocabularyFactory"
     name="docpool.base.vocabularies.Status"
     />

@@ -23,22 +23,23 @@ def dpAdded(self):
     transaction.commit()
     createContentConfig(self, fresh)
     transaction.commit()
-    self.esd.correctAllDocTypes()
-    transaction.commit()
-    placeful_wf = getToolByName(self, 'portal_placeful_workflow')
-    try:
-        self.archive.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
-    except BadRequest, e:
-        # print type(e)
-        log_exc(e)
-    config = placeful_wf.getWorkflowPolicyConfig(self.archive)
-    placefulWfName = 'elan-archive'
-    config.setPolicyIn(policy=placefulWfName, update_security=False)
-    config.setPolicyBelow(policy=placefulWfName, update_security=False)
-    createELANUsers(self)
-    setELANLocalRoles(self)
-    createELANGroups(self)
-    self.reindexAll()
+    if fresh:
+        self.esd.correctAllDocTypes()
+        transaction.commit()
+        placeful_wf = getToolByName(self, 'portal_placeful_workflow')
+        try:
+            self.archive.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+        except BadRequest, e:
+            # print type(e)
+            log_exc(e)
+        config = placeful_wf.getWorkflowPolicyConfig(self.archive)
+        placefulWfName = 'elan-archive'
+        config.setPolicyIn(policy=placefulWfName, update_security=False)
+        config.setPolicyBelow(policy=placefulWfName, update_security=False)
+        createELANUsers(self)
+        setELANLocalRoles(self)
+        createELANGroups(self)
+        self.reindexAll()
 
 
 BASICSTRUCTURE = [
@@ -166,13 +167,15 @@ def createELANGroups(self):
 def copyCurrentSituation(self, fresh):
     """
     """
-    if shasattr(self, "esd"):
+    if not fresh:
         return
     esd = self.esd
     from docpool.base.utils import _copyPaste
     _copyPaste(esd, self, safe=False)
     self.esd.setTitle(_("Situation Display"))
     self.esd.reindexObject()
+    # make sure the current situation is first
+    self.moveObject("esd", 0)
 
 def dpRemoved(self):
     """

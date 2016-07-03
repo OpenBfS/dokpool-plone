@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.1.155'
+version = '0.1.156'
 
 setup(name='elan.esd',
       version=version,
@@ -37,7 +37,7 @@ setup(name='elan.esd',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'docpool.elan'
+          ''
           ##code-section dependencies
 	      ##/code-section dependencies
       ],

@@ -17,4 +17,4 @@ def createELANDocument(self):
         self.invokeFactory(id=ELAN_APP, type_name="ELANDocument", title="ELANDocument")
     createDocumentObject(TRANSFERS_APP, self)
 
-registerApp(ELAN_APP, createELANType, createELANDocument, dpAdded, dpRemoved)
+registerApp(ELAN_APP, u"ELAN", createELANType, createELANDocument, dpAdded, dpRemoved)

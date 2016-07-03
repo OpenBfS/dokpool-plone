@@ -57,6 +57,7 @@
   <subscriber handler=".contentbase.updateModified" />
   <subscriber handler=".dpdocument.updateContainerModified" />
   <subscriber handler=".documentpool.docPoolAdded" />
+  <subscriber handler=".documentpool.docPoolModified" />
   <subscriber handler=".documentpool.docPoolRemoved" />
   <subscriber handler=".doctype.updated" />
   <class class=".documentpool.DocumentPool">
@@ -64,6 +65,15 @@
       <implements interface="plone.app.content.interfaces.INameFromTitle" />
       <implements interface="zope.location.interfaces.IPossibleSite" />
   </class>
+
+  <adapter
+    factory=".indexer.doc_apps_indexer"
+    name="apps_supported" />
+
+  <adapter
+    factory=".indexer.docpool_apps_indexer"
+    name="apps_supported" />
+
 <!-- ##/code-section Main -->    
     
 </configure>
