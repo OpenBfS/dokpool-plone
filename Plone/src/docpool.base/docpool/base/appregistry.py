@@ -1,26 +1,54 @@
 # -*- coding: utf-8 -*-
+from plone.behavior.interfaces import IBehavior
+from zope.component import queryUtility
 
 APP_REGISTRY = {}
+BEHAVIOR_REGISTRY = {}
 
-def registerApp(name, title, typeFactoryMethod, documentFactoryMethod, dpAddedMethod, dpRemovedMethod):
+
+def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRemovedMethod):
     """
     @param name:
     @param factoryMethod:
     @return:
     """
     APP_REGISTRY[name] = {  'title' : title,
-                            'typeFactoryMethod' : typeFactoryMethod,
-                            'documentFactoryMethod' : documentFactoryMethod,
+                            'typeBehavior' : typeBehavior,
+                            'documentBehavior' : documentBehavior,
                             'dpAddedMethod': dpAddedMethod,
                             'dpRemovedMethod': dpRemovedMethod}
+    if typeBehavior:
+        BEHAVIOR_REGISTRY[typeBehavior.__identifier__] = BEHAVIOR_REGISTRY.get(typeBehavior.__identifier__, None) \
+                                                         and BEHAVIOR_REGISTRY[typeBehavior.__identifier__].append(name)\
+                                                         or [name]
 
-def createTypeObject(name, self):
-    APP_REGISTRY[name]['typeFactoryMethod'](self)
-    return self._getOb(name)
+    if documentBehavior:
+        BEHAVIOR_REGISTRY[documentBehavior.__identifier__] = BEHAVIOR_REGISTRY.get(documentBehavior.__identifier__, None) \
+                                                         and BEHAVIOR_REGISTRY[documentBehavior.__identifier__].append(name) \
+                                                         or [name]
 
-def createDocumentObject(name, self):
-    APP_REGISTRY[name]['documentFactoryMethod'](self)
-    return self._getOb(name)
+
+def extensionFor(obj, name):
+    """
+
+    @param obj:
+    @param name:
+    @return:
+    """
+    from docpool.base.interfaces import IDPDocument
+
+    if IDPDocument.providedBy(obj):
+        return APP_REGISTRY[name]['documentBehavior']
+    else:
+        return APP_REGISTRY[name]['typeBehavior']
+
+def extensionNameFor(obj, name):
+    from docpool.base.interfaces import IDPDocument
+
+    if IDPDocument.providedBy(obj):
+        return APP_REGISTRY[name]['documentBehavior'].__identifier__
+    else:
+        return APP_REGISTRY[name]['typeBehavior'].__identifier__
 
 def activeApps():
     """
@@ -38,4 +66,4 @@ def extendingApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [ ( appname, APP_REGISTRY[appname]['title']) for appname in apps if APP_REGISTRY[appname].get('documentFactoryMethod', None) ]
+    return [ ( appname, APP_REGISTRY[appname]['title']) for appname in apps if APP_REGISTRY[appname].get('documentBehavior', None) ]

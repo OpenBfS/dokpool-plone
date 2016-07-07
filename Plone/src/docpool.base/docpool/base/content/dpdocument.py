@@ -98,9 +98,6 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     
 ##code-section methods
 
-
-
-
     def createActions(self):
         """
         We need to check if special workflows are needed depending on the user's role.

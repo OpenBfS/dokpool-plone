@@ -25,9 +25,10 @@ from plone import api
 from elan.esd import DocpoolMessageFactory as _
 
 from Acquisition import aq_inner
+from docpool.base.interfaces import IDocTypeExtension
 
 @provider(IFormFieldProvider)    
-class IELANDocType(model.Schema):    
+class IELANDocType(IDocTypeExtension):
     contentCategory = RelationChoice(
                         title=_(u'label_doctype_contentcategory', default=u'Choose category for this type '),
                         description=_(u'description_doctype_contentcategory', default=u''),
@@ -41,15 +42,8 @@ class IELANDocType(model.Schema):
     form.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
 
 
-        
-    allowTransfer = schema.Bool(
-                        title=_(u'label_doctype_allowtransfer', default=u'Can documents of this type be sent to other ESDs?'),
-                        description=_(u'description_doctype_allowtransfer', default=u''),
-                        required=False,
-                        default=True,
 ##code-section field_allowTransfer
 ##/code-section field_allowTransfer                           
-    )
 
 @form.default_value(field=IELANDocType['contentCategory']) 
 def getDefaultCategory(data):
@@ -76,20 +70,9 @@ class ELANDocType(object):
     
     contentCategory = property(_get_contentCategory, _set_contentCategory)
 
-    def _get_allowTransfer(self):
-        return self.context.allowTransfer
-
-    def _set_allowTransfer(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.allowTransfer = value
-    
-    allowTransfer = property(_get_allowTransfer, _set_allowTransfer)
-
     def category(self):
         """
-        The primary category that the documents of this type belong to. 
+        The primary category that the documents of this type belong to.
         """
         cc = self.context.contentCategory
         res = cc and cc.to_object.title or ""
@@ -99,10 +82,11 @@ class ELANDocType(object):
         """
         All categories, the document belongs to.
         """
-#         colls = self.getBackReferences(relationship='doctypes')
+        #         colls = self.getBackReferences(relationship='doctypes')
         colls = back_references(self.context, "docTypes")
-        return list(set([coll.title for coll in colls if coll and not coll.isArchive() and coll.getPortalTypeName() == 'ELANDocCollection']))
-    
+        return list(set([coll.title for coll in colls if
+                         coll and not coll.isArchive() and coll.getPortalTypeName() == 'ELANDocCollection']))
+
     def getCategories(self):
         """
         """
@@ -111,30 +95,29 @@ class ELANDocType(object):
             mpath = self.context.dpSearchPath()
         ecs = queryForObjects(self.context, path=mpath, portal_type="ELANDocCollection", sort_on="sortable_title")
         return DisplayList([(ec.UID, ec.Title) for ec in ecs])
-    
+
     def getDefaultCategory(self):
         """
         """
-#         colls = self.getBackReferences(relationship='doctypes')
+        #         colls = self.getBackReferences(relationship='doctypes')
         colls = self.context.back_references("docTypes")
         res = None
-        if len(colls) == 1: # Only when unique
+        if len(colls) == 1:  # Only when unique
             if colls[0]:
                 intids = getUtility(IIntIds)
                 to_id = intids.getId(colls[0])
                 res = RelationValue(to_id)
-#         print 'getDefaultCategory ', res
+                #         print 'getDefaultCategory ', res
         return res
-        
+
     def setCCategory(self, id):
         """
         """
         mpath = "/"
         if shasattr(self.context, "dpSearchPath", acquire=True):
             mpath = self.context.dpSearchPath()
-        o = queryForObject(self.context, path=mpath,portal_type="ELANDocCollection",id=id)
-#         print "CCategory", o
+        o = queryForObject(self.context, path=mpath, portal_type="ELANDocCollection", id=id)
+        #         print "CCategory", o
         intids = getUtility(IIntIds)
         to_id = intids.getId(o)
         self.context.contentCategory = RelationValue(to_id)
-    

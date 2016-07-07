@@ -244,7 +244,6 @@ class ELANScenario(Item, ContentBase):
         """
         Copy utility
         """
-        from elan.esd.behaviors.transferable import ITransferable
         #TODO: transferLog fuellen und DB Eintraege loeschen
         # print source_brain.getId
         source_obj = source_brain.getObject()
@@ -267,7 +266,7 @@ class ELANScenario(Item, ContentBase):
             if wf_state == "published" and wftool.getInfoFor(copied_obj, 'review_state') != 'published':
                 wftool.doActionFor(copied_obj, 'publish')
             copied_obj.setModificationDate(mdate)
-            events = source_obj.extension(TRANSFERS_APP).transferEvents()
+            events = source_obj.doc_extension(TRANSFERS_APP).transferEvents()
             copied_obj.transferLog = str(events)
             copied_obj.reindexObject()
             copied_obj.reindexObjectSecurity()

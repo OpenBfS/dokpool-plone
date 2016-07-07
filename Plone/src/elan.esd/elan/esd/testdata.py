@@ -15,7 +15,7 @@ import random
 from docpool.elan.config import ELAN_APP
 from elan.policy.chomsky import chomsky
 from loremipsum import get_paragraphs
-from elan.esd.behaviors.elandocument import IELANDocument
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
     
 
@@ -84,9 +84,10 @@ def createTestDocuments(context, count):
         path.invokeFactory(id=docid, type_name="DPDocument", title="Document %d %s" % (i, uname), description=d)
         d = path._getOb(docid)
         d.docType = etype
+        ILocalBehaviorSupport(d).local_behaviors = ['elan','transfers']
         d.text = RichTextValue(safe_unicode(t))
         s = int(round(random.random() + 1.0))
-        d.extension(ELAN_APP, create=True).scenarios = ["scenario%d" % s]
+        d.doc_extension(ELAN_APP).scenarios = ["scenario%d" % s]
         d.reindexObject()
     
 def createGroupsAndUsers(context):    

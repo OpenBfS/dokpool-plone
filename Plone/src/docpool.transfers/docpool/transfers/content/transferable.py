@@ -150,7 +150,7 @@ class Transferable(Item, DocumentExtension):
             return False
         dto = self.docTypeObj()
         # We know that the app is avaible because we are in a TRANSFERS extension object
-        if dto and dto.extension(TRANSFERS_APP).allowTransfer:
+        if dto and dto.doc_extension(TRANSFERS_APP).allowTransfer:
             return True
         if shasattr(self.contextObject(), "transferable"):
             return self.contextObject().transferable()
@@ -227,7 +227,6 @@ class Transferable(Item, DocumentExtension):
            change the scenario for the copy to that one.
         7) Add entry to receiver log.
         """
-        from elan.esd.behaviors.elandocument import IELANDocument
         def doIt():
             # 1) Determine all transfer folder objects.
             for target in targets:
@@ -248,7 +247,7 @@ class Transferable(Item, DocumentExtension):
                 scen_ok = transfer_folder.unknownScenDefault != 'block'
                 if not scen_ok:
                     # check my precise Scenario
-                    scens = self.contextObject().extension(ELAN_APP).myScenarioObjects()
+                    scens = self.contextObject().doc_extension(ELAN_APP).myScenarioObjects()
                     if scens:
                         scen_id = scens[0].getId()
                         if not transfer_folder.knowsScen(scen_id):
@@ -277,8 +276,8 @@ class Transferable(Item, DocumentExtension):
                 document_title = self.contextObject().Title()
                 timestamp = datetime.now()
                 user = userid
-                scenario_ids = self.contextObject().extension(ELAN_APP).scenarios and ", ".join(
-                    self.contextObject().extension(ELAN_APP).scenarios) or ""
+                scenario_ids = self.contextObject().doc_extension(ELAN_APP).scenarios and ", ".join(
+                    self.contextObject().doc_extension(ELAN_APP).scenarios) or ""
                 l = SenderLog(document_uid=document_uid,
                               document_title=document_title,
                               timestamp=timestamp,
@@ -300,13 +299,13 @@ class Transferable(Item, DocumentExtension):
                 # if there is no restriction on the transfer folder (permission = publish)
                 # Make sure workflow state of the copy is private,
                 # if permission is 'needs confirmation'
-                my_copy.extension(TRANSFERS_APP).ensureState()
+                my_copy.doc_extension(TRANSFERS_APP).ensureState()
                 my_copy.reindexObject()
                 # 7) Add entry to receiver log.
                 document_uid = my_copy.UID()
                 document_title = my_copy.Title()
                 timestamp = datetime.now()
-                scenario_ids = my_copy.extension(ELAN_APP).scenarios and ", ".join(my_copy.extension(ELAN_APP).scenarios) or ""
+                scenario_ids = my_copy.doc_extension(ELAN_APP).scenarios and ", ".join(my_copy.doc_extension(ELAN_APP).scenarios) or ""
                 r = ReceiverLog(document_uid=document_uid,
                                 document_title=document_title,
                                 timestamp=timestamp,
@@ -324,7 +323,6 @@ class Transferable(Item, DocumentExtension):
         If this object is in a transfer folder,
         make sure it is in a state corresponding to the permission.
         """
-        from elan.esd.behaviors.elandocument import IELANDocument
         if self.transferred:
             tf = self.myELANTransferFolder()
             dtObj = self.docTypeObj()
@@ -340,7 +338,7 @@ class Transferable(Item, DocumentExtension):
                     api.content.transition(self.contextObject(), 'publish')
                 if dstate == 'published' and perm == 'confirm':
                     api.content.transition(self.contextObject(), 'retract')
-            uscn = self.contextObject().extension(ELAN_APP).unknownScenario()
+            uscn = self.contextObject().doc_extension(ELAN_APP).unknownScenario()
             if uscn:
                 # Documents with unknown scenarios must be private
                 try:

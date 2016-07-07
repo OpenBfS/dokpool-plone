@@ -76,35 +76,35 @@ class Transferable(object):
         self.context = context
     
     def _get_transferred_by(self):
-        return self.context.extension(TRANSFERS_APP).transferred_by
+        return self.context.doc_extension(TRANSFERS_APP).transferred_by
 
     def _set_transferred_by(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.extension(TRANSFERS_APP).transferred_by = value
+        context.doc_extension(TRANSFERS_APP).transferred_by = value
     
     transferred_by = property(_get_transferred_by, _set_transferred_by)
 
     def _get_transferred(self):
-        return self.context.extension(TRANSFERS_APP).transferred
+        return self.context.doc_extension(TRANSFERS_APP).transferred
 
     def _set_transferred(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.extension(TRANSFERS_APP).transferred = value
+        context.doc_extension(TRANSFERS_APP).transferred = value
     
     transferred = property(_get_transferred, _set_transferred)
 
     def _get_transferLog(self):
-        return self.context.extension(TRANSFERS_APP).transferLog
+        return self.context.doc_extension(TRANSFERS_APP).transferLog
 
     def _set_transferLog(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.extension(TRANSFERS_APP).transferLog = value
+        context.doc_extension(TRANSFERS_APP).transferLog = value
     
     transferLog = property(_get_transferLog, _set_transferLog)
 

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.PlonePAS.browser.search import PASSearchView as PSV
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
 
 class PASSearchView(PSV):
 
     def searchUsers(self, sort_by=None, **criteria):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         self.pas = getToolByName(self.context, "acl_users")
         mtool = getToolByName(self, 'portal_membership')
         results = self.merge(self.pas.searchUsers(**criteria), "userid")
@@ -14,6 +17,7 @@ class PASSearchView(PSV):
 
 
     def searchGroups(self, sort_by=None, **criteria):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         self.pas = getToolByName(self.context, "acl_users")
         gtool = getToolByName(self, 'portal_groups')
         results = self.merge(self.pas.searchGroups(**criteria), "groupid")

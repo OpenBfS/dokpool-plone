@@ -45,8 +45,8 @@ class DPDocumentEditForm(EditForm):
     @button.buttonAndHandler(PMF(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         EditForm.handleCancel(self, action)
-        
-        
+
+
 class DPDocumentAddForm(AddForm):
     name('DPDocument')
 

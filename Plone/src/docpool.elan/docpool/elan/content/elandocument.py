@@ -127,7 +127,7 @@ class ELANDocument(Item, DocumentExtension):
             if dto:
                 #                print "DTO"
                 #                print dto.Title()
-                cat = dto.extension(ELAN_APP).contentCategory
+                cat = dto.doc_extension(ELAN_APP).contentCategory
                 if cat:
                     aup = cat.to_path
                     #                    print aup
@@ -144,7 +144,7 @@ class ELANDocument(Item, DocumentExtension):
         if dto:
             #            print dto
             if IDocType.providedBy(dto):
-                return dto.title, dto.extension(ELAN_APP).categories()
+                return dto.title, dto.doc_extension(ELAN_APP).categories()
             else:
                 return dto.title, []
         else:

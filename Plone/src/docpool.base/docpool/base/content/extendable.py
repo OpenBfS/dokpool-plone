@@ -30,7 +30,7 @@ from plone.dexterity.content import Item
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from docpool.base.appregistry import createTypeObject, createDocumentObject
+from docpool.base.appregistry import APP_REGISTRY
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -53,27 +53,18 @@ class Extendable(Item):
     implements(IExtendable)
     
 ##code-section methods
-    def extension(self, applicationName, create=False):
+    def doc_extension(self, applicationName):
         """
-        Get the subobject for the extension related to the given application.
+        Get the object for the extension related to the given application.
         @param applicationName: the name of the application
-        @return: the extension subobject
+        @return: the extension object
         """
-        from docpool.base.content.doctype import IDocType
-        from docpool.base.content.dpdocument import IDPDocument
-        try:
-            return self._getOb(applicationName)
-        except:
-            if create:
-                if IDocType.providedBy(self):
-                    return createTypeObject(applicationName, self)
-                elif IDPDocument.providedBy(self):
-                    return createDocumentObject(applicationName, self)
-            return None
+        return APP_REGISTRY[applicationName]['documentBehavior'](self) # and APP_REGISTRY[applicationName]['documentBehavior'](self) or self
 
-    def contextObject(self):
-        return self
-##/code-section methods 
+    def type_extension(self, applicationName):
+        return APP_REGISTRY[applicationName]['typeBehavior'](self) # and APP_REGISTRY[applicationName]['typeBehavior'](self) or self
+
+##/code-section methods
 
 
 ##code-section bottom

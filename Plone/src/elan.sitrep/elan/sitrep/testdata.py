@@ -15,7 +15,6 @@ import random
 from docpool.elan.config import ELAN_APP
 from elan.policy.chomsky import chomsky
 from loremipsum import get_paragraphs
-from elan.esd.behaviors.elandocument import IELANDocument
 from docpool.config.utils import ID, TITLE, TYPE, CHILDREN, createPloneObjects
 from docpool.base.utils import queryForObjects
 from zope.component import getUtility
@@ -154,7 +153,7 @@ def createSituationReport(self):
             d = path._getOb(docid)
             d.text = RichTextValue(safe_unicode(t))
             d.docType = mt[0]
-            d.extension(ELAN_APP, create=True).scenarios = ["scenario1", "scenario2"]
+            d.doc_extension(ELAN_APP).scenarios = ["scenario1", "scenario2"]
             d.reindexObject()
             d.publishModule(justDoIt=True)
     
@@ -174,7 +173,7 @@ def createSituationReport(self):
             to_id = intids.getId(mod)
             refs.append(RelationValue(to_id))
         d.currentModules=refs
-        d.extension(ELAN_APP, create=True).scenarios = ["scenario1", "scenario2"]
+        d.doc_extension(ELAN_APP).scenarios = ["scenario1", "scenario2"]
         d.reindexObject()
         d.publishReport(justDoIt=True, duplicate=True)
     

@@ -30,7 +30,7 @@ class SRModuleView(BrowserView):
    
     ##code-section methods1
     def elanobject(self):
-        return self.context.extension(ELAN_APP)
+        return self.context.doc_extension(ELAN_APP)
     ##/code-section methods1     
 
 class SRModulematerialView(BrowserView):
@@ -41,7 +41,7 @@ class SRModulematerialView(BrowserView):
     
     ##code-section methodsmaterial
     def elanobject(self):
-        return self.context.extension(ELAN_APP)
+        return self.context.doc_extension(ELAN_APP)
     ##/code-section methodsmaterial     
 
 class SRModuleinfoView(BrowserView):
@@ -52,7 +52,7 @@ class SRModuleinfoView(BrowserView):
     
     ##code-section methodsinfo
     def elanobject(self):
-        return self.context.extension(ELAN_APP)
+        return self.context.doc_extension(ELAN_APP)
     ##/code-section methodsinfo     
 
 

@@ -29,7 +29,6 @@ import logging
 from Products.CMFPlone import PloneMessageFactory as _
 from elan.esd.utils import getScenariosForCurrentUser
 from docpool.base.utils import deleteMemberFolders
-from elan.esd.behaviors.elandocument import IELANDocument
 from docpool.base.browser.dpdocument import DPDocumentView,\
     DPDocumentlistitemView, DPDocumentinlineView, DPDocumentprintView
 
@@ -188,7 +187,7 @@ if not hasattr(DocumentPool, "createTestData"):
     
 
 def elanobject(self):
-    return self.context.extension(ELAN_APP)
+    return self.context.doc_extension(ELAN_APP)
 
 DPDocumentView.elanobject = elanobject
 DPDocumentlistitemView.elanobject = elanobject

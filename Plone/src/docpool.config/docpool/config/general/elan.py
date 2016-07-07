@@ -7,6 +7,7 @@ from plone.app.textfield.value import RichTextValue
 from docpool.base.events import IDocumentPoolUndeleteable
 from Products.Five.utilities.marker import mark
 import transaction
+from Products.CMFPlone.utils import log_exc
 
 def install(self):
     """
@@ -146,65 +147,45 @@ BASICSTRUCTURE2 = [
 # CHANGE HERE. DocTypes, DocCollections and their connections must match.
 
 DTYPES = [{TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Notification', ID: 'notification',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'NPP Information', ID: 'nppinformation',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Weather Information', ID: 'weatherinformation',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Trajectory', ID: 'trajectory',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'CNCAN Projection', ID: 'cncanprojection',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'IFIN Projection', ID: 'ifinprojection',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'NPP Projection', ID: 'nppprojection',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'RODOS Projection', ID: 'rodosprojection',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Other Projection', ID: 'otherprojection',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Gamma Dose Rate', ID: 'gammadoserate',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Air Activity', ID: 'airactivity',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Ground Contamination', ID: 'groundcontamination',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Measurement Result Feed', ID: 'mresult_feed',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Measurement Result Food', ID: 'mresult_food',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Measurement Result Water', ID: 'mresult_water',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Situation Report', ID: 'situationreport',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Instructions to the Public', ID: 'instructions',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Protective Actions', ID: 'protectiveactions',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           {TYPE: 'DocType', TITLE: u'Media Release', ID: 'mediarelease',
-           CHILDREN: [{TYPE: 'ELANType', TITLE: 'ELANType', ID: ELAN_APP},
-                      {TYPE: 'TransfersType', TITLE: 'TransfersType', ID: TRANSFERS_APP}]},
+           CHILDREN: [], 'local_behaviors' : ['elan','transfers']},
           ]
 
 
@@ -212,83 +193,86 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation',
 def connectTypesAndCategories(self):
     """
     """
+    from docpool.elan.behaviors.elandoctype import IELANDocType
     try:
-        self.config.dtypes.eventinformation.extension(ELAN_APP).setCCategory('event-npp-information')
+        print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
+        print IELANDocType(self.config.dtypes.eventinformation)
+        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+    except Exception, e:
+        log_exc(e)
+    try:
+        self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory('weather-information')
     except:
         pass
     try:
-        self.config.dtypes.weatherinformation.extension(ELAN_APP).setCCategory('weather-information')
+        self.config.dtypes.trajectory.type_extension(ELAN_APP).setCCategory('trajectories')
     except:
         pass
     try:
-        self.config.dtypes.trajectory.extension(ELAN_APP).setCCategory('trajectories')
+        self.config.dtypes.cncanprojection.type_extension(ELAN_APP).setCCategory('cncan-projections')
     except:
         pass
     try:
-        self.config.dtypes.cncanprojection.extension(ELAN_APP).setCCategory('cncan-projections')
+        self.config.dtypes.ifinprojection.type_extension(ELAN_APP).setCCategory('ifin-projections')
     except:
         pass
     try:
-        self.config.dtypes.ifinprojection.extension(ELAN_APP).setCCategory('ifin-projections')
+        self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory('npp-projections')
     except:
         pass
     try:
-        self.config.dtypes.nppprojection.extension(ELAN_APP).setCCategory('npp-projections')
+        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory('rodos')
     except:
         pass
     try:
-        self.config.dtypes.rodosprojection.extension(ELAN_APP).setCCategory('rodos')
+        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory('other')
     except:
         pass
     try:
-        self.config.dtypes.otherprojection.extension(ELAN_APP).setCCategory('other')
+        self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory('gamma-dose-rate')
     except:
         pass
     try:
-        self.config.dtypes.gammadoserate.extension(ELAN_APP).setCCategory('gamma-dose-rate')
+        self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory('air-activity')
     except:
         pass
     try:
-        self.config.dtypes.airactivity.extension(ELAN_APP).setCCategory('air-activity')
+        self.config.dtypes.groundcontamination.type_extension(ELAN_APP).setCCategory('ground-contamination')
     except:
         pass
     try:
-        self.config.dtypes.groundcontamination.extension(ELAN_APP).setCCategory('ground-contamination')
+        self.config.dtypes.mresult_feed.type_extension(ELAN_APP).setCCategory('food-and-feed')
     except:
         pass
     try:
-        self.config.dtypes.mresult_feed.extension(ELAN_APP).setCCategory('food-and-feed')
+        self.config.dtypes.mresult_food.type_extension(ELAN_APP).setCCategory('food-and-feed')
     except:
         pass
     try:
-        self.config.dtypes.mresult_food.extension(ELAN_APP).setCCategory('food-and-feed')
+        self.config.dtypes.mresult_water.type_extension(ELAN_APP).setCCategory('water')
     except:
         pass
     try:
-        self.config.dtypes.mresult_water.extension(ELAN_APP).setCCategory('water')
+        self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory('situation-reports')
     except:
         pass
     try:
-        self.config.dtypes.situationreport.extension(ELAN_APP).setCCategory('situation-reports')
+        self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory('protective-actions')
     except:
         pass
     try:
-        self.config.dtypes.protectiveactions.extension(ELAN_APP).setCCategory('protective-actions')
+        self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory('media-releases')
     except:
         pass
     try:
-        self.config.dtypes.mediarelease.extension(ELAN_APP).setCCategory('media-releases')
+        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory('instructions-to-the-public')
     except:
         pass
     try:
-        self.config.dtypes.instructions.extension(ELAN_APP).setCCategory('instructions-to-the-public')
+        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory('notifications')
     except:
         pass
     try:
-        self.config.dtypes.notification.extension(ELAN_APP).setCCategory('notifications')
-    except:
-        pass
-    try:
-        self.config.dtypes.nppinformation.extension(ELAN_APP).setCCategory('event-npp-information')
+        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
     except:
         pass

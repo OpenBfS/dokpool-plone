@@ -10,8 +10,8 @@
                  title_or_id python:item_title or item_id;                 
                  buttons options/buttons|nothing;
                  edocobj edoc/getObject;
-                 elanobj python:edocobj.extension('elan');
-                 transfersobj python:edocobj.extension('transfers');
+                 elanobj python:edocobj.doc_extension('elan');
+                 transfersobj python:edocobj.doc_extension('transfers');
                  isOverview options/isOverview;
                  isCollection options/isCollection;
                  individual context/isIndividual;

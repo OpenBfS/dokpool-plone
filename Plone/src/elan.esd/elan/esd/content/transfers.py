@@ -5,7 +5,6 @@ from elan.esd.db.model import Channel, ChannelPermissions
 from elan.dbaccess.dbinit import __session__
 from Products.CMFCore.utils import getToolByName
 from plone import api
-from elan.esd.behaviors.elandoctype import IELANDocType
 
 def determineChannels(transfer_ids):
     channels = __session__.query(Channel).filter(Channel.id.in_(transfer_ids)).all()
@@ -23,7 +22,7 @@ def ensureDocTypeInTarget(original, copy):
     dtObj = original.docTypeObj()
     id = _copyPaste(dtObj,config)
     new_dt = config._getOb(id)
-    new_dt.extension(ELAN_APP).setCCategory('recent') # Set intermediate category
+    new_dt.doc_extension(ELAN_APP).setCCategory('recent') # Set intermediate category
     wftool = getToolByName(original, 'portal_workflow')
     wftool.doActionFor(new_dt, 'retract')
     new_dt.reindexObject()
@@ -31,7 +30,7 @@ def ensureDocTypeInTarget(original, copy):
     config.reindexObject()
     
 def ensureScenariosInTarget(original, copy):
-    my_scenarios = original.extension(ELAN_APP).scenarios
+    my_scenarios = original.doc_extension(ELAN_APP).scenarios
     scen_source = original.myDocumentPool().contentconfig.scen
     scen = copy.myDocumentPool().contentconfig.scen
     new_scenarios = []
@@ -55,6 +54,6 @@ def ensureScenariosInTarget(original, copy):
             wftool = getToolByName(original, 'portal_workflow')
             wftool.doActionFor(new_scen, 'retract')
             new_scenarios.append(id)
-    copy.extension(ELAN_APP).scenarios = new_scenarios
+    copy.doc_extension(ELAN_APP).scenarios = new_scenarios
     copy.reindexObject()
 

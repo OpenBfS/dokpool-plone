@@ -2,7 +2,7 @@
 from plone.indexer import indexer
 from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
-from elan.esd.behaviors.elandocument import IELANDocument
+from docpool.elan.behaviors.elandocument import IELANDocument
 
 @indexer(IDPDocument)
 def scenarios_indexer(obj):

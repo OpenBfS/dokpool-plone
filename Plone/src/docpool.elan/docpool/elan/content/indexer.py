@@ -3,25 +3,24 @@ from plone.indexer import indexer
 from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.config import ELAN_APP
-from elan.esd.behaviors.elandocument import IELANDocument
 
 @indexer(IDPDocument)
 def scenarios_indexer(obj):
     try:
-        return obj.extension(ELAN_APP).scenarioIndex()
+        return obj.doc_extension(ELAN_APP).scenarioIndex()
     except:
         pass
 
 @indexer(IDPDocument)
 def category_indexer(obj):
     try:
-        return obj.extension(ELAN_APP).category()
+        return obj.doc_extension(ELAN_APP).category()
     except:
         pass
 
 @indexer(IDPDocument)
 def cat_path_indexer(obj):
     try:
-        return obj.extension(ELAN_APP).cat_path()
+        return obj.doc_extension(ELAN_APP).cat_path()
     except:
         pass

@@ -20,7 +20,6 @@ from plone.memoize.instance import memoize
 
 ##code-section imports
 from docpool.elan.config import ELAN_APP
-from elan.esd.behaviors.elandocument import IELANDocument
 from base64 import b64encode
 from datetime import datetime
 from DateTime import DateTime
@@ -42,7 +41,7 @@ class DPDocumentirixView(BrowserView):
         self.ic = self.irixConfig()
         
     def elanobject(self):
-        return self.context.extension(ELAN_APP)
+        return self.context.doc_extension(ELAN_APP)
 
     def filename(self):
         """

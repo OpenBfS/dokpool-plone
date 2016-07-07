@@ -35,12 +35,6 @@
    <permission id="docpool.base.AddInfoLink" title="Docpool: Add InfoLink" />   
    
    
-   <permission id="docpool.base.AddDocTypeExtension" title="Docpool: Add DocTypeExtension" />   
-   
-   
-   <permission id="docpool.base.AddDocumentExtension" title="Docpool: Add DocumentExtension" />   
-   
-   
    <permission id="docpool.base.AddExtendable" title="Docpool: Add Extendable" />   
    
    

@@ -8,7 +8,6 @@ from zope.event import notify
 from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 
-
 TYPE='type'
 TITLE='title'
 ID='id'
@@ -58,6 +57,7 @@ def createPloneObjects(parent, definitions, fresh=False):
             createPloneObjects(obj, objdef[CHILDREN], fresh)
     
 def setAttributes(obj, objdef):
+    from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
     for attr in objdef:
         if not attr in specialAttributes:
             if attr[:4] == "ref_": # references
@@ -79,9 +79,18 @@ def setAttributes(obj, objdef):
                 getattr(obj,method)(values)
             else:
                 if attr == 'setExcludeFromNav':
+                    print "IExcludeFromNav"
+                    print IExcludeFromNavigation(obj)
                     IExcludeFromNavigation(obj).exclude_from_nav = True
                 #print obj.id, attr, objdef[attr]
                 #print obj
+                elif attr == 'local_behaviors':
+                    print "Setting local behaviors"
+                    lbs = ILocalBehaviorSupport(obj)
+                    print lbs
+                    print IExcludeFromNavigation(obj)
+                    from docpool.elan.behaviors.elandoctype import IELANDocType
+                    lbs._set_local_behaviors(objdef[attr])
                 elif obj.getPortalTypeName() in ['TemplatedDocument']:
                     #Archetypes based
                     setter = getattr(obj, attr)

@@ -7,7 +7,7 @@ from zope.component import adapter
 from plone.autoform.interfaces import IFormFieldProvider
 
 from docpool.elan.config import ELAN_APP
-from elan.esd.behaviors.transferable import ITransferable, Transferable
+from docpool.transfers.behaviors.transferable import ITransferable
 from zope import schema
 from plone.supermodel import model
 from plone.directives import form
@@ -18,7 +18,6 @@ from Products.ZCatalog.interfaces import IZCatalog
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from elan.esd import DocpoolMessageFactory as _
-from elan.esd.behaviors.elandoctype import IELANDocType
 from zope.interface.interface import Interface
 from Acquisition import aq_inner
 from docpool.base.content.doctype import IDocType
@@ -56,13 +55,13 @@ class ELANDocument(object):
         self.context = context
 
     def _get_scenarios(self):
-        return self.context.extension(ELAN_APP).scenarios
+        return self.context.doc_extension(ELAN_APP).scenarios
 
     def _set_scenarios(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.extension(ELAN_APP).scenarios = value
+        context.doc_extension(ELAN_APP).scenarios = value
     
     scenarios = property(_get_scenarios, _set_scenarios)
     

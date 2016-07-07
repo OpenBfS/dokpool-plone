@@ -388,8 +388,8 @@
 </tr>
 <tr>
 	<td>setTimeout</td>
-	<td>120000</td>
-	<td>120000</td>
+	<td>240000</td>
+	<td>240000</td>
 </tr>
 <tr>
 	<td>open</td>
@@ -408,8 +408,8 @@
 </tr>
 <tr>
 	<td>setTimeout</td>
-	<td>120000</td>
-	<td>120000</td>
+	<td>240000</td>
+	<td>240000</td>
 </tr>
 <tr>
 	<td>open</td>

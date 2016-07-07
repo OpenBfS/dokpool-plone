@@ -26,7 +26,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Item
-from docpool.base.content.doctypeextension import DocTypeExtension, IDocTypeExtension
+from docpool.base.interfaces import IDocTypeExtension
 
 from Products.CMFCore.utils import getToolByName
 
@@ -39,7 +39,7 @@ from docpool.transfers.config import PROJECTNAME
 
 from docpool.transfers import DocpoolMessageFactory as _
 
-class ITransfersType(form.Schema, IDocTypeExtension):
+class ITransfersType(IDocTypeExtension):
     """
     """
 
@@ -57,7 +57,7 @@ class ITransfersType(form.Schema, IDocTypeExtension):
 ##/code-section interface
 
 
-class TransfersType(Item, DocTypeExtension):
+class TransfersType(Item):
     """
     """
     security = ClassSecurityInfo()
@@ -66,14 +66,14 @@ class TransfersType(Item, DocTypeExtension):
     
 ##code-section methods
     def _get_allowTransfer(self):
-        return self.context.extension(TRANSFERS_APP).allowTransfer
+        return self.context.doc_extension(TRANSFERS_APP).allowTransfer
 
 
     def _set_allowTransfer(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.extension(TRANSFERS_APP).allowTransfer = value
+        context.doc_extension(TRANSFERS_APP).allowTransfer = value
 
 
     allowTransfer = property(_get_allowTransfer, _set_allowTransfer)

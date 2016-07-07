@@ -97,6 +97,5 @@ def isElanEsdInstalled(self):
 def getTupleForTransfer(self, id):
     """
     """
-    from elan.esd.behaviors.elandocument import IELANDocument
     doc = self._getOb(id)
-    return doc, doc.extension(ELAN_APP)
+    return doc, doc.doc_extension(ELAN_APP)

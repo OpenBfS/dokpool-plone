@@ -3,8 +3,6 @@ from zope.interface import Interface, Attribute
 from docpool.base.content.infofolder import IInfoFolder
 from docpool.base.content.infodocument import IInfoDocument
 from docpool.base.content.infolink import IInfoLink
-from docpool.base.content.doctypeextension import IDocTypeExtension
-from docpool.base.content.documentextension import IDocumentExtension
 from docpool.base.content.extendable import IExtendable
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.doctype import IDocType
@@ -25,10 +23,26 @@ from docpool.base.content.contentarea import IContentArea
 from docpool.base.content.dpapplication import IDPApplication
 from docpool.base.content.dpconfig import IDPConfig
 ##code-section imports
+from plone.supermodel import model
 ##/code-section imports
 
 ##code-section manual code
 class IApplicationAware(Interface):
     """Marker for types that only apply when their application is active.
+    """
+
+class IExtension(model.Schema):
+    """
+    Marker for extension behaviors
+    """
+
+class IDocumentExtension(IExtension):
+    """
+    Marker for behaviors for document extensions
+    """
+
+class IDocTypeExtension(IExtension):
+    """
+    Marker for behaviors for doc type extensions
     """
 ##/code-section manual code
