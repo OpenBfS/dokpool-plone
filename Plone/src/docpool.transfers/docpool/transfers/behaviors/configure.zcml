@@ -12,6 +12,13 @@
         factory=".transferable.Transferable"
         for="docpool.base.interfaces.IDPDocument"
     />
-    
+    <plone:behavior
+        title="Transfer DocType"
+        description="Type extension for transferable types"
+        provides=".transferstype.ITransfersType"
+        factory=".transferstype.TransfersType"
+        for="docpool.base.interfaces.IDocType"
+    />
+
 
 </configure>

@@ -17,13 +17,9 @@ from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from zope.component import adapts
 from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
+from plone.autoform.interfaces import IFormFieldProvider
+from zope.interface import provider, implementer
+
 
 from plone.dexterity.content import Item
 from docpool.base.interfaces import IDocTypeExtension
@@ -39,41 +35,36 @@ from docpool.transfers.config import PROJECTNAME
 
 from docpool.transfers import DocpoolMessageFactory as _
 
+@provider(IFormFieldProvider)
 class ITransfersType(IDocTypeExtension):
-    """
-    """
-
-##code-section interface
     allowTransfer = schema.Bool(
         title=_(u'label_doctype_allowtransfer', default=u'Can documents of this type be sent to other ESDs?'),
         description=_(u'description_doctype_allowtransfer', default=u''),
         required=False,
         default=True,
-        ##code-section field_allowTransfer
-        ##/code-section field_allowTransfer
     )
 
 
 ##/code-section interface
 
 
-class TransfersType(Item):
+class TransfersType(object):
     """
     """
-    security = ClassSecurityInfo()
-    
-    implements(ITransfersType)
-    
+
+    def __init__(self, context):
+        self.context = context
 ##code-section methods
+
     def _get_allowTransfer(self):
-        return self.context.doc_extension(TRANSFERS_APP).allowTransfer
+        return getattr(self.context, "allowTransfer", True)
 
 
     def _set_allowTransfer(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.doc_extension(TRANSFERS_APP).allowTransfer = value
+        context.allowTransfer = value
 
 
     allowTransfer = property(_get_allowTransfer, _set_allowTransfer)

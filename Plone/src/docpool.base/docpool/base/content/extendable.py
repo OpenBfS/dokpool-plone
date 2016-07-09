@@ -62,6 +62,7 @@ class Extendable(Item):
         return APP_REGISTRY[applicationName]['documentBehavior'](self) # and APP_REGISTRY[applicationName]['documentBehavior'](self) or self
 
     def type_extension(self, applicationName):
+        print APP_REGISTRY[applicationName]['typeBehavior'](self).__dict__
         return APP_REGISTRY[applicationName]['typeBehavior'](self) # and APP_REGISTRY[applicationName]['typeBehavior'](self) or self
 
 ##/code-section methods

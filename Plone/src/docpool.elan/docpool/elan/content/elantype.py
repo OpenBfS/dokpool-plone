@@ -36,6 +36,7 @@ from Products.Archetypes.utils import shasattr, DisplayList
 from z3c.relationfield import RelationValue
 from zope.intid import IIntIds
 from zope.component import getUtility
+from Acquisition import aq_inner
 ##/code-section imports 
 
 from docpool.elan.config import PROJECTNAME
@@ -80,6 +81,20 @@ class ELANType(Item, DocTypeExtension):
     implements(IELANType)
     
 ##code-section methods
+    def __init__(self, context):
+        self.context = context
+
+    def _get_contentCategory(self):
+        return self.context.contentCategory
+
+    def _set_contentCategory(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.contentCategory = value
+
+    contentCategory = property(_get_contentCategory, _set_contentCategory)
+
     def category(self):
         """
         The primary category that the documents of this type belong to.

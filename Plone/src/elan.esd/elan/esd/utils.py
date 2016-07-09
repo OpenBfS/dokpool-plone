@@ -94,8 +94,3 @@ def isElanEsdInstalled(self):
             return 1
     return 0
 
-def getTupleForTransfer(self, id):
-    """
-    """
-    doc = self._getOb(id)
-    return doc, doc.doc_extension(ELAN_APP)

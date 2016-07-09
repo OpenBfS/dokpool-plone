@@ -7,5 +7,5 @@
 ##parameters=id
 ##title=
 ##
-from elan.esd.utils import getTupleForTransfer
+from docpool.transfers.utils import getTupleForTransfer
 return getTupleForTransfer(context, id)

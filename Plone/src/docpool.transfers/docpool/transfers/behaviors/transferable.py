@@ -39,6 +39,7 @@ from Acquisition import aq_inner
 from Products.Archetypes.utils import shasattr
 from docpool.base.interfaces import IDocumentExtension
 
+@provider(IFormFieldProvider)
 class ITransferable(IDocumentExtension):
     transferred_by = schema.TextLine(
                         title=_(u'label_dpdocument_transferred_by', default=u'Transferred by'),
@@ -94,7 +95,7 @@ class Transferable(object):
     transferred_by = property(_get_transferred_by, _set_transferred_by)
 
     def _get_transferred(self):
-        return self.context.transferred
+        return getattr(self.context,'transferred', None)
 
     def _set_transferred(self, value):
         if not value:
@@ -131,7 +132,7 @@ class Transferable(object):
         if self.context.isArchive():
             return eval(self.context.transferLog)
         else:
-            if self.context.transferred:
+            if self.transferred:
                 # We need the receiving side
                 events = __session__.query(ChannelReceives).filter(
                     ChannelReceives.document_uid == self.context.UID()).order_by(desc(ChannelReceives.etimestamp)).all()
@@ -155,17 +156,15 @@ class Transferable(object):
         """
         if not self.context.isSender():
             return False
-        if self.context.transferred or self.context.isArchive():
+        if self.transferred or self.context.isArchive():
             return False
         wftool = getToolByName(self.context, 'portal_workflow')
         if wftool.getInfoFor(self.context, 'review_state') != 'published':
             return False
         dto = self.context.docTypeObj()
-        # print dto, dto and dto.allowTransfer
-        if dto and dto.allowTransfer:
+        print dto.__dict__, dto.type_extension(TRANSFERS_APP).__dict__
+        if dto and dto.type_extension(TRANSFERS_APP).allowTransfer:
             return True
-        if shasattr(self.context, "transferable"):
-            return self.context.transferable()
         return False
 
     def allowedTargets(self):

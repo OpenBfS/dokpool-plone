@@ -42,8 +42,6 @@ class IELANDocType(IDocTypeExtension):
     form.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
 
 
-##code-section field_allowTransfer
-##/code-section field_allowTransfer                           
 
 @form.default_value(field=IELANDocType['contentCategory']) 
 def getDefaultCategory(data):

@@ -16,13 +16,13 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def enumerateBehaviors(self):
         #print "enumerate"
-        dp_type = self.context.REQUEST.get("form.widgets.docType", None)
+        isFormSubmit = self.context.REQUEST.get("form.buttons.save", None)
 
         self.local_behaviors = getattr(self.context, 'local_behaviors', [])
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):
-            if dp_type or self.isSupported(behavior):
+            if isFormSubmit or self.isSupported(behavior):
                 yield behavior
 
     def isSupported(self, behaviour):

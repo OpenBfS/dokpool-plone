@@ -293,7 +293,7 @@
                  </a>
           </tal:loop>
          </tal:if>
-         <tal:if condition="python: not context.isArchive() and transferable and elanobj.allowedTargets()">
+         <tal:if condition="python: not context.isArchive() and transferable and transfersobj.allowedTargets()">
           <a class="transfer action pat-plone-modal" tal:condition="python: not context.isIndividual()" 
               href=""
               title="Transfer"
