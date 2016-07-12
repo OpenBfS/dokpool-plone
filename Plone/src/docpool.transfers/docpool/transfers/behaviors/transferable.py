@@ -10,6 +10,7 @@ from zope.interface import provider, implementer
 from zope.component import adapter
 from zope import schema
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.browser.flexible_view import FlexibleView
 from docpool.transfers.config import TRANSFERS_APP
 from elan.esd.content.elandoccollection import IELANDocCollection
 from five import grok
@@ -38,6 +39,7 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 from Acquisition import aq_inner
 from Products.Archetypes.utils import shasattr
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.behaviors.extension import Extension
 
 @provider(IFormFieldProvider)
 class ITransferable(IDocumentExtension):
@@ -75,13 +77,16 @@ class ITransferable(IDocumentExtension):
     write_permission(transferLog='docpool.transfers.AccessTransfers')
 
 
-class Transferable(object):
+class Transferable(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
 
     security = ClassSecurityInfo()
 
+    appname = TRANSFERS_APP
+
     def __init__(self, context):
         self.context = context
+        self.request = context.REQUEST
     
     def _get_transferred_by(self):
         return self.context.transferred_by

@@ -3,7 +3,12 @@
     <include package="plone.app.contentmenu" />
 
 <!-- ##code-section Main -->
-    
+            <browser:page permission="zope2.View"
+            name="transfers.macros"
+            for="*"
+            template="transfers_macros.pt"
+         />
+
 <!-- ##/code-section Main -->    
 
     

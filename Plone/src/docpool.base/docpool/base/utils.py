@@ -14,6 +14,7 @@ from zope.component.hooks import getSite
 from plone import api
 from zope.component import getMultiAdapter
 from Acquisition import aq_base, aq_inner
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
 def queryForObject(self, **kwa):
     """
@@ -73,63 +74,6 @@ def getAllowedDocumentTypesForGroup(self):
     res = cat(path="/".join(esd.getPhysicalPath()) + "/config", portal_type = 'DocType', id=tids, sort_on="sortable_title")
     return res
 
-# def getActiveScenarios(self):
-#     cat = getToolByName(self, "portal_catalog")
-#     esd = getDocumentPoolSite(self)
-#     res = cat(path="/".join(esd.getPhysicalPath()) + "/contentconfig", portal_type = 'ELANScenario', dp_type="active", sort_on="modified", sort_order="reverse")
-#     return res
-# 
-# def getOpenScenarios(self):
-#     cat = getToolByName(self, "portal_catalog")
-#     esd = getDocumentPoolSite(self)
-#     res = cat(path="/".join(esd.getPhysicalPath()) + "/contentconfig", portal_type = 'ELANScenario', dp_type=["active","inactive"], sort_on="created", sort_order="reverse")
-#     return res
-# 
-# def getAvailableCategories(self):
-#     cat = getToolByName(self, "portal_catalog")
-#     esd = getDocumentPoolSite(self)
-#     res = cat(path="/".join(esd.getPhysicalPath()) + "/esd", portal_type = 'ELANDocCollection', dp_type=["active"], sort_on="sortable_title")
-#     return res
-# 
-# def getScenariosForCurrentUser(self):
-#     """
-#     """
-#     mtool = getToolByName(self, "portal_membership")
-#     user = mtool.getAuthenticatedMember()
-#     sc = user.getProperty("scenarios", None)
-#     if not sc:
-#         # intented implementation: use the latest active scenario
-#         #a_s = getActiveScenarios(self)
-#         #sc = len(a_s) > 0 and [ a_s[0].Title ] or []
-#         # temporarily: no filter
-#         return []
-#     return list(sc)
-# 
-# def getCategoriesForCurrentUser(self):
-#     mtool = getToolByName(self, "portal_membership")
-#     user = mtool.getAuthenticatedMember()
-#     cs = user.getProperty("categories", None)
-#     if not cs:
-#         return []
-#     return list(cs)
-# 
-# def setScenariosForCurrentUser(self, scenarios):
-#     """
-#     """
-#     mtool = getToolByName(self, "portal_membership")
-#     user = mtool.getAuthenticatedMember()
-#     user.setMemberProperties({"scenarios": scenarios})
-#     
-# def setCategoriesForCurrentUser(self, cats):
-#     """
-#     """
-#     if type(cats) == type(""):
-#         cats = [cats]
-#     mtool = getToolByName(self, "portal_membership")
-#     user = mtool.getAuthenticatedMember()
-#     user.setMemberProperties({"categories": cats})
-
-    
 def getGroupsForCurrentUser(self, user=None):
     """
     """
@@ -188,17 +132,6 @@ def getUserInfo(self, username=None):
         # determine the group
         primary_group = self.myGroup()
     return userid, fullname, primary_group
-
-# def getRelativePath(obj):
-#     if obj.isArchive():
-#         portal_path_length = len( obj.myELANArchive().getPhysicalPath() )
-#         content_path = obj.getPhysicalPath()
-#         return "/".join(content_path[portal_path_length:])
-#     else:
-#         # print obj
-#         # print obj.portal_url()
-#         # print obj.portal_url.getRelativeUrl(obj)
-#         return obj.portal_url.getRelativeUrl(obj)
 
 def portalMessage(self, msg, type='info'):
     ptool = getToolByName(self, "plone_utils")
@@ -321,4 +254,26 @@ def checkLocalRole(context, role='Manager'):
             return True
         else:
             return False
-    
+
+# FIXME: performance optimization
+def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
+    """
+    Determine which behaviors are
+    - configured for the object, which are also
+    - allowed within the docpool and also
+    - allowed for the user and
+    - not currently filtered out.
+    @param self:
+    @return:
+    """
+    try:
+        # 1. determine available extensions on the doc
+        lbs = ILocalBehaviorSupport(doc).local_behaviors
+        # 2. determine active apps in the docpool
+        dp_app_state = getMultiAdapter((doc, request), name=u'dp_app_state')
+        effective_apps = dp_app_state.effectiveAppsHere()
+        res = list(set(lbs).intersection(effective_apps))
+        res.sort()
+        return res
+    except Exception, e:
+        log_exc(e)

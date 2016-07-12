@@ -2,7 +2,7 @@
 from AccessControl import ClassSecurityInfo
 
 from plone.autoform.directives import read_permission, write_permission
-from zope.interface import provider, implementer
+from zope.interface import provider, implementer, implements
 from zope.component import adapter
 from plone.autoform.interfaces import IFormFieldProvider
 
@@ -22,6 +22,8 @@ from Acquisition import aq_inner
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
 from docpool.elan.behaviors.elandoctype import IELANDocType
+from docpool.base.behaviors.extension import Extension
+from docpool.base.browser.flexible_view import FlexibleView
 
 @provider(IFormFieldProvider)
 class IELANDocument(IDocumentExtension):
@@ -47,14 +49,17 @@ def initializeScenarios(data):
 
 
 
-class ELANDocument(object):
-    
+class ELANDocument(FlexibleView):
+
     __allow_access_to_unprotected_subobjects__ = 1
     
     security = ClassSecurityInfo()
+
+    appname = ELAN_APP
     
     def __init__(self, context):
         self.context = context
+        self.request = context.REQUEST
 
     def _get_scenarios(self):
         return self.context.scenarios

@@ -31,7 +31,8 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from docpool.base.appregistry import APP_REGISTRY
-##/code-section imports 
+from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
+##/code-section imports
 
 from docpool.base.config import PROJECTNAME
 
@@ -62,9 +63,17 @@ class Extendable(Item):
         return APP_REGISTRY[applicationName]['documentBehavior'](self) # and APP_REGISTRY[applicationName]['documentBehavior'](self) or self
 
     def type_extension(self, applicationName):
-        print APP_REGISTRY[applicationName]['typeBehavior'](self).__dict__
         return APP_REGISTRY[applicationName]['typeBehavior'](self) # and APP_REGISTRY[applicationName]['typeBehavior'](self) or self
 
+    # FIXME: potential performance leak
+    def myExtensions(self, request):
+        """
+
+        @return:
+        """
+        behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
+        print behaviorNames
+        return [ self.doc_extension(name) for name in behaviorNames ]
 ##/code-section methods
 
 

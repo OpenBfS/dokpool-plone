@@ -1,255 +1,266 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.base">
+<configure xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" xmlns="http://namespaces.zope.org/zope" i18n_domain="docpool.base">
 
     <include package="plone.app.contentmenu" />
 
 <!-- ##code-section Main -->
-    <grok:grok package="." />
-    
-        <browser:page permission="zope2.View"
-            name="pdfprint"
-            for="..interfaces.IDPDocument"
-            class=".printview.PrintView"
-         />    
+    <grok:grok package="."/>
 
-        <browser:page permission="zope2.View"
-            name="dp.macros"
-            for="*"
-            template="dp_macros.pt" 
-         />    
+    <browser:page permission="zope2.View"
+                  name="pdfprint"
+                  for="..interfaces.IDPDocument"
+                  class=".printview.PrintView"
+    />
 
-        <browser:page
+    <browser:page permission="zope2.View"
+                  name="dp.macros"
+                  for="*"
+                  template="dp_macros.pt"
+    />
+
+    <browser:page
             name="sharing"
             for="..interfaces.IDocumentPool"
             class=".sharing.SharingView"
             permission="plone.DelegateRoles"
-            />
-        <browser:page
+    />
+    <browser:page
             name="helphtml"
             for="..interfaces.IDocumentPool"
             class=".documentpool.HelpHelper"
             permission="zope2.View"
-            />
-        <browser:page
+    />
+    <browser:page
             name="help"
             for="..interfaces.IDocumentPool"
             class=".documentpool.HelpView"
             permission="zope2.View"
-            />
+    />
 
-            <browser:page permission="zope2.View" 
-            	name="view" 
-            	for="..interfaces.IFolderBase"
-            	template="folderbase.pt" 
-            	class=".folderbase.FolderBaseView" />
+    <browser:page permission="zope2.View"
+                  name="view"
+                  for="..interfaces.IFolderBase"
+                  template="folderbase.pt"
+                  class=".folderbase.FolderBaseView"/>
 
-            <browser:page permission="zope2.View" 
-                name="upload" 
-                for="..interfaces.IDPDocument"
-                class=".dpdocument.FileUploadView" />
+    <browser:page permission="zope2.View"
+                  name="upload"
+                  for="..interfaces.IDPDocument"
+                  class=".dpdocument.FileUploadView"/>
 
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentView" />
-        
-        
-        
-        
-                
-    
-            <browser:page permission="zope2.View" name="listitem" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentlistitemView" />
-                    
-    
-    
-            <browser:page permission="zope2.View" name="inline" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentinlineView" />
-            <browser:page permission="zope2.View" name="print" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentprintView" />
-                    
-                            
-            <browser:page permission="zope2.View" name="docimage" for="..interfaces.IDPDocument" class=".dpdocument.DPDocumentdocimageView" />
 
-  <browser:page
-    name="images"
-    for="..interfaces.IDPDocument"
-    class=".scaling.ImageScaling"
-    allowed_attributes="scale"
-    permission="zope2.View"
+    <browser:page permission="zope2.View" name="view" for="..interfaces.IDPDocument"
+                  class=".dpdocument.DPDocumentView"/>
+
+
+    <browser:page permission="zope2.View" name="listitem" for="..interfaces.IDPDocument"
+                  class=".dpdocument.DPDocumentlistitemView"/>
+
+
+    <browser:page permission="zope2.View" name="inline" for="..interfaces.IDPDocument"
+                  class=".dpdocument.DPDocumentinlineView"/>
+    <browser:page permission="zope2.View" name="print" for="..interfaces.IDPDocument"
+                  class=".dpdocument.DPDocumentprintView"/>
+
+
+    <browser:page permission="zope2.View" name="docimage" for="..interfaces.IDPDocument"
+                  class=".dpdocument.DPDocumentdocimageView"/>
+
+    <browser:page permission="zope2.View"
+                  name="meta"
+                  for="..interfaces.IDPDocument"
+                  class=".documentextension.DocMetaView"/>
+
+    <browser:page permission="zope2.View"
+                  name="actions"
+                  for="..interfaces.IDPDocument"
+                  class=".documentextension.DocActionsView"/>
+
+
+    <browser:page
+            name="images"
+            for="..interfaces.IDPDocument"
+            class=".scaling.ImageScaling"
+            allowed_attributes="scale"
+            permission="zope2.View"
     />
 
     <browser:page
-      name="dp_app_state"
-      for="*"
-      permission="zope.Public"
-      class=".context.ApplicationState"
+            name="dp_app_state"
+            for="*"
+            permission="zope.Public"
+            class=".context.ApplicationState"
     />
 
-<!-- ##/code-section Main -->    
+    <!-- ##/code-section Main -->
 
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <browser:page permission="zope2.View" name="listitem" for="..interfaces.IInfoLink" class=".infolink.InfoLinklistitemView" />
-                    
-                            
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <browser:page permission="zope2.View" name="listitem" for="..interfaces.IFolderBase" class=".folderbase.FolderBaselistitemView" />
-                    
-    
-    
+
+
+
             <browser:page permission="zope2.View" name="rpopup" for="..interfaces.IFolderBase" class=".folderbase.FolderBaserpopupView" />
-                    
-                            
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <browser:page permission="zope2.View" name="view" for="..interfaces.IDocumentPool" class=".documentpool.DocumentPoolView" />
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <browser:page permission="zope2.View" name="view" for="..interfaces.IDPApplication" class=".dpapplication.DPApplicationView" />
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
 </configure>

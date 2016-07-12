@@ -1,0 +1,65 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal" 
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
+     i18n:domain="docpool.transfers">
+    <body>
+
+
+    <metal:macro define-macro="transfers_meta" i18n:domain="elan.esd">
+          <span tal:define="transfers transfersobj/transferEvents" tal:condition="transfers">
+          <tal:loop repeat="transfer transfers">
+          <span class="transferlog" tal:attributes="title string:${transfer/by} ${transfer/time}"
+              tal:content="python:transfer['type'] == 'send' and '--> %s' % transfer['esd'] or '<-- %s' % transfer['esd']"></span>
+          </tal:loop>
+          </span>
+          <br>
+    </metal:macro>
+
+
+      
+    <metal:macro define-macro="docactions" i18n:domain="elan.esd">
+          <tal:if condition="python: not (isCollection or individual or unknown) and not context.isArchive()">
+              <tal:loop repeat="action actions" define="actions context/workflowActions">
+                  <a  class="wf_action action" href=""
+                  onclick=""
+                  title=""
+                  tal:define="a_id action/id;
+                      a_title action/title;
+                      a_icon action/icon;
+                      alert_msg python:context.translate('alert_' + a_id + '_popup', default='Do you really want to publish this document?', domain='elan.esd', escape_for_js=True)"
+                  tal:attributes="onclick string:return confirm('${context/Title}: ${alert_msg}');
+                      href python:'%s/change_state?id=%s&action=%s' % (myfolder.absolute_url(), context.getId(), a_id);
+                      title a_title;
+                      ">
+                  <img src="" tal:attributes="src string:${context/portal_url}/${a_icon}"/> 
+                 </a>
+          </tal:loop>
+         </tal:if>
+         <tal:if condition="python: not context.isArchive() and transferable and transfersobj.allowedTargets()">
+          <a class="transfer action pat-plone-modal" tal:condition="python: not context.isIndividual()" 
+              href=""
+              title="Transfer"
+              tal:attributes="href python:'%s/elandocument_transfer_form?id=%s' % ('/'.join(edocobj.absolute_url().split('/')[:-1]), context.getId())"
+              i18n:attributes="title">
+              <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+          </a>
+        </tal:if>
+        <tal:cond condition="python: not (isCollection or context.isArchive())">
+            <a tal:condition="nocall:unknown_scen" href=""
+                title="Edit unknown scenario"
+                tal:attributes="href unknown_scen/absolute_url"
+                i18n:attributes="title">
+                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+            </a>
+            <a tal:condition="nocall:unknown_dt" href=""
+                title="Edit unknown doc type"
+                tal:attributes="href unknown_dt/absolute_url"
+                i18n:attributes="title">
+                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/> 
+            </a>
+        </tal:cond>
+        
+     </metal:macro>
+
+    </body>
+</html>

@@ -156,14 +156,6 @@ class DocumentPool(Container):
         """
         safeWrite(obj, self.REQUEST)
         obj.text = RichTextValue(u"", 'text/plain', 'text/html')
-        
-    def currentApplication(self):
-        """
-        """
-        if shasattr(self, "myDPApplication", acquire=True):
-            return self.myDPApplication().getId()
-        else:
-            return "elan"
 
     def allSupportedApps(self):
         """

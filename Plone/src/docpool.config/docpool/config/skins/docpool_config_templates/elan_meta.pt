@@ -1,0 +1,8 @@
+<tal:block i18n:domain="docpool.base"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context">
+    <tal:def define="elanobj view">
+    <div metal:use-macro="here/@@elan.macros/macros/elan_meta"/>
+    </tal:def>
+</tal:block>

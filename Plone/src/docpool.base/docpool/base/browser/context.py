@@ -27,9 +27,9 @@ class ApplicationState(BrowserView):
     @memoize
     def effectiveAppsHere(self):
         """
-
         @return:
         """
+        # FIXME: caching needs to be personalized
         return tuple(set(self.appsActivatedByCurrentUser()).intersection(set(self.appsSupportedHere())))
 
     @memoize
