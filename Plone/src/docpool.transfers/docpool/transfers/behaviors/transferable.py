@@ -121,6 +121,13 @@ class Transferable(FlexibleView):
     
     transferLog = property(_get_transferLog, _set_transferLog)
 
+    def isClean(self):
+        """
+        Is this document free for further action like publishing or transfer.
+        @return:
+        """
+        return True
+
     def changed(self):
         """
         """

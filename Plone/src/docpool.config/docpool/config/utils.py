@@ -79,17 +79,9 @@ def setAttributes(obj, objdef):
                 getattr(obj,method)(values)
             else:
                 if attr == 'setExcludeFromNav':
-                    print "IExcludeFromNav"
-                    print IExcludeFromNavigation(obj)
                     IExcludeFromNavigation(obj).exclude_from_nav = True
-                #print obj.id, attr, objdef[attr]
-                #print obj
                 elif attr == 'local_behaviors':
-                    print "Setting local behaviors"
                     lbs = ILocalBehaviorSupport(obj)
-                    print lbs
-                    print IExcludeFromNavigation(obj)
-                    from docpool.elan.behaviors.elandoctype import IELANDocType
                     lbs._set_local_behaviors(objdef[attr])
                 elif obj.getPortalTypeName() in ['TemplatedDocument']:
                     #Archetypes based

@@ -38,7 +38,7 @@
                     <div metal:use-macro="here/@@dp.macros/macros/fileimagelist"/>
                 </td>
                 <td class="metadata">
-                    <div metal:use-macro="here/@@dp.macros/macros/content-metadata"/>
+                    <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
                 </td>
     </tal:def> 
 </tal:block>

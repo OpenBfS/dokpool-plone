@@ -3,8 +3,7 @@
                    context nocall:options/context;
                    here nocall:context">
     <tal:def define="edit_allowed python:False;
-                     elanobj python:context.doc_extension('elan');
-                     transfersobj python:context.doc_extension('transfers');">
-    <div metal:use-macro="here/@@elan.macros/macros/elandoc"/>
+                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+    <div metal:use-macro="here/@@dp.macros/macros/doc_complete"/>
     </tal:def>  
 </tal:block>

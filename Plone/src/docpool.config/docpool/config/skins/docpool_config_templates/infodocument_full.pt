@@ -8,9 +8,9 @@
     <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
     </tal:if>
           <br><br>
-          <div metal:use-macro="here/@@elan.macros/macros/docfiles"/>   
+          <div metal:use-macro="here/@@dp.macros/macros/doc_files"/>
           <br><br>  
-          <div metal:use-macro="here/@@elan.macros/macros/docimages"/>   
+          <div metal:use-macro="here/@@dp.macros/macros/doc_images"/>
           <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>   
     
  </tal:def>

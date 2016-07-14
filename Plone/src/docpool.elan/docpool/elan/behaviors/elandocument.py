@@ -72,6 +72,13 @@ class ELANDocument(FlexibleView):
     
     scenarios = property(_get_scenarios, _set_scenarios)
 
+    def isClean(self):
+        """
+        Is this document free for further action like publishing or transfer.
+        @return:
+        """
+        return self.unknownScenario() is None
+
     def myScenarioObjects(self):
         """
         """

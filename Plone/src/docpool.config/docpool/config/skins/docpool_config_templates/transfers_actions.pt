@@ -3,6 +3,6 @@
                    context nocall:options/context;
                    here nocall:context">
     <tal:def define="transfersobj view">
-        <div metal:use-macro="here/@@transfers.macros/macros/transfers_meta"/>
+        <div metal:use-macro="here/@@transfers.macros/macros/transfers_actions"/>
     </tal:def>
 </tal:block>

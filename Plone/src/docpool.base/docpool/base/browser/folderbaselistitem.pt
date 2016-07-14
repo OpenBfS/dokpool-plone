@@ -25,7 +25,7 @@
                     <div metal:use-macro="here/@@dp.macros/macros/foldercontent"/> 
                 </td>
                 <td class="metadata">
-                    <div metal:use-macro="here/@@dp.macros/macros/content-metadata"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
                 </td>
 
 </tal:def>    

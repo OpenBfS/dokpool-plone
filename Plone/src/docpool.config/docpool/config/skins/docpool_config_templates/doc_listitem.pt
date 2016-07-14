@@ -10,8 +10,6 @@
                  title_or_id python:item_title or item_id;                 
                  buttons options/buttons|nothing;
                  edocobj edoc/getObject;
-                 elanobj python:edocobj.doc_extension('elan');
-                 transfersobj python:edocobj.doc_extension('transfers');
                  isOverview options/isOverview;
                  isCollection options/isCollection;
                  individual context/isIndividual;
@@ -26,33 +24,26 @@
                  pas_member context/@@pas_member;
                  author python:pas_member.info(item_creator);
                  creator_fullname author/name_or_id;
-                 tac elanobj/typeAndCat;
-                 item_type python:tac[0];
-                 item_cat python:tac[1];
-                 item_cat python:', '.join(item_cat);
                  item_ptype edoc/portal_type;
                  normalizeString nocall: context/plone_utils/normalizeString;
                  item_type_class python:'contenttype-' + normalizeString(item_ptype);
                  rs edoc/review_state;
                  item_wf_state_class python:'state-' + normalizeString(rs);              
-                 transferable python: not (individual or isOverview) and transfersobj.transferable();
-                 transferred transfersobj/transferred;
-                 unknown_scen python:transferred and elanobj.unknownScenario() or None;
-                 unknown_dt python:transferred and context.unknownDocType() or None;
-                 unknown python: unknown_scen or unknown_dt;
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
                 <td class="actions" tal:condition="python:not isOverview and not isCollection">
                     <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
-                    <div metal:use-macro="here/@@elan.macros/macros/docactions"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+                    <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
+
                 </td>
                 <td class="title">
                     <div metal:use-macro="here/@@dp.macros/macros/doccontent"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/fileimagelist"/>
                 </td>
                 <td class="metadata">
-                    <div metal:use-macro="here/@@elan.macros/macros/docmetadata"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/doc_meta_listitem"/>
                 </td>
     </tal:def> 
 </tal:block>

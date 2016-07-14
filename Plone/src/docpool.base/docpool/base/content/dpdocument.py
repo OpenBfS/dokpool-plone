@@ -56,7 +56,8 @@ from plone.api import content
 from PIL import Image
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
-##/code-section imports 
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+##/code-section imports
 
 from docpool.base.config import PROJECTNAME
 
@@ -97,6 +98,17 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     implements(IDPDocument)
     
 ##code-section methods
+    def isClean(self):
+        """
+        Is this document free for further action like publishing or transfer.
+        @return:
+        """
+        # TODO: check behaviors also
+        lbs = ILocalBehaviorSupport(self).local_behaviors
+        for lb in lbs:
+            if not self.doc_extension(lb).isClean():
+                return False
+        return self.unknownDocType() is None
 
     def createActions(self):
         """

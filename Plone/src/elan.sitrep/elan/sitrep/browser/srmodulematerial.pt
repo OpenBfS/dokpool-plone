@@ -95,7 +95,7 @@ function insertTextblock (selector) {
              
              </td>
              <td class="metadata">
-                 <div metal:use-macro="context/@@dp.macros/macros/content-metadata"/>
+                 <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
              </td>
                 
              </tr>
@@ -148,7 +148,7 @@ function insertTextblock (selector) {
              
              </td>
              <td class="metadata">
-                 <div metal:use-macro="context/@@dp.macros/macros/content-metadata"/>
+                 <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
              </td>
                 
              </tr>

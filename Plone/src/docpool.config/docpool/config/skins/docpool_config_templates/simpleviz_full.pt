@@ -2,8 +2,7 @@
            define="view nocall:options/view;
                    context nocall:options/context;
                    here nocall:context">
-<tal:def define="elanobj view/elanobject;">
-    <div metal:use-macro="here/@@elan.macros/macros/docdata"/>
+    <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
     <div class="visualization">
 	    <div class="map">
 	       <tal:insert replace="structure context/getMapImage" />
@@ -15,5 +14,4 @@
             <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
         </div>
     </div>
- </tal:def>
 </tal:block>
