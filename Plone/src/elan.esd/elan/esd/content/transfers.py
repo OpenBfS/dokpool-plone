@@ -2,7 +2,7 @@
 from docpool.base.utils import queryForObject, _copyPaste
 from docpool.elan.config import ELAN_APP
 from elan.esd.db.model import Channel, ChannelPermissions
-from elan.dbaccess.dbinit import __session__
+from docpool.dbaccess.dbinit import __session__
 from Products.CMFCore.utils import getToolByName
 from plone import api
 

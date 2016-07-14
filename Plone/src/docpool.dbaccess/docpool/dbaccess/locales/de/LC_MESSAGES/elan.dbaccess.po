@@ -1,0 +1,145 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ELAN-E\n"
+"POT-Creation-Date: 2014-09-30 13:43+0000\n"
+"PO-Revision-Date: 2014-09-30 15:28+0100\n"
+"Last-Translator: Henning Rietz <hr@condat.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: Deutsch\n"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:46
+msgid "(ascending)"
+msgstr "(aufsteigend)"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:54
+msgid "(descending)"
+msgstr "(absteigend)"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:20
+msgid "All results on one page?"
+msgstr "Alle Ergebnisse auf einer Seite?"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:110
+#: docpool.dbaccess/docpool/dbaccess/browser/struct_macros.pt:128
+msgid "Back"
+msgstr "Zurück"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:199
+#: docpool.dbaccess/docpool/dbaccess/browser/struct_macros.pt:80
+msgid "Created by ${user} on ${date}, last modified by ${user2} on ${date2}"
+msgstr "Angelegt von ${user} am ${date}, zuletzt ge&auml;ndert von ${user2} am ${date2}"
+
+#: docpool.dbaccess/docpool/dbaccess/profiles/default/types/dbadmin.xml
+msgid "DB Admin Interface"
+msgstr "DB Admin Zugang"
+
+#: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/struct_delete.cpy:24
+msgid "Data was deleted."
+msgstr "Die Daten wurden gelöscht."
+
+#: docpool.dbaccess/docpool/dbaccess/content/forms.py:231
+msgid "Delete"
+msgstr "Löschen"
+
+#: docpool.dbaccess/docpool/dbaccess/content/structured.py:129
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:183
+#: docpool.dbaccess/docpool/dbaccess/browser/struct_macros.pt:64
+msgid "Edit ${label}"
+msgstr "${label} bearbeiten"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:180
+msgid "Existing duplicates:"
+msgstr "Vorhandene Duplikate:"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:140
+msgid "Export"
+msgstr "Exportieren"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:128
+msgid "Export CSV-File"
+msgstr "Export CSV-Datei"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:26
+msgid "Filter"
+msgstr "Filtern"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:145
+msgid "HTML-Report"
+msgstr "HTML-Report"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:122
+msgid "Import"
+msgstr "Importieren"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:116
+msgid "Import CSV-File"
+msgstr "Import CSV-Datei"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:193
+#: docpool.dbaccess/docpool/dbaccess/browser/struct_macros.pt:74
+msgid "Minor change? (no notification)"
+msgstr "Geringf&uuml;gige &Auml;nderung? (keine Benachrichtigung)"
+
+#: docpool.dbaccess/docpool/dbaccess/content/forms.py:233
+msgid "New"
+msgstr "Neu"
+
+#: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/struct_save.cpy:34
+msgid "Please correct the following errors."
+msgstr "Bitte korrigieren Sie die angezeigten Fehler."
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:157
+msgid "Produce"
+msgstr "Erzeugen"
+
+#: docpool.dbaccess/docpool/dbaccess/content/forms.py:400
+msgid "Save"
+msgstr "Speichern"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:60
+msgid "Select/unselect all"
+msgstr "Alle ausw&auml;hlen/abw&auml;hlen"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:34
+msgid "Sort on:"
+msgstr "Sortierung:"
+
+#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt:97
+msgid "Speichern"
+msgstr "Speichern"
+
+#: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/struct_save.cpy:23
+msgid "The data was saved."
+msgstr "Die Daten wurden gespeichert."
+
+#: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/struct_save.cpy:46
+msgid "There is a duplicate for this object!"
+msgstr "Es gibt ein Duplikat für dieses Objekt!"
+
+#: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/objekte_save.cpy:21
+msgid "Your data has been saved."
+msgstr "Die Daten wurden gespeichert."
+
+#: docpool.dbaccess/docpool/dbaccess/content/forms.py:402
+msgid "einfachesicherheitsabfrage"
+msgstr ""
+
+#: docpool.dbaccess/docpool/dbaccess/content/dbadmin.py:127
+msgid "portal_dbadmin Konfiguration"
+msgstr "DB Zugriff Konfiguration"
+
+#: docpool.dbaccess/docpool/dbaccess/content/forms.py:231
+msgid "sicherheitsabfrage"
+msgstr ""
+

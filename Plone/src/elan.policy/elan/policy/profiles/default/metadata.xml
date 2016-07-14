@@ -11,7 +11,7 @@
         <dependency>profile-elan.esd:default</dependency>
         <dependency>profile-elan.sitrep:default</dependency>
         <dependency>profile-docpool.users:default</dependency>
-        <dependency>profile-elan.dbaccess:default</dependency>
+        <dependency>profile-docpool.dbaccess:default</dependency>
         <dependency>profile-docpool.config:default</dependency>
     </dependencies>
 </metadata>

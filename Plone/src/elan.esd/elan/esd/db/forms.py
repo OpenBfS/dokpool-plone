@@ -3,14 +3,14 @@ __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
 from model import *
-from elan.dbaccess.dbinit import __session__, __metadata__
+from docpool.dbaccess.dbinit import __session__, __metadata__
 session = __session__
 metadata = __metadata__
 
 from elixir import *
 
-from elan.dbaccess.content.dbadmin import registerEntityConfig, registerExportDBObjectConfig
-from elan.dbaccess.content.forms import *
+from docpool.dbaccess.content.dbadmin import registerEntityConfig, registerExportDBObjectConfig
+from docpool.dbaccess.content.forms import *
 
 from formalchemy import FieldSet, Grid
 from formalchemy import config

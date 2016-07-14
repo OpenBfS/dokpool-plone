@@ -32,7 +32,7 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from docpool.transfers.config import TRANSFERS_APP
-from elan.dbaccess.dbinit import __session__
+from docpool.dbaccess.dbinit import __session__
 from DateTime import DateTime
 from datetime import datetime
 from sqlalchemy.sql.expression import desc, or_, and_

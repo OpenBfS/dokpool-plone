@@ -5,7 +5,7 @@ __docformat__ = 'plaintext'
 from zope.interface.declarations import classImplements
 from zope.interface import Interface, implements, classProvides, directlyProvides
 
-from elan.dbaccess.dbinit import __metadata__, __session__
+from docpool.dbaccess.dbinit import __metadata__, __session__
 
 metadata = __metadata__
 session = __session__
@@ -18,7 +18,7 @@ import logging
 from datetime import datetime
 from elan.esd import DocpoolMessageFactory as _
 from elan.esd.db.security import IELANProtectedEntityClass
-from elan.dbaccess.content.structured import StructuredEntity
+from docpool.dbaccess.content.structured import StructuredEntity
 
 from formalchemy import FieldSet
 from formalchemy.validators import email, regex

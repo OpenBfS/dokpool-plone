@@ -1,16 +1,16 @@
 from Products.CMFPlone import MessageFactory
-_ = MessageFactory('elan.esd')
+_ = MessageFactory('docpool.transfers')
 from Products.CMFPlone.utils import log, log_exc
 
 request = context.REQUEST
-elandocid = request.get('elandocid')
+dpdocid = request.get('dpdocid')
 targetIds = request.get("targets")
 
 
 if targetIds:
     try:
-        doc, elandoc = context.getTupleForTransfer(id=elandocid)
-        elandoc.manage_transfer(targetIds)
+        doc, dpdoc = context.getTupleForTransfer(id=dpdocid)
+        dpdoc.manage_transfer(targetIds)
         log("Transfer %s to ChannelIDs: %s" % (doc.Title(), targetIds))
         return _("Transfer executed")
     except Exception, e:

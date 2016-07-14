@@ -1,0 +1,240 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.dbaccess" xml:lang="en"  xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+	<body>
+
+		<div metal:define-macro="objektliste"
+			tal:define="typ request/typ|nothing;
+			            dba context/portal_dbadmin;
+	                    view python:dba.getListViewObj(request, context);
+	                    label view/label"
+			class="dbadmin" tal:attributes="class string:dbadmin $label">
+			<h3 tal:content="label" i18n:translate="">List</h3>
+
+			<form action="" method="post" name="stammdaten_liste" id="stammdaten_liste"
+				enctype="multipart/form-data" tal:attributes="action string:${context/absolute_url}/${template/id}"
+				tal:define="b_start view/getBatchStart;
+                            batch view/getBatchObj;">
+
+				<span tal:replace="structure context/@@authenticator/authenticator"/>
+				<div id="filterform" class="filter">
+				<metal:slot define-slot="filter-slot" />
+				<div class="fafield onepage">
+				<label class="field_opt" for="eineseite" i18n:translate="">All results on one page?</label>
+				<div class="inputs">
+				<input id="eineseite" type="checkbox" value="1" name="eineseite"/>
+				</div>
+				</div>
+				<div class="formcontrols">
+					<input id="filterbutton" onclick="this.form.target=''" class="standalone" type="submit"
+						i18n:attributes="value" value="Filter" name="form.button.filter" />
+				</div>
+                <div class="clear"></div>
+                </div>
+                
+                <div class="gridtable">
+                <div class="sortselect">
+				<span class="label" i18n:translate="">Sort on:</span>
+				<select class="sort" size="1" name="sortiert" onChange=""
+					tal:attributes="onChange string:javascript:window.location.href=this.options[this.selectedIndex].value"
+					tal:define="cns view/getSortNames">
+					<tal:loop repeat="cn cns">
+						<option
+							tal:define="typ string:${cn}; 
+	                                                    typ_o string:${typ}_asc"
+							tal:attributes="value python:view.sortURLSelect(typ, 'ascending');
+	                                                        selected python:(view.getSortOrder() == typ_o) and 'selected' or ''">
+
+							<tal:var replace="python:cn.split('|')[0].capitalize()">name</tal:var>
+							&#8593; <i18n:item translate="">(ascending)</i18n:item>
+						</option>
+						<option
+							tal:define="typ string:${cn}; 
+	                                                    typ_o string:${typ}_desc"
+							tal:attributes="value python:view.sortURLSelect(typ,'reverse');
+	                                                        selected python:(view.getSortOrder() == typ_o) and 'selected' or ''">
+							<tal:var replace="python:cn.split('|')[0].capitalize()">name</tal:var>
+							&#8595; <i18n:item translate="">(descending)</i18n:item>
+						</option>
+					</tal:loop>
+				</select>
+				</div>
+				<div id="selectall">
+				<input type="checkbox" name="checkAllAuto" id="checkAllAuto"/> <i18n:item translate="">Select/unselect all</i18n:item>
+			    <script type="text/javascript">
+				jQuery('#checkAllAuto').click(
+					    function()
+					    {
+					        jQuery("td.check INPUT[type='checkbox']").click();    
+					    }
+					)
+			    </script>
+			    </div>
+				<div metal:use-macro="here/batch_macros/macros/navigation" />
+
+				<metal:slot define-slot="elements-slot" />
+
+				<metal:slot define-slot="buttons-slot" />
+				</div>
+				</form>
+				<form action="" method="post" name="import" id="import_form"
+					enctype="multipart/form-data" tal:attributes="action string:${context/absolute_url}/${template/id}">
+					<input type="hidden" name="form.submitted" value="1" />
+			    	<input type="hidden" name="typ" tal:attributes="value typ" />
+				</form>
+		</div>
+
+		<div metal:define-macro="listbuttons" tal:omit-tag="">
+		<div id="formcontrols" class="formControls">
+			<input type="hidden" name="form.submitted" value="1" />
+			<input type="hidden" name="typ" tal:attributes="value typ" />
+			<input type="hidden" name="last_referer"
+				tal:define="last_referer python:request.form.get('last_referer', request.get('HTTP_REFERER'))"
+				tal:attributes="value python:(last_referer and '%s/%s' % (here.absolute_url(), template.id) not in last_referer) and last_referer or (here.getParentNode() and here.getParentNode().absolute_url())" />
+			<input type="hidden" value="" name="herkunft"
+				tal:attributes="value request/herkunft|request/HTTP_REFERER|nothing" />
+            <input type="hidden" value="" name="sort_on"
+                tal:attributes="value request/sort_on|nothing" />
+            <input type="hidden" value="" name="sort_order"
+                tal:attributes="value request/sort_order|nothing" />
+            <input id="savebutton" class="standalone" type="submit"
+                value="Speichern" name="form.button.save" i18n:attributes="value" />
+            <tal:loop repeat="lb view/getListButtons">
+			<input id="deletebutton" onclick="this.form.target=''" class="standalone" type="submit"
+				value="Delete" i18n:attributes="value" name="form.button.delete"
+				tal:define="action python:lb[0];
+	                        label python:lb[1];
+	                        js python:lb[2];"
+				tal:attributes="id string:${action}button;
+	                            value label;
+	                            name string:form.button.${action};
+	                            onclick string:${js};" />
+	        </tal:loop>
+			<input id="cancelbutton" onclick="this.form.target=''" class="standalone" type="submit"
+				value="Back" name="form.button.cancel" i18n:attributes="value" />
+			</div>
+			<br/>
+	        <div id="import" tal:condition="view/isImportAllowed">
+                  <div class="field ArchetypesFileWidget" id="importfile_id">
+                      <label class="formQuestion" for="importfile" i18n:translate="">
+                          Import CSV-File
+                      </label>
+                      <input id="importfile" type="file" name="importfile:file" size="25" value=""/>
+                  </div>
+            <div class="formcontrols">			    	
+	        <input id="uploadbutton" onclick="this.form.target=''" class="standalone" type="submit"
+	            value="Import" i18n:attributes="value" name="form.button.upload" />
+            </div>
+			</div>
+			<div id="export">
+			<div id="exportselect" class="field">
+                 <label class="formQuestion" for="exportname" i18n:translate="">
+                     Export CSV-File
+                 </label>
+			
+			    <tal:def define="names view/exports; show python:len(names) > 1">
+				<select class="exportnames" size="1" name="exportname" tal:condition="show">
+					<option tal:repeat="ename names" tal:content="ename" tal:attributes="value ename"></option>
+				</select>
+				<input name="exportname" tal:condition="not:show" type="hidden" tal:attributes="value python:names[0]"/>
+				</tal:def>
+			</div>
+			<div class="formcontrols">
+			<input tal:condition="python:dba.isExportable(request.get('typ'))" id="exportbutton" onclick="this.form.target=''" class="standalone" type="submit" i18n:attributes="value" value="Export" name="form.button.export"/>
+			</div>			
+			</div>
+            <div id="report" tal:define="names python:dba.isReportable(request.get('typ'))" tal:condition="names">
+            <div id="reportselect" class="field">
+                 <label class="formQuestion" for="exportname" i18n:translate="">
+                     HTML-Report
+                 </label>
+                
+                <tal:def define="show python:len(names) > 1">            
+                <select class="reportnames" size="1" name="reportname" tal:condition="show">
+                    <option tal:repeat="rname names" tal:content="rname" tal:attributes="value rname"></option>
+                </select>
+                <input name="reportname" tal:condition="not:show" type="hidden" tal:attributes="value python:names[0]"/>
+                </tal:def>
+            </div>
+            <div class="formcontrols">
+            <input id="reportbutton" onclick="this.form.target='_blank'" class="standalone" type="submit" value="Produce" i18n:attributes="value" name="form.button.report"/>
+            </div>
+			
+			</div>
+			         <div class="clear"></div>
+   
+			<br/>
+		</div>
+
+		<div metal:define-macro="objektedit"
+			tal:define="typ request/typ|nothing;
+		             create request/create|python:False;
+		             pk request/pk|nothing;
+		             dba nocall:context/portal_dbadmin;
+		             view python:dba.getEditViewObj(request, create, context);
+		             label view/label;
+		             prolog view/prolog;
+		             epilog view/epilog;
+		             allowMinor view/allowMinor;
+		             audit view/audit;
+		             dubletten request/dubletten|nothing;"
+			class="dbadmin">
+			<tal:dubletten condition="dubletten">
+			     <h2 i18n:translate="">Existing duplicates:</h2>
+			     <div tal:repeat="double dubletten"><span tal:content="python:double[0]"></span> <a tal:attributes="href python:double[1]">editlink</a></div>
+			</tal:dubletten>
+			<h3 i18n:translate="">Edit <tal:var i18n:name="label" replace="label"/></h3>
+        
+            <p class="prolog" tal:condition="prolog" tal:content="prolog"></p>
+                    
+			<form action="" method="post" name="objekt_edit" id="objekt_edit"
+				enctype="multipart/form-data" tal:attributes="action string:${context/absolute_url}/${template/id}">
+
+				<span tal:replace="structure context/@@authenticator/authenticator"/>
+				<metal:slot define-slot="fields-slot" />
+				<tal:if condition="allowMinor">
+	               <div class="fafield">
+	               <label class="field_opt" for="minor" i18n:translate="">Minor change? (no notification)</label>
+	               <div class="inputs">
+	               <input id="minor" type="checkbox" value="1" name="minor"/>
+	               </div>
+	               </div>
+				</tal:if>
+                <p class="audit" tal:condition="audit" i18n:translate="">Created by <tal:var replace="audit/en" i18n:name="user"/> on <tal:var replace="audit/ed" i18n:name="date"/>, last modified by <tal:var replace="audit/aen" i18n:name="user2"/> on <tal:var replace="audit/aed" i18n:name="date2"/></p>
+				<metal:slot define-slot="buttons-slot" />
+			</form>
+            <p class="epilog" tal:condition="epilog" tal:content="epilog"></p>
+		</div>
+
+		<div metal:define-macro="editbuttons" id="formcontrols">
+			<input type="hidden" name="form.submitted" value="1" />
+			<input type="hidden" name="typ" tal:attributes="value typ" />
+            <input type="hidden" name="pk" tal:attributes="value pk" />
+			<input type="hidden" name="create:boolean" tal:attributes="value create" />
+			<input type="hidden" name="last_referer"
+				tal:define="last_referer python:here.session_restore_value('HTTP_REFERER', request.form.get('last_referer', request.get('HTTP_REFERER')))"
+				tal:attributes="value python:(last_referer and '%s/%s' % (here.absolute_url(), template.id) not in last_referer) and last_referer or (here.getParentNode() and here.getParentNode().absolute_url())" />				
+			<input type="hidden" value="" name="herkunft"
+				tal:attributes="value view/herkunft" />
+			<input type="hidden" value="" name="objsel:list" tal:attributes="value pk" />
+
+            <tal:loop repeat="eb view/getEditButtons">
+			<input id="submitbutton" class="standalone" type="submit"
+				value="Save" name="form.button.save" i18n:attributes="value"
+				tal:define="
+	                        action python:eb[0];
+	                        label python:eb[1];
+	                        js python:eb[2]"
+				tal:attributes="id string:${action}button;
+	                            value label;
+	                            name string:form.button.${action};
+	                            onclick js;" />
+	        </tal:loop>
+
+			<input id="cancelbutton" class="standalone" type="submit"
+				value="Back" i18n:attributes="value" name="form.button.cancel" />
+		</div>
+
+
+
+	</body>
+
+</html>

@@ -19,7 +19,7 @@ from Products.ZCatalog.interfaces import IZCatalog
 from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
 
-from elan.dbaccess.dbinit import __session__
+from docpool.dbaccess.dbinit import __session__
 from elan.esd.db.model import Channel, DocTypePermission, SenderLog, ReceiverLog,\
     ChannelSends, ChannelReceives, ChannelPermissions
 from sqlalchemy import and_

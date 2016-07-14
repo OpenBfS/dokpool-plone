@@ -1,0 +1,26 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.dbaccess" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<!-- ##code-section Head -->
+<!-- ##/code-section Head -->    
+
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core">
+<!-- ##code-section Main -->
+		<div class="dbadmin" tal:define="tool context/portal_dbadmin">
+		<ul>
+			<li tal:repeat="typlabel python:tool.getRegisteredTypes(context)"><a tal:define="typ python:typlabel[0];
+																		   label python:typlabel[1]"
+				href="objekt_liste?typ=Stammdaten"
+				tal:attributes="href string:${context/absolute_url}/objekt_liste?typ=${typ}"
+				tal:content="string:${label} bearbeiten">Stammdaten bearbeiten</a></li>
+		</ul>
+		</div>
+
+<!-- ##/code-section Main -->    
+</metal:content-core>
+</metal:content-core>
+
+<!-- ##code-section Bottom -->
+<!-- ##/code-section Bottom -->  
+</body>
+</html>

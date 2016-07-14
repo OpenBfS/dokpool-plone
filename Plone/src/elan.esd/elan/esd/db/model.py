@@ -5,7 +5,7 @@ __docformat__ = 'plaintext'
 from zope.interface.declarations import classImplements
 from zope.interface import Interface, implements, classProvides, directlyProvides
 
-from elan.dbaccess.dbinit import __metadata__, __session__
+from docpool.dbaccess.dbinit import __metadata__, __session__
 
 metadata = __metadata__
 session = __session__

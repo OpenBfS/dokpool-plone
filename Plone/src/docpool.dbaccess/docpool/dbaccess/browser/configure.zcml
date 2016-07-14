@@ -1,0 +1,24 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.dbaccess">
+
+    <include package="plone.app.contentmenu" />
+
+<!-- ##code-section Main -->
+       <browser:page permission="zope2.View"
+            name="docpool.dbaccess.macros"
+            for="*"
+            template="dbadmin_macros.pt" />
+       <browser:page permission="zope2.View"
+            name="docpool.dbaccess.struct.macros"
+            for="*"
+            template="struct_macros.pt" />
+        
+        <browser:resourceDirectory
+                name="docpool.dbaccess.javascripts"
+                directory="scripts" />
+        
+        <browser:resourceDirectory
+                name="docpool.dbaccess.stylesheets"
+                directory="stylesheets" />    
+<!-- ##/code-section Main -->    
+
+</configure>

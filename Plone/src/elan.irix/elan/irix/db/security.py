@@ -2,12 +2,12 @@
 from zope.interface import implements
 from zope.component import adapts
 
-from elan.dbaccess.interfaces import IDataSecurity
-from elan.dbaccess.security import DefaultSecurity
+from docpool.dbaccess.interfaces import IDataSecurity
+from docpool.dbaccess.security import DefaultSecurity
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
 from docpool.base.utils import checkLocalRole
 
-from elan.dbaccess.interfaces import IProtectedEntityClass
+from docpool.dbaccess.interfaces import IProtectedEntityClass
 
 class IELANProtectedEntityClass(IProtectedEntityClass):
     pass

@@ -43,7 +43,7 @@ from Products.Archetypes.utils import shasattr
 from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectRemovedEvent
 from plone.dexterity.interfaces import IEditFinishedEvent
-from elan.dbaccess.dbinit import __metadata__, __session__
+from docpool.dbaccess.dbinit import __metadata__, __session__
 from elan.esd.db.model import Channel, DocTypePermission, ChannelPermissions
 
 

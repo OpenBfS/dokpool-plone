@@ -31,14 +31,14 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from elan.dbaccess.dbinit import __metadata__, __session__
+from docpool.dbaccess.dbinit import __metadata__, __session__
 
 metadata = __metadata__
 session = __session__
 
 from zope.component import adapter
 from zope.component import getUtility
-from elan.dbaccess.interfaces import Idbadmin
+from docpool.dbaccess.interfaces import Idbadmin
 from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
 from elan.irix.db.model import IRIXReport as DBReport
 from datetime import datetime

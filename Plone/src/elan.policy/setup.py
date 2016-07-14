@@ -35,7 +35,7 @@ setup(name='elan.policy',
           'docpool.config',
           'docpool.dashboard',
           'elan.esd',
-          'elan.dbaccess',
+          'docpool.dbaccess',
           'elan.sitrep',
       ],
       entry_points="""

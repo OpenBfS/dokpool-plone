@@ -19,7 +19,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.memoize.instance import memoize
 
 ##code-section imports
-from elan.dbaccess.dbinit import __session__, __metadata__
+from docpool.dbaccess.dbinit import __session__, __metadata__
 from formalchemy import Grid
 from elan.esd.db.model import ChannelPermissions, DocTypePermission
 from elan.esd import DocpoolMessageFactory as _

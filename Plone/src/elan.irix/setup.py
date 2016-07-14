@@ -37,7 +37,7 @@ setup(name='elan.irix',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'elan.dbaccess'
+          'docpool.dbaccess'
           ##code-section dependencies
 	      ##/code-section dependencies
       ],
