@@ -5,8 +5,11 @@ from plone.dexterity.schema import SCHEMA_CACHE
 from plone.dexterity.behavior import DexterityBehaviorAssignable
 
 from docpool.base.appregistry import BEHAVIOR_REGISTRY
+from docpool.base.content.dpdocument import IDPDocument
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupporting, ILocalBehaviorSupport
 from docpool.base.interfaces import IExtension
+from zope.component import getMultiAdapter
+
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
     adapts(ILocalBehaviorSupporting)
 
@@ -16,9 +19,16 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def enumerateBehaviors(self):
         #print "enumerate"
-        isFormSubmit = self.context.REQUEST.get("form.buttons.save", None)
+        request = self.context.REQUEST
 
-        self.local_behaviors = getattr(self.context, 'local_behaviors', [])
+        isFormSubmit = request.get("form.buttons.save", None)
+
+        if IDPDocument.providedBy(self.context):
+            dp_app_state = getMultiAdapter((self.context, request), name=u'dp_app_state')
+            self.available_apps = dp_app_state.appsPermittedForObject(request)
+        else:
+            self.available_apps = getattr(self.context, 'local_behaviors', [])
+
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):
@@ -27,8 +37,8 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def isSupported(self, behaviour):
         if behaviour.interface.extends(IExtension):
-            if self.local_behaviors:
-                return set(BEHAVIOR_REGISTRY.get(behaviour.interface.__identifier__)).intersection(set(self.local_behaviors))
+            if self.available_apps:
+                return set(BEHAVIOR_REGISTRY.get(behaviour.interface.__identifier__)).intersection(set(self.available_apps))
             else:
                 return False
         else:

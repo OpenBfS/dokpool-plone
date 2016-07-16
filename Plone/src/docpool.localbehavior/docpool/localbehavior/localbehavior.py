@@ -18,7 +18,7 @@ class ILocalBehaviorSupport(form.Schema):
         required=False,
         value_type=schema.Choice(
             title=u'Applications',
-            vocabulary="docpool.base.vocabularies.ExtendingApps"
+            vocabulary="LocalBehaviors"
         )
     )
 
@@ -36,7 +36,7 @@ class LocalBehaviorSupport(object):
         return self.context.local_behaviors
 
     def _set_local_behaviors(self, value):
-        print "setLocalBehaviors", value
+        #print "setLocalBehaviors", value
         context = aq_inner(self.context)
         context.local_behaviors = value
 

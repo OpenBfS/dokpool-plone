@@ -3,6 +3,7 @@
                    context nocall:options/context;
                    here nocall:context">
 <tal:def define="edit_allowed context/canBeEdited;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  elanobj view/elanobject;">
         <div id="header_content">
         <!-- Place content for the document header such as logo etc. here -->

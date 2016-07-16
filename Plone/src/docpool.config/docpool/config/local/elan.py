@@ -37,8 +37,8 @@ def dpAdded(self):
         config.setPolicyIn(policy=placefulWfName, update_security=False)
         config.setPolicyBelow(policy=placefulWfName, update_security=False)
         createELANUsers(self)
-        setELANLocalRoles(self)
         createELANGroups(self)
+        setELANLocalRoles(self)
         self.reindexAll()
 
 
@@ -140,6 +140,8 @@ def setELANLocalRoles(self):
     prefix = str(prefix)
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
+    # Application role for application group, ELAN Users are also TransfersUser
+    self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
 
 
 def createELANGroups(self):
@@ -157,12 +159,23 @@ def createELANGroups(self):
     gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Members' % prefix)
     gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_Members' % prefix)
     gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Administrators' % prefix)
+    # Content administrator group
     props = {'allowedDocTypes': [], 'title': 'Content Administrators (%s)' % title,
              'description': 'Responsible for the definition of scenarios, ticker texts and additional content.',
              'dp': self.UID()}
     gtool.addGroup("%s_ContentAdministrators" % prefix,
                    properties=props)
     gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_ContentAdministrators' % prefix)
+    # Group for ELAN application rights
+    props = {'allowedDocTypes': [], 'title': 'ELAN Users (%s)' % title,
+             'description': 'Users with access to ELAN functions.',
+             'dp': self.UID()}
+    gtool.addGroup("%s_ELANUsers" % prefix,
+               properties=props)
+    gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_ELANUsers' % prefix)
+    gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_ELANUsers' % prefix)
+    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ELANUsers' % prefix)
+
 
 def copyCurrentSituation(self, fresh):
     """

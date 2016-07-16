@@ -56,7 +56,7 @@ from plone.api import content
 from PIL import Image
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from zope.component import getMultiAdapter
 ##/code-section imports
 
 from docpool.base.config import PROJECTNAME
@@ -103,12 +103,18 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         Is this document free for further action like publishing or transfer.
         @return:
         """
-        # TODO: check behaviors also
-        lbs = ILocalBehaviorSupport(self).local_behaviors
-        for lb in lbs:
-            if not self.doc_extension(lb).isClean():
-                return False
-        return self.unknownDocType() is None
+        request = self.REQUEST
+        dp_app_state = getMultiAdapter((self, request), name=u'dp_app_state')
+        def _isClean():
+            lbs = dp_app_state.appsPermittedForObject(request)
+            for lb in lbs:
+                if not self.doc_extension(lb).isClean():
+                    return False
+            return self.unknownDocType() is None
+        # We need to do this as Manager, because we need to check for all possible
+        # reasons why a document could not by worked upon. Not just the reasons we
+        # would be allowed to see as a user.
+        return execute_under_special_role(self, "Manager", _isClean)
 
     def createActions(self):
         """

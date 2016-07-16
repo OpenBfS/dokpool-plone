@@ -8,6 +8,7 @@ from docpool.base.events import IDocumentPoolUndeleteable
 from Products.Five.utilities.marker import mark
 import transaction
 from Products.CMFPlone.utils import log_exc
+from plone import api
 
 def install(self):
     """
@@ -24,8 +25,8 @@ def install(self):
 def configUsers(self, fresh):
     """
     """
-    mtool = getToolByName(self, "portal_membership")
     if fresh:
+        mtool = getToolByName(self, "portal_membership")
         mtool.addMember('elanadmin', 'ELAN Administrator (global)', ['Site Administrator', 'Member'], [])
         elanadmin = mtool.getMemberById('elanadmin')
         elanadmin.setMemberProperties(
@@ -36,6 +37,11 @@ def configUsers(self, fresh):
         elanmanager.setMemberProperties(
             {"fullname": 'ELAN Manager'})
         elanmanager.setSecurityProfile(password="admin")
+        api.user.grant_roles(username='elanmanager',  roles=['ELANUser'])
+        api.user.grant_roles(username='elanadmin', roles=['ELANUser'])
+        api.user.grant_roles(username='dpmanager', roles=['ELANUser'])
+        api.user.grant_roles(username='dpadmin', roles=['ELANUser'])
+
 
 def createStructure(self, fresh):
     createBasicPortalStructure(self, fresh)

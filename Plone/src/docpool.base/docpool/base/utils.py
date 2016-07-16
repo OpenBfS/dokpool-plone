@@ -267,13 +267,9 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     @return:
     """
     try:
-        # 1. determine available extensions on the doc
-        lbs = ILocalBehaviorSupport(doc).local_behaviors
-        # 2. determine active apps in the docpool
         dp_app_state = getMultiAdapter((doc, request), name=u'dp_app_state')
-        effective_apps = dp_app_state.effectiveAppsHere()
-        res = list(set(lbs).intersection(effective_apps))
-        res.sort()
-        return res
+        permitted_apps = dp_app_state.appsPermittedForObject(request, filtered=True)
+        permitted_apps.sort()
+        return permitted_apps
     except Exception, e:
         log_exc(e)

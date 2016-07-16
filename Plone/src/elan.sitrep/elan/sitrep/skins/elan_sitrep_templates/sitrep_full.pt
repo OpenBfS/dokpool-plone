@@ -4,6 +4,7 @@
                    here nocall:context">
 <tal:def define="edit_allowed context/canBeEdited;
                  elanobj view/elanobject;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  rs context/myState;">
 
 <tal:if condition="python:rs=='private'">

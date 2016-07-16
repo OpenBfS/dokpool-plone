@@ -9,7 +9,7 @@
     <role name="ContentReceiver"/>
     <role name="ContentSender"/>
     <role name="ELANUser"/>
-    <role name="TransferUser"/>
+    <role name="TransfersUser"/>
     <role name="DokSysUser"/>
     <role name="DocPoolUser"/>
     <role name="Editor"/>
@@ -389,13 +389,13 @@
       <role name="DocPoolAdmin"/>
     </permission>
     <permission name="Docpool: Receive Content" acquire="True">
-      <role name="Contributor"/>
+      <role name="ContentReceiver"/>
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
     <permission name="Docpool: Send Content" acquire="True">
-      <role name="Contributor"/>
+      <role name="ContentSender"/>
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
