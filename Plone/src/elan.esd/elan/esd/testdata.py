@@ -87,7 +87,8 @@ def createTestDocuments(context, count):
         ILocalBehaviorSupport(d).local_behaviors = ['elan','transfers']
         d.text = RichTextValue(safe_unicode(t))
         s = int(round(random.random() + 1.0))
-        d.doc_extension(ELAN_APP).scenarios = ["scenario%d" % s]
+        if ELAN_APP in context.allSupportedApps():
+            d.doc_extension(ELAN_APP).scenarios = ["scenario%d" % s]
         d.reindexObject()
     
 def createGroupsAndUsers(context):    

@@ -115,7 +115,7 @@ class ELANDocType(object):
         if shasattr(self.context, "dpSearchPath", acquire=True):
             mpath = self.context.dpSearchPath()
         o = queryForObject(self.context, path=mpath, portal_type="ELANDocCollection", id=id)
-        #         print "CCategory", o
+        print "CCategory", o
         intids = getUtility(IIntIds)
         to_id = intids.getId(o)
         self.context.contentCategory = RelationValue(to_id)

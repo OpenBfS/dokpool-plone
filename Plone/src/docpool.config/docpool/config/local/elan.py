@@ -8,6 +8,7 @@ from Products.CMFPlone.utils import log_exc
 from docpool.config.local.base import CONTENT_AREA
 from docpool.config import _
 from datetime import datetime
+from docpool.config.general.elan import connectTypesAndCategories
 
 # ELAN specific structures
 
@@ -26,6 +27,8 @@ def dpAdded(self):
     if fresh:
         self.esd.correctAllDocTypes()
         transaction.commit()
+        connectTypesAndCategories(self)
+
         placeful_wf = getToolByName(self, 'portal_placeful_workflow')
         try:
             self.archive.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
