@@ -14,4 +14,4 @@ from elan.esd.utils import setScenariosForCurrentUser
 #scnrs = REQUEST.get("scnrs", [])
 
 setScenariosForCurrentUser(context, scnrs)
-context.redirectToReferrerWithParameters("Set scenario filter")
+context.redirectToReferrerWithParameters("Set filter")

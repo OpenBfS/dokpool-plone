@@ -3,6 +3,7 @@ from Products.CMFPlone.utils import aq_inner
 from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.log import log_exc
 from zope.component import getUtility
+from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 from zc.relation.interfaces import ICatalog
@@ -14,7 +15,7 @@ from zope.component.hooks import getSite
 from plone import api
 from zope.component import getMultiAdapter
 from Acquisition import aq_base, aq_inner
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from plone.protect.interfaces import IDisableCSRFProtection
 
 def queryForObject(self, **kwa):
     """
@@ -268,8 +269,38 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     """
     try:
         dp_app_state = getMultiAdapter((doc, request), name=u'dp_app_state')
-        permitted_apps = dp_app_state.appsPermittedForObject(request, filtered=True)
+        if doc.isPersonal(): # no personal filtering in the content area
+            permitted_apps = dp_app_state.appsPermittedForObject(request, filtered=False)
+        else: # but in all other areas
+            permitted_apps = dp_app_state.appsPermittedForObject(request, filtered=True)
         permitted_apps.sort()
         return permitted_apps
     except Exception, e:
         log_exc(e)
+        return []
+
+def setApplicationsForCurrentUser(self, apps):
+    """
+
+    @param context:
+    @param apps:
+    @return:
+    """
+    request = self.REQUEST
+    alsoProvides(request, IDisableCSRFProtection)
+    user = api.user.get_current()
+#    id = self.myDocumentPool().getId()
+    # get currently activated apps
+#    current = user.getProperty("apps", default=[])
+#    new = []
+#    replaced = False
+#    for c in current:
+#        if c and c.startswith(id): # replace the selection for the docpool
+#            new.append("%s:%s" % (id, ",".join(apps)))
+#            replaced = True
+#        else:
+#            new.append(c) # otherwise keep the definition
+#    if not replaced: # if never set before for this docpool
+#        new.append("%s:%s" % (id, ",".join(apps)))
+    new = apps # Keep it simple at the moment, maybe we need the stuffe above later...
+    user.setMemberProperties({"apps": tuple(new)})

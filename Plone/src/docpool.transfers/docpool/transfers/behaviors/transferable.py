@@ -39,7 +39,6 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 from Acquisition import aq_inner
 from Products.Archetypes.utils import shasattr
 from docpool.base.interfaces import IDocumentExtension
-from docpool.base.behaviors.extension import Extension
 
 @provider(IFormFieldProvider)
 class ITransferable(IDocumentExtension):

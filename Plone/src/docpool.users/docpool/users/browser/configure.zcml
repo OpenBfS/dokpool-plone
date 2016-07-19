@@ -90,8 +90,18 @@
       provides=".userdataschema.IEnhancedUserDataSchema"
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       factory=".userdataschema.EnhancedUserDataSchemaAdapter"
-      />    
-      
+      />
+
+  <adapter
+      provides=".personalpreferences.IEnhancedPersonalPreferences"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      factory=".personalpreferences.EnhancedPersonalPreferencesAdapter"
+      />
+
+  <adapter
+      factory=".personalpreferences.PersonalPreferencesPanelExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
+
   <adapter
     for="plone.app.layout.navigation.interfaces.INavigationRoot"  
     factory="Products.CMFPlone.controlpanel.bbb.usergroups.UserGroupsSettingsControlPanelAdapter" />

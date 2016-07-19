@@ -308,8 +308,8 @@ msgid "Transfer Folder"
 msgstr "Ordner zum Empfang von anderen Lagedarstellungen"
 
 #: elan.esd/elan/esd/browser/elantransferfolder.pt:11
-msgid "Transfer Folder: scenario filter not active!"
-msgstr "Transfer Order: Ereignisfilter nicht aktiv!"
+msgid "Transfer Folder: filter not active!"
+msgstr "Transfer Order: Filter nicht aktiv!"
 
 #: elan.esd/elan/esd/skins/elan_esd_templates/transferELANDocument.cpy:18
 msgid "Transfer error: "

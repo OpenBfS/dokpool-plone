@@ -49,8 +49,7 @@ def getScenariosForCurrentUser(self):
     return list(sc)
 
 def getCategoriesForCurrentUser(self):
-    mtool = getToolByName(self, "portal_membership")
-    user = mtool.getAuthenticatedMember()
+    user = api.user.get_current()
     cs = user.getProperty("categories", None)
     if not cs:
         return []
@@ -59,8 +58,7 @@ def getCategoriesForCurrentUser(self):
 def setScenariosForCurrentUser(self, scenarios):
     """
     """
-    mtool = getToolByName(self, "portal_membership")
-    user = mtool.getAuthenticatedMember()
+    user = api.user.get_current()
     user.setMemberProperties({"scenarios": scenarios})
     
 def setCategoriesForCurrentUser(self, cats):
@@ -68,8 +66,7 @@ def setCategoriesForCurrentUser(self, cats):
     """
     if type(cats) == type(""):
         cats = [cats]
-    mtool = getToolByName(self, "portal_membership")
-    user = mtool.getAuthenticatedMember()
+    user = api.user.get_current()
     user.setMemberProperties({"categories": cats})
 
 

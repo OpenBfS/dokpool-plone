@@ -12,7 +12,6 @@ from Products.CMFPlone.i18nl10n import utranslate
 def getApplicationDocPoolsForCurrentUser(self, user=None):
     """
     Determine all accessible DocPools in all applications, that the user has access to.
-    TODO: multiple applications are not yet implemented.
     """
     if not user:
         if api.user.is_anonymous():
@@ -21,43 +20,25 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
     
     portal = getSite()
         
-    username = user.getUserName()
-    parts = username.split("_")
-    dp_prefix = parts[0]
     dps = _folderTree(self, "%s" % ("/".join(portal.getPhysicalPath())), {'portal_type': ('PloneSite', 'DocumentPool')})['children']
-    current_app = 'ELAN' #TODO:
     current_dp = None
     if shasattr(self, "myDocumentPool", True):
         current_dp = self.myDocumentPool()
-    root_title = current_dp is None and utranslate("docpool.menu", "Applications", context=self) or "%s: %s" % (current_app, current_dp.Title())
+    root_title = current_dp is None and utranslate("docpool.menu", "Docpools", context=self) or current_dp.Title()
     apps_root = [ 
                     {'id': 'apps',
                      'Title': root_title,
                      'Description': '',
                      'getURL': '',
                      'show_children': True,
-                     'children': None,
+                     'children': dps,
                      'currentItem': False,
                      'currentParent': True,
                      'item_class': 'applications',
                      'normalized_review_state': 'visible'}
             
              ]
-    apps = []
-    for app in [ 'ELAN' ]: #TODO:
-        app_root = {'id': app.lower(),
-                     'Title': utranslate("docpool.menu", app, context=self),
-                     'Description': '',
-                     'getURL': '',
-                     'show_children': True,
-                     'children': dps,
-                     'currentItem': False,
-                     'currentParent': True,
-                     'item_class': app.lower(),
-                     'normalized_review_state': 'visible'}
-        apps.append(app_root)
-        
-    apps_root[0]['children'] = apps
+
     return apps_root
 
     

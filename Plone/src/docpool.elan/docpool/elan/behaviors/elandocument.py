@@ -22,7 +22,6 @@ from Acquisition import aq_inner
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
 from docpool.elan.behaviors.elandoctype import IELANDocType
-from docpool.base.behaviors.extension import Extension
 from docpool.base.browser.flexible_view import FlexibleView
 
 @provider(IFormFieldProvider)

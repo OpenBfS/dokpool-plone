@@ -9,8 +9,8 @@
         <tal:if define="personal context/isPersonal;
                         individual python:personal and context.isIndividual()" 
                 condition="personal">
-            <div class="documentDescription" tal:condition="not:individual" i18n:translate="">Group Folder: scenario filter not active!</div>
-            <div class="documentDescription" tal:condition="individual" i18n:translate="">Personal Folder: scenario filter not active!</div>
+            <div class="documentDescription" tal:condition="not:individual" i18n:translate="">Group Folder: filter not active!</div>
+            <div class="documentDescription" tal:condition="individual" i18n:translate="">Personal Folder: filter not active!</div>
         </tal:if>
     	<div metal:use-macro="here/@@dp.macros/macros/listing"/>   
     

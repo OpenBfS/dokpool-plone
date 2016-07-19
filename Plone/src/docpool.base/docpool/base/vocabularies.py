@@ -10,6 +10,19 @@ from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.appregistry import activeApps, extendingApps
+from zope.component import getMultiAdapter
+
+class AvailableAppsVocabulary(object):
+    """
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
+        available = dp_app_state.appsPermittedForCurrentUser()
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in activeApps() if app[0] in available])
+
+AvailableAppsVocabularyFactory = AvailableAppsVocabulary()
 
 class ActiveAppsVocabulary(object):
     """

@@ -74,8 +74,8 @@ msgid "Group Folder"
 msgstr "Gruppenordner"
 
 #: docpool.base/docpool/base/browser/folderbase.pt:12
-msgid "Group Folder: scenario filter not active!"
-msgstr "Gruppenordner: Ereignisfilter nicht aktiv!"
+msgid "Group Folder: filter not active!"
+msgstr "Gruppenordner: Filter nicht aktiv!"
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
 msgid "Groups Area"
@@ -107,8 +107,8 @@ msgid "No map image"
 msgstr "Kein Kartenbild vorhanden"
 
 #: docpool.base/docpool/base/browser/folderbase.pt:13
-msgid "Personal Folder: scenario filter not active!"
-msgstr "Persönlicher Ordner: Ereignisfilter nicht aktiv!"
+msgid "Personal Folder: filter not active!"
+msgstr "Persönlicher Ordner: Filter nicht aktiv!"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:149
 msgid "Show document"

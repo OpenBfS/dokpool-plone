@@ -50,7 +50,7 @@ class ApplicationState(BrowserView):
             # All application roles end with "User"
             if role.endswith("User"):
                 res.append(role[:-len("User")]).lower()
-        print "local roles: ", res
+        #print "local roles: ", res
         return res
 
     @memoize
@@ -61,13 +61,17 @@ class ApplicationState(BrowserView):
         """
         return list(set(self.appsPermittedForCurrentUser()).intersection(set(self.appsSupportedHere())))
 
-    @memoize
     def appsActivatedByCurrentUser(self):
         """
 
         @return:
         """
-        return [app[0] for app in extendingApps()]
+        user = api.user.get_current()
+        if user.getUserName() == 'admin':
+            return [app[0] for app in extendingApps() ]
+        res = user.getProperty("apps", default=[])
+        print "appsActivatedByCurrentUser: ", res
+        return res
 
     @memoize
     def effectiveAppsHere(self):
