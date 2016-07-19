@@ -41,7 +41,7 @@ from Products.Archetypes.utils import shasattr
 from docpool.base.interfaces import IDocumentExtension
 
 @provider(IFormFieldProvider)
-class ITransferable(IDocumentExtension):
+class ITransferable(form.Schema):
     transferred_by = schema.TextLine(
                         title=_(u'label_dpdocument_transferred_by', default=u'Transferred by'),
                         description=_(u'description_dpdocument_transferred_by', default=u''),

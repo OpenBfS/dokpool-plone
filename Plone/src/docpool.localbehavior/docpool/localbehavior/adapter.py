@@ -25,20 +25,22 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter((self.context, request), name=u'dp_app_state')
-            self.available_apps = dp_app_state.appsPermittedForObject(request)
+            self.available_apps = dp_app_state.appsEffectiveForObject(request)
+#            self.available_apps = list(set(self.available_apps).intersection(getattr(self.context, 'local_behaviors', [])))
         else:
             self.available_apps = getattr(self.context, 'local_behaviors', [])
 
+        print "enumerate ", self.available_apps
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):
             if isFormSubmit or self.isSupported(behavior):
                 yield behavior
 
-    def isSupported(self, behaviour):
-        if behaviour.interface.extends(IExtension):
+    def isSupported(self, behavior):
+        if behavior.interface.extends(IExtension):
             if self.available_apps:
-                return set(BEHAVIOR_REGISTRY.get(behaviour.interface.__identifier__)).intersection(set(self.available_apps))
+                return set(BEHAVIOR_REGISTRY.get(behavior.interface.__identifier__)).intersection(set(self.available_apps))
             else:
                 return False
         else:

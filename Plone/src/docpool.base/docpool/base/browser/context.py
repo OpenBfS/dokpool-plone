@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.Five import BrowserView
 from plone.memoize.view import memoize
-from docpool.base.appregistry import extendingApps
+from docpool.base.appregistry import extendingApps, implicitApps
 from plone import api
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
@@ -11,8 +11,7 @@ class ApplicationState(BrowserView):
     This provides access to information related to the current (user-specific) state.
     """
 
-    @memoize
-    def appsPermittedForObject(self, request, filtered=False):
+    def appsPermittedForObject(self, request):
 
         available_apps = self.appsAvailableToCurrentUser()
         # Now get the type.
@@ -29,9 +28,24 @@ class ApplicationState(BrowserView):
             supportedByType = ILocalBehaviorSupport(dto).local_behaviors
             print "supportedByType ", supportedByType
             available_apps = list(set(available_apps).intersection(supportedByType))
-        if filtered:
-            available_apps = list(set(available_apps).intersection(self.appsActivatedByCurrentUser()))
+        available_apps.extend([ app[0] for app in implicitApps()])
+        print "appsPermittedForObject ", available_apps, self.locallyAcivated()
         return available_apps
+
+    def appsEffectiveForObject(self, request, filtered=False):
+        effective = self.appsPermittedForObject(request)
+        if filtered:
+            effective = list(set(effective).intersection(self.appsActivatedByCurrentUser()))
+            effective.extend([app[0] for app in implicitApps()])
+        effective = list(set(effective).intersection(self.locallyAcivated()))
+        print "appsEffectiveForObject ", effective
+        return effective
+
+    @memoize
+    def locallyAcivated(self):
+        res = getattr(self.context, 'local_behaviors', [])
+        res.extend([ app[0] for app in implicitApps()])
+        return res
 
     @memoize
     def appsPermittedForCurrentUser(self):

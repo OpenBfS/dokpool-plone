@@ -72,7 +72,7 @@ class Extendable(Item):
         @return:
         """
         behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
-#        print behaviorNames
+        print "myExtensions", behaviorNames
         return [ self.doc_extension(name) for name in behaviorNames ]
 ##/code-section methods
 

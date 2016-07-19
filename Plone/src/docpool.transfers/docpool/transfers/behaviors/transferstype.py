@@ -19,6 +19,7 @@ from zope.component import adapts
 from zope import schema
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import provider, implementer
+from plone.directives import form
 
 
 from plone.dexterity.content import Item
@@ -36,7 +37,7 @@ from docpool.transfers.config import PROJECTNAME
 from docpool.transfers import DocpoolMessageFactory as _
 
 @provider(IFormFieldProvider)
-class ITransfersType(IDocTypeExtension):
+class ITransfersType(form.Schema):
     allowTransfer = schema.Bool(
         title=_(u'label_doctype_allowtransfer', default=u'Can documents of this type be sent to other ESDs?'),
         description=_(u'description_doctype_allowtransfer', default=u''),

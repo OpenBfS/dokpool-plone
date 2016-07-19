@@ -6,13 +6,14 @@ APP_REGISTRY = {}
 BEHAVIOR_REGISTRY = {}
 
 
-def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRemovedMethod):
+def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRemovedMethod, implicit=False):
     """
     @param name:
     @param factoryMethod:
     @return:
     """
     APP_REGISTRY[name] = {  'title' : title,
+                            'implicit' : implicit,
                             'typeBehavior' : typeBehavior,
                             'documentBehavior' : documentBehavior,
                             'dpAddedMethod': dpAddedMethod,
@@ -57,7 +58,7 @@ def activeApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [ ( appname, APP_REGISTRY[appname]['title']) for appname in apps ]
+    return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps ]
 
 def extendingApps():
     """
@@ -66,4 +67,13 @@ def extendingApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [ ( appname, APP_REGISTRY[appname]['title']) for appname in apps if APP_REGISTRY[appname].get('documentBehavior', None) ]
+    return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if APP_REGISTRY[appname].get('documentBehavior', None) ]
+
+def implicitApps():
+    """
+    Return all implicit applications which do not require special activation per object.
+    @return:
+    """
+    apps = APP_REGISTRY.keys()
+    apps.sort()
+    return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if APP_REGISTRY[appname]['implicit']]

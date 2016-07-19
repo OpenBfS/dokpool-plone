@@ -270,10 +270,11 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     try:
         dp_app_state = getMultiAdapter((doc, request), name=u'dp_app_state')
         if doc.isPersonal(): # no personal filtering in the content area
-            permitted_apps = dp_app_state.appsPermittedForObject(request, filtered=False)
+            permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=False)
         else: # but in all other areas
-            permitted_apps = dp_app_state.appsPermittedForObject(request, filtered=True)
+            permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=True)
         permitted_apps.sort()
+        print "getActiveAllowed ", permitted_apps
         return permitted_apps
     except Exception, e:
         log_exc(e)

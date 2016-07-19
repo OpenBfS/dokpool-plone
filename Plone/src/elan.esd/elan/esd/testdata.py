@@ -84,7 +84,7 @@ def createTestDocuments(context, count):
         path.invokeFactory(id=docid, type_name="DPDocument", title="Document %d %s" % (i, uname), description=d)
         d = path._getOb(docid)
         d.docType = etype
-        ILocalBehaviorSupport(d).local_behaviors = ['elan','transfers']
+        ILocalBehaviorSupport(d).local_behaviors = ['elan']
         d.text = RichTextValue(safe_unicode(t))
         s = int(round(random.random() + 1.0))
         if ELAN_APP in context.allSupportedApps():
