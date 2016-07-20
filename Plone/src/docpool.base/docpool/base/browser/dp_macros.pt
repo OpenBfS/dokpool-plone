@@ -249,7 +249,9 @@
               <td width="120" valign="top">
               <span tal:content="structure python:b.title_or_id()">images</span>&nbsp;&nbsp;<br><br>
               <a href="" tal:attributes="href python:b.absolute_url()" target="_blank">
-                 <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview'" border="0" width="80%" height="80%"><br>
+                 <img tal:condition="multiple_images" tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview'" border="0" width="80%" height="auto" />
+                 <img tal:condition="not:multiple_images" tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image'" border="0" width="100%" height="auto" />
+                  <br />
               </a>
               <font size="1">
                  <span tal:content="python:b.image.contentType" /><br>
