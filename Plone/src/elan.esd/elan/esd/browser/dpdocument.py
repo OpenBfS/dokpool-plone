@@ -161,7 +161,7 @@ class DPDocumentirixView(BrowserView):
     def base64(self, file):
         """
         """
-        return b64encode(file.index_html())
+        return b64encode(file.index_html().encode('utf-8'))
         
     
 ##/code-section bottom
