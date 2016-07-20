@@ -63,7 +63,7 @@ class ApplicationState(BrowserView):
         for role in roles:
             # All application roles end with "User"
             if role.endswith("User"):
-                res.append(role[:-len("User")]).lower()
+                res.append(role[:-len("User")].lower())
         #print "local roles: ", res
         return res
 
