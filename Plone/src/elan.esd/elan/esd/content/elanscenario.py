@@ -54,6 +54,7 @@ from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
 from docpool.transfers.config import TRANSFERS_APP
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
 @grok.provider(IContextSourceBinder)
 def availableScenarios(context):
@@ -351,12 +352,23 @@ class ELANScenario(Item, ContentBase):
         """
         Delete utility
         """
+        from docpool.elan.config import ELAN_APP
+        from docpool.elan.behaviors.elandocument import IELANDocument
         source_obj = source_brain.getObject()
         # determine parent folder for copy
-        scns = source_obj.scenarios
-        if len(scns) == 1: # only the one scenario --> delete    
-            p = parent(source_obj)
-            p.manage_delObjects([source_obj.getId()])
+        scns = IELANDocument(source_obj).scenarios
+        if len(scns) == 1: # only the one scenario --> potential delete
+            # Check for other applications than ELAN
+            apps = ILocalBehaviorSupport(source_obj).local_behaviors
+            if apps and len(apps) > 1: # There are others --> only remove ELAN behavior
+                try:
+                    apps.remove(ELAN_APP)
+                    ILocalBehaviorSupport(source_obj).local_behaviors = apps
+                except Exception, e:
+                    log_exc(e)
+            else: # we delete
+                p = parent(source_obj)
+                p.manage_delObjects([source_obj.getId()])
         else: # Only remove the scenario
             scns = list(scns)
             scns.remove(self.getId())
