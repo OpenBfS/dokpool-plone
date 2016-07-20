@@ -23,7 +23,8 @@ Plone/\.settings
 Plone/\.pydevproject\.bak
 Plone/\.pydevproject
 .project
+.pydevproject
 .idea
 .DS_Store
-Java/elan-client-1\.0\.jar
+.settings
 Plone/etc/zodbpack.conf
