@@ -36,6 +36,10 @@
             attribute="create_dp_document"
             />
         <browser:page
+            name="create_dp_object"
+            attribute="create_dp_object"
+            />
+        <browser:page
             name="upload_file"
             attribute="upload_file"
             />

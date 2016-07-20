@@ -82,7 +82,7 @@ class ELANDocument(FlexibleView):
         """
         """
         cat = getToolByName(self.context, "portal_catalog")
-        scns = self.context.scenarios
+        scns = getattr(self.context, "scenarios", [])
         return [s.getObject() for s in cat(path=self.context.dpSearchPath(), portal_type='ELANScenario', getId=scns)]
 
     def scenarioIndex(self):

@@ -21,7 +21,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         #print "enumerate"
         request = self.context.REQUEST
 
-        isFormSubmit = request.get("form.buttons.save", None)
+        isInit = request.get("form.buttons.save", None)
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter((self.context, request), name=u'dp_app_state')
@@ -34,7 +34,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):
-            if isFormSubmit or self.isSupported(behavior):
+            if isInit or self.isSupported(behavior):
                 yield behavior
 
     def isSupported(self, behavior):

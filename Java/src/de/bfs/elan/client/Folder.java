@@ -1,6 +1,7 @@
 package de.bfs.elan.client;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -101,16 +102,34 @@ public class Folder extends BaseObject {
 	 * @return the newly created document
 	 */
 	public Document createDocument(String id, String title, String description, String text, String docType, String[] scenarios) {
+		Map<String, Object> properties = new HashMap<String, Object>();
+		properties.put("title",title);
+		properties.put("description",description);
+		properties.put("text",text);
+		properties.put("docType",docType);
+		properties.put("scenarios",scenarios);
+		return createDocument(id, properties);
+	}
+	
+	public Document createDocument(String id, Map<String, Object> properties) {
 		Vector<Object> params = new Vector<Object>();
 		params.add(path);
 		params.add(id);
-		params.add(title);
-		params.add(description);
-		params.add(text);
-		params.add(docType);
-		params.add(scenarios);
-		String newpath = (String)execute("create_dp_document", params);
-		return new Document(client, newpath, null);
+		params.add(properties);
+		params.add("DPDocument");
+		String newpath = (String)execute("create_dp_object", params);
+		return new Document(client, newpath, null);		
 	}
+
+	public BaseObject createObject(String id, Map<String, Object> properties, String type) {
+		Vector<Object> params = new Vector<Object>();
+		params.add(path);
+		params.add(id);
+		params.add(properties);
+		params.add(type);
+		String newpath = (String)execute("create_dp_object", params);
+		return new BaseObject(client, newpath, null);		
+	}
+	
 	
 }

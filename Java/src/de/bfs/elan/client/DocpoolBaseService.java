@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -92,19 +93,34 @@ public class DocpoolBaseService {
 	public static void main(String[] args) throws IOException {
 	    Log log = LogFactory.getLog(DocpoolBaseService.class);
 		
-		DocpoolBaseService baseService = new DocpoolBaseService("http://localhost:8081/Dpool", "auto", "demo1");
+		DocpoolBaseService baseService = new DocpoolBaseService("http://localhost:8081/Plone", "condat_user1", "user1");
 		List<DocumentPool> documentpools = baseService.getDocumentPools();
 		DocumentPool myDocumentPool = baseService.getPrimaryDocumentPool();
 		log.info(myDocumentPool.getTitle());
 		log.info(myDocumentPool.getDescription());
 		List<DocType> types = myDocumentPool.getTypes();
+		for (DocType t : types) {
+			log.info(t.getId());
+			log.info(t.getTitle());
+		}
 		Folder userfolder = myDocumentPool.getUserFolder();
 		List<Object> documents = userfolder.getContents(null);
 		log.info(userfolder.getTitle());
 		List<Folder> gf = myDocumentPool.getGroupFolders();
 		List<Folder> tf = myDocumentPool.getTransferFolders();
 		log.info(gf.size());
-		Document d = userfolder.createDocument("ausjava8", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario1");
+		Map<String, Object> properties = new HashMap<String, Object>();
+		properties.put("title","Generischer Titel");
+		properties.put("description","Generische Beschreibung");
+		properties.put("text","<b>Text</b>");
+		properties.put("docType","ifinprojection");
+		properties.put("scenarios",new String[]{"scenario1","scenario2"});
+		properties.put("subjects", new String[]{"Tag1","Tag2"});
+		properties.put("local_behaviors", new String[]{"elan"});
+		BaseObject bo = userfolder.createObject("generisch9", properties, "DPDocument");
+		log.info(bo.getStringAttribute("created_by"));
+		log.info(bo.getDateAttribute("effective"));		
+		Document d = userfolder.createDocument("ausjava1", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", new String[]{"scenario1","scenario2"});
 		log.info(d.getTitle());
 		java.io.File file = new java.io.File("test.pdf");
 		d.uploadFile("neue_datei", "Neue Datei", "Datei Beschreibung", FileUtils.readFileToByteArray(file), "test.pdf");
@@ -112,7 +128,7 @@ public class DocpoolBaseService {
 		d.uploadImage("neues_bild", "Neues Bild", "Bild Beschreibung", FileUtils.readFileToByteArray(file), "test.jpg");
 		log.info(d.getWorkflowStatus());
 		Folder mygf = gf.get(0);
-		d = mygf.createDocument("ausjava9", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", "scenario1");
+		d = mygf.createDocument("ausjava2", "Neu aus Java", "Beschreibung über Java", "<p>Text aus Java!</p>", "ifinprojection", new String[]{"scenario1","scenario2"});
 		log.info(d.getWorkflowStatus());
 		d.setWorkflowStatus("publish");
 		log.info(d.getWorkflowStatus());

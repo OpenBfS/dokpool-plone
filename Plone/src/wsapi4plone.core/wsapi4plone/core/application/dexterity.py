@@ -128,7 +128,12 @@ class DexterityObjectService(PloneService):
         behavior_fields = []
         content_fields = []
 
-        # Stap 1 metadata
+        # Step 1 metadata
+
+        # Fake a form submit, so that local behaviors are not evaluated
+        request = self.context.REQUEST
+        request.set("form.buttons.save", True)
+
         behavior_assignable = IBehaviorAssignable(context)
         if behavior_assignable:
             behaviors = behavior_assignable.enumerateBehaviors()
@@ -185,13 +190,13 @@ class DexterityObjectService(PloneService):
                             found = True
                             field.set(context, v)
                             changed.append(k)
-                        # context.plone_log(u'Setting field "{0}"'.format(k))
+                        logger.info(u'Setting field "{0}"'.format(k))
                 except Exception, e:
                     logger.exception("Error with field '{0}'  : {1}".format(field_name, e))
                     pass
 
-                # if not found:
-                #     context.plone_log(u'Cannot find field "{0}"'.format(k))
+            if not found:
+                logger.warn(u'Cannot find field "{0}"'.format(k))
 
         if changed:
             context.reindexObject(idxs=changed)

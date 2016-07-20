@@ -103,8 +103,6 @@ class PloneService(Service):
 
     def get_object(self, attrs=[]):
         skeleton = self.get_skeleton(attrs, just_keys=True)
-        print self.context
-        print skeleton
         if not skeleton:
             return None
         for k in skeleton.keys():

@@ -1,5 +1,6 @@
 package de.bfs.elan.client;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -66,6 +67,15 @@ class BaseObject {
 		else {
 			return null;
 		}
+	}
+	
+	public Date getDateAttribute(String name) {
+		if (getData() != null) {
+			return (Date)getData().get(name);			
+		}
+		else {
+			return null;
+		}		
 	}
 	
 	public String getId() {

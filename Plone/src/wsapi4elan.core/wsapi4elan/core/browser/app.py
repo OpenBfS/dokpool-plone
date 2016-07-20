@@ -80,16 +80,28 @@ class ApplicationAPI(WSAPI):
         Creates a document under folderpath.
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        
-        params = { str(folderpath) + "/" + str(id)  : [ { "title": title, 
-                                   "description" : description,
-                                   "text" : text,
-                                   "docType" : docType,
-                                   "scenarios" : scenarios} , "DPDocument"] }
+
+        return self.create_dp_object(folderpath,
+                                     id,
+                                     { "title": title,
+                                       "description" : description,
+                                       "text" : text,
+                                       "docType" : docType,
+                                       "scenarios" : scenarios},
+                                     "DPDocument")
+
+    def create_dp_object(self, folderpath, id, properties, type):
+        """
+        Creates an arbitrary object under folderpath.
+        """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+
+        params = {str(folderpath) + "/" + str(id): [properties, type]}
+
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
-        return res[0] # just the path
-    
+        return res[0]  # just the path
+
     def upload_file(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
