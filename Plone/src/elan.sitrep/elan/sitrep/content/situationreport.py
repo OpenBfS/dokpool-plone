@@ -2,7 +2,7 @@
 #
 # File: situationreport.py
 #
-# Copyright (c) 2016 by Condat AG
+# Copyright (c) 2016 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
 #            http://www.condat.de
 #

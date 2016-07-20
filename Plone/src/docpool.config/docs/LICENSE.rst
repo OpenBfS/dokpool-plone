@@ -1,4 +1,4 @@
-docpool.config Copyright 2015, Henning Rietz
+docpool.config Copyright 2015, Bundesamt für Strahlenschutz
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2

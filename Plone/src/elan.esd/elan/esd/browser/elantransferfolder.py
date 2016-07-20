@@ -2,7 +2,7 @@
 #
 # File: elantransferfolder.py
 #
-# Copyright (c) 2014 by Condat AG
+# Copyright (c) 2014 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
 #            http://www.condat.de
 #

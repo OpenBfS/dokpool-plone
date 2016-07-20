@@ -2,7 +2,7 @@
 #
 # File: srmoduleconfig.py
 #
-# Copyright (c) 2015 by Condat AG
+# Copyright (c) 2015 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
 #            http://www.condat.de
 #
