@@ -67,6 +67,10 @@ class BaseObject {
 			return null;
 		}
 	}
+	
+	public String getId() {
+		return getStringAttribute("id");
+	}
 		
 	public String getTitle() {
 		return getStringAttribute("title");

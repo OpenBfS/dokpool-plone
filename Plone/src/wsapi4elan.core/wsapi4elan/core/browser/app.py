@@ -75,7 +75,7 @@ class ApplicationAPI(WSAPI):
         q = { 'path': esdpath + "/content/Transfers", 'portal_type': "ELANTransferFolder" }
         return self.context.restrictedTraverse("@@query")(q) 
     
-    def create_dp_document(self, folderpath, id, title, description, text, docType, scenario):
+    def create_dp_document(self, folderpath, id, title, description, text, docType, scenarios):
         """
         Creates a document under folderpath.
         """
@@ -85,7 +85,7 @@ class ApplicationAPI(WSAPI):
                                    "description" : description,
                                    "text" : text,
                                    "docType" : docType,
-                                   "scenarios" : [scenario]} , "DPDocument"] }
+                                   "scenarios" : scenarios} , "DPDocument"] }
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0] # just the path

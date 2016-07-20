@@ -100,15 +100,15 @@ public class Folder extends BaseObject {
 	 * @param scenario
 	 * @return the newly created document
 	 */
-	public Document createDocument(String id, String title, String description, String text, String docType, String scenario) {
-		Vector<String> params = new Vector<String>();
+	public Document createDocument(String id, String title, String description, String text, String docType, String[] scenarios) {
+		Vector<Object> params = new Vector<Object>();
 		params.add(path);
 		params.add(id);
 		params.add(title);
 		params.add(description);
 		params.add(text);
 		params.add(docType);
-		params.add(scenario);
+		params.add(scenarios);
 		String newpath = (String)execute("create_dp_document", params);
 		return new Document(client, newpath, null);
 	}
