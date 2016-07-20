@@ -38,6 +38,7 @@ class DexterityObjectService(PloneService):
     
     def get_object(self, attrs=[]):
         skeleton = self.get_skeleton(attrs, just_keys=True)
+        skeleton['id'] = None
         if not skeleton:
             return None
         for k in skeleton.keys():
@@ -50,7 +51,7 @@ class DexterityObjectService(PloneService):
                 if isinstance(v, DateTime):
                     v = XMLRPCDateTime(v)
                 skeleton[k] = v
-
+        print skeleton
         return skeleton
     
     def _fields(self):
@@ -70,7 +71,6 @@ class DexterityObjectService(PloneService):
         fti = context.getTypeInfo()
         schema = fti.lookupSchema()
         content_fields = getFieldsInOrder(schema)
-
         fields = behavior_fields
         fields += content_fields
         
