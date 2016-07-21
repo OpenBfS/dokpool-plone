@@ -29,6 +29,9 @@ def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRe
                                                          or [name]
 
 
+def appName(name):
+    return APP_REGISTRY[name]['title']
+
 def extensionFor(obj, name):
     """
 
@@ -77,3 +80,13 @@ def implicitApps():
     apps = APP_REGISTRY.keys()
     apps.sort()
     return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if APP_REGISTRY[appname]['implicit']]
+
+def selectableApps():
+    """
+    Just those apps, that correspond to a main application, i.e. they provide behavior and they are not implicit.
+    @return:
+    """
+    apps = APP_REGISTRY.keys()
+    apps.sort()
+    return [(appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if
+        APP_REGISTRY[appname].get('documentBehavior', None) and not APP_REGISTRY[appname]['implicit']]

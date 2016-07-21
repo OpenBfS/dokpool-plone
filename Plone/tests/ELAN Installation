@@ -272,11 +272,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>id=form-widgets-supportedApps-1</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>id=form-buttons-save</td>
 	<td></td>
@@ -300,46 +295,6 @@
 	<td>type</td>
 	<td>id=form-widgets-IDublinCore-title</td>
 	<td>Condat</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=form-widgets-supportedApps-0</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=form-widgets-supportedApps-1</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>id=form-buttons-save</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>css=img[alt=&quot;Plone site&quot;]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//li[@id='plone-contentmenu-factories']/a/span[2]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>id=documentpool</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=form-widgets-IDublinCore-title</td>
-	<td>Nur ELAN</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=form-widgets-prefix</td>
-	<td>elan</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -375,11 +330,6 @@
 	<td>type</td>
 	<td>id=form-widgets-prefix</td>
 	<td>transfers</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=form-widgets-supportedApps-1</td>
-	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -452,8 +402,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>//ul[@id='portal-globalnav']/li/ul/li/ul/li[2]/a/span</td>
+	<td>open</td>
+	<td>/Plone/condat</td>
 	<td></td>
 </tr>
 <tr>

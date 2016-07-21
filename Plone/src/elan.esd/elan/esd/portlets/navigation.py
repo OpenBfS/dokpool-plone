@@ -10,7 +10,7 @@ from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFCore.utils import getToolByName
-from docpool.menu.utils import getFoldersForCurrentUser
+from docpool.menu.utils import getFoldersForCurrentUser, adaptQuery
 from Products.Archetypes.utils import shasattr
 
 class Renderer(navigation.Renderer):
@@ -51,3 +51,4 @@ class SitemapQueryBuilder(NavtreeQueryBuilder):
             sitemapDepth += 3
         self.query['path'] = {'query': context.isArchive() and not context.getId() == "archive" and "/".join(context.myELANArchive().getPhysicalPath()) or portal_url.getPortalPath(),
                               'depth': sitemapDepth}
+        adaptQuery(self.query, context)

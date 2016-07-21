@@ -143,7 +143,6 @@ def setELANLocalRoles(self):
     prefix = str(prefix)
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-    # Application role for application group, ELAN Users are also TransfersUser
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
 
 

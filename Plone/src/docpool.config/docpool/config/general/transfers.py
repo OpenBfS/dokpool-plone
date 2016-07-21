@@ -11,7 +11,4 @@ def install(self):
 def configUsers(self, fresh):
     """
     """
-    if fresh:
-        mtool = getToolByName(self, "portal_membership")
-        api.user.grant_roles(username='dpmanager', roles=['TransfersUser'])
-        api.user.grant_roles(username='dpadmin', roles=['TransfersUser'])
+    pass

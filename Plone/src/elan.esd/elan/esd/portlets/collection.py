@@ -40,7 +40,7 @@ def availableCategories(context):
     query = { "portal_type" : ["ELANDocCollection"],
               "path": {'query' :path } 
              }
-    print query
+    #print query
     return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IELANDocCollection.__identifier__).__call__(context) 
 ##/code-section imports 
 

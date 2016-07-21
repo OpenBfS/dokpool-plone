@@ -30,7 +30,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         else:
             self.available_apps = getattr(self.context, 'local_behaviors', [])
 
-        print "enumerate ", self.available_apps
+        #print "enumerate ", self.available_apps
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):

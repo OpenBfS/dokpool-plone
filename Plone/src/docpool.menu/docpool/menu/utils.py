@@ -1,18 +1,20 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.utils import shasattr
-from docpool.base.utils import getGroupsForCurrentUser
-from docpool.menu.browser.menu import DropDownMenuQueryBuilder
+
+from docpool.base.appregistry import appName
+from docpool.base.utils import getGroupsForCurrentUser, queryForObjects
 from zope.component import getMultiAdapter
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone import api
 from zope.site.hooks import getSite
 from Products.CMFPlone.i18nl10n import utranslate
+from docpool.base.config import BASE_APP
+from docpool.transfers.config import TRANSFERS_APP
 
 def getApplicationDocPoolsForCurrentUser(self, user=None):
     """
-    Determine all accessible DocPools in all applications, that the user has access to.
-    TODO: multiple applications are not yet implemented.
+    Determine all accessible DocPools an their applications, that the user has access to.
     """
     if not user:
         if api.user.is_anonymous():
@@ -20,16 +22,20 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
         user = api.user.get_current()
     
     portal = getSite()
-        
-    username = user.getUserName()
-    parts = username.split("_")
-    dp_prefix = parts[0]
-    dps = _folderTree(self, "%s" % ("/".join(portal.getPhysicalPath())), {'portal_type': ('PloneSite', 'DocumentPool')})['children']
-    current_app = 'ELAN' #TODO:
+
+    dps = [ dp.getObject() for dp in queryForObjects(self, path = "/".join(portal.getPhysicalPath()), portal_type='DocumentPool') ]
+
+    #dps = _folderTree(self, "%s" % ("/".join(portal.getPhysicalPath())), {'portal_type': ('PloneSite', 'DocumentPool')})['children']
+    request = self.REQUEST
+    dp_app_state = getMultiAdapter((self, request), name=u'dp_app_state')
+    active_apps = dp_app_state.appsActivatedByCurrentUser()
+    current_app = None
+    if len(active_apps) > 0:
+        current_app = appName(active_apps[0])
     current_dp = None
     if shasattr(self, "myDocumentPool", True):
         current_dp = self.myDocumentPool()
-    root_title = current_dp is None and utranslate("docpool.menu", "Applications", context=self) or "%s: %s" % (current_app, current_dp.Title())
+    root_title = current_dp is None and utranslate("docpool.menu", "Docpools", context=self) or "%s: %s" % (current_dp.Title(), current_app)
     apps_root = [ 
                     {'id': 'apps',
                      'Title': root_title,
@@ -43,21 +49,36 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
                      'normalized_review_state': 'visible'}
             
              ]
-    apps = []
-    for app in [ 'ELAN' ]: #TODO:
-        app_root = {'id': app.lower(),
-                     'Title': utranslate("docpool.menu", app, context=self),
+    pools = []
+    for dp in dps:
+        apps = [] # determine locally available apps
+        dp_app_state = getMultiAdapter((dp, request), name=u'dp_app_state') # need to get fresh adapter for each pool
+        app_names = dp_app_state.appsAvailableToCurrentUser()
+        app_names.insert(0, BASE_APP)
+        for app_name in app_names:
+            apps.append({'id': app_name,
+                        'Title': appName(app_name),
+                        'Description': '',
+                        'getURL': "%s/setActiveApp?app=%s" % (dp.absolute_url(), app_name),
+                        'show_children': False,
+                        'children': [],
+                        'currentItem': False,
+                        'currentParent': False,
+                        'item_class': app_name,
+                        'normalized_review_state': 'visible'})
+
+        pools.append({'id': dp.getId(),
+                     'Title': dp.Title(),
                      'Description': '',
                      'getURL': '',
                      'show_children': True,
-                     'children': dps,
+                     'children': apps,
                      'currentItem': False,
                      'currentParent': True,
-                     'item_class': app.lower(),
-                     'normalized_review_state': 'visible'}
-        apps.append(app_root)
-        
-    apps_root[0]['children'] = apps
+                     'item_class': 'docpool',
+                     'normalized_review_state': 'visible'})
+
+    apps_root[0]['children'] = pools
     return apps_root
 
     
@@ -132,6 +153,7 @@ def getFoldersForCurrentUser(self, user=None):
 def _folderTree(context, path, filter={}):
     """Return tree of tabs based on content structure"""
 
+    from docpool.menu.browser.menu import DropDownMenuQueryBuilder
     queryBuilder = DropDownMenuQueryBuilder(context)
     strategy = getMultiAdapter((context, None), INavtreeStrategy)
     strategy.rootPath = path
@@ -140,3 +162,10 @@ def _folderTree(context, path, filter={}):
     query['path'] = {'query': path, 'depth': 3, 'navtree' : 1, 'navtree_start' : 2}
     return buildFolderTree(context, obj=context, query=query,
                            strategy=strategy)
+
+def adaptQuery(query, context):
+    request = context.REQUEST
+    dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
+    active_apps = dp_app_state.appsActivatedByCurrentUser()
+    active_apps.extend([BASE_APP, TRANSFERS_APP])
+    query['apps_supported'] = active_apps

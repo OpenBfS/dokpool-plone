@@ -94,6 +94,10 @@
 
 <!-- ##code-section Main -->
   <utility
+    component=".vocabularies.SelectableAppsVocabularyFactory"
+    name="docpool.base.vocabularies.SelectableApps"
+    />
+  <utility
     component=".vocabularies.AvailableAppsVocabularyFactory"
     name="docpool.base.vocabularies.AvailableApps"
     />

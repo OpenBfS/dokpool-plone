@@ -6,6 +6,9 @@ from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
+
+from docpool.menu.utils import adaptQuery
+
 show_content_tabs = True
 show_actions_tabs = False
 content_before_actions_tabs = True
@@ -25,7 +28,6 @@ class DropDownMenuQueryBuilder(SitemapQueryBuilder):
     def __init__(self, context):
         super(DropDownMenuQueryBuilder, self).__init__(context)
         self.context = context
-
         # customize depth according to dropdown menu settings
         if content_tabs_level > 0:
             self.query['path']['depth'] = content_tabs_level
@@ -35,6 +37,8 @@ class DropDownMenuQueryBuilder(SitemapQueryBuilder):
         # constrain non-folderish objects if required
         if not show_nonfolderish_tabs:
             self.query['is_folderish'] = True
+        adaptQuery(self.query, context)
+        print self.query
 
 
 class DropDownMenuStrategy(DefaultNavtreeStrategy):

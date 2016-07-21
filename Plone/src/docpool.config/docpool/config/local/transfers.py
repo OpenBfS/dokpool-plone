@@ -32,8 +32,6 @@ def setTransfersLocalRoles(self):
         self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
-    # Application role for application group
-    self.manage_setLocalRoles("%s_TransfersUsers" % prefix, ["TransfersUser"])
 
 
 def createTransfersGroups(self):
@@ -54,16 +52,6 @@ def createTransfersGroups(self):
              'description': 'Responsible for sending content to other ESDs - if allowed by them.', 'dp': self.UID()}
     gtool.addGroup("%s_Senders" % prefix,
                    properties=props)
-    # Group for Transfer application rights
-    props = {'allowedDocTypes': [], 'title': 'Transfers Users (%s)' % title,
-             'description': 'Users with access to Transfers functions.',
-             'dp': self.UID()}
-    gtool.addGroup("%s_TransfersUsers" % prefix,
-                   properties=props)
-    # The functional groups are members of the application group
-    gtool.addPrincipalToGroup('%s_Senders' % prefix, '%s_TransfersUsers' % prefix)
-    gtool.addPrincipalToGroup('%s_Receivers' % prefix, '%s_TransfersUsers' % prefix)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_TransfersUsers' % prefix)
 
 
 def createTransferArea(self, fresh):

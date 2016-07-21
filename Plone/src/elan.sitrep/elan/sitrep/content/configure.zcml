@@ -30,7 +30,7 @@
      
 
 <!-- ##code-section Main -->
-  <subscriber handler=".srmoduleconfig.updated" />    
+  <subscriber handler=".srmoduleconfig.updated" />
   <subscriber handler=".srscenario.updated" />    
   <subscriber handler=".srphase.updated" />    
   <subscriber handler=".srtextblock.updated" />    

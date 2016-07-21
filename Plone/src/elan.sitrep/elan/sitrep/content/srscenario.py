@@ -33,7 +33,8 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import adapter
 from plone.dexterity.interfaces import IEditFinishedEvent
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
-##/code-section imports 
+from docpool.elan.config import ELAN_APP
+##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -55,6 +56,7 @@ class SRScenario(Container):
     implements(ISRScenario)
     
 ##code-section methods
+    APP = ELAN_APP
     def getSRScenarioNames(self):
         """
         Index Method
@@ -111,6 +113,7 @@ class SRScenario(Container):
 
 
 ##code-section bottom
+
 @adapter(ISRScenario, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRScenario updated: %s" % str(obj))

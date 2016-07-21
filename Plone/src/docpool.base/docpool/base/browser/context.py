@@ -4,6 +4,7 @@ from plone.memoize.view import memoize
 from docpool.base.appregistry import extendingApps, implicitApps
 from plone import api
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.base.config import BASE_APP
 
 
 class ApplicationState(BrowserView):
@@ -26,10 +27,10 @@ class ApplicationState(BrowserView):
                     pass
         if dto:
             supportedByType = ILocalBehaviorSupport(dto).local_behaviors
-            print "supportedByType ", supportedByType
+            #print "supportedByType ", supportedByType
             available_apps = list(set(available_apps).intersection(supportedByType))
         available_apps.extend([ app[0] for app in implicitApps()])
-        print "appsPermittedForObject ", available_apps, self.locallyAcivated()
+        #print "appsPermittedForObject ", available_apps, self.locallyAcivated()
         return available_apps
 
     def appsEffectiveForObject(self, request, filtered=False):
@@ -38,10 +39,9 @@ class ApplicationState(BrowserView):
             effective = list(set(effective).intersection(self.appsActivatedByCurrentUser()))
             effective.extend([app[0] for app in implicitApps()])
         effective = list(set(effective).intersection(self.locallyAcivated()))
-        print "appsEffectiveForObject ", effective
+        #print "appsEffectiveForObject ", effective
         return effective
 
-    @memoize
     def locallyAcivated(self):
         res = getattr(self.context, 'local_behaviors', [])
         res.extend([ app[0] for app in implicitApps()])
@@ -83,9 +83,9 @@ class ApplicationState(BrowserView):
         user = api.user.get_current()
         if user.getUserName() == 'admin':
             return [app[0] for app in extendingApps() ]
-        res = user.getProperty("apps", default=[])
+        res = user.getProperty("apps") or [ BASE_APP ]
         print "appsActivatedByCurrentUser: ", res
-        return res
+        return list(res)
 
     @memoize
     def effectiveAppsHere(self):

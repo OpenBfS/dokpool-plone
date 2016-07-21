@@ -30,7 +30,8 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-##/code-section imports 
+from docpool.elan.config import ELAN_APP
+##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -52,7 +53,8 @@ class SRCollections(Container):
     implements(ISRCollections)
     
 ##code-section methods
-##/code-section methods 
+    APP = ELAN_APP
+##/code-section methods
 
     def mySRCollections(self):
         """
@@ -82,4 +84,4 @@ class SRCollections(Container):
 
 
 ##code-section bottom
-##/code-section bottom 
+##/code-section bottom

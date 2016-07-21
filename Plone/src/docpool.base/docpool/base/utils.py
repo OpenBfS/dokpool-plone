@@ -303,5 +303,6 @@ def setApplicationsForCurrentUser(self, apps):
 #            new.append(c) # otherwise keep the definition
 #    if not replaced: # if never set before for this docpool
 #        new.append("%s:%s" % (id, ",".join(apps)))
-    new = apps # Keep it simple at the moment, maybe we need the stuffe above later...
+    new = apps # Keep it simple at the moment, maybe we need the stuff above later...
+    print "setApplicationsForCurrentUser ", new
     user.setMemberProperties({"apps": tuple(new)})

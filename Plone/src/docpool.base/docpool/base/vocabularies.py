@@ -9,7 +9,7 @@ from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getAllowedDocumentTypesForGroup
-from docpool.base.appregistry import activeApps, extendingApps
+from docpool.base.appregistry import activeApps, extendingApps, selectableApps
 from zope.component import getMultiAdapter
 
 class AvailableAppsVocabulary(object):
@@ -45,6 +45,17 @@ class ExtendingAppsVocabulary(object):
         return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in extendingApps()])
 
 ExtendingAppsVocabularyFactory = ExtendingAppsVocabulary()
+
+class SelectableAppsVocabulary(object):
+    """
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in selectableApps()])
+
+SelectableAppsVocabularyFactory = SelectableAppsVocabulary()
 
 class StatusVocabulary(object):
     """

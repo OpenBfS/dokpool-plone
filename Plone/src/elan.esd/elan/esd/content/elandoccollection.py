@@ -47,6 +47,7 @@ from z3c.relationfield.event import updateRelations
 from docpool.base.content.doctype import IDocType
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
+from docpool.elan.config import ELAN_APP
 
 @grok.provider(IContextSourceBinder)
 def availableTypes(context):
@@ -244,7 +245,10 @@ class ELANDocCollection(Item, Collection):
                 usc = self.getUserSelectedCategories()
                 if usc:
                     value.append({'i': 'category', 'o': 'plone.app.querystring.operation.selection.is', 'v': usc})
-               
+
+            # Third implicit filter: only results with ELAN support are wanted.
+            value.append({'i': 'apps_supported', 'o': 'plone.app.querystring.operation.selection.is', 'v': [ ELAN_APP ]})
+
             # Now we restrict the search to the paths to Members and Groups.
             # This ensures that in case of archives we only get results from the correct subset.
             #m = self.content

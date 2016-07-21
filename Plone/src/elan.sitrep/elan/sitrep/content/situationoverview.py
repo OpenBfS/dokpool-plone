@@ -34,7 +34,8 @@ from docpool.base.utils import queryForObjects, queryForObject
 from DateTime import DateTime
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from elan.esd.utils import getScenariosForCurrentUser
-##/code-section imports 
+from docpool.elan.config import ELAN_APP
+##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -56,6 +57,7 @@ class SituationOverview(Item):
     implements(ISituationOverview)
     
 ##code-section methods
+    APP = ELAN_APP
 
     def modTypes(self):
         """
@@ -117,6 +119,7 @@ class SituationOverview(Item):
 
 
 ##code-section bottom
+
 def _availableModules(self, reportUID=None):
     res = {}
     moduids = {}

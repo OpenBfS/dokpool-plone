@@ -32,7 +32,8 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
-##/code-section imports 
+from docpool.elan.config import ELAN_APP
+##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -55,6 +56,7 @@ class SRFolder(Container, SimpleFolder):
     implements(ISRFolder)
     
 ##code-section methods
+    APP = ELAN_APP
     def modTypes(self):
         """
         """
@@ -123,4 +125,4 @@ class SRFolder(Container, SimpleFolder):
 
 
 ##code-section bottom
-##/code-section bottom 
+##/code-section bottom

@@ -31,7 +31,6 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from docpool.elan.config import ELAN_APP
-from docpool.base.interfaces import IApplicationAware
 from zope.interface.declarations import classImplements
 ##/code-section imports 
 
@@ -99,5 +98,4 @@ class ELANArchive(Container):
 
 
 ##code-section bottom
-classImplements(ELANArchive,IApplicationAware)
-##/code-section bottom 
+##/code-section bottom

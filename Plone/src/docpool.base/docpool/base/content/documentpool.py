@@ -44,7 +44,7 @@ from plone.app.textfield.value import RichTextValue
 from plone.protect.auto import safeWrite
 from docpool.base.content.doctype import IDocType
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.appregistry import APP_REGISTRY, implicitApps
 from docpool.base.config import BASE_APP
 from plone.dexterity.interfaces import IEditFinishedEvent
 ##/code-section imports 
@@ -81,7 +81,7 @@ class IDocumentPool(form.Schema):
                         required=False,
 ##code-section field_supportedApps
                         missing_value=(),
-                        value_type=schema.Choice(source="docpool.base.vocabularies.ExtendingApps"),
+                        value_type=schema.Choice(source="docpool.base.vocabularies.SelectableApps"),
 ##/code-section field_supportedApps                           
     )
     
@@ -211,6 +211,8 @@ def docPoolAdded(obj, event=None):
     # Trigger configs for all supported applications
     for app in self.supportedApps:
         APP_REGISTRY[app]['dpAddedMethod'](self)
+    for appdef in implicitApps():
+        appdef[2]['dpAddedMethod'](self)
     notify(DocumentPoolInitializedEvent(self))
  
 @adapter(IDocumentPool, IEditFinishedEvent)
@@ -227,6 +229,8 @@ def docPoolModified(obj, event=None):
     if self.supportedApps:
         for app in self.supportedApps:
             APP_REGISTRY[app]['dpAddedMethod'](self)
+    for appdef in implicitApps():
+        appdef[2]['dpAddedMethod'](self)
 
 
 @adapter(IDocumentPool, IObjectRemovedEvent)
@@ -240,6 +244,8 @@ def docPoolRemoved(obj, event=None):
     if self.supportedApps:
         for app in self.supportedApps:
             APP_REGISTRY[app]['dpRemovedMethod'](self)
+    for appdef in implicitApps():
+        appdef[2]['dpRemovedMethod'](self)
     notify(DocumentPoolRemovedEvent(self))
 
 

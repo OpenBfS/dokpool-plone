@@ -30,10 +30,7 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from docpool.transfers.config import TRANSFERS_APP
-from docpool.base.interfaces import IApplicationAware
-from zope.interface.declarations import classImplements
-##/code-section imports 
+##/code-section imports
 
 from elan.esd.config import PROJECTNAME
 
@@ -55,8 +52,6 @@ class ELANTransfers(Container):
     implements(IELANTransfers)
     
 ##code-section methods
-    APP = TRANSFERS_APP
-
 ##/code-section methods 
 
     def myELANTransfers(self):
@@ -87,5 +82,4 @@ class ELANTransfers(Container):
 
 
 ##code-section bottom
-classImplements(ELANTransfers,IApplicationAware)
-##/code-section bottom 
+##/code-section bottom

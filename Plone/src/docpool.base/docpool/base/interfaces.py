@@ -27,10 +27,6 @@ from plone.supermodel import model
 ##/code-section imports
 
 ##code-section manual code
-class IApplicationAware(Interface):
-    """Marker for types that only apply when their application is active.
-    """
-
 class IExtension(model.Schema):
     """
     Marker for extension behaviors
