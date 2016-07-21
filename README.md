@@ -1,4 +1,4 @@
-# ELAN 5
+# Dokpool
 Description
 
 Contact
@@ -22,7 +22,7 @@ git clone https://github.com/OpenBfS/dokpool-plone
 ```
 
 ## Building
-If you want to run Dokpool there are several ways. Run Dokpool in a production environment using PostgreSQL as Backend or run it as simple Testinstallation using ZODB/SQLite Backend. Using Varnish/Supervisor ELAN can be configured to run in a multi.instance mode as well. See several *.cfg files in ./Plone to be used with buildout.
+If you want to run Dokpool there are several ways. Run Dokpool in a production environment using PostgreSQL as Backend or run it as simple Testinstallation using ZODB/SQLite Backend. Using Varnish/Supervisor `Dokpool` can be configured to run in a multi.instance mode as well. See several *.cfg files in ./Plone to be used with buildout.
 
 For rapid simple testing/demonstrations we provide Dockerfiles in ./Docker as well. See Docker (https://www.docker.com) for further information on this Container technology.
 
@@ -42,7 +42,7 @@ $ docker build --force-rm=true -t elan5/standalone -f Dockerfile.oel7 .
 ```sh
 $ docker run --name elan5_standalone -dp 18081:8081 elan5/standalone:latest
 ```
-Your running ELAN5 is available on port 18081 on your host machine (http://localhost:18081).
+Your running Dokpool is available on port 18081 on your host machine (http://localhost:18081).
 
 In case you want to interact with the running container, use e.g.
 ```sh
@@ -50,10 +50,10 @@ $ docker exec -it elan5_standalone "/bin/bash"
 ```
 
 ### Build your own standalone ELAN5 on a current Linux Distribution
-To build ELAN5 on a current Linux Distribution you simply have to clone the repository run three commands from CLI and got it running 
+To build Dokpool on a current Linux Distribution you simply have to clone the repository run three commands from CLI and got it running 
 
 #### Requirements:
-ELAN5 refuses to run as root. Add a system account (e.g. elan) which can be used to run ELAN5.
+Dokpool refuses to run as root. Add a system account (e.g. elan) which can be used to run Dokpool.
 Python2.7 and Git (to clone the Repo).
 ```sh
 $ apt-get install git python-dev libffi-dev libssl-dev libxml2-dev libxslt-dev postgresql-server-dev libjpeg-turbo8-dev gcc
@@ -88,7 +88,7 @@ $ ./bin/plonebackup-full
 $ ./bin/plonebackup-restore
 ```
 
-### ELAN 5 with PostgreSQL
+### Dokpool with PostgreSQL
 ```sh
 buildout -Nc relstorage.cfg
 ```
