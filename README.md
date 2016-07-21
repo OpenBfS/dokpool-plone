@@ -1,26 +1,36 @@
-# ELAN 5
+# Dokpool
 Description
 
-## License
-ELAN5 and most of its components are licensed under the [GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+Contact
+-------
+Bundesamt für Strahlenschutz / General Office for Radiation Protection
+SW2 Notfallschutz, Zentralstelle des Bundes (ZdB)
+Willy-Brandt-Strasse 5
+38226 Salzgitter
+info@bfs.de
 
-## Using
-Where to find the user guide?
+License
+------
+Dokpool including ELAN5 and most of its components are published using the [GNU GPL v>=3](http://www.gnu.org/licenses/gpl-3.0) license.
+See `LICENSE` for more details.
+
+Sources
+---------
+Publicly available repo:
+```
+git clone https://github.com/OpenBfS/dokpool-plone.git
+```
 
 ## Building
-If you want to run ELAN5 there are several ways. Run ELAN5 in a production environment using PostgreSQL as  Backend or run it as simple Testinstallation using ZODB/SQLite Backend. Using Varnish/Supervisor ELAN can be configured to run in a multi.instance mode as well. See several *.cfg files in ./Plone to be used with buildout.
+If you want to run Dokpool there are several ways. Run Dokpool in a production environment using PostgreSQL as Backend or run it as simple Testinstallation using ZODB/SQLite Backend. Using Varnish/Supervisor `Dokpool` can be configured to run in a multi.instance mode as well. See several *.cfg files in ./Plone to be used with buildout.
 
-For rapid simple testing/demonstrations we provide Dockerfiles as well. See Docker (https://www.docker.com) for further information on this Container technology.
-
-### Build your own standalone ELAN5 using Docker
-To build ELAN5 running in a Dockercontainer we provide a Version based on latest Ubuntu (Dockerfile.standalone) and a Version build on top of latest Oracle Linux (Dockerfile.oel7).Various Dockerfiles are located in the Docker Folder of this Repo.
-TODO fix following introductions or split and move them in specific subfolders of Docker folder.
+For rapid simple testing/demonstrations we provide Dockerfiles in ./Docker as well. See Docker (https://www.docker.com) for further information on this Container technology.
 
 #### Requirements:
-Place an zodb-Backup (created with plonebackup) next to this Dockerfile and name it initialELAN-backup.tgz (or get one from the ELAN5 Repository)
-This Containers run standalone using sqlite- and zope-Databases as backend only. No need for PostgreSQL, but not recommended for production use!
+If you want to start from scratch, just go on. If you want to use a preconfigured Dokpool, you need a zodb-Backup (created with plonebackup) of a zodb. See various Dockerfiles in ./Docker that take care of this. Usually the zodb Backup has to be named initialELAN-backup.tgz. Containers using zodb/sqlite as backend run standalone using sqlite- and zope-Databases but are not recommended for production use! For production using a PostgreSQL-DB backend is recommended.
 
 #### Build:
+FIXME
 ```sh
 $ docker build --force-rm=true -t elan5/standalone -f Dockerfile.standalone .
 ```
@@ -32,7 +42,7 @@ $ docker build --force-rm=true -t elan5/standalone -f Dockerfile.oel7 .
 ```sh
 $ docker run --name elan5_standalone -dp 18081:8081 elan5/standalone:latest
 ```
-Your running ELAN5 is available on port 18081 on your host machine (http://localhost:18081).
+Your running Dokpool is available on port 18081 on your host machine (http://localhost:18081).
 
 In case you want to interact with the running container, use e.g.
 ```sh
@@ -40,20 +50,20 @@ $ docker exec -it elan5_standalone "/bin/bash"
 ```
 
 ### Build your own standalone ELAN5 on a current Linux Distribution
-To build ELAN5 on a current Linux Distribution you simply have to clone the repository run three commands from CLI and got it running 
+To build Dokpool on a current Linux Distribution you simply have to clone the repository run three commands from CLI and got it running 
 
 #### Requirements:
-ELAN5 refuses to run as root. Add a system account (e.g. elan) which can be used to run ELAN5.
-Python2.7 and Mercurial (to clone the Repo).
+Dokpool refuses to run as root. Add a system account (e.g. elan) which can be used to run Dokpool.
+Python2.7 and Git (to clone the Repo).
 ```sh
-$ apt-get install mercurial python-dev libffi-dev libssl-dev libxml2-dev libxslt-dev postgresql-server-dev 
+$ apt-get install git python-dev libffi-dev libssl-dev libxml2-dev libxslt-dev postgresql-server-dev libjpeg-turbo8-dev gcc
 ```
 
 #### Build:
 
 ```sh
-$ hg clone https://redmine-koala.bfs.de/hg/elan
-$ cd elan/Plone
+$ git clone https://github.com/OpenBfS/dokpool-plone.git
+$ cd dokpool-plone/Plone
 $ export ELANENGINE=sqlite:////tmp/elan5db
 $ python ./bootstrap.py
 $ ./bin/buildout -Nvc buildout.cfg
@@ -63,7 +73,7 @@ $ ./bin/instance fg
 #### Run:
 
 ```sh
-$ cd elan/Plone
+$ cd dokpool-plone/Plone
 $ export ELANENGINE=sqlite:////tmp/elan5db
 $ ./bin/instance fg
 ```
@@ -71,14 +81,14 @@ $ ./bin/instance fg
 #### Backup and Restore standalone Instances
 
 ```sh
-$ cd elan/Plone
+$ cd dokpool-plone/Plone
 $ ./bin/plonebackup-full
 # backups will be stored in
-# elan/Plone/var/plonebackups
+# dokpool-plone/Plone/var/plonebackups
 $ ./bin/plonebackup-restore
 ```
 
-### ELAN 5 with PostgreSQL
+### Dokpool with PostgreSQL
 ```sh
 buildout -Nc relstorage.cfg
 ```
