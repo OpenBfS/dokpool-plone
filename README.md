@@ -12,7 +12,7 @@ info@bfs.de
 License
 ------
 Dokpool including ELAN5 and most of its components are published using the [GNU GPL v>=3](http://www.gnu.org/licenses/gpl-3.0) license.
-See `COPYING` for more details.
+See `LICENSE` for more details.
 
 Sources
 ---------
