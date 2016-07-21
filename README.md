@@ -18,7 +18,7 @@ Sources
 ---------
 Publicly available repo:
 ```
-git clone https://github.com/OpenBfS/dokpool-plone
+git clone https://github.com/OpenBfS/dokpool-plone.git
 ```
 
 ## Building
@@ -62,7 +62,7 @@ $ apt-get install git python-dev libffi-dev libssl-dev libxml2-dev libxslt-dev p
 #### Build:
 
 ```sh
-$ git clone https://github.com/OpenBfS/dokpool-plone
+$ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
 $ export ELANENGINE=sqlite:////tmp/elan5db
 $ python ./bootstrap.py
