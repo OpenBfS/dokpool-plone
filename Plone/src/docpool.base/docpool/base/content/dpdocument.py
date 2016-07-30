@@ -106,7 +106,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         request = self.REQUEST
         dp_app_state = getMultiAdapter((self, request), name=u'dp_app_state')
         def _isClean():
-            lbs = dp_app_state.appsPermittedForObject(request)
+            lbs = dp_app_state.appsEffectiveForObject(request)
             for lb in lbs:
                 if not self.doc_extension(lb).isClean():
                     return False

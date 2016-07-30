@@ -98,13 +98,13 @@ class FolderBaseView(BrowserView):
     def getFolderContents(self, kwargs):
         """
         """
-        print "getFolderContents"
+        #print "getFolderContents"
         kwargs["object_provides"] = IFolderBase.__identifier__
         res = [ b for b in self.context.getFolderContents(kwargs)]
         # print res
         kwargs["object_provides"] = [IDPDocument.__identifier__, IInfoLink.__identifier__]
         res.extend([b for b in self.context.getFolderContents(kwargs)])
-        print res
+        #print res
         return res
 
 ##/code-section bottom

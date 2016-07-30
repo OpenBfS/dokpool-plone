@@ -30,7 +30,7 @@ from plone.dexterity.content import Item
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.appregistry import APP_REGISTRY, appIcon
 from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
 ##/code-section imports
 
@@ -65,6 +65,19 @@ class Extendable(Item):
     def type_extension(self, applicationName):
         return APP_REGISTRY[applicationName]['typeBehavior'](self) # and APP_REGISTRY[applicationName]['typeBehavior'](self) or self
 
+
+    def myExtensionIcons(self, request):
+        """
+
+        @param request:
+        @return:
+        """
+        behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
+        if behaviorNames:
+            return [ appIcon(name) for name in behaviorNames if appIcon(name)]
+        else:
+            return []
+
     # FIXME: potential performance leak
     def myExtensions(self, request):
         """
@@ -72,7 +85,7 @@ class Extendable(Item):
         @return:
         """
         behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
-        print "myExtensions", behaviorNames
+        #print "myExtensions", behaviorNames
         return [ self.doc_extension(name) for name in behaviorNames ]
 ##/code-section methods
 

@@ -1,11 +1,10 @@
 ﻿require(['jquery',
-         'jquery-marquee',
          'intercom',
          'docpool-functions',
+         'jquery-marquee',
          'domReady!'
          ], function($) {
 	'use strict';
-	
 
 	function loadDyn () {
 		$("#mesz").load ("refresh_time #time_table");
@@ -21,12 +20,12 @@
 		var title = $('h1.documentFirstHeading').text();
 		$('h1.documentFirstHeading').text(title + ' (' + value + ')'); 
 	}
-	$('.marquee').marquee({
-		pauseOnHover:true,
-		duration: 10000,
-	    //gap in pixels between the tickers
-	    gap: 50,		
-	    }
-			
-	);
+
+    $('.marquee').marquee({
+        pauseOnHover:true,
+        duration: 10000,
+        //gap in pixels between the tickers
+        gap: 50,
+        }
+    );
 });
