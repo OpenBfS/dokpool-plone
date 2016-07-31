@@ -5,6 +5,7 @@ from docpool.base.appregistry import extendingApps, implicitApps
 from plone import api
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.config import BASE_APP
+from Products.CMFPlone.utils import log_exc
 
 
 class ApplicationState(BrowserView):
@@ -16,6 +17,7 @@ class ApplicationState(BrowserView):
 
         available_apps = self.appsAvailableToCurrentUser()
         # Now get the type.
+        dto = None
         if hasattr(self.context, "docTypeObj"):
             dto = self.context.docTypeObj()
         else:
@@ -24,11 +26,14 @@ class ApplicationState(BrowserView):
                 try:
                     dto = self.context.config.dtypes[dt]
                 except Exception, e:
-                    pass
+                    log_exc(e)
         if dto:
-            supportedByType = ILocalBehaviorSupport(dto).local_behaviors
+            try:
+                supportedByType = ILocalBehaviorSupport(dto).local_behaviors
             #print "supportedByType ", supportedByType
-            available_apps = list(set(available_apps).intersection(supportedByType))
+                available_apps = list(set(available_apps).intersection(supportedByType))
+            except: # Type may not support local behavior (e.g. SR module types)
+                pass
         available_apps.extend([ app[0] for app in implicitApps()])
         #print "appsPermittedForObject ", available_apps, self.locallyAcivated()
         return available_apps
@@ -53,11 +58,14 @@ class ApplicationState(BrowserView):
 
         @return:
         """
-        roles = api.user.get_roles(obj=self.context)
-        # Administrators have every application right
-        if "Manager" in roles or "Site Administrator" in roles:
-            return [app[0] for app in extendingApps()]
-
+        roles = []
+        try:
+            roles = api.user.get_roles(obj=self.context)
+            # Administrators have every application right
+            if "Manager" in roles or "Site Administrator" in roles:
+                return [app[0] for app in extendingApps()]
+        except:
+            pass
         # Others have explicit roles
         res = []
         for role in roles:

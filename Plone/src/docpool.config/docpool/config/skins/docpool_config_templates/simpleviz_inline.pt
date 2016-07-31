@@ -1,6 +1,7 @@
 <tal:block i18n:domain="docpool.base"
            define="view nocall:options/view;
                    context nocall:options/context;
+                   toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                    here nocall:context">
     <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
     <div class="visualization">

@@ -206,9 +206,10 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         If my doc type is in state private, return it.
         """
         dt = self.docTypeObj()
-        tstate = api.content.get_state(dt)
-        if tstate == 'private':
-            return dt
+        if dt:
+            tstate = api.content.get_state(dt)
+            if tstate == 'private':
+                return dt
         return None        
      
     def changed(self):
@@ -486,6 +487,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     
     def getMapImageObj(self):
         """
+        The map image is expected to be a file with with a name like 'xxx-map.png' or 'yyy_map.jpg'.
         """
         return self.getFileOrImageByPattern(".*[-_]map\..*")
             
@@ -514,8 +516,13 @@ class DPDocument(Container, Document, Extendable, ContentBase):
 
     def getMyImage(self, refresh=False, full=True):
         """
-        refresh = True --> generate afresh from PDF if necessary
-        full = True --> combine map & legend images
+        1. the map image, otherwise
+        2. the representative image, otherwise
+        3. try to generate an image from PDF
+        4. a default image
+        @param refresh: True --> generate afresh from PDF if necessary
+        @param full: True --> combine map & legend images
+        @return: a tuple with an image and a filename
         """
         doc = self
         mapimg = self.getMapImageObj()

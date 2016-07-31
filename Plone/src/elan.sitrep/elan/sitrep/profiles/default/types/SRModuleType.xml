@@ -35,6 +35,8 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
+     <element value="docpool.elan.behaviors.elandoctype.IELANDocType" />
+     <element value="docpool.transfers.behaviors.transferstype.ITransfersType" />
 ##/code-section behaviors
 </property>
 

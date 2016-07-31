@@ -173,7 +173,6 @@ class Transferable(FlexibleView):
         if wftool.getInfoFor(self.context, 'review_state') != 'published':
             return False
         dto = self.context.docTypeObj()
-        print dto.__dict__, dto.type_extension(TRANSFERS_APP).__dict__
         if dto and dto.type_extension(TRANSFERS_APP).allowTransfer:
             return True
         return False
