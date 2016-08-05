@@ -1,87 +1,96 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal" 
-     xmlns:metal="http://xml.zope.org/namespaces/metal"
-     xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
-     i18n:domain="elan.esd">
-    <body>
-       
-	<div id="scenario_box" metal:define-macro="scenario_table"
-										  tal:define="possible_scenarios view/scenarios;
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="elan.esd">
+<body>
+
+<div id="scenario_box" metal:define-macro="scenario_table"
+     tal:define="possible_scenarios view/scenarios;
 										              selected_scenarios view/selected_scenarios;
 													  readonly request/ajax_load|nothing"
-										  tal:condition="possible_scenarios">
-      <form name="scenarios" method="post" class="scenario_selection"
+     tal:condition="possible_scenarios">
+    <form name="scenarios" method="post" class="scenario_selection"
           tal:attributes="action string:selectScenarios">
-          <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
-            <table class="scenario_table" >
+        <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
+        <table class="scenario_table">
             <tal:loop tal:repeat="scenario possible_scenarios">
-            <tr  tal:define="exercise scenario/exercise;
+                <tr tal:define="exercise scenario/exercise;
                              inactive python:scenario.status == 'inactive';
                              selected python:scenario.getId() in selected_scenarios;
-                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;" 
-                 tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
-            <td>
-            <input type="checkbox" name="scnrs:list"
-                   tal:attributes="value    scenario/getId;
+                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
+                    tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
+                    <td>
+                        <input type="checkbox" name="scnrs:list"
+                               tal:attributes="value    scenario/getId;
                                    title    scenario/Title;
                                    disabled python:readonly and 'disabled' or None;
                                    checked python:'checked' if scenario.getId() in selected_scenarios else None;"
-                   onclick="this.form.submit()"                            
-                                    />
-            </td>
-			<tal:def define="mi python:scenario.modInfo();
+                               onclick="this.form.submit()"
+                        />
+                    </td>
+                    <tal:def define="mi python:scenario.modInfo();
 			                           date python:mi[0];
-			                           uinfo python:mi[1]">            
-            <td class="scenario_desc"><tal:if condition="exercise"><span class="exerciseflag" i18n:translate="">++++ Exercise ++++</span> </tal:if><span class="scentitle" tal:attributes="title python:'%s %s ' % (uinfo, toLocalizedTime(date, long_format=1))" tal:content="string:${scenario/Title}">Event1</span><tal:if condition="python: selected and scenario.Description()"><span class="scendesc"> - <tal:var replace="scenario/Description"/></span></tal:if>
-                    <span class="uinfo"><tal:var tal:condition="uinfo" replace="structure string:${uinfo}, "/> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</span>
-            </td>
-            </tal:def>               
-            </tr>
+			                           uinfo python:mi[1]">
+                        <td class="scenario_desc">
+                            <tal:if condition="exercise"><span class="exerciseflag"
+                                                               i18n:translate="">++++ Exercise ++++</span></tal:if>
+                            <span class="scentitle"
+                                  tal:attributes="title python:'%s %s ' % (uinfo, toLocalizedTime(date, long_format=1))"
+                                  tal:content="string:${scenario/Title}">Event1</span>
+                            <tal:if condition="python: selected and scenario.Description()"><span class="scendesc"> - <tal:var
+                                    replace="scenario/Description"/></span></tal:if>
+                            <span class="uinfo"><tal:var tal:condition="uinfo" replace="structure string:${uinfo}, "/> <tal:var
+                                    replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</span>
+                        </td>
+                    </tal:def>
+                </tr>
             </tal:loop>
-            </table>  
-                <input tal:condition="not:readonly"
-                                        type="hidden"
-                                        name="form.button.Save"
-                                        class="context"
-                                        value="Filter"
-                                        i18n:attributes="value" />
-        </form>
-        
-		</div>
-			  
-        <div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected view/selected_categories">
-			<form name="categories" method="post" class="category_selection"
-				tal:attributes="action string:selectCategories">
-				<!-- label for="scnrs" i18n:translate="">Show content only for:</label-->
-			    <div class="multiselection">
-			    <select multiple="multiple" id="cat_select" name="cats" size="5">
-			    <tal:loop tal:repeat="category view/available_categories">
-			                       <option      tal:attributes="value    category/Title;
+        </table>
+        <input tal:condition="not:readonly"
+               type="hidden"
+               name="form.button.Save"
+               class="context"
+               value="Filter"
+               i18n:attributes="value"/>
+    </form>
+
+</div>
+
+<div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected view/selected_categories">
+    <form name="categories" method="post" class="category_selection"
+          tal:attributes="action string:selectCategories">
+        <!-- label for="scnrs" i18n:translate="">Show content only for:</label-->
+        <div class="multiselection">
+            <select multiple="multiple" id="cat_select" name="cats" size="5">
+                <tal:loop tal:repeat="category view/available_categories">
+                    <option tal:attributes="value    category/Title;
 			                                                    selected python:'selected' if category.Title in selected else None;"
 
-			    					tal:content="category/Title">Category</option>
-			    </tal:loop>
-			    </select>
-			    </div>
-				<input
-			                            type="submit"
-			                            name="form.button.Save"
-			                            class="context"
-			                            value="Filter"
-			                            i18n:attributes="value" />
-                <input onclick="jQuery('#cat_select option').removeAttr('selected');"
-                                        type="submit"
-                                        name="form.button.Save"
-                                        class="context"
-                                        value="All"
-                                        i18n:attributes="value" />
-			</form>
-            <div class="cat_info">
-            <span><i18n:text translate="">Current filter:</i18n:text> <tal:var replace="python:', '.join(selected)"/></span>
-            </div>         
+                            tal:content="category/Title">Category
+                    </option>
+                </tal:loop>
+            </select>
         </div>
-        
-        <div tal:omit-tag="" metal:define-macro="doccollection">
-        <metal:listingmacro define-macro="listing">
+        <input
+                type="submit"
+                name="form.button.Save"
+                class="context"
+                value="Filter"
+                i18n:attributes="value"/>
+        <input onclick="jQuery('#cat_select option').removeAttr('selected');"
+               type="submit"
+               name="form.button.Save"
+               class="context"
+               value="All"
+               i18n:attributes="value"/>
+    </form>
+    <div class="cat_info">
+        <span><i18n:text translate="">Current filter:</i18n:text> <tal:var replace="python:', '.join(selected)"/></span>
+    </div>
+</div>
+
+<div tal:omit-tag="" metal:define-macro="doccollection">
+    <metal:listingmacro define-macro="listing">
         <tal:results define="b_start python:request.get('b_start', 0);
                              batch python:context.results(b_start=b_start);
                              site_properties context/portal_properties/site_properties;
@@ -93,80 +102,81 @@
                              navigation_root_url context/@@plone_portal_state/navigation_root_url;
                              pas_member context/@@pas_member;
                              buttons python:[]">
-        <tal:listing condition="batch">
+            <tal:listing condition="batch">
 
-          <table id="sortable"
-                 class="listing responsive"
-                 summary="Content listing"
-                 i18n:attributes="summary summary_content_listing;"
-                 tal:define="isOverview python:here.getId()=='overview'">
-            <thead>
-               <metal:header_slot metal:define-slot="listingheader">
-                 <th class="nosort actions" tal:condition="python:False"></th>
-                 <th class="nosort title" i18n:translate="">Title / Description / Text</th>
-                 <th class="nosort metadata" i18n:translate="">Metadata</th>
-              </metal:header_slot>
-            </thead>
+                <table id="sortable"
+                       class="listing responsive"
+                       summary="Content listing"
+                       i18n:attributes="summary summary_content_listing;"
+                       tal:define="isOverview python:here.getId()=='overview'">
+                    <thead>
+                    <metal:header_slot metal:define-slot="listingheader">
+                        <th class="nosort actions" tal:condition="python:False"></th>
+                        <th class="nosort title" i18n:translate="">Title / Description / Text</th>
+                        <th class="nosort metadata" i18n:translate="">Metadata</th>
+                    </metal:header_slot>
+                    </thead>
 
-            <tbody >
-                <tal:items tal:repeat="edoc batch">
-                   <tr tal:define="oddrow  python:repeat['edoc'].index % 2 == 0;
+                    <tbody>
+                    <tal:items tal:repeat="edoc batch">
+                        <tr tal:define="oddrow  python:repeat['edoc'].index % 2 == 0;
                    				   item_id edoc/getId;
                    				   item_obj edoc/getObject|nothing;
                    				   isFolder edoc/is_folderish;
                 				   item_folder_class python:isFolder and 'folder' or ''"
-                       tal:attributes="class string:itemRow $item_folder_class';
-                                       id item_id;" >
-                     
-                           <metal:block define-slot="entry">
-                            <tal:if condition="nocall:item_obj">
-       						<tal:insertview replace="structure python:item_obj.restrictedTraverse('@@listitem')(edoc=edoc,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
-                    	   </tal:if>
-                    	   </metal:block>
-                   </tr>
-                </tal:items>
-            </tbody>
-		</table>
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
+                            tal:attributes="class string:itemRow $item_folder_class';
+                                       id item_id;">
 
-        </tal:listing>
-        <metal:empty metal:define-slot="no_items_in_listing">
-            <p class="discreet"
-               tal:condition="not: batch"
-               i18n:translate="description_no_items_in_folder">
-                There are currently no items in this folder.
-            </p>
-        </metal:empty>
+                            <metal:block define-slot="entry">
+                                <tal:if condition="nocall:item_obj">
+                                    <tal:insertview
+                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(edoc=edoc,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
+                                </tal:if>
+                            </metal:block>
+                        </tr>
+                    </tal:items>
+                    </tbody>
+                </table>
+                <div metal:use-macro="context/batch_macros/macros/navigation"/>
+
+            </tal:listing>
+            <metal:empty metal:define-slot="no_items_in_listing">
+                <p class="discreet"
+                   tal:condition="not: batch"
+                   i18n:translate="description_no_items_in_folder">
+                    There are currently no items in this folder.
+                </p>
+            </metal:empty>
 
         </tal:results>
-        </metal:listingmacro>
-        
-        </div>
+    </metal:listingmacro>
 
-    <metal:macro define-macro="elan_actions" i18n:domain="elan.esd">
-        <tal:cond condition="python: not (isCollection or context.isArchive())">
-            <a tal:condition="nocall:unknown_scen" tal:define="unknown_scen python:elanobj.unknownScenario()" href=""
-                title="Edit unknown scenario"
-                tal:attributes="href unknown_scen/absolute_url"
-                i18n:attributes="title">
-                <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
-            </a>
-        </tal:cond>
-    </metal:macro>
+</div>
 
-    <metal:macro define-macro="elan_meta" i18n:domain="elan.esd">
-          <tal:if tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
-          <label i18n:translate="">Belongs to scenario:</label>
-          <span tal:content="python:', '.join(scns)" />
-          <br/>
-          </tal:if>
-          <tal:if condition="cat" define="cat elanobj/category">
-          <label i18n:translate="">Content from:</label>
-          <span tal:content="string:${item_cat} (${item_type})" />
-          <br/>
-          </tal:if>
-    </metal:macro>
+<metal:macro define-macro="elan_actions" i18n:domain="elan.esd">
+    <tal:cond condition="python: not (isCollection or context.isArchive())">
+        <a tal:condition="nocall:unknown_scen" tal:define="unknown_scen python:elanobj.unknownScenario()" href=""
+           title="Edit unknown scenario"
+           tal:attributes="href unknown_scen/absolute_url"
+           i18n:attributes="title">
+            <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
+        </a>
+    </tal:cond>
+</metal:macro>
+
+<metal:macro define-macro="elan_meta" i18n:domain="elan.esd">
+    <tal:if tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
+        <label i18n:translate="">Belongs to scenario:</label>
+        <span tal:content="python:', '.join(scns)"/>
+        <br/>
+    </tal:if>
+    <tal:if condition="cat" define="cat elanobj/category">
+        <label i18n:translate="">Content from:</label>
+        <span tal:content="string:${item_cat} (${item_type})"/>
+        <br/>
+    </tal:if>
+</metal:macro>
 
 
-    </body>
+</body>
 </html>

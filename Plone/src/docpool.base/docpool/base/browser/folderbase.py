@@ -26,6 +26,8 @@ from docpool.base.content.infolink import IInfoLink
 from Products.CMFCore.utils import getToolByName
 from plone.app.content.browser.interfaces import IFolderContentsView
 from zope.interface import implementer
+from plone import api
+from plone.memoize import view
 ##/code-section imports
 
 
@@ -98,13 +100,29 @@ class FolderBaseView(BrowserView):
     def getFolderContents(self, kwargs):
         """
         """
-        print "getFolderContents"
+        #print "getFolderContents"
         kwargs["object_provides"] = IFolderBase.__identifier__
         res = [ b for b in self.context.getFolderContents(kwargs)]
         # print res
+        apps = self.isFilteredBy()
+        if apps:
+            kwargs['apps_supported'] = apps[0]
         kwargs["object_provides"] = [IDPDocument.__identifier__, IInfoLink.__identifier__]
         res.extend([b for b in self.context.getFolderContents(kwargs)])
-        print res
+        #print res
+        return res
+
+    @view.memoize
+    def isFilteredBy(self):
+        """
+
+        @return:
+        """
+        user = api.user.get_current()
+        res = user.getProperty("filter_active") or False
+        if res:
+            res = user.getProperty("apps") or []
+        print "filter_active ", res
         return res
 
 ##/code-section bottom

@@ -6,7 +6,7 @@ APP_REGISTRY = {}
 BEHAVIOR_REGISTRY = {}
 
 
-def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRemovedMethod, implicit=False):
+def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRemovedMethod, icon=None, implicit=False):
     """
     @param name:
     @param factoryMethod:
@@ -14,6 +14,7 @@ def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRe
     """
     APP_REGISTRY[name] = {  'title' : title,
                             'implicit' : implicit,
+                            'icon' : icon,
                             'typeBehavior' : typeBehavior,
                             'documentBehavior' : documentBehavior,
                             'dpAddedMethod': dpAddedMethod,
@@ -31,6 +32,9 @@ def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRe
 
 def appName(name):
     return APP_REGISTRY[name]['title']
+
+def appIcon(name):
+    return APP_REGISTRY[name]['icon']
 
 def extensionFor(obj, name):
     """

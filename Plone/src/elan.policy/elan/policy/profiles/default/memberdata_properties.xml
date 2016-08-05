@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<object name="portal_memberdata" meta_type="PlonePAS Memberdata Tool" purge="False">
-    <property name="visible_ids" type="boolean">False</property>
-    <property name="wysiwyg_editor" type="string">TinyMCE</property>
-    <property name="listed" type="boolean">False</property>
-    <property name="dp" type="string"></property>
- </object>

@@ -34,8 +34,8 @@
         </div>
 </tal:if>
           <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
-          <div metal:use-macro="here/@@elan.macros/macros/transferEvents"/>   
-          
+          <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+
           <tal:if condition="htmltext" define="htmltext context/text/output">
           <h3 i18n:translate="">Summary</h3>
           <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />

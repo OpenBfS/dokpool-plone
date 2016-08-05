@@ -306,3 +306,16 @@ def setApplicationsForCurrentUser(self, apps):
     new = apps # Keep it simple at the moment, maybe we need the stuff above later...
     print "setApplicationsForCurrentUser ", new
     user.setMemberProperties({"apps": tuple(new)})
+
+
+def activateAppFilter(self, activate=False):
+    """
+
+    @param self:
+    @param activate:
+    @return:
+    """
+    request = self.REQUEST
+    alsoProvides(request, IDisableCSRFProtection)
+    user = api.user.get_current()
+    user.setMemberProperties({"filter_active": activate})

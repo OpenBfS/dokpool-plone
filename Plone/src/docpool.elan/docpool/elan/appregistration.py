@@ -8,4 +8,4 @@ from docpool.elan.behaviors.elandoctype import IELANDocType
 from docpool.elan.behaviors.elandocument import IELANDocument
 
 
-registerApp(ELAN_APP, u"ELAN", IELANDocType, IELANDocument, dpAdded, dpRemoved)
+registerApp(ELAN_APP, u"ELAN", IELANDocType, IELANDocument, dpAdded, dpRemoved, "elan_app_icon.png")

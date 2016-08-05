@@ -43,7 +43,7 @@ msgstr "Dokumenttyp"
 
 #: docpool.base/docpool/base/profiles/default/types/DocumentPool.xml
 msgid "Electronic Situation Display"
-msgstr "Elektronische Lagedarstellung"
+msgstr "Dokpool"
 
 #: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
 msgid "Folder (Collaboration)"

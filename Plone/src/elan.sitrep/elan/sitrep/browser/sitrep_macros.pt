@@ -7,6 +7,7 @@
 	 <metal:macro define-macro="module">  
 		<tal:def define="edit_allowed context/canBeEdited;
 		                 elanobj view/elanobject;
+		                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
 		                 rs context/myState;">
 		  <tal:if condition="python:rs=='private'">
 		    <span tal:define="report context/myReport;" class="report"><tal:if tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
