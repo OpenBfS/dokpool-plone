@@ -29,7 +29,7 @@ RUN mkdir -p /opt/bfs/elan
 ADD . /opt/bfs/elan/
 WORKDIR /opt/bfs/elan/Plone
 RUN cd /opt/bfs/elan/Plone && python bootstrap.py
-RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout_docker.cfg
+RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout_docker_so.cfg
 #
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
 #
