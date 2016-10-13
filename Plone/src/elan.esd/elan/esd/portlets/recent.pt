@@ -1,7 +1,7 @@
 <tal:block i18n:domain="elan.esd">
 <!-- ##code-section Portlet -->
 <section class="portlet portletRecent" role="section" 
-    i18n:domain="plone">
+    i18n:domain="elan.esd">
 <div id="recent_content">
     <header class="portletHeader">
         <a href="#"
@@ -54,14 +54,6 @@
         <p i18n:translate="box_recent_no_items">No items changed yet.</p>
     </section>
 
-    <footer class="portletFooter">
-        <a href="#"
-           class="tile"
-           tal:attributes="href view/recently_modified_link"
-           i18n:translate="box_more_recently_changed">
-           All recent changes&hellip;
-        </a>
-    </footer>
 </div>
 </section>
 
