@@ -310,6 +310,9 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
+    <permission name="Docpool: Access ELAN Content" acquire="True">
+      <role name="ELANUser"/>
+    </permission>
     <permission name="Docpool: Add ELANInfos" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
