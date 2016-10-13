@@ -391,3 +391,7 @@ msgstr "Verfügbare Anwendungen"
 #: docpool.base/docpool/base/content/documentpool.py:70
 msgid "label_documentpool_customlogo"
 msgstr "Eigenes Logo"
+
+#: docpool.base/docpool/base/appregistration.py:9
+msgid "Docpool Base"
+msgstr "DokPool"

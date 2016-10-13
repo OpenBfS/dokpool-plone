@@ -138,11 +138,11 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                        {TYPE: 'ELANDocCollection', TITLE: u'PRESSEMITTEILUNGEN', ID: 'media-releases', CHILDREN: [],
                         DOCTYPES: ['mediarelease']},
                   ]},
-                  {TYPE: 'ELANDocCollection', TITLE: 'Overview', ID: 'overview', "setExcludeFromNav": True,
+                  {TYPE: 'ELANDocCollection', TITLE: 'Überblick', ID: 'overview', "setExcludeFromNav": True,
                    DOCTYPES: [], CHILDREN: []},
-                  {TYPE: 'ELANDocCollection', TITLE: 'All documents', ID: 'recent', "setExcludeFromNav": True,
+                  {TYPE: 'ELANDocCollection', TITLE: 'Alle Dokumente', ID: 'recent', "setExcludeFromNav": True,
                    DOCTYPES: [], CHILDREN: []},
-                  {TYPE: 'Dashboard', TITLE: 'Dashboard', ID: 'dashboard', "setExcludeFromNav": True},
+                  {TYPE: 'Dashboard', TITLE: 'Pinnwand', ID: 'dashboard', "setExcludeFromNav": True},
                   ]
 
 BASICSTRUCTURE2 = [

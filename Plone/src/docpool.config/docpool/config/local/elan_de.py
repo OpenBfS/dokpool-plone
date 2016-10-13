@@ -187,7 +187,7 @@ def copyCurrentSituation(self, fresh):
     esd = self.esd
     from docpool.base.utils import _copyPaste
     _copyPaste(esd, self, safe=False)
-    self.esd.setTitle(_("Situation Display"))
+    self.esd.setTitle(_("Aktuelle Lage"))
     self.esd.reindexObject()
     # make sure the current situation is first
     self.moveObject("esd", 0)
