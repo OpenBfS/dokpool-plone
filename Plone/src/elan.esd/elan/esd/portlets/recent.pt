@@ -6,8 +6,7 @@
     <header class="portletHeader">
         <a href="#"
             tal:attributes="href view/recently_modified_link"
-            i18n:translate=""
-            >Recently Modified</a>
+            i18n:translate="label_recent">Recently Modified</a>
     </header>
     <section class="portletContent"
         tal:condition="view/recent_items">

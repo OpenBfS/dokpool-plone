@@ -718,3 +718,11 @@ msgstr "Nach oben"
 #: elan.esd/elan/esd/vocabularies.py:20
 msgid "write"
 msgstr "schreiben"
+
+#: elan.esd/elan/esd/portlets/recent.pt:9
+msgid "label_recent"
+msgstr "Aktuelle Einträge"
+
+#: elan.esd/elan/esd/portlets/overview.pt:5
+msgid "Chronological Overview"
+msgstr "Chronologie"

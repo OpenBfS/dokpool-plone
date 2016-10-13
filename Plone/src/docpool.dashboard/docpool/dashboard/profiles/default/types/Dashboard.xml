@@ -2,7 +2,7 @@
 <object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.dashboard" name="Dashboard">
 
  <!-- Basic metadata -->    
- <property name="title" i18n:translate="">Dashboard</property>
+ <property name="title" i18n:translate="label_dashboard">Dashboard</property>
  <property name="description" i18n:translate=""></property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>

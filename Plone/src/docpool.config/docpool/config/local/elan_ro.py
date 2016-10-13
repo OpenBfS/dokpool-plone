@@ -49,20 +49,20 @@ BASICSTRUCTURE = [
     {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: []},
 ]
 
-ARCHIVESTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Elektronische Lagedarstellung', ID: 'esd', CHILDREN: []},
+ARCHIVESTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Electronic Situation Display', ID: 'esd', CHILDREN: []},
                     CONTENT_AREA,
                     ]
 
 ADMINSTRUCTURE = [
-    {TYPE: 'ELANContentConfig', TITLE: 'Konfiguration Inhalte', ID: 'contentconfig', CHILDREN: [
-        {TYPE: 'ELANScenarios', TITLE: u'Ereignisse', ID: 'scen', CHILDREN: [
-            {TYPE: 'ELANScenario', TITLE: u'Normalfall', ID: 'routinemode', "status": "active",
+    {TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
+        {TYPE: 'ELANScenarios', TITLE: u'Scenarios', ID: 'scen', CHILDREN: [
+            {TYPE: 'ELANScenario', TITLE: u'Routine mode', ID: 'routinemode', "status": "active",
              "timeOfEvent": datetime.now(), CHILDREN: []}
         ]},
         {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
         {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
-        {TYPE: 'DashboardsConfig', TITLE: u'Konfiguration Pinnwand', ID: 'dbconfig', CHILDREN: []},
-        {TYPE: 'IRIXConfig', TITLE: u'Konfiguration IRIX', ID: 'irix',
+        {TYPE: 'DashboardsConfig', TITLE: u'Dashboard Configuration', ID: 'dbconfig', CHILDREN: []},
+        {TYPE: 'IRIXConfig', TITLE: u'IRIX Configuration', ID: 'irix',
          'organisationReporting': 'www.yourorganisation.org',
          'contactName': 'Your Contact Name',
          'contactEmail': 'contact@yourorganisation.org',

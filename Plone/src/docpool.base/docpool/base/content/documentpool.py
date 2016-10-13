@@ -67,7 +67,7 @@ class IDocumentPool(form.Schema):
     
         
     customLogo = NamedBlobImage(
-                        title=_(u'label_documentpool_customlogo', default=u'Bereichsspezifisches Logo'),
+                        title=_(u'label_documentpool_customlogo', default=u'Custom Logo'),
                         description=_(u'description_documentpool_customlogo', default=u''),
                         required=False,
 ##code-section field_customLogo

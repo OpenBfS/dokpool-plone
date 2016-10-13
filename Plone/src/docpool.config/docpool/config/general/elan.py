@@ -80,19 +80,19 @@ def setFrontpage(self):
 
 FRONTPAGE = RichTextValue(u"", 'text/plain', 'text/html')
 
-BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Template', ID: 'esd', CHILDREN: [
-    {TYPE: 'Document', TITLE: u'Electronic Situation Display', ID: 'front-page', 'text': FRONTPAGE, CHILDREN: []},
+BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Vorlage aktuelle Situation', ID: 'esd', CHILDREN: [
+    {TYPE: 'Document', TITLE: u'Elektronische Lagedarstellung', ID: 'front-page', 'text': FRONTPAGE, CHILDREN: []},
 ]},
-{TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
+{TYPE: 'ELANContentConfig', TITLE: 'Konfiguration Inhalte', ID: 'contentconfig', CHILDREN: [
     {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
-    {TYPE: 'Text', TITLE: u'Help', ID: 'help', CHILDREN: []},
+    {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
 ]},
                   ]
 DOCTYPES = 'ref_setDocTypesUpdateCollection'  # indicates that docTypes is referencing objects, which need to be queried by their id
 
-ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'Ereignis', ID: 'incident', CHILDREN: [
-    {TYPE: 'ELANDocCollection', TITLE: u'Meldungen', ID: 'notifications', CHILDREN: [], DOCTYPES: ['notification']},
-    {TYPE: 'ELANDocCollection', TITLE: u'Anlageninformation', ID: 'event-npp-information', CHILDREN: [],
+ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHILDREN: [
+    {TYPE: 'ELANDocCollection', TITLE: u'MELDUNGEN', ID: 'notifications', CHILDREN: [], DOCTYPES: ['notification']},
+    {TYPE: 'ELANDocCollection', TITLE: u'ANLAGENINFORMATION', ID: 'event-npp-information', CHILDREN: [],
      DOCTYPES: ['eventinformation', 'nppinformation']},
 ]},
                   {TYPE: 'ELANSection', TITLE: u'METEOROLOGIE', ID: 'meteorology', CHILDREN: [
@@ -146,7 +146,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'Ereignis', ID: 'incident', CHIL
                   ]
 
 BASICSTRUCTURE2 = [
-    {TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Template', ID: 'esd', CHILDREN: ESDCOLLECTIONS},
+    {TYPE: 'ELANCurrentSituation', TITLE: 'Vorlage aktuelle Situation', ID: 'esd', CHILDREN: ESDCOLLECTIONS},
     ]
 
 # Structure definitions

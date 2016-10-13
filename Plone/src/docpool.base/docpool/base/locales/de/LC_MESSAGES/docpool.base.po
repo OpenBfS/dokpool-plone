@@ -30,7 +30,7 @@ msgstr "Löschen"
 
 #: docpool.base/docpool/base/profiles/default/types/DPApplication.xml
 msgid "Docpool Application"
-msgstr "Docpool Anwendung"
+msgstr "Dokpool Anwendung"
 
 #: docpool.base/docpool/base/content/doctype.py:99
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
@@ -380,3 +380,14 @@ msgstr "momentan deaktiviert"
 msgid "write"
 msgstr "schreiben"
 
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml:5
+msgid "Docpool Configuration Area"
+msgstr "Dokpool Konfiguration"
+
+#: docpool.base/docpool/base/content/documentpool.py:79
+msgid "label_documentpool_supportedapps"
+msgstr "Verfügbare Anwendungen"
+
+#: docpool.base/docpool/base/content/documentpool.py:70
+msgid "label_documentpool_customlogo"
+msgstr "Eigenes Logo"

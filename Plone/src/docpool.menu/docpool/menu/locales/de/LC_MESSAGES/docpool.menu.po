@@ -18,3 +18,6 @@ msgstr ""
 msgid "Applications"
 msgstr "Anwendungen"
 
+#: docpool.menu/docpool/menu/utils.py:38
+msgid "Docpools"
+msgstr "Dokpools"

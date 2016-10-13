@@ -19,6 +19,10 @@ msgstr ""
 msgid "Dashboard"
 msgstr "Pinnwand"
 
+#: docpool.dashboard/docpool/dashboard/profiles/default/types/Dashboard.xml:5
+msgid "label_dashboard"
+msgstr "Pinnwand"
+
 #: docpool.dashboard/docpool/dashboard/profiles/default/types/DashboardCollection.xml
 msgid "Dashboard Collection"
 msgstr "Pinnwand Dokumentsammlung"
