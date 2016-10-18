@@ -49,7 +49,7 @@ msgstr "Modultyp"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleTypes.xml
 msgid "Module Types"
-msgstr "Modultypen"
+msgstr "Ordner für Modultypen"
 
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:13
 msgid "Module types missing (preventing publication)"
@@ -168,11 +168,11 @@ msgstr "Textbaustein"
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:70
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRTextBlocks.xml
 msgid "Text Blocks"
-msgstr "Textbausteine"
+msgstr "Ordner für Textbausteine"
 
 #: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:37
 msgid "Text blocks"
-msgstr "Textbausteine"
+msgstr "Ordner für Textbausteine"
 
 #: elan.sitrep/elan/sitrep/content/srmodule.py:237
 msgid "The module has been published."
