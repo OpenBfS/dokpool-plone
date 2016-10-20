@@ -13,12 +13,12 @@
           <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
           
           <tal:if condition="htmltext" define="htmltext context/text/output">
-          <h3 i18n:translate="">Summary</h3>
+<!--          <h3 i18n:translate="">Summary</h3> -->
           <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
           </tal:if>
           
           <tal:loop repeat="m context/myModules">
-          <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>
+<!--           <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>  -->
           <tal:if condition="htmltext" define="htmltext m/text/output">
           <span tal:attributes="id string:mod_${m/getId}" tal:content="structure htmltext" />
           </tal:if>
