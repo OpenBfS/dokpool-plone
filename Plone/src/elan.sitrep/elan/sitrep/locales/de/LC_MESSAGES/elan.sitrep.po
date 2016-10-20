@@ -130,11 +130,11 @@ msgstr "Lagebericht"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRCollection.xml
 msgid "Situation Report Collection"
-msgstr "Lagebericht Collection"
+msgstr "LB-Grafikauswahl"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRCollections.xml
 msgid "Situation Report Collections"
-msgstr "Lagebericht Collections"
+msgstr "Ordner für LB-Grafiken"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRConfig.xml
 msgid "Situation Report Configuration"
@@ -168,11 +168,11 @@ msgstr "Textbaustein"
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:70
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRTextBlocks.xml
 msgid "Text Blocks"
-msgstr "Ordner für Textbausteine"
+msgstr "Ordner für LB-Textbausteine"
 
 #: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:37
 msgid "Text blocks"
-msgstr "Ordner für Textbausteine"
+msgstr "Ordner für LB-Textbausteine"
 
 #: elan.sitrep/elan/sitrep/content/srmodule.py:237
 msgid "The module has been published."
@@ -194,9 +194,17 @@ msgstr "Titel / Beschreibung / Bild"
 msgid "Title / Description / Text"
 msgstr "Titel / Beschreibung / Text"
 
+#: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:18
+msgid "module_publish_popup"
+msgstr "Dieses Modul veröffentlichen?"
+
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:25
 msgid "Used in report(s):"
 msgstr "Genutzt in folgenden Lageberichten:"
+
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:22
+msgid "report_publish_popup"
+msgstr "Diesen Lagebericht veröffentlichen?"
 
 #: elan.sitrep/elan/sitrep/content/situationoverview.py:91
 msgid "User defined"

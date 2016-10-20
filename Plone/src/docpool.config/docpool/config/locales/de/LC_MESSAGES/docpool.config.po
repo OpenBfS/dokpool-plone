@@ -22,7 +22,7 @@ msgstr "Elektronische Lagedarstellung"
 
 #: docpool.config/docpool/config/local.py:177
 msgid "Document Types"
-msgstr "Dokumenttypen"
+msgstr "Ordner für Dokumenttypen"
 
 #: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_full.pt:15
 #: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_listitem.pt:54

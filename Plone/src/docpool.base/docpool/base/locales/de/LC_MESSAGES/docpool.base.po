@@ -35,7 +35,7 @@ msgstr "Dokpool Anwendung"
 #: docpool.base/docpool/base/content/doctype.py:99
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
 msgid "Document Types"
-msgstr "Dokumenttypen"
+msgstr "Ordner für Dokumenttypen"
 
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"

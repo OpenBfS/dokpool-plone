@@ -125,7 +125,7 @@ msgstr "Dokumenttyp"
 
 #: elan.esd/elan/esd/content/elandoccollection.py:78
 msgid "Document Types"
-msgstr "Dokumenttypen"
+msgstr "Ordner für Dokumenttypen"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
