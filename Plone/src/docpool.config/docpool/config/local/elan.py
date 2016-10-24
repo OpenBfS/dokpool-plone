@@ -144,6 +144,7 @@ def setELANLocalRoles(self):
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
+    self.config.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Owner"])
 
 
 def createELANGroups(self):

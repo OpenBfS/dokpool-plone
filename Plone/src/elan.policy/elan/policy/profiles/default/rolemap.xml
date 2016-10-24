@@ -250,7 +250,6 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
-      <role name="ContentAdmin"/>
     </permission>
     <permission name="Docpool: Add SRCollections" acquire="True">
       <role name="Manager"/>
@@ -430,6 +429,7 @@
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
     </permission>
     <permission name="List portal members" acquire="True">
       <role name="Manager"/>
@@ -546,6 +546,7 @@
       <role name="Reader"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
     </permission>
     <permission name="View Groups" acquire="True">
       <role name="Manager"/>
