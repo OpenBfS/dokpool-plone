@@ -39,7 +39,7 @@ msgstr "Vorgesehen für Lagebericht:"
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/situationreport_full.pt:23
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:23
 msgid "Mirror Overview"
 msgstr "Aus Lagebild übernehmen"
 
@@ -205,6 +205,10 @@ msgstr "Genutzt in folgenden Lageberichten:"
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:22
 msgid "report_publish_popup"
 msgstr "Diesen Lagebericht veröffentlichen?"
+
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
+msgid "report_mirror_popup"
+msgstr "Aus Lagebild übernehmen?
 
 #: elan.sitrep/elan/sitrep/content/situationoverview.py:91
 msgid "User defined"
