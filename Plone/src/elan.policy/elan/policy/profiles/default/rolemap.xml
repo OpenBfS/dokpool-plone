@@ -196,6 +196,7 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
     </permission>
     <permission name="Docpool: Add SRCollection" acquire="True">
       <role name="Manager"/>
