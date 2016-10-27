@@ -1,5 +1,39 @@
 @import "++theme++barceloneta/less/variables.plone.less";
 
+#edit-zone {
+    position: fixed;
+    height: 100%;
+    width: @plone-left-toolbar;
+    top:0;
+    left:0;
+    z-index: 3;
+    font-weight: 400;
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: sans-serif;
+    color: #555555;
+    background: #444444;
+    a {
+        color: @plone-toolbar-link;
+        text-decoration: none;
+        display: block;
+        outline: 0;
+    }
+}
+
+
+#personal-bar-container{
+    position: absolute;
+    bottom: 0;
+    background-color: #444444;
+    border-top: 1px solid #DDDDDD;
+    box-shadow: -6px 2px 6px 2px #DDD;
+    ul{
+        position: fixed;
+        height: 100%;
+        top: 0;
+      }
+}
+
 .visualization {
     .pdflink {
         margin-top: 1em;
