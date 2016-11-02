@@ -208,7 +208,7 @@ msgstr "Diesen Lagebericht veröffentlichen?"
 
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
 msgid "report_mirror_popup"
-msgstr "Aus Lagebild übernehmen?
+msgstr "Aus Lagebild übernehmen?"
 
 #: elan.sitrep/elan/sitrep/content/situationoverview.py:91
 msgid "User defined"
