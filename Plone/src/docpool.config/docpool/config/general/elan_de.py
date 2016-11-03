@@ -130,7 +130,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                   {TYPE: 'ELANSection', TITLE: u'LAGE', ID: 'current-situation', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'LAGEBERICHTE', ID: 'situation-reports', CHILDREN: [],
                        DOCTYPES: ['nppinformation', 'situationreport']},
-                      {TYPE: 'ELANDocCollection', TITLE: u'BEWERTUN UND MASSNAHMEN', ID: 'protective-actions', CHILDREN: [],
+                      {TYPE: 'ELANDocCollection', TITLE: u'BEWERTUNG UND MASSNAHMEN', ID: 'protective-actions', CHILDREN: [],
                        DOCTYPES: ['instructions', 'protectiveactions']},
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'INFORMATION DER ÖFFENTLICHKEIT', ID: 'information-of-the-public',
