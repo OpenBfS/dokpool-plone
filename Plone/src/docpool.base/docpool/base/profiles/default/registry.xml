@@ -6,4 +6,7 @@
       <element>DPDocument</element>
     </value>
   </record>          
+  <record name="plone.toolbar" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="toolbar">
+    <value>ltr rtl | undo redo | styleselect | bold italic | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | unlink plonelink ploneimage | forecolor backcolor</value>
+  </record>
 </registry>
