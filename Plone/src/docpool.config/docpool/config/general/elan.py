@@ -201,7 +201,7 @@ def connectTypesAndCategories(self):
     """
     from docpool.elan.behaviors.elandoctype import IELANDocType
     try:
-        print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
+        # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
         self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
     except Exception, e:
         log_exc(e)

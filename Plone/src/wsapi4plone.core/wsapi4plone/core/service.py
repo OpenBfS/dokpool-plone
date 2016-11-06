@@ -37,10 +37,10 @@ class Service(object):
     def get_extensions(self, as_callback=False):
         misc = {}
         for name, iface in getUtilitiesFor(IServiceExtension):
-            print self, self.context, iface, name
+            # print self, self.context, iface, name
             ext = queryMultiAdapter((self, self.context), iface,
                 name=name)
-            print self.context, ext, name
+            # print self.context, ext, name
             if ext:
                 if as_callback and ext.provides_callback:
                     name = '%s.callback' % name

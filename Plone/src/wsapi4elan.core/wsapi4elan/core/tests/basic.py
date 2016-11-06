@@ -12,7 +12,7 @@ def _queryObjects(client, path, type):
     """
     """
     q = client.query({ 'path': path, 'portal_type': type })
-    print len(q)
+    # print len(q)
     return q.keys()
 
 def _getContents(client, path):
@@ -37,9 +37,9 @@ print esds
 for esdpath in esds:
     ts = getTypes(client, esdpath)
     for t in ts:
-        print t
+        # print t
         o = client.get_object([t])
-        print o
+        # print o
         
 print client.get_primary_documentpool()
 uf = client.get_user_folder(esdpath)

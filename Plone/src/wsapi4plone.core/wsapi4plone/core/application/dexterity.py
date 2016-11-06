@@ -51,7 +51,7 @@ class DexterityObjectService(PloneService):
                 if isinstance(v, DateTime):
                     v = XMLRPCDateTime(v)
                 skeleton[k] = v
-        print skeleton
+        # print skeleton
         return skeleton
     
     def _fields(self):

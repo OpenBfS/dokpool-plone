@@ -60,8 +60,8 @@ class FlexibleView(BrowserView):
                 "%s_%s" % (dtid, vtype),
                 "doc_%s" % vtype
             ]
-        for n in names:
-            print n
+        #for n in names:
+            # print n
         for n in names:
             if shasattr(dto, n, acquire=True):
                 o = aq_base(getattr(dto, n))

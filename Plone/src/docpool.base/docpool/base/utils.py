@@ -274,7 +274,7 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
         else: # but in all other areas
             permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=True)
         permitted_apps.sort()
-        print "getActiveAllowed ", permitted_apps
+        # print "getActiveAllowed ", permitted_apps
         return permitted_apps
     except Exception, e:
         log_exc(e)
@@ -304,7 +304,7 @@ def setApplicationsForCurrentUser(self, apps):
 #    if not replaced: # if never set before for this docpool
 #        new.append("%s:%s" % (id, ",".join(apps)))
     new = apps # Keep it simple at the moment, maybe we need the stuff above later...
-    print "setApplicationsForCurrentUser ", new
+    # print "setApplicationsForCurrentUser ", new
     user.setMemberProperties({"apps": tuple(new)})
 
 

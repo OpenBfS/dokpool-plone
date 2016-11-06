@@ -170,7 +170,7 @@ class IRIXReport(Item, ContentBase):
         __session__.add(dbReport)
         __session__.flush()
         self.dbkey = dbReport.id
-        print self.dbkey
+        # print self.dbkey
         self.reindexObject()
         # store PK
         

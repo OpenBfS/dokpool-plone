@@ -87,15 +87,15 @@ class CollaborationFolder(Container, SimpleFolder):
     def customMenu(self, menu_items):
         """
         """
-        print user.get_roles(obj=self)
+        # print user.get_roles(obj=self)
         if not "Reviewer" in user.get_roles(obj=self):
             return SimpleFolder.customMenu(self, menu_items)
         else:
-            print "Reviewer"
+            # print "Reviewer"
             dts = getAllowedDocumentTypesForGroup(self)
             filter = False
             if self.allowedPartnerDocTypes:
-                print self.allowedPartnerDocTypes
+                # print self.allowedPartnerDocTypes
                 filter = True
             res = []
             for menu_item in menu_items:

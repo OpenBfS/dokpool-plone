@@ -42,9 +42,9 @@ class ChannelSecurity(DefaultSecurity):
     def can_delete_all(self):
         """
         """
-        print "can_delete_all"
-        print self.user
-        print self.context
+        # print "can_delete_all"
+        # print self.user
+        # print self.context
         return self.isManager or self.user.has_role("Owner", self.getContextObj())
     
     def can_update(self, item):

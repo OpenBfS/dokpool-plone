@@ -24,7 +24,7 @@ class ScenarioViewlet(ELANViewlet):
 
     @property
     def available(self):
-        print self.context.isSituationDisplay() and self.isSupported()
+        # print self.context.isSituationDisplay() and self.isSupported()
         return self.context.isSituationDisplay() and self.isSupported()
 
     def update(self):

@@ -185,10 +185,10 @@ class Transferable(FlexibleView):
         and my current version must not have been transferred.
         """
         esd_uid = self.context.myDocumentPool().UID()
-        print esd_uid
+        # print esd_uid
         dto = self.context.docTypeObj()
         dt_id = dto and dto.id or '---'
-        print dt_id
+        # print dt_id
         m = self.context.getMdate()
         # print m
         q = __session__.query(Channel).outerjoin(Channel.permissions).outerjoin(Channel.sends). \
