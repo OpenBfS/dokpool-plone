@@ -1,5 +1,6 @@
 ﻿require(['jquery',
          'intercom',
+         'notify',
          'docpool-functions',
          'jquery-marquee',
          'domReady!'

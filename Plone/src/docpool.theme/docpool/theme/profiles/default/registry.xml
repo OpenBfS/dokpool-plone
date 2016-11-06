@@ -31,7 +31,11 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/intercom.min.js</value>
   </records>
-    <records prefix="plone.resources/domReady"
+  <records prefix="plone.resources/notify"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++theme++docpool.theme/static/notify.min.js</value>
+  </records>
+  <records prefix="plone.resources/domReady"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/domReady.js</value>
   </records>

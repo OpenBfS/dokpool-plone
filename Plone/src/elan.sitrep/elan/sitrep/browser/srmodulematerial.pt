@@ -24,7 +24,8 @@ var intercom = Intercom.getInstance();
 function insertTextblock (selector) {
     var text = jQuery(selector);
     var source = text.html();
-    intercom.emit('notice', {message: source});   
+    intercom.emit('notice', {message: source});
+    text.notify("<i18n:text translate="">Text was inserted!</i18n:text>",  { position:"top left", className:"success" });
 }
 </script>
 	<div class="pat-autotoc autotabs content-finder"
