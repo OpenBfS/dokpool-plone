@@ -42,6 +42,12 @@ class IInfoLink(form.Schema, ILink):
     """
 
 ##code-section interface
+    remoteUrl = schema.TextLine(
+        title=u"URL",
+        default=u"http://"
+    )
+
+
 ##/code-section interface
 
 
