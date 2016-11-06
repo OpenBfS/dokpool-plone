@@ -81,12 +81,18 @@ class ISituationReport(form.Schema, IDPDocument):
 ##code-section interface
     form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
     form.widget(currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
-    
     form.mode(docType='hidden')
+    text = RichText(
+        title=_(u'label_situationreport_text', default=u'Introduction'),
+        description=_(u'description_situationreport_text', default=u''),
+        required=False
+    )
     docType = schema.TextLine(
             title=u"Document Type",
             default=u"sitrep"
-        )    
+        )
+
+
 ##/code-section interface
 
 
