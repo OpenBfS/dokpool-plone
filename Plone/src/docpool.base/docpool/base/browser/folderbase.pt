@@ -24,8 +24,7 @@
                     </div>
                 </tal:if>
                 <tal:if condition="isFiltered">
-                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current
-                        application are shown!
+                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
                     </div>
                 </tal:if>
                 <input type="checkbox" name="activateFilter" value="yes"

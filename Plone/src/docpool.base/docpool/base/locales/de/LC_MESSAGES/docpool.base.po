@@ -110,6 +110,14 @@ msgstr "Kein Kartenbild vorhanden"
 msgid "Personal Folder: filter not active!"
 msgstr "Persönlicher Ordner: Filter nicht aktiv!"
 
+#: docpool.base/docpool/base/browser/folderbase.pt:27
+msgid "Filter is active: Only contents for current application are shown!"
+msgstr "Filter ist aktiv! Es werden nur Inhalte der aktuellen Anwendung angezeigt!"
+
+#: docpool.base/docpool/base/browser/folderbase.pt:33
+msgid "Filter contents according to application?"
+msgstr "Inhalte nach aktueller Anwendung filtern?"
+
 #: docpool.base/docpool/base/browser/dp_macros.pt:149
 msgid "Show document"
 msgstr "Dokument anzeigen"
