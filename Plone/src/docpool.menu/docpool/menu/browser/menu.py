@@ -38,7 +38,7 @@ class DropDownMenuQueryBuilder(SitemapQueryBuilder):
         if not show_nonfolderish_tabs:
             self.query['is_folderish'] = True
         adaptQuery(self.query, context)
-        print self.query
+        # print self.query
 
 
 class DropDownMenuStrategy(DefaultNavtreeStrategy):

@@ -81,7 +81,7 @@ def patch_fti_localbehavior():
 
             # DOCPOOL: this is the new part!
             for name in (getattr(inst, 'local_behaviors', []) or []):
-                print "getting local behavior ", name
+                # print "getting local behavior ", name
                 dynamically_provided.append(extensionFor(inst, name))
 #                behavior = extensionFor(inst, name)
 #                print behavior

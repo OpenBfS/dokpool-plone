@@ -122,7 +122,7 @@ class FolderBaseView(BrowserView):
         res = user.getProperty("filter_active") or False
         if res:
             res = user.getProperty("apps") or []
-        print "filter_active ", res
+        # print "filter_active ", res
         return res
 
 ##/code-section bottom

@@ -32,7 +32,7 @@
 </property>
 
  <!-- View information -->
- <property name="default_view">base_view</property> 
+ <property name="default_view">view</property>
  <property name="default_view_fallback">False</property>
  <property name="view_methods">
   <element value="view" />

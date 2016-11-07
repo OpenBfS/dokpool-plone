@@ -24,6 +24,7 @@ from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
+from zope.component import getMultiAdapter
 
 from plone.dexterity.content import Container
 
@@ -163,6 +164,11 @@ class DocumentPool(Container):
         @return:
         """
         return self.supportedApps
+
+    def isActive(self, APP):
+        dp_app_state = getMultiAdapter((self, self.REQUEST), name=u'dp_app_state')
+        return dp_app_state.isCurrentlyActive(APP)
+
         
 ##/code-section methods 
 

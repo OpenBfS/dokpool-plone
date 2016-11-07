@@ -105,23 +105,23 @@ class ApplicationAPI(WSAPI):
     def upload_file(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
-        print "upload_file"
+        #print "upload_file"
         params = { str(path) + "/" + str(id) : [ { "title": title, 
                                    "description" : description,
                                    "file" : (data, filename)} , "File"] }
         # Delegate to post_object
-        print params
+        # print params
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0] # just the path
         
     def upload_image(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        print "upload_image"
+        # print "upload_image"
         
         params = { str(path) + "/" + str(id)  : [ { "title": title, 
                                    "description" : description,
                                    "image" : (data, filename)} , "Image"] }
-        print params
+        # print params
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0] # just the path

@@ -44,6 +44,7 @@ from DateTime import DateTime
 import datetime
 from plone import api
 from Acquisition import aq_base, aq_inner, aq_parent
+from Products.CMFPlone.utils import safe_unicode
 ##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
@@ -101,9 +102,9 @@ class ContentBase(Item):
         from docpool.base.utils import getUserInfo
         userid, fullname, primary_group = getUserInfo(self)
         #print userid, fullname, primary_group
-        res = fullname
+        res = safe_unicode(fullname)
         if primary_group:
-            res += " <i>%s</i>" % primary_group
+            res += u" <i>%s</i>" % safe_unicode(primary_group)
         return res
 
     def update_created(self):

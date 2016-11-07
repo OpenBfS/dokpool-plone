@@ -31,7 +31,7 @@ from docpool.base.utils import getDocumentPoolSite
 
 @grok.provider(IContextSourceBinder)
 def availableCategories(context):
-    print context
+    # print context
     if hasattr(context, "dpSearchPath"):
         path = context.dpSearchPath() + "/esd"
         context = context.myDocumentPool()

@@ -473,7 +473,7 @@ class dbadmin(object):
         """
         """
         pkfields = self.pkfields(typ)
-        print pkfields, pkvals
+        # print pkfields, pkvals
         assert(len(pkfields) == len(pkvals))
         i = 0
         res = {}
@@ -539,7 +539,7 @@ class dbadmin(object):
         isMinor = int(request.get('minor', 0))
         security = self._getSecurity(klass, context)
         data = self._extractData(request, typ)
-        print data
+        # print data
         obj = None
         kwargs = {}
         defs = None

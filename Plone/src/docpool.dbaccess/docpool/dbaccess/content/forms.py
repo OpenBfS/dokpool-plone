@@ -190,7 +190,7 @@ class ListView(BatchBase):
             else:
                 of = self.filter
             for k in of.keys():
-                print k, of[k]
+                #print k, of[k]
                 if not self.request.get(k, None): # Wenn noch nicht gesetzt
                     self.request.set(k, of[k])
         of = self._getObjectFields()

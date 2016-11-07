@@ -246,7 +246,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             dto = self.config.dtypes[et]
         except Exception, e:
             # et can be empty
-            print e
+            # print e
             pass
         if not dto:
             log("No DocType Object for type name '%s'" % self.dp_type())

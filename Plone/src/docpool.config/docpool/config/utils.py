@@ -32,9 +32,9 @@ def createPloneObjects(parent, definitions, fresh=False):
         if (not parent.hasObject(id)):
 #            print parent
             parent.invokeFactory(id=id, type_name=objdef[TYPE], title=title)
-            print "createBasicPortalStructure - %s %s erzeugt" % (objdef[TYPE], id)
+            # print "createBasicPortalStructure - %s %s erzeugt" % (objdef[TYPE], id)
         else:
-            print "createBasicPortalStructure - %s %s bereits vorhanden" % (objdef[TYPE], id)
+            # print "createBasicPortalStructure - %s %s bereits vorhanden" % (objdef[TYPE], id)
             if not fresh:
                 if CHILDREN in objdef:
                     obj = parent._getOb(id)
