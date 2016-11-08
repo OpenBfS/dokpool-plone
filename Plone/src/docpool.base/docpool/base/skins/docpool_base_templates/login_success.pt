@@ -49,7 +49,9 @@
 
           <p tal:condition="python:not came_from">
             <a href=""
-               tal:attributes="href portal_state/navigation_root_url"
+               tal:define="teil1 portal_state/navigation_root_url;
+                           ref python:str(teil1) + '/SetActiveApp?app=base'"
+               tal:attributes="href ref"
                i18n:translate="label_login_continue_to_home_page">
               Continue to the
               <span tal:content="portal_state/navigation_root_title" i18n:name="portal_title">
