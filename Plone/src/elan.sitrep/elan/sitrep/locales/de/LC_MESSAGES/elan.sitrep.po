@@ -179,8 +179,9 @@ msgid "Text blocks"
 msgstr "Ordner für LB-Textbausteine"
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:14
-msgid "Text was inserted!"
-msgstr "Der Text wurde eingefügt!"
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:28
+msgid "Item was inserted!"
+msgstr "Das Element wurde eingefügt!"
 
 #: elan.sitrep/elan/sitrep/content/srmodule.py:240
 msgid "The module has been published."
