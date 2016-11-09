@@ -16,7 +16,7 @@
                                    moduids python:modules[1];
                                    modules python:modules[0];
                                    mtypes context/modTypes;">
-       <form class="reportselection" action="/" method="post" accept-charset="UTF-8" tal:attributes="action context/absolute_url">
+       <form class="reportselection" action="" method="post" accept-charset="UTF-8">
     <tal:widget define="wname string:reportuid;
                         wtitle string:Report;
                         options reportslist;
