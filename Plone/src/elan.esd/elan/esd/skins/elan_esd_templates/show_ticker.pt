@@ -14,7 +14,7 @@
 <div style="font-size: 80%">
 <a><span tal:replace="python:t.modified_by or t.created_by"/><br><span tal:replace="python: toLocalizedTime(t.modified(), long_format=1)"></span>:</a>
 <a>
-  <span tal:replace="structure python:t.text and t.text.output or ''" />
+  <span tal:replace="structure t/text/output|nothing" />
 </a>
 </div>
 

@@ -161,7 +161,7 @@
          tal:content="structure string:$item_description"> description
     </div>
 
-    <div class="fulltext" tal:content="structure python:edocobj.text and edocobj.text.output or ''"/>
+    <div class="fulltext" tal:content="structure edocobj/text/output|nothing"/>
 
 </metal:macro>
 <metal:macro define-macro="foldercontent">
@@ -206,7 +206,7 @@
 <metal:macro define-macro="doc_data" i18n:domain="docpool.base">
     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
     <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
-    <tal:if condition="htmltext" define="htmltext python: context.text and context.text.output or ''">
+    <tal:if condition="htmltext" define="htmltext context/text/output|nothing">
         <label i18n:translate="">Content:</label>
         <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext"/>
     </tal:if>
