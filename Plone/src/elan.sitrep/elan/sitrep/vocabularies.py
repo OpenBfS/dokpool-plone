@@ -10,7 +10,9 @@ from docpool.base.utils import getDocumentPoolSite
 def title_default(brain):
     return brain.Title
 
-def _createVocab(context, raw, ptype, path="", sort_on="sortable_title", add_query={}, identifier=None, title_method=title_default):
+def _createVocab(context, raw, ptype, path="", sort_on="sortable_title", add_query={}, identifier=None,
+                 title_method=title_default,
+                 filter_method=None):
     esd = getDocumentPoolSite(context)        
     path = "/".join(esd.getPhysicalPath()) + path
     cat = getToolByName(esd, 'portal_catalog', None)
@@ -25,11 +27,11 @@ def _createVocab(context, raw, ptype, path="", sort_on="sortable_title", add_que
     query.update(add_query)
     types = cat(query)
     if identifier == "UID":
-        types = [ (brain.UID, title_method(brain)) for brain in types ]
+        types = [ (brain.UID, title_method(brain)) for brain in types if not filter_method or filter_method(context, brain)]
     elif identifier == "id": 
-        types = [ (brain.getId, title_method(brain)) for brain in types ]  
+        types = [ (brain.getId, title_method(brain)) for brain in types if not filter_method or filter_method(context, brain)]
     else:
-        types = [ (brain.getObject(), title_method(brain), brain.UID) for brain in types ]
+        types = [ (brain.getObject(), title_method(brain), brain.UID) for brain in types if not filter_method or filter_method(context, brain)]
     if sort_on=="Title":
         types = sorted(types,key=lambda x: x[1])
     if not raw:
@@ -75,9 +77,19 @@ class CurrentModulesVocabulary(object):
     implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
-        # print context
-        return _createVocab(context, raw, "SRModule", "/content", sort_on="changed", add_query={'sort_order':'reverse', 'review_state': 'published'}, title_method=module_title)
-    
+        return _createVocab(context, raw, "SRModule", "/content", sort_on="changed",
+                            add_query={'sort_order':'reverse',
+                                        'review_state': 'published'},
+                            title_method=module_title,
+                            filter_method=moduleFilter)
+
+def moduleFilter(context, brain):
+    mObj = brain.getObject()
+    if mObj:
+        if mObj.currentReport: # if the module is assigned to a report
+            return  mObj.currentReport.to_object == context # and if it is the same report
+    return False
+
 CurrentModulesVocabularyFactory = CurrentModulesVocabulary()
 
 class PastReportsVocabulary(object):
