@@ -12,7 +12,7 @@
         <h2 tal:content="context/Title"></h2>
           <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
           
-          <tal:if condition="htmltext" define="htmltext context/text/output">
+          <tal:if condition="htmltext" define="htmltext python: context.text and context.text.output or ''">
 <!--          <h3 i18n:translate="">Summary</h3> -->
           <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
           </tal:if>
