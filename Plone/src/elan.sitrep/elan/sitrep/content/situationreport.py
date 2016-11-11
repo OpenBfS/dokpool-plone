@@ -92,7 +92,6 @@ class ISituationReport(form.Schema, IDPDocument):
             default=u"sitrep"
         )
 
-
 ##/code-section interface
 
 
@@ -104,9 +103,15 @@ class SituationReport(Container, DPDocument):
     implements(ISituationReport)
     
 ##code-section methods
+
     def typeName(self):
         return "sitrep"
-    
+
+    def dp_type(self):
+        """
+        """
+        return "sitrep"
+
     def customMenu(self, menu_items):
         """
         """

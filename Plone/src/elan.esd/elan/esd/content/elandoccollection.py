@@ -170,7 +170,7 @@ class ELANDocCollection(Item, Collection):
             self.docTypes = values
             
         # We always search for ELAN content
-        params = [{'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['DPDocument']}]
+        params = [{'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['DPDocument','SituationReport','SRModule']}]
         # We usually also have document types configured
         # This returns the corresponding Type Object(s)
         types = self.docTypes
@@ -261,7 +261,7 @@ class ELANDocCollection(Item, Collection):
         sort_on = kwargs.get('sort_on', self.sort_on)
         sort_order = 'reverse' if self.sort_reversed else 'ascending'
         limit = kwargs.get('limit', self.limit)
-        #print value
+        # print value
         res = querybuilder(query=value, batch=kwargs.get('batch', False),
             b_start=kwargs.get('b_start', 0), b_size=kwargs.get('b_size', 30),
             sort_on=sort_on, sort_order=sort_order,

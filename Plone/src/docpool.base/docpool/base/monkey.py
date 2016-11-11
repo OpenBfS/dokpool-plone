@@ -51,7 +51,8 @@ def getURL(self, relative=0, original=False):
             # This is it: we use the path of the category
             return "%s/@@dview?d=%s&disable_border=1" % (self.cat_path, self.UID)
         else:
-            print "no cat_path"
+            pass
+            # print "no cat_path"
     # The following leads to errors in the folder_contents view of esd.
     #if (not original) and self.portal_type == "ELANSection":
     #    return None

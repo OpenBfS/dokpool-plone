@@ -129,7 +129,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'LAGE', ID: 'current-situation', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'LAGEBERICHTE', ID: 'situation-reports', CHILDREN: [],
-                       DOCTYPES: ['nppinformation', 'situationreport']},
+                       DOCTYPES: ['nppinformation', 'situationreport', 'sitrep']},
                       {TYPE: 'ELANDocCollection', TITLE: u'BEWERTUNG UND MASSNAHMEN', ID: 'protective-actions', CHILDREN: [],
                        DOCTYPES: ['instructions', 'protectiveactions']},
                   ]},
@@ -185,6 +185,8 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation
           {TYPE: 'DocType', TITLE: u'Messergebnis_Gewässer', ID: 'mresult_water',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Lagedarstellung', ID: 'situationreport',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Situation Report', ID: 'sitrep',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Maßnahmeninformation', ID: 'instructions',
            CHILDREN: [], 'local_behaviors' : ['elan']},
@@ -291,6 +293,10 @@ def connectTypesAndCategories(self):
         pass
     try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory('situation-reports')
+    except:
+        pass
+    try:
+        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory('situation-reports')
     except:
         pass
     try:

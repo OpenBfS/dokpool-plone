@@ -1,3 +1,4 @@
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides, implements
 from zope.component import adapts
 from zope import schema
@@ -23,6 +24,13 @@ class ILocalBehaviorSupport(form.Schema):
     )
 
 alsoProvides(ILocalBehaviorSupport,IFormFieldProvider)
+
+@form.default_value(field=ILocalBehaviorSupport['local_behaviors'])
+def initializeLocalBehaviors(data):
+    self = data.context
+    dp_app_state = getMultiAdapter((self, self.REQUEST), name=u'dp_app_state')
+    return dp_app_state.effectiveAppsHere()
+
 
 class ILocalBehaviorSupporting(Interface):
     """Marker"""

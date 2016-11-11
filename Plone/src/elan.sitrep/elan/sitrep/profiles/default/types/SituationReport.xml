@@ -41,6 +41,7 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
+     <element value="docpool.localbehavior.localbehavior.ILocalBehaviorSupport" />
      <element value="docpool.elan.behaviors.elandocument.IELANDocument" />
      <element value="docpool.transfers.behaviors.transferable.ITransferable" />
 ##/code-section behaviors
