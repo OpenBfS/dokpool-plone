@@ -92,7 +92,7 @@ function insertTextblock (selector) {
            <div class="description"
                  tal:content="structure tb/Description"> description </div>
 
-              <div class="fulltext" tal:attributes="id string:tb_${tb/UID}" tal:content="structure python:tb.text.output" />
+              <div class="fulltext" tal:attributes="id string:tb_${tb/UID}" tal:content="structure python:tb.text and tb.text.output or ''" />
              
              </td>
              <td class="metadata">

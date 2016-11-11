@@ -161,7 +161,7 @@
          tal:content="structure string:$item_description"> description
     </div>
 
-    <div class="fulltext" tal:content="structure python:edocobj.text.output"/>
+    <div class="fulltext" tal:content="structure python:edocobj.text and edocobj.text.output or ''"/>
 
 </metal:macro>
 <metal:macro define-macro="foldercontent">

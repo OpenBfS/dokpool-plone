@@ -43,7 +43,7 @@
           
           <tal:loop repeat="m context/myModules">
 <!--          <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>  -->
-          <tal:if condition="htmltext" define="htmltext m/text/output">
+          <tal:if condition="htmltext" define="htmltext python: m.text and m.text.output or ''">
           <span tal:attributes="id string:mod_${m/getId}" tal:content="structure htmltext" />
           </tal:if>
           </tal:loop>
