@@ -39,4 +39,13 @@
         preservedoc="true"
         preserveOriginal="true"        
         />
+
+    <monkey:patch
+        description="Disable CSRF protection in global user management"
+        class="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
+        original="__init__"
+        replacement=".monkey.__csrfinit__"
+        preservedoc="true"
+        preserveOriginal="false"
+        />
 </configure>

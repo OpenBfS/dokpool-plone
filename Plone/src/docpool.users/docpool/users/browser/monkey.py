@@ -162,3 +162,13 @@ def getGroupIds(self, context):
 from plone.app.users.vocabularies import GroupIdVocabulary
 
 GroupIdVocabulary.__call__ = getGroupIds
+
+
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
+from Products.CMFPlone.controlpanel.browser.usergroups import \
+    UsersGroupsControlPanelView
+
+def __csrfinit__(self, context, request):
+    alsoProvides(request, IDisableCSRFProtection)
+    UsersGroupsControlPanelView.__init__(self, context, request)
