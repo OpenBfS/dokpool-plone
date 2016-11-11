@@ -9,4 +9,26 @@
   <record name="plone.toolbar" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="toolbar">
     <value>ltr rtl | undo redo | styleselect | bold italic | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | unlink plonelink ploneimage | forecolor backcolor</value>
   </record>
+  <record name="plone.plugins" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="plugins">
+    <value>
+      <element>advlist</element>
+      <element>code</element>
+      <element>fullscreen</element>
+      <element>hr</element>
+      <element>lists</element>
+      <element>media</element>
+      <element>nonbreaking</element>
+      <element>noneditable</element>
+      <element>pagebreak</element>
+      <element>paste</element>
+      <element>preview</element>
+      <element>print</element>
+      <element>searchreplace</element>
+      <element>tabfocus</element>
+      <element>table</element>
+      <element>textcolor</element>
+      <element>visualchars</element>
+      <element>wordcount</element>
+    </value>
+  </record>
 </registry>
