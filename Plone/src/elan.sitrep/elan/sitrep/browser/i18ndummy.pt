@@ -12,6 +12,9 @@
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
 <i18n:dummy translate="">Item was inserted!</i18n:dummy>
+<i18n:dummy translate="module_publish_popup">Do you really want to create a published version of this module?</i18n:dummy>
+<i18n:dummy translate="report_publish_popup">Do you really want to create a published version of this report?</i18n:dummy>
+<i18n:dummy translate="report_mirror_popup">Do you really want to define this report based on the current overview?</i18n:dummy>
 
 <!-- ##/code-section Main -->    
 </metal:content-core>

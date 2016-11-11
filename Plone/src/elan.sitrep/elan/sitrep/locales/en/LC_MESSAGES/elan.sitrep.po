@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2016-11-06 07:24+0000\n"
+"POT-Creation-Date: 2016-11-11 10:49+0000\n"
 "PO-Revision-Date: 2015-10-14 11:19+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -31,6 +31,10 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:14
+msgid "Item was inserted!"
+msgstr ""
+
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:13
 msgid "Meant for report:"
 msgstr ""
@@ -55,7 +59,7 @@ msgstr ""
 msgid "Module types missing (preventing publication)"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:197
+#: elan.sitrep/elan/sitrep/content/situationreport.py:203
 msgid "Modules have been replaced with current situation overview."
 msgstr ""
 
@@ -71,7 +75,7 @@ msgstr ""
 msgid "No information."
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:199
+#: elan.sitrep/elan/sitrep/content/situationreport.py:205
 msgid "No modules found in current situation overview."
 msgstr ""
 
@@ -156,11 +160,6 @@ msgstr ""
 msgid "Situation Scenario"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:40
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_print.pt:16
-msgid "Summary"
-msgstr ""
-
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRTextBlock.xml
 msgid "Text Block"
 msgstr ""
@@ -174,16 +173,11 @@ msgstr ""
 msgid "Text blocks"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:14
-#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:28
-msgid "Item was inserted!"
-msgstr ""
-
 #: elan.sitrep/elan/sitrep/content/srmodule.py:240
 msgid "The module has been published."
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:168
+#: elan.sitrep/elan/sitrep/content/situationreport.py:174
 msgid "The report has been published."
 msgstr ""
 
@@ -217,6 +211,10 @@ msgstr ""
 
 #: elan.sitrep/elan/sitrep/content/situationreport.py:58
 msgid "description_situationreport_phase"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/content/situationreport.py:87
+msgid "description_situationreport_text"
 msgstr ""
 
 #. Default: "If selected this report defines helpful defaults (text blocks, documents) for the content of this module."
@@ -264,6 +262,11 @@ msgstr ""
 msgid "label_situationreport_phase"
 msgstr ""
 
+#. Default: "Introduction"
+#: elan.sitrep/elan/sitrep/content/situationreport.py:86
+msgid "label_situationreport_text"
+msgstr ""
+
 #. Default: "Current report"
 #: elan.sitrep/elan/sitrep/content/srmodule.py:52
 msgid "label_srmodule_currentreport"
@@ -276,7 +279,6 @@ msgstr ""
 
 #. Default: "Collection for relevant documents"
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:56
-#: elan.sitrep/elan/sitrep/content/srmoduletype.py:45
 msgid "label_srmoduleconfig_docselection"
 msgstr "Grafikauswahl"
 
@@ -298,4 +300,19 @@ msgstr ""
 #. Default: "Text"
 #: elan.sitrep/elan/sitrep/content/srtextblock.py:49
 msgid "label_srtextblock_text"
+msgstr ""
+
+#. Default: "Do you really want to create a published version of this module?"
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:15
+msgid "module_publish_popup"
+msgstr ""
+
+#. Default: "Do you really want to define this report based on the current overview?"
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:17
+msgid "report_mirror_popup"
+msgstr ""
+
+#. Default: "Do you really want to create a published version of this report?"
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:16
+msgid "report_publish_popup"
 msgstr ""
