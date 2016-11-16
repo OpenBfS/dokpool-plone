@@ -91,7 +91,8 @@ BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Vorlage aktuelle Situat
 DOCTYPES = 'ref_setDocTypesUpdateCollection'  # indicates that docTypes is referencing objects, which need to be queried by their id
 
 ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHILDREN: [
-    {TYPE: 'ELANDocCollection', TITLE: u'MELDUNGEN', ID: 'notifications', CHILDREN: [], DOCTYPES: ['notification']},
+    {TYPE: 'ELANDocCollection', TITLE: u'MELDUNGEN', ID: 'notifications', CHILDREN: [], DOCTYPES: ['notification', 'note']},
+
     {TYPE: 'ELANDocCollection', TITLE: u'ANLAGENINFORMATION', ID: 'event-npp-information', CHILDREN: [],
      DOCTYPES: ['eventinformation', 'nppinformation']},
 ]},
@@ -102,7 +103,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                        DOCTYPES: ['trajectory']},
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'PROGNOSEN', ID: 'dose-projections', CHILDREN: [
-                      {TYPE: 'ELANDocCollection', TITLE: u'PROGNOSEN-RODOS', ID: 'rodosprojections', CHILDREN: [],
+                      {TYPE: 'ELANDocCollection', TITLE: u'PROGNOSEN-RODOS', ID: 'rodos-projections', CHILDREN: [],
                        DOCTYPES: ['rodosprojection']},
                       {TYPE: 'ELANDocCollection', TITLE: u'PROGNOSEN DWD', ID: 'dwd-projections', CHILDREN: [],
                        DOCTYPES: ['weatherserviceprojection']},
@@ -113,7 +114,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'MESSERGEBNISSE', ID: 'measurement-results', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'ODL', ID: 'gamma-dose-rate', CHILDREN: [],
-                       DOCTYPES: ['gammadoserate']},
+                       DOCTYPES: ['gammadoserate', 'gammadoserate_timeseries', 'gammadoserate_mobile']},
                       {TYPE: 'ELANDocCollection', TITLE: u'LUFTAKTIVITÄT', ID: 'air-activity', CHILDREN: [],
                        DOCTYPES: ['airactivity']},
                       {TYPE: 'ELANDocCollection', TITLE: u'IN-SITU MESSUNGEN', ID: 'insitu', CHILDREN: [],
@@ -125,13 +126,13 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                       {TYPE: 'ELANDocCollection', TITLE: u'GEWÄSSER', ID: 'water', CHILDREN: [],
                        DOCTYPES: ['mresult_water']},
                       {TYPE: 'ELANDocCollection', TITLE: u'SONSTIGE MESSUNGEN', ID: 'other', CHILDREN: [],
-                       DOCTYPES: ['mresult_other']},
+                       DOCTYPES: ['mresult_other', 'mresult_flight']},
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'LAGE', ID: 'current-situation', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'LAGEBERICHTE', ID: 'situation-reports', CHILDREN: [],
-                       DOCTYPES: ['nppinformation', 'situationreport']},
+                       DOCTYPES: ['situationreport', 'sitrep', 'lagebericht_ssk']},
                       {TYPE: 'ELANDocCollection', TITLE: u'BEWERTUNG UND MASSNAHMEN', ID: 'protective-actions', CHILDREN: [],
-                       DOCTYPES: ['instructions', 'protectiveactions']},
+                       DOCTYPES: ['estimation', 'bewertung_ssk', 'instructions', 'protectiveactions', 'massnahmenempfehlungen_ssk']},
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'INFORMATION DER ÖFFENTLICHKEIT', ID: 'information-of-the-public',
                    CHILDREN: [
@@ -143,6 +144,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                   {TYPE: 'ELANDocCollection', TITLE: 'Alle Dokumente', ID: 'recent', "setExcludeFromNav": True,
                    DOCTYPES: [], CHILDREN: []},
                   {TYPE: 'Dashboard', TITLE: 'Pinnwand', ID: 'dashboard', "setExcludeFromNav": True},
+                  {TYPE: 'SituationOverview', TITLE: 'Lagebild', ID: 'situationoverview', "setExcludeFromNav": True},
                   ]
 
 BASICSTRUCTURE2 = [
@@ -152,9 +154,11 @@ BASICSTRUCTURE2 = [
 # Structure definitions
 # CHANGE HERE. DocTypes, DocCollections and their connections must match.
 
-DTYPES = [{TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation',
+DTYPES = [{TYPE: 'DocType', TITLE: u'Meldung', ID: 'notification',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Meldung', ID: 'notification',
+          {TYPE: 'DocType', TITLE: u'Mitteilung', ID: 'note',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Anlageninformation', ID: 'nppinformation',
            CHILDREN: [], 'local_behaviors' : ['elan']},
@@ -162,9 +166,11 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Trajektorie', ID: 'trajectory',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Prognose_Land', ID: 'stateprojection',
-           CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'RODOS_Prognose', ID: 'rodosprojection',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'DWD_Prognose', ID: 'weatherserviceprojection',
+           CHILDREN: [], 'local_behaviors': ['elan']},
+          {TYPE: 'DocType', TITLE: u'Prognose_Land', ID: 'stateprojection',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Andere_Prognose', ID: 'otherprojection',
            CHILDREN: [], 'local_behaviors' : ['elan']},
@@ -176,6 +182,8 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation
            CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Messergebnis_Luftaktivität', ID: 'airactivity',
            CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Messergebnis_insitu', ID: 'mresult_insitu',
+           CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Messergebnis_Bodenkontamination', ID: 'groundcontamination',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Messergebnis_Futtermittel', ID: 'mresult_feed',
@@ -184,45 +192,41 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Messergebnis_Gewässer', ID: 'mresult_water',
            CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Messergebnis_Sonstige', ID: 'mresult_other',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Messergebnis_Aerogamma', ID: 'mresult_flight',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Lagedarstellung', ID: 'situationreport',
            CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Lagebericht', ID: 'sitrep',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Lagebericht SSK', ID: 'lagebericht_ssk',
+           CHILDREN: [], 'local_behaviors': ['elan']},
+          {TYPE: 'DocType', TITLE: u'Bewertung', ID: 'estimation',
+           CHILDREN: [], 'local_behaviors': ['elan']},
+          {TYPE: 'DocType', TITLE: u'Bewertung SSK', ID: 'bewertung_ssk',
+           CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Maßnahmeninformation', ID: 'instructions',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Maßnahmenempfehlungen', ID: 'protectiveactions',
            CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Maßnahmenempfehlungen SSK', ID: 'massnahmenempfehlungen_ssk',
+           CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Pressemitteilung', ID: 'mediarelease',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Messergebnis_Aerogamma', ID: 'mresult_flight',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'DWD_Prognose', ID: 'weatherserviceprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Mitteilung', ID: 'note',
+          {TYPE: 'DocType', TITLE: u'Insitu_Information', ID: 'insituinformation',
            CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Tagebucheintrag', ID: 'diary',
            CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Bewertung', ID: 'estimation',
+          {TYPE: 'DocType', TITLE: u'Beratungsauftrag BMUB', ID: 'beratungsauftrag_bmub',
            CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Messergebnis_insitu', ID: 'mresult_insitu',
+          {TYPE: 'DocType', TITLE: u'Anfrage SSK', ID: 'anfrage_ssk',
            CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Messergebnis_Sonstige', ID: 'mresult_other',
+          {TYPE: 'DocType', TITLE: u'Rückfrage SSK', ID: 'rueckfrage_ssk',
            CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Insitu_Information', ID: 'insituinstruction',
+          {TYPE: 'DocType', TITLE: u'Tagebucheintrag SSK', ID: 'tagebucheintrag_ssk',
            CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Beratungsauftrag BMUB', ID: 'ifinprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Anfrage SSK', ID: 'nppprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Rückfrage SSK', ID: 'ifinprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Lagebericht SSK', ID: 'nppprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Bewertung SSK', ID: 'ifinprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Maßnahmenempfehlungen SSK', ID: 'nppprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Tagebucheintrag SSK', ID: 'ifinprojection',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'SSK Textbaustein', ID: 'nppprojection',
+          {TYPE: 'DocType', TITLE: u'SSK Textbaustein', ID: 'ssk_textbaustein',
            CHILDREN: [], 'local_behaviors': ['elan']},
           ]
 
@@ -232,11 +236,23 @@ def connectTypesAndCategories(self):
     """
     """
     from docpool.elan.behaviors.elandoctype import IELANDocType
+        # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
     try:
-        print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
-        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory('notifications')
     except Exception, e:
         log_exc(e)
+    try:
+        self.config.dtypes.note.type_extension(ELAN_APP).setCCategory('notifications')
+    except:
+        pass
+    try:
+        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+    except:
+        pass
+    try:
+        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+    except:
+        pass
     try:
         self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory('weather-information')
     except:
@@ -246,23 +262,19 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
-        self.config.dtypes.cncanprojection.type_extension(ELAN_APP).setCCategory('cncan-projections')
+        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory('rodos-projections')
     except:
         pass
     try:
-        self.config.dtypes.ifinprojection.type_extension(ELAN_APP).setCCategory('ifin-projections')
+        self.config.dtypes.weatherserviceprojection.type_extension(ELAN_APP).setCCategory('dwd-projections')
     except:
         pass
     try:
-        self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory('npp-projections')
+        self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory('state-projections')
     except:
         pass
     try:
-        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory('rodos')
-    except:
-        pass
-    try:
-        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory('other')
+        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory('other-projections')
     except:
         pass
     try:
@@ -270,7 +282,19 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
+       self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory('gamma-dose-rate')
+    except:
+       pass
+    try:
+       self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory('gamma-dose-rate')
+    except:
+       pass
+    try:
         self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory('air-activity')
+    except:
+        pass
+    try:
+        self.config.dtypes.mresult_insitu.type_extension(ELAN_APP).setCCategory('insitu')
     except:
         pass
     try:
@@ -290,15 +314,31 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
+        self.config.dtypes.mresult_other.type_extension(ELAN_APP).setCCategory('other')
+    except:
+        pass
+    try:
+        self.config.dtypes.mresult_flight.type_extension(ELAN_APP).setCCategory('other')
+    except:
+        pass
+    try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory('situation-reports')
     except:
         pass
     try:
-        self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory('protective-actions')
+        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory('situation-reports')
     except:
         pass
     try:
-        self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory('media-releases')
+        self.config.dtypes.lagebericht_ssk.type_extension(ELAN_APP).setCCategory('situation-reports')
+    except:
+        pass
+    try:
+        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory('protective-actions')
+    except:
+        pass
+    try:
+        self.config.dtypes.bewertung_ssk.type_extension(ELAN_APP).setCCategory('protective-actions')
     except:
         pass
     try:
@@ -306,10 +346,14 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
-        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory('notifications')
+        self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory('protective-actions')
     except:
         pass
     try:
-        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+        self.config.dtypes.massnahmenempfehlungen_ssk.type_extension(ELAN_APP).setCCategory('protective-actions')
+    except:
+        pass
+    try:
+        self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory('media-releases')
     except:
         pass

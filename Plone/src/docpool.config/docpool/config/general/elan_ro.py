@@ -91,7 +91,7 @@ BASICSTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Current Situation Templ
 DOCTYPES = 'ref_setDocTypesUpdateCollection'  # indicates that docTypes is referencing objects, which need to be queried by their id
 
 ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHILDREN: [
-    {TYPE: 'ELANDocCollection', TITLE: u'NOTIFICATIONS', ID: 'notifications', CHILDREN: [], DOCTYPES: ['notification']},
+    {TYPE: 'ELANDocCollection', TITLE: u'NOTIFICATIONS', ID: 'notifications', CHILDREN: [], DOCTYPES: ['notification', 'note']},
     {TYPE: 'ELANDocCollection', TITLE: u'EVENT / NPP INFORMATION', ID: 'event-npp-information', CHILDREN: [],
      DOCTYPES: ['eventinformation', 'nppinformation']},
 ]},
@@ -127,7 +127,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHIL
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'CURRENT SITUATION', ID: 'current-situation', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'SITUATION REPORTS', ID: 'situation-reports', CHILDREN: [],
-                       DOCTYPES: ['nppinformation', 'situationreport']},
+                       DOCTYPES: ['nppinformation', 'situationreport', 'sitrep']},
                       {TYPE: 'ELANDocCollection', TITLE: u'PROTECTIVE ACTIONS', ID: 'protective-actions', CHILDREN: [],
                        DOCTYPES: ['instructions', 'protectiveactions']},
                   ]},
@@ -143,6 +143,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHIL
                   {TYPE: 'ELANDocCollection', TITLE: 'All documents', ID: 'recent', "setExcludeFromNav": True,
                    DOCTYPES: [], CHILDREN: []},
                   {TYPE: 'Dashboard', TITLE: 'Dashboard', ID: 'dashboard', "setExcludeFromNav": True},
+                  {TYPE: 'SituationOverview', TITLE: 'Situation overview', ID: 'situationoverview', "setExcludeFromNav": True},
                   ]
 
 BASICSTRUCTURE2 = [
@@ -152,9 +153,11 @@ BASICSTRUCTURE2 = [
 # Structure definitions
 # CHANGE HERE. DocTypes, DocCollections and their connections must match.
 
-DTYPES = [{TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation',
+DTYPES = [{TYPE: 'DocType', TITLE: u'Notification', ID: 'notification',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Notification', ID: 'notification',
+          {TYPE: 'DocType', TITLE: u'Note', ID: 'note',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'NPP Information', ID: 'nppinformation',
            CHILDREN: [], 'local_behaviors' : ['elan']},
@@ -184,7 +187,9 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Event Information', ID: 'eventinformation',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Measurement Result Water', ID: 'mresult_water',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Situation Report', ID: 'situationreport',
+          {TYPE: 'DocType', TITLE: u'Situation Description', ID: 'situationreport',
+           CHILDREN: [], 'local_behaviors' : ['elan']},
+          {TYPE: 'DocType', TITLE: u'Situation Report', ID: 'sitrep',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Instructions to the Public', ID: 'instructions',
            CHILDREN: [], 'local_behaviors' : ['elan']},
@@ -200,11 +205,23 @@ def connectTypesAndCategories(self):
     """
     """
     from docpool.elan.behaviors.elandoctype import IELANDocType
+#        print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
     try:
-        print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
-        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory('notifications')
     except Exception, e:
         log_exc(e)
+    try:
+        self.config.dtypes.note.type_extension(ELAN_APP).setCCategory('notifications')
+    except:
+        pass
+    try:
+        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+    except:
+        pass
+    try:
+        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
+    except:
+        pass
     try:
         self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory('weather-information')
     except:
@@ -262,6 +279,10 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
+        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory('situation-reports')
+    except:
+        pass
+    try:
         self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory('protective-actions')
     except:
         pass
@@ -273,11 +294,4 @@ def connectTypesAndCategories(self):
         self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory('instructions-to-the-public')
     except:
         pass
-    try:
-        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory('notifications')
-    except:
-        pass
-    try:
-        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory('event-npp-information')
-    except:
-        pass
+
