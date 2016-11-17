@@ -108,7 +108,10 @@ class ApplicationState(BrowserView):
 
         @return:
         """
-        return self.context.allSupportedApps()
+        try:
+           return self.context.allSupportedApps()
+        except:
+           return []
 
     @memoize
     def isCurrentlyActive(self, appname):
