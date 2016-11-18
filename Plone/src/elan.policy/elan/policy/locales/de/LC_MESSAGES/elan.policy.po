@@ -29,6 +29,11 @@ msgid "Edit Ticker"
 msgstr "Ticker bearbeiten"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
+msgid "Select Applications"
+msgstr "Anwendungen auswählen"
+
+
+#: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "Help"
 msgstr "Hilfe"
 
