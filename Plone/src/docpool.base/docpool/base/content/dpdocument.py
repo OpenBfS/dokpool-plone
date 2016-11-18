@@ -307,7 +307,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         This should be defined by the Owner role on the object.
         """
         mtool = getToolByName(self, "portal_membership")
-        return mtool.getAuthenticatedMember().has_role("Owner", self)
+        return (mtool.getAuthenticatedMember().has_role("Owner", self) or mtool.getAuthenticatedMember().has_role("Reviewer", self))
             
     def testMethod(self):
         """

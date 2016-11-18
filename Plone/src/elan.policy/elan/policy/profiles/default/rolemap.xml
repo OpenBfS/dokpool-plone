@@ -516,11 +516,18 @@
       <role name="Manager"/>
       <role name="Site Administrator"/>
     </permission>
-	<permission name="Sharing page: Delegate roles" acquire="False">
+    <permission name="Sharing page: Delegate roles" acquire="False">
       <role name="Manager"/>
+      <role name="Owner"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
-	</permission>
+    </permission>
+    <permission name="Sharing page: Delegate Reviewer role" acquire="False">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
     <permission name="Undo changes" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
