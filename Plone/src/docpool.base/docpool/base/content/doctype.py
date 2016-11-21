@@ -98,7 +98,7 @@ class IDocType(form.Schema, IExtendable):
                         required=False,
 ##code-section field_allowedDocTypes
                         value_type=RelationChoice(
-                                                      title=_("Document Types"),
+                                                      title=_("Folder for Document Types"),
                                                     source = "docpool.base.vocabularies.DocType",
 
                                                      ),

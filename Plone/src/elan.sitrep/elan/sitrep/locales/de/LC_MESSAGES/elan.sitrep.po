@@ -52,7 +52,7 @@ msgid "Module Type"
 msgstr "Modultyp"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleTypes.xml
-msgid "Module Types"
+msgid "Folder for Module Types"
 msgstr "Ordner für Modultypen"
 
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:14

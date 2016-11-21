@@ -34,7 +34,7 @@ msgstr "Dokpool Anwendung"
 
 #: docpool.base/docpool/base/content/doctype.py:99
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
-msgid "Document Types"
+msgid "Folder for Document Types"
 msgstr "Ordner für Dokumenttypen"
 
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
@@ -51,7 +51,7 @@ msgstr "Ordner für Zusammenarbeit"
 
 #: docpool.base/docpool/base/profiles/default/types/ReviewFolder.xml
 msgid "Folder (Review)"
-msgstr "Ordner mit Freigabe"
+msgstr "Ordner für Einreichungen"
 
 #: docpool.base/docpool/base/profiles/default/types/PrivateFolder.xml
 msgid "Folder (private)"
@@ -403,3 +403,7 @@ msgstr "Eigenes Logo"
 #: docpool.base/docpool/base/appregistration.py:9
 msgid "Docpool Base"
 msgstr "DokPool"
+
+#: docpool.base/docpool/base/profiles/default/workflows/dp_review_workflow/definition.xml:153
+msgid "Submit for publication"
+msgstr "Zur Veröffentlichung einreichen"

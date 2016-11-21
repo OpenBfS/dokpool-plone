@@ -123,8 +123,8 @@ msgstr "Dokumententyp (Kurzname)"
 msgid "Document Type"
 msgstr "Dokumenttyp"
 
-#: elan.esd/elan/esd/content/elandoccollection.py:78
-msgid "Document Types"
+#: elan.esd/elan/esd/content/elandoccollection.py:79
+msgid "Folder for Document Types"
 msgstr "Ordner für Dokumenttypen"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANDocCollection.xml
@@ -353,7 +353,7 @@ msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:19
 msgid "alert_submit_popup"
-msgstr "Wollen Sie dieses Dokument wirklich vorlegen?"
+msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:25
 msgid "archive_confirm_msg"
@@ -546,9 +546,9 @@ msgid "label_dpdocument_transferred_by"
 msgstr "Übertragen von"
 
 #. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py:73
+#: elan.esd/elan/esd/content/elandoccollection.py:74
 msgid "label_elandoccollection_doctypes"
-msgstr "Dokumenttypen"
+msgstr "Ordner für Dokumenttypen"
 
 #. Default: "Document Type"
 #: elan.esd/elan/esd/portlets/collection.py:54
