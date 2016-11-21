@@ -32,7 +32,6 @@ msgstr "Ticker bearbeiten"
 msgid "Select Applications"
 msgstr "Anwendungen auswählen"
 
-
 #: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "Help"
 msgstr "Hilfe"
@@ -46,8 +45,8 @@ msgid "Impressum"
 msgstr "Impressum"
 
 #: elan.policy/elan/policy/configure.zcml:19
-msgid "Turn a Plone site into the ELAN site."
-msgstr "Eine Plone Site zu ELAN umwandeln."
+msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
+msgstr "Eine Plone Site zu ELAN umwandeln. (Beinhaltet DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "User Management"
