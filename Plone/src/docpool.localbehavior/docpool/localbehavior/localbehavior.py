@@ -14,7 +14,7 @@ class ILocalBehaviorSupport(form.Schema):
     form.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(
         title=u'Behaviors',
-        description=(u'Select applications supported for this content,' +
+        description=_(u'description_local_behaviors', default=u'Select applications supported for this content,' +
                      ' changes will be applied after saving'),
         required=False,
         value_type=schema.Choice(
