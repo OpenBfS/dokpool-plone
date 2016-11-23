@@ -130,9 +130,9 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'LAGE', ID: 'current-situation', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'LAGEBERICHTE', ID: 'situation-reports', CHILDREN: [],
-                       DOCTYPES: ['situationreport', 'sitrep', 'lagebericht_ssk']},
+                       DOCTYPES: ['situationreport', 'sitrep']},
                       {TYPE: 'ELANDocCollection', TITLE: u'BEWERTUNG UND MASSNAHMEN', ID: 'protective-actions', CHILDREN: [],
-                       DOCTYPES: ['estimation', 'bewertung_ssk', 'instructions', 'protectiveactions', 'massnahmenempfehlungen_ssk']},
+                       DOCTYPES: ['estimation', 'instructions', 'protectiveactions']},
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'INFORMATION DER ÖFFENTLICHKEIT', ID: 'information-of-the-public',
                    CHILDREN: [
@@ -200,33 +200,17 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Meldung', ID: 'notification',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Lagebericht', ID: 'sitrep',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Lagebericht SSK', ID: 'lagebericht_ssk',
-           CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Bewertung', ID: 'estimation',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Bewertung SSK', ID: 'bewertung_ssk',
            CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Maßnahmeninformation', ID: 'instructions',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Maßnahmenempfehlungen', ID: 'protectiveactions',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Maßnahmenempfehlungen SSK', ID: 'massnahmenempfehlungen_ssk',
-           CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Pressemitteilung', ID: 'mediarelease',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Insitu_Information', ID: 'insituinformation',
            CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Tagebucheintrag', ID: 'diary',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Beratungsauftrag BMUB', ID: 'beratungsauftrag_bmub',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Anfrage SSK', ID: 'anfrage_ssk',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Rückfrage SSK', ID: 'rueckfrage_ssk',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'Tagebucheintrag SSK', ID: 'tagebucheintrag_ssk',
-           CHILDREN: [], 'local_behaviors': ['elan']},
-          {TYPE: 'DocType', TITLE: u'SSK Textbaustein', ID: 'ssk_textbaustein',
            CHILDREN: [], 'local_behaviors': ['elan']},
           ]
 
@@ -330,15 +314,7 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
-        self.config.dtypes.lagebericht_ssk.type_extension(ELAN_APP).setCCategory('situation-reports')
-    except:
-        pass
-    try:
         self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory('protective-actions')
-    except:
-        pass
-    try:
-        self.config.dtypes.bewertung_ssk.type_extension(ELAN_APP).setCCategory('protective-actions')
     except:
         pass
     try:
@@ -347,10 +323,6 @@ def connectTypesAndCategories(self):
         pass
     try:
         self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory('protective-actions')
-    except:
-        pass
-    try:
-        self.config.dtypes.massnahmenempfehlungen_ssk.type_extension(ELAN_APP).setCCategory('protective-actions')
     except:
         pass
     try:
