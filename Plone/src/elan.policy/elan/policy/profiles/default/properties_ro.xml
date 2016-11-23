@@ -6,8 +6,8 @@
   <element value="folder_listing"/>
   <element value="news_listing"/>
  </property>
- <property name="email_from_address" type="string">hr@condat.de</property>
- <property name="email_from_name" type="string">ELAN-E Condat</property>
+ <property name="email_from_address" type="string">kprobst@bfs.de</property>
+ <property name="email_from_name" type="string">ELAN-E BfS</property>
  <property name="validate_email" type="boolean">True</property>
  <property name="email_charset" type="string">utf-8</property>
  <property name="enable_permalink" type="boolean">False</property>
