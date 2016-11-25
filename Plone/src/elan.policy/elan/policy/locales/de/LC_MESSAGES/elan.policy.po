@@ -29,6 +29,10 @@ msgid "Edit Ticker"
 msgstr "Ticker bearbeiten"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
+msgid "Edit Dashboard"
+msgstr "Pinnwand bearbeiten"
+
+#: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "Select Applications"
 msgstr "Anwendungen auswählen"
 

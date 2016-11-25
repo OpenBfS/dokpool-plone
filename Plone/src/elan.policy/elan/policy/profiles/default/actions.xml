@@ -108,6 +108,28 @@
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
+  <object name="edit_scenarios" meta_type="CMF Action" i18n:domain="elan.policy">
+   <property name="title" i18n:translate="">Edit Scenarios</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isContentAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="edit_dashboard" meta_type="CMF Action" i18n:domain="elan.policy">
+   <property name="title" i18n:translate="">Edit Dashboard</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isContentAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
   <object name="edit_ticker" meta_type="CMF Action" i18n:domain="elan.policy">
    <property name="title" i18n:translate="">Edit Ticker</property>
    <property name="description" i18n:translate=""></property>
@@ -124,17 +146,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/ticker/deleteTicker</property>
-   <property name="link_target"></property>
-   <property name="icon_expr"></property>
-   <property name="available_expr">here/isContentAdmin</property>
-   <property name="permissions"></property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edit_scenarios" meta_type="CMF Action" i18n:domain="elan.policy">
-   <property name="title" i18n:translate="">Edit Scenarios</property>
-   <property name="description" i18n:translate=""></property>
-   <property
-      name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property name="available_expr">here/isContentAdmin</property>
