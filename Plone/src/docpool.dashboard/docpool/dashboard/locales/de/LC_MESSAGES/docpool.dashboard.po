@@ -42,10 +42,10 @@ msgstr "Keine aktuellen Daten"
 #. Default: "Select the document types you want to show in this dashboard."
 #: docpool.dashboard/docpool/dashboard/content/dashboard.py:44
 msgid "description_dashboard_dbcollections"
-msgstr "Wählen Sie die Dokumenttypen, welche Sie auf dieser Pinnwand zeigen wollen."
+msgstr "Wählen Sie die Dokumentsammlungen, welche Sie auf dieser Pinnwand zeigen wollen."
 
 #. Default: "Document Types"
 #: docpool.dashboard/docpool/dashboard/content/dashboard.py:43
 msgid "label_dashboard_dbcollections"
-msgstr "Dokumenttypen"
+msgstr "Pinnwand Dokumentsammlungen"
 
