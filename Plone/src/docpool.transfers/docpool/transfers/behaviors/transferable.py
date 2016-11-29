@@ -35,6 +35,7 @@ from plone import api
 from Products.CMFPlone.utils import log, log_exc
 from elan.esd import DocpoolMessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
 from Acquisition import aq_inner
 from Products.Archetypes.utils import shasattr
@@ -240,6 +241,7 @@ class Transferable(FlexibleView):
         7) Add entry to receiver log.
         """
         from docpool.elan.behaviors.elandocument import IELANDocument
+        from docpool.elan.config import ELAN_APP
         def doIt():
             # 1) Determine all transfer folder objects.
             for target in targets:
@@ -277,6 +279,10 @@ class Transferable(FlexibleView):
                 # 2) Put a copy of me in each of them, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
+                behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
+                behaviors.add(ELAN_APP)
+                ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
+
 
                 # 3) Add transfer information to the copies.
                 my_copy.transferred = datetime.now()

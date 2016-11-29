@@ -61,7 +61,7 @@ def cpListe(context=None):
             # print self._value
             # print self.dts
             if self._value and self.dts.has_key(self._value):
-                return u"%s (%s)" % (self.dts[self._value], self._value)
+                return u"%s (%s)" % (safe_unicode(self.dts[self._value]), safe_unicode(self._value))
             else:
                 return self._value
     

@@ -4,6 +4,7 @@ from docpool.elan.config import ELAN_APP
 from elan.esd.db.model import Channel, ChannelPermissions
 from docpool.dbaccess.dbinit import __session__
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log_exc
 from plone import api
 
 def determineChannels(transfer_ids):
@@ -54,6 +55,9 @@ def ensureScenariosInTarget(original, copy):
             wftool = getToolByName(original, 'portal_workflow')
             wftool.doActionFor(new_scen, 'retract')
             new_scenarios.append(id)
-    copy.doc_extension(ELAN_APP).scenarios = new_scenarios
+    try:
+        copy.doc_extension(ELAN_APP).scenarios = new_scenarios
+    except Exception, e:
+        log_exc(e)
     copy.reindexObject()
 
