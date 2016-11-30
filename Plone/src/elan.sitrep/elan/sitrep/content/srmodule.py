@@ -30,6 +30,9 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 
 from Products.CMFCore.utils import getToolByName
 
+from plone.dexterity.utils import safe_unicode
+
+
 ##code-section imports
 from docpool.base.utils import queryForObjects, back_references, portalMessage
 from plone.api import content
@@ -93,7 +96,10 @@ class SRModule(Container, DPDocument):
         """
         """
         if self.currentReport:
-            return "%s: %s (%s)" % (self.currentReport.to_object.Title(), self.Title(), self.toLocalizedTime(DateTime(self.changed()), long_format=1))
+            to_object_title = safe_unicode(self.currentReport.to_object.Title())
+            self_title = safe_unicode(self.Title())
+
+            return "%s: %s (%s)" % (to_object_title, self_title, self.toLocalizedTime(DateTime(self.changed()), long_format=1))
         else:
             return self.Title()
     
