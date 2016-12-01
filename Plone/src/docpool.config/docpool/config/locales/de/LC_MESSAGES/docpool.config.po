@@ -34,7 +34,7 @@ msgstr "Normalbetrieb"
 
 #: docpool.config/docpool/config/local.py:99
 msgid "Dashboard Configuration"
-msgstr "Konfiguration Pinnwand"
+msgstr "Dokumentsammlungen Pinnwand"
 
 #: docpool.config/docpool/config/general.py:73
 msgid "Overview"
