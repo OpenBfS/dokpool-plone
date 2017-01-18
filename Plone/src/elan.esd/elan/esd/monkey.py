@@ -137,8 +137,11 @@ def searchResults(self, REQUEST=None, **kw):
     isArchive = rqurl.find('/archive/') > -1
     has_st = kw.get('SearchableText', None)
     has_path = kw.get('path', None)
-    has_op = kw.get('object_provides', None)
-    if has_st and not has_op: # user query, needs to be personalized
+    isInternal = kw.get('object_provides', None)
+    if has_st and type(has_st) == type({}):
+        has_st = has_st.get('query', None)
+        isInternal = True
+    if has_st and not isInternal: # user query, needs to be personalized
         if has_path:
             path = kw['path']
             kw['path'] = "%s/content" % path # Make sure we only search in one area
@@ -150,7 +153,7 @@ def searchResults(self, REQUEST=None, **kw):
                 kw['scenarios'] = scns
             else: # If we don't have a filter
                 kw['scenarios'] = ['dontfindanything']
-    # print kw
+    #print kw
     return self.original_searchResults(REQUEST, **kw)
 
 if not hasattr(CatalogTool, "original_searchResults"):
