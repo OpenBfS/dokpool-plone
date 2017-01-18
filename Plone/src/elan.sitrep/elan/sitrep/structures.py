@@ -8,10 +8,11 @@ MODTYPES = [
             {TYPE: 'SRModuleTypes', TITLE: 'SR Module Types', ID: 'mtypes', CHILDREN: [] },            
             ]
 SRCONFIG = [
-            {TYPE: 'SRConfig', TITLE: 'SR Configuration', ID: 'srconfig', CHILDREN: [] },
-            {TYPE: 'SRCollections', TITLE: 'SR Collections', ID: 'colls', CHILDREN: [
-                                                                                     ] },
-            {TYPE: 'SRTextBlocks', TITLE: 'Text Blocks', ID: 'textblocks', CHILDREN: [] },
+            {TYPE: 'SRConfig', TITLE: 'SR Configuration', ID: 'srconfig', CHILDREN: [
+                {TYPE: 'SRCollections', TITLE: 'SR Collections', ID: 'colls', CHILDREN: [
+                ]},
+                {TYPE: 'SRTextBlocks', TITLE: 'Text Blocks', ID: 'textblocks', CHILDREN: []},
+            ] },
             ]
 
 

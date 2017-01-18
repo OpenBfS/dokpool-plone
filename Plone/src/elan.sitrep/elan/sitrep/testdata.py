@@ -55,21 +55,25 @@ PHASES = [
 SCENARIOS = [
              {TYPE: 'SRScenario', TITLE: 'Scenario 1', ID: 'scenario1', CHILDREN: PHASES}, 
 #             {TYPE: 'SRScenario', TITLE: 'Scenario 2', ID: 'scenario2', CHILDREN: PHASES}, 
-#             {TYPE: 'SRScenario', TITLE: 'Scenario 3', ID: 'scenario3', CHILDREN: PHASES}, 
-             ]
+#             {TYPE: 'SRScenario', TITLE: 'Scenario 3', ID: 'scenario3', CHILDREN: PHASES},
+            {TYPE: 'SRCollections', TITLE: 'SR Collections', ID: 'colls', CHILDREN: [
+
+                {TYPE: 'SRCollection', TITLE: u'CNCAN PROJECTIONS', ID: 'cncan-projections', CHILDREN: [],
+                 DOCTYPES: ['cncanprojection']},
+                {TYPE: 'SRCollection', TITLE: u'IFIN PROJECTIONS', ID: 'ifin-projections', CHILDREN: [],
+                 DOCTYPES: ['ifinprojection']},
+                {TYPE: 'SRCollection', TITLE: u'NPP PROJECTIONS', ID: 'npp-projections', CHILDREN: [],
+                 DOCTYPES: ['nppprojection']},
+            ]},
+            {TYPE: 'SRTextBlocks', TITLE: 'Text Blocks', ID: 'textblocks', CHILDREN: []},
+
+            ]
 
 MODTYPES = [
             {TYPE: 'SRModuleTypes', TITLE: 'SR Module Types', ID: 'mtypes', CHILDREN: MODULE_TYPES },            
             ]
 SRCONFIG = [
             {TYPE: 'SRConfig', TITLE: 'SR Configuration', ID: 'srconfig', CHILDREN: SCENARIOS },
-            {TYPE: 'SRCollections', TITLE: 'SR Collections', ID: 'colls', CHILDREN: [
-                                                                                    
-                {TYPE: 'SRCollection', TITLE: u'CNCAN PROJECTIONS', ID: 'cncan-projections', CHILDREN: [], DOCTYPES: ['cncanprojection']},
-                {TYPE: 'SRCollection', TITLE: u'IFIN PROJECTIONS', ID: 'ifin-projections', CHILDREN: [], DOCTYPES: ['ifinprojection']},
-                {TYPE: 'SRCollection', TITLE: u'NPP PROJECTIONS', ID: 'npp-projections', CHILDREN: [], DOCTYPES: ['nppprojection']},
-                                                                                     ] },
-            {TYPE: 'SRTextBlocks', TITLE: 'Text Blocks', ID: 'textblocks', CHILDREN: [] },
             ]
 
 def createModuleTypes(self, fresh):
