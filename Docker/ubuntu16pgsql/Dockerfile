@@ -1,14 +1,8 @@
-# Dockerfile for running instance of ELAN as Standalone Container
-#
-# Requirements:
-# Place an zodb-Backup (created with plonebackup) next to this Dockerfile and name it initialELAN-backup.tgz
+# Dockerfile for running instance of Dokpool as Container
 #
 # Info:
 # This Container runs standalone using sqlite- and zope-Databses as backend.
 # No need for PostgreSQL, but not recommended for production use
-#
-# If you want to restore a transfer-Db (based on sqlite) just place a elan_transfer.sqlite file next to this
-# Dockerfile. See ./Plone/buildout_docker.cfg where elan_transfer.sqlite is expected to be in running container
 #
 # build with e.g. `docker build --force-rm=true -t bfs/elan5standalone -f ./Docker/ubuntu16pgsql/Dockerfile .',
 # then run with e.g.
