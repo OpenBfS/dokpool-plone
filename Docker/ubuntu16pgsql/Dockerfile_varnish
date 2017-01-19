@@ -7,7 +7,7 @@
 # This Container runs using postgreSQl-Databases as backend.
 #
 # build from root dir of this repo with e.g.
-# `docker build --force-rm=true -t bfs/elan5varnish -f ./Docker/ubuntu14pgsql/Dockerfile_varnish .',
+# `docker build --force-rm=true -t bfs/elan5varnish -f ./Docker/ubuntu16pgsql/Dockerfile_varnish .',
 # then run with e.g.
 # `docker run --name bfs_elan5_varnish --link elan_db:elan_db  -dp 18081:8081 bfs/elan5varnish:latest'
 #
