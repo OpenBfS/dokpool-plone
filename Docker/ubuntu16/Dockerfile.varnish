@@ -1,15 +1,18 @@
-# Dockerfile for running instance of Dokpool as Container
+# Dockerfile for running instance of Dokpool/ELAN as Container
+#
+# Requirements:
+# A running postgres-Service on (linked) machine elan_db having (empty) zodb and elan DBs.
 #
 # Info:
-# This Container runs standalone using sqlite- and zope-Databses as backend.
-# No need for PostgreSQL, but not recommended for production use
+# This Container runs using postgreSQl-Databases as backend.
 #
-# build with e.g. `docker build --force-rm=true -t bfs/elan5standalone -f ./Docker/ubuntu16pgsql/Dockerfile .',
+# build from root dir of this repo with e.g.
+# `docker build --force-rm=true -t bfs/dokpool5varnish -f ./Docker/ubuntu16pgsql/Dockerfile.varnish .',
 # then run with e.g.
-# `docker run --name bfs_elan5_standalone -dp 18081:8081 bfs/elan5standalone:latest'
+# `docker run --name bfs_dokpool5_varnish --link elan_db:elan_db  -dp 18081:8081 bfs/dokpool5varnish:latest'
 #
 # In case you want to interact with the container, use e.g.
-# `docker exec -it bfs_elan5_standalone "/bin/bash"'
+# `docker exec -it bfs_dokpool5_varnish "/bin/bash"'
 #
 FROM ubuntu:xenial
 MAINTAINER Marco Lechner<mlechner@bfs.de>
@@ -22,14 +25,19 @@ RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/
 RUN mkdir -p /opt/bfs/elan
 ADD . /opt/bfs/elan/
 WORKDIR /opt/bfs/elan/Plone
-RUN cd /opt/bfs/elan/Plone && python bootstrap.py
-RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout_docker.cfg
+RUN python bootstrap.py
+RUN ./bin/buildout -Nvc relstorage_docker.cfg
 
 RUN chown -R zope.zope /opt/bfs
 USER zope
 ENV HOME /home/zope
 # try to use sqlite instead of postgreSQL as DB backend for transfer
 WORKDIR /opt/bfs/elan/Plone
-EXPOSE 8081
-CMD [ "/opt/bfs/elan/Plone/bin/instance", "fg"]
+
+# run singleinstance
+#EXPOSE 8081
+#CMD [ "/opt/bfs/elan/Plone/bin/instance", "fg"]
+# run using varnish
+EXPOSE 8081 8082 8083 8100 8881 9001
+CMD [ "/opt/bfs/elan/Plone/bin/supervisord", "-n"]
 
