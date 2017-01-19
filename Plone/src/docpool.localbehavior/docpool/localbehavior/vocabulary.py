@@ -27,7 +27,11 @@ def LocalBehaviorsVocabularyFactory(context):
     dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
     if 'config' in path:
         isType = True
-        apps = dp_app_state.appsSupportedHere()
+        print path
+        if path.index('config') == 2: # global config
+            apps = dp_app_state.appsPermittedForCurrentUser()
+        else:
+            apps = dp_app_state.appsSupportedHere()
         return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in extendingApps() if app[0] in apps if not app[2]['implicit']])
     else: # It's a document
         available_apps = dp_app_state.appsPermittedForObject(request)
