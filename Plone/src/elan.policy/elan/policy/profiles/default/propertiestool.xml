@@ -88,6 +88,8 @@
   <property name="allowRolesToAddKeywords" type="lines">
    <element value="Manager"/>
    <element value="Site Administrator"/>
+   <element value="Owner"/>
+   <element value="Editor"/>
    <element value="Reviewer"/>
   </property>
   <property name="auth_cookie_length" type="int">0</property>
