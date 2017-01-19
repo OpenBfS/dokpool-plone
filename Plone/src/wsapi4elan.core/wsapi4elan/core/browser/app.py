@@ -138,6 +138,28 @@ class ApplicationAPI(WSAPI):
         doc = self.context.restrictedTraverse(path)
         return doc.readPropertiesFromFile() # just the path
 
+    def set_property(self, path, name, value, ptype):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        doc = self.context.restrictedTraverse(path)
+        doc.setDPProperty(name, value, ptype)
+        return "set"
+
+    def delete_property(self, path, name):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        doc = self.context.restrictedTraverse(path)
+        doc.deleteDPProperty(name)
+        return "deleted"
+
+    def get_property(self, path, name):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        doc = self.context.restrictedTraverse(path)
+        return doc.getDPProperty(name)
+
+    def get_properties(self, path):
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        doc = self.context.restrictedTraverse(path)
+        return doc.getDPProperties()
+
     def post_user(self, username, password, fullname, esdpath):
         """
         """
