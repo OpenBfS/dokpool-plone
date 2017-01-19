@@ -25,12 +25,6 @@
 
    <include file="skins.zcml" />
    
-   
-   <permission id="docpool.elan.AddELANDocument" title="Docpool: Add ELANDocument" />   
-   
-   
-   <permission id="docpool.elan.AddELANType" title="Docpool: Add ELANType" />   
-   
 
 <!-- ##code-section Main -->
    <permission id="docpool.elan.AccessELAN" title="Docpool: Access ELAN Content" />

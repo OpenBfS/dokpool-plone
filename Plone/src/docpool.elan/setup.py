@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.0.6'
+version = '0.0.7'
 
 setup(name='docpool.elan',
       version=version,

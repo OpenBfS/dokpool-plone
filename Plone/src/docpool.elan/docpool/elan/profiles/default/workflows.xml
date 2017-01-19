@@ -6,15 +6,5 @@
  <bindings>
 <!-- ##code-section bindings -->
 <!-- ##/code-section bindings -->
-    
-    
-   <type type_id="ELANDocument">
-    <bound-workflow workflow_id="elan_workflow" />
-   </type>
-   
-    
-    
-   
-    
  </bindings>
 </object>
