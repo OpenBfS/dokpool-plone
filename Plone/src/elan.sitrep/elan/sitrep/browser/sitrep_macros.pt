@@ -54,11 +54,14 @@
 		    <tal:loop define="mconfigs phase/availableModuleConfigs" repeat="mtid scenario/modTypeIds">
 		       <td tal:define="mc python:mconfigs[mtid]"><tal:if condition="nocall:mc">
 		       <a href="${mc/absolute_url}">${mc/Title}</a>
-		       <ul tal:define="tbs mc/textBlocks" tal:condition="tbs">
+		       <ul class="textblocks" tal:define="tbs mc/textBlocks" tal:condition="tbs">
 		           <tal:loop repeat="tb tbs">
 		               <li><a href="${python:tb.to_object.absolute_url()}">${python:tb.to_object.Title()}</a></li>
 		           </tal:loop>
 		       </ul>
+               <tal:if condition="mc/docSelection">
+                   <a class="doccollection" href="${python:mc.docSelection.to_object.absolute_url()}">${python:mc.docSelection.to_object.Title()}</a>
+               </tal:if>
 		       </tal:if></td>
 		    </tal:loop>
 		    </tr>
