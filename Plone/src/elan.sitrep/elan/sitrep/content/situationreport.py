@@ -32,7 +32,7 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from plone.api import content
-from docpool.base.utils import portalMessage, queryForObject
+from docpool.base.utils import portalMessage, queryForObject, back_references
 from elan.sitrep.content.situationoverview import _availableModules
 from datetime import datetime
 import re
@@ -134,21 +134,49 @@ class SituationReport(Container, DPDocument):
             return copied_modules
         else: # report under construction
             return [ m.to_object for m in (self.currentModules or [])]
+
+    def modulesMeantForMe(self):
+        """
+        Alle modules linked to me but currently in process
+        @return:
+        """
+        modules = back_references(self, "currentReport")
+        return [ mod for mod in modules if mod is not None and mod.myState() == 'private' ]
+
         
-    def missingModules(self):
+    def moduleState(self):
+        """
+        We need to collect all modules that are already published and assigned to this sitrep.
+        Next we need those that are still in progress but are planned for this report.
+        And lastly we determine alle module type for which there is no module whatsoever.
+        @return:
+        """
+        # The "ready" modules.
         myMods = self.myModules()
+        # The planned modules in progress.
+        plannedMods = self.modulesMeantForMe()
         mts = self.modTypes()
         missing = {}
         # As a start, all modules are missing
         for mt in mts:
-            missing[mt[0]] = mt[1]
-        # Now remove those, we actually have
+            missing[mt[0]] = ['missing', mt[1], None]
+        # Except for those in progress
+        for mod in plannedMods:
+            try:
+                missing[mod.docType][0] = 'planned'
+                missing[mod.docType][2] = mod
+            except:
+                pass
+        # Even better: those ready
         for mod in myMods:
             try:
-                del missing[mod.docType]
+                missing[mod.docType][0] = 'ready'
+                missing[mod.docType][2] = mod
             except:
                 pass
         res = missing.values()
+        #res = myMods
+        #res.extend(plannedMods)
         return sorted(res)
             
     def publishReport(self, justDoIt=False, duplicate=False):

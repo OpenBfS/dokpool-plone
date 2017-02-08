@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2016-11-11 10:49+0000\n"
+"POT-Creation-Date: 2017-02-08 07:22+0000\n"
 "PO-Revision-Date: 2015-10-14 12:14+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -31,6 +31,15 @@ msgstr "Abb."
 msgid "Filter"
 msgstr ""
 
+#: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleTypes.xml
+msgid "Folder for Module Types"
+msgstr "Ordner für Modultypen"
+
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:20
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:23
+msgid "In progress:"
+msgstr "In Bearbeitung:"
+
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:14
 msgid "Item was inserted!"
 msgstr "Das Element wurde eingefügt!"
@@ -43,23 +52,20 @@ msgstr "Vorgesehen für Lagebericht:"
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:24
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:35
 msgid "Mirror Overview"
 msgstr "Aus Lagebild übernehmen"
+
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:18
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:20
+msgid "Missing:"
+msgstr "Fehlt:"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleType.xml
 msgid "Module Type"
 msgstr "Modultyp"
 
-#: elan.sitrep/elan/sitrep/profiles/default/types/SRModuleTypes.xml
-msgid "Folder for Module Types"
-msgstr "Ordner für Modultypen"
-
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:14
-msgid "Module types missing (preventing publication)"
-msgstr "Fehlende Modultypen (verhindert Veröffentlichung)"
-
-#: elan.sitrep/elan/sitrep/content/situationreport.py:203
+#: elan.sitrep/elan/sitrep/content/situationreport.py:236
 msgid "Modules have been replaced with current situation overview."
 msgstr "Die Module aus dem aktuellen Lagebild wurden zugeordnet."
 
@@ -71,11 +77,11 @@ msgstr "Keine Inhalte gefunden"
 msgid "No current content."
 msgstr "Kein aktueller Inhalt."
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:85
+#: elan.sitrep/elan/sitrep/content/srmodule.py:88
 msgid "No information."
 msgstr "Keine Information."
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:205
+#: elan.sitrep/elan/sitrep/content/situationreport.py:238
 msgid "No modules found in current situation overview."
 msgstr "Keine Module in aktuellem Lagebild gefunden."
 
@@ -99,14 +105,19 @@ msgstr "Phase"
 msgid "Previous version"
 msgstr "Vorherige Version"
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:33
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:44
 msgid "Printable version"
 msgstr "Druckversion"
 
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:16
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:19
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:31
 msgid "Publish"
 msgstr "Veröffentlichen"
+
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:19
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
+msgid "Ready:"
+msgstr "Fertig:"
 
 #: elan.sitrep/elan/sitrep/browser/situationoverview.pt:27
 msgid "Reload current situation"
@@ -160,6 +171,10 @@ msgstr "Modulkonfiguration"
 msgid "Situation Scenario"
 msgstr "Szenario"
 
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:13
+msgid "State of modules"
+msgstr "Stand der Bearbeitung"
+
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRTextBlock.xml
 msgid "Text Block"
 msgstr "Textbaustein"
@@ -173,11 +188,11 @@ msgstr "Ordner für LB-Textbausteine"
 msgid "Text blocks"
 msgstr "Ordner für LB-Textbausteine"
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:240
+#: elan.sitrep/elan/sitrep/content/srmodule.py:246
 msgid "The module has been published."
 msgstr "Das Modul wurde freigegeben."
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:174
+#: elan.sitrep/elan/sitrep/content/situationreport.py:207
 msgid "The report has been published."
 msgstr "Der Lagebericht wurde veröffentlicht."
 
@@ -218,11 +233,11 @@ msgid "description_situationreport_text"
 msgstr ""
 
 #. Default: "If selected this report defines helpful defaults (text blocks, documents) for the content of this module."
-#: elan.sitrep/elan/sitrep/content/srmodule.py:53
+#: elan.sitrep/elan/sitrep/content/srmodule.py:56
 msgid "description_srmodule_currentreport"
 msgstr "Falls ausgewählt definiert dieser Lagebericht hilfreiche Voreinstellungen (Textbausteine, Dokumente) für den Inhalt dieses Moduls."
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:65
+#: elan.sitrep/elan/sitrep/content/srmodule.py:68
 msgid "description_srmodule_doctype"
 msgstr ""
 
@@ -268,12 +283,12 @@ msgid "label_situationreport_text"
 msgstr "Einleitung"
 
 #. Default: "Current report"
-#: elan.sitrep/elan/sitrep/content/srmodule.py:52
+#: elan.sitrep/elan/sitrep/content/srmodule.py:55
 msgid "label_srmodule_currentreport"
 msgstr "Aktueller Lagebericht"
 
 #. Default: "Module Type"
-#: elan.sitrep/elan/sitrep/content/srmodule.py:64
+#: elan.sitrep/elan/sitrep/content/srmodule.py:67
 msgid "label_srmodule_doctype"
 msgstr "Modultyp"
 
@@ -312,7 +327,8 @@ msgstr "Dieses Modul veröffentlichen?"
 msgid "report_mirror_popup"
 msgstr "Aus Lagebild übernehmen?"
 
-#. Default: "Do you really want to create a published version of this report?"
+#. Default: "Do you really want to create a published version of this report? Only published modules will be included!"
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:16
+#, fuzzy
 msgid "report_publish_popup"
-msgstr "Diesen Lagebericht veröffentlichen?"
+msgstr "Diesen Lagebericht wirklich veröffentlichen? Beachten Sie, dass nur veröffentlichte Module berücksichtigt werden!"
