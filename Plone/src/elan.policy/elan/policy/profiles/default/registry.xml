@@ -374,7 +374,7 @@
   </record>
   <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
     <value purge="false">
-      <element>InfoDocument</element>
+      <element>InfoFolder</element>
       <element>DPConfig</element>
       <element>DocTypes</element>
       <element>DocumentPool</element>
@@ -385,6 +385,7 @@
       <element>GroupFolder</element>
       <element>UserFolder</element>
       <element>InfoFolder</element>
+      <element>SimpleFolder</element>
     </value>
   </record>
   <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
