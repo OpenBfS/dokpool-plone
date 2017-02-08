@@ -15,6 +15,9 @@ from Products.Archetypes.utils import shasattr
 
 class Renderer(navigation.Renderer):
 
+    def __init__(self, context, request, view, manager, data):
+        navigation.Renderer.__init__(self, context, request, view, manager, data)
+
     @memoize
     def getNavTree(self, _marker=[]):
         context = aq_inner(self.context)
@@ -24,9 +27,11 @@ class Renderer(navigation.Renderer):
 
         if context.isPersonal():
             # Special treatment for the user's personal folders
+            #print "Personal", context
+#            pfs = getFoldersForCurrentUser(context, queryBuilderClass=SitemapQueryBuilder, strategy=strategy)
             pfs = getFoldersForCurrentUser(context)
             return {'children': pfs}
-        
+
         # Otherwise build the normal navigation
         ft = buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
         #print ft
