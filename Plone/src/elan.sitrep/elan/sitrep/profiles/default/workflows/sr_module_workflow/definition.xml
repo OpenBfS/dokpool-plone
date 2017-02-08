@@ -56,7 +56,7 @@
   
  </state>
  <state state_id="published" title="Published" >
-  <description>Visible to everyone, not editable by the owner.</description>
+  <description>Visible to everyone, editable by the owner and admins.</description>
   <exit-transition transition_id="retract" />
   <exit-transition transition_id="reject" />
   <permission-map name="ATContentTypes: Add File" acquired="False">
@@ -83,6 +83,8 @@
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Owner</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Sharing page: Delegate roles" acquired="False">
    
