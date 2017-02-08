@@ -217,6 +217,9 @@ class SRModule(Container, DPDocument):
             scenario, phase, module_type = self.getFilter(request)
         else:
             df = self.defaultFilter()
+            scenario = df.get("scenario", None)
+            phase = df.get("phase", None)
+            module_type = df.get("module_type", None)
             mc = df['config']
             if mc:
                 return mc.currentTextBlocks()
@@ -230,7 +233,8 @@ class SRModule(Container, DPDocument):
         #print args
         sr_cat = getToolByName(self, 'sr_catalog')
         if scenario or phase or module_type:
-            return [ brain.getObject() for brain in sr_cat(**args) ]
+            brains = sr_cat(**args)
+            return [ brain.getObject() for brain in brains]
         else:
             return []
         
