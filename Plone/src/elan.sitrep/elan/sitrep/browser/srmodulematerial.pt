@@ -53,7 +53,7 @@ function insertTextblock (selector) {
                                     f_value f_phase">
                  <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
                 </tal:widget>
-                <tal:widget define="wname string:module_tyoe;
+                <tal:widget define="wname string:module_type;
                                     wtitle string:Module type;
                                     options context/possibleSRModuleTypes;
                                     f_value f_modtype">
