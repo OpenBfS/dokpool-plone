@@ -114,6 +114,10 @@ msgstr "Druckversion"
 msgid "Publish"
 msgstr "Veröffentlichen"
 
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:33
+msgid "report_publish_popup"
+msgstr "Wollen Sie diesen Lagebericht wirklich veröffentlichen? Bitte beachten Sie eventuell fehlende Module!"
+
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:19
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
 msgid "Ready:"

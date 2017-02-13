@@ -30,7 +30,7 @@
        </ul>
 	   <a id="form-buttons-publish"
 	       onclick="return confirm('${context/Title}: ${alert_msg}');"
-	      tal:define="alert_msg python:context.translate('report_publish_popup', default='Do you really want to create a published version of this report?', domain='elan.sitrep', escape_for_js=True)"
+	      tal:define="alert_msg python:context.translate('report_publish_popup', default='Do you really want to create a published version of this report? Please consider possible missing modules!', domain='elan.sitrep', escape_for_js=True)"
 	   class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishReport" i18n:translate="">Publish</a>
 	   <a id="form-buttons-create" 
 	       onclick="return confirm('${context/Title}: ${alert_msg}');"
