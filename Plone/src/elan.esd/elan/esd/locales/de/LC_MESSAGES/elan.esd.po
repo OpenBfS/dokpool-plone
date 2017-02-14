@@ -16,7 +16,10 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:34
+#: elan.esd/elan/esd/browser/elan_macros.pt:33
+msgid "+++Exercise+++"
+msgstr "+++&Uuml;bung+++"
+
 #: elan.esd/elan/esd/browser/elanscenarios.pt:19
 msgid "++++ Exercise ++++"
 msgstr "++++ &Uuml;bung ++++"
@@ -191,7 +194,7 @@ msgstr "IRIX Basis Konfiguration"
 msgid "Images:"
 msgstr "Bilder:"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:35
+#: elan.esd/elan/esd/browser/elan_macros.pt:44
 #: elan.esd/elan/esd/browser/elanscenarios.pt:20
 msgid "LT"
 msgstr "Ortszeit"
