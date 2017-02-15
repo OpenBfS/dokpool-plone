@@ -18,9 +18,10 @@ MAINTAINER mlechner@bfs.de
 #    echo "locales locales/default_environment_locale select en_US.UTF-8" | \
 #    debconf-set-selections
 
-#RUN apt-get update -y && apt-get install -y locales
-#ENV LC_ALL en_US.UTF-8
+RUN apt-get update -y && apt-get install -y locales && locale-gen en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
+RUN dpkg-reconfigure locales
 
 #
 # Install postgres 9.5 + postgis 2.2
