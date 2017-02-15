@@ -6,7 +6,7 @@
 # `docker run --name elan_db -dp 2345:5432 bfs/elan_pgsql:latest'
 #
 
-FROM debian:jessie
+FROM ubuntu:latest
 MAINTAINER mlechner@bfs.de
 
 #
@@ -23,10 +23,10 @@ RUN apt-get update -y && apt-get install -y locales
 ENV LC_ALL en_US.UTF-8
 
 #
-# Install postgres 9.4 + postgis 2.1
+# Install postgres 9.5 + postgis 2.2
 #
-RUN apt-get update && apt-get install -y postgresql-9.4-postgis-2.1 postgis \
-    postgresql-plpython-9.4
+RUN apt-get update && apt-get install -y postgresql-9.5-postgis-2.2 postgis \
+    postgresql-plpython-9.5
 
 #
 # Use user postgres to run the next commands
@@ -45,9 +45,9 @@ RUN /etc/init.d/postgresql start &&\
 # database are possible.
 #
 RUN echo "host all  all    0.0.0.0/0  md5" \
-    >> /etc/postgresql/9.4/main/pg_hba.conf
+    >> /etc/postgresql/9.5/main/pg_hba.conf
 
-RUN echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/9.5/main/postgresql.conf
 
 #
 # Expose the PostgreSQL port
@@ -61,14 +61,14 @@ EXPOSE 5432
 # 'FATAL: the database system is starting up'.
 # It's because of the -w
 #
-ADD pgsql elan_pgsql/
-RUN /usr/lib/postgresql/9.4/bin/pg_ctl start -wD /etc/postgresql/9.4/main/ && \
+# ADD pgsql elan_pgsql/
+RUN /usr/lib/postgresql/9.5/bin/pg_ctl start -wD /etc/postgresql/9.5/main/ && \
     createdb -E UTF-8 -O zodbuser zodb && \
     createdb -E UTF-8 -O elan elan 
 
 #
 # Start Postgres-Server
 #
-CMD ["/usr/lib/postgresql/9.4/bin/postgres", "-D", \
-     "/var/lib/postgresql/9.4/main", "-c", \
-     "config_file=/etc/postgresql/9.4/main/postgresql.conf"]
+CMD ["/usr/lib/postgresql/9.5/bin/postgres", "-D", \
+     "/var/lib/postgresql/9.5/main", "-c", \
+     "config_file=/etc/postgresql/9.5/main/postgresql.conf"]
