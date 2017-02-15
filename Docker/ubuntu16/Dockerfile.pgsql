@@ -20,6 +20,7 @@ MAINTAINER mlechner@bfs.de
 
 #RUN apt-get update -y && apt-get install -y locales
 #ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
 
 #
 # Install postgres 9.5 + postgis 2.2
