@@ -12,15 +12,14 @@ MAINTAINER mlechner@bfs.de
 #
 # Use utf-8
 #
-RUN echo \
-    "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | \
-    debconf-set-selections && \
-    echo "locales locales/default_environment_locale select en_US.UTF-8" | \
-    debconf-set-selections
+#RUN echo \
+#    "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | \
+#    debconf-set-selections && \
+#    echo "locales locales/default_environment_locale select en_US.UTF-8" | \
+#    debconf-set-selections
 
-RUN apt-get update -y && apt-get install -y locales
-
-ENV LC_ALL en_US.UTF-8
+#RUN apt-get update -y && apt-get install -y locales
+#ENV LC_ALL en_US.UTF-8
 
 #
 # Install postgres 9.5 + postgis 2.2
