@@ -21,14 +21,22 @@
 	}	
 }
 
-.portletNavigationTree .personal {
-    .navTreeLevel2 {
-        display: none;
+.portletNavigationTree {
+    .personal {
+        ul {
+            display: none;
+        }
+        .navTreeItemInPath > ul, .navTreeCurrentNode > ul {
+            display: inline;
+        }
+        li {
+            padding-left: 4px;
+        }
     }
-    .navTreeItemInPath .navTreeLevel2, .navTreeCurrentNode .navTreeLevel2 {
-        display: inline;
-    }
-    li {
-        padding-left: 4px;
+    .personal.navTreeItemInPath, .personal.navTreeCurrentNode {
+        ul.navTreeLevel1 {
+            display: inline;
+        }
     }
 }
+

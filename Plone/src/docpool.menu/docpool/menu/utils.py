@@ -130,6 +130,8 @@ def getFoldersForCurrentUser(self, user=None, queryBuilderClass=None, strategy=N
     if mfolder and not mfolder[0].has_key("show_children"): # A folder for the user has not been found, e.g. in archive
 #        print "has no user folder"
         mfolder = []
+    else:
+        mfolder[0]['item_class'] = "personal"
     res.extend(mfolder)
     res.extend(rres)
     res.reverse()
