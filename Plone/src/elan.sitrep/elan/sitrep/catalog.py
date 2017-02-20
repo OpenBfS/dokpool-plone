@@ -67,7 +67,7 @@ class SRCatalog(CatalogTool):
         self.manage_catalogClear()
 
         cat = getToolByName(self, 'portal_catalog')
-        # FIXME: Probably only SRTextBlock ist needed here...
+        # FIXME: Probably only SRTextBlock is needed here...
         brains = cat({'portal_type': ("SRScenario",
                                        "SRPhase",
                                        "SRModuleConfig",

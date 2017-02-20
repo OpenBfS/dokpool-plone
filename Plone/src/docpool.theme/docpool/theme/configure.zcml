@@ -37,6 +37,5 @@
       layer=".interfaces.ICustomTheme"
       permission="zope.Public"
       />
-  
 
 </configure>
