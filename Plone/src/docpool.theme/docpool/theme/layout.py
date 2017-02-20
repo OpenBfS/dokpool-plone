@@ -21,6 +21,6 @@ class LayoutPolicy(base.LayoutPolicy):
 
         if IDPDocument.providedBy(self.context):
             state = api.content.get_state(obj=self.context)
-            return body_class + " state-" + state
+            return body_class + " docstate-" + state
         else:
             return body_class
