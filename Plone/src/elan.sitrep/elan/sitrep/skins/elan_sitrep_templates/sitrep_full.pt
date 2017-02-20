@@ -22,6 +22,9 @@
                 <li tal:condition="python:status=='planned'" class="planned">
                     <i18n:var translate="">In progress:</i18n:var>&nbsp;${title}&nbsp;<a href="${mod/absolute_url}" target="_blank">${mod/Title}</a>
                 </li>
+                <li tal:condition="python:status=='published'" class="published">
+                    <i18n:var translate="">Published:</i18n:var>&nbsp;${title}&nbsp;<a href="${mod/absolute_url}" target="_blank">${mod/Title}</a>
+                </li>
                 <li tal:condition="python:status=='ready'" class="ready">
                     <i18n:var translate="">Ready:</i18n:var>&nbsp;${title}&nbsp;<a href="${mod/absolute_url}" target="_blank">${mod/Title}</a>
                 </li>

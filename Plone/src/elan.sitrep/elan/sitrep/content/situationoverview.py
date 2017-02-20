@@ -23,7 +23,7 @@ from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log, log_exc, safe_unicode
 
 from plone.dexterity.content import Item
 
@@ -134,7 +134,7 @@ def _availableModules(self, reportUID=None):
              'range': 'min' },
                                    scenarios=uss
                                    )
-            modres = [ (m.UID, "%s %s" % (m.Title, self.toLocalizedTime(DateTime(m.changed), long_format=1))) for m in mods]
+            modres = [(m.UID, u"%s %s" % (safe_unicode(m.Title), self.toLocalizedTime(DateTime(m.changed), long_format=1))) for m in mods]
             latest = mods and mods[0].changed or (DateTime() - 14).asdatetime().replace(tzinfo=None)
             if mods:
                 moduids[mt[0]] = mods[0].UID
