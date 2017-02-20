@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2017-02-08 07:22+0000\n"
+"POT-Creation-Date: 2017-02-20 07:56+0000\n"
 "PO-Revision-Date: 2015-10-14 11:19+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:35
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:38
 msgid "Mirror Overview"
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Module Type"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:236
+#: elan.sitrep/elan/sitrep/content/situationreport.py:254
 msgid "Modules have been replaced with current situation overview."
 msgstr ""
 
@@ -81,7 +81,7 @@ msgstr ""
 msgid "No information."
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:238
+#: elan.sitrep/elan/sitrep/content/situationreport.py:256
 msgid "No modules found in current situation overview."
 msgstr ""
 
@@ -105,17 +105,22 @@ msgstr ""
 msgid "Previous version"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:44
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:47
 msgid "Printable version"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:16
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:31
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:34
 msgid "Publish"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:19
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:21
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
+msgid "Published:"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:19
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:29
 msgid "Ready:"
 msgstr ""
 
@@ -188,11 +193,11 @@ msgstr ""
 msgid "Text blocks"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:246
+#: elan.sitrep/elan/sitrep/content/srmodule.py:250
 msgid "The module has been published."
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:207
+#: elan.sitrep/elan/sitrep/content/situationreport.py:225
 msgid "The report has been published."
 msgstr ""
 

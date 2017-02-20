@@ -143,7 +143,15 @@ class SituationReport(Container, DPDocument):
         modules = back_references(self, "currentReport")
         return [ mod for mod in modules if mod is not None and mod.myState() == 'private' ]
 
-        
+    def publishedModulesMeantForMe(self):
+        """
+        Alle modules linked to me and published (but probably not yet assigned to me)
+        @return:
+        """
+        modules = back_references(self, "currentReport")
+        return [ mod for mod in modules if mod is not None and mod.myState() == 'published' ]
+
+
     def moduleState(self):
         """
         We need to collect all modules that are already published and assigned to this sitrep.
@@ -155,6 +163,8 @@ class SituationReport(Container, DPDocument):
         myMods = self.myModules()
         # The planned modules in progress.
         plannedMods = self.modulesMeantForMe()
+        # The published modules in progress
+        publishedMods = self.publishedModulesMeantForMe()
         mts = self.modTypes()
         missing = {}
         # As a start, all modules are missing
@@ -167,6 +177,14 @@ class SituationReport(Container, DPDocument):
                 missing[mod.docType][2] = mod
             except:
                 pass
+
+        for mod in publishedMods:
+            try:
+                missing[mod.docType][0] = 'published'
+                missing[mod.docType][2] = mod
+            except:
+                pass
+
         # Even better: those ready
         for mod in myMods:
             try:

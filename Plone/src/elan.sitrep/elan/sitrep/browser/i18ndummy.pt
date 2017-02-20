@@ -18,6 +18,7 @@
 <i18n:dummy translate="">Missing:</i18n:dummy>
 <i18n:dummy translate="">Ready:</i18n:dummy>
 <i18n:dummy translate="">In progress:</i18n:dummy>
+<i18n:dummy translate="">Published:</i18n:dummy>
 
 <!-- ##/code-section Main -->    
 </metal:content-core>
