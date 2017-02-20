@@ -75,15 +75,6 @@ class ISRModuleConfig(form.Schema):
 ##/code-section field_textBlocks                           
     )
     
-        
-    defaultTextBlocks = RelationList(
-                        title=_(u'label_srmoduleconfig_defaulttextblocks', default=u'Default Text (when freshly created)'),
-                        description=_(u'description_srmoduleconfig_defaulttextblocks', default=u''),
-                        required=False,
-##code-section field_defaultTextBlocks
-##/code-section field_defaultTextBlocks                           
-    )
-    
 
 ##code-section interface
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')

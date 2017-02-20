@@ -38,6 +38,7 @@ from DateTime import DateTime
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.app.textfield.value import RichTextValue
+from Products.CMFPlone.utils import safe_unicode
 ##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
@@ -59,7 +60,6 @@ class ISRModule(form.Schema, IDPDocument):
     
 
 ##code-section interface
-# Change vocab for docTypes to moduleTypes # TODO:
     docType = schema.Choice(
                         title=_(u'label_srmodule_doctype', default=u'Module Type'),
                         description=_(u'description_srmodule_doctype', default=u''),
@@ -67,7 +67,6 @@ class ISRModule(form.Schema, IDPDocument):
                         source="elan.sitrep.vocabularies.ModuleTypes",
     )
     form.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
-
 
 ##/code-section interface
 
@@ -82,6 +81,16 @@ class SRModule(Container, DPDocument):
 ##code-section methods
     def createActions(self):
         super(DPDocument, self).createActions()
+        dto = self.docTypeObj()
+        if dto:
+            defaultTextBlocks = [tb.to_object for tb in (dto.defaultTextBlocks or [])]
+            if defaultTextBlocks:
+                text = u""
+                for tb in defaultTextBlocks:
+                    if tb.text:
+                        text = text + safe_unicode(tb.text.output)
+                self.text = RichTextValue(text, 'text/html', 'text/html')
+                return
         self.text = RichTextValue(_(u"No information."), 'text/plain', 'text/html')
 
     def customMenu(self, menu_items):

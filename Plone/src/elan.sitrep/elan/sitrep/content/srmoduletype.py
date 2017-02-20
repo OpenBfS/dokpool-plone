@@ -41,6 +41,20 @@ class ISRModuleType(form.Schema, IDocType):
     """
     """
         
+    defaultTextBlocks = RelationList(
+                        title=_(u'label_srmoduletype_defaulttextblocks', default=u'Default Text (when freshly created)'),
+                        description=_(u'description_srmoduletype_defaulttextblocks', default=u''),
+                        required=False,
+##code-section field_defaultTextBlocks
+                        value_type=RelationChoice(
+                            title=_("Default Text"),
+                            source="elan.sitrep.vocabularies.TextBlocks",
+
+                        ),
+        ##/code-section field_defaultTextBlocks
+    )
+    
+        
     docSelection = RelationChoice(
                         title=_(u'label_srmoduletype_docselection', default=u'Collection for relevant documents'),
                         description=_(u'description_srmoduletype_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
@@ -53,7 +67,8 @@ class ISRModuleType(form.Schema, IDocType):
 
 ##code-section interface
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
-    
+    form.widget(defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
+
     form.mode(allowUploads='hidden')
     form.mode(publishImmediately='hidden')
     form.mode(globalAllow='hidden')
