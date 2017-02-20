@@ -2,7 +2,7 @@
 #
 # File: srmoduleconfig.py
 #
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
+# Copyright (c) 2017 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -73,6 +73,15 @@ class ISRModuleConfig(form.Schema):
 
                                                      ),
 ##/code-section field_textBlocks                           
+    )
+    
+        
+    defaultTextBlocks = RelationList(
+                        title=_(u'label_srmoduleconfig_defaulttextblocks', default=u'Default Text (when freshly created)'),
+                        description=_(u'description_srmoduleconfig_defaulttextblocks', default=u''),
+                        required=False,
+##code-section field_defaultTextBlocks
+##/code-section field_defaultTextBlocks                           
     )
     
 

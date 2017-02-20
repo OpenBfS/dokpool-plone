@@ -14,11 +14,8 @@
              <element value="Transferable" />
          
          
-             <element value="ELANDocument" />
-         
-<!--         
              <element value="SRModule" />
--->         
+         
      
  </property>
  <!-- schema interface -->

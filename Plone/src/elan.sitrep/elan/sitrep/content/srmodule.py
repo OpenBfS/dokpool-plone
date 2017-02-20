@@ -2,7 +2,7 @@
 #
 # File: srmodule.py
 #
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
+# Copyright (c) 2017 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -29,9 +29,6 @@ from plone.dexterity.content import Container
 from docpool.base.content.dpdocument import DPDocument, IDPDocument
 
 from Products.CMFCore.utils import getToolByName
-
-from plone.dexterity.utils import safe_unicode
-
 
 ##code-section imports
 from docpool.base.utils import queryForObjects, back_references, portalMessage
@@ -288,13 +285,6 @@ class SRModule(Container, DPDocument):
         """
         """
         return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getELANDocuments(self, **kwargs):
-        """
-        """
-        args = {'portal_type':'ELANDocument'}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
     def getSRModules(self, **kwargs):
         """

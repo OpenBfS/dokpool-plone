@@ -2,7 +2,7 @@
 #
 # File: srphase.py
 #
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
+# Copyright (c) 2017 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #

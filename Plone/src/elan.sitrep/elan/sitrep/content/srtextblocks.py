@@ -2,7 +2,7 @@
 #
 # File: srtextblocks.py
 #
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
+# Copyright (c) 2017 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -31,7 +31,7 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from docpool.elan.config import ELAN_APP
-##/code-section imports
+##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -54,7 +54,7 @@ class SRTextBlocks(Container):
     
 ##code-section methods
     APP = ELAN_APP
-##/code-section methods
+##/code-section methods 
 
     def mySRTextBlocks(self):
         """
@@ -91,4 +91,4 @@ class SRTextBlocks(Container):
 
 
 ##code-section bottom
-##/code-section bottom
+##/code-section bottom 

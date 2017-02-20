@@ -2,7 +2,7 @@
 #
 # File: situationreport.py
 #
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
+# Copyright (c) 2017 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -288,13 +288,6 @@ class SituationReport(Container, DPDocument):
         """
         """
         return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getELANDocuments(self, **kwargs):
-        """
-        """
-        args = {'portal_type':'ELANDocument'}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
 
     def getFiles(self, **kwargs):
         """

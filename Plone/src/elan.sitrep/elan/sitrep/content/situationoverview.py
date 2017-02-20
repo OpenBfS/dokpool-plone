@@ -2,7 +2,7 @@
 #
 # File: situationoverview.py
 #
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
+# Copyright (c) 2017 by Condat AG
 # Generator: ConPD2
 #            http://www.condat.de
 #
@@ -23,7 +23,7 @@ from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc, safe_unicode
+from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Item
 
@@ -35,7 +35,8 @@ from DateTime import DateTime
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from elan.esd.utils import getScenariosForCurrentUser
 from docpool.elan.config import ELAN_APP
-##/code-section imports
+from Products.CMFPlone.utils import safe_unicode
+##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
