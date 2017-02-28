@@ -27,9 +27,9 @@ If you want to run Dokpool there are several ways. Run Dokpool in a production e
 For rapid simple testing/demonstrations we provide Dockerfiles in ./Docker as well. See Docker (https://www.docker.com) for further information on this Container technology.
 
 #### Requirements:
-If you want to start from scratch, just go on. If you want to use a preconfigured Dokpool, you need a zodb-Backup (created with plonebackup) of a zodb. See various Dockerfiles in ./Docker that take care of this. Usually the zodb Backup has to be named initialELAN-backup.tgz. Containers using zodb/sqlite as backend run standalone using sqlite- and zope-Databases but are not recommended for production use! For production using a PostgreSQL-DB backend is recommended.
+If you want to start from scratch, just go on. If you want to use a preconfigured Dokpool, you need a zodb-Backup (created with plonebackup) of a zodb or adequate Dumps of a PostgreSQL. See various Dockerfiles in ./Docker that take care of this. Containers using zodb/sqlite as backend run standalone using sqlite- and zope-Databases but are not recommended for production use! For production use a PostgreSQL-DB backend is recommended.
 
-#### Build:
+#### Build using Docker Containers:
 FIXME
 ```sh
 $ docker build --force-rm=true -t elan5/standalone -f Dockerfile.standalone .
@@ -49,14 +49,14 @@ In case you want to interact with the running container, use e.g.
 $ docker exec -it elan5_standalone "/bin/bash"
 ```
 
-### Build your own standalone ELAN5 on a current Linux Distribution
+### Build your own standalone Dokpool/ELAN5 on a current Linux Distribution
 To build Dokpool on a current Linux Distribution you simply have to clone the repository run three commands from CLI and got it running 
 
 #### Requirements:
 Dokpool refuses to run as root. Add a system account (e.g. elan) which can be used to run Dokpool.
 Python2.7 and Git (to clone the Repo).
 ```sh
-$ apt-get install git python-dev libffi-dev libssl-dev libxml2-dev libxslt-dev postgresql-server-dev libjpeg-turbo8-dev gcc
+$ apt-get install python postgresql-server-dev libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools
 ```
 
 #### Build:
@@ -66,8 +66,16 @@ $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
 $ export ELANENGINE=sqlite:////tmp/elan5db
 $ python ./bootstrap.py
+$ ./bin/buildout -vc buildout.cfg
+```
+
+#### Rebuild:
+
+```sh
+$ cd dokpool-plone/Plone
+$ export ELANENGINE=sqlite:////tmp/elan5db
+$ python ./bootstrap.py
 $ ./bin/buildout -Nvc buildout.cfg
-$ ./bin/instance fg
 ```
 
 #### Run:
@@ -89,10 +97,10 @@ $ ./bin/plonebackup-restore
 ```
 
 ### Dokpool with PostgreSQL
+
 ```sh
 buildout -Nc relstorage.cfg
 ```
-
 
 ## Known issues
 coming soon
