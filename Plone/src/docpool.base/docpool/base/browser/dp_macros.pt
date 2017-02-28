@@ -5,7 +5,11 @@
 
 <metal:listingmacro define-macro="listing">
     <tal:results define="b_start python:request.get('b_start', 0);
-                             batch python:view.getFolderContents({'sort_on':'mdate','sort_order':'reverse'});
+                             Batch python:modules['Products.CMFPlone'].Batch;
+                             b_size python:int(request.get('b_size', 10));
+                             b_start python:int(request.get('b_start', 0));
+                             results python:view.getFolderContents({'sort_on':'mdate','sort_order':'reverse'});
+                             batch python:Batch(results, b_size, b_start);
                              site_properties context/portal_properties/site_properties;
                              use_view_action site_properties/typesUseViewActionInListings|python:();
                              isAnon context/@@plone_portal_state/anonymous;
@@ -32,6 +36,7 @@
                            i18n:attributes="value"
                            tal:attributes="value button/title; name button/url; class button/cssclass|nothing">
                 </tal:loop>
+                <div metal:use-macro="context/batch_macros/macros/navigation" />
 
                 <table id="fctable"
                        class="listing responsive"
@@ -68,7 +73,7 @@
                     </tal:items>
                     </tbody>
                 </table>
-
+                <div metal:use-macro="context/batch_macros/macros/navigation" />
                 <tal:buttons tal:repeat="button buttons">
                     <input class="context"
                            type="submit"
