@@ -39,7 +39,8 @@ setup(name='elan.sitrep',
           'plone.app.referenceablebehavior',
           'elan.esd'
           ##code-section dependencies
-	      ##/code-section dependencies
+          , 'BeautifulSoup',
+          ##/code-section dependencies
       ],
       ##code-section entrypoints      
       entry_points="""
