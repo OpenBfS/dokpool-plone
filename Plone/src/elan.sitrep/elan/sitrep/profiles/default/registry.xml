@@ -20,6 +20,20 @@
     <value key="jscompilation"></value>
     <value key="csscompilation">++plone++static/elan-sitrep-compiled.css</value>    
   </records>
-
-
+  <records interface="Products.CMFPlone.interfaces.ITinyMCESchema" prefix="plone">
+    <value key="other_settings">
+  {
+    "style_formats": [
+      {
+        "title": "Snippet",
+        "inline": "span",
+        "attributes": {
+          "class": "snippet"
+        }
+      }
+    ],
+    "style_formats_merge": "True"
+  }
+    </value>
+  </records>
 </registry>

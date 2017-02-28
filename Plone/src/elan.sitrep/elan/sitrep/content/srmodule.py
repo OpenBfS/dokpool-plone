@@ -6,7 +6,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -39,7 +38,15 @@ from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.app.textfield.value import RichTextValue
 from Products.CMFPlone.utils import safe_unicode
-##/code-section imports 
+from zope.component import adapter
+from plone.dexterity.interfaces import IEditFinishedEvent
+import requests
+from BeautifulSoup import BeautifulSoup
+from PIL import Image
+import urlparse
+from plone.subrequest import subrequest
+from urllib import unquote
+##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -311,4 +318,93 @@ class SRModule(Container, DPDocument):
 
 
 ##code-section bottom
-##/code-section bottom 
+@adapter(ISRModule, IEditFinishedEvent)
+def updated(obj, event=None):
+    log("SRModule updated: %s" % str(obj))
+    # TODO:
+    # read text, find all image links, replace with data URLs
+    # find all html snippet links (marked with a css class), replace with html content.
+    html = obj.text and obj.text.output or ''
+    if html:
+        urltool = getToolByName(obj, "portal_url")
+        portal = urltool.getPortalObject()
+        portalbase = portal.absolute_url()
+        base = obj.absolute_url() + "/"
+
+        soup = BeautifulSoup(html)
+        # first we handle all images
+        for img in soup.findAll('img'):
+            src = img['src']
+            if src.startswith("data"):
+                continue
+            # src might be relative
+            absolute_src = join(base, src)
+            # We convert the result of a request to the uri to a data URI
+            new_uri = fetch_resources(portalbase, absolute_src)
+            if new_uri:
+                # and replace the original one
+                img['src'] = new_uri
+
+        for span in soup.findAll("span", {'class':'snippet'}):
+            for anchor in span.findAll("a"):
+                print anchor
+                href = anchor['href']
+                absolute_href = join(base, href)
+                html_data = fetch_resources(portalbase, absolute_href, resource_type="html")
+                if html_data:
+                    ext_soup = BeautifulSoup(html_data)
+                    body = ext_soup.find('body')
+                    body = None
+                    if body:
+                        anchor.replaceWith(body)
+                    else:
+                        anchor.replaceWith(ext_soup)
+        # finally we replace the html of the module with the manipulated version
+        new_html = str(soup)
+        obj.text = RichTextValue(safe_unicode(new_html), 'text/html', 'text/html')
+
+def join(base, url):
+    """
+    Join relative URL
+    """
+    if not (url.startswith("/") or "://" in url):
+        return urlparse.urljoin(base, url)
+    else:
+        # Already absolute
+        return url
+
+def fetch_resources(portalbase, uri, resource_type="image"):
+    """
+    Callback to allow pisa/reportlab to retrieve Images,Stylesheets, etc.
+    `uri` is the href attribute from the html link element.
+    """
+    if uri.startswith(portalbase):
+        response = subrequest(unquote(uri[len(portalbase) + 1:]))
+        if response.status != 200:
+            return None
+        ct = response.getHeader('content-type')
+        data = response.getBody()
+    else:
+        response = requests.get(uri)
+        if response.status_code != 200:
+            return None
+        ct = response.headers['content-type']
+        data = response.text
+    if resource_type == 'image':
+        try:
+            # stupid pisa doesn't let me send charset.
+            ctype, encoding = ct.split('charset=')
+            ctype = ctype.split(';')[0]
+            # pisa only likes ascii css
+            data = data.decode(encoding).encode('ascii', errors='ignore')
+
+        except ValueError:
+            ctype = ct.split(';')[0]
+
+        data = data.encode("base64").replace("\n", "")
+        data_uri = 'data:{0};base64,{1}'.format(ctype, data)
+        return data_uri
+    else:
+        return data
+
+##/code-section bottom
