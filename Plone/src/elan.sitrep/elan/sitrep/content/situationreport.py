@@ -241,13 +241,15 @@ class SituationReport(Container, DPDocument):
             mod = modules.get(mt[0], None)
             if mod:
                 #print mod
-                moduid = mod[0][0]
-                module = queryForObject(self, UID=moduid)
-                #print module
-                if module:
-                    to_id = intids.getId(module)
-                    refs.append(RelationValue(to_id))
-
+                try:
+                    moduid = mod[0][0]
+                    module = queryForObject(self, UID=moduid)
+                    #print module
+                    if module:
+                        to_id = intids.getId(module)
+                        refs.append(RelationValue(to_id))
+                except:
+                    pass
         if refs:
             self.currentModules = refs
             self.reindexObject()   

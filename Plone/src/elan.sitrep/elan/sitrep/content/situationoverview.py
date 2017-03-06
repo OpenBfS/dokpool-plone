@@ -90,7 +90,7 @@ class SituationOverview(Item):
             #for m in ms:
             #    mods[m.docType] = m
             #res2[report.UID()] = ( report, mods )
-            res1.append((report.UID(), "%s %s" % (report.Title(), self.toLocalizedTime(DateTime(report.changed()), long_format=1))))
+            res1.append((report.UID(), "%s %s" % (safe_unicode(report.Title()), self.toLocalizedTime(DateTime(report.changed()), long_format=1))))
         default = [ ( "", _("Current situation") ) ]
         ud = [ ( "userdefined", _("User defined") ) ]
         return default + res1 + ud, res2
