@@ -161,7 +161,7 @@ def _folderTree(context, path, filter={}, queryBuilderClass=None, strategy=None)
         queryBuilder = DropDownMenuQueryBuilder(context)
         query = queryBuilder()
         query.update(filter)
-        query['path'] = {'query': path, 'depth': 3, 'navtree': 1, 'navtree_start': 2}
+        query['path'] = {'query': path, 'depth': 2, 'navtree': 1, 'navtree_start': 2}
     else:
         queryBuilder = queryBuilderClass(context)
         query = queryBuilder()
