@@ -249,7 +249,7 @@ msgstr ""
 #. Default: "This collection defines a pre-selection of possible documents to reference within this module."
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:57
 msgid "description_srmoduleconfig_docselection"
-msgstr "Diese Collection definiert eine Vorauswahl von möglichen Dokumenten, welche in diesem Modul referenziert werden können."
+msgstr "Vorauswahl von möglichen Dokumenten/Grafiken, welche in diesem Modul referenziert werden können."
 
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:47
 msgid "description_srmoduleconfig_modtype"
@@ -262,7 +262,7 @@ msgstr ""
 #. Default: "This collection defines a pre-selection of possible documents to reference within this module."
 #: elan.sitrep/elan/sitrep/content/srmoduletype.py:46
 msgid "description_srmoduletype_docselection"
-msgstr ""
+msgstr "Vorauswahl von möglichen Dokumenten/Grafiken, welche in diesem Modul referenziert werden können."
 
 #: elan.sitrep/elan/sitrep/content/srtextblock.py:50
 msgid "description_srtextblock_text"
@@ -300,7 +300,7 @@ msgstr "Modultyp"
 #. Default: "Collection for relevant documents"
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:56
 msgid "label_srmoduleconfig_docselection"
-msgstr "Collection für relevante Dokumente"
+msgstr "Grafiksammlung"
 
 #. Default: "Module Type"
 #: elan.sitrep/elan/sitrep/content/srmoduleconfig.py:46
@@ -315,7 +315,12 @@ msgstr "Textbausteine"
 #. Default: "Collection for relevant documents"
 #: elan.sitrep/elan/sitrep/content/srmoduletype.py:45
 msgid "label_srmoduletype_docselection"
-msgstr "Collection für relevante Dokumente"
+msgstr "Grafiksammlung"
+
+#. Default: "Default Text (when freshly created)"
+#: elan.sitrep/elan/sitrep/content/srmoduletype.py:45
+msgid "label_srmoduletype_defaulttextblocks"
+msgstr "Baustein für Textvorbelegung (wenn neu erzeugt)"
 
 #. Default: "Text"
 #: elan.sitrep/elan/sitrep/content/srtextblock.py:49
