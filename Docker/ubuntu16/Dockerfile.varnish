@@ -28,7 +28,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN mkdir -p /opt/bfs/elan
 ADD . /opt/bfs/elan/
 WORKDIR /opt/bfs/elan/Plone
-RUN python bootstrap.py
+RUN python bootstrap.py -v "2.5.2"
 RUN ./bin/buildout -Nvc relstorage_docker.cfg
 
 RUN chown -R zope.zope /opt/bfs
