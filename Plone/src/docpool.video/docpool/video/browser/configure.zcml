@@ -3,7 +3,13 @@
     <include package="plone.app.contentmenu" />
 
 <!-- ##code-section Main -->
-    
+  <browser:page
+    name="docpool_video_macro"
+    for="docpool.base.interfaces.IDPDocument"
+    template="templates/video_macro.pt"
+    permission="zope2.View"
+    layer="wildcard.media.interfaces.ILayer"
+  />
 <!-- ##/code-section Main -->    
 
 </configure>

@@ -11,7 +11,7 @@
           <div metal:use-macro="here/@@dp.macros/macros/doc_files"/>
           <br><br>  
           <div metal:use-macro="here/@@dp.macros/macros/doc_images"/>
-          <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>   
-    
+          <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>
+          <div metal:use-macro="here/@@dp.macros/macros/doc_videos"/>
  </tal:def>
 </tal:block>
