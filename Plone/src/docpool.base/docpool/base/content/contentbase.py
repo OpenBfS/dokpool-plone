@@ -98,13 +98,16 @@ class ContentBase(Item):
     implements(IContentBase)
     
 ##code-section methods
-    def _getUserInfoString(self):
+    def _getUserInfoString(self, plain=False):
         from docpool.base.utils import getUserInfo
         userid, fullname, primary_group = getUserInfo(self)
         #print userid, fullname, primary_group
         res = safe_unicode(fullname)
         if primary_group:
-            res += u" <i>%s</i>" % safe_unicode(primary_group)
+            if plain:
+                res += u" %s" % safe_unicode(primary_group)
+            else:
+                res += u" <i>%s</i>" % safe_unicode(primary_group)
         return res
 
     def update_created(self):

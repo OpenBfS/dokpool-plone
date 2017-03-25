@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Common configuration constants
 """
+from docpool.base.content.dpdocument import IDPDocument
 from plone.autoform.directives import read_permission, write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
@@ -286,7 +287,7 @@ class Transferable(FlexibleView):
 
                 # 3) Add transfer information to the copies.
                 my_copy.transferred = datetime.now()
-                my_copy.transferred_by = self.context._getUserInfoString()
+                my_copy.transferred_by = self.context._getUserInfoString(plain=True)
 
                 # 4) Add log entries to sender log.
                 userid, fullname, primary_group = getUserInfo(self.context)
@@ -299,7 +300,7 @@ class Transferable(FlexibleView):
                 l = SenderLog(document_uid=document_uid,
                               document_title=document_title,
                               timestamp=timestamp,
-                              user=self.context._getUserInfoString(),
+                              user=self.context._getUserInfoString(plain=True),
                               scenario_ids=scenario_ids,
                               channel=target
                               )
@@ -327,7 +328,7 @@ class Transferable(FlexibleView):
                 r = ReceiverLog(document_uid=document_uid,
                                 document_title=document_title,
                                 timestamp=timestamp,
-                                user=self.context._getUserInfoString(),
+                                user=self.context._getUserInfoString(plain=True),
                                 scenario_ids=scenario_ids,
                                 channel=target
                                 )
@@ -384,10 +385,14 @@ class Transferable(FlexibleView):
             __session__.flush()
 
 
-@adapter(ITransferable, IObjectRemovedEvent)
+@adapter(IDPDocument, IObjectRemovedEvent)
 def deleteTransferData(obj, event=None):
     """
-    """
     # TODO: Check ob nur beim Loeschen ausgefuehrt wird oder auch beim move!?
-    log('deleteTransferData %s from %s' % (obj.Title(), obj.absolute_url()))
-    obj.deleteTransferDataInDB()
+    """
+    try:
+        tObj = ITransferable(obj) # Try behaviour
+        log('deleteTransferData %s from %s' % (obj.Title(), obj.absolute_url()))
+        tObj.deleteTransferDataInDB()
+    except:
+        pass

@@ -6,7 +6,6 @@
      
 
 <!-- ##code-section Main -->
-  	<subscriber handler=".transferable.deleteTransferData" />
-<!-- ##/code-section Main -->    
+<!-- ##/code-section Main -->
     
 </configure>

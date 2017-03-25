@@ -20,5 +20,6 @@
         for="docpool.base.interfaces.IDocType"
     />
 
+  	<subscriber handler=".transferable.deleteTransferData" />
 
 </configure>

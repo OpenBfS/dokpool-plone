@@ -7,13 +7,6 @@
       dynamic views" refers to an FTI from Products.CMFDynamicViewFTI,
       which supports Plone's "display" menu.
    -->
-     
-     
-     <object name="Transferable" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="TransfersType" meta_type="Dexterity FTI" />    
-       
       
 <!-- ##code-section Main -->
      <object name="DPDocument" meta_type="Dexterity FTI" />
