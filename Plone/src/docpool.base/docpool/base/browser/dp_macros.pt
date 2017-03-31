@@ -316,9 +316,11 @@
 </metal:macro>
 
 <metal:macro define-macro="app_icons">
+    <span class="app_icons">
     <tal:loop repeat="icon python:context.myExtensionIcons(request)">
         <img src="${context/portal_url}/${icon}" class="app_icon"/>
     </tal:loop>
+    </span>
 </metal:macro>
 <metal:macro define-macro="content_metadata">
     <tal:def define="item_modified context/getMdate;

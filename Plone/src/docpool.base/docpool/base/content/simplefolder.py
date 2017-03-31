@@ -31,7 +31,6 @@ from docpool.base.content.folderbase import FolderBase, IFolderBase
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from elan.esd.utils import getScenariosForCurrentUser
 from docpool.base.utils import queryForObjects, portalMessage, execute_under_special_role, \
 getAllowedDocumentTypes
 from Products.CMFPlone.utils import parent
@@ -99,6 +98,8 @@ class SimpleFolder(Container, FolderBase):
     def getUserSelectedScenarios(self):
         """
         """
+        # FIXME
+        from elan.esd.utils import getScenariosForCurrentUser
         usc = getScenariosForCurrentUser(self)
         return usc
 

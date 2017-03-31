@@ -21,7 +21,7 @@ class ApplicationState(BrowserView):
         if hasattr(self.context, "docTypeObj"):
             dto = self.context.docTypeObj()
         else:
-            dt = request.get('docType', '')
+            dt = request.get('docType', request.get('form.widgets.docType' ,[''])[0])
             if dt:
                 try:
                     dto = self.context.config.dtypes[dt]
@@ -73,6 +73,7 @@ class ApplicationState(BrowserView):
             if role.endswith("User"):
                 res.append(role[:-len("User")].lower())
         #print "local roles: ", res
+
         return res
 
     @memoize
@@ -92,7 +93,7 @@ class ApplicationState(BrowserView):
         if user.getUserName() == 'admin':
             return [app[0] for app in extendingApps() ]
         res = user.getProperty("apps") or [ BASE_APP ]
-        # print "appsActivatedByCurrentUser: ", res
+        #print "appsActivatedByCurrentUser: ", res
         return list(res)
 
     @memoize

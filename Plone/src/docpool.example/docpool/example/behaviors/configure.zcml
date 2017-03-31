@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.example">
+    
+    <include package="plone.behavior" file="meta.zcml" />
+
+	<grok:grok package="." />    
+
+    <plone:behavior
+        title="ExampleDoc"
+        description="Makes documents support example functions"
+        provides=".exampledoc.IExampleDoc"
+        factory=".exampledoc.ExampleDoc"
+        for="docpool.base.interfaces.IDPDocument"
+    />
+    <plone:behavior
+        title="Example DocType"
+        description="Type extension for example types"
+        provides=".exampletype.IExampleType"
+        factory=".exampletype.ExampleType"
+        for="docpool.base.interfaces.IDocType"
+    />
+
+</configure>

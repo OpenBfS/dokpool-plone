@@ -34,14 +34,14 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):
-            if isInit or self.isSupported(behavior):
+            if isInit or isSupported(self.available_apps, behavior.interface):
                 yield behavior
 
-    def isSupported(self, behavior):
-        if behavior.interface.extends(IExtension):
-            if self.available_apps:
-                return set(BEHAVIOR_REGISTRY.get(behavior.interface.__identifier__)).intersection(set(self.available_apps))
-            else:
-                return False
+def isSupported(available_apps, behavior_interface):
+    if behavior_interface.extends(IExtension):
+        if available_apps:
+            return set(BEHAVIOR_REGISTRY.get(behavior_interface.__identifier__)).intersection(set(available_apps))
         else:
-            return True
+            return False
+    else:
+        return True
