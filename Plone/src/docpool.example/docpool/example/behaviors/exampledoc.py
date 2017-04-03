@@ -2,6 +2,7 @@
 """Common configuration constants
 """
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.autoform.directives import read_permission, write_permission
 from plone.directives import form
 from zope.interface import provider, implementer
 from zope import schema
@@ -23,6 +24,8 @@ class IExampleDoc(IDocumentExtension):
                         description=_(u'description_example_attribute', default=u''),
                         required=False,
     )
+    read_permission(example_attribute='docpool.example.AccessExample')
+    write_permission(example_attribute='docpool.example.AccessExample')
 
 
 class ExampleDoc(FlexibleView):
