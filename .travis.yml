@@ -7,6 +7,6 @@ install:
 - cd Plone
 - mkdir -p buildout-cache/eggs
 - mkdir -p buildout-cache/downloads
-- python bootstrap.py -c buildout.cfg
+- python bootstrap.py -c buildout.cfg -v "2.5.2"
 script:
 - ./bin/buildout -N -t 3 -c buildout.cfg
