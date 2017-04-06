@@ -20,7 +20,7 @@
 FROM oraclelinux:latest
 MAINTAINER Marco Lechner<mlechner@bfs.de>
 
-RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel tar
+RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel tar openldap-devel
 RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone system user" plone
 #
 # install ELAN
