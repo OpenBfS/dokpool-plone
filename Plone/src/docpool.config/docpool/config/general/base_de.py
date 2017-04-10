@@ -161,4 +161,3 @@ def createGroups(self):
         gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
     except:
         pass
-
