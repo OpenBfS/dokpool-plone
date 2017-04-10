@@ -56,7 +56,7 @@ To build Dokpool on a current Linux Distribution you simply have to clone the re
 Dokpool refuses to run as root. Add a system account (e.g. elan) which can be used to run Dokpool.
 Python2.7 and Git (to clone the Repo).
 ```sh
-$ apt-get install python postgresql-server-dev libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools
+$ apt-get install python postgresql-server-dev libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools
 ```
 
 #### Build:

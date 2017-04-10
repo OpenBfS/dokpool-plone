@@ -17,7 +17,7 @@
 FROM ubuntu:xenial
 MAINTAINER Marco Lechner<mlechner@bfs.de>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools && apt-get autoclean
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools && apt-get autoclean
 RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/zope --gecos "Zope/Plone system user" zope
 # set timezone ME(S)Z
 ENV TZ=Europe/Berlin
@@ -25,9 +25,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #
 # install ELAN
 #
-RUN mkdir -p /opt/bfs/elan
-ADD . /opt/bfs/elan/
-WORKDIR /opt/bfs/elan/Plone
+RUN mkdir -p /opt/bfs/dokpool
+ADD . /opt/bfs/dokpool/
+WORKDIR /opt/bfs/dokpool/Plone
 RUN python bootstrap.py -v "2.5.2"
 RUN ./bin/buildout -Nvc relstorage_docker.cfg
 
@@ -35,12 +35,12 @@ RUN chown -R zope.zope /opt/bfs
 USER zope
 ENV HOME /home/zope
 # try to use sqlite instead of postgreSQL as DB backend for transfer
-WORKDIR /opt/bfs/elan/Plone
+WORKDIR /opt/bfs/dokpool/Plone
 
 # run singleinstance
 #EXPOSE 8081
-#CMD [ "/opt/bfs/elan/Plone/bin/instance", "fg"]
+#CMD [ "/opt/bfs/dokpool/Plone/bin/instance", "fg"]
 # run using varnish
 EXPOSE 8081 8082 8083 8100 8881 9001
-CMD [ "/opt/bfs/elan/Plone/bin/supervisord", "-n"]
+CMD [ "/opt/bfs/dokpool/Plone/bin/supervisord", "-n"]
 
