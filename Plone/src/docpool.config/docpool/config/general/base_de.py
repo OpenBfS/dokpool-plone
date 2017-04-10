@@ -154,7 +154,7 @@ def configureFiltering(self):
 def createGroups(self):
     gdata = getToolByName(self, 'portal_groupdata')
     try:
-        gdata.manage_addProperty("allowedDocTypes", "possibleDocTypes", "multiple selection")
+        gdata.manage_addProperty("Dokumenttypen", "possibleDocTypes", "multiple selection")
     except:
         pass
     try:
