@@ -1,12 +1,14 @@
 language: python
-python: '2.7'
+python:
+  - "2.7"
+  - "3.6"
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools cython
 install:
-- cd Plone
-- mkdir -p buildout-cache/eggs
-- mkdir -p buildout-cache/downloads
-- python bootstrap.py -c buildout.cfg -v "2.5.2"
+  - cd Plone
+  - mkdir -p buildout-cache/eggs
+  - mkdir -p buildout-cache/downloads
+  - python bootstrap.py -c buildout.cfg -v "2.5.2"
 script:
-- ./bin/buildout -N -t 3 -c buildout.cfg
+  - ./bin/buildout -N -t 3 -c buildout.cfg
