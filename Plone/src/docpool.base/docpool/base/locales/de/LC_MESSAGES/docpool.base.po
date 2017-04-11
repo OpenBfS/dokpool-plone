@@ -388,7 +388,7 @@ msgstr "momentan deaktiviert"
 msgid "write"
 msgstr "schreiben"
 
-#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml:5
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
 msgid "Docpool Configuration Area"
 msgstr "Dokpool Konfiguration"
 
@@ -399,10 +399,6 @@ msgstr "Verfügbare Anwendungen"
 #: docpool.base/docpool/base/content/documentpool.py:70
 msgid "label_documentpool_customlogo"
 msgstr "Eigenes Logo"
-
-#: docpool.base/docpool/base/appregistration.py:9
-msgid "Docpool Base"
-msgstr "DokPool"
 
 #: docpool.base/docpool/base/profiles/default/workflows/dp_review_workflow/definition.xml:153
 msgid "Submit for publication"
