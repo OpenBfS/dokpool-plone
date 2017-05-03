@@ -23,9 +23,9 @@ def dpAdded(self):
     copyDocTypes(self)
     self.reindexAll()
 
-CONTENT_AREA = {TYPE: 'ContentArea', TITLE: u'Content Area', ID: 'content', "setExcludeFromNav": True, CHILDREN: [
-    {TYPE: 'Users', TITLE: u'Members', ID: 'Members', CHILDREN: []},
-    {TYPE: 'Groups', TITLE: u'Groups', ID: 'Groups', CHILDREN: []},
+CONTENT_AREA = {TYPE: 'ContentArea', TITLE: u'Benutzer/Gruppen/Transferordner', ID: 'content', "setExcludeFromNav": True, CHILDREN: [
+    {TYPE: 'Users', TITLE: u'Benutzer', ID: 'Members', CHILDREN: []},
+    {TYPE: 'Groups', TITLE: u'Gruppen', ID: 'Groups', CHILDREN: []},
 ]}
 
 
@@ -99,9 +99,9 @@ def copyDocTypes(self):
     config = self.config
     from docpool.base.utils import _copyPaste
     _copyPaste(config, self)
-    self.config.setTitle(_("Configuration"))
+    self.config.setTitle(_("Konfiguration"))
     self.config.reindexObject()
-    self.config.dtypes.setTitle(_("Document Types"))
+    self.config.dtypes.setTitle(_("Dokumenttypen"))
     self.config.dtypes.reindexObject()
 
 def dpRemoved(self):
