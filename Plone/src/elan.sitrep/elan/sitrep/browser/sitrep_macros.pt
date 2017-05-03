@@ -56,7 +56,7 @@
 		       <a href="${mc/absolute_url}">${mc/Title}</a>
 		       <ul class="textblocks" tal:define="tbs mc/textBlocks" tal:condition="tbs">
 		           <tal:loop repeat="tb tbs">
-		               <li><a href="${python:tb.to_object.absolute_url()}">${python:tb.to_object.Title()}</a></li>
+		               &bull;&nbsp;<a href="${python:tb.to_object.absolute_url()}">${python:tb.to_object.Title()}</a><br>
 		           </tal:loop>
 		       </ul>
                <tal:if condition="mc/docSelection">
