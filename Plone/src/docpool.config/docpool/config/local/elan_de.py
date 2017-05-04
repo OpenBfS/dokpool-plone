@@ -88,10 +88,8 @@ ADMINSTRUCTURE = [
                          'Instructions to the Public:Public information',
                          'Media Release:Public information - Press release',
                          'NPP Projection:Model result',
-                         'IFIN Projection:Model result',
                          'RODOS Projection:Model result',
                          'Other Projection:Model result',
-                         'CNCAN Projection:Model result',
                          'Trajectory:Model result - Plume trajectory'),
 
          CHILDREN: [],}
