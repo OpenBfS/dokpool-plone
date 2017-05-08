@@ -18,16 +18,15 @@
                                    mtypes context/modTypes;">
        <form class="reportselection" action="" method="post" accept-charset="UTF-8">
     <tal:widget define="wname string:reportuid;
-                        wtitle string:Report;
+                        wtitle python:'Report&nbsp;&nbsp;';
                         options reportslist;
                         f_value reportuid;
                         do_submit python:False">
          <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
     </tal:widget>
-    <a onclick="window.location.href = window.location.pathname + window.location.search;" class="submit-widget context button-field" i18n:translate="">Reload current situation</a>
+    &nbsp;<a onclick="window.location.href = window.location.pathname + window.location.search;" class="submit-widget context button-field" i18n:translate="">Reload current situation</a><br><br>
     
     </form>
-                                   
     <tal:loop repeat="mtype mtypes">
        <div class="doctile" tal:define="mtitle python:mtype[1];
                                         mid python:mtype[0];
