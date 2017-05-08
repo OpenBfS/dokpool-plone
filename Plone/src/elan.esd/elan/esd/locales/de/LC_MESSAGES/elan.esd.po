@@ -127,8 +127,8 @@ msgid "Document Type"
 msgstr "Dokumenttyp"
 
 #: elan.esd/elan/esd/content/elandoccollection.py:79
-msgid "Folder for Document Types"
-msgstr "Ordner für Dokumenttypen"
+msgid "Document Types"
+msgstr "Dokumenttypen"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
@@ -551,7 +551,7 @@ msgstr "Übertragen von"
 #. Default: "Document Types"
 #: elan.esd/elan/esd/content/elandoccollection.py:74
 msgid "label_elandoccollection_doctypes"
-msgstr "Ordner für Dokumenttypen"
+msgstr "Dokumenttypen"
 
 #. Default: "Document Type"
 #: elan.esd/elan/esd/portlets/collection.py:54

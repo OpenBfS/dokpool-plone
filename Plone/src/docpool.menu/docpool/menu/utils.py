@@ -56,15 +56,19 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
         app_names = dp_app_state.appsAvailableToCurrentUser()
         app_names.insert(0, BASE_APP)
         for app_name in app_names:
+            if app_name == 'base':
+                app_title = utranslate("docpool.menu", "Docpool Base", context=self)
+            else:
+                app_title = appName(app_name)
             apps.append({'id': app_name,
-                        'Title': appName(app_name),
+                        'Title': app_title,
                         'Description': '',
                         'getURL': "%s/setActiveApp?app=%s" % (dp.absolute_url(), app_name),
                         'show_children': False,
                         'children': [],
                         'currentItem': False,
                         'currentParent': False,
-                        'item_class': app_name,
+                        'item_class': app_title,
                         'normalized_review_state': 'visible'})
 
         pools.append({'id': dp.getId(),

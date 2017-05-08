@@ -388,7 +388,7 @@ msgstr "momentan deaktiviert"
 msgid "write"
 msgstr "schreiben"
 
-#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml:5
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
 msgid "Docpool Configuration Area"
 msgstr "Dokpool Konfiguration"
 
