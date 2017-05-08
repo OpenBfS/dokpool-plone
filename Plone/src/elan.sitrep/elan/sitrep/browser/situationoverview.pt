@@ -42,7 +42,7 @@
 		                        options versionlist;
 		                        f_value python:moduids[mid];">
 		     <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>
-		     <span class="current" tal:condition="hasCurrent" i18n:translate="">There is a current working version.</span>            
+		     <!-- <span class="current" tal:condition="hasCurrent" i18n:translate="">There is a current working version.</span>            -->
 		    </tal:widget>
            <div class="modulecontent" tal:attributes="id string:mod_${mid}">
                 <span i18n:translate="">No current content.</span>    
