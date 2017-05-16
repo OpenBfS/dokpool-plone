@@ -21,12 +21,17 @@ class ApplicationState(BrowserView):
         if hasattr(self.context, "docTypeObj"):
             dto = self.context.docTypeObj()
         else:
-            dt = request.get('docType', request.get('form.widgets.docType' ,[''])[0])
+            dtFromRequest = request.get('form.widgets.docType' ,[''])
+            if type(dtFromRequest) == type(''):
+                dtFromRequest = [ dtFromRequest ]
+            dt = request.get('docType', dtFromRequest[0])
             if dt:
                 try:
                     dto = self.context.config.dtypes[dt]
                 except Exception, e:
-                    log_exc(e)
+                    # print "no doctype %s available to check specific app support" % dt
+                    pass
+
         if dto:
             try:
                 supportedByType = ILocalBehaviorSupport(dto).local_behaviors
