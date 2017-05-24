@@ -6,9 +6,8 @@
                                            li context/getLegendImageObj;
                                            fi context/getFirstImage" >
 	    <div class="map">
-	       <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi" />
-	       <tal:insert replace="structure context/getFirstImage" tal:condition="python:mi is None and fi" />
-	    </div>
+           <img src="${context/absolute_url}/@@images/image/large" alt="${context/Title}" class="image-inline" title="${context/Title}" />
+        </div>
         <div class="legend">
            <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
         </div>
