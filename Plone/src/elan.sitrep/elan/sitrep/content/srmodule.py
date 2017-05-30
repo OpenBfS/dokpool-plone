@@ -349,6 +349,8 @@ def updated(obj, event=None):
             for anchor in span.findAll("a"):
                 print anchor
                 href = anchor['href']
+                if '..' in href:
+                  href = href.replace('/..','')
                 absolute_href = join(base, href)
                 html_data = fetch_resources(portalbase, absolute_href, resource_type="html")
                 if html_data:
