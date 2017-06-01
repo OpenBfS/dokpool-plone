@@ -88,10 +88,8 @@ ADMINSTRUCTURE = [
                          'Instructions to the Public:Public information',
                          'Media Release:Public information - Press release',
                          'NPP Projection:Model result',
-                         'IFIN Projection:Model result',
                          'RODOS Projection:Model result',
                          'Other Projection:Model result',
-                         'CNCAN Projection:Model result',
                          'Trajectory:Model result - Plume trajectory'),
 
          CHILDREN: [],}
@@ -144,7 +142,7 @@ def setELANLocalRoles(self):
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
-
+    self.config.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Owner"])
 
 def createELANGroups(self):
     # We need local groups for

@@ -28,7 +28,7 @@ function insertTextblock (selector) {
     text.notify("<i18n:text translate="">Item was inserted!</i18n:text>",  { position:"top left", className:"success" });
 }
 </script>
-	<div class="pat-autotoc autotabs content-finder"
+	<div class="pat-autotoc autotabs content-finder" data-pat-autotoc="levels:h1;"
 	tal:define="previous context/previousVersion;
 	            visualisations context/visualisations;
 	            textblocks context/textBlocks;

@@ -125,7 +125,8 @@ def updated(obj, event=None):
     log("SRModuleConfig updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat.reindexObject(obj)
-    for tb in obj.textBlocks:
-        sr_cat.reindexObject(tb.to_object)
+    if obj.textBlocks:
+        for tb in obj.textBlocks:
+            sr_cat.reindexObject(tb.to_object)
 
 ##/code-section bottom 

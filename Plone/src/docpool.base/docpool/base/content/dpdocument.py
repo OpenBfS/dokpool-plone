@@ -388,8 +388,10 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         pdf = pdfobj(pdffile)
         # Use BTrees
         storage = OOBTree()
-        storage['image_thumbnails'] = get_images(pdffile, 0, 1)
-        storage['metadata'] = metadata(pdf)
+        img = get_images(pdffile, 0, 1)
+        storage['image_thumbnails'] = img
+        meta = metadata(pdf)
+        storage['metadata'] = meta
 
         annotations = IAnnotations(self)
         annotations['pdfimages'] = storage
@@ -519,11 +521,14 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         1. the map image, otherwise
         2. the representative image, otherwise
         3. try to generate an image from PDF
-        4. a default image
+        4. Take the first image available in the doc
+        5. a default image
         @param refresh: True --> generate afresh from PDF if necessary
         @param full: True --> combine map & legend images
         @return: a tuple with an image and a filename
         """
+        alsoProvides(self.REQUEST, IDisableCSRFProtection)
+
         doc = self
         mapimg = self.getMapImageObj()
         if mapimg:
@@ -555,7 +560,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         img = doc.pdfImage()
         if img and not refresh:
             dateiname = '%s.%s' % (img.getId(), "png")
-            return img.data, dateiname
+            return img.data.data, dateiname
             
         pdf = doc.getRepresentativePDF()
         if pdf:
@@ -563,6 +568,12 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             img = doc.pdfImage()
             dateiname = '%s.%s' % (img.getId(), "png")
             return img.data, dateiname
+
+
+        img = doc.getFirstImageObj()
+        if img:
+            dateiname = '%s.%s' % (img.getId(), "png")
+            return img.image.data, dateiname
         # TODO: Idea: support default image in DocType
         # Show Default image, if no other image is available
         img = getattr(self,'docdefaultimage.png')
@@ -583,13 +594,24 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         return content.get_state(self, "None")
     
     def getFirstImage(self, scale=""):
-        imgs = self.getImages()
-        if imgs:
-            img = imgs[0]
+        img = self.getFirstImageObj()
+        if img:
             return "<img src='%s%s' />" % (img.absolute_url(), scale)
         else:
             return None
+
+    def getFirstImageObj(self):
+        """
         
+        @return: 
+        """
+        imgs = self.getImages()
+        if imgs:
+            img = imgs[0]
+            return img
+        else:
+            return None
+
 ##/code-section methods 
 
     def myDPDocument(self):

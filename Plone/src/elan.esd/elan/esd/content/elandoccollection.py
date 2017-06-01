@@ -71,12 +71,12 @@ class IELANDocCollection(form.Schema, ICollection):
     """
         
     docTypes = RelationList(
-                        title=_(u'label_elandoccollection_doctypes', default=u'Folder for Document Types'),
+                        title=_(u'label_elandoccollection_doctypes', default=u'Document Types'),
                         description=_(u'description_elandoccollection_doctypes', default=u''),
                         required=False,
 ##code-section field_docTypes
                         value_type=RelationChoice(
-                                                      title=_("Folder for Document Types"),
+                                                      title=_("Document Types"),
                                                     source = "docpool.base.vocabularies.DocType",
 
                                                      ),

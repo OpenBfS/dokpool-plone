@@ -223,6 +223,14 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
+        self.config.dtypes.cncanprojection.type_extension(ELAN_APP).setCCategory('cncan-projections')
+    except:
+        pass
+    try:
+        self.config.dtypes.ifinprojection.type_extension(ELAN_APP).setCCategory('ifin-projections')
+    except:
+        pass
+    try:
         self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory('npp-projections')
     except:
         pass

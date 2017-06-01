@@ -87,10 +87,18 @@ class ISituationReport(form.Schema, IDPDocument):
         description=_(u'description_situationreport_text', default=u''),
         required=False
     )
-    docType = schema.TextLine(
-            title=u"Document Type",
-            default=u"sitrep"
-        )
+    docType = schema.Choice(
+        required=True,
+        ##code-section field_docType
+        source="docpool.base.vocabularies.DocumentTypes",
+        default = u"sitrep",
+        ##/code-section field_docType
+    )
+
+#    docType = schema.TextLine(
+#            title=u"Document Type",
+#            default=u"sitrep",
+#    )
 
 ##/code-section interface
 

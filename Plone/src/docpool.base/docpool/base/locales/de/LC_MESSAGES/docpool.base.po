@@ -400,6 +400,10 @@ msgstr "Verfügbare Anwendungen"
 msgid "label_documentpool_customlogo"
 msgstr "Eigenes Logo"
 
+#: docpool.base/docpool/base/appregistration.py:9
+msgid "Docpool Base"
+msgstr "DokPool"
+
 #: docpool.base/docpool/base/profiles/default/workflows/dp_review_workflow/definition.xml:153
 msgid "Submit for publication"
 msgstr "Zur Veröffentlichung einreichen"

@@ -123,7 +123,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'INCIDENT', ID: 'incident', CHIL
                   ]},
                   {TYPE: 'ELANSection', TITLE: u'CURRENT SITUATION', ID: 'current-situation', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'SITUATION REPORTS', ID: 'situation-reports', CHILDREN: [],
-                       DOCTYPES: ['situationreport', 'sitrep']},
+                       DOCTYPES: ['nppinformation', 'situationreport', 'sitrep']},
                       {TYPE: 'ELANDocCollection', TITLE: u'PROTECTIVE ACTIONS', ID: 'protective-actions', CHILDREN: [],
                        DOCTYPES: ['instructions', 'protectiveactions']},
                   ]},

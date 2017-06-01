@@ -102,7 +102,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                       {TYPE: 'ELANDocCollection', TITLE: u'TRAJEKTORIEN', ID: 'trajectories', CHILDREN: [],
                        DOCTYPES: ['trajectory']},
                   ]},
-                  {TYPE: 'ELANSection', TITLE: u'PROGNOSEN', ID: 'dose-projections', CHILDREN: [
+                      {TYPE: 'ELANSection', TITLE: u'PROGNOSEN', ID: 'dose-projections', CHILDREN: [
                       {TYPE: 'ELANDocCollection', TITLE: u'PROGNOSEN-RODOS', ID: 'rodos-projections', CHILDREN: [],
                        DOCTYPES: ['rodosprojection']},
                       {TYPE: 'ELANDocCollection', TITLE: u'PROGNOSEN DWD', ID: 'dwd-projections', CHILDREN: [],
@@ -196,7 +196,7 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Meldung', ID: 'notification',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Messergebnis_Aerogamma', ID: 'mresult_flight',
            CHILDREN: [], 'local_behaviors' : ['elan']},
-          {TYPE: 'DocType', TITLE: u'Lagedarstellung', ID: 'situationreport',
+          {TYPE: 'DocType', TITLE: u'Lageinformation', ID: 'situationreport',
            CHILDREN: [], 'local_behaviors' : ['elan']},
           {TYPE: 'DocType', TITLE: u'Lagebericht', ID: 'sitrep',
            CHILDREN: [], 'local_behaviors' : ['elan']},
@@ -212,6 +212,7 @@ DTYPES = [{TYPE: 'DocType', TITLE: u'Meldung', ID: 'notification',
            CHILDREN: [], 'local_behaviors': ['elan']},
           {TYPE: 'DocType', TITLE: u'Tagebucheintrag', ID: 'diary',
            CHILDREN: [], 'local_behaviors': ['elan']},
+
           ]
 
 
@@ -246,19 +247,15 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
-        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory('rodos-projections')
+        self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory('npp-projections')
     except:
         pass
     try:
-        self.config.dtypes.weatherserviceprojection.type_extension(ELAN_APP).setCCategory('dwd-projections')
+        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory('rodos')
     except:
         pass
     try:
-        self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory('state-projections')
-    except:
-        pass
-    try:
-        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory('other-projections')
+        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory('other')
     except:
         pass
     try:
@@ -266,19 +263,7 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
-       self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory('gamma-dose-rate')
-    except:
-       pass
-    try:
-       self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory('gamma-dose-rate')
-    except:
-       pass
-    try:
         self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory('air-activity')
-    except:
-        pass
-    try:
-        self.config.dtypes.mresult_insitu.type_extension(ELAN_APP).setCCategory('insitu')
     except:
         pass
     try:
@@ -298,27 +283,11 @@ def connectTypesAndCategories(self):
     except:
         pass
     try:
-        self.config.dtypes.mresult_other.type_extension(ELAN_APP).setCCategory('other')
-    except:
-        pass
-    try:
-        self.config.dtypes.mresult_flight.type_extension(ELAN_APP).setCCategory('other')
-    except:
-        pass
-    try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory('situation-reports')
     except:
         pass
     try:
         self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory('situation-reports')
-    except:
-        pass
-    try:
-        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory('protective-actions')
-    except:
-        pass
-    try:
-        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory('instructions-to-the-public')
     except:
         pass
     try:
@@ -329,3 +298,8 @@ def connectTypesAndCategories(self):
         self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory('media-releases')
     except:
         pass
+    try:
+        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory('instructions-to-the-public')
+    except:
+        pass
+
