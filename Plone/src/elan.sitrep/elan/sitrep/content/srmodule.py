@@ -245,11 +245,16 @@ class SRModule(Container, DPDocument):
             args['modules'] = module_type
         #print args
         sr_cat = getToolByName(self, 'sr_catalog')
-        if scenario or phase or module_type:
+        brains = []
+        ids = []
+        if module_type:
+            mkbrains = sr_cat({'modules':module_type})
+            for mkbrain in mkbrains:
+              ids = sr_cat({'modules':mkbrain.getObject().getId()})
+              brains.extend(ids,)
+        if (scenario or phase) and module_type:
             brains = sr_cat(**args)
-            return [ brain.getObject() for brain in brains]
-        else:
-            return []
+        return [ brain.getObject() for brain in brains]
         
     def publishModule(self, justDoIt=False):
         """
