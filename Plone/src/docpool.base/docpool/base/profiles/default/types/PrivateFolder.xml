@@ -19,6 +19,11 @@
          
              <element value="PrivateFolder" />
          
+
+             <element value="File" />
+
+
+             <element value="Image" />
      
  </property>
  <!-- schema interface -->
@@ -72,3 +77,4 @@
 ##/code-section actions
 
 </object>
+
