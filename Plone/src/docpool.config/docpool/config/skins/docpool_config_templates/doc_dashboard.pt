@@ -4,7 +4,8 @@
                    here nocall:context">
     <div class="visualization" tal:define="mi context/getMapImageObj;
                                            li context/getLegendImageObj;
-                                           fi context/getFirstImage" >
+                                           fi context/getFirstImage;
+                                           myi python:context.getMyImage()" >
 	    <div class="map">
            <img src="${context/absolute_url}/@@images/image/large" alt="${context/Title}" class="image-inline" title="${context/Title}" />
         </div>
