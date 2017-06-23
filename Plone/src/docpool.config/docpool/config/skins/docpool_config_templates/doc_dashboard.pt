@@ -6,11 +6,18 @@
                                            li context/getLegendImageObj;
                                            fi context/getFirstImage;
                                            myi python:context.getMyImage()" >
-	    <div class="map">
-           <img src="${context/absolute_url}/@@images/image/large" alt="${context/Title}" class="image-inline" title="${context/Title}" />
-        </div>
+      <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">  
+        <div class="map">
+           <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi"/>
+        </div> 
         <div class="legend">
            <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
-        </div>
+        </div> 
+      </span>
+      <span tal:condition="python:(context.getMapImageObj() == None) or (context.getLegendImageObj() == None)">
+        <div class="whole">
+           <img src="${context/absolute_url}/@@images/image/large" alt="${context/Title}" class="image-inline" title="${context/Title}" /> 
+        </div> 
+      </span>
     </div>
 </tal:block>
