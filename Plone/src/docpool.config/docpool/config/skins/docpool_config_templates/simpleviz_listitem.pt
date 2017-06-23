@@ -42,9 +42,11 @@
 			        <div class="map">
                     <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')" />
 			        </div>
-			        <div class="pdflink" tal:define="pdf context/getRepresentativePDF" tal:condition="nocall:pdf">
+                               <span tal:condition="python:context.getFiles()">
+                               <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf"><br>
 			            <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
 			        </div>
+                                </span>
                 </td>
                 <td class="metadata">
                     <div metal:use-macro="here/@@dp.macros/macros/doc_meta_listitem"/>

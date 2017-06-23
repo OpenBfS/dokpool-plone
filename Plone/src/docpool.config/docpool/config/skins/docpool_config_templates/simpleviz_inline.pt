@@ -11,8 +11,10 @@
         <div class="legend">
            <tal:insert replace="structure context/getLegendImage" />
         </div>
-        <div class="pdflink" tal:define="pdf context/getRepresentativePDF" tal:condition="nocall:pdf">
-            <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
+        <span tal:condition="python:context.getFiles()">  
+        <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf"> 
+            <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
         </div>
+        </span>
     </div>
 </tal:block>
