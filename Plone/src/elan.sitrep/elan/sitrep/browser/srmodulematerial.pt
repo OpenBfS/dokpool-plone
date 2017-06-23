@@ -131,7 +131,8 @@ function insertTextblock (selector) {
              <tal:loop repeat="vis visualisations">
              <tr tal:define="vis vis/getObject;
                              item_modified vis/getMdate;
-                             item_created vis/CreationDate;">
+                             item_created vis/CreationDate;
+                             myi python:vis.getMyImage()">
              <td class="actions">
              <a i18n:translate="" onclick="" class="submit-widget button-field context"
                 tal:attributes="onclick python:'insertTextblock(\'#vis_%s\');;return false;;' % vis.UID();">Paste</a>
