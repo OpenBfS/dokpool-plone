@@ -209,11 +209,18 @@ class SRModule(Container, DPDocument):
     def visualisations(self):
         """
         """
+        sr_cat = getToolByName(self, 'sr_catalog')
         df = self.defaultFilter()
         mc = df['config']
         res = []
         if mc:
             res = mc.currentDocuments()[:20]
+        if not mc:
+            mc = []
+            module_type = df['module_type']
+            mkbrains = sr_cat({'modules':module_type})
+            for mkbrain in mkbrains:
+                res.extend(mkbrain.getObject().currentDocuments()[:20])
         if not res:
             mt = self.docTypeObj()
             if mt:
