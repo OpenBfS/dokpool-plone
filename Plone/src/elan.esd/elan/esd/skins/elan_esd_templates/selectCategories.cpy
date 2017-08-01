@@ -9,7 +9,20 @@
 ##title=
 ##
 
+from Products.CMFPlone.utils import safe_unicode
 from elan.esd.utils import setCategoriesForCurrentUser
 
-setCategoriesForCurrentUser(context, cats)
+try:
+   if len(cats[0]) != 1:
+      try:
+         cats_u = [safe_unicode(c) for c in cats]
+      except:
+         cats_u = cats
+   else:
+      cats_u = [safe_unicode(cats)]
+except:
+   cats_u = cats
+
+
+setCategoriesForCurrentUser(context,cats_u)
 context.redirectToReferrerWithParameters("Set category filter")
