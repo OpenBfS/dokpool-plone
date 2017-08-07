@@ -12,7 +12,7 @@ MAINTAINER mlechner@bfs.de
 #
 # Use utf-8
 #
-RUN apt-get update && apt-get install -y --force-yes apt-utils tzdata locales
+RUN apt-get update && apt-get install -y apt-utils tzdata locales
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 #
