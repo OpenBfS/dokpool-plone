@@ -39,14 +39,28 @@
                 </td>
                 <td class="title">
                     <div metal:use-macro="here/@@dp.macros/macros/doccontent"/> 
-			        <div class="map">
-                    <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')" />
-			        </div>
-                               <span tal:condition="python:context.getFiles()">
-                               <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf"><br>
-			            <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
-			        </div>
-                                </span>
+                    <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
+  		       <div class="map">
+                         <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')" />
+		       </div>
+                    </span>
+                    <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
+                       <div class="images" tal:define="images python:context.getImages()" tal:condition="images">
+                          <div tal:repeat="b images" class="image">
+                             <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
+                          </div>
+                       </div>
+                    </span>
+                    <span tal:condition="python:context.getFiles()">
+                      <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf">
+                         <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
+                             <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
+                         </span>
+                         <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
+                             <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config"><span tal:content="python:pdf.Title()"/></a>
+                         </span>
+                      </div>
+                    </span>
                 </td>
                 <td class="metadata">
                     <div metal:use-macro="here/@@dp.macros/macros/doc_meta_listitem"/>
