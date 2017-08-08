@@ -12,12 +12,13 @@ MAINTAINER mlechner@bfs.de
 #
 # Use utf-8
 #
+RUN apt-get update && apt-get install -y apt-utils tzdata locales
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 #
 # Install postgres 9.5 + postgis 2.2
 #
-RUN apt-get update && apt-get install -y postgresql-9.5-postgis-2.2 postgis \
+RUN apt-get install -y postgresql-9.5-postgis-2.2 postgis \
     postgresql-plpython-9.5
 
 #
