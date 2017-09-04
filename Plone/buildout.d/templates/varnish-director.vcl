@@ -18,10 +18,10 @@
 
 # Round-robin load balancing between four instances
 director balancer round-robin {
-  { .backend = { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; } }
-  { .backend = { .host = "${hosts:instance2}"; .port = "${ports:instance2}"; } }
-  { .backend = { .host = "${hosts:instance3}"; .port = "${ports:instance3}"; } }
-  { .backend = { .host = "${hosts:instance4}"; .port = "${ports:instance4}"; } }
+  { .backend = { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } } }
+  { .backend = { .host = "${hosts:instance2}"; .port = "${ports:instance2}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } } }
+  { .backend = { .host = "${hosts:instance3}"; .port = "${ports:instance3}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } } }
+  { .backend = { .host = "${hosts:instance4}"; .port = "${ports:instance4}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } } }
 }
 
 # Only allow PURGE from localhost
@@ -30,8 +30,8 @@ acl purge {
 }
 
 sub vcl_recv {
-    set req.grace = 10m;
-    #set req.grace = 30s;
+    #set req.grace = 10m;
+    set req.grace = 30s;
     set req.backend = balancer;
     
     if (req.request == "PURGE") {
