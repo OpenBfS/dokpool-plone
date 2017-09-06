@@ -1,6 +1,7 @@
 # VCL file optimized for plone.app.caching.  See vcl(7) for details
 vcl 4.0;
 import directors;
+import std;
 # This is an example of a split view caching setup with another proxy
 # like Apache in front of Varnish to rewrite urls into the VHM style.
 
@@ -42,7 +43,7 @@ sub vcl_hit {
             return (deliver);
         } else {
             # No candidate for grace. Fetch a fresh object.
-            return(fetch);
+            return(miss);
         }
     } else {
         # backend is sick - use full grace
@@ -51,7 +52,7 @@ sub vcl_hit {
             return (deliver);
         } else {
             # no graced object.
-            return (fetch);
+            return (miss);
         }
     }
 }
@@ -76,7 +77,7 @@ sub vcl_recv {
 }
 
 sub vcl_backend_response {
-    set beresp.ttl = 10s;
+    #set beresp.ttl = 10s;
     set beresp.grace = 30m;
     if (beresp.uncacheable) {
         set beresp.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
