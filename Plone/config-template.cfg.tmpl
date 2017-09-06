@@ -46,6 +46,9 @@ varnish       = ${env_config:ec_varnish_user}
 [hosts]
 varnish         = ${env_config:ec_varnish_host}
 
+[database]
+dsn = dbname=${env_config:ec_pg_dbname} user=${env_config:ec_pg_user} host=${env_config:ec_pg_host} password=${env_config:ec_pg_password} port=${env_config:ec_pg_port}
+
 [varnish-options]
 storage = malloc,512M
 tuning  =
@@ -59,7 +62,7 @@ output = ${buildout:directory}/etc/varnish.vcl
 [instance]
 rel-storage =
     type postgresql
-    dsn dbname=${env_config:ec_pg_dbname} user=${env_config:ec_pg_user} host=${env_config:ec_pg_host} password=${env_config:ec_pg_password} port=${env_config:ec_pg_port}
+    dsn ${database:dsn}
     blob-dir ./blobs
     shared-blob-dir false
 environment-vars =    
