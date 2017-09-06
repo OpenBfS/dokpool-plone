@@ -29,8 +29,35 @@ sub vcl_init {
     cluster1.add_backend(b4);
 }
 
+sub vcl_hit {
+    if (obj.ttl >= 0s) {
+        # normal hit
+        return (deliver);
+    }
+    # We have no fresh fish. Lets look at the stale ones.
+    if (std.healthy(req.backend_hint)) {
+        # Backend is healthy. Limit age to 10s.
+        if (obj.ttl + 10s > 0s) {
+            set req.http.grace = "normal(limited)";
+            return (deliver);
+        } else {
+            # No candidate for grace. Fetch a fresh object.
+            return(fetch);
+        }
+    } else {
+        # backend is sick - use full grace
+        if (obj.ttl + obj.grace > 0s) {
+            set req.http.grace = "full";
+            return (deliver);
+        } else {
+            # no graced object.
+            return (fetch);
+        }
+    }
+}
+
 sub vcl_recv {
-    set req.http.grace = 10m;
+    set req.http.grace = "none";
     set req.backend_hint = cluster1.backend();
     
     if (req.method == "PURGE") {
@@ -49,6 +76,7 @@ sub vcl_recv {
 }
 
 sub vcl_backend_response {
+    set beresp.ttl = 10s;
     set beresp.grace = 30m;
     if (beresp.uncacheable) {
         set beresp.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
@@ -79,6 +107,7 @@ sub vcl_backend_response {
 
 sub vcl_deliver {
     call rewrite_age;
+    set resp.http.grace = req.http.grace;
 }
 
 
