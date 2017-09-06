@@ -75,7 +75,7 @@ $ apt-get install python libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap
 
 #### Additional requirements for varnish
 ```sh
-$ apt-get install libncurses-dev python-docutils autoconf automake libjemalloc-devel libtool libpcre3-devel pkg-config python-sphinx
+$ apt-get install libncurses-dev python-docutils autoconf automake libjemalloc-devel libtool libpcre3-devel pkg-config python-sphinx graphviz
 ```
 
 #### (a) Dokpool with sqlite:
