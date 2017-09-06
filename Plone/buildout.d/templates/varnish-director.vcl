@@ -20,6 +20,7 @@ acl purge {
     "${hosts:allow-purge}";
 }
 
+# Round-robin load balancing between four instances
 sub vcl_init {
     new cluster1 = directors.round_robin();
     cluster1.add_backend(b1);
