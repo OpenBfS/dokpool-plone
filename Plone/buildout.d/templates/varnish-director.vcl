@@ -29,6 +29,7 @@ sub vcl_init {
 }
 
 sub vcl_recv {
+    set req.http.grace = 10m;
     set req.backend_hint = cluster1.backend();
     
     if (req.method == "PURGE") {
