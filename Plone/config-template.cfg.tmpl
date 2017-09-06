@@ -25,13 +25,13 @@ extends =
 
 [env_config]
 ec_pg_port = 5432
-ec_pg_host = <postgresql-db-host>
-ec_pg_dbname = <postgresql-plone-db>
-ec_pg_user = <postgresql-plone-dbuser>
-ec_pg_password = <postgresql-plne-dbpass>
-ec_elan_engine = postgres://<postgresql-elan-dbuser>:<postgresql-elan-dbpass>@<postgresql-db-host>:5432/<postgresql-elan-dbname>
-ec_varnish_user = <user-to-run-varnish>
-ec_varnish_host = <hostname-varnish-will-run-on>
+ec_pg_host = elan_db
+ec_pg_dbname = zodb
+ec_pg_user = zodbuser
+ec_pg_password = zodbuser
+ec_elan_engine = postgres://elan:elan@elan_db:5432/elan
+ec_varnish_user = zope
+ec_varnish_host = localhost
 
 [ports]
 pg_port  = ${env_config:ec_pg_port}
