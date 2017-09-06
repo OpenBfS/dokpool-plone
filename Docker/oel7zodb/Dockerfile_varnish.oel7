@@ -22,7 +22,7 @@ MAINTAINER Marco Lechner<mlechner@bfs.de>
 
 RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel tar openldap-devel
 # additional packages for varnish
-RUN yum install -y gcc-c++ make
+RUN yum install -y gcc-c++ make libedit-devel ncurses-devel python-docutils
 RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone system user" plone
 #
 # install ELAN

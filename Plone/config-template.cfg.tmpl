@@ -1,0 +1,68 @@
+# Deployment buildout
+# ===================
+
+[buildout]
+parts =
+    instance1
+    instance2
+    instance3
+    instance4
+    instance_debug
+    supervisor
+    productdistros
+    elan-logrotate.conf
+    i18ndude
+    i18nize_esd
+    i18nize_policy
+    zodbpack-conf
+    cron-pack
+    
+    ${buildout:varnish-parts}
+    
+extends =
+    relstorage.cfg
+
+
+[env_config]
+ec_pg_port = 5432
+ec_pg_host = <postgresql-db-host>
+ec_pg_dbname = <postgresql-plone-db>
+ec_pg_user = <postgresql-plone-dbuser>
+ec_pg_password = <postgresql-plne-dbpass>
+ec_elan_engine = postgres://<postgresql-elan-dbuser>:<postgresql-elan-dbpass>@<postgresql-db-host>:5432/<postgresql-elan-dbname>
+ec_varnish_user = <user-to-run-varnish>
+ec_varnish_host = <hostname-varnish-will-run-on>
+
+[ports]
+pg_port  = ${env_config:ec_pg_port}
+
+[users]
+#zope-admin    = admin
+varnish       = ${env_config:ec_varnish_user}
+
+[passwords]
+#zope-admin   = istrator
+
+[hosts]
+varnish         = ${env_config:ec_varnish_host}
+
+[varnish-options]
+storage = malloc,512M
+tuning  =
+
+[varnish-config]
+recipe = collective.recipe.template
+input = ${buildout:directory}/buildout.d/templates/varnish-director.vcl
+output = ${buildout:directory}/etc/varnish.vcl
+
+# Zope instance template
+[instance]
+rel-storage =
+    type postgresql
+    dsn dbname=${env_config:ec_pg_dbname} user=${env_config:ec_pg_user} host=${env_config:ec_pg_host} password=${env_config:ec_pg_password} port=${env_config:ec_pg_port}
+    blob-dir ./blobs
+    shared-blob-dir false
+environment-vars =    
+    zope_i18n_compile_mo_files true
+    PLONE_CSRF_DISABLED false
+    ELANENGINE ${env_config:ec_elan_engine}
