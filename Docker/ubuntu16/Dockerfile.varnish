@@ -29,7 +29,8 @@ RUN mkdir -p /opt/bfs/dokpool
 ADD . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
 RUN python bootstrap.py -v "2.5.2"
-RUN ./bin/buildout -Nvc relstorage_docker.cfg
+RUN cp config-template.cfg.tmpl config.cfg
+RUN ./bin/buildout -Nvc config.cfg
 
 RUN chown -R zope.zope /opt/bfs
 USER zope
