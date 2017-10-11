@@ -14,7 +14,7 @@
             <script type="text/javascript" tal:define="qs request/QUERY_STRING;
                                                        op1 python:qs and '?' or '';
                                                        op2 python:qs and '&' or '?'">
-                jQuery("#content-core").load("${context/absolute_url}${op1}${qs}${op2}ajax_load=1 #content-core");
+                <tal:replace replace="structure string:jQuery('#content-core').load('${context/absolute_url}${op1}${qs}${op2}ajax_load=1 #content-core');" />
             </script>
         </tal:if>
         <tal:if condition="ajax_load">
