@@ -420,37 +420,32 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     def setDPProperty(self, name, value, ptype="string"):
         """
         """
-        if not shasattr(self, "_props", acquire=False):
-            self._props = {}
-        if ptype == "xxxx":
-            pass
-        self._props[name] = value
-        self._p_changed = True
-        
-    
+        alsoProvides(self.REQUEST, IDisableCSRFProtection)
+        if not self.hasProperty(name):
+            self.manage_addProperty(name, value, ptype)
+        else:
+            self._updateProperty(name, value)
+        return "set"
+
     def deleteDPProperty(self, name):
         """
         """
-        if not shasattr(self, "_props", acquire=False):
-            return
-        if self._props.has_key(name):
-            del self._props[name]
-        self._p_changed = True
-        
+        alsoProvides(self.REQUEST, IDisableCSRFProtection)
+        if self.hasProperty(name):
+            self._delProperty(name)
+            return "deleted"
+        return "unknown"
+
     def getDPProperty(self, name):
         """
         """
-        if not shasattr(self, "_props", acquire=False):
-            return None
-        return self._props.get(name, None)
-    
+        if self.hasProperty(name):
+            return self.getProperty(name)
+
     def getDPProperties(self):
         """
         """
-        if not shasattr(self, "_props", acquire=False):
-            return None
-        p = self._props.copy()
-        return p
+        return self.propertyItems()
         
     def readPropertiesFromFile(self):
         """
