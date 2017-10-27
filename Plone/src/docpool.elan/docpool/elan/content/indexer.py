@@ -9,7 +9,7 @@ def scenarios_indexer(obj):
     try:
         return obj.doc_extension(ELAN_APP).scenarioIndex()
     except:
-        pass
+        return [ 'nonELANContent' ]
 
 @indexer(IDPDocument)
 def category_indexer(obj):

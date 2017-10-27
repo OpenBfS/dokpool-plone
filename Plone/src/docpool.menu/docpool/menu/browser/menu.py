@@ -32,7 +32,7 @@ class DropDownMenuQueryBuilder(SitemapQueryBuilder):
         if content_tabs_level > 0:
             self.query['path']['depth'] = content_tabs_level
         elif 'depth' in self.query['path']:
-            del self.query['path']['depth']
+            self.query['path']['depth'] = 4
 
         # constrain non-folderish objects if required
         if not show_nonfolderish_tabs:
