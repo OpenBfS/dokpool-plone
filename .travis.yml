@@ -13,4 +13,4 @@ install:
   - cp config-template.cfg.tmpl config.cfg
   - python bootstrap.py -c config.cfg -v "2.5.2"
 script:
-  - ./bin/buildout -N -t 3 -c config.cfg
+  - ./bin/buildout -N -t 10 -c config.cfg
