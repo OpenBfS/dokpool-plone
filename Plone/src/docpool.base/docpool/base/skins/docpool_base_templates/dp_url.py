@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 ## Python Script "dp_url"
 ##bind container=container
 ##bind context=context

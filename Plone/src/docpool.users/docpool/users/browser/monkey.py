@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from Acquisition import aq_inner
 from zope.component import getAdapter
 from Products.CMFPlone.interfaces import ISecuritySchema

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from plone.memoize.instance import memoize
 from plone.app.workflow.browser.sharing import SharingView as OSV
 

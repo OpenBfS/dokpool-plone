@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 import xmlrpclib
 from xmlrpclib import DateTime as XMLRPCDateTime
 

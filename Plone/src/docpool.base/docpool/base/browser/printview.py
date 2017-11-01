@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from StringIO import StringIO
 from DateTime import DateTime
 from plone.subrequest import subrequest

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from AccessControl.SecurityInfo import allow_module, allow_class

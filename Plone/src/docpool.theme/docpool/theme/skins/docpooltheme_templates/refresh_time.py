@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 ## Python Script "refresh_time"
 ##bind container=container
 ##bind context=context

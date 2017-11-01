@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from zope.interface import directlyProvides
 from zope.component import getUtilitiesFor
 from zope.globalrequest import getRequest

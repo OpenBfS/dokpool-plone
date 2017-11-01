@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from zope.i18nmessageid import message
 from zope.interface import implements
 from xmlrpclib import DateTime as XMLRPCDateTime

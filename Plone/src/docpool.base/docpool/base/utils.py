@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import aq_inner
 from Products.Archetypes.utils import shasattr
