@@ -17,6 +17,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 
+
 class ApplicationAPI(WSAPI):
     implements(IApplicationAPI)
 
@@ -26,11 +27,10 @@ class ApplicationAPI(WSAPI):
             data = serviced_obj.get_object()
             type_ = serviced_obj.get_type()
             misc = serviced_obj.get_misc()
-            return (self.builder.get_path(obj, ''), (data, type_, misc,))
+            return self.builder.get_path(obj, ''), (data, type_, misc,)
         else:
             return ()
-        
-    
+
     def get_primary_documentpool(self):
         """
         Return the ESD the user belongs to - or the first one he has access to if he is a global user.
@@ -63,21 +63,21 @@ class ApplicationAPI(WSAPI):
         user = api.user.get_current()
         esd = self.context.restrictedTraverse(esdpath)
         groups = getGroupsForCurrentUser(esd, user)
-        if not groups: # User is reader only
+        if not groups:  # User is reader only
             return {}
         ids = []
         for group in groups:
-            if group['etypes']: # Group is ELAN group which can produce documents
+            if group['etypes']:  # Group is ELAN group which can produce documents
                 ids.append(group['id'])
         
-        q = { 'path': esdpath + "/content/Groups", 'portal_type': "GroupFolder", 'getId': ids }
+        q = {'path': esdpath + "/content/Groups", 'portal_type': "GroupFolder", 'getId': ids}
         return self.context.restrictedTraverse("@@query")(q) 
     
     def get_transfer_folders(self, esdpath):
-        q = { 'path': esdpath + "/content/Transfers", 'portal_type': "ELANTransferFolder" }
+        q = {'path': esdpath + "/content/Transfers", 'portal_type': "ELANTransferFolder"}
         return self.context.restrictedTraverse("@@query")(q) 
     
-    def create_dp_document(self, folderpath, id, title, description, text, docType, scenarios):
+    def create_dp_document(self, folderpath, id, title, description, text, doctype, scenarios):
         """
         Creates a document under folderpath.
         """
@@ -85,11 +85,11 @@ class ApplicationAPI(WSAPI):
 
         return self.create_dp_object(folderpath,
                                      id,
-                                     { "title": title,
-                                       "description" : description,
-                                       "text" : text,
-                                       "docType" : docType,
-                                       "scenarios" : scenarios},
+                                     {"title": title,
+                                      "description": description,
+                                      "text": text,
+                                      "docType": doctype,
+                                      "scenarios": scenarios},
                                      "DPDocument")
 
     def create_dp_object(self, folderpath, id, properties, type):
@@ -165,15 +165,17 @@ class ApplicationAPI(WSAPI):
     def post_user(self, username, password, fullname, esdpath):
         """
         """
+
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
-        properties = {"fullname":fullname}
+        properties = {"fullname": fullname}
         esd = api.content.get(esdpath, None)
 
-        prefix = esd.prefix
-        prefix = str(prefix)
+        # FIXME prefix never used - obsolete?
+        # prefix = esd.prefix
+        # prefix = str(prefix)
 
-        membergroupname = prefix + "_Members"
+        # membergroupname = prefix + "_Members"
         if esd:
             properties['dp'] = esd.UID()
             properties['fullname'] = "{} ({})".format(fullname, esd.Title()) 
@@ -182,7 +184,7 @@ class ApplicationAPI(WSAPI):
         user = mtool.getMemberById(username) 
         user.setMemberProperties(properties)
         user.setSecurityProfile(password=password)
-#Nur mit email-Adresse        
+# Nur mit email-Adresse
 #         user = api.user.create(email=email, 
 #                                username=username,
 #                                password=password,
@@ -194,8 +196,6 @@ class ApplicationAPI(WSAPI):
     def post_group(self, groupname, title, description, esdpath):
         """
         """
-        
-
 
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
@@ -211,8 +211,7 @@ class ApplicationAPI(WSAPI):
 #        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
         gtool = getToolByName(self, 'portal_groups')
 # trying to add new group with prefix
-        group = gtool.addGroup("%s_%s" % (prefix, groupname),
-                   properties=groupprops)
+        group = gtool.addGroup("%s_%s" % (prefix, groupname), properties=groupprops)
         if group:
             return groupname
 # seems that adding group was not succesfulr. asuming group already exists
@@ -221,18 +220,18 @@ class ApplicationAPI(WSAPI):
 #        if groupprops:
 #            group.setGroupProperties(groupprops)
         if group:
-             return groupname
+            return groupname
         else:
-             return "fail"
+            return "fail"
     
-    def put_group(self, groupname, title, description, esdpath, allowedDocTypes):
+    def put_group(self, groupname, title, description, esdpath, alloweddoctypes):
         """
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
-        props = { 'allowedDocTypes' : allowedDocTypes,
-                  'title' : title,
-                  'description': description}
+        props = {'alloweddoctypes': alloweddoctypes,
+                 'title': title,
+                 'description': description}
         esd = api.content.get(esdpath, None)
 
         prefix = esd.prefix
@@ -247,11 +246,11 @@ class ApplicationAPI(WSAPI):
         message = "notChanged"
         if group:
             group.setProperties(props)
-            gTitle = group.getProperty('title') == title
-            gDescription = group.getProperty('description') == description
-            gEsd = group.getProperty('dp') == esd.UID()
-            gAllowedDocTypes = group.getProperty('allowedDocTypes') == allowedDocTypes
-            if gTitle and gDescription and gEsd and gAllowedDocTypes:
+            gtitle = group.getProperty('title') == title
+            gdescription = group.getProperty('description') == description
+            gesd = group.getProperty('dp') == esd.UID()
+            galloweddoctypes = group.getProperty('allowedDocTypes') == alloweddoctypes
+            if gtitle and gdescription and gesd and galloweddoctypes:
                 message = "changed" 
         return message
         
@@ -272,6 +271,3 @@ class ApplicationAPI(WSAPI):
             if username in group.getAllGroupMemberIds():
                 message = "added"
         return message
-        
-        
-        
