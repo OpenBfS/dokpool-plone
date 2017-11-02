@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*- 
-# -*- coding: utf-8 -*
-import random
+from urllib import quote
 from docpool.base.utils import getGroupsForCurrentUser
 try:
     from zope.component.hooks import getSite
 except ImportError:
     from zope.component.hooks import getSite
-from zope.component import getUtility
 from zope.interface import implements
 
 from wsapi4plone.core.browser.interfaces import IApplicationAPI
@@ -114,7 +112,7 @@ class ApplicationAPI(WSAPI):
         # Delegate to post_object
         # print params
         res = self.context.restrictedTraverse("@@post_object")(params)
-        return res[0] # just the path
+        return res[0]  # just the path
         
     def upload_image(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
@@ -126,19 +124,19 @@ class ApplicationAPI(WSAPI):
         # print params
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
-        return res[0] # just the path
+        return res[0]  # just the path
         
     def autocreate_subdocuments(self, path):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         # Delegate to post_object
         doc = self.context.restrictedTraverse(path)
-        return doc.autocreateSubdocuments() # just the path
+        return doc.autocreateSubdocuments()  # just the path
 
     def read_properties_from_file(self, path):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         # Delegate to post_object
         doc = self.context.restrictedTraverse(path)
-        return doc.readPropertiesFromFile() # just the path
+        return doc.readPropertiesFromFile()  # just the path
 
     def set_property(self, path, name, value, ptype):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
