@@ -33,7 +33,7 @@ RUN mkdir -p /opt/bfs
 RUN cd /opt/bfs/ && git clone "https://github.com/OpenBfS/dokpool-plone.git" dokpool
 ADD initialELAN-backup.tgz /opt/bfs/dokpool/Plone/var/
 WORKDIR /opt/bfs/dokpool/Plone
-RUN cd /opt/bfs/dokpool/Plone && python bootstrap.py -v "2.5.2"
+RUN cd /opt/bfs/dokpool/Plone && python bootstrap.py -v "2.5.3"
 RUN cd /opt/bfs/dokpool/Plone && ./bin/buildout -Nvc buildout_docker.cfg
 #
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
