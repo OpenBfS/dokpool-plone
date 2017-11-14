@@ -12,8 +12,6 @@ from wsapi4plone.core.interfaces import IScrubber, IService, IServiceContainer
 from plone import api
 from Products.CMFCore.utils import getToolByName
 from plone.protect.interfaces import IDisableCSRFProtection
-from plone.i18n.normalizer.interfaces import IFileNameNormalizer
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 from zope.interface import alsoProvides
 
 
@@ -108,9 +106,9 @@ class ApplicationAPI(WSAPI):
         
         # print "upload_file"
         params = {str(path) + "/" + str(id.encode('utf-8')): [{"title": title,
-                                                      "description": description,
-                                                      "file": (data, filename)},
-                                                     "File"]}
+                                                               "description": description,
+                                                               "file": (data, filename)},
+                                                              "File"]}
         # Delegate to post_object
         # print params
         res = self.context.restrictedTraverse("@@post_object")(params)
@@ -121,9 +119,9 @@ class ApplicationAPI(WSAPI):
         # print "upload_image"
         # FIXME - unicode characters break here - use urllib to allow unicode instead of string
         params = {str(path) + "/" + str(id.encode('utf-8')): [{"title": title,
-                                                      "description": description,
-                                                      "image": (data, filename)},
-                                                     "Image"]}
+                                                               "description": description,
+                                                               "image": (data, filename)},
+                                                              "Image"]}
         # print params
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
