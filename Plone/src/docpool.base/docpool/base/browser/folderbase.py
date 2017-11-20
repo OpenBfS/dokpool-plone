@@ -15,6 +15,7 @@ view of that content type.
 
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from docpool.base.utils import extendOptions
 
 from plone.memoize.instance import memoize
 
@@ -38,7 +39,9 @@ class FolderBaselistitemView(BrowserView):
     __call__ = ViewPageTemplateFile('folderbaselistitem.pt')
     
     ##code-section methodslistitem
-    ##/code-section methodslistitem     
+    def options(self):
+        return extendOptions(self.context, self.request, {})
+    ##/code-section methodslistitem
 
 class FolderBaserpopupView(BrowserView):
     """Additional View

@@ -108,7 +108,7 @@
                        class="listing responsive"
                        summary="Content listing"
                        i18n:attributes="summary summary_content_listing;"
-                       tal:define="isOverview python:here.getId()=='overview'">
+                       tal:define="isOverview python:here.getId()=='overview' and 1 or 0">
                     <thead>
                     <metal:header_slot metal:define-slot="listingheader">
                         <th class="nosort actions" tal:condition="python:False"></th>
@@ -118,21 +118,36 @@
                     </thead>
 
                     <tbody>
-                    <tal:items tal:repeat="edoc batch">
-                        <tr tal:define="oddrow  python:repeat['edoc'].index % 2 == 0;
-                   				   item_id edoc/getId;
-                   				   item_obj edoc/getObject|nothing;
-                   				   isFolder edoc/is_folderish;
+                    <tal:items tal:repeat="dpbrain batch">
+                        <tr tal:define="oddrow  python:repeat['dpbrain'].index % 2 == 0;
+                   				   item_id dpbrain/getId;
+                   				   item_obj dpbrain/getObject|nothing;
+                   				   isFolder dpbrain/is_folderish;
                 				   item_folder_class python:isFolder and 'folder' or ''"
                             tal:attributes="class string:itemRow $item_folder_class';
-                                       id item_id;">
+                                        id string:item_${dpbrain/UID};">
 
                             <metal:block define-slot="entry">
                                 <tal:if condition="nocall:item_obj">
-                                    <tal:insertview
-                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(edoc=edoc,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
+                                    <!-- Image is in Products.CMFPlone/skins/plone_images -->
+                                    <td class="loading_indicator" colspan="3">
+                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
+                                    </td>
+                                    <script type="text/javascript">
+                                        <tal:var replace="structure string:jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&buttons=${buttons}&ajax_load=1 .wrapper > *');" />
+                                    </script>
+
+                                    <!--tal:insertview
+                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
                                 </tal:if>
                             </metal:block>
+
+                            <!--metal:block define-slot="entry">
+                                <tal:if condition="nocall:item_obj">
+                                    <tal:insertview
+                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
+                                </tal:if>
+                            </metal:block-->
                         </tr>
                     </tal:items>
                     </tbody>

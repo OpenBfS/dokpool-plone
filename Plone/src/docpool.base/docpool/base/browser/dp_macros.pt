@@ -55,18 +55,26 @@
                     </thead>
 
                     <tbody>
-                    <tal:items tal:repeat="edoc batch">
-                        <tr tal:define="item_id edoc/id|edoc/getId;
-                                   item_obj edoc/getObject|nothing;
-                				   isFolder edoc/is_folderish;
+                    <tal:items tal:repeat="dpbrain batch">
+                        <tr tal:define="item_id dpbrain/id|dpbrain/getId;
+                                   item_obj dpbrain/getObject|nothing;
+                				   isFolder dpbrain/is_folderish;
                 				   item_folder_class python:isFolder and 'folder' or ''"
                             tal:attributes="class string:itemRow $item_folder_class';
-                                       id item_id;">
+                                       id string:item_${dpbrain/UID};">
 
                             <metal:block define-slot="entry">
                                 <tal:if condition="nocall:item_obj">
-                                    <tal:insertview
-                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(edoc=edoc,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/>
+                                    <!-- Image is in Products.CMFPlone/skins/plone_images -->
+                                    <td class="loading_indicator" colspan="3">
+                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
+                                    </td>
+                                    <script type="text/javascript">
+                                        <tal:var replace="structure string:jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&buttons=${buttons}&ajax_load=1 .wrapper > *');" />
+                                    </script>
+
+                                    <!--tal:insertview
+                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
                                 </tal:if>
                             </metal:block>
                         </tr>
@@ -103,11 +111,11 @@
            value="#"
            alt=""
            title=""
-           tal:attributes="value   edoc/getPath;
+           tal:attributes="value   dpbrain/getPath;
                                      id      string:cb_${item_id};
                                      checked nothing"/>
     <input type="hidden" name="selected_obj_paths:list" value="#"
-           tal:attributes="value edoc/getPath"/>
+           tal:attributes="value dpbrain/getPath"/>
     <label tal:content="title_or_id"
            tal:attributes="for string:cb_${item_id}"
            class="hiddenStructure">
@@ -116,14 +124,14 @@
 </metal:cbmacro>
 
 <metal:delmacro define-macro="delete">
-    <tal:if condition="edocobj/canBeDeleted">
+    <tal:if condition="dpbrainobj/canBeDeleted">
         <a href=""
            class="link-overlay action pat-plone-modal"
            data-pat-plone-modal="width: 80%;"
            title="Delete"
            tal:define="alert_msg python:context.translate('alert_delete_popup', default='Do you really want to delete this object?', domain='docpool.base', escape_for_js=True)"
            tal:attributes="onclick1 string:return confirm('${title_or_id}: ${alert_msg}');
-                               href python:'%s/delete_confirmation' % edocobj.absolute_url()"
+                               href python:'%s/delete_confirmation' % dpbrainobj.absolute_url()"
            i18n:attributes="title"
         ><img src="" tal:attributes="src string:${navigation_root_url}/delete_icon.gif"/> </a>
     </tal:if>
@@ -160,13 +168,13 @@
        i18n:attributes="title"
        tal:attributes="href string:javascript:go_to('${item_url}');
                                class string:$item_type_class $item_wf_state_class"
-       tal:content="edoc/Title">Title
+       tal:content="dpbrain/Title">Title
     </a>
     <div class="description" tal:condition="python:item_description"
          tal:content="structure string:$item_description"> description
     </div>
 
-    <div class="fulltext" tal:content="structure edocobj/text/output|nothing"/>
+    <div class="fulltext" tal:content="structure dpbrainobj/text/output|nothing"/>
 
 </metal:macro>
 <metal:macro define-macro="foldercontent">
@@ -175,7 +183,7 @@
        i18n:attributes="title"
        tal:attributes="href string:javascript:go_to('${item_url}');
                                class string:$item_type_class $item_wf_state_class"
-       tal:content="edoc/Title">Title
+       tal:content="dpbrain/Title">Title
     </a>
     <div class="description" tal:condition="python:item_description"
          tal:content="structure string:$item_description"> description

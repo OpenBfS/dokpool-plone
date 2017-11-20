@@ -13,5 +13,6 @@
         <dependency>profile-docpool.users:default</dependency>
         <dependency>profile-docpool.dbaccess:default</dependency>
         <dependency>profile-docpool.config:default</dependency>
+        <dependency>profile-docpool.caching:default</dependency>
     </dependencies>
 </metadata>

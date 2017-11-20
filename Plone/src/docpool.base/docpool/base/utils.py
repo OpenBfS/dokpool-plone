@@ -320,3 +320,20 @@ def activateAppFilter(self, activate=False):
     alsoProvides(request, IDisableCSRFProtection)
     user = api.user.get_current()
     user.setMemberProperties({"filter_active": activate})
+
+def extendOptions(context, request, options):
+    brain = None
+    cat = getToolByName(context, 'portal_catalog')
+    brains = cat(UID=context.UID())
+    brain = None
+    if len(brains) > 0:
+        brain = brains[0]
+    print brain
+    options['dpbrain'] = brain
+    options['dpdoc'] = context
+    options['myfolder_url'] = request.get('myfolder_url', "/")
+    options['isOverview'] = int(request.get('isOverview', 0))
+    options['isCollection'] = int(request.get('isCollection', 0))
+    options['buttons'] = eval(request.get('buttons', "[]"))
+    print options
+    return options
