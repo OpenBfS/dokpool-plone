@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 from docpool.base.utils import getGroupsForCurrentUser
 try:
     from zope.component.hooks import getSite

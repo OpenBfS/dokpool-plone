@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from zope.component import getUtility
 from zope.interface import implements
 

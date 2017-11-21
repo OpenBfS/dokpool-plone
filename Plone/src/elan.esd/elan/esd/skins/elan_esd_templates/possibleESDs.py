@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Python Script "possibleScenarios"
 ##bind container=container
 ##bind context=context

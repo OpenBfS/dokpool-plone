@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Python Script "possibleDocTypes"
 ##bind container=container
 ##bind context=context

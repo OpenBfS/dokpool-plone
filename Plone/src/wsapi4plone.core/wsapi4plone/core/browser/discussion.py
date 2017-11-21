@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from cgi import escape
 try:
     from zope.component.hooks import getSite

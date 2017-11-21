@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 try:
     from zope.container.interfaces import IContainer
 except ImportError:

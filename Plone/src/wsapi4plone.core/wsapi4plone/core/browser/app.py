@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 import random
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides

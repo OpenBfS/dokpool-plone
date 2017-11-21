@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from sqlalchemy.schema import ThreadLocalMetaData
 from zope.sqlalchemy import ZopeTransactionExtension
 from sqlalchemy.orm import scoped_session, sessionmaker, relation

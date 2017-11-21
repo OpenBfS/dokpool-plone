@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from zope.interface import implements
 from zope.component import adapts, getUtility, queryUtility
 from plone.dexterity.schema import SCHEMA_CACHE
