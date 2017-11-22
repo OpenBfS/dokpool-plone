@@ -14,7 +14,10 @@ def setupVarious(context):
         return
 ##code-section setupcode
     # TODO: Add additional setup code here
-##/code-section setupcode
+    from docpool.rodos.general.rodos import install
+    install(context.getSite())
+
+        ##/code-section setupcode
 
 ##code-section Main
 ##/code-section Main 

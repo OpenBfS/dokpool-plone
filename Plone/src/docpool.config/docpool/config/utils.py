@@ -103,4 +103,10 @@ def _setAllowedTypes(folder, types):
     """
     """
     folder.setConstrainTypesMode(1) # only explicitly allowed types
-    folder.setLocallyAllowedTypes(types)      
+    folder.setLocallyAllowedTypes(types)
+
+def _addAllowedTypes(folder, types):
+    existing = folder.getLocallyAllowedTypes()
+    existing.extend(types)
+    new_types = list(set(existing))
+    _setAllowedTypes(folder, new_types)
