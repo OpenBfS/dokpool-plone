@@ -26,6 +26,20 @@ class IRodosDoc(IDocumentExtension):
     )
     read_permission(reportId='docpool.rodos.AccessRodos')
     write_permission(reportId='docpool.rodos.AccessRodos')
+    releaseSite = schema.TextLine(
+                        title=_(u'label_rodos_releaseSite', default=u'Release Site'),
+                        description=_(u'description_rodos_releaseSite', default=u''),
+                        required=False,
+    )
+    read_permission(releaseSite='docpool.rodos.AccessRodos')
+    write_permission(releaseSite='docpool.rodos.AccessRodos')
+    releaseStart = schema.Datetime(
+                        title=_(u'label_rodos_releaseStart', default=u'Release Start'),
+                        description=_(u'description_rodos_releaseStart', default=u''),
+                        required=False,
+    )
+    read_permission(releaseStart='docpool.rodos.AccessRodos')
+    write_permission(releaseStart='docpool.rodos.AccessRodos')
 
 
 class RodosDoc(FlexibleView):
@@ -50,6 +64,27 @@ class RodosDoc(FlexibleView):
     
     reportId = property(_get_rodos_reportId, _set_rodos_reportId)
 
+    def _get_rodos_releaseSite(self):
+        return self.context.releaseSite
+
+    def _set_rodos_releaseSite(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.releaseSite = value
+
+    releaseSite = property(_get_rodos_releaseSite, _set_rodos_releaseSite)
+
+    def _get_rodos_releaseStart(self):
+        return self.context.releaseStart
+
+    def _set_rodos_releaseStart(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.releaseStart = value
+
+    releaseStart = property(_get_rodos_releaseStart, _set_rodos_releaseStart)
 
     def isClean(self):
         """
