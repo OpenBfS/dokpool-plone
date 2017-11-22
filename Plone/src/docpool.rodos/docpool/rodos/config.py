@@ -7,5 +7,5 @@ PROJECTNAME = "docpool.rodos"
 
 ##code-section config
 # TODO
-RODOS_APP = "rodos"
+Rodos_APP = "rodos"
 ##/code-section config

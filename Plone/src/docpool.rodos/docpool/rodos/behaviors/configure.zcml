@@ -5,15 +5,15 @@
 	<grok:grok package="." />    
 
     <plone:behavior
-        title="RODOSDoc"
-        description="Makes documents support RODOS functions"
+        title="RodosDoc"
+        description="Makes documents support Rodos functions"
         provides=".rodosdoc.IRodosDoc"
         factory=".rodosdoc.RodosDoc"
         for="docpool.base.interfaces.IDPDocument"
     />
     <plone:behavior
-        title="RODOS DocType"
-        description="Type extension for RODOS types"
+        title="Rodos DocType"
+        description="Type extension for Rodos types"
         provides=".rodostype.IRodosType"
         factory=".rodostype.RodosType"
         for="docpool.base.interfaces.IDocType"

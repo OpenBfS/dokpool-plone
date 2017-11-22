@@ -8,7 +8,7 @@ from zope.interface import provider, implementer
 from zope import schema
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
-from docpool.rodos.config import RODOS_APP
+from docpool.rodos.config import Rodos_APP
 from AccessControl import ClassSecurityInfo
 from docpool.base.interfaces import IDocumentExtension
 
@@ -33,7 +33,7 @@ class RodosDoc(FlexibleView):
 
     security = ClassSecurityInfo()
 
-    appname = RODOS_APP
+    appname = Rodos_APP
 
     def __init__(self, context):
         self.context = context

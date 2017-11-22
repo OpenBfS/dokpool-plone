@@ -7,7 +7,7 @@ def dpAdded(self):
     @return: 
         
     """
-    createRODOSGroups(self)
+    createRodosGroups(self)
     # TODO:
 
 def dpRemoved(self):
@@ -18,7 +18,7 @@ def dpRemoved(self):
     # TODO:
     return
 
-def createRODOSGroups(self):
+def createRodosGroups(self):
     """
     Create Group for rodos application access
     @param self: 
@@ -29,14 +29,14 @@ def createRODOSGroups(self):
     prefix = str(prefix)
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
-    # Group for RODOS application rights
-    props = {'allowedDocTypes': [], 'title': 'RODOS Users (%s)' % title,
-             'description': 'Users with access to RODOS functions.',
+    # Group for Rodos application rights
+    props = {'allowedDocTypes': [], 'title': 'Rodos Users (%s)' % title,
+             'description': 'Users with access to Rodos functions.',
              'dp': self.UID()}
-    gtool.addGroup("%s_RODOSUsers" % prefix,
+    gtool.addGroup("%s_RodosUsers" % prefix,
                properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_RODOSUsers' % prefix)
+    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_RodosUsers' % prefix)
 
-    # Set RODOS role as a local role for the new group
-    self.manage_setLocalRoles("%s_RODOSUsers" % prefix, ["RODOSeUser"])
+    # Set Rodos role as a local role for the new group
+    self.manage_setLocalRoles("%s_RodosUsers" % prefix, ["RodoseUser"])
 
