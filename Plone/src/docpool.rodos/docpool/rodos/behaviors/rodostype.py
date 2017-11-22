@@ -27,12 +27,7 @@ from docpool.rodos import DocpoolMessageFactory as _
 
 @provider(IFormFieldProvider)
 class IRodosType(IDocTypeExtension):
-    rodos_type_attribute = schema.TextLine(
-                        title=_(u'label_rodos_type_attribute', default=u'Rodos Type Attribute'),
-                        description=_(u'description_rodos_type_attribute', default=u''),
-                        required=False,
-    )
-
+    pass
 
 ##/code-section interface
 
@@ -44,18 +39,6 @@ class RodosType(object):
     def __init__(self, context):
         self.context = context
 ##code-section methods
-
-    def _get_rodos_type_attribute(self):
-        return self.context.rodos_type_attribute
-
-    def _set_rodos_type_attribute(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.rodos_type_attribute = value
-
-    rodos_type_attribute = property(_get_rodos_type_attribute, _set_rodos_type_attribute)
-
 ##/code-section methods
 
 

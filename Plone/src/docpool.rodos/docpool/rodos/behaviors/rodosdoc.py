@@ -19,13 +19,13 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IRodosDoc(IDocumentExtension):
-    rodos_attribute = schema.TextLine(
-                        title=_(u'label_rodos_attribute', default=u'Rodos Attribute'),
-                        description=_(u'description_rodos_attribute', default=u''),
-                        required=False,
+    reportId = schema.TextLine(
+                        title=_(u'label_rodos_reportId', default=u'Report ID'),
+                        description=_(u'description_rodos_reportId', default=u''),
+                        required=True,
     )
-    read_permission(rodos_attribute='docpool.rodos.AccessRodos')
-    write_permission(rodos_attribute='docpool.rodos.AccessRodos')
+    read_permission(reportId='docpool.rodos.AccessRodos')
+    write_permission(reportId='docpool.rodos.AccessRodos')
 
 
 class RodosDoc(FlexibleView):
@@ -39,16 +39,16 @@ class RodosDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
     
-    def _get_rodos_attribute(self):
-        return self.context.rodos_attribute
+    def _get_rodos_reportId(self):
+        return self.context.reportId
 
-    def _set_rodos_attribute(self, value):
+    def _set_rodos_reportId(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.rodos_attribute = value
+        context.reportId = value
     
-    rodos_attribute = property(_get_rodos_attribute, _set_rodos_attribute)
+    reportId = property(_get_rodos_reportId, _set_rodos_reportId)
 
 
     def isClean(self):
