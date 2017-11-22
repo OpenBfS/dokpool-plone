@@ -11,7 +11,6 @@
                  title_or_id python:item_title or item_id;                 
                  buttons options/buttons|nothing;
                  dpbrainobj dpbrain/getObject;
-                 elanobj view/elanobject;
                  isOverview options/isOverview;
                  isCollection options/isCollection;
                  individual context/isIndividual;
@@ -38,6 +37,7 @@
                     <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+                    <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
                 </td>
                 <td class="title">
                     <div metal:use-macro="here/@@dp.macros/macros/doccontent"/> 
