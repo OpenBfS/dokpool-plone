@@ -261,27 +261,35 @@ class Transferable(FlexibleView):
                         continue
                 # b) Is my Scenario known, are unknown Scenarios accepted?
                 scen_ok = transfer_folder.unknownScenDefault != 'block'
+                elanobj = None
                 if not scen_ok:
                     # check my precise Scenario
-                    scens = IELANDocument(self.context).myScenarioObjects()
-                    if scens:
-                        scen_id = scens[0].getId()
-                        if not transfer_folder.knowsScen(scen_id):
+                    # FIXME: ELAN dependency
+                    try:
+                        elanobj = IELANDocument(self.context)
+                    except:
+                        pass # ELAN App not active
+                    if elanobj != None:
+                        scens = IELANDocument(self.context).myScenarioObjects()
+                        if scens:
+                            scen_id = scens[0].getId()
+                            if not transfer_folder.knowsScen(scen_id):
+                                # Message
+                                portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(
+                                    ". Unknown scenario not accepted."), type='error')
+                                continue
+                        else:
                             # Message
                             portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(
-                                ". Unknown scenario not accepted."), type='error')
+                                ". Document has no scenario."), type='error')
                             continue
-                    else:
-                        # Message
-                        portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(
-                            ". Document has no scenario."), type='error')
-                        continue
 
                 # 2) Put a copy of me in each of them, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
                 behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
-                behaviors.add(ELAN_APP)
+                if elanobj != None:
+                    behaviors.add(ELAN_APP) # FIXME: ELAN dependency
                 ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
 
 
@@ -295,8 +303,10 @@ class Transferable(FlexibleView):
                 document_title = self.context.Title()
                 timestamp = datetime.now()
                 user = userid
-                scenario_ids = IELANDocument(self.context).scenarios and ", ".join(
-                    IELANDocument(self.context).scenarios) or ""
+                scenario_ids = ""
+                if elanobj != None:
+                    scenario_ids = elanobj.scenarios and ", ".join(
+                        elanobj.scenarios) or ""
                 l = SenderLog(document_uid=document_uid,
                               document_title=document_title,
                               timestamp=timestamp,
@@ -313,7 +323,8 @@ class Transferable(FlexibleView):
                 #    but it is in private state, check if it defines
                 #    a published substitute scenario. If it does,
                 #    change the scenario for the copy to that one.
-                ensureScenariosInTarget(self.context, my_copy)
+                if elanobj != None:
+                    ensureScenariosInTarget(self.context, my_copy)
                 # Make sure workflow state of the copy is published,
                 # if there is no restriction on the transfer folder (permission = publish)
                 # Make sure workflow state of the copy is private,
@@ -324,7 +335,9 @@ class Transferable(FlexibleView):
                 document_uid = my_copy.UID()
                 document_title = my_copy.Title()
                 timestamp = datetime.now()
-                scenario_ids = IELANDocument(my_copy).scenarios and ", ".join(IELANDocument(my_copy).scenarios) or ""
+                scenario_ids = ""
+                if elanobj != None:
+                    scenario_ids = IELANDocument(my_copy).scenarios and ", ".join(IELANDocument(my_copy).scenarios) or ""
                 r = ReceiverLog(document_uid=document_uid,
                                 document_title=document_title,
                                 timestamp=timestamp,
@@ -357,13 +370,19 @@ class Transferable(FlexibleView):
                     api.content.transition(self.context, 'publish')
                 if dstate == 'published' and perm == 'confirm':
                     api.content.transition(self.context, 'retract')
-            uscn = IELANDocument(self.context).unknownScenario()
-            if uscn:
-                # Documents with unknown scenarios must be private
-                try:
-                    api.content.transition(self.context, 'retract')
-                except:
-                    pass
+            elanobj = None
+            try:
+                elanobj = IELANDocument(self.context)
+            except:
+                pass # no ELAN App active
+            if elanobj != None:
+                uscn = IELANDocument(self.context).unknownScenario()
+                if uscn:
+                    # Documents with unknown scenarios must be private
+                    try:
+                        api.content.transition(self.context, 'retract')
+                    except:
+                        pass
 
     def deleteTransferDataInDB(self):
         """
