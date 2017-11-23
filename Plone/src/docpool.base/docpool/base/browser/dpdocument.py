@@ -94,7 +94,7 @@ class DPDocumentlistitemView(FlexibleView):
         
     ##/code-section methodslistitem     
 
-class DPDocumentinlineView(FlexibleView):
+class DPDocumentinlineView(DPDocumentView):
     """Additional View
     """
     
