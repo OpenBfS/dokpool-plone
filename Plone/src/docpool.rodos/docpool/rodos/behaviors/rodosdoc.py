@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Common configuration constants
 """
+from Products.Archetypes.utils import shasattr
+from docpool.base.utils import getInheritedValue
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform.directives import read_permission, write_permission
 from plone.directives import form
@@ -12,6 +14,7 @@ from docpool.rodos.config import Rodos_APP
 from AccessControl import ClassSecurityInfo
 from docpool.base.interfaces import IDocumentExtension
 from collective import dexteritytextindexer
+from Products.CMFPlone.utils import parent
 
 from docpool.rodos import DocpoolMessageFactory as _
 
@@ -59,7 +62,7 @@ class RodosDoc(FlexibleView):
         self.request = context.REQUEST
     
     def _get_rodos_reportId(self):
-        return self.context.reportId
+        return getInheritedValue(self, "reportId")
 
     def _set_rodos_reportId(self, value):
         if not value:
@@ -70,7 +73,7 @@ class RodosDoc(FlexibleView):
     reportId = property(_get_rodos_reportId, _set_rodos_reportId)
 
     def _get_rodos_releaseSite(self):
-        return self.context.releaseSite
+        return getInheritedValue(self, "releaseSite")
 
     def _set_rodos_releaseSite(self, value):
         if not value:
@@ -81,7 +84,7 @@ class RodosDoc(FlexibleView):
     releaseSite = property(_get_rodos_releaseSite, _set_rodos_releaseSite)
 
     def _get_rodos_releaseStart(self):
-        return self.context.releaseStart
+        return getInheritedValue(self, "releaseStart")
 
     def _set_rodos_releaseStart(self, value):
         if not value:

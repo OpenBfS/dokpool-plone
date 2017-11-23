@@ -397,9 +397,9 @@
             <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
         </a>
     </tal:cond>
+</metal:macro>
 
 <div tal:omit-tag="" metal:define-macro="doccollection">
-    <metal:listingmacro define-macro="listing">
         <tal:results define="b_start python:request.get('b_start', 0);
                              batch python:context.results(b_start=b_start);
                              site_properties context/portal_properties/site_properties;
@@ -473,10 +473,7 @@
             </metal:empty>
 
         </tal:results>
-    </metal:listingmacro>
-
 </div>
 
-</metal:macro>
 </body>
 </html>
