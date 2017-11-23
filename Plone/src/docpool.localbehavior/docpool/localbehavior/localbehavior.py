@@ -45,6 +45,8 @@ class LocalBehaviorSupport(object):
 
     def _set_local_behaviors(self, value):
         #print "setLocalBehaviors", value
+        if (type(value) == type([])):
+            value = list(set(value))
         context = aq_inner(self.context)
         context.local_behaviors = value
 
