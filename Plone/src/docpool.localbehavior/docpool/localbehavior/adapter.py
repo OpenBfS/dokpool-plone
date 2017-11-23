@@ -21,7 +21,18 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         #print "enumerate"
         request = self.context.REQUEST
 
-        isInit = request.get("form.buttons.save", None)
+        editedLocalBehaviours = request.get("form.widgets.ILocalBehaviorSupport.local_behaviors", [])
+        editedLocalBehaviours = list(set(editedLocalBehaviours))
+        #print "edited", editedLocalBehaviours
+
+        # Here we save the behaviors saved previously in the context in the request,
+        # because we will need to check this list later
+        # and it might be changed during a "save"
+        if not request.get("savedLocalBehaviors", []):
+            savedBehaviors = getattr(self.context, 'local_behaviors', [])
+            savedBehaviors = list(set(savedBehaviors))
+            request.set("savedLocalBehaviors", savedBehaviors)
+            #print "saved", savedBehaviors
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter((self.context, request), name=u'dp_app_state')
@@ -30,11 +41,16 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         else:
             self.available_apps = getattr(self.context, 'local_behaviors', [])
 
+        editedLocalBehaviours.extend(self.available_apps)
+        editedLocalBehaviours.extend(request.get("savedLocalBehaviors", []))
+        editedLocalBehaviours = list(set(editedLocalBehaviours))
+        #print "resulting", editedLocalBehaviours
+
         #print "enumerate ", self.available_apps
         for behavior in SCHEMA_CACHE.behavior_registrations(
             self.context.portal_type
         ):
-            if isInit or isSupported(self.available_apps, behavior.interface):
+            if isSupported(editedLocalBehaviours, behavior.interface):
                 yield behavior
 
 def isSupported(available_apps, behavior_interface):
