@@ -31,7 +31,7 @@ from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 from Products.PageTemplates.PageTemplate import PageTemplate
 from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.base.utils import execute_under_special_role
-from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
 import Acquisition
 from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
 import json
