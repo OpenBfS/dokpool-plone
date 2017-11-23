@@ -1,0 +1,69 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.base" xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+
+<tal:def define="doc view/doc" condition="doc">
+    <h1 class="documentFirstHeading" tal:content="doc/Title"></h1>
+    <div class="documentDescription" tal:content="doc/Description"></div>
+    <tal:if condition="doc/isInOneOfMyFolders">
+    <br>
+    <a href="" tal:attributes="href doc/absolute_url" class="docref" i18n:translate="">View the document in its folder</a>
+    <br><br>
+    </tal:if>
+<script type='text/javascript'>
+
+function setIframeHeight( iframeId ) 
+{
+ var ifDoc, ifRef = document.getElementById( iframeId );
+
+ try
+ {   
+  ifDoc = ifRef.contentWindow.document.documentElement;  
+ }
+ catch( e )
+ { 
+  try
+  { 
+   ifDoc = ifRef.contentDocument.documentElement;  
+  }
+  catch(ee)
+  {   
+  }  
+ }
+ 
+ if( ifDoc )
+ {
+  ifRef.height = 1;  
+  ifRef.height = ifDoc.scrollHeight;
+  
+  /* For width resize, enable below.  */
+  
+  // ifRef.width = 1;
+  // ifRef.width = ifDoc.scrollWidth; 
+ }
+}
+
+</script>    
+    
+    
+    <iframe id="inlinedoc" src="" tal:attributes="src string:${doc/absolute_url}/@@inline?popup_load=1" onload = "setIframeHeight( this.id )">
+    </iframe>
+ 
+    <!--  script type="text/javascript">
+/*        jq("#insertdoc").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #content-core"); */
+        jq("#doccomments").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #commenting");
+    </script-->  
+    
+    
+</tal:def>
+
+</metal:content-core>
+</metal:content-core>
+</body>
+</html>

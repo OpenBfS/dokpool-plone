@@ -91,6 +91,10 @@
             class=".context.ApplicationState"
     />
 
+    <browser:page permission="zope2.View"
+              name="dview"
+              for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
+              class=".collection.CollectionDocView" />
 
   <browser:pages
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
@@ -103,6 +107,8 @@
         title="Docpool view"
         />
   </browser:pages>
+
+
     <!-- ##/code-section Main -->
 
 
