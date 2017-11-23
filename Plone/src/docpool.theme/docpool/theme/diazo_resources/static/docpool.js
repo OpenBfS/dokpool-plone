@@ -12,10 +12,21 @@
 		$("section.portletRecent").load ("refresh_recent #recent_content");
 	}
 
+    function getURLParam(name){
+       var regex = '[?&]'+name+'=([^&]*)';
+       var query = location.search;
+       if(name=(new RegExp(regex)).exec(query))
+          return name[1];
+    }
+
 	myDynTimer = setInterval ( loadDyn, 60000 );
 	$('.documentByLine a').removeAttr('href').addClass('commentator');
 	var type = $('#form-widgets-docType')
 	if ((type[0] != null) && (type[0].selectedIndex != null)) {
+	    var dtParam = getURLParam('form.widgets.docType:list')
+	    if (typeof dtParam != 'undefined') {
+    	    type.val(dtParam);
+	    }
 		var option = type[0].options[type[0].selectedIndex];
 		var value = option.text;
 		var title = $('h1.documentFirstHeading').text();
