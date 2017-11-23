@@ -61,10 +61,18 @@ class DPDocumentView(FlexibleView):
         """
         """
         return urllib.quote_plus(string)
-    
-            
-        
-    ##/code-section methods1     
+
+    def getFolderContents(self, kwargs):
+        """
+        """
+        kwargs["object_provides"] = [IDPDocument.__identifier__]
+        res = ([b for b in self.context.getFolderContents(kwargs)])
+        return res
+
+    def dp_buttons(self, items):
+        return []
+
+    ##/code-section methods1
 
 class DPDocumentlistitemView(FlexibleView):
     """Additional View

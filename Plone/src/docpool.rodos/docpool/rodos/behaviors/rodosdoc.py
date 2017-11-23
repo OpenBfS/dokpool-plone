@@ -11,6 +11,7 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.rodos.config import Rodos_APP
 from AccessControl import ClassSecurityInfo
 from docpool.base.interfaces import IDocumentExtension
+from collective import dexteritytextindexer
 
 from docpool.rodos import DocpoolMessageFactory as _
 
@@ -26,6 +27,8 @@ class IRodosDoc(IDocumentExtension):
     )
     read_permission(reportId='docpool.rodos.AccessRodos')
     write_permission(reportId='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('reportId')
+
     releaseSite = schema.TextLine(
                         title=_(u'label_rodos_releaseSite', default=u'Release Site'),
                         description=_(u'description_rodos_releaseSite', default=u''),
@@ -33,6 +36,8 @@ class IRodosDoc(IDocumentExtension):
     )
     read_permission(releaseSite='docpool.rodos.AccessRodos')
     write_permission(releaseSite='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('releaseSite')
+
     releaseStart = schema.Datetime(
                         title=_(u'label_rodos_releaseStart', default=u'Release Start'),
                         description=_(u'description_rodos_releaseStart', default=u''),

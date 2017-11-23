@@ -206,16 +206,21 @@
 </metal:macro>
 
 <div tal:omit-tag="" metal:define-macro="doc_complete" i18n:domain="docpool.base">
-
     <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
-
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_files"/>
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_images"/>
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_videos"/>
+    <br/>
+    <div metal:use-macro="here/@@dp.macros/macros/doc_subdocuments"/>
 </div>
+
+<div tal:omit-tag="" metal:define-macro="doc_subdocuments" i18n:domain="docpool.base">
+    <div metal:use-macro="here/@@dp.macros/macros/listing"/>
+</div>
+
 
 <metal:macro define-macro="doc_data" i18n:domain="docpool.base">
     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
