@@ -41,7 +41,7 @@ class ApplicationState(BrowserView):
                 pass
         available_apps.extend([ app[0] for app in implicitApps()])
         #print "appsPermittedForObject ", available_apps, self.locallyAcivated()
-        return available_apps
+        return list(set(available_apps))
 
     def appsEffectiveForObject(self, request, filtered=False):
         effective = self.appsPermittedForObject(request)
@@ -50,12 +50,12 @@ class ApplicationState(BrowserView):
             effective.extend([app[0] for app in implicitApps()])
         effective = list(set(effective).intersection(self.locallyAcivated()))
         #print "appsEffectiveForObject ", effective
-        return effective
+        return list(set(effective))
 
     def locallyAcivated(self):
         res = getattr(self.context, 'local_behaviors', [])
         res.extend([ app[0] for app in implicitApps()])
-        return res
+        return list(set(res))
 
     @memoize
     def appsPermittedForCurrentUser(self):
