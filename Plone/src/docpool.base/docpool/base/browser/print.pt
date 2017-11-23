@@ -34,7 +34,7 @@
     <div metal:use-macro="here/@@elan.macros/macros/cat_filter"/>
     </div>
     </tal:if>
-    <div metal:use-macro="here/@@elan.macros/macros/doccollection"/>    
+    <div metal:use-macro="here/@@dp.macros/macros/doccollection"/>
   </div>
 
 </body>
