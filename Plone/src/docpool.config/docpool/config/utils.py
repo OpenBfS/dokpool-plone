@@ -76,7 +76,11 @@ def setAttributes(obj, objdef):
                 if not values:
                     print "No values %s configured for object %s " % (objdef[attr], objdef)
                 
-                getattr(obj,method)(values)
+                specialMethod = getattr(obj,method)
+                if callable(specialMethod):
+                    specialMethod(values)
+                else:
+                    setattr(obj, method, values)
             else:
                 if attr == 'setExcludeFromNav':
                     IExcludeFromNavigation(obj).exclude_from_nav = True

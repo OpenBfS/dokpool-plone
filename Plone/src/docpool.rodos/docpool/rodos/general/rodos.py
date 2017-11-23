@@ -77,8 +77,9 @@ BASICSTRUCTURE = [
     # }
 ]
 
-DTYPES = [{TYPE: 'DocType', TITLE: u'RODOS Lauf', ID: 'rodos-run',
-           CHILDREN: [], 'local_behaviors' : ['elan', 'rodos'], 'allowedDocTypes' : [ 'rodos-plume-arrival' ]},
+DTYPES = [
+          {TYPE: 'DocType', TITLE: u'RODOS Lauf', ID: 'rodos-run',
+           CHILDREN: [], 'local_behaviors' : ['elan', 'rodos'], 'ref_allowedDocTypes' : [ 'rodos-plume-arrival' ]},
           {TYPE: 'DocType', TITLE: u'RODOS Ergebnis Wolkenankunftszeit', ID: 'rodos-plume-arrival',
            CHILDREN: [], 'local_behaviors' : ['elan', 'rodos']},
          ]
