@@ -407,3 +407,7 @@ msgstr "DokPool"
 #: docpool.base/docpool/base/profiles/default/workflows/dp_review_workflow/definition.xml:153
 msgid "Submit for publication"
 msgstr "Zur Veröffentlichung einreichen"
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:347
+msgid "There are comments."
+msgstr "Es gibt Kommentare."

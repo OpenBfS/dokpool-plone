@@ -143,7 +143,7 @@ $ sudo -u postgres createdb -0 elan elan
 ```sh
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
-$ python ./bootstrap.py -v "2.5.2"
+$ python ./bootstrap.py -v "2.5.3"
 $ buildout -vc relstorage.cfg
 ```
 
@@ -151,7 +151,7 @@ $ buildout -vc relstorage.cfg
 
 ```sh
 $ cd dokpool-plone/Plone
-$ python ./bootstrap.py -v "2.5.2"
+$ python ./bootstrap.py -v "2.5.3"
 $ ./bin/buildout -Nvc relstorage.cfg
 ```
 

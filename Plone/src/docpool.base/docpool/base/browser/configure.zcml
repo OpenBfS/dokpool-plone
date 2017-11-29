@@ -75,7 +75,6 @@
                   for="..interfaces.IDPDocument"
                   class=".documentextension.DocActionsView"/>
 
-
     <browser:page
             name="images"
             for="..interfaces.IDPDocument"

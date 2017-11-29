@@ -6,7 +6,7 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
-        <div metal:use-macro="here/@@elan.macros/macros/doccollection"/>
+        <div metal:use-macro="here/@@dp.macros/macros/doccollection"/>
 <!-- ##/code-section Main -->
 </metal:content-core>
 </metal:content-core>

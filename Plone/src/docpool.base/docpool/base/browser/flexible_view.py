@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from docpool.base.appregistry import appName
 from docpool.base.utils import extendOptions
 from plone.app.contenttypes.interfaces import IFile
+from zope.component import getMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 from Products.PageTemplates.PageTemplate import PageTemplate
 from Products.Five.browser import BrowserView
@@ -31,7 +33,14 @@ class FlexibleView(BrowserView):
     def currentApplication(self):
         """
         """
-        return getattr(self, "appname", None)
+        app_defined_by_behaviour = getattr(self, "appname", None)
+        if app_defined_by_behaviour:
+            return app_defined_by_behaviour
+        dp_app_state = getMultiAdapter((self, self.request), name=u'dp_app_state')
+        active_apps = dp_app_state.appsActivatedByCurrentUser()
+        if len(active_apps) > 0:
+            return active_apps[0]
+        return None
 
     def myViewSource(self, vtype):
         """
@@ -87,5 +96,6 @@ class FlexibleView(BrowserView):
         # to access protected attributes and functions.
         # BUT: code included via macros works!
         options = extendOptions(self.context, self.request, options)
+        # Debug here
         return template(view=self, context=self.context, request=self.request, **options)
 

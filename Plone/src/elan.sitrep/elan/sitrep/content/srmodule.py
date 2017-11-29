@@ -287,7 +287,7 @@ class SRModule(Container, DPDocument):
             dto = self.config.mtypes[mt]
         except Exception, e:
             # et can be empty
-            print e
+            #print e
             pass
         if not dto:
             log("No ModuleType Object for type name '%s'" % self.dp_type())
@@ -359,7 +359,7 @@ def updated(obj, event=None):
 
         for span in soup.findAll("span", {'class':'snippet'}):
             for anchor in span.findAll("a"):
-                print anchor
+                # print anchor
                 href = anchor['href']
                 if '..' in href:
                   href = href.replace('/..','')

@@ -27,8 +27,8 @@ def install(self):
 
 
 ADMINSTRUCTURE = [
-                  {TYPE: 'DPConfig', TITLE: u'Global Configuration', ID: 'config', CHILDREN: [
-                    {TYPE: 'DocTypes', TITLE: u'Global Document Types', ID: 'dtypes', CHILDREN: []},
+                  {TYPE: 'DPConfig', TITLE: u'Globale Konfiguration', ID: 'config', CHILDREN: [
+                    {TYPE: 'DocTypes', TITLE: u'Globale Dokumenttypen', ID: 'dtypes', CHILDREN: []},
                   ]},
                  ]
 

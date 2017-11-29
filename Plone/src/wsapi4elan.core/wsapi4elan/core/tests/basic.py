@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from xmlrpclib import ServerProxy
 def elan_login(username, password):
     return ServerProxy("http://%s:%s@localhost:8081/Plone" % (username, password), verbose=True)
