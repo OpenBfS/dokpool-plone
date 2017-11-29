@@ -13,7 +13,6 @@ from zope import schema
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.transfers.config import TRANSFERS_APP
-from elan.esd.content.elandoccollection import IELANDocCollection
 from five import grok
 from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
@@ -164,6 +163,7 @@ class Transferable(FlexibleView):
         """
         If not created by a transfer
         If published
+        If all subobjects published (TODO: maybe they should even be transferable themselves)
         If DocType allows it
         If Object allows it directly
         """
@@ -173,6 +173,8 @@ class Transferable(FlexibleView):
             return False
         wftool = getToolByName(self.context, 'portal_workflow')
         if wftool.getInfoFor(self.context, 'review_state') != 'published':
+            return False
+        if not self.context.allSubobjectsPublished():
             return False
         dto = self.context.docTypeObj()
         if dto and dto.type_extension(TRANSFERS_APP).allowTransfer:
