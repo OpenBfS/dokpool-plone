@@ -250,7 +250,7 @@ msgstr "Ereignis archiviert"
 msgid "Scenarios"
 msgstr "Ereignisse"
 
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:29
+#: elan.esd/elan/esd/skins/elan_esd_templates/dpdocument_transfer_form.cpt:29
 msgid "Select"
 msgstr "Auswählen"
 
@@ -322,7 +322,7 @@ msgstr "Übertragungsfehler:"
 msgid "Transfer executed"
 msgstr "Übertragung durchgeführt"
 
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:30
+#: elan.esd/elan/esd/skins/elan_esd_templates/dpdocument_transfer_form.cpt:30
 msgid "Transfer to<br>"
 msgstr "Übertragen an<br>"
 
@@ -368,12 +368,12 @@ msgid "box_recent_no_items"
 msgstr "Noch keine Änderungen"
 
 #. Default: "Cancel"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:50
+#: elan.esd/elan/esd/skins/elan_esd_templates/dpdocument_transfer_form.cpt:50
 msgid "cancelbutton"
 msgstr "Abbrechen"
 
 #. Default: "Verlassen des Formulars"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:50
+#: elan.esd/elan/esd/skins/elan_esd_templates/dpdocument_transfer_form.cpt:50
 msgid "canceltitle"
 msgstr "Abbrechen"
 
@@ -690,12 +690,12 @@ msgid "reset_passwords_msg"
 msgstr "Nicht erforderlich"
 
 #. Default: "Submit"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:49
+#: elan.esd/elan/esd/skins/elan_esd_templates/dpdocument_transfer_form.cpt:49
 msgid "submitbutton"
 msgstr "Senden"
 
 #. Default: "Absenden des Formulares"
-#: elan.esd/elan/esd/skins/elan_esd_templates/elandocument_transfer_form.cpt:49
+#: elan.esd/elan/esd/skins/elan_esd_templates/dpdocument_transfer_form.cpt:49
 msgid "submittitle"
 msgstr "Absenden"
 
