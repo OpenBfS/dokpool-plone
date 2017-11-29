@@ -98,6 +98,34 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     implements(IDPDocument)
     
 ##code-section methods
+    def change_state(self, id, action, REQUEST=None):
+        """
+        """
+        if REQUEST:
+            alsoProvides(REQUEST, IDisableCSRFProtection)
+        if not action:
+            return self.restrictedTraverse("@@view")()
+        doc = None
+        try:
+            doc = self._getOb(id)
+        except:
+            pass
+        if doc:
+            wftool = getToolByName(self, 'portal_workflow')
+            try:
+                wftool.doActionFor(doc, action)
+                if str(action) == 'publish':  # when publishing we also publish any document inside the current document
+                    for subdoc in doc.getDPDocuments():
+                        try:
+                            wftool.doActionFor(subdoc, action)
+                        except:
+                            pass
+            except:
+                return self.restrictedTraverse("@@view")()
+            if REQUEST:
+                portalMessage(self, _("The document state has been changed."), "info")
+                return self.restrictedTraverse("@@view")()
+
     def isClean(self):
         """
         Is this document free for further action like publishing or transfer.
@@ -175,7 +203,18 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             else:
                 res.append(menu_item)
         return res
-    
+
+
+    def allSubobjectsPublished(self):
+        """
+
+        @return:
+        """
+        for obj in self.getDPDocuments():
+            if api.content.get_state(obj) != 'published':
+                return False
+        return True
+
     def workflowActions(self):
         """
         """
