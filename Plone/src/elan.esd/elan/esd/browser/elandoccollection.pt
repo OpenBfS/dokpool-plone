@@ -6,21 +6,8 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
-        <tal:if condition="not:ajax_load">
-            <p class="loading-indicator">
-                <!-- Image is in Products.CMFPlone/skins/plone_images -->
-                <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner.gif" />
-            </p>
-            <script type="text/javascript" tal:define="qs request/QUERY_STRING;
-                                                       op1 python:qs and '?' or '';
-                                                       op2 python:qs and '&' or '?'">
-                <tal:replace replace="structure string:jQuery('#content-core').load('${context/absolute_url}${op1}${qs}${op2}ajax_load=1 #content-core');" />
-            </script>
-        </tal:if>
-        <tal:if condition="ajax_load">
-			<div metal:use-macro="here/@@elan.macros/macros/doccollection"/>
-		</tal:if>
-<!-- ##/code-section Main -->    
+        <div metal:use-macro="here/@@elan.macros/macros/doccollection"/>
+<!-- ##/code-section Main -->
 </metal:content-core>
 </metal:content-core>
 

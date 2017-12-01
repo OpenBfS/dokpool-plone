@@ -1,15 +1,15 @@
 <tal:block i18n:domain="docpool.base">
 <tal:var replace="nothing"><!-- ##code-section View --></tal:var>
-<tal:def define="edoc options/edoc;
-                 item_description edoc/Description;
-                 item_url edoc/getRemoteUrl;
-                 item_type edoc/Type;
+<tal:def define="dpbrain options/dpbrain;
+                 item_description dpbrain/Description;
+                 item_url dpbrain/getRemoteUrl;
+                 item_type dpbrain/Type;
                  normalizeString nocall: context/plone_utils/normalizeString;
-                 rs edoc/review_state;
+                 rs dpbrain/review_state;
                  item_wf_state_class python:'state-' + normalizeString(rs);
-                 item_modified edoc/ModificationDate;
-                 item_created edoc/CreationDate;
-                 item_creator edoc/Creator;
+                 item_modified dpbrain/ModificationDate;
+                 item_created dpbrain/CreationDate;
+                 item_creator dpbrain/Creator;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  pas_member context/@@pas_member;
                  author python:pas_member.info(item_creator);
@@ -36,7 +36,7 @@
                          <u><a href="" title="" tal:attributes="title python:'show document';                       
                                                               href python:item_url">
                                <span tal:attributes="class string:${item_wf_state_class};"
-                                     tal:content="edoc/Title" /></a></u>
+                                     tal:content="dpbrain/Title" /></a></u>
 
                        </b>
  

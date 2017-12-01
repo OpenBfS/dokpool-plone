@@ -1,23 +1,25 @@
-<tal:block i18n:domain="docpool.base">
+<table i18n:domain="docpool.base">
 <tal:var replace="nothing"><!-- ##code-section View --></tal:var>
-<tal:def define="edoc options/edoc;
+<tr tal:define="options view/options;
+                 dpbrain options/dpbrain;
                  isOverview options/isOverview;
-                 item_description edoc/Description;
-                 item_url edoc/getURL;
-                 item_type edoc/Type;
+                 item_description dpbrain/Description;
+                 item_url dpbrain/getURL;
+                 item_type dpbrain/Type;
                  normalizeString nocall: context/plone_utils/normalizeString;
-                 rs edoc/review_state;
+                 rs dpbrain/review_state;
                  item_wf_state_class python:'state-' + normalizeString(rs);
-                 item_modified edoc/ModificationDate;
-                 item_created edoc/CreationDate;
-                 item_creator edoc/Creator;
+                 item_modified dpbrain/ModificationDate;
+                 item_created dpbrain/CreationDate;
+                 item_creator dpbrain/Creator;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  pas_member context/@@pas_member;
                  author python:pas_member.info(item_creator);
                  creator_fullname author/name_or_id;
-                 item_ptype edoc/portal_type;
+                 item_ptype dpbrain/portal_type;
                  item_type_class python:'contenttype-' + normalizeString(item_ptype);
-                 ">
+                 "
+    class="wrapper">
                     
                 <td class="actions">
                 </td>
@@ -28,6 +30,6 @@
                     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
                 </td>
 
-</tal:def>    
+</tr>
 <tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
-</tal:block>
+</table>

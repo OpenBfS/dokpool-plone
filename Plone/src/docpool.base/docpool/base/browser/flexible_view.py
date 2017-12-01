@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from docpool.base.utils import extendOptions
 from plone.app.contenttypes.interfaces import IFile
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 from Products.PageTemplates.PageTemplate import PageTemplate
 from Products.Five.browser import BrowserView
+from Products.CMFCore.utils import getToolByName
 import Acquisition
 from Acquisition import aq_base
 from Products.Archetypes.utils import shasattr
@@ -84,4 +86,6 @@ class FlexibleView(BrowserView):
         # This "view" will run with security restrictions. The code will not be able
         # to access protected attributes and functions.
         # BUT: code included via macros works!
+        options = extendOptions(self.context, self.request, options)
         return template(view=self, context=self.context, request=self.request, **options)
+
