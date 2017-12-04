@@ -31,13 +31,11 @@ from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
 from Products.Archetypes.utils import shasattr
-#from docpool.base.utils import getUserInfo
-# from Products.Archetypes.interfaces.event import IObjectInitializedEvent,\
-#     IObjectEditedEvent
 from zope.component import adapter
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent,\
     IObjectCopiedEvent
+from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope.component.interfaces import IObjectEvent
 from plone.dexterity.interfaces import IEditFinishedEvent
 from DateTime import DateTime
@@ -82,6 +80,12 @@ class IContentBase(form.Schema):
     )
     form.omitted('mdate')
 
+    wdate = schema.Datetime(
+        title=_(u'label_contentbase_wdate', default=u'Date of last workflow action'),
+        description=_(u'description_contentbase_wdate', default=u''),
+        required=False,
+    )
+    form.omitted('wdate')
 ##code-section interface
 @form.default_value(field=IContentBase['mdate'])
 def initializeMdate(data):
@@ -110,6 +114,11 @@ class ContentBase(Item):
                 res += u" <i>%s</i>" % safe_unicode(primary_group)
         return res
 
+    def getWdate(self):
+        """
+        """
+        return self.wdate
+    
     def update_created(self):
         """
         """
@@ -132,7 +141,11 @@ class ContentBase(Item):
         self.modified_by = self._getUserInfoString()
         self.mdate = datetime.datetime.today()
         self.reindexObject()
-        
+
+    def update_workflow(self):
+        self.wdate = datetime.datetime.today()
+        self.reindexObject()
+
     def modInfo(self, show_created=False):
         """
         """
@@ -199,7 +212,6 @@ def updateCreated(obj, event=None):
         obj.createActions()     
  
 #edited       
-# @adapter(IELANContent, IObjectEditedEvent)
 @adapter(IContentBase, IEditFinishedEvent)
 #Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
@@ -215,4 +227,11 @@ def markCreateEvent(obj, event):
     context = api.portal.get()
     request = context.REQUEST
     request.set("creating", True)
-##/code-section bottom 
+
+@adapter(IContentBase, IAfterTransitionEvent)
+#Edit was finished and contents are saved. This event is fired
+#    even when no changes happen (and no modified event is fired.)
+def updateWorkflow(obj, event=None):
+    if not obj.isArchive():
+        obj.update_workflow()
+##/code-section bottom

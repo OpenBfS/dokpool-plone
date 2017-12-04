@@ -29,6 +29,7 @@
 <!-- ##code-section Main -->
     <adapter factory=".etags.DokPoolApps" name="dokpool_apps" />
     <adapter factory=".etags.DokPoolCacheTime" name="dokpool_cachetime" />
+    <adapter factory=".lastmodified.ContentBaseLastModified" />
 <!-- ##/code-section Main -->
       
 </configure>

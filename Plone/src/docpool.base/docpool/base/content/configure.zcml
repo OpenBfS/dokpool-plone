@@ -51,6 +51,7 @@
   <subscriber handler=".contentbase.markCreateEvent" />
   <subscriber handler=".contentbase.updateCreated" />
   <subscriber handler=".contentbase.updateModified" />
+  <subscriber handler=".contentbase.updateWorkflow" />
   <subscriber handler=".dpdocument.updateContainerModified" />
   <subscriber handler=".documentpool.docPoolAdded" />
   <subscriber handler=".documentpool.docPoolModified" />
