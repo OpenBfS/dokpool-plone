@@ -19,4 +19,4 @@ class ContentBaseLastModified(object):
             if modified is None:
                 return None
             return modified.asdatetime()
-        return wdate.asdatetime()
+        return wdate
