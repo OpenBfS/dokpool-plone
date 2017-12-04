@@ -61,3 +61,4 @@ class DokPoolCacheTime(object):
         context = getContext(self.published)
         portalTypeName = context.getPortalTypeName()
         return str(time() // cacheTimes.get(portalTypeName, 3600))
+
