@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import aq_inner
 from Products.Archetypes.utils import shasattr
@@ -337,3 +336,10 @@ def extendOptions(context, request, options):
     options['buttons'] = eval(request.get('buttons', "[]"))
     #print options
     return options
+
+def getInheritedValue(behaviour_obj, key):
+    parentObject = parent(behaviour_obj.context)
+    if (shasattr(parentObject, key)):
+        return getattr(parentObject, key)
+    else:
+        return getattr(behaviour_obj.context, key)

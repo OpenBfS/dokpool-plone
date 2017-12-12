@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from Products.CMFPlone.utils import aq_inner
 from zope.component import getMultiAdapter
 

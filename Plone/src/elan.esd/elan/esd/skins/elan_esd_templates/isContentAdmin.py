@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Script (Python) "isContentAdmin.py"
 ##bind container=container
 ##bind context=context

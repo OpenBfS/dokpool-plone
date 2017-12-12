@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from AccessControl import Unauthorized
 from zope.interface import Interface
 from Products.CMFPlone.utils import log, log_exc

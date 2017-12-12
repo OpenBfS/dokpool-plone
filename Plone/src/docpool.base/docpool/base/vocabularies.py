@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
 from zope.schema.vocabulary import SimpleVocabulary

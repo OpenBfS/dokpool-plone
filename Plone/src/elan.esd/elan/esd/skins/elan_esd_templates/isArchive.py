@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Python Script "isArchive"
 ##bind container=container
 ##bind context=context

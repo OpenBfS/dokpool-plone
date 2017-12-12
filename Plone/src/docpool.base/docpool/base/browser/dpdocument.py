@@ -31,7 +31,7 @@ from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 from Products.PageTemplates.PageTemplate import PageTemplate
 from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.base.utils import execute_under_special_role
-from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
 import Acquisition
 from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
 import json
@@ -61,10 +61,18 @@ class DPDocumentView(FlexibleView):
         """
         """
         return urllib.quote_plus(string)
-    
-            
-        
-    ##/code-section methods1     
+
+    def getFolderContents(self, kwargs):
+        """
+        """
+        kwargs["object_provides"] = [IDPDocument.__identifier__]
+        res = ([b for b in self.context.getFolderContents(kwargs)])
+        return res
+
+    def dp_buttons(self, items):
+        return []
+
+    ##/code-section methods1
 
 class DPDocumentlistitemView(FlexibleView):
     """Additional View
@@ -86,7 +94,7 @@ class DPDocumentlistitemView(FlexibleView):
         
     ##/code-section methodslistitem     
 
-class DPDocumentinlineView(FlexibleView):
+class DPDocumentinlineView(DPDocumentView):
     """Additional View
     """
     

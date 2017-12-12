@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Python Script "portal_dbadmin"
 ##bind container=container
 ##bind context=context

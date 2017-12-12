@@ -70,7 +70,9 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        <tal:var replace="structure string:jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&buttons=${buttons}&ajax_load=1 .wrapper > *');" />
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&buttons=${buttons}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                            jQuery('.pat-plone-modal').patPloneModal();
+                                        });
                                     </script>
 
                                     <!--tal:insertview
@@ -206,16 +208,21 @@
 </metal:macro>
 
 <div tal:omit-tag="" metal:define-macro="doc_complete" i18n:domain="docpool.base">
-
     <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
-
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_files"/>
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_images"/>
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_videos"/>
+    <br/>
+    <div metal:use-macro="here/@@dp.macros/macros/doc_subdocuments"/>
 </div>
+
+<div tal:omit-tag="" metal:define-macro="doc_subdocuments" i18n:domain="docpool.base">
+    <div metal:use-macro="here/@@dp.macros/macros/listing"/>
+</div>
+
 
 <metal:macro define-macro="doc_data" i18n:domain="docpool.base">
     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
@@ -392,7 +399,85 @@
             <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
         </a>
     </tal:cond>
-
 </metal:macro>
+
+<div tal:omit-tag="" metal:define-macro="doccollection">
+        <tal:results define="b_start python:request.get('b_start', 0);
+                             batch python:context.results(b_start=b_start);
+                             site_properties context/portal_properties/site_properties;
+                             use_view_action site_properties/typesUseViewActionInListings|python:();
+                             isAnon context/@@plone_portal_state/anonymous;
+                             normalizeString nocall: context/plone_utils/normalizeString;
+                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
+                             navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                             pas_member context/@@pas_member;
+                             buttons python:[]">
+            <tal:listing condition="batch">
+
+                <table id="sortable"
+                       class="listing responsive"
+                       summary="Content listing"
+                       i18n:attributes="summary summary_content_listing;"
+                       tal:define="isOverview python:here.getId()=='overview' and 1 or 0">
+                    <thead>
+                    <metal:header_slot metal:define-slot="listingheader">
+                        <th class="nosort actions" tal:condition="python:False"></th>
+                        <th class="nosort title" i18n:translate="">Title / Description / Text</th>
+                        <th class="nosort metadata" i18n:translate="">Metadata</th>
+                    </metal:header_slot>
+                    </thead>
+
+                    <tbody>
+                    <tal:items tal:repeat="dpbrain batch">
+                        <tr tal:define="oddrow  python:repeat['dpbrain'].index % 2 == 0;
+                   				   item_id dpbrain/getId;
+                   				   item_obj dpbrain/getObject|nothing;
+                   				   isFolder dpbrain/is_folderish;
+                				   item_folder_class python:isFolder and 'folder' or ''"
+                            tal:attributes="class string:itemRow $item_folder_class';
+                                        id string:item_${dpbrain/UID};">
+
+                            <metal:block define-slot="entry">
+                                <tal:if condition="nocall:item_obj">
+                                    <!-- Image is in Products.CMFPlone/skins/plone_images -->
+                                    <td class="loading_indicator" colspan="3">
+                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
+                                    </td>
+                                    <script type="text/javascript">
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&buttons=${buttons}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                            jQuery('.pat-plone-modal').patPloneModal();
+                                        });
+                                    </script>
+
+                                    <!--tal:insertview
+                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
+                                </tal:if>
+                            </metal:block>
+
+                            <!--metal:block define-slot="entry">
+                                <tal:if condition="nocall:item_obj">
+                                    <tal:insertview
+                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
+                                </tal:if>
+                            </metal:block-->
+                        </tr>
+                    </tal:items>
+                    </tbody>
+                </table>
+                <div metal:use-macro="context/batch_macros/macros/navigation"/>
+
+            </tal:listing>
+            <metal:empty metal:define-slot="no_items_in_listing">
+                <p class="discreet"
+                   tal:condition="not: batch"
+                   i18n:translate="description_no_items_in_folder">
+                    There are currently no items in this folder.
+                </p>
+            </metal:empty>
+
+        </tal:results>
+</div>
+
 </body>
 </html>

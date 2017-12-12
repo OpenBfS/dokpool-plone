@@ -20,7 +20,7 @@
           <a class="transfer action pat-plone-modal" tal:condition="python: not context.isIndividual()"
               href=""
               title="Transfer"
-              tal:attributes="href python:'%s/elandocument_transfer_form?id=%s' % ('/'.join(context.absolute_url().split('/')[:-1]), context.getId())"
+              tal:attributes="href python:'%s/dpdocument_transfer_form?id=%s' % ('/'.join(context.absolute_url().split('/')[:-1]), context.getId())"
               i18n:attributes="title">
               <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
           </a>

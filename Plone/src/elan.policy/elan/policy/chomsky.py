@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 """CHOMSKY is an aid to writing linguistic papers in the style
     of the great master.  It is based on selected phrases taken
     from actual books and articles written by Noam Chomsky.

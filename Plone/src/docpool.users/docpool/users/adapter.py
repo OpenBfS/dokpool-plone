@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from plone.app.users.browser.personalpreferences import UserDataPanelAdapter
 
 class EnhancedUserDataPanelAdapter(UserDataPanelAdapter):

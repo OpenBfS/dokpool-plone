@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from Acquisition import aq_base
 from AccessControl.ZopeGuards import guarded_getattr
 from logging import exception

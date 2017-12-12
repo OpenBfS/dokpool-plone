@@ -72,6 +72,12 @@ class FolderBase(Container, ContentBase):
             wftool = getToolByName(self, 'portal_workflow')
             try:
                 wftool.doActionFor(doc, action)
+                if str(action) == 'publish': # when publishing we also publish any document inside the current document
+                    for subdoc in doc.getDPDocuments():
+                        try:
+                            wftool.doActionFor(subdoc, action)
+                        except:
+                            pass
             except:
                 return self.restrictedTraverse("@@view")()
             if REQUEST:

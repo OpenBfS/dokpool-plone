@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from docpool.transfers.config import TRANSFERS_APP
 
 def getTupleForTransfer(self, id):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.CMFPlone.browser.main_template import MainTemplate as OrigMainTemplate

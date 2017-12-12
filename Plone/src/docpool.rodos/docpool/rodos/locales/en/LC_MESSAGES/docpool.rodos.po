@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2017-11-23 14:15+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Date"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:13
+msgid "Makes documents support Rodos functions"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:20
+msgid "Rodos DocType"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:13
+msgid "RodosDoc"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/local/rodos.py:43
+msgid "Run Display"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Start of release"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:20
+msgid "Type extension for Rodos types"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:37
+msgid "description_rodos_releaseSite"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:46
+msgid "description_rodos_releaseStart"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:28
+msgid "description_rodos_reportId"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/configure.zcml:23
+msgid "docpool.rodos"
+msgstr ""
+
+#. Default: "Release Site"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:36
+msgid "label_rodos_releaseSite"
+msgstr ""
+
+#. Default: "Release Start"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:45
+msgid "label_rodos_releaseStart"
+msgstr ""
+
+#. Default: "Report ID"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:27
+msgid "label_rodos_reportId"
+msgstr ""

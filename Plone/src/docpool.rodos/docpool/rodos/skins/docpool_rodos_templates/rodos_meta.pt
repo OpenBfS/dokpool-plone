@@ -1,0 +1,12 @@
+<tal:block i18n:domain="docpool.rodos"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context;
+                   toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+    <tal:def define="rodosobj view">
+        <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
+        <p>Report ID: <tal:var replace="rodosobj/reportId"/></p> <!-- TODO -->
+        <p>Release Site: <tal:var replace="rodosobj/releaseSite"/></p>
+        <p>Release Start: <tal:var replace="python: toLocalizedTime(rodosobj.releaseStart, long_format=1)"/></p>
+    </tal:def>
+</tal:block>

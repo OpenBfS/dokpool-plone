@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 from docpool.localbehavior.adapter import isSupported
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.behavior.interfaces import IBehaviorAssignable

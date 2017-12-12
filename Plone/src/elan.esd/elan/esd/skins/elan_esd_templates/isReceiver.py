@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Script (Python) "isReceiver.py"
 ##bind container=container
 ##bind context=context

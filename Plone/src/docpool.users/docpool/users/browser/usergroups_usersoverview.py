@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 import logging
 from Acquisition import aq_inner
 from zExceptions import Forbidden

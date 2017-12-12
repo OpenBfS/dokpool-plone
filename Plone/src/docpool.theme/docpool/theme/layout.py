@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 """ Override the default Plone layout utility.
 """
 from docpool.base.content.dpdocument import IDPDocument

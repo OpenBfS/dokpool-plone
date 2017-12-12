@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 ## Script (Python) "redirectToReferrerWithParameters"
 ##bind container=container
 ##bind context=context
