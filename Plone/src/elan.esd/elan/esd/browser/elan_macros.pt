@@ -19,34 +19,34 @@
                              selected python:scenario.getId() in selected_scenarios;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
                     tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
-                    <td>
-                        <input type="checkbox" name="scnrs:list"
-                               tal:attributes="value    scenario/getId;
-                                   title    scenario/Title;
-                                   disabled python:readonly and 'disabled' or None;
-                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
-                               onclick="this.form.submit()"
-                        />
-                    </td>
-                    <td>
-                        <tal:if condition="exercise">
-                            <span class="exerciseflag" i18n:translate="">+++Exercise+++</span>
-                        </tal:if>
-                    </td>
                     <tal:def define="mi python:scenario.modInfo();
-                                                  date python:mi[0];
-                                                  uinfo python:mi[1]">
+			                           date python:mi[0];
+			                           uinfo python:mi[1]">
                         <td class="scenario_desc">
+
+                            <input type="checkbox" name="scnrs:list"
+                                   tal:attributes="value    scenario/getId;
+                                                   title    scenario/Title;
+                                                   disabled python:readonly and 'disabled' or None;
+                                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
+                               onclick="this.form.submit()"
+                        />&nbsp;&nbsp;
+
+                        <tal:if condition="exercise">
+                            <span class="exerciseflag" 
+                                  tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
+
+                                  i18n:translate="">+++Exercise+++</span>
+                        </tal:if> &nbsp;&nbsp;
+
                             <span class="scentitle"
-                                  tal:attributes="title python:'%s %s ' % (uinfo, toLocalizedTime(date, long_format=1))"
+                                  tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
                                   tal:content="string:${scenario/Title}" >Event1</span>
                         </td>
-<td><span tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"><u>Info</u></span></td>
                     </tal:def>
                 </tr>
             </tal:loop>
         </table>
-
         <input tal:condition="not:readonly"
                type="hidden"
                name="form.button.Save"

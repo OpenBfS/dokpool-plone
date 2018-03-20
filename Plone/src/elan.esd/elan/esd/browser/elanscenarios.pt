@@ -6,20 +6,22 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 <!-- ##code-section Main -->
-<table class="scenarios" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+<table style="width:65%;" class="elanlisting" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 <thead>
-<tr><th i18n:translate="">Title/Date</th><th i18n:translate="">Description</th><th i18n:translate="">Status</th></tr>
+<tr><th i18n:translate="">Created</th><th i18n:translate="">Title/Description</th><th i18n:translate="">Status</th></tr>
 </thead>
 <tbody>
 <tr tal:repeat="scenario python:context.getELANScenarios(sort_on='created', sort_order='reverse')">
-<td tal:define="mi python:scenario.modInfo(show_created=True);
-                date python:mi[0];
-                uinfo python:mi[1];
-                exercise scenario/exercise"><a href="" tal:attributes="href scenario/absolute_url">
-                <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br><br>
-                </tal:if><b><tal:var replace="scenario/Title"/></b><br><tal:var replace="uinfo"/>, <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</a></td>
-<td tal:content="scenario/Description"></td> 
-<td i18n:translate="" tal:content="scenario/status"></td>                
+<td style="width:20%;"><span tal:define="mi python:scenario.modInfo(show_created=True);
+                      date python:mi[0];
+                      uinfo python:mi[1];">
+         <tal:var replace="uinfo"/><i>,<br /> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</i>
+</span></td>
+<td style="width:40%;" tal:define="exercise scenario/exercise"><a href="" tal:attributes="href scenario/absolute_url">
+                <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br>
+                </tal:if><b><tal:var replace="scenario/Title"/></b></a><br>
+<span tal:content="scenario/Description" /></td> 
+<td style="width:5%;" i18n:translate="" tal:content="scenario/status"></td>                
 </tr>
 </tbody>
 </table>

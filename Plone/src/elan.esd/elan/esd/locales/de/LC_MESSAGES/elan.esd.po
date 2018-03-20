@@ -299,8 +299,12 @@ msgid "Title / Description / Text"
 msgstr "Titel / Kurzbeschreibung / Text"
 
 #: elan.esd/elan/esd/browser/elanscenarios.pt:11
-msgid "Title/Date"
-msgstr "Titel/Datum"
+msgid "Created"
+msgstr "Erstellt"
+
+#: elan.esd/elan/esd/browser/elanscenarios.pt:11
+msgid "Title/Description"
+msgstr "Titel/Beschreibung"
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:297
 msgid "Transfer"
