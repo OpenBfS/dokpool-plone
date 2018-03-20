@@ -26,14 +26,8 @@
                         item_class python:'contenttype-' + normalizeString(obj.portal_type);"
             tal:attributes="class python:oddrow and  'portletItem even' or 'portletItem odd'">
             <a href=""
-                tal:define="mouseover string:${obj/dp_type_name} ${obj/category};                           
-                            mouseover2 python:mouseover.replace('[','(');
-                            mouseover3 python:mouseover2.replace('u','');
-                            mouseover4 python:mouseover3.replace('\'','');
-                            mouseover5 python:mouseover4.replace(']',')');"
-                            
                 tal:attributes="href string:${obj/dp_url}/esd/${obj/getURL};
-                                title python:mouseover5;
+                                title python:obj.dp_type_name + ' ' + context.cat_convert(obj.category,context.overview.Title(),context.recent.Title());
                                 class string:$item_wf_state_class tile $item_class">
 <!--                 <img tal:replace="structure item_icon/html_tag" /> -->
                  <tal:title content="obj/pretty_title_or_id">

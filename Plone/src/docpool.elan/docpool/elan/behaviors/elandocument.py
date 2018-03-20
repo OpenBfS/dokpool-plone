@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import string
+
 from AccessControl import ClassSecurityInfo
 
 from plone.autoform.directives import read_permission, write_permission
@@ -117,9 +119,27 @@ class ELANDocument(FlexibleView):
                 return scn
         return None
 
+    def cat_convert(self):
+        """
+        """
+        docp = self.aq_parent
+        while docp.id != 'content':
+           docp = docp.aq_parent
+        docp = docp.aq_parent
+        over = docp.esd.overview.title_or_id()
+        rec = docp.esd.recent.title_or_id()
+        cats = ''
+        for c in self.category():
+          if c not in [over, rec] and c.encode('utf') not in [over, rec]:
+             cats = cats + c + ', '
+        cats = '(' + cats + ')'
+        cats = string.replace(cats,', )',')')
+        return cats
+
     def category(self):
         """
-        """
+        """ 
+
         return self.typeAndCat()[1]
 
     def cat_path(self):

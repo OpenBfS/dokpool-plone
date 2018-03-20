@@ -34,8 +34,8 @@
                         </tal:if>
                     </td>
                     <tal:def define="mi python:scenario.modInfo();
-			                           date python:mi[0];
-			                           uinfo python:mi[1]">
+                                                  date python:mi[0];
+                                                  uinfo python:mi[1]">
                         <td class="scenario_desc">
                             <span class="scentitle"
                                   tal:attributes="title python:'%s %s ' % (uinfo, toLocalizedTime(date, long_format=1))"
@@ -46,6 +46,7 @@
                 </tr>
             </tal:loop>
         </table>
+
         <input tal:condition="not:readonly"
                type="hidden"
                name="form.button.Save"
@@ -101,16 +102,16 @@
 </metal:macro>
 
 <metal:macro define-macro="elan_meta" i18n:domain="elan.esd">
-    <tal:if tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
+
+    <span tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
         <label i18n:translate="">Belongs to scenario:</label>
-        <span tal:content="python:', '.join(scns)"/>
-        <br/>
-    </tal:if>
-    <tal:if condition="cat" define="cat elanobj/category">
+        <span tal:content="python:', '.join(scns)"/> 
+    </span> 
+    <div style="margin-top:3px;" tal:condition="cat" tal:define="cat elanobj/category">
         <label i18n:translate="">Content from:</label>
-        <span tal:content="string:${item_cat} (${item_type})"/>
-        <br/>
-    </tal:if>
+        <span tal:content="string:${item_type}" /> 
+        <span tal:content="python:elanobj.cat_convert()" /> 
+    </div>
 </metal:macro>
 
 
