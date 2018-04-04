@@ -135,7 +135,7 @@
            tal:attributes="onclick1 string:return confirm('${title_or_id}: ${alert_msg}');
                                href python:'%s/delete_confirmation' % dpbrainobj.absolute_url()"
            i18n:attributes="title"
-        ><img src="" tal:attributes="src string:${navigation_root_url}/delete_icon.gif"/> </a>
+        ><img src="" tal:attributes="src string:${context/portal_url}/delete_icon.gif"/> </a>
     </tal:if>
 </metal:delmacro>
 
