@@ -20,7 +20,7 @@ def install(self):
     navSettings(self)
     createGroups(self)
     configureFiltering(self)
-    setFrontpage(self)
+    #setFrontpage(self)
 
 # Further base structures
 
@@ -81,7 +81,7 @@ def createAdminstructure(plonesite, fresh):
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
 
 
-
+# Since Plone 5.08 this has been problematic as the toolbar cannot handle a script as default content.
 def setFrontpage(self):
     """
     """

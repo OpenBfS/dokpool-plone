@@ -20,7 +20,7 @@ def install(self):
     navSettings(self)
     createGroups(self)
     configureFiltering(self)
-    setFrontpage(self)
+    #setFrontpage(self)
 
 # Further base structures
 
@@ -79,31 +79,6 @@ def createAdminstructure(plonesite, fresh):
     """
     """
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
-
-
-
-def setFrontpage(self):
-    """
-    """
-    ttool = getToolByName(self, "portal_types")
-    obj = ttool._getOb("Plone Site")
-    #    obj._updateProperty("default_view", "redirect")
-    #    obj._updateProperty("immediate_view", "redirect")
-    obj.reindexObject()
-    r = "redirect"
-    try:
-        id = self._setObject(r, PythonScript(r))
-    except:
-        pass
-    ps = self._getOb(r)
-    ps.write("""
-if not context.isAdmin():
-    container.REQUEST.RESPONSE.redirect(context.myFirstDocumentPool())
-else:
-    container.REQUEST.RESPONSE.redirect(context.absolute_url() + "/folder_contents")
-""")
-    self.setDefaultPage(r)
-
 
 def configureFiltering(self):
     """
