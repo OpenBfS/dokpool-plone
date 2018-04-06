@@ -83,23 +83,30 @@ $ apt-get install libncurses-dev python-docutils autoconf automake libjemalloc-d
 ```sh
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
+# you can do all the following steps in a virtual python environement
+$ virtualenv ../pyenv/dokpool
+$ source ../pyenv/dokpool/bin/activate
+# go on wether you have a virtual python env or not
 $ export ELANENGINE=sqlite:////tmp/elan5db
-$ python ./bootstrap.py -v "2.5.2"
+$ pip install --upgrade pip
+$ pip install -r requirements.txt
+$ buildout bootstrap
 $ ./bin/buildout -vc buildout.cfg
 ```
 
 #### Rebuild:
 
 ```sh
+# first activate python virtual env, if your installation runs within a virtualenv
 $ cd dokpool-plone/Plone
 $ export ELANENGINE=sqlite:////tmp/elan5db
-$ python ./bootstrap.py -v "2.5.2"
 $ ./bin/buildout -Nvc buildout.cfg
 ```
 
 #### Run / Start instance:
 
 ```sh
+# first activate python virtual env, if your installation runs within a virtualenv
 $ cd dokpool-plone/Plone
 $ export ELANENGINE=sqlite:////tmp/elan5db
 $ ./bin/instance fg
@@ -143,15 +150,21 @@ $ sudo -u postgres createdb -0 elan elan
 ```sh
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
-$ python ./bootstrap.py -v "2.5.3"
-$ buildout -vc relstorage.cfg
+# you can do all the following steps in a virtual python environement
+$ virtualenv ../pyenv/dokpool
+$ source ../pyenv/dokpool/bin/activate
+# go on wether you have a virtual python env or not
+$ pip install --upgrade pip
+$ pip install -r requirements.txt
+$ buildout bootstrap
+$ ./bin/buildout -vc relstorage.cfg
 ```
 
 #### Rebuild:
 
 ```sh
 $ cd dokpool-plone/Plone
-$ python ./bootstrap.py -v "2.5.3"
+# first activate python virtual env, if your installation runs within a virtualenv
 $ ./bin/buildout -Nvc relstorage.cfg
 ```
 
@@ -159,6 +172,7 @@ $ ./bin/buildout -Nvc relstorage.cfg
 
 ```sh
 $ cd dokpool-plone/Plone
+# first activate python virtual env, if your installation runs within a virtualenv
 $ ./bin/supervisord
 ```
 
@@ -166,6 +180,7 @@ $ ./bin/supervisord
 
 ```sh
 $ cd dokpool-plone/Plone
+# first activate python virtual env, if your installation runs within a virtualenv
 $ ./bin/supervisorctl shutdown all
 ```
 
