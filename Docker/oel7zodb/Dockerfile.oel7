@@ -23,22 +23,23 @@ MAINTAINER Marco Lechner<mlechner@bfs.de>
 RUN yum install -y gcc mercurial python-devel libffi-devel openssl-devel libxslt-devel python-psycopg2 postgresql-devel tar openldap-devel
 RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone system user" plone
 #
-# install ELAN
+# install Dokpool
 #
-RUN mkdir -p /opt/bfs/elan
-ADD . /opt/bfs/elan/
-WORKDIR /opt/bfs/elan/Plone
-RUN cd /opt/bfs/elan/Plone && python bootstrap.py
-RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc buildout_docker.cfg
+RUN mkdir -p /opt/bfs/dokpool
+ADD . /opt/bfs/dokpool/
+WORKDIR /opt/bfs/dokpool/Plone
+RUN cd /opt/bfs/dokpool/Plone && pip install --upgrade pip && pip install -r requirements.txt
+RUN buildout bootstrap && ./bin/buildout -Nvc buildout_docker.cfg
+
 #
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
 #
-RUN if [ -f /opt/bfs/elan/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/elan/initialELAN-backup.tgz -C /opt/bfs/elan/Plone/var/ && cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n ; fi
+RUN if [ -f /opt/bfs/dokpool/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/dokpool/initialELAN-backup.tgz -C /opt/bfs/dokpool/Plone/var/ && cd /opt/bfs/dokpool/Plone && ./bin/plonebackup-restore -n ; fi
 RUN chown -R plone.plone /opt/bfs
 USER plone
 ENV HOME /home/plone
 # try to use sqlite instead of postgreSQL as DB backend for transfer
-WORKDIR /opt/bfs/elan/Plone
+WORKDIR /opt/bfs/dokpool/Plone
 EXPOSE 8081
-CMD [ "/opt/bfs/elan/Plone/bin/instance", "fg"]
+CMD [ "/opt/bfs/dokpool/Plone/bin/instance", "fg"]
 

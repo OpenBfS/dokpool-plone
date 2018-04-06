@@ -27,20 +27,21 @@ RUN adduser --system --shell /bin/bash --home /home/plone --comment "Plone syste
 #
 # install ELAN
 #
-RUN mkdir -p /opt/bfs/elan
-ADD . /opt/bfs/elan/
-WORKDIR /opt/bfs/elan/Plone
-RUN cd /opt/bfs/elan/Plone && python bootstrap.py
-RUN cd /opt/bfs/elan/Plone && ./bin/buildout -Nvc deployment_docker.cfg
+RUN mkdir -p /opt/bfs/dokpool
+ADD . /opt/bfs/dokpool/
+WORKDIR /opt/bfs/dokpool/Plone
+RUN cd /opt/bfs/dokpool/Plone && pip install --upgrade pip && pip install -r requirements.txt
+RUN buildout bootstrap && ./bin/buildout -Nvc deployment_docker.cfg
+
 #
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
 #
-RUN if [ -f /opt/bfs/elan/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/elan/initialELAN-backup.tgz -C /opt/bfs/elan/Plone/var/ && cd /opt/bfs/elan/Plone && ./bin/plonebackup-restore -n ; fi
+RUN if [ -f /opt/bfs/dokpool/initialELAN-backup.tgz ]; then tar -xzf /opt/bfs/dokpool/initialELAN-backup.tgz -C /opt/bfs/dokpool/Plone/var/ && cd /opt/bfs/dokpool/Plone && ./bin/plonebackup-restore -n ; fi
 RUN chown -R plone.plone /opt/bfs
 USER plone
 ENV HOME /home/plone
 # try to use sqlite instead of postgreSQL as DB backend for transfer
 WORKDIR /opt/bfs/elan/Plone
 EXPOSE 8081 8082 8083 8100 8881 9001
-CMD [ "/opt/bfs/elan/Plone/bin/supervisord", "-n"]
+CMD [ "/opt/bfs/dokpool/Plone/bin/supervisord", "-n"]
 

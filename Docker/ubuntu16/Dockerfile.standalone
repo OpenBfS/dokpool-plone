@@ -25,8 +25,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN mkdir -p /opt/bfs/dokpool
 ADD . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
-RUN python bootstrap.py -v "2.5.3"
-RUN ./bin/buildout -Nvc buildout_docker_so.cfg
+RUN cd /opt/bfs/dokpool/Plone && pip install --upgrade pip && pip install -r requirements.txt
+RUN buildout bootstrap && ./bin/buildout -Nvc buildout_docker_so.cfg
 
 RUN chown -R zope.zope /opt/bfs
 USER zope
