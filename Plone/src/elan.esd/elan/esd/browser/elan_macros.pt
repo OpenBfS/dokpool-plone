@@ -19,29 +19,30 @@
                              selected python:scenario.getId() in selected_scenarios;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
                     tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
-                    <td>
-                        <input type="checkbox" name="scnrs:list"
-                               tal:attributes="value    scenario/getId;
-                                   title    scenario/Title;
-                                   disabled python:readonly and 'disabled' or None;
-                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
-                               onclick="this.form.submit()"
-                        />
-                    </td>
-                    <td>
-                        <tal:if condition="exercise">
-                            <span class="exerciseflag" i18n:translate="">+++Exercise+++</span>
-                        </tal:if>
-                    </td>
                     <tal:def define="mi python:scenario.modInfo();
 			                           date python:mi[0];
 			                           uinfo python:mi[1]">
                         <td class="scenario_desc">
+
+                            <input type="checkbox" name="scnrs:list"
+                                   tal:attributes="value    scenario/getId;
+                                                   title    scenario/Title;
+                                                   disabled python:readonly and 'disabled' or None;
+                                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
+                               onclick="this.form.submit()"
+                        />&nbsp;&nbsp;
+
+                        <tal:if condition="exercise">
+                            <span class="exerciseflag" 
+                                  tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
+
+                                  i18n:translate="">+++Exercise+++</span>
+                        </tal:if> &nbsp;&nbsp;
+
                             <span class="scentitle"
-                                  tal:attributes="title python:'%s %s ' % (uinfo, toLocalizedTime(date, long_format=1))"
+                                  tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
                                   tal:content="string:${scenario/Title}" >Event1</span>
                         </td>
-<td><span tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"><u>Info</u></span></td>
                     </tal:def>
                 </tr>
             </tal:loop>
@@ -101,16 +102,16 @@
 </metal:macro>
 
 <metal:macro define-macro="elan_meta" i18n:domain="elan.esd">
-    <tal:if tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
+
+    <span tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
         <label i18n:translate="">Belongs to scenario:</label>
-        <span tal:content="python:', '.join(scns)"/>
-        <br/>
-    </tal:if>
-    <tal:if condition="cat" define="cat elanobj/category">
+        <span tal:content="python:', '.join(scns)"/> 
+    </span> 
+    <div style="margin-top:3px;" tal:condition="cat" tal:define="cat elanobj/category">
         <label i18n:translate="">Content from:</label>
-        <span tal:content="string:${item_cat} (${item_type})"/>
-        <br/>
-    </tal:if>
+        <span tal:content="string:${item_type}" /> 
+        <span tal:content="python:elanobj.cat_convert()" /> 
+    </div>
 </metal:macro>
 
 
