@@ -8,6 +8,7 @@ Plone/\.installed\.cfg
 Plone/\.mr\.developer\.cfg
 Plone/etc/varnish.vcl
 Plone/var
+Plone/venv
 Plone/src/docpool\.theme/docpool\.theme\.egg-info
 Plone/src/docpool\.users/docpool\.users\.egg-info
 Plone/src/elan\.dbaccess/elan\.dbaccess\.egg-info

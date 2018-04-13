@@ -84,11 +84,11 @@ $ apt-get install libncurses-dev python-docutils autoconf automake libjemalloc-d
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
 # you can do all the following steps in a virtual python environement
-$ virtualenv ../pyenv/dokpool
-$ source ../pyenv/dokpool/bin/activate
+$ virtualenv ./venv/dokpool
+$ source ./venv/dokpool/bin/activate
 # go on wether you have a virtual python env or not
 $ export ELANENGINE=sqlite:////tmp/elan5db
-$ pip install --upgrade pip
+$ pip install --upgrade pip docutils
 $ pip install -r requirements.txt
 $ buildout bootstrap
 $ ./bin/buildout -vc buildout.cfg
@@ -151,10 +151,10 @@ $ sudo -u postgres createdb -0 elan elan
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
 # you can do all the following steps in a virtual python environement
-$ virtualenv ../pyenv/dokpool
-$ source ../pyenv/dokpool/bin/activate
+$ virtualenv ./venv/dokpool
+$ source ./venv/dokpool/bin/activate
 # go on wether you have a virtual python env or not
-$ pip install --upgrade pip
+$ pip install --upgrade pip docutils
 $ pip install -r requirements.txt
 $ buildout bootstrap
 $ ./bin/buildout -vc relstorage.cfg
