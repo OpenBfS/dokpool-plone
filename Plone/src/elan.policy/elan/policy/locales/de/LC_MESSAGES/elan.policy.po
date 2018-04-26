@@ -41,6 +41,11 @@ msgid "Select Applications"
 msgstr "Anwendungen auswählen"
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
+msgid "Create Archive Folder"
+msgstr "Unterordner Archiv anlegen"
+
+
+#: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "Help"
 msgstr "Hilfe"
 
