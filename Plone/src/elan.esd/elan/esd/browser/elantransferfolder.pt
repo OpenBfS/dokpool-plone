@@ -12,9 +12,7 @@
 		<a href="" tal:attributes="href string:${context/absolute_url}/objekt_liste?typ=channelpermissions"
 		class="pat-plone-modal" 
 		i18n:translate="">Edit Permissions</a>
-		<table class="permgrid">
-		    <tal:grid replace="structure view/gridHTML" />
-		</table>
+        <br /><br />
     	<div metal:use-macro="here/@@dp.macros/macros/listing"/>   
 <!-- ##/code-section Main -->    
 </metal:content-core>

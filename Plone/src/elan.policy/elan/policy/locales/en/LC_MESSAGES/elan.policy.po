@@ -27,6 +27,10 @@ msgid "Edit Ticker"
 msgstr ""
 
 #: elan.policy/elan/policy/profiles/default/actions.xml
+msgid "Create Archive Folder"
+msgstr ""
+
+#: elan.policy/elan/policy/profiles/default/actions.xml
 msgid "Help"
 msgstr ""
 
