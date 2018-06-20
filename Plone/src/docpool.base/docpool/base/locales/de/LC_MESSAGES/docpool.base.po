@@ -63,7 +63,7 @@ msgstr "Basisordner"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
 msgid "General information"
-msgstr "Allgemeine Informationen"
+msgstr "Info-Dokument"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
 msgid "General information (generic type)"
@@ -92,7 +92,7 @@ msgstr "Ortszeit"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoLink.xml
 msgid "Link"
-msgstr "Link"
+msgstr "Info-Link"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:47
 msgid "Metadata"
