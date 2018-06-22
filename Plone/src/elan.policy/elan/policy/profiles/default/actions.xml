@@ -163,6 +163,15 @@
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
+  <object name="create_archive_folder" meta_type="CMF Action" i18n:domain="elan.policy">
+   <property name="title" i18n:translate="">Create Archive Folder</property>
+   <property name="url_expr">string:${context/dp_url}/archive/++add++Folder</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
   <object name="logout" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Log out</property>
    <property name="description" i18n:translate=""></property>
