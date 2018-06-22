@@ -15,7 +15,7 @@ from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.traversing.interfaces import ITraversable, TraversalError
 from zope.publisher.interfaces import IPublishTraverse, NotFound
-from zope.app.file.file import FileChunk
+from plone.namedfile.file import FileChunk
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from plone.namedfile.scaling import ImageScaling as OriginalImageScaling,\

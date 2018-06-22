@@ -124,10 +124,6 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="Change portal events" acquire="True">
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
     <permission name="Content rules: Manage rules" acquire="False">
       <role name="Manager"/>
       <role name="Site Administrator"/>

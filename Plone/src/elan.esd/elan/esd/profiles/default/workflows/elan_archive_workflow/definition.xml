@@ -4,7 +4,6 @@
  <permission>ATContentTypes: Add Image</permission>
  <permission>Access contents information</permission>
  <permission>Add portal content</permission>
- <permission>Change portal events</permission>
  <permission>Delete objects</permission>
  <permission>Modify portal content</permission>
  <permission>Sharing page: Delegate roles</permission>
@@ -24,12 +23,6 @@
    <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
-  </permission-map>
-  <permission-map name="Change portal events" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-   <permission-role>DocPoolAdmin</permission-role>
-   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
@@ -66,8 +59,6 @@
    <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
-  </permission-map>
-  <permission-map name="Change portal events" acquired="False">
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
   </permission-map>

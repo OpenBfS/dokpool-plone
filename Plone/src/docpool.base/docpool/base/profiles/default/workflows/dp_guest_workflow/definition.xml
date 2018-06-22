@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="dp_guest_workflow" title="DP Guest Workflow" description="" state_variable="review_state" initial_state="private" manager_bypass="False">
  <permission>Access contents information</permission>
- <permission>Change portal events</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Add portal content</permission>
@@ -27,10 +26,6 @@
    <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Contributor</permission-role>
-  </permission-map>
-  <permission-map name="Change portal events" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Contributor</permission-role>
   </permission-map>
