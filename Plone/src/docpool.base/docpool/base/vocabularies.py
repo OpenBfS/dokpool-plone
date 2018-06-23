@@ -4,7 +4,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
-from elan.esd import DocpoolMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getDocumentPoolSite

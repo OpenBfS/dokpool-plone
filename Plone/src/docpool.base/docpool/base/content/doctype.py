@@ -40,19 +40,7 @@ from zope.intid.interfaces import IIntIds
 from five import grok
 from zope.schema.interfaces import IContextSourceBinder
 from plone.dexterity.interfaces import IEditFinishedEvent
-
-# @grok.provider(IContextSourceBinder)
-# def availableCategories(context):
-#     if hasattr(context, "dpSearchPath"):
-#         path = context.dpSearchPath() + "/esd"
-#     else:
-#         path = "/Plone/esd"
-#     query = { "portal_type" : ["ELANDocCollection"],
-#               "path": {'query' :path } 
-#              }
-# 
-#     return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IELANDocCollection.__identifier__).__call__(context) 
-##/code-section imports 
+##/code-section imports
 
 from docpool.base.config import PROJECTNAME
 

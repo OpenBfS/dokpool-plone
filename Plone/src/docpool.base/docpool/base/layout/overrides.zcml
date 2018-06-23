@@ -6,7 +6,7 @@
    <browser:menu
     id="plone_contentmenu_factory"
     title="The 'add' menu - allows the user to add new content items in the context"
-    class=".menu.ELANFactoriesMenu"
+    class=".menu.DPFactoriesMenu"
     />
 
 </configure>

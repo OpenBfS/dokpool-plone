@@ -10,7 +10,7 @@ class CollectionDocView(BrowserView):
 
     def doc(self):
         """
-        Return the elan document, which is to be viewed in the context of the collection.
+        Return the document, which is to be viewed in the context of the collection.
         """
         uid = self.request.get("d", None)
         if uid:
