@@ -157,9 +157,6 @@
   <property name="many_users" type="boolean">False</property>
   <property name="many_groups" type="boolean">False</property>
   <property name="enable_livesearch" type="boolean">True</property>
-  <property name="default_page_types" type="lines">
-   <element value="ELANDocCollection"/>
-  </property>
   <property name="use_folder_contents" type="lines"/>
   <property name="forbidden_contenttypes" type="lines">
    <element value="text/structured"/>
@@ -184,17 +181,5 @@
   <property name="icon_visibility" type="string">enabled</property>
   <property name="mark_special_links" type="string">true</property>
   <property name="redirect_links" type="boolean">False</property>
-  <property name="use_email_as_login" type="boolean">False</property>
-  <property name="user_registration_fields" type="lines">
-    <element value="username" />
-    <element value="fullname" />
-    <element value="email" />
-    <element value="password" />
-    <element value="dp" />
-  </property>
-  <property name="allow_external_login_sites" type="lines"/>
-  <property name="external_login_url" type="string"></property>
-  <property name="external_logout_url" type="string"></property>
-  <property name="external_login_iframe" type="boolean">False</property>
  </object>
 </object>

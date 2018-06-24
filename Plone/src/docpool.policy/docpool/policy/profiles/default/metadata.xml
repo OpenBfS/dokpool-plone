@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<metadata>
+    <version>1.1</version>
+    <dependencies>
+        <dependency>profile-collective.z3cform.datagridfield:default</dependency>
+        <dependency>profile-plone.app.caching:default</dependency>
+        <dependency>profile-docpool.theme:default</dependency>
+        <dependency>profile-docpool.base:default</dependency>
+        <dependency>profile-docpool.transfers:default</dependency>
+        <dependency>profile-docpool.users:default</dependency>
+        <dependency>profile-docpool.dbaccess:default</dependency>
+        <dependency>profile-docpool.config:default</dependency>
+        <dependency>profile-docpool.caching:default</dependency>
+    </dependencies>
+</metadata>

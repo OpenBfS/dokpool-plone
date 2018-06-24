@@ -198,6 +198,7 @@ def getUserSelectedScenarios(self):
     usc = getScenariosForCurrentUser(self)
     return usc
 
+# The folder needs an extension to determine the currently selected scenario.
 if not hasattr(SimpleFolder, "getUserSelectedScenarios"):
     SimpleFolder.getUserSelectedScenarios = getUserSelectedScenarios
 

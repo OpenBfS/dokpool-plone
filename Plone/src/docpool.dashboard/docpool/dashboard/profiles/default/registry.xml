@@ -1,5 +1,12 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.dashboard">
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>DashboardsConfig</element>
+      <element>Dashboard</element>
+    </value>
+  </record>
+
   <records prefix="plone.resources/docpool-dashboard"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js"></value>
