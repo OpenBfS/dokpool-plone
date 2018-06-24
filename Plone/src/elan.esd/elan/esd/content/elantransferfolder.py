@@ -44,7 +44,7 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectRemovedEvent
 from plone.dexterity.interfaces import IEditFinishedEvent
 from docpool.dbaccess.dbinit import __metadata__, __session__
-from elan.esd.db.model import Channel, DocTypePermission, ChannelPermissions
+from docpool.transfers.db.model import Channel, DocTypePermission, ChannelPermissions
 
 
 from elan.esd import DocpoolMessageFactory as _

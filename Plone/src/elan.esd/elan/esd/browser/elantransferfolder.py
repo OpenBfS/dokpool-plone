@@ -21,7 +21,7 @@ from plone.memoize.instance import memoize
 ##code-section imports
 from docpool.dbaccess.dbinit import __session__, __metadata__
 from formalchemy import Grid
-from elan.esd.db.model import ChannelPermissions, DocTypePermission
+from docpool.transfers.db.model import ChannelPermissions, DocTypePermission
 from elan.esd import DocpoolMessageFactory as _
 from docpool.base.browser.folderbase import FolderBaseView
 ##/code-section imports

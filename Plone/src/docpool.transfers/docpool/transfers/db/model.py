@@ -15,8 +15,8 @@ from sqlalchemy import or_, and_, join
 from sqlalchemy.orm import mapper, class_mapper, relation, backref, column_property, ColumnProperty
 import logging
 from datetime import datetime
-from elan.esd import DocpoolMessageFactory as _
-from elan.esd.db.security import IELANProtectedEntityClass
+from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.db.security import IDocpoolProtectedEntityClass
 
 DEBUG = 0
 __metadata__.bind.echo = False
@@ -28,7 +28,7 @@ logger = logging.getLogger("elan.esd")
 class Channel(Entity):
     """
     """
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='channels')
     
     title = Field(Unicode(128))
@@ -47,7 +47,7 @@ class Channel(Entity):
 class DocTypePermission(Entity):
     """
     """
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='dtpermissions')
     doc_type = Field(String(80))
     perm = Field(String(20))
@@ -59,7 +59,7 @@ class DocTypePermission(Entity):
 class SenderLog(Entity):
     """
     """
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='senderlogs')
     document_uid = Field(String(50))
     document_title = Field(Unicode(250))
@@ -71,7 +71,7 @@ class SenderLog(Entity):
 class ReceiverLog(Entity):
     """
     """
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='receiverlogs')
     document_uid = Field(String(50))
     document_title = Field(Unicode(250))
@@ -81,17 +81,17 @@ class ReceiverLog(Entity):
     channel = ManyToOne('Channel')
 
 class ChannelPermissions(EntityBase):
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     pass
 
 class ChannelSends(EntityBase):
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     
     def __repr__(self):
         return "%s: --> %s" % (self.etimestamp, self.esd_to_title)
 
 class ChannelReceives(EntityBase):
-    classProvides(IELANProtectedEntityClass)
+    classProvides(IDocpoolProtectedEntityClass)
     pass
 
 setup_all(create_tables=True)

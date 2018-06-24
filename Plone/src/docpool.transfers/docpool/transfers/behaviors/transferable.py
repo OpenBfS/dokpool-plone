@@ -20,12 +20,12 @@ from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
 
 from docpool.dbaccess.dbinit import __session__
-from elan.esd.db.model import Channel, DocTypePermission, SenderLog, ReceiverLog,\
+from docpool.transfers.db.model import Channel, DocTypePermission, SenderLog, ReceiverLog,\
     ChannelSends, ChannelReceives, ChannelPermissions
 from sqlalchemy import and_
 from datetime import datetime
 from DateTime import DateTime
-from elan.esd.content.transfers import determineTransferFolderObject,\
+from docpool.transfers.content.transfers import determineTransferFolderObject,\
     ensureDocTypeInTarget, ensureScenariosInTarget, determineChannels
 from sqlalchemy.sql.expression import desc, or_
 from docpool.base.utils import execute_under_special_role,\
