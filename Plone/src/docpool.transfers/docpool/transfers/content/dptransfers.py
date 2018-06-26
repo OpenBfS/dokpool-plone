@@ -82,4 +82,6 @@ class DPTransfers(Container):
 
 
 ##code-section bottom
+class ELANTransfers(DPTransfers):
+    pass
 ##/code-section bottom

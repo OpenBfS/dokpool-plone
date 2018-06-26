@@ -349,5 +349,7 @@ def deleted(obj, event=None):
             __session__.flush()    
         # Revoke any read access
         obj.revokeReadAccess()
-    
+
+class ELANTransferFolder(DPTransferFolder):
+    pass
 ##/code-section bottom 
