@@ -37,8 +37,7 @@ setup(name='elan.policy',
           'docpool.video',
           'docpool.caching',
           'docpool.elan',
-          'docpool.dbaccess',
-          'elan.sitrep',
+          'docpool.dbaccess'
       ],
       entry_points="""
       # -*- Entry points: -*-
