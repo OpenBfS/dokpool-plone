@@ -82,7 +82,7 @@ class IDPTransferFolder(form.Schema, IFolderBase):
                         required=True,
                         default="block",
 ##code-section field_unknownDtDefault
-                        source="docpool.transfers.UnknownOptions"
+                        source="docpool.transfers.vocabularies.UnknownOptions"
 ##/code-section field_unknownDtDefault                           
     )
     
@@ -93,7 +93,7 @@ class IDPTransferFolder(form.Schema, IFolderBase):
                         required=True,
                         default="block",
 ##code-section field_unknownScenDefault
-                        source="docpool.transfers.UnknownOptions"
+                        source="docpool.transfers.vocabularies.UnknownOptions"
 ##/code-section field_unknownScenDefault                           
     )
     

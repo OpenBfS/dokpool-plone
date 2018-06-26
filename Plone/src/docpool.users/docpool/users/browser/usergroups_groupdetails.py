@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from Products.CMFPlone.controlpanel.browser.usergroups import \
     UsersGroupsControlPanelView
+from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import GroupDetailsControlPanel as GDCP
 from plone.protect import CheckAuthenticator
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFCore.utils import getToolByName
@@ -8,7 +9,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from Products.Archetypes.utils import shasattr
 
 
-class GroupDetailsControlPanel(UsersGroupsControlPanelView):
+class GroupDetailsControlPanel(GDCP):
 
     def __call__(self):
         context = aq_inner(self.context)
