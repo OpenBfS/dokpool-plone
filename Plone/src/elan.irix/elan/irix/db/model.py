@@ -16,8 +16,8 @@ from sqlalchemy.orm import mapper, class_mapper, relation, backref, column_prope
 from sqlalchemy.orm.properties import RelationProperty
 import logging
 from datetime import datetime
-from elan.esd import DocpoolMessageFactory as _
-from elan.esd.db.security import IELANProtectedEntityClass
+from elan.irix import DocpoolMessageFactory as _
+from elan.irix.db.security import IELANProtectedEntityClass
 from docpool.dbaccess.content.structured import StructuredEntity
 
 from formalchemy import FieldSet

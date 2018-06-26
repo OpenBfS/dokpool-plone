@@ -78,8 +78,6 @@
     component=".vocabularies.ScenarioSubstituteVocabularyFactory"
     name="elan.esd.vocabularies.ScenarioSubstitutes"
     />
-  
-   <adapter factory=".db.security.ChannelSecurity"/>    
 
     <include package=".behaviors" />	
 	 

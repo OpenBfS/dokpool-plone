@@ -55,6 +55,8 @@
 
    <permission id="docpool.transfers.AccessTransfers" title="Docpool: Access Transfer Functions" />
    <include package=".behaviors" />
+
+   <adapter factory=".db.security.ChannelSecurity"/>
 <!-- ##/code-section Main -->
       
 </configure>

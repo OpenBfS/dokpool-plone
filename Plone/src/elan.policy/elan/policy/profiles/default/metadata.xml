@@ -8,7 +8,7 @@
         <dependency>profile-docpool.theme:default</dependency>
         <dependency>profile-docpool.base:default</dependency>
         <dependency>profile-docpool.dashboard:default</dependency>
-        <dependency>profile-elan.esd:default</dependency>
+        <dependency>profile-docpool.elan:default</dependency>
         <dependency>profile-elan.sitrep:default</dependency>
         <dependency>profile-docpool.users:default</dependency>
         <dependency>profile-docpool.dbaccess:default</dependency>
