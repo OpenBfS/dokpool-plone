@@ -10,8 +10,6 @@
       <element>ELANInfos</element>
       <element>ELANDocCollection</element>
       <element>ELANContentConfig</element>
-      <element>ELANTransfers</element>
-      <element>ELANTransferFolder</element>
       <element>ELANScenarios</element>
     </value>
   </record>

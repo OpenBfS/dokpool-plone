@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <import-steps>
-  <import-step id="elan_policy_various" version="20120815-01"
+  <import-step id="docpool_policy_various" version="20120815-01"
                handler="docpool.policy.setuphandlers.setupVarious"
                title="docpool.policy content creation">
  </import-step>

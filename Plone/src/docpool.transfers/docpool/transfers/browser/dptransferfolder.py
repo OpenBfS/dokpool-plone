@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: elantransferfolder.py
+# File: dptransferfolder.py
 #
 # Copyright (c) 2014 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
@@ -22,15 +22,15 @@ from plone.memoize.instance import memoize
 from docpool.dbaccess.dbinit import __session__, __metadata__
 from formalchemy import Grid
 from docpool.transfers.db.model import ChannelPermissions, DocTypePermission
-from elan.esd import DocpoolMessageFactory as _
+from docpool.transfers import DocpoolMessageFactory as _
 from docpool.base.browser.folderbase import FolderBaseView
 ##/code-section imports
 
-class ELANTransferFolderView(FolderBaseView):
+class DPTransferFolderView(FolderBaseView):
     """Default view
     """
  
-    __call__ = ViewPageTemplateFile('elantransferfolder.pt')
+    __call__ = ViewPageTemplateFile('dptransferfolder.pt')
    
     ##code-section methods1
     def gridHTML(self):

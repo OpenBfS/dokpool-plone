@@ -5,13 +5,13 @@
     <role name="ContentSender"/>
   </roles>
   <permissions>
-    <permission name="Docpool: Add ELANTransferFolder" acquire="True">
+    <permission name="Docpool: Add DPTransferFolder" acquire="True">
       <role name="Manager"/>
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="Docpool: Add ELANTransfers" acquire="True">
+    <permission name="Docpool: Add DPTransfers" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>

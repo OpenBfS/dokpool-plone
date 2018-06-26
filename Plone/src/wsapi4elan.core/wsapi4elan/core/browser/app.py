@@ -72,7 +72,7 @@ class ApplicationAPI(WSAPI):
         return self.context.restrictedTraverse("@@query")(q) 
     
     def get_transfer_folders(self, esdpath):
-        q = {'path': esdpath + "/content/Transfers", 'portal_type': "ELANTransferFolder"}
+        q = {'path': esdpath + "/content/Transfers", 'portal_type': "DPTransferFolder"}
         return self.context.restrictedTraverse("@@query")(q) 
     
     def create_dp_document(self, folderpath, id, title, description, text, doctype, scenarios):

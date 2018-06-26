@@ -9,7 +9,8 @@
             template="transfers_macros.pt"
          />
 
-<!-- ##/code-section Main -->    
+            <browser:page permission="zope2.View" name="view" for="..interfaces.IDPTransferFolder" class=".dptransferfolder.DPTransferFolderView" />
+<!-- ##/code-section Main -->
 
     
         

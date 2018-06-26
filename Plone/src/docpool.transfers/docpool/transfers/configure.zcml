@@ -33,6 +33,26 @@
    
 
 <!-- ##code-section Main -->
+   <permission id="docpool.transfers.AddDPTransferFolder" title="Docpool: Add DPTransferFolder" />
+
+   <permission id="docpool.transfers.AddDPTransfers" title="Docpool: Add DPTransfers" />
+
+   <permission id="docpool.transfers.SendContent" title="Docpool: Send Content" />
+   <permission id="docpool.transfers.ReceiveContent" title="Docpool: Receive Content" />
+
+  <utility
+    component=".vocabularies.PermissionsVocabularyFactory"
+    name="docpool.transfers.vocabularies.Permissions"
+    />
+  <utility
+    component=".vocabularies.UnknownOptionsVocabularyFactory"
+    name="docpool.transfers.vocabularies.UnknownOptions"
+    />
+  <utility
+    component=".vocabularies.DTPermOptionsVocabularyFactory"
+    name="docpool.transfers.vocabularies.DTPermOptions"
+    />
+
    <permission id="docpool.transfers.AccessTransfers" title="Docpool: Access Transfer Functions" />
    <include package=".behaviors" />
 <!-- ##/code-section Main -->

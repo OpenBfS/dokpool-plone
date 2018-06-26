@@ -1,4 +1,4 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="elan.esd" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.transfers" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
 <!-- ##code-section Head -->
 <!-- ##/code-section Head -->    
@@ -18,7 +18,7 @@
                         docid request/id | nothing;
                         tuple python:context.getTupleForTransfer(docid);
                         doc python:tuple[0];
-                        elandoc python:tuple[1]">                       
+                        dpdoc python:tuple[1]">                       
         <input type="hidden" name="form.submitted" value="1" />
            
            <h3 tal:content="doc/title"></h3>
@@ -32,7 +32,7 @@
                     <th class="nosort" i18n:translate=""></th>      
                 </tr>
             </thead>
-            <tbody tal:repeat="target elandoc/allowedTargets">
+            <tbody tal:repeat="target dpdoc/allowedTargets">
                <tr class="notDraggable odd">
                    <td>
                         <input type="checkbox" checked="checked" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">

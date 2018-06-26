@@ -222,7 +222,7 @@ class ELANScenario(Item, ContentBase):
             if isMember:
                 folderType = "UserFolder"
             if isTransfer:
-                folderType = "ELANTransferFolder"
+                folderType = "DPTransferFolder"
             aroot.invokeFactory(folderType, id=fname) # if not we create a new folder
         af = aroot._getOb(fname)
         # 5. and copy the local roles

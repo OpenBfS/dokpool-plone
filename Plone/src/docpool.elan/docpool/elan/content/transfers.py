@@ -3,6 +3,7 @@ from docpool.base.utils import queryForObject, _copyPaste
 from docpool.elan.config import ELAN_APP
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
+from elan.esd.utils import getOpenScenarios
 
 def ensureScenariosInTarget(original, copy):
     my_scenarios = original.doc_extension(ELAN_APP).scenarios
@@ -34,4 +35,12 @@ def ensureScenariosInTarget(original, copy):
     except Exception, e:
         log_exc(e)
     copy.reindexObject()
+
+def knowsScen(transfer_folder, scen_id):
+    """
+    Do I know this scenario?
+    """
+    scens = getOpenScenarios(transfer_folder)
+    scen_ids = [scen.getId for scen in scens]
+    return scen_id in scen_ids
 

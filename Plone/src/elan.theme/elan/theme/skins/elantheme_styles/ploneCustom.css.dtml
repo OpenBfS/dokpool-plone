@@ -290,13 +290,13 @@ table.scenarios {
     display: none;
 }
 
-.portaltype-elantransferfolder #selectall,
-.portaltype-elantransferfolder th.id,  
-.portaltype-elantransferfolder td.id, 
-.portaltype-elantransferfolder #import,  
-.portaltype-elantransferfolder #export, 
-.portaltype-elantransferfolder #deletebutton,
-.portaltype-elantransferfolder #createbutton {
+.portaltype-dptransferfolder #selectall,
+.portaltype-dptransferfolder th.id,
+.portaltype-dptransferfolder td.id,
+.portaltype-dptransferfolder #import,
+.portaltype-dptransferfolder #export,
+.portaltype-dptransferfolder #deletebutton,
+.portaltype-dptransferfolder #createbutton {
 
     display: none;
 }

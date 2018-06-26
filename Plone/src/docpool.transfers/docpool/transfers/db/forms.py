@@ -29,7 +29,7 @@ perm_options = [  (_(u'publish immediately'), 'publish'), (_(u'don\'t accept'), 
 def p_pre_filter(context):
     """
     """
-    if shasattr(context, "myELANTransferFolder", acquire=True):
+    if shasattr(context, "myDPTransferFolder", acquire=True):
         channel_id = context.channelId()
         if channel_id:
             return {'ChannelPermissions--channel_id':channel_id, 'ChannelPermissions-_-channel_id':channel_id}
@@ -41,7 +41,7 @@ def cpFilter(context=None):
     ffs = FieldSet(ChannelPermissions,session=__session__)
     ffs.channel.is_collection = True
     self = context.getContextObj()
-    if shasattr(self, "myELANTransferFolder", acquire=True):
+    if shasattr(self, "myDPTransferFolder", acquire=True):
         c_field = ffs.channel_id.with_renderer(HiddenFieldRenderer)
     else:
         c_field = ffs.channel.with_null_as(('---', '')).dropdown(multiple=True,size=5)

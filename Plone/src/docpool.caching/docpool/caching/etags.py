@@ -39,7 +39,7 @@ cacheTimes = {
     "ELANArchive" : 7200,
     "ELANCurrentSituation" : 3600,
     "ELANDocCollection" : 300,
-    "ELANTransferFolder" : 300,
+    "DPTransferFolder" : 300,
 }
 
 @implementer(IETagValue)

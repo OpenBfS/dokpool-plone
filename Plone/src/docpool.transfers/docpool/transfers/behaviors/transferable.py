@@ -26,14 +26,14 @@ from sqlalchemy import and_
 from datetime import datetime
 from DateTime import DateTime
 from docpool.transfers.content.transfers import determineTransferFolderObject,\
-    ensureDocTypeInTarget, ensureScenariosInTarget, determineChannels
+    ensureDocTypeInTarget, determineChannels
 from sqlalchemy.sql.expression import desc, or_
 from docpool.base.utils import execute_under_special_role,\
     _copyPaste, getUserInfo, portalMessage
 
 from plone import api
 from Products.CMFPlone.utils import log, log_exc
-from elan.esd import DocpoolMessageFactory as _
+from docpool.transfers import DocpoolMessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
@@ -210,7 +210,7 @@ class Transferable(FlexibleView):
         # print len(targets)
         return targets
 
-    security.declareProtected("ELAN_E: Send Content", "transferToAll")
+    security.declareProtected("Docpool: Send Content", "transferToAll")
     def transferToAll(self):
         """
         """
@@ -218,7 +218,7 @@ class Transferable(FlexibleView):
         self.transferToTargets(targets)
         return self.context.restrictedTraverse('@@view')()
 
-    security.declareProtected("ELAN_E: Send Content", "manage_transfer")
+    security.declareProtected("Docpool: Send Content", "manage_transfer")
     def manage_transfer(self, target_ids=[]):
         """
         Performs the transfer for a list of Channel ids.
@@ -226,7 +226,7 @@ class Transferable(FlexibleView):
         channels = determineChannels(target_ids)
         self.transferToTargets(channels)
 
-    security.declareProtected("ELAN_E: Send Content", "transferToTargets")
+    security.declareProtected("Docpool: Send Content", "transferToTargets")
     def transferToTargets(self, targets=[]):
         """
         1) Determine all transfer folder objects.
@@ -243,8 +243,14 @@ class Transferable(FlexibleView):
            change the scenario for the copy to that one.
         7) Add entry to receiver log.
         """
-        from docpool.elan.behaviors.elandocument import IELANDocument
-        from docpool.elan.config import ELAN_APP
+        HAS_ELAN = True
+        try:
+            from docpool.elan.behaviors.elandocument import IELANDocument
+            from docpool.elan.config import ELAN_APP
+            from docpool.elan.content.transfers import ensureScenariosInTarget, knowsScen
+        except:
+            HAS_ELAN = False
+
         def doIt():
             # 1) Determine all transfer folder objects.
             for target in targets:
@@ -264,7 +270,7 @@ class Transferable(FlexibleView):
                 # b) Is my Scenario known, are unknown Scenarios accepted?
                 scen_ok = transfer_folder.unknownScenDefault != 'block'
                 elanobj = None
-                if not scen_ok:
+                if not scen_ok and HAS_ELAN:
                     # check my precise Scenario
                     # FIXME: ELAN dependency
                     try:
@@ -275,7 +281,7 @@ class Transferable(FlexibleView):
                         scens = IELANDocument(self.context).myScenarioObjects()
                         if scens:
                             scen_id = scens[0].getId()
-                            if not transfer_folder.knowsScen(scen_id):
+                            if not knowsScen(transfer_folder, scen_id):
                                 # Message
                                 portalMessage(self.context, _(u"No transfer to") + " " + target.esd_to_title + _(
                                     ". Unknown scenario not accepted."), type='error')
@@ -290,7 +296,7 @@ class Transferable(FlexibleView):
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
                 behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
-                if elanobj != None:
+                if HAS_ELAN and elanobj != None:
                     behaviors.add(ELAN_APP) # FIXME: ELAN dependency
                 ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
 
@@ -306,7 +312,7 @@ class Transferable(FlexibleView):
                 timestamp = datetime.now()
                 user = userid
                 scenario_ids = ""
-                if elanobj != None:
+                if HAS_ELAN and elanobj != None:
                     scenario_ids = elanobj.scenarios and ", ".join(
                         elanobj.scenarios) or ""
                 l = SenderLog(document_uid=document_uid,
@@ -325,7 +331,7 @@ class Transferable(FlexibleView):
                 #    but it is in private state, check if it defines
                 #    a published substitute scenario. If it does,
                 #    change the scenario for the copy to that one.
-                if elanobj != None:
+                if HAS_ELAN and elanobj != None:
                     ensureScenariosInTarget(self.context, my_copy)
                 # Make sure workflow state of the copy is published,
                 # if there is no restriction on the transfer folder (permission = publish)
@@ -356,9 +362,13 @@ class Transferable(FlexibleView):
         If this object is in a transfer folder,
         make sure it is in a state corresponding to the permission.
         """
-        from docpool.elan.behaviors.elandocument import IELANDocument
+        HAS_ELAN = True
+        try:
+            from docpool.elan.behaviors.elandocument import IELANDocument
+        except:
+            HAS_ELAN = False
         if self.transferred:
-            tf = self.context.myELANTransferFolder()
+            tf = self.context.myDPTransferFolder()
             dtObj = self.context.docTypeObj()
             tstate = api.content.get_state(obj=dtObj)
             if tstate == 'published':  # we do this for valid types only
@@ -372,19 +382,20 @@ class Transferable(FlexibleView):
                     api.content.transition(self.context, 'publish')
                 if dstate == 'published' and perm == 'confirm':
                     api.content.transition(self.context, 'retract')
-            elanobj = None
-            try:
-                elanobj = IELANDocument(self.context)
-            except:
-                pass # no ELAN App active
-            if elanobj != None:
-                uscn = IELANDocument(self.context).unknownScenario()
-                if uscn:
-                    # Documents with unknown scenarios must be private
-                    try:
-                        api.content.transition(self.context, 'retract')
-                    except:
-                        pass
+            if HAS_ELAN:
+                elanobj = None
+                try:
+                    elanobj = IELANDocument(self.context)
+                except:
+                    pass # no ELAN App active
+                if elanobj != None:
+                    uscn = IELANDocument(self.context).unknownScenario()
+                    if uscn:
+                        # Documents with unknown scenarios must be private
+                        try:
+                            api.content.transition(self.context, 'retract')
+                        except:
+                            pass
 
     def deleteTransferDataInDB(self):
         """

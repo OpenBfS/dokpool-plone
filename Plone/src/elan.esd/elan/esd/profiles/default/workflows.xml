@@ -81,14 +81,14 @@
     
     
     
-   <type type_id="ELANTransferFolder">
+   <type type_id="DPTransferFolder">
     <bound-workflow workflow_id="dp_one_state_workflow" />
    </type>
    
     
     
     
-   <type type_id="ELANTransfers">
+   <type type_id="DPTransfers">
     <bound-workflow workflow_id="dp_one_state_workflow" />
    </type>
    

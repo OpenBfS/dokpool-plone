@@ -22,7 +22,7 @@ DEBUG = 0
 __metadata__.bind.echo = False
 if DEBUG:
     __metadata__.bind.echo = True
-logger = logging.getLogger("elan.esd")
+logger = logging.getLogger("docpool.transfers")
 
 
 class Channel(Entity):

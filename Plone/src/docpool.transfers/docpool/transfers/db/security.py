@@ -24,9 +24,9 @@ class ChannelSecurity(DefaultSecurity):
         self.isManager = user.has_role("Manager")
         
     def can_access(self):
-        from elan.esd.content.elantransferfolder import IELANTransferFolder
+        from docpool.transfers.content.dptransferfolder import IDPTransferFolder
         context = self.getContextObj()
-        if not IELANTransferFolder.providedBy(context):
+        if not IDPTransferFolder.providedBy(context):
             #print "NOT"
             if self.isManager:
                 return True

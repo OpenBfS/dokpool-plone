@@ -59,7 +59,7 @@ msgstr ""
 msgid "Archiving"
 msgstr "Archive"
 
-#: elan.esd/elan/esd/profiles/default/types/ELANTransfers.xml
+#: elan.esd/elan/esd/profiles/default/types/DPTransfers.xml
 msgid "Area for Transfer Folders"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgid "Permission"
 msgstr ""
 
 #: elan.esd/elan/esd/db/forms.py:92
-#: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
+#: elan.esd/elan/esd/profiles/default/types/DPTransferFolder.xml
 msgid "Permissions"
 msgstr ""
 
@@ -307,7 +307,7 @@ msgstr ""
 msgid "Transfer"
 msgstr ""
 
-#: elan.esd/elan/esd/profiles/default/types/ELANTransferFolder.xml
+#: elan.esd/elan/esd/profiles/default/types/DPTransferFolder.xml
 msgid "Transfer Folder"
 msgstr ""
 
