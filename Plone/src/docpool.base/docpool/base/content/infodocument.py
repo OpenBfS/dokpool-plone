@@ -43,10 +43,11 @@ class IInfoDocument(form.Schema, IDPDocument):
 
 ##code-section interface
     form.mode(docType='hidden')
-    docType = schema.TextLine(
-            title=u"Document Type",
-            default=u"infodoc"
-        )    
+    docType = schema.Choice(
+        required=True,
+        ##code-section field_docType
+        source="docpool.base.vocabularies.DocumentTypes",
+        default=u"infodoc")
 ##/code-section interface
 
 
