@@ -94,7 +94,11 @@ class DocumentTypesVocabulary(object):
             return SimpleVocabulary([])
 
         items = [ (t.Title, t.id ) for t in cat({"portal_type": "DocType", "path":path})]
-        items.extend([('active', 'active'), ('inactive','inactive'), ('closed','closed')])
+        items.extend([
+            ('infodoc', 'infodoc'),
+            ('active', 'active'),
+            ('inactive','inactive'),
+            ('closed','closed')])
         items.sort()
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
