@@ -2,8 +2,8 @@
            define="view nocall:options/view;
                    context nocall:options/context;
                    here nocall:context">
-    <tal:def define="exampleobj view">
-        <!-- context will be the the DPDocument instance, exampleobj will be the behaviour wrapper -->
-        <p>Example Metadata here</p>
+    <tal:def define="doksysobj view">
+        <!-- context will be the the DPDocument instance, doksysobj will be the behaviour wrapper -->
+        <div metal:use-macro="here/@@doksys.macros/macros/doksys_meta"/>
     </tal:def>
 </tal:block>

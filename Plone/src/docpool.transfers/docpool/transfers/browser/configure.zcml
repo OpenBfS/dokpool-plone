@@ -3,13 +3,13 @@
     <include package="plone.app.contentmenu" />
 
 <!-- ##code-section Main -->
-            <browser:page permission="zope2.View"
-            name="transfers.macros"
-            for="*"
-            template="transfers_macros.pt"
-         />
+    <browser:page permission="zope2.View"
+                  name="transfers.macros"
+                  for="*"
+                  template="transfers_macros.pt"
+    />
 
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IDPTransferFolder" class=".dptransferfolder.DPTransferFolderView" />
+    <browser:page permission="zope2.View" name="view" for="..interfaces.IDPTransferFolder" class=".dptransferfolder.DPTransferFolderView" />
 <!-- ##/code-section Main -->
 
     

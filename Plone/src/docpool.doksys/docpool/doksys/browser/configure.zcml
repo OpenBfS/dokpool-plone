@@ -1,21 +1,28 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.doksys">
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:plone="http://namespaces.plone.org/plone"
+        i18n_domain="docpool.doksys">
 
-  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <include package="z3c.jbot" file="meta.zcml" />
-  <browser:jbot
-      directory="overrides"
-      layer="docpool.doksys.interfaces.IDocpoolDoksysLayer"
-      />
+    <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+    <include package="z3c.jbot" file="meta.zcml"/>
+    <browser:jbot
+            directory="overrides"
+            layer="docpool.doksys.interfaces.IDocpoolDoksysLayer"
+    />
 
-  <!-- Publish static files -->
-  <plone:static
-      name="docpool.doksys"
-      type="plone"
-      directory="static"
-      />
+    <!-- Publish static files -->
+    <plone:static
+            name="docpool.doksys"
+            type="plone"
+            directory="static"
+    />
+
+    <browser:page permission="zope2.View"
+                  name="doksys.macros"
+                  for="*"
+                  template="doksys_macros.pt"
+    />
+
 
 </configure>

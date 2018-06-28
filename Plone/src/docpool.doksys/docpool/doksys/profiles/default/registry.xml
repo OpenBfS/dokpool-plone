@@ -1,5 +1,18 @@
 <?xml version="1.0"?>
-<registry>
-<!-- -*- extra stuff goes here -*- -->
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.doksys">
+    <!-- -*- extra stuff goes here -*- -->
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.network_operator">
+        <value key="title" i18n:translate="">Network Operator</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.string.is</element>
+            <element>plone.app.querystring.operation.string.contains</element>
+        </value>
+        <value key="group" i18n:translate="">Metadata</value>
+    </records>
 
 </registry>

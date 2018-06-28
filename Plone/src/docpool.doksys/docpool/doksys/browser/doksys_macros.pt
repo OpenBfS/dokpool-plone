@@ -1,0 +1,17 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal" 
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
+     i18n:domain="docpool.doksys">
+    <body>
+
+
+    <metal:macro define-macro="doksys_meta" i18n:domain="docpool.doksys">
+        <span tal:content="doksysobj/network_operator"></span>
+    </metal:macro>
+
+    <metal:macro define-macro="doksys_actions" i18n:domain="docpool.doksys">
+    </metal:macro>
+
+
+    </body>
+</html>

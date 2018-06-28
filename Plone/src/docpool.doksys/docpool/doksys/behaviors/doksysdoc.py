@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Common configuration constants
 """
+from collective import dexteritytextindexer
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform.directives import read_permission, write_permission
 from plone.directives import form
@@ -19,6 +20,8 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IDoksysDoc(IDocumentExtension):
+    #dexteritytextindexer.searchable('network_operator') # if a field is supposed to be fulltext searchable
+
     network_operator = schema.TextLine(
                         title=_(u'label_doksys_network_operator', default=u'Network Operator'),
                         description=_(u'description_doksys_network_operator', default=u''),
