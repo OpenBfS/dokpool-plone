@@ -30,6 +30,12 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(network_operator='docpool.doksys.AccessDoksys')
     write_permission(network_operator='docpool.doksys.AccessDoksys')
 
+    sampling_begin = schema.Datetime(
+                        title=_(u'label_doksys_sampling_begin', default=u'Sampling Begin'),
+                        description=_(u'description_doksys_sampling_begin', default=u''),
+                        required=False,
+    )
+
 
 class DoksysDoc(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
@@ -52,6 +58,18 @@ class DoksysDoc(FlexibleView):
         context.network_operator = value
 
     network_operator = property(_get_network_operator, _set_network_operator)
+
+    def _get_sampling_begin(self):
+        return self.context.sampling_begin
+
+    def _set_sampling_begin(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.sampling_begin = value
+
+    sampling_begin = property(_get_sampling_begin, _set_sampling_begin)
+
 
 
     def isClean(self):

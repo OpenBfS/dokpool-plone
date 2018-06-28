@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="docpool.doksys">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        component=".network_operators.NetworkOperatorsFactory"
+        name="docpool.doksys.NetworkOperators"
+    />
+
+        
+</configure>

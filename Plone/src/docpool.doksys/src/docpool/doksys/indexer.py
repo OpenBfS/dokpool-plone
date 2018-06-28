@@ -11,3 +11,10 @@ def network_operator_indexer(obj):
     except:
         pass
 
+
+@indexer(IDPDocument)
+def sampling_begin_indexer(obj):
+    try:
+        return obj.doc_extension(DOKSYS_APP).sampling_begin
+    except:
+        pass

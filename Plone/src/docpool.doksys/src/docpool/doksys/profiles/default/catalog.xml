@@ -4,4 +4,7 @@
     <index name="network_operator" meta_type="FieldIndex">
         <indexed_attr value="network_operator"/>
     </index>
+    <index name="sampling_begin" meta_type="DateIndex">
+        <indexed_attr value="sampling_begin"/>
+    </index>
 </object>

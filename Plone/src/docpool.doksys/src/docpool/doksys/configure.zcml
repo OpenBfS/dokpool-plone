@@ -43,7 +43,10 @@
     />
 
     <!-- -*- extra stuff goes here -*- -->
-    <permission id="docpool.doksys.AccessDoksys" title="Docpool: Access Doksys Content"/>
+
+    <include package=".vocabularies" />
+
+            <permission id="docpool.doksys.AccessDoksys" title="Docpool: Access Doksys Content"/>
     <include package=".behaviors"/>
     <include file="skins.zcml"/>
 
@@ -51,4 +54,7 @@
             factory=".indexer.network_operator_indexer"
             name="network_operator"/>
 
+    <adapter
+            factory=".indexer.sampling_begin_indexer"
+            name="sampling_begin"/>
 </configure>
