@@ -35,9 +35,6 @@ from zope.component import adapter
 from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
 from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.utils import parent
-import random
-from elan.policy.chomsky import chomsky
-from loremipsum import get_paragraphs
 from zope.event import notify
 from docpool.base.events import DocumentPoolInitializedEvent,\
     DocumentPoolRemovedEvent
@@ -135,16 +132,6 @@ class DocumentPool(Container):
             return [ dt.getId for dt in res ]
         else:
             return [ (dt.getId, dt.Title) for dt in res ]
-        
-    def correctAllDocTypes(self):
-        """
-        """
-        # Correct references
-        mpath = self.dpSearchPath()
-        from docpool.base.utils import queryForObjects
-        ecs = queryForObjects(self, path=mpath, portal_type="ELANDocCollection")
-        for ec in ecs:
-            ec.getObject().correctDocTypes() 
 
     def dpSearchPath(self):
         """

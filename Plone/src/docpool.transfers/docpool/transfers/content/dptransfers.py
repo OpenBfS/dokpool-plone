@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: elantransfers.py
+# File: dptransfers.py
 #
 # Copyright (c) 2016 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
@@ -10,7 +10,7 @@
 __author__ = ''
 __docformat__ = 'plaintext'
 
-"""Definition of the ELANTransfers content type. See elantransfers.py for more
+"""Definition of the DPTransfers content type. See dptransfers.py for more
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
@@ -32,11 +32,11 @@ from Products.CMFCore.utils import getToolByName
 ##code-section imports
 ##/code-section imports
 
-from elan.esd.config import PROJECTNAME
+from docpool.transfers.config import PROJECTNAME
 
-from elan.esd import DocpoolMessageFactory as _
+from docpool.transfers import DocpoolMessageFactory as _
 
-class IELANTransfers(form.Schema):
+class IDPTransfers(form.Schema):
     """
     """
 
@@ -44,17 +44,17 @@ class IELANTransfers(form.Schema):
 ##/code-section interface
 
 
-class ELANTransfers(Container):
+class DPTransfers(Container):
     """
     """
     security = ClassSecurityInfo()
     
-    implements(IELANTransfers)
+    implements(IDPTransfers)
     
 ##code-section methods
 ##/code-section methods 
 
-    def myELANTransfers(self):
+    def myDPTransfers(self):
         """
         """
         return self
@@ -73,13 +73,15 @@ class ELANTransfers(Container):
         """
         return [obj.getObject() for obj in self.getFolderContents()]
 
-    def getELANTransferFolders(self, **kwargs):
+    def getDPTransferFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'ELANTransferFolder'}
+        args = {'portal_type':'DPTransferFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 
 
 ##code-section bottom
+class ELANTransfers(DPTransfers):
+    pass
 ##/code-section bottom

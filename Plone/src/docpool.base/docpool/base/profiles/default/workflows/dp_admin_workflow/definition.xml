@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="dp_admin_workflow" title="DP Admin Workflow" description="" state_variable="review_state" initial_state="published" manager_bypass="False">
  <permission>Access contents information</permission>
- <permission>Change portal events</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <state state_id="published" title="Published">
@@ -9,13 +8,6 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>
-   <permission-role>Owner</permission-role>
-   <permission-role>ContentAdmin</permission-role>
-   <permission-role>Site Administrator</permission-role>
-   <permission-role>DocPoolAdmin</permission-role>
-  </permission-map>
-  <permission-map name="Change portal events" acquired="False">
-   <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>ContentAdmin</permission-role>
    <permission-role>Site Administrator</permission-role>

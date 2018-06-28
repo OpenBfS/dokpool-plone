@@ -31,6 +31,7 @@ from elan.esd.utils import getScenariosForCurrentUser
 from docpool.base.utils import deleteMemberFolders
 from docpool.base.browser.dpdocument import DPDocumentView,\
     DPDocumentlistitemView, DPDocumentinlineView, DPDocumentprintView
+from docpool.base.content.simplefolder import SimpleFolder
 
 logger = logging.getLogger('plone.app.controlpanel')
 
@@ -187,7 +188,19 @@ def createTestData(self, count=100, prune=False):
 
 if not hasattr(DocumentPool, "createTestData"):
     DocumentPool.createTestData = createTestData
-    
+
+
+def getUserSelectedScenarios(self):
+    """
+    """
+    # FIXME
+    from elan.esd.utils import getScenariosForCurrentUser
+    usc = getScenariosForCurrentUser(self)
+    return usc
+
+# The folder needs an extension to determine the currently selected scenario.
+if not hasattr(SimpleFolder, "getUserSelectedScenarios"):
+    SimpleFolder.getUserSelectedScenarios = getUserSelectedScenarios
 
 def elanobject(self):
     return self.context.doc_extension(ELAN_APP)

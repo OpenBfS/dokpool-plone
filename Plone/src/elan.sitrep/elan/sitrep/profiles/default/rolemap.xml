@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="Docpool: Add SituationOverview" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRCollection" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRScenario" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRPhase" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRModuleConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRTextBlocks" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRTextBlock" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRModuleTypes" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="Docpool: Add SRModuleType" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="Docpool: Add SRCollections" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SRFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Owner"/>
+    </permission>
+    <permission name="Docpool: Add SRModule" acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add SituationReport" acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+    </permission>
+  </permissions>
+</rolemap>

@@ -70,7 +70,7 @@ a.commentator {
 }
 
 .subsection-Transfers.userrole-manager #formfield-form-widgets-IDublinCore-title,
-.subsection-Transfers.portaltype-elantransfers #formfield-form-widgets-IDublinCore-title,
+.subsection-Transfers.portaltype-dptransfers #formfield-form-widgets-IDublinCore-title,
 .subsection-Transfers.userrole-manager #formfield-form-widgets-IDublinCore-description,
 .subsection-Transfers.userrole-manager #formfield-form-widgets-docType,
 .subsection-Transfers.userrole-manager #formfield-form-widgets-text,
@@ -358,13 +358,13 @@ table.scenarios {
     display: none;
 }
 
-.portaltype-elantransferfolder #selectall,
-.portaltype-elantransferfolder th.id,  
-.portaltype-elantransferfolder td.id, 
-.portaltype-elantransferfolder #import,  
-.portaltype-elantransferfolder #export, 
-.portaltype-elantransferfolder #deletebutton,
-.portaltype-elantransferfolder #createbutton {
+.portaltype-dptransferfolder #selectall,
+.portaltype-dptransferfolder th.id,
+.portaltype-dptransferfolder td.id,
+.portaltype-dptransferfolder #import,
+.portaltype-dptransferfolder #export,
+.portaltype-dptransferfolder #deletebutton,
+.portaltype-dptransferfolder #createbutton {
 
     display: none;
 }

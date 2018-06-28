@@ -44,9 +44,7 @@ setup(
     install_requires=[
         'plone.api',
         'setuptools',
-        'z3c.jbot',
-        'docpool.elan',
-        'docpool.transfers'
+        'z3c.jbot'
     ],
     extras_require={
         'test': [

@@ -29,6 +29,7 @@ setup(name='docpool.base',
       install_requires=[
           # -*- Extra requirements: -*-
           'setuptools',
+          'Products.CMFPlacefulWorkflow',
           'plone.app.dexterity [relations, grok]',
           'collective.autopermission',
           'plone.namedfile [blobs]',

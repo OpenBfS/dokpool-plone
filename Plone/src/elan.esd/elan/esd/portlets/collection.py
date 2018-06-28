@@ -19,7 +19,7 @@ from elan.esd import DocpoolMessageFactory as _
 ##code-section imports
 from zope import schema
 from z3c.relationfield.schema import RelationChoice
-from zope.formlib import form
+from z3c.form import field
 from plone.directives import form as pdform
 from five import grok
 from zope.schema.interfaces import IContextSourceBinder
@@ -123,7 +123,7 @@ class Renderer(base.Renderer):
  
 ##code-section forms    
 class AddForm(base.AddForm):
-    form_fields = form.Fields(ICollectionPortlet)
+    form_fields = field.Fields(ICollectionPortlet)
     label = _(u"Add Collection Portlet")
     description = _(u"This portlet displays recently modified content from a collection.")
 
@@ -132,7 +132,7 @@ class AddForm(base.AddForm):
 
 
 class EditForm(base.EditForm):
-    form_fields = form.Fields(ICollectionPortlet)
+    form_fields = field.Fields(ICollectionPortlet)
     label = _(u"Edit Collection Portlet")
     description = _(u"This portlet displays recently modified content from a collection.")
 ##/code-section forms

@@ -4,7 +4,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
-from elan.esd import DocpoolMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getDocumentPoolSite
@@ -94,7 +94,11 @@ class DocumentTypesVocabulary(object):
             return SimpleVocabulary([])
 
         items = [ (t.Title, t.id ) for t in cat({"portal_type": "DocType", "path":path})]
-        items.extend([('active', 'active'), ('inactive','inactive'), ('closed','closed')])
+        items.extend([
+            ('infodoc', 'infodoc'),
+            ('active', 'active'),
+            ('inactive','inactive'),
+            ('closed','closed')])
         items.sort()
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)

@@ -54,31 +54,10 @@
    
    
    <permission id="elan.esd.AddIRIXConfig" title="Docpool: Add IRIXConfig" />   
-   
-   
-   <permission id="elan.esd.AddELANTransferFolder" title="Docpool: Add ELANTransferFolder" />   
-   
-   
-   <permission id="elan.esd.AddELANTransfers" title="Docpool: Add ELANTransfers" />   
-   
+
 
 <!-- ##code-section Main -->
-   <permission id="elan.esd.SendContent" title="Docpool: Send Content" />
-   <permission id="elan.esd.ReceiveContent" title="Docpool: Receive Content" />
 
-  <utility
-    component=".vocabularies.PermissionsVocabularyFactory"
-    name="elan.esd.vocabularies.Permissions"
-    />
-  <utility
-    component=".vocabularies.UnknownOptionsVocabularyFactory"
-    name="elan.esd.vocabularies.UnknownOptions"
-    />
-  <utility
-    component=".vocabularies.DTPermOptionsVocabularyFactory"
-    name="elan.esd.vocabularies.DTPermOptions"
-    />
-  
   <utility
     component=".vocabularies.CategoriesVocabularyFactory"
     name="elan.esd.vocabularies.Categories" />
@@ -99,8 +78,6 @@
     component=".vocabularies.ScenarioSubstituteVocabularyFactory"
     name="elan.esd.vocabularies.ScenarioSubstitutes"
     />
-  
-   <adapter factory=".db.security.ChannelSecurity"/>    
 
     <include package=".behaviors" />	
 	 

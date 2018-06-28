@@ -2,8 +2,8 @@
 title = Transfer
 
 [actions]
-action.success..submit = traverse_to:string:transferELANDocument
+action.success..submit = traverse_to:string:transferDPDocument
 action.success..cancel = redirect_to:python:'%s' % object.absolute_url()
-action.success = traverse_to:string:transferELANDocument
+action.success = traverse_to:string:transferDPDocument
 action.failure..submit = traverse_to:string:dpdocument_transfer_form
 action.failure = traverse_to:string:dpdocument_transfer_form

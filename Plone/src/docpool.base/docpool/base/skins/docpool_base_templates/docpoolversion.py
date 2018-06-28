@@ -1,4 +1,4 @@
-## Script (Python) "elanversion.py"
+## Script (Python) "docpoolversion.py"
 ##bind container=container
 ##bind context=context
 ##bind namespace=

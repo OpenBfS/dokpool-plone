@@ -38,7 +38,7 @@ def queryForObjects(self, **kwa):
     
 def getAllowedDocumentTypes(self):
     """
-    Determine the ELAN document types allowed for the current user in the current context
+    Determine the document types allowed for the current user in the current context
     """
     # if in a group folder, only allow the types for this group
     isGF = self.isGroupFolder()
@@ -127,7 +127,7 @@ def getUserInfo(self, username=None):
         fullname = userid
     primary_group = None
     #if len(groups) > 0:
-    #    # Normal ELAN user with at least one group
+    #    # Normal user with at least one group
     #    primary_group = groups[0]['title']
     if self.isInGroupFolder():
         # determine the group

@@ -58,6 +58,8 @@
 
     <browser:page permission="zope2.View" name="inline" for="..interfaces.IDPDocument"
                   class=".dpdocument.DPDocumentinlineView"/>
+
+
     <browser:page permission="zope2.View" name="print" for="..interfaces.IDPDocument"
                   class=".dpdocument.DPDocumentprintView"/>
 

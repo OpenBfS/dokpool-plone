@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<site>
+ <property name="title">DokPool</property>
+ <property name="description">Dokumente für den Notfallschutz</property>
+ <property name="selectable_views" type="lines">
+  <element value="folder_listing"/>
+  <element value="news_listing"/>
+ </property>
+ <property name="email_from_address" type="string">kprobst@bfs.de</property>
+ <property name="email_from_name" type="string">DokPool BfS</property>
+ <property name="validate_email" type="boolean">True</property>
+ <property name="email_charset" type="string">utf-8</property>
+ <property name="enable_permalink" type="boolean">False</property>
+</site>

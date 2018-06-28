@@ -5,6 +5,7 @@
         <dependency>profile-docpool.base:default</dependency>
         <dependency>profile-docpool.transfers:default</dependency>
         <dependency>profile-elan.esd:default</dependency>
+        <dependency>profile-elan.sitrep:default</dependency>
     <!-- ##code-section Dependencies -->
     
     <!-- ##/code-section Dependencies -->

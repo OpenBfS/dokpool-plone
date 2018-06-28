@@ -7,7 +7,6 @@ from elan.esd import config
 
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore.permissions import setDefaultRoles
 
 from AccessControl import allow_class
 
@@ -55,8 +54,7 @@ DocpoolMessageFactory = MessageFactory('elan.esd')
 allow_class(DocpoolMessageFactory)
 
 ##code-section security
-import monkey
-##/code-section security 
+##/code-section security
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.
@@ -78,8 +76,6 @@ def initialize(context):
     # course, even if we import the module several times, it is only run
     # once!
 
-    from content import elaninfos, elandoccollection, elanscenario, elanarchive, elancurrentsituation, elansection, elancontentconfig, elanscenarios, elanarchives, irixconfig, elantransferfolder, elantransfers    
-        
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),
         config.PROJECTNAME)

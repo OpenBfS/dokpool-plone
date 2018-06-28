@@ -39,7 +39,7 @@ if not hasattr(ConversationView, "original_enabled"):
 
 def getURL(self, relative=0, original=False):
     """
-    Patched so we can provide special URLs for ELAN documents in listings such as livesearch.
+    Patched so we can provide special URLs for documents in listings such as livesearch.
     Also we make sure that sections don't get an URL, so they are not linked to in the navigation.
     """
     request = aq_get(self, 'REQUEST', None)
@@ -53,10 +53,7 @@ def getURL(self, relative=0, original=False):
         else:
             pass
             # print "no cat_path"
-    # The following leads to errors in the folder_contents view of esd.
-    #if (not original) and self.portal_type == "ELANSection":
-    #    return None
-    
+
     # This is the normal implementation
     return request.physicalPathToURL(self.getPath(), relative)
 
