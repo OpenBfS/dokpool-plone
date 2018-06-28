@@ -1,0 +1,4 @@
+graft src/docpool
+graft docs
+include *.rst
+global-exclude *.pyc

@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.doksys2">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="docpool.doksys2.interfaces.IDocpoolDoksys2Layer"
+      />
+
+  <!-- Publish static files -->
+  <plone:static
+      name="docpool.doksys2"
+      type="plone"
+      directory="static"
+      />
+
+</configure>

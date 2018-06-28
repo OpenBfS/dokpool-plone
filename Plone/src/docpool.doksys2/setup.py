@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Installer for the docpool.doksys package."""
+"""Installer for the docpool.doksys2 package."""
 
 from setuptools import find_packages
 from setuptools import setup
@@ -13,9 +13,9 @@ long_description = '\n\n'.join([
 
 
 setup(
-    name='docpool.doksys',
+    name='docpool.doksys2',
     version='1.0a1',
-    description="The DokSys product for docpool.",
+    description="An add-on for Plone",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -31,18 +31,19 @@ setup(
     keywords='Python Plone',
     author='Henning Rietz',
     author_email='hr@condat.de',
-    url='https://pypi.python.org/pypi/docpool.doksys',
+    url='https://pypi.python.org/pypi/docpool.doksys2',
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
-    package_dir={'': 'src'},
     namespace_packages=['docpool'],
+    package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         # -*- Extra requirements: -*-
+        'plone.api>=1.8.4',
+        'Products.GenericSetup>=1.8.2',
         'setuptools',
         'z3c.jbot',
-        'eea.facetednavigation'
     ],
     extras_require={
         'test': [
