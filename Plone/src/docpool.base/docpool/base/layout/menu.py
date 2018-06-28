@@ -6,13 +6,13 @@ from plone.app.contentmenu.menu import FactoriesMenu
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 
-class ELANFactoriesMenu(FactoriesMenu):
+class DPFactoriesMenu(FactoriesMenu):
     """ Overrides display menu
     """
     def getMenuItems(self, obj, request):
         """ Safely get menu items
         """
-        menu_items = super(ELANFactoriesMenu, self).getMenuItems(obj, request)
+        menu_items = super(DPFactoriesMenu, self).getMenuItems(obj, request)
         if hasattr(obj, "customMenu"):
             return obj.customMenu(menu_items)
         else:

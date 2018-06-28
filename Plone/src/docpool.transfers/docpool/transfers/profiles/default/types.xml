@@ -11,5 +11,7 @@
 <!-- ##code-section Main -->
      <object name="DPDocument" meta_type="Dexterity FTI" />
      <object name="DocType" meta_type="Dexterity FTI" />
-<!-- ##/code-section Main -->  
+     <object name="DPTransferFolder" meta_type="Dexterity FTI" />
+     <object name="DPTransfers" meta_type="Dexterity FTI" />
+<!-- ##/code-section Main -->
 </object>

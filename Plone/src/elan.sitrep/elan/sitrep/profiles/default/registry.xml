@@ -1,5 +1,18 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="elan.sitrep">
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>SRConfig</element>
+      <element>SRScenario</element>
+      <element>SRPhase</element>
+      <element>SRModuleConfig</element>
+      <element>SRModuleTypes</element>
+      <element>SRCollections</element>
+      <element>SRTextBlocks</element>
+      <element>SituationOverview</element>
+      <element>SRFolder</element>
+    </value>
+  </record>
   <records prefix="plone.resources/elan-sitrep"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js"></value>

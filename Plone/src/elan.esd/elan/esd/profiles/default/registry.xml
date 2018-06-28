@@ -1,5 +1,19 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="elan.esd">
+
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>ELANSection</element>
+      <element>ELANCurrentSituation</element>
+      <element>ELANArchive</element>
+      <element>ELANArchives</element>
+      <element>ELANInfos</element>
+      <element>ELANDocCollection</element>
+      <element>ELANContentConfig</element>
+      <element>ELANScenarios</element>
+    </value>
+  </record>
+
   <record field="description" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.dp_type.description">
     <field type="plone.registry.field.Text">
       <title>Description</title>

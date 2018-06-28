@@ -6,6 +6,10 @@
      
 
 <!-- ##code-section Main -->
+  <grok:grok package="." />
+  <subscriber handler=".dptransferfolder.created" />
+  <subscriber handler=".dptransferfolder.updated" />
+  <subscriber handler=".dptransferfolder.deleted" />
 <!-- ##/code-section Main -->
     
 </configure>

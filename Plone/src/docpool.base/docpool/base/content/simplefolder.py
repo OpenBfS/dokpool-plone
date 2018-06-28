@@ -95,14 +95,6 @@ class SimpleFolder(Container, FolderBase):
                 res.append(menu_item)
         return res
 
-    def getUserSelectedScenarios(self):
-        """
-        """
-        # FIXME
-        from elan.esd.utils import getScenariosForCurrentUser
-        usc = getScenariosForCurrentUser(self)
-        return usc
-
     def isPrincipalFolder(self):
         """
         """

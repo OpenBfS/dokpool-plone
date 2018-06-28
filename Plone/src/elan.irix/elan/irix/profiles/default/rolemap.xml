@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="Docpool: Add IRIXConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add IRIXReport" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+  </permissions>
+</rolemap>

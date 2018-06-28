@@ -1,4 +1,4 @@
-## Controller Python Script "createELANObject"
+## Controller Python Script "createDPObject"
 ##bind container=container
 ##bind context=context
 ##bind namespace=

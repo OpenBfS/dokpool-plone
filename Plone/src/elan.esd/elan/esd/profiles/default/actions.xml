@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="user" meta_type="CMF Action Category">
+  <object name="edit_scenarios" meta_type="CMF Action" i18n:domain="docpool.policy">
+   <property name="title" i18n:translate="">Edit Scenarios</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isContentAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="edit_scenarios" meta_type="CMF Action" i18n:domain="docpool.policy">
+   <property name="title" i18n:translate="">Add New Scenario</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++ELANScenario</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isContentAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="edit_ticker" meta_type="CMF Action" i18n:domain="docpool.policy">
+   <property name="title" i18n:translate="">Edit Ticker</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/ticker/edit</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isContentAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="delete_ticker" meta_type="CMF Action" i18n:domain="docpool.policy">
+   <property name="title" i18n:translate="">Delete Ticker</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/ticker/deleteTicker</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isContentAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="create_archive_folder" meta_type="CMF Action" i18n:domain="docpool.policy">
+   <property name="title" i18n:translate="">Create Archive Folder</property>
+   <property name="url_expr">string:${context/dp_url}/archive/++add++Folder</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="object_buttons" meta_type="CMF Action Category">
+  <object name="snapshot" meta_type="CMF Action" i18n:domain="elan.esd">
+   <property name="title" i18n:translate="">Snapshot</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${object/absolute_url}/snapshot</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.status != 'closed' and (here.isAdmin() or here.isContentAdmin())</property>
+   <property name="permissions" />
+   <property name="visible">True</property>
+  </object>
+  <object name="purge" meta_type="CMF Action" i18n:domain="elan.esd">
+   <property name="title" i18n:translate="">Purge</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:javascript: if (confirm('${object/purgeConfirmMsg}')) window.location.href='${object/absolute_url}/purge'</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
+   <property name="permissions" />
+   <property name="visible">True</property>
+  </object>
+  <object name="archive" meta_type="CMF Action" i18n:domain="elan.esd">
+   <property name="title" i18n:translate="">Archiving</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:javascript: if (confirm('${object/archiveConfirmMsg}')) window.location.href='${object/absolute_url}/archiveAndClose'</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
+   <property name="permissions" />
+   <property name="visible">True</property>
+  </object>
+ </object>
+</object>

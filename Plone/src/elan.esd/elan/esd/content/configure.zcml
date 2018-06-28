@@ -32,9 +32,6 @@
   <subscriber handler=".elanscenario.scenarioChanged" />
   <subscriber handler=".elanscenario.scenarioPublished" />
   <subscriber handler=".elaninfos.infosAdded" />
-  <subscriber handler=".elantransferfolder.created" />
-  <subscriber handler=".elantransferfolder.updated" />
-  <subscriber handler=".elantransferfolder.deleted" />
   <class class=".elanarchive.ELANArchive">
       <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
       <implements interface="plone.app.content.interfaces.INameFromTitle" />

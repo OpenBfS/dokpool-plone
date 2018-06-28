@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="elan.esd" name="ELANTransferFolder">
+<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="elan.esd" name="DPTransferFolder">
 
  <!-- Basic metadata -->    
  <property name="title" i18n:translate="">Transfer Folder</property>
@@ -28,13 +28,13 @@
      
  </property>
  <!-- schema interface -->
- <property name="schema">elan.esd.content.elantransferfolder.IELANTransferFolder</property>
+ <property name="schema">docpool.transfers.content.dptransferfolder.IDPTransferFolder</property>
 
  <!-- class used for content items -->
- <property name="klass">elan.esd.content.elantransferfolder.ELANTransferFolder</property>
+ <property name="klass">docpool.transfers.content.dptransferfolder.DPTransferFolder</property>
 
  <!-- add permission -->
- <property name="add_permission">elan.esd.AddELANTransferFolder</property>
+ <property name="add_permission">docpool.transfers.AddDPTransferFolder</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">

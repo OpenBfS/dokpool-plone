@@ -36,14 +36,7 @@
      <object name="ELANArchives" meta_type="Dexterity FTI" />    
      
      
-     <object name="IRIXConfig" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="ELANTransferFolder" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="ELANTransfers" meta_type="Dexterity FTI" />    
-       
+     <object name="IRIXConfig" meta_type="Dexterity FTI" />
       
 <!-- ##code-section Main -->
         <object meta_type="Dexterity FTI" name="Topic" />   

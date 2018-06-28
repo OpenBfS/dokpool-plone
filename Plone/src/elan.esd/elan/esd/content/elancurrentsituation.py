@@ -56,6 +56,16 @@ class ELANCurrentSituation(Container):
 ##code-section methods
     APP = ELAN_APP
 
+    def correctAllDocTypes(self):
+        """
+        """
+        # Correct references
+        mpath = self.dpSearchPath()
+        from docpool.base.utils import queryForObjects
+        ecs = queryForObjects(self, path=mpath, portal_type="ELANDocCollection")
+        for ec in ecs:
+            ec.getObject().correctDocTypes()
+
 ##/code-section methods 
 
     def myELANCurrentSituation(self):

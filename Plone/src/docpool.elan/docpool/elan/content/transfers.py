@@ -1,35 +1,10 @@
 # -*- coding: utf-8 -*-
 from docpool.base.utils import queryForObject, _copyPaste
 from docpool.elan.config import ELAN_APP
-from elan.esd.db.model import Channel, ChannelPermissions
-from docpool.dbaccess.dbinit import __session__
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
-from plone import api
+from elan.esd.utils import getOpenScenarios
 
-def determineChannels(transfer_ids):
-    channels = __session__.query(Channel).filter(Channel.id.in_(transfer_ids)).all()
-    return channels
-
-def determineTransferFolderObject(self, channel):
-    uid = channel.tf_uid
-    return queryForObject(self, UID=uid)
-
-def ensureDocTypeInTarget(original, copy):
-    my_dt = original.docType
-    config = copy.myDocumentPool().config.dtypes
-    if config.hasObject(my_dt):
-        return
-    dtObj = original.docTypeObj()
-    id = _copyPaste(dtObj,config)
-    new_dt = config._getOb(id)
-    new_dt.doc_extension(ELAN_APP).setCCategory('recent') # Set intermediate category
-    wftool = getToolByName(original, 'portal_workflow')
-    wftool.doActionFor(new_dt, 'retract')
-    new_dt.reindexObject()
-    new_dt.reindexObjectSecurity()
-    config.reindexObject()
-    
 def ensureScenariosInTarget(original, copy):
     my_scenarios = original.doc_extension(ELAN_APP).scenarios
     scen_source = original.myDocumentPool().contentconfig.scen
@@ -60,4 +35,12 @@ def ensureScenariosInTarget(original, copy):
     except Exception, e:
         log_exc(e)
     copy.reindexObject()
+
+def knowsScen(transfer_folder, scen_id):
+    """
+    Do I know this scenario?
+    """
+    scens = getOpenScenarios(transfer_folder)
+    scen_ids = [scen.getId for scen in scens]
+    return scen_id in scen_ids
 

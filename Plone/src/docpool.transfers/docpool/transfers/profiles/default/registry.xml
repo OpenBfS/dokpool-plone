@@ -1,0 +1,11 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="elan.esd">
+
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>DPTransfers</element>
+      <element>DPTransferFolder</element>
+    </value>
+  </record>
+  
+</registry>

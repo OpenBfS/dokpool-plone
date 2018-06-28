@@ -19,7 +19,7 @@
           return name[1];
     }
 
-	myDynTimer = setInterval ( loadDyn, 60000 );
+	var myDynTimer = setInterval ( loadDyn, 60000 );
 	$('.documentByLine a').removeAttr('href').addClass('commentator');
 	var type = $('#form-widgets-docType')
 	if ((type[0] != null) && (type[0].selectedIndex != null)) {

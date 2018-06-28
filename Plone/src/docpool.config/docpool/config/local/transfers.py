@@ -18,7 +18,7 @@ def dpAdded(self):
     setTransfersLocalRoles(self)
 
 TRANSFER_AREA = [
-    {TYPE: 'ELANTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []},
+    {TYPE: 'DPTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []},
 ]
 
 def setTransfersLocalRoles(self):

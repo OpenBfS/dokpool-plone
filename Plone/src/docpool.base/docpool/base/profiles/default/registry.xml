@@ -1,5 +1,26 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.base">
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>Folder</element>
+    </value>
+  </record>
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>InfoFolder</element>
+      <element>DPConfig</element>
+      <element>DocTypes</element>
+      <element>DocumentPool</element>
+      <element>CollaborationFolder</element>
+      <element>ReviewFolder</element>
+      <element>PrivateFolder</element>
+      <element>Groups</element>
+      <element>GroupFolder</element>
+      <element>UserFolder</element>
+      <element>InfoFolder</element>
+      <element>SimpleFolder</element>
+    </value>
+  </record>
   <record name="plone.image_objects" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="image_objects">
     <value>
       <element>Image</element>

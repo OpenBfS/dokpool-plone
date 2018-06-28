@@ -1,4 +1,4 @@
-<tal:block i18n:domain="elan.esd">
+<tal:block i18n:domain="docpool.base">
 <tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <tal:def define="dummy python:request.set('ajax_load',1);
                  dummy python:request.set('ajax_include_head',1);">
@@ -8,7 +8,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="elan.esd">
+      i18n:domain="docpool.base">
 
 <head>
   <metal:block metal:fill-slot="head_slot">
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-
+  <!-- TODO ELAN -->
   <div id="content-core" metal:fill-slot="main">
     <tal:if condition="python:context.isOverview()">
     <h3 style="float: right;margin-right:2em;" tal:condition="here/isArchive"><i18n:var translate=""> Archive</i18n:var> <tal:var define="a_obj here/myELANArchive|nothing" replace="python:a_obj and a_obj.Title() or ''"/></h3>

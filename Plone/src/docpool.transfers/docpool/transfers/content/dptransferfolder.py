@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: elantransferfolder.py
+# File: dptransferfolder.py
 #
 # Copyright (c) 2016 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
@@ -10,7 +10,7 @@
 __author__ = ''
 __docformat__ = 'plaintext'
 
-"""Definition of the ELANTransferFolder content type. See elantransferfolder.py for more
+"""Definition of the DPTransferFolder content type. See dptransferfolder.py for more
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
@@ -33,7 +33,6 @@ from Products.CMFCore.utils import getToolByName
 ##code-section imports
 from zope.interface import Interface
 from zope.schema.interfaces import IContextSourceBinder
-from elan.esd.utils import getOpenScenarios
 from docpool.base.utils import execute_under_special_role, queryForObject, getDocumentPoolSite
 from zope.component.hooks import getSite
 from zope.component import adapter
@@ -44,33 +43,21 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectRemovedEvent
 from plone.dexterity.interfaces import IEditFinishedEvent
 from docpool.dbaccess.dbinit import __metadata__, __session__
-from elan.esd.db.model import Channel, DocTypePermission, ChannelPermissions
+from docpool.transfers.db.model import Channel, DocTypePermission, ChannelPermissions
 
 
-from elan.esd import DocpoolMessageFactory as _
-#class ITypeRowSchema(Interface):
-#    dt = schema.TextLine(title=u"Document Type",
-#                         required=True,
-#                         )
-#    perm = schema.Choice(
-#                        title=_(u'label_elantransferfolder_perm', default=u'Permission'),
-#                        description=_(u'description_elantransferfolder_perm', default=u''),
-#                        required=True,
-#                        default="publish",
-#                        source="elan.esd.vocabularies.DTPermOptions")
-##/code-section imports 
+from docpool.transfers import DocpoolMessageFactory as _
+##/code-section imports
 
-from elan.esd.config import PROJECTNAME
+from docpool.transfers.config import PROJECTNAME
 
-from elan.esd import DocpoolMessageFactory as _
-
-class IELANTransferFolder(form.Schema, IFolderBase):
+class IDPTransferFolder(form.Schema, IFolderBase):
     """
     """
         
     sendingESD = schema.Choice(
-                        title=_(u'label_elantransferfolder_sendingesd', default=u'The organisation sending content via this transfer folder'),
-                        description=_(u'description_elantransferfolder_sendingesd', default=u''),
+                        title=_(u'label_dptransferfolder_sendingesd', default=u'The organisation sending content via this transfer folder'),
+                        description=_(u'description_dptransferfolder_sendingesd', default=u''),
                         required=True,
 ##code-section field_sendingESD
                         source = "docpool.base.vocabularies.DocumentPools",
@@ -79,34 +66,34 @@ class IELANTransferFolder(form.Schema, IFolderBase):
     
         
     permLevel = schema.Choice(
-                        title=_(u'label_elantransferfolder_permlevel', default=u'Permission level'),
-                        description=_(u'description_elantransferfolder_permlevel', default=u''),
+                        title=_(u'label_dptransferfolder_permlevel', default=u'Permission level'),
+                        description=_(u'description_dptransferfolder_permlevel', default=u''),
                         required=True,
                         default="read/write",
 ##code-section field_permLevel
-                        source="elan.esd.vocabularies.Permissions"
+                        source="docpool.transfers.vocabularies.Permissions"
 ##/code-section field_permLevel                           
     )
     
         
     unknownDtDefault = schema.Choice(
-                        title=_(u'label_elantransferfolder_unknowndtdefault', default=u'Default for unknown document types'),
-                        description=_(u'description_elantransferfolder_unknowndtdefault', default=u''),
+                        title=_(u'label_dptransferfolder_unknowndtdefault', default=u'Default for unknown document types'),
+                        description=_(u'description_dptransferfolder_unknowndtdefault', default=u''),
                         required=True,
                         default="block",
 ##code-section field_unknownDtDefault
-                        source="elan.esd.vocabularies.UnknownOptions"
+                        source="docpool.transfers.vocabularies.UnknownOptions"
 ##/code-section field_unknownDtDefault                           
     )
     
         
     unknownScenDefault = schema.Choice(
-                        title=_(u'label_elantransferfolder_unknownscendefault', default=u'Default for unknown scenarios'),
-                        description=_(u'description_elantransferfolder_unknownscendefault', default=u''),
+                        title=_(u'label_dptransferfolder_unknownscendefault', default=u'Default for unknown scenarios'),
+                        description=_(u'description_dptransferfolder_unknownscendefault', default=u''),
                         required=True,
                         default="block",
 ##code-section field_unknownScenDefault
-                        source="elan.esd.vocabularies.UnknownOptions"
+                        source="docpool.transfers.vocabularies.UnknownOptions"
 ##/code-section field_unknownScenDefault                           
     )
     
@@ -116,12 +103,12 @@ class IELANTransferFolder(form.Schema, IFolderBase):
 ##/code-section interface
 
 
-class ELANTransferFolder(Container, FolderBase):
+class DPTransferFolder(Container, FolderBase):
     """
     """
     security = ClassSecurityInfo()
     
-    implements(IELANTransferFolder)
+    implements(IDPTransferFolder)
     
 ##code-section methods
     def acceptsDT(self, dt_id):
@@ -137,15 +124,6 @@ class ELANTransferFolder(Container, FolderBase):
                 return False
         else:
             return False
-    
-    def knowsScen(self, scen_id):
-        """
-        Do I know this scenario?
-        """
-        scens = getOpenScenarios(self)
-        scen_ids = [ scen.getId for scen in scens ]
-        return scen_id in scen_ids
-        
 
     def getMatchingDocumentTypes(self, ids_only=True):
         """
@@ -246,7 +224,7 @@ class ELANTransferFolder(Container, FolderBase):
         return "archive" in self.getPhysicalPath()        
 ##/code-section methods 
 
-    def myELANTransferFolder(self):
+    def myDPTransferFolder(self):
         """
         """
         return self
@@ -324,7 +302,7 @@ def setupChannel(obj, delete=False):
         c = old
     return c
 
-@adapter(IELANTransferFolder, IObjectAddedEvent)
+@adapter(IDPTransferFolder, IObjectAddedEvent)
 def created(obj, event=None):
     # Initialize all channel settings in the database.
     # For all document types shared between the two ESDs
@@ -339,7 +317,7 @@ def created(obj, event=None):
         if obj.permLevel == 'read/write':
             obj.grantReadAccess()
 
-@adapter(IELANTransferFolder, IEditFinishedEvent)
+@adapter(IDPTransferFolder, IEditFinishedEvent)
 def updated(obj, event=None):
     # Actually, a transfer folder should never allow a change of ESD.
     # But the permission level could have been changed. So we adapt
@@ -354,7 +332,7 @@ def updated(obj, event=None):
         else:
             obj.revokeReadAccess()
 
-@adapter(IELANTransferFolder, IObjectRemovedEvent)
+@adapter(IDPTransferFolder, IObjectRemovedEvent)
 def deleted(obj, event=None):
     # Delete all channel settings from the database.
     log("TransferFolder deleted: %s" % str(obj))
@@ -371,5 +349,7 @@ def deleted(obj, event=None):
             __session__.flush()    
         # Revoke any read access
         obj.revokeReadAccess()
-    
+
+class ELANTransferFolder(DPTransferFolder):
+    pass
 ##/code-section bottom 
