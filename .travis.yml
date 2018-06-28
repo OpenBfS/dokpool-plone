@@ -5,13 +5,14 @@ python:
 #  - "3.6"
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev cython libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales libncurses-dev python-docutils libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config python-sphinx graphviz
+  - sudo apt-get install -y python postgresql-server-dev-9.5 libxml2-dev libxslt-dev libssl-dev cython libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config python-sphinx graphviz
 install:
   - cd Plone
   - mkdir -p buildout-cache/eggs
   - mkdir -p buildout-cache/downloads
   - cp config-template.cfg.tmpl config.cfg
   - pip install --upgrade pip
+  - pip install --upgrade docutils
   - pip install -r requirements.txt
   - buildout bootstrap
 script:
