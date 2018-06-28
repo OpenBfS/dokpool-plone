@@ -11,6 +11,7 @@
 	    class=".browser.usergroups_groupdetails.GroupDetailsControlPanel"
 	    permission="plone.app.controlpanel.UsersAndGroups"
 	    template="browser/usergroups_groupdetails.pt"
+		layer="docpool.users.interfaces.IDocPoolUsersLayer"
 	    />
 
 
