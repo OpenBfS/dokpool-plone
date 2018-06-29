@@ -356,7 +356,12 @@ class ELANScenario(Item, ContentBase):
         from docpool.elan.behaviors.elandocument import IELANDocument
         source_obj = source_brain.getObject()
         # determine parent folder for copy
-        scns = IELANDocument(source_obj).scenarios
+        scns = None
+        try:
+            scns = IELANDocument(source_obj).scenarios
+        except:
+            # Object could have lost its ELAN behavior but that means we can potentially delete it
+            scns = ['dummy']
         if len(scns) == 1: # only the one scenario --> potential delete
             # Check for other applications than ELAN
             apps = ILocalBehaviorSupport(source_obj).local_behaviors
