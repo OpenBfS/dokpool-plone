@@ -1,4 +1,4 @@
-<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+ <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.theme">
   <records prefix="plone.resources/docpool"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
@@ -67,7 +67,7 @@
     <value key="resources">
       <element>docpool-nonadmin</element>
     </value>
-    <value key="expression">python:member and not (member.has_role('Manager') or member.has_role('Site Administrator')) or None</value>
+    <value key="expression">python:member and not (member.has_role('Manager') or member.has_role('Site Administrator')) or not object.isContentAdmin() or None</value>
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="jscompilation"></value>
