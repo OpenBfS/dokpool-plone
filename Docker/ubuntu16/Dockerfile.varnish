@@ -28,7 +28,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN mkdir -p /opt/bfs/dokpool
 ADD . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
-RUN cd /opt/bfs/dokpool/Plone && pip2 install --upgrade pip && pip install -r requirements.txt
+RUN cd /opt/bfs/dokpool/Plone && pip2 install --upgrade pip && pip install --upgrade docutils && pip install -r requirements.txt
 RUN cp config-template.cfg.tmpl config.cfg
 RUN buildout bootstrap && ./bin/buildout -Nvc config.cfg
 
