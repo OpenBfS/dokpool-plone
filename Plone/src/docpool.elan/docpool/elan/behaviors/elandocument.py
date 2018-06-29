@@ -146,17 +146,19 @@ class ELANDocument(FlexibleView):
         """
         Catalog path for the category object. Needed for a patch to the getURL function of brains.
         """
+        #print "cat_path"
         try:
             dto = self.context.docTypeObj()
             if dto:
-                #                print "DTO"
-                #                print dto.Title()
+                #print "DTO"
+                #print dto.Title()
                 cat = IELANDocType(dto).contentCategory
                 if cat:
                     aup = cat.to_path
-                    #                    print aup
+                    #print aup
                     aup = "/".join(aup.split("/")[4:])
                     return aup
+                #print "no cat"
         except:
             return ""
 

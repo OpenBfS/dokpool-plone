@@ -20,10 +20,11 @@
             tal:define="oddrow repeat/obj/odd;
                         item_icon python:getIcon(obj);
                         item_wf_state obj/review_state;
-                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);"
+                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                        obj_url obj/getURL;"
             tal:attributes="class python:oddrow and  'portletItem even' or 'portletItem odd'">
             <a href=""
-               tal:attributes="href string:${obj/dp_url}/esd/${obj/getURL};
+               tal:attributes="href python:obj_url.startswith('http') and obj_url or '%s/esd/%s' % (obj.dp_url(), obj.getURL());
                                title string:${obj/category} (${obj/dp_type_name});
                                class string:$item_wf_state_class tile">
                 <img tal:replace="structure item_icon/html_tag" />

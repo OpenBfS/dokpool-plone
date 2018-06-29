@@ -23,10 +23,11 @@
                         item_icon python:getIcon(obj);
                         item_wf_state obj/review_state;
                         item_wf_state_class python:'state-' + normalizeString(item_wf_state);
-                        item_class python:'contenttype-' + normalizeString(obj.portal_type);"
+                        item_class python:'contenttype-' + normalizeString(obj.portal_type);
+                        obj_url obj/getURL;"
             tal:attributes="class python:oddrow and  'portletItem even' or 'portletItem odd'">
             <a href=""
-                tal:attributes="href string:${obj/dp_url}/esd/${obj/getURL};
+                tal:attributes="href python:obj_url.startswith('http') and obj_url or '%s/esd/%s' % (obj.dp_url(), obj.getURL());
                                 title python:obj.dp_type_name + ' ' + context.cat_convert(obj.category,context.overview.Title(),context.recent.Title());
                                 class string:$item_wf_state_class tile $item_class">
 <!--                 <img tal:replace="structure item_icon/html_tag" /> -->
