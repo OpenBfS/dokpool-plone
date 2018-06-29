@@ -4,4 +4,7 @@
  <property name="view_methods" purge="False">
   <element value="docpool_collection_view"/>
  </property>
+ <property name="behaviors" purge="False">
+     <element value="eea.facetednavigation.subtypes.interfaces.IPossibleFacetedNavigable" />
+ </property>
 </object>

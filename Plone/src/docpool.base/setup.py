@@ -40,7 +40,8 @@ setup(name='docpool.base',
           'plone.app.referenceablebehavior',
           'plone.api','plone.formwidget.querystring','collective.monkeypatcher','Products.CMFPlacefulWorkflow','docpool.users','docpool.localbehavior'
           ##code-section dependencies
-          ,' PyPDF2', 'xhtml2pdf', 'Products.CMFPlacefulWorkflow'
+          ,' PyPDF2', 'xhtml2pdf', 'Products.CMFPlacefulWorkflow', 'eea.facetednavigation'
+
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      

@@ -194,6 +194,7 @@
 
 
             <browser:page permission="zope2.View" name="listitem" for="..interfaces.IFolderBase" class=".folderbase.FolderBaselistitemView" />
+            <browser:page permission="zope2.View" name="listitem" for="plone.app.contenttypes.interfaces.ICollection" class=".collection.CollectionlistitemView" />
 
 
 

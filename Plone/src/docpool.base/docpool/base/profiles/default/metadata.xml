@@ -10,6 +10,7 @@
        <dependency>profile-plone.app.relationfield:default</dependency>
        <dependency>profile-plone.app.contenttypes:default</dependency>
        <dependency>profile-plone.app.contenttypes:plone-content</dependency>   
+       <dependency>profile-eea.facetednavigation:default</dependency>
     <!-- ##/code-section Dependencies -->
     </dependencies>    
     <!-- ##code-section View -->

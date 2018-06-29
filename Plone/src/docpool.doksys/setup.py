@@ -41,8 +41,7 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'z3c.jbot',
-        'eea.facetednavigation'
+        'z3c.jbot'
     ],
     extras_require={
         'test': [

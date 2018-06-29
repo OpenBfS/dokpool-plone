@@ -1,6 +1,8 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from docpool.base.utils import extendOptions
+
 
 class CollectionDocView(BrowserView):
     """Default view
@@ -20,3 +22,15 @@ class CollectionDocView(BrowserView):
                 o = result[0].getObject()
                 return o
         return None
+
+
+class CollectionlistitemView(BrowserView):
+    """Additional View
+    """
+
+    __call__ = ViewPageTemplateFile('collectionlistitem.pt')
+
+    ##code-section methodslistitem
+    def options(self):
+        return extendOptions(self.context, self.request, {})
+    ##/code-section methodslistitem

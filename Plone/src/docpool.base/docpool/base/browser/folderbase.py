@@ -26,6 +26,7 @@ from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
 from Products.CMFCore.utils import getToolByName
 from plone.app.content.browser.interfaces import IFolderContentsView
+from plone.app.contenttypes.interfaces import ICollection
 from zope.interface import implementer
 from plone import api
 from plone.memoize import view
@@ -104,7 +105,7 @@ class FolderBaseView(BrowserView):
         """
         """
         #print "getFolderContents"
-        kwargs["object_provides"] = IFolderBase.__identifier__
+        kwargs["object_provides"] = [IFolderBase.__identifier__,  ICollection.__identifier__]
         res = [ b for b in self.context.getFolderContents(kwargs)]
         # print res
         apps = self.isFilteredBy()

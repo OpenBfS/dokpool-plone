@@ -25,6 +25,9 @@
 
              <element value="Image" />
      
+
+             <element value="Collection" />
+
  </property>
  <!-- schema interface -->
  <property name="schema">docpool.base.content.privatefolder.IPrivateFolder</property>

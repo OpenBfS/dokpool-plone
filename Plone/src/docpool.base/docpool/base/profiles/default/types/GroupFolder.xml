@@ -28,7 +28,9 @@
          
              <element value="DPDocument" />
          
-     
+
+             <element value="Collection" />
+
  </property>
  <!-- schema interface -->
  <property name="schema">docpool.base.content.groupfolder.IGroupFolder</property>
