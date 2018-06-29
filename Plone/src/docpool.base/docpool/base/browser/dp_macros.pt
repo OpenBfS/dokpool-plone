@@ -402,7 +402,7 @@
 </metal:macro>
 
 <div tal:omit-tag="" metal:define-macro="doccollection">
-        <tal:results define="b_start python:request.get('b_start', 0);
+        <tal:results define="b_start python:int(request.get('b_start', 0));
                              batch python:context.results(b_start=b_start);
                              site_properties context/portal_properties/site_properties;
                              use_view_action site_properties/typesUseViewActionInListings|python:();
