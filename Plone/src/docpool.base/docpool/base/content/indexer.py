@@ -14,7 +14,7 @@ def doc_apps_indexer(obj):
     try:
         res = [ BASE_APP ]
         res.extend(ILocalBehaviorSupport(obj).local_behaviors)
-        return res
+        return list(set(res))
     except:
         pass
 
