@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-17 11:15+0000\n"
+"POT-Creation-Date: 2018-07-03 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,35 +14,50 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.config/docpool/config/local.py:177
+#: docpool.config/docpool/config/local/elan.py:189
+#: docpool.config/docpool/config/local/elan_de.py:189
+msgid "Aktuelle Lage"
+msgstr ""
+
+#: docpool.config/docpool/config/local/base_en.py:102
+#: docpool.config/docpool/config/local/base_ro.py:102
+msgid "Configuration"
+msgstr ""
+
+#: docpool.config/docpool/config/local/base_en.py:104
+#: docpool.config/docpool/config/local/base_ro.py:104
 msgid "Document Types"
 msgstr ""
 
-#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_full.pt:15
-#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_listitem.pt:54
+#: docpool.config/docpool/config/local/base.py:104
+#: docpool.config/docpool/config/local/base_de.py:104
+msgid "Dokumenttypen"
+msgstr ""
+
+#: docpool.config/docpool/config/configure.zcml:22
+msgid "Installs the docpool.config add-on."
+msgstr ""
+
+#: docpool.config/docpool/config/local/base.py:102
+#: docpool.config/docpool/config/local/base_de.py:102
+msgid "Konfiguration"
+msgstr ""
+
+#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_full.pt:28
+#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_inline.pt:27
+#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_listitem.pt:59
 msgid "Printable version"
 msgstr ""
 
-#: docpool.config/docpool/config/local.py:252
+#: docpool.config/docpool/config/local/elan_en.py:188
+#: docpool.config/docpool/config/local/elan_ro.py:190
 msgid "Situation Display"
 msgstr ""
 
-#: docpool.config/docpool/config/local.py:95
-msgid "Routine mode"
+#: docpool.config/docpool/config/configure.zcml:37
+msgid "Uninstalls the docpool.config add-on."
 msgstr ""
 
-#: docpool.config/docpool/config/local.py:99
-msgid "Dashboard Configuration"
-msgstr ""
-
-#: docpool.config/docpool/config/general.py:73
-msgid "Overview"
-msgstr ""
-
-#: docpool.config/docpool/config/general.py:74
-msgid "All documents"
-msgstr ""
-
-#: docpool.config/docpool/config/general.py:75
-msgid "Dashboard"
+#: docpool.config/docpool/config/configure.zcml:22
+msgid "docpool.config"
 msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-06-25 14:39+0000\n"
+"POT-Creation-Date: 2018-07-03 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,19 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.elan/docpool/elan/profiles/default/types/ELANDocument.xml
-msgid "ELANDocument"
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/types/ELANType.xml
-msgid "ELANType"
-msgstr ""
-
-#: docpool.elan/docpool/elan/content/elantype.py:52
+#: docpool.elan/docpool/elan/behaviors/elandoctype.py:34
 msgid "description_doctype_contentcategory"
 msgstr ""
 
-#: docpool.elan/docpool/elan/content/elandocument.py:52
+#: docpool.elan/docpool/elan/behaviors/elandocument.py:35
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
@@ -35,11 +27,11 @@ msgid "docpool.elan"
 msgstr ""
 
 #. Default: "Choose category for this type "
-#: docpool.elan/docpool/elan/content/elantype.py:51
+#: docpool.elan/docpool/elan/behaviors/elandoctype.py:33
 msgid "label_doctype_contentcategory"
 msgstr ""
 
 #. Default: "Belongs to scenarios"
-#: docpool.elan/docpool/elan/content/elandocument.py:51
+#: docpool.elan/docpool/elan/behaviors/elandocument.py:34
 msgid "label_dpdocument_scenarios"
 msgstr ""

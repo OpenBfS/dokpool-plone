@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2018-07-03 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,14 +14,14 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.menu/docpool/menu/utils.py:32
-msgid "Applications"
-msgstr "Anwendungen"
+#: docpool.menu/docpool/menu/configure.zcml:21
+msgid "Installs the docpool.menu add-on."
+msgstr "Installiert das docpool.menu Add-On."
 
-#: docpool.menu/docpool/menu/utils.py:38
-msgid "Docpools"
-msgstr "Dokpools"
+#: docpool.menu/docpool/menu/configure.zcml:36
+msgid "Uninstalls the docpool.menu add-on."
+msgstr "Deinstalliert das docpool.menu Add-On."
 
-#: docpool.menu/docpool/menu/utils.py:60
-msgid "Docpool Base"
-msgstr "DokPool"
+#: docpool.menu/docpool/menu/configure.zcml:21
+msgid "docpool.menu"
+msgstr ""

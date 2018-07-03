@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-06-25 14:39+0000\n"
+"POT-Creation-Date: 2018-07-03 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,71 +14,227 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:243
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:266
 msgid ". Doc type not accepted."
 msgstr ". Dokumenttyp nicht akzeptiert."
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:262
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:291
 msgid ". Document has no scenario."
 msgstr ". Dokument hat keine Ereigniszuordnung."
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:256
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:286
 msgid ". Unknown scenario not accepted."
 msgstr ". Unbekanntes Ereignis nicht akzeptiert."
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:243
+#: docpool.transfers/docpool/transfers/profiles/default/types/DPTransfers.xml
+msgid "Area for Transfer Folders"
+msgstr "Bereich für Transferordner"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:110
+msgid "Channels"
+msgstr "Kanäle"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:82
+msgid "Doc. type (short)"
+msgstr "Dok. Typ (kurz)"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:49
+msgid "Doc. type short"
+msgstr "Dok. Typ (kurz)"
+
+#: docpool.transfers/docpool/transfers/browser/dptransferfolder.py:40
+msgid "Document Type"
+msgstr "Dokumenttyp"
+
+#: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt:12
+msgid "Edit Permissions"
+msgstr "Berechtigungen bearbeiten"
+
+#: docpool.transfers/docpool/transfers/behaviors/configure.zcml:14
+msgid "Makes documents transferable between pools"
+msgstr "Macht Dokumente übertragbar zwischen Dokpools"
+
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:266
 msgid "No transfer to"
 msgstr "Keine Übertragung zu"
 
-#: docpool.transfers/docpool/transfers/profiles/default/types/Transferable.xml
+#: docpool.transfers/docpool/transfers/browser/dptransferfolder.py:40
+#: docpool.transfers/docpool/transfers/db/forms.py:50
+msgid "Permission"
+msgstr "Berechtigung"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:92
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt:29
+msgid "Select"
+msgstr "Auswählen"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:105
+msgid "Timestamp"
+msgstr "Zeitstempel"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:97
+msgid "Title"
+msgstr "Titel"
+
+#: docpool.transfers/docpool/transfers/browser/transfers_macros.pt:20
+msgid "Transfer"
+msgstr "Übertragen"
+
+#: docpool.transfers/docpool/transfers/behaviors/configure.zcml:21
+msgid "Transfer DocType"
+msgstr "Dokumenttyp übertragen"
+
+#: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt:11
+msgid "Transfer Folder: filter not active!"
+msgstr "Transferordner: kein Filter aktiv!"
+
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/transferDPDocument.cpy:18
+msgid "Transfer error: "
+msgstr "Übertragungsfehler: "
+
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/transferDPDocument.cpy:15
+msgid "Transfer executed"
+msgstr "Übertragung abgeschlossen"
+
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt:30
+msgid "Transfer to<br>"
+msgstr "Übertragung nach<br>"
+
+#: docpool.transfers/docpool/transfers/behaviors/configure.zcml:14
 msgid "Transferable"
 msgstr "Übertragbar"
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:317
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:356
 msgid "Transferred to"
 msgstr "Übertragen an"
 
-#: docpool.transfers/docpool/transfers/profiles/default/types/TransfersType.xml
-msgid "TransfersType"
-msgstr ""
+#: docpool.transfers/docpool/transfers/behaviors/configure.zcml:21
+msgid "Type extension for transferable types"
+msgstr "Typ Erweiterung für übertragbare Typen"
 
-#: docpool.transfers/docpool/transfers/content/transferstype.py:47
+#. Default: "Cancel"
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt:50
+msgid "cancelbutton"
+msgstr "Abbrechen"
+
+#. Default: "Verlassen des Formulars"
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt:50
+msgid "canceltitle"
+msgstr "Verlassen des Formulars"
+
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py:43
 msgid "description_doctype_allowtransfer"
 msgstr ""
 
 #. Default: "Only used for archived documents."
-#: docpool.transfers/docpool/transfers/content/transferable.py:84
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:70
 msgid "description_dpdocument_transferlog"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:75
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:59
 msgid "description_dpdocument_transferred"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/content/transferable.py:64
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:48
 msgid "description_dpdocument_transferred_by"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:70
+msgid "description_dptransferfolder_permlevel"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:60
+msgid "description_dptransferfolder_sendingesd"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:81
+msgid "description_dptransferfolder_unknowndtdefault"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:92
+msgid "description_dptransferfolder_unknownscendefault"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/configure.zcml:23
 msgid "docpool.transfers"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/db/forms.py:27
+#: docpool.transfers/docpool/transfers/vocabularies.py:30
+msgid "don't accept"
+msgstr "nicht annehmen"
+
 #. Default: "Can documents of this type be sent to other ESDs?"
-#: docpool.transfers/docpool/transfers/content/transferstype.py:46
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py:42
 msgid "label_doctype_allowtransfer"
 msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
 
 #. Default: "Transfer log"
-#: docpool.transfers/docpool/transfers/content/transferable.py:83
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:69
 msgid "label_dpdocument_transferlog"
 msgstr "Transfer Protokoll"
 
 #. Default: "Date of last transfer"
-#: docpool.transfers/docpool/transfers/content/transferable.py:74
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:58
 msgid "label_dpdocument_transferred"
 msgstr "Zeitpunkt der letzten Übertragung"
 
 #. Default: "Transferred by"
-#: docpool.transfers/docpool/transfers/content/transferable.py:63
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:47
 msgid "label_dpdocument_transferred_by"
 msgstr "Übertragen von"
+
+#. Default: "Permission level"
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:69
+msgid "label_dptransferfolder_permlevel"
+msgstr "Berechtigungsstufe"
+
+#. Default: "The organisation sending content via this transfer folder"
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:59
+msgid "label_dptransferfolder_sendingesd"
+msgstr "Die sendende Organisation"
+
+#. Default: "Default for unknown document types"
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:80
+msgid "label_dptransferfolder_unknowndtdefault"
+msgstr "Default für unbekannte Dokumenttypen"
+
+#. Default: "Default for unknown scenarios"
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:91
+msgid "label_dptransferfolder_unknownscendefault"
+msgstr "Default für unbekannte Ereignisse"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:27
+#: docpool.transfers/docpool/transfers/vocabularies.py:30
+msgid "needs confirmation"
+msgstr "benötigt Bestätigung"
+
+#: docpool.transfers/docpool/transfers/db/forms.py:27
+#: docpool.transfers/docpool/transfers/vocabularies.py:40
+msgid "publish immediately"
+msgstr "Sofort veröffentlichen"
+
+#: docpool.transfers/docpool/transfers/vocabularies.py:20
+msgid "read/write"
+msgstr "lesen/schreiben"
+
+#. Default: "Submit"
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt:49
+msgid "submitbutton"
+msgstr "Bestätigen"
+
+#. Default: "Absenden des Formulares"
+#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt:49
+msgid "submittitle"
+msgstr "Absenden des Formulars"
+
+#: docpool.transfers/docpool/transfers/vocabularies.py:20
+msgid "suspended"
+msgstr "Anhalten"
+
+#: docpool.transfers/docpool/transfers/vocabularies.py:20
+msgid "write"
+msgstr "schreiben"

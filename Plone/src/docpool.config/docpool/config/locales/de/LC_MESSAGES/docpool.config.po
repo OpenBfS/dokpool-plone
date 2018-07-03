@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2015-09-17 11:15+0000\n"
+"POT-Creation-Date: 2018-07-03 13:53+0000\n"
 "PO-Revision-Date: 2015-09-17 13:15+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -15,36 +15,50 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Language: de\n"
 
-#: docpool.config/docpool/config/general.py:170
-msgid "Electronic Situation Display"
-msgstr "Elektronische Lagedarstellung"
+#: docpool.config/docpool/config/local/elan.py:189
+#: docpool.config/docpool/config/local/elan_de.py:189
+msgid "Aktuelle Lage"
+msgstr ""
 
-#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_full.pt:15
-#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_listitem.pt:54
+#: docpool.config/docpool/config/local/base_en.py:102
+#: docpool.config/docpool/config/local/base_ro.py:102
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: docpool.config/docpool/config/local/base_en.py:104
+#: docpool.config/docpool/config/local/base_ro.py:104
+msgid "Document Types"
+msgstr "Dokumenttypen"
+
+#: docpool.config/docpool/config/local/base.py:104
+#: docpool.config/docpool/config/local/base_de.py:104
+msgid "Dokumenttypen"
+msgstr "Dokumenttypen"
+
+#: docpool.config/docpool/config/configure.zcml:22
+msgid "Installs the docpool.config add-on."
+msgstr "Installiert das docpool.config Add-On."
+
+#: docpool.config/docpool/config/local/base.py:102
+#: docpool.config/docpool/config/local/base_de.py:102
+msgid "Konfiguration"
+msgstr "Konfiguration"
+
+#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_full.pt:28
+#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_inline.pt:27
+#: docpool.config/docpool/config/skins/docpool_config_templates/simpleviz_listitem.pt:59
 msgid "Printable version"
 msgstr "Druckversion"
 
-#: docpool.config/docpool/config/local.py:256
+#: docpool.config/docpool/config/local/elan_en.py:188
+#: docpool.config/docpool/config/local/elan_ro.py:190
 msgid "Situation Display"
 msgstr "Lagedarstellung"
 
-#: docpool.config/docpool/config/local.py:95
-msgid "Routine mode"
-msgstr "Normalbetrieb"
+#: docpool.config/docpool/config/configure.zcml:37
+msgid "Uninstalls the docpool.config add-on."
+msgstr "Deinstalliert das docpool.config Add-On."
 
-#: docpool.config/docpool/config/local.py:99
-msgid "Dashboard Configuration"
-msgstr "Dokumentsammlungen Pinnwand"
-
-#: docpool.config/docpool/config/general.py:73
-msgid "Overview"
-msgstr "Chronologie"
-
-#: docpool.config/docpool/config/general.py:74
-msgid "All documents"
-msgstr "Alle Dokumente"
-
-#: docpool.config/docpool/config/general.py:75
-msgid "Dashboard"
-msgstr "Pinnwand"
-
+#: docpool.config/docpool/config/configure.zcml:22
+msgid "docpool.config"
+msgstr ""
