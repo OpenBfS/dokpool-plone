@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2017-02-20 07:56+0000\n"
+"POT-Creation-Date: 2018-07-03 13:52+0000\n"
 "PO-Revision-Date: 2015-10-14 12:14+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -19,11 +19,15 @@ msgstr ""
 msgid "Current Modules"
 msgstr "Aktuell zugeordnete Module"
 
-#: elan.sitrep/elan/sitrep/content/situationoverview.py:93
+#: elan.sitrep/elan/sitrep/content/situationoverview.py:94
 msgid "Current situation"
 msgstr "Aktuelle Lage"
 
-#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:147
+#: elan.sitrep/elan/sitrep/content/srmoduletype.py:50
+msgid "Default Text"
+msgstr ""
+
+#: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:148
 msgid "Fig."
 msgstr "Abb."
 
@@ -65,23 +69,23 @@ msgstr "Fehlt:"
 msgid "Module Type"
 msgstr "Modultyp"
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:254
+#: elan.sitrep/elan/sitrep/content/situationreport.py:264
 msgid "Modules have been replaced with current situation overview."
 msgstr "Die Module aus dem aktuellen Lagebild wurden zugeordnet."
 
-#: elan.sitrep/elan/sitrep/content/situationoverview.py:116
+#: elan.sitrep/elan/sitrep/content/situationoverview.py:117
 msgid "No content found"
 msgstr "Keine Inhalte gefunden"
 
-#: elan.sitrep/elan/sitrep/browser/situationoverview.pt:48
+#: elan.sitrep/elan/sitrep/browser/situationoverview.pt:47
 msgid "No current content."
 msgstr "Kein aktueller Inhalt."
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:88
+#: elan.sitrep/elan/sitrep/content/srmodule.py:101
 msgid "No information."
 msgstr "Keine Information."
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:256
+#: elan.sitrep/elan/sitrep/content/situationreport.py:266
 msgid "No modules found in current situation overview."
 msgstr "Keine Module in aktuellem Lagebild gefunden."
 
@@ -193,17 +197,13 @@ msgstr "Ordner für LB-Textbausteine"
 msgid "Text blocks"
 msgstr "Ordner für LB-Textbausteine"
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:250
+#: elan.sitrep/elan/sitrep/content/srmodule.py:275
 msgid "The module has been published."
 msgstr "Das Modul wurde freigegeben."
 
-#: elan.sitrep/elan/sitrep/content/situationreport.py:225
+#: elan.sitrep/elan/sitrep/content/situationreport.py:233
 msgid "The report has been published."
 msgstr "Der Lagebericht wurde veröffentlicht."
-
-#: elan.sitrep/elan/sitrep/browser/situationoverview.pt:45
-msgid "There is a current working version."
-msgstr "Es gibt eine (neuere) Arbeitsversion."
 
 #: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:126
 msgid "Title / Description / Image"
@@ -217,7 +217,7 @@ msgstr "Titel / Beschreibung / Text"
 msgid "Used in report(s):"
 msgstr "Genutzt in folgenden Lageberichten:"
 
-#: elan.sitrep/elan/sitrep/content/situationoverview.py:94
+#: elan.sitrep/elan/sitrep/content/situationoverview.py:95
 msgid "User defined"
 msgstr "Angepasst"
 
@@ -238,11 +238,11 @@ msgid "description_situationreport_text"
 msgstr ""
 
 #. Default: "If selected this report defines helpful defaults (text blocks, documents) for the content of this module."
-#: elan.sitrep/elan/sitrep/content/srmodule.py:56
+#: elan.sitrep/elan/sitrep/content/srmodule.py:61
 msgid "description_srmodule_currentreport"
 msgstr "Falls ausgewählt definiert dieser Lagebericht hilfreiche Voreinstellungen (Textbausteine, Dokumente) für den Inhalt dieses Moduls."
 
-#: elan.sitrep/elan/sitrep/content/srmodule.py:68
+#: elan.sitrep/elan/sitrep/content/srmodule.py:72
 msgid "description_srmodule_doctype"
 msgstr ""
 
@@ -259,8 +259,12 @@ msgstr ""
 msgid "description_srmoduleconfig_textblocks"
 msgstr ""
 
-#. Default: "This collection defines a pre-selection of possible documents to reference within this module."
 #: elan.sitrep/elan/sitrep/content/srmoduletype.py:46
+msgid "description_srmoduletype_defaulttextblocks"
+msgstr ""
+
+#. Default: "This collection defines a pre-selection of possible documents to reference within this module."
+#: elan.sitrep/elan/sitrep/content/srmoduletype.py:60
 msgid "description_srmoduletype_docselection"
 msgstr "Vorauswahl von möglichen Dokumenten/Grafiken, welche in diesem Modul referenziert werden können."
 
@@ -288,12 +292,12 @@ msgid "label_situationreport_text"
 msgstr "Einleitung"
 
 #. Default: "Current report"
-#: elan.sitrep/elan/sitrep/content/srmodule.py:55
+#: elan.sitrep/elan/sitrep/content/srmodule.py:60
 msgid "label_srmodule_currentreport"
 msgstr "Aktueller Lagebericht"
 
 #. Default: "Module Type"
-#: elan.sitrep/elan/sitrep/content/srmodule.py:67
+#: elan.sitrep/elan/sitrep/content/srmodule.py:71
 msgid "label_srmodule_doctype"
 msgstr "Modultyp"
 
@@ -312,15 +316,15 @@ msgstr "Modultyp"
 msgid "label_srmoduleconfig_textblocks"
 msgstr "Textbausteine"
 
-#. Default: "Collection for relevant documents"
-#: elan.sitrep/elan/sitrep/content/srmoduletype.py:45
-msgid "label_srmoduletype_docselection"
-msgstr "Grafiksammlung"
-
 #. Default: "Default Text (when freshly created)"
 #: elan.sitrep/elan/sitrep/content/srmoduletype.py:45
 msgid "label_srmoduletype_defaulttextblocks"
 msgstr "Baustein für Textvorbelegung (wenn neu erzeugt)"
+
+#. Default: "Collection for relevant documents"
+#: elan.sitrep/elan/sitrep/content/srmoduletype.py:59
+msgid "label_srmoduletype_docselection"
+msgstr "Grafiksammlung"
 
 #. Default: "Text"
 #: elan.sitrep/elan/sitrep/content/srtextblock.py:49

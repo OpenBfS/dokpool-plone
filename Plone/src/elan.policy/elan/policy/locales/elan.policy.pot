@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-10-11 16:47+0000\n"
+"POT-Creation-Date: 2018-07-03 13:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: elan.policy\n"
 
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Delete Ticker"
+#: elan.policy/elan/policy/configure.zcml:19
+msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
 msgstr ""
 
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Scenarios"
+#: elan.policy/elan/policy/configure.zcml:19
+msgid "elan.policy"
 msgstr ""
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Ticker"
-msgstr ""
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Help"
-msgstr ""
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "IRIX Export"
-msgstr ""
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Impressum"
-msgstr ""
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "User Management"
-msgstr ""
-

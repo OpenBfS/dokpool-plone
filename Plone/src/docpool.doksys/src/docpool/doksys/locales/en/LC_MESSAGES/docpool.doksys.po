@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -15,58 +12,58 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: docpool.doksys\n"
+"Domain: DOMAIN\n"
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py:28
+#: docpool/doksys/vocabularies/network_operators.py:28
 msgid "BfS"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py:29
+#: docpool/doksys/vocabularies/network_operators.py:29
 msgid "DWD"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/configure.zcml:29
+#: docpool/doksys/configure.zcml:29
 msgid "Installs the docpool.doksys add-on."
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
+#: docpool/doksys/profiles/default/registry.xml
 msgid "Metadata"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
+#: docpool/doksys/profiles/default/registry.xml
 msgid "Network Operator"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
+#: docpool/doksys/profiles/default/registry.xml
 msgid "Sampling Begin"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/configure.zcml:38
+#: docpool/doksys/configure.zcml:38
 msgid "Uninstalls the docpool.doksys add-on."
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py:27
+#: docpool/doksys/behaviors/doksysdoc.py:27
 msgid "description_doksys_network_operator"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py:35
+#: docpool/doksys/behaviors/doksysdoc.py:35
 msgid "description_doksys_sampling_begin"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/configure.zcml:29
+#: docpool/doksys/configure.zcml:29
 msgid "docpool.doksys"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/configure.zcml:38
+#: docpool/doksys/configure.zcml:38
 msgid "docpool.doksys (uninstall)"
 msgstr ""
 
 #. Default: "Network Operator"
-#: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py:26
+#: docpool/doksys/behaviors/doksysdoc.py:26
 msgid "label_doksys_network_operator"
 msgstr ""
 
 #. Default: "Sampling Begin"
-#: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py:34
+#: docpool/doksys/behaviors/doksysdoc.py:34
 msgid "label_doksys_sampling_begin"
 msgstr ""

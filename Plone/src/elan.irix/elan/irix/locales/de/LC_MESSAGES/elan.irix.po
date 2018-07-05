@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2014-11-11 17:08+0000\n"
+"POT-Creation-Date: 2018-07-03 13:52+0000\n"
 "PO-Revision-Date: 2014-11-11 18:06+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -36,16 +36,19 @@ msgid "Title"
 msgstr "Titel"
 
 #. Default: "Database key"
-#: elan.irix/elan/irix/content/irixreport.py:54
+#: elan.irix/elan/irix/content/irixreport.py:58
 msgid "description_irixreport_dbkey"
 msgstr "Der Schlüssel der Meldung in der Datenbank"
 
-#: elan.irix/elan/irix/portlets/irix_navigation.py:37
+#: elan.irix/elan/irix/configure.zcml:23
+msgid "elan.irix"
+msgstr ""
+
+#: elan.irix/elan/irix/portlets/irix_navigation.py:42
 msgid "irix_navigation"
 msgstr "IRIX Navigation"
 
 #. Default: "Primary key in relational database"
-#: elan.irix/elan/irix/content/irixreport.py:53
+#: elan.irix/elan/irix/content/irixreport.py:57
 msgid "label_irixreport_dbkey"
 msgstr "Datenbankschlüssel"
-

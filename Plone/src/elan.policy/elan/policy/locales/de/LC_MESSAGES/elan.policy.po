@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2016-04-15 07:13+0000\n"
+"POT-Creation-Date: 2018-07-03 13:52+0000\n"
 "PO-Revision-Date: 2014-05-22 12:05+0100\n"
 "Last-Translator: Kathrin Probst <kprobst@bfs.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,54 +16,9 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Delete Ticker"
-msgstr "Ticker löschen"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Scenarios"
-msgstr "Ereignisse bearbeiten"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Add New Scenario"
-msgstr "Neues Ereignis anlegen"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Ticker"
-msgstr "Ticker bearbeiten"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Edit Dashboard"
-msgstr "Pinnwand bearbeiten"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Select Applications"
-msgstr "Anwendungen auswählen"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Create Archive Folder"
-msgstr "Unterordner Archiv anlegen"
-
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Help"
-msgstr "Hilfe"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "IRIX Export"
-msgstr "IRIX Export"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "Impressum"
-msgstr "Impressum"
-
 #: elan.policy/elan/policy/configure.zcml:19
 msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
 msgstr "Eine Plone Site zu ELAN umwandeln. (Beinhaltet DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
-
-#: elan.policy/elan/policy/profiles/default/actions.xml
-msgid "User Management"
-msgstr "Nutzerverwaltung"
 
 #: elan.policy/elan/policy/configure.zcml:19
 msgid "elan.policy"
