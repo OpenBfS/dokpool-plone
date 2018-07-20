@@ -144,7 +144,7 @@ ESDCOLLECTIONS = [{TYPE: 'ELANSection', TITLE: u'EREIGNIS', ID: 'incident', CHIL
                   {TYPE: 'ELANDocCollection', TITLE: 'Alle Dokumente', ID: 'recent', "setExcludeFromNav": True,
                    DOCTYPES: [], CHILDREN: []},
                   {TYPE: 'Dashboard', TITLE: 'Pinnwand', ID: 'dashboard', "setExcludeFromNav": True},
-                  {TYPE: 'SituationOverview', TITLE: 'Lagebild', ID: 'situationoverview', "setExcludeFromNav": True},
+                  {TYPE: 'SituationOverview', TITLE: 'Lageübersicht', ID: 'situationoverview', "setExcludeFromNav": True},
                   ]
 
 BASICSTRUCTURE2 = [

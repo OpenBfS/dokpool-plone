@@ -58,7 +58,7 @@ msgstr "Metadaten"
 
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:38
 msgid "Mirror Overview"
-msgstr "Aus Lagebild übernehmen"
+msgstr "Aus Lageübersicht übernehmen"
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:18
 #: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:20
@@ -71,7 +71,7 @@ msgstr "Modultyp"
 
 #: elan.sitrep/elan/sitrep/content/situationreport.py:264
 msgid "Modules have been replaced with current situation overview."
-msgstr "Die Module aus dem aktuellen Lagebild wurden zugeordnet."
+msgstr "Die Module aus der aktuellen Lageübersicht wurden zugeordnet."
 
 #: elan.sitrep/elan/sitrep/content/situationoverview.py:117
 msgid "No content found"
@@ -87,7 +87,7 @@ msgstr "Keine Information."
 
 #: elan.sitrep/elan/sitrep/content/situationreport.py:266
 msgid "No modules found in current situation overview."
-msgstr "Keine Module in aktuellem Lagebild gefunden."
+msgstr "Keine Module in aktueller Lageübersicht gefunden."
 
 #: elan.sitrep/elan/sitrep/portlets/srmoduleedit.pt:11
 msgid "Open building blocks window"
@@ -130,7 +130,7 @@ msgstr "Fertig:"
 
 #: elan.sitrep/elan/sitrep/browser/situationoverview.pt:27
 msgid "Reload current situation"
-msgstr "Lagebild aktualisieren"
+msgstr "Lageübersicht aktualisieren"
 
 #: elan.sitrep/elan/sitrep/browser/srmodulematerial.pt:64
 msgid "Reset"
@@ -142,7 +142,7 @@ msgstr "Modulbearbeitung"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SituationOverview.xml
 msgid "Situation Overview"
-msgstr "Lagebild"
+msgstr "Lageübersicht"
 
 #: elan.sitrep/elan/sitrep/profiles/default/types/SRPhase.xml
 msgid "Situation Phase"
@@ -339,7 +339,7 @@ msgstr "Dieses Modul veröffentlichen?"
 #. Default: "Do you really want to define this report based on the current overview?"
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:17
 msgid "report_mirror_popup"
-msgstr "Aus Lagebild übernehmen?"
+msgstr "Aus Lageübersicht übernehmen?"
 
 #. Default: "Do you really want to create a published version of this report? Only published modules will be included!"
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:16
