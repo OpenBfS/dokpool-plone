@@ -20,20 +20,20 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IDoksysDoc(IDocumentExtension):
-    #dexteritytextindexer.searchable('network_operator') # if a field is supposed to be fulltext searchable
+    # dexteritytextindexer.searchable('network_operator')  if a field is supposed to be fulltext searchable
 
     network_operator = schema.TextLine(
-                        title=_(u'label_doksys_network_operator', default=u'Network Operator'),
-                        description=_(u'description_doksys_network_operator', default=u''),
-                        required=False,
+        title=_(u'label_doksys_network_operator', default=u'Network Operator'),
+        description=_(u'description_doksys_network_operator', default=u''),
+        required=False,
     )
     read_permission(network_operator='docpool.doksys.AccessDoksys')
     write_permission(network_operator='docpool.doksys.AccessDoksys')
 
     sampling_begin = schema.Datetime(
-                        title=_(u'label_doksys_sampling_begin', default=u'Sampling Begin'),
-                        description=_(u'description_doksys_sampling_begin', default=u''),
-                        required=False,
+        title=_(u'label_doksys_sampling_begin', default=u'Sampling Begin'),
+        description=_(u'description_doksys_sampling_begin', default=u''),
+        required=False,
     )
 
 
@@ -47,7 +47,7 @@ class DoksysDoc(FlexibleView):
     def __init__(self, context):
         self.context = context
         self.request = context.REQUEST
-    
+
     def _get_network_operator(self):
         return self.context.network_operator
 
@@ -70,8 +70,6 @@ class DoksysDoc(FlexibleView):
 
     sampling_begin = property(_get_sampling_begin, _set_sampling_begin)
 
-
-
     def isClean(self):
         """
         Is this document free for further action like publishing or transfer?
@@ -79,3 +77,5 @@ class DoksysDoc(FlexibleView):
         """
         # TODO: define if necessary. Method MUST be present in Doc behavior.
         return True
+
+

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <rolemap>
   <roles>
-    <role name="ExampleUser"/>
+    <role name="DoksysUser"/>
   </roles>
   <permissions>
     <permission name="Docpool: Access Doksys Content" acquire="True">
