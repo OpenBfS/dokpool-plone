@@ -55,6 +55,70 @@
             name="network_operator"/>
 
     <adapter
+            factory=".indexer.dom_indexer"
+            name="dom"/>
+
+    <adapter
+            factory=".indexer.legal_base_indexer"
+            name="legal_base"/>
+
+    <adapter
+            factory=".indexer.measuring_program_indexer"
+            name="measuring_program"/>
+
+    <adapter
             factory=".indexer.sampling_begin_indexer"
             name="sampling_begin"/>
+
+    <adapter
+            factory=".indexer.sampling_end_indexer"
+            name="sampling_begin"/>
+
+    <adapter
+            factory=".indexer.purpose_indexer"
+            name="purpose"/>
+
+    <adapter
+            factory=".indexer.trajectory_start_location_indexer"
+            name="trajectory_start_location"/>
+
+    <adapter
+            factory=".indexer.trajectory_end_location_indexer"
+            name="trajectory_end_location"/>
+
+    <adapter
+            factory=".indexer.trajectory_start_time_indexer"
+            name="trajectory_start_time"/>
+
+    <adapter
+            factory=".indexer.trajectory_end_time_indexer"
+            name="trajectory_end_time"/>
+
+    <adapter
+            factory=".indexer.status_indexer"
+            name="status"/>
+
+    <adapter
+            factory=".indexer.operatin_mode_indexer"
+            name="operatin_mode"/>
+
+    <adapter
+            factory=".indexer.data_type_indexer"
+            name="data_type"/>
+
+    <adapter
+            factory=".indexer.measurement_category_indexer"
+            name="measurement_category"/>
+
+    <adapter
+            factory=".indexer.duration_indexer"
+            name="duration"/>
+
+    <adapter
+            factory=".indexer.type_indexer"
+            name="type"/>
+
+    <adapter
+            factory=".indexer.area_indexer"
+            name="area"/>
 </configure>
