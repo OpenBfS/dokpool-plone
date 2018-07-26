@@ -72,7 +72,7 @@
 
     <adapter
             factory=".indexer.sampling_end_indexer"
-            name="sampling_begin"/>
+            name="sampling_end"/>
 
     <adapter
             factory=".indexer.purpose_indexer"
@@ -99,8 +99,8 @@
             name="status"/>
 
     <adapter
-            factory=".indexer.operatin_mode_indexer"
-            name="operatin_mode"/>
+            factory=".indexer.operation_mode_indexer"
+            name="operation_mode"/>
 
     <adapter
             factory=".indexer.data_type_indexer"

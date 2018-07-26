@@ -12,21 +12,21 @@ def network_operator_indexer(obj):
         pass
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def dom_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).dom
     except:
         pass
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def legal_base_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).legal_base
     except:
         pass
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def measuring_program_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).measuring_program
     except:
@@ -43,14 +43,14 @@ def sampling_begin_indexer(obj):
 
 
 @indexer(IDPDocument)
-def sampling_begin_indexer(obj):
+def sampling_end_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).sampling_end
     except:
         pass
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def purpose_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).purpose
     except:
@@ -58,7 +58,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def trajectory_start_location_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).trajectory_start_location
     except:
@@ -66,7 +66,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def trajectory_end_location_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).trajectory_end_location
     except:
@@ -74,7 +74,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def trajectory_start_time_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).trajectory_start_time
     except:
@@ -82,7 +82,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def trajectory_end_time_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).trajectory_end_time
     except:
@@ -90,7 +90,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def status_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).status
     except:
@@ -98,7 +98,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def operation_mode_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).operation_mode
     except:
@@ -106,7 +106,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def data_type_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).data_type
     except:
@@ -114,7 +114,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def sample_type_id_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).sample_type_id
     except:
@@ -122,7 +122,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def sample_type_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).sample_type
     except:
@@ -130,7 +130,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def measurement_category_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).measurement_category
     except:
@@ -138,7 +138,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def duration_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).duration
     except:
@@ -146,7 +146,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def type_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).type
     except:
@@ -154,7 +154,7 @@ def network_operator_indexer(obj):
 
 
 @indexer(IDPDocument)
-def network_operator_indexer(obj):
+def area_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).area
     except:
