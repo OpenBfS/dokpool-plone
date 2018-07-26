@@ -28,10 +28,10 @@
     <index name="trajectory_end_location" meta_type="FieldIndex">
         <indexed_attr value="trajectory_end_location"/>
     </index>
-    <index name="trajectory_start_time" meta_type="FieldIndex">
+    <index name="trajectory_start_time" meta_type="DateIndex">
         <indexed_attr value="trajectory_start_time"/>
     </index>
-    <index name="trajectory_end_time" meta_type="FieldIndex">
+    <index name="trajectory_end_time" meta_type="DateIndex">
         <indexed_attr value="trajectory_end_time"/>
     </index>
     <index name="status" meta_type="FieldIndex">

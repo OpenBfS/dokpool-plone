@@ -94,7 +94,7 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(trajectory_end_location='docpool.doksys.AccessDoksys')
     write_permission(trajectory_end_location='docpool.doksys.AccessDoksys')
 
-    trajectory_start_time = schema.TextLine(
+    trajectory_start_time = schema.Datetime(
         title=_(u'label_doksys_trajectory_start_time', default=u'Trajectory Start Time'),
         description=_(u'description_doksys_trajectory_start_time', default=u''),
         required=False,
@@ -102,7 +102,7 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(trajectory_start_time='docpool.doksys.AccessDoksys')
     write_permission(trajectory_start_time='docpool.doksys.AccessDoksys')
 
-    trajectory_end_time = schema.TextLine(
+    trajectory_end_time = schema.Datetime(
         title=_(u'label_doksys_trajectory_end_time', default=u'Trajectory End Time'),
         description=_(u'description_doksys_trajectory_end_time', default=u''),
         required=False,
