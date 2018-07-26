@@ -9,5 +9,15 @@
         name="docpool.doksys.NetworkOperators"
     />
 
+    <utility
+        component=".sample_type_id.SampleTypeIdFactory"
+        name="docpool.doksys.SampleTypeIds"
+    />
+
+    <utility
+        component=".sample_type.SampleTypeFactory"
+        name="docpool.doksys.SampleTypes"
+    />
+
         
 </configure>
