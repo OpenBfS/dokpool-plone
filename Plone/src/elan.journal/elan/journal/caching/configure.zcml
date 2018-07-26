@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cache="http://namespaces.zope.org/cache">
+
+  <include package="z3c.caching" />
+  <include package="z3c.caching" file="meta.zcml" />
+
+  <cache:rulesetType
+      name="elan.journal.default"
+      title="Journal default view"
+      description="The public-facing view of a Journal."
+      />
+
+  <cache:rulesetType
+      name="elan.journal.recentUpdates"
+      title="Journal recent updates"
+      description="The recent updates helper view of a Journal."
+      />
+
+  <cache:ruleset
+      ruleset="elan.journal.default"
+      for="elan.journal.browser.view.View"
+      />
+
+  <cache:ruleset
+      ruleset="elan.journal.recentUpdates"
+      for="elan.journal.browser.recent_updates.RecentUpdates"
+      />
+
+  <!-- Purge paths for LiveBlog -->
+  <adapter factory=".purge.LiveBlogPurgePaths" name="journal" />
+
+</configure>

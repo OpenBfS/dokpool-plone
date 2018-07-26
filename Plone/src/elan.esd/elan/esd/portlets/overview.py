@@ -68,7 +68,7 @@ class Renderer(base.Renderer):
         """
         """
         cs = self.context.myELANCurrentSituation()
-        fc = cs.getFolderContents({'portal_type' : ['ELANDocCollection','Dashboard','SituationOverview'] })
+        fc = cs.getFolderContents({'portal_type' : ['ELANDocCollection','Dashboard','SituationOverview','Journal'] })
         return [ o for o in fc if o.id not in ('recent', 'overview')]
     ##/code-section renderer-methods
  

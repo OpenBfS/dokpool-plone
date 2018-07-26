@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+    <role name="Journal1 Editor"/>
+    <role name="Journal2 Editor"/>
+  </roles>
+  <permissions>
+    <permission name="elan.journal: Add Journal" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Journal1 Editor" />
+      <role name="Journal2 Editor" />
+    </permission>
+    <permission name="elan.journal: Add JournalEntry" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Journal1 Editor" />
+      <role name="Journal2 Editor" />
+    </permission>
+  </permissions>
+</rolemap>

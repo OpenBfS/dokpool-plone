@@ -1,0 +1,125 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="context/main_template/macros/master"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="elan.journal">
+<body>
+  <metal:block fill-slot="main">
+<!--
+    <div id="spinner" tal:condition="view/automatic_updates_enabled"
+        i18n:translate="">Live updating</div>
+-->
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <h1 class="documentFirstHeading" itemprop="headline"
+            tal:content="context/Title">
+          Title
+        </h1>
+<!--         <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
+        <div class="documentDescription" itemprop="description"
+            tal:content="context/Description">
+          Description
+        </div>
+        <div id="parent-fieldname-text" class=""
+            tal:define="text context/text/output|nothing"
+            tal:condition="text">
+          <div itemprop="articleBody"
+              tal:content="structure text">The body</div>
+        </div>
+      </header>
+      <div tal:replace="structure provider:plone.abovecontentbody" />
+      <div id="content-core" itemprop="articleBody">
+    <section id="journal-entries">
+      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+          tal:repeat="update view/updates"
+          tal:attributes="data-timestamp update/timestamp">
+        <h2 class="journalentry-title" itemprop="headline"
+            tal:condition="update/title"
+            tal:content="update/title" />
+        <div class="journalentry-text" itemprop="text"
+            tal:content="structure update/text" />
+        <div class="journalentry-byline">
+          <p tal:condition="view/show_byline" i18n:translate="">
+              By
+            <span itemprop="author"
+                tal:content="update/creator"
+                i18n:name="byline" />
+          </p>
+          <time itemprop="datePublished" title="2014-08-28 14h31" datetime="2014-08-28T14:31:02.402"
+              tal:attributes="datetime update/isoformat;
+                              title update/datetime;
+                              data-date update/date;
+                              data-time update/time;
+                              data-timestamp update/timestamp">
+            <a tal:attributes="href string:${context/absolute_url}/journalentry/${update/timestamp}">
+              <span class="journalentry-time" tal:content="update/time" />
+            </a>
+          </time>
+        </div>
+      </article>
+<!--
+      <div class="journalentry" data-timestamp=""
+          tal:condition="not:view/has_updates"
+          tal:attributes="data-timestamp view/now">
+        <p class="journalentry-title">
+          <strong i18n:translate="">No entries yet for this Journal.</strong>
+        </p>
+      </div>
+-->
+    </section>
+      </div>
+      <div tal:replace="structure provider:plone.belowcontentbody" />
+    </article>
+    <script>
+        /* show dates for journal-entries older than today */
+        var today = new Date().toISOString().substr(0, 10);
+        $("time a").each(function () {
+            "use strict";
+            var $time = $(this).parent(),
+                datetime = $time.attr("datetime").substr(0, 10),
+                date = $time.attr("data-date"),
+                time = $time.attr("data-time"),
+                timestamp = $time.attr("data-timestamp");
+            if (today > datetime) {
+              $(this).html("<a href='journalentry/" + timestamp + "'><span class='journalentry-date'>" + date + "</span> " +
+                "<span class='journalentry-time'>" + time + "</span></a>");
+            }
+        });
+    </script>
+    <script tal:condition="view/automatic_updates_enabled">
+        /* keep page updated */
+        setInterval(function () {
+            "use strict";
+            // JavaScript URL parser: https://gist.github.com/jlong/2428561
+            var parser = document.createElement('a');
+            parser.href = location.href;
+            parser.pathname = parser.pathname.replace(/\/update*|\/view*/, '');
+            parser.pathname = parser.pathname + '/recent-updates';
+            $.ajax({
+                url: parser.href,
+                success: function (data) {
+                    $("#journal-entries").prepend(data).fadeIn("slow");
+                    /* in some cases a journalentry could be duplicated; remove it */
+                    var seen = {};
+                    $(".journalentry").each(function () {
+                        var timestamp = $(this).attr("data-timestamp");
+                        if (seen[timestamp]) {
+                            $(this).remove();
+                        } else {
+                            seen[timestamp] = true;
+                        }
+                    });
+                },
+                statusCode: {
+                    205: function () {
+                        window.location.reload();
+                    }
+                }
+            });
+        }, 1000 * 20);
+    </script>
+  </metal:block>
+</body>
+</html>

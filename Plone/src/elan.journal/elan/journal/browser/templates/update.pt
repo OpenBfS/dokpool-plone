@@ -1,0 +1,163 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="context/main_template/macros/master"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="elan.journal">
+<body>
+  <metal:block fill-slot="main">
+<!--
+    <div id="spinner" tal:condition="view/automatic_updates_enabled"
+        i18n:translate="">Live updating</div>
+-->
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <div id="parent-fieldname-text" class=""
+            tal:define="text context/text/output|nothing"
+            tal:condition="text">
+          <div itemprop="articleBody"
+              tal:content="structure text">The body</div>
+        </div>
+      </header>
+
+      <div tal:replace="structure provider:plone.abovecontentbody" />
+      <div id="content-core" itemprop="articleBody">
+
+      <form action="@@add-journalentry" method="post"
+          tal:attributes="action string:${context/absolute_url}/@@add-journalentry">
+        <h2 i18n:translate="">Add journal entry</h2>
+        <div class="field">
+          <tal:editor define="here nocall:context;
+                              portal_url nocall:context/portal_url;
+                              portal portal_url/getPortalObject;
+                              id string:text;
+                              inputname string:text;
+                              inputvalue nothing;
+                              here_url request/getURL;
+                              member context/portal_membership/getAuthenticatedMember;
+                              tabindex nothing;
+                              rows python:5">
+            <div metal:use-macro="context/wysiwyg_support/macros/wysiwygEditorBox">
+              The WYSIWYG code
+            </div>
+          </tal:editor>
+        </div>
+        <input type="submit" value="Publish" i18n:attributes="value" />
+      </form>
+
+    <section id="journal-entries" tal:define="batch view/batch">
+      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+          tal:repeat="update batch"
+          tal:attributes="data-timestamp update/timestamp">
+        <div class="journalentry-helpers">
+          <a href="@@edit-journalentry"
+              tal:condition="view/can_edit_objects"
+              tal:attributes="href string:@@edit-journalentry?id=${update/id}"
+              i18n:domain="plone"
+              i18n:translate="">Edit</a>
+          <a href="@@delete-journalentry"
+              tal:condition="view/can_delete_objects"
+              tal:attributes="href string:@@delete-journalentry?id=${update/id};
+                              onclick view/delete_confirmation"
+              i18n:domain="plone"
+              i18n:translate="">Delete</a>
+        </div>
+        <h2 class="journalentry-title" itemprop="headline"
+            tal:condition="update/title"
+            tal:content="update/title" />
+        <div class="journalentry-text" itemprop="text"
+            tal:content="structure update/text" />
+        <div class="journalentry-byline">
+          <p i18n:translate="">
+              By
+            <span itemprop="author"
+                tal:content="update/creator"
+                i18n:name="byline" />
+          </p>
+          <time itemprop="datePublished" title="2014-08-28 14h31" datetime="2014-08-28T14:31:02.402"
+              tal:attributes="datetime update/isoformat;
+                              title update/datetime;
+                              data-date update/date;
+                              data-time update/time">
+            <span class="journalentry-time" tal:content="update/time" />
+          </time>
+        </div>
+      </article>
+<!--
+      <div class="journalentry" data-timestamp=""
+          tal:condition="not:view/has_updates"
+          tal:attributes="data-timestamp view/now">
+        <p class="journalentry-title">
+          <strong i18n:translate="">No entries yet for this Journal.</strong>
+        </p>
+      </div>
+-->
+      <tal:batchnavigation
+          define="batchnavigation nocall:context/@@batchnavigation"
+          replace="structure python:batchnavigation(batch)"
+          />
+    </section>
+
+      </div>
+      <div tal:replace="structure provider:plone.belowcontentbody" />
+    </article>
+
+    <dl class="portalMessage info" id="updateMessage" style="display:none">
+        <dt i18n:domain="plone" i18n:translate="">Info</dt>
+        <dd i18n:translate="">Some entries were edited or excluded from this Journal.
+          <a href="update">Refresh</a> to update it.
+        </dd>
+    </dl>
+    <script>
+        /* show dates for journal-entries older than today */
+        var today = new Date().toISOString().substr(0, 10);
+        $("time").each(function () {
+            "use strict";
+            var datetime = $(this).attr("datetime").substr(0, 10),
+                date = $(this).attr("data-date"),
+                time = $(this).attr("data-time");
+            if (today > datetime) {
+                $(this).html("<span class='journalentry-date'>" + date + "</span> " +
+                    "<span class='journalentry-time'>" + time + "</span>");
+            }
+        });
+    </script>
+    <script tal:condition="view/automatic_updates_enabled">
+        /* keep page updated */
+        setInterval(function () {
+            "use strict";
+            // JavaScript URL parser: https://gist.github.com/jlong/2428561
+            var parser = document.createElement('a');
+            parser.href = location.href;
+            parser.pathname = parser.pathname.replace(/\/update*|\/view*/, '');
+            parser.pathname = parser.pathname + '/recent-updates';
+            $.ajax({
+                url: parser.href,
+                success: function (data) {
+                    if (typeof data !== 'string') {
+                        data = '';
+                    }
+                    $("#journal-entries").prepend(data).fadeIn("slow");
+                    /* in some cases a journalentry could be duplicated; remove it */
+                    var seen = {};
+                    $(".journalentry").each(function () {
+                        var timestamp = $(this).attr("data-timestamp");
+                        if (seen[timestamp]) {
+                            $(this).remove();
+                        } else {
+                            seen[timestamp] = true;
+                        }
+                    });
+                },
+                statusCode: {
+                    205: function () {
+                        $("#kssPortalMessage").html($("#updateMessage").html());
+                        $("#kssPortalMessage").show();
+                    }
+                }
+            });
+        }, 1000 * 20);
+    </script>
+  </metal:block>
+</body>
+</html>

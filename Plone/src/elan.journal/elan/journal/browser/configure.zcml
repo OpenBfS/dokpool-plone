@@ -1,0 +1,78 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="elan.journal">
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="add-journalentry"
+      class="elan.journal.browser.journalentries.AddJournalEntryView"
+      permission="elan.journal.AddJournalEntry"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="edit-journalentry"
+      class="elan.journal.browser.journalentries.EditJournalEntryView"
+      permission="cmf.ModifyPortalContent"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      template="templates/edit.pt"
+      />
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="delete-journalentry"
+      class="elan.journal.browser.journalentries.DeleteJournalEntryView"
+      permission="zope2.DeleteObjects"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="journalentry"
+      class="elan.journal.browser.journalentries.JournalEntryView"
+      permission="zope2.View"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      template="templates/journalentry.pt"
+      />
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="view"
+      class="elan.journal.browser.view.View"
+      permission="zope2.View"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      template="templates/view.pt"
+      />
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="update"
+      class="elan.journal.browser.update.Update"
+      permission="elan.journal.AddJournalEntry"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      template="templates/update.pt"
+      />
+
+  <browser:page
+      for="elan.journal.interfaces.IJournal"
+      name="recent-updates"
+      class="elan.journal.browser.recent_updates.RecentUpdates"
+      permission="zope2.View"
+      layer="elan.journal.interfaces.IBrowserLayer"
+      template="templates/recent_updates.pt"
+      />
+
+  <browser:viewlet
+      for="elan.journal.interfaces.IJournal"
+      name="elan.journal.header"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+      class=".header.Header"
+      permission="zope2.View"
+      template="templates/header.pt"
+      layer="..interfaces.IBrowserLayer"
+      />
+
+</configure>

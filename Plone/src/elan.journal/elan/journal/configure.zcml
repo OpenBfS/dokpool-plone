@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup" 
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="elan.journal">
+
+  <i18n:registerTranslations directory="locales" />
+  <five:registerPackage package="." />
+
+  <include package="plone.app.dexterity" />
+
+  <include package=".caching" />
+
+  <permission
+      id="elan.journal.AddJournal"
+      title="elan.journal: Add Journal"
+      />
+
+  <permission
+      id="elan.journal.AddJournalEntry"
+      title="elan.journal: Add JournalEntry"
+      />
+
+  <include file="profiles.zcml" />
+
+  <genericsetup:registerProfile name="default" title="elan.journal" directory="profiles/default" description="Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling texutal coverage of an ongoing event. Code adapted from collective.liveblog" provides="Products.GenericSetup.interfaces.EXTENSION"/>
+
+
+
+  <browser:resourceDirectory name="elan.journal" directory="static" />
+  <include package=".browser" />
+
+  <adapter
+      for=".interfaces.IJournal"
+      provides="elan.journal.adapters.IJournalEntryContainer"
+      factory="elan.journal.adapters.JournalEntryContainer"
+      />
+
+</configure>
