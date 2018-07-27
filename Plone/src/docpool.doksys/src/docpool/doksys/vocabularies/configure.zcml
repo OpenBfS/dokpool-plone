@@ -10,6 +10,40 @@
     />
 
     <utility
+        component=".dom.DomFactory"
+        name="docpool.doksys.Dom"
+     />
+
+     <utility
+        component=".legal_base.LegalBaseFactory"
+        name="docpool.doksys.LegalBase"
+    />
+
+    <utility
+        component=".measuring_program.MeasuringProgramFactory"
+        name="docpool.doksys.MeasuringProgram"
+    />
+    <utility
+        component=".purpose.PurposeFactory"
+        name="docpool.doksys.Purpose"
+    />
+
+    <utility
+        component=".status.StatusFactory"
+        name="docpool.doksys.Status"
+    />
+
+    <utility
+        component=".operation_mode.OperationModeFactory"
+        name="docpool.doksys.Purpose"
+    />
+
+    <utility
+        component=".data_type.DataTypeFactory"
+        name="docpool.doksys.DataType"
+    />
+
+    <utility
         component=".sample_type_id.SampleTypeIdFactory"
         name="docpool.doksys.SampleTypeIds"
     />
@@ -17,6 +51,26 @@
     <utility
         component=".sample_type.SampleTypeFactory"
         name="docpool.doksys.SampleTypes"
+    />
+
+    <utility
+        component=".measurement_category.MeasurementCategoryFactory"
+        name="docpool.doksys.MeasurementCategory"
+    />
+
+    <utility
+        component=".duration.DurationFactory"
+        name="docpool.doksys.Duration"
+    />
+
+    <utility
+        component=".type.TypeFactory"
+        name="docpool.doksys.Type"
+    />
+
+    <utility
+        component=".area.AreaFactory"
+        name="docpool.doksys.Area"
     />
 
         

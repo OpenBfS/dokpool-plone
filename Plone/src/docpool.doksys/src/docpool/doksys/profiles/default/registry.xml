@@ -29,7 +29,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.Dom</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -44,7 +44,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.LegalBase</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -59,7 +59,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.MeasuringProgram</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -116,7 +116,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.Purpose</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -131,7 +131,6 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -146,7 +145,6 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -203,7 +201,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.Status</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -218,7 +216,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.OperationMode</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -233,7 +231,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.DataType</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -278,7 +276,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.MeasurementCategory</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -293,7 +291,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.Duration</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -308,7 +306,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.Type</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -323,7 +321,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.NetworkOperators</value>
+        <value key="vocabulary">docpool.doksys.Area</value>
     </records>
 
 </registry>
