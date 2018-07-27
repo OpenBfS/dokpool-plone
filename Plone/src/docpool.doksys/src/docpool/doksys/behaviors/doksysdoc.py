@@ -166,6 +166,14 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(duration='docpool.doksys.AccessDoksys')
     write_permission(duration='docpool.doksys.AccessDoksys')
 
+    type = schema.TextLine(
+        title=_(u'label_doksys_duration', default=u'Type'),
+        description=_(u'description_doksys_type', default=u''),
+        required=False,
+    )
+    read_permission(duration='docpool.doksys.AccessDoksys')
+    write_permission(duration='docpool.doksys.AccessDoksys')
+
     area = schema.TextLine(
         title=_(u'label_doksys_area', default=u'Area'),
         description=_(u'description_doksys_area', default=u''),
@@ -208,7 +216,7 @@ class DoksysDoc(FlexibleView):
     dom = property(_get_dom, _set_dom)
 
     def _get_legal_base(self):
-        return self.context.leagal_base
+        return self.context.legal_base
 
     def _set_legal_base(self, value):
         if not value:

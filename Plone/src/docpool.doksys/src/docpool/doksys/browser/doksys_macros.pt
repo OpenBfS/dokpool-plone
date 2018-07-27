@@ -7,6 +7,25 @@
 
     <metal:macro define-macro="doksys_meta" i18n:domain="docpool.doksys">
         <span tal:content="doksysobj/network_operator"></span>
+        <span tal:content="doksysobj/dom"></span>
+        <span tal:content="doksysobj/legal_base"></span>
+        <span tal:content="doksysobj/measuring_program"></span>
+        <span tal:content="doksysobj/sampling_begin"></span>
+        <span tal:content="doksysobj/sampling_end"></span>
+        <span tal:content="doksysobj/purpose"></span>
+        <span tal:content="doksysobj/trajectory_start_location"></span>
+        <span tal:content="doksysobj/trajectory_end_location"></span>
+        <span tal:content="doksysobj/trajectory_start_time"></span>
+        <span tal:content="doksysobj/trajectory_end_time"></span>
+        <span tal:content="doksysobj/status"></span>
+        <span tal:content="doksysobj/operation_mode"></span>
+        <span tal:content="doksysobj/data_type"></span>
+        <span tal:content="doksysobj/sample_type_id"></span>
+        <span tal:content="doksysobj/sample_type"></span>
+        <span tal:content="doksysobj/measurement_category"></span>
+        <span tal:content="doksysobj/duration"></span>
+        <span tal:content="doksysobj/type"></span>
+        <span tal:content="doksysobj/area"></span>
     </metal:macro>
 
     <metal:macro define-macro="doksys_actions" i18n:domain="docpool.doksys">
