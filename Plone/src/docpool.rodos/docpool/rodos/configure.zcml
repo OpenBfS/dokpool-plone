@@ -31,6 +31,21 @@
    <permission id="docpool.rodos.AccessRodos" title="Docpool: Access Rodos Content" />
    <include package=".behaviors" />
 
+   <utility
+    component=".vocabularies.PrognosisTypesVocabularyFactory"
+    name="docpool.rodos.vocabularies.PrognosisTypes"
+    />
+
+   <utility
+    component=".vocabularies.PrognosisFormsVocabularyFactory"
+    name="docpool.rodos.vocabularies.PrognosisForms"
+    />
+
+   <utility
+    component=".vocabularies.ReleaseSitesVocabularyFactory"
+    name="docpool.rodos.vocabularies.ReleaseSites"
+    />
+
 <!-- ##/code-section Main -->    
       
 </configure>

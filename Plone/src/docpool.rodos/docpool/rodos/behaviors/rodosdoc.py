@@ -16,6 +16,8 @@ from docpool.base.interfaces import IDocumentExtension
 from collective import dexteritytextindexer
 from Products.CMFPlone.utils import parent
 
+from z3c.form.browser.radio import RadioFieldWidget
+
 from docpool.rodos import DocpoolMessageFactory as _
 
 from Acquisition import aq_inner
@@ -23,6 +25,35 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IRodosDoc(IDocumentExtension):
+    reportId = schema.TextLine(
+                        title=_(u'label_rodos_reportId', default=u'Report ID'),
+                        description=_(u'description_rodos_reportId', default=u''),
+                        required=False,
+    )
+    read_permission(reportId='docpool.rodos.AccessRodos')
+    write_permission(reportId='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('reportId')
+
+
+    calculationDate = schema.Datetime(
+                        title=_(u'label_rodos_calculationDate', default=u'Calculation Date'),
+                        description=_(u'description_rodos_calculationDate', default=u''),
+                        required=True,
+    )
+    read_permission(calculationDate='docpool.rodos.AccessRodos')
+    write_permission(calculationDate='docpool.rodos.AccessRodos')
+
+
+    projectUser = schema.TextLine(
+                        title=_(u'label_rodos_projectUser', default=u'Project User'),
+                        description=_(u'description_rodos_projectUser', default=u''),
+                        required=False,
+    )
+    read_permission(projectUser='docpool.rodos.AccessRodos')
+    write_permission(projectUser='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('projectUser')
+
+
     projectName = schema.TextLine(
                         title=_(u'label_rodos_projectName', default=u'Project Name'),
                         description=_(u'description_rodos_projectName', default=u''),
@@ -32,19 +63,24 @@ class IRodosDoc(IDocumentExtension):
     write_permission(projectName='docpool.rodos.AccessRodos')
     dexteritytextindexer.searchable('projectName')
 
-    reportId = schema.TextLine(
-                        title=_(u'label_rodos_reportId', default=u'Report ID'),
-                        description=_(u'description_rodos_reportId', default=u''),
+
+    prognosisForm = schema.Choice(
+                        title=_(u'label_rodos_prognosisForm', default=u'Prognosis Form'),
+                        description=_(u'description_rodos_prognosisForm', default=u''),
+                        source="docpool.rodos.vocabularies.PrognosisForms",
                         required=True,
     )
-    read_permission(reportId='docpool.rodos.AccessRodos')
-    write_permission(reportId='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('reportId')
+    form.widget(prognosisForm=RadioFieldWidget)
+    read_permission(prognosisForm='docpool.rodos.AccessRodos')
+    write_permission(prognosisForm='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('prognosisForm')
 
 
-    releaseSite = schema.TextLine(
+    releaseSite = schema.Choice(
                         title=_(u'label_rodos_releaseSite', default=u'Release Site'),
                         description=_(u'description_rodos_releaseSite', default=u''),
+                        source="docpool.rodos.vocabularies.ReleaseSites",
+
                         required=False,
     )
     read_permission(releaseSite='docpool.rodos.AccessRodos')
@@ -67,6 +103,28 @@ class IRodosDoc(IDocumentExtension):
     read_permission(releaseStop='docpool.rodos.AccessRodos')
     write_permission(releaseStop='docpool.rodos.AccessRodos')
 
+
+    prognosisType = schema.Choice(
+            title=_(u"Prognosis Type"),
+            description=_(u'description_rodos_prognosisType', default=u''),
+            source="docpool.rodos.vocabularies.PrognosisTypes",
+            required=False,
+        )
+
+    read_permission(prognosisType='docpool.rodos.AccessRodos')
+    write_permission(prognosisType='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('prognosisType')
+
+    model = schema.TextLine(
+                        title=_(u'label_rodos_model', default=u'Model'),
+                        description=_(u'description_rodos_model', default=u''),
+                        required=False,
+    )
+    read_permission(model='docpool.rodos.AccessRodos')
+    write_permission(model='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('model')
+
+
     prognosisBegin = schema.Datetime(
                         title=_(u'label_rodos_prognosisBegin', default=u'Prognosis Begin'),
                         description=_(u'description_rodos_prognosisBegin', default=u''),
@@ -86,57 +144,11 @@ class IRodosDoc(IDocumentExtension):
     numericWeatherPredictionDate = schema.TextLine(
                         title=_(u'label_rodos_numericWeatherPredictionDate', default=u'Numeric Weather Prediction Date'),
                         description=_(u'description_rodos_numericWeatherPredictionDate', default=u''),
-                        required=True,
+                        required=False,
     )
     read_permission(numericWeatherPredictionDate='docpool.rodos.AccessRodos')
     write_permission(numericWeatherPredictionDate='docpool.rodos.AccessRodos')
     dexteritytextindexer.searchable('numericWeatherPredictionDate')
-
-    model = schema.TextLine(
-                        title=_(u'label_rodos_model', default=u'Model'),
-                        description=_(u'description_rodos_model', default=u''),
-                        required=True,
-    )
-    read_permission(model='docpool.rodos.AccessRodos')
-    write_permission(model='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('model')
-
-    calculationDate = schema.Datetime(
-                        title=_(u'label_rodos_calculationDate', default=u'Calculation Date'),
-                        description=_(u'description_rodos_calculationDate', default=u''),
-                        required=False,
-    )
-    read_permission(calculationDate='docpool.rodos.AccessRodos')
-    write_permission(calculationDate='docpool.rodos.AccessRodos')
-
-    projectUser = schema.TextLine(
-                        title=_(u'label_rodos_projectUser', default=u'Project User'),
-                        description=_(u'description_rodos_projectUser', default=u''),
-                        required=True,
-    )
-    read_permission(projectUser='docpool.rodos.AccessRodos')
-    write_permission(projectUser='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('projectUser')
-
-
-    prognosisType = schema.TextLine(
-                        title=_(u'label_rodos_prognosisType', default=u'Prognosis Type'),
-                        description=_(u'description_rodos_prognosisType', default=u''),
-                        required=True,
-    )
-    read_permission(prognosisType='docpool.rodos.AccessRodos')
-    write_permission(prognosisType='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('prognosisType')
-
-
-    prognosisForm = schema.TextLine(
-                        title=_(u'label_rodos_prognosisForm', default=u'Prognosis Form'),
-                        description=_(u'description_rodos_prognosisForm', default=u''),
-                        required=True,
-    )
-    read_permission(prognosisForm='docpool.rodos.AccessRodos')
-    write_permission(prognosisForm='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('prognosisForm')
 
 
 class RodosDoc(FlexibleView):
