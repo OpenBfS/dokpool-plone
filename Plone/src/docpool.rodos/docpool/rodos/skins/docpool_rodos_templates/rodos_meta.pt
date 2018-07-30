@@ -5,8 +5,20 @@
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <tal:def define="rodosobj view">
         <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
-        <p>Report ID: <tal:var replace="rodosobj/reportId"/></p> <!-- TODO -->
-        <p>Release Site: <tal:var replace="rodosobj/releaseSite"/></p>
-        <p>Release Start: <tal:var replace="python: toLocalizedTime(rodosobj.releaseStart, long_format=1)"/></p>
+        <p>-------------------------------------------------</p>
+        Calculation Date: <tal:var replace="python: toLocalizedTime(rodosobj.calculationDate, long_format=1)"/><br>
+        User: <tal:var replace="rodosobj/projectUser"/><br> 
+        Project Name: <tal:var replace="rodosobj/projectName"/><br> 
+        Prognosis Form: <tal:var replace="rodosobj/prognosisForm"/> <br> 
+        Report ID: <tal:var replace="rodosobj/reportId"/><br>
+        Release Site: <tal:var replace="rodosobj/releaseSite"/><br>
+        Release Start: <tal:var replace="python: toLocalizedTime(rodosobj.releaseStart, long_format=1)"/><br>
+        Release Stop: <tal:var replace="python: toLocalizedTime(rodosobj.releaseStop, long_format=1)"/><br>
+        Prognosis Type: <tal:var replace="rodosobj/prognosisType"/><br> 
+        Model: <tal:var replace="rodosobj/model"/><br>
+        Prognosis Begin: <tal:var replace="python: toLocalizedTime(rodosobj.prognosisBegin, long_format=1)"/><br>
+        Prognosis End: <tal:var replace="python: toLocalizedTime(rodosobj.prognosisEnd, long_format=1)"/><br>
+        Numeric Weather Prediction Date: <tal:var replace="rodosobj/numericWeatherPredictionDate"/><br>
+        <p>-------------------------------------------------</p>
     </tal:def>
 </tal:block>
