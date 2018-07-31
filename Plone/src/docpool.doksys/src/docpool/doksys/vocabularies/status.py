@@ -25,6 +25,8 @@ class Status(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'plausibel', _(u'plausibel')),
+            VocabItem(u'nicht geprueft', _(u'nicht geprueft')),
 
         ]
 

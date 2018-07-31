@@ -25,6 +25,15 @@ class Type(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'vorwaerts', _(u'vorwaerts')),
+            VocabItem(u'rueckwaerts', _(u'rueckwaerts')),
+            VocabItem(u'brutto', _(u'brutto')),
+            VocabItem(u'netto', _(u'netto')),
+            VocabItem(u'nass', _(u'nass')),
+            VocabItem(u'trocken', _(u'trocken')),
+            VocabItem(u'Messergebnisse', _(u'Messergebnisse')),
+            VocabItem(u'Ueberblick', _(u'Ueberblick')),
+            VocabItem(u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich')),
 
         ]
 

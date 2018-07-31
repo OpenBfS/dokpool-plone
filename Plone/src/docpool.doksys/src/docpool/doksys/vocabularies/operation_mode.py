@@ -25,6 +25,8 @@ class OperationMode(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'Routine', _(u'Routine')),
+            VocabItem(u'Intensiv', _(u'Intensiv')),
 
         ]
 

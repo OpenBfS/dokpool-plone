@@ -25,6 +25,9 @@ class DataType(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'ONMON', _(u'ONMON')),
+            VocabItem(u'LADA', _(u'LADA')),
+            VocabItem(u'EURDEP', _(u'EURDEP')),
 
         ]
 

@@ -25,6 +25,8 @@ class Purpose(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'Standard-Info Bundesmessnetze', _(u'Standard-Info Bundesmessnetze')),
+            VocabItem(u'Standard-Info DWD', _(u'Standard-Info DWD')),
 
         ]
 

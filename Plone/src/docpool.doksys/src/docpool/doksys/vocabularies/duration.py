@@ -25,6 +25,12 @@ class Duration(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'1a', _(u'1a')),
+            VocabItem(u'1Mo', _(u'1Mo')),
+            VocabItem(u'1d', _(u'1d')),
+            VocabItem(u'2h', _(u'2h')),
+            VocabItem(u'1h', _(u'1h')),
+            VocabItem(u'10Min', _(u'10Min')),
 
         ]
 

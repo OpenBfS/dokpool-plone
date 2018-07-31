@@ -25,6 +25,10 @@ class Area(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'D', _(u'D')),
+            VocabItem(u'EU', _(u'EU')),
+            VocabItem(u'ME', _(u'ME')),
+            VocabItem(u'World', _(u'World')),
 
         ]
 

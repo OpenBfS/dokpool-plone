@@ -25,6 +25,9 @@ class LegalBase(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
+            VocabItem(u'AVV IMIS', _(u'AVV IMIS')),
+            VocabItem(u'EURDEP', _(u'EURDEP')),
+            VocabItem(u'IRMIS', _(u'IRMIS')),
 
         ]
 
