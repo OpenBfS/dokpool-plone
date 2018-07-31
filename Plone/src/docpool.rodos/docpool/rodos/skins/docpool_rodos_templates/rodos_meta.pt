@@ -6,19 +6,59 @@
     <tal:def define="rodosobj view">
         <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
         <p>-------------------------------------------------</p>
-        Report ID: <tal:var replace="rodosobj/reportId"/><br>
-        Calculation Date: <tal:var replace="python: toLocalizedTime(rodosobj.calculationDate, long_format=1)"/><br>
-        User: <tal:var replace="rodosobj/projectUser"/><br> 
-        Project Name: <tal:var replace="rodosobj/projectName"/><br> 
-        Prognosis Form: <tal:var replace="rodosobj/prognosisForm"/> <br> 
-        Release Site: <tal:var replace="rodosobj/releaseSite"/><br>
-        Release Start: <tal:var replace="python: toLocalizedTime(rodosobj.releaseStart, long_format=1)"/><br>
-        Release Stop: <tal:var replace="python: toLocalizedTime(rodosobj.releaseStop, long_format=1)"/><br>
-        Prognosis Type: <tal:var replace="rodosobj/prognosisType"/><br> 
-        Model: <tal:var replace="rodosobj/model"/><br>
-        Prognosis Begin: <tal:var replace="python: toLocalizedTime(rodosobj.prognosisBegin, long_format=1)"/><br>
-        Prognosis End: <tal:var replace="python: toLocalizedTime(rodosobj.prognosisEnd, long_format=1)"/><br>
-        Numeric Weather Prediction Date: <tal:var replace="rodosobj/numericWeatherPredictionDate"/><br>
+<!--        Report ID: <tal:var replace="rodosobj/reportId"/><br> -->
+        Report ID: 
+        <span tal:condition="python:hasattr(rodosobj,'reportId')">
+           <tal:var replace="rodosobj/reportId"/>
+        </span><br>
+        Calculation Date: 
+        <span tal:condition="python:hasattr(rodosobj,'calculationDate')">
+<tal:var replace="python: toLocalizedTime(rodosobj.calculationDate, long_format=1)"/>
+        </span><br>
+        User: 
+        <span tal:condition="python:hasattr(rodosobj,'projectUser')">
+           <tal:var replace="rodosobj/projectUser"/>
+        </span><br>
+        Project Name: 
+        <span tal:condition="python:hasattr(rodosobj,'projectName')">
+           <tal:var replace="rodosobj/projectName"/>
+        </span><br>
+        Prognosis Form: 
+        <span tal:condition="python:hasattr(rodosobj,'prognosisForm')">
+           <tal:var replace="rodosobj/prognosisForm"/>
+        </span><br>
+        Release Site: 
+        <span tal:condition="python:hasattr(rodosobj,'releaseSite')">
+           <tal:var replace="rodosobj/releaseSite"/>
+        </span><br>
+        Release Start: 
+        <span tal:condition="python:hasattr(rodosobj,'releaseStart')">
+<tal:var replace="python: toLocalizedTime(rodosobj.releaseStart, long_format=1)"/>
+        </span><br>
+        Release Stop: 
+        <span tal:condition="python:hasattr(rodosobj,'releaseStop')">
+<tal:var replace="python: toLocalizedTime(rodosobj.releaseStop, long_format=1)"/>
+        </span><br>
+        Prognosis Type: 
+        <span tal:condition="python:hasattr(rodosobj,'prognosisType')">
+           <tal:var replace="rodosobj/prognosisType"/>
+        </span><br>
+        Model: 
+        <span tal:condition="python:hasattr(rodosobj,'model')">
+           <tal:var replace="rodosobj/model"/>
+        </span><br>
+        Prognosis Begin: 
+        <span tal:condition="python:hasattr(rodosobj,'prognosisBegin')">
+<tal:var replace="python: toLocalizedTime(rodosobj.prognosisBegin, long_format=1)"/>
+        </span><br>
+        Prognosis End: 
+        <span tal:condition="python:hasattr(rodosobj,'prognosisEnd')">
+<tal:var replace="python: toLocalizedTime(rodosobj.prognosisEnd, long_format=1)"/>
+        </span><br>
+        Numeric Weather Prediction Date: 
+        <span tal:condition="python:hasattr(rodosobj,'numericWeatherPredictiondate')">
+           <tal:var replace="rodosobj/numericWeatherPredictionDate"/>
+        </span>
         <p>-------------------------------------------------</p>
     </tal:def>
 </tal:block>
