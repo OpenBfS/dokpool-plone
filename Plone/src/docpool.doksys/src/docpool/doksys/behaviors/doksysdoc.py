@@ -14,6 +14,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.interfaces import IDocumentExtension
 
 from docpool.doksys import DocpoolMessageFactory as _
+from docpool.doksys.vocabularies import sample_type
 
 from Acquisition import aq_inner
 
@@ -22,33 +23,38 @@ from Acquisition import aq_inner
 class IDoksysDoc(IDocumentExtension):
     # dexteritytextindexer.searchable('network_operator')  if a field is supposed to be fulltext searchable
 
-    network_operator = schema.TextLine(
+    network_operator = schema.Choice(
         title=_(u'label_doksys_network_operator', default=u'Network Operator'),
         description=_(u'description_doksys_network_operator', default=u''),
+        source="docpool.doksys.NetworkOperators",
         required=False,
     )
     read_permission(network_operator='docpool.doksys.AccessDoksys')
     write_permission(network_operator='docpool.doksys.AccessDoksys')
 
-    dom = schema.TextLine(
+    dom = schema.Choice(
         title=_(u'label_doksys_dom', default=u'Description of Measurement'),
         description=_(u'description_doksys_dom', default=u''),
+        source="docpool.doksys.Dom",
         required=False,
+
     )
     read_permission(dom='docpool.doksys.AccessDoksys')
     write_permission(dom='docpool.doksys.AccessDoksys')
 
-    legal_base = schema.TextLine(
+    legal_base = schema.Choice(
         title=_(u'label_doksys_legal_base', default=u'Legal Base'),
         description=_(u'description_doksys_legal_base', default=u''),
+        source="docpool.doksys.LegalBase",
         required=False,
     )
     read_permission(legal_base='docpool.doksys.AccessDoksys')
     write_permission(legal_base='docpool.doksys.AccessDoksys')
 
-    measuring_program = schema.TextLine(
+    measuring_program = schema.Choice(
         title=_(u'label_doksys_measuring_program', default=u'Measuring Program'),
         description=_(u'description_doksys_measuring_program', default=u''),
+        source="docpool.doksys.MeasuringProgram",
         required=False,
     )
     read_permission(measuring_program='docpool.doksys.AccessDoksys')
@@ -70,9 +76,10 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(sampling_end='docpool.doksys.AccessDoksys')
     write_permission(sampling_end='docpool.doksys.AccessDoksys')
 
-    purpose = schema.TextLine(
+    purpose = schema.Choice(
         title=_(u'label_doksys_purpose', default=u'Purpose'),
         description=_(u'description_doksys_purpose', default=u''),
+        source="docpool.doksys.Purpose",
         required=False,
     )
     read_permission(purpose='docpool.doksys.AccessDoksys')
@@ -110,73 +117,82 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(trajectory_end_time='docpool.doksys.AccessDoksys')
     write_permission(trajectory_end_time='docpool.doksys.AccessDoksys')
 
-    status = schema.TextLine(
+    status = schema.Choice(
         title=_(u'label_doksys_status', default=u'Status'),
         description=_(u'description_doksys_status', default=u''),
+        source="docpool.doksys.Status",
         required=False,
     )
     read_permission(status='docpool.doksys.AccessDoksys')
     write_permission(status='docpool.doksys.AccessDoksys')
 
-    operation_mode = schema.TextLine(
+    operation_mode = schema.Choice(
         title=_(u'label_doksys_operation_mode', default=u'Operation Mode'),
         description=_(u'description_doksys_operation_mode', default=u''),
+        source="docpool.doksys.OperationMode",
         required=False,
     )
     read_permission(operation_mode='docpool.doksys.AccessDoksys')
     write_permission(operation_mode='docpool.doksys.AccessDoksys')
 
-    data_type = schema.TextLine(
+    data_type = schema.Choice(
         title=_(u'label_doksys_data_type', default=u'Data Type'),
         description=_(u'description_doksys_data_type', default=u''),
+        source="docpool.doksys.DataType",
         required=False,
     )
     read_permission(data_type='docpool.doksys.AccessDoksys')
     write_permission(data_type='docpool.doksys.AccessDoksys')
 
-    sample_type_id = schema.TextLine(
+    sample_type_id = schema.Choice(
         title=_(u'label_doksys_sample_type_id', default=u'Sample Type Id'),
         description=_(u'description_doksys_sample_type_id', default=u''),
+        source="docpool.doksys.SampleTypeIds",
         required=False,
     )
     read_permission(sample_type_id='docpool.doksys.AccessDoksys')
     write_permission(sample_type_id='docpool.doksys.AccessDoksys')
 
-    sample_type = schema.TextLine(
+    sample_type = schema.Choice(
         title=_(u'label_doksys_sample_type', default=u'Sample Type'),
         description=_(u'description_doksys_sample_type', default=u''),
+        source= "docpool.doksys.SampleTypes",
         required=False,
     )
     read_permission(sample_type='docpool.doksys.AccessDoksys')
     write_permission(sample_type='docpool.doksys.AccessDoksys')
 
-    measurement_category = schema.TextLine(
+    measurement_category = schema.Choice(
         title=_(u'label_doksys_measurement_category', default=u'Measurement Category'),
         description=_(u'description_doksys_measurement_category', default=u''),
+        source="docpool.doksys.MeasurementCategory",
         required=False,
     )
     read_permission(measurement_category='docpool.doksys.AccessDoksys')
     write_permission(measurement_category='docpool.doksys.AccessDoksys')
 
-    duration = schema.TextLine(
+    duration = schema.Choice(
         title=_(u'label_doksys_duration', default=u'Duration'),
         description=_(u'description_doksys_duration', default=u''),
+        source="docpool.doksys.Duration",
         required=False,
     )
     read_permission(duration='docpool.doksys.AccessDoksys')
     write_permission(duration='docpool.doksys.AccessDoksys')
 
-    type = schema.TextLine(
+    type = schema.Choice(
         title=_(u'label_doksys_duration', default=u'Type'),
         description=_(u'description_doksys_type', default=u''),
+        source="docpool.doksys.Type",
         required=False,
     )
     read_permission(duration='docpool.doksys.AccessDoksys')
     write_permission(duration='docpool.doksys.AccessDoksys')
 
-    area = schema.TextLine(
+    area = schema.Choice(
         title=_(u'label_doksys_area', default=u'Area'),
         description=_(u'description_doksys_area', default=u''),
+        source="docpool.doksys.Area",
         required=False,
     )
     read_permission(area='docpool.doksys.AccessDoksys')
