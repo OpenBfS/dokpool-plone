@@ -6,7 +6,6 @@
     <tal:def define="rodosobj view">
         <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
         <p>-------------------------------------------------</p>
-<!--        Report ID: <tal:var replace="rodosobj/reportId"/><br> -->
         Report ID: 
         <span tal:condition="python:hasattr(rodosobj,'reportId')">
            <tal:var replace="rodosobj/reportId"/>
