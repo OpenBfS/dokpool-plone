@@ -6,26 +6,106 @@
 
 
     <metal:macro define-macro="doksys_meta" i18n:domain="docpool.doksys">
-        <span tal:content="doksysobj/network_operator"></span>
-        <span tal:content="doksysobj/dom"></span>
-        <span tal:content="doksysobj/legal_base"></span>
-        <span tal:content="doksysobj/measuring_program"></span>
-        <span tal:content="doksysobj/sampling_begin"></span>
-        <span tal:content="doksysobj/sampling_end"></span>
-        <span tal:content="doksysobj/purpose"></span>
-        <span tal:content="doksysobj/trajectory_start_location"></span>
-        <span tal:content="doksysobj/trajectory_end_location"></span>
-        <span tal:content="doksysobj/trajectory_start_time"></span>
-        <span tal:content="doksysobj/trajectory_end_time"></span>
-        <span tal:content="doksysobj/status"></span>
-        <span tal:content="doksysobj/operation_mode"></span>
-        <span tal:content="doksysobj/data_type"></span>
-        <span tal:content="doksysobj/sample_type_id"></span>
-        <span tal:content="doksysobj/sample_type"></span>
-        <span tal:content="doksysobj/measurement_category"></span>
-        <span tal:content="doksysobj/duration"></span>
-        <span tal:content="doksysobj/type"></span>
-        <span tal:content="doksysobj/area"></span>
+    Network Operator:
+        <span tal:condition="python:hasattr(doksysobj,'network_operator')">
+           <tal:var replace="doksysobj/network_operator"/>
+        </span><br>
+
+        Dom:
+        <span tal:condition="python:hasattr(doksysobj,'dom')">
+           <tal:var replace="doksysobj/dom"/>
+        </span><br>
+
+        Legal Base:
+        <span tal:condition="python:hasattr(doksysobj,'legal_base')">
+           <tal:var replace="doksysobj/legal_base"/>
+        </span><br>
+
+        Measuring Program:
+        <span tal:condition="python:hasattr(doksysobj,'measuring_program')">
+           <tal:var replace="doksysobj/measuring_program"/>
+        </span><br>
+
+        Sampling Begin:
+        <span tal:condition="python:hasattr(doksysobj,'sampling_begin')">
+           <tal:var replace="doksysobj/sampling_begin"/>
+        </span><br>
+
+        Sampling End:
+        <span tal:condition="python:hasattr(doksysobj,'sampling_end')">
+           <tal:var replace="doksysobj/sampling_end"/>
+        </span><br>
+
+        Purpose:
+        <span tal:condition="python:hasattr(doksysobj,'purpose')">
+           <tal:var replace="doksysobj/purpose"/>
+        </span><br>
+
+        Start Location:
+        <span tal:condition="python:hasattr(doksysobj,'trajectory_start_location')">
+           <tal:var replace="doksysobj/trajectory_start_location"/>
+        </span><br>
+
+        End Location:
+        <span tal:condition="python:hasattr(doksysobj,'trajectory_end_location')">
+           <tal:var replace="doksysobj/trajectory_end_location"/>
+        </span><br>
+
+        Start Time:
+        <span tal:condition="python:hasattr(doksysobj,'trajectory_start_time')">
+           <tal:var replace="doksysobj/trajectory_start_time"/>
+        </span><br>
+
+        End Time:
+        <span tal:condition="python:hasattr(doksysobj,'trajectory_end_time')">
+           <tal:var replace="doksysobj/trajectory_end_time"/>
+        </span><br>
+
+        Status:
+        <span tal:condition="python:hasattr(doksysobj,'status')">
+           <tal:var replace="doksysobj/status"/>
+        </span><br>
+
+        Operation Mode:
+        <span tal:condition="python:hasattr(doksysobj,'operation_mode')">
+           <tal:var replace="doksysobj/operation_mode"/>
+        </span><br>
+
+        Data Type:
+        <span tal:condition="python:hasattr(doksysobj,'data_type')">
+           <tal:var replace="doksysobj/data_type"/>
+        </span><br>
+
+        Sample Type Id:
+        <span tal:condition="python:hasattr(doksysobj,'sample_type_id')">
+           <tal:var replace="doksysobj/sample_type_id"/>
+        </span><br>
+
+        Sample Type:
+        <span tal:condition="python:hasattr(doksysobj,'sample_type')">
+           <tal:var replace="doksysobj/sample_type"/>
+        </span><br>
+
+        Measurement Category:
+        <span tal:condition="python:hasattr(doksysobj,'measurement_category')">
+           <tal:var replace="doksysobj/measurement_category"/>
+        </span><br>
+
+        Duration:
+        <span tal:condition="python:hasattr(doksysobj,'duration')">
+           <tal:var replace="doksysobj/duration"/>
+        </span><br>
+
+        Type:
+        <span tal:condition="python:hasattr(doksysobj,'type')">
+           <tal:var replace="doksysobj/type"/>
+        </span><br>
+
+        Area:
+        <span tal:condition="python:hasattr(doksysobj,'area')">
+           <tal:var replace="doksysobj/area"/>
+        </span><br>
+
     </metal:macro>
 
     <metal:macro define-macro="doksys_actions" i18n:domain="docpool.doksys">
