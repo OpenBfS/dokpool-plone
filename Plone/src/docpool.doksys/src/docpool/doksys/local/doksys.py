@@ -7,7 +7,10 @@ def dpAdded(self):
     @return: 
         
     """
+    createDoksysUsers(self)
     createDoksysGroups(self)
+    setDoksysLocalRoles(self)
+    self.reindexAll()
     # TODO:
 
 def dpRemoved(self):
@@ -35,7 +38,35 @@ def createDoksysGroups(self):
                  'dp': self.UID()}
         gtool.addGroup("%s_DoksysUsers" % prefix,
                        properties=props)
-        gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_DoksysUsers' % prefix)
+        gtool.addPrincipalToGroup('%s_doksysadmin' % prefix, '%s_DoksysUsers' % prefix)
 
-        # Set Example role as a local role for the new group
+        # Set Doksys role as a local role for the new group
         self.manage_setLocalRoles("%s_DoksysUsers" % prefix, ["DoksysUser"])
+
+
+def createDoksysUsers(self):
+    # Set type for user folders
+    mtool = getToolByName(self, "portal_membership")
+    prefix = self.prefix or self.getId()
+    prefix = str(prefix)
+    title = self.Title()
+    mtool.addMember('%s_doksysadmin' % prefix, 'DokSys Administrator (%s)' % title, ['Member'], [])
+    doksysadmin = mtool.getMemberById('%s_doksysadmin' % prefix)
+    doksysadmin.setMemberProperties(
+        {"fullname": 'DokSys Administrator (%s)' % title,
+         "dp": self.UID()})
+    doksysadmin.setSecurityProfile(password="admin")
+
+
+def setDoksysLocalRoles(self):
+    """
+    Normal local members: Reader
+    Administrators: Site Administrator
+    ContentAdministrators: Reviewer
+    Receivers: Owner, Editor
+    Senders: Contributor
+    """
+    prefix = self.prefix or self.getId()
+    prefix = str(prefix)
+
+    self.manage_setLocalRoles("%s_DokSysUsers" % prefix, ["DoksysUser"])

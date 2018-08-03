@@ -107,6 +107,14 @@
             name="data_type"/>
 
     <adapter
+            factory=".indexer.sample_type_id_indexer"
+            name="sample_type_id"/>
+
+    <adapter
+            factory=".indexer.sample_type_indexer"
+            name="sample_type"/>
+
+    <adapter
             factory=".indexer.measurement_category_indexer"
             name="measurement_category"/>
 

@@ -246,7 +246,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.SampleTypeId</value>
+        <value key="vocabulary">docpool.doksys.SampleTypeIds</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
