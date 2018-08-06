@@ -1,5 +1,5 @@
 <table>
-<tr i18n:domain="docpool.base"
+<tr i18n:domain="docpool.rodos"
            tal:define="view nocall:options/view;
                    context nocall:options/context;
                    here nocall:context"
@@ -34,6 +34,7 @@
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
                 <td class="actions" tal:condition="python:not isOverview and not isCollection">
+                    <p><b>rodos_rodosrun_listitem.pt</b></p>
                     <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
                     <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
