@@ -7,7 +7,7 @@
     <index name="dom" meta_type="FieldIndex">
         <indexed_attr value="dom"/>
     </index>
-    <index name="legal-base" meta_type="FieldIndex">
+    <index name="legal_base" meta_type="FieldIndex">
         <indexed_attr value="legal_base"/>
     </index>
     <index name="measuring_program" meta_type="FieldIndex">
@@ -20,7 +20,7 @@
         <indexed_attr value="sampling_end"/>
     </index>
     <index name="purpose" meta_type="FieldIndex">
-        <indexed_attr value="dom"/>
+        <indexed_attr value="purpose"/>
     </index>
     <index name="trajectory_start_location" meta_type="FieldIndex">
         <indexed_attr value="trajectory_start_location"/>

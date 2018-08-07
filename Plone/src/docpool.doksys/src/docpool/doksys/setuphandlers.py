@@ -4,6 +4,8 @@ from zope.interface import implementer
 from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects, _addAllowedTypes
 from Products.CMFCore.utils import getToolByName
 from zope.component.hooks import getSite
+from plone import api
+
 import transaction
 
 
@@ -33,6 +35,10 @@ def uninstall(context):
 def createStructure(plonesite, fresh):
     createDoksysNavigation(plonesite, fresh)
     transaction.commit()
+    create_1day_collection(plonesite)
+    transaction.commit()
+    create_purpose_collection(plonesite)
+    transaction.commit()
     createDoksysDocTypes(plonesite, fresh)
     transaction.commit()
 
@@ -43,23 +49,44 @@ def createDoksysNavigation(plonesite, fresh):
 def createDoksysDocTypes (plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
-def create_doksys_collection(plonesite):
+def create_1day_collection(plonesite):
     api.content.create(
         type='Collection',
         title='Dokumente der letzten 24 h',
         query=[{
-            u'i': u'dp_type',
+            u'i': u'portal_type',
             u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'dpdocument'
+            u'v': u'DPDocument'
         },
-            {
-                u'i': u'creationDate',
-                u'o': u'plone.app.querystring.operation.date.beforeToday',
-                u'v': u'1d'
-            }],
+        {
+            u'i': u'modified',
+            u'o': u'plone.app.querystring.operation.date.beforeToday',
+            u'v': u'1d'
+        }],
         sort_on='created',
-        container=plonesite.rodos.restrictedTraverse('national-npps')
+        container=api.content.get(path='/search')
     )
+    print "1day Collection angelegt"
+
+def create_purpose_collection(plonesite):
+    api.content.create(
+        type='Collection',
+        title='Standard-Info Bundesmessnetze',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+        {
+            u'i': u'purpose',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'Standard-Info Bundesmessnetze'
+        }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    print "Purpose Collection angelegt"
+
 
 
 BASICSTRUCTURE = [
@@ -68,11 +95,11 @@ BASICSTRUCTURE = [
         TITLE: 'Predefined Searches',
         ID: 'search',
         CHILDREN: [
-            {
-                TYPE: 'Folder',
-                TITLE: 'Documents of last 24h',
-                ID: 'lastday'
-            }
+#            {
+#                TYPE: 'Folder',
+#                TITLE: 'Ordner',
+#                ID: 'lastday'
+#            }
         ],  # TODO: further folders filled with Doksys Collections
     }
     # {

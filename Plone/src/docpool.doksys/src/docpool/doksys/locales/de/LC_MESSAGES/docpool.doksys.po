@@ -1,69 +1,6222 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-03 13:58+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2018-08-06 12:02+0000\n"
+"PO-Revision-Date: 2018-08-06 10:59+0100\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <pbieringer@bfs.de>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: DE\n"
 
-#: docpool/doksys/vocabularies/network_operators.py:28
-msgid "BfS"
+#: ../vocabularies/duration.py:33
+msgid "10Min"
 msgstr ""
 
-#: docpool/doksys/vocabularies/network_operators.py:29
+#: ../vocabularies/duration.py:29
+msgid "1Mo"
+msgstr ""
+
+#: ../vocabularies/duration.py:28
+msgid "1a"
+msgstr ""
+
+#: ../vocabularies/duration.py:30
+msgid "1d"
+msgstr ""
+
+#: ../vocabularies/duration.py:32
+msgid "1h"
+msgstr ""
+
+#: ../vocabularies/duration.py:31
+msgid "2h"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:28
+msgid "9"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:29
+msgid "91"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:30
+msgid "A"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:31
+msgid "A1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:32
+msgid "A11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:33
+msgid "A12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:34
+msgid "A13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:35
+msgid "A2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:36
+msgid "A21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:37
+msgid "A22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:38
+msgid "A23"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:39
+msgid "A24"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:40
+msgid "A3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:41
+msgid "A31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:42
+msgid "A32"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:43
+msgid "A4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:44
+msgid "A41"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:45
+msgid "A42"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:46
+msgid "A5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:47
+msgid "A51"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:48
+msgid "A52"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:49
+msgid "A53"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:50
+msgid "A54"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:51
+msgid "A55"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:52
+msgid "A56"
+msgstr ""
+
+#: ../vocabularies/legal_base.py:28
+msgid "AVV IMIS"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:32
+msgid "Abwasser aus Klaeranlagenablauf"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:30
+msgid "Abwasser, Reststoffe  und Abfaelle"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:747
+msgid "Ac-223"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:748
+msgid "Ac-224"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:749
+msgid "Ac-225"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:750
+msgid "Ac-226"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:751
+msgid "Ac-227"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:752
+msgid "Ac-228"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:71
+msgid "Ackerboeden"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:144
+msgid "Aerosole"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:267
+msgid "Ag-102"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:268
+msgid "Ag-103"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:270
+msgid "Ag-104"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:269
+msgid "Ag-104m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:271
+msgid "Ag-105"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:273
+msgid "Ag-106"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:272
+msgid "Ag-106m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:275
+msgid "Ag-108"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:274
+msgid "Ag-108m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:276
+msgid "Ag-109m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:278
+msgid "Ag-110"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:277
+msgid "Ag-110m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:279
+msgid "Ag-111"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:280
+msgid "Ag-112"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:281
+msgid "Ag-115"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:40
+msgid "Al-26"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:41
+msgid "Al-28"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:804
+msgid "Am-237"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:805
+msgid "Am-238"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:806
+msgid "Am-239"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:807
+msgid "Am-240"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:808
+msgid "Am-241"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:810
+msgid "Am-242"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:809
+msgid "Am-242m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:811
+msgid "Am-243"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:813
+msgid "Am-244"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:812
+msgid "Am-244m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:814
+msgid "Am-245"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:816
+msgid "Am-246"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:815
+msgid "Am-246m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:51
+msgid "Ar-37"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:52
+msgid "Ar-39"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:53
+msgid "Ar-41"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Area"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:133
+msgid "Arzneimittel"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:135
+msgid "Arzneimittelprodukte"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:132
+msgid "As-69"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:133
+msgid "As-70"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:134
+msgid "As-71"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:135
+msgid "As-72"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:136
+msgid "As-73"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:137
+msgid "As-74"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:138
+msgid "As-76"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:139
+msgid "As-77"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:140
+msgid "As-78"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:725
+msgid "At-207"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:726
+msgid "At-211"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:727
+msgid "At-215"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:728
+msgid "At-216"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:729
+msgid "At-217"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:730
+msgid "At-218"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:653
+msgid "Au-193"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:654
+msgid "Au-194"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:656
+msgid "Au-195"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:655
+msgid "Au-195m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:658
+msgid "Au-198"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:657
+msgid "Au-198m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:659
+msgid "Au-199"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:661
+msgid "Au-200"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:660
+msgid "Au-200m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:662
+msgid "Au-201"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:134
+msgid "Ausgangsstoffe fuer Arzneimittel"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:53
+msgid "B"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:54
+msgid "B1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:55
+msgid "B11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:56
+msgid "B12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:57
+msgid "B13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:58
+msgid "B2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:59
+msgid "B21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:60
+msgid "B22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:61
+msgid "B3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:62
+msgid "B31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:63
+msgid "B32"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:64
+msgid "B33"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:65
+msgid "B34"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:66
+msgid "B35"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:67
+msgid "B36"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:56
+msgid "BMU"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:53
+msgid "BSH"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:402
+msgid "Ba-126"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:403
+msgid "Ba-128"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:405
+msgid "Ba-131"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:404
+msgid "Ba-131m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:407
+msgid "Ba-133"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:406
+msgid "Ba-133m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:408
+msgid "Ba-135m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:409
+msgid "Ba-137m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:410
+msgid "Ba-139"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:411
+msgid "Ba-140"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:412
+msgid "Ba-141"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:413
+msgid "Ba-142"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:35
+msgid "Baden-Wuerttemberg"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:54
+msgid "Bauschutt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:328
+msgid "Baustoffe"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:36
+msgid "Bayern"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:30
+msgid "Be-10"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:29
+msgid "Be-7"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:341
+msgid "Bedarfsgegenstaende mit Koerperkontakt/ Spielwaren/ Kleidung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:337
+msgid "Bedarfsgegenstaende mit Lebensmittelkontakt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:336
+msgid "Bedarfsgegenstaende und Kosmetische Mittel"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:343
+msgid "Bedarfsgegenstaende zur Reinigung und Pflege"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:339
+msgid "Bedarfsgegenstaende zur Verpackung von Tabakerz. und kosmet. Mitteln"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:325
+msgid "Beerenobst (ausser Wald-/Wildbeeren) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:199
+msgid "Beerenobst, geschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:198
+msgid "Beerenobst, ungeschuetzter Anbau (ausser Wald-/Wildbeeren)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:38
+msgid "Berlin"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:50
+msgid "BfE"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:52
+msgid "BfG"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:61
+msgid "BfS (ABI)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:54
+msgid "BfS (LSt. AB)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:55
+msgid "BfS (LSt. TW ...)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:64
+msgid "BfS (ODL)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:47
+msgid "BfS (Spuren)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:49
+msgid "BfS/ZdB"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:701
+msgid "Bi-200"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:702
+msgid "Bi-201"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:703
+msgid "Bi-202"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:704
+msgid "Bi-203"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:705
+msgid "Bi-205"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:706
+msgid "Bi-206"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:707
+msgid "Bi-207"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:709
+msgid "Bi-210"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:708
+msgid "Bi-210m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:710
+msgid "Bi-211"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:711
+msgid "Bi-212"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:712
+msgid "Bi-213"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:713
+msgid "Bi-214"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:145
+msgid "Bilanzierungsmessung Aerosole"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:152
+msgid "Bilanzierungsmessung Luft/Edelgase"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:151
+msgid "Bilanzierungsmessung Luft/Iod"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:154
+msgid "Bilanzierungsmessung andere gasfoermige Komponenten (ausser Iod und Edelgase)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:122
+msgid "Bio-Indikatoren, Tabak und Arzneimittel"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:829
+msgid "Bk-245"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:830
+msgid "Bk-246"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:831
+msgid "Bk-247"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:832
+msgid "Bk-249"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:833
+msgid "Bk-250"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:124
+msgid "Blaetter"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:180
+msgid "Blattgemuese, geschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:175
+msgid "Blattgemuese, ungeschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:311
+msgid "Blattgemuese, ungeschuetzter Anbau - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:55
+msgid "Boden"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:292
+msgid "Boden - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:56
+msgid "Boden in-situ (flaechenbezogene Aktivitaet)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:58
+msgid "Boden in-situ (flaechenbezogene Aktivitaet); Boden unversiegelt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:60
+msgid "Boden in-situ (flaechenbezogene Aktivitaet); Boden versiegelt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:65
+msgid "Boden in-situ (nuklidspez. Dosisleistung),Boden unversiegelt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:67
+msgid "Boden in-situ (nuklidspez. Dosisleistung),Boden versiegelt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:63
+msgid "Boden in-situ (nuklidspezifische Dosisleistung)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:289
+msgid "Boden/-Oberflaeche - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:61
+msgid "Bodenauflage"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:291
+msgid "Bodenoberflaeche (unversiegelt, in-situ, flaechenbezogene Aktivitaet) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:294
+msgid "Bodenoberflaeche (versiegelt, in-situ, flaechenbezogene Aktivitaet) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:333
+msgid "Bodenschaetze"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:151
+msgid "Br-74"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:150
+msgid "Br-74m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:152
+msgid "Br-75"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:153
+msgid "Br-76"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:154
+msgid "Br-77"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:156
+msgid "Br-80"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:155
+msgid "Br-80m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:157
+msgid "Br-82"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:158
+msgid "Br-83"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:159
+msgid "Br-84"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:39
+msgid "Brandenburg"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:31
+msgid "Bremen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:260
+msgid "Brote und Gebaecke"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:44
+msgid "Bundeswehr"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:31
+msgid "C-11"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:32
+msgid "C-14"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:60
+msgid "Ca-41"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:61
+msgid "Ca-45"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:62
+msgid "Ca-47"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:63
+msgid "Ca-49"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:282
+msgid "Cd-104"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:283
+msgid "Cd-107"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:284
+msgid "Cd-109"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:286
+msgid "Cd-113"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:285
+msgid "Cd-113m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:288
+msgid "Cd-115"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:287
+msgid "Cd-115m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:290
+msgid "Cd-117"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:289
+msgid "Cd-117m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:424
+msgid "Ce-134"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:425
+msgid "Ce-135"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:427
+msgid "Ce-137"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:426
+msgid "Ce-137m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:428
+msgid "Ce-139"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:429
+msgid "Ce-141"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:430
+msgid "Ce-143"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:431
+msgid "Ce-144"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:834
+msgid "Cf-244"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:835
+msgid "Cf-246"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:836
+msgid "Cf-248"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:837
+msgid "Cf-249"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:838
+msgid "Cf-250"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:839
+msgid "Cf-251"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:840
+msgid "Cf-252"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:841
+msgid "Cf-253"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:842
+msgid "Cf-254"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:48
+msgid "Cl-36"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:49
+msgid "Cl-38"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:50
+msgid "Cl-39"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:817
+msgid "Cm-238"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:818
+msgid "Cm-240"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:819
+msgid "Cm-241"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:820
+msgid "Cm-242"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:821
+msgid "Cm-243"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:906
+msgid "Cm-24344"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:822
+msgid "Cm-244"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:823
+msgid "Cm-245"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:824
+msgid "Cm-246"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:825
+msgid "Cm-247"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:826
+msgid "Cm-248"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:827
+msgid "Cm-249"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:828
+msgid "Cm-250"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:89
+msgid "Co-55"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:90
+msgid "Co-56"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:91
+msgid "Co-57"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:93
+msgid "Co-58"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:92
+msgid "Co-58m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:95
+msgid "Co-60"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:94
+msgid "Co-60m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:96
+msgid "Co-61"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:97
+msgid "Co-62m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:76
+msgid "Cr-48"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:77
+msgid "Cr-49"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:78
+msgid "Cr-51"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:387
+msgid "Cs-125"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:388
+msgid "Cs-126"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:389
+msgid "Cs-127"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:390
+msgid "Cs-128"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:391
+msgid "Cs-129"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:392
+msgid "Cs-130"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:393
+msgid "Cs-131"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:394
+msgid "Cs-132"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:396
+msgid "Cs-134"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:395
+msgid "Cs-134m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:398
+msgid "Cs-135"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:397
+msgid "Cs-135m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:399
+msgid "Cs-136"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:400
+msgid "Cs-137"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:401
+msgid "Cs-138"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:874
+msgid "Cs-Gesamt"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:104
+msgid "Cu-60"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:105
+msgid "Cu-61"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:106
+msgid "Cu-62"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:107
+msgid "Cu-64"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:108
+msgid "Cu-66"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:109
+msgid "Cu-67"
+msgstr ""
+
+#: ../vocabularies/area.py:28
+msgid "D"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:62
 msgid "DWD"
 msgstr ""
 
-#: docpool/doksys/configure.zcml:29
+#: ../profiles/default/registry.xml
+msgid "Data Type"
+msgstr "Datenquelle"
+
+#: ../vocabularies/sample_type.py:43
+msgid "Deponieoberflaeche"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Dom"
+msgstr "Dom"
+
+#: ../profiles/default/registry.xml
+msgid "Duration"
+msgstr "Dauer"
+
+#: ../vocabularies/measurement_category.py:512
+msgid "Dy-155"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:513
+msgid "Dy-157"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:514
+msgid "Dy-159"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:515
+msgid "Dy-165"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:516
+msgid "Dy-166"
+msgstr ""
+
+#: ../vocabularies/area.py:29
+msgid "EU"
+msgstr ""
+
+#: ../vocabularies/data_type.py:30
+#: ../vocabularies/legal_base.py:29
+msgid "EURDEP"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "End Location"
+msgstr "Endeort"
+
+#: ../profiles/default/registry.xml
+msgid "End Time"
+msgstr "Endzeit"
+
+#: ../vocabularies/network_operators.py:45
+msgid "Endlager (Bundesaufsicht)"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:528
+msgid "Er-161"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:529
+msgid "Er-165"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:530
+msgid "Er-169"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:531
+msgid "Er-171"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:532
+msgid "Er-172"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:843
+msgid "Es-250"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:844
+msgid "Es-251"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:845
+msgid "Es-253"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:847
+msgid "Es-254"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:846
+msgid "Es-254m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:475
+msgid "Eu-145"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:476
+msgid "Eu-146"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:477
+msgid "Eu-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:478
+msgid "Eu-148"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:479
+msgid "Eu-149"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:481
+msgid "Eu-150 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:480
+msgid "Eu-150 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:483
+msgid "Eu-152"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:482
+msgid "Eu-152m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:484
+msgid "Eu-154"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:485
+msgid "Eu-155"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:486
+msgid "Eu-156"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:487
+msgid "Eu-157"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:488
+msgid "Eu-158"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:68
+msgid "F"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:35
+msgid "F-18"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:69
+msgid "F1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:70
+msgid "F11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:71
+msgid "F12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:72
+msgid "F2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:73
+msgid "F21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:74
+msgid "F3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:75
+msgid "F31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:76
+msgid "F4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:77
+msgid "F41"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:78
+msgid "F5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:79
+msgid "F51"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:80
+msgid "F52"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:81
+msgid "F5Z"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:82
+msgid "F6"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:83
+msgid "F61"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:84
+msgid "F62"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:85
+msgid "F63"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:86
+msgid "F7"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:87
+msgid "F71"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:85
+msgid "Fe-52"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:86
+msgid "Fe-55"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:87
+msgid "Fe-59"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:88
+msgid "Fe-60"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:233
+msgid "Fertiggerichte, Trockensubstanz (einschl. Suppen)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:231
+msgid "Fertiggerichte, verzehrsfertig (einschl. Suppen)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:39
+msgid "Feste Rueckstaende aus Rauchgaswaesche"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:51
+msgid "FhG"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:37
+msgid "Filterstaub, Filterasche"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:210
+msgid "Fisch und Meeresfruechte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:214
+msgid "Fischerzeugnisse"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:273
+msgid "Fischprodukte, Frischprod. auch tiefgefr."
+msgstr ""
+
+#: ../vocabularies/sample_type.py:274
+msgid "Fischprodukte, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:202
+msgid "Fleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:266
+msgid "Fleischprodukte u. Wurstwaren, ohne Wild, Frischprod. auch tiefgefr."
+msgstr ""
+
+#: ../vocabularies/sample_type.py:268
+msgid "Fleischprodukte u. Wurstwaren, ohne Wild, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:99
+msgid "Fliessgewaesser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:40
+msgid "Fluessige Rueckstaende aus Rauchgaswaesche"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:848
+msgid "Fm-252"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:849
+msgid "Fm-253"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:850
+msgid "Fm-254"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:851
+msgid "Fm-255"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:852
+msgid "Fm-257"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:51
+msgid "Folien"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:735
+msgid "Fr-219"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:736
+msgid "Fr-220"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:737
+msgid "Fr-221"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:738
+msgid "Fr-222"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:739
+msgid "Fr-223"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:73
+msgid "Freizeitflaechenboeden"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:174
+msgid "Frischgemuese (einschl. Kartoffeln und Pilze)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:182
+msgid "Fruchtgemuese, geschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:177
+msgid "Fruchtgemuese, ungeschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:315
+msgid "Fruchtgemuese, ungeschuetzter Anbau - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:84
+msgid "Futtergetreide"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:85
+msgid "Futtergetreide (einschl. Maiskoerner)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:87
+msgid "Futterkartoffeln und Futterrueben"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:76
+msgid "Futtermittel"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:88
+msgid "G"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:872
+msgid "G-Alpha"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:886
+msgid "G-Alpha-120h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:883
+msgid "G-Alpha-2,5h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:885
+msgid "G-Alpha-24h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:884
+msgid "G-Alpha-5h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:873
+msgid "G-Alpha-kuenstl."
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:891
+msgid "G-Alpha-natuerl."
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:870
+msgid "G-Beta"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:888
+msgid "G-Beta-10h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:890
+msgid "G-Beta-120h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:889
+msgid "G-Beta-24h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:887
+msgid "G-Beta-2h_verz"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:871
+msgid "G-Beta-kuenstl."
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:892
+msgid "G-Beta-natuerl."
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:869
+msgid "G-Gamma"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:876
+msgid "G-Gamma-kuenstl."
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:89
+msgid "G1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:90
+msgid "G11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:91
+msgid "G12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:92
+msgid "G13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:93
+msgid "G2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:94
+msgid "G21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:95
+msgid "G22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:96
+msgid "G23"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:97
+msgid "G3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:98
+msgid "G31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:99
+msgid "G32"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:100
+msgid "G33"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:101
+msgid "G4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:102
+msgid "G41"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:103
+msgid "G5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:104
+msgid "G51"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:105
+msgid "G52"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:106
+msgid "G53"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:107
+msgid "GZ"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:108
+msgid "GZ1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:117
+msgid "Ga-65"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:118
+msgid "Ga-66"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:119
+msgid "Ga-67"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:120
+msgid "Ga-68"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:121
+msgid "Ga-70"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:122
+msgid "Ga-72"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:123
+msgid "Ga-73"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:880
+msgid "Gamma-OD"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:893
+msgid "Gamma-OD-Brutto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:894
+msgid "Gamma-OD-Netto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:868
+msgid "Gamma-ODL"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:877
+msgid "Gamma-ODL-Brutto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:878
+msgid "Gamma-ODL-Netto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:879
+msgid "Gamma-ODL-kuenstl."
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:908
+msgid "Gamma-ODL-max"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:907
+msgid "Gamma-ODL-min"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:138
+msgid "Gamma-Ortsdosis"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:139
+msgid "Gamma-Ortsdosisleistung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:50
+msgid "Gartenabfaelle"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:75
+msgid "Gartenboeden"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:489
+msgid "Gd-145"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:490
+msgid "Gd-146"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:491
+msgid "Gd-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:492
+msgid "Gd-148"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:493
+msgid "Gd-149"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:494
+msgid "Gd-151"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:495
+msgid "Gd-152"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:496
+msgid "Gd-153"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:497
+msgid "Gd-159"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:124
+msgid "Ge-66"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:125
+msgid "Ge-67"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:126
+msgid "Ge-68"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:127
+msgid "Ge-69"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:128
+msgid "Ge-71"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:129
+msgid "Ge-75"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:130
+msgid "Ge-77"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:131
+msgid "Ge-78"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:206
+msgid "Gefluegelfleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:308
+msgid "Gefluegelfleisch - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:246
+msgid "Gemueseprodukte einschl. Kartoffeln, Frischprodukte auch tiefgefroren"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:248
+msgid "Gemueseprodukte einschl. Kartoffeln, Trockenprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:250
+msgid "Gemueseprodukte einschl. Kartoffeln, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:228
+msgid "Gesamtnahrung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:227
+msgid "Gesamtnahrung, Fertiggerichte und Getraenke"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:237
+msgid "Getraenke, Trockensubstanz, nicht alkoholisch (einschl. Tee und Kaffee)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:238
+msgid "Getraenke, alkoholisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:235
+msgid "Getraenke, trinkfertig, nicht alkoholisch (einschl. Tee und Kaffee)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:189
+msgid "Getreide"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:320
+msgid "Getreidekoerner (Weizen, Roggen, Gerste, Hafer, Mais, Triticale) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:191
+msgid "Getreidekoerner (Weizen-,Roggen-, Gersten-, Hafer-, Mais-, Triticalenkoerner)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:259
+msgid "Getreideprodukte ausser Brot"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:98
+msgid "Gewaesser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:126
+msgid "Gras"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:129
+msgid "Gras (REI)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:78
+msgid "Gruenfutter (einschl. Weide- und Wiesenbewuchs)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:81
+msgid "Gruenfutterpflanzen (ausser Weide- u. Wiesenbewuchs)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:298
+msgid "Gruenfutterpflanzen (ausser Weide- und Wiesenbewuchs) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:111
+msgid "Grundwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:113
+msgid "Grundwasser (nicht zur Trinkwassergewinnung)"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:28
+msgid "H-3"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:208
+msgid "Haarwildfleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:86
+msgid "Hackfruechte"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:29
+msgid "Hamburg"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:33
+msgid "Hessen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:89
+msgid "Heu"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:88
+msgid "Heu, Stroh, Cobs, Trockenmehle"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:562
+msgid "Hf-170"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:563
+msgid "Hf-172"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:564
+msgid "Hf-173"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:565
+msgid "Hf-175"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:566
+msgid "Hf-177m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:567
+msgid "Hf-178m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:568
+msgid "Hf-179m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:569
+msgid "Hf-180m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:570
+msgid "Hf-181"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:572
+msgid "Hf-182"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:571
+msgid "Hf-182m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:573
+msgid "Hf-183"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:574
+msgid "Hf-184"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:664
+msgid "Hg-193"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:663
+msgid "Hg-193m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:665
+msgid "Hg-194"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:667
+msgid "Hg-195"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:666
+msgid "Hg-195m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:669
+msgid "Hg-197"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:668
+msgid "Hg-197m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:670
+msgid "Hg-199m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:671
+msgid "Hg-203"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:517
+msgid "Ho-155"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:518
+msgid "Ho-157"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:519
+msgid "Ho-159"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:520
+msgid "Ho-161"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:522
+msgid "Ho-162"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:521
+msgid "Ho-162m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:524
+msgid "Ho-164"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:523
+msgid "Ho-164m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:526
+msgid "Ho-166"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:525
+msgid "Ho-166m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:527
+msgid "Ho-167"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:169
+msgid "Hofmilch (Kuh-)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:280
+msgid "Honig"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:279
+msgid "Huehnereier"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:172
+msgid "Humanmilch"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:109
+msgid "I"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:357
+msgid "I-120"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:356
+msgid "I-120m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:358
+msgid "I-121"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:359
+msgid "I-122"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:360
+msgid "I-123"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:361
+msgid "I-124"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:362
+msgid "I-125"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:363
+msgid "I-126"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:364
+msgid "I-128"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:365
+msgid "I-129"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:366
+msgid "I-130"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:367
+msgid "I-131"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:859
+msgid "I-131E"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:856
+msgid "I-131G"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:865
+msgid "I-131GO"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:862
+msgid "I-131O"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:369
+msgid "I-132"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:368
+msgid "I-132m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:370
+msgid "I-133"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:860
+msgid "I-133E"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:857
+msgid "I-133G"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:866
+msgid "I-133GO"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:863
+msgid "I-133O"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:371
+msgid "I-134"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:372
+msgid "I-135"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:861
+msgid "I-135E"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:858
+msgid "I-135G"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:867
+msgid "I-135GO"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:864
+msgid "I-135O"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:110
+msgid "I1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:111
+msgid "I11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:112
+msgid "I12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:113
+msgid "I13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:114
+msgid "I14"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:115
+msgid "I15"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:116
+msgid "I19"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:117
+msgid "I2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:118
+msgid "I21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:119
+msgid "I22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:120
+msgid "I3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:121
+msgid "I31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:122
+msgid "I32"
+msgstr ""
+
+#: ../vocabularies/legal_base.py:30
+msgid "IRMIS"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:291
+msgid "In-109"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:293
+msgid "In-110 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:292
+msgid "In-110 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:294
+msgid "In-111"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:295
+msgid "In-112"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:296
+msgid "In-113m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:298
+msgid "In-114"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:297
+msgid "In-114m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:300
+msgid "In-115"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:299
+msgid "In-115m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:301
+msgid "In-116m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:303
+msgid "In-117"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:302
+msgid "In-117m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:305
+msgid "In-119"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:304
+msgid "In-119m"
+msgstr ""
+
+#: ../configure.zcml:29
 msgid "Installs the docpool.doksys add-on."
 msgstr "Installiert das docpool.docsys Add-On."
 
-#: docpool/doksys/profiles/default/registry.xml
+#: ../vocabularies/operation_mode.py:29
+msgid "Intensiv"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:624
+msgid "Ir-182"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:625
+msgid "Ir-184"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:626
+msgid "Ir-185"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:627
+msgid "Ir-186 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:628
+msgid "Ir-186 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:629
+msgid "Ir-187"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:630
+msgid "Ir-188"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:631
+msgid "Ir-189"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:634
+msgid "Ir-190"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:633
+msgid "Ir-190m1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:632
+msgid "Ir-190m2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:635
+msgid "Ir-191m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:637
+msgid "Ir-192"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:636
+msgid "Ir-192m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:639
+msgid "Ir-194"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:638
+msgid "Ir-194m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:641
+msgid "Ir-195"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:640
+msgid "Ir-195m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:54
+msgid "K-38"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:55
+msgid "K-40"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:56
+msgid "K-42"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:57
+msgid "K-43"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:58
+msgid "K-44"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:59
+msgid "K-45"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:240
+msgid "Kaese aus Kuhmilch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:241
+msgid "Kaese aus Milch anderer Tiere"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:204
+msgid "Kalbfleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:306
+msgid "Kalbfleisch - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:179
+msgid "Kartoffeln"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:318
+msgid "Kartoffeln - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:195
+msgid "Kernobst"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:322
+msgid "Kernobst - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:38
+msgid "Kesselasche, Schlacke"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:31
+msgid "Klaeranlage"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:35
+msgid "Klaerschlamm"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:45
+msgid "Kompost"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:44
+msgid "Kompostierungsanlage"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:345
+msgid "Kosmetische Mittel und Stoffe zu deren Herstellung"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:160
+msgid "Kr-74"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:161
+msgid "Kr-76"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:162
+msgid "Kr-77"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:163
+msgid "Kr-79"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:165
+msgid "Kr-81"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:164
+msgid "Kr-81m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:166
+msgid "Kr-83m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:168
+msgid "Kr-85"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:167
+msgid "Kr-85m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:169
+msgid "Kr-87"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:170
+msgid "Kr-88"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:171
+msgid "Kr-89"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:97
+msgid "Kraftfuttermischungen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:185
+msgid "Kulturpilze"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:256
+msgid "Kulturpilzprodukte, Frischprodukte auch tiefgefroren"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:257
+msgid "Kulturpilzprodukte, Trockenprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:258
+msgid "Kulturpilzprodukte, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:123
+msgid "L"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:124
+msgid "L1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:125
+msgid "L11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:126
+msgid "L12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:127
+msgid "L2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:128
+msgid "L21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:129
+msgid "L22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:130
+msgid "L3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:131
+msgid "L31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:132
+msgid "L32"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:133
+msgid "L4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:134
+msgid "L41"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:135
+msgid "L42"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:136
+msgid "L43"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:137
+msgid "L44"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:138
+msgid "L45"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:139
+msgid "L46"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:140
+msgid "L5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:141
+msgid "L51"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:142
+msgid "L52"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:143
+msgid "L53"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:144
+msgid "L54"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:145
+msgid "L6"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:146
+msgid "L61"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:147
+msgid "L62"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:148
+msgid "L63"
+msgstr ""
+
+#: ../vocabularies/data_type.py:29
+msgid "LADA"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:414
+msgid "La-131"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:415
+msgid "La-132"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:416
+msgid "La-134"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:417
+msgid "La-135"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:418
+msgid "La-137"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:419
+msgid "La-138"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:420
+msgid "La-140"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:421
+msgid "La-141"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:422
+msgid "La-142"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:423
+msgid "La-143"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:207
+msgid "Lammfleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:309
+msgid "Lammfleisch - Stoerfall"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Legal Base"
+msgstr "rechtl. Grundlage"
+
+#: ../vocabularies/measurement_category.py:548
+msgid "Lu-169"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:549
+msgid "Lu-170"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:550
+msgid "Lu-171"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:551
+msgid "Lu-172"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:552
+msgid "Lu-173"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:554
+msgid "Lu-174"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:553
+msgid "Lu-174m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:556
+msgid "Lu-176"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:555
+msgid "Lu-176m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:558
+msgid "Lu-177"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:557
+msgid "Lu-177m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:560
+msgid "Lu-178"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:559
+msgid "Lu-178m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:561
+msgid "Lu-179"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:283
+msgid "Luft - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:136
+msgid "Luft und Niederschlag"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:143
+msgid "Luft/Aerosole"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:286
+msgid "Luft/Aerosole - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:148
+msgid "Luft/Edelgase"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:137
+msgid "Luft/Gammastrahlung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:140
+msgid "Luft/Neutronenstrahlung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:288
+msgid "Luft/aeussere Strahlung (Gamma-OD) -Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:285
+msgid "Luft/aeussere Strahlung (Gamma-ODL) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:146
+msgid "Luft/gasfoermige Komponenten (einschl. Iod)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:147
+msgid "Luft/gasfoermiges Iod"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:287
+msgid "Luft/gasfoermiges Iod - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:49
+msgid "Luftfilter"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:149
+msgid "M"
+msgstr ""
+
+#: ../vocabularies/area.py:30
+msgid "ME"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:57
+msgid "MRI"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:82
+msgid "Mais"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:83
+msgid "Mais (ganze Pflanze)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:93
+msgid "Maisprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:95
+msgid "Maniok und Tapioka"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:853
+msgid "Md-257"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:854
+msgid "Md-258"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Measurement Category"
+msgstr "Messgroesse"
+
+#: ../profiles/default/registry.xml
+msgid "Measuring Program"
+msgstr "Messprogramm"
+
+#: ../vocabularies/network_operators.py:40
+msgid "Mecklenburg-Vorpommern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:107
+msgid "Meer"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:213
+msgid "Meeresfruechte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:276
+msgid "Meeresfruechteprodukte, Frischprod. auch tiefgefr."
+msgstr ""
+
+#: ../vocabularies/sample_type.py:277
+msgid "Meeresfruechteprodukte, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:108
+msgid "Meerwasser"
+msgstr ""
+
+#: ../vocabularies/type.py:34
+msgid "Messergebnisse"
+msgstr ""
+
+#: ../vocabularies/measuring_program.py:28
+msgid "Messprogramm Bund"
+msgstr ""
+
+#: ../vocabularies/measuring_program.py:29
+msgid "Messprogramm Land"
+msgstr ""
+
+#: ../profiles/default/registry.xml
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: docpool/doksys/profiles/default/registry.xml
+#: ../vocabularies/sample_type.py:165
+msgid "Meteo-Umweltbereich"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:39
+msgid "Mg-28"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:167
+msgid "Milch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:171
+msgid "Milch anderer Tiere (Schaf, Ziege, Stute)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:242
+msgid "Milchprodukte ausser Kaese, Frischprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:243
+msgid "Milchprodukte ausser Kaese, Trockenprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:244
+msgid "Milchprodukte ausser Kaese, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:96
+msgid "Mischfuttermittel"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:92
+msgid "Mischfuttermittelrohstoffe"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:79
+msgid "Mn-51"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:81
+msgid "Mn-52"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:80
+msgid "Mn-52m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:82
+msgid "Mn-53"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:83
+msgid "Mn-54"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:84
+msgid "Mn-56"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:229
+msgid "Mo-101"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:225
+msgid "Mo-90"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:227
+msgid "Mo-93"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:226
+msgid "Mo-93m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:228
+msgid "Mo-99"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:127
+msgid "Moose, Farne, Flechten u. Heidekraut"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:41
+msgid "Muelldeponie"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:150
+msgid "N"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:33
+msgid "N-13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:151
+msgid "N1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:152
+msgid "N11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:153
+msgid "N12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:154
+msgid "N13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:155
+msgid "N14"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:156
+msgid "N15"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:157
+msgid "N2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:158
+msgid "N21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:159
+msgid "N22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:160
+msgid "N23"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:161
+msgid "N24"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:162
+msgid "N25"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:163
+msgid "N26"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:164
+msgid "N27"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:165
+msgid "N28"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:166
+msgid "N29"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:167
+msgid "N2A"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:168
+msgid "N2B"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:169
+msgid "N2C"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:170
+msgid "N2Y"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:171
+msgid "N2Z"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:172
+msgid "N3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:173
+msgid "N31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:174
+msgid "N3Z"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:175
+msgid "N4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:176
+msgid "N41"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:177
+msgid "N42"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:178
+msgid "N43"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:179
+msgid "N44"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:180
+msgid "N45"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:181
+msgid "N46"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:182
+msgid "N4Z"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:183
+msgid "N5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:184
+msgid "N51"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:185
+msgid "N52"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:186
+msgid "N53"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:187
+msgid "N54"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:188
+msgid "N55"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:189
+msgid "N56"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:190
+msgid "N5Z"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:191
+msgid "N6"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:192
+msgid "N61"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:193
+msgid "N62"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:194
+msgid "N63"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:195
+msgid "N64"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:196
+msgid "N65"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:197
+msgid "N7"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:198
+msgid "N71"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:199
+msgid "N72"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:200
+msgid "N73"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:201
+msgid "N74"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:202
+msgid "N75"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:203
+msgid "N76"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:204
+msgid "N8"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:205
+msgid "N81"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:206
+msgid "N82"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:207
+msgid "N83"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:208
+msgid "N84"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:209
+msgid "N85"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:210
+msgid "N86"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:211
+msgid "N87"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:212
+msgid "N9"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:213
+msgid "N91"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:214
+msgid "N92"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:215
+msgid "N93"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:216
+msgid "N94"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:217
+msgid "N95"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:218
+msgid "N96"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:219
+msgid "N97"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:220
+msgid "N98"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:221
+msgid "N99"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:222
+msgid "N9A"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:223
+msgid "N9B"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:224
+msgid "N9C"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:225
+msgid "N9D"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:226
+msgid "N9E"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:227
+msgid "N9F"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:228
+msgid "N9G"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:229
+msgid "N9H"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:230
+msgid "N9I"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:231
+msgid "N9J"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:232
+msgid "N9K"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:233
+msgid "N9L"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:234
+msgid "N9M"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:235
+msgid "N9N"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:236
+msgid "N9O"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:237
+msgid "N9P"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:238
+msgid "N9Q"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:239
+msgid "N9R"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:240
+msgid "NZ"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:241
+msgid "NZ1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:242
+msgid "NZ2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:243
+msgid "NZZ"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:37
+msgid "Na-22"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:38
+msgid "Na-24"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:125
+msgid "Nadeln"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:166
+msgid "Nahrungsmittel (einschl. Trinkwasser)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:239
+msgid "Nahrungsmittelprodukte"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:213
+msgid "Nb-88"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:214
+msgid "Nb-89 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:215
+msgid "Nb-89 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:216
+msgid "Nb-90"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:217
+msgid "Nb-93m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:218
+msgid "Nb-94"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:220
+msgid "Nb-95"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:219
+msgid "Nb-95m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:221
+msgid "Nb-96"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:223
+msgid "Nb-97"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:222
+msgid "Nb-97m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:224
+msgid "Nb-98"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:444
+msgid "Nd-136"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:445
+msgid "Nd-138"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:447
+msgid "Nd-139"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:446
+msgid "Nd-139m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:449
+msgid "Nd-141"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:448
+msgid "Nd-141m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:450
+msgid "Nd-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:451
+msgid "Nd-149"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:452
+msgid "Nd-151"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:36
+msgid "Ne-19"
+msgstr ""
+
+#: ../profiles/default/registry.xml
 msgid "Network Operator"
 msgstr "Netzbetreiber"
 
-#: docpool/doksys/profiles/default/registry.xml
+#: ../vocabularies/measurement_category.py:895
+msgid "Neutr-OD-Brutto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:896
+msgid "Neutr-OD-Netto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:897
+msgid "Neutr-ODL-Brutto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:898
+msgid "Neutr-ODL-Netto"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:910
+msgid "Neutr-ODL-max"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:909
+msgid "Neutr-ODL-min"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:881
+msgid "Neutronen-OD"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:882
+msgid "Neutronen-ODL"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:141
+msgid "Neutronen-Ortsdosis"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:142
+msgid "Neutronen-Ortsdosisleistung"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:98
+msgid "Ni-56"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:99
+msgid "Ni-57"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:100
+msgid "Ni-59"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:101
+msgid "Ni-63"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:102
+msgid "Ni-65"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:103
+msgid "Ni-66"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:30
+msgid "Niedersachsen"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:901
+#: ../vocabularies/sample_type.py:155
+msgid "Niederschlag"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:156
+msgid "Niederschlag (Aktivitaetskonzentration)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:159
+msgid "Niederschlagsmenge"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:32
+msgid "Nordrhein-Westfalen"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:780
+msgid "Np-232"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:781
+msgid "Np-233"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:782
+msgid "Np-234"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:783
+msgid "Np-235"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:785
+msgid "Np-236 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:784
+msgid "Np-236 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:786
+msgid "Np-237"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:787
+msgid "Np-238"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:788
+msgid "Np-239"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:790
+msgid "Np-240"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:789
+msgid "Np-240m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:912
+msgid "Nullmessung"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:34
+msgid "O-15"
+msgstr ""
+
+#: ../vocabularies/data_type.py:28
+msgid "ONMON"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:301
+msgid "Oberflaechenwasser (Fliessgewaesser) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:304
+msgid "Oberflaechenwasser (Viehtraenke) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:303
+msgid "Oberflaechenwasser (stehende Gewaesser) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:299
+msgid "Oberirdische Gewaesser - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:193
+msgid "Obst"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:262
+msgid "Obstprodukte, Frischprodukte auch tiefgefroren"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:263
+msgid "Obstprodukte, Trockenprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:264
+msgid "Obstprodukte, haltbar gemacht"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Operation Mode"
+msgstr "Betriebsart"
+
+#: ../vocabularies/measurement_category.py:614
+msgid "Os-180"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:615
+msgid "Os-181"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:616
+msgid "Os-182"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:617
+msgid "Os-185"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:618
+msgid "Os-189m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:619
+msgid "Os-190m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:621
+msgid "Os-191"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:620
+msgid "Os-191m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:622
+msgid "Os-193"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:623
+msgid "Os-194"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:44
+msgid "P-30"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:45
+msgid "P-32"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:46
+msgid "P-33"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:28
+msgid "PARK"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:29
+msgid "PARK Modellbereiche"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:60
+msgid "PTB"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:761
+msgid "Pa-227"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:762
+msgid "Pa-228"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:763
+msgid "Pa-230"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:764
+msgid "Pa-231"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:765
+msgid "Pa-232"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:766
+msgid "Pa-233"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:768
+msgid "Pa-234"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:767
+msgid "Pa-234m"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:58
+msgid "Park"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:687
+msgid "Pb-195m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:688
+msgid "Pb-198"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:689
+msgid "Pb-199"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:690
+msgid "Pb-200"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:691
+msgid "Pb-201"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:693
+msgid "Pb-202"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:692
+msgid "Pb-202m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:694
+msgid "Pb-203"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:695
+msgid "Pb-205"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:696
+msgid "Pb-209"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:697
+msgid "Pb-210"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:698
+msgid "Pb-211"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:699
+msgid "Pb-212"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:700
+msgid "Pb-214"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:262
+msgid "Pd-100"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:263
+msgid "Pd-101"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:264
+msgid "Pd-103"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:265
+msgid "Pd-107"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:266
+msgid "Pd-109"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:295
+msgid "Pflanzen/Bewuchs - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:123
+msgid "Pflanzliche Indikatoren"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:453
+msgid "Pm-141"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:454
+msgid "Pm-142"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:455
+msgid "Pm-143"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:456
+msgid "Pm-144"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:457
+msgid "Pm-145"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:458
+msgid "Pm-146"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:459
+msgid "Pm-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:461
+msgid "Pm-148"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:460
+msgid "Pm-148m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:462
+msgid "Pm-149"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:463
+msgid "Pm-150"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:464
+msgid "Pm-151"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:714
+msgid "Po-203"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:715
+msgid "Po-205"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:716
+msgid "Po-207"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:717
+msgid "Po-210"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:718
+msgid "Po-211"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:719
+msgid "Po-212"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:720
+msgid "Po-213"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:721
+msgid "Po-214"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:722
+msgid "Po-215"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:723
+msgid "Po-216"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:724
+msgid "Po-218"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:432
+msgid "Pr-136"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:433
+msgid "Pr-137"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:435
+msgid "Pr-138"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:434
+msgid "Pr-138m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:436
+msgid "Pr-139"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:438
+msgid "Pr-142"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:437
+msgid "Pr-142m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:439
+msgid "Pr-143"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:441
+msgid "Pr-144"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:440
+msgid "Pr-144m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:442
+msgid "Pr-145"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:443
+msgid "Pr-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:642
+msgid "Pt-186"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:643
+msgid "Pt-188"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:644
+msgid "Pt-189"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:645
+msgid "Pt-191"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:647
+msgid "Pt-193"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:646
+msgid "Pt-193m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:648
+msgid "Pt-195m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:650
+msgid "Pt-197"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:649
+msgid "Pt-197m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:651
+msgid "Pt-199"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:652
+msgid "Pt-200"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:791
+msgid "Pu-234"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:792
+msgid "Pu-235"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:793
+msgid "Pu-236"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:794
+msgid "Pu-237"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:795
+msgid "Pu-238"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:796
+msgid "Pu-239"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:855
+msgid "Pu-23940"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:797
+msgid "Pu-240"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:798
+msgid "Pu-241"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:799
+msgid "Pu-242"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:800
+msgid "Pu-243"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:801
+msgid "Pu-244"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:802
+msgid "Pu-245"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:803
+msgid "Pu-246"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Purpose"
+msgstr "Zweck"
+
+#: ../vocabularies/measurement_category.py:740
+msgid "Ra-222"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:741
+msgid "Ra-223"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:742
+msgid "Ra-224"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:743
+msgid "Ra-225"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:744
+msgid "Ra-226"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:745
+msgid "Ra-227"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:746
+msgid "Ra-228"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:172
+msgid "Rb-79"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:173
+msgid "Rb-80"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:175
+msgid "Rb-81"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:174
+msgid "Rb-81m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:177
+msgid "Rb-82"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:176
+msgid "Rb-82m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:178
+msgid "Rb-83"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:179
+msgid "Rb-84"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:180
+msgid "Rb-86"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:181
+msgid "Rb-87"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:182
+msgid "Rb-88"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:183
+msgid "Rb-89"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:600
+msgid "Re-177"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:601
+msgid "Re-178"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:602
+msgid "Re-180"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:603
+msgid "Re-181"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:605
+msgid "Re-182 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:604
+msgid "Re-182 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:607
+msgid "Re-184"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:606
+msgid "Re-184m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:609
+msgid "Re-186"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:608
+msgid "Re-186m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:610
+msgid "Re-187"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:612
+msgid "Re-188"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:611
+msgid "Re-188m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:613
+msgid "Re-189"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:899
+msgid "Regen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:335
+msgid "Reingas"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:221
+msgid "Reinwasser aus Mischrohwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:218
+msgid "Reinwasser aus geschuetzten Rohwasservorkommen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:220
+msgid "Reinwasser aus ungeschuetzten Rohwasservorkommen"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:875
+msgid "Rest-Beta"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:53
+msgid "Reststoffe aus der Trinkwasseraufbereitung"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:252
+msgid "Rh-100"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:254
+msgid "Rh-101"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:253
+msgid "Rh-101m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:256
+msgid "Rh-102"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:255
+msgid "Rh-102m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:257
+msgid "Rh-103m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:258
+msgid "Rh-105"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:260
+msgid "Rh-106"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:259
+msgid "Rh-106m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:261
+msgid "Rh-107"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:251
+msgid "Rh-99"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:250
+msgid "Rh-99m"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:34
+msgid "Rheinland-Pfalz"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:203
+msgid "Rindfleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:305
+msgid "Rindfleisch - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:731
+msgid "Rn-218"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:732
+msgid "Rn-219"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:733
+msgid "Rn-220"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:734
+msgid "Rn-222"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:911
+msgid "Rn-Gesamt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:334
+msgid "Rohgas"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:114
+msgid "Rohwasser zur Trinkwassergewinnung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:116
+msgid "Rohwasser, geschuetzt, aus Grund- und Tiefenwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:223
+msgid "Rohwasser, geschuetzt, aus Grund- und Tiefenwasser (ungueltig)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:118
+msgid "Rohwasser, ungeschuetzt, aus Oberflaechenwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:225
+msgid "Rohwasser, ungeschuetzt, aus Oberflaechenwasser (ungueltig)"
+msgstr ""
+
+#: ../vocabularies/operation_mode.py:28
+msgid "Routine"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:247
+msgid "Ru-103"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:248
+msgid "Ru-105"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:249
+msgid "Ru-106"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:245
+msgid "Ru-94"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:246
+msgid "Ru-97"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:244
+msgid "S"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:47
+msgid "S-35"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:245
+msgid "S1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:246
+msgid "S11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:247
+msgid "S12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:248
+msgid "S13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:249
+msgid "S14"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:250
+msgid "S2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:251
+msgid "S21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:252
+msgid "S22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:253
+msgid "S23"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:254
+msgid "S3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:255
+msgid "S31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:256
+msgid "S32"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:257
+msgid "S4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:258
+msgid "S41"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:259
+msgid "S42"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:260
+msgid "S43"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:261
+msgid "SF1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:262
+msgid "SF2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:263
+msgid "SF3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:264
+msgid "SF4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:265
+msgid "SF5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:266
+msgid "SG1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:267
+msgid "SG2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:268
+msgid "SG3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:269
+msgid "SG4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:270
+msgid "SG5"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:271
+msgid "SG6"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:272
+msgid "SO1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:273
+msgid "SO2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:274
+msgid "SO3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:275
+msgid "SO4"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:276
+msgid "SO5"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:37
+msgid "Saarland"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:41
+msgid "Sachsen"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:42
+msgid "Sachsen-Anhalt"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:229
+msgid "Saeuglings- und Kleinkindernahrung"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:168
+msgid "Sammelmilch (Kuh-)"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Sample Type"
+msgstr "Umweltbereich"
+
+#: ../profiles/default/registry.xml
+msgid "Sample Type Id"
+msgstr "Umweltbereichs-ID"
+
+#: ../profiles/default/registry.xml
 msgid "Sampling Begin"
 msgstr "Probenahmebeginn"
 
-#: docpool/doksys/configure.zcml:38
+#: ../profiles/default/registry.xml
+msgid "Sampling End"
+msgstr "Probenahmeende"
+
+#: ../vocabularies/measurement_category.py:319
+msgid "Sb-115"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:321
+msgid "Sb-116"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:320
+msgid "Sb-116m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:322
+msgid "Sb-117"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:323
+msgid "Sb-118m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:324
+msgid "Sb-119"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:326
+msgid "Sb-120 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:325
+msgid "Sb-120 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:327
+msgid "Sb-122"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:330
+msgid "Sb-124"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:328
+msgid "Sb-124m1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:329
+msgid "Sb-124m2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:331
+msgid "Sb-125"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:333
+msgid "Sb-126"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:332
+msgid "Sb-126m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:334
+msgid "Sb-127"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:336
+msgid "Sb-128 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:335
+msgid "Sb-128 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:337
+msgid "Sb-129"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:338
+msgid "Sb-130"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:339
+msgid "Sb-131"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:64
+msgid "Sc-43"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:66
+msgid "Sc-44"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:65
+msgid "Sc-44m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:67
+msgid "Sc-46"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:68
+msgid "Sc-47"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:69
+msgid "Sc-48"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:70
+msgid "Sc-49"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:194
+msgid "Schalenobst (Nuesse)"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:321
+msgid "Schalenobst (Nuesse) - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:28
+msgid "Schleswig-Holstein"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:900
+msgid "Schnee"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:94
+msgid "Schrote"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:101
+msgid "Schwebstoff in Fliessgewaessern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:109
+msgid "Schwebstoffe im Meerwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:105
+msgid "Schwebstoffe in stehenden Gewaessern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:205
+msgid "Schweinefleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:307
+msgid "Schweinefleisch - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:141
+msgid "Se-70"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:143
+msgid "Se-73"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:142
+msgid "Se-73m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:144
+msgid "Se-75"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:145
+msgid "Se-77m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:146
+msgid "Se-79"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:148
+msgid "Se-81"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:147
+msgid "Se-81m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:149
+msgid "Se-83"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:102
+msgid "Sediment in Fliessgewaessern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:110
+msgid "Sedimente im Meerwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:106
+msgid "Sedimente in stehenden Gewaessern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:212
+msgid "Seefisch"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:42
+msgid "Si-31"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:43
+msgid "Si-32"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:42
+msgid "Sicker- und Grundwasser"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:466
+msgid "Sm-141"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:465
+msgid "Sm-141m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:467
+msgid "Sm-142"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:468
+msgid "Sm-145"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:469
+msgid "Sm-146"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:470
+msgid "Sm-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:471
+msgid "Sm-151"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:472
+msgid "Sm-153"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:473
+msgid "Sm-155"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:474
+msgid "Sm-156"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:306
+msgid "Sn-110"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:307
+msgid "Sn-111"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:308
+msgid "Sn-113"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:309
+msgid "Sn-117m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:310
+msgid "Sn-119m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:312
+msgid "Sn-121"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:311
+msgid "Sn-121m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:314
+msgid "Sn-123"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:313
+msgid "Sn-123m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:315
+msgid "Sn-125"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:316
+msgid "Sn-126"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:317
+msgid "Sn-127"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:318
+msgid "Sn-128"
+msgstr ""
+
+#: ../vocabularies/type.py:36
+msgid "Soll-Ist-Vergleich"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:59
+msgid "Sonstige"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:91
+msgid "Sonstige Futtermittel"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:192
+msgid "Sonstige Getreidearten"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:327
+msgid "Sonstige Mediengruppen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:278
+msgid "Sonstige Nahrungsmittel"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:201
+msgid "Sonstige Obstarten"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:326
+msgid "Sonstige Obstarten - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:120
+msgid "Sonstige Waesser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:186
+msgid "Sonstige Wildpilze"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:209
+msgid "Sonstiges Fleisch"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:188
+msgid "Sonstiges Gemuese, geschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:187
+msgid "Sonstiges Gemuese, ungeschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:48
+msgid "Spezielle Reststoffe und Abfaelle"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:183
+msgid "Sprossgemuese, geschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:178
+msgid "Sprossgemuese, ungeschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:317
+msgid "Sprossgemuese, ungeschuetzter Anbau - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:160
+msgid "Spurenmessung Luft"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:161
+msgid "Spurenmessung Luft - Aerosole"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:164
+msgid "Spurenmessung Luft - Edelgase"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:163
+msgid "Spurenmessung Luft - gasfoermige Komponenten (einschl. Iod)"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:184
+msgid "Sr-80"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:185
+msgid "Sr-81"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:186
+msgid "Sr-82"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:187
+msgid "Sr-83"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:189
+msgid "Sr-85"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:188
+msgid "Sr-85m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:190
+msgid "Sr-87m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:191
+msgid "Sr-89"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:192
+msgid "Sr-90"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:193
+msgid "Sr-91"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:194
+msgid "Sr-92"
+msgstr ""
+
+#: ../vocabularies/purpose.py:28
+msgid "Standard-Info Bundesmessnetze"
+msgstr ""
+
+#: ../vocabularies/purpose.py:29
+msgid "Standard-Info DWD"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Start Location"
+msgstr "Startort"
+
+#: ../profiles/default/registry.xml
+msgid "Start Time"
+msgstr "Startzeit"
+
+#: ../profiles/default/registry.xml
+msgid "Status"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:103
+msgid "Stehende Gewaesser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:196
+msgid "Steinobst"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:323
+msgid "Steinobst - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:90
+msgid "Stroh, Cobs, Trockenmehle"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:211
+msgid "Suesswasserfisch"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:903
+msgid "SumPARK"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:902
+msgid "Summe"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:904
+msgid "Sumrelv"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:575
+msgid "Ta-172"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:576
+msgid "Ta-173"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:577
+msgid "Ta-174"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:578
+msgid "Ta-175"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:579
+msgid "Ta-176"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:580
+msgid "Ta-177"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:582
+msgid "Ta-178 1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:581
+msgid "Ta-178 2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:583
+msgid "Ta-179"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:585
+msgid "Ta-180"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:584
+msgid "Ta-180m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:587
+msgid "Ta-182"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:586
+msgid "Ta-182m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:588
+msgid "Ta-183"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:589
+msgid "Ta-184"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:590
+msgid "Ta-185"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:591
+msgid "Ta-186"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:130
+msgid "Tabak"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:131
+msgid "Tabakblaetter"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:498
+msgid "Tb-147"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:499
+msgid "Tb-149"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:500
+msgid "Tb-150"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:501
+msgid "Tb-151"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:502
+msgid "Tb-153"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:503
+msgid "Tb-154"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:504
+msgid "Tb-155"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:507
+msgid "Tb-156"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:506
+msgid "Tb-156m1"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:505
+msgid "Tb-156m2"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:508
+msgid "Tb-157"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:509
+msgid "Tb-158"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:510
+msgid "Tb-160"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:511
+msgid "Tb-161"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:243
+msgid "Tc-101"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:244
+msgid "Tc-104"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:231
+msgid "Tc-93"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:230
+msgid "Tc-93m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:233
+msgid "Tc-94"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:232
+msgid "Tc-94m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:235
+msgid "Tc-95"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:234
+msgid "Tc-95m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:237
+msgid "Tc-96"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:236
+msgid "Tc-96m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:239
+msgid "Tc-97"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:238
+msgid "Tc-97m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:240
+msgid "Tc-98"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:242
+msgid "Tc-99"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:241
+msgid "Tc-99m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:340
+msgid "Te-116"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:342
+msgid "Te-121"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:341
+msgid "Te-121m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:344
+msgid "Te-123"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:343
+msgid "Te-123m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:345
+msgid "Te-125m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:347
+msgid "Te-127"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:346
+msgid "Te-127m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:349
+msgid "Te-129"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:348
+msgid "Te-129m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:351
+msgid "Te-131"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:350
+msgid "Te-131m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:352
+msgid "Te-132"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:354
+msgid "Te-133"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:353
+msgid "Te-133m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:355
+msgid "Te-134"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:913
+msgid "Temperatur"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:753
+msgid "Th-226"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:754
+msgid "Th-227"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:755
+msgid "Th-228"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:756
+msgid "Th-229"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:757
+msgid "Th-230"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:758
+msgid "Th-231"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:759
+msgid "Th-232"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:760
+msgid "Th-234"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:43
+msgid "Thueringen"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:71
+msgid "Ti-44"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:72
+msgid "Ti-45"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:673
+msgid "Tl-194"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:672
+msgid "Tl-194m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:674
+msgid "Tl-195"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:675
+msgid "Tl-197"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:677
+msgid "Tl-198"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:676
+msgid "Tl-198m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:678
+msgid "Tl-199"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:679
+msgid "Tl-200"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:680
+msgid "Tl-201"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:681
+msgid "Tl-202"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:682
+msgid "Tl-204"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:683
+msgid "Tl-206"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:684
+msgid "Tl-207"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:685
+msgid "Tl-208"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:686
+msgid "Tl-209"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:533
+msgid "Tm-162"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:534
+msgid "Tm-166"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:535
+msgid "Tm-167"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:536
+msgid "Tm-170"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:537
+msgid "Tm-171"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:538
+msgid "Tm-172"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:539
+msgid "Tm-173"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:540
+msgid "Tm-175"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:216
+msgid "Trinkwasser"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Type"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:769
+msgid "U-230"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:770
+msgid "U-231"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:771
+msgid "U-232"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:772
+msgid "U-233"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:773
+msgid "U-234"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:774
+msgid "U-235"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:775
+msgid "U-236"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:776
+msgid "U-237"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:777
+msgid "U-238"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:778
+msgid "U-239"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:779
+msgid "U-240"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:905
+msgid "U-nat"
+msgstr ""
+
+#: ../vocabularies/type.py:35
+msgid "Ueberblick"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:282
+msgid "Umweltbereiche fuer Stoerfall"
+msgstr ""
+
+#: ../configure.zcml:38
 msgid "Uninstalls the docpool.doksys add-on."
 msgstr "Deinstalliert das docpool.docsys Add-On."
 
-#: docpool/doksys/behaviors/doksysdoc.py:27
+#: ../vocabularies/measurement_category.py:73
+msgid "V-47"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:74
+msgid "V-48"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:75
+msgid "V-49"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:36
+msgid "Verbrennungsanlage"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:592
+msgid "W-176"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:593
+msgid "W-177"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:594
+msgid "W-178"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:595
+msgid "W-179"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:596
+msgid "W-181"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:597
+msgid "W-185"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:598
+msgid "W-187"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:599
+msgid "W-188"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:200
+msgid "Wald-/Wildbeeren"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:72
+msgid "Waldboeden"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:34
+msgid "Wasser aus Kanalisation, Klaeranlagenzulauf, Regenrueckhaltebecken"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:100
+msgid "Wasser in Fliessgewaessern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:104
+msgid "Wasser in stehenden Gewaessern"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:121
+msgid "Wasser zur Viehtraenke"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:128
+msgid "Wasserpflanzen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:215
+msgid "Wasserpflanzen, Trockenprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:79
+msgid "Weide- u. Wiesenbewuchs"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:296
+msgid "Weide- und Wiesenbewuchs - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:69
+msgid "Weide-/ Acker-/ Wald-/ Freizeitflaechen-/ oedland- und Gartenboeden"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:70
+msgid "Weideboeden"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:270
+msgid "Wildfleischprodukte u. -wurstwaren, Frischprod. auch tiefgefr."
+msgstr ""
+
+#: ../vocabularies/sample_type.py:272
+msgid "Wildfleischprodukte u. -wurstwaren, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:184
+msgid "Wildpilze"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:252
+msgid "Wildpilzprodukte, Frischprodukte auch tiefgefroren"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:253
+msgid "Wildpilzprodukte, Trockenprodukte"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:254
+msgid "Wildpilzprodukte, haltbar gemacht"
+msgstr ""
+
+#: ../vocabularies/area.py:31
+msgid "World"
+msgstr "Welt"
+
+#: ../vocabularies/sample_type.py:181
+msgid "Wurzelgemuese, geschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:176
+msgid "Wurzelgemuese, ungeschuetzter Anbau"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:313
+msgid "Wurzelgemuese, ungeschuetzter Anbau - Stoerfall"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:373
+msgid "Xe-120"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:374
+msgid "Xe-121"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:375
+msgid "Xe-122"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:376
+msgid "Xe-123"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:377
+msgid "Xe-125"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:378
+msgid "Xe-127"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:379
+msgid "Xe-129m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:380
+msgid "Xe-131m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:382
+msgid "Xe-133"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:381
+msgid "Xe-133m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:384
+msgid "Xe-135"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:383
+msgid "Xe-135m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:385
+msgid "Xe-137"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:386
+msgid "Xe-138"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:196
+msgid "Y-86"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:195
+msgid "Y-86m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:197
+msgid "Y-87"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:198
+msgid "Y-88"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:200
+msgid "Y-90"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:199
+msgid "Y-90m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:202
+msgid "Y-91"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:201
+msgid "Y-91m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:203
+msgid "Y-92"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:204
+msgid "Y-93"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:205
+msgid "Y-94"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:206
+msgid "Y-95"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:541
+msgid "Yb-162"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:542
+msgid "Yb-166"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:543
+msgid "Yb-167"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:544
+msgid "Yb-169"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:545
+msgid "Yb-175"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:546
+msgid "Yb-177"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:547
+msgid "Yb-178"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:277
+msgid "Z"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:278
+msgid "Z1"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:279
+msgid "Z11"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:280
+msgid "Z12"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:281
+msgid "Z13"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:282
+msgid "Z14"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:283
+msgid "Z2"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:284
+msgid "Z21"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:285
+msgid "Z22"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:286
+msgid "Z3"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:287
+msgid "Z31"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:288
+msgid "Z32"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:289
+msgid "Z33"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:290
+msgid "Z34"
+msgstr ""
+
+#: ../vocabularies/sample_type_id.py:291
+msgid "Z35"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:46
+msgid "ZdB-Testnetz"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:132
+msgid "Zigaretten, Zigarren"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:119
+msgid "Zisternenwasser"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:226
+msgid "Zisternenwasser (ungueltig)"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:110
+msgid "Zn-62"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:111
+msgid "Zn-63"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:112
+msgid "Zn-65"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:114
+msgid "Zn-69"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:113
+msgid "Zn-69m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:115
+msgid "Zn-71m"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:116
+msgid "Zn-72"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:207
+msgid "Zr-86"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:208
+msgid "Zr-88"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:209
+msgid "Zr-89"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:210
+msgid "Zr-93"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:211
+msgid "Zr-95"
+msgstr ""
+
+#: ../vocabularies/measurement_category.py:212
+msgid "Zr-97"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:150
+msgid "andere gasfoermige Komponenten (ausser Iod u. Edelgase)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:63
+msgid "auslaend. Messnetze"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:170
+msgid "bearbeitete Trinkmilch (Kuh-)"
+msgstr ""
+
+#: ../vocabularies/type.py:30
+msgid "brutto"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:194
+msgid "description_doksys_area"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:140
+msgid "description_doksys_data_type"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:37
+msgid "description_doksys_dom"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:176
+msgid "description_doksys_duration"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:47
+msgid "description_doksys_legal_base"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:167
+msgid "description_doksys_measurement_category"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:56
+msgid "description_doksys_measuring_program"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:28
 msgid "description_doksys_network_operator"
 msgstr ""
 
-#: docpool/doksys/behaviors/doksysdoc.py:35
+#: ../behaviors/doksysdoc.py:131
+msgid "description_doksys_operation_mode"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:81
+msgid "description_doksys_purpose"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:158
+msgid "description_doksys_sample_type"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:149
+msgid "description_doksys_sample_type_id"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:65
 msgid "description_doksys_sampling_begin"
 msgstr ""
 
-#: docpool/doksys/configure.zcml:29
+#: ../behaviors/doksysdoc.py:73
+msgid "description_doksys_sampling_end"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:122
+msgid "description_doksys_status"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:98
+msgid "description_doksys_trajectory_end_location"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:114
+msgid "description_doksys_trajectory_end_time"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:90
+msgid "description_doksys_trajectory_start_location"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:106
+msgid "description_doksys_trajectory_start_time"
+msgstr ""
+
+#: ../behaviors/doksysdoc.py:185
+msgid "description_doksys_type"
+msgstr ""
+
+#: ../configure.zcml:29
 msgid "docpool.doksys"
 msgstr ""
 
-#: docpool/doksys/configure.zcml:38
+#: ../configure.zcml:38
 msgid "docpool.doksys (uninstall)"
 msgstr "docpool.doksys (Deinstallation)"
 
+#. Default: "Area"
+#: ../behaviors/doksysdoc.py:193
+msgid "label_doksys_area"
+msgstr ""
+
+#. Default: "Data Type"
+#: ../behaviors/doksysdoc.py:139
+msgid "label_doksys_data_type"
+msgstr ""
+
+#. Default: "Description of Measurement"
+#: ../behaviors/doksysdoc.py:36
+msgid "label_doksys_dom"
+msgstr ""
+
+#. Default: "Duration"
+#: ../behaviors/doksysdoc.py:175
+msgid "label_doksys_duration"
+msgstr ""
+
+#. Default: "Legal Base"
+#: ../behaviors/doksysdoc.py:46
+msgid "label_doksys_legal_base"
+msgstr ""
+
+#. Default: "Measurement Category"
+#: ../behaviors/doksysdoc.py:166
+msgid "label_doksys_measurement_category"
+msgstr ""
+
+#. Default: "Measuring Program"
+#: ../behaviors/doksysdoc.py:55
+msgid "label_doksys_measuring_program"
+msgstr ""
+
 #. Default: "Network Operator"
-#: docpool/doksys/behaviors/doksysdoc.py:26
+#: ../behaviors/doksysdoc.py:27
 msgid "label_doksys_network_operator"
 msgstr "Netzbetreiber"
 
+#. Default: "Operation Mode"
+#: ../behaviors/doksysdoc.py:130
+msgid "label_doksys_operation_mode"
+msgstr ""
+
+#. Default: "Purpose"
+#: ../behaviors/doksysdoc.py:80
+msgid "label_doksys_purpose"
+msgstr ""
+
+#. Default: "Sample Type"
+#: ../behaviors/doksysdoc.py:157
+msgid "label_doksys_sample_type"
+msgstr ""
+
+#. Default: "Sample Type Id"
+#: ../behaviors/doksysdoc.py:148
+msgid "label_doksys_sample_type_id"
+msgstr ""
+
 #. Default: "Sampling Begin"
-#: docpool/doksys/behaviors/doksysdoc.py:34
+#: ../behaviors/doksysdoc.py:64
 msgid "label_doksys_sampling_begin"
 msgstr "Probenahmebeginn"
+
+#. Default: "Sampling End"
+#: ../behaviors/doksysdoc.py:72
+msgid "label_doksys_sampling_end"
+msgstr ""
+
+#. Default: "Status"
+#: ../behaviors/doksysdoc.py:121
+msgid "label_doksys_status"
+msgstr ""
+
+#. Default: "Trajectory End Location"
+#: ../behaviors/doksysdoc.py:97
+msgid "label_doksys_trajectory_end_location"
+msgstr ""
+
+#. Default: "Trajectory End Time"
+#: ../behaviors/doksysdoc.py:113
+msgid "label_doksys_trajectory_end_time"
+msgstr ""
+
+#. Default: "Trajectory Start Location"
+#: ../behaviors/doksysdoc.py:89
+msgid "label_doksys_trajectory_start_location"
+msgstr ""
+
+#. Default: "Trajectory Start Time"
+#: ../behaviors/doksysdoc.py:105
+msgid "label_doksys_trajectory_start_time"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:329
+msgid "mineralische Ausgangsstoffe fuer Baustoffe"
+msgstr ""
+
+#: ../vocabularies/type.py:32
+msgid "nass"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:157
+msgid "nasse Niederschlaege (Deposition)"
+msgstr ""
+
+#: ../vocabularies/type.py:31
+msgid "netto"
+msgstr ""
+
+#: ../vocabularies/status.py:29
+msgid "nicht geprueft"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:74
+msgid "oedlandboeden, Brachen"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:331
+msgid "organische Ausgangsstoffe fuer Baustoffe"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:47
+msgid "organische Duengemittel (aus landwirtschaftlichen Abfaellen)"
+msgstr ""
+
+#: ../vocabularies/status.py:28
+msgid "plausibel"
+msgstr ""
+
+#: ../vocabularies/type.py:29
+msgid "rueckwaerts"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:52
+msgid "sonstige spezielle Reststoffe und Abfaelle"
+msgstr ""
+
+#: ../vocabularies/type.py:33
+msgid "trocken"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:158
+msgid "trockene Niederschlaege (Deposition)"
+msgstr ""
+
+#: ../vocabularies/network_operators.py:48
+msgid "vTI"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:330
+msgid "verarbeitete mineralische Baustoffe"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:332
+msgid "verarbeitete organische Baustoffe"
+msgstr ""
+
+#: ../vocabularies/type.py:28
+msgid "vorwaerts"
+msgstr ""
+
+#: ../vocabularies/sample_type.py:281
+msgid "weitere Nahrungsmittel"
+msgstr ""

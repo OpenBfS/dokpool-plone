@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
+from docpool.doksys import DocpoolMessageFactory as _
 
 def dpAdded(self):
     """
@@ -10,6 +11,7 @@ def dpAdded(self):
     createDoksysUsers(self)
     createDoksysGroups(self)
     setDoksysLocalRoles(self)
+    copyDoksysNavigation(self)
     self.reindexAll()
     # TODO:
 
@@ -32,13 +34,14 @@ def createDoksysGroups(self):
         prefix = str(prefix)
         title = self.Title()
         gtool = getToolByName(self, 'portal_groups')
-        # Group for Example application rights
+        # Group for Doksys application rights
         props = {'allowedDocTypes': [], 'title': 'Doksys Users (%s)' % title,
                  'description': 'Users with access to Doksys functions.',
                  'dp': self.UID()}
         gtool.addGroup("%s_DoksysUsers" % prefix,
                        properties=props)
         gtool.addPrincipalToGroup('%s_doksysadmin' % prefix, '%s_DoksysUsers' % prefix)
+        gtool.addPrincipalToGroup('%s_doksysadmin' % prefix, '%s_Administrators' % prefix)
 
         # Set Doksys role as a local role for the new group
         self.manage_setLocalRoles("%s_DoksysUsers" % prefix, ["DoksysUser"])
@@ -70,3 +73,22 @@ def setDoksysLocalRoles(self):
     prefix = str(prefix)
 
     self.manage_setLocalRoles("%s_DokSysUsers" % prefix, ["DoksysUser"])
+
+def copyDoksysNavigation(self):
+    """
+
+    @param self:
+    @param fresh:
+    @return:
+    """
+#    if not fresh:
+#       return
+    search = self.search
+    from docpool.base.utils import _copyPaste
+    _copyPaste(search, self, safe=False)
+    self.search.setTitle(_("Standardsuchen"))
+    self.search.reindexObject()
+    # make sure the run display is first
+    # TODO if more complex (e.g. second after 'esd')
+    self.moveObject("search", 0)
+
