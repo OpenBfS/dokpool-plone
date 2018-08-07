@@ -36,8 +36,58 @@ msgid "Run Display"
 msgstr ""
 
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Project Name"
+msgstr "Laufkennung" 
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Report ID"
+msgstr "UUID"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Release Site"
+msgstr "Freisetzungsort"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Start of release"
-msgstr "Beginn der Freisetzung"
+msgstr "Freisetzungsbeginn"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "End of release"
+msgstr "Freisetzungsende"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Begin"
+msgstr "Prognosenbeginn"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis End"
+msgstr "Prognosenende"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Numeric Weather Prediction Date"
+msgstr "Wetter"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Model"
+msgstr "Modell"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+#: docpool.rodos/docpool/rodos/skins/docpool_rodos_templates/rodos_meta.pt:13
+msgid "Calculation Date"
+msgstr "Rechnung vom"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+#: docpool.rodos/docpool/rodos/skins/docpool_rodos_templates/rodos_meta.pt:17
+msgid "User"
+msgstr "Nutzer"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Type"
+msgstr "Prognosenart"
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Form"
+msgstr "Einzeldokument/RODOS-Lauf"
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml:20
 msgid "Type extension for Rodos types"
@@ -67,9 +117,9 @@ msgstr "Freisetzungsort"
 #. Default: "Release Start"
 #: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:45
 msgid "label_rodos_releaseStart"
-msgstr "Beginn der Freisetzung"
+msgstr "Freisetzungsbeginn"
 
 #. Default: "Report ID"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:27
-msgid "label_rodos_reportId"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:30
+msgid "label_rodos_projectName"
 msgstr "Laufkennung"
