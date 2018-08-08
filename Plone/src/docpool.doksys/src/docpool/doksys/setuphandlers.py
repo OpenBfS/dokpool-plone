@@ -37,7 +37,9 @@ def createStructure(plonesite, fresh):
     transaction.commit()
     create_1day_collection(plonesite)
     transaction.commit()
-    create_purpose_collection(plonesite)
+    create_purpose_collections(plonesite)
+    transaction.commit()
+    create_sample_collections(plonesite)
     transaction.commit()
     createDoksysDocTypes(plonesite, fresh)
     transaction.commit()
@@ -68,7 +70,7 @@ def create_1day_collection(plonesite):
     )
     print "1day Collection angelegt"
 
-def create_purpose_collection(plonesite):
+def create_purpose_collections(plonesite):
     api.content.create(
         type='Collection',
         title='Standard-Info Bundesmessnetze',
@@ -79,13 +81,130 @@ def create_purpose_collection(plonesite):
         },
         {
             u'i': u'purpose',
-            u'o': u'plone.app.querystring.operation.string.contains',
+            u'o': u'plone.app.querystring.operation.string.is',
             u'v': u'Standard-Info Bundesmessnetze'
         }],
         sort_on='created',
         container=api.content.get(path='/search')
     )
+    #
+    api.content.create(
+        type='Collection',
+        title='Standard-Info DWD',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+            {
+                u'i': u'purpose',
+                u'o': u'plone.app.querystring.operation.string.is',
+                u'v': u'Standard-Info DWD'
+            }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
     print "Purpose Collection angelegt"
+
+
+def create_sample_collections(plonesite):
+    api.content.create(
+        type='Collection',
+        title='Ergebnisse Boden',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+        {
+            u'i': u'sample_type_id',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'B'
+        }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    api.content.create(
+        type='Collection',
+        title='Ergebnisse Futtermittel',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+            {
+                u'i': u'sample_type_id',
+                u'o': u'plone.app.querystring.operation.string.contains',
+                u'v': u'F'
+            }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    api.content.create(
+        type='Collection',
+        title='Ergebnisse Gewaesser',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+            {
+                u'i': u'sample_type_id',
+                u'o': u'plone.app.querystring.operation.string.contains',
+                u'v': u'G'
+            }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    api.content.create(
+        type='Collection',
+        title='Ergebnisse Luft',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+            {
+                u'i': u'sample_type_id',
+                u'o': u'plone.app.querystring.operation.string.contains',
+                u'v': u'L'
+            }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    api.content.create(
+        type='Collection',
+        title='Ergebnisse Nahrungsmittel',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+            {
+                u'i': u'sample_type_id',
+                u'o': u'plone.app.querystring.operation.string.contains',
+                u'v': u'N'
+            }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    api.content.create(
+        type='Collection',
+        title='Ergebnisse Stoerfall',
+        query=[{
+            u'i': u'portal_type',
+            u'o': u'plone.app.querystring.operation.selection.is',
+            u'v': u'DPDocument'
+        },
+            {
+                u'i': u'sample_type_id',
+                u'o': u'plone.app.querystring.operation.string.contains',
+                u'v': u'S'
+            }],
+        sort_on='created',
+        container=api.content.get(path='/search')
+    )
+    print "Sample Type Collection angelegt"
 
 
 
