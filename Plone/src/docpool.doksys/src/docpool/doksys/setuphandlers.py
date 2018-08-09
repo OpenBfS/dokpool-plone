@@ -33,7 +33,7 @@ def uninstall(context):
 
 
 def createStructure(plonesite, fresh):
-    createDoksysNavigation(plonesite, fresh)
+    changedoksysNavigation(plonesite, fresh)
     transaction.commit()
     create_1day_collection(plonesite)
     transaction.commit()
@@ -41,14 +41,14 @@ def createStructure(plonesite, fresh):
     transaction.commit()
     create_sample_collections(plonesite)
     transaction.commit()
-    createDoksysDocTypes(plonesite, fresh)
+    changedoksysDocTypes(plonesite, fresh)
     transaction.commit()
 
-def createDoksysNavigation(plonesite, fresh):
+def changedoksysNavigation(plonesite, fresh):
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
 
 
-def createDoksysDocTypes (plonesite, fresh):
+def changedoksysDocTypes (plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
 def create_1day_collection(plonesite):
@@ -65,7 +65,8 @@ def create_1day_collection(plonesite):
             u'o': u'plone.app.querystring.operation.date.beforeToday',
             u'v': u'1d'
         }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     print "1day Collection angelegt"
@@ -84,7 +85,8 @@ def create_purpose_collections(plonesite):
             u'o': u'plone.app.querystring.operation.string.is',
             u'v': u'Standard-Info Bundesmessnetze'
         }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     #
@@ -101,7 +103,8 @@ def create_purpose_collections(plonesite):
                 u'o': u'plone.app.querystring.operation.string.is',
                 u'v': u'Standard-Info DWD'
             }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     print "Purpose Collection angelegt"
@@ -121,7 +124,8 @@ def create_sample_collections(plonesite):
             u'o': u'plone.app.querystring.operation.string.contains',
             u'v': u'B'
         }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     api.content.create(
@@ -137,7 +141,8 @@ def create_sample_collections(plonesite):
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'F'
             }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     api.content.create(
@@ -153,7 +158,8 @@ def create_sample_collections(plonesite):
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'G'
             }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     api.content.create(
@@ -169,7 +175,8 @@ def create_sample_collections(plonesite):
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'L'
             }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     api.content.create(
@@ -185,7 +192,8 @@ def create_sample_collections(plonesite):
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'N'
             }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     api.content.create(
@@ -201,7 +209,8 @@ def create_sample_collections(plonesite):
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'S'
             }],
-        sort_on='created',
+        sort_on='changed',
+        sort_order='reverse',
         container=api.content.get(path='/search')
     )
     print "Sample Type Collection angelegt"
