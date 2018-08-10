@@ -12,9 +12,8 @@
      
          
              <element value="DPDocument" />
-         
-         
              <element value="SimpleFolder" />
+             <element value="PrivateFolder" />
          
      
  </property>
