@@ -43,7 +43,7 @@
     <index name="data_type" meta_type="FieldIndex">
         <indexed_attr value="data_type"/>
     </index>
-    <index name="sample_type_id" meta_type="FieldIndex">
+    <index name="sample_type_id" meta_type="ZCTextIndex">
         <indexed_attr value="sample_type_id"/>
     </index>
     <index name="sample_type" meta_type="FieldIndex">
