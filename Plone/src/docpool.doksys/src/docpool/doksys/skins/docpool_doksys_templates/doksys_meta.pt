@@ -1,4 +1,4 @@
-<tal:block i18n:domain="docpool.example"
+<tal:block i18n:domain="docpool.doksys"
            define="view nocall:options/view;
                    context nocall:options/context;
                    here nocall:context">

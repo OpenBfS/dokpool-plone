@@ -122,7 +122,7 @@ def create_sample_collections(plonesite):
         {
             u'i': u'sample_type_id',
             u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'B'
+            u'v': u'B*'
         }],
         sort_on='changed',
         sort_order='reverse',
@@ -139,7 +139,7 @@ def create_sample_collections(plonesite):
             {
                 u'i': u'sample_type_id',
                 u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'F'
+                u'v': u'F*'
             }],
         sort_on='changed',
         sort_order='reverse',
@@ -156,7 +156,7 @@ def create_sample_collections(plonesite):
             {
                 u'i': u'sample_type_id',
                 u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'G'
+                u'v': u'G*'
             }],
         sort_on='changed',
         sort_order='reverse',
@@ -173,7 +173,7 @@ def create_sample_collections(plonesite):
             {
                 u'i': u'sample_type_id',
                 u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'L'
+                u'v': u'L*'
             }],
         sort_on='changed',
         sort_order='reverse',
@@ -190,7 +190,7 @@ def create_sample_collections(plonesite):
             {
                 u'i': u'sample_type_id',
                 u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'N'
+                u'v': u'N*'
             }],
         sort_on='changed',
         sort_order='reverse',
@@ -207,7 +207,7 @@ def create_sample_collections(plonesite):
             {
                 u'i': u'sample_type_id',
                 u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'S'
+                u'v': u'S*'
             }],
         sort_on='changed',
         sort_order='reverse',

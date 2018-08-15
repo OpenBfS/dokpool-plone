@@ -2,6 +2,11 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.doksys">
     <!-- -*- extra stuff goes here -*- -->
+    <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>Collection</element>
+    </value>
+  </record>
     <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.network_operator">
         <value key="title" i18n:translate="">Network Operator</value>
