@@ -1,12 +1,9 @@
 <tal:block i18n:domain="elan.sitrep"
-           define="view nocall:options/view;
-                   context nocall:options/context;
+           define="context nocall:options/context;
                    here nocall:context">
 <tal:def define="edit_allowed context/canBeEdited;
-                 elanobj view/elanobject;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  rs context/myState;">
-
 <tal:if condition="python:rs=='private'">
    <div class="formControls publish" tal:condition="edit_allowed">
    <tal:def define="moduleState context/moduleState">
