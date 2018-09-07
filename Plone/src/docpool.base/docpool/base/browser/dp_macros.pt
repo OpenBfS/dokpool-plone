@@ -70,7 +70,7 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&buttons=${buttons}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>
@@ -445,7 +445,7 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&buttons=${buttons}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>

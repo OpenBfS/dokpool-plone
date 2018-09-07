@@ -123,5 +123,26 @@
   <object name="change_state" meta_type="CMF Action" i18n:domain="plone">
     <property name="visible">False</property>
   </object>
+  <object name="cut" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Cut</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_cut:method</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", object)</property>
+   <property name="permissions">
+    <element value="Copy or Move"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="paste" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Paste</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_paste:method</property>
+   <property name="available_expr">folder/cb_dataValid</property>
+   <property name="permissions">
+    <element value="Add portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
  </object>
 </object>
