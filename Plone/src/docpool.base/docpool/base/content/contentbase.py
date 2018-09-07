@@ -139,11 +139,11 @@ class ContentBase(Item):
         """
         #print "update_modified"
         self.modified_by = self._getUserInfoString()
-        self.mdate = datetime.datetime.today()
+        self.mdate = datetime.datetime.now()
         self.reindexObject()
 
     def update_workflow(self):
-        self.wdate = datetime.datetime.today()
+        self.wdate = datetime.datetime.now()
         self.reindexObject()
 
     def modInfo(self, show_created=False):

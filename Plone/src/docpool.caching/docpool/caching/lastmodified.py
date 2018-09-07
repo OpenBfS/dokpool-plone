@@ -1,4 +1,5 @@
 from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.dpdocument import IDPDocument
 from z3c.caching.interfaces import ILastModified
 from zope.component import adapter
 from zope.interface import implementer
@@ -14,9 +15,53 @@ class ContentBaseLastModified(object):
 
     def __call__(self):
         wdate = self.context.wdate
-        if wdate is None:
-            modified = self.context.modified()
-            if modified is None:
-                return None
-            return modified.asdatetime()
-        return wdate
+        modified = self.context.modified()
+        if modified is not None:
+            modified = modified.asdatetime()
+
+        # no date?
+        if wdate is None and modified is None:
+            return None
+
+        # both dates? we take the later date
+        if wdate is not None and modified is not None:
+            try:
+                return wdate < modified and modified or wdate
+            except:
+                import pytz
+                utc = pytz.UTC
+                return wdate.replace(tzinfo=utc) < modified.replace(tzinfo=utc) and modified or wdate
+
+        # only one of them
+        return wdate or modified
+
+@implementer(ILastModified)
+@adapter(IDPDocument)
+class DocumentLastModified(ContentBaseLastModified):
+
+    def __init__(self, context):
+        super(DocumentLastModified, self).__init__(context)
+
+    def __call__(self):
+        lm = super(DocumentLastModified, self).__call__()
+        # we need to consider date of last transfer
+        transferred = None
+        try:
+            from docpool.transfers.behaviors.transferable import ITransferable
+            t = ITransferable(self.context)
+            transferred = t.transferred
+        except:
+            pass
+        
+        print lm, transferred
+        if lm is not None and transferred is not None:
+            try:
+                return lm < transferred and transferred or lm
+            except:
+                import pytz
+                utc = pytz.UTC
+                return lm.replace(tzinfo=utc) < transferred.replace(tzinfo=utc) and transferred or lm
+
+        # only one of them
+        return lm or transferred
+
