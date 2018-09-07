@@ -28,6 +28,8 @@
                 <input tal:replace="structure context/@@authenticator/authenticator"/>
                 <input type="hidden" name="orig_template" value="view"/>
 
+                <div metal:use-macro="context/batch_macros/macros/navigation" />
+                <div class="buttons">
                 <tal:loop tal:repeat="button buttons" tal:condition="batch">
                     <input class="context"
                            type="submit"
@@ -36,8 +38,7 @@
                            i18n:attributes="value"
                            tal:attributes="value button/title; name button/url; class button/cssclass|nothing">
                 </tal:loop>
-                <div metal:use-macro="context/batch_macros/macros/navigation" />
-
+                </div>
                 <table id="fctable"
                        class="listing responsive"
                        summary="Content listing"
@@ -83,7 +84,7 @@
                     </tal:items>
                     </tbody>
                 </table>
-                <div metal:use-macro="context/batch_macros/macros/navigation" />
+                <div class="buttons">
                 <tal:buttons tal:repeat="button buttons">
                     <input class="context"
                            type="submit"
@@ -92,6 +93,8 @@
                            i18n:attributes="value"
                            tal:attributes="value button/title; name button/url; class button/cssclass|nothing"/>
                 </tal:buttons>
+                </div>
+                <div metal:use-macro="context/batch_macros/macros/navigation" />
             </form>
 
         </tal:listing>
