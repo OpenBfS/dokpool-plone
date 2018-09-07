@@ -30,6 +30,11 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
+from Products.CMFPlone.utils import parent
+from logging import getLogger
+from Products.CMFPlone.utils import parent
+
+logger = getLogger("dptransfers")
 ##/code-section imports
 
 from docpool.transfers.config import PROJECTNAME
@@ -52,7 +57,18 @@ class DPTransfers(Container):
     implements(IDPTransfers)
     
 ##code-section methods
-##/code-section methods 
+    def migrate(self):
+        f = parent(self)
+        if hasattr(self, '_setPortalTypeName'):
+            self._setPortalTypeName("DPTransfers")
+        myid = self.getId()
+        del f[myid]
+        self.__class__ = DPTransfers
+        f[myid] = self
+        logger.info(self.__class__)
+        logger.info(self.getPortalTypeName())
+
+    ##/code-section methods
 
     def myDPTransfers(self):
         """

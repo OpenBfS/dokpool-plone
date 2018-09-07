@@ -44,9 +44,13 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
 from plone.dexterity.interfaces import IEditFinishedEvent
 from docpool.dbaccess.dbinit import __metadata__, __session__
 from docpool.transfers.db.model import Channel, DocTypePermission, ChannelPermissions
+from logging import getLogger
+from Products.CMFPlone.utils import parent
 
 
 from docpool.transfers import DocpoolMessageFactory as _
+logger = getLogger("dptransferfolder")
+
 ##/code-section imports
 
 from docpool.transfers.config import PROJECTNAME
@@ -111,6 +115,17 @@ class DPTransferFolder(Container, FolderBase):
     implements(IDPTransferFolder)
     
 ##code-section methods
+    def migrate(self):
+        f = parent(self)
+        if hasattr(self, '_setPortalTypeName'):
+            self._setPortalTypeName("DPTransfers")
+        myid = self.getId()
+        del f[myid]
+        self.__class__ = DPTransferFolder
+        f[myid] = self
+        logger.info(self.__class__)
+        logger.info(self.getPortalTypeName())
+
     def acceptsDT(self, dt_id):
         """
         Do I specifically accept this doc type?
