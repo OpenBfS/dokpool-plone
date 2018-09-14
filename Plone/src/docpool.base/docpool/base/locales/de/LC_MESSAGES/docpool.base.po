@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2018-07-03 13:52+0000\n"
-"PO-Revision-Date: 2015-09-17 13:10+0100\n"
+"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"PO-Revision-Date: 2018-09-14 16:57+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.base\n"
 "Language: de\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 2.1.1\n"
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:36
+msgid "${count} item(s) cut."
+msgstr "${count} Objekte ausgeschnitten."
 
 #: docpool.base/docpool/base/browser/print.pt:27
 msgid "Archive"
@@ -24,17 +28,25 @@ msgstr "Archiv"
 msgid "Content Area"
 msgstr "Bereich für Inhalte"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:231
+#: docpool.base/docpool/base/browser/dp_macros.pt:234
 msgid "Content:"
 msgstr "Inhalt:"
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:17
+msgid "Copy or cut one or more items to paste."
+msgstr "Ein oder mehr Objekte kopieren oder ausschneiden, um sie einzufügen."
 
 #: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
 msgid "DPDocument"
 msgstr "Dokument"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:130
+#: docpool.base/docpool/base/browser/dp_macros.pt:133
 msgid "Delete"
 msgstr "Löschen"
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:31
+msgid "Disallowed to paste item(s)."
+msgstr "Einfügen nicht erlaubt."
 
 #: docpool.base/docpool/base/profiles/default/types/DPApplication.xml
 msgid "Docpool Application"
@@ -52,7 +64,7 @@ msgstr "Dokpool Ansicht"
 msgid "DocumentType"
 msgstr "Dokumenttyp"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:395
+#: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
 msgstr "Unbekannten Dokumenttyp bearbeiten"
 
@@ -60,7 +72,7 @@ msgstr "Unbekannten Dokumenttyp bearbeiten"
 msgid "Electronic Situation Display"
 msgstr "Dokpool"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:238
+#: docpool.base/docpool/base/browser/dp_macros.pt:241
 msgid "Files:"
 msgstr "Dateien:"
 
@@ -113,7 +125,7 @@ msgstr "Gruppenordner: Filter nicht aktiv!"
 msgid "Groups Area"
 msgstr "Gruppenbereich"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:273
+#: docpool.base/docpool/base/browser/dp_macros.pt:276
 msgid "Images:"
 msgstr "Bilder:"
 
@@ -121,7 +133,11 @@ msgstr "Bilder:"
 msgid "Info-Folder"
 msgstr "Info-Ordner"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:346
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:26
+msgid "Item(s) pasted."
+msgstr "Objekt(e) eingefügt."
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:349
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:21
 msgid "LT"
 msgstr "Ortszeit"
@@ -130,7 +146,7 @@ msgstr "Ortszeit"
 msgid "Link"
 msgstr "Info-Link"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:52
+#: docpool.base/docpool/base/browser/dp_macros.pt:53
 msgid "Metadata"
 msgstr "Metadaten"
 
@@ -142,19 +158,39 @@ msgstr "Keine Legende vorhanden"
 msgid "No map image"
 msgstr "Kein Kartenbild vorhanden"
 
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:23
+msgid "One or more items not moveable."
+msgstr "Ein oder mehr Objekte können nicht verschoben werden."
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:31
+msgid "One or more selected items is locked."
+msgstr "Ein oder mehr Objekte sind gesperrt."
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:27
+msgid "One or more selected items is no longer available."
+msgstr "Ein oder mehr Objekte sind nicht mehr vorhanden."
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:46
+msgid "Paste could not find clipboard content."
+msgstr "Keine Inhalte mehr in der Zwischenablage."
+
 #: docpool.base/docpool/base/browser/folderbase.pt:21
 msgid "Personal Folder: filter not active!"
 msgstr "Persönlicher Ordner: Filter nicht aktiv!"
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:42
+msgid "Please select one or more items to cut."
+msgstr "Bitte wählen Sie ein oder mehr Objekte zum Ausschneiden."
 
 #: docpool.base/docpool/base/browser/sharing.py:45
 msgid "Search for user or group"
 msgstr "Nach Nutzern oder Gruppen suchen"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:168
+#: docpool.base/docpool/base/browser/dp_macros.pt:171
 msgid "Show document"
 msgstr "Dokument anzeigen"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:183
+#: docpool.base/docpool/base/browser/dp_macros.pt:186
 msgid "Show folder"
 msgstr "Zum Ordner"
 
@@ -179,13 +215,25 @@ msgstr "Das Dokument wurde veröffentlicht."
 msgid "The document state has been changed."
 msgstr "Der Dokumentstatus wurde geändert."
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:362
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:38
+msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
+msgstr "Das Objekt, welches Sie einfügen wollen, konnte nicht gefunden werden. Es wurde möglicherweise verschoben oder gelöscht."
+
+#: docpool.base/docpool/base/browser/dp_macros.pt:365
 msgid "There are comments."
 msgstr "Es gibt Kommentare."
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:51
+#: docpool.base/docpool/base/browser/dp_macros.pt:52
 msgid "Title / Description / Text"
 msgstr "Titel / Kurzbeschreibung / Text"
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:33
+msgid "Unauthorized to paste item(s)."
+msgstr "Fehlende Berechtigungen für das Einfügen."
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:49
+msgid "Unknown error occured. Please check your logs"
+msgstr "Unbekannter Fehler. Bitte prüfen Sie das Log."
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
@@ -195,7 +243,7 @@ msgstr "Nutzerordner"
 msgid "Users Area"
 msgstr "Nutzerbereich"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:326
+#: docpool.base/docpool/base/browser/dp_macros.pt:329
 msgid "Videos:"
 msgstr "Videos:"
 
@@ -211,7 +259,7 @@ msgstr "Aktiv"
 msgid "closed"
 msgstr "Geschlossen"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:351
+#: docpool.base/docpool/base/browser/dp_macros.pt:354
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:25
 msgid "created:"
 msgstr "erzeugt:"
@@ -293,7 +341,7 @@ msgid "description_dpdocument_text"
 msgstr ""
 
 #. Default: "There are currently no items in this folder."
-#: docpool.base/docpool/base/browser/dp_macros.pt:99
+#: docpool.base/docpool/base/browser/dp_macros.pt:102
 msgid "description_no_items_in_folder"
 msgstr "Dieser Ordner hat keinen Inhalt."
 
@@ -430,22 +478,22 @@ msgstr "Dokumenttypen, welche in diesem Ordner zulässig sind"
 msgid "label_text_text"
 msgstr "Text"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:345
+#: docpool.base/docpool/base/browser/dp_macros.pt:348
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:20
 msgid "modified:"
 msgstr "geändert:"
 
 #. Default: "Content listing"
-#: docpool.base/docpool/base/browser/dp_macros.pt:41
+#: docpool.base/docpool/base/browser/dp_macros.pt:42
 msgid "summary_content_listing"
 msgstr "Inhalt"
 
 #. Default: "Move item down"
-#: docpool.base/docpool/base/browser/dp_macros.pt:256
+#: docpool.base/docpool/base/browser/dp_macros.pt:259
 msgid "title_move_item_down"
 msgstr "Nach unten"
 
 #. Default: "Move item up"
-#: docpool.base/docpool/base/browser/dp_macros.pt:249
+#: docpool.base/docpool/base/browser/dp_macros.pt:252
 msgid "title_move_item_up"
 msgstr "Nach oben"

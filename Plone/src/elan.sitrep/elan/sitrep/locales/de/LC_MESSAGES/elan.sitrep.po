@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-07-03 13:52+0000\n"
+"POT-Creation-Date: 2018-09-14 13:40+0000\n"
 "PO-Revision-Date: 2015-10-14 12:14+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -40,7 +40,7 @@ msgid "Folder for Module Types"
 msgstr "Ordner für Modultypen"
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:20
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:23
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:20
 msgid "In progress:"
 msgstr "In Bearbeitung:"
 
@@ -56,12 +56,12 @@ msgstr "Vorgesehen für Lagebericht:"
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:38
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:35
 msgid "Mirror Overview"
 msgstr "Aus Lageübersicht übernehmen"
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:18
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:20
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:17
 msgid "Missing:"
 msgstr "Fehlt:"
 
@@ -109,22 +109,22 @@ msgstr "Phase"
 msgid "Previous version"
 msgstr "Vorherige Version"
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:47
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:44
 msgid "Printable version"
 msgstr "Druckversion"
 
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:16
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:34
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:31
 msgid "Publish"
 msgstr "Veröffentlichen"
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:21
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:23
 msgid "Published:"
 msgstr "Bereit zum Einbinden:"
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:19
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:29
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
 msgid "Ready:"
 msgstr "Fertig:"
 
@@ -180,7 +180,7 @@ msgstr "Modulkonfiguration"
 msgid "Situation Scenario"
 msgstr "Szenario"
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:13
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:10
 msgid "State of modules"
 msgstr "Stand der Bearbeitung"
 

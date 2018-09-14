@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-03 13:53+0000\n"
+"POT-Creation-Date: 2018-09-14 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,15 +14,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py:266
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:268
 msgid ". Doc type not accepted."
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py:291
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:293
 msgid ". Document has no scenario."
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py:286
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:288
 msgid ". Unknown scenario not accepted."
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Makes documents transferable between pools"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py:266
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:268
 msgid "No transfer to"
 msgstr ""
 
@@ -64,6 +64,7 @@ msgid "Permission"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/db/forms.py:92
+#: docpool.transfers/docpool/transfers/profiles/default/types/DPTransferFolder.xml
 msgid "Permissions"
 msgstr ""
 
@@ -87,6 +88,10 @@ msgstr ""
 msgid "Transfer DocType"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/profiles/default/types/DPTransferFolder.xml
+msgid "Transfer Folder"
+msgstr ""
+
 #: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt:11
 msgid "Transfer Folder: filter not active!"
 msgstr ""
@@ -107,7 +112,7 @@ msgstr ""
 msgid "Transferable"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py:356
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py:358
 msgid "Transferred to"
 msgstr ""
 
@@ -142,19 +147,19 @@ msgstr ""
 msgid "description_dpdocument_transferred_by"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:70
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:74
 msgid "description_dptransferfolder_permlevel"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:60
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:64
 msgid "description_dptransferfolder_sendingesd"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:81
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:85
 msgid "description_dptransferfolder_unknowndtdefault"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:92
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:96
 msgid "description_dptransferfolder_unknownscendefault"
 msgstr ""
 
@@ -188,22 +193,22 @@ msgid "label_dpdocument_transferred_by"
 msgstr ""
 
 #. Default: "Permission level"
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:69
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:73
 msgid "label_dptransferfolder_permlevel"
 msgstr ""
 
 #. Default: "The organisation sending content via this transfer folder"
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:59
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:63
 msgid "label_dptransferfolder_sendingesd"
 msgstr ""
 
 #. Default: "Default for unknown document types"
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:80
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:84
 msgid "label_dptransferfolder_unknowndtdefault"
 msgstr ""
 
 #. Default: "Default for unknown scenarios"
-#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:91
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py:95
 msgid "label_dptransferfolder_unknownscendefault"
 msgstr ""
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-03 13:52+0000\n"
+"POT-Creation-Date: 2018-09-14 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgid "Folder for Module Types"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:20
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:23
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:20
 msgid "In progress:"
 msgstr ""
 
@@ -58,12 +58,12 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:38
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:35
 msgid "Mirror Overview"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:18
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:20
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:17
 msgid "Missing:"
 msgstr ""
 
@@ -111,22 +111,22 @@ msgstr ""
 msgid "Previous version"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:47
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:44
 msgid "Printable version"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt:16
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:34
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:31
 msgid "Publish"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:21
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:23
 msgid "Published:"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt:19
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:29
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:26
 msgid "Ready:"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Situation Scenario"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:13
+#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt:10
 msgid "State of modules"
 msgstr ""
 

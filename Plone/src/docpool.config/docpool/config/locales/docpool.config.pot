@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-03 13:53+0000\n"
+"POT-Creation-Date: 2018-09-14 13:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.config\n"
 
-#: docpool.config/docpool/config/local/elan.py:189
-#: docpool.config/docpool/config/local/elan_de.py:189
+#: docpool.config/docpool/config/local/elan.py:191
+#: docpool.config/docpool/config/local/elan_de.py:191
 msgid "Aktuelle Lage"
 msgstr ""
 
@@ -52,8 +52,8 @@ msgstr ""
 msgid "Printable version"
 msgstr ""
 
-#: docpool.config/docpool/config/local/elan_en.py:188
-#: docpool.config/docpool/config/local/elan_ro.py:190
+#: docpool.config/docpool/config/local/elan_en.py:190
+#: docpool.config/docpool/config/local/elan_ro.py:192
 msgid "Situation Display"
 msgstr ""
 

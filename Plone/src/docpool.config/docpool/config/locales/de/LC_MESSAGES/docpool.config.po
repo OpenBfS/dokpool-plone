@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-07-03 13:53+0000\n"
+"POT-Creation-Date: 2018-09-14 13:39+0000\n"
 "PO-Revision-Date: 2015-09-17 13:15+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Language: de\n"
 
-#: docpool.config/docpool/config/local/elan.py:189
-#: docpool.config/docpool/config/local/elan_de.py:189
+#: docpool.config/docpool/config/local/elan.py:191
+#: docpool.config/docpool/config/local/elan_de.py:191
 msgid "Aktuelle Lage"
 msgstr ""
 
@@ -50,8 +50,8 @@ msgstr "Konfiguration"
 msgid "Printable version"
 msgstr "Druckversion"
 
-#: docpool.config/docpool/config/local/elan_en.py:188
-#: docpool.config/docpool/config/local/elan_ro.py:190
+#: docpool.config/docpool/config/local/elan_en.py:190
+#: docpool.config/docpool/config/local/elan_ro.py:192
 msgid "Situation Display"
 msgstr "Lagedarstellung"
 
