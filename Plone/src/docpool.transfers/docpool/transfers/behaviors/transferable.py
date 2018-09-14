@@ -149,6 +149,7 @@ class Transferable(FlexibleView):
                 events = __session__.query(ChannelReceives).filter(
                     ChannelReceives.document_uid == self.context.UID()).order_by(desc(ChannelReceives.etimestamp)).all()
                 return [{"type": "receive", "by": event.user, "esd": event.esd_from_title,
+                         "timeraw": event.timestamp,
                          "time": self.context.toLocalizedTime(DateTime(event.etimestamp), long_format=1)} for event in
                         events]
             else:
@@ -156,6 +157,7 @@ class Transferable(FlexibleView):
                 events = __session__.query(ChannelSends).filter(
                     ChannelSends.document_uid == self.context.UID()).order_by(desc(ChannelSends.etimestamp)).all()
                 return [{"type": "send", "by": event.user, "esd": event.esd_to_title,
+                         "timeraw": event.etimestamp,
                          "time": self.context.toLocalizedTime(DateTime(event.etimestamp), long_format=1)} for event in
                         events]
 

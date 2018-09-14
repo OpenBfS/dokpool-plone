@@ -3,6 +3,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from z3c.caching.interfaces import ILastModified
 from zope.component import adapter
 from zope.interface import implementer
+from Products.CMFPlone.log import log_exc
 
 
 @implementer(ILastModified)
@@ -49,11 +50,13 @@ class DocumentLastModified(ContentBaseLastModified):
         try:
             from docpool.transfers.behaviors.transferable import ITransferable
             t = ITransferable(self.context)
-            transferred = t.transferred
-        except:
+            tEvents = t.transferEvents()
+            if len(tEvents) > 0:
+                transferred = tEvents[0]['timeraw']
+        except Exception, e:
+            #log_exc(e)
             pass
-        
-        print lm, transferred
+
         if lm is not None and transferred is not None:
             try:
                 return lm < transferred and transferred or lm
