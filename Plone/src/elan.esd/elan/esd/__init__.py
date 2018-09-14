@@ -21,7 +21,7 @@ api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
-
+import monkey
  #DocumentPool specific
 # from monkeyDocumentPool import esdAdded, esdRemoved, configure
 # from docpool.base.content.documentpool import DocumentPool, IDocumentPool
