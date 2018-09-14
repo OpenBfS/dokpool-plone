@@ -67,7 +67,7 @@
     <value key="resources">
       <element>docpool-nonadmin</element>
     </value>
-    <value key="expression">python:member and not (member.has_role('Manager') or member.has_role('Site Administrator')) or not object.isContentAdmin() or None</value>
+    <value key="expression">python:not object.isAdmin() and not object.isContentAdmin()</value>
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="jscompilation"></value>
