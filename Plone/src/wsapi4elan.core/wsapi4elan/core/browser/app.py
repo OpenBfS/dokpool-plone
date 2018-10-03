@@ -102,6 +102,20 @@ class ApplicationAPI(WSAPI):
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0]  # just the path
 
+    def update_dp_object(self, path, properties):
+        """
+        Sets properties on a specific object
+        :param path:
+        :param properties:
+        :return:
+        """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        params = {str(path): [properties, None]}
+        res = self.context.restrictedTraverse("@@put_object")(params)
+        return res[0]  # just the path
+
+
+
     def upload_file(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         
