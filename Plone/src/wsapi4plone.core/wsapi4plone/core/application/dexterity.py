@@ -121,7 +121,6 @@ class DexterityObjectService(PloneService):
             # elif isinstance(self.context[attr], BaseUnit):
             #     self.context[par].update(params[par], self.context[par])
             #     del params[par]
-
         context = self.context
         changed = []
 
@@ -136,8 +135,10 @@ class DexterityObjectService(PloneService):
 
         behavior_assignable = IBehaviorAssignable(context)
         if behavior_assignable:
-            behaviors = behavior_assignable.enumerateBehaviors()
+            behaviors = behavior_assignable.enumerateBehaviors(request)
+            #print behaviors
             for behavior in behaviors:
+                #print getFieldsInOrder(behavior.interface)
                 behavior_fields += getFieldsInOrder(behavior.interface)
 
         # Stap 2 eigen velden
@@ -150,13 +151,13 @@ class DexterityObjectService(PloneService):
 
         for k, v in params.items():
             found = False
-
+            #print k, v
             for field_info in fields:
                 try:
                     field_name = field_info[0]
                     field = field_info[1]
                     field_schema = getattr(field, 'schema', None)
-                    #print field_schema, field_schema and field_schema.getName()
+                    #print field_name, field_schema, field_schema and field_schema.getName()
                     if field_name == k:
                         if field_schema and field_schema.getName() in ['INamedBlobImage', 'INamedBlobFile']:
                             found = True

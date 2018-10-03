@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from xmlrpclib import ServerProxy
+from random import random
 def elan_login(username, password):
-    return ServerProxy("http://%s:%s@localhost:8081/Plone" % (username, password), verbose=True)
+    return ServerProxy("http://%s:%s@localhost:8081/dokpool" % (username, password), verbose=True)
 
 def getESDs(client):
     """
@@ -27,7 +28,7 @@ def getTypes(client, esdpath):
     """
     return _queryObjects(client, esdpath, "DocType")
 
-client = elan_login("condat_user1", "user1")
+client = elan_login("elanmanager", "admin")
 client.get_object()
 #q = client.query()
 #print len(q)
@@ -42,10 +43,11 @@ for esdpath in esds:
         o = client.get_object([t])
         # print o
         
-print client.get_primary_documentpool()
-uf = client.get_user_folder(esdpath)
-print uf
-ufpath = uf[0]
+print client.get_primary_documentpool()[0]
+esdpath = "/dokpool/bund"
+group_folders = client.get_group_folders(esdpath)
+print group_folders
+ufpath = group_folders.keys()[0]
 """
         @param params - dictionary of path with a list value where list item zero are
                         attribute names and their respective values; and list item one
@@ -57,14 +59,19 @@ params = { ufpath + "/neue" : [ { "title": "Titel",
                                    "description" : "Beschreibung",
                                    "text" : "<p>Text</p>",
                                    "docType" : "eventinformation"} , "DPDocument"] }
-newpath = client.create_elan_document(ufpath, "ganzneues", "Titel", "Beschreibung", "<p>Neuer Text</p>", "eventinformation")
+scenarios = ["demo-am-24-4"]
+behaviours = ['elan']
+newpath = client.create_dp_document(ufpath, "ganzneues" + str(random() * 100000), "Titel", "Beschreibung", "<p>Neuer Text</p>", "eventinformation", behaviours)
 print newpath
-from xmlrpclib import Binary
-f = open('test.pdf', 'r')
-binary_data = Binary(f.read())
-f.close()
-newfile = client.upload_file(newpath, "datei", "Neue Datei", "Dies ist eine neue Datei", binary_data, "test.pdf")    
-f = open('test.jpg', 'r')
-binary_data = Binary(f.read())
-f.close()
-newfile = client.upload_image(newpath, "bild", "Neues Bild", "Dies ist ein neues Bild", binary_data, "text.jpg")    
+params = { newpath : [ { "scenarios" : scenarios } ] }
+client.put_object(params)
+
+# from xmlrpclib import Binary
+# f = open('test.pdf', 'r')
+# binary_data = Binary(f.read())
+# f.close()
+# newfile = client.upload_file(newpath, "datei", "Neue Datei", "Dies ist eine neue Datei", binary_data, "test.pdf")
+# f = open('test.jpg', 'r')
+# binary_data = Binary(f.read())
+# f.close()
+# newfile = client.upload_image(newpath, "bild", "Neues Bild", "Dies ist ein neues Bild", binary_data, "text.jpg")
