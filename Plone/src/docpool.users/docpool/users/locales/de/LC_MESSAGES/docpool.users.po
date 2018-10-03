@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2018-09-14 14:02+0000\n"
-"PO-Revision-Date: 2018-09-14 16:02+0200\n"
+"PO-Revision-Date: 2018-10-03 16:59+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "Gruppe anlegen"
 #. Default: "Group: ${view/grouptitle|nothing}"
 #: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:59
 msgid "heading_edit_groupproperties"
-msgstr "Gruppe: ${View/grouptitle|nothing}"
+msgstr "Gruppe: ${groupname}"
 
 #. Default: "Group Members"
 #: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:38
@@ -134,7 +134,7 @@ msgstr "Gruppenmitglieder"
 #. Default: "Group: ${view/grouptitle}"
 #: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:54
 msgid "heading_group_members_of"
-msgstr "Gruppe: ${view/grouptitle}"
+msgstr "Gruppe: ${groupname}"
 
 #. Default: "Current group members"
 #: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:85
