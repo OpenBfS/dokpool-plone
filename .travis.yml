@@ -13,7 +13,9 @@ install:
   - cp config-template.cfg.tmpl config.cfg
   - pip install --upgrade pip
   - pip install --upgrade docutils
+  - pip install --upgrade six==1.10.0
   - pip install -r requirements.txt
   - buildout bootstrap
+  - pip install --upgrade six==1.10.0
 script:
   - ./bin/buildout -N -t 3 -c config.cfg
