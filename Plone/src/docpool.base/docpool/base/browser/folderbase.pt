@@ -13,16 +13,6 @@
                 condition="personal">
             <form name="appfilter" method="post" class="app_filter" tal:define="isFiltered view/isFilteredBy"
                   tal:attributes="action string:${context/absolute_url}/activateAppFilter">
-                <tal:if condition="not:isFiltered">
-                    <div class="documentDescription" tal:condition="not:individual" i18n:translate="">Group Folder:
-                        filter
-                        not active!
-                    </div>
-                    <div class="documentDescription" tal:condition="individual" i18n:translate="">Personal Folder:
-                        filter
-                        not active!
-                    </div>
-                </tal:if>
                 <tal:if condition="isFiltered">
                     <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
                     </div>

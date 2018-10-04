@@ -10,6 +10,9 @@
 ##
 
 from docpool.base.utils import setApplicationsForCurrentUser
+from docpool.base.utils import activateAppFilter
+
 
 setApplicationsForCurrentUser(context, [ app ])
+activateAppFilter(context, True)
 return context.REQUEST.RESPONSE.redirect(context.absolute_url())
