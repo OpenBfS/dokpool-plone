@@ -52,4 +52,9 @@
       <element>wordcount</element>
     </value>
   </record>
+  <record name="plone.custom_attributes" interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" field="custom_attributes">
+    <value>
+      <element>style</element>
+    </value>
+  </record>
 </registry>

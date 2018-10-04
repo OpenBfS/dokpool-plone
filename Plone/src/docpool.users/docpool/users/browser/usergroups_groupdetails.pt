@@ -58,7 +58,7 @@
 
       <h1 class="documentFirstHeading"
           i18n:translate="heading_edit_groupproperties"
-          metal:define-slot="content-title">Group: ${view/grouptitle|nothing}</h1>
+          metal:define-slot="content-title">Group: <span i18n:name="groupname" tal:replace="view/grouptitle|nothing"/></h1>
 
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
@@ -67,7 +67,7 @@
       <div id="content-core"
            tal:define="token context/@@authenticator/token">
         <div class="autotabs">
-         
+
           <nav class="autotoc-nav" tal:condition="view/group | nothing">
             <a href="${portal_url}/@@usergroup-groupmembership?${groupquery}"
                i18n:translate="label_group_members">Group Members</a>

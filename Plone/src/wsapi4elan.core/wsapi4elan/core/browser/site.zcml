@@ -40,6 +40,10 @@
             attribute="create_dp_object"
             />
         <browser:page
+            name="update_dp_object"
+            attribute="update_dp_object"
+            />
+        <browser:page
             name="upload_file"
             attribute="upload_file"
             />

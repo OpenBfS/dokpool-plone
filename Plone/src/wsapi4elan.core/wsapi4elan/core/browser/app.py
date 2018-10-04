@@ -75,7 +75,7 @@ class ApplicationAPI(WSAPI):
         q = {'path': esdpath + "/content/Transfers", 'portal_type': "DPTransferFolder"}
         return self.context.restrictedTraverse("@@query")(q) 
     
-    def create_dp_document(self, folderpath, id, title, description, text, doctype, scenarios):
+    def create_dp_document(self, folderpath, id, title, description, text, doctype, behaviours):
         """
         Creates a document under folderpath.
         """
@@ -87,7 +87,7 @@ class ApplicationAPI(WSAPI):
                                       "description": description,
                                       "text": text,
                                       "docType": doctype,
-                                      "scenarios": scenarios},
+                                      "local_behaviors": behaviours},
                                      "DPDocument")
 
     def create_dp_object(self, folderpath, id, properties, type):
@@ -101,6 +101,20 @@ class ApplicationAPI(WSAPI):
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0]  # just the path
+
+    def update_dp_object(self, path, properties):
+        """
+        Sets properties on a specific object
+        :param path:
+        :param properties:
+        :return:
+        """
+        alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
+        params = {str(path): [properties, None]}
+        res = self.context.restrictedTraverse("@@put_object")(params)
+        return res[0]  # just the path
+
+
 
     def upload_file(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)

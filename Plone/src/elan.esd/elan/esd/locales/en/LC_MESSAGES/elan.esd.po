@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-09-14 13:40+0000\n"
+"POT-Creation-Date: 2018-10-03 14:04+0000\n"
 "PO-Revision-Date: 2015-10-27 20:26+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -26,6 +26,10 @@ msgstr ""
 
 #: elan.esd/elan/esd/portlets/collection.py:127
 msgid "Add Collection Portlet"
+msgstr ""
+
+#: elan.esd/elan/esd/profiles/default/actions.xml
+msgid "Add New Scenario"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:81
@@ -75,6 +79,10 @@ msgstr ""
 msgid "Content from:"
 msgstr "Content from:"
 
+#: elan.esd/elan/esd/profiles/default/actions.xml
+msgid "Create Archive Folder"
+msgstr ""
+
 #: elan.esd/elan/esd/browser/elanscenarios.pt:11
 msgid "Created"
 msgstr ""
@@ -89,6 +97,10 @@ msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
 msgid "Dates"
+msgstr ""
+
+#: elan.esd/elan/esd/profiles/default/actions.xml
+msgid "Delete Ticker"
 msgstr ""
 
 #: elan.esd/elan/esd/content/elandoccollection.py:79
@@ -117,6 +129,14 @@ msgstr "Current Situation"
 
 #: elan.esd/elan/esd/portlets/collection.py:136
 msgid "Edit Collection Portlet"
+msgstr ""
+
+#: elan.esd/elan/esd/profiles/default/actions.xml
+msgid "Edit Scenarios"
+msgstr ""
+
+#: elan.esd/elan/esd/profiles/default/actions.xml
+msgid "Edit Ticker"
 msgstr ""
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:95

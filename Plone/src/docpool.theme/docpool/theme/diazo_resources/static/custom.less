@@ -296,8 +296,10 @@ table.scenarios {
     display: none;
 }
 
-.template-usergroup-groupdetails .field.email {
-    display: none;
+.template-usergroup-groupdetails .field {
+    input[name="email:string"], select[name="dp:text"] {
+        display: none;
+        }
 }
 
 .template-user-information .field.portrait {
@@ -327,7 +329,7 @@ table.scenarios {
     padding: 0;
 }
 
-.portaltype-documentpool {
+.portaltype-documentpool, .template-user-information {
     #formfield-form-widgets-dp, .field.dp {
         display: none;
     }
