@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.rei">
+    
+    <include package="plone.behavior" file="meta.zcml" />
+
+	<grok:grok package="." />    
+
+    <plone:behavior
+        title="REIDoc"
+        description="Makes documents support REI functions"
+        provides=".reidoc.IREIDoc"
+        factory=".reidoc.REIDoc"
+        for="docpool.base.interfaces.IDPDocument"
+    />
+    <plone:behavior
+        title="REI DocType"
+        description="Type extension for REI types"
+        provides=".reitype.IREIType"
+        factory=".reitype.REIType"
+        for="docpool.base.interfaces.IDocType"
+    />
+
+</configure>

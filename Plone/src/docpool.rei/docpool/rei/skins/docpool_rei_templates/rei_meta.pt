@@ -1,0 +1,63 @@
+<tal:block i18n:domain="docpool.rei"
+           define="view nocall:options/view;
+                   context nocall:options/context;
+                   here nocall:context;
+                   toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+    <tal:def define="reiobj view">
+        <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->
+        <p>-------------------------------------------------</p>
+        Report ID: 
+        <span tal:condition="python:hasattr(reiobj,'reportId')">
+           <tal:var replace="reiobj/reportId"/>
+        </span><br>
+        Calculation Date: 
+        <span tal:condition="python:hasattr(reiobj,'calculationDate')">
+<tal:var replace="python: toLocalizedTime(reiobj.calculationDate, long_format=1)"/>
+        </span><br>
+        User: 
+        <span tal:condition="python:hasattr(reiobj,'projectUser')">
+           <tal:var replace="reiobj/projectUser"/>
+        </span><br>
+        Project Name: 
+        <span tal:condition="python:hasattr(reiobj,'projectName')">
+           <tal:var replace="reiobj/projectName"/>
+        </span><br>
+        Prognosis Form: 
+        <span tal:condition="python:hasattr(reiobj,'prognosisForm')">
+           <tal:var replace="reiobj/prognosisForm"/>
+        </span><br>
+        Release Site: 
+        <span tal:condition="python:hasattr(reiobj,'releaseSite')">
+           <tal:var replace="reiobj/releaseSite"/>
+        </span><br>
+        Release Start: 
+        <span tal:condition="python:hasattr(reiobj,'releaseStart')">
+<tal:var replace="python: toLocalizedTime(reiobj.releaseStart, long_format=1)"/>
+        </span><br>
+        Release Stop: 
+        <span tal:condition="python:hasattr(reiobj,'releaseStop')">
+<tal:var replace="python: toLocalizedTime(reiobj.releaseStop, long_format=1)"/>
+        </span><br>
+        Prognosis Type: 
+        <span tal:condition="python:hasattr(reiobj,'prognosisType')">
+           <tal:var replace="reiobj/prognosisType"/>
+        </span><br>
+        Model: 
+        <span tal:condition="python:hasattr(reiobj,'model')">
+           <tal:var replace="reiobj/model"/>
+        </span><br>
+        Prognosis Begin: 
+        <span tal:condition="python:hasattr(reiobj,'prognosisBegin')">
+<tal:var replace="python: toLocalizedTime(reiobj.prognosisBegin, long_format=1)"/>
+        </span><br>
+        Prognosis End: 
+        <span tal:condition="python:hasattr(reiobj,'prognosisEnd')">
+<tal:var replace="python: toLocalizedTime(reiobj.prognosisEnd, long_format=1)"/>
+        </span><br>
+        Numeric Weather Prediction Date: 
+        <span tal:condition="python:hasattr(reiobj,'numericWeatherPredictiondate')">
+           <tal:var replace="reiobj/numericWeatherPredictionDate"/>
+        </span>
+        <p>-------------------------------------------------</p>
+    </tal:def>
+</tal:block>
