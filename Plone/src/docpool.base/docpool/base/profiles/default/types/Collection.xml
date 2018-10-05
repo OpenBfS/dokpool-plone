@@ -6,5 +6,6 @@
  </property>
  <property name="behaviors" purge="False">
      <element value="eea.facetednavigation.subtypes.interfaces.IPossibleFacetedNavigable" />
- </property>
+      <element value="docpool.localbehavior.localbehavior.ILocalBehaviorSupport" />
+</property>
 </object>

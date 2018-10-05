@@ -300,7 +300,7 @@ class Transferable(FlexibleView):
                 behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
                 if HAS_ELAN and elanobj != None:
                     behaviors.add(ELAN_APP) # FIXME: ELAN dependency
-                ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
+                ILocalBehaviorSupport(my_copy).local_behaviors = list(set(behaviors))
 
 
                 # 3) Add transfer information to the copies.

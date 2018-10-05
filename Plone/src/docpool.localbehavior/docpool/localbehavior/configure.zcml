@@ -30,7 +30,7 @@
         description="Add local behavior support"
         provides=".localbehavior.ILocalBehaviorSupport"
         factory=".localbehavior.LocalBehaviorSupport"
-        for="docpool.base.interfaces.IExtendable"
+        for="plone.dexterity.interfaces.IDexterityContent"
         marker=".localbehavior.ILocalBehaviorSupporting"
         />
 

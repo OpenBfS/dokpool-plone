@@ -8,6 +8,7 @@ from zope.interface import implementer
 
 from zope.component import adapts, getMultiAdapter
 from zope.component import adapter
+from plone import api
 
 from time import time
 
@@ -25,7 +26,17 @@ class DokPoolApps(object):
         context = getContext(self.published)
         dp_app_state = getMultiAdapter((context, self.request), name=u'dp_app_state')
         apps = ";".join(dp_app_state.effectiveAppsHere())
-        return apps
+
+        scenarios = ""
+        if hasattr(context, "getUserSelectedScenarios"):
+            scenarios = context.getUserSelectedScenarios()
+            scenarios = ";".join(scenarios)
+
+        user = api.user.get_current()
+        filtered = user.getProperty("filter_active") or False
+
+
+        return apps + "-" + scenarios + "-" + str(filtered)
 
 cacheTimes = {
     "DPDocument" : 300,

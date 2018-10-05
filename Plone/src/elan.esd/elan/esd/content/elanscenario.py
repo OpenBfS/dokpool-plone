@@ -368,7 +368,7 @@ class ELANScenario(Item, ContentBase):
             if apps and len(apps) > 1: # There are others --> only remove ELAN behavior
                 try:
                     apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(source_obj).local_behaviors = apps
+                    ILocalBehaviorSupport(source_obj).local_behaviors = list(set(apps))
                 except Exception, e:
                     log_exc(e)
             else: # we delete
