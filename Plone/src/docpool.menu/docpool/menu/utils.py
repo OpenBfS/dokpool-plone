@@ -57,7 +57,10 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
         app_names.insert(0, BASE_APP)
         for app_name in app_names:
             if app_name == 'base':
-                app_title = utranslate("docpool.menu", "Docpool Base", context=self)
+                if self.isAdmin():
+                    app_title = utranslate("docpool.menu", "Docpool Base", context=self)
+                else:
+                    continue
             else:
                 app_title = appName(app_name)
             pools.append({'id': dp.getId() + "-" + app_name,
