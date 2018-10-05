@@ -74,6 +74,10 @@
   <adapter
     factory=".indexer.base_apps_indexer"
     name="apps_supported" />
+
+  <adapter
+    factory=".indexer.container_apps_indexer"
+    name="apps_supported" />
 <!-- ##/code-section Main -->
     
 </configure>
