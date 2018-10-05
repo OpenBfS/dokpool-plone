@@ -118,5 +118,5 @@ class SRScenario(Container):
 def updated(obj, event=None):
     log("SRScenario updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
-    sr_cat.reindexObject(obj)
+    sr_cat._reindexObject(obj)
 ##/code-section bottom 

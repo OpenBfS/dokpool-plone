@@ -124,7 +124,7 @@ class SRTextBlock(Item, ContentBase):
     
     def createActions(self):
         sr_cat = getToolByName(self, "sr_catalog")
-        sr_cat.reindexObject(self)
+        sr_cat._reindexObject(self)
         
 ##/code-section methods 
 
@@ -134,7 +134,7 @@ class SRTextBlock(Item, ContentBase):
 def updated(obj, event=None):
     log("SRTextBlock updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
-    sr_cat.reindexObject(obj)
+    sr_cat._reindexObject(obj)
     
 @adapter(ISRTextBlock, IObjectRemovedEvent)
 def removed(obj, event):
