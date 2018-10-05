@@ -60,8 +60,8 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
                 app_title = utranslate("docpool.menu", "Docpool Base", context=self)
             else:
                 app_title = appName(app_name)
-            apps.append({'id': app_name,
-                        'Title': app_title,
+            pools.append({'id': dp.getId() + "-" + app_name,
+                        'Title': dp.Title() + ": " + app_title,
                         'Description': '',
                         'getURL': "%s/setActiveApp?app=%s" % (dp.absolute_url(), app_name),
                         'show_children': False,
@@ -70,17 +70,6 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
                         'currentParent': False,
                         'item_class': app_title,
                         'normalized_review_state': 'visible'})
-
-        pools.append({'id': dp.getId(),
-                     'Title': dp.Title(),
-                     'Description': '',
-                     'getURL': '',
-                     'show_children': True,
-                     'children': apps,
-                     'currentItem': False,
-                     'currentParent': True,
-                     'item_class': 'docpool',
-                     'normalized_review_state': 'visible'})
 
     apps_root[0]['children'] = pools
     return apps_root
