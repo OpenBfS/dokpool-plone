@@ -11,7 +11,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFPlone.CatalogTool import CatalogTool
 
-
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
 
 
 class ISRCatalog(Interface):
@@ -63,6 +64,8 @@ class SRCatalog(CatalogTool):
            with an indexObject method), and reindexes them.
            This may take a long time.
         """
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)
 
         self.manage_catalogClear()
 
@@ -77,7 +80,6 @@ class SRCatalog(CatalogTool):
         for brain in brains:
             obj = brain.getObject()
             if obj:
-                self.reindexObject(obj)
-            
+                self._reindexObject(obj)
 
 InitializeClass(SRCatalog)
