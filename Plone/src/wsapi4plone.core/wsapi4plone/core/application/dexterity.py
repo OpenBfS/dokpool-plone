@@ -135,7 +135,7 @@ class DexterityObjectService(PloneService):
 
         behavior_assignable = IBehaviorAssignable(context)
         if behavior_assignable:
-            behaviors = behavior_assignable.enumerateBehaviors(request)
+            behaviors = behavior_assignable.enumerateBehaviors()
             #print behaviors
             for behavior in behaviors:
                 #print getFieldsInOrder(behavior.interface)

@@ -17,10 +17,9 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         super(DexterityLocalBehaviorAssignable, self).__init__(context)
         self.context = context
 
-    def enumerateBehaviors(self, request=None):
+    def enumerateBehaviors(self):
         #print "enumerate"
-        if request is None:
-            request = self.context.REQUEST
+        request = self.context.REQUEST
         editedLocalBehaviours = []
         try:
             editedLocalBehaviours = request.get("form.widgets.ILocalBehaviorSupport.local_behaviors", [])
