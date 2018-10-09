@@ -32,9 +32,8 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         # because we will need to check this list later
         # and it might be changed during a "save"
         if not request.get("savedLocalBehaviors", []):
-            savedBehaviors = getattr(self.context, 'local_behaviors', [])
-            savedBehaviors = list(set(savedBehaviors))
-            request.set("savedLocalBehaviors", savedBehaviors)
+            savedBehaviors = getattr(self.context, 'local_behaviors', [])[:]
+            request.set("savedLocalBehaviors", list(set(savedBehaviors)))
             #print "saved", savedBehaviors
 
         if IDPDocument.providedBy(self.context):
@@ -42,7 +41,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
             self.available_apps = dp_app_state.appsEffectiveForObject(request)
 #            self.available_apps = list(set(self.available_apps).intersection(getattr(self.context, 'local_behaviors', [])))
         else:
-            self.available_apps = getattr(self.context, 'local_behaviors', [])
+            self.available_apps = list(set(getattr(self.context, 'local_behaviors', [])[:]))
 
         editedLocalBehaviours.extend(self.available_apps)
         editedLocalBehaviours.extend(request.get("savedLocalBehaviors", []))
