@@ -7,4 +7,4 @@ from docpool.doksys.behaviors.doksysdoc import IDoksysDoc
 from docpool.doksys.config import DOKSYS_APP
 
 # TODO: register any app specific type extension, doc extension, methods to be executed when docpools are created
-registerApp(DOKSYS_APP, u"Doksys App", None, IDoksysDoc, dpAdded, dpRemoved, icon="doksys_app_icon.png", implicit=False)
+registerApp(DOKSYS_APP, u"IMIS Doksys", None, IDoksysDoc, dpAdded, dpRemoved, icon="doksys_app_icon.png", implicit=False)
