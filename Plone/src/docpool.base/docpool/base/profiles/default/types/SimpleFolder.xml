@@ -34,6 +34,8 @@
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
 ##code-section behaviors
+     <element value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes" />
+
      <element value="docpool.localbehavior.localbehavior.ILocalBehaviorSupport" />
 ##/code-section behaviors
 </property>
