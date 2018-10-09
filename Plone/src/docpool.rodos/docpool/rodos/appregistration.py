@@ -8,4 +8,4 @@ from docpool.rodos.behaviors.rodostype import IRodosType
 from docpool.rodos.config import Rodos_APP
 
 # TODO: register any app specific type extension, doc extension, methods to be executed when docpools are created
-registerApp(Rodos_APP, u"Rodos App", IRodosType, IRodosDoc, dpAdded, dpRemoved, icon="rodos_app_icon.png", implicit=False)
+registerApp(Rodos_APP, u"RODOS", IRodosType, IRodosDoc, dpAdded, dpRemoved, icon="rodos_app_icon.png", implicit=False)
