@@ -3,7 +3,7 @@
    id="portal-logo-img"
    title="Home"
    accesskey="1"
-   tal:attributes="href string:${view/portal_url};
+   tal:attributes="href string:${view/navigation_root_url};
                    title string:DocPool"
    i18n:domain="elan.esd"
    i18n:attributes="title">
