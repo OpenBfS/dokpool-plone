@@ -7,4 +7,10 @@
                      name="docpool.time"
                      layer="docpool.theme.interfaces.ICustomTheme"
                      class=".common.TimeViewlet" />
+
+    <browser:viewlet name="docpool.path_bar"
+                     manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+                     class=".path_bar.PathBarViewlet"
+                     layer="docpool.theme.interfaces.ICustomTheme"
+                     permission="zope2.View"  />
 </configure>
