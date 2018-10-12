@@ -9,19 +9,9 @@ from docpool.base.config import BASE_APP
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
 
-@indexer(IDPDocument)
-def doc_apps_indexer(obj):
-    #print "doc_apps_indexer", obj
-    try:
-        res = [ BASE_APP ]
-        res.extend(ILocalBehaviorSupport(obj).local_behaviors)
-        return list(set(res))
-    except:
-        pass
-
-
 @indexer(IDocumentPool)
 def docpool_apps_indexer(obj):
+    #print "docpool_apps_indexer"
     try:
         return obj.supportedApps
     except:
@@ -30,17 +20,22 @@ def docpool_apps_indexer(obj):
 @indexer(IDexterityContainer)
 def container_apps_indexer(obj):
     #print "container_apps_indexer", obj
+    res = []
     try:
         res = ILocalBehaviorSupport(obj).local_behaviors
-        return list(set(res))
     except:
-        return base_apps_indexer(obj)
+        pass
+    #print res
+    res.extend(base_apps_indexer(obj)())
+    return list(set(res))
 
 @indexer(IDexterityContent)
 def base_apps_indexer(obj):
     #print "base_apps_indexer", obj
     if shasattr(obj, "APP"):
+        #print obj.APP
         return [ obj.APP ]
     else:
+        #print "base only"
         return [ BASE_APP ]
 
