@@ -64,6 +64,10 @@
   </class>
 
   <adapter
+    factory=".indexer.doc_apps_indexer"
+    name="apps_supported" />
+
+  <adapter
     factory=".indexer.docpool_apps_indexer"
     name="apps_supported" />
 
