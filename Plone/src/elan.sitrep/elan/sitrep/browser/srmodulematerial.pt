@@ -144,7 +144,7 @@ function insertTextblock (selector) {
                  tal:content="structure vis/Description"> description </div>
 
               <div class="image" tal:attributes="id string:vis_${vis/UID}">
-                 <img data-mce-src="resolveuid/${vis/UID}/@@images/image" data-val="${vis/UID}" data-linktype="image" alt="${vis/Title}" src="resolveuid/${vis/UID}/@@images/image" class="image-inline" title="${vis/Title}" data-scale="large" data-mce-selected="1">
+                 <img data-mce-src="resolveuid/${vis/UID}/@@images/image" data-val="${vis/UID}" data-linktype="image" alt="${vis/Title}" src="resolveuid/${vis/UID}/@@images/image/large" class="image-inline" title="${vis/Title}" data-scale="large" data-mce-selected="1">
                  <span class="caption"><i18n:var translate="">Fig.</i18n:var> : ${vis/Title} <tal:if condition="vis/Description"> - ${vis/Description}</tal:if></span> 
               </div>
              
