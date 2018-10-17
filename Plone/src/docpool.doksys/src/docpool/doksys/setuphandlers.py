@@ -23,7 +23,7 @@ def post_install(context):
     """Post install script"""
     # Do something at the end of the installation of this package.
     fresh = True
-    createStructure(getSite(), fresh)
+    createStructure(context, getSite(), fresh)
 
 
 def uninstall(context):
@@ -31,9 +31,10 @@ def uninstall(context):
     # Do something at the end of the uninstallation of this package.
 
 
-
-def createStructure(plonesite, fresh):
+def createStructure(context, plonesite, fresh):
     changedoksysNavigation(plonesite, fresh)
+    s = context.restrictedTraverse('searches')
+    s.manage_addProperty('text', '', 'string')
     transaction.commit()
     create_1day_collection(plonesite)
     transaction.commit()
@@ -46,7 +47,6 @@ def createStructure(plonesite, fresh):
 
 def changedoksysNavigation(plonesite, fresh):
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
-
 
 def changedoksysDocTypes (plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
@@ -67,7 +67,7 @@ def create_1day_collection(plonesite):
         }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     print "1day Collection angelegt"
 
@@ -87,7 +87,7 @@ def create_purpose_collections(plonesite):
         }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     #
     api.content.create(
@@ -105,7 +105,7 @@ def create_purpose_collections(plonesite):
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     print "Purpose Collection angelegt"
 
@@ -126,7 +126,7 @@ def create_sample_collections(plonesite):
         }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -143,7 +143,7 @@ def create_sample_collections(plonesite):
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -160,7 +160,7 @@ def create_sample_collections(plonesite):
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -177,7 +177,7 @@ def create_sample_collections(plonesite):
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -194,7 +194,7 @@ def create_sample_collections(plonesite):
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -211,7 +211,7 @@ def create_sample_collections(plonesite):
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     print "Sample Type Collection angelegt"
 
@@ -221,7 +221,7 @@ BASICSTRUCTURE = [
     {
         TYPE: 'Folder',
         TITLE: 'Predefined Searches',
-        ID: 'search',
+        ID: 'searches',
         CHILDREN: [
 #            {
 #                TYPE: 'Folder',

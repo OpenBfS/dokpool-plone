@@ -83,12 +83,12 @@ def copyDoksysNavigation(self):
     """
 #    if not fresh:
 #       return
-    search = self.search
+    searches = self.searches
     from docpool.base.utils import _copyPaste
-    _copyPaste(search, self, safe=False)
-    self.search.setTitle(_("Standardsuchen"))
-    self.search.reindexObject()
+    _copyPaste(searches, self, safe=False)
+    self.searches.setTitle(_("Standardsuchen"))
+    self.searches.reindexObject()
     # make sure the run display is first
     # TODO if more complex (e.g. second after 'esd')
-    self.moveObject("search", 0)
+    self.moveObject("searches", 0)
 
