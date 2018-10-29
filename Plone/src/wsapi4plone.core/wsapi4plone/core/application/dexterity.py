@@ -187,6 +187,8 @@ class DexterityObjectService(PloneService):
                             context.set_relation(field_name, paths=value)
                         elif type(field) == RichText:
                             setattr(context, field_name, field.fromUnicode(v))
+                        elif field_name == 'subjects':
+                            setattr(context, 'subject', v)
                         else:
                             found = True
                             field.set(context, v)
