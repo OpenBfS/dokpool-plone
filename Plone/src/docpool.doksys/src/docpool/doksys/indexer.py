@@ -7,28 +7,28 @@ from docpool.doksys.config import DOKSYS_APP
 @indexer(IDPDocument)
 def network_operator_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).network_operator
+        return obj.doc_extension(DOKSYS_APP).NetworkOperator
     except:
         pass
 
 @indexer(IDPDocument)
 def dom_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).dom
+        return obj.doc_extension(DOKSYS_APP).Dom
     except:
         pass
 
 @indexer(IDPDocument)
 def legal_base_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).legal_base
+        return obj.doc_extension(DOKSYS_APP).LegalBase
     except:
         pass
 
 @indexer(IDPDocument)
 def measuring_program_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).measuring_program
+        return obj.doc_extension(DOKSYS_APP).MeasuringProgram
     except:
         pass
 
@@ -37,7 +37,7 @@ def measuring_program_indexer(obj):
 @indexer(IDPDocument)
 def sampling_begin_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).sampling_begin
+        return obj.doc_extension(DOKSYS_APP).SamplingBegin
     except:
         pass
 
@@ -45,14 +45,14 @@ def sampling_begin_indexer(obj):
 @indexer(IDPDocument)
 def sampling_end_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).sampling_end
+        return obj.doc_extension(DOKSYS_APP).SamplingEnd
     except:
         pass
 
 @indexer(IDPDocument)
 def purpose_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).purpose
+        return obj.doc_extension(DOKSYS_APP).Purpose
     except:
         pass
 
@@ -60,7 +60,7 @@ def purpose_indexer(obj):
 @indexer(IDPDocument)
 def trajectory_start_location_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).trajectory_start_location
+        return obj.doc_extension(DOKSYS_APP).TrajectoryStartLocation
     except:
         pass
 
@@ -68,7 +68,7 @@ def trajectory_start_location_indexer(obj):
 @indexer(IDPDocument)
 def trajectory_end_location_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).trajectory_end_location
+        return obj.doc_extension(DOKSYS_APP).TrajectoryEndLocation
     except:
         pass
 
@@ -76,7 +76,7 @@ def trajectory_end_location_indexer(obj):
 @indexer(IDPDocument)
 def trajectory_start_time_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).trajectory_start_time
+        return obj.doc_extension(DOKSYS_APP).TrajectoryStartTime
     except:
         pass
 
@@ -84,7 +84,7 @@ def trajectory_start_time_indexer(obj):
 @indexer(IDPDocument)
 def trajectory_end_time_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).trajectory_end_time
+        return obj.doc_extension(DOKSYS_APP).TrajectoryEndTime
     except:
         pass
 
@@ -92,7 +92,7 @@ def trajectory_end_time_indexer(obj):
 @indexer(IDPDocument)
 def status_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).status
+        return obj.doc_extension(DOKSYS_APP).Status
     except:
         pass
 
@@ -100,7 +100,7 @@ def status_indexer(obj):
 @indexer(IDPDocument)
 def operation_mode_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).operation_mode
+        return obj.doc_extension(DOKSYS_APP).OperationMode
     except:
         pass
 
@@ -108,7 +108,7 @@ def operation_mode_indexer(obj):
 @indexer(IDPDocument)
 def data_type_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).data_type
+        return obj.doc_extension(DOKSYS_APP).DataType
     except:
         pass
 
@@ -116,7 +116,7 @@ def data_type_indexer(obj):
 @indexer(IDPDocument)
 def sample_type_id_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).sample_type_id
+        return obj.doc_extension(DOKSYS_APP).SampleTypeId
     except:
         pass
 
@@ -124,7 +124,7 @@ def sample_type_id_indexer(obj):
 @indexer(IDPDocument)
 def sample_type_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).sample_type
+        return obj.doc_extension(DOKSYS_APP).SampleType
     except:
         pass
 
@@ -132,7 +132,7 @@ def sample_type_indexer(obj):
 @indexer(IDPDocument)
 def measurement_category_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).measurement_category
+        return obj.doc_extension(DOKSYS_APP).MeasurementCategory
     except:
         pass
 
@@ -140,7 +140,7 @@ def measurement_category_indexer(obj):
 @indexer(IDPDocument)
 def duration_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).duration
+        return obj.doc_extension(DOKSYS_APP).Duration
     except:
         pass
 
@@ -148,7 +148,7 @@ def duration_indexer(obj):
 @indexer(IDPDocument)
 def type_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).type
+        return obj.doc_extension(DOKSYS_APP).Type
     except:
         pass
 
@@ -156,7 +156,7 @@ def type_indexer(obj):
 @indexer(IDPDocument)
 def area_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).area
+        return obj.doc_extension(DOKSYS_APP).Area
     except:
         pass
 

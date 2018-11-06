@@ -81,7 +81,7 @@ def create_purpose_collections(plonesite):
             u'v': u'DPDocument'
         },
         {
-            u'i': u'purpose',
+            u'i': u'Purpose',
             u'o': u'plone.app.querystring.operation.string.is',
             u'v': u'Standard-Info Bundesmessnetze'
         }],
@@ -99,7 +99,7 @@ def create_purpose_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'purpose',
+                u'i': u'Purpose',
                 u'o': u'plone.app.querystring.operation.string.is',
                 u'v': u'Standard-Info DWD'
             }],
@@ -120,7 +120,7 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
         {
-            u'i': u'sample_type_id',
+            u'i': u'SampleTypeId',
             u'o': u'plone.app.querystring.operation.string.contains',
             u'v': u'B*'
         }],
@@ -137,7 +137,7 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'F*'
             }],
@@ -154,7 +154,7 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'G*'
             }],
@@ -171,7 +171,7 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'L*'
             }],
@@ -188,7 +188,7 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'N*'
             }],
@@ -205,7 +205,7 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'S*'
             }],
@@ -248,8 +248,8 @@ BASICSTRUCTURE = [
 # uncomment when when elan.py is removed from dokpool.config.general
 # CHANGE HERE. DocTypes, DocCollections and their connections must match.
 
-DTYPES = [{TYPE: 'DocType', TITLE: u'Dokument', ID: 'dok',
-          CHILDREN: [], 'local_behaviors': ['elan', 'doksys']},
+DTYPES = [{TYPE: 'DocType', TITLE: u'DoksysDokument', ID: 'doksysdok',
+          CHILDREN: [], 'local_behaviors': ['doksys']},
 #         {TYPE: 'DocType', TITLE: u'Mitteilung', ID: 'note',
 #           CHILDREN: [], 'local_behaviors': ['elan', 'doksys']},
 #          {TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation',
