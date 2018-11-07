@@ -75,7 +75,7 @@ BASICSTRUCTURE = [
     {
         TYPE: 'Folder',
         TITLE: 'Predefined Searches',
-        ID: 'search',
+        ID: 'searches',
         CHILDREN: [
             {
                 TYPE: 'Folder',
