@@ -66,7 +66,7 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
             pools.append({'id': dp.getId() + "-" + app_name,
                         'Title': dp.Title() + ": " + app_title,
                         'Description': '',
-                        'getURL': "%s/setActiveApp?app=%s" % (dp.absolute_url(), app_name),
+                        'getURL': "%s/setActiveApp?app=%s" % (self.absolute_url(), app_name),
                         'show_children': False,
                         'children': [],
                         'currentItem': False,
