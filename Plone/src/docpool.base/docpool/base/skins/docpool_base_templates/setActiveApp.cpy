@@ -15,4 +15,14 @@ from docpool.base.utils import activateAppFilter
 
 setApplicationsForCurrentUser(context, [ app ])
 activateAppFilter(context, True)
-return context.REQUEST.RESPONSE.redirect(context.absolute_url())
+absurl = context.absolute_url() 
+if not 'content' in absurl:
+  if app == 'base':
+    absurl = context.myDocumentPool().absolute_url()
+  if app == 'elan':
+    absurl = context.myDocumentPool().absolute_url() + '/esd'
+  if app == 'doksys':
+    absurl = context.myDocumentPool().absolute_url() + '/searches'
+  if app == 'rodos':
+    absurl = context.myDocumentPool().absolute_url() + '/rodos'
+return context.REQUEST.RESPONSE.redirect(absurl)
