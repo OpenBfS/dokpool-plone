@@ -19,10 +19,14 @@ from plone.namedfile.file import FileChunk
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from plone.namedfile.scaling import ImageScaling as OriginalImageScaling,\
-    ImageScale
+    ImageScale, DefaultImageScalingFactory as OriginalImageScalingFactory
 _marker = object()
 
 
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 class ImageScaling(OriginalImageScaling):
     """ view used for generating (and storing) image scales """
@@ -121,3 +125,73 @@ class ImageScaling(OriginalImageScaling):
                 data, contentType=mimetype, filename=orig_value.filename)
             value.fieldname = fieldname
             return value, format, dimensions
+
+class ImageScalingFactory(OriginalImageScalingFactory):
+
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(
+            self,
+            fieldname=None,
+            direction='thumbnail',
+            height=None,
+            width=None,
+            scale=None,
+            **parameters
+    ):
+
+        """Factory for image scales`.
+        """
+        orig_value = getattr(self.context, fieldname, None)
+        orig_value = orig_value()
+
+        orig_data = getattr(aq_base(orig_value), 'data', orig_value)
+
+        # If quality wasn't in the parameters, try the site's default scaling
+        # quality if it exists.
+        if 'quality' not in parameters:
+            quality = self.get_quality()
+            if quality:
+                parameters['quality'] = quality
+
+        try:
+            result = self.create_scale(
+                orig_data,
+                direction=direction,
+                height=height,
+                width=width,
+                **parameters
+            )
+        except (ConflictError, KeyboardInterrupt):
+            raise
+        except IOError:
+            if getattr(orig_value, 'contentType', '') == 'image/svg+xml':
+                result = orig_data.read(), 'SVG', (width, height)
+            else:
+                logger.exception(
+                    'Could not scale "{0!r}" of {1!r}'.format(
+                        orig_value,
+                        self.context.absolute_url,
+                    ),
+                )
+                return
+        except Exception, e:
+            logger.exception(
+                'Could not scale "{0!r}" of {1!r}'.format(
+                    orig_value,
+                    self.context.absolute_url,
+                ),
+            )
+            return
+        if result is None:
+            return
+        data, format_, dimensions = result
+        mimetype = 'image/{0}'.format(format_.lower())
+        value = orig_value.__class__(
+            data,
+            contentType=mimetype,
+            filename=orig_value.filename,
+        )
+        value.fieldname = fieldname
+        return value, format_, dimensions

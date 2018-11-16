@@ -25,8 +25,10 @@ class MeasuringProgram(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u'Messprogramm Bund', _(u'Messprogramm Bund')),
-            VocabItem(u'Messprogramm Land', _(u'Messprogramm Land')),
+            VocabItem(u'Intensivmessprogramm', _(u'Intensivmessprogramm')),
+            VocabItem(u'Routinemessprogramm', _(u'Routinemessprogramm')),
+            VocabItem(u'REI', _(u'REI')),
+            VocabItem(u'Spontanproben Bund', _(u'Spontanproben Bund')),
 
         ]
 

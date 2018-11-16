@@ -6,4 +6,9 @@
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.analytics"/>
  </hidden>
+
+  <hidden skinname="ELAN-E Theme" manager="plone.abovecontent">
+    <viewlet name="plone.path_bar" />
+  </hidden>
+
 </object>

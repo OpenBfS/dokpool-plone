@@ -1,65 +1,65 @@
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
 
     <index name="rodosProjectName" meta_type="ZCTextIndex">
-        <indexed_attr value="projectName"/>
+        <indexed_attr value="ProjectName"/>
         <extra name="index_type" value="Okapi BM25 Rank"/> 
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
 
     <index name="rodosReportId" meta_type="ZCTextIndex">
-        <indexed_attr value="reportId"/>
+        <indexed_attr value="ReportId"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>  
         <extra name="lexicon_id" value="plone_lexicon"/> 
     </index>
 
     <index name="rodosReleaseSite" meta_type="ZCTextIndex">
-        <indexed_attr value="releaseSite"/>
+        <indexed_attr value="ReleaseSite"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
 
-    <index name="releaseStart" meta_type="DateIndex">
+    <index name="ReleaseStart" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
 
-    <index name="releaseStop" meta_type="DateIndex">
+    <index name="ReleaseStop" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
 
-    <index name="prognosisBegin" meta_type="DateIndex">
+    <index name="PrognosisBegin" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
 
-    <index name="prognosisEnd" meta_type="DateIndex">
+    <index name="PrognosisEnd" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
 
     <index name="rodosNumericWeatherPredictionDate" meta_type="ZCTextIndex">
-        <indexed_attr value="numericWeatherPredictionDate"/>
+        <indexed_attr value="NumericWeatherPredictionDate"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
 
     <index name="rodosModel" meta_type="FieldIndex">
-        <indexed_attr value="model"/>
+        <indexed_attr value="Model"/>
     </index>
 
-    <index name="calculationDate" meta_type="DateIndex">
+    <index name="CalculationDate" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
 
     <index name="rodosProjectUser" meta_type="ZCTextIndex">
-        <indexed_attr value="projectUser"/>
+        <indexed_attr value="ProjectUser"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
 
     <index name="rodosPrognosisType" meta_type="FieldIndex">
-        <indexed_attr value="prognosisType"/>
+        <indexed_attr value="PrognosisType"/>
     </index>
 
     <index name="rodosPrognosisForm" meta_type="FieldIndex">
-        <indexed_attr value="prognosisForm"/>
+        <indexed_attr value="PrognosisForm"/>
     </index>
 
 

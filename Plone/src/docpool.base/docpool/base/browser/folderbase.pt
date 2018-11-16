@@ -14,8 +14,8 @@
             <form name="appfilter" method="post" class="app_filter" tal:define="isFiltered view/isFilteredBy"
                   tal:attributes="action string:${context/absolute_url}/activateAppFilter">
                 <tal:if condition="isFiltered">
-                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
-                    </div>
+<!--                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
+                    </div> -->
                 </tal:if>
                 <input type="checkbox" name="activateFilter" value="yes"
                        tal:attributes="checked python:'checked' if isFiltered else None;"

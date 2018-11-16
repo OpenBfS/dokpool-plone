@@ -17,7 +17,7 @@ class VocabItem(object):
 
 
 @implementer(IVocabularyFactory)
-class SampleTypes(object):
+class SampleType(object):
     """
     """
 
@@ -366,4 +366,4 @@ class SampleTypes(object):
         return SimpleVocabulary(terms)
 
 
-SampleTypesFactory = SampleTypes()
+SampleTypeFactory = SampleType()

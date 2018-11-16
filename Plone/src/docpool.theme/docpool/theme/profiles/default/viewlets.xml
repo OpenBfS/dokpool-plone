@@ -13,5 +13,9 @@
     <viewlet name="plone.anontools" />
     <viewlet name="plone.app.i18n.locales.languageselector" />
   </order>
+
+  <hidden skinname="docpool.theme" manager="plone.abovecontent">
+    <viewlet name="plone.path_bar" />
+  </hidden>
  
 </object>

@@ -49,8 +49,8 @@
     />
 
     <utility
-        component=".sample_type.SampleTypesFactory"
-        name="docpool.doksys.SampleTypes"
+        component=".sample_type.SampleTypeFactory"
+        name="docpool.doksys.SampleType"
     />
 
     <utility

@@ -43,7 +43,8 @@ from plone.dexterity.utils import safe_unicode
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 from z3c.relationfield.relation import RelationValue
-##/code-section imports 
+from docpool.elan.config import ELAN_APP
+##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -111,6 +112,7 @@ class SituationReport(Container, DPDocument):
     implements(ISituationReport)
     
 ##code-section methods
+    APP = ELAN_APP
 
     def typeName(self):
         return "sitrep"

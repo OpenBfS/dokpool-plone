@@ -1,15 +1,4 @@
 <?xml version="1.0"?>
 <portlets>
- <portletmanager name="plone.rightcolumn" type="plone.app.portlets.interfaces.IRightColumn"/>
- <assignment name="noch_ein_portlet" category="content_type"
-    key="GroupFolder" manager="plone.rightcolumn"
-    type="plone.portlet.static.Static" visible="True">
-  <property
-     name="text">Nur unter aktuelle Lage zu sehen.</property>
-  <property name="more_url"/>
-  <property name="footer"/>
-  <property name="header">Noch ein Portlet</property>
-  <property name="omit_border">False</property>
- </assignment>
 </portlets>
 

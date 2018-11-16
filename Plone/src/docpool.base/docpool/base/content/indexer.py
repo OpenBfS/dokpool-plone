@@ -12,12 +12,13 @@ from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 @indexer(IDPDocument)
 def doc_apps_indexer(obj):
     #print "doc_apps_indexer", obj
+    res = [ BASE_APP ]
     try:
-        res = [ BASE_APP ]
         res.extend(ILocalBehaviorSupport(obj).local_behaviors)
-        return list(set(res))
     except:
         pass
+    res.extend(base_apps_indexer(obj)())
+    return list(set(res))
 
 
 @indexer(IDocumentPool)

@@ -23,7 +23,7 @@ def post_install(context):
     """Post install script"""
     # Do something at the end of the installation of this package.
     fresh = True
-    createStructure(getSite(), fresh)
+    createStructure(context, getSite(), fresh)
 
 
 def uninstall(context):
@@ -31,9 +31,10 @@ def uninstall(context):
     # Do something at the end of the uninstallation of this package.
 
 
-
-def createStructure(plonesite, fresh):
+def createStructure(context, plonesite, fresh):
     changedoksysNavigation(plonesite, fresh)
+    s = context.restrictedTraverse('searches')
+    s.manage_addProperty('text', '', 'string')
     transaction.commit()
     create_1day_collection(plonesite)
     transaction.commit()
@@ -46,7 +47,6 @@ def createStructure(plonesite, fresh):
 
 def changedoksysNavigation(plonesite, fresh):
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
-
 
 def changedoksysDocTypes (plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
@@ -67,7 +67,7 @@ def create_1day_collection(plonesite):
         }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     print "1day Collection angelegt"
 
@@ -81,13 +81,13 @@ def create_purpose_collections(plonesite):
             u'v': u'DPDocument'
         },
         {
-            u'i': u'purpose',
+            u'i': u'Purpose',
             u'o': u'plone.app.querystring.operation.string.is',
             u'v': u'Standard-Info Bundesmessnetze'
         }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     #
     api.content.create(
@@ -99,13 +99,13 @@ def create_purpose_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'purpose',
+                u'i': u'Purpose',
                 u'o': u'plone.app.querystring.operation.string.is',
                 u'v': u'Standard-Info DWD'
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     print "Purpose Collection angelegt"
 
@@ -120,13 +120,13 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
         {
-            u'i': u'sample_type_id',
+            u'i': u'SampleTypeId',
             u'o': u'plone.app.querystring.operation.string.contains',
             u'v': u'B*'
         }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -137,13 +137,13 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'F*'
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -154,13 +154,13 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'G*'
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -171,13 +171,13 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'L*'
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -188,13 +188,13 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'N*'
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     api.content.create(
         type='Collection',
@@ -205,13 +205,13 @@ def create_sample_collections(plonesite):
             u'v': u'DPDocument'
         },
             {
-                u'i': u'sample_type_id',
+                u'i': u'SampleTypeId',
                 u'o': u'plone.app.querystring.operation.string.contains',
                 u'v': u'S*'
             }],
         sort_on='changed',
         sort_order='reverse',
-        container=api.content.get(path='/search')
+        container=api.content.get(path='/searches')
     )
     print "Sample Type Collection angelegt"
 
@@ -221,7 +221,7 @@ BASICSTRUCTURE = [
     {
         TYPE: 'Folder',
         TITLE: 'Predefined Searches',
-        ID: 'search',
+        ID: 'searches',
         CHILDREN: [
 #            {
 #                TYPE: 'Folder',
@@ -248,8 +248,8 @@ BASICSTRUCTURE = [
 # uncomment when when elan.py is removed from dokpool.config.general
 # CHANGE HERE. DocTypes, DocCollections and their connections must match.
 
-DTYPES = [{TYPE: 'DocType', TITLE: u'Dokument', ID: 'dok',
-          CHILDREN: [], 'local_behaviors': ['elan', 'doksys']},
+DTYPES = [{TYPE: 'DocType', TITLE: u'DoksysDokument', ID: 'doksysdok',
+          CHILDREN: [], 'local_behaviors': ['doksys']},
 #         {TYPE: 'DocType', TITLE: u'Mitteilung', ID: 'note',
 #           CHILDREN: [], 'local_behaviors': ['elan', 'doksys']},
 #          {TYPE: 'DocType', TITLE: u'Ereignisinformation', ID: 'eventinformation',
