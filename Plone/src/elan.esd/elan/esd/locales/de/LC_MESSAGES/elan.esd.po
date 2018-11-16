@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-10-03 14:04+0000\n"
-"PO-Revision-Date: 2018-10-03 16:04+0200\n"
+"POT-Creation-Date: 2018-11-16 09:34+0000\n"
+"PO-Revision-Date: 2018-11-16 10:37+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "Daten"
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
-#: elan.esd/elan/esd/content/elandoccollection.py:79
+#: elan.esd/elan/esd/content/elandoccollection.py:68
 msgid "Document Types"
 msgstr "Dokumenttypen"
 
@@ -138,6 +138,10 @@ msgstr "Ereignisse bearbeiten"
 #: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Edit Ticker"
 msgstr "Ticker bearbeiten"
+
+#: elan.esd/elan/esd/browser/elandoccollectiondoc.pt:16
+msgid "Edit the document"
+msgstr "Das Dokument bearbeiten"
 
 #: elan.esd/elan/esd/browser/elan_macros.pt:95
 msgid "Edit unknown scenario"
@@ -233,10 +237,6 @@ msgstr "Dieses Portlet zeigt die neusten Inhalte einer Collection an."
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
 
-#: elan.esd/elan/esd/browser/elandoccollectiondoc.pt:16
-msgid "View the document in its folder"
-msgstr "Das Dokument in seinem Ordner anzeigen/bearbeiten"
-
 #: elan.esd/elan/esd/content/elanscenario.py:138
 msgid "active"
 msgstr "Aktiv"
@@ -287,7 +287,7 @@ msgstr ""
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py:75
+#: elan.esd/elan/esd/content/elandoccollection.py:64
 msgid "description_elandoccollection_doctypes"
 msgstr ""
 
@@ -385,7 +385,7 @@ msgid "label_dpdocument_scenarios"
 msgstr "Gehört zu folgenden Ereignissen"
 
 #. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py:74
+#: elan.esd/elan/esd/content/elandoccollection.py:63
 msgid "label_elandoccollection_doctypes"
 msgstr "Dokumenttypen"
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
-"PO-Revision-Date: 2018-09-14 16:57+0200\n"
+"POT-Creation-Date: 2018-11-16 09:34+0000\n"
+"PO-Revision-Date: 2018-11-16 10:36+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -56,13 +56,17 @@ msgstr "Dokpool Anwendung"
 msgid "Docpool Configuration Area"
 msgstr "Dokpool Konfiguration"
 
-#: docpool.base/docpool/base/browser/configure.zcml:109
+#: docpool.base/docpool/base/browser/configure.zcml:115
 msgid "Docpool view"
 msgstr "Dokpool Ansicht"
 
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
 msgstr "Dokumenttyp"
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt:16
+msgid "Edit the document"
+msgstr "Das Dokument bearbeiten"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
@@ -76,13 +80,9 @@ msgstr "Dokpool"
 msgid "Files:"
 msgstr "Dateien:"
 
-#: docpool.base/docpool/base/browser/folderbase.pt:33
+#: docpool.base/docpool/base/browser/folderbase.pt:23
 msgid "Filter contents according to application?"
 msgstr "Inhalte nach aktueller Anwendung filtern?"
-
-#: docpool.base/docpool/base/browser/folderbase.pt:27
-msgid "Filter is active: Only contents for current application are shown!"
-msgstr "Filter ist aktiv! Es werden nur Inhalte der aktuellen Anwendung angezeigt!"
 
 #: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
 msgid "Folder (Collaboration)"
@@ -116,10 +116,6 @@ msgstr "Allgemeine Information"
 #: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
 msgid "Group Folder"
 msgstr "Gruppenordner"
-
-#: docpool.base/docpool/base/browser/folderbase.pt:17
-msgid "Group Folder: filter not active!"
-msgstr "Gruppenordner: Filter nicht aktiv!"
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
 msgid "Groups Area"
@@ -173,10 +169,6 @@ msgstr "Ein oder mehr Objekte sind nicht mehr vorhanden."
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:46
 msgid "Paste could not find clipboard content."
 msgstr "Keine Inhalte mehr in der Zwischenablage."
-
-#: docpool.base/docpool/base/browser/folderbase.pt:21
-msgid "Personal Folder: filter not active!"
-msgstr "Persönlicher Ordner: Filter nicht aktiv!"
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:42
 msgid "Please select one or more items to cut."
@@ -247,15 +239,11 @@ msgstr "Nutzerbereich"
 msgid "Videos:"
 msgstr "Videos:"
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:16
-msgid "View the document in its folder"
-msgstr "Das Dokument in seinem Ordner anzeigen"
-
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
 msgstr "Aktiv"
 
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "closed"
 msgstr "Geschlossen"
 
@@ -358,7 +346,7 @@ msgstr ""
 msgid "docpool.base"
 msgstr "docpool.base"
 
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "inactive"
 msgstr "Inaktiv"
 
