@@ -13,7 +13,7 @@
     <div class="documentDescription" tal:content="doc/Description"></div>
     <tal:if condition="doc/isInOneOfMyFolders">
     <br>
-    <a href="" tal:attributes="href doc/absolute_url" class="docref" i18n:translate="">View the document in its folder</a>
+    <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
     <br><br>
     </tal:if>
 <script type='text/javascript'>

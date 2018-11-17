@@ -142,7 +142,7 @@ def setELANLocalRoles(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-    self.archive.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["DocpoolAdmin"])
+    self.archive.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["DocPoolAdmin"])
     self.content.Groups.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])

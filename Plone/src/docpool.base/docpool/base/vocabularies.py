@@ -1,3 +1,4 @@
+from docpool.base.content.doctype import IDocType
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
 from zope.schema.vocabulary import SimpleVocabulary
@@ -123,7 +124,7 @@ class DocTypeVocabulary(object):
                 return SimpleVocabulary([])
             else:
                 return []
-        types = cat({"portal_type":"DocType", "sort_on": "sortable_title", "path": path})
+        types = cat({"object_provides":IDocType.__identifier__, "sort_on": "sortable_title", "path": path})
         # print len(types)
         if filtered:
             if not raw:

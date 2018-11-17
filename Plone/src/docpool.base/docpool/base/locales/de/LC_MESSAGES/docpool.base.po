@@ -64,6 +64,10 @@ msgstr "Dokpool Ansicht"
 msgid "DocumentType"
 msgstr "Dokumenttyp"
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:16
+msgid "Edit the document"
+msgstr "Das Dokument bearbeiten"
+
 #: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
 msgstr "Unbekannten Dokumenttyp bearbeiten"
@@ -239,15 +243,11 @@ msgstr "Nutzerbereich"
 msgid "Videos:"
 msgstr "Videos:"
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:16
-msgid "View the document in its folder"
-msgstr "Das Dokument in seinem Ordner anzeigen"
-
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
 msgstr "Aktiv"
 
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "closed"
 msgstr "Geschlossen"
 
@@ -350,7 +350,7 @@ msgstr ""
 msgid "docpool.base"
 msgstr "docpool.base"
 
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "inactive"
 msgstr "Inaktiv"
 

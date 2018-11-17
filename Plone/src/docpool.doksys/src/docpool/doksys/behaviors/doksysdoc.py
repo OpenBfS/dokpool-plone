@@ -14,189 +14,189 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.interfaces import IDocumentExtension
 
 from docpool.doksys import DocpoolMessageFactory as _
-from docpool.doksys.vocabularies import sample_type
+#from docpool.doksys.vocabularies import SampleType
 
 from Acquisition import aq_inner
 
 
 @provider(IFormFieldProvider)
 class IDoksysDoc(IDocumentExtension):
-    # dexteritytextindexer.searchable('network_operator')  if a field is supposed to be fulltext searchable
+    # dexteritytextindexer.searchable('NetworkOperator')  if a field is supposed to be fulltext searchable
 
-    network_operator = schema.Choice(
+    NetworkOperator = schema.Choice(
         title=_(u'label_doksys_network_operator', default=u'Network Operator'),
         description=_(u'description_doksys_network_operator', default=u''),
         source="docpool.doksys.NetworkOperators",
         required=False,
     )
-    read_permission(network_operator='docpool.doksys.AccessDoksys')
-    write_permission(network_operator='docpool.doksys.AccessDoksys')
+    read_permission(NetworkOperator='docpool.doksys.AccessDoksys')
+    write_permission(NetworkOperator='docpool.doksys.AccessDoksys')
 
-    dom = schema.Choice(
-        title=_(u'label_doksys_dom', default=u'Description of Measurement'),
-        description=_(u'description_doksys_dom', default=u''),
+    Dom = schema.Choice(
+        title=_(u'label_doksys_Dom', default=u'Description of Measurement'),
+        description=_(u'description_doksys_Dom', default=u''),
         source="docpool.doksys.Dom",
         required=False,
 
     )
-    read_permission(dom='docpool.doksys.AccessDoksys')
-    write_permission(dom='docpool.doksys.AccessDoksys')
+    read_permission(Dom='docpool.doksys.AccessDoksys')
+    write_permission(Dom='docpool.doksys.AccessDoksys')
 
-    legal_base = schema.Choice(
+    LegalBase = schema.Choice(
         title=_(u'label_doksys_legal_base', default=u'Legal Base'),
         description=_(u'description_doksys_legal_base', default=u''),
         source="docpool.doksys.LegalBase",
         required=False,
     )
-    read_permission(legal_base='docpool.doksys.AccessDoksys')
-    write_permission(legal_base='docpool.doksys.AccessDoksys')
+    read_permission(LegalBase='docpool.doksys.AccessDoksys')
+    write_permission(LegalBase='docpool.doksys.AccessDoksys')
 
-    measuring_program = schema.Choice(
+    MeasuringProgram = schema.Choice(
         title=_(u'label_doksys_measuring_program', default=u'Measuring Program'),
         description=_(u'description_doksys_measuring_program', default=u''),
         source="docpool.doksys.MeasuringProgram",
         required=False,
     )
-    read_permission(measuring_program='docpool.doksys.AccessDoksys')
-    write_permission(measuring_program='docpool.doksys.AccessDoksys')
+    read_permission(MeasuringProgram='docpool.doksys.AccessDoksys')
+    write_permission(MeasuringProgram='docpool.doksys.AccessDoksys')
 
-    sampling_begin = schema.Datetime(
+    SamplingBegin = schema.Datetime(
         title=_(u'label_doksys_sampling_begin', default=u'Sampling Begin'),
         description=_(u'description_doksys_sampling_begin', default=u''),
         required=False,
     )
-    read_permission(sampling_begin='docpool.doksys.AccessDoksys')
-    write_permission(sampling_begin='docpool.doksys.AccessDoksys')
+    read_permission(SamplingBegin='docpool.doksys.AccessDoksys')
+    write_permission(SamplingBegin='docpool.doksys.AccessDoksys')
 
-    sampling_end = schema.Datetime(
+    SamplingEnd = schema.Datetime(
         title=_(u'label_doksys_sampling_end', default=u'Sampling End'),
         description=_(u'description_doksys_sampling_end', default=u''),
         required=False,
     )
-    read_permission(sampling_end='docpool.doksys.AccessDoksys')
-    write_permission(sampling_end='docpool.doksys.AccessDoksys')
+    read_permission(SamplingEnd='docpool.doksys.AccessDoksys')
+    write_permission(SamplingEnd='docpool.doksys.AccessDoksys')
 
-    purpose = schema.Choice(
+    Purpose = schema.Choice(
         title=_(u'label_doksys_purpose', default=u'Purpose'),
         description=_(u'description_doksys_purpose', default=u''),
         source="docpool.doksys.Purpose",
         required=False,
     )
-    read_permission(purpose='docpool.doksys.AccessDoksys')
-    write_permission(purpose='docpool.doksys.AccessDoksys')
+    read_permission(Purpose='docpool.doksys.AccessDoksys')
+    write_permission(Purpose='docpool.doksys.AccessDoksys')
 
-    trajectory_start_location = schema.TextLine(
+    TrajectoryStartLocation = schema.TextLine(
         title=_(u'label_doksys_trajectory_start_location', default=u'Trajectory Start Location'),
         description=_(u'description_doksys_trajectory_start_location', default=u''),
         required=False,
     )
-    read_permission(trajectory_start_location='docpool.doksys.AccessDoksys')
-    write_permission(trajectory_start_location='docpool.doksys.AccessDoksys')
+    read_permission(TrajectoryStartLocation='docpool.doksys.AccessDoksys')
+    write_permission(TrajectoryStartLocation='docpool.doksys.AccessDoksys')
 
-    trajectory_end_location = schema.TextLine(
+    TrajectoryEndLocation = schema.TextLine(
         title=_(u'label_doksys_trajectory_end_location', default=u'Trajectory End Location'),
         description=_(u'description_doksys_trajectory_end_location', default=u''),
         required=False,
     )
-    read_permission(trajectory_end_location='docpool.doksys.AccessDoksys')
-    write_permission(trajectory_end_location='docpool.doksys.AccessDoksys')
+    read_permission(TrajectoryEndLocation='docpool.doksys.AccessDoksys')
+    write_permission(TrajectoryEndLocation='docpool.doksys.AccessDoksys')
 
-    trajectory_start_time = schema.Datetime(
+    TrajectoryStartTime = schema.Datetime(
         title=_(u'label_doksys_trajectory_start_time', default=u'Trajectory Start Time'),
         description=_(u'description_doksys_trajectory_start_time', default=u''),
         required=False,
     )
-    read_permission(trajectory_start_time='docpool.doksys.AccessDoksys')
-    write_permission(trajectory_start_time='docpool.doksys.AccessDoksys')
+    read_permission(TrajectoryStartTime='docpool.doksys.AccessDoksys')
+    write_permission(TrajectoryStartTime='docpool.doksys.AccessDoksys')
 
-    trajectory_end_time = schema.Datetime(
+    TrajectoryEndTime = schema.Datetime(
         title=_(u'label_doksys_trajectory_end_time', default=u'Trajectory End Time'),
         description=_(u'description_doksys_trajectory_end_time', default=u''),
         required=False,
     )
-    read_permission(trajectory_end_time='docpool.doksys.AccessDoksys')
-    write_permission(trajectory_end_time='docpool.doksys.AccessDoksys')
+    read_permission(TrajectoryEndTime='docpool.doksys.AccessDoksys')
+    write_permission(TrajectoryEndTime='docpool.doksys.AccessDoksys')
 
-    status = schema.Choice(
+    Status = schema.Choice(
         title=_(u'label_doksys_status', default=u'Status'),
         description=_(u'description_doksys_status', default=u''),
         source="docpool.doksys.Status",
         required=False,
     )
-    read_permission(status='docpool.doksys.AccessDoksys')
-    write_permission(status='docpool.doksys.AccessDoksys')
+    read_permission(Status='docpool.doksys.AccessDoksys')
+    write_permission(Status='docpool.doksys.AccessDoksys')
 
-    operation_mode = schema.Choice(
+    OperationMode = schema.Choice(
         title=_(u'label_doksys_operation_mode', default=u'Operation Mode'),
         description=_(u'description_doksys_operation_mode', default=u''),
         source="docpool.doksys.OperationMode",
         required=False,
     )
-    read_permission(operation_mode='docpool.doksys.AccessDoksys')
-    write_permission(operation_mode='docpool.doksys.AccessDoksys')
+    read_permission(OperationMode='docpool.doksys.AccessDoksys')
+    write_permission(OperationMode='docpool.doksys.AccessDoksys')
 
-    data_type = schema.Choice(
+    DataType = schema.Choice(
         title=_(u'label_doksys_data_type', default=u'Data Type'),
         description=_(u'description_doksys_data_type', default=u''),
         source="docpool.doksys.DataType",
         required=False,
     )
-    read_permission(data_type='docpool.doksys.AccessDoksys')
-    write_permission(data_type='docpool.doksys.AccessDoksys')
+    read_permission(DataType='docpool.doksys.AccessDoksys')
+    write_permission(DataType='docpool.doksys.AccessDoksys')
 
-    sample_type_id = schema.Choice(
+    SampleTypeId = schema.Choice(
         title=_(u'label_doksys_sample_type_id', default=u'Sample Type Id'),
         description=_(u'description_doksys_sample_type_id', default=u''),
         source="docpool.doksys.SampleTypeIds",
         required=False,
     )
-    read_permission(sample_type_id='docpool.doksys.AccessDoksys')
-    write_permission(sample_type_id='docpool.doksys.AccessDoksys')
+    read_permission(SampleTypeId='docpool.doksys.AccessDoksys')
+    write_permission(SampleTypeId='docpool.doksys.AccessDoksys')
 
-    sample_type = schema.Choice(
+    SampleType = schema.Choice(
         title=_(u'label_doksys_sample_type', default=u'Sample Type'),
         description=_(u'description_doksys_sample_type', default=u''),
-        source= "docpool.doksys.SampleTypes",
+        source= "docpool.doksys.SampleType",
         required=False,
     )
-    read_permission(sample_type='docpool.doksys.AccessDoksys')
-    write_permission(sample_type='docpool.doksys.AccessDoksys')
+    read_permission(SampleType='docpool.doksys.AccessDoksys')
+    write_permission(SampleType='docpool.doksys.AccessDoksys')
 
-    measurement_category = schema.Choice(
+    MeasurementCategory = schema.Choice(
         title=_(u'label_doksys_measurement_category', default=u'Measurement Category'),
         description=_(u'description_doksys_measurement_category', default=u''),
         source="docpool.doksys.MeasurementCategory",
         required=False,
     )
-    read_permission(measurement_category='docpool.doksys.AccessDoksys')
-    write_permission(measurement_category='docpool.doksys.AccessDoksys')
+    read_permission(MeasurementCategory='docpool.doksys.AccessDoksys')
+    write_permission(MeasurementCategory='docpool.doksys.AccessDoksys')
 
-    duration = schema.Choice(
+    Duration = schema.Choice(
         title=_(u'label_doksys_duration', default=u'Duration'),
         description=_(u'description_doksys_duration', default=u''),
         source="docpool.doksys.Duration",
         required=False,
     )
-    read_permission(duration='docpool.doksys.AccessDoksys')
-    write_permission(duration='docpool.doksys.AccessDoksys')
+    read_permission(Duration='docpool.doksys.AccessDoksys')
+    write_permission(Duration='docpool.doksys.AccessDoksys')
 
-    type = schema.Choice(
+    Type = schema.Choice(
         title=_(u'label_doksys_duration', default=u'Type'),
         description=_(u'description_doksys_type', default=u''),
         source="docpool.doksys.Type",
         required=False,
     )
-    read_permission(duration='docpool.doksys.AccessDoksys')
-    write_permission(duration='docpool.doksys.AccessDoksys')
+    read_permission(Duration='docpool.doksys.AccessDoksys')
+    write_permission(Duration='docpool.doksys.AccessDoksys')
 
-    area = schema.Choice(
+    Area = schema.Choice(
         title=_(u'label_doksys_area', default=u'Area'),
         description=_(u'description_doksys_area', default=u''),
         source="docpool.doksys.Area",
         required=False,
     )
-    read_permission(area='docpool.doksys.AccessDoksys')
-    write_permission(area='docpool.doksys.AccessDoksys')
+    read_permission(Area='docpool.doksys.AccessDoksys')
+    write_permission(Area='docpool.doksys.AccessDoksys')
 
 class DoksysDoc(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
@@ -209,225 +209,225 @@ class DoksysDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    def _get_network_operator(self):
-        return self.context.network_operator
+    def _get_NetworkOperator(self):
+        return self.context.NetworkOperator
 
-    def _set_network_operator(self, value):
+    def _set_NetworkOperator(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.network_operator = value
+        context.NetworkOperator = value
 
-    network_operator = property(_get_network_operator, _set_network_operator)
+    NetworkOperator = property(_get_NetworkOperator, _set_NetworkOperator)
 
-    def _get_dom(self):
-        return self.context.dom
+    def _get_Dom(self):
+        return self.context.Dom
 
-    def _set_dom(self, value):
+    def _set_Dom(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.dom = value
+        context.Dom = value
 
-    dom = property(_get_dom, _set_dom)
+    Dom = property(_get_Dom, _set_Dom)
 
-    def _get_legal_base(self):
-        return self.context.legal_base
+    def _get_LegalBase(self):
+        return self.context.LegalBase
 
-    def _set_legal_base(self, value):
+    def _set_LegalBase(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.legal_base = value
+        context.LegalBase = value
 
-    legal_base = property(_get_legal_base, _set_legal_base)
+    LegalBase = property(_get_LegalBase, _set_LegalBase)
 
-    def _get_sampling_begin(self):
-        return self.context.sampling_begin
+    def _get_SamplingBegin(self):
+        return self.context.SamplingBegin
 
-    def _set_sampling_begin(self, value):
+    def _set_SamplingBegin(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.sampling_begin = value
+        context.SamplingBegin = value
 
-    sampling_begin = property(_get_sampling_begin, _set_sampling_begin)
+    SamplingBegin = property(_get_SamplingBegin, _set_SamplingBegin)
 
-    def _get_sampling_end(self):
-        return self.context.sampling_end
+    def _get_SamplingEnd(self):
+        return self.context.SamplingEnd
 
-    def _set_sampling_end(self, value):
+    def _set_SamplingEnd(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.sampling_end = value
+        context.SamplingEnd = value
 
-    sampling_end = property(_get_sampling_end, _set_sampling_end)
+    SamplingEnd = property(_get_SamplingEnd, _set_SamplingEnd)
 
-    def _get_measuring_program(self):
-        return self.context.measuring_program
+    def _get_MeasuringProgram(self):
+        return self.context.MeasuringProgram
 
-    def _set_measuring_program(self, value):
+    def _set_MeasuringProgram(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.measuring_program = value
+        context.MeasuringProgram = value
 
-    measuring_program = property(_get_measuring_program, _set_measuring_program)
+    MeasuringProgram = property(_get_MeasuringProgram, _set_MeasuringProgram)
 
-    def _get_purpose(self):
-        return self.context.purpose
+    def _get_Purpose(self):
+        return self.context.Purpose
 
-    def _set_purpose(self, value):
+    def _set_Purpose(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.purpose = value
+        context.Purpose = value
 
-    purpose = property(_get_purpose, _set_purpose)
+    Purpose = property(_get_Purpose, _set_Purpose)
 
-    def _get_trajectory_start_location(self):
-        return self.context.trajectory_start_location
+    def _get_TrajectoryStartLocation(self):
+        return self.context.TrajectoryStartLocation
 
-    def _set_trajectory_start_location(self, value):
+    def _set_TrajectoryStartLocation(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.trajectory_start_location = value
+        context.TrajectoryStartLocation = value
 
-    trajectory_start_location = property(_get_trajectory_start_location, _set_trajectory_start_location)
+    TrajectoryStartLocation = property(_get_TrajectoryStartLocation, _set_TrajectoryStartLocation)
 
-    def _get_trajectory_end_location(self):
-        return self.context.trajectory_end_location
+    def _get_TrajectoryEndLocation(self):
+        return self.context.TrajectoryEndLocation
 
-    def _set_trajectory_end_location(self, value):
+    def _set_TrajectoryEndLocation(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.trajectory_end_location = value
+        context.TrajectoryEndLocation = value
 
-    trajectory_end_location = property(_get_trajectory_end_location, _set_trajectory_end_location)
+    TrajectoryEndLocation = property(_get_TrajectoryEndLocation, _set_TrajectoryEndLocation)
 
-    def _get_trajectory_start_time(self):
-        return self.context.trajectory_start_time
+    def _get_TrajectoryStartTime(self):
+        return self.context.TrajectoryStartTime
 
-    def _set_trajectory_start_time(self, value):
+    def _set_TrajectoryStartTime(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.trajectory_start_time = value
+        context.TrajectoryStartTime = value
 
-    trajectory_start_time = property(_get_trajectory_start_time, _set_trajectory_start_time)
+    TrajectoryStartTime = property(_get_TrajectoryStartTime, _set_TrajectoryStartTime)
 
-    def _get_trajectory_end_time(self):
-        return self.context.trajectory_end_time
+    def _get_TrajectoryEndTime(self):
+        return self.context.TrajectoryEndTime
 
-    def _set_trajectory_end_time(self, value):
+    def _set_TrajectoryEndTime(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.trajectory_end_time = value
+        context.TrajectoryEndTime = value
 
-    trajectory_end_time = property(_get_trajectory_end_time, _set_trajectory_end_time)
+    TrajectoryEndTime = property(_get_TrajectoryEndTime, _set_TrajectoryEndTime)
 
-    def _get_status(self):
-        return self.context.status
+    def _get_Status(self):
+        return self.context.Status
 
-    def _set_status(self, value):
+    def _set_Status(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.status = value
+        context.Status = value
 
-    status = property(_get_status, _set_status)
+    Status = property(_get_Status, _set_Status)
 
-    def _get_operation_mode(self):
-        return self.context.operation_mode
+    def _get_OperationMode(self):
+        return self.context.OperationMode
 
-    def _set_operation_mode(self, value):
+    def _set_OperationMode(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.operation_mode = value
+        context.OperationMode = value
 
-    operation_mode = property(_get_operation_mode, _set_operation_mode)
+    OperationMode = property(_get_OperationMode, _set_OperationMode)
 
-    def _get_data_type(self):
-        return self.context.data_type
+    def _get_DataType(self):
+        return self.context.DataType
 
-    def _set_data_type(self, value):
+    def _set_DataType(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.data_type = value
+        context.DataType = value
 
-    data_type = property(_get_data_type, _set_data_type)
+    DataType = property(_get_DataType, _set_DataType)
 
-    def _get_sample_type_id(self):
-        return self.context.sample_type_id
+    def _get_SampleTypeId(self):
+        return self.context.SampleTypeId
 
-    def _set_sample_type_id(self, value):
+    def _set_SampleTypeId(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.sample_type_id = value
+        context.SampleTypeId = value
 
-    sample_type_id = property(_get_sample_type_id, _set_sample_type_id)
+    SampleTypeId = property(_get_SampleTypeId, _set_SampleTypeId)
 
-    def _get_sample_type(self):
-        return self.context.sample_type
+    def _get_SampleType(self):
+        return self.context.SampleType
 
-    def _set_sample_type(self, value):
+    def _set_SampleType(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.sample_type = value
+        context.SampleType = value
 
-    sample_type = property(_get_sample_type, _set_sample_type)
+    SampleType = property(_get_SampleType, _set_SampleType)
 
-    def _get_measurement_category(self):
-        return self.context.measurement_category
+    def _get_MeasurementCategory(self):
+        return self.context.MeasurementCategory
 
-    def _set_measurement_category(self, value):
+    def _set_MeasurementCategory(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.measurement_category = value
+        context.MeasurementCategory = value
 
-    measurement_category = property(_get_measurement_category, _set_measurement_category)
+    MeasurementCategory = property(_get_MeasurementCategory, _set_MeasurementCategory)
 
-    def _get_duration(self):
-        return self.context.duration
+    def _get_Duration(self):
+        return self.context.Duration
 
-    def _set_duration(self, value):
+    def _set_Duration(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.duration = value
+        context.Duration = value
 
-    duration = property(_get_duration, _set_duration)
+    Duration = property(_get_Duration, _set_Duration)
 
-    def _get_type(self):
-        return self.context.type
+    def _get_Type(self):
+        return self.context.Type
 
-    def _set_type(self, value):
+    def _set_Type(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.type = value
+        context.Type = value
 
-    type = property(_get_type, _set_type)
+    Type = property(_get_Type, _set_Type)
 
-    def _get_area(self):
-        return self.context.area
+    def _get_Area(self):
+        return self.context.Area
 
-    def _set_area(self, value):
+    def _set_Area(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.area = value
+        context.Area = value
 
-    area = property(_get_area, _set_area)
+    Area = property(_get_Area, _set_Area)
 
     def isClean(self):
         """

@@ -41,14 +41,16 @@ class LocalBehaviorSupport(object):
         self.context = context
 
     def _get_local_behaviors(self):
-        return self.context.local_behaviors
+        return list(set(self.context.local_behaviors))
 
     def _set_local_behaviors(self, value):
-        #print "setLocalBehaviors", value
-        if (type(value) == type([])):
+        if (type(value) == type([]) or (type(value) == type(tuple))):
             value = list(set(value))
         context = aq_inner(self.context)
-        context.local_behaviors = value
+        if value is not None:
+            context.local_behaviors = list(set(value))
+        else:
+            context.local_behaviors = []
 
     local_behaviors = property(_get_local_behaviors, _set_local_behaviors)
 

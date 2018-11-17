@@ -28,7 +28,12 @@ class LegalBase(object):
             VocabItem(u'AVV IMIS', _(u'AVV IMIS')),
             VocabItem(u'EURDEP', _(u'EURDEP')),
             VocabItem(u'IRMIS', _(u'IRMIS')),
-
+            VocabItem(u'DENSE', _(u'DENSE')),
+            VocabItem(u'KFÜ', _(u'KFÜ')),
+            VocabItem(u'Land', _(u'Land')),
+            VocabItem(u'SPARSE', _(u'SPARSE')),
+            VocabItem(u'REI-E', _(u'REI-E')),
+            VocabItem(u'REI-I', _(u'REI-I')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.

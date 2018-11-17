@@ -49,18 +49,7 @@ from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.elan.config import ELAN_APP
 
-@grok.provider(IContextSourceBinder)
-def availableTypes(context):
-    if hasattr(context, "myDocumentPool"):
-        path = '/'.join(context.myDocumentPool().getPhysicalPath()) + "/config"
-    else:
-        path = "/Plone/config"
-    query = { "portal_type" : ["DocType"],
-              "path": {'query' :path } 
-             }
-
-    return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IDocType.__identifier__).__call__(context) 
-##/code-section imports 
+##/code-section imports
 
 from elan.esd.config import PROJECTNAME
 
@@ -98,12 +87,6 @@ class ELANDocCollection(Item, Collection):
     implements(IELANDocCollection)
     
 ##code-section methods
-#     def initializeArchetype(self, **kwargs):
-#         # Should enable syndication for this collection
-#         #TODO: Achtung umstellen bzw. verahlten pruefen!!!
-#         ret_val = Collection.initializeArchetype(self, **kwargs)
-#         return ret_val     
-
 
     def testSearch(self):
         """

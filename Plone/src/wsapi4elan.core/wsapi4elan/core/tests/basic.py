@@ -63,7 +63,7 @@ scenarios = ["demo-am-24-4"]
 behaviours = ['elan']
 newpath = client.create_dp_document(ufpath, "ganzneues" + str(random() * 100000), "Titel", "Beschreibung", "<p>Neuer Text</p>", "eventinformation", behaviours)
 print newpath
-params = { "scenarios" : scenarios }
+params = { "scenarios" : scenarios, "subjects" : ["Henning", "Rietz"] }
 client.update_dp_object(newpath, params)
 
 # from xmlrpclib import Binary
