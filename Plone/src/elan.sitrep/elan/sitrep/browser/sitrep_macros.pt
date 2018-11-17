@@ -7,11 +7,13 @@
 	 <metal:macro define-macro="module">  
 		<tal:def define="edit_allowed context/canBeEdited;
 		                 elanobj view/elanobject;
+		                 DateTime python:modules['DateTime'].DateTime;
 		                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+		                 now python:DateTime();
 		                 rs context/myState;">
 		  <tal:if condition="python:rs=='private'">
 		    <span tal:define="report context/myReport;" class="report"><tal:if tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
-		        tal:attributes="href report/absolute_url"></a></tal:if>
+		        tal:attributes="href string:${report/absolute_url}?cb=${now}"></a></tal:if>
             <div class="formControls" tal:condition="edit_allowed" tal:omit-tag="">
             <a id="form-buttons-publish" 
                 onclick="return confirm('${context/Title}: ${alert_msg}');"
