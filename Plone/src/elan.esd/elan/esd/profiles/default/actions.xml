@@ -64,7 +64,7 @@
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property
-      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.status != 'closed' and (here.isAdmin() or here.isContentAdmin())</property>
+      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.Status != 'closed' and (here.isAdmin() or here.isContentAdmin())</property>
    <property name="permissions" />
    <property name="visible">True</property>
   </object>
@@ -75,7 +75,7 @@
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property
-      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
+      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.Status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
    <property name="permissions" />
    <property name="visible">True</property>
   </object>
@@ -87,7 +87,7 @@
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property
-      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
+      name="available_expr">python:object.getPortalTypeName() == 'ELANScenario' and object.Status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
    <property name="permissions" />
    <property name="visible">True</property>
   </object>

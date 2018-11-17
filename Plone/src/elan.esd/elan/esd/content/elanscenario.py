@@ -77,7 +77,7 @@ class IELANScenario(form.Schema, IContentBase):
     """
     """
         
-    status = schema.Choice(
+    Status = schema.Choice(
                         title=_(u'label_elanscenario_status', default=u'Status of the scenario'),
                         description=_(u'description_elanscenario_status', default=u''),
                         required=True,
@@ -87,7 +87,7 @@ class IELANScenario(form.Schema, IContentBase):
     )
     
         
-    exercise = schema.Bool(
+    Exercise = schema.Bool(
                         title=_(u'label_elanscenario_exercise', default=u'Is this an exercise?'),
                         description=_(u'description_elanscenario_exercise', default=u''),
                         required=False,
@@ -96,7 +96,7 @@ class IELANScenario(form.Schema, IContentBase):
     )
     
         
-    timeOfEvent = schema.Datetime(
+    TimeOfEvent = schema.Datetime(
                         title=_(u'label_elanscenario_timeofevent', default=u'Time of event'),
                         description=_(u'description_elanscenario_timeofevent', default=u''),
                         required=True,
@@ -105,7 +105,7 @@ class IELANScenario(form.Schema, IContentBase):
     )
     
         
-    substitute = RelationChoice(
+    Substitute = RelationChoice(
                         title=_(u'label_elanscenario_substitute', default=u'Substitute scenario'),
                         description=_(u'description_elanscenario_substitute', default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
                         required=False,
@@ -116,8 +116,8 @@ class IELANScenario(form.Schema, IContentBase):
     
 
 ##code-section interface
-    form.widget(substitute='z3c.form.browser.select.SelectFieldWidget')
-@form.default_value(field=IELANScenario['timeOfEvent'])
+    form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+@form.default_value(field=IELANScenario['TimeOfEvent'])
 def initializeTimeOfEvent(data):
     # To get hold of the folder, do: context = data.context
     return datetime.datetime.today()   
@@ -141,7 +141,7 @@ class ELANScenario(Item, ContentBase):
         """
         We reuse the dp_type index for the scenario status.
         """
-        return self.status
+        return self.Status
     
     def purgeConfirmMsg(self):
         """
@@ -164,7 +164,7 @@ class ELANScenario(Item, ContentBase):
         alsoProvides(REQUEST, IDisableCSRFProtection)                
         self.snapshot()
         self.purge()
-        self.status='closed'
+        self.Status = 'closed'
         self.reindexObject()
         portalMessage(self, _("Scenario archived"), "info")
         return self.restrictedTraverse("view")()
@@ -396,7 +396,7 @@ class ELANScenario(Item, ContentBase):
     def deleteScenarioReferences(self):
         """
         """
-        self.substitute = None
+        self.Substitute = None
         self.reindexObject()
         
     def canBeAssigned(self):
@@ -405,7 +405,7 @@ class ELANScenario(Item, ContentBase):
         Is it published? Is it active?
         """
         wftool = getToolByName(self, 'portal_workflow')
-        return (wftool.getInfoFor(self, 'review_state') == 'published' and self.status == 'active')
+        return (wftool.getInfoFor(self, 'review_state') == 'published' and self.Status == 'active')
 ##/code-section methods 
 
 
@@ -426,11 +426,11 @@ def scenarioChanged(obj, event=None):
     """
     """
     #print 'scenarioChanged'
-    if obj.status != 'active':
+    if obj.Status != 'active':
         obj.deleteScenarioReferences()
-    #print obj.substitute
-    if obj.substitute:
-        sscen = obj.substitute.to_object
+    #print obj.Substitute
+    if obj.Substitute:
+        sscen = obj.Substitute.to_object
         if not sscen.canBeAssigned():
             log("Substitute can not be assigned. Not published or not active.")
             return

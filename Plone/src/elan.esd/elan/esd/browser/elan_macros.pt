@@ -14,8 +14,8 @@
         <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
         <table class="scenario_table">
             <tal:loop tal:repeat="scenario possible_scenarios">
-                <tr tal:define="exercise scenario/exercise;
-                             inactive python:scenario.status == 'inactive';
+                <tr tal:define="exercise scenario/Exercise;
+                             inactive python:scenario.Status == 'inactive';
                              selected python:scenario.getId() in selected_scenarios;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
                     tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">

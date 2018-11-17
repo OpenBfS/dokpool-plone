@@ -17,11 +17,11 @@
                       uinfo python:mi[1];">
          <tal:var replace="uinfo"/><i>,<br /> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</i>
 </span></td>
-<td style="width:40%;" tal:define="exercise scenario/exercise"><a href="" tal:attributes="href scenario/absolute_url">
+<td style="width:40%;" tal:define="exercise scenario/Exercise"><a href="" tal:attributes="href scenario/absolute_url">
                 <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br>
                 </tal:if><b><tal:var replace="scenario/Title"/></b></a><br>
 <span tal:content="scenario/Description" /></td> 
-<td style="width:5%;" i18n:translate="" tal:content="scenario/status"></td>                
+<td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
 </tr>
 </tbody>
 </table>
