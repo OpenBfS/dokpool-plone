@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"POT-Creation-Date: 2018-11-17 13:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Docpool Configuration Area"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/configure.zcml:109
+#: docpool.base/docpool/base/browser/configure.zcml:115
 msgid "Docpool view"
 msgstr ""
 
@@ -77,12 +77,8 @@ msgstr ""
 msgid "Files:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/folderbase.pt:33
+#: docpool.base/docpool/base/browser/folderbase.pt:23
 msgid "Filter contents according to application?"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/folderbase.pt:27
-msgid "Filter is active: Only contents for current application are shown!"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
@@ -116,10 +112,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
 msgid "Group Folder"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/folderbase.pt:17
-msgid "Group Folder: filter not active!"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
@@ -175,16 +167,16 @@ msgstr ""
 msgid "Paste could not find clipboard content."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/folderbase.pt:21
-msgid "Personal Folder: filter not active!"
-msgstr ""
-
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:42
 msgid "Please select one or more items to cut."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/sharing.py:45
 msgid "Search for user or group"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Select Applications"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:171
