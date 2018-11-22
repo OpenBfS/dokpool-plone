@@ -279,7 +279,7 @@ msgstr ""
 #. Default: "Current Modules"
 #: elan.sitrep/elan/sitrep/content/situationreport.py:67
 msgid "label_situationreport_currentmodules"
-msgstr "Aktuelle Module"
+msgstr "Aktuell verfügbare Module"
 
 #. Default: "Phase (scenario-specific)"
 #: elan.sitrep/elan/sitrep/content/situationreport.py:57
@@ -289,7 +289,7 @@ msgstr "Phase (szenarioabhängig)"
 #. Default: "Introduction"
 #: elan.sitrep/elan/sitrep/content/situationreport.py:86
 msgid "label_situationreport_text"
-msgstr "Einleitung"
+msgstr "Zusammenfassung"
 
 #. Default: "Current report"
 #: elan.sitrep/elan/sitrep/content/srmodule.py:60
