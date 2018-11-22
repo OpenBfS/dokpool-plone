@@ -82,7 +82,6 @@ class ISRModule(form.Schema, IDPDocument):
                         title=_(u'label_srtextblock_summary', default=u'Summary'),
                         description=_(u'description_srtextblock_summary', default=u''),
                         required=False,
-                        rows=3,
 ##code-section field_text
 ##/code-section field_text                           
     )
