@@ -91,9 +91,10 @@ class SRModule(Container, DPDocument):
 
     def createActions(self):
         super(DPDocument, self).createActions()
-        dto = self.docTypeObj()
-        if dto:
-            defaultTextBlocks = [tb.to_object for tb in (dto.defaultTextBlocks or [])]
+        df = self.defaultFilter()
+        mc = df['config']
+        if mc:
+            defaultTextBlocks = [tb.to_object for tb in (mc.defaultTextBlocks or [])]
             if defaultTextBlocks:
                 text = u""
                 for tb in defaultTextBlocks:

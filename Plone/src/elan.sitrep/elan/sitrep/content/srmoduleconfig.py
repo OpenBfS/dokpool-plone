@@ -51,7 +51,7 @@ class ISRModuleConfig(form.Schema):
 ##/code-section field_modType                           
     )
     
-        
+
     docSelection = RelationChoice(
                         title=_(u'label_srmoduleconfig_docselection', default=u'Collection for relevant documents'),
                         description=_(u'description_srmoduleconfig_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
@@ -75,10 +75,25 @@ class ISRModuleConfig(form.Schema):
 ##/code-section field_textBlocks                           
     )
     
+    defaultTextBlocks = RelationList(
+                        title=_(u'label_srmoduletype_defaulttextblocks', default=u'Default Text (when freshly created)'),
+                        description=_(u'description_srmoduletype_defaulttextblocks', default=u''),
+                        required=False,
+##code-section field_defaultTextBlocks
+                        value_type=RelationChoice(
+                            title=_("Default Text"),
+                            source="elan.sitrep.vocabularies.TextBlocks",
+
+                        ),
+        ##/code-section field_defaultTextBlocks
+    )
+
 
 ##code-section interface
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
     form.widget(textBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
+    form.widget(defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
+
 ##/code-section interface
 
 
