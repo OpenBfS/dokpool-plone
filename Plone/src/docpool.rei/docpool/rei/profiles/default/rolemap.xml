@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+    <role name="REIUser"/>
+  </roles>
+  <permissions>
+    <permission name="Docpool: Access REI Content" acquire="True">
+      <role name="REIUser"/>
+    </permission>
+  </permissions>
+</rolemap>

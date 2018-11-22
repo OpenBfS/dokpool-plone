@@ -25,130 +25,130 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IRodosDoc(IDocumentExtension):
-    reportId = schema.TextLine(
-                        title=_(u'label_rodos_reportId', default=u'Report ID'),
-                        description=_(u'description_rodos_reportId', default=u''),
+    ReportId = schema.TextLine(
+                        title=_(u'label_rodos_ReportId', default=u'Report ID'),
+                        description=_(u'description_rodos_ReportId', default=u''),
                         required=False,
     )
-    read_permission(reportId='docpool.rodos.AccessRodos')
-    write_permission(reportId='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('reportId')
+    read_permission(ReportId='docpool.rodos.AccessRodos')
+    write_permission(ReportId='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('ReportId')
 
 
-    calculationDate = schema.Datetime(
-                        title=_(u'label_rodos_calculationDate', default=u'Calculation Date'),
-                        description=_(u'description_rodos_calculationDate', default=u''),
+    CalculationDate = schema.Datetime(
+                        title=_(u'label_rodos_CalculationDate', default=u'Calculation Date'),
+                        description=_(u'description_rodos_CalculationDate', default=u''),
                         required=True,
     )
-    read_permission(calculationDate='docpool.rodos.AccessRodos')
-    write_permission(calculationDate='docpool.rodos.AccessRodos')
+    read_permission(CalculationDate='docpool.rodos.AccessRodos')
+    write_permission(CalculationDate='docpool.rodos.AccessRodos')
 
 
-    projectUser = schema.TextLine(
-                        title=_(u'label_rodos_projectUser', default=u'Project User'),
-                        description=_(u'description_rodos_projectUser', default=u''),
+    ProjectUser = schema.TextLine(
+                        title=_(u'label_rodos_ProjectUser', default=u'Project User'),
+                        description=_(u'description_rodos_ProjectUser', default=u''),
                         required=False,
     )
-    read_permission(projectUser='docpool.rodos.AccessRodos')
-    write_permission(projectUser='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('projectUser')
+    read_permission(ProjectUser='docpool.rodos.AccessRodos')
+    write_permission(ProjectUser='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('ProjectUser')
 
 
-    projectName = schema.TextLine(
-                        title=_(u'label_rodos_projectName', default=u'Project Name'),
-                        description=_(u'description_rodos_projectName', default=u''),
+    ProjectName = schema.TextLine(
+                        title=_(u'label_rodos_ProjectName', default=u'Project Name'),
+                        description=_(u'description_rodos_ProjectName', default=u''),
                         required=True,
     )
-    read_permission(projectName='docpool.rodos.AccessRodos')
-    write_permission(projectName='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('projectName')
+    read_permission(ProjectName='docpool.rodos.AccessRodos')
+    write_permission(ProjectName='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('ProjectName')
 
 
-    prognosisForm = schema.Choice(
-                        title=_(u'label_rodos_prognosisForm', default=u'Prognosis Form'),
-                        description=_(u'description_rodos_prognosisForm', default=u''),
+    PrognosisForm = schema.Choice(
+                        title=_(u'label_rodos_PrognosisForm', default=u'Prognosis Form'),
+                        description=_(u'description_rodos_PrognosisForm', default=u''),
                         source="docpool.rodos.vocabularies.PrognosisForms",
                         required=True,
     )
-    form.widget(prognosisForm=RadioFieldWidget)
-    read_permission(prognosisForm='docpool.rodos.AccessRodos')
-    write_permission(prognosisForm='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('prognosisForm')
+    form.widget(PrognosisForm=RadioFieldWidget)
+    read_permission(PrognosisForm='docpool.rodos.AccessRodos')
+    write_permission(PrognosisForm='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('PrognosisForm')
 
 
-    releaseSite = schema.Choice(
-                        title=_(u'label_rodos_releaseSite', default=u'Release Site'),
-                        description=_(u'description_rodos_releaseSite', default=u''),
+    ReleaseSite = schema.Choice(
+                        title=_(u'label_rodos_ReleaseSite', default=u'Release Site'),
+                        description=_(u'description_rodos_ReleaseSite', default=u''),
                         source="docpool.rodos.vocabularies.ReleaseSites",
 
                         required=False,
     )
-    read_permission(releaseSite='docpool.rodos.AccessRodos')
-    write_permission(releaseSite='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('releaseSite')
+    read_permission(ReleaseSite='docpool.rodos.AccessRodos')
+    write_permission(ReleaseSite='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('ReleaseSite')
 
-    releaseStart = schema.Datetime(
-                        title=_(u'label_rodos_releaseStart', default=u'Release Start'),
-                        description=_(u'description_rodos_releaseStart', default=u''),
+    ReleaseStart = schema.Datetime(
+                        title=_(u'label_rodos_ReleaseStart', default=u'Release Start'),
+                        description=_(u'description_rodos_ReleaseStart', default=u''),
                         required=False,
     )
-    read_permission(releaseStart='docpool.rodos.AccessRodos')
-    write_permission(releaseStart='docpool.rodos.AccessRodos')
+    read_permission(ReleaseStart='docpool.rodos.AccessRodos')
+    write_permission(ReleaseStart='docpool.rodos.AccessRodos')
 
-    releaseStop = schema.Datetime(
-                        title=_(u'label_rodos_releaseStop', default=u'Release Stop'),
-                        description=_(u'description_rodos_releaseStop', default=u''),
+    ReleaseStop = schema.Datetime(
+                        title=_(u'label_rodos_ReleaseStop', default=u'Release Stop'),
+                        description=_(u'description_rodos_ReleaseStop', default=u''),
                         required=False,
     )
-    read_permission(releaseStop='docpool.rodos.AccessRodos')
-    write_permission(releaseStop='docpool.rodos.AccessRodos')
+    read_permission(ReleaseStop='docpool.rodos.AccessRodos')
+    write_permission(ReleaseStop='docpool.rodos.AccessRodos')
 
 
-    prognosisType = schema.Choice(
+    PrognosisType = schema.Choice(
             title=_(u"Prognosis Type"),
-            description=_(u'description_rodos_prognosisType', default=u''),
+            description=_(u'description_rodos_PrognosisType', default=u''),
             source="docpool.rodos.vocabularies.PrognosisTypes",
             required=False,
         )
 
-    read_permission(prognosisType='docpool.rodos.AccessRodos')
-    write_permission(prognosisType='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('prognosisType')
+    read_permission(PrognosisType='docpool.rodos.AccessRodos')
+    write_permission(PrognosisType='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('PrognosisType')
 
-    model = schema.TextLine(
-                        title=_(u'label_rodos_model', default=u'Model'),
-                        description=_(u'description_rodos_model', default=u''),
+    Model = schema.TextLine(
+                        title=_(u'label_rodos_Model', default=u'Model'),
+                        description=_(u'description_rodos_Model', default=u''),
                         required=False,
     )
-    read_permission(model='docpool.rodos.AccessRodos')
-    write_permission(model='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('model')
+    read_permission(Model='docpool.rodos.AccessRodos')
+    write_permission(Model='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('Model')
 
 
-    prognosisBegin = schema.Datetime(
-                        title=_(u'label_rodos_prognosisBegin', default=u'Prognosis Begin'),
-                        description=_(u'description_rodos_prognosisBegin', default=u''),
+    PrognosisBegin = schema.Datetime(
+                        title=_(u'label_rodos_PrognosisBegin', default=u'Prognosis Begin'),
+                        description=_(u'description_rodos_PrognosisBegin', default=u''),
                         required=False,
     )
-    read_permission(prognosisBegin='docpool.rodos.AccessRodos')
-    write_permission(prognosisBegin='docpool.rodos.AccessRodos')
+    read_permission(PrognosisBegin='docpool.rodos.AccessRodos')
+    write_permission(PrognosisBegin='docpool.rodos.AccessRodos')
 
-    prognosisEnd = schema.Datetime(
-                        title=_(u'label_rodos_prognosisEnd', default=u'Prognosis End'),
-                        description=_(u'description_rodos_prognosisEnd', default=u''),
+    PrognosisEnd = schema.Datetime(
+                        title=_(u'label_rodos_PrognosisEnd', default=u'Prognosis End'),
+                        description=_(u'description_rodos_PrognosisEnd', default=u''),
                         required=False,
     )
-    read_permission(prognosisEnd='docpool.rodos.AccessRodos')
-    write_permission(prognosisEnd='docpool.rodos.AccessRodos')
+    read_permission(PrognosisEnd='docpool.rodos.AccessRodos')
+    write_permission(PrognosisEnd='docpool.rodos.AccessRodos')
 
-    numericWeatherPredictionDate = schema.TextLine(
-                        title=_(u'label_rodos_numericWeatherPredictionDate', default=u'Numeric Weather Prediction Date'),
-                        description=_(u'description_rodos_numericWeatherPredictionDate', default=u''),
+    NumericWeatherPredictionDate = schema.TextLine(
+                        title=_(u'label_rodos_NumericWeatherPredictionDate', default=u'Numeric Weather Prediction Date'),
+                        description=_(u'description_rodos_NumericWeatherPredictionDate', default=u''),
                         required=False,
     )
-    read_permission(numericWeatherPredictionDate='docpool.rodos.AccessRodos')
-    write_permission(numericWeatherPredictionDate='docpool.rodos.AccessRodos')
-    dexteritytextindexer.searchable('numericWeatherPredictionDate')
+    read_permission(NumericWeatherPredictionDate='docpool.rodos.AccessRodos')
+    write_permission(NumericWeatherPredictionDate='docpool.rodos.AccessRodos')
+    dexteritytextindexer.searchable('NumericWeatherPredictionDate')
 
 
 class RodosDoc(FlexibleView):
@@ -162,150 +162,150 @@ class RodosDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    def _get_rodos_projectName(self):
-        return getInheritedValue(self, "projectName")
+    def _get_rodos_ProjectName(self):
+        return getInheritedValue(self, "ProjectName")
 
-    def _set_rodos_projectName(self, value):
+    def _set_rodos_ProjectName(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.projectName = value
+        context.ProjectName = value
 
-    projectName = property(_get_rodos_projectName, _set_rodos_projectName)
+    ProjectName = property(_get_rodos_ProjectName, _set_rodos_ProjectName)
     
-    def _get_rodos_reportId(self):
-        return getInheritedValue(self, "reportId")
+    def _get_rodos_ReportId(self):
+        return getInheritedValue(self, "ReportId")
 
-    def _set_rodos_reportId(self, value):
+    def _set_rodos_ReportId(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.reportId = value
+        context.ReportId = value
     
-    reportId = property(_get_rodos_reportId, _set_rodos_reportId)
+    ReportId = property(_get_rodos_ReportId, _set_rodos_ReportId)
 
-    def _get_rodos_releaseSite(self):
-        return getInheritedValue(self, "releaseSite")
+    def _get_rodos_ReleaseSite(self):
+        return getInheritedValue(self, "ReleaseSite")
 
-    def _set_rodos_releaseSite(self, value):
+    def _set_rodos_ReleaseSite(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.releaseSite = value
+        context.ReleaseSite = value
 
-    releaseSite = property(_get_rodos_releaseSite, _set_rodos_releaseSite)
+    ReleaseSite = property(_get_rodos_ReleaseSite, _set_rodos_ReleaseSite)
 
-    def _get_rodos_releaseStart(self):
-        return getInheritedValue(self, "releaseStart")
+    def _get_rodos_ReleaseStart(self):
+        return getInheritedValue(self, "ReleaseStart")
 
-    def _set_rodos_releaseStart(self, value):
+    def _set_rodos_ReleaseStart(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.releaseStart = value
+        context.ReleaseStart = value
 
-    releaseStart = property(_get_rodos_releaseStart, _set_rodos_releaseStart)
+    ReleaseStart = property(_get_rodos_ReleaseStart, _set_rodos_ReleaseStart)
 
-    def _get_rodos_releaseStop(self):
-        return getInheritedValue(self, "releaseStop")
+    def _get_rodos_ReleaseStop(self):
+        return getInheritedValue(self, "ReleaseStop")
 
-    def _set_rodos_releaseStop(self, value):
+    def _set_rodos_ReleaseStop(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.releaseStop = value
+        context.ReleaseStop = value
 
-    releaseStop = property(_get_rodos_releaseStop, _set_rodos_releaseStop)
+    ReleaseStop = property(_get_rodos_ReleaseStop, _set_rodos_ReleaseStop)
 
-    def _get_rodos_prognosisBegin(self):
-        return getInheritedValue(self, "prognosisBegin")
+    def _get_rodos_PrognosisBegin(self):
+        return getInheritedValue(self, "PrognosisBegin")
 
-    def _set_rodos_prognosisBegin(self, value):
+    def _set_rodos_PrognosisBegin(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.prognosisBegin = value
+        context.PrognosisBegin = value
 
-    prognosisBegin = property(_get_rodos_prognosisBegin, _set_rodos_prognosisBegin)
+    PrognosisBegin = property(_get_rodos_PrognosisBegin, _set_rodos_PrognosisBegin)
 
-    def _get_rodos_prognosisEnd(self):
-        return getInheritedValue(self, "prognosisEnd")
+    def _get_rodos_PrognosisEnd(self):
+        return getInheritedValue(self, "PrognosisEnd")
 
-    def _set_rodos_prognosisEnd(self, value):
+    def _set_rodos_PrognosisEnd(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.prognosisEnd = value
+        context.PrognosisEnd = value
 
-    prognosisEnd = property(_get_rodos_prognosisEnd, _set_rodos_prognosisEnd)
+    PrognosisEnd = property(_get_rodos_PrognosisEnd, _set_rodos_PrognosisEnd)
 
-    def _get_rodos_numericWeatherPredictionDate(self):
-        return getInheritedValue(self, "numericWeatherPredictionDate")
+    def _get_rodos_NumericWeatherPredictionDate(self):
+        return getInheritedValue(self, "NumericWeatherPredictionDate")
 
-    def _set_rodos_numericWeatherPredictionDate(self, value):
+    def _set_rodos_NumericWeatherPredictionDate(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.numericWeatherPredictionDate = value
+        context.NumericWeatherPredictionDate = value
 
-    numericWeatherPredictionDate = property(_get_rodos_numericWeatherPredictionDate, _set_rodos_numericWeatherPredictionDate)
+    NumericWeatherPredictionDate = property(_get_rodos_NumericWeatherPredictionDate, _set_rodos_NumericWeatherPredictionDate)
 
-    def _get_rodos_model(self):
-        return getInheritedValue(self, "model")
+    def _get_rodos_Model(self):
+        return getInheritedValue(self, "Model")
 
-    def _set_rodos_model(self, value):
+    def _set_rodos_Model(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.model = value
+        context.Model = value
 
-    model = property(_get_rodos_model, _set_rodos_model)
+    Model = property(_get_rodos_Model, _set_rodos_Model)
 
-    def _get_rodos_calculationDate(self):
-        return getInheritedValue(self, "calculationDate")
+    def _get_rodos_CalculationDate(self):
+        return getInheritedValue(self, "CalculationDate")
 
-    def _set_rodos_calculationDate(self, value):
+    def _set_rodos_CalculationDate(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.calculationDate = value
+        context.CalculationDate = value
 
-    calculationDate = property(_get_rodos_calculationDate, _set_rodos_calculationDate)
+    CalculationDate = property(_get_rodos_CalculationDate, _set_rodos_CalculationDate)
 
-    def _get_rodos_projectUser(self):
-        return getInheritedValue(self, "projectUser")
+    def _get_rodos_ProjectUser(self):
+        return getInheritedValue(self, "ProjectUser")
 
-    def _set_rodos_projectUser(self, value):
+    def _set_rodos_ProjectUser(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.projectUser = value
+        context.ProjectUser = value
 
-    projectUser = property(_get_rodos_projectUser, _set_rodos_projectUser)
+    ProjectUser = property(_get_rodos_ProjectUser, _set_rodos_ProjectUser)
 
 
-    def _get_rodos_prognosisType(self):
-        return getInheritedValue(self, "prognosisType")
+    def _get_rodos_PrognosisType(self):
+        return getInheritedValue(self, "PrognosisType")
 
-    def _set_rodos_prognosisType(self, value):
+    def _set_rodos_PrognosisType(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.prognosisType = value
+        context.PrognosisType = value
 
-    prognosisType = property(_get_rodos_prognosisType, _set_rodos_prognosisType)
+    PrognosisType = property(_get_rodos_PrognosisType, _set_rodos_PrognosisType)
 
 
-    def _get_rodos_prognosisForm(self):
-        return getInheritedValue(self, "prognosisForm")
+    def _get_rodos_PrognosisForm(self):
+        return getInheritedValue(self, "PrognosisForm")
 
-    def _set_rodos_prognosisForm(self, value):
+    def _set_rodos_PrognosisForm(self, value):
         if not value:
             return
         context = aq_inner(self.context)
-        context.prognosisForm = value
+        context.PrognosisForm = value
 
-    prognosisForm = property(_get_rodos_prognosisForm, _set_rodos_prognosisForm)
+    PrognosisForm = property(_get_rodos_PrognosisForm, _set_rodos_PrognosisForm)
 
 
 

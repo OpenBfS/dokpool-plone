@@ -7,103 +7,103 @@
 
     <metal:macro define-macro="doksys_meta" i18n:domain="docpool.doksys">
     Network Operator:
-        <span tal:condition="python:hasattr(doksysobj,'network_operator')">
-           <tal:var replace="doksysobj/network_operator"/>
+        <span tal:condition="python:hasattr(doksysobj,'NetworkOperator')">
+           <tal:var replace="doksysobj/NetworkOperator"/>
         </span><br>
 
         Dom:
-        <span tal:condition="python:hasattr(doksysobj,'dom')">
-           <tal:var replace="doksysobj/dom"/>
+        <span tal:condition="python:hasattr(doksysobj,'Dom')">
+           <tal:var replace="doksysobj/Dom"/>
         </span><br>
 
         Legal Base:
-        <span tal:condition="python:hasattr(doksysobj,'legal_base')">
-           <tal:var replace="doksysobj/legal_base"/>
+        <span tal:condition="python:hasattr(doksysobj,'LegalBase')">
+           <tal:var replace="doksysobj/LegalBase"/>
         </span><br>
 
         Measuring Program:
-        <span tal:condition="python:hasattr(doksysobj,'measuring_program')">
-           <tal:var replace="doksysobj/measuring_program"/>
+        <span tal:condition="python:hasattr(doksysobj,'MeasuringProgram')">
+           <tal:var replace="doksysobj/MeasuringProgram"/>
         </span><br>
 
         Sampling Begin:
-        <span tal:condition="python:hasattr(doksysobj,'sampling_begin')">
-           <tal:var replace="doksysobj/sampling_begin"/>
+        <span tal:condition="python:hasattr(doksysobj,'SamplingBegin')">
+           <tal:var replace="doksysobj/SamplingBegin"/>
         </span><br>
 
         Sampling End:
-        <span tal:condition="python:hasattr(doksysobj,'sampling_end')">
-           <tal:var replace="doksysobj/sampling_end"/>
+        <span tal:condition="python:hasattr(doksysobj,'SamplingEnd')">
+           <tal:var replace="doksysobj/SamplingEnd"/>
         </span><br>
 
         Purpose:
-        <span tal:condition="python:hasattr(doksysobj,'purpose')">
-           <tal:var replace="doksysobj/purpose"/>
+        <span tal:condition="python:hasattr(doksysobj,'Purpose')">
+           <tal:var replace="doksysobj/Purpose"/>
         </span><br>
 
         Start Location:
-        <span tal:condition="python:hasattr(doksysobj,'trajectory_start_location')">
-           <tal:var replace="doksysobj/trajectory_start_location"/>
+        <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartLocation')">
+           <tal:var replace="doksysobj/TrajectoryStartLocation"/>
         </span><br>
 
         End Location:
-        <span tal:condition="python:hasattr(doksysobj,'trajectory_end_location')">
-           <tal:var replace="doksysobj/trajectory_end_location"/>
+        <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndLocation')">
+           <tal:var replace="doksysobj/TrajectoryEndLocation"/>
         </span><br>
 
         Start Time:
-        <span tal:condition="python:hasattr(doksysobj,'trajectory_start_time')">
-           <tal:var replace="doksysobj/trajectory_start_time"/>
+        <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartTime')">
+           <tal:var replace="doksysobj/TrajectoryStartTime"/>
         </span><br>
 
         End Time:
-        <span tal:condition="python:hasattr(doksysobj,'trajectory_end_time')">
-           <tal:var replace="doksysobj/trajectory_end_time"/>
+        <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndTime')">
+           <tal:var replace="doksysobj/TrajectoryEndTime"/>
         </span><br>
 
         Status:
-        <span tal:condition="python:hasattr(doksysobj,'status')">
-           <tal:var replace="doksysobj/status"/>
+        <span tal:condition="python:hasattr(doksysobj,'Status')">
+           <tal:var replace="doksysobj/Status"/>
         </span><br>
 
         Operation Mode:
-        <span tal:condition="python:hasattr(doksysobj,'operation_mode')">
-           <tal:var replace="doksysobj/operation_mode"/>
+        <span tal:condition="python:hasattr(doksysobj,'OperationMode')">
+           <tal:var replace="doksysobj/OperationMode"/>
         </span><br>
 
         Data Type:
-        <span tal:condition="python:hasattr(doksysobj,'data_type')">
-           <tal:var replace="doksysobj/data_type"/>
+        <span tal:condition="python:hasattr(doksysobj,'DataType')">
+           <tal:var replace="doksysobj/DataType"/>
         </span><br>
 
         Sample Type Id:
-        <span tal:condition="python:hasattr(doksysobj,'sample_type_id')">
-           <tal:var replace="doksysobj/sample_type_id"/>
+        <span tal:condition="python:hasattr(doksysobj,'SampleTypeId')">
+           <tal:var replace="doksysobj/SampleTypeId"/>
         </span><br>
 
         Sample Type:
-        <span tal:condition="python:hasattr(doksysobj,'sample_type')">
-           <tal:var replace="doksysobj/sample_type"/>
+        <span tal:condition="python:hasattr(doksysobj,'SampleType')">
+           <tal:var replace="doksysobj/SampleType"/>
         </span><br>
 
         Measurement Category:
-        <span tal:condition="python:hasattr(doksysobj,'measurement_category')">
-           <tal:var replace="doksysobj/measurement_category"/>
+        <span tal:condition="python:hasattr(doksysobj,'MeasurementCategory')">
+           <tal:var replace="doksysobj/MeasurementCategory"/>
         </span><br>
 
         Duration:
-        <span tal:condition="python:hasattr(doksysobj,'duration')">
-           <tal:var replace="doksysobj/duration"/>
+        <span tal:condition="python:hasattr(doksysobj,'Duration')">
+           <tal:var replace="doksysobj/Duration"/>
         </span><br>
 
         Type:
-        <span tal:condition="python:hasattr(doksysobj,'type')">
-           <tal:var replace="doksysobj/type"/>
+        <span tal:condition="python:hasattr(doksysobj,'Type')">
+           <tal:var replace="doksysobj/Type"/>
         </span><br>
 
         Area:
-        <span tal:condition="python:hasattr(doksysobj,'area')">
-           <tal:var replace="doksysobj/area"/>
+        <span tal:condition="python:hasattr(doksysobj,'Area')">
+           <tal:var replace="doksysobj/Area"/>
         </span><br>
 
     </metal:macro>

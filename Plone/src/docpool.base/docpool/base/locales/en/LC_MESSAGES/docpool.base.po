@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"POT-Creation-Date: 2018-11-17 13:16+0000\n"
 "PO-Revision-Date: 2015-09-17 15:55+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -56,13 +56,17 @@ msgstr ""
 msgid "Docpool Configuration Area"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/configure.zcml:109
+#: docpool.base/docpool/base/browser/configure.zcml:115
 msgid "Docpool view"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
 msgstr "Document Type"
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt:16
+msgid "Edit the document"
+msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
@@ -76,12 +80,8 @@ msgstr "Document Pool"
 msgid "Files:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/folderbase.pt:33
+#: docpool.base/docpool/base/browser/folderbase.pt:23
 msgid "Filter contents according to application?"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/folderbase.pt:27
-msgid "Filter is active: Only contents for current application are shown!"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
@@ -116,10 +116,6 @@ msgstr "General information"
 #: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
 msgid "Group Folder"
 msgstr ""
-
-#: docpool.base/docpool/base/browser/folderbase.pt:17
-msgid "Group Folder: filter not active!"
-msgstr "Group Folder: event filter not active!"
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
 msgid "Groups Area"
@@ -174,16 +170,16 @@ msgstr ""
 msgid "Paste could not find clipboard content."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/folderbase.pt:21
-msgid "Personal Folder: filter not active!"
-msgstr "Personal Folder: event filter not active!"
-
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:42
 msgid "Please select one or more items to cut."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/sharing.py:45
 msgid "Search for user or group"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Select Applications"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:171
@@ -247,15 +243,11 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:16
-msgid "View the document in its folder"
-msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
 msgstr "Active"
 
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "closed"
 msgstr "Closed"
 
@@ -358,7 +350,7 @@ msgstr ""
 msgid "docpool.base"
 msgstr ""
 
-#: docpool.base/docpool/base/vocabularies.py:66
+#: docpool.base/docpool/base/vocabularies.py:67
 msgid "inactive"
 msgstr "Inactive"
 

@@ -52,81 +52,81 @@
 
     <adapter
             factory=".indexer.network_operator_indexer"
-            name="network_operator"/>
+            name="NetworkOperator"/>
 
     <adapter
             factory=".indexer.dom_indexer"
-            name="dom"/>
+            name="Dom"/>
 
     <adapter
             factory=".indexer.legal_base_indexer"
-            name="legal_base"/>
+            name="LegalBase"/>
 
     <adapter
             factory=".indexer.measuring_program_indexer"
-            name="measuring_program"/>
+            name="MeasuringProgram"/>
 
     <adapter
             factory=".indexer.sampling_begin_indexer"
-            name="sampling_begin"/>
+            name="SamplingBegin"/>
 
     <adapter
             factory=".indexer.sampling_end_indexer"
-            name="sampling_end"/>
+            name="SamplingEnd"/>
 
     <adapter
             factory=".indexer.purpose_indexer"
-            name="purpose"/>
+            name="Purpose"/>
 
     <adapter
             factory=".indexer.trajectory_start_location_indexer"
-            name="trajectory_start_location"/>
+            name="TrajectoryStartLocation"/>
 
     <adapter
             factory=".indexer.trajectory_end_location_indexer"
-            name="trajectory_end_location"/>
+            name="TrajectoryEndLocation"/>
 
     <adapter
             factory=".indexer.trajectory_start_time_indexer"
-            name="trajectory_start_time"/>
+            name="TrajectoryStartTime"/>
 
     <adapter
             factory=".indexer.trajectory_end_time_indexer"
-            name="trajectory_end_time"/>
+            name="TrajectoryEndTime"/>
 
     <adapter
             factory=".indexer.status_indexer"
-            name="status"/>
+            name="Status"/>
 
     <adapter
             factory=".indexer.operation_mode_indexer"
-            name="operation_mode"/>
+            name="OperationMode"/>
 
     <adapter
             factory=".indexer.data_type_indexer"
-            name="data_type"/>
+            name="DataType"/>
 
     <adapter
             factory=".indexer.sample_type_id_indexer"
-            name="sample_type_id"/>
+            name="SampleTypeId"/>
 
     <adapter
             factory=".indexer.sample_type_indexer"
-            name="sample_type"/>
+            name="SampleType"/>
 
     <adapter
             factory=".indexer.measurement_category_indexer"
-            name="measurement_category"/>
+            name="MeasurementCategory"/>
 
     <adapter
             factory=".indexer.duration_indexer"
-            name="duration"/>
+            name="Duration"/>
 
     <adapter
             factory=".indexer.type_indexer"
-            name="type"/>
+            name="Type"/>
 
     <adapter
             factory=".indexer.area_indexer"
-            name="area"/>
+            name="Area"/>
 </configure>

@@ -85,6 +85,12 @@
             permission="zope2.View"
     />
 
+    <adapter
+       factory=".scaling.ImageScalingFactory"
+       for="..interfaces.IDPDocument"
+    />
+
+
     <browser:page
             name="dp_app_state"
             for="*"

@@ -56,8 +56,8 @@ ARCHIVESTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Electronic Situation 
 ADMINSTRUCTURE = [
     {TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
         {TYPE: 'ELANScenarios', TITLE: u'Scenarios', ID: 'scen', CHILDREN: [
-            {TYPE: 'ELANScenario', TITLE: u'Routine mode', ID: 'routinemode', "status": "active",
-             "timeOfEvent": datetime.now(), CHILDREN: []}
+            {TYPE: 'ELANScenario', TITLE: u'Routine mode', ID: 'routinemode', "Status": "active",
+             "TimeOfEvent": datetime.now(), CHILDREN: []}
         ]},
         {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
         {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
@@ -141,8 +141,8 @@ def setELANLocalRoles(self):
     prefix = str(prefix)
     self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
     self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-    self.archive.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["DocpoolAdmin"])
-    self.content.Groups.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
+    self.archive.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["DocPoolAdmin"])
+    self.content.Groups.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Site Administrator"])
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
     self.config.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Owner"])
 

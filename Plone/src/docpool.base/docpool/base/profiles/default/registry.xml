@@ -1,5 +1,8 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.base">
+  <record name="plone.disable_filtering" interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" field="disable_filtering">
+    <value>True</value>
+  </record>
   <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
     <value purge="False">
       <element>Folder</element>

@@ -46,6 +46,7 @@ from PIL import Image
 import urlparse
 from plone.subrequest import subrequest
 from urllib import unquote
+from docpool.elan.config import ELAN_APP
 ##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
@@ -86,6 +87,8 @@ class SRModule(Container, DPDocument):
     implements(ISRModule)
     
 ##code-section methods
+    APP = ELAN_APP
+
     def createActions(self):
         super(DPDocument, self).createActions()
         dto = self.docTypeObj()

@@ -8,7 +8,7 @@
     </value>
   </record>
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.network_operator">
+             prefix="plone.app.querystring.field.NetworkOperator">
         <value key="title" i18n:translate="">Network Operator</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -23,7 +23,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.dom">
+             prefix="plone.app.querystring.field.Dom">
         <value key="title" i18n:translate="">Dom</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -38,7 +38,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.legal_base">
+             prefix="plone.app.querystring.field.LegalBase">
         <value key="title" i18n:translate="">Legal Base</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -53,7 +53,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.measuring_program">
+             prefix="plone.app.querystring.field.MeasuringProgram">
         <value key="title" i18n:translate="">Measuring Program</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -68,7 +68,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.sampling_begin">
+             prefix="plone.app.querystring.field.SamplingBegin">
         <value key="title" i18n:translate="">Sampling Begin</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -89,7 +89,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.sampling_end">
+             prefix="plone.app.querystring.field.SamplingEnd">
         <value key="title" i18n:translate="">Sampling End</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -110,7 +110,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.purpose">
+             prefix="plone.app.querystring.field.Purpose">
         <value key="title" i18n:translate="">Purpose</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -125,7 +125,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.trajectory_start_location">
+             prefix="plone.app.querystring.field.TrajectoryStartLocation">
         <value key="title" i18n:translate="">Start Location</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -139,7 +139,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.trajectory_end_location">
+             prefix="plone.app.querystring.field.TrajectoryEndLocation">
         <value key="title" i18n:translate="">End Location</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -153,7 +153,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.trajectory_start_time">
+             prefix="plone.app.querystring.field.TrajectoryStartTime">
         <value key="title" i18n:translate="">Start Time</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -174,7 +174,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.trajectory_end_time">
+             prefix="plone.app.querystring.field.TrajectoryEndTime">
         <value key="title" i18n:translate="">End Time</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -195,7 +195,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.status">
+             prefix="plone.app.querystring.field.Status">
         <value key="title" i18n:translate="">Status</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -210,7 +210,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.operation_mode">
+             prefix="plone.app.querystring.field.OperationMode">
         <value key="title" i18n:translate="">Operation Mode</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -225,7 +225,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.data_type">
+             prefix="plone.app.querystring.field.DataType">
         <value key="title" i18n:translate="">Data Type</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -240,7 +240,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.sample_type_id">
+             prefix="plone.app.querystring.field.SampleTypeId">
         <value key="title" i18n:translate="">Sample Type Id</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -255,7 +255,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.sample_type">
+             prefix="plone.app.querystring.field.SampleType">
         <value key="title" i18n:translate="">Sample Type</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -266,11 +266,11 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">docpool.doksys.SampleTypes</value>
+        <value key="vocabulary">docpool.doksys.SampleType</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.measurement_category">
+             prefix="plone.app.querystring.field.MeasurementCategory">
         <value key="title" i18n:translate="">Measurement Category</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -285,7 +285,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.duration">
+             prefix="plone.app.querystring.field.Duration">
         <value key="title" i18n:translate="">Duration</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -300,7 +300,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.type">
+             prefix="plone.app.querystring.field.Type">
         <value key="title" i18n:translate="">Type</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -315,7 +315,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.area">
+             prefix="plone.app.querystring.field.Area">
         <value key="title" i18n:translate="">Area</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>

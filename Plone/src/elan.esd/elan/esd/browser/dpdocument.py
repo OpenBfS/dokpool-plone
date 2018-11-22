@@ -79,7 +79,7 @@ class DPDocumentirixView(BrowserView):
         """
         scen = self.scenario()
         if scen:
-            if scen.exercise:
+            if scen.Exercise:
                 return "Exercise"
             else:
                 return "Emergency"
@@ -90,7 +90,7 @@ class DPDocumentirixView(BrowserView):
         """
         scen = self.scenario()
         if scen:
-            dt = scen.timeOfEvent
+            dt = scen.TimeOfEvent
             return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
         return self.timestamp()
     

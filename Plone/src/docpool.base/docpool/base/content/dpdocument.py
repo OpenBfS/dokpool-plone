@@ -646,6 +646,16 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         else:
             return None
 
+    def getLocalBehaviors(self):
+        """
+
+        :return:
+        """
+        from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+        print type(self.local_behaviors)
+        print self.local_behaviors
+        return ILocalBehaviorSupport(self).local_behaviors
+
 ##/code-section methods 
 
     def myDPDocument(self):

@@ -18,66 +18,66 @@
  </object>
 
   <!--<column value="my_meta_column"/>-->
-    <index name="network_operator" meta_type="FieldIndex">
-        <indexed_attr value="network_operator"/>
+    <index name="NetworkOperator" meta_type="FieldIndex">
+        <indexed_attr value="NetworkOperator"/>
     </index>
-    <index name="dom" meta_type="FieldIndex">
-        <indexed_attr value="dom"/>
+    <index name="Dom" meta_type="FieldIndex">
+        <indexed_attr value="Dom"/>
     </index>
-    <index name="legal_base" meta_type="FieldIndex">
-        <indexed_attr value="legal_base"/>
+    <index name="LegalBase" meta_type="FieldIndex">
+        <indexed_attr value="LegalBase"/>
     </index>
-    <index name="measuring_program" meta_type="FieldIndex">
-        <indexed_attr value="measuring_program"/>
+    <index name="MeasuringProgram" meta_type="FieldIndex">
+        <indexed_attr value="MeasuringProgram"/>
     </index>
-    <index name="sampling_begin" meta_type="DateIndex">
-        <indexed_attr value="sampling_begin"/>
+    <index name="SamplingBegin" meta_type="DateIndex">
+        <indexed_attr value="SamplingBegin"/>
     </index>
-    <index name="sampling_end" meta_type="DateIndex">
-        <indexed_attr value="sampling_end"/>
+    <index name="SamplingEnd" meta_type="DateIndex">
+        <indexed_attr value="SamplingEnd"/>
     </index>
-    <index name="purpose" meta_type="FieldIndex">
-        <indexed_attr value="purpose"/>
+    <index name="Purpose" meta_type="FieldIndex">
+        <indexed_attr value="Purpose"/>
     </index>
-    <index name="trajectory_start_location" meta_type="FieldIndex">
-        <indexed_attr value="trajectory_start_location"/>
+    <index name="TrajectoryStartLocation" meta_type="FieldIndex">
+        <indexed_attr value="TrajectoryStartLocation"/>
     </index>
-    <index name="trajectory_end_location" meta_type="FieldIndex">
-        <indexed_attr value="trajectory_end_location"/>
+    <index name="TrajectoryEndLocation" meta_type="FieldIndex">
+        <indexed_attr value="TrajectoryEndLocation"/>
     </index>
-    <index name="trajectory_start_time" meta_type="DateIndex">
-        <indexed_attr value="trajectory_start_time"/>
+    <index name="TrajectoryStartTime" meta_type="DateIndex">
+        <indexed_attr value="TrajectoryStartTime"/>
     </index>
-    <index name="trajectory_end_time" meta_type="DateIndex">
-        <indexed_attr value="trajectory_end_time"/>
+    <index name="TrajectoryEndTime" meta_type="DateIndex">
+        <indexed_attr value="TrajectoryEndTime"/>
     </index>
-    <index name="status" meta_type="FieldIndex">
-        <indexed_attr value="status"/>
+    <index name="Status" meta_type="FieldIndex">
+        <indexed_attr value="Status"/>
     </index>
-    <index name="operation_mode" meta_type="FieldIndex">
-        <indexed_attr value="operation_mode"/>
+    <index name="OperationMode" meta_type="FieldIndex">
+        <indexed_attr value="OperationMode"/>
     </index>
-    <index name="data_type" meta_type="FieldIndex">
-        <indexed_attr value="data_type"/>
+    <index name="DataType" meta_type="FieldIndex">
+        <indexed_attr value="DataType"/>
     </index>
-    <index name="sample_type_id" meta_type="ZCTextIndex">
-        <indexed_attr value="sample_type_id"/>
+    <index name="SampleTypeId" meta_type="ZCTextIndex">
+        <indexed_attr value="SampleTypeId"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
-    <index name="sample_type" meta_type="FieldIndex">
-        <indexed_attr value="sample_type"/>
+    <index name="SampleType" meta_type="FieldIndex">
+        <indexed_attr value="SampleType"/>
     </index>
-    <index name="measurement_category" meta_type="FieldIndex">
-        <indexed_attr value="measurement_category"/>
+    <index name="MeasurementCategory" meta_type="FieldIndex">
+        <indexed_attr value="MeasurementCategory"/>
     </index>
-    <index name="duration" meta_type="FieldIndex">
-        <indexed_attr value="duration"/>
+    <index name="Duration" meta_type="FieldIndex">
+        <indexed_attr value="Duration"/>
     </index>
-    <index name="type" meta_type="FieldIndex">
-        <indexed_attr value="type"/>
+    <index name="Type" meta_type="FieldIndex">
+        <indexed_attr value="Type"/>
     </index>
-    <index name="area" meta_type="FieldIndex">
-        <indexed_attr value="area"/>
+    <index name="Area" meta_type="FieldIndex">
+        <indexed_attr value="Area"/>
     </index>
 </object>

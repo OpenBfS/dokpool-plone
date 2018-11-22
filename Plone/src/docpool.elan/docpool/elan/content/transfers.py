@@ -15,7 +15,7 @@ def ensureScenariosInTarget(original, copy):
         if scen.hasObject(scenario):
             s = scen._getOb(scenario)
             if wftool.getInfoFor(s, 'review_state') == 'private':
-                sscen = s.substitute and s.substitute.to_object or None
+                sscen = s.Substitute and s.Substitute.to_object or None
                 if sscen and sscen.canBeAssigned():
                     substitute = sscen.getId()
                     new_scenarios.append(substitute)

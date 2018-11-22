@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-09-14 14:02+0000\n"
-"PO-Revision-Date: 2018-10-03 16:59+0200\n"
+"POT-Creation-Date: 2018-11-17 13:04+0000\n"
+"PO-Revision-Date: 2018-11-17 14:06+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,13 +57,17 @@ msgstr "Der angegebene Gruppenname ist unzulässig."
 msgid "There was an existing group folder of the same name. Please check!"
 msgstr "Es gibt bereits einen Gruppenordner desselben Namens. Bitte prüfen!"
 
+#: docpool.users/docpool/users/profiles/default/actions.xml
+msgid "User Management"
+msgstr " Nutzerverwaltung"
+
 #. Default: "There is no group or user attached to this group."
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:156
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:158
 msgid "decription_no_members_assigned"
 msgstr "Dieser Gruppe wurden keine Nutzer oder Gruppen zugeordnet."
 
 #. Default: "You can add or remove groups and users from this particular group here. Note that this doesn't actually delete the group or user, it is only removed from this group."
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:73
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:75
 msgid "description_group_members_of"
 msgstr "Hier können Sie Gruppen und Nutzer zufügen oder entfernen."
 
@@ -83,7 +87,7 @@ msgid "description_pas_group_listing"
 msgstr "Hinweis: Nicht alle PAS Plugins erlauben das Auflisten von Gruppen."
 
 #. Default: "Show all search results"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:296
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:298
 #: docpool.users/docpool/users/browser/usergroups_groupsoverview.pt:241
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:180
 msgid "description_pas_show_all_search_results"
@@ -121,23 +125,25 @@ msgstr "Gruppen zuordnen"
 msgid "heading_create_group"
 msgstr "Gruppe anlegen"
 
-#. Default: "Group: ${view/grouptitle|nothing}"
-#: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:59
+#. Default: "Group: ${groupname}"
+#: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:61
+#, fuzzy
 msgid "heading_edit_groupproperties"
 msgstr "Gruppe: ${groupname}"
 
 #. Default: "Group Members"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:38
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:28
 msgid "heading_group_members"
 msgstr "Gruppenmitglieder"
 
-#. Default: "Group: ${view/grouptitle}"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:54
+#. Default: "Group: ${groupname}"
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:56
+#, fuzzy
 msgid "heading_group_members_of"
 msgstr "Gruppe: ${groupname}"
 
 #. Default: "Current group members"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:85
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:87
 msgid "heading_groupmembers_current"
 msgstr "Aktuelle Gruppenmitglieder"
 
@@ -157,7 +163,7 @@ msgid "heading_search_groups"
 msgstr "Nach Gruppen suchen"
 
 #. Default: "Search for new group members"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:167
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:169
 msgid "heading_search_newmembers"
 msgstr "Neue Mitglieder suchen"
 
@@ -187,7 +193,7 @@ msgid "label_add_user_to_group"
 msgstr "Nutzer den ausgewählten Gruppen zufügen"
 
 #. Default: "Add selected groups and users to this group"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:302
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:304
 msgid "label_add_users_to_group"
 msgstr "Ausgewählte Gruppen und Nutzer dieser Gruppe zufügen"
 
@@ -198,24 +204,25 @@ msgid "label_apply_changes"
 msgstr "Änderungen anwenden"
 
 #. Default: "Find a group here"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:48
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:38
 msgid "label_find_group"
 msgstr "Eine Gruppe finden"
 
 #. Default: "Group Members"
 #: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:72
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:66
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:68
 msgid "label_group_members"
 msgstr "Gruppenmitglieder"
 
 #. Default: "Group Memberships"
+#: docpool.users/docpool/users/browser/account-configlet.pt:36
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:61
 msgid "label_group_memberships"
 msgstr "Gruppenmitgliedschaften"
 
 #. Default: "Group Properties"
 #: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:74
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:69
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:71
 msgid "label_group_properties"
 msgstr "Gruppeneigenschaften"
 
@@ -236,12 +243,12 @@ msgid "label_name"
 msgstr "Name"
 
 #. Default: "No group was specified."
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:46
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:36
 msgid "label_no_group_specified"
 msgstr "Keine Gruppe angegeben."
 
 #. Default: "Quick search"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:174
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:176
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:112
 msgid "label_quick_search"
 msgstr "Schnellsuche"
@@ -252,7 +259,7 @@ msgid "label_remove_selected_groups"
 msgstr "Aus gewählten Gruppen entfernen"
 
 #. Default: "Remove selected groups / users"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:158
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:160
 msgid "label_remove_selected_users"
 msgstr "Ausgewählte Gruppen / Nutzer entfernen"
 
@@ -267,19 +274,19 @@ msgid "label_save"
 msgstr "Speichern"
 
 #. Default: "Search"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:182
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:184
 #: docpool.users/docpool/users/browser/usergroups_groupsoverview.pt:116
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:120
 msgid "label_search"
 msgstr "Suchen"
 
 #. Default: "Show all"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:187
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:189
 msgid "label_search_large"
 msgstr "Alle anzeigen"
 
 #. Default: "Select all items"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:91
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:93
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:131
 msgid "label_select_all_items"
 msgstr "Alle auswählen"
@@ -292,11 +299,12 @@ msgstr "Alle anzeigen"
 
 #. Default: "Up to Groups Overview"
 #: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:53
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:30
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:20
 msgid "label_up_to_groups_overview"
 msgstr "Zur Gruppenübersicht"
 
 #. Default: "Up to Users Overview"
+#: docpool.users/docpool/users/browser/account-configlet.pt:13
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:38
 msgid "label_up_to_usersoverview"
 msgstr "Zur Nutzerübersicht"
@@ -323,7 +331,7 @@ msgid "label_users"
 msgstr "Nutzer"
 
 #. Default: "E-mail Address"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:103
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:105
 msgid "listingheader_email_address"
 msgstr "E-Mail Adresse"
 
@@ -339,7 +347,7 @@ msgid "listingheader_group_remove"
 msgstr "Entfernen"
 
 #. Default: "Group/User name"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:208
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:210
 msgid "listingheader_group_user_name"
 msgstr "Gruppen/Nutzername"
 
@@ -365,7 +373,7 @@ msgid "listingheader_roles"
 msgstr "Rollen"
 
 #. Default: "User name"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:102
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:104
 #: docpool.users/docpool/users/browser/usergroups_usersoverview.pt:114
 msgid "listingheader_user_name"
 msgstr "Nutzername"
@@ -381,12 +389,12 @@ msgid "summary_roles_for_groups"
 msgstr "Wählen Sie Rollen für jede Gruppe"
 
 #. Default: "Enter a group or user name to search for or click 'Show All'."
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:270
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:272
 msgid "text_no_searchstring"
 msgstr "Geben Sie einen Gruppen- oder Nutzernamen an, oder klicken Sie ‚Alle anzeigen‘."
 
 #. Default: "Enter a group or user name to search for."
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:264
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:266
 msgid "text_no_searchstring_large"
 msgstr "Geben Sie einen Gruppen- oder Nutzernamen an."
 
@@ -401,7 +409,7 @@ msgid "text_no_user_searchstring_largesite"
 msgstr "Geben Sie einen Nutzernamen an, oder klicken Sie ‚Alle anzeigen‘"
 
 #. Default: "No matches"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:259
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:261
 #: docpool.users/docpool/users/browser/usergroups_groupsoverview.pt:222
 #: docpool.users/docpool/users/browser/usergroups_usersoverview.pt:183
 msgid "text_nomatches"
@@ -413,6 +421,7 @@ msgid "text_user_not_in_any_group"
 msgstr "Dieser Nutzer gehört zu keiner Gruppe."
 
 #. Default: "Personal Information"
+#: docpool.users/docpool/users/browser/account-configlet.pt:32
 #: docpool.users/docpool/users/browser/usergroups_usermembership.pt:59
 msgid "title_personal_information_form"
 msgstr "Persönliche Informationen"
@@ -423,7 +432,7 @@ msgid "title_required"
 msgstr "Erforderlich"
 
 #. Default: "Send a mail to this user"
-#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:143
+#: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:145
 msgid "title_send_mail_to_user"
 msgstr "Dem Nutzer eine E-Mail senden"
 

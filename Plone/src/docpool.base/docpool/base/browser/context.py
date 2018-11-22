@@ -56,7 +56,7 @@ class ApplicationState(BrowserView):
         return list(set(effective))
 
     def locallyAcivated(self):
-        res = getattr(self.context, 'local_behaviors', [])
+        res = getattr(self.context, 'local_behaviors', [])[:]
         res.extend([ app[0] for app in implicitApps()])
         return list(set(res))
 
@@ -82,7 +82,7 @@ class ApplicationState(BrowserView):
                 res.append(role[:-len("User")].lower())
         #print "local roles: ", res
 
-        return res
+        return list(set(res))
 
     @memoize
     def appsAvailableToCurrentUser(self):
@@ -102,7 +102,7 @@ class ApplicationState(BrowserView):
             return [app[0] for app in extendingApps() ]
         res = user.getProperty("apps") or [ BASE_APP ]
         #print "appsActivatedByCurrentUser: ", res
-        return list(res)
+        return list(set(res))
 
     @memoize
     def effectiveAppsHere(self):
@@ -118,7 +118,7 @@ class ApplicationState(BrowserView):
         @return:
         """
         try:
-           return self.context.allSupportedApps()
+           return list(set(self.context.allSupportedApps()))
         except:
            return []
 
