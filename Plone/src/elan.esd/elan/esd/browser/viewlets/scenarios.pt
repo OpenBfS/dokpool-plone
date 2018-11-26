@@ -7,7 +7,7 @@
 <div class="arch_scen">
 <h1><i18n:var translate=""> Archive</i18n:var> <tal:var replace="a_obj/Title"/></h1>
 <p tal:content="a_obj/Description"></p>
-<p><br><b>&rarr; <a href="" tal:attributes="href python:context.myELANArchives().absolute_url()" i18n:translate="">All Archives</a></b></p>
+<p><b>&rarr; <a href="" tal:attributes="href python:context.myDocumentPool().archive.absolute_url()" i18n:translate="">All Archives</a></b></p>
 </div>
 </tal:def>
 </tal:if>
