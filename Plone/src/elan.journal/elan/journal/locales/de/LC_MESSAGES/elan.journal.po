@@ -131,3 +131,14 @@ msgstr "Neu Laden"
 #: elan/journal/browser/templates/update.pt:103
 msgid "to update it."
 msgstr "um neuen Stand anzuzeigen"
+
+#: /elan/journal/profiles/default/actions.xml
+msgid "Add Journal1 Entry"
+msgstr "Tagebuch1-Eintrag hinzufügen"
+
+#: /elan/journal/profiles/default/actions.xml
+msgid "Add Journal2 Entry"
+msgstr "Tagebuch2-Eintrag hinzufügen"
+
+
+

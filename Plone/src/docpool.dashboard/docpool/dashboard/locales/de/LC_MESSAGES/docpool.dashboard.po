@@ -49,3 +49,8 @@ msgstr "Pinnwand"
 #: docpool.dashboard/docpool/dashboard/content/dashboard.py:44
 msgid "label_dashboard_dbcollections"
 msgstr "Pinnwand Dokumentsammlungen"
+
+#: docpool.dashboard/docpool/dashboard/profiles/default/actions.xml
+msgid "Edit Dashboard"
+msgstr "Pinnwand Bearbeiten"
+
