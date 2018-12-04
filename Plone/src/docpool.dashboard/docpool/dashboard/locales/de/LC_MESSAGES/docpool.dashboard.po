@@ -52,5 +52,5 @@ msgstr "Pinnwand Dokumentsammlungen"
 
 #: docpool.dashboard/docpool/dashboard/profiles/default/actions.xml
 msgid "Edit Dashboard"
-msgstr "Pinnwand Bearbeiten"
+msgstr "Pinnwand bearbeiten"
 
