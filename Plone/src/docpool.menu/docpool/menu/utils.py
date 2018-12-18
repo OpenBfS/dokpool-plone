@@ -63,7 +63,9 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
                     continue
             else:
                 app_title = appName(app_name)
-            pools.append({'id': dp.getId() + "-" + app_name,
+
+            if dp.getId() in self.absolute_url():
+               pools.append({'id': dp.getId() + "-" + app_name,
                         'Title': dp.Title() + ": " + app_title,
                         'Description': '',
                         'getURL': "%s/setActiveApp?app=%s" % (self.absolute_url(), app_name),
@@ -73,6 +75,18 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
                         'currentParent': False,
                         'item_class': app_title,
                         'normalized_review_state': 'visible'})
+            else:
+               pools.append({'id': dp.getId() + "-" + app_name,
+                        'Title': dp.Title() + ": " + app_title,
+                        'Description': '',
+                        'getURL': "%s/setActiveApp?app=%s" % (dp.absolute_url(), app_name),
+                        'show_children': False,
+                        'children': [],
+                        'currentItem': False,
+                        'currentParent': False,
+                        'item_class': app_title,
+                        'normalized_review_state': 'visible'})
+
 
     apps_root[0]['children'] = pools
     return apps_root
