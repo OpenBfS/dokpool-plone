@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# from plone import api
 from docpool.doksys import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
