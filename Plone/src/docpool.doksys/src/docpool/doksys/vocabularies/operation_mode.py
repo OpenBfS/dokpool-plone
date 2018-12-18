@@ -26,8 +26,7 @@ class OperationMode(object):
         # this can be any static or dynamic data, a catalog result for example.
         items = [
             VocabItem(u'Routine', _(u'Routine')),
-            VocabItem(u'Intensiv', _(u'Intensiv')),
-
+            VocabItem(u'Intensiv', _(u'Intensiv'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -42,7 +41,7 @@ class OperationMode(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

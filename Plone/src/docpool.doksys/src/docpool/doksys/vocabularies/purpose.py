@@ -26,8 +26,7 @@ class Purpose(object):
         # this can be any static or dynamic data, a catalog result for example.
         items = [
             VocabItem(u'Standard-Info Bundesmessnetze', _(u'Standard-Info Bundesmessnetze')),
-            VocabItem(u'Standard-Info DWD', _(u'Standard-Info DWD')),
-
+            VocabItem(u'Standard-Info DWD', _(u'Standard-Info DWD'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -42,7 +41,7 @@ class Purpose(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

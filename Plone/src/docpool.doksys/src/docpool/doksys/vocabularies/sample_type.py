@@ -342,8 +342,7 @@ class SampleType(object):
             VocabItem(u'Bedarfsgegenstaende zur Reinigung und Pflege',
                       _(u'Bedarfsgegenstaende zur Reinigung und Pflege')),
             VocabItem(u'Kosmetische Mittel und Stoffe zu deren Herstellung',
-                      _(u'Kosmetische Mittel und Stoffe zu deren Herstellung')),
-
+                      _(u'Kosmetische Mittel und Stoffe zu deren Herstellung'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -358,7 +357,7 @@ class SampleType(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )
