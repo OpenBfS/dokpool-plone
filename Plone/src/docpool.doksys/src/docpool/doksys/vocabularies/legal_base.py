@@ -29,7 +29,7 @@ class LegalBase(object):
             VocabItem(u'EURDEP', _(u'EURDEP')),
             VocabItem(u'IRMIS', _(u'IRMIS')),
             VocabItem(u'DENSE', _(u'DENSE')),
-            VocabItem(u'KFUE', _(u'KFUE')),
+            VocabItem(u'KFÜ', _(u'KFÜ')),
             VocabItem(u'Land', _(u'Land')),
             VocabItem(u'SPARSE', _(u'SPARSE')),
             VocabItem(u'REI-E', _(u'REI-E')),
@@ -48,7 +48,7 @@ class LegalBase(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token,
                     title=item.value,
                 )
             )
