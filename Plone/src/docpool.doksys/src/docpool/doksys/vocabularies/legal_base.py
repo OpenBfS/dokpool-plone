@@ -29,7 +29,7 @@ class LegalBase(object):
             VocabItem(u'EURDEP', _(u'EURDEP')),
             VocabItem(u'IRMIS', _(u'IRMIS')),
             VocabItem(u'DENSE', _(u'DENSE')),
-            VocabItem(u'KFÜ', _(u'KFÜ')),
+            VocabItem(u'KFUE', _(u'KFUE')),
             VocabItem(u'Land', _(u'Land')),
             VocabItem(u'SPARSE', _(u'SPARSE')),
             VocabItem(u'REI-E', _(u'REI-E')),
