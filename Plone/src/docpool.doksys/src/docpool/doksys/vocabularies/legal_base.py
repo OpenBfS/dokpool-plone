@@ -48,7 +48,7 @@ class LegalBase(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=item.token,
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )
