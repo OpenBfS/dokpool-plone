@@ -92,4 +92,6 @@ class DPEvents(Container):
 
 
 ##code-section bottom
+class ELANScenarios(DPEvents):
+    pass
 ##/code-section bottom

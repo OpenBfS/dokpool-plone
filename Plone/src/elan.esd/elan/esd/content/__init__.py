@@ -8,6 +8,8 @@ from docpool.event.content import dpevents
 sys.modules['elan.esd.content.elantransferfolder'] = dptransferfolder
 sys.modules['elan.esd.content.elantransfers'] = dptransfers
 sys.modules['elan.esd.content.elanscenario'] = dpevent
+sys.modules['elan.esd.content'].elanscenario = dpevent
 sys.modules['elan.esd.content.elanscenarios'] = dpevents
+sys.modules['elan.esd.content'].elanscenarios = dpevents
 
 ##/code-section main 

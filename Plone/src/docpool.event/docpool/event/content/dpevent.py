@@ -48,6 +48,7 @@ from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
 from docpool.transfers.config import TRANSFERS_APP
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from Acquisition import aq_base, aq_inner
 
 from logging import getLogger
 logger = getLogger("dpevent")
@@ -126,7 +127,16 @@ class DPEvent(Item, ContentBase):
     implements(IDPEvent)
     
 ##code-section methods
+    def print_dict(self):
+        """
+
+        :return:
+        """
+        return self.__dict__
+
     def migrate(self):
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)
         f = parent(self)
         if hasattr(self, '_setPortalTypeName'):
             self._setPortalTypeName("DPEvent")
@@ -136,6 +146,18 @@ class DPEvent(Item, ContentBase):
         f[myid] = self
         logger.info(self.__class__)
         logger.info(self.getPortalTypeName())
+
+    def migrateProperties(self):
+        request = self.REQUEST
+        alsoProvides(request, IDisableCSRFProtection)
+
+        self = aq_base(self)
+        self.Status = self.status
+        if hasattr(self, "exercise"):
+            self.Exercise = self.exercise
+        self.TimeOfEvent = self.timeOfEvent
+        if hasattr(self, "substitute"):
+            self.Substitute = self.substitute
 
     def getStates(self):
         """
@@ -415,6 +437,8 @@ class DPEvent(Item, ContentBase):
 
 
 ##code-section bottom
+class ELANScenario(DPEvent):
+    pass
 
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):

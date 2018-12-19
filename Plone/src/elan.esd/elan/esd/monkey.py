@@ -134,7 +134,9 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
 
 from Products.CMFPlone.CatalogTool import CatalogTool     
 def searchResults(self, REQUEST=None, **kw):
-    rqurl = self.REQUEST['URL']
+    rqurl = ""
+    if hasattr(self.REQUEST, 'URL'):
+        rqurl = self.REQUEST['URL']
     isArchive = rqurl.find('/archive/') > -1
     has_st = kw.get('SearchableText', None)
     has_path = kw.get('path', None)

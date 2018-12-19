@@ -11,17 +11,11 @@ from Products.CMFCore.utils import getToolByName
 
 cat = getToolByName(context, 'portal_catalog', None)
 
-transfers = cat(portal_type="ELANScenarios", sort_on = "sortable_title")
-for transfer in transfers:
-    t = transfer.getObject()
-    print t
-    t.migrate()
 
-transfers = cat(portal_type="ELANScenario", sort_on = "sortable_title")
+transfers = cat(portal_type="DPEvent", sort_on = "sortable_title")
 for transfer in transfers:
     t = transfer.getObject()
-    print t
-    t.migrate()
+    t.migrateProperties()
 
 return "done"
 
