@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-11-16 09:34+0000\n"
+"POT-Creation-Date: 2018-12-19 15:22+0000\n"
 "PO-Revision-Date: 2018-11-16 10:37+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -16,10 +16,6 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: elan.esd/elan/esd/browser/elanscenarios.pt:21
-msgid "++++ Exercise ++++"
-msgstr "++++ &Uuml;bung ++++"
-
 #: elan.esd/elan/esd/browser/elan_macros.pt:36
 msgid "+++Exercise+++"
 msgstr "+++&Uuml;bung+++"
@@ -28,20 +24,11 @@ msgstr "+++&Uuml;bung+++"
 msgid "Add Collection Portlet"
 msgstr "Portlet für Collection zufügen"
 
-#: elan.esd/elan/esd/profiles/default/actions.xml
-msgid "Add New Scenario"
-msgstr "Neues Ereignis anlegen"
-
 #: elan.esd/elan/esd/browser/elan_macros.pt:81
 msgid "All"
 msgstr "Alle"
 
-#: elan.esd/elan/esd/browser/viewlets/scenarios.pt:10
-msgid "All Archives"
-msgstr "Alle Archive"
-
 #: elan.esd/elan/esd/browser/elandoccollectionrpopup.pt:31
-#: elan.esd/elan/esd/browser/viewlets/scenarios.pt:8
 #: elan.esd/elan/esd/profiles/default/types/ELANArchive.xml
 msgid "Archive"
 msgstr "Archiv"
@@ -51,7 +38,6 @@ msgid "Archives"
 msgstr "Archive"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:22
-#: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Archiving"
 msgstr "Archivieren"
 
@@ -83,10 +69,6 @@ msgstr "Kategorie:"
 msgid "Create Archive Folder"
 msgstr "Archivordner anlegen"
 
-#: elan.esd/elan/esd/browser/elanscenarios.pt:11
-msgid "Created"
-msgstr "Erstellt"
-
 #: elan.esd/elan/esd/browser/elan_macros.pt:89
 msgid "Current filter:"
 msgstr "Aktueller Filter:"
@@ -103,7 +85,7 @@ msgstr "Daten"
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
-#: elan.esd/elan/esd/content/elandoccollection.py:68
+#: elan.esd/elan/esd/content/elandoccollection.py:69
 msgid "Document Types"
 msgstr "Dokumenttypen"
 
@@ -114,10 +96,6 @@ msgstr "Dokumentsammlung"
 #: elan.esd/elan/esd/profiles/default/types/ELANContentConfig.xml
 msgid "ELAN Content Configuration"
 msgstr "Inhaltskonfiguration"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANScenario.xml
-msgid "ELAN Scenario"
-msgstr "ELAN Ereignis"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANSection.xml
 msgid "ELAN Section"
@@ -130,10 +108,6 @@ msgstr "Aktuelle Lage"
 #: elan.esd/elan/esd/portlets/collection.py:136
 msgid "Edit Collection Portlet"
 msgstr "Portlet für Collection bearbeiten"
-
-#: elan.esd/elan/esd/profiles/default/actions.xml
-msgid "Edit Scenarios"
-msgstr "Ereignisse bearbeiten"
 
 #: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Edit Ticker"
@@ -163,10 +137,6 @@ msgstr "IRIX Konfiguration"
 msgid "IRIX base configuration"
 msgstr "IRIX Basis Konfiguration"
 
-#: elan.esd/elan/esd/browser/elanscenarios.pt:18
-msgid "LT"
-msgstr "Ortszeit"
-
 #: elan.esd/elan/esd/portlets/collection.pt:9
 msgid "Latest from"
 msgstr "Neuste aus"
@@ -188,7 +158,6 @@ msgid "Please select at least one scenario!"
 msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:23
-#: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Purge"
 msgstr "Inhalte des Ereignisses löschen"
 
@@ -196,26 +165,9 @@ msgstr "Inhalte des Ereignisses löschen"
 msgid "Recent"
 msgstr "Letzte Änderungen"
 
-#: elan.esd/elan/esd/content/elanscenario.py:169
-msgid "Scenario archived"
-msgstr "Ereignis archiviert"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANScenarios.xml
-msgid "Scenarios"
-msgstr "Ereignisse"
-
 #: elan.esd/elan/esd/browser/i18ndummy.pt:24
-#: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Snapshot"
 msgstr "Kopie des aktuellen Standes"
-
-#: elan.esd/elan/esd/content/elanscenario.py:191
-msgid "Snapshot created"
-msgstr "Kopie der Inhalte erzeugt"
-
-#: elan.esd/elan/esd/browser/elanscenarios.pt:11
-msgid "Status"
-msgstr "Status"
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
 msgid "The location of an item"
@@ -225,21 +177,9 @@ msgstr "Der Ortsbezug eines Inhalts"
 msgid "The time and date an item was last modified by a user"
 msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
 
-#: elan.esd/elan/esd/content/elanscenario.py:348
-msgid "There are no more documents for this scenario."
-msgstr "Diesem Ereignis sind keine Dokumente mehr zugeordnet."
-
 #: elan.esd/elan/esd/portlets/collection.py:128
 msgid "This portlet displays recently modified content from a collection."
 msgstr "Dieses Portlet zeigt die neusten Inhalte einer Collection an."
-
-#: elan.esd/elan/esd/browser/elanscenarios.pt:11
-msgid "Title/Description"
-msgstr "Titel/Beschreibung"
-
-#: elan.esd/elan/esd/content/elanscenario.py:138
-msgid "active"
-msgstr "Aktiv"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:16
 msgid "alert_delete_popup"
@@ -271,10 +211,6 @@ msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 msgid "box_recent_no_items"
 msgstr "Noch keine Änderungen"
 
-#: elan.esd/elan/esd/content/elanscenario.py:138
-msgid "closed"
-msgstr "Geschlossen"
-
 #: elan.esd/elan/esd/behaviors/elandoctype.py:47
 msgid "description_doctype_allowtransfer"
 msgstr ""
@@ -287,29 +223,12 @@ msgstr ""
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py:64
+#: elan.esd/elan/esd/content/elandoccollection.py:65
 msgid "description_elandoccollection_doctypes"
 msgstr ""
 
 #: elan.esd/elan/esd/portlets/collection.py:55
 msgid "description_elandocument_doctype"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanscenario.py:92
-msgid "description_elanscenario_exercise"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elanscenario.py:82
-msgid "description_elanscenario_status"
-msgstr ""
-
-#. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
-#: elan.esd/elan/esd/content/elanscenario.py:110
-msgid "description_elanscenario_substitute"
-msgstr "Nur relevant für private Ereignisse, die von einer anderen Lagedarstellung übernommen wurden. Das erlaubt Ihnen, Dokumente zu diesem Ereignis automatisch einem anderen Ereignis zuzuordnen."
-
-#: elan.esd/elan/esd/content/elanscenario.py:101
-msgid "description_elanscenario_timeofevent"
 msgstr ""
 
 #: elan.esd/elan/esd/content/irixconfig.py:63
@@ -365,10 +284,6 @@ msgstr ""
 msgid "failed_passwords_msg"
 msgstr "Nicht erforderlich."
 
-#: elan.esd/elan/esd/content/elanscenario.py:138
-msgid "inactive"
-msgstr "Inaktiv"
-
 #. Default: "Can documents of this type be sent to other ESDs?"
 #: elan.esd/elan/esd/behaviors/elandoctype.py:46
 msgid "label_doctype_allowtransfer"
@@ -385,7 +300,7 @@ msgid "label_dpdocument_scenarios"
 msgstr "Gehört zu folgenden Ereignissen"
 
 #. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py:63
+#: elan.esd/elan/esd/content/elandoccollection.py:64
 msgid "label_elandoccollection_doctypes"
 msgstr "Dokumenttypen"
 
@@ -393,26 +308,6 @@ msgstr "Dokumenttypen"
 #: elan.esd/elan/esd/portlets/collection.py:54
 msgid "label_elandocument_doctype"
 msgstr "Dokumenttyp"
-
-#. Default: "Is this an exercise?"
-#: elan.esd/elan/esd/content/elanscenario.py:91
-msgid "label_elanscenario_exercise"
-msgstr "Übung?"
-
-#. Default: "Status of the scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:81
-msgid "label_elanscenario_status"
-msgstr "Status"
-
-#. Default: "Substitute scenario"
-#: elan.esd/elan/esd/content/elanscenario.py:109
-msgid "label_elanscenario_substitute"
-msgstr "Ersatzereignis"
-
-#. Default: "Time of event"
-#: elan.esd/elan/esd/content/elanscenario.py:100
-msgid "label_elanscenario_timeofevent"
-msgstr "Ereigniszeit"
 
 #. Default: "Email of contact"
 #: elan.esd/elan/esd/content/irixconfig.py:62

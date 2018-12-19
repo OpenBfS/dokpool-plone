@@ -1,0 +1,130 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-12-19 15:22+0000\n"
+"PO-Revision-Date: 2018-12-19 16:17+0100\n"
+"Last-Translator: Henning Rietz <hr@condat.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: en\n"
+"X-Generator: Poedit 2.1.1\n"
+
+#: docpool.event/docpool/event/browser/dpevents.pt:21
+msgid "++++ Exercise ++++"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Add New Scenario"
+msgstr "Add new Event"
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Archiving"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:11
+msgid "Created"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
+msgid "DP Event"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/types/DPEvents.xml
+msgid "DP Events"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Edit Scenarios"
+msgstr "Edit Events"
+
+#: docpool.event/docpool/event/browser/dpevents.pt:18
+msgid "LT"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Purge"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:196
+msgid "Scenario archived"
+msgstr "Event archived"
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Snapshot"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:218
+msgid "Snapshot created"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:11
+msgid "Status"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:375
+msgid "There are no more documents for this scenario."
+msgstr "There are no more documents for this event."
+
+#: docpool.event/docpool/event/browser/dpevents.pt:11
+msgid "Title/Description"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:165
+msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:165
+msgid "closed"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:87
+msgid "description_dpevent_exercise"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:77
+msgid "description_dpevent_status"
+msgstr ""
+
+#. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
+#: docpool.event/docpool/event/content/dpevent.py:105
+msgid "description_dpevent_substitute"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:96
+msgid "description_dpevent_timeofevent"
+msgstr ""
+
+#: docpool.event/docpool/event/configure.zcml:23
+msgid "docpool.event"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:165
+msgid "inactive"
+msgstr ""
+
+#. Default: "Is this an exercise?"
+#: docpool.event/docpool/event/content/dpevent.py:86
+msgid "label_dpevent_exercise"
+msgstr ""
+
+#. Default: "Status of the scenario"
+#: docpool.event/docpool/event/content/dpevent.py:76
+msgid "label_dpevent_status"
+msgstr "Status of the event"
+
+#. Default: "Substitute scenario"
+#: docpool.event/docpool/event/content/dpevent.py:104
+msgid "label_dpevent_substitute"
+msgstr "Substitute event"
+
+#. Default: "Time of event"
+#: docpool.event/docpool/event/content/dpevent.py:95
+msgid "label_dpevent_timeofevent"
+msgstr ""
