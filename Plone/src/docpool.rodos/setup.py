@@ -38,6 +38,7 @@ setup(name='docpool.rodos',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'docpool.base',
+          'docpool.event',
           'docpool.transfers'
           ##code-section dependencies
 	      ##/code-section dependencies

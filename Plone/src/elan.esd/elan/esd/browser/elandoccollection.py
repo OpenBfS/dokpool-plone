@@ -20,7 +20,7 @@ from plone.memoize.instance import memoize
 
 ##code-section imports
 from elan.esd.utils import getAvailableCategories, getCategoriesForCurrentUser
-from elan.esd.browser.viewlets.common import ScenarioViewlet
+from docpool.event.browser.viewlets.common import EventViewlet
 from Products.CMFCore.utils import getToolByName
 ##/code-section imports
 
@@ -53,7 +53,7 @@ class ELANDocCollectionrpopupView(BrowserView):
     def scenario_view(self):
         """
         """
-        v = ScenarioViewlet(self.context, self.request, self)
+        v = EventViewlet(self.context, self.request, self)
         v.update()
         return v
     ##/code-section methodsrpopup     

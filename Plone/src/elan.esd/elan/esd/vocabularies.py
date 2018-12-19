@@ -10,63 +10,6 @@ from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 
-class ScenarioVocabulary(object):
-    """    
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)        
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, 'portal_catalog', None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = [ (t.Title, t.id ) for t in cat({"portal_type": "ELANScenario", "path":path, "dp_type":"active"})]
-        items.sort()
-        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-ScenarioVocabularyFactory = ScenarioVocabulary()
-
-class ScenarioRefVocabulary(object):
-    """    
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)        
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, 'portal_catalog', None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = [ (t.Title, t.UID ) for t in cat({"portal_type": "ELANScenario", "path":path})]
-        items.sort()
-        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-ScenarioRefVocabularyFactory = ScenarioRefVocabulary()
-
-class ScenarioSubstituteVocabulary(object):
-    """    
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)        
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, 'portal_catalog', None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = [ (t.Title, t.getObject() ) for t in cat({"portal_type": "ELANScenario", "path":path, "dp_type":"active"})]
-        items.sort()
-        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-ScenarioSubstituteVocabularyFactory = ScenarioSubstituteVocabulary()
-
 class CategoryVocabulary(object):
     """    
     """

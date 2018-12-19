@@ -55,8 +55,8 @@ ARCHIVESTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Elektronische Lagedar
 
 ADMINSTRUCTURE = [
     {TYPE: 'ELANContentConfig', TITLE: 'Konfiguration Inhalte', ID: 'contentconfig', CHILDREN: [
-        {TYPE: 'ELANScenarios', TITLE: u'Ereignisse', ID: 'scen', CHILDREN: [
-            {TYPE: 'ELANScenario', TITLE: u'Normalfall', ID: 'routinemode', "Status": "active",
+        {TYPE: 'DPEvents', TITLE: u'Ereignisse', ID: 'scen', CHILDREN: [
+            {TYPE: 'DPEvent', TITLE: u'Normalfall', ID: 'routinemode', "Status": "active",
              "TimeOfEvent": datetime.now(), CHILDREN: []}
         ]},
         {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},

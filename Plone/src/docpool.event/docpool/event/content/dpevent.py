@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-# File: elanscenario.py
-#
 # Copyright (c) 2016 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
 #            http://www.condat.de
@@ -10,9 +8,6 @@
 __author__ = ''
 __docformat__ = 'plaintext'
 
-"""Definition of the ELANScenario content type. See elanscenario.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from zope.component import adapts
@@ -36,7 +31,6 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.dexterity.utils import safe_unicode
 from DateTime import DateTime
 from docpool.config.utils import TYPE, TITLE, ID, CHILDREN, createPloneObjects, ploneId
-from docpool.config.general.elan import DOCTYPES
 from Products.CMFPlone.utils import parent
 from Products.CMFPlone.utils import log
 from docpool.base.utils import portalMessage
@@ -45,7 +39,6 @@ from Products.Archetypes.utils import DisplayList
 from zope.component import adapter
 from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectMovedEvent, IObjectRemovedEvent, IObjectModifiedEvent
 from Products.CMFCore.interfaces import IActionSucceededEvent
-from elan.esd import DocpoolMessageFactory
 from Products.CMFPlone.i18nl10n import utranslate
 import datetime
 from five import grok
@@ -56,30 +49,31 @@ from docpool.config.local.transfers import TRANSFER_AREA
 from docpool.transfers.config import TRANSFERS_APP
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
+from logging import getLogger
+logger = getLogger("dpevent")
+
 @grok.provider(IContextSourceBinder)
 def availableScenarios(context):
     if hasattr(context, "dpSearchPath"):
         path = context.dpSearchPath() + "/contentconfig/scen"
     else:
         path = "/Plone/contentconfig/scen"
-    query = { "portal_type" : ["ELANScenario"],
+    query = { "portal_type" : ["DPEvent"],
               "path": {'query' :path } 
              }
 
-    return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IELANScenario.__identifier__).__call__(context) 
+    return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IDPEvent.__identifier__).__call__(context)
 ##/code-section imports 
 
-from elan.esd.config import PROJECTNAME
+from docpool.event import DocpoolMessageFactory as _
 
-from elan.esd import DocpoolMessageFactory as _
-
-class IELANScenario(form.Schema, IContentBase):
+class IDPEvent(form.Schema, IContentBase):
     """
     """
         
     Status = schema.Choice(
-                        title=_(u'label_elanscenario_status', default=u'Status of the scenario'),
-                        description=_(u'description_elanscenario_status', default=u''),
+                        title=_(u'label_dpevent_status', default=u'Status of the scenario'),
+                        description=_(u'description_dpevent_status', default=u''),
                         required=True,
 ##code-section field_status
                         source="docpool.base.vocabularies.Status",
@@ -88,8 +82,8 @@ class IELANScenario(form.Schema, IContentBase):
     
         
     Exercise = schema.Bool(
-                        title=_(u'label_elanscenario_exercise', default=u'Is this an exercise?'),
-                        description=_(u'description_elanscenario_exercise', default=u''),
+                        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
+                        description=_(u'description_dpevent_exercise', default=u''),
                         required=False,
 ##code-section field_exercise
 ##/code-section field_exercise                           
@@ -97,8 +91,8 @@ class IELANScenario(form.Schema, IContentBase):
     
         
     TimeOfEvent = schema.Datetime(
-                        title=_(u'label_elanscenario_timeofevent', default=u'Time of event'),
-                        description=_(u'description_elanscenario_timeofevent', default=u''),
+                        title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
+                        description=_(u'description_dpevent_timeofevent', default=u''),
                         required=True,
 ##code-section field_timeOfEvent
 ##/code-section field_timeOfEvent                           
@@ -106,32 +100,43 @@ class IELANScenario(form.Schema, IContentBase):
     
         
     Substitute = RelationChoice(
-                        title=_(u'label_elanscenario_substitute', default=u'Substitute scenario'),
-                        description=_(u'description_elanscenario_substitute', default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
+                        title=_(u'label_dpevent_substitute', default=u'Substitute scenario'),
+                        description=_(u'description_dpevent_substitute', default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
                         required=False,
 ##code-section field_substitute
-                        source="elan.esd.vocabularies.ScenarioSubstitutes"
+                        source="docpool.event.vocabularies.EventSubstitutes"
 ##/code-section field_substitute                           
     )
     
 
 ##code-section interface
     form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
-@form.default_value(field=IELANScenario['TimeOfEvent'])
+@form.default_value(field=IDPEvent['TimeOfEvent'])
 def initializeTimeOfEvent(data):
     # To get hold of the folder, do: context = data.context
     return datetime.datetime.today()   
 ##/code-section interface
 
 
-class ELANScenario(Item, ContentBase):
+class DPEvent(Item, ContentBase):
     """
     """
     security = ClassSecurityInfo()
     
-    implements(IELANScenario)
+    implements(IDPEvent)
     
 ##code-section methods
+    def migrate(self):
+        f = parent(self)
+        if hasattr(self, '_setPortalTypeName'):
+            self._setPortalTypeName("DPEvent")
+        myid = self.getId()
+        del f[myid]
+        self.__class__ = DPEvent
+        f[myid] = self
+        logger.info(self.__class__)
+        logger.info(self.getPortalTypeName())
+
     def getStates(self):
         """
         """
@@ -147,13 +152,13 @@ class ELANScenario(Item, ContentBase):
         """
         Do you really want to remove all documents from this scenario?
         """
-        return utranslate("elan.esd", "purge_confirm_msg", context=self)
+        return utranslate("docpool.event", "purge_confirm_msg", context=self)
     
     def archiveConfirmMsg(self):
         """
         Do you really want to archive this scenario?
         """
-        return utranslate("elan.esd", "archive_confirm_msg", context=self)
+        return utranslate("docpool.event", "archive_confirm_msg", context=self)
 
     security.declareProtected("Modify portal content", "archiveAndClose")
     def archiveAndClose(self, REQUEST):
@@ -393,7 +398,7 @@ class ELANScenario(Item, ContentBase):
                 scns.append(self.getId())
             member.setMemberProperties({"scenarios": scns})
     
-    def deleteScenarioReferences(self):
+    def deleteEventReferences(self):
         """
         """
         self.Substitute = None
@@ -411,23 +416,21 @@ class ELANScenario(Item, ContentBase):
 
 ##code-section bottom
 
-#@adapter(IELANContent, IObjectAddedEvent)
-#def updateCreated(obj, event=None):
-@adapter(IELANScenario, IObjectAddedEvent)
-def scenarioAdded(obj, event=None):
+@adapter(IDPEvent, IObjectAddedEvent)
+def eventAdded(obj, event=None):
     """
     For new scenarios, add them to each user's personal selection.
     """
     # print "scenarioAdded"
     obj.addScenarioForUsers()
 
-@adapter(IELANScenario, IObjectModifiedEvent)
-def scenarioChanged(obj, event=None):
+@adapter(IDPEvent, IObjectModifiedEvent)
+def eventChanged(obj, event=None):
     """
     """
     #print 'scenarioChanged'
     if obj.Status != 'active':
-        obj.deleteScenarioReferences()
+        obj.deleteEventReferences()
     #print obj.Substitute
     if obj.Substitute:
         sscen = obj.Substitute.to_object
@@ -456,8 +459,8 @@ def scenarioChanged(obj, event=None):
             except Exception, e:
                 log_exc(e)
                               
-@adapter(IELANScenario, IActionSucceededEvent)
-def scenarioPublished(obj, event=None):
+@adapter(IDPEvent, IActionSucceededEvent)
+def eventPublished(obj, event=None):
     if event.__dict__['action'] == 'publish':        
         # Update all objects for this scenario
         m = obj.content

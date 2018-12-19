@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="elan.esd" name="ELANScenarios">
+<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.event" name="DPEvents">
 
  <!-- Basic metadata -->    
- <property name="title" i18n:translate="">Scenarios</property>
+ <property name="title" i18n:translate="">DP Events</property>
  <property name="description" i18n:translate=""></property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>
@@ -11,18 +11,18 @@
  <property name="allowed_content_types">
      
          
-             <element value="ELANScenario" />
+             <element value="DPEvent" />
          
      
  </property>
  <!-- schema interface -->
- <property name="schema">elan.esd.content.elanscenarios.IELANScenarios</property>
+ <property name="schema">docpool.event.content.dpevents.IDPEvents</property>
 
  <!-- class used for content items -->
- <property name="klass">elan.esd.content.elanscenarios.ELANScenarios</property>
+ <property name="klass">docpool.event.content.dpevents.DPEvents</property>
 
  <!-- add permission -->
- <property name="add_permission">elan.esd.AddELANScenarios</property>
+ <property name="add_permission">docpool.event.AddDPEvents</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">

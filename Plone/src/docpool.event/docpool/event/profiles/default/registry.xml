@@ -1,0 +1,58 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.event">
+
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>DPEvents</element>
+    </value>
+  </record>
+
+  <record field="description" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.description">
+    <field type="plone.registry.field.Text">
+      <title>Description</title>
+    </field>
+    <value>Scenario categorization</value>
+  </record>
+  <record field="enabled" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.enabled">
+    <field type="plone.registry.field.Bool">
+      <title>Enabled</title>
+    </field>
+    <value>True</value>
+  </record>
+  <record field="group" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.group">
+    <field type="plone.registry.field.TextLine">
+      <title>Group</title>
+    </field>
+    <value>Text</value>
+  </record>
+  <record field="operations" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.operations">
+    <field type="plone.registry.field.List">
+      <title>Operations</title>
+      <value_type type="plone.registry.field.DottedName">
+        <min_dots>0</min_dots>
+        <title>Operation ID</title>
+      </value_type>
+    </field>
+    <value>
+      <element>plone.app.querystring.operation.selection.is</element>
+    </value>
+  </record>
+  <record field="sortable" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.sortable">
+    <field type="plone.registry.field.Bool">
+      <title>Sortable</title>
+    </field>
+    <value>True</value>
+  </record>
+  <record field="title" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.title">
+    <field type="plone.registry.field.TextLine">
+      <title>Title</title>
+    </field>
+    <value>Scenario</value>
+  </record>
+  <record field="vocabulary" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.vocabulary">
+    <field type="plone.registry.field.TextLine">
+      <title>Vocabulary</title>
+    </field>
+    <value>docpool.event.vocabularies.Events</value>
+  </record>
+</registry>

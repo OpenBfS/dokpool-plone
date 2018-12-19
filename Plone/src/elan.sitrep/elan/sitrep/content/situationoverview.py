@@ -33,7 +33,7 @@ from Products.CMFCore.utils import getToolByName
 from docpool.base.utils import queryForObjects, queryForObject
 from DateTime import DateTime
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
-from elan.esd.utils import getScenariosForCurrentUser
+from docpool.event.utils import getScenariosForCurrentUser
 from docpool.elan.config import ELAN_APP
 from Products.CMFPlone.utils import safe_unicode
 ##/code-section imports 

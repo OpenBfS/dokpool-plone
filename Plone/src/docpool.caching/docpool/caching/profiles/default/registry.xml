@@ -31,7 +31,7 @@
       <element key="SituationReport">plone.content.folderView</element>
       <element key="DashboardCollection">plone.content.feed</element>
       <element key="DocTypes">plone.content.folderView</element>
-      <element key="ELANScenario">plone.content.itemView</element>
+      <element key="DPEvent">plone.content.itemView</element>
       <element key="DocType">plone.content.itemView</element>
       <element key="Document">plone.content.itemView</element>
       <element key="SRModule">plone.content.folderView</element>
@@ -49,7 +49,7 @@
       <element key="File">plone.content.file</element>
       <element key="SRCollection">plone.content.feed</element>
       <element key="DPDocument">plone.content.folderView</element>
-      <element key="ELANScenarios">plone.content.folderView</element>
+      <element key="DPEvents">plone.content.folderView</element>
     </value>
   </record>
   <record name="plone.app.caching.interfaces.IPloneCacheSettings.enableCompression" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="enableCompression">
@@ -82,7 +82,7 @@
       <element>DocType</element>
       <element>ELANDocCollection</element>
       <element>ELANContentConfig</element>
-      <element>ELANScenario</element>
+      <element>DPEvent</element>
       <element>ELANSection</element>
       <element>ELANCurrentSituation</element>
       <element>File</element>
@@ -94,7 +94,7 @@
       <element>InfoLink</element>
       <element>Link</element>
       <element>Document</element>
-      <element>ELANScenarios</element>
+      <element>DPEvents</element>
       <element>SimpleFolder</element>
     </value>
   </record>

@@ -27,7 +27,7 @@ from plone.protect import CheckAuthenticator
 from zExceptions import Forbidden
 import logging
 from Products.CMFPlone import PloneMessageFactory as _
-from elan.esd.utils import getScenariosForCurrentUser
+from docpool.event.utils import getScenariosForCurrentUser
 from docpool.base.utils import deleteMemberFolders
 from docpool.base.browser.dpdocument import DPDocumentView,\
     DPDocumentlistitemView, DPDocumentinlineView, DPDocumentprintView
@@ -175,11 +175,11 @@ def createTestData(self, count=100, prune=False):
         deleteTestData(self)
     createGroupsAndUsers(self)
     try:
-        self.contentconfig.scen.invokeFactory(id="scenario1", type_name="ELANScenario", title="Scenario 1", description="This is scenario 1", Status="active", TimeOfEvent=datetime.datetime.today())
+        self.contentconfig.scen.invokeFactory(id="scenario1", type_name="DPEvent", title="Scenario 1", description="This is scenario 1", Status="active", TimeOfEvent=datetime.datetime.today())
     except:
         pass
     try:
-        self.contentconfig.scen.invokeFactory(id="scenario2", type_name="ELANScenario", title="Scenario 2", description="This is scenario 2", Status="active", exercise=True, TimeOfEvent=datetime.datetime.today())
+        self.contentconfig.scen.invokeFactory(id="scenario2", type_name="DPEvent", title="Scenario 2", description="This is scenario 2", Status="active", exercise=True, TimeOfEvent=datetime.datetime.today())
     except:
         pass
     createTestDocuments(self, count)
@@ -194,7 +194,7 @@ def getUserSelectedScenarios(self):
     """
     """
     # FIXME
-    from elan.esd.utils import getScenariosForCurrentUser
+    from docpool.event.utils import getScenariosForCurrentUser
     usc = getScenariosForCurrentUser(self)
     return usc
 

@@ -60,63 +60,7 @@
         
             <browser:page permission="zope2.View" name="view" for="..interfaces.IELANArchive" class=".elanarchive.ELANArchiveView" />
         
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IELANScenarios" class=".elanscenarios.ELANScenariosView" />
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
+
         
         
         

@@ -55,8 +55,8 @@ ARCHIVESTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Electronic Situation 
 
 ADMINSTRUCTURE = [
     {TYPE: 'ELANContentConfig', TITLE: 'Content Configuration', ID: 'contentconfig', CHILDREN: [
-        {TYPE: 'ELANScenarios', TITLE: u'Scenarios', ID: 'scen', CHILDREN: [
-            {TYPE: 'ELANScenario', TITLE: u'Routine mode', ID: 'routinemode', "Status": "active",
+        {TYPE: 'DPEvents', TITLE: u'Scenarios', ID: 'scen', CHILDREN: [
+            {TYPE: 'DPEvent', TITLE: u'Routine mode', ID: 'routinemode', "Status": "active",
              "TimeOfEvent": datetime.now(), CHILDREN: []}
         ]},
         {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},

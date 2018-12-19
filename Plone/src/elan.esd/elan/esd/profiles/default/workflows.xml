@@ -24,14 +24,7 @@
    
     
     
-    
-   <type type_id="ELANScenario">
-    <bound-workflow workflow_id="elan_scenario_workflow" />
-   </type>
-   
-    
-    
-    
+
    <type type_id="ELANArchive">
     <bound-workflow workflow_id="dp_one_state_workflow" />
    </type>
@@ -57,22 +50,8 @@
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
    
-    
-    
-    
-   <type type_id="ELANScenarios">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
-   
-    
-    
-    
-   <type type_id="ELANArchives">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
-   
-    
-    
+
+
     
    <type type_id="IRIXConfig">
     <bound-workflow workflow_id="dp_one_state_workflow" />

@@ -30,7 +30,7 @@ class IELANDocument(ITransferable):
         title=_(u'label_dpdocument_scenarios', default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
-        value_type=schema.Choice(source="elan.esd.vocabularies.Scenarios"),
+        value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
     )
     read_permission(scenarios='docpool.elan.AccessELAN')
     form.widget(scenarios=CheckBoxFieldWidget)

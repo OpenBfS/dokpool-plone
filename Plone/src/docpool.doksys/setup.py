@@ -41,7 +41,8 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'z3c.jbot'
+        'z3c.jbot',
+        'docpool.event'
     ],
     extras_require={
         'test': [
