@@ -17,7 +17,7 @@ class VocabItem(object):
 
 
 @implementer(IVocabularyFactory)
-class Type(object):
+class InfoType(object):
     """
     """
 
@@ -56,4 +56,4 @@ class Type(object):
         return SimpleVocabulary(terms)
 
 
-TypeFactory = Type()
+InfoTypeFactory = InfoType()
