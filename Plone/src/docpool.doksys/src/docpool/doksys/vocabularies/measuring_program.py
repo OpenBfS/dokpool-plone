@@ -28,8 +28,7 @@ class MeasuringProgram(object):
             VocabItem(u'Intensivmessprogramm', _(u'Intensivmessprogramm')),
             VocabItem(u'Routinemessprogramm', _(u'Routinemessprogramm')),
             VocabItem(u'REI', _(u'REI')),
-            VocabItem(u'Spontanproben Bund', _(u'Spontanproben Bund')),
-
+            VocabItem(u'Spontanproben Bund', _(u'Spontanproben Bund'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -44,7 +43,7 @@ class MeasuringProgram(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

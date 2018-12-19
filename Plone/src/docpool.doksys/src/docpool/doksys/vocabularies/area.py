@@ -28,8 +28,7 @@ class Area(object):
             VocabItem(u'D', _(u'D')),
             VocabItem(u'EU', _(u'EU')),
             VocabItem(u'ME', _(u'ME')),
-            VocabItem(u'World', _(u'World')),
-
+            VocabItem(u'World', _(u'World'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -44,7 +43,7 @@ class Area(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

@@ -288,7 +288,7 @@ class SampleTypeIds(object):
             VocabItem(u'Z32', _(u'Z32')),
             VocabItem(u'Z33', _(u'Z33')),
             VocabItem(u'Z34', _(u'Z34')),
-            VocabItem(u'Z35', _(u'Z35')),
+            VocabItem(u'Z35', _(u'Z35'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -303,7 +303,7 @@ class SampleTypeIds(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

@@ -30,8 +30,7 @@ class Duration(object):
             VocabItem(u'1d', _(u'1d')),
             VocabItem(u'2h', _(u'2h')),
             VocabItem(u'1h', _(u'1h')),
-            VocabItem(u'10Min', _(u'10Min')),
-
+            VocabItem(u'10Min', _(u'10Min'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -46,7 +45,7 @@ class Duration(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )
