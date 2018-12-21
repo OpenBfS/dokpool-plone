@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-12-19 15:22+0000\n"
+"POT-Creation-Date: 2018-12-21 09:37+0000\n"
 "PO-Revision-Date: 2015-10-27 20:26+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -16,15 +16,11 @@ msgstr ""
 "Language: en\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:36
-msgid "+++Exercise+++"
-msgstr ""
-
 #: elan.esd/elan/esd/portlets/collection.py:127
 msgid "Add Collection Portlet"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:81
+#: elan.esd/elan/esd/browser/elan_macros.pt:28
 msgid "All"
 msgstr ""
 
@@ -45,7 +41,7 @@ msgstr "Archive"
 msgid "Area for general information"
 msgstr "Area for general information"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:107
+#: elan.esd/elan/esd/browser/elan_macros.pt:54
 msgid "Belongs to scenario:"
 msgstr "Belongs to event:"
 
@@ -61,7 +57,7 @@ msgstr ""
 msgid "Collection"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:111
+#: elan.esd/elan/esd/browser/elan_macros.pt:58
 msgid "Content from:"
 msgstr "Content from:"
 
@@ -69,7 +65,7 @@ msgstr "Content from:"
 msgid "Create Archive Folder"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:89
+#: elan.esd/elan/esd/browser/elan_macros.pt:36
 msgid "Current filter:"
 msgstr ""
 
@@ -117,11 +113,11 @@ msgstr ""
 msgid "Edit the document"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:95
+#: elan.esd/elan/esd/browser/elan_macros.pt:42
 msgid "Edit unknown scenario"
 msgstr ""
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:50
+#: elan.esd/elan/esd/browser/elan_macros.pt:22
 msgid "Filter"
 msgstr "Filter"
 
@@ -152,10 +148,6 @@ msgstr ""
 #: elan.esd/elan/esd/portlets/overview.py:42
 msgid "Overview"
 msgstr ""
-
-#: elan.esd/elan/esd/browser/elan_macros.pt:14
-msgid "Please select at least one scenario!"
-msgstr "Please select at least one event!"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:23
 msgid "Purge"

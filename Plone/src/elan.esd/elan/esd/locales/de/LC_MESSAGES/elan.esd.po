@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-12-19 15:22+0000\n"
+"POT-Creation-Date: 2018-12-21 09:37+0000\n"
 "PO-Revision-Date: 2018-11-16 10:37+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -16,15 +16,11 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:36
-msgid "+++Exercise+++"
-msgstr "+++&Uuml;bung+++"
-
 #: elan.esd/elan/esd/portlets/collection.py:127
 msgid "Add Collection Portlet"
 msgstr "Portlet für Collection zufügen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:81
+#: elan.esd/elan/esd/browser/elan_macros.pt:28
 msgid "All"
 msgstr "Alle"
 
@@ -45,7 +41,7 @@ msgstr "Archivieren"
 msgid "Area for general information"
 msgstr "Bereich für allgemeine Informationen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:107
+#: elan.esd/elan/esd/browser/elan_macros.pt:54
 msgid "Belongs to scenario:"
 msgstr "Zu Ereignis:"
 
@@ -61,7 +57,7 @@ msgstr "Chronologie"
 msgid "Collection"
 msgstr "ELAN Collection"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:111
+#: elan.esd/elan/esd/browser/elan_macros.pt:58
 msgid "Content from:"
 msgstr "Kategorie:"
 
@@ -69,7 +65,7 @@ msgstr "Kategorie:"
 msgid "Create Archive Folder"
 msgstr "Archivordner anlegen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:89
+#: elan.esd/elan/esd/browser/elan_macros.pt:36
 msgid "Current filter:"
 msgstr "Aktueller Filter:"
 
@@ -117,11 +113,11 @@ msgstr "Ticker bearbeiten"
 msgid "Edit the document"
 msgstr "Das Dokument bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:95
+#: elan.esd/elan/esd/browser/elan_macros.pt:42
 msgid "Edit unknown scenario"
 msgstr "Unbekanntes Ereignis bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:50
+#: elan.esd/elan/esd/browser/elan_macros.pt:22
 msgid "Filter"
 msgstr "Filter"
 
@@ -152,10 +148,6 @@ msgstr "Metadaten"
 #: elan.esd/elan/esd/portlets/overview.py:42
 msgid "Overview"
 msgstr "Übersicht"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt:14
-msgid "Please select at least one scenario!"
-msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt:23
 msgid "Purge"

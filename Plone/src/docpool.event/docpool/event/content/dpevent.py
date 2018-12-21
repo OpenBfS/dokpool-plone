@@ -211,6 +211,14 @@ class DPEvent(Item, ContentBase):
         if hasattr(self, "substitute"):
             self.Substitute = self.substitute
 
+    def phaseInfo(self):
+        """
+        :return:
+        """
+        if self.ScenarioPhase:
+            return self.ScenarioPhase.to_object.getPhaseTitle()
+        return ""
+
     def getStates(self):
         """
         """
