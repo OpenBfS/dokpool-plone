@@ -9,9 +9,9 @@
    -->
 
      <object name="DPEvent" meta_type="Dexterity FTI" />
-
-
      <object name="DPEvents" meta_type="Dexterity FTI" />
+     <object name="DPNetwork" meta_type="Dexterity FTI" />
+     <object name="DPNuclearPowerStation" meta_type="Dexterity FTI" />
 
 <!-- ##code-section Main -->
 <!-- ##/code-section Main -->

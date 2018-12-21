@@ -1,5 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.event">
-    
+    <grok:grok package="." />
+
     <i18n:registerTranslations directory="locales"/>
     <includeDependencies package="." />
     <include package="zope.annotation" />
@@ -31,6 +32,8 @@
    <permission id="docpool.event.AddDPEvent" title="Docpool: Add DPEvent" />
 
    <permission id="docpool.event.AddDPEvents" title="Docpool: Add DPEvents" />
+   <permission id="docpool.event.AddDPNetwork" title="Docpool: Add DPNetwork" />
+   <permission id="docpool.event.AddDPNuclearPowerStation" title="Docpool: Add DPNuclearPowerStation" />
 
   <utility
     component=".vocabularies.EventVocabularyFactory"

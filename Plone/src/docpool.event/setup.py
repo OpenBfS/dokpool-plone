@@ -36,8 +36,9 @@ setup(name='docpool.event',
           'collective.dexteritytextindexer',
           'plone.app.contenttypes',
           'plone.app.relationfield',
-          'plone.app.referenceablebehavior'
+          'plone.app.referenceablebehavior',
           ##code-section dependencies
+          'collective.geo.bundle'
 	      ##/code-section dependencies
       ],
       ##code-section entrypoints      

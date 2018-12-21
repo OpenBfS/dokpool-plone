@@ -37,7 +37,8 @@ from docpool.base.utils import portalMessage
 from zope.component import getMultiAdapter
 from Products.Archetypes.utils import DisplayList
 from zope.component import adapter
-from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectMovedEvent, IObjectRemovedEvent, IObjectModifiedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectMovedEvent, IObjectRemovedEvent, \
+    IObjectModifiedEvent
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFPlone.i18nl10n import utranslate
 import datetime
@@ -51,7 +52,9 @@ from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from Acquisition import aq_base, aq_inner
 
 from logging import getLogger
+
 logger = getLogger("dpevent")
+
 
 @grok.provider(IContextSourceBinder)
 def availableScenarios(context):
@@ -59,63 +62,112 @@ def availableScenarios(context):
         path = context.dpSearchPath() + "/contentconfig/scen"
     else:
         path = "/Plone/contentconfig/scen"
-    query = { "portal_type" : ["DPEvent"],
-              "path": {'query' :path } 
+    query = {"portal_type": ["DPEvent"],
+             "path": {'query': path}
              }
 
-    return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IDPEvent.__identifier__).__call__(context)
-##/code-section imports 
+    return ObjPathSourceBinder(navigation_tree_query=query, object_provides=IDPEvent.__identifier__).__call__(context)
+
+
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
+from collective.z3cform.mapwidget.widget import MapFieldWidget
+
+from plone.autoform import directives
+##/code-section imports
 
 from docpool.event import DocpoolMessageFactory as _
+
 
 class IDPEvent(form.Schema, IContentBase):
     """
     """
-        
-    Status = schema.Choice(
-                        title=_(u'label_dpevent_status', default=u'Status of the scenario'),
-                        description=_(u'description_dpevent_status', default=u''),
-                        required=True,
-##code-section field_status
-                        source="docpool.base.vocabularies.Status",
-##/code-section field_status                           
-    )
-    
-        
-    Exercise = schema.Bool(
-                        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
-                        description=_(u'description_dpevent_exercise', default=u''),
-                        required=False,
-##code-section field_exercise
-##/code-section field_exercise                           
-    )
-    
-        
-    TimeOfEvent = schema.Datetime(
-                        title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
-                        description=_(u'description_dpevent_timeofevent', default=u''),
-                        required=True,
-##code-section field_timeOfEvent
-##/code-section field_timeOfEvent                           
-    )
-    
-        
-    Substitute = RelationChoice(
-                        title=_(u'label_dpevent_substitute', default=u'Substitute scenario'),
-                        description=_(u'description_dpevent_substitute', default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
-                        required=False,
-##code-section field_substitute
-                        source="docpool.event.vocabularies.EventSubstitutes"
-##/code-section field_substitute                           
-    )
-    
 
-##code-section interface
+    Status = schema.Choice(
+        title=_(u'label_dpevent_status', default=u'Status of the scenario'),
+        description=_(u'description_dpevent_status', default=u''),
+        required=True,
+        ##code-section field_status
+        source="docpool.base.vocabularies.Status",
+        ##/code-section field_status
+    )
+
+    Exercise = schema.Bool(
+        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
+        description=_(u'description_dpevent_exercise', default=u''),
+        required=False,
+        ##code-section field_exercise
+        ##/code-section field_exercise
+    )
+
+    TimeOfEvent = schema.Datetime(
+        title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
+        description=_(u'description_dpevent_timeofevent', default=u''),
+        required=True,
+        ##code-section field_timeOfEvent
+        ##/code-section field_timeOfEvent
+    )
+
+    Substitute = RelationChoice(
+        title=_(u'label_dpevent_substitute', default=u'Substitute scenario'),
+        description=_(u'description_dpevent_substitute',
+                      default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
+        required=False,
+        ##code-section field_substitute
+        source="docpool.event.vocabularies.EventSubstitutes"
+        ##/code-section field_substitute
+    )
+
+    # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
+    directives.widget(ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
+    ScenarioPhase = RelationChoice(
+        title=_(u"Scenario & Phase"),
+        vocabulary=u"docpool.event.vocabularies.Phases",
+        required=False,
+    )
+
+    directives.widget(ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
+    ScenarioLocation = RelationChoice(
+        title=_(u'Scenario location'),
+        vocabulary=u"docpool.event.vocabularies.PowerStations",
+        required=False)
+
+    ScenarioCoordinates = schema.TextLine(
+        title=_(u'Scenario coordinates'),
+        required=False)
+
+    OperationMode = schema.Choice(
+        title=_(u'Operation mode'),
+        vocabulary=u"docpool.event.vocabularies.Modes",
+        required=False)
+
+    SectorizingSampleTypes = schema.List(
+        title=_(u'Sectorizing sample types'),
+        required=False,
+        value_type = schema.Choice(source=u"docpool.event.vocabularies.SampleTypes"),
+    )
+
+    directives.widget(SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget')
+    SectorizingNetworks = RelationList(
+        title=_(u'Sectorizing networks'),
+        required=False,
+        value_type=RelationChoice(source=u'docpool.event.vocabularies.Networks')
+    )
+
+    AreaOfInterest = schema.Text(
+        title=_(u"Area of interest"),
+        required=False
+    )
+
+    ##code-section interface
     form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+
+
 @form.default_value(field=IDPEvent['TimeOfEvent'])
 def initializeTimeOfEvent(data):
     # To get hold of the folder, do: context = data.context
-    return datetime.datetime.today()   
+    return datetime.datetime.today()
+
+
 ##/code-section interface
 
 
@@ -123,10 +175,10 @@ class DPEvent(Item, ContentBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDPEvent)
-    
-##code-section methods
+
+    ##code-section methods
     def print_dict(self):
         """
 
@@ -162,20 +214,20 @@ class DPEvent(Item, ContentBase):
     def getStates(self):
         """
         """
-        return DisplayList([('active', _('active')),('inactive', _('inactive')),('closed', _('closed'))])
+        return DisplayList([('active', _('active')), ('inactive', _('inactive')), ('closed', _('closed'))])
 
     def dp_type(self):
         """
         We reuse the dp_type index for the scenario status.
         """
         return self.Status
-    
+
     def purgeConfirmMsg(self):
         """
         Do you really want to remove all documents from this scenario?
         """
         return utranslate("docpool.event", "purge_confirm_msg", context=self)
-    
+
     def archiveConfirmMsg(self):
         """
         Do you really want to archive this scenario?
@@ -183,26 +235,28 @@ class DPEvent(Item, ContentBase):
         return utranslate("docpool.event", "archive_confirm_msg", context=self)
 
     security.declareProtected("Modify portal content", "archiveAndClose")
+
     def archiveAndClose(self, REQUEST):
         """
         Saves all content for this scenario to an archive, deletes the original content,
         and sets the scenario to state "closed".
         """
-        alsoProvides(REQUEST, IDisableCSRFProtection)                
+        alsoProvides(REQUEST, IDisableCSRFProtection)
         self.snapshot()
         self.purge()
         self.Status = 'closed'
         self.reindexObject()
         portalMessage(self, _("Scenario archived"), "info")
         return self.restrictedTraverse("view")()
-        
+
     security.declareProtected("Modify portal content", "snapshot")
+
     def snapshot(self, REQUEST=None):
         """
         Saves all content for this scenario to a new archive, but does not delete any files.
         Status is unchanged.
         """
-        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)                
+        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
         arc = self._createArchiveFolders()
         # TODO
         m = self.content
@@ -217,7 +271,7 @@ class DPEvent(Item, ContentBase):
         if REQUEST:
             portalMessage(self, _("Snapshot created"), "info")
             return self.restrictedTraverse("view")()
-        
+
     def _ensureTargetFolder(self, doc, aroot):
         """
         Make sure that a personal or group folder with proper permissions
@@ -250,7 +304,7 @@ class DPEvent(Item, ContentBase):
                 folderType = "UserFolder"
             if isTransfer:
                 folderType = "DPTransferFolder"
-            aroot.invokeFactory(folderType, id=fname) # if not we create a new folder
+            aroot.invokeFactory(folderType, id=fname)  # if not we create a new folder
         af = aroot._getOb(fname)
         # 5. and copy the local roles
         mroot = self.content.Members
@@ -262,22 +316,21 @@ class DPEvent(Item, ContentBase):
         af.setTitle(mf.Title())
         if not isTransfer:
             mtool = getToolByName(self, "portal_membership")
-            mtool.setLocalRoles(af,[fname],'Owner')
+            mtool.setLocalRoles(af, [fname], 'Owner')
         af.reindexObject()
         af.reindexObjectSecurity()
         return af
-        
 
     def _copyDocument(self, target_folder_obj, source_brain):
         """
         Copy utility
         """
-        #TODO: transferLog fuellen und DB Eintraege loeschen
+        # TODO: transferLog fuellen und DB Eintraege loeschen
         # print source_brain.getId
         source_obj = source_brain.getObject()
         # determine parent folder for copy
         p = parent(source_obj)
-        #if source_obj.getId() == 'ifinprojection.2012-08-08.4378013443':
+        # if source_obj.getId() == 'ifinprojection.2012-08-08.4378013443':
         #    p._delOb('ifinprojection.2012-08-08.4378013443')
         #    return
         cb_copy_data = p.manage_copyObjects(source_obj.getId())
@@ -287,10 +340,10 @@ class DPEvent(Item, ContentBase):
             new_id = result[0]['new_id']
             copied_obj = target_folder_obj._getOb(new_id)
             mdate = source_obj.modified()
-            copied_obj.scenarios=[]
+            copied_obj.scenarios = []
             wf_state = source_brain.review_state
             wftool = getToolByName(self, 'portal_workflow')
-            #print wf_state, wftool.getInfoFor(copied_obj, 'review_state')
+            # print wf_state, wftool.getInfoFor(copied_obj, 'review_state')
             if wf_state == "published" and wftool.getInfoFor(copied_obj, 'review_state') != 'published':
                 wftool.doActionFor(copied_obj, 'publish')
             copied_obj.setModificationDate(mdate)
@@ -305,26 +358,26 @@ class DPEvent(Item, ContentBase):
         """
         Helper function for catalog queries
         """
-#        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
-        args = {'portal_type':"DPDocument", 'scenarios': self.getId()}
+        #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
+        args = {'portal_type': "DPDocument", 'scenarios': self.getId()}
         args.update(kwargs)
         cat = getToolByName(self, "portal_catalog")
-        return cat(args) 
-        
+        return cat(args)
+
     def _createArchiveFolders(self):
         """
         We create an archive object. Into it, we copy the complete ESD hierarchy. 
         We also create two folders "Members" and "Groups", which will hold all the
         documents for the scenario.
         """
-        a = self.archive # Acquire root for archives
-        e = self.esd # Acquire esd root
+        a = self.archive  # Acquire root for archives
+        e = self.esd  # Acquire esd root
         now = safe_unicode(self.toLocalizedTime(DateTime(), long_format=1))
         id = ploneId(self, "%s_%s" % (self.getId(), now))
         title = u"%s %s" % (safe_unicode(self.Title()), now)
         # create the archive root
         a.invokeFactory(id=id, type_name="ELANArchive", title=title)
-        arc = a._getOb(id) # get new empty archive
+        arc = a._getOb(id)  # get new empty archive
         arc.setDescription(self.Description())
         # create the document folders
         createPloneObjects(arc, ARCHIVESTRUCTURE)
@@ -335,21 +388,22 @@ class DPEvent(Item, ContentBase):
         # copy the ESD folders
         objs = [o.getId for o in e.getFolderContents({'portal_type': ['ELANSection', 'ELANDocCollection']})]
         # print objs
-        cb_copy_data = e.manage_copyObjects(objs) # Copy aus der Quelle
+        cb_copy_data = e.manage_copyObjects(objs)  # Copy aus der Quelle
         result = arc.esd.manage_pasteObjects(cb_copy_data)
         arc.esd.setDefaultPage("overview")
 
-        return arc   
-        
+        return arc
+
     security.declareProtected("Modify portal content", "purge")
+
     def purge(self, REQUEST=None):
         """
         Deletes the content for this scenario but leaves the status unchanged.
         Documents are deleted if they are not part of any other scenario.
         If they are part of another scenario, only the tag for the current scenario is removed.
         """
-        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)                
-        #TODO im EVENT auf Elandoc DB-Eintraege loeschen.
+        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
+        # TODO im EVENT auf Elandoc DB-Eintraege loeschen.
         m = self.content.Members
         mpath = "/".join(m.getPhysicalPath())
         # We now query the catalog for all documents belonging to this scenario within
@@ -374,7 +428,7 @@ class DPEvent(Item, ContentBase):
         if REQUEST:
             portalMessage(self, _("There are no more documents for this scenario."), "info")
             return self.restrictedTraverse("view")()
-        
+
     def _purgeDocument(self, source_brain):
         """
         Delete utility
@@ -389,24 +443,24 @@ class DPEvent(Item, ContentBase):
         except:
             # Object could have lost its ELAN behavior but that means we can potentially delete it
             scns = ['dummy']
-        if len(scns) == 1: # only the one scenario --> potential delete
+        if len(scns) == 1:  # only the one scenario --> potential delete
             # Check for other applications than ELAN
             apps = ILocalBehaviorSupport(source_obj).local_behaviors
-            if apps and len(apps) > 1: # There are others --> only remove ELAN behavior
+            if apps and len(apps) > 1:  # There are others --> only remove ELAN behavior
                 try:
                     apps.remove(ELAN_APP)
                     ILocalBehaviorSupport(source_obj).local_behaviors = list(set(apps))
                 except Exception, e:
                     log_exc(e)
-            else: # we delete
+            else:  # we delete
                 p = parent(source_obj)
                 p.manage_delObjects([source_obj.getId()])
-        else: # Only remove the scenario
+        else:  # Only remove the scenario
             scns = list(scns)
             scns.remove(self.getId())
-            source_obj.scenarios=scns
+            source_obj.scenarios = scns
             source_obj.reindexObject()
-    
+
     def addScenarioForUsers(self):
         """
         Add this scenario to each users selection of scenarios.
@@ -419,13 +473,13 @@ class DPEvent(Item, ContentBase):
             if self.getId() not in scns:
                 scns.append(self.getId())
             member.setMemberProperties({"scenarios": scns})
-    
+
     def deleteEventReferences(self):
         """
         """
         self.Substitute = None
         self.reindexObject()
-        
+
     def canBeAssigned(self):
         """
         Can this scenario be assigned to documents?
@@ -433,12 +487,15 @@ class DPEvent(Item, ContentBase):
         """
         wftool = getToolByName(self, 'portal_workflow')
         return (wftool.getInfoFor(self, 'review_state') == 'published' and self.Status == 'active')
-##/code-section methods 
+
+
+##/code-section methods
 
 
 ##code-section bottom
 class ELANScenario(DPEvent):
     pass
+
 
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):
@@ -448,60 +505,61 @@ def eventAdded(obj, event=None):
     # print "scenarioAdded"
     obj.addScenarioForUsers()
 
+
 @adapter(IDPEvent, IObjectModifiedEvent)
 def eventChanged(obj, event=None):
     """
     """
-    #print 'scenarioChanged'
+    # print 'scenarioChanged'
     if obj.Status != 'active':
         obj.deleteEventReferences()
-    #print obj.Substitute
-    if obj.Substitute:
-        sscen = obj.Substitute.to_object
-        if not sscen.canBeAssigned():
-            log("Substitute can not be assigned. Not published or not active.")
-            return
-        # Update all objects for this scenario
-        m = obj.content
-        mpath = "/".join(m.getPhysicalPath())
-        # We now query the catalog for all documents belonging to this scenario within
-        # the personal and group folders
-        args = {'portal_type':'DPDocument', 'path': mpath}
-        cat = getToolByName(obj, "portal_catalog")
-        mdocs = cat(args) 
-        for doc in mdocs:
-            try:
-                docobj = doc.getObject()
-                scens = docobj.scenarios
-                #print docobj, scens
-                if scens and obj.getId() in scens:
-                    scens.remove(obj.getId())
-                    scens.append(sscen.getId())
-                    docobj.scenarios = scens 
-                    docobj.reindexObject()
-                    #print "changed", docobj
-            except Exception, e:
-                log_exc(e)
-                              
+        # print obj.Substitute
+        if obj.Substitute:
+            sscen = obj.Substitute.to_object
+            if not sscen.canBeAssigned():
+                log("Substitute can not be assigned. Not published or not active.")
+                return
+            # Update all objects for this scenario
+            m = obj.content
+            mpath = "/".join(m.getPhysicalPath())
+            # We now query the catalog for all documents belonging to this scenario within
+            # the personal and group folders
+            args = {'portal_type': 'DPDocument', 'path': mpath}
+            cat = getToolByName(obj, "portal_catalog")
+            mdocs = cat(args)
+            for doc in mdocs:
+                try:
+                    docobj = doc.getObject()
+                    scens = docobj.scenarios
+                    # print docobj, scens
+                    if scens and obj.getId() in scens:
+                        scens.remove(obj.getId())
+                        scens.append(sscen.getId())
+                        docobj.scenarios = scens
+                        docobj.reindexObject()
+                        # print "changed", docobj
+                except Exception, e:
+                    log_exc(e)
+
+
 @adapter(IDPEvent, IActionSucceededEvent)
 def eventPublished(obj, event=None):
-    if event.__dict__['action'] == 'publish':        
+    if event.__dict__['action'] == 'publish':
         # Update all objects for this scenario
         m = obj.content
         mpath = "/".join(m.getPhysicalPath())
-        args = {'portal_type':'DPDocument', 'path': mpath}
+        args = {'portal_type': 'DPDocument', 'path': mpath}
         cat = getToolByName(obj, "portal_catalog")
-        mdocs = cat(args) 
+        mdocs = cat(args)
         for doc in mdocs:
             try:
                 docobj = doc.getObject()
                 scens = docobj.scenarios
-                #print docobj, scens
+                # print docobj, scens
                 if scens and obj.getId() in scens:
                     docobj.reindexObject()
-                    #print "changed", docobj
+                    # print "changed", docobj
             except Exception, e:
                 log_exc(e)
 
-
-##/code-section bottom 
+##/code-section bottom

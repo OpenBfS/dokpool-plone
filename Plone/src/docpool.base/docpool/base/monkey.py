@@ -61,3 +61,6 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
     AbstractCatalogBrain.original_getURL = AbstractCatalogBrain.getURL
     AbstractCatalogBrain.getURL = getURL
 
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.event" name="DPEvents">
+<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.event" name="DPNetwork">
 
  <!-- Basic metadata -->    
- <property name="title" i18n:translate="">DP Events</property>
+ <property name="title" i18n:translate="">DP Network</property>
  <property name="description" i18n:translate=""></property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>
@@ -10,20 +10,15 @@
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
      
-         
-             <element value="DPEvent" />
-             <element value="DPNetwork" />
-             <element value="DPNuclearPowerStation" />
-
  </property>
  <!-- schema interface -->
- <property name="schema">docpool.event.content.dpevents.IDPEvents</property>
+ <property name="schema">docpool.event.content.dpnetwork.IDPNetwork</property>
 
  <!-- class used for content items -->
- <property name="klass">docpool.event.content.dpevents.DPEvents</property>
+ <property name="klass">docpool.event.content.dpnetwork.DPNetwork</property>
 
  <!-- add permission -->
- <property name="add_permission">docpool.event.AddDPEvents</property>
+ <property name="add_permission">docpool.event.AddDPNetwork</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">
@@ -44,10 +39,6 @@
   <element value="view" />
 ##code-section view_methods
   <element value="base_view" />
-  
-  <element value="folder_summary_view" />
-  <element value="folder_tabular_view" />
-  <element value="folder_listing" />
     
 ##/code-section view_methods
  </property>

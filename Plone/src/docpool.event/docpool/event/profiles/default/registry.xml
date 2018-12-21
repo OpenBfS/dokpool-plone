@@ -7,6 +7,26 @@
     </value>
   </record>
 
+  <record name="docpool.event.networks">
+      <field type="plone.registry.field.Tuple">
+          <title>Operation mode networks</title>
+          <value_type type="plone.registry.field.TextLine" />
+      </field>
+      <value purge="False">
+          <element>ODL</element>
+      </value>
+  </record>
+
+  <record name="docpool.event.sampleTypes">
+      <field type="plone.registry.field.Tuple">
+          <title>Operation mode sample types</title>
+          <value_type type="plone.registry.field.TextLine" />
+      </field>
+      <value purge="False">
+          <element>L1</element>
+      </value>
+  </record>
+
   <record field="description" interface="plone.app.querystring.interfaces.IQueryField" name="plone.app.querystring.field.scenarios.description">
     <field type="plone.registry.field.Text">
       <title>Description</title>
