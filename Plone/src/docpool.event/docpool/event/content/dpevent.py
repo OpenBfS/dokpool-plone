@@ -13,7 +13,7 @@ from zope.interface import implements
 from zope.component import adapts
 from zope import schema
 from plone.directives import form, dexterity
-from plone.app.textfield import RichText
+from plone.app.textfield import RichText, RichTextValue
 from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
 from z3c.relationfield.schema import RelationChoice, RelationList
@@ -116,6 +116,7 @@ class IDPEvent(form.Schema, IContentBase):
         source="docpool.event.vocabularies.EventSubstitutes"
         ##/code-section field_substitute
     )
+    form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
     # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
     directives.widget(ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
@@ -158,8 +159,14 @@ class IDPEvent(form.Schema, IContentBase):
         required=False
     )
 
+    changelog = RichText(
+                        title=_(u'label_dpevent_changelog', default=u'Changelog'),
+                        description=_(u''),
+                        required=False,
+                        readonly=True
+    )
+
     ##code-section interface
-    form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
 
 @form.default_value(field=IDPEvent['TimeOfEvent'])
@@ -514,11 +521,66 @@ def eventAdded(obj, event=None):
     obj.addScenarioForUsers()
 
 
+def addLogEntry(old_changelog, obj):
+    print obj.SectorizingNetworks
+    mdate, userInfo = obj.modInfo()
+    text = """
+    <tr>
+    <td>%s<br/>(%s)</td>
+    <td>%s</td>
+    <td>%s</td>
+    <td>%s</td>
+    <td>%s</td>
+    <td>%s</td>
+    </tr>
+    <tr class="last"></tr>
+    """ % (
+        obj.toLocalizedTime(mdate, long_format=1),
+        userInfo,
+        obj.Status,
+        obj.OperationMode,
+        obj.phaseInfo(),
+        ", ".join(obj.SectorizingSampleTypes),
+        ", ".join(n.to_object.Title() for n in obj.SectorizingNetworks)
+    )
+    new_changelog = old_changelog.replace("""<tr class="last"></tr>""", safe_unicode(text))
+    obj.changelog = RichTextValue(new_changelog, 'text/html', 'text/html')
+
 @adapter(IDPEvent, IObjectModifiedEvent)
 def eventChanged(obj, event=None):
     """
     """
-    # print 'scenarioChanged'
+    #print 'eventChanged'
+    # write changelog
+    old_changelog = """
+    <table>
+    <thead>
+    <tr>
+    <th>%s</th>
+    <th>%s</th>
+    <th>%s</th>
+    <th>%s</th>
+    <th>%s</th>    
+    <th>%s</th>    
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="last"></tr>
+    </tbody>
+    </table>
+    """ % (
+        _(u"Date"),
+        _(u"Status"),
+        _(u"Operation mode"),
+        _(u"Phase"),
+        _(u"Sectorizing sample types"),
+        _(u"Sectorizing networks")
+    )
+    if (obj.changelog):
+        old_changelog = safe_unicode(obj.changelog.output)
+
+    addLogEntry(old_changelog, obj)
+
     if obj.Status != 'active':
         obj.deleteEventReferences()
         # print obj.Substitute
