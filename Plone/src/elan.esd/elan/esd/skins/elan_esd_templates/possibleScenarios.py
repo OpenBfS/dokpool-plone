@@ -8,7 +8,7 @@
 ##title=
 ##
 
-from elan.esd.utils import getActiveScenarios
+from docpool.event.utils import getActiveScenarios
 
 aedt = getActiveScenarios(context)
 return [ (t.getId, t.Title) for t in aedt ]
