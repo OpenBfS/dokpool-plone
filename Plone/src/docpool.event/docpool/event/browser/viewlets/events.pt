@@ -1,6 +1,6 @@
 <tal:block i18n:domain="elan.esd">
     <tal:if tal:condition="view/available|nothing">
-        <div metal:use-macro="here/@@elan.macros/macros/scenario_table"/>
+        <div metal:use-macro="here/@@event.macros/macros/scenario_table"/>
     </tal:if>
     <tal:if condition="here/isArchive|nothing">
         <tal:def define="a_obj here/myELANArchive|nothing" condition="nocall: a_obj">

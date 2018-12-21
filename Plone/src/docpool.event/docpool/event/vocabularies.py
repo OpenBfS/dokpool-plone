@@ -81,16 +81,12 @@ class PhasesVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [ (getPhaseTitle(t.getObject()), t.getObject() ) for t in cat({"portal_type": "SRPhase", "path":path})]
+        items = [ (t.getObject().getPhaseTitle(), t.getObject() ) for t in cat({"portal_type": "SRPhase", "path":path})]
         items.sort()
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 
 grok.global_utility(PhasesVocabulary, name=u"docpool.event.vocabularies.Phases")
-
-def getPhaseTitle(phase):
-    scen = parent(phase)
-    return "%s: %s" % (scen.Title(), phase.Title())
 
 class ModesVocabulary(object):
     grok.implements(IVocabularyFactory)
