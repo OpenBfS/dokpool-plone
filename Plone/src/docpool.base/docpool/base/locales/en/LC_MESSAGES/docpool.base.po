@@ -68,6 +68,11 @@ msgstr "Document Type"
 msgid "Edit the document"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:18
+msgid "View/publish the document"
+msgstr ""
+
+
 #: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
 msgstr ""
