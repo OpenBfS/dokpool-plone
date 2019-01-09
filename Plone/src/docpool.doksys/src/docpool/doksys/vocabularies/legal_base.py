@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# from plone import api
 from docpool.doksys import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
@@ -33,7 +32,7 @@ class LegalBase(object):
             VocabItem(u'Land', _(u'Land')),
             VocabItem(u'SPARSE', _(u'SPARSE')),
             VocabItem(u'REI-E', _(u'REI-E')),
-            VocabItem(u'REI-I', _(u'REI-I')),
+            VocabItem(u'REI-I', _(u'REI-I'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.

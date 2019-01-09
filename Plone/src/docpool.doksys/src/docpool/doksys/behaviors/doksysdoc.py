@@ -180,14 +180,14 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(Duration='docpool.doksys.AccessDoksys')
     write_permission(Duration='docpool.doksys.AccessDoksys')
 
-    Type = schema.Choice(
-        title=_(u'label_doksys_duration', default=u'Type'),
-        description=_(u'description_doksys_type', default=u''),
-        source="docpool.doksys.Type",
+    InfoType = schema.Choice(
+        title=_(u'label_doksys_infotype', default=u'InfoType'),
+        description=_(u'description_doksys_infotype', default=u''),
+        source="docpool.doksys.InfoType",
         required=False,
     )
-    read_permission(Duration='docpool.doksys.AccessDoksys')
-    write_permission(Duration='docpool.doksys.AccessDoksys')
+    read_permission(InfoType='docpool.doksys.AccessDoksys')
+    write_permission(InfoType='docpool.doksys.AccessDoksys')
 
     Area = schema.Choice(
         title=_(u'label_doksys_area', default=u'Area'),

@@ -17,7 +17,7 @@ class VocabItem(object):
 
 
 @implementer(IVocabularyFactory)
-class Type(object):
+class InfoType(object):
     """
     """
 
@@ -33,8 +33,7 @@ class Type(object):
             VocabItem(u'trocken', _(u'trocken')),
             VocabItem(u'Messergebnisse', _(u'Messergebnisse')),
             VocabItem(u'Ueberblick', _(u'Ueberblick')),
-            VocabItem(u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich')),
-
+            VocabItem(u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -49,7 +48,7 @@ class Type(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )
@@ -57,4 +56,4 @@ class Type(object):
         return SimpleVocabulary(terms)
 
 
-TypeFactory = Type()
+InfoTypeFactory = InfoType()

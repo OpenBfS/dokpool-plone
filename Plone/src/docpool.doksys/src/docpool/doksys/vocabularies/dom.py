@@ -546,8 +546,7 @@ class Dom(object):
             VocabItem(u'966 ___therm. power_1 week', _(u'966 ___therm. power_1 week')),
             VocabItem(u'967 ___therm. power_1 month', _(u'967 ___therm. power_1 month')),
             VocabItem(u'968 ___therm. power_3 months', _(u'968 ___therm. power_3 months')),
-            VocabItem(u'969 ___therm. power_1 year', _(u'969 ___therm. power_1 year')),
-
+            VocabItem(u'969 ___therm. power_1 year', _(u'969 ___therm. power_1 year'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -562,7 +561,7 @@ class Dom(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

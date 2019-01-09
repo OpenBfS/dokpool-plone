@@ -26,8 +26,7 @@ class Status(object):
         # this can be any static or dynamic data, a catalog result for example.
         items = [
             VocabItem(u'geprueft', _(u'geprueft')),
-            VocabItem(u'nicht geprueft', _(u'nicht geprueft')),
-
+            VocabItem(u'nicht geprueft', _(u'nicht geprueft'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -42,7 +41,7 @@ class Status(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

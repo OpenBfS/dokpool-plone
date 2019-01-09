@@ -910,8 +910,7 @@ class MeasurementCategory(object):
             VocabItem(u'Neutr-ODL-max', _(u'Neutr-ODL-max')),
             VocabItem(u'Rn-Gesamt', _(u'Rn-Gesamt')),
             VocabItem(u'Nullmessung', _(u'Nullmessung')),
-            VocabItem(u'Temperatur', _(u'Temperatur')),
-
+            VocabItem(u'Temperatur', _(u'Temperatur'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -926,7 +925,7 @@ class MeasurementCategory(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )

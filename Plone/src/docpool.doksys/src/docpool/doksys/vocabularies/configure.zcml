@@ -64,8 +64,8 @@
     />
 
     <utility
-        component=".type.TypeFactory"
-        name="docpool.doksys.Type"
+        component=".infotype.InfoTypeFactory"
+        name="docpool.doksys.InfoType"
     />
 
     <utility

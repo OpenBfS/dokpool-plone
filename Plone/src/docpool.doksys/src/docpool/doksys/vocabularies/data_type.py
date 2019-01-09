@@ -27,8 +27,7 @@ class DataType(object):
         items = [
             VocabItem(u'ONMON', _(u'ONMON')),
             VocabItem(u'LADA', _(u'LADA')),
-            VocabItem(u'EURDEP', _(u'EURDEP')),
-
+            VocabItem(u'EURDEP', _(u'EURDEP'))
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -43,7 +42,7 @@ class DataType(object):
             terms.append(
                 SimpleTerm(
                     value=item.token,
-                    token=str(item.token),
+                    token=item.token.encode('utf'),
                     title=item.value,
                 )
             )
