@@ -12,7 +12,8 @@ from zope.event import notify
 from zope.interface import implementer
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.publisher.interfaces import IPublishTraverse
-
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
 
 @implementer(IPublishTraverse)
 class JournalEntryView(BrowserView, BaseView):
@@ -166,6 +167,7 @@ class DeleteJournalEntryView(BaseJournalEntryView):
             return self.render()
 
     def render(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         id = self.request.form.get('id', None)
         adapter = IJournalEntryContainer(self.context)
         adapter.delete(id)
