@@ -72,7 +72,10 @@
    <property name="title" i18n:translate="">Change Password</property>
    <property
       name="url_expr">string:${context/dp_url}/@@change-password</property>
-   <property name="available_expr">here/canChangePassword</property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Set own password"/>
+   </property>
    <property name="visible">True</property>
   </object>
   <object name="applications" meta_type="CMF Action" i18n:domain="docpool.base">
