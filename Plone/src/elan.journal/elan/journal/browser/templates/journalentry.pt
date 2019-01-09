@@ -27,10 +27,14 @@
           <div class="documentByLine"
               id="plone-document-byline"
               i18n:domain="plone"
-              tal:condition="view/show_byline">
+              tal:condition="view/show_byline" tal:define="item_creator update/creator;
+                                                           pas_member context/@@pas_member;
+                                                           author python:pas_member.info(item_creator);
+                                                           creator_fullname author/name_or_id;
+                                                           ">
             <span class="documentAuthor" tal:condition="not:view/is_anonymous">
-              (<span property="rnews:author" tal:content="update/creator">
-                Roland Barthes
+              (<span property="rnews:author" tal:content="creator_fullname">
+                .
               </span>)
               &mdash;
             </span>

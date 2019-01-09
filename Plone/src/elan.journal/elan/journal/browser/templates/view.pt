@@ -40,11 +40,15 @@
             tal:content="update/title" />
         <div class="journalentry-text" itemprop="text"
             tal:content="structure update/text" />
-        <div class="journalentry-byline">
+        <div class="journalentry-byline" tal:define="item_creator update/creator;
+                                                     pas_member context/@@pas_member;
+                                                     author python:pas_member.info(item_creator);
+                                                     creator_fullname author/name_or_id;
+                                                           ">
           <p tal:condition="view/show_byline" i18n:translate="">
               By
             <span itemprop="author"
-                tal:content="update/creator"
+                tal:content="creator_fullname"
                 i18n:name="byline" />
           </p>
           <time itemprop="datePublished" title="2014-08-28 14h31" datetime="2014-08-28T14:31:02.402"
