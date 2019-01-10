@@ -1,39 +1,15 @@
 body#visual-portal-wrapper.pat-plone .outer-wrapper {
-    .contenttype-simplefolder:before {  content: '\e801';}
-    .contenttype-srfolder:before {  content: '\e801';}
-    .contenttype-infofolder:before {  content: '\e801';}
-    .contenttype-privatefolder:before {  content: '\e801';}
-    .contenttype-reviewfolder:before {  content: '\e801';}
-    .contenttype-collaborationfolder:before {  content: '\e801';}
-	.contenttype-dpdocument:before {	content: '\e80e';}
-	.contenttype-elandoccollection:before {content: '\e808';}
-    .contenttype-dashboard:before {     content: '\e810';}
-    .contenttype-situationoverview:before {     content: '\e810';}
-	.contenttype-file:before {		content: '\e811';}
-	.contenttype-link:before {		content: '\e806';}
-	.contenttype-image:before {		content: '\e810';}
-	.contenttype-event:before {		content: '\e809';}
-	.contenttype-news-item:before {	content: '\e80f';}
+    [class*="contenttype-"]:before{
+        content: none;
+    }
 }
-
 
 body#visual-portal-wrapper.pat-plone #edit-zone {
-	.contenttype-simplefolder:after {	content: '\e801';}
-    .contenttype-srfolder:after {  content: '\e801';}
-    .contenttype-infofolder:after {  content: '\e801';}
-    .contenttype-privatefolder:after {  content: '\e801';}
-    .contenttype-reviewfolder:after {  content: '\e801';}
-    .contenttype-collaborationfolder:after {  content: '\e801';}
-	.contenttype-dpdocument:after {	content: '\e80e';}
-	.contenttype-elandoccollection:after {content: '\e808';}
-    .contenttype-dashboard:after {      content: '\e810';}
-    .contenttype-situationoverview:after {      content: '\e810';}
-	.contenttype-file:after {		content: '\e811';}
-	.contenttype-link:after {		content: '\e806';}
-	.contenttype-image:after {		content: '\e810';}
-	.contenttype-event:after {		content: '\e809';}
-	.contenttype-news-item:after {	content: '\e80f';}
+    [class*="contenttype-"]:before{
+        content: none;
+    }
 }
+
 
 table#fctable {
 	.actions { 
