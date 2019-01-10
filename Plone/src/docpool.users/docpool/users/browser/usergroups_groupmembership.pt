@@ -13,9 +13,12 @@
 <metal:main fill-slot="content"
      tal:define="template_id string:@@usergroup-groupmembership;
                  errors python:request.get('errors', {});
-                 portal_roles view/portal_roles;">
+                 portal_roles view/portal_roles;
+                 portal_url context/dp_url;">
 
   <article id="content">
+
+   usergroups_groupmembership.pt
 
     <a href=""
        class="link-parent"
@@ -60,7 +63,8 @@
           </div>
 
           <div id="content-core"
-               tal:define="token context/@@authenticator/token">
+               tal:define="token context/@@authenticator/token;
+                           portal_url context/dp_url;">
 
             <div class="autotabs">
 
