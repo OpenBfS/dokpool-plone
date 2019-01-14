@@ -52,23 +52,6 @@ def createDoksysNavigation(plonesite, fresh):
 def createDoksysDocTypes (plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
-def create_doksys_collection(plonesite):
-    api.content.create(
-        type='Collection',
-        title='Dokumente der letzten 24 h',
-        query=[{
-            u'i': u'dp_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'dpdocument'
-        },
-            {
-                u'i': u'creationDate',
-                u'o': u'plone.app.querystring.operation.date.beforeToday',
-                u'v': u'1d'
-            }],
-        sort_on='created',
-        container=plonesite.rodos.restrictedTraverse('national-npps')
-    )
 
 
 BASICSTRUCTURE = [

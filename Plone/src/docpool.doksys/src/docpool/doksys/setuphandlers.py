@@ -3,8 +3,10 @@ from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
 from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects, _addAllowedTypes
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import _createObjectByType
 from zope.component.hooks import getSite
 from plone import api
+from plone.app.textfield.value import RichTextValue
 
 import transaction
 
@@ -36,6 +38,8 @@ def createStructure(context, plonesite, fresh):
     s = context.restrictedTraverse('searches')
     s.manage_addProperty('text', '', 'string')
     transaction.commit()
+#    create_acollection(plonesite)
+#    transaction.commit()
     create_1day_collection(plonesite)
     transaction.commit()
     create_purpose_collections(plonesite)
@@ -51,168 +55,327 @@ def changedoksysNavigation(plonesite, fresh):
 def changedoksysDocTypes (plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
-def create_1day_collection(plonesite):
-    api.content.create(
-        type='Collection',
-        title='Dokumente der letzten 24 h',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
+def create_acollection(plonesite):
+    container = api.content.get(path='/searches')
+    title = 'irgendwas'
+    description = 'test'
+    _createObjectByType('Collection', container,
+                       id='irgendwas', title=title,
+                       description=description)
+    iwas = container['irgendwas']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
         {
-            u'i': u'modified',
-            u'o': u'plone.app.querystring.operation.date.beforeToday',
-            u'v': u'1d'
-        }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+          u'i': u'creationDate',
+          u'o': u'plone.app.querystring.operation.date.beforeToday',
+          u'v': u'1'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Hallo<p>',
+        'text/html',
+        'text/x-html-safe'
     )
+
+
+    iwas.setLayout('summary_view')
+
+def create_1day_collection(plonesite):
+    container = api.content.get(path='/searches')
+    title='Dokumente der letzten 24 h'
+    description = 'Dokumente der letzten 24 h'
+    _createObjectByType('Collection', container,
+                        id='last24h', title=title,
+                        description=description)
+    lday = container['last24h']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    lday.sort_on = u'changed'
+    lday.sort_reversed = True
+    lday.relatedItems=""
+    #: Query by Type and Review State
+    lday.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'creationDate',
+            u'o': u'plone.app.querystring.operation.date.beforeToday',
+            u'v': u'1'
+        }]
+    lday.text = RichTextValue(
+        '<p>Dokumente der letzten 24 h<p>',
+        'text/html',
+        'text/x-html-safe'
+    )
+
+    lday.setLayout('summary_view')
+
+
     print "1day Collection angelegt"
 
 def create_purpose_collections(plonesite):
-    api.content.create(
-        type='Collection',
-        title='Standard-Info Bundesmessnetze',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
+    container = api.content.get(path='/searches')
+    title = 'Standard-Info Bundesmessnetze'
+    description = 'Standard-Info Bundesmessnetze'
+    _createObjectByType('Collection', container,
+                        id='bundesmessnetze', title=title,
+                        description=description)
+    iwas = container['bundesmessnetze']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
         {
             u'i': u'Purpose',
             u'o': u'plone.app.querystring.operation.string.is',
             u'v': u'Standard-Info Bundesmessnetze'
-        }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+        }]
+    iwas.text = RichTextValue(
+        '<p>Standard-Info Bundesmessnetze<p>',
+        'text/html',
+        'text/x-html-safe'
     )
+    iwas.setLayout('summary_view')
+
+
+    title = 'Standard-Info DWD'
+    description = 'Standard-Info DWD'
+    _createObjectByType('Collection', container,
+                        id='dwd', title=title,
+                        description=description)
+    iwas = container['dwd']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'Purpose',
+            u'o': u'plone.app.querystring.operation.string.is',
+            u'v': u'Standard-Info Bundesmessnetze'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Standard-Info DWD<p>',
+        'text/html',
+        'text/x-html-safe'
+    )
+    iwas.setLayout('summary_view')
     #
-    api.content.create(
-        type='Collection',
-        title='Standard-Info DWD',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
-            {
-                u'i': u'Purpose',
-                u'o': u'plone.app.querystring.operation.string.is',
-                u'v': u'Standard-Info DWD'
-            }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
-    )
+
     print "Purpose Collection angelegt"
 
 
 def create_sample_collections(plonesite):
-    api.content.create(
-        type='Collection',
-        title='Ergebnisse Boden',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
+    container = api.content.get(path='/searches')
+    title = 'Ergebnisse Boden'
+    description = 'Ergebnisse Boden'
+    _createObjectByType('Collection', container,
+                        id='boden', title=title,
+                        description=description)
+    iwas = container['boden']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
         {
             u'i': u'SampleTypeId',
             u'o': u'plone.app.querystring.operation.string.contains',
             u'v': u'B*'
-        }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+        }]
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Boden<p>',
+        'text/html',
+        'text/x-html-safe'
     )
-    api.content.create(
-        type='Collection',
-        title='Ergebnisse Futtermittel',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
-            {
-                u'i': u'SampleTypeId',
-                u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'F*'
-            }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+    iwas.setLayout('summary_view')
+
+
+    title = 'Ergebnisse Futtermittel'
+    description = 'Ergebnisse Futtermittel'
+    _createObjectByType('Collection', container,
+                        id='futter', title=title,
+                        description=description)
+    iwas = container['futter']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'SampleTypeId',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'F*'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Futtermittel<p>',
+        'text/html',
+        'text/x-html-safe'
     )
-    api.content.create(
-        type='Collection',
-        title='Ergebnisse Gewaesser',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
-            {
-                u'i': u'SampleTypeId',
-                u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'G*'
-            }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+    iwas.setLayout('summary_view')
+
+    title = 'Ergebnisse Gewaesser'
+    description = 'Ergebnisse Gewaesser'
+    _createObjectByType('Collection', container,
+                        id='wasser', title=title,
+                        description=description)
+    iwas = container['wasser']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'SampleTypeId',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'G*'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Gewaesser<p>',
+        'text/html',
+        'text/x-html-safe'
     )
-    api.content.create(
-        type='Collection',
-        title='Ergebnisse Luft',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
-            {
-                u'i': u'SampleTypeId',
-                u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'L*'
-            }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+    iwas.setLayout('summary_view')
+
+    title = 'Ergebnisse Luft'
+    description = 'Ergebnisse Luft'
+    _createObjectByType('Collection', container,
+                        id='luft', title=title,
+                        description=description)
+    iwas = container['luft']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'SampleTypeId',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'L*'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Luft<p>',
+        'text/html',
+        'text/x-html-safe'
     )
-    api.content.create(
-        type='Collection',
-        title='Ergebnisse Nahrungsmittel',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
-            {
-                u'i': u'SampleTypeId',
-                u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'N*'
-            }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+    iwas.setLayout('summary_view')
+
+    title = 'Ergebnisse Nahrungsmittel'
+    description = 'Ergebnisse Nahrungsmittel'
+    _createObjectByType('Collection', container,
+                        id='nahrung', title=title,
+                        description=description)
+    iwas = container['nahrung']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'SampleTypeId',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'N*'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Nahrungsmittel<p>',
+        'text/html',
+        'text/x-html-safe'
     )
-    api.content.create(
-        type='Collection',
-        title='Ergebnisse Stoerfall',
-        query=[{
-            u'i': u'portal_type',
-            u'o': u'plone.app.querystring.operation.selection.is',
-            u'v': u'DPDocument'
-        },
-            {
-                u'i': u'SampleTypeId',
-                u'o': u'plone.app.querystring.operation.string.contains',
-                u'v': u'S*'
-            }],
-        sort_on='changed',
-        sort_order='reverse',
-        container=api.content.get(path='/searches')
+    iwas.setLayout('summary_view')
+
+    title = 'Ergebnisse Stoerfall'
+    description = 'Ergebnisse Stoerfall'
+    _createObjectByType('Collection', container,
+                        id='stoer', title=title,
+                        description=description)
+    iwas = container['stoer']
+
+    # Set the Collection criteria.
+    #: Sort on the Effective date
+    iwas.sort_on = u'effective'
+    iwas.sort_reversed = True
+    iwas.relatedItems = ""
+    #: Query by Type and Review State
+    iwas.query = [
+        {'i': u'portal_type',
+         'o': u'plone.app.querystring.operation.selection.any',
+         'v': [u'DPDocument'],
+         },
+        {
+            u'i': u'SampleTypeId',
+            u'o': u'plone.app.querystring.operation.string.contains',
+            u'v': u'S*'
+        }]
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Stoerfall<p>',
+        'text/html',
+        'text/x-html-safe'
     )
+    iwas.setLayout('summary_view')
+
+
+
     print "Sample Type Collection angelegt"
 
 
