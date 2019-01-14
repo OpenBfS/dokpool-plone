@@ -88,7 +88,7 @@ $ virtualenv ./venv/dokpool
 $ source ./venv/dokpool/bin/activate
 # go on wether you have a virtual python env or not
 $ export ELANENGINE=sqlite:////tmp/elan5db
-$ pip install --upgrade pip docutils
+$ pip install --upgrade pip docutils sphinx
 $ pip install -r requirements.txt
 $ buildout bootstrap
 $ ./bin/buildout -vc buildout.cfg
@@ -154,7 +154,7 @@ $ cd dokpool-plone/Plone
 $ virtualenv ./venv/dokpool
 $ source ./venv/dokpool/bin/activate
 # go on wether you have a virtual python env or not
-$ pip install --upgrade pip docutils
+$ pip install --upgrade pip docutils sphinx
 $ pip install -r requirements.txt
 $ buildout bootstrap
 $ ./bin/buildout -vc relstorage.cfg
