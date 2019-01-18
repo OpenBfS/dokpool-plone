@@ -12,10 +12,10 @@
     <h1 class="documentFirstHeading" tal:content="doc/Title"></h1>
     <div class="documentDescription" tal:content="doc/Description"></div>
     <tal:if condition="doc/isInOneOfMyFolders">
-    <span tal:condition="python:doc.docType not in ['estimation_ssk','situationreport_ssk','protectiveactions_ssk']">
+    <span tal:condition="python:doc.docType not in ['situation report','estimation_ssk','situationreport_ssk','protectiveactions_ssk']">
        <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
     </span>
-           <span tal:condition="python:doc.docType in ['estimation_ssk','situationreport_ssk','protectiveactions_ssk']">
+           <span tal:condition="python:doc.docType in ['situationreport','estimation_ssk','situationreport_ssk','protectiveactions_ssk']">
        <a href="" tal:attributes="href string:${doc/absolute_url}/view" class="docref" i18n:translate="">View/publish the document</a>
     </span>
     <br><br>
