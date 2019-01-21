@@ -17,7 +17,7 @@
 FROM ubuntu:latest
 MAINTAINER Marco Lechner<mlechner@bfs.de>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install python postgresql-server-dev-10 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python-pip && apt-get autoclean
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get -y install python postgresql-server-dev-10 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python-pip && apt-get autoclean
 RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/zope --gecos "Zope/Plone system user" zope
 # set timezone ME(S)Z
 ENV TZ=Europe/Berlin
