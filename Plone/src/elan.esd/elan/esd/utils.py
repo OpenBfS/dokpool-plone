@@ -31,7 +31,11 @@ def getOpenScenarios(self):
 def getAvailableCategories(self):
     cat = getToolByName(self, "portal_catalog")
     esd = getDocumentPoolSite(self)
-    res = cat(path="/".join(esd.getPhysicalPath()) + "/esd", portal_type = 'ELANDocCollection', dp_type=["active"], sort_on="sortable_title")
+    res0 = cat(path="/".join(esd.getPhysicalPath()) + "/esd", portal_type = 'ELANDocCollection', dp_type=["active"], sort_on="sortable_title")
+    res = []
+    for r in res0:
+      if r.id not in ["recent","overview"]:
+        res.append(r)
     return res
 
 def getScenariosForCurrentUser(self):

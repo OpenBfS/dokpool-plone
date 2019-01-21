@@ -8,6 +8,7 @@
                                            li context/getLegendImageObj;
                                            fi context/getFirstImage;
                                            myi python:context.getMyImage()" >
+        <span tal:condition="python:len(context.objectValues()) != 0">
         <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
         <div class="map">
            <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi"/>
@@ -30,6 +31,7 @@
               <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" ><span tal:content="python:pdf.Title()" /></a>
             </span>
         </div>
+        </span>
         </span>
     </div>
 </tal:block>
