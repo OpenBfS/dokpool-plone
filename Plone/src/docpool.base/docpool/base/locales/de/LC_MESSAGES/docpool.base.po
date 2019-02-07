@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2019-02-07 15:42+0000\n"
-"PO-Revision-Date: 2019-02-07 16:47+0100\n"
+"POT-Creation-Date: 2019-02-07 15:55+0000\n"
+"PO-Revision-Date: 2019-02-07 16:55+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,7 @@ msgid "DPDocument"
 msgstr "Dokument"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:133
+#: docpool.base/docpool/base/browser/i18ndummy.pt:25
 msgid "Delete"
 msgstr "Löschen"
 
@@ -174,6 +175,18 @@ msgstr "Keine Inhalte mehr in der Zwischenablage."
 msgid "Please select one or more items to cut."
 msgstr "Bitte wählen Sie ein oder mehr Objekte zum Ausschneiden."
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt:21
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:22
+msgid "Reject"
+msgstr "Zurückweisen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:23
+msgid "Retract"
+msgstr "Zurückziehen"
+
 #: docpool.base/docpool/base/browser/sharing.py:45
 msgid "Search for user or group"
 msgstr "Nach Nutzern oder Gruppen suchen"
@@ -197,6 +210,10 @@ msgstr "Ordner"
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Simple pages of text."
 msgstr "Einfache Textseite."
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:24
+msgid "Submit"
+msgstr "Einreichen"
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Textpage"

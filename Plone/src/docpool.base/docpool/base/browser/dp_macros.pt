@@ -389,7 +389,8 @@
                tal:attributes="onclick string:return confirm('${context/Title}: ${alert_msg}');
                       href python:'%s/change_state?id=%s&action=%s' % (myfolder_url, context.getId(), a_id);
                       title a_title;
-                      ">
+                      "
+               i18n:attributes="title" >
                 <img src="" tal:attributes="src string:${context/portal_url}/${a_icon}"/>
             </a>
         </tal:loop>

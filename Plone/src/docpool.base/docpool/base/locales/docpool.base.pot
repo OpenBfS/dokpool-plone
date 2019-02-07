@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-02-07 15:42+0000\n"
+"POT-Creation-Date: 2019-02-07 15:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,6 +42,7 @@ msgid "DPDocument"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:133
+#: docpool.base/docpool/base/browser/i18ndummy.pt:25
 msgid "Delete"
 msgstr ""
 
@@ -175,6 +176,18 @@ msgstr ""
 msgid "Please select one or more items to cut."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt:21
+msgid "Publish"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:22
+msgid "Reject"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:23
+msgid "Retract"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/sharing.py:45
 msgid "Search for user or group"
 msgstr ""
@@ -197,6 +210,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Simple pages of text."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:24
+msgid "Submit"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
