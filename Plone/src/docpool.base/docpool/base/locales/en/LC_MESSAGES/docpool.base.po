@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2018-11-17 13:16+0000\n"
-"PO-Revision-Date: 2015-09-17 15:55+0100\n"
+"POT-Creation-Date: 2019-02-07 15:42+0000\n"
+"PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.base\n"
 "Language: en\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:36
 msgid "${count} item(s) cut."
@@ -67,11 +67,6 @@ msgstr "Document Type"
 #: docpool.base/docpool/base/browser/collectiondoc.pt:16
 msgid "Edit the document"
 msgstr ""
-
-#: docpool.base/docpool/base/browser/collectiondoc.pt:18
-msgid "View/publish the document"
-msgstr ""
-
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
@@ -248,9 +243,33 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:19
+msgid "View/publish the document"
+msgstr ""
+
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
 msgstr "Active"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:16
+msgid "alert_delete_popup"
+msgstr "Do you really want to delete this object?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:20
+msgid "alert_publish_popup"
+msgstr "Do you really want to publish this document?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:17
+msgid "alert_reject_popup"
+msgstr "Do you really want to reject this document?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:18
+msgid "alert_retract_popup"
+msgstr "Do you really want to retract this document?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:19
+msgid "alert_submit_popup"
+msgstr "Do you really want to submit this document?"
 
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "closed"
@@ -479,6 +498,14 @@ msgstr "Text"
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:20
 msgid "modified:"
 msgstr "modified:"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:14
+msgid "private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:15
+msgid "published"
+msgstr ""
 
 #. Default: "Content listing"
 #: docpool.base/docpool/base/browser/dp_macros.pt:42

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-17 13:16+0000\n"
+"POT-Creation-Date: 2019-02-07 15:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,8 +244,32 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:19
+msgid "View/publish the document"
+msgstr ""
+
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:16
+msgid "alert_delete_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:20
+msgid "alert_publish_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:17
+msgid "alert_reject_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:18
+msgid "alert_retract_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:19
+msgid "alert_submit_popup"
 msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py:67
@@ -474,6 +498,14 @@ msgstr ""
 #: docpool.base/docpool/base/browser/dp_macros.pt:348
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:20
 msgid "modified:"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:14
+msgid "private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:15
+msgid "published"
 msgstr ""
 
 #. Default: "Content listing"

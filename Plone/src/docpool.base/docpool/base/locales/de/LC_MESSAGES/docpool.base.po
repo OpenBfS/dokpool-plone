@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2018-11-17 13:16+0000\n"
-"PO-Revision-Date: 2018-11-17 14:16+0100\n"
+"POT-Creation-Date: 2019-02-07 15:42+0000\n"
+"PO-Revision-Date: 2019-02-07 16:47+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -67,10 +67,6 @@ msgstr "Dokumenttyp"
 #: docpool.base/docpool/base/browser/collectiondoc.pt:16
 msgid "Edit the document"
 msgstr "Das Dokument bearbeiten"
-
-#: docpool.base/docpool/base/browser/collectiondoc.pt:18
-msgid "View/publish the document"
-msgstr "Das Dokument ansehen/freigeben"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:398
 msgid "Edit unknown doc type"
@@ -247,9 +243,33 @@ msgstr "Nutzerbereich"
 msgid "Videos:"
 msgstr "Videos:"
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:19
+msgid "View/publish the document"
+msgstr "Das Dokument ansehen/freigeben"
+
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
 msgstr "Aktiv"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:16
+msgid "alert_delete_popup"
+msgstr "Wollen Sie dieses Dokument wirklich löschen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:20
+msgid "alert_publish_popup"
+msgstr "Wollen Sie dieses Dokument wirklich veröffentlichen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:17
+msgid "alert_reject_popup"
+msgstr "Wollen Sie dieses Dokument wirklich zurückweisen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:18
+msgid "alert_retract_popup"
+msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:19
+msgid "alert_submit_popup"
+msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "closed"
@@ -478,6 +498,14 @@ msgstr "Text"
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:20
 msgid "modified:"
 msgstr "geändert:"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:14
+msgid "private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:15
+msgid "published"
+msgstr ""
 
 #. Default: "Content listing"
 #: docpool.base/docpool/base/browser/dp_macros.pt:42
