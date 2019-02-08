@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-02-07 15:55+0000\n"
+"POT-Creation-Date: 2019-02-08 07:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,6 @@ msgid "DPDocument"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:133
-#: docpool.base/docpool/base/browser/i18ndummy.pt:25
 msgid "Delete"
 msgstr ""
 
@@ -62,15 +61,19 @@ msgstr ""
 msgid "Docpool view"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:36
+msgid "Document workflow:"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:16
+#: docpool.base/docpool/base/browser/collectiondoc.pt:17
 msgid "Edit the document"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:398
+#: docpool.base/docpool/base/browser/dp_macros.pt:399
 msgid "Edit unknown doc type"
 msgstr ""
 
@@ -261,8 +264,8 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:19
-msgid "View/publish the document"
+#: docpool.base/docpool/base/browser/collectiondoc.pt:20
+msgid "View the document"
 msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py:67

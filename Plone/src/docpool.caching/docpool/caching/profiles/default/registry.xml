@@ -111,7 +111,6 @@
     </field>
     <value>
       <element key="info">plone.content.folderView</element>
-      <element key="dview">plone.content.feed</element>
       <element key="accessibility-info">plone.content.itemView</element>
       <element key="image_view_fullscreen">plone.content.itemView</element>
       <element key="image_view">plone.content.itemView</element>

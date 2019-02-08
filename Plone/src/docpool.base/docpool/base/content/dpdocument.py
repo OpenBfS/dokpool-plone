@@ -563,55 +563,58 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         """
         alsoProvides(self.REQUEST, IDisableCSRFProtection)
 
-        doc = self
-        mapimg = self.getMapImageObj()
-        if mapimg:
-            legendimg = self.getLegendImageObj()
-            dateiname = '%s.%s' % (mapimg.getId(), "png")
-            if not full or not legendimg:
-                return mapimg.image.data, dateiname
-            else:
-                #combine into one image if full=True and legend available
-                images = map(Image.open, [StringIO(mapimg.image.data), StringIO(legendimg.image.data)])
-                w = sum(i.size[0] for i in images)
-                mh = max(i.size[1] for i in images)
-                
-                result = Image.new("RGBA", (w, mh), "white")
-                
-                x = 0
-                for i in images:
-                    result.paste(i, (x, 0))
-                    x += i.size[0]
-                res = StringIO()
-                result.save(res, 'PNG')
-                return res.getvalue(), dateiname
+        try:
+            doc = self
+            mapimg = self.getMapImageObj()
+            if mapimg:
+                legendimg = self.getLegendImageObj()
+                dateiname = '%s.%s' % (mapimg.getId(), "png")
+                if not full or not legendimg:
+                    return mapimg.image.data, dateiname
+                else:
+                    #combine into one image if full=True and legend available
+                    images = map(Image.open, [StringIO(mapimg.image.data), StringIO(legendimg.image.data)])
+                    w = sum(i.size[0] for i in images)
+                    mh = max(i.size[1] for i in images)
 
-                      
-        img = doc.getRepresentativeImage()
-        if img:
-            dateiname = '%s.%s' % (img.getId(), "png")
-            return img.image.data, dateiname
-        img = doc.pdfImage()
-        if img and not refresh:
-            dateiname = '%s.%s' % (img.getId(), "png")
-            return img.data.data, dateiname
-            
-        pdf = doc.getRepresentativePDF()
-        if pdf:
-            execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf )
+                    result = Image.new("RGBA", (w, mh), "white")
+
+                    x = 0
+                    for i in images:
+                        result.paste(i, (x, 0))
+                        x += i.size[0]
+                    res = StringIO()
+                    result.save(res, 'PNG')
+                    return res.getvalue(), dateiname
+
+
+            img = doc.getRepresentativeImage()
+            if img:
+                dateiname = '%s.%s' % (img.getId(), "png")
+                return img.image.data, dateiname
             img = doc.pdfImage()
-            dateiname = '%s.%s' % (img.getId(), "png")
-            return img.data, dateiname
+            if img and not refresh:
+                dateiname = '%s.%s' % (img.getId(), "png")
+                return img.data.data, dateiname
+
+            pdf = doc.getRepresentativePDF()
+            if pdf:
+                execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf )
+                img = doc.pdfImage()
+                dateiname = '%s.%s' % (img.getId(), "png")
+                return img.data, dateiname
 
 
-        img = doc.getFirstImageObj()
-        if img:
-            dateiname = '%s.%s' % (img.getId(), "png")
-            return img.image.data, dateiname
-        # TODO: Idea: support default image in DocType
-        # Show Default image, if no other image is available
-        img = getattr(self,'docdefaultimage.png')
-        return img._data, 'docdefaultimage.png'
+            img = doc.getFirstImageObj()
+            if img:
+                dateiname = '%s.%s' % (img.getId(), "png")
+                return img.image.data, dateiname
+        except Exception, e:
+            log_exc(e)
+            # TODO: Idea: support default image in DocType
+            # Show Default image, if no other image is available
+            img = getattr(self,'docdefaultimage.png')
+            return img._data, 'docdefaultimage.png'
         
 
     def image(self):

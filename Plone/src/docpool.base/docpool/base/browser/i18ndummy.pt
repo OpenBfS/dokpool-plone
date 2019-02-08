@@ -22,7 +22,6 @@
 <i18n:dummy translate="Reject"></i18n:dummy>
 <i18n:dummy translate="Retract"></i18n:dummy>
 <i18n:dummy translate="Submit"></i18n:dummy>
-<i18n:dummy translate="Delete"></i18n:dummy>
 
 <!-- ##/code-section Main -->    
 </metal:content-core>

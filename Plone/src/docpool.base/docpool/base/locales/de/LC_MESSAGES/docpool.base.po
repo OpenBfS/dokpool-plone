@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2019-02-07 15:55+0000\n"
-"PO-Revision-Date: 2019-02-07 16:55+0100\n"
+"POT-Creation-Date: 2019-02-08 07:11+0000\n"
+"PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,6 @@ msgid "DPDocument"
 msgstr "Dokument"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt:133
-#: docpool.base/docpool/base/browser/i18ndummy.pt:25
 msgid "Delete"
 msgstr "Löschen"
 
@@ -61,15 +60,19 @@ msgstr "Dokpool Konfiguration"
 msgid "Docpool view"
 msgstr "Dokpool Ansicht"
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:36
+msgid "Document workflow:"
+msgstr "Dokument Workflow:"
+
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
 msgstr "Dokumenttyp"
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:16
+#: docpool.base/docpool/base/browser/collectiondoc.pt:17
 msgid "Edit the document"
 msgstr "Das Dokument bearbeiten"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:398
+#: docpool.base/docpool/base/browser/dp_macros.pt:399
 msgid "Edit unknown doc type"
 msgstr "Unbekannten Dokumenttyp bearbeiten"
 
@@ -260,9 +263,9 @@ msgstr "Nutzerbereich"
 msgid "Videos:"
 msgstr "Videos:"
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:19
-msgid "View/publish the document"
-msgstr "Das Dokument ansehen/freigeben"
+#: docpool.base/docpool/base/browser/collectiondoc.pt:20
+msgid "View the document"
+msgstr "Das Dokument ansehen"
 
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"

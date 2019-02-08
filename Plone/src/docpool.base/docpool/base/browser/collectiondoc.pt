@@ -6,21 +6,39 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
 <metal:content-core fill-slot="main">
-<metal:content-core define-macro="main">
+    <metal:content-core define-macro="main">
 
-<tal:def define="doc view/doc" condition="doc">
-    <h1 class="documentFirstHeading" tal:content="doc/Title"></h1>
-    <div class="documentDescription" tal:content="doc/Description"></div>
-    <tal:if condition="doc/isInOneOfMyFolders">
-    <span tal:condition="python:doc.docType not in ['situation report','estimation_ssk','situationreport_ssk','protectiveactions_ssk']">
-       <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
-    </span>
-           <span tal:condition="python:doc.docType in ['situationreport','estimation_ssk','situationreport_ssk','protectiveactions_ssk']">
-       <a href="" tal:attributes="href string:${doc/absolute_url}/view" class="docref" i18n:translate="">View/publish the document</a>
-    </span>
-    <br><br>
-    </tal:if>
-<script type='text/javascript'>
+        <tal:def define="doc view/doc" condition="doc">
+            <h1 class="documentFirstHeading" tal:content="doc/Title"></h1>
+            <div class="documentDescription" tal:content="doc/Description"></div>
+            <tal:if condition="not:doc/isInOneOfMyFolders">
+
+                <span tal:condition="doc/canBeEdited">
+                   <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
+                </span>
+                <span tal:condition="not:doc/canBeEdited">
+                   <a href="" tal:attributes="href string:${doc/absolute_url}/view" class="docref" i18n:translate="">View the document</a>
+                </span>
+                <tal:loop repeat="action actions" define="actions doc/workflowActions;
+                                                          myfolder_url python:doc.myFolderBase().absolute_url()">
+                    <a class="wf_action action" href=""
+                       onclick=""
+                       title=""
+                       tal:define="a_id action/id;
+                  a_title action/title;
+                  a_icon action/icon;
+                  alert_msg python:context.translate('alert_' + a_id + '_popup', default='Do you really want to publish this document?', domain='docpool.base', escape_for_js=True)"
+                       tal:attributes="onclick string:return confirm('${context/Title}: ${alert_msg}');
+                  href python:'%s/change_state?id=%s&action=%s&backToReferer=1' % (myfolder_url, doc.getId(), a_id);
+                  title a_title;
+                  "
+                       i18n:attributes="title">
+                        <br /><i18n:var translate="">Document workflow: </i18n:var><tal:var replace="a_title" i18n:translate=""></tal:var>
+                    </a>
+                </tal:loop>
+                <br><br>
+            </tal:if>
+            <script type='text/javascript'>
 
 function setIframeHeight( iframeId ) 
 {
@@ -53,21 +71,23 @@ function setIframeHeight( iframeId )
  }
 }
 
-</script>    
-    
-    
-    <iframe id="inlinedoc" src="" tal:attributes="src string:${doc/absolute_url}/@@inline?popup_load=1" onload = "setIframeHeight( this.id )">
-    </iframe>
- 
-    <!--  script type="text/javascript">
-/*        jq("#insertdoc").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #content-core"); */
-        jq("#doccomments").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #commenting");
-    </script-->  
-    
-    
-</tal:def>
 
-</metal:content-core>
+            </script>
+
+
+            <iframe id="inlinedoc" src="" tal:attributes="src string:${doc/absolute_url}/@@inline?popup_load=1"
+                    onload="setIframeHeight( this.id )">
+            </iframe>
+
+            <!--  script type="text/javascript">
+        /*        jq("#insertdoc").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #content-core"); */
+                jq("#doccomments").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #commenting");
+            </script-->
+
+
+        </tal:def>
+
+    </metal:content-core>
 </metal:content-core>
 </body>
 </html>
