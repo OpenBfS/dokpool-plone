@@ -11,7 +11,7 @@
         <tal:def define="doc view/doc" condition="doc">
             <h1 class="documentFirstHeading" tal:content="doc/Title"></h1>
             <div class="documentDescription" tal:content="doc/Description"></div>
-            <tal:if condition="not:doc/isInOneOfMyFolders">
+            <tal:if condition="doc/isInOneOfMyFolders">
 
                 <span tal:condition="doc/canBeEdited">
                    <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
