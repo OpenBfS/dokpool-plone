@@ -13,6 +13,8 @@ backend b { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe =
 
 # Only allow PURGE from localhost
 acl purge {
+    "127.0.0.1";
+    "localhost";
     "${hosts:allow-purge}";
 }
 
@@ -38,7 +40,7 @@ sub vcl_recv {
     }
     call normalize_accept_encoding;
     call annotate_request;
-    return(hash);
+    return(lookup);
 }
 
 sub vcl_backend_response {
