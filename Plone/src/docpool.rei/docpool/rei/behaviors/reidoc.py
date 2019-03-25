@@ -25,7 +25,94 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
-    pass
+    FederalState = schema.TextLine(
+        title=_(u'label_rei_FederalState', default=u'Federal State'),
+        description=_(u'description_rei_FederalState', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('FederalState')
+
+    Operator = schema.TextLine(
+        title=_(u'label_rei_Operator', default=u'Operator'),
+        description=_(u'description_rei_Operator', default=u''),
+        required=False,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Operator')
+
+    ReiLegalBase = schema.TextLine(
+        title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
+        description=_(u'description_rei_ReiLegalBase', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('ReiLegalBase')
+
+    Year = schema.TextLine(
+        title=_(u'label_rei_Year', default=u'Year'),
+        description=_(u'description_rei_Year', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Year')
+
+    Period = schema.TextLine(
+        title=_(u'label_rei_Period', default=u'Period'),
+        description=_(u'description_rei_Period', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Period')
+
+    Media = schema.TextLine(
+        title=_(u'label_rei_Media', default=u'Media'),
+        description=_(u'description_rei_Media', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Media')
+
+    NuclearInstallation = schema.TextLine(
+        title=_(u'label_rei_NuclearInstallation', default=u'NuclearInstallation'),
+        description=_(u'description_rei_NuclearInstallation', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('NuclearInstallation')
+
+    StartSampling = schema.Datetime(
+        title=_(u'label_rei_StartSampling', default=u'Start Sampling'),
+        description=_(u'description_rei_StartSampling', default=u''),
+        required=False,
+    )
+    read_permission(CalculationDate='docpool.rei.AccessRodos')
+    write_permission(CalculationDate='docpool.rei.AccessRodos')
+
+    StopSampling = schema.Datetime(
+        title=_(u'label_rei_StopSampling', default=u'Stop Sampling'),
+        description=_(u'description_rei_StopSampling', default=u''),
+        required=False,
+    )
+    read_permission(CalculationDate='docpool.rodos.AccessRodos')
+    write_permission(CalculationDate='docpool.rodos.AccessRodos')
+
+    PdfVersion = schema.TextLine(
+        title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
+        description=_(u'description_rei_PdfVersion', default=u''),
+        required=True,
+    )
+    read_permission(ReportId='docpool.rei.AccessRei')
+    write_permission(ReportId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Media')
+    
 
 
 class REIDoc(FlexibleView):
@@ -39,7 +126,115 @@ class REIDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
+    def _get_rei_StartSampling(self):
+        return getInheritedValue(self, "StartSampling")
 
+    def _set_rei_StartSampling(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.StartSampling = value
+
+    StartSampling = property(_get_rei_StartSampling, _set_rei_StartSampling)
+    
+    def _get_rei_StopSampling(self):
+        return getInheritedValue(self, "StopSampling")
+
+    def _set_rei_StopSampling(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.StopSampling = value
+
+    StopSampling = property(_get_rei_StopSampling, _set_rei_StopSampling)
+    
+    def _get_rei_FederalState(self):
+        return getInheritedValue(self, "FederalState")
+
+    def _set_rei_FederalState(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.FederalState = value
+
+    FederalState = property(_get_rei_FederalState, _set_rei_FederalState)
+    
+    def _get_rei_Operator(self):
+        return getInheritedValue(self, "Operator")
+
+    def _set_rei_Operator(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.Operator = value
+
+    Operator = property(_get_rei_Operator, _set_rei_Operator)
+    
+    def _get_rei_ReiLegalBase(self):
+        return getInheritedValue(self, "ReiLegalBase")
+
+    def _set_rei_ReiLegalBase(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.ReiLegalBase = value
+
+    ReiLegalBase = property(_get_rei_ReiLegalBase, _set_rei_ReiLegalBase)
+    
+    def _get_rei_Year(self):
+        return getInheritedValue(self, "Year")
+
+    def _set_rei_Year(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.Year = value
+
+    Year = property(_get_rei_Year, _set_rei_Year)
+    
+    def _get_rei_Period(self):
+        return getInheritedValue(self, "Period")
+
+    def _set_rei_Period(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.Period = value
+
+    Period = property(_get_rei_Period, _set_rei_Period)
+    
+    def _get_rei_Media(self):
+        return getInheritedValue(self, "Media")
+
+    def _set_rei_Media(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.Media = value
+
+    Media = property(_get_rei_Media, _set_rei_Media)
+    
+    def _get_rei_NuclearInstallation(self):
+        return getInheritedValue(self, "NuclearInstallation")
+
+    def _set_rei_NuclearInstallation(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.NuclearInstallation = value
+
+    NuclearInstallation = property(_get_rei_NuclearInstallation, _set_rei_NuclearInstallation)
+    
+    def _get_rei_PdfVersion(self):
+        return getInheritedValue(self, "PdfVersion")
+
+    def _set_rei_PdfVersion(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.PdfVersion = value
+
+    PdfVersion = property(_get_rei_PdfVersion, _set_rei_PdfVersion)
 
     def isClean(self):
         """
