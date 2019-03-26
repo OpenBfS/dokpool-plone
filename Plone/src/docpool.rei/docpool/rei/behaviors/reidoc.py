@@ -30,8 +30,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_FederalState', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(FederalState='docpool.rei.AccessRei')
+    write_permission(FederalState='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('FederalState')
 
     Operator = schema.TextLine(
@@ -39,8 +39,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_Operator', default=u''),
         required=False,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(Operator='docpool.rei.AccessRei')
+    write_permission(Operator='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Operator')
 
     ReiLegalBase = schema.TextLine(
@@ -48,8 +48,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_ReiLegalBase', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(ReiLegalBase='docpool.rei.AccessRei')
+    write_permission(ReiLegalBase='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('ReiLegalBase')
 
     Year = schema.TextLine(
@@ -57,8 +57,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_Year', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(Year='docpool.rei.AccessRei')
+    write_permission(Year='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Year')
 
     Period = schema.TextLine(
@@ -66,8 +66,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_Period', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(Period='docpool.rei.AccessRei')
+    write_permission(Period='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Period')
 
     Media = schema.TextLine(
@@ -75,8 +75,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_Media', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(Media='docpool.rei.AccessRei')
+    write_permission(Media='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Media')
 
     NuclearInstallation = schema.TextLine(
@@ -84,8 +84,8 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_NuclearInstallation', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(NuclearInstallation='docpool.rei.AccessRei')
+    write_permission(NuclearInstallation='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('NuclearInstallation')
 
     StartSampling = schema.Datetime(
@@ -93,24 +93,24 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_StartSampling', default=u''),
         required=False,
     )
-    read_permission(CalculationDate='docpool.rei.AccessRodos')
-    write_permission(CalculationDate='docpool.rei.AccessRodos')
+    read_permission(StartSampling='docpool.rei.AccessRodos')
+    write_permission(StartSampling='docpool.rei.AccessRodos')
 
     StopSampling = schema.Datetime(
         title=_(u'label_rei_StopSampling', default=u'Stop Sampling'),
         description=_(u'description_rei_StopSampling', default=u''),
         required=False,
     )
-    read_permission(CalculationDate='docpool.rodos.AccessRodos')
-    write_permission(CalculationDate='docpool.rodos.AccessRodos')
+    read_permission(StopSampling='docpool.rodos.AccessRodos')
+    write_permission(StopSampling='docpool.rodos.AccessRodos')
 
     PdfVersion = schema.TextLine(
         title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
         description=_(u'description_rei_PdfVersion', default=u''),
         required=True,
     )
-    read_permission(ReportId='docpool.rei.AccessRei')
-    write_permission(ReportId='docpool.rei.AccessRei')
+    read_permission(PdfVersion='docpool.rei.AccessRei')
+    write_permission(PdfVersion='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Media')
     
 
