@@ -32,18 +32,43 @@
    <include package=".behaviors" />
 
    <utility
-    component=".vocabularies.PrognosisTypesVocabularyFactory"
-    name="docpool.rei.vocabularies.PrognosisTypes"
+    component=".vocabularies.FederalStateVocabularyFactory"
+    name="docpool.rei.vocabularies.FederalState"
     />
 
    <utility
-    component=".vocabularies.PrognosisFormsVocabularyFactory"
-    name="docpool.rei.vocabularies.PrognosisForms"
+    component=".vocabularies.OperatorVocabularyFactory"
+    name="docpool.rei.vocabularies.Operator"
     />
 
    <utility
-    component=".vocabularies.ReleaseSitesVocabularyFactory"
-    name="docpool.rei.vocabularies.ReleaseSites"
+    component=".vocabularies.ReiLegalBaseVocabularyFactory"
+    name="docpool.rei.vocabularies.ReiLegalBase"
+    />
+
+    <utility
+    component=".vocabularies.MediaVocabularyFactory"
+    name="docpool.rei.vocabularies.Media"
+    />
+
+    <utility
+    component=".vocabularies.PeriodVocabularyFactory"
+    name="docpool.rei.vocabularies.Period"
+    />
+
+    <utility
+    component=".vocabularies.PdfVersionVocabularyFactory"
+    name="docpool.rei.vocabularies.PdfVersion"
+    />
+
+    <utility
+    component=".vocabularies.YearVocabularyFactory"
+    name="docpool.rei.vocabularies.Year"
+    />
+
+    <utility
+    component=".vocabularies.NuclearInstallationVocabularyFactory"
+    name="docpool.rei.vocabularies.NuclearInstallation"
     />
 
 <!-- ##/code-section Main -->    
