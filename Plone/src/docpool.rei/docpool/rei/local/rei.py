@@ -16,7 +16,7 @@ def dpAdded(self):
     if self.hasObject("rei"):
         fresh = False # It's a reinstall
 
-    copyRunDisplay(self, fresh)
+    copyberichte(self, fresh)
     transaction.commit()
 
     if fresh:
@@ -28,7 +28,7 @@ def dpAdded(self):
 
     # TODO: further initializations?
 
-def copyRunDisplay(self, fresh):
+def copyberichte(self, fresh):
     """
 
     @param self:
@@ -37,14 +37,14 @@ def copyRunDisplay(self, fresh):
     """
     if not fresh:
         return
-    rei = self.rei
+    berichte = self.berichte
     from docpool.base.utils import _copyPaste
-    _copyPaste(rei, self, safe=False)
-    self.rei.setTitle(_("Run Display"))
-    self.rei.reindexObject()
-    # make sure the run display is first
+    _copyPaste(berichte, self, safe=False)
+    self.berichte.setTitle(_("Berichte"))
+    self.berichte.reindexObject()
+    # make sure the folde berichte is first
     # TODO if more complex (e.g. second after 'esd')
-    self.moveObject("rei", 0)
+    self.moveObject("berichte", 0)
 
 
 
@@ -89,4 +89,4 @@ def createREIGroups(docpool):
     # Set content admin access to config
     docpool.config.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["Owner"])
     # and to navigation
-    docpool.rei.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["ContentAdmin"])
+    docpool.berichte.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["ContentAdmin"])

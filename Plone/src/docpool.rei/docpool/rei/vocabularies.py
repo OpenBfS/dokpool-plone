@@ -1,3 +1,4 @@
+#- * - coding: utf - 8 -*-
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
 from zope.schema.vocabulary import SimpleVocabulary
@@ -73,7 +74,7 @@ class OperatorVocabulary(object):
 
 OperatorVocabularyFactory = OperatorVocabulary()
 
-class ReiLegalBase(object):
+class ReiLegalBaseVocabulary(object):
     """
     """
     implements(IVocabularyFactory)
@@ -83,11 +84,11 @@ class ReiLegalBase(object):
             VocabItem(u'REI-E', _(u'REI-E')),
             VocabItem(u'REI-I', _(u'REI-I')),
             VocabItem(u'REI-E/REI-I', _(u'REI-E/REI-I')),
-                    ]
+        ]
 
         return SimpleVocabulary(items)
 
-ReiLEgalBaseVocabularyFactory = ReiLegalBaseVocabulary()
+ReiLegalBaseVocabularyFactory = ReiLegalBaseVocabulary()
 
 class MediaVocabulary(object):
     """
