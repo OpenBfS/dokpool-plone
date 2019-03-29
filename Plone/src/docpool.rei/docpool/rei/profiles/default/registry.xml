@@ -51,7 +51,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">docpool.rei.vocabularies.MediaVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -66,7 +66,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.FederalStateVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -81,7 +81,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.OperatorVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -96,7 +96,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.ReiLegalBaseVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -111,7 +111,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.NuclaerInstallationVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -126,7 +126,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.PeriodVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -141,11 +141,11 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.PdfVersionVocabulary</value>
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.YEar">
+             prefix="plone.app.querystring.field.Year">
         <value key="title" i18n:translate="">Year</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -156,7 +156,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary"></value>
+        <value key="vocabulary">dokpool.rei.vocabularies.YearVocabulary</value>
     </records>
 
 

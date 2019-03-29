@@ -25,63 +25,70 @@ from Acquisition import aq_inner
 
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
-    FederalState = schema.TextLine(
+    FederalState = schema.Choice(
         title=_(u'label_rei_FederalState', default=u'Federal State'),
         description=_(u'description_rei_FederalState', default=u''),
+        source="docpool.rei.vocabularies.FederalStateVocabulary",
         required=True,
     )
     read_permission(FederalState='docpool.rei.AccessRei')
     write_permission(FederalState='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('FederalState')
 
-    Operator = schema.TextLine(
+    Operator = schema.Choice(
         title=_(u'label_rei_Operator', default=u'Operator'),
         description=_(u'description_rei_Operator', default=u''),
+        source="docpool.rei.vocabularies.OperatorVocabulary",
         required=False,
     )
     read_permission(Operator='docpool.rei.AccessRei')
     write_permission(Operator='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Operator')
 
-    ReiLegalBase = schema.TextLine(
+    ReiLegalBase = schema.Choice(
         title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
         description=_(u'description_rei_ReiLegalBase', default=u''),
+        source= "docpool.rei.vocabularies.ReiLegalBaseVocabulary",
         required=True,
     )
     read_permission(ReiLegalBase='docpool.rei.AccessRei')
     write_permission(ReiLegalBase='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('ReiLegalBase')
 
-    Year = schema.TextLine(
+    Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
         description=_(u'description_rei_Year', default=u''),
+        source= "docpool.rei.vocabularies.YearVocabulary",
         required=True,
     )
     read_permission(Year='docpool.rei.AccessRei')
     write_permission(Year='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Year')
 
-    Period = schema.TextLine(
+    Period = schema.Choice(
         title=_(u'label_rei_Period', default=u'Period'),
         description=_(u'description_rei_Period', default=u''),
+        source="docpool.rei.vocabularies.PeriodVocabulary",
         required=True,
     )
     read_permission(Period='docpool.rei.AccessRei')
     write_permission(Period='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Period')
 
-    Media = schema.TextLine(
+    Media = schema.Choice(
         title=_(u'label_rei_Media', default=u'Media'),
         description=_(u'description_rei_Media', default=u''),
+        source="docpool.rei.vocabularies.MediaVocabulary",
         required=True,
     )
     read_permission(Media='docpool.rei.AccessRei')
     write_permission(Media='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Media')
 
-    NuclearInstallation = schema.TextLine(
+    NuclearInstallation = schema.Choice(
         title=_(u'label_rei_NuclearInstallation', default=u'NuclearInstallation'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
+        source="docpool.rei.vocabularies.NuclearInstallationVocabulary",
         required=True,
     )
     read_permission(NuclearInstallation='docpool.rei.AccessRei')
@@ -104,9 +111,10 @@ class IREIDoc(IDocumentExtension):
     read_permission(StopSampling='docpool.rodos.AccessRodos')
     write_permission(StopSampling='docpool.rodos.AccessRodos')
 
-    PdfVersion = schema.TextLine(
+    PdfVersion = schema.Choice(
         title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
         description=_(u'description_rei_PdfVersion', default=u''),
+        source="docpool.rei.vocabularies.PdfVersionVocabulary",
         required=True,
     )
     read_permission(PdfVersion='docpool.rei.AccessRei')

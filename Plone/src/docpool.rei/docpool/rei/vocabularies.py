@@ -117,6 +117,7 @@ class PeriodVocabulary(object):
             VocabItem(u'2. Quartal', _(u'2. Quartal')),
             VocabItem(u'3. Quartal', _(u'3. Quartal')),
             VocabItem(u'4. Quartal', _(u'4. Quartal')),
+            VocabItem(u'Jahr', _(u'Jahrl')),
         ]
 
         return SimpleVocabulary(items)

@@ -33,42 +33,42 @@
 
    <utility
     component=".vocabularies.FederalStateVocabularyFactory"
-    name="docpool.rei.vocabularies.FederalState"
+    name="docpool.rei.vocabularies.FederalStateVocabulary"
     />
 
    <utility
     component=".vocabularies.OperatorVocabularyFactory"
-    name="docpool.rei.vocabularies.Operator"
+    name="docpool.rei.vocabularies.OperatorVocabulary"
     />
 
    <utility
     component=".vocabularies.ReiLegalBaseVocabularyFactory"
-    name="docpool.rei.vocabularies.ReiLegalBase"
+    name="docpool.rei.vocabularies.ReiLegalBaseVocabulary"
     />
 
     <utility
     component=".vocabularies.MediaVocabularyFactory"
-    name="docpool.rei.vocabularies.Media"
+    name="docpool.rei.vocabularies.MediaVocabulary"
     />
 
     <utility
     component=".vocabularies.PeriodVocabularyFactory"
-    name="docpool.rei.vocabularies.Period"
+    name="docpool.rei.vocabularies.PeriodVocabulary"
     />
 
     <utility
     component=".vocabularies.PdfVersionVocabularyFactory"
-    name="docpool.rei.vocabularies.PdfVersion"
+    name="docpool.rei.vocabularies.PdfVersionVocabulary"
     />
 
     <utility
     component=".vocabularies.YearVocabularyFactory"
-    name="docpool.rei.vocabularies.Year"
+    name="docpool.rei.vocabularies.YearVocabulary"
     />
 
     <utility
     component=".vocabularies.NuclearInstallationVocabularyFactory"
-    name="docpool.rei.vocabularies.NuclearInstallation"
+    name="docpool.rei.vocabularies.NuclearInstallationVocabulary"
     />
 
 <!-- ##/code-section Main -->    
