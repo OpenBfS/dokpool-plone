@@ -7,6 +7,7 @@
                    title string:DocPool"
    i18n:domain="elan.esd"
    i18n:attributes="title">
+        XXX
         <img src="logo.png" alt=""
          tal:attributes="alt view/logo_title;
                          title view/logo_title;
