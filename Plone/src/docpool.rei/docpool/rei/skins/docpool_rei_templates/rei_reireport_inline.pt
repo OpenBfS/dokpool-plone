@@ -6,5 +6,5 @@
                      toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <div metal:use-macro="here/@@dp.macros/macros/doc_complete"/>
     </tal:def>  
-    <p><b>rei_reirun_inline.pt</b></p>
+    <p><b>rei_reireport_inline.pt</b></p>
 </tal:block>

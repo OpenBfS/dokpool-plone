@@ -9,6 +9,7 @@ from docpool.rei import DocpoolMessageFactory as _
 from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.Archetypes.utils import shasattr
 from zope.component import getMultiAdapter
+from datetime import date
 
 class VocabItem(object):
     def __init__(self, token, value):
@@ -145,16 +146,22 @@ class YearVocabulary(object):
     implements(IVocabularyFactory)
 
     def __call__(self, context):
-        items = [
-            VocabItem(u'2013', _(u'2013')),
-            VocabItem(u'2014', _(u'2014')),
-            VocabItem(u'2015', _(u'2015')),
-            VocabItem(u'2016', _(u'2016')),
-            VocabItem(u'2017', _(u'2017')),
-            VocabItem(u'2018', _(u'2018')),
-            VocabItem(u'2019', _(u'2019')),
-            VocabItem(u'2020', _(u'2020')),
-        ]
+        items = []
+        today = date.today()
+        year = today.year
+        while year > 1999:
+            items.append(SimpleVocabulary.createTerm(year, str(year)))
+            year = year - 1
+        # items = [
+        #      VocabItem(u'2013', _(u'2013')),
+        #      VocabItem(u'2014', _(u'2014')),
+        #      VocabItem(u'2015', _(u'2015')),
+        #      VocabItem(u'2016', _(u'2016')),
+        #      VocabItem(u'2017', _(u'2017')),
+        #      VocabItem(u'2018', _(u'2018')),
+        #      VocabItem(u'2019', _(u'2019')),
+        #      VocabItem(u'2020', _(u'2020')),
+        #]
 
         return SimpleVocabulary(items)
 

@@ -3,6 +3,7 @@
 """
 from Products.Archetypes.utils import shasattr
 from docpool.base.utils import getInheritedValue
+
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform.directives import read_permission, write_permission
 from plone.directives import form
@@ -21,10 +22,13 @@ from z3c.form.browser.radio import RadioFieldWidget
 from docpool.rei import DocpoolMessageFactory as _
 
 from Acquisition import aq_inner
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
+
 
 
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
+
     FederalState = schema.Choice(
         title=_(u'label_rei_FederalState', default=u'Federal State'),
         description=_(u'description_rei_FederalState', default=u''),
