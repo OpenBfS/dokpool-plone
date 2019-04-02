@@ -7,12 +7,28 @@
                    title string:DocPool"
    i18n:domain="elan.esd"
    i18n:attributes="title">
+
         <img src="logo.png" alt=""
              tal:define="logo context/logoSrc|nothing;
                          logo python:logo or view.img_src;"
          tal:attributes="alt view/logo_title;
                          title view/logo_title;
-                         src logo" /></a><p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
+                         src logo" /></a>
+         <span tal:condition="python:'esd' in str(context.absolute_url())">
+          <img src="elanlogo.png">
+         </span>
+         <span tal:condition="python:'searches' in str(context.absolute_url())">
+           <img src="doksyslogo.png">
+         </span>
+         <span tal:condition="python:'rodos' in str(context.absolute_url())">
+           <img src="rodoslogo.png">
+         </span>
+         <span tal:condition="python:'rei' in str(context.absolute_url())">
+           <img src="reilogo.png">
+         </span>
+
+        <p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
+
    
 </div>
     <tal:var replace="structure context/logoutjs|nothing" />

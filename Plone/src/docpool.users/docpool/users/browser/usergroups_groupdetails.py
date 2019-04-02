@@ -96,6 +96,10 @@ class GroupDetailsControlPanel(GDCP):
             for id, property in self.gdtool.propertyItems():
                 # BfS: Here we take the "dp" from the request (set above)
                 processed[id] = self.request.get(id, None)
+                try:
+                  processed['dp'] = context.UID()
+                except:
+                  pass
 
             if self.group:
                 # for what reason ever, the very first group created does not exist

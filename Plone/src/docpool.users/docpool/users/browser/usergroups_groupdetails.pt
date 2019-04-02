@@ -85,6 +85,8 @@
                 tal:define="targetobject context/portal_groupdata;">
 
               <fieldset>
+<!-- groupdetails NOT for global groups administration but for DocumentPools only  -->
+                <span tal:condition="python:context.portal_type == 'DocumentPool'">
                   <div class="field" metal:define-slot="name">
                      <label for="groupname" i18n:translate="label_name">Name</label>
 
@@ -223,6 +225,7 @@
                              value="Save"
                              i18n:attributes="value label_save;" />
                   </div>
+                </span>
               </fieldset>
 
               <input tal:replace="structure context/@@authenticator/authenticator" />
