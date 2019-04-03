@@ -3,7 +3,7 @@ from docpool.base.utils import queryForObject, _copyPaste
 from docpool.elan.config import ELAN_APP
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
-from elan.esd.utils import getOpenScenarios
+from docpool.event.utils import getOpenScenarios
 
 def ensureScenariosInTarget(original, copy):
     my_scenarios = original.doc_extension(ELAN_APP).scenarios

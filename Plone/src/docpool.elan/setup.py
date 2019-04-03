@@ -37,7 +37,11 @@ setup(name='docpool.elan',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          'docpool.base','docpool.transfers','elan.esd','elan.sitrep'
+          'docpool.base',
+          'docpool.event',
+          'docpool.transfers',
+          'elan.esd',
+          'elan.sitrep'
           ##code-section dependencies
 	      ##/code-section dependencies
       ],

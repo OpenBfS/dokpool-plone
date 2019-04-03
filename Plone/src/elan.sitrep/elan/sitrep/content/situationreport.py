@@ -14,10 +14,10 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
+from zope.interface import implements, provider
 from zope.component import adapts
 from zope import schema
-from plone.directives import form, dexterity
+from plone.directives import form
 from plone.app.textfield import RichText
 from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
@@ -44,16 +44,18 @@ from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 from z3c.relationfield.relation import RelationValue
 from docpool.elan.config import ELAN_APP
+from docpool.event.utils import getActiveScenarios
+from plone.autoform.interfaces import IFormFieldProvider
 ##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
-class ISituationReport(form.Schema, IDPDocument):
+@provider(IFormFieldProvider)
+class ISituationReport(IDPDocument):
     """
     """
-        
     phase = RelationChoice(
                         title=_(u'label_situationreport_phase', default=u'Phase (scenario-specific)'),
                         description=_(u'description_situationreport_phase', default=u''),
@@ -62,7 +64,7 @@ class ISituationReport(form.Schema, IDPDocument):
                         source = "elan.sitrep.vocabularies.Phases",
 ##/code-section field_phase                           
     )
-    
+    form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
         
     currentModules = RelationList(
                         title=_(u'label_situationreport_currentmodules', default=u'Current Modules'),
@@ -77,10 +79,6 @@ class ISituationReport(form.Schema, IDPDocument):
 
 ##/code-section field_currentModules                           
     )
-    
-
-##code-section interface
-    form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
     form.widget(currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
     form.mode(docType='hidden')
     text = RichText(
@@ -96,12 +94,20 @@ class ISituationReport(form.Schema, IDPDocument):
         ##/code-section field_docType
     )
 
-#    docType = schema.TextLine(
-#            title=u"Document Type",
-#            default=u"sitrep",
-#    )
+@form.default_value(field=ISituationReport['phase'])
+def initializePhase(data):
+    """
+    This is the phase selected in the first active event. If any.
+    """
+    intids = getUtility(IIntIds)
+    context = data.context
+    activeEvents = getActiveScenarios(context)
+    if activeEvents is not None and len(activeEvents) > 0:
+        firstEvent = activeEvents[0].getObject()
+        phase = firstEvent.ScenarioPhase and firstEvent.ScenarioPhase.to_object or None
+        return phase
+    return None
 
-##/code-section interface
 
 
 class SituationReport(Container, DPDocument):

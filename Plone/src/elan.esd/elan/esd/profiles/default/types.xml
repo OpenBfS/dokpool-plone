@@ -13,10 +13,7 @@
      
      
      <object name="ELANDocCollection" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="ELANScenario" meta_type="Dexterity FTI" />    
-     
+
      
      <object name="ELANArchive" meta_type="Dexterity FTI" />    
      
@@ -28,10 +25,7 @@
      
      
      <object name="ELANContentConfig" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="ELANScenarios" meta_type="Dexterity FTI" />    
-     
+
      
      <object name="ELANArchives" meta_type="Dexterity FTI" />    
      

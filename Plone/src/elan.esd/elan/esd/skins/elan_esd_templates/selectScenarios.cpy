@@ -9,9 +9,10 @@
 ##title=
 ##
 
-from elan.esd.utils import setScenariosForCurrentUser
+from docpool.event.utils import setScenariosForCurrentUser
 
 #scnrs = REQUEST.get("scnrs", [])
 
 setScenariosForCurrentUser(context, scnrs)
+context.REQUEST.response.setHeader("Pragma", "no-cache")
 context.redirectToReferrerWithParameters("Set filter")

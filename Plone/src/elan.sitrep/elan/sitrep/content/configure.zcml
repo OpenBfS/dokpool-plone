@@ -1,41 +1,11 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="elan.sitrep">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok"
+           xmlns:five="http://namespaces.zope.org/five" i18n_domain="elan.sitrep">
+    <grok:grok package="."/>
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-     
-
-<!-- ##code-section Main -->
-  <subscriber handler=".srmoduleconfig.updated" />
-  <subscriber handler=".srmodule.updated" />
-  <subscriber handler=".srscenario.updated" />
-  <subscriber handler=".srphase.updated" />    
-  <subscriber handler=".srtextblock.updated" />    
-  <subscriber handler=".srtextblock.removed" />    
-<!-- ##/code-section Main -->    
-    
+    <subscriber handler=".srmoduleconfig.updated"/>
+    <subscriber handler=".srmodule.updated"/>
+    <subscriber handler=".srscenario.updated"/>
+    <subscriber handler=".srphase.updated"/>
+    <subscriber handler=".srtextblock.updated"/>
+    <subscriber handler=".srtextblock.removed"/>
 </configure>

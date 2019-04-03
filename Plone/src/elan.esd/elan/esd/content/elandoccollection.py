@@ -31,7 +31,8 @@ from plone.app.contenttypes.content import Collection,ICollection
 from Products.CMFCore.utils import getToolByName
 
 ##code-section imports
-from elan.esd.utils import getScenariosForCurrentUser, getCategoriesForCurrentUser
+from docpool.event.utils import getScenariosForCurrentUser
+from elan.esd.utils import getCategoriesForCurrentUser
 from Products.CMFCore.permissions import View
 from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget,\
     AutocompleteMultiFieldWidget

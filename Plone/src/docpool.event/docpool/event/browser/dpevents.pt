@@ -1,4 +1,4 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="elan.esd" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.event" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
 <!-- ##code-section Head -->
 <!-- ##/code-section Head -->    
@@ -11,7 +11,7 @@
 <tr><th i18n:translate="">Created</th><th i18n:translate="">Title/Description</th><th i18n:translate="">Status</th></tr>
 </thead>
 <tbody>
-<tr tal:repeat="scenario python:context.getELANScenarios(sort_on='created', sort_order='reverse')">
+<tr tal:repeat="scenario python:context.getDPEvents(sort_on='created', sort_order='reverse')">
 <td style="width:20%;"><span tal:define="mi python:scenario.modInfo(show_created=True);
                       date python:mi[0];
                       uinfo python:mi[1];">

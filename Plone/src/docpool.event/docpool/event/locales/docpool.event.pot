@@ -1,0 +1,195 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2018-12-21 09:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.event\n"
+
+#: docpool.event/docpool/event/browser/dpevents.pt:21
+msgid "++++ Exercise ++++"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/event_macros.pt:36
+msgid "+++Exercise+++"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Add New Scenario"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Archiving"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpnetwork.py:22
+msgid "Area coordinates"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:157
+msgid "Area of interest"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpnuclearpowerstation.py:22
+msgid "Coordinates"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:11
+msgid "Created"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
+msgid "DP Event"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/types/DPEvents.xml
+msgid "DP Events"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/types/DPNetwork.xml
+msgid "DP Network"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/types/DPNuclearPowerStation.xml
+msgid "DP Nuclear Power Station"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Edit Scenarios"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/event_macros.pt:49
+msgid "Filter"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py:97
+msgid "Intensive mode"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:18
+msgid "LT"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:139
+msgid "Operation mode"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/event_macros.pt:14
+msgid "Please select at least one scenario!"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Purge"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py:96
+msgid "Routine mode"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:123
+msgid "Scenario & Phase"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:257
+msgid "Scenario archived"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:135
+msgid "Scenario coordinates"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:130
+msgid "Scenario location"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:151
+msgid "Sectorizing networks"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:144
+msgid "Sectorizing sample types"
+msgstr ""
+
+#: docpool.event/docpool/event/profiles/default/actions.xml
+msgid "Snapshot"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:280
+msgid "Snapshot created"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:11
+msgid "Status"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:437
+msgid "There are no more documents for this scenario."
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:11
+msgid "Title/Description"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:225
+msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:225
+msgid "closed"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:96
+msgid "description_dpevent_exercise"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:87
+msgid "description_dpevent_status"
+msgstr ""
+
+#. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
+#: docpool.event/docpool/event/content/dpevent.py:112
+msgid "description_dpevent_substitute"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:104
+msgid "description_dpevent_timeofevent"
+msgstr ""
+
+#: docpool.event/docpool/event/configure.zcml:24
+msgid "docpool.event"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:225
+msgid "inactive"
+msgstr ""
+
+#. Default: "Is this an exercise?"
+#: docpool.event/docpool/event/content/dpevent.py:95
+msgid "label_dpevent_exercise"
+msgstr ""
+
+#. Default: "Status of the scenario"
+#: docpool.event/docpool/event/content/dpevent.py:86
+msgid "label_dpevent_status"
+msgstr ""
+
+#. Default: "Substitute scenario"
+#: docpool.event/docpool/event/content/dpevent.py:111
+msgid "label_dpevent_substitute"
+msgstr ""
+
+#. Default: "Time of event"
+#: docpool.event/docpool/event/content/dpevent.py:103
+msgid "label_dpevent_timeofevent"
+msgstr ""

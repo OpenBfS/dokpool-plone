@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="Docpool: Add DPEvent" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add DPEvents" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+  </permissions>
+</rolemap>

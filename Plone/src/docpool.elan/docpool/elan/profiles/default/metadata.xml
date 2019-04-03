@@ -3,6 +3,7 @@
     <version>0.0.7</version>
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
+        <dependency>profile-docpool.event:default</dependency>
         <dependency>profile-docpool.transfers:default</dependency>
         <dependency>profile-elan.esd:default</dependency>
         <dependency>profile-elan.sitrep:default</dependency>

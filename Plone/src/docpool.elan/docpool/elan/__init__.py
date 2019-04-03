@@ -3,8 +3,7 @@
 """
 
 from zope.i18nmessageid import MessageFactory
-from docpool.elan import config
-
+import config
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
 from Products.CMFCore.permissions import setDefaultRoles

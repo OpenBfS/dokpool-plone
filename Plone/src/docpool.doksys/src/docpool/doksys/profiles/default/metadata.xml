@@ -2,5 +2,6 @@
 <metadata>
   <version>1000</version>
   <dependencies>
+    <dependency>profile-docpool.event:default</dependency>
   </dependencies>
 </metadata>

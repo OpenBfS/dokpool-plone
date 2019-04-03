@@ -234,7 +234,10 @@ class SRModule(Container, DPDocument):
             module_type = df['module_type']
             mkbrains = sr_cat({'modules':module_type})
             for mkbrain in mkbrains:
-                res.extend(mkbrain.getObject().currentDocuments()[:20])
+                try:
+                    res.extend(mkbrain.getObject().currentDocuments()[:20])
+                except Exception, e:
+                    print e
         if not res:
             mt = self.docTypeObj()
             if mt:
@@ -271,8 +274,11 @@ class SRModule(Container, DPDocument):
         if module_type:
             mkbrains = sr_cat({'modules':module_type})
             for mkbrain in mkbrains:
-              ids = sr_cat({'modules':mkbrain.getObject().getId()})
-              brains.extend(ids,)
+                try:
+                    ids = sr_cat({'modules':mkbrain.getObject().getId()})
+                    brains.extend(ids,)
+                except Exception, e:
+                    print e
         if (scenario or phase) and module_type:
             brains = sr_cat(**args)
         return [ brain.getObject() for brain in brains]
@@ -360,6 +366,7 @@ def updated(obj, event=None):
         soup = BeautifulSoup(html)
         # first we handle all images
         for img in soup.findAll('img'):
+            print img
             src = img['src']
             if src.startswith("data"):
                 continue

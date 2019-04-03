@@ -3,7 +3,7 @@
 """
 
 from zope.i18nmessageid import MessageFactory
-from elan.esd import config
+import config
 
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils

@@ -69,7 +69,7 @@ class SRPhase(Container):
     def getPhaseTitle(self):
         """
         """
-        return "%s: %s" % (self.mySRScenario().Title(), self.Title())
+        return u"%s: %s" % (self.mySRScenario().Title().decode('utf-8'), self.Title().decode('utf-8'))
 
     
     def availableModuleConfigs(self):

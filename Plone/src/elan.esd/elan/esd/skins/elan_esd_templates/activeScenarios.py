@@ -8,6 +8,6 @@
 ##title=
 ##
 
-from elan.esd.utils import getActiveScenarios
+from docpool.event.utils import getActiveScenarios
 
 return getActiveScenarios(context)

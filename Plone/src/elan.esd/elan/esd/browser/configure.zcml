@@ -5,14 +5,14 @@
 <!-- ##code-section Main -->
     <grok:grok package="." />    
     <include package=".viewlets" />
-    
-        <browser:page permission="zope2.View"
-            name="elan.macros"
-            for="*"
-            template="elan_macros.pt" 
-         />    
-                
-            <browser:page permission="zope2.View"
+
+    <browser:page permission="zope2.View"
+                  name="elan.macros"
+                  for="*"
+                  template="elan_macros.pt"
+    />
+
+    <browser:page permission="zope2.View"
                           name="dview"
                           for="..content.elandoccollection.IELANDocCollection"
                           class=".elandoccollection.ELANDocCollectionDocView" />
@@ -60,63 +60,7 @@
         
             <browser:page permission="zope2.View" name="view" for="..interfaces.IELANArchive" class=".elanarchive.ELANArchiveView" />
         
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IELANScenarios" class=".elanscenarios.ELANScenariosView" />
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
+
         
         
         
