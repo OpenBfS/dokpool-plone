@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-17 13:16+0000\n"
+"POT-Creation-Date: 2019-02-08 07:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,15 +61,19 @@ msgstr ""
 msgid "Docpool view"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:36
+msgid "Document workflow:"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:16
+#: docpool.base/docpool/base/browser/collectiondoc.pt:17
 msgid "Edit the document"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:398
+#: docpool.base/docpool/base/browser/dp_macros.pt:399
 msgid "Edit unknown doc type"
 msgstr ""
 
@@ -175,6 +179,18 @@ msgstr ""
 msgid "Please select one or more items to cut."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt:21
+msgid "Publish"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:22
+msgid "Reject"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:23
+msgid "Retract"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/sharing.py:45
 msgid "Search for user or group"
 msgstr ""
@@ -197,6 +213,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Simple pages of text."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:24
+msgid "Submit"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
@@ -244,8 +264,32 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/collectiondoc.pt:20
+msgid "View the document"
+msgstr ""
+
 #: docpool.base/docpool/base/vocabularies.py:67
 msgid "active"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:16
+msgid "alert_delete_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:20
+msgid "alert_publish_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:17
+msgid "alert_reject_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:18
+msgid "alert_retract_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:19
+msgid "alert_submit_popup"
 msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py:67
@@ -474,6 +518,14 @@ msgstr ""
 #: docpool.base/docpool/base/browser/dp_macros.pt:348
 #: docpool.base/docpool/base/browser/infolinklistitem.pt:20
 msgid "modified:"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:14
+msgid "private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt:15
+msgid "published"
 msgstr ""
 
 #. Default: "Content listing"
