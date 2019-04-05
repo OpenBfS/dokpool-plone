@@ -77,10 +77,10 @@ class ELANContentConfig(Container):
         """
         return [obj.getObject() for obj in self.getFolderContents()]
 
-    def getELANScenarioss(self, **kwargs):
+    def getDPEvents(self, **kwargs):
         """
         """
-        args = {'portal_type':'ELANScenarios'}
+        args = {'portal_type':'DPEvents'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)] 
 

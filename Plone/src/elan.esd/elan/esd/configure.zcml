@@ -30,10 +30,7 @@
    
    
    <permission id="elan.esd.AddELANDocCollection" title="Docpool: Add ELANDocCollection" />   
-   
-   
-   <permission id="elan.esd.AddELANScenario" title="Docpool: Add ELANScenario" />   
-   
+
    
    <permission id="elan.esd.AddELANArchive" title="Docpool: Add ELANArchive" />   
    
@@ -45,10 +42,7 @@
    
    
    <permission id="elan.esd.AddELANContentConfig" title="Docpool: Add ELANContentConfig" />   
-   
-   
-   <permission id="elan.esd.AddELANScenarios" title="Docpool: Add ELANScenarios" />   
-   
+
    
    <permission id="elan.esd.AddELANArchives" title="Docpool: Add ELANArchives" />   
    
@@ -65,19 +59,6 @@
   <utility
     component=".vocabularies.CategoryVocabularyFactory"
     name="elan.esd.vocabularies.Category" />
-
-  <utility
-    component=".vocabularies.ScenarioVocabularyFactory"
-    name="elan.esd.vocabularies.Scenarios"
-    />
-  <utility
-    component=".vocabularies.ScenarioRefVocabularyFactory"
-    name="elan.esd.vocabularies.ScenarioRefs"
-    />
-  <utility
-    component=".vocabularies.ScenarioSubstituteVocabularyFactory"
-    name="elan.esd.vocabularies.ScenarioSubstitutes"
-    />
 
     <include package=".behaviors" />	
 	 

@@ -4,59 +4,6 @@
       i18n:domain="elan.esd">
 <body>
 
-<div id="scenario_box" metal:define-macro="scenario_table"
-     tal:define="possible_scenarios view/scenarios;
-										              selected_scenarios view/selected_scenarios;
-													  readonly request/ajax_load|nothing"
-     tal:condition="possible_scenarios">
-    <form name="scenarios" method="post" class="scenario_selection"
-          tal:attributes="action string:selectScenarios">
-        <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
-        <table class="scenario_table">
-            <tal:loop tal:repeat="scenario possible_scenarios">
-                <tr tal:define="exercise scenario/Exercise;
-                             inactive python:scenario.Status == 'inactive';
-                             selected python:scenario.getId() in selected_scenarios;
-                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
-                    tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
-                    <tal:def define="mi python:scenario.modInfo();
-			                           date python:mi[0];
-			                           uinfo python:mi[1]">
-                        <td class="scenario_desc">
-
-                            <input type="checkbox" name="scnrs:list"
-                                   tal:attributes="value    scenario/getId;
-                                                   title    scenario/Title;
-                                                   disabled python:readonly and 'disabled' or None;
-                                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
-                               onclick="this.form.submit()"
-                        />&nbsp;&nbsp;
-
-                        <tal:if condition="exercise">
-                            <span class="exerciseflag" 
-                                  tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
-
-                                  i18n:translate="">+++Exercise+++</span>
-                        </tal:if> &nbsp;&nbsp;
-
-                            <span class="scentitle"
-                                  tal:attributes="title python:'%s %s %s %s' % (scenario.Description(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
-                                  tal:content="string:${scenario/Title}" >Event1</span>
-                        </td>
-                    </tal:def>
-                </tr>
-            </tal:loop>
-        </table>
-        <input tal:condition="not:readonly"
-               type="hidden"
-               name="form.button.Save"
-               class="context"
-               value="Filter"
-               i18n:attributes="value"/>
-    </form>
-
-</div>
-
 <div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected view/selected_categories">
     <form name="categories" method="post" class="category_selection"
           tal:attributes="action string:selectCategories">

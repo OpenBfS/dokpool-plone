@@ -37,18 +37,6 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="Docpool: Add ELANScenario" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Docpool: Add ELANScenarios" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
     <permission name="Docpool: Add ELANSection" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>

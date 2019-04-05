@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.event">
+
+    <include package="plone.app.contentmenu"/>
+    <include package=".viewlets"/>
+
+    <!-- ##code-section Main -->
+    <browser:page permission="zope2.View"
+                  name="event.macros"
+                  for="*"
+                  template="event_macros.pt"
+    />
+    <browser:page permission="zope2.View" name="view" for="..interfaces.IDPEvents" class=".dpevents.DPEventsView"/>
+
+    <!-- ##/code-section Main -->
+
+</configure>

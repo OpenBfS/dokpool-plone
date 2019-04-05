@@ -1,0 +1,30 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.base" xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<!-- ##code-section Head -->
+<!-- ##/code-section Head -->    
+
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core">
+<!-- ##code-section Main -->
+<i18n:dummy translate="private"></i18n:dummy>
+<i18n:dummy translate="published"></i18n:dummy>
+<i18n:dummy translate="alert_delete_popup"></i18n:dummy>
+<i18n:dummy translate="alert_reject_popup"></i18n:dummy>
+<i18n:dummy translate="alert_retract_popup"></i18n:dummy>
+<i18n:dummy translate="alert_submit_popup"></i18n:dummy>
+<i18n:dummy translate="alert_publish_popup"></i18n:dummy>
+<i18n:dummy translate="Publish"></i18n:dummy>
+<i18n:dummy translate="Reject"></i18n:dummy>
+<i18n:dummy translate="Retract"></i18n:dummy>
+<i18n:dummy translate="Submit"></i18n:dummy>
+
+<!-- ##/code-section Main -->    
+</metal:content-core>
+</metal:content-core>
+</body>
+</html>

@@ -66,7 +66,7 @@ class DPDocumentirixView(BrowserView):
                 scn = scns[0]
                 # We can't search the catalog for the title directly...
                 cat = getToolByName(self.context, "portal_catalog")
-                all_scns = cat(portal_type='ELANScenario')
+                all_scns = cat(portal_type='DPEvent')
                 for s in all_scns:
                     if s.Title == scn:
                         return s.getObject()

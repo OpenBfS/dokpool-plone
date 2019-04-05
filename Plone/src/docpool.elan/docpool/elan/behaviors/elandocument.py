@@ -34,7 +34,7 @@ class IELANDocument(IDocumentExtension):
         title=_(u'label_dpdocument_scenarios', default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
-        value_type=schema.Choice(source="elan.esd.vocabularies.Scenarios"),
+        value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
     )
     read_permission(scenarios='docpool.elan.AccessELAN')
     write_permission(scenarios='docpool.elan.AccessELAN')
@@ -85,7 +85,7 @@ class ELANDocument(FlexibleView):
         """
         cat = getToolByName(self.context, "portal_catalog")
         scns = getattr(self.context, "scenarios", [])
-        return [s.getObject() for s in cat(path=self.context.dpSearchPath(), portal_type='ELANScenario', getId=scns)]
+        return [s.getObject() for s in cat(path=self.context.dpSearchPath(), portal_type='DPEvent', getId=scns)]
 
     def scenarioIndex(self):
         """
@@ -105,7 +105,7 @@ class ELANDocument(FlexibleView):
         """
         cat = getToolByName(self.context, "portal_catalog")
         scns = self.scenarios
-        return [s.Title for s in cat(path=self.context.dpSearchPath(), portal_type='ELANScenario', getId=scns)]
+        return [s.Title for s in cat(path=self.context.dpSearchPath(), portal_type='DPEvent', getId=scns)]
 
     def unknownScenario(self):
         """

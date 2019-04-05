@@ -15,7 +15,7 @@ def setupVarious(context):
 ##code-section setupcode
     # TODO: Add additional setup code here
     from docpool.rei.general.rei import install
-    install(context.getSite())
+    install(context,context.getSite())
 
         ##/code-section setupcode
 

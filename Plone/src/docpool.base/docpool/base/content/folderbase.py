@@ -56,7 +56,7 @@ class FolderBase(Container, ContentBase):
     implements(IFolderBase)
     
 ##code-section methods
-    def change_state(self, id, action, REQUEST=None):
+    def change_state(self, id, action, backToReferer=False, REQUEST=None):
         """
         """
         if REQUEST:
@@ -81,8 +81,12 @@ class FolderBase(Container, ContentBase):
             except:
                 return self.restrictedTraverse("@@view")()
             if REQUEST:
+                last_referer = REQUEST.get('HTTP_REFERER')
                 portalMessage(self, _("The document state has been changed."), "info")
-                return self.restrictedTraverse("@@view")()
+                if backToReferer and last_referer:
+                    return REQUEST.RESPONSE.redirect(last_referer)
+                else:
+                    return self.restrictedTraverse("@@view")()
 
     def canBeDeleted(self, principal_deleted=False):
         """
