@@ -540,8 +540,8 @@ def addLogEntry(old_changelog, obj):
         obj.Status,
         obj.OperationMode,
         obj.phaseInfo(),
-        ", ".join(obj.SectorizingSampleTypes),
-        ", ".join(n.to_object.Title() for n in obj.SectorizingNetworks)
+        ", ".join (obj.SectorizingSampleTypes if obj.SectorizingSampleTypes != None else ' '),
+        ", ".join((n.to_object.Title() for n in obj.SectorizingNetworks) if obj.SectorizingNetworks != None else ' ')
     )
     new_changelog = old_changelog.replace("""<tr class="last"></tr>""", safe_unicode(text))
     obj.changelog = RichTextValue(new_changelog, 'text/html', 'text/html')
