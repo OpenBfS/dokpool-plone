@@ -59,6 +59,16 @@ class IREIDoc(IDocumentExtension):
     write_permission(ReiLegalBase='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('ReiLegalBase')
 
+    Origin = schema.Choice(
+        title=_(u'label_rei_Origin', default=u'Ersteller'),
+        description=_(u'description_rei_Origin', default=u''),
+        source="docpool.rei.vocabularies.OriginVocabulary",
+        required=True,
+    )
+    read_permission(Origin='docpool.rei.AccessRei')
+    write_permission(Origin='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Origin')
+
     Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
         description=_(u'description_rei_Year', default=u''),
@@ -104,16 +114,16 @@ class IREIDoc(IDocumentExtension):
         description=_(u'description_rei_StartSampling', default=u''),
         required=False,
     )
-    read_permission(StartSampling='docpool.rei.AccessRodos')
-    write_permission(StartSampling='docpool.rei.AccessRodos')
+    read_permission(StartSampling='docpool.rei.AccessRei')
+    write_permission(StartSampling='docpool.rei.AccessRei')
 
     StopSampling = schema.Datetime(
         title=_(u'label_rei_StopSampling', default=u'Stop Sampling'),
         description=_(u'description_rei_StopSampling', default=u''),
         required=False,
     )
-    read_permission(StopSampling='docpool.rodos.AccessRodos')
-    write_permission(StopSampling='docpool.rodos.AccessRodos')
+    read_permission(StopSampling='docpool.rei.AccessRei')
+    write_permission(StopSampling='docpool.rei.AccessRei')
 
     PdfVersion = schema.Choice(
         title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
@@ -123,7 +133,9 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(PdfVersion='docpool.rei.AccessRei')
     write_permission(PdfVersion='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Media')
+    dexteritytextindexer.searchable('PdfVersion')
+
+
     
 
 
@@ -247,6 +259,17 @@ class REIDoc(FlexibleView):
         context.PdfVersion = value
 
     PdfVersion = property(_get_rei_PdfVersion, _set_rei_PdfVersion)
+
+    def _get_rei_Origin(self):
+        return getInheritedValue(self, "Origin")
+
+    def _set_rei_Origin(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.Origin = value
+
+    Origin = property(_get_rei_Origin, _set_rei_Origin)
 
     def isClean(self):
         """

@@ -23,6 +23,8 @@ if not 'content' in absurl:
     absurl = context.myDocumentPool().absolute_url() + '/esd'
   if app == 'doksys':
     absurl = context.myDocumentPool().absolute_url() + '/searches'
+  if app == 'rei':
+    absurl = context.myDocumentPool().absolute_url() + '/berichte'
   if app == 'rodos':
     absurl = context.myDocumentPool().absolute_url() + '/rodos'
 return context.REQUEST.RESPONSE.redirect(absurl)

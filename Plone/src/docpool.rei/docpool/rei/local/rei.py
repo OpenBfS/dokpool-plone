@@ -23,6 +23,7 @@ def dpAdded(self):
         # connectTypesAndCategories(self) # TOOD: only when REI doctypes need to be added to ELAN categories
         # self.rei.correctAllDocTypes() # TODO: if the run display templates contains collections
         # with references to global doctypes, which need to be adapted to local doctypes.
+        createREIUsers(self)
         createREIGroups(self)
     self.reindexAll()
 
@@ -83,6 +84,7 @@ def createREIGroups(docpool):
     gtool.addGroup("%s_REIContentAdministrators" % prefix,
                    properties=props)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_REIContentAdministrators' % prefix)
+    gtool.addPrincipalToGroup('%s_reiadmin' % prefix, '%s_Administrators' % prefix)
 
     # Set REI role as a local role for the new group
     docpool.manage_setLocalRoles("%s_REIUsers" % prefix, ["REIUser"])
@@ -90,3 +92,16 @@ def createREIGroups(docpool):
     docpool.config.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["Owner"])
     # and to navigation
     docpool.berichte.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["ContentAdmin"])
+
+def createREIUsers(self):
+    # Set type for user folders
+    mtool = getToolByName(self, "portal_membership")
+    prefix = self.prefix or self.getId()
+    prefix = str(prefix)
+    title = self.Title()
+    mtool.addMember('%s_reiadmin' % prefix, 'REI Administrator (%s)' % title, ['Member'], [])
+    reiadmin = mtool.getMemberById('%s_reiadmin' % prefix)
+    reiadmin.setMemberProperties(
+        {"fullname": 'REI Administrator (%s)' % title,
+         "dp": self.UID()})
+    reiadmin.setSecurityProfile(password="admin")

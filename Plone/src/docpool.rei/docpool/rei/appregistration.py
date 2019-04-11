@@ -8,4 +8,4 @@ from docpool.rei.behaviors.reitype import IREIType
 from docpool.rei.config import REI_APP
 
 # TODO: register any app specific type extension, doc extension, methods to be executed when docpools are created
-registerApp(REI_APP, u"REI App", IREIType, IREIDoc, dpAdded, dpRemoved, icon="rei_app_icon.png", implicit=False)
+registerApp(REI_APP, u"REI", IREIType, IREIDoc, dpAdded, dpRemoved, icon="rei_app_icon.png", implicit=False)

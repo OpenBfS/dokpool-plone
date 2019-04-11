@@ -23,7 +23,7 @@
          <span tal:condition="python:'rodos' in str(context.absolute_url())">
            <img src="rodoslogo.png">
          </span>
-         <span tal:condition="python:'rei' in str(context.absolute_url())">
+         <span tal:condition="python:'berichte' in str(context.absolute_url())">
            <img src="reilogo.png">
          </span>
 
