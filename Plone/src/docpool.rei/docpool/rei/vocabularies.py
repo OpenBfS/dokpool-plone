@@ -249,7 +249,7 @@ class NuclearInstallationVocabulary(object):
             VocabItem(u'U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) ',
                       _(u'U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) '),u'U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) '),
             VocabItem(u'U09K Forschungsneutronenquelle Heinz Maier-Leibnitz ',
-                      _(u'U09K Forschungsneutronenquelle Heinz Maier-Leibnitz ')),
+                      _(u'U09K Forschungsneutronenquelle Heinz Maier-Leibnitz '),u'U09K Forschungsneutronenquelle Heinz Maier-Leibnitz '),
             VocabItem(u'U11B Experimentierreakt. II Berlin ', _(u'U11B Experimentierreakt. II Berlin '),u'U09K Forschungsneutronenquelle Heinz Maier-Leibnitz '),
             VocabItem(u'U12R KKW Rheinsberg ', _(u'U12R KKW Rheinsberg '),u'U12R KKW Rheinsberg '),
             VocabItem(u'U13A KKW Lubmin/Greifswald ', _(u'U13A KKW Lubmin/Greifswald '),u'U13A KKW Lubmin/Greifswald '),
