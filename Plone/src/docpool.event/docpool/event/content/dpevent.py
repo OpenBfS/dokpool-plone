@@ -211,10 +211,12 @@ class DPEvent(Item, ContentBase):
         alsoProvides(request, IDisableCSRFProtection)
 
         self = aq_base(self)
-        self.Status = self.status
+        if hasattr(self, "status"):
+            self.Status = self.status
         if hasattr(self, "exercise"):
             self.Exercise = self.exercise
-        self.TimeOfEvent = self.timeOfEvent
+        if hasattr(self, "timeOfEvent"):
+            self.TimeOfEvent = self.timeOfEvent
         if hasattr(self, "substitute"):
             self.Substitute = self.substitute
 
