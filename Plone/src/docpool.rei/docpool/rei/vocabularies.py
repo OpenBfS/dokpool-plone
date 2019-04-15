@@ -119,7 +119,9 @@ class PeriodVocabulary(object):
             VocabItem(u'2. Quartal', _(u'2. Quartal'),u'2. Quartal'),
             VocabItem(u'3. Quartal', _(u'3. Quartal'),u'3. Quartal'),
             VocabItem(u'4. Quartal', _(u'4. Quartal'),u'4. Quartal'),
-            VocabItem(u'Jahr', _(u'Jahr'),u'Jahr'),
+            VocabItem(u'1. Halbjahr', _(u'1. Halbjahr'),u'1. Halbjahr'),
+            VocabItem(u'2. Halbjahr', _(u'2. Halbjahr'), u'2. Halbjahr'),
+            VocabItem(u'Monat', _(u'Jahr'), u'Monat'),
         ]
 
         return SimpleVocabulary(items)
@@ -167,7 +169,7 @@ class YearVocabulary(object):
         items = []
         today = date.today()
         year = today.year
-        while year > 1999:
+        while year > 1986:
             items.append(SimpleVocabulary.createTerm(year, str(year), str(year)))
             year = year - 1
 #       items = [

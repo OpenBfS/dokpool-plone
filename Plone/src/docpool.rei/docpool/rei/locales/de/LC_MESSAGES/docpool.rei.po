@@ -1,0 +1,538 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2019-04-15 08:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: docpool.rei/docpool/rei/vocabularies.py:118
+msgid "1. Quartal"
+msgstr "1. Quartal"
+
+#: docpool.rei/docpool/rei/vocabularies.py:119
+msgid "2. Quartal"
+msgstr "2. Quartal"
+
+#: docpool.rei/docpool/rei/vocabularies.py:120
+msgid "3. Quartal"
+msgstr "3. Quartal"
+
+#: docpool.rei/docpool/rei/vocabularies.py:121
+msgid "4. Quartal"
+msgstr "4. Quartal"
+
+#: docpool.rei/docpool/rei/vocabularies.py:103
+msgid "Abwasser"
+msgstr "Abwasser"
+
+#: docpool.rei/docpool/rei/vocabularies.py:35
+msgid "Baden-Württemberg"
+msgstr "Baden-Württemberg"
+
+#: docpool.rei/docpool/rei/vocabularies.py:36
+msgid "Bayern"
+msgstr "Bayern"
+
+#: docpool.rei/docpool/rei/local/rei.py:44
+msgid "Berichte"
+msgstr "Berichte"
+
+#: docpool.rei/docpool/rei/vocabularies.py:38
+msgid "Berlin"
+msgstr "Berlin"
+
+#: docpool.rei/docpool/rei/vocabularies.py:151
+msgid "Betreiber"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py:39
+msgid "Brandenburg"
+msgstr "Brandenburg"
+
+#: docpool.rei/docpool/rei/vocabularies.py:31
+msgid "Bremen"
+msgstr "Bremen"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Date"
+msgstr "Datum"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Federal State"
+msgstr "Bundesland"
+
+#: docpool.rei/docpool/rei/vocabularies.py:102
+msgid "Fortluft"
+msgstr "Fortluft"
+
+#: docpool.rei/docpool/rei/vocabularies.py:104
+msgid "Fortluft/Abwasser"
+msgstr "Fortluft/Abwasser"
+
+#: docpool.rei/docpool/rei/vocabularies.py:29
+msgid "Hamburg"
+msgstr "Hamburg"
+
+#: docpool.rei/docpool/rei/vocabularies.py:33
+msgid "Hessen"
+msgstr "Hessen"
+
+#: docpool.rei/docpool/rei/vocabularies.py:122
+msgid "Jahr"
+msgstr "Jahr"
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml:13
+msgid "Makes documents support REI functions"
+msgstr "Sorgt bei Dokumenten für REI Funktionen"
+
+#: docpool.rei/docpool/rei/vocabularies.py:40
+msgid "Mecklenburg-Vorpommern"
+msgstr "Mecklenburg-Vorpommern"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Media"
+msgstr "Medium"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Metadata"
+msgstr "Metadaten"
+
+#: docpool.rei/docpool/rei/vocabularies.py:30
+msgid "Niedersachsen"
+msgstr "Niedersachsen"
+
+#: docpool.rei/docpool/rei/vocabularies.py:32
+msgid "Nordrhein-Westfahlen"
+msgstr "Nordrhein-Westfahlen"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Nuclear Installation"
+msgstr "Kerntechnische Anlage"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Operator"
+msgstr "Netzbetreiber"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Origin"
+msgstr "Ersteller"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "PDF Version"
+msgstr "PDF Version"
+
+#: docpool.rei/docpool/rei/vocabularies.py:136
+msgid "PDF/A-1b"
+msgstr "PDF/A-1b"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Period"
+msgstr "Zeitraum"
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml:20
+msgid "REI DocType"
+msgstr "REI Dokumenttyp"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "REI legal Base"
+msgstr "gesetzliche Grundlage"
+
+#: docpool.rei/docpool/rei/vocabularies.py:86
+msgid "REI-E"
+msgstr "REI-E"
+
+#: docpool.rei/docpool/rei/vocabularies.py:88
+msgid "REI-E/REI-I"
+msgstr "REI-E/REI-I"
+
+#: docpool.rei/docpool/rei/vocabularies.py:87
+msgid "REI-I"
+msgstr "REI-I"
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml:13
+msgid "REIDoc"
+msgstr "REIDokument"
+
+#: docpool.rei/docpool/rei/vocabularies.py:34
+msgid "Rheinland-Pfalz"
+msgstr "Rheinland-Pfalz"
+
+#: docpool.rei/docpool/rei/vocabularies.py:37
+msgid "Saarland"
+msgstr "Saarland"
+
+#: docpool.rei/docpool/rei/vocabularies.py:41
+msgid "Sachsen"
+msgstr "Sachsen"
+
+#: docpool.rei/docpool/rei/vocabularies.py:42
+msgid "Sachsen-Anhalt"
+msgstr "Sachsen-Anhalt"
+
+#: docpool.rei/docpool/rei/vocabularies.py:28
+msgid "Schleswig-Holstein"
+msgstr "Schleswig-Holstein"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Start of Sampling"
+msgstr "Probenahmebeginn"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Stop of Sampling"
+msgstr "Probenahmeende"
+
+#: docpool.rei/docpool/rei/vocabularies.py:43
+msgid "Thüringen"
+msgstr "Thüringen"
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml:20
+msgid "Type extension for REI types"
+msgstr "Type extension for REI types"
+
+#: docpool.rei/docpool/rei/vocabularies.py:203
+msgid "U01A Helmholtz-Zentrum Geesthacht "
+msgstr "U01A Helmholtz-Zentrum Geesthacht "
+
+#: docpool.rei/docpool/rei/vocabularies.py:204
+msgid "U01B KKW Krümmel "
+msgstr "U01B KKW Krümmel "
+
+#: docpool.rei/docpool/rei/vocabularies.py:205
+msgid "U01C KKW Brunsbüttel "
+msgstr "U01C KKW Brunsbüttel "
+
+#: docpool.rei/docpool/rei/vocabularies.py:206
+msgid "U01D KKW Brokdorf "
+msgstr "U01D KKW Brokdorf "
+
+#: docpool.rei/docpool/rei/vocabularies.py:207
+msgid "U01I Interimslager Krümmel "
+msgstr "U01I Interimslager Krümmel"
+
+#: docpool.rei/docpool/rei/vocabularies.py:208
+msgid "U01K Standortzwischenlager Krümmel "
+msgstr "U01K Standortzwischenlager Krümmel "
+
+#: docpool.rei/docpool/rei/vocabularies.py:209
+msgid "U01L Standortzwischenlager Brunsbüttel "
+msgstr "U01L Standortzwischenlager Brunsbüttel "
+
+#: docpool.rei/docpool/rei/vocabularies.py:210
+msgid "U01M Standortzwischenlager Brokdorf "
+msgstr "U01M Standortzwischenlager Brokdorf "
+
+#: docpool.rei/docpool/rei/vocabularies.py:211
+msgid "U03A Standortzwischenlager Grohnde "
+msgstr "U03A Standortzwischenlager Grohnde "
+
+#: docpool.rei/docpool/rei/vocabularies.py:212
+msgid "U03B Brennelementefertigungsanl. Lingen "
+msgstr "U03B Brennelementefertigungsanl. Lingen "
+
+#: docpool.rei/docpool/rei/vocabularies.py:213
+msgid "U03C Standortzwischenlager Unterweser "
+msgstr "U03C Standortzwischenlager Unterweser "
+
+#: docpool.rei/docpool/rei/vocabularies.py:214
+msgid "U03E KKW Emsland "
+msgstr "U03E KKW Emsland "
+
+#: docpool.rei/docpool/rei/vocabularies.py:215
+msgid "U03G KKW Grohnde "
+msgstr "U03G KKW Grohnde "
+
+#: docpool.rei/docpool/rei/vocabularies.py:216
+msgid "U03K Endlager Konrad "
+msgstr "U03K Endlager Konrad "
+
+#: docpool.rei/docpool/rei/vocabularies.py:217
+msgid "U03L KKW Lingen "
+msgstr "U03L KKW Lingen "
+
+#: docpool.rei/docpool/rei/vocabularies.py:218
+msgid "U03P BGZ - Betrieb Gorleben "
+msgstr "U03P BGZ - Betrieb Gorleben "
+
+#: docpool.rei/docpool/rei/vocabularies.py:219
+msgid "U03S KKW Stade "
+msgstr "U03S KKW Stade "
+
+#: docpool.rei/docpool/rei/vocabularies.py:220
+msgid "U03U KKW Unterweser "
+msgstr "U03U KKW Unterweser "
+
+#: docpool.rei/docpool/rei/vocabularies.py:221
+msgid "U03Z Standortzwischenlager Lingen "
+msgstr "U03Z Standortzwischenlager Lingen "
+
+#: docpool.rei/docpool/rei/vocabularies.py:222
+msgid "U05B BGZ - Brennelement-Zwischenl. Ahaus "
+msgstr "U05B BGZ - Brennelement-Zwischenl. Ahaus "
+
+#: docpool.rei/docpool/rei/vocabularies.py:223
+msgid "U05F Forschungszentrum Jülich "
+msgstr "U05F Forschungszentrum Jülich "
+
+#: docpool.rei/docpool/rei/vocabularies.py:224
+msgid "U05G AVR-Versuchskernkraftwerk Jülich "
+msgstr "U05G AVR-Versuchskernkraftwerk Jülich "
+
+#: docpool.rei/docpool/rei/vocabularies.py:225
+msgid "U05K KKW Würgassen "
+msgstr "U05K KKW Würgassen "
+
+#: docpool.rei/docpool/rei/vocabularies.py:226
+msgid "U05T Thorium-Hochtemp.reakt. Hamm-Uentrop "
+msgstr "U05T Thorium-Hochtemp.reakt. Hamm-Uentrop "
+
+#: docpool.rei/docpool/rei/vocabularies.py:227
+msgid "U05U Urananreicherungsanlage Gronau "
+msgstr "U05U Urananreicherungsanlage Gronau "
+
+#: docpool.rei/docpool/rei/vocabularies.py:228
+msgid "U06B KKW Biblis und BE-Zwischenlager "
+msgstr "U06B KKW Biblis und BE-Zwischenlager "
+
+#: docpool.rei/docpool/rei/vocabularies.py:229
+msgid "U07M KKW Mülheim-Kärlich "
+msgstr "U07M KKW Mülheim-Kärlich "
+
+#: docpool.rei/docpool/rei/vocabularies.py:230
+msgid "U07U Uni Mainz "
+msgstr "U07U Uni Mainz "
+
+#: docpool.rei/docpool/rei/vocabularies.py:231
+msgid "U08H DKFZ Heidelberg "
+msgstr "U08H DKFZ Heidelberg "
+
+#: docpool.rei/docpool/rei/vocabularies.py:233
+msgid "U08K Karlsruher Institut für Technologie - Campus Nord (Einrichtungen am Standort) "
+msgstr "U08K Karlsruher Institut für Technologie - Campus Nord (Einrichtungen am Standort) "
+
+#: docpool.rei/docpool/rei/vocabularies.py:234
+msgid "U08M Abraumhalde Menz. "
+msgstr "U08M Abraumhalde Menz. "
+
+#: docpool.rei/docpool/rei/vocabularies.py:235
+msgid "U08N EnKK Neckarwestheim "
+msgstr "U08N EnKK Neckarwestheim "
+
+#: docpool.rei/docpool/rei/vocabularies.py:236
+msgid "U08O EnKK Obrigheim "
+msgstr "U08O EnKK Obrigheim "
+
+#: docpool.rei/docpool/rei/vocabularies.py:237
+msgid "U08P EnKK Philippsburg "
+msgstr "U08P EnKK Philippsburg "
+
+#: docpool.rei/docpool/rei/vocabularies.py:238
+msgid "U08W KKW Wyhl "
+msgstr "U08W KKW Wyhl "
+
+#: docpool.rei/docpool/rei/vocabularies.py:239
+msgid "U09A KKW Isar 1+2 "
+msgstr "U09A KKW Isar 1+2 "
+
+#: docpool.rei/docpool/rei/vocabularies.py:240
+msgid "U09B KKW Isar1 "
+msgstr "U09B KKW Isar1 "
+
+#: docpool.rei/docpool/rei/vocabularies.py:241
+msgid "U09C KKW Isar2 "
+msgstr "U09C KKW Isar2 "
+
+#: docpool.rei/docpool/rei/vocabularies.py:242
+msgid "U09D KKW Grafenrheinfeld "
+msgstr "U09D KKW Grafenrheinfeld "
+
+#: docpool.rei/docpool/rei/vocabularies.py:243
+msgid "U09E KKW Gundremmingen Block B/C "
+msgstr "U09E KKW Gundremmingen Block B/C "
+
+#: docpool.rei/docpool/rei/vocabularies.py:244
+msgid "U09F Versuchs-AKW Kahl a.M. "
+msgstr "U09F Versuchs-AKW Kahl a.M. "
+
+#: docpool.rei/docpool/rei/vocabularies.py:245
+msgid "U09G Forschungsreaktor München "
+msgstr "U09G Forschungsreaktor München "
+
+#: docpool.rei/docpool/rei/vocabularies.py:247
+msgid "U09H Siemens Brennelementewerk Hanau, Standort Karlstein "
+msgstr "U09H Siemens Brennelementewerk Hanau, Standort Karlstein "
+
+#: docpool.rei/docpool/rei/vocabularies.py:248
+msgid "U09I Siemens AG, Karlstein "
+msgstr "U09I Siemens AG, Karlstein "
+
+#: docpool.rei/docpool/rei/vocabularies.py:250
+msgid "U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) "
+msgstr "U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) "
+
+#: docpool.rei/docpool/rei/vocabularies.py:252
+msgid "U09K Forschungsneutronenquelle Heinz Maier-Leibnitz "
+msgstr "U09K Forschungsneutronenquelle Heinz Maier-Leibnitz "
+
+#: docpool.rei/docpool/rei/vocabularies.py:253
+msgid "U11B Experimentierreakt. II Berlin "
+msgstr "U11B Experimentierreakt. II Berlin "
+
+#: docpool.rei/docpool/rei/vocabularies.py:254
+msgid "U12R KKW Rheinsberg "
+msgstr "U12R KKW Rheinsberg "
+
+#: docpool.rei/docpool/rei/vocabularies.py:255
+msgid "U13A KKW Lubmin/Greifswald "
+msgstr "U13A KKW Lubmin/Greifswald "
+
+#: docpool.rei/docpool/rei/vocabularies.py:256
+msgid "U13B Zwischenlager Nord "
+msgstr "U13B Zwischenlager Nord "
+
+#: docpool.rei/docpool/rei/vocabularies.py:257
+msgid "U14R Forschungszentrum Rossendorf "
+msgstr "U14R Forschungszentrum Rossendorf "
+
+#: docpool.rei/docpool/rei/vocabularies.py:258
+msgid "U15M nicht benutzen, jetzt UELM, Endlager für radioaktive Abfälle Morsleben (ERAM) "
+msgstr "U15M nicht benutzen, jetzt UELM, Endlager für radioaktive Abfälle Morsleben (ERAM) "
+
+#: docpool.rei/docpool/rei/vocabularies.py:196
+msgid "UCHL KTA Leibstadt mit Beznau und Villigen "
+msgstr "UCHL KTA Leibstadt mit Beznau und Villigen "
+
+#: docpool.rei/docpool/rei/vocabularies.py:198
+msgid "UELA Endlager für radioaktive Abfälle Asse "
+msgstr "UELA Endlager für radioaktive Abfälle Asse "
+
+#: docpool.rei/docpool/rei/vocabularies.py:200
+msgid "UELM Endlager für radioaktive Abfälle Morsleben (ERAM) "
+msgstr "UELM Endlager für radioaktive Abfälle Morsleben (ERAM) "
+
+#: docpool.rei/docpool/rei/vocabularies.py:201
+msgid "UFRC KKW Cattenom "
+msgstr "UFRC KKW Cattenom "
+
+#: docpool.rei/docpool/rei/vocabularies.py:202
+msgid "UFRF KKW Fessenheim "
+msgstr "UFRF KKW Fessenheim "
+
+#: docpool.rei/docpool/rei/vocabularies.py:152
+msgid "Unabhängige Messstelle"
+msgstr "Unabhängige Messstelle"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Year"
+msgstr "Jahr"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:34
+msgid "description_rei_FederalState"
+msgstr "Bundesland"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:94
+msgid "description_rei_Media"
+msgstr "Umweltmedium"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:104
+msgid "description_rei_NuclearInstallation"
+msgstr "Genaue Bezeichnung der kerntechnischen Anlage"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:44
+msgid "description_rei_Operator"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:64
+msgid "description_rei_Origin"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:130
+msgid "description_rei_PdfVersion"
+msgstr "PDF/A Version des Dokumentes "
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:84
+msgid "description_rei_Period"
+msgstr "Berichtszeitraum"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:54
+msgid "description_rei_ReiLegalBase"
+msgstr "Gesetzliche Grundlage des Berichts"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:114
+msgid "description_rei_StartSampling"
+msgstr "Probenahmebeginn"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:122
+msgid "description_rei_StopSampling"
+msgstr "Probenahmeende"
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:74
+msgid "description_rei_Year"
+msgstr "Berichtsjahr"
+
+#: docpool.rei/docpool/rei/configure.zcml:23
+msgid "docpool.rei"
+msgstr "docpool.rei"
+
+#. Default: "Federal State"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:33
+msgid "label_rei_FederalState"
+msgstr "Bundesland"
+
+#. Default: "Media"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:93
+msgid "label_rei_Media"
+msgstr "Medium"
+
+#. Default: "NuclearInstallation"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:103
+msgid "label_rei_NuclearInstallation"
+msgstr "Kerntechnische Anlage"
+
+#. Default: "Operator"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:43
+msgid "label_rei_Operator"
+msgstr "Netzbetreiber"
+
+#. Default: "Ersteller"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:63
+msgid "label_rei_Origin"
+msgstr "Urheber"
+
+#. Default: "Pdf Version"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:129
+msgid "label_rei_PdfVersion"
+msgstr "Pdf/A Version"
+
+#. Default: "Period"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:83
+msgid "label_rei_Period"
+msgstr "Zeitraum"
+
+#. Default: "ReiLegalBase"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:53
+msgid "label_rei_ReiLegalBase"
+msgstr "gesetzliche Grundlage"
+
+#. Default: "Start Sampling"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:113
+msgid "label_rei_StartSampling"
+msgstr "Probenahmebeginn"
+
+#. Default: "Stop Sampling"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:121
+msgid "label_rei_StopSampling"
+msgstr "Probenahmeende"
+
+#. Default: "Year"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py:73
+msgid "label_rei_Year"
+msgstr "Jahr"

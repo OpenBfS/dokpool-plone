@@ -49,6 +49,16 @@ class IREIDoc(IDocumentExtension):
     write_permission(Operator='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Operator')
 
+    MstID = schema.TextLine(
+        title=_(u'label_rei_MstId', default=u'Messstellen-ID'),
+        description=_(u'description_rei_MstId', default=u''),
+#        source="docpool.rei.vocabularies.OperatorVocabulary",
+        required=False,
+    )
+    read_permission(Operator='docpool.rei.AccessRei')
+    write_permission(Operator='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Operator')
+
     ReiLegalBase = schema.Choice(
         title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
         description=_(u'description_rei_ReiLegalBase', default=u''),
@@ -112,7 +122,7 @@ class IREIDoc(IDocumentExtension):
     StartSampling = schema.Datetime(
         title=_(u'label_rei_StartSampling', default=u'Start Sampling'),
         description=_(u'description_rei_StartSampling', default=u''),
-        required=False,
+        required=True,
     )
     read_permission(StartSampling='docpool.rei.AccessRei')
     write_permission(StartSampling='docpool.rei.AccessRei')
@@ -120,7 +130,7 @@ class IREIDoc(IDocumentExtension):
     StopSampling = schema.Datetime(
         title=_(u'label_rei_StopSampling', default=u'Stop Sampling'),
         description=_(u'description_rei_StopSampling', default=u''),
-        required=False,
+        required=True,
     )
     read_permission(StopSampling='docpool.rei.AccessRei')
     write_permission(StopSampling='docpool.rei.AccessRei')
@@ -193,6 +203,17 @@ class REIDoc(FlexibleView):
         context.Operator = value
 
     Operator = property(_get_rei_Operator, _set_rei_Operator)
+
+    def _get_rei_MstId(self):
+        return getInheritedValue(self, "Messstellen-ID")
+
+    def _set_rei_MstId(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.MstId = value
+
+    MstId = property(_get_rei_MstId, _set_rei_MstId)
     
     def _get_rei_ReiLegalBase(self):
         return getInheritedValue(self, "ReiLegalBase")

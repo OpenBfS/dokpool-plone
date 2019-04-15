@@ -124,7 +124,7 @@ def create_all_private_collection(plonesite):
         {
           u'i': u'review_state',
           u'o': u'plone.app.querystring.operation.selection.any',
-          u'v': ["private"]
+          u'v': ["pending"]
         }]
     iwas.text = RichTextValue(
         '<p>Noch freizugeben<p>',
@@ -134,7 +134,7 @@ def create_all_private_collection(plonesite):
 
     iwas.setLayout('docpool_collection_view')
 
-    print "Collection Alle privat angelegt"
+    print "Collection Alle eingereicht angelegt"
 
 BASICSTRUCTURE = [
     {

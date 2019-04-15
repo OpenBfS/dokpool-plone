@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-11-23 14:15+0000\n"
+"POT-Creation-Date: 2019-04-15 13:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,61 +17,542 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.rei\n"
 
-#: docpool.rei/docpool/rei/profiles/default/registry.xml
+#: ./vocabularies.py:122
+msgid "1. Halbjahr"
+msgstr ""
+
+#: ./vocabularies.py:118
+msgid "1. Quartal"
+msgstr ""
+
+#: ./vocabularies.py:123
+msgid "2. Halbjahr"
+msgstr ""
+
+#: ./vocabularies.py:119
+msgid "2. Quartal"
+msgstr ""
+
+#: ./vocabularies.py:120
+msgid "3. Quartal"
+msgstr ""
+
+#: ./vocabularies.py:121
+msgid "4. Quartal"
+msgstr ""
+
+#: ./vocabularies.py:103
+msgid "Abwasser"
+msgstr ""
+
+#: ./vocabularies.py:35
+msgid "Baden-Württemberg"
+msgstr ""
+
+#: ./vocabularies.py:36
+msgid "Bayern"
+msgstr ""
+
+#: ./local/rei.py:44
+msgid "Berichte"
+msgstr ""
+
+#: ./vocabularies.py:38
+msgid "Berlin"
+msgstr ""
+
+#: ./vocabularies.py:153
+msgid "Betreiber"
+msgstr ""
+
+#: ./vocabularies.py:39
+msgid "Brandenburg"
+msgstr ""
+
+#: ./vocabularies.py:31
+msgid "Bremen"
+msgstr ""
+
+#: ./profiles/default/registry.xml
 msgid "Date"
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/configure.zcml:13
+#: ./profiles/default/registry.xml
+msgid "Federal State"
+msgstr ""
+
+#: ./vocabularies.py:102
+msgid "Fortluft"
+msgstr ""
+
+#: ./vocabularies.py:104
+msgid "Fortluft/Abwasser"
+msgstr ""
+
+#: ./vocabularies.py:29
+msgid "Hamburg"
+msgstr ""
+
+#: ./vocabularies.py:33
+msgid "Hessen"
+msgstr ""
+
+#: ./vocabularies.py:124
+msgid "Jahr"
+msgstr ""
+
+#: ./behaviors/configure.zcml:13
 msgid "Makes documents support REI functions"
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/configure.zcml:20
+#: ./vocabularies.py:40
+msgid "Mecklenburg-Vorpommern"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Media"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Metadata"
+msgstr ""
+
+#: ./vocabularies.py:30
+msgid "Niedersachsen"
+msgstr ""
+
+#: ./vocabularies.py:32
+msgid "Nordrhein-Westfahlen"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Nuclear Installation"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Operator"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Origin"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "PDF Version"
+msgstr ""
+
+#: ./vocabularies.py:138
+msgid "PDF/A-1b"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Period"
+msgstr ""
+
+#: ./behaviors/configure.zcml:20
 msgid "REI DocType"
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/configure.zcml:13
+#: ./profiles/default/registry.xml
+msgid "REI legal Base"
+msgstr ""
+
+#: ./vocabularies.py:86
+msgid "REI-E"
+msgstr ""
+
+#: ./vocabularies.py:88
+msgid "REI-E/REI-I"
+msgstr ""
+
+#: ./vocabularies.py:87
+msgid "REI-I"
+msgstr ""
+
+#: ./behaviors/configure.zcml:13
 msgid "REIDoc"
 msgstr ""
 
-#: docpool.rei/docpool/rei/local/rei.py:43
-msgid "Run Display"
+#: ./vocabularies.py:34
+msgid "Rheinland-Pfalz"
 msgstr ""
 
-#: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Start of release"
+#: ./vocabularies.py:37
+msgid "Saarland"
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/configure.zcml:20
+#: ./vocabularies.py:41
+msgid "Sachsen"
+msgstr ""
+
+#: ./vocabularies.py:42
+msgid "Sachsen-Anhalt"
+msgstr ""
+
+#: ./vocabularies.py:28
+msgid "Schleswig-Holstein"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Start of Sampling"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Stop of Sampling"
+msgstr ""
+
+#: ./vocabularies.py:43
+msgid "Thüringen"
+msgstr ""
+
+#: ./behaviors/configure.zcml:20
 msgid "Type extension for REI types"
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/reidoc.py:37
-msgid "description_rei_releaseSite"
+#: ./vocabularies.py:205
+msgid "U01A Helmholtz-Zentrum Geesthacht "
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/reidoc.py:46
-msgid "description_rei_releaseStart"
+#: ./vocabularies.py:206
+msgid "U01B KKW Krümmel "
 msgstr ""
 
-#: docpool.rei/docpool/rei/behaviors/reidoc.py:28
-msgid "description_rei_reportId"
+#: ./vocabularies.py:207
+msgid "U01C KKW Brunsbüttel "
 msgstr ""
 
-#: docpool.rei/docpool/rei/configure.zcml:23
+#: ./vocabularies.py:208
+msgid "U01D KKW Brokdorf "
+msgstr ""
+
+#: ./vocabularies.py:209
+msgid "U01I Interimslager Krümmel "
+msgstr ""
+
+#: ./vocabularies.py:210
+msgid "U01K Standortzwischenlager Krümmel "
+msgstr ""
+
+#: ./vocabularies.py:211
+msgid "U01L Standortzwischenlager Brunsbüttel "
+msgstr ""
+
+#: ./vocabularies.py:212
+msgid "U01M Standortzwischenlager Brokdorf "
+msgstr ""
+
+#: ./vocabularies.py:213
+msgid "U03A Standortzwischenlager Grohnde "
+msgstr ""
+
+#: ./vocabularies.py:214
+msgid "U03B Brennelementefertigungsanl. Lingen "
+msgstr ""
+
+#: ./vocabularies.py:215
+msgid "U03C Standortzwischenlager Unterweser "
+msgstr ""
+
+#: ./vocabularies.py:216
+msgid "U03E KKW Emsland "
+msgstr ""
+
+#: ./vocabularies.py:217
+msgid "U03G KKW Grohnde "
+msgstr ""
+
+#: ./vocabularies.py:218
+msgid "U03K Endlager Konrad "
+msgstr ""
+
+#: ./vocabularies.py:219
+msgid "U03L KKW Lingen "
+msgstr ""
+
+#: ./vocabularies.py:220
+msgid "U03P BGZ - Betrieb Gorleben "
+msgstr ""
+
+#: ./vocabularies.py:221
+msgid "U03S KKW Stade "
+msgstr ""
+
+#: ./vocabularies.py:222
+msgid "U03U KKW Unterweser "
+msgstr ""
+
+#: ./vocabularies.py:223
+msgid "U03Z Standortzwischenlager Lingen "
+msgstr ""
+
+#: ./vocabularies.py:224
+msgid "U05B BGZ - Brennelement-Zwischenl. Ahaus "
+msgstr ""
+
+#: ./vocabularies.py:225
+msgid "U05F Forschungszentrum Jülich "
+msgstr ""
+
+#: ./vocabularies.py:226
+msgid "U05G AVR-Versuchskernkraftwerk Jülich "
+msgstr ""
+
+#: ./vocabularies.py:227
+msgid "U05K KKW Würgassen "
+msgstr ""
+
+#: ./vocabularies.py:228
+msgid "U05T Thorium-Hochtemp.reakt. Hamm-Uentrop "
+msgstr ""
+
+#: ./vocabularies.py:229
+msgid "U05U Urananreicherungsanlage Gronau "
+msgstr ""
+
+#: ./vocabularies.py:230
+msgid "U06B KKW Biblis und BE-Zwischenlager "
+msgstr ""
+
+#: ./vocabularies.py:231
+msgid "U07M KKW Mülheim-Kärlich "
+msgstr ""
+
+#: ./vocabularies.py:232
+msgid "U07U Uni Mainz "
+msgstr ""
+
+#: ./vocabularies.py:233
+msgid "U08H DKFZ Heidelberg "
+msgstr ""
+
+#: ./vocabularies.py:235
+msgid "U08K Karlsruher Institut für Technologie - Campus Nord (Einrichtungen am Standort) "
+msgstr ""
+
+#: ./vocabularies.py:236
+msgid "U08M Abraumhalde Menz. "
+msgstr ""
+
+#: ./vocabularies.py:237
+msgid "U08N EnKK Neckarwestheim "
+msgstr ""
+
+#: ./vocabularies.py:238
+msgid "U08O EnKK Obrigheim "
+msgstr ""
+
+#: ./vocabularies.py:239
+msgid "U08P EnKK Philippsburg "
+msgstr ""
+
+#: ./vocabularies.py:240
+msgid "U08W KKW Wyhl "
+msgstr ""
+
+#: ./vocabularies.py:241
+msgid "U09A KKW Isar 1+2 "
+msgstr ""
+
+#: ./vocabularies.py:242
+msgid "U09B KKW Isar1 "
+msgstr ""
+
+#: ./vocabularies.py:243
+msgid "U09C KKW Isar2 "
+msgstr ""
+
+#: ./vocabularies.py:244
+msgid "U09D KKW Grafenrheinfeld "
+msgstr ""
+
+#: ./vocabularies.py:245
+msgid "U09E KKW Gundremmingen Block B/C "
+msgstr ""
+
+#: ./vocabularies.py:246
+msgid "U09F Versuchs-AKW Kahl a.M. "
+msgstr ""
+
+#: ./vocabularies.py:247
+msgid "U09G Forschungsreaktor München "
+msgstr ""
+
+#: ./vocabularies.py:249
+msgid "U09H Siemens Brennelementewerk Hanau, Standort Karlstein "
+msgstr ""
+
+#: ./vocabularies.py:250
+msgid "U09I Siemens AG, Karlstein "
+msgstr ""
+
+#: ./vocabularies.py:252
+msgid "U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) "
+msgstr ""
+
+#: ./vocabularies.py:254
+msgid "U09K Forschungsneutronenquelle Heinz Maier-Leibnitz "
+msgstr ""
+
+#: ./vocabularies.py:255
+msgid "U11B Experimentierreakt. II Berlin "
+msgstr ""
+
+#: ./vocabularies.py:256
+msgid "U12R KKW Rheinsberg "
+msgstr ""
+
+#: ./vocabularies.py:257
+msgid "U13A KKW Lubmin/Greifswald "
+msgstr ""
+
+#: ./vocabularies.py:258
+msgid "U13B Zwischenlager Nord "
+msgstr ""
+
+#: ./vocabularies.py:259
+msgid "U14R Forschungszentrum Rossendorf "
+msgstr ""
+
+#: ./vocabularies.py:260
+msgid "U15M nicht benutzen, jetzt UELM, Endlager für radioaktive Abfälle Morsleben (ERAM) "
+msgstr ""
+
+#: ./vocabularies.py:198
+msgid "UCHL KTA Leibstadt mit Beznau und Villigen "
+msgstr ""
+
+#: ./vocabularies.py:200
+msgid "UELA Endlager für radioaktive Abfälle Asse "
+msgstr ""
+
+#: ./vocabularies.py:202
+msgid "UELM Endlager für radioaktive Abfälle Morsleben (ERAM) "
+msgstr ""
+
+#: ./vocabularies.py:203
+msgid "UFRC KKW Cattenom "
+msgstr ""
+
+#: ./vocabularies.py:204
+msgid "UFRF KKW Fessenheim "
+msgstr ""
+
+#: ./vocabularies.py:154
+msgid "Unabhängige Messstelle"
+msgstr ""
+
+#: ./profiles/default/registry.xml
+msgid "Year"
+msgstr ""
+
+#: ./behaviors/reidoc.py:34
+msgid "description_rei_FederalState"
+msgstr ""
+
+#: ./behaviors/reidoc.py:104
+msgid "description_rei_Media"
+msgstr ""
+
+#: ./behaviors/reidoc.py:54
+msgid "description_rei_MstId"
+msgstr ""
+
+#: ./behaviors/reidoc.py:114
+msgid "description_rei_NuclearInstallation"
+msgstr ""
+
+#: ./behaviors/reidoc.py:44
+msgid "description_rei_Operator"
+msgstr ""
+
+#: ./behaviors/reidoc.py:74
+msgid "description_rei_Origin"
+msgstr ""
+
+#: ./behaviors/reidoc.py:140
+msgid "description_rei_PdfVersion"
+msgstr ""
+
+#: ./behaviors/reidoc.py:94
+msgid "description_rei_Period"
+msgstr ""
+
+#: ./behaviors/reidoc.py:64
+msgid "description_rei_ReiLegalBase"
+msgstr ""
+
+#: ./behaviors/reidoc.py:124
+msgid "description_rei_StartSampling"
+msgstr ""
+
+#: ./behaviors/reidoc.py:132
+msgid "description_rei_StopSampling"
+msgstr ""
+
+#: ./behaviors/reidoc.py:84
+msgid "description_rei_Year"
+msgstr ""
+
+#: ./configure.zcml:23
 msgid "docpool.rei"
 msgstr ""
 
-#. Default: "Release Site"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py:36
-msgid "label_rei_releaseSite"
+#. Default: "Federal State"
+#: ./behaviors/reidoc.py:33
+msgid "label_rei_FederalState"
 msgstr ""
 
-#. Default: "Release Start"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py:45
-msgid "label_rei_releaseStart"
+#. Default: "Media"
+#: ./behaviors/reidoc.py:103
+msgid "label_rei_Media"
 msgstr ""
 
-#. Default: "Report ID"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py:27
-msgid "label_rei_reportId"
+#. Default: "Messstellen-ID"
+#: ./behaviors/reidoc.py:53
+msgid "label_rei_MstId"
+msgstr ""
+
+#. Default: "NuclearInstallation"
+#: ./behaviors/reidoc.py:113
+msgid "label_rei_NuclearInstallation"
+msgstr ""
+
+#. Default: "Operator"
+#: ./behaviors/reidoc.py:43
+msgid "label_rei_Operator"
+msgstr ""
+
+#. Default: "Ersteller"
+#: ./behaviors/reidoc.py:73
+msgid "label_rei_Origin"
+msgstr ""
+
+#. Default: "Pdf Version"
+#: ./behaviors/reidoc.py:139
+msgid "label_rei_PdfVersion"
+msgstr ""
+
+#. Default: "Period"
+#: ./behaviors/reidoc.py:93
+msgid "label_rei_Period"
+msgstr ""
+
+#. Default: "ReiLegalBase"
+#: ./behaviors/reidoc.py:63
+msgid "label_rei_ReiLegalBase"
+msgstr ""
+
+#. Default: "Start Sampling"
+#: ./behaviors/reidoc.py:123
+msgid "label_rei_StartSampling"
+msgstr ""
+
+#. Default: "Stop Sampling"
+#: ./behaviors/reidoc.py:131
+msgid "label_rei_StopSampling"
+msgstr ""
+
+#. Default: "Year"
+#: ./behaviors/reidoc.py:83
+msgid "label_rei_Year"
 msgstr ""
