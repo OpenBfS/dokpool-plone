@@ -8,6 +8,8 @@ import directors;
 # zope instance or a load balancer serving multiple zeo clients).
 # To change this to support multiple backends, see the vcl man pages
 # for instructions.
+#
+# See https://github.com/plone/plone.app.caching/blob/master/plone/app/caching/proxy-configs/varnish/templates/varnish.vcl.in
 
 backend b { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } }
 
@@ -32,7 +34,9 @@ sub vcl_recv {
         if (!client.ip ~ purge) {
             return(synth(405,"Not allowed."));
         }
-        return(purge);
+        purge_url(req.url);
+        error 200 "Purged";
+        # return(purge);
     }
     if (req.method != "GET" && req.method != "HEAD") {
         # We only deal with GET and HEAD by default
