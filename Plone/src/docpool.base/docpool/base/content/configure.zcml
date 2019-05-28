@@ -32,6 +32,10 @@
   <adapter
     factory=".indexer.container_apps_indexer"
     name="apps_supported" />
+
+  <adapter
+    factory=".indexer.infodoc_getIcon"
+    name="getIcon" />
 <!-- ##/code-section Main -->
     
 </configure>

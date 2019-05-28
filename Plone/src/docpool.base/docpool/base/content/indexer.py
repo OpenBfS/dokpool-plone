@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.utils import shasattr
+from docpool.base.content.infodocument import IInfoDocument
 from plone.dexterity.interfaces import IDexterityContent, IDexterityContainer
 from plone.indexer import indexer
 from Products.CMFPlone import log
@@ -45,3 +46,6 @@ def base_apps_indexer(obj):
     else:
         return [ BASE_APP ]
 
+@indexer(IInfoDocument)
+def infodoc_getIcon(obj):
+    return None

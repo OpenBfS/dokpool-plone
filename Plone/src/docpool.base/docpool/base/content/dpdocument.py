@@ -398,7 +398,10 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     def getRepresentativeImage(self):
         """
         """
-        imgPattern = self.docTypeObj().imgPattern
+        dt = self.docTypeObj()
+        if not dt:
+            return None
+        imgPattern = dt.imgPattern
         if imgPattern:
             p = re.compile(imgPattern, re.IGNORECASE)
             images = self.getImages()
@@ -411,7 +414,11 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     def getRepresentativePDF(self):
         """
         """
-        pdfPattern = self.docTypeObj().pdfPattern
+        dt = self.docTypeObj()
+        if not dt:
+            return None
+
+        pdfPattern = dt.pdfPattern
         if pdfPattern:
             p = re.compile(pdfPattern, re.IGNORECASE)
             files = self.getFiles()
