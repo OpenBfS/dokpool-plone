@@ -363,6 +363,8 @@ class DPEvent(Item, ContentBase):
             # print wf_state, wftool.getInfoFor(copied_obj, 'review_state')
             if wf_state == "published" and wftool.getInfoFor(copied_obj, 'review_state') != 'published':
                 wftool.doActionFor(copied_obj, 'publish')
+            if wf_state == "pending" and wftool.getInfoFor(copied_obj, 'review_state') == 'private':
+                wftool.doActionFor(copied_obj, 'submit')
             copied_obj.setModificationDate(mdate)
             events = source_obj.doc_extension(TRANSFERS_APP).transferEvents()
             copied_obj.transferLog = str(events)

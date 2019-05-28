@@ -143,8 +143,9 @@ class Transferable(FlexibleView):
         """
         if self.context.isArchive():
             logRaw = self.context.transferLog
-            logRaw = logRaw and logRaw.replace("datetime.datetime", "") or ""
+            logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime") or ""
             return eval(logRaw)
+
         else:
             if self.transferred:
                 # We need the receiving side
