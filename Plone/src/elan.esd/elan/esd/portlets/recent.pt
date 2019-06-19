@@ -37,8 +37,8 @@
 
              </a>
              <time class="portletItemDetails"
-                       tal:content="python:toLocalizedTime(obj.ModificationDate, long_format=1)"
-                       >May 5</time>
+                       tal:content="python: str(obj.getMdate)[:-3]"
+                       >May 5</time> 
           </li>
         </tal:items>
       </ul>
