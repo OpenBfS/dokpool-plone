@@ -2,7 +2,7 @@
 <dc-workflow workflow_id="rei_review_workflow_standard" title="REI Review Workflow standard" description="" state_variable="review_state"         initial_state="private" manager_bypass="False" >
  <group>bund_bfs</group>
  <group>bund_bmu</group>
- <group>bund_ab</group>
+ <group>bund_aufsicht</group>
  <permission>ATContentTypes: Add File</permission>
  <permission>ATContentTypes: Add Image</permission>
  <permission>Access contents information</permission>
@@ -42,7 +42,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
-  <group-map name="bund_ab">
+  <group-map name="bund_aufsicht">
    <group-role>Editor</group-role>
    <group-role>Owner</group-role>
   </group-map>
@@ -84,7 +84,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
   </permission-map>
-  <group-map name="bund_ab">
+  <group-map name="bund_aufsicht">
    <group-role>Editor</group-role>
   </group-map>
   <group-map name="bund_bfs">

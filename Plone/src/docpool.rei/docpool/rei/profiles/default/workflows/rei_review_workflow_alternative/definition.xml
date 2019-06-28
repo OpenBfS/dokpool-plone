@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0"?>
-<dc-workflow workflow_id="rei_review_workflow_alternativ" title="REI Review Workflow alternativ" description="" state_variable="review_state"         initial_state="private" manager_bypass="False" >
+<dc-workflow workflow_id="rei_review_workflow_alternative" title="REI Review Workflow alternativ" description="" state_variable="review_state"         initial_state="private" manager_bypass="False" >
  <group>bund_bfs</group>
  <group>bund_bmu</group>
- <group>bund_ab_bw</group>
+ <group>bund_aufsicht</group>
  <permission>ATContentTypes: Add File</permission>
  <permission>ATContentTypes: Add Image</permission>
  <permission>Access contents information</permission>
@@ -46,7 +46,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
-  <group-map name="bund_ab_bw">
+  <group-map name="bund_aufsicht">
    <group-role>Editor</group-role>
    <group-role>Reviewer</group-role>
   </group-map>
@@ -83,7 +83,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
-  <group-map name="bund_ab_bw">
+  <group-map name="bund_aufsicht">
    <group-role>Editor</group-role>
    <group-role>Owner</group-role>
   </group-map>
@@ -125,7 +125,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
   </permission-map>
-  <group-map name="bund_ab_bw">
+  <group-map name="bund_aufsicht">
    <group-role>Editor</group-role>
   </group-map>
   <group-map name="bund_bfs">
