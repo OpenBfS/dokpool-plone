@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<object name="portal_placeful_workflow" meta_type="Placeful Workflow Tool">
+ <property name="title"></property>
+ <property name="max_chain_length" type="int">1</property>
+ <object name="dp-collaboration-folder" meta_type="WorkflowPolicy"/>
+ <object name="dp-guest-document" meta_type="WorkflowPolicy"/>
+ <object name="dp-private-folder" meta_type="WorkflowPolicy"/>
+ <object name="dp-private-infofolder" meta_type="WorkflowPolicy"/>
+ <object name="dp-review-folder" meta_type="WorkflowPolicy"/>
+ <object name="elan-archive" meta_type="WorkflowPolicy"/>
+ <object name="elan-transfer" meta_type="WorkflowPolicy"/>
+ <object name="intranet" meta_type="WorkflowPolicy"/>
+ <object name="old-plone" meta_type="WorkflowPolicy"/>
+ <object name="one-state" meta_type="WorkflowPolicy"/>
+ <object name="rei_bw" meta_type="WorkflowPolicy"/>
+ <object name="rei_rp" meta_type="WorkflowPolicy"/>
+ <object name="rei_bb" meta_type="WorkflowPolicy"/>
+ <object name="rei_be" meta_type="WorkflowPolicy"/>
+ <object name="rei_by" meta_type="WorkflowPolicy"/>
+ <object name="rei_he1" meta_type="WorkflowPolicy"/>
+ <object name="rei_he2" meta_type="WorkflowPolicy"/>
+ <object name="rei_mv" meta_type="WorkflowPolicy"/>
+ <object name="rei_ni" meta_type="WorkflowPolicy"/>
+ <object name="rei_nw" meta_type="WorkflowPolicy"/>
+ <object name="rei_sh1" meta_type="WorkflowPolicy"/>
+ <object name="rei_sh2" meta_type="WorkflowPolicy"/>
+ <object name="rei_BfE1" meta_type="WorkflowPolicy"/>
+ <object name="rei_BfE2" meta_type="WorkflowPolicy"/>
+ <object name="rei_sl" meta_type="WorkflowPolicy"/>
+ <object name="rei_sn" meta_type="WorkflowPolicy"/>
+ <object name="simple-publication" meta_type="WorkflowPolicy"/>
+</object>

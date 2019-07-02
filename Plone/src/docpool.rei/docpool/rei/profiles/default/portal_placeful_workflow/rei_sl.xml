@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<object name="rei_sl" meta_type="WorkflowPolicy">
+ <property name="title">REI Saarland</property>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="rei_review_workflow_standard"/>
+  </default>
+  <type type_id="DPDocument">
+   <bound-workflow workflow_id="(Default)"/>
+  </type>
+ </bindings>
+</object>
