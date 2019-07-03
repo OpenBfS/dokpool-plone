@@ -32,13 +32,13 @@
    <include package=".behaviors" />
 
    <utility
-    component=".vocabularies.FederalStateVocabularyFactory"
-    name="docpool.rei.vocabularies.FederalStateVocabulary"
+    component=".vocabularies.AuthorityVocabularyFactory"
+    name="docpool.rei.vocabularies.AuthorityVocabulary"
     />
 
    <utility
-    component=".vocabularies.OperatorVocabularyFactory"
-    name="docpool.rei.vocabularies.OperatorVocabulary"
+    component=".vocabularies.MstVocabularyFactory"
+    name="docpool.rei.vocabularies.MstVocabulary"
     />
 
    <utility

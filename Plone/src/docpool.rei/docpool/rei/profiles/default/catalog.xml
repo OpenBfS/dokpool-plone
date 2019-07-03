@@ -9,11 +9,11 @@
         <index name="Media" meta_type="FieldIndex">
         <indexed_attr value="Media"/>
     </index>
-        <index name="FederalState" meta_type="FieldIndex">
-        <indexed_attr value="FederalState"/>
+        <index name="Mst" meta_type="FieldIndex">
+        <indexed_attr value="MstId"/>
     </index>
-        <index name="Operator" meta_type="FieldIndex">
-        <indexed_attr value="Operator"/>
+        <index name="Authority" meta_type="FieldIndex">
+        <indexed_attr value="Authority"/>
     </index>
         <index name="ReiLegalBase" meta_type="FieldIndex">
         <indexed_attr value="ReiLEgalBAse"/>

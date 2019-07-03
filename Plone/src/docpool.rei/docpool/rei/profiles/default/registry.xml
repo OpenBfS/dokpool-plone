@@ -55,6 +55,21 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.MstId">
+        <value key="title" i18n:translate="">MstId</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.string.is</element>
+            <element>plone.app.querystring.operation.string.contains</element>
+            <element>plone.app.querystring.operation.selection.any</element>
+        </value>
+        <value key="group" i18n:translate="">Metadata</value>
+        <value key="vocabulary">docpool.rei.vocabularies.MstVocabulary</value>
+    </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.Origin">
         <value key="title" i18n:translate="">Origin</value>
         <value key="description" i18n:translate=""></value>
@@ -70,7 +85,7 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.FederalState">
+             prefix="plone.app.querystring.field.Authority">
         <value key="title" i18n:translate="">Federal State</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -84,20 +99,6 @@
         <value key="vocabulary">dokpool.rei.vocabularies.FederalStateVocabulary</value>
     </records>
 
-    <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.Operator">
-        <value key="title" i18n:translate="">Operator</value>
-        <value key="description" i18n:translate=""></value>
-        <value key="enabled">True</value>
-        <value key="sortable">True</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.string.is</element>
-            <element>plone.app.querystring.operation.string.contains</element>
-            <element>plone.app.querystring.operation.selection.any</element>
-        </value>
-        <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">dokpool.rei.vocabularies.OperatorVocabulary</value>
-    </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.ReiLegalBase">

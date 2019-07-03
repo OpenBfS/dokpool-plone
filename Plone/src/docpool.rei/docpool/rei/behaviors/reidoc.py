@@ -6,7 +6,9 @@ from docpool.base.utils import getInheritedValue
 
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform.directives import read_permission, write_permission
-from plone.directives import form
+from plone.autoform import directives as form
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+#from plone.directives import form
 from zope.interface import provider, implementer
 from zope import schema
 from docpool.base import DocpoolMessageFactory as _
@@ -29,35 +31,25 @@ from plone.formwidget.autocomplete import AutocompleteFieldWidget
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
 
-    FederalState = schema.Choice(
-        title=_(u'label_rei_FederalState', default=u'Federal State'),
-        description=_(u'description_rei_FederalState', default=u''),
-        source="docpool.rei.vocabularies.FederalStateVocabulary",
+    Authority = schema.Choice(
+        title=_(u'label_rei_Authority', default=u'Authority'),
+        description=_(u'description_rei_Authority', default=u''),
+        source="docpool.rei.vocabularies.AuthorityVocabulary",
         required=True,
     )
-    read_permission(FederalState='docpool.rei.AccessRei')
-    write_permission(FederalState='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('FederalState')
+    read_permission(Authority='docpool.rei.AccessRei')
+    write_permission(Authority='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Authority')
 
-    Operator = schema.Choice(
-        title=_(u'label_rei_Operator', default=u'Operator'),
-        description=_(u'description_rei_Operator', default=u''),
-        source="docpool.rei.vocabularies.OperatorVocabulary",
-        required=False,
-    )
-    read_permission(Operator='docpool.rei.AccessRei')
-    write_permission(Operator='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Operator')
-
-    MstID = schema.TextLine(
+    MstId = schema.List(
         title=_(u'label_rei_MstId', default=u'Messstellen-ID'),
         description=_(u'description_rei_MstId', default=u''),
-#        source="docpool.rei.vocabularies.OperatorVocabulary",
+        value_type=schema.Choice(source="docpool.rei.vocabularies.MstVocabulary"),
         required=False,
     )
-    read_permission(Operator='docpool.rei.AccessRei')
-    write_permission(Operator='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Operator')
+    read_permission(MstId='docpool.rei.AccessRei')
+    write_permission(MstId='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Messstelle')
 
     ReiLegalBase = schema.Choice(
         title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
@@ -69,10 +61,11 @@ class IREIDoc(IDocumentExtension):
     write_permission(ReiLegalBase='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('ReiLegalBase')
 
-    Origin = schema.Choice(
+    form.widget(Origin=CheckBoxFieldWidget)
+    Origin = schema.List(
         title=_(u'label_rei_Origin', default=u'Ersteller'),
         description=_(u'description_rei_Origin', default=u''),
-        source="docpool.rei.vocabularies.OriginVocabulary",
+        value_type=schema.Choice(source=u"docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
     )
     read_permission(Origin='docpool.rei.AccessRei')
@@ -103,7 +96,7 @@ class IREIDoc(IDocumentExtension):
         title=_(u'label_rei_Media', default=u'Media'),
         description=_(u'description_rei_Media', default=u''),
         source="docpool.rei.vocabularies.MediaVocabulary",
-        required=True,
+        required=False,
     )
     read_permission(Media='docpool.rei.AccessRei')
     write_permission(Media='docpool.rei.AccessRei')
