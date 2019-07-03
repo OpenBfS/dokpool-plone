@@ -20,7 +20,7 @@
 <td style="width:40%;" tal:define="exercise scenario/Exercise"><a href="" tal:attributes="href scenario/absolute_url">
                 <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br>
                 </tal:if><b><tal:var replace="scenario/Title"/></b></a><br>
-<span tal:content="scenario/Description" /></td> 
+<span tal:content="python:scenario.Description().decode('utf-8')" /></td> 
 <td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
 </tr>
 </tbody>
