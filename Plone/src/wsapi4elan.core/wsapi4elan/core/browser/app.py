@@ -20,7 +20,7 @@ class ApplicationAPI(WSAPI):
     implements(IApplicationAPI)
 
     def _get_object_data(self, obj):
-        if obj:       
+        if obj:
             serviced_obj = IService(obj)
             data = serviced_obj.get_object()
             type_ = serviced_obj.get_type()
@@ -56,7 +56,7 @@ class ApplicationAPI(WSAPI):
         username = user.getUserName().replace("-", "--")
         ufpath = "content/Members/%s" % username
         return self.get_plone_object(esdpath, ufpath)
-        
+
     def get_group_folders(self, esdpath):
         user = api.user.get_current()
         esd = self.context.restrictedTraverse(esdpath)
@@ -67,14 +67,14 @@ class ApplicationAPI(WSAPI):
         for group in groups:
             if group['etypes']:  # Group is ELAN group which can produce documents
                 ids.append(group['id'])
-        
+
         q = {'path': esdpath + "/content/Groups", 'portal_type': "GroupFolder", 'getId': ids}
-        return self.context.restrictedTraverse("@@query")(q) 
-    
+        return self.context.restrictedTraverse("@@query")(q)
+
     def get_transfer_folders(self, esdpath):
         q = {'path': esdpath + "/content/Transfers", 'portal_type': "DPTransferFolder"}
-        return self.context.restrictedTraverse("@@query")(q) 
-    
+        return self.context.restrictedTraverse("@@query")(q)
+
     def create_dp_document(self, folderpath, id, title, description, text, doctype, behaviours):
         """
         Creates a document under folderpath.
@@ -118,7 +118,7 @@ class ApplicationAPI(WSAPI):
 
     def upload_file(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        
+
         # print "upload_file"
         params = {str(path) + "/" + str(id.encode('utf-8')): [{"title": title,
                                                                "description": description,
@@ -128,7 +128,7 @@ class ApplicationAPI(WSAPI):
         # print params
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0]  # just the path
-        
+
     def upload_image(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         # print "upload_image"
@@ -141,7 +141,7 @@ class ApplicationAPI(WSAPI):
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
         return res[0]  # just the path
-        
+
     def autocreate_subdocuments(self, path):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         # Delegate to post_object
@@ -181,7 +181,7 @@ class ApplicationAPI(WSAPI):
         """
 
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        
+
         properties = {"fullname": fullname}
         esd = api.content.get(esdpath, None)
 
@@ -192,27 +192,27 @@ class ApplicationAPI(WSAPI):
         # membergroupname = prefix + "_Members"
         if esd:
             properties['dp'] = esd.UID()
-            properties['fullname'] = "{} ({})".format(fullname, esd.Title()) 
-        mtool = getToolByName(esd, 'portal_membership', None)    
+            properties['fullname'] = "{} ({})".format(fullname, esd.Title())
+        mtool = getToolByName(esd, 'portal_membership', None)
         mtool.addMember(username, password, ['Member'], [])
-        user = mtool.getMemberById(username) 
+        user = mtool.getMemberById(username)
         user.setMemberProperties(properties)
         user.setSecurityProfile(password=password)
 # Nur mit email-Adresse
-#         user = api.user.create(email=email, 
+#         user = api.user.create(email=email,
 #                                username=username,
 #                                password=password,
 #                                roles=['Member'],
 #                                properties=properties)
         mtool.createMemberArea(username)
         return user.getMemberId()
-    
+
     def post_group(self, groupname, title, description, esdpath):
         """
         """
 
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        
+
         esd = api.content.get(esdpath, None)
         prefix = esd.prefix
         prefix = str(prefix)
@@ -237,12 +237,12 @@ class ApplicationAPI(WSAPI):
             return groupname
         else:
             return "fail"
-    
+
     def put_group(self, groupname, title, description, esdpath, alloweddoctypes):
         """
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        
+
         props = {'alloweddoctypes': alloweddoctypes,
                  'title': title,
                  'description': description}
@@ -256,23 +256,28 @@ class ApplicationAPI(WSAPI):
             title = "{} ({})".format(props['title'], esd.Title())
             props['dp'] = esd.UID()
             props['title'] = title
+        gtool = getToolByName(self, 'portal_groups')
+
         group = api.group.get(groupname)
         message = "notChanged"
         if group:
-            group.setProperties(props)
+#            group.setProperties(props)
+            gtool.editGroup(
+                groupname,
+                allowedDocTypes=alloweddoctypes)
             gtitle = group.getProperty('title') == title
             gdescription = group.getProperty('description') == description
             gesd = group.getProperty('dp') == esd.UID()
             galloweddoctypes = group.getProperty('allowedDocTypes') == alloweddoctypes
             if gtitle and gdescription and gesd and galloweddoctypes:
-                message = "changed" 
+                message = "changed"
         return message
-        
+
     def add_user_to_group(self, username, groupname, esdpath):
         """
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
-        
+
         esd = api.content.get(esdpath, None)
         prefix = esd.prefix
         prefix = str(prefix)
