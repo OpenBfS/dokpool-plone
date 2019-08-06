@@ -6,7 +6,7 @@ before_script:
   - cp config-template.cfg.tmpl config.cfg
   - ./bin/pip install -r requirements.txt
   - ./bin/buildout bootstrap
-  - ./bin/buildout -N -t 3 -c config.cfg
+  - ./bin/buildout -N -t 3 -c test_ci_server.cfg
 check:
   script:
     - pre-commit install
