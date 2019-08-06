@@ -1,12 +1,12 @@
 before_script:
-  - /usr/bin/virtualenv .
   - cd Plone
   - mkdir -p buildout-cache/eggs
   - mkdir -p buildout-cache/downloads
+  - /usr/bin/virtualenv .
   - cp config-template.cfg.tmpl config.cfg
-  - /bin/pip install -r requirements.txt
-  - /bin/buildout bootstrap
-  - /bin/buildout -N -t 3 -c config.cfg
+  - ./bin/pip install -r requirements.txt
+  - ./bin/buildout bootstrap
+  - ./bin/buildout -N -t 3 -c config.cfg
 check:
   script:
     - pre-commit install
