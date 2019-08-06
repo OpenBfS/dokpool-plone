@@ -41,6 +41,10 @@ setup(name='elan.esd',
           ##code-section dependencies
 	      ##/code-section dependencies
       ],
+      extras_require = dict(
+          test=[
+              'loremipsum',
+      ]),
       ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
