@@ -4,7 +4,7 @@ before_script:
   - mkdir -p buildout-cache/downloads
   - cp config-template.cfg.tmpl config.cfg
   - pip install -r requirements.txt
-  - buildout bootstrap
+  - ./bin/buildout bootstrap
   - ./bin/buildout -N -t 3 -c config.cfg
 check:
   script:
