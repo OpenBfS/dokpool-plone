@@ -1,103 +1,101 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="elan.sitrep">
-    
+
     <i18n:registerTranslations directory="locales"/>
     <includeDependencies package="." />
     <include package="zope.annotation" />
-    
+
     <five:registerPackage package="." initialize=".initialize"/>
-    
+
     <!-- Include the sub-packages that use their own configure.zcml files. -->
-    
+
     <include package=".browser" />
     <include package=".content" />
     <include package=".portlets" />
-    
+
     <include package="plone.app.relationfield" />
     <include package="collective.autopermission" />
-    <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />    
-    <!-- grok:grok package="." /-->    
-    
+    <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />
+    <!-- grok:grok package="." /-->
+
     <!-- Register the installation GenericSetup extension profile -->
-    
-    
+
+
     <genericsetup:registerProfile name="default" title="elan.sitrep" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
-    
+
 
    <include file="skins.zcml" />
-   
-   
-   <permission id="elan.sitrep.AddSRConfig" title="Docpool: Add SRConfig" />   
-   
-   
-   <permission id="elan.sitrep.AddSRScenario" title="Docpool: Add SRScenario" />   
-   
-   
-   <permission id="elan.sitrep.AddSRPhase" title="Docpool: Add SRPhase" />   
-   
-   
-   <permission id="elan.sitrep.AddSRModuleConfig" title="Docpool: Add SRModuleConfig" />   
-   
-   
-   <permission id="elan.sitrep.AddSRCollections" title="Docpool: Add SRCollections" />   
-   
-   
-   <permission id="elan.sitrep.AddSRCollection" title="Docpool: Add SRCollection" />   
-   
-   
-   <permission id="elan.sitrep.AddSRTextBlocks" title="Docpool: Add SRTextBlocks" />   
-   
-   
-   <permission id="elan.sitrep.AddSRTextBlock" title="Docpool: Add SRTextBlock" />   
-   
-   
-   <permission id="elan.sitrep.AddSituationOverview" title="Docpool: Add SituationOverview" />   
-   
-   
-   <permission id="elan.sitrep.AddSRFolder" title="Docpool: Add SRFolder" />   
-   
-   
-   <permission id="elan.sitrep.AddSRModule" title="Docpool: Add SRModule" />   
-   
-   
-   <permission id="elan.sitrep.AddSRModuleTypes" title="Docpool: Add SRModuleTypes" />   
-   
-   
-   <permission id="elan.sitrep.AddSRModuleType" title="Docpool: Add SRModuleType" />   
-   
-   
-   <permission id="elan.sitrep.AddSituationReport" title="Docpool: Add SituationReport" />   
-   
 
-<!-- ##code-section Main -->
+
+   <permission id="elan.sitrep.AddSRConfig" title="Docpool: Add SRConfig" />
+
+
+   <permission id="elan.sitrep.AddSRScenario" title="Docpool: Add SRScenario" />
+
+
+   <permission id="elan.sitrep.AddSRPhase" title="Docpool: Add SRPhase" />
+
+
+   <permission id="elan.sitrep.AddSRModuleConfig" title="Docpool: Add SRModuleConfig" />
+
+
+   <permission id="elan.sitrep.AddSRCollections" title="Docpool: Add SRCollections" />
+
+
+   <permission id="elan.sitrep.AddSRCollection" title="Docpool: Add SRCollection" />
+
+
+   <permission id="elan.sitrep.AddSRTextBlocks" title="Docpool: Add SRTextBlocks" />
+
+
+   <permission id="elan.sitrep.AddSRTextBlock" title="Docpool: Add SRTextBlock" />
+
+
+   <permission id="elan.sitrep.AddSituationOverview" title="Docpool: Add SituationOverview" />
+
+
+   <permission id="elan.sitrep.AddSRFolder" title="Docpool: Add SRFolder" />
+
+
+   <permission id="elan.sitrep.AddSRModule" title="Docpool: Add SRModule" />
+
+
+   <permission id="elan.sitrep.AddSRModuleTypes" title="Docpool: Add SRModuleTypes" />
+
+
+   <permission id="elan.sitrep.AddSRModuleType" title="Docpool: Add SRModuleType" />
+
+
+   <permission id="elan.sitrep.AddSituationReport" title="Docpool: Add SituationReport" />
+
+
    <utility
     component=".vocabularies.PhasesVocabularyFactory"
     name="elan.sitrep.vocabularies.Phases"
-    />  
+    />
    <utility
     component=".vocabularies.CurrentReportsVocabularyFactory"
     name="elan.sitrep.vocabularies.CurrentReports"
-    />  
+    />
    <utility
     component=".vocabularies.CurrentModulesVocabularyFactory"
     name="elan.sitrep.vocabularies.CurrentModules"
-    />  
+    />
    <utility
     component=".vocabularies.PastReportsVocabularyFactory"
     name="elan.sitrep.vocabularies.PastReports"
-    />  
+    />
    <utility
     component=".vocabularies.ModuleTypesVocabularyFactory"
     name="elan.sitrep.vocabularies.ModuleTypes"
-    />  
+    />
    <utility
     component=".vocabularies.CollectionsVocabularyFactory"
     name="elan.sitrep.vocabularies.Collections"
-    />  
+    />
    <utility
     component=".vocabularies.TextBlocksVocabularyFactory"
     name="elan.sitrep.vocabularies.TextBlocks"
-    />  
-    
-<!-- ##/code-section Main -->    
-      
+    />
+
+
 </configure>

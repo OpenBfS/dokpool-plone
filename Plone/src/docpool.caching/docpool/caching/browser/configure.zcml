@@ -2,8 +2,6 @@
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
-    
-<!-- ##/code-section Main -->    
+
 
 </configure>

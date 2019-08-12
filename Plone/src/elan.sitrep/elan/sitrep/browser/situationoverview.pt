@@ -1,11 +1,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="elan.sitrep" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
-<!-- ##code-section Head -->
-<!-- ##/code-section Head -->    
 
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
-<!-- ##code-section Main -->
 <div class="dashboard" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                                    reports context/availableSituationReports;
                                    reportslist python:reports[0];
@@ -22,10 +19,10 @@
                         options reportslist;
                         f_value reportuid;
                         do_submit python:False">
-         <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
+         <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>
     </tal:widget>
     &nbsp;<a onclick="window.location.href = window.location.pathname + window.location.search;" class="submit-widget context button-field" i18n:translate="">Reload current situation</a><br><br>
-    
+
     </form>
     <tal:loop repeat="mtype mtypes">
        <div class="doctile" tal:define="mtitle python:mtype[1];
@@ -35,7 +32,7 @@
                                         hasCurrent python: versions[1] is not None;
                                         ">
            <h4 class="collection">${mtitle}</h4>
-           
+
 		    <tal:widget define="wname mid;
 		                        wtitle string:Version;
 		                        options versionlist;
@@ -44,7 +41,7 @@
 		     <!-- <span class="current" tal:condition="hasCurrent" i18n:translate="">There is a current working version.</span>            -->
 		    </tal:widget>
            <div class="modulecontent" tal:attributes="id string:mod_${mid}">
-                <span i18n:translate="">No current content.</span>    
+                <span i18n:translate="">No current content.</span>
            </div>
        </div>
     </tal:loop>
@@ -56,7 +53,7 @@ $(document).ready ( function () {
 		  var d = $(this).children('.modulecontent')[0];
 		  var uid = $(s).val();
 		  if (uid != null) {
-			$(d).load('${context/absolute_url}/modinfo?moduid=' + uid);  
+			$(d).load('${context/absolute_url}/modinfo?moduid=' + uid);
 		  };
 	});
 	$( ".reportuid" ).change(function() {
@@ -69,15 +66,12 @@ $(document).ready ( function () {
          $(d).load('${context/absolute_url}/modinfo?moduid=' + uid);
          $(".reportuid").val('userdefined');
        };
-    }); 
+    });
 
 });
 </script>
-<!-- ##/code-section Main -->    
 </metal:content-core>
 </metal:content-core>
 
-<!-- ##code-section Bottom -->
-<!-- ##/code-section Bottom -->  
 </body>
 </html>

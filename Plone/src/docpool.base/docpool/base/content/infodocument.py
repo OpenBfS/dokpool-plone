@@ -30,8 +30,6 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -41,24 +39,20 @@ class IInfoDocument(form.Schema, IDPDocument):
     """
     """
 
-##code-section interface
     form.mode(docType='hidden')
     docType = schema.Choice(
         required=True,
-        ##code-section field_docType
         source="docpool.base.vocabularies.DocumentTypes",
         default=u"infodoc")
-##/code-section interface
 
 
 class InfoDocument(Container, DPDocument):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IInfoDocument)
-    
-##code-section methods
+
     def dp_type(self):
         return "General"
 
@@ -74,13 +68,12 @@ class InfoDocument(Container, DPDocument):
         """
         """
         return (None, [])
-    
+
     def uploadsAllowed(self):
         return True
 
     def getScenarios(self):
         return []
-##/code-section methods 
 
     def myInfoDocument(self):
         """
@@ -106,22 +99,20 @@ class InfoDocument(Container, DPDocument):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getFiles(self, **kwargs):
         """
         """
         args = {'portal_type':'File'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
         args = {'portal_type':'Image'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

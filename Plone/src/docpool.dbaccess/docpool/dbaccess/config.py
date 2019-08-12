@@ -22,5 +22,3 @@ PROJECTNAME = "docpool.dbaccess"
 ADD_PERMISSIONS = {
 }
 
-##code-section config
-##/code-section config

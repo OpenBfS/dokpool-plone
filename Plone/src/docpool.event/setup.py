@@ -37,15 +37,11 @@ setup(name='docpool.event',
           'plone.app.contenttypes',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
-          ##code-section dependencies
           'collective.geo.bundle'
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

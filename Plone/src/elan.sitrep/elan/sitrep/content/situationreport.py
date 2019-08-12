@@ -30,13 +30,12 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from plone.api import content
 from docpool.base.utils import portalMessage, queryForObject, back_references
 from elan.sitrep.content.situationoverview import _availableModules
 from datetime import datetime
 import re
-from plone.namedfile import NamedBlobFile 
+from plone.namedfile import NamedBlobFile
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.dexterity.utils import safe_unicode
@@ -46,7 +45,6 @@ from z3c.relationfield.relation import RelationValue
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getActiveScenarios
 from plone.autoform.interfaces import IFormFieldProvider
-##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -60,24 +58,20 @@ class ISituationReport(IDPDocument):
                         title=_(u'label_situationreport_phase', default=u'Phase (scenario-specific)'),
                         description=_(u'description_situationreport_phase', default=u''),
                         required=False,
-##code-section field_phase
                         source = "elan.sitrep.vocabularies.Phases",
-##/code-section field_phase                           
     )
     form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
-        
+
     currentModules = RelationList(
                         title=_(u'label_situationreport_currentmodules', default=u'Current Modules'),
                         description=_(u'description_situationreport_currentmodules', default=u''),
                         required=False,
-##code-section field_currentModules
                         value_type=RelationChoice(
                                                       title=_("Current Modules"),
                                                     source = "elan.sitrep.vocabularies.CurrentModules",
 
                                                      ),
 
-##/code-section field_currentModules                           
     )
     form.widget(currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
     form.mode(docType='hidden')
@@ -88,10 +82,8 @@ class ISituationReport(IDPDocument):
     )
     docType = schema.Choice(
         required=True,
-        ##code-section field_docType
         source="docpool.base.vocabularies.DocumentTypes",
         default = u"sitrep",
-        ##/code-section field_docType
     )
 
 @form.default_value(field=ISituationReport['phase'])
@@ -114,10 +106,9 @@ class SituationReport(Container, DPDocument):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISituationReport)
-    
-##code-section methods
+
     APP = ELAN_APP
 
     def typeName(self):
@@ -132,7 +123,7 @@ class SituationReport(Container, DPDocument):
         """
         """
         return menu_items
-    
+
     def myPhaseConfig(self):
         """
         """
@@ -140,8 +131,8 @@ class SituationReport(Container, DPDocument):
             return self.phase.to_object
         else:
             return None
-        
-        
+
+
     def myModules(self):
         """
         """
@@ -212,7 +203,7 @@ class SituationReport(Container, DPDocument):
         #res = myMods
         #res.extend(plannedMods)
         return sorted(res)
-            
+
     def publishReport(self, justDoIt=False, duplicate=False):
         """
         """
@@ -235,19 +226,19 @@ class SituationReport(Container, DPDocument):
         f = new_version._getOb(fid)
         f.file = field
         f.reindexObject()
-        
+
         content.transition(new_version, transition="publish")
         if not justDoIt:
             portalMessage(self, _("The report has been published."), "info")
             return self.restrictedTraverse("@@view")()
-        
+
     def mirrorOverview(self):
         """
         """
         request = self.REQUEST
         alsoProvides(request, IDisableCSRFProtection)
         intids = getUtility(IIntIds)
-        
+
         modules = _availableModules(self)
         modules = modules and modules[0] or {}
         # link to current modules
@@ -268,12 +259,12 @@ class SituationReport(Container, DPDocument):
                     pass
         if refs:
             self.currentModules = refs
-            self.reindexObject()   
+            self.reindexObject()
             portalMessage(self, _("Modules have been replaced with current situation overview."), "info")
         else:
             portalMessage(self, _("No modules found in current situation overview."), "warn")
         return self.restrictedTraverse("@@view")()
-        
+
     def getRepresentativePDF(self):
         """
         """
@@ -285,8 +276,7 @@ class SituationReport(Container, DPDocument):
                 return f
         else:
             return None
-        
-##/code-section methods 
+
 
     def mySituationReport(self):
         """
@@ -312,22 +302,20 @@ class SituationReport(Container, DPDocument):
         """
         args = {'portal_type':'File'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
         """
         """
         args = {'portal_type':'SRModule'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTransferables(self, **kwargs):
         """
         """
         args = {'portal_type':'Transferable'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

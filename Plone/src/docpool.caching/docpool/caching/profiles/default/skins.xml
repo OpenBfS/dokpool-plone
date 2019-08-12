@@ -5,19 +5,15 @@
  <object name="docpool_caching_images" meta_type="Filesystem Directory View" directory="docpool.caching:skins/docpool_caching_images"/>
  <object name="docpool_caching_templates" meta_type="Filesystem Directory View" directory="docpool.caching:skins/docpool_caching_templates"/>
  <object name="docpool_caching_styles" meta_type="Filesystem Directory View" directory="docpool.caching:skins/docpool_caching_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="docpool_caching_images" insert-after="custom"/>
   <layer name="docpool_caching_templates" insert-after="custom"/>
   <layer name="docpool_caching_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

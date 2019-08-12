@@ -2,10 +2,8 @@
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
     <include file="site.zcml" />
     <include file="content.zcml" />
-    
-<!-- ##/code-section Main -->    
+
 
 </configure>

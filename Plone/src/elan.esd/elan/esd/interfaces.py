@@ -8,9 +8,4 @@ from elan.esd.content.elansection import IELANSection
 from elan.esd.content.elancontentconfig import IELANContentConfig
 from elan.esd.content.elanarchives import IELANArchives
 from elan.esd.content.irixconfig import IIRIXConfig
-##code-section imports
 from elan.esd import DocpoolMessageFactory as _
-##/code-section imports
-
-##code-section manual code
-##/code-section manual code

@@ -5,7 +5,5 @@
 PROJECTNAME = "docpool.rei"
 
 
-##code-section config
 # TODO
 REI_APP = "rei"
-##/code-section config

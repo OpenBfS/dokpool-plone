@@ -5,6 +5,4 @@
     <cmf:registerDirectory name="docpool_rei_templates"/>
     <cmf:registerDirectory name="docpool_rei_styles"/>
 
-<!-- ##code-section Additional Parameters -->
-<!-- ##/code-section Additional Parameters -->
 </configure>

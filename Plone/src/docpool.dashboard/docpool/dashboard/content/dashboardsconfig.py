@@ -29,8 +29,6 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.dashboard.config import PROJECTNAME
 
@@ -40,19 +38,15 @@ class IDashboardsConfig(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DashboardsConfig(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDashboardsConfig)
-    
-##code-section methods
-##/code-section methods 
+
 
     def myDashboardsConfig(self):
         """
@@ -78,8 +72,6 @@ class DashboardsConfig(Container):
         """
         args = {'portal_type':'DashboardCollection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

@@ -30,10 +30,8 @@ from docpool.base.content.folderbase import FolderBase, IFolderBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zExceptions import BadRequest
 from Products.Archetypes.utils import shasattr
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -43,24 +41,21 @@ class IInfoFolder(form.Schema, IFolderBase):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class InfoFolder(Container, FolderBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IInfoFolder)
-    
-##code-section methods
+
     def createActions(self):
         """
         """
         if shasattr(self, "myGroupFolder", acquire=True):
             log("Creating Private Info Folder")
-    
+
             placeful_wf = getToolByName(self, 'portal_placeful_workflow')
             try:
                 self.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
@@ -73,7 +68,6 @@ class InfoFolder(Container, FolderBase):
             self.reindexObject()
             self.updateSecurity()
             self.reindexObjectSecurity()
-##/code-section methods 
 
     def myInfoFolder(self):
         """
@@ -99,22 +93,20 @@ class InfoFolder(Container, FolderBase):
         """
         args = {'portal_type':'InfoDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'InfoFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoLinks(self, **kwargs):
         """
         """
         args = {'portal_type':'InfoLink'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

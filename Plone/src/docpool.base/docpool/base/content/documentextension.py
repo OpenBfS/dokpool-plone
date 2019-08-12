@@ -29,8 +29,6 @@ from plone.dexterity.content import Item
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -40,20 +38,14 @@ class IDocumentExtension(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DocumentExtension(Item):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDocumentExtension)
-    
-##code-section methods
-##/code-section methods 
 
 
-##code-section bottom
-##/code-section bottom 
+

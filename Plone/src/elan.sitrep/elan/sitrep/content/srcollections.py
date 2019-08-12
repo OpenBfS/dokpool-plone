@@ -29,9 +29,7 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.elan.config import ELAN_APP
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -41,20 +39,16 @@ class ISRCollections(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class SRCollections(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRCollections)
-    
-##code-section methods
+
     APP = ELAN_APP
-##/code-section methods 
 
     def mySRCollections(self):
         """
@@ -80,15 +74,13 @@ class SRCollections(Container):
         """
         args = {'portal_type':'SRCollection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRCollectionss(self, **kwargs):
         """
         """
         args = {'portal_type':'SRCollections'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

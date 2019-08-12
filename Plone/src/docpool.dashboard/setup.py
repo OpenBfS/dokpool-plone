@@ -38,14 +38,10 @@ setup(name='docpool.dashboard',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'docpool.base','elan.esd'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

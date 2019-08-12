@@ -30,9 +30,7 @@ from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.base.utils import execute_under_special_role, _cutPaste
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class IUserFolder(form.Schema, ISimpleFolder):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class UserFolder(Container, SimpleFolder):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IUserFolder)
-    
-##code-section methods
+
     def notifyMemberAreaCreated(self):
         """
         Move the member area to the proper location.
@@ -74,7 +69,6 @@ class UserFolder(Container, SimpleFolder):
                         members = esd.content.Members
                         _cutPaste(self, members, unique=True)
         execute_under_special_role(self, "Manager", moveFolder)
-##/code-section methods 
 
     def myUserFolder(self):
         """
@@ -100,15 +94,13 @@ class UserFolder(Container, SimpleFolder):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSimpleFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'SimpleFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

@@ -27,10 +27,8 @@ from docpool.base.interfaces import IDocTypeExtension
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from Acquisition import aq_inner
 from docpool.transfers.config import TRANSFERS_APP
-##/code-section imports
 
 from docpool.transfers.config import PROJECTNAME
 
@@ -46,7 +44,6 @@ class ITransfersType(form.Schema):
     )
 
 
-##/code-section interface
 
 
 class TransfersType(object):
@@ -55,7 +52,6 @@ class TransfersType(object):
 
     def __init__(self, context):
         self.context = context
-##code-section methods
 
     def _get_allowTransfer(self):
         return getattr(self.context, "allowTransfer", True)
@@ -69,8 +65,5 @@ class TransfersType(object):
 
 
     allowTransfer = property(_get_allowTransfer, _set_allowTransfer)
-##/code-section methods
 
 
-##code-section bottom
-##/code-section bottom 

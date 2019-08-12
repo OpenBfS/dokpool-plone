@@ -5,5 +5,3 @@
 PROJECTNAME = "elan.esd"
 
 
-##code-section config
-##/code-section config

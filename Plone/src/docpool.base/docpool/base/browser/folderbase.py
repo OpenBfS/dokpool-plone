@@ -7,7 +7,7 @@
 #            http://www.condat.de
 #
 
-"""Define a browser view for the content type. In the FTI 
+"""Define a browser view for the content type. In the FTI
 configured in profiles/default/types/*.xml, this is being set as the default
 view of that content type.
 """
@@ -19,7 +19,6 @@ from docpool.base.utils import extendOptions
 
 from plone.memoize.instance import memoize
 
-##code-section imports
 from Acquisition import aq_inner
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
@@ -30,40 +29,32 @@ from plone.app.contenttypes.interfaces import ICollection
 from zope.interface import implementer
 from plone import api
 from plone.memoize import view
-##/code-section imports
 
 
 class FolderBaselistitemView(BrowserView):
     """Additional View
     """
-    
+
     __call__ = ViewPageTemplateFile('folderbaselistitem.pt')
-    
-    ##code-section methodslistitem
     def options(self):
         return extendOptions(self.context, self.request, {})
-    ##/code-section methodslistitem
 
 class FolderBaserpopupView(BrowserView):
     """Additional View
     """
-    
+
     __call__ = ViewPageTemplateFile('folderbaserpopup.pt')
-    
-    ##code-section methodsrpopup
-    ##/code-section methodsrpopup     
 
 
 
-##code-section bottom
 @implementer(IFolderContentsView)
 class FolderBaseView(BrowserView):
     """Default view
     """
-    
+
     def dp_buttons(self, items):
         """
-        Determine the available buttons by calling the original method from the 
+        Determine the available buttons by calling the original method from the
         folder_contents view. We only accept cut & paste, though.
         """
         res = []
@@ -71,7 +62,7 @@ class FolderBaseView(BrowserView):
             if (b['id'] in ['cut','paste']):
                 res.append(b)
         return res
-    
+
     def buttons(self, items):
         buttons = []
         context = aq_inner(self.context)
@@ -100,7 +91,7 @@ class FolderBaseView(BrowserView):
         else:
             button['cssclass'] = 'context'
         return button
-    
+
     def getFolderContents(self, kwargs):
         """
         """
@@ -128,5 +119,3 @@ class FolderBaseView(BrowserView):
             res = user.getProperty("apps") or []
         # print "filter_active ", res
         return res
-
-##/code-section bottom

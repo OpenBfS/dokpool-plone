@@ -38,14 +38,10 @@ setup(name='docpool.video',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'wildcard.media'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

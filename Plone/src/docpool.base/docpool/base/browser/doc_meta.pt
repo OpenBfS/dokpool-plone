@@ -1,7 +1,5 @@
 <tal:block i18n:domain="docpool.base">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
     <tal:loop repeat="extension python:context.myExtensions(request)">
         <tal:insert replace="structure python:extension.myView('meta', **options)" />
     </tal:loop>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>
 </tal:block>

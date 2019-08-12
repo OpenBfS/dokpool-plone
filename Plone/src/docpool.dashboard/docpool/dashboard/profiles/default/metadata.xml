@@ -4,11 +4,7 @@
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
         <dependency>profile-elan.esd:default</dependency>
-    <!-- ##code-section Dependencies -->
-    
-    <!-- ##/code-section Dependencies -->
-    </dependencies>    
-    <!-- ##code-section View -->
-    
-    <!-- ##/code-section View -->
+
+    </dependencies>
+
 </metadata>

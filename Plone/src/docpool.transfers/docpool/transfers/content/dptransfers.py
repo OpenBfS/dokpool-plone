@@ -29,13 +29,11 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from Products.CMFPlone.utils import parent
 from logging import getLogger
 from Products.CMFPlone.utils import parent
 
 logger = getLogger("dptransfers")
-##/code-section imports
 
 from docpool.transfers.config import PROJECTNAME
 
@@ -45,18 +43,15 @@ class IDPTransfers(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DPTransfers(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDPTransfers)
-    
-##code-section methods
+
     def migrate(self):
         f = parent(self)
         if hasattr(self, '_setPortalTypeName'):
@@ -67,8 +62,6 @@ class DPTransfers(Container):
         f[myid] = self
         logger.info(self.__class__)
         logger.info(self.getPortalTypeName())
-
-    ##/code-section methods
 
     def myDPTransfers(self):
         """
@@ -94,10 +87,8 @@ class DPTransfers(Container):
         """
         args = {'portal_type':'DPTransferFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 class ELANTransfers(DPTransfers):
     pass
-##/code-section bottom

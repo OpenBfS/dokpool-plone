@@ -39,14 +39,10 @@ setup(name='docpool.rei',
           'plone.app.referenceablebehavior',
           'docpool.base',
           'docpool.transfers'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

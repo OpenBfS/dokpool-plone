@@ -30,14 +30,10 @@ setup(name='docpool.dbaccess',
           # -*- Extra requirements: -*-
           'setuptools',
           'Elixir','Formalchemy','zope.sqlalchemy','psycopg2'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

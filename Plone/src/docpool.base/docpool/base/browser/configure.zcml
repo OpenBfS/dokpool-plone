@@ -2,7 +2,6 @@
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
     <grok:grok package="."/>
 
     <browser:page permission="zope2.View"
@@ -116,7 +115,6 @@
   </browser:pages>
 
 
-    <!-- ##/code-section Main -->
 
 
 

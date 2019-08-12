@@ -3,11 +3,7 @@
     <version>0.0.1</version>
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
-    <!-- ##code-section Dependencies -->
-    
-    <!-- ##/code-section Dependencies -->
-    </dependencies>    
-    <!-- ##code-section View -->
-    
-    <!-- ##/code-section View -->
+
+    </dependencies>
+
 </metadata>

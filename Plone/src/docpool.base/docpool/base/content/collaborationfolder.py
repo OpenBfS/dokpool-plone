@@ -30,11 +30,9 @@ from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zExceptions import BadRequest
 from docpool.base.utils import getAllowedDocumentTypes, getAllowedDocumentTypesForGroup
 from plone.api import user
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -43,29 +41,24 @@ from docpool.base import DocpoolMessageFactory as _
 class ICollaborationFolder(form.Schema, ISimpleFolder):
     """
     """
-        
+
     allowedPartnerDocTypes = schema.List(
                         title=_(u'label_collaborationfolder_allowedpartnerdoctypes', default=u'Document types allowed for the guest group(s)'),
                         description=_(u'description_collaborationfolder_allowedpartnerdoctypes', default=u''),
                         required=True,
-##code-section field_allowedPartnerDocTypes
                         value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
-##/code-section field_allowedPartnerDocTypes                           
     )
-    
 
-##code-section interface
-##/code-section interface
+
 
 
 class CollaborationFolder(Container, SimpleFolder):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ICollaborationFolder)
-    
-##code-section methods
+
     def createActions(self):
         """
         """
@@ -103,21 +96,20 @@ class CollaborationFolder(Container, SimpleFolder):
                     for dt in dts:
                         #print dt.id
                         if not dt.getObject().globalAllow: # only generally allowed doctypes
-                            continue                        
+                            continue
                         if not filter or dt.id in self.allowedPartnerDocTypes:
-                            res.append({'extra': 
-             {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 
-                                        'submenu': None, 
-                                        'description': '', 
-                                        'title': dt.Title, 
-                                        'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id), 
-                                        'selected': False, 
-                                        'id': dt.id, 
+                            res.append({'extra':
+             {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id},
+                                        'submenu': None,
+                                        'description': '',
+                                        'title': dt.Title,
+                                        'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id),
+                                        'selected': False,
+                                        'id': dt.id,
                                         'icon': None})
                 else:
                     res.append(menu_item)
             return res
-##/code-section methods 
 
     def myCollaborationFolder(self):
         """
@@ -143,8 +135,6 @@ class CollaborationFolder(Container, SimpleFolder):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

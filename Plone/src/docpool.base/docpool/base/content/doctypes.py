@@ -29,8 +29,6 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -40,19 +38,15 @@ class IDocTypes(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DocTypes(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDocTypes)
-    
-##code-section methods
-##/code-section methods 
+
 
     def myDocTypes(self):
         """
@@ -78,15 +72,13 @@ class DocTypes(Container):
         """
         args = {'portal_type':'DocType'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModuleTypes(self, **kwargs):
         """
         """
         args = {'portal_type':'SRModuleType'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

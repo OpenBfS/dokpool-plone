@@ -30,12 +30,10 @@ from docpool.base.content.infofolder import InfoFolder, IInfoFolder
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.component import adapter
 from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
 from docpool.elan.config import ELAN_APP
 from zope.interface.declarations import classImplements
-##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
 
@@ -45,20 +43,16 @@ class IELANInfos(form.Schema, IInfoFolder):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class ELANInfos(Container, InfoFolder):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IELANInfos)
-    
-##code-section methods
+
     APP = ELAN_APP
-##/code-section methods 
 
     def myELANInfos(self):
         """
@@ -84,31 +78,30 @@ class ELANInfos(Container, InfoFolder):
         """
         args = {'portal_type':'InfoDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'InfoFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'InfoFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoLinks(self, **kwargs):
         """
         """
         args = {'portal_type':'InfoLink'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 @adapter(IELANInfos, IObjectAddedEvent)
 def infosAdded(obj, event=None):
     """
@@ -119,6 +112,5 @@ def infosAdded(obj, event=None):
     prefix = esd.prefix or esd.getId()
     prefix = str(prefix)
     self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-    
-    
-##/code-section bottom 
+
+

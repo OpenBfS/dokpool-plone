@@ -29,12 +29,10 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.component import adapter
 from plone.dexterity.interfaces import IEditFinishedEvent
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from docpool.elan.config import ELAN_APP
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -44,18 +42,15 @@ class ISRScenario(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class SRScenario(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRScenario)
-    
-##code-section methods
+
     APP = ELAN_APP
     def getSRScenarioNames(self):
         """
@@ -73,17 +68,16 @@ class SRScenario(Container):
         """
         """
         return ModuleTypesVocabularyFactory(self, raw=True)
-    
+
     def modTypeIds(self):
         mtypes = self.modTypes()
         return [ mt[0] for mt in mtypes ]
-    
+
     def getSRScenarios(self):
         """
         """
         return [ self ]
 
-##/code-section methods 
 
     def mySRScenario(self):
         """
@@ -109,14 +103,12 @@ class SRScenario(Container):
         """
         args = {'portal_type':'SRPhase'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 
 @adapter(ISRScenario, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRScenario updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat._reindexObject(obj)
-##/code-section bottom 

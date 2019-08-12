@@ -1,5 +1,4 @@
 <tal:block i18n:domain="elan.esd">
-<!-- ##code-section Portlet -->
 <dl class="portlet portletRecent kssPortletRefresh" tal:condition="python: (context.isSituationDisplay()) and (not context.isArchive())">
 <div id="recent_content">
     <dt class="portletHeader">
@@ -45,5 +44,4 @@
     </dd>
 </div>
 </dl>
-<!-- ##/code-section Portlet -->    
 </tal:block>

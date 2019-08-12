@@ -29,10 +29,8 @@ from plone.dexterity.content import Item
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.base.appregistry import APP_REGISTRY, appIcon
 from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
-##/code-section imports
 
 from docpool.base.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class IExtendable(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class Extendable(Item):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IExtendable)
-    
-##code-section methods
+
     def doc_extension(self, applicationName):
         """
         Get the object for the extension related to the given application.
@@ -87,8 +82,5 @@ class Extendable(Item):
         behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
         #print "myExtensions", behaviorNames
         return [ self.doc_extension(name) for name in behaviorNames ]
-##/code-section methods
 
 
-##code-section bottom
-##/code-section bottom 

@@ -16,7 +16,6 @@ from Products.CMFCore.utils import getToolByName
 
 from elan.esd import DocpoolMessageFactory as _
 
-##code-section imports
 from zope import schema
 from z3c.relationfield.schema import RelationChoice
 from z3c.form import field
@@ -38,36 +37,29 @@ def availableCategories(context):
     else:
         path = "/Plone/esd"
     query = { "portal_type" : ["ELANDocCollection"],
-              "path": {'query' :path } 
+              "path": {'query' :path }
              }
     #print query
-    return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IELANDocCollection.__identifier__).__call__(context) 
-##/code-section imports 
+    return ObjPathSourceBinder(navigation_tree_query = query,object_provides=IELANDocCollection.__identifier__).__call__(context)
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
 # have an edit form, since there are no editable options.
 
 class ICollectionPortlet(IPortletDataProvider):
-##code-section interface
     collection = schema.Choice(
                         title=_(u'label_elandocument_doctype', default=u'Document Type'),
                         description=_(u'description_elandocument_doctype', default=u''),
                         required=True,
-##code-section field_docType
                         source="elan.esd.vocabularies.Category")
-##/code-section interface
 
 # The assignment is a persistent object used to store the configuration of
 # a particular instantiation of the portlet.
 
 class Assignment(base.Assignment):
     implements(ICollectionPortlet)
-
-    ##code-section assignment
     def __init__(self, collection=None):
         self.collection = collection
-    ##/code-section assignment
 
     @property
     def title(self):
@@ -75,21 +67,19 @@ class Assignment(base.Assignment):
 
 # The renderer is like a view (in fact, like a content provider/viewlet). The
 # item self.data will typically be the assignment (although it is possible
-# that the assignment chooses to return a different object - see 
+# that the assignment chooses to return a different object - see
 # base.Assignment).
 
 class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
-    
+
     render = ViewPageTemplateFile('collection.pt')
-       
-    ##code-section renderer-methods    
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
 
         self.collection_id = self.data.collection
-        esd = getDocumentPoolSite(self.context)        
+        esd = getDocumentPoolSite(self.context)
         path = "/".join(esd.getPhysicalPath()) + "/esd"
         cat = getToolByName(esd, 'portal_catalog', None)
         items = cat({"portal_type": "ELANDocCollection","path": path, "getId" : self.collection_id})
@@ -98,17 +88,17 @@ class Renderer(base.Renderer):
         else:
             self.collection = None
 
-    
+
     @property
     def available(self):
         return (not self.context.isArchive()) and self.collection is not None
 
     def recent_items(self):
         return self._data()
-    
+
     def collection_link(self):
         return self.collection.absolute_url()
-    
+
     def title(self):
         return self.collection and self.collection.Title() or "<no collection>"
 
@@ -118,10 +108,8 @@ class Renderer(base.Renderer):
         try:
             return self.collection.results(batch=True, b_start=0, b_size=10, sort_on=None, brains=True)
         except:
-            return []   
-    ##/code-section renderer-methods
- 
-##code-section forms    
+            return []
+
 class AddForm(base.AddForm):
     form_fields = field.Fields(ICollectionPortlet)
     label = _(u"Add Collection Portlet")
@@ -135,7 +123,3 @@ class EditForm(base.EditForm):
     form_fields = field.Fields(ICollectionPortlet)
     label = _(u"Edit Collection Portlet")
     description = _(u"This portlet displays recently modified content from a collection.")
-##/code-section forms
-
-##code-section bottom
-##/code-section bottom

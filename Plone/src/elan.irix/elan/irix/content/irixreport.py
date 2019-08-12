@@ -30,7 +30,6 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.dbaccess.dbinit import __metadata__, __session__
 
 metadata = __metadata__
@@ -43,7 +42,6 @@ from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
 from elan.irix.db.model import IRIXReport as DBReport
 from datetime import datetime
 from urllib import quote
-##/code-section imports 
 
 from elan.irix.config import PROJECTNAME
 
@@ -52,28 +50,23 @@ from elan.irix import DocpoolMessageFactory as _
 class IIRIXReport(form.Schema, IContentBase):
     """
     """
-        
+
     dbkey = schema.Decimal(
                         title=_(u'label_irixreport_dbkey', default=u'Primary key in relational database'),
                         description=_(u'description_irixreport_dbkey', default=u'Database key'),
                         required=False,
-##code-section field_dbkey
-##/code-section field_dbkey                           
     )
     form.omitted('dbkey')
 
-##code-section interface
-##/code-section interface
 
 
 class IRIXReport(Item, ContentBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IIRIXReport)
-    
-##code-section methods
+
     def pkfields(self):
         """
         Dummy for CSS
@@ -84,12 +77,12 @@ class IRIXReport(Item, ContentBase):
         """
         """
         return "irixreport"
-    
+
     def getPrimaryKey(self):
         """
         """
         return [self.dbkey]
-    
+
     def dbObj(self):
         """
         """
@@ -99,7 +92,7 @@ class IRIXReport(Item, ContentBase):
         # print pkvals
         obj = dba.objektdatensatz(self.getStructuredType(), **pkvals)
         return obj
-        
+
     def navigationHTML(self):
         """
         """
@@ -107,14 +100,14 @@ class IRIXReport(Item, ContentBase):
         os = obj.getSubObjects()
         html = self.navElement(os)
         return html
-        
+
     def navElement(self, el):
         """
         """
         typ, pk, bc = self.currentState()
         mytyp = el[1]
         mypk = eval(el[2])
-        
+
         currentLeaf = False
         currentNode = False
         if typ == el[1]:
@@ -139,7 +132,7 @@ class IRIXReport(Item, ContentBase):
             html += "</ul>"
         html += "</li>"
         return html
-        
+
     def currentState(self):
         """
         """
@@ -148,7 +141,7 @@ class IRIXReport(Item, ContentBase):
         pk = eval(request.get("pk", '[]'))
         bc = eval(request.get("bc", '[]'))
         return typ, pk, bc
-    
+
     def initializeDB(self):
         """
         """
@@ -173,18 +166,16 @@ class IRIXReport(Item, ContentBase):
         # print self.dbkey
         self.reindexObject()
         # store PK
-        
+
     def irixConfig(self):
         try:
             ic = self.contentconfig.irix
             return ic
         except:
             return None
-            
-##/code-section methods 
 
 
-##code-section bottom
+
 @adapter(IIRIXReport, IObjectAddedEvent)
 def reportAdded(obj, event=None):
     """
@@ -197,4 +188,3 @@ def reportRemoved(obj, event=None):
     """
     """
     obj.deleteData()
-##/code-section bottom 

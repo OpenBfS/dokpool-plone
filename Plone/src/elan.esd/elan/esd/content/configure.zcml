@@ -1,31 +1,30 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="elan.esd">
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-     
 
-<!-- ##code-section Main -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <grok:grok package="." />
 
   <subscriber handler=".elaninfos.infosAdded" />
@@ -41,6 +40,5 @@
   <subscriber handler=".elandoccollection.update_docTypes" />
   <subscriber handler=".elandoccollection.enableSyndication" />
 
-<!-- ##/code-section Main -->    
-    
+
 </configure>

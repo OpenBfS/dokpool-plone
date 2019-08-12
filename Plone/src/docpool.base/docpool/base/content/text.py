@@ -30,8 +30,6 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -40,30 +38,22 @@ from docpool.base import DocpoolMessageFactory as _
 class IText(form.Schema, IContentBase):
     """
     """
-    dexteritytextindexer.searchable('text')    
+    dexteritytextindexer.searchable('text')
     text = RichText(
                         title=_(u'label_text_text', default=u'Text'),
                         description=_(u'description_text_text', default=u''),
                         required=False,
-##code-section field_text
-##/code-section field_text                           
     )
-    
 
-##code-section interface
-##/code-section interface
+
 
 
 class Text(Item, ContentBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IText)
-    
-##code-section methods
-##/code-section methods 
 
 
-##code-section bottom
-##/code-section bottom 
+

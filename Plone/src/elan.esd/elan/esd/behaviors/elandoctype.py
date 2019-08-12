@@ -26,32 +26,28 @@ from elan.esd import DocpoolMessageFactory as _
 
 from Acquisition import aq_inner
 
-@provider(IFormFieldProvider)    
-class IELANDocType(model.Schema):    
+@provider(IFormFieldProvider)
+class IELANDocType(model.Schema):
     contentCategory = RelationChoice(
                         title=_(u'label_doctype_contentcategory', default=u'Choose category for this type '),
                         description=_(u'description_doctype_contentcategory', default=u''),
                         required=False,
-##code-section field_contentCategory
                         source = "elan.esd.vocabularies.Category",
-##/code-section field_contentCategory                           
     )
 
 #    form.widget(contentCategory=SelectWidget)
     form.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
 
 
-        
+
     allowTransfer = schema.Bool(
                         title=_(u'label_doctype_allowtransfer', default=u'Can documents of this type be sent to other ESDs?'),
                         description=_(u'description_doctype_allowtransfer', default=u''),
                         required=False,
                         default=True,
-##code-section field_allowTransfer
-##/code-section field_allowTransfer                           
     )
 
-@form.default_value(field=IELANDocType['contentCategory']) 
+@form.default_value(field=IELANDocType['contentCategory'])
 def getDefaultCategory(data):
     """
     """
@@ -59,9 +55,9 @@ def getDefaultCategory(data):
         return data.context.getDefaultCategory()
     else:
         return None
-    
+
 class ELANDocType(object):
-    
+
     def __init__(self, context):
         self.context = context
 
@@ -73,7 +69,7 @@ class ELANDocType(object):
             return
         context = aq_inner(self.context)
         context.contentCategory = value
-    
+
     contentCategory = property(_get_contentCategory, _set_contentCategory)
 
     def _get_allowTransfer(self):
@@ -84,12 +80,12 @@ class ELANDocType(object):
             return
         context = aq_inner(self.context)
         context.allowTransfer = value
-    
+
     allowTransfer = property(_get_allowTransfer, _set_allowTransfer)
 
     def category(self):
         """
-        The primary category that the documents of this type belong to. 
+        The primary category that the documents of this type belong to.
         """
         cc = self.context.contentCategory
         res = cc and cc.to_object.title or ""
@@ -102,7 +98,7 @@ class ELANDocType(object):
 #         colls = self.getBackReferences(relationship='doctypes')
         colls = back_references(self.context, "docTypes")
         return list(set([coll.title for coll in colls if coll and not coll.isArchive() and coll.getPortalTypeName() == 'ELANDocCollection']))
-    
+
     def getCategories(self):
         """
         """
@@ -111,7 +107,7 @@ class ELANDocType(object):
             mpath = self.context.dpSearchPath()
         ecs = queryForObjects(self.context, path=mpath, portal_type="ELANDocCollection", sort_on="sortable_title")
         return DisplayList([(ec.UID, ec.Title) for ec in ecs])
-    
+
     def getDefaultCategory(self):
         """
         """
@@ -125,7 +121,7 @@ class ELANDocType(object):
                 res = RelationValue(to_id)
 #         print 'getDefaultCategory ', res
         return res
-        
+
     def setCCategory(self, id):
         """
         """
@@ -137,4 +133,3 @@ class ELANDocType(object):
         intids = getUtility(IIntIds)
         to_id = intids.getId(o)
         self.context.contentCategory = RelationValue(to_id)
-    

@@ -30,11 +30,9 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.base.utils import portalMessage
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -44,23 +42,20 @@ class IFolderBase(form.Schema, IContentBase):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class FolderBase(Container, ContentBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IFolderBase)
-    
-##code-section methods
+
     def change_state(self, id, action, backToReferer=False, REQUEST=None):
         """
         """
         if REQUEST:
-            alsoProvides(REQUEST, IDisableCSRFProtection)        
+            alsoProvides(REQUEST, IDisableCSRFProtection)
         if not action:
             return self.restrictedTraverse("@@view")()
         doc = None
@@ -93,10 +88,9 @@ class FolderBase(Container, ContentBase):
         """
         mtool = getToolByName(self, "portal_membership")
         if not mtool.checkPermission("Delete objects", self):
-            return False       
+            return False
         else:
             return True
-##/code-section methods 
 
     def myFolderBase(self):
         """
@@ -122,15 +116,13 @@ class FolderBase(Container, ContentBase):
         """
         args = {'portal_type':'File'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
         args = {'portal_type':'Image'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

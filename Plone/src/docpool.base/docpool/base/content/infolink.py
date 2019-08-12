@@ -30,8 +30,6 @@ from plone.app.contenttypes.content import Link,ILink
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -41,26 +39,20 @@ class IInfoLink(form.Schema, ILink):
     """
     """
 
-##code-section interface
     remoteUrl = schema.TextLine(
         title=u"URL",
         default=u"http://"
     )
 
 
-##/code-section interface
 
 
 class InfoLink(Item, Link):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IInfoLink)
-    
-##code-section methods
-##/code-section methods 
 
 
-##code-section bottom
-##/code-section bottom 
+

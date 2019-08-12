@@ -3,10 +3,6 @@
     <version>1.0.23</version>
     <dependencies>
         <dependency>profile-elan.esd:default</dependency>
-    <!-- ##code-section Dependencies -->
-    
-    <!-- ##/code-section Dependencies -->
-    </dependencies>    
-    <!-- ##code-section View -->
-    <!-- ##/code-section View -->
+
+    </dependencies>
 </metadata>

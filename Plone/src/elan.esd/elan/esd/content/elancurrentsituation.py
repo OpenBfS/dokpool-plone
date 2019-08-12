@@ -29,10 +29,8 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.elan.config import ELAN_APP
 from zope.interface.declarations import classImplements
-##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class IELANCurrentSituation(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class ELANCurrentSituation(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IELANCurrentSituation)
-    
-##code-section methods
+
     APP = ELAN_APP
 
     def correctAllDocTypes(self):
@@ -66,7 +61,6 @@ class ELANCurrentSituation(Container):
         for ec in ecs:
             ec.getObject().correctDocTypes()
 
-##/code-section methods 
 
     def myELANCurrentSituation(self):
         """
@@ -92,43 +86,41 @@ class ELANCurrentSituation(Container):
         """
         args = {'portal_type':'DashboardCollection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getDocuments(self, **kwargs):
         """
         """
         args = {'portal_type':'Document'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANDocCollections(self, **kwargs):
         """
         """
         args = {'portal_type':'ELANDocCollection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANSections(self, **kwargs):
         """
         """
         args = {'portal_type':'ELANSection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRCollections(self, **kwargs):
         """
         """
         args = {'portal_type':'SRCollection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTemplatedDocuments(self, **kwargs):
         """
         """
         args = {'portal_type':'TemplatedDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom

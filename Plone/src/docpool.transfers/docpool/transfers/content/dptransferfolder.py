@@ -30,7 +30,6 @@ from docpool.base.content.folderbase import FolderBase, IFolderBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.interface import Interface
 from zope.schema.interfaces import IContextSourceBinder
 from docpool.base.utils import execute_under_special_role, queryForObject, getDocumentPoolSite
@@ -51,70 +50,58 @@ from Products.CMFPlone.utils import parent
 from docpool.transfers import DocpoolMessageFactory as _
 logger = getLogger("dptransferfolder")
 
-##/code-section imports
 
 from docpool.transfers.config import PROJECTNAME
 
 class IDPTransferFolder(form.Schema, IFolderBase):
     """
     """
-        
+
     sendingESD = schema.Choice(
                         title=_(u'label_dptransferfolder_sendingesd', default=u'The organisation sending content via this transfer folder'),
                         description=_(u'description_dptransferfolder_sendingesd', default=u''),
                         required=True,
-##code-section field_sendingESD
                         source = "docpool.base.vocabularies.DocumentPools",
-##/code-section field_sendingESD                           
     )
-    
-        
+
+
     permLevel = schema.Choice(
                         title=_(u'label_dptransferfolder_permlevel', default=u'Permission level'),
                         description=_(u'description_dptransferfolder_permlevel', default=u''),
                         required=True,
                         default="read/write",
-##code-section field_permLevel
                         source="docpool.transfers.vocabularies.Permissions"
-##/code-section field_permLevel                           
     )
-    
-        
+
+
     unknownDtDefault = schema.Choice(
                         title=_(u'label_dptransferfolder_unknowndtdefault', default=u'Default for unknown document types'),
                         description=_(u'description_dptransferfolder_unknowndtdefault', default=u''),
                         required=True,
                         default="block",
-##code-section field_unknownDtDefault
                         source="docpool.transfers.vocabularies.UnknownOptions"
-##/code-section field_unknownDtDefault                           
     )
-    
-        
+
+
     unknownScenDefault = schema.Choice(
                         title=_(u'label_dptransferfolder_unknownscendefault', default=u'Default for unknown scenarios'),
                         description=_(u'description_dptransferfolder_unknownscendefault', default=u''),
                         required=True,
                         default="block",
-##code-section field_unknownScenDefault
                         source="docpool.transfers.vocabularies.UnknownOptions"
-##/code-section field_unknownScenDefault                           
     )
-    
 
-##code-section interface
+
 #    form.widget(typesConf=DataGridFieldFactory)
-##/code-section interface
 
 
 class DPTransferFolder(Container, FolderBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDPTransferFolder)
-    
-##code-section methods
+
     def migrate(self):
         f = parent(self)
         if hasattr(self, '_setPortalTypeName'):
@@ -151,10 +138,10 @@ class DPTransferFolder(Container, FolderBase):
             #print myDts
             if ids_only:
                 return [ dt[0] for dt in myDts if dt[0] in theirDts]
-            else:    
+            else:
                 return [ dt for dt in myDts if dt[0] in theirDts]
         return execute_under_special_role(self, "Manager",doIt)
-    
+
     def ensureMatchingDocumentTypesInDatabase(self):
         """
         """
@@ -171,26 +158,26 @@ class DPTransferFolder(Container, FolderBase):
         for dt in dts:
             if dt not in dbdts:
                 p = DocTypePermission(doc_type=dt,perm="publish",channel_id=channel_id)
-        __session__.flush()        
-    
+        __session__.flush()
+
     def getSendingESD(self):
         """
         """
         esd_uid = self.sendingESD
         return queryForObject(self, UID=esd_uid)
-    
+
     def resetSettings(self):
         """
         """
         created(self, event=None)
-        
+
     def permissions(self):
         """
         """
         channel_id = self.channelId()
         permissions = __session__.query(DocTypePermission).filter_by(channel_id=channel_id).order_by(DocTypePermission.doc_type).all()
         return permissions
-    
+
     def channelId(self):
         """
         """
@@ -201,13 +188,13 @@ class DPTransferFolder(Container, FolderBase):
             return channel.id
         else:
             return 0
-        
+
     def pkfields(self):
         """
         Dummy method to indicate that this is a resource with dbadmin functions.
         """
         pass
-    
+
     def grantReadAccess(self):
         """
         """
@@ -220,7 +207,7 @@ class DPTransferFolder(Container, FolderBase):
             self.myDocumentPool().reindexObjectSecurity()
 
         execute_under_special_role(self, "Manager", grantRead)
-        
+
     def revokeReadAccess(self):
         """
         """
@@ -232,12 +219,11 @@ class DPTransferFolder(Container, FolderBase):
                 self.myDocumentPool().manage_delLocalRoles([esd_members])
                 self.myDocumentPool().reindexObject()
                 self.myDocumentPool().reindexObjectSecurity()
-            
+
         execute_under_special_role(self, "Manager", revokeRead)
-    
+
     def isArchive(self):
-        return "archive" in self.getPhysicalPath()        
-##/code-section methods 
+        return "archive" in self.getPhysicalPath()
 
     def myDPTransferFolder(self):
         """
@@ -263,38 +249,37 @@ class DPTransferFolder(Container, FolderBase):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getFiles(self, **kwargs):
         """
         """
         args = {'portal_type':'File'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
         args = {'portal_type':'Image'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
         """
         """
         args = {'portal_type':'SRModule'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSituationReports(self, **kwargs):
         """
         """
         args = {'portal_type':'SituationReport'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 
 def setupChannel(obj, delete=False):
     esd_from_uid=obj.sendingESD
@@ -307,7 +292,7 @@ def setupChannel(obj, delete=False):
         esd = obj.myDocumentPool()
         cat = getToolByName(obj, 'portal_catalog')
         from_esd = cat.unrestrictedSearchResults({"portal_type":"DocumentPool", "UID" : esd_from_uid})
-        from_esd = from_esd[0]    
+        from_esd = from_esd[0]
         dts = obj.getMatchingDocumentTypes(ids_only=True)
         c = Channel(esd_from_uid=esd_from_uid, esd_from_title=from_esd.Title, tf_uid=tf_uid, title=obj.Title(), esd_to_title=esd.Title())
         for dt in dts:
@@ -325,7 +310,7 @@ def created(obj, event=None):
     log("TransferFolder created: %s" % str(obj))
     if not obj.isArchive():
         setupChannel(obj, delete=True)
-    
+
         # Also, if the permissions include read access,
         # set the local Reader role for the members of
         # the sending ESD
@@ -341,7 +326,7 @@ def updated(obj, event=None):
 
     if not obj.isArchive():
         setupChannel(obj, delete=False)
-    
+
         if obj.permLevel == 'read/write':
             obj.grantReadAccess()
         else:
@@ -353,18 +338,17 @@ def deleted(obj, event=None):
     log("TransferFolder deleted: %s" % str(obj))
     if not obj.isArchive():
         esd_from_uid=obj.sendingESD
-        tf_uid=obj.UID()    
+        tf_uid=obj.UID()
         old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
         permissions = obj.permissions()
         for perm in permissions:
             __session__.delete(perm)
-        __session__.flush()    
+        __session__.flush()
         if old:
             __session__.delete(old)
-            __session__.flush()    
+            __session__.flush()
         # Revoke any read access
         obj.revokeReadAccess()
 
 class ELANTransferFolder(DPTransferFolder):
     pass
-##/code-section bottom 

@@ -29,9 +29,7 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.elan.config import ELAN_APP
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -41,20 +39,16 @@ class ISRConfig(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class SRConfig(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRConfig)
-    
-##code-section methods
+
     APP = ELAN_APP
-##/code-section methods 
 
     def mySRConfig(self):
         """
@@ -80,22 +74,20 @@ class SRConfig(Container):
         """
         args = {'portal_type':'SRCollections'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRScenarios(self, **kwargs):
         """
         """
         args = {'portal_type':'SRScenario'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRTextBlockss(self, **kwargs):
         """
         """
         args = {'portal_type':'SRTextBlocks'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

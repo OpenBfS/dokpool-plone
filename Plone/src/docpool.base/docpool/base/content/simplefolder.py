@@ -30,13 +30,11 @@ from docpool.base.content.folderbase import FolderBase, IFolderBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.base.utils import queryForObjects, portalMessage, execute_under_special_role, \
 getAllowedDocumentTypes
 from Products.CMFPlone.utils import parent
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -45,29 +43,24 @@ from docpool.base import DocpoolMessageFactory as _
 class ISimpleFolder(form.Schema, IFolderBase):
     """
     """
-        
+
     allowedDocTypes = schema.List(
                         title=_(u'label_simplefolder_alloweddoctypes', default=u'Document types allowed in this folder'),
                         description=_(u'description_simplefolder_alloweddoctypes', default=u'Leave blank to enable all types configured for the group.'),
                         required=False,
-##code-section field_allowedDocTypes
                         value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
-##/code-section field_allowedDocTypes                           
     )
-    
 
-##code-section interface
-##/code-section interface
+
 
 
 class SimpleFolder(Container, FolderBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISimpleFolder)
-    
-##code-section methods
+
     def customMenu(self, menu_items):
         """
         """
@@ -82,14 +75,14 @@ class SimpleFolder(Container, FolderBase):
                     if not dt.getObject().globalAllow: # only generally allowed doctypes
                         continue
                     if not filter or dt.id in self.allowedDocTypes:
-                        res.append({'extra': 
-         {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id}, 
-                                    'submenu': None, 
-                                    'description': '', 
-                                    'title': dt.Title, 
-                                    'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id), 
-                                    'selected': False, 
-                                    'id': dt.id, 
+                        res.append({'extra':
+         {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id},
+                                    'submenu': None,
+                                    'description': '',
+                                    'title': dt.Title,
+                                    'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id),
+                                    'selected': False,
+                                    'id': dt.id,
                                     'icon': None})
             else:
                 res.append(menu_item)
@@ -104,12 +97,12 @@ class SimpleFolder(Container, FolderBase):
         """
         A folder can be deleted, if
         - it does not contain published Documents somewhere below AND
-        - it is not a member or group root folder, 
-              unless principal_deleted = True 
+        - it is not a member or group root folder,
+              unless principal_deleted = True
         """
         mtool = getToolByName(self, "portal_membership")
         if not mtool.checkPermission("Delete objects", self):
-            return False       
+            return False
         if self.containsPublishedDocuments():
             return False
         if self.isPrincipalFolder():
@@ -118,18 +111,18 @@ class SimpleFolder(Container, FolderBase):
             else:
                 return False
         return True
-    
+
     def containsPublishedDocuments(self):
         """
         """
         return len(queryForObjects(self, path="/".join(self.getPhysicalPath()), portal_type="DPDocument", review_state="published")) > 0
-    
-    
+
+
     def publish_doc(self, id, REQUEST=None):
         """
         """
         if REQUEST:
-            alsoProvides(REQUEST, IDisableCSRFProtection)        
+            alsoProvides(REQUEST, IDisableCSRFProtection)
         doc = None
         try:
             doc = self._getOb(id)
@@ -141,10 +134,9 @@ class SimpleFolder(Container, FolderBase):
             if REQUEST:
                 portalMessage(self, _("The document has been published."), "info")
                 return self.restrictedTraverse("@@view")()
-            
-        
-        
-##/code-section methods 
+
+
+
 
     def mySimpleFolder(self):
         """
@@ -170,15 +162,13 @@ class SimpleFolder(Container, FolderBase):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSimpleFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'SimpleFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

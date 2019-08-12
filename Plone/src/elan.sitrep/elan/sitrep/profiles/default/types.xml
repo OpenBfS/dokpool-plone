@@ -1,5 +1,5 @@
 <object name="portal_types" meta_type="Plone Types Tool">
-    
+
  <!-- This file registers new types with portal_types. The types are
       then configured with the corresponding files in types/*.xml. Note
       that spaces are allowed in type names, but the corresponding XML file
@@ -7,52 +7,50 @@
       dynamic views" refers to an FTI from Products.CMFDynamicViewFTI,
       which supports Plone's "display" menu.
    -->
-     
-     
-     <object name="SRConfig" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRScenario" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRPhase" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRModuleConfig" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRCollections" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRCollection" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRTextBlocks" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRTextBlock" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SituationOverview" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRFolder" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRModule" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRModuleTypes" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SRModuleType" meta_type="Dexterity FTI" />    
-     
-     
-     <object name="SituationReport" meta_type="Dexterity FTI" />    
-       
-      
-<!-- ##code-section Main -->
-     <object name="DPConfig" meta_type="Dexterity FTI" />    
-     <object name="ELANCurrentSituation" meta_type="Dexterity FTI" />        
-<!-- ##/code-section Main -->  
+
+
+     <object name="SRConfig" meta_type="Dexterity FTI" />
+
+
+     <object name="SRScenario" meta_type="Dexterity FTI" />
+
+
+     <object name="SRPhase" meta_type="Dexterity FTI" />
+
+
+     <object name="SRModuleConfig" meta_type="Dexterity FTI" />
+
+
+     <object name="SRCollections" meta_type="Dexterity FTI" />
+
+
+     <object name="SRCollection" meta_type="Dexterity FTI" />
+
+
+     <object name="SRTextBlocks" meta_type="Dexterity FTI" />
+
+
+     <object name="SRTextBlock" meta_type="Dexterity FTI" />
+
+
+     <object name="SituationOverview" meta_type="Dexterity FTI" />
+
+
+     <object name="SRFolder" meta_type="Dexterity FTI" />
+
+
+     <object name="SRModule" meta_type="Dexterity FTI" />
+
+
+     <object name="SRModuleTypes" meta_type="Dexterity FTI" />
+
+
+     <object name="SRModuleType" meta_type="Dexterity FTI" />
+
+
+     <object name="SituationReport" meta_type="Dexterity FTI" />
+
+
+     <object name="DPConfig" meta_type="Dexterity FTI" />
+     <object name="ELANCurrentSituation" meta_type="Dexterity FTI" />
 </object>

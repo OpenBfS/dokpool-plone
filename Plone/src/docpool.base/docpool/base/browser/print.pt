@@ -1,5 +1,4 @@
 <tal:block i18n:domain="docpool.base">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <tal:def define="dummy python:request.set('ajax_load',1);
                  dummy python:request.set('ajax_include_head',1);">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
@@ -28,7 +27,7 @@
     <tal:if condition="not:here/isArchive">
         <tal:def define="view view/scenario_view">
             <div metal:use-macro="here/@@event.macros/macros/scenario_table"/>
-        </tal:def>   
+        </tal:def>
     </tal:if>
     <div class="cat_scen">
     <div metal:use-macro="here/@@elan.macros/macros/cat_filter"/>
@@ -40,5 +39,4 @@
 </body>
 </html>
 </tal:def>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

@@ -30,8 +30,6 @@ from elan.esd.content.elandoccollection import ELANDocCollection, IELANDocCollec
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.dashboard.config import PROJECTNAME
 
@@ -41,20 +39,14 @@ class IDashboardCollection(form.Schema, IELANDocCollection):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DashboardCollection(Item, ELANDocCollection):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDashboardCollection)
-    
-##code-section methods
-##/code-section methods 
 
 
-##code-section bottom
-##/code-section bottom 
+

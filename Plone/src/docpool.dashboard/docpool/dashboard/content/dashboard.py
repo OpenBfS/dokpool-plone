@@ -29,8 +29,6 @@ from plone.dexterity.content import Item
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.dashboard.config import PROJECTNAME
 
@@ -39,34 +37,29 @@ from docpool.dashboard import DocpoolMessageFactory as _
 class IDashboard(form.Schema):
     """
     """
-        
+
     dbCollections = RelationList(
                         title=_(u'label_dashboard_dbcollections', default=u'Document Types'),
                         description=_(u'description_dashboard_dbcollections', default=u'Select the document types you want to show in this dashboard.'),
                         required=False,
-##code-section field_dbCollections
                         value_type=RelationChoice(
                                                       title=_("Document Types"),
                                                     source = "docpool.dashboard.vocabularies.DashboardCollections",
 
                                                      ),
-##/code-section field_dbCollections                           
     )
-    
 
-##code-section interface
+
     form.widget(dbCollections='z3c.form.browser.select.CollectionSelectFieldWidget')
-##/code-section interface
 
 
 class Dashboard(Item):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDashboard)
-    
-##code-section methods
+
     def currentDocuments(self):
         """
         Loop through all configured collections,
@@ -82,9 +75,6 @@ class Dashboard(Item):
                 res.append((coll.Title(), None))
 #        print res
         return res
-            
-##/code-section methods 
 
 
-##code-section bottom
-##/code-section bottom 
+

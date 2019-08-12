@@ -17,10 +17,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import provider, implementer
 from plone.directives import form
 
-##code-section imports
 from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
-##/code-section imports
 
 
 from docpool.example import DocpoolMessageFactory as _
@@ -34,7 +32,6 @@ class IExampleType(IDocTypeExtension):
     )
 
 
-##/code-section interface
 
 
 class ExampleType(object):
@@ -43,7 +40,6 @@ class ExampleType(object):
 
     def __init__(self, context):
         self.context = context
-##code-section methods
 
     def _get_example_type_attribute(self):
         return self.context.example_type_attribute
@@ -56,8 +52,5 @@ class ExampleType(object):
 
     example_type_attribute = property(_get_example_type_attribute, _set_example_type_attribute)
 
-##/code-section methods
 
 
-##code-section bottom
-##/code-section bottom 

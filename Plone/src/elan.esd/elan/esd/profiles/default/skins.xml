@@ -5,19 +5,15 @@
  <object name="elan_esd_images" meta_type="Filesystem Directory View" directory="elan.esd:skins/elan_esd_images"/>
  <object name="elan_esd_templates" meta_type="Filesystem Directory View" directory="elan.esd:skins/elan_esd_templates"/>
  <object name="elan_esd_styles" meta_type="Filesystem Directory View" directory="elan.esd:skins/elan_esd_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="elan_esd_images" insert-after="custom"/>
   <layer name="elan_esd_templates" insert-after="custom"/>
   <layer name="elan_esd_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

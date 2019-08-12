@@ -38,18 +38,14 @@ setup(name='elan.esd',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           ''
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
       extras_require = dict(
           test=[
               'loremipsum',
       ]),
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
-         target = plone      
+         target = plone
       """,
-      ##/code-section entrypoints
       )

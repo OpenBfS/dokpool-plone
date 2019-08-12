@@ -1,23 +1,19 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
 <!-- Workflow allocation -->
-<!-- ##code-section object -->
  <object name="dp_event_workflow" meta_type="Workflow"/>
-<!-- ##/code-section object -->
  <bindings>
-<!-- ##code-section bindings -->
-<!-- ##/code-section bindings -->
-    
-    
+
+
    <type type_id="DPEvent">
     <bound-workflow workflow_id="dp_event_workflow" />
    </type>
-    
-    
+
+
    <type type_id="DPEvents">
     <bound-workflow workflow_id="dp_one_state_workflow" />
    </type>
 
-    
+
  </bindings>
 </object>

@@ -1,5 +1,4 @@
 <tal:block i18n:domain="docpool.base">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       i18n:domain="docpool.base" xml:lang="en"
@@ -14,5 +13,4 @@
 </metal:content-core>
 </body>
 </html>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

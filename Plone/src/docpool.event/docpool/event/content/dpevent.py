@@ -25,7 +25,6 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.dexterity.utils import safe_unicode
@@ -73,7 +72,6 @@ from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from collective.z3cform.mapwidget.widget import MapFieldWidget
 
 from plone.autoform import directives
-##/code-section imports
 
 from docpool.event import DocpoolMessageFactory as _
 
@@ -86,25 +84,19 @@ class IDPEvent(form.Schema, IContentBase):
         title=_(u'label_dpevent_status', default=u'Status of the scenario'),
         description=_(u'description_dpevent_status', default=u''),
         required=True,
-        ##code-section field_status
         source="docpool.base.vocabularies.Status",
-        ##/code-section field_status
     )
 
     Exercise = schema.Bool(
         title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
         description=_(u'description_dpevent_exercise', default=u''),
         required=False,
-        ##code-section field_exercise
-        ##/code-section field_exercise
     )
 
     TimeOfEvent = schema.Datetime(
         title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
         description=_(u'description_dpevent_timeofevent', default=u''),
         required=True,
-        ##code-section field_timeOfEvent
-        ##/code-section field_timeOfEvent
     )
 
     Substitute = RelationChoice(
@@ -112,9 +104,7 @@ class IDPEvent(form.Schema, IContentBase):
         description=_(u'description_dpevent_substitute',
                       default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
         required=False,
-        ##code-section field_substitute
         source="docpool.event.vocabularies.EventSubstitutes"
-        ##/code-section field_substitute
     )
     form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
@@ -166,8 +156,6 @@ class IDPEvent(form.Schema, IContentBase):
                         readonly=True
     )
 
-    ##code-section interface
-
 
 @form.default_value(field=IDPEvent['TimeOfEvent'])
 def initializeTimeOfEvent(data):
@@ -175,7 +163,6 @@ def initializeTimeOfEvent(data):
     return datetime.datetime.today()
 
 
-##/code-section interface
 
 
 class DPEvent(Item, ContentBase):
@@ -184,8 +171,6 @@ class DPEvent(Item, ContentBase):
     security = ClassSecurityInfo()
 
     implements(IDPEvent)
-
-    ##code-section methods
     def print_dict(self):
         """
 
@@ -385,7 +370,7 @@ class DPEvent(Item, ContentBase):
 
     def _createArchiveFolders(self):
         """
-        We create an archive object. Into it, we copy the complete ESD hierarchy. 
+        We create an archive object. Into it, we copy the complete ESD hierarchy.
         We also create two folders "Members" and "Groups", which will hold all the
         documents for the scenario.
         """
@@ -508,10 +493,8 @@ class DPEvent(Item, ContentBase):
         return (wftool.getInfoFor(self, 'review_state') == 'published' and self.Status == 'active')
 
 
-##/code-section methods
 
 
-##code-section bottom
 class ELANScenario(DPEvent):
     pass
 
@@ -564,8 +547,8 @@ def eventChanged(obj, event=None):
     <th>%s</th>
     <th>%s</th>
     <th>%s</th>
-    <th>%s</th>    
-    <th>%s</th>    
+    <th>%s</th>
+    <th>%s</th>
     </tr>
     </thead>
     <tbody>
@@ -636,4 +619,3 @@ def eventPublished(obj, event=None):
             except Exception, e:
                 log_exc(e)
 
-##/code-section bottom

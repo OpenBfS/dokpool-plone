@@ -49,22 +49,20 @@ listbutton_defs = {
 class BatchBase(object):
     """Default view
     """
-    
-    ##code-section methods1
     __allow_access_to_unprotected_subobjects__ = 1
-    
+
     def __init__(self, tool, request, context):
         self.context = context
         self.request = request
         self.tool = tool
         self.__name__= ''
-        
+
 #    @memoize
     def getBatchStart(self):
         return self.request.form.get('b_start', 0)
 
 #    @memoize
-    def getBatchSize(self): 
+    def getBatchSize(self):
         return self.request.get('eineseite', None) and 100000 or 10;
 
 #    @memoize
@@ -77,34 +75,34 @@ class BatchBase(object):
 #    @memoize
     def anzobj(self):
         return len(self._getItems())
-    
+
 #    @memoize
     def seitennr(self):
         return self.getBatchObj().pagenumber
-    
+
 #    @memoize
     def seitengesamt(self):
         return self.getBatchObj().numpages
-        
+
 #    @memoize
-    def _getItems(self): 
+    def _getItems(self):
         return []
-    
+
 #    @memoize
     def getItems(self):
         return self._getItems()
-        
+
 #    @memoize
     def getSorting(self):
         sort_on = self.request.form.get('sort_on', 'modified') # TODO: Veroeffentlichungsdatum
         sort_order = self.request.form.get('sort_order', 'reverse')
         return {'sort_on': sort_on, 'sort_order': sort_order}
-    
+
     def sortURL(self, column):
         s = self.getSorting()
         so = 'ascending'
         if s['sort_on'] == column:
-            so = 'reverse'            
+            so = 'reverse'
             if s['sort_order'] == 'reverse':
                 so = 'ascending'
         template_id = self.__name__
@@ -116,7 +114,7 @@ class BatchBase(object):
         else:
             return "%s?%s" % (self.context.absolute_url(), qry)
 
-#    @memoize        
+#    @memoize
     def getSortOrder(self):
         sort_on = self.getSorting()['sort_on']
         sort_order = self.getSorting()['sort_order']
@@ -124,33 +122,30 @@ class BatchBase(object):
             sort_order = 'desc'
         elif sort_order in ("ascending"):
             sort_order = 'asc'
-        
+
         x = "%(sort_on)s_%(sort_order)s" % locals()
         return x
 
     def sortURLSelect(self, sort_on, sort_order):
 
-        #template_id = self.__name__        
+        #template_id = self.__name__
         # explicit is better than implicit
         #if template_id == 'view':
         #    template_id = None
-            
-        qry = make_query(self.request.form, {'sort_on' : sort_on, 
+
+        qry = make_query(self.request.form, {'sort_on' : sort_on,
                                              'sort_order' : sort_order})
         #if template_id:
         return "%s?%s" % (self.__name__, qry)
-            
+
     def getGridHTML(self):
         """
         """
         return ""
-    ##/code-section methods1     
 
 class ListView(BatchBase):
     """
     """
-    
-    ##code-section methods1
     def __init__(self, tool, request, context):
         BatchBase.__init__(self, tool, request, context)
         self.typ = hasattr(self, "typ") and self.typ or request.get('typ')
@@ -206,21 +201,21 @@ class ListView(BatchBase):
                 elif len(of[k]) > 0:
                     res.append((fname,'%' + of[k].replace('*','%')+'%'))
         return res
-    
+
 #    @memoize
     def _getObjectFields(self):
         return self.tool._extractData(self.request, self.typ)
-    
+
 #    @memoize
     def _getItems(self):
         # TODO: Berechtigungen
         # Begrenzen auf eine akzeptable Anzahl an Ergebnissen,
         # um die Massendaten bearbeitbar zu machen
         filter = self._getFilter()
-        return self.tool.objekteSuchen(self.typ, filter, limit=10000, **self.getSorting()) 
-            
+        return self.tool.objekteSuchen(self.typ, filter, limit=10000, **self.getSorting())
+
 #    @memoize
-    def getBatchSize(self): 
+    def getBatchSize(self):
         return self.request.get('eineseite', None) and 100000 or 25; # TODO: konfigurierbar im Tool
 
 #    @memoize
@@ -232,7 +227,7 @@ class ListView(BatchBase):
         if self.has_create and self.security.can_create():
             b.append(('create', _(u'New'), ''))
         return listbutton_defs.get(self.typ, b)
-    
+
 #    @memoize
     def isImportAllowed(self):
         """
@@ -245,15 +240,15 @@ class ListView(BatchBase):
 
 #    @memoize
     def getSorting(self):
-        sort_on = self.request.form.get('sort_on') or self.tool.sort_default(self.typ) 
+        sort_on = self.request.form.get('sort_on') or self.tool.sort_default(self.typ)
         sort_order = self.request.form.get('sort_order') or 'ascending'
         return {'sort_on': sort_on, 'sort_order': sort_order}
-    
+
     def getGridHTML(self):
         """
         """
         return self.grid.bind(self.getBatchObj()).render()
-    
+
     def getFilterHTML(self):
         """
         """
@@ -263,7 +258,7 @@ class ListView(BatchBase):
         if of:
             fs = fs.bind(data=of)
         return fs.render()
-        
+
     def getColumnNames(self):
         """
         """
@@ -273,7 +268,7 @@ class ListView(BatchBase):
             if field.key not in ['editlink','check']:
                 res.append(field.key)
         return res
-    
+
     def getSortNames(self):
         """
         """
@@ -281,10 +276,9 @@ class ListView(BatchBase):
             return self.sortNames
         else:
             return self.getColumnNames()
-    ##/code-section methods1     
 
 class SEListView(ListView):
-    
+
     def __init__(self, tool, request, context, typ, filter, parentView):
         self.typ = typ
         self.filter = filter
@@ -319,13 +313,13 @@ class EditView(object):
                     pk = '{}'
             else:
                 pk = "[ '###' ]"
-        self.pk = eval(pk) # 
+        self.pk = eval(pk) #
         self.klass = self.tool.getKlass(self.typ)
         self.label = self.tool.getLabel(self.typ)
         self.security = self.tool._getSecurity(self.klass, context)
         self.security.setView(self)
         self.readonly = True
-        self.can_delete = False    
+        self.can_delete = False
         if self.create:
             if not self.security.can_create():
                 raise Unauthorized, "Keine Berechtigung zum Erzeugen"
@@ -338,7 +332,7 @@ class EditView(object):
                 self.allowMinor = False
                 self.form = defs['form']
                 self.audit = None
-         
+
         else:
             # print "edit"
             self.sd = self.tool.objektdatensatz(self.typ, **self.tool.getPKDict(self.typ, self.pk))
@@ -364,12 +358,12 @@ class EditView(object):
         self.can_access = self.security.can_access()
         if not self.can_access:
             raise Unauthorized, "Keine Berechtigung zum Zugriff auf diese Daten"
-            
+
     @memoize
     def _getObjectFields(self):
         return self.tool._extractData(self.request, self.typ)
-        
-                
+
+
     def herkunft(self):
         """
         """
@@ -377,8 +371,8 @@ class EditView(object):
         if h and h.find('typ=') == -1:
             h = "%s?typ=%s" % (h, self.typ)
         return h
-            
-        
+
+
     def checkAccess(self):
         """
         """
@@ -386,7 +380,7 @@ class EditView(object):
             raise Unauthorized, "Keine Berechtigung fuer diesen Typ"
         else:
             return True
-            
+
     def getPKValsAsString(self):
         """
         """
@@ -406,7 +400,7 @@ class EditView(object):
         """
         Liefert HTML fuer das Edit Formular
         """
-        formerror = self.request.get('formerror', None)        
+        formerror = self.request.get('formerror', None)
         if formerror:
             return formerror
         else:
@@ -414,7 +408,7 @@ class EditView(object):
             kwargs = {}
             defaults = {}
             form = self.form
-            if self.defaults: 
+            if self.defaults:
                 if callable(self.defaults):
                     of = self.defaults(self.context)
                 else:
@@ -433,7 +427,7 @@ class EditView(object):
                 log_exc(e)
                 html = form.bind(self.sd(),**kwargs).render()
             return pre + html
-            
+
     def getCFieldSetHTML(self):
         """
         Liefert HTML fuer das Create Formular
@@ -443,7 +437,7 @@ class EditView(object):
         form = self.form
         # print "CFS"
         if self.defaults:
-            # print "YES" 
+            # print "YES"
             if callable(self.defaults):
                 of = self.defaults(self.context)
             else:
@@ -460,21 +454,21 @@ class EditView(object):
         except Exception, e: # Hier gibt es leider einen Unterschied zwischen Elixir Entities und gemappten SA Klassen
             log_exc(e)
             return form.bind(self.sd(),**kwargs).render()
-        
+
 class StructuredEditView(EditView):
-    
+
     def __init__(self, tool, request, create, context):
         EditView.__init__(self, tool, request, create, context)
         if not self.defaults:
             fkdefault = eval(self.request.get('fkdefault', '{}'))
             if fkdefault:
                 self.defaults = fkdefault
-        
+
     def subentities(self):
         """
         """
         return self.klass.subentities()
-    
+
     def fkdefault(self):
         """
         """
@@ -484,11 +478,11 @@ class StructuredEditView(EditView):
         """
         """
         return { seklassname + "--" + self.klass.fkName() : self.sd.id }
-    
+
     def parentPath(self):
         pp = eval(self.request.get('bc', '[]'))
         return pp
-    
+
     def breadcrumbs(self):
         """
         """
@@ -499,37 +493,37 @@ class StructuredEditView(EditView):
         else:
             bc.append((self.typ, self.pk))
         return bc
-    
+
     def edit_url(self):
         """
         """
         pp = self.parentPath()
-        ap = self.context.absolute_url() 
+        ap = self.context.absolute_url()
         if len(pp) > 0:
             h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (ap, self.typ, self.pk, str(pp))
         else:
             h = "%s/struct_edit?typ=%s&pk=%s" % (ap, self.typ, self.pk)
         return h
-        
+
 
     def herkunft(self):
         """
         """
         pp = self.parentPath()
-        ap = self.context.absolute_url() 
+        ap = self.context.absolute_url()
         if len(pp) > 0:
             last = pp.pop()
             h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (ap, last[0], last[1], str(pp))
         else:
             h = "%s/struct_edit?typ=%s&pk=%s" % (ap, self.typ, self.pk)
         return h
-    
+
 class NoneRenderer(FieldRenderer):
     def render(self, **kwargs):
         """render html for edit mode"""
         from formalchemy import helpers as h
         return h.text_field(self.name, value='', **kwargs)
-     
+
     def render_readonly(self, **kwargs):
         """render html for read only mode"""
         return 'NULL'
@@ -538,7 +532,7 @@ class NoRenderer(FieldRenderer):
     def render(self, **kwargs):
         """render html for edit mode"""
         return ""
-     
+
     def render_readonly(self, **kwargs):
         """render html for read only mode"""
         return ""
@@ -551,7 +545,7 @@ class JaNeinRenderer(CheckBoxFieldRenderer):
             return "Ja"
         else:
             return "Nein"
-    
+
 
 
 class DatePickerFieldRenderer(FieldRenderer):
@@ -567,31 +561,31 @@ class DatePickerFieldRenderer(FieldRenderer):
         """ % vars
 
 class DateTimeAsTextRenderer(FieldRenderer):
-            
+
     def _rbase(self):
         value= self._value and self._value or ''
         #print value
         if value:
             v1 = value.split(' ')
-            
+
             v2 = v1[0].split('-')
             v2.reverse()
-            
+
             v3 = v1[1][:5]
-            
-            value = "%s %s" % ( ".".join(v2), v3 ) 
+
+            value = "%s %s" % ( ".".join(v2), v3 )
         return value
 
     def _serialized_value(self):
         if self.params.has_key(self.name):
             v = self.params.getone(self.name)
             if v:
-                v1 = v.split(' ') 
+                v1 = v.split(' ')
                 if len(v1) == 2: # Wenn Zeit mit angegeben
                     v2 = v1[0].split('.')
                     v2.reverse()
                     v3 = v1[1]
-                else: 
+                else:
                     v2 = v1[0].split('.')
                     v2.reverse()
                     v3 = "00:00"
@@ -599,17 +593,17 @@ class DateTimeAsTextRenderer(FieldRenderer):
                 return value
         else:
             return ''
-        
+
     def render(self, **kwargs):
         value = self._rbase()
         return h.text_field(self.name, value=str(value), **kwargs)
-    
+
     def render_readonly(self, **kwargs):
         """render html for read only mode"""
         return self._rbase()
-    
+
 class DateAsTextRenderer(FieldRenderer):
-    
+
     def _serialized_value(self):
         if self.params.has_key(self.name):
             v = self.params.getone(self.name)
@@ -618,15 +612,15 @@ class DateAsTextRenderer(FieldRenderer):
             return '-'.join(v2)
         else:
             return ''
-        
+
     def render(self, **kwargs):
         value= self._value and self._value or ''
         if value:
             v2 = value.split('-')
             v2.reverse()
-            value = ".".join(v2) 
+            value = ".".join(v2)
         return h.text_field(self.name, value=str(value), **kwargs)
-        
+
     def render_readonly(self, **kwargs):
         """render html for read only mode"""
         value= self._value and self._value or ''
@@ -635,9 +629,9 @@ class DateAsTextRenderer(FieldRenderer):
             v2.reverse()
             value = ".".join(v2)
         return value
-    
+
 class DateRangeRenderer(FieldRenderer):
-    
+
     def _serialized_value(self):
         if self.params.has_key("%s__von" % self.name):
             von = self.params.getone("%s__von" % self.name)
@@ -649,7 +643,7 @@ class DateRangeRenderer(FieldRenderer):
             bis = ''
         #print "%s-->%s" % (von, bis)
         return "%s-->%s" % (von, bis)
-        
+
     def render(self, **kwargs):
         from formalchemy import helpers as h
         value= self._value and self._value or ''
@@ -666,13 +660,13 @@ class DateRangeRenderer(FieldRenderer):
 
 class CheckBoxCheckedFieldRenderer(JaNeinRenderer):
     """render a boolean value as checkbox field, but set it to checked, if no value is given"""
-    
+
     def render(self, **kwargs):
         if self.params is None and not self.field.model._sa_instance_state.key: # Default: checked! key enthaelt den Primaeschluessel bei existierenden Objekten
             return h.check_box(self.name, True, checked=True, **kwargs)
         else:
             return CheckBoxFieldRenderer.render(self, **kwargs)
-        
+
 class JaNeinRadioSet(RadioSet):
     def render_readonly(self, **kwargs):
         """render html for read only mode"""
@@ -680,7 +674,7 @@ class JaNeinRadioSet(RadioSet):
             return "Ja"
         else:
             return "Nein"
-    
+
     def _render(self, default=None, **kwargs):
         value = default or self.value
         self.radios = []
@@ -703,7 +697,7 @@ class JaNeinRadioSet(RadioSet):
 
 class RadioSetChecked(JaNeinRadioSet):
     """render a boolean value as checkbox field, but set it to checked, if no value is given"""
-    
+
     def render(self, **kwargs):
         if self.params is None and not self.field.model._sa_instance_state.key: # Default: checked! key enthaelt den Primaeschluessel bei existierenden Objekten
             return self._render(default='True', **kwargs)
@@ -714,13 +708,13 @@ class RadioSetChecked(JaNeinRadioSet):
 class DefaultStringRenderer(FieldRenderer):
     """
     """
-    
+
     def render_readonly(self, **kwargs):
         """render html for read only mode"""
         value = "FTD2014"
         return value
-    
-    
+
+
 FieldSet.default_renderers[type(None)] = NoneRenderer
 FieldSet.default_renderers[types.DateTime] = DateTimeAsTextRenderer
 FieldSet.default_renderers[types.Date] = DateAsTextRenderer

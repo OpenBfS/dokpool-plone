@@ -1,6 +1,5 @@
 <tal:block i18n:domain="elan.esd">
-<!-- ##code-section Portlet -->
-<section class="portlet portletRecent" role="section" 
+<section class="portlet portletRecent" role="section"
     i18n:domain="elan.esd">
 <div id="recent_content">
     <header class="portletHeader">
@@ -38,7 +37,7 @@
              </a>
              <time class="portletItemDetails"
                        tal:content="python: str(obj.getMdate)[:-3]"
-                       >May 5</time> 
+                       >May 5</time>
           </li>
         </tal:items>
       </ul>
@@ -52,5 +51,4 @@
 </div>
 </section>
 
-<!-- ##/code-section Portlet -->    
 </tal:block>

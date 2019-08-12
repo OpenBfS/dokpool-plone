@@ -1,14 +1,12 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="docpool.base">
-    
+
     <!-- Ensure Plone's portlets ZCML has already been processed; without
          this, we may get a permission lookup error
       -->
     <include package="plone.app.portlets" />
-    
-    
-    
-    
-<!-- ##code-section custom_portlets -->
 
-<!-- ##/code-section custom_portlets -->    
+
+
+
+
 </configure>

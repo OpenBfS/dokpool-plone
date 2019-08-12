@@ -1,13 +1,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.transfers" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
-<!-- ##code-section Head -->
-<!-- ##/code-section Head -->    
 
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
-<!-- ##code-section Main -->
 <tal:def>
-                   
+
          <form method="post"
             id="doctransferform"
             name="transferform"
@@ -18,18 +15,18 @@
                         docid request/id | nothing;
                         tuple python:context.getTupleForTransfer(docid);
                         doc python:tuple[0];
-                        dpdoc python:tuple[1]">                       
+                        dpdoc python:tuple[1]">
         <input type="hidden" name="form.submitted" value="1" />
-           
+
            <h3 tal:content="doc/title"></h3>
-           
+
            <table summary="Inhalt" class="elanlistingtransferform" id="sortable">
             <thead>
                 <tr>
                     <th class="nosort" i18n:translate="" width="50%">Select</th>
                     <th class="nosort" i18n:translate="">Transfer to<br></th>
                     <th class="nosort" i18n:translate=""></th>
-                    <th class="nosort" i18n:translate=""></th>      
+                    <th class="nosort" i18n:translate=""></th>
                 </tr>
             </thead>
             <tbody tal:repeat="target dpdoc/allowedTargets">
@@ -50,12 +47,9 @@
     <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value cancelbutton;title canceltitle"/>
         </div>
       </form>
-</tal:def>    
-<!-- ##/code-section Main -->    
+</tal:def>
 </metal:content-core>
 </metal:content-core>
 
-<!-- ##code-section Bottom -->
-<!-- ##/code-section Bottom -->  
 </body>
 </html>

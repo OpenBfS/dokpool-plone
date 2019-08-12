@@ -1,11 +1,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.dashboard" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
-<!-- ##code-section Head -->
-<!-- ##/code-section Head -->    
 
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
-<!-- ##code-section Main -->
 <div class="dashboard" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 	<tal:loop repeat="doc context/currentDocuments">
 	   <div class="doctile" tal:define="colltitle python:doc[0];
@@ -34,11 +31,8 @@ $(document).ready ( function () {
     myDynTimer = setInterval ( refreshPage, 300000 );
 });
 </script>
-<!-- ##/code-section Main -->    
 </metal:content-core>
 </metal:content-core>
 
-<!-- ##code-section Bottom -->
-<!-- ##/code-section Bottom -->  
 </body>
 </html>

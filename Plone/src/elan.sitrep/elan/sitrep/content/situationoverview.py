@@ -29,14 +29,12 @@ from plone.dexterity.content import Item
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.base.utils import queryForObjects, queryForObject
 from DateTime import DateTime
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from docpool.event.utils import getScenariosForCurrentUser
 from docpool.elan.config import ELAN_APP
 from Products.CMFPlone.utils import safe_unicode
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -46,26 +44,23 @@ class ISituationOverview(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class SituationOverview(Item):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISituationOverview)
-    
-##code-section methods
+
     APP = ELAN_APP
 
     def modTypes(self):
         """
         """
         return ModuleTypesVocabularyFactory(self, raw=True)
-    
-    
+
+
     def availableSituationReports(self):
         """
         For every situation report:
@@ -94,7 +89,7 @@ class SituationOverview(Item):
         default = [ ( "", _("Current situation") ) ]
         ud = [ ( "userdefined", _("User defined") ) ]
         return default + res1 + ud, res2
-                    
+
     def availableModules(self, reportUID=None):
         """
         For every module type:
@@ -106,7 +101,7 @@ class SituationOverview(Item):
         most recent module for each type.
         """
         return _availableModules(self, reportUID)
-    
+
     def modinfo(self, moduid=None):
         """
         """
@@ -115,21 +110,19 @@ class SituationOverview(Item):
             if module:
                 return module.restrictedTraverse("@@info")()
         return _("No content found")
-            
-##/code-section methods 
 
 
-##code-section bottom
+
 
 def _availableModules(self, reportUID=None):
     res = {}
     moduids = {}
-    uss = getScenariosForCurrentUser(self)       
+    uss = getScenariosForCurrentUser(self)
     path = self.dpSearchPath()
-    
+
     for mt in self.modTypes():
             moduids[mt[0]] = None
-            mods = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
+            mods = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse',
                                    review_state='published', changed={
              'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
              'range': 'min' },
@@ -139,7 +132,7 @@ def _availableModules(self, reportUID=None):
             latest = mods and mods[0].changed or (DateTime() - 14).asdatetime().replace(tzinfo=None)
             if mods:
                 moduids[mt[0]] = mods[0].UID
-            current = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse', 
+            current = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse',
                                    review_state='private', changed={
              'query' : latest,
              'range': 'min' },
@@ -155,7 +148,6 @@ def _availableModules(self, reportUID=None):
         if report:
             ms = report.myModules()
             for m in ms:
-                moduids[m.docType] = m.UID()                
+                moduids[m.docType] = m.UID()
     return res, moduids
-    
-##/code-section bottom 
+

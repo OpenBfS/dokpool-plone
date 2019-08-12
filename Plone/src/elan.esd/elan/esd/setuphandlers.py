@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-##code-section import
 from Products.ZCatalog.ProgressHandler import ZLogHandler
 
-##/code-section import
 
 def setupVarious(context):
 
@@ -14,17 +12,14 @@ def setupVarious(context):
 
     if context.readDataFile('elan.esd_various.txt') is None:
         return
-##code-section setupcode
     # Add additional setup code here
     cat = getToolByName(context.getSite(), "portal_catalog")
-    
+
     extend_allowed_types(context.getSite(), 'DocumentPool', ["ELANContentConfig","ELANArchives","ELANCurrentSituation","ELANInfos"])
     cat.reindexIndex(["scenarios", "category"], REQUEST=context.getSite().REQUEST)
 #    cat.refreshCatalog(clear=False,pghandler=ZLogHandler(100))
-    
-##/code-section setupcode
 
-##code-section Main
+
 def extend_allowed_types(context, type_name, new_types):
     ttool = getToolByName(context, "portal_types")
     obj = ttool._getOb(type_name)
@@ -32,5 +27,3 @@ def extend_allowed_types(context, type_name, new_types):
     allowed_types.extend(new_types)
     obj._updateProperty("allowed_content_types", allowed_types)
     obj.reindexObject()
-    
-##/code-section Main

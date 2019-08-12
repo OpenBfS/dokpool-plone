@@ -47,8 +47,6 @@ class ITransferable(form.Schema):
                         title=_(u'label_dpdocument_transferred_by', default=u'Transferred by'),
                         description=_(u'description_dpdocument_transferred_by', default=u''),
                         required=False,
-##code-section field_transferred_by
-##/code-section field_transferred_by                           
     )
     form.omitted('transferred_by')
     read_permission(transferred_by='docpool.transfers.AccessTransfers')
@@ -58,8 +56,6 @@ class ITransferable(form.Schema):
                         title=_(u'label_dpdocument_transferred', default=u'Date of last transfer'),
                         description=_(u'description_dpdocument_transferred', default=u''),
                         required=False,
-##code-section field_transferred
-##/code-section field_transferred                           
     )
     form.omitted('transferred')
     read_permission(transferred='docpool.transfers.AccessTransfers')
@@ -69,8 +65,6 @@ class ITransferable(form.Schema):
                         title=_(u'label_dpdocument_transferlog', default=u'Transfer log'),
                         description=_(u'description_dpdocument_transferlog', default=u'Only used for archived documents.'),
                         required=False,
-##code-section field_transferLog
-##/code-section field_transferLog                           
     )
     form.omitted('transferLog')
     read_permission(transferLog='docpool.transfers.AccessTransfers')
@@ -87,7 +81,7 @@ class Transferable(FlexibleView):
     def __init__(self, context):
         self.context = context
         self.request = context.REQUEST
-    
+
     def _get_transferred_by(self):
         return self.context.transferred_by
 
@@ -96,7 +90,7 @@ class Transferable(FlexibleView):
             return
         context = aq_inner(self.context)
         context.transferred_by = value
-    
+
     transferred_by = property(_get_transferred_by, _set_transferred_by)
 
     def _get_transferred(self):
@@ -107,7 +101,7 @@ class Transferable(FlexibleView):
             return
         context = aq_inner(self.context)
         context.transferred = value
-    
+
     transferred = property(_get_transferred, _set_transferred)
 
     def _get_transferLog(self):
@@ -118,7 +112,7 @@ class Transferable(FlexibleView):
             return
         context = aq_inner(self.context)
         context.transferLog = value
-    
+
     transferLog = property(_get_transferLog, _set_transferLog)
 
     def isClean(self):

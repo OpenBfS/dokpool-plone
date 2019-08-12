@@ -38,14 +38,10 @@ setup(name='elan.irix',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'docpool.dbaccess'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

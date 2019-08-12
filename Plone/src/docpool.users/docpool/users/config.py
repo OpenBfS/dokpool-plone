@@ -5,5 +5,3 @@
 PROJECTNAME = "docpool.users"
 
 
-##code-section config
-##/code-section config

@@ -5,6 +5,4 @@
 PROJECTNAME = "docpool.elan"
 
 
-##code-section config
 ELAN_APP = "elan"
-##/code-section config

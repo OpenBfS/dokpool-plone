@@ -30,9 +30,7 @@ from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zExceptions import BadRequest
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class IPrivateFolder(form.Schema, ISimpleFolder):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class PrivateFolder(Container, SimpleFolder):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IPrivateFolder)
-    
-##code-section methods
+
     def createActions(self):
         """
         """
@@ -72,7 +67,6 @@ class PrivateFolder(Container, SimpleFolder):
         self.updateSecurity()
         self.reindexObjectSecurity()
 
-##/code-section methods 
 
     def myPrivateFolder(self):
         """
@@ -98,22 +92,20 @@ class PrivateFolder(Container, SimpleFolder):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoDocuments(self, **kwargs):
         """
         """
         args = {'portal_type':'InfoDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getPrivateFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'PrivateFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

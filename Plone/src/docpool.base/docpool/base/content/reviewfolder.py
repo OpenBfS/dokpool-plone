@@ -30,9 +30,7 @@ from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zExceptions import BadRequest
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class IReviewFolder(form.Schema, ISimpleFolder):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class ReviewFolder(Container, SimpleFolder):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IReviewFolder)
-    
-##code-section methods
+
     def createActions(self):
         """
         """
@@ -69,8 +64,7 @@ class ReviewFolder(Container, SimpleFolder):
         config.setPolicyBelow(policy=placefulWfName, update_security=False)
         self.reindexObject()
         self.updateSecurity()
-        self.reindexObjectSecurity()    
-##/code-section methods 
+        self.reindexObjectSecurity()
 
     def myReviewFolder(self):
         """
@@ -96,15 +90,13 @@ class ReviewFolder(Container, SimpleFolder):
         """
         args = {'portal_type':'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getReviewFolders(self, **kwargs):
         """
         """
         args = {'portal_type':'ReviewFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

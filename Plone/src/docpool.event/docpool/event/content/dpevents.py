@@ -24,13 +24,11 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.interface.declarations import classImplements
 
 from Products.CMFPlone.utils import parent
 from logging import getLogger
 logger = getLogger("dpevents")
-##/code-section imports
 
 from docpool.event import DocpoolMessageFactory as _
 
@@ -38,18 +36,15 @@ class IDPEvents(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DPEvents(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDPEvents)
-    
-##code-section methods
+
 
     def migrate(self):
         f = parent(self)
@@ -62,7 +57,6 @@ class DPEvents(Container):
         logger.info(self.__class__)
         logger.info(self.getPortalTypeName())
 
-##/code-section methods
 
     def myDPEvents(self):
         """
@@ -88,10 +82,8 @@ class DPEvents(Container):
         """
         args = {'portal_type':'DPEvent'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 class ELANScenarios(DPEvents):
     pass
-##/code-section bottom

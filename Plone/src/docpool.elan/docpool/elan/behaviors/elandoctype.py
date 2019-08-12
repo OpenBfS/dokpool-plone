@@ -27,15 +27,13 @@ from elan.esd import DocpoolMessageFactory as _
 from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
 
-@provider(IFormFieldProvider)    
+@provider(IFormFieldProvider)
 class IELANDocType(IDocTypeExtension):
     contentCategory = RelationChoice(
                         title=_(u'label_doctype_contentcategory', default=u'Choose category for this type '),
                         description=_(u'description_doctype_contentcategory', default=u''),
                         required=False,
-##code-section field_contentCategory
                         source = "elan.esd.vocabularies.Category",
-##/code-section field_contentCategory                           
     )
 
 #    form.widget(contentCategory=SelectWidget)
@@ -43,7 +41,7 @@ class IELANDocType(IDocTypeExtension):
 
 
 
-@form.default_value(field=IELANDocType['contentCategory']) 
+@form.default_value(field=IELANDocType['contentCategory'])
 def getDefaultCategory(data):
     """
     """
@@ -51,9 +49,9 @@ def getDefaultCategory(data):
         return data.context.getDefaultCategory()
     else:
         return None
-    
+
 class ELANDocType(object):
-    
+
     def __init__(self, context):
         self.context = context
 
@@ -65,7 +63,7 @@ class ELANDocType(object):
             return
         context = aq_inner(self.context)
         context.contentCategory = value
-    
+
     contentCategory = property(_get_contentCategory, _set_contentCategory)
 
     def category(self):

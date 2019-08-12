@@ -5,5 +5,3 @@
 PROJECTNAME = "docpool.event"
 
 
-##code-section config
-##/code-section config

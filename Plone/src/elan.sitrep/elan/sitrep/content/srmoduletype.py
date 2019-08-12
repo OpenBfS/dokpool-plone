@@ -30,8 +30,6 @@ from docpool.base.content.doctype import DocType, IDocType
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -40,18 +38,15 @@ from elan.sitrep import DocpoolMessageFactory as _
 class ISRModuleType(form.Schema, IDocType):
     """
     """
-        
+
     docSelection = RelationChoice(
                         title=_(u'label_srmoduletype_docselection', default=u'Collection for relevant documents'),
                         description=_(u'description_srmoduletype_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
                         required=False,
-##code-section field_docSelection
                         source = "elan.sitrep.vocabularies.Collections",
-##/code-section field_docSelection                           
     )
-    
 
-##code-section interface
+
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
 
     form.mode(allowUploads='hidden')
@@ -62,17 +57,15 @@ class ISRModuleType(form.Schema, IDocType):
     form.mode(pdfPattern='hidden')
     form.mode(imgPattern='hidden')
     form.mode(customViewTemplate='hidden')
-##/code-section interface
 
 
 class SRModuleType(Container, DocType):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRModuleType)
-    
-##code-section methods
+
     def currentDocuments(self):
         """
         Return the documents from the referenced collection - if any.
@@ -82,7 +75,6 @@ class SRModuleType(Container, DocType):
             return coll.results(batch=False)
         else:
             return []
-##/code-section methods 
 
     def mySRModuleType(self):
         """
@@ -108,15 +100,13 @@ class SRModuleType(Container, DocType):
         """
         args = {'portal_type':'File'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
         args = {'portal_type':'Image'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

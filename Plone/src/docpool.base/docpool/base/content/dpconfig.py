@@ -29,8 +29,6 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
 
 from docpool.base.config import PROJECTNAME
 
@@ -40,19 +38,15 @@ class IDPConfig(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class DPConfig(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IDPConfig)
-    
-##code-section methods
-##/code-section methods 
+
 
     def myDPConfig(self):
         """
@@ -78,8 +72,6 @@ class DPConfig(Container):
         """
         args = {'portal_type':'DocTypes'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom 

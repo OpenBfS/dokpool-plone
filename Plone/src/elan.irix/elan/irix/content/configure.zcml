@@ -1,12 +1,10 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="elan.irix">
 
-  
-     
 
-<!-- ##code-section Main -->
+
+
 	<subscriber handler=".irixreport.reportAdded" />
 	<subscriber handler=".irixreport.reportRemoved" />
-    
-<!-- ##/code-section Main -->    
-    
+
+
 </configure>

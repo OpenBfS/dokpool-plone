@@ -29,10 +29,8 @@ from plone.dexterity.content import Item
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.component import adapter
 from plone.dexterity.interfaces import IEditFinishedEvent
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -41,70 +39,59 @@ from elan.sitrep import DocpoolMessageFactory as _
 class ISRModuleConfig(form.Schema):
     """
     """
-        
+
     modType = schema.Choice(
                         title=_(u'label_srmoduleconfig_modtype', default=u'Module Type'),
                         description=_(u'description_srmoduleconfig_modtype', default=u''),
                         required=True,
-##code-section field_modType
                         source="elan.sitrep.vocabularies.ModuleTypes",
-##/code-section field_modType                           
     )
-    
+
 
     docSelection = RelationChoice(
                         title=_(u'label_srmoduleconfig_docselection', default=u'Collection for relevant documents'),
                         description=_(u'description_srmoduleconfig_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
                         required=False,
-##code-section field_docSelection
                         source = "elan.sitrep.vocabularies.Collections",
-##/code-section field_docSelection                           
     )
-    
-        
+
+
     textBlocks = RelationList(
                         title=_(u'label_srmoduleconfig_textblocks', default=u'Text Blocks'),
                         description=_(u'description_srmoduleconfig_textblocks', default=u''),
                         required=False,
-##code-section field_textBlocks
                         value_type=RelationChoice(
                                                       title=_("Text Blocks"),
                                                       source = "elan.sitrep.vocabularies.TextBlocks",
 
                                                      ),
-##/code-section field_textBlocks                           
     )
-    
+
     defaultTextBlocks = RelationList(
                         title=_(u'label_srmoduletype_defaulttextblocks', default=u'Default Text (when freshly created)'),
                         description=_(u'description_srmoduletype_defaulttextblocks', default=u''),
                         required=False,
-##code-section field_defaultTextBlocks
                         value_type=RelationChoice(
                             title=_("Default Text"),
                             source="elan.sitrep.vocabularies.TextBlocks",
 
                         ),
-        ##/code-section field_defaultTextBlocks
     )
 
 
-##code-section interface
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
     form.widget(textBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
     form.widget(defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
 
-##/code-section interface
 
 
 class SRModuleConfig(Item):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRModuleConfig)
-    
-##code-section methods
+
     def getSRModuleNames(self):
         """
         Index Method
@@ -116,7 +103,7 @@ class SRModuleConfig(Item):
         Index Method
         """
         return [ self.UID() ]
-    
+
     def currentDocuments(self):
         """
         Return the documents from the referenced collection - if any.
@@ -126,15 +113,13 @@ class SRModuleConfig(Item):
             return coll.results(batch=False)
         else:
             return []
-        
+
     def currentTextBlocks(self):
         """
         """
         return [ tb.to_object for tb in ( self.textBlocks or [] )]
-##/code-section methods 
 
 
-##code-section bottom
 @adapter(ISRModuleConfig, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRModuleConfig updated: %s" % str(obj))
@@ -144,4 +129,3 @@ def updated(obj, event=None):
         for tb in obj.textBlocks:
             sr_cat._reindexObject(tb.to_object)
 
-##/code-section bottom 

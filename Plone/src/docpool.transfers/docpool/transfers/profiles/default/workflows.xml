@@ -1,20 +1,16 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
 <!-- Workflow allocation -->
-<!-- ##code-section object -->
-<!-- ##/code-section object -->  
  <bindings>
-<!-- ##code-section bindings -->
-<!-- ##/code-section bindings -->
-    
-    
+
+
    <type type_id="Transferable">
     <bound-workflow workflow_id="transfers_workflow" />
    </type>
-   
-    
-    
-   
-    
+
+
+
+
+
  </bindings>
 </object>

@@ -30,12 +30,10 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.base.utils import back_references
 from zope.component import adapter
 from plone.dexterity.interfaces import IEditFinishedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -44,28 +42,23 @@ from elan.sitrep import DocpoolMessageFactory as _
 class ISRTextBlock(form.Schema, IContentBase):
     """
     """
-    dexteritytextindexer.searchable('text')    
+    dexteritytextindexer.searchable('text')
     text = RichText(
                         title=_(u'label_srtextblock_text', default=u'Text'),
                         description=_(u'description_srtextblock_text', default=u''),
                         required=False,
-##code-section field_text
-##/code-section field_text                           
     )
-    
 
-##code-section interface
-##/code-section interface
+
 
 
 class SRTextBlock(Item, ContentBase):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRTextBlock)
-    
-##code-section methods
+
     def moduleConfigs(self):
         """
         All SRModuleConfigs, where I am used
@@ -121,21 +114,19 @@ class SRTextBlock(Item, ContentBase):
         Index Method
         """
         return [ mod.UID() for mod in self.moduleConfigs() ]
-    
+
     def createActions(self):
         sr_cat = getToolByName(self, "sr_catalog")
         sr_cat._reindexObject(self)
-        
-##/code-section methods 
 
 
-##code-section bottom
+
 @adapter(ISRTextBlock, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRTextBlock updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat._reindexObject(obj)
-    
+
 @adapter(ISRTextBlock, IObjectRemovedEvent)
 def removed(obj, event):
     log("SRTextBlock removed: %s" % str(obj))
@@ -144,4 +135,3 @@ def removed(obj, event):
     id = event.oldName
     path = "/".join(op.getPhysicalPath()) + "/" + id
     sr_cat.uncatalog_object(path)
-##/code-section bottom 

@@ -29,10 +29,8 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from zope.component import adapter
 from plone.dexterity.interfaces import IEditFinishedEvent
-##/code-section imports 
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class ISRPhase(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class SRPhase(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRPhase)
-    
-##code-section methods
+
     def getSRPhaseNames(self):
         """
         Index method
@@ -65,13 +60,13 @@ class SRPhase(Container):
         Index method
         """
         return [ self.UID() ]
-    
+
     def getPhaseTitle(self):
         """
         """
         return u"%s: %s" % (self.mySRScenario().Title().decode('utf-8'), self.Title().decode('utf-8'))
 
-    
+
     def availableModuleConfigs(self):
         mtypes = self.modTypes()
         res = {}
@@ -81,9 +76,8 @@ class SRPhase(Container):
         for mc in mcs:
             res[mc.modType] = mc
         return res
-        
-    
-##/code-section methods 
+
+
 
     def mySRPhase(self):
         """
@@ -109,13 +103,11 @@ class SRPhase(Container):
         """
         args = {'portal_type':'SRModuleConfig'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 @adapter(ISRPhase, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRPhase updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat._reindexObject(obj)
-##/code-section bottom 

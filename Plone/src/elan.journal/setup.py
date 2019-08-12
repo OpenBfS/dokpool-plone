@@ -46,12 +46,10 @@ setup(name='elan.journal',
           'zope.interface',
           'zope.lifecycleevent',
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )
-            
+

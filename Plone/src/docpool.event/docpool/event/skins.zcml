@@ -5,6 +5,4 @@
     <cmf:registerDirectory name="docpool_event_templates"/>
     <cmf:registerDirectory name="docpool_event_styles"/>
 
-<!-- ##code-section Additional Parameters -->
-<!-- ##/code-section Additional Parameters -->
 </configure>

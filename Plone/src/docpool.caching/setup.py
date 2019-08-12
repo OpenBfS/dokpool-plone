@@ -38,14 +38,10 @@ setup(name='docpool.caching',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'plone.app.caching'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

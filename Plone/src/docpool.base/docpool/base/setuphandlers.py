@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-##code-section import
 from Products.ZCatalog.ProgressHandler import ZLogHandler
-##/code-section import
 
 def setupVarious(context):
 
@@ -13,14 +11,9 @@ def setupVarious(context):
 
     if context.readDataFile('docpool.base_various.txt') is None:
         return
-##code-section setupcode
     # Add additional setup code here
     from docpool.config.general.base import install
     install(context.getSite())
     cat = getToolByName(context.getSite(), "portal_catalog")
     cat.reindexIndex(["dp_type", "mdate", "changed"], REQUEST=context.getSite().REQUEST)
 
-##/code-section setupcode
-
-##code-section Main
-##/code-section Main 

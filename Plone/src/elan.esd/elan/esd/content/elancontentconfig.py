@@ -29,10 +29,8 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.elan.config import ELAN_APP
 from zope.interface.declarations import classImplements
-##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
 
@@ -42,21 +40,17 @@ class IELANContentConfig(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class ELANContentConfig(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IELANContentConfig)
-    
-##code-section methods
+
     APP = ELAN_APP
 
-##/code-section methods 
 
     def myELANContentConfig(self):
         """
@@ -82,22 +76,20 @@ class ELANContentConfig(Container):
         """
         args = {'portal_type':'DPEvents'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getIRIXConfigs(self, **kwargs):
         """
         """
         args = {'portal_type':'IRIXConfig'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTexts(self, **kwargs):
         """
         """
         args = {'portal_type':'Text'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom

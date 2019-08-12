@@ -1,5 +1,4 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="docpool.base">
-<!-- ##code-section Main -->
     <grok:grok package="." />
 
   <subscriber handler=".contentbase.markCreateEvent" />
@@ -36,6 +35,5 @@
   <adapter
     factory=".indexer.infodoc_getIcon"
     name="getIcon" />
-<!-- ##/code-section Main -->
-    
+
 </configure>

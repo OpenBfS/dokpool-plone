@@ -29,7 +29,6 @@ from docpool.base.content.dpdocument import DPDocument, IDPDocument
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.base.utils import queryForObjects, back_references, portalMessage
 from plone.api import content
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
@@ -47,7 +46,6 @@ import urlparse
 from plone.subrequest import subrequest
 from urllib import unquote
 from docpool.elan.config import ELAN_APP
-##/code-section imports
 
 from elan.sitrep.config import PROJECTNAME
 
@@ -56,18 +54,15 @@ from elan.sitrep import DocpoolMessageFactory as _
 class ISRModule(form.Schema, IDPDocument):
     """
     """
-        
+
     currentReport = RelationChoice(
                         title=_(u'label_srmodule_currentreport', default=u'Current report'),
                         description=_(u'description_srmodule_currentreport', default=u'If selected this report defines helpful defaults (text blocks, documents) for the content of this module.'),
                         required=False,
-##code-section field_currentReport
                         source = "elan.sitrep.vocabularies.CurrentReports",
-##/code-section field_currentReport                           
     )
-    
 
-##code-section interface
+
     docType = schema.Choice(
                         title=_(u'label_srmodule_doctype', default=u'Module Type'),
                         description=_(u'description_srmodule_doctype', default=u''),
@@ -76,14 +71,11 @@ class ISRModule(form.Schema, IDPDocument):
     )
     form.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
 
-##/code-section interface
 
     summary = RichText(
                         title=_(u'label_srtextblock_summary', default=u'Summary'),
                         description=_(u'description_srtextblock_summary', default=u''),
                         required=False,
-##code-section field_text
-##/code-section field_text                           
     )
 
 
@@ -93,10 +85,9 @@ class SRModule(Container, DPDocument):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(ISRModule)
-    
-##code-section methods
+
     APP = ELAN_APP
 
     def createActions(self):
@@ -118,7 +109,7 @@ class SRModule(Container, DPDocument):
         """
         """
         return menu_items
-    
+
     def getModuleTitle(self):
         """
         """
@@ -129,7 +120,7 @@ class SRModule(Container, DPDocument):
             return "%s: %s (%s)" % (to_object_title, self_title, self.toLocalizedTime(DateTime(self.changed()), long_format=1))
         else:
             return self.Title()
-    
+
     def myReport(self):
         """
         """
@@ -137,14 +128,14 @@ class SRModule(Container, DPDocument):
             return self.currentReport.to_object
         else:
             return None
-        
+
     def previousVersions(self):
         """
         """
         path = self.dpSearchPath()
-        brains = queryForObjects(self, path=path, portal_type='SRModule', dp_type=self.docType,review_state='published', sort_on='changed', sort_order='reverse')        
+        brains = queryForObjects(self, path=path, portal_type='SRModule', dp_type=self.docType,review_state='published', sort_on='changed', sort_order='reverse')
         return brains
-    
+
     def previousVersion(self):
         """
         The previous version is the instance youngest published instance of SRModule with the same Module Type.
@@ -154,7 +145,7 @@ class SRModule(Container, DPDocument):
             return pv[0].getObject()
         else:
             return None
-        
+
     def defaultFilter(self):
         """
         Determines all default filter criteria for text blocks by looking at the currentReport and module type.
@@ -177,7 +168,7 @@ class SRModule(Container, DPDocument):
                     res['mandatory'] = True
                     res['config'] = mcs.get(modType, None)
         return res
-    
+
     def getFilter(self, request):
         """
         """
@@ -186,7 +177,7 @@ class SRModule(Container, DPDocument):
         phase = request.get('phase', df['phase'])
         module_type = request.get('module_type', df['module_type'])
         return scenario, phase, module_type
-    
+
     def possibleSRScenarios(self):
         """
         """
@@ -207,7 +198,7 @@ class SRModule(Container, DPDocument):
                 ids.append(p.getId)
                 res.append(p)
         return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in res ]
-        
+
     def possibleSRModuleTypes(self):
         """
         """
@@ -219,7 +210,7 @@ class SRModule(Container, DPDocument):
         """
         reports = back_references(self, "currentModules")
         return reports
-    
+
     def visualisations(self):
         """
         """
@@ -242,8 +233,8 @@ class SRModule(Container, DPDocument):
             mt = self.docTypeObj()
             if mt:
                 res = mt.currentDocuments()[:20]
-        return res 
-        
+        return res
+
     def textBlocks(self):
         """
         """
@@ -282,19 +273,19 @@ class SRModule(Container, DPDocument):
         if (scenario or phase) and module_type:
             brains = sr_cat(**args)
         return [ brain.getObject() for brain in brains]
-        
+
     def publishModule(self, justDoIt=False):
         """
         """
         request = self.REQUEST
-        alsoProvides(request, IDisableCSRFProtection)        
+        alsoProvides(request, IDisableCSRFProtection)
 
         new_version = content.copy(source=self, id=self.getId(), safe_id=True)
         content.transition(new_version, transition="publish")
         if not justDoIt:
             portalMessage(self, _("The module has been published."), "info")
             return self.restrictedTraverse("@@view")()
-        
+
 
     def docTypeObj(self):
         mt = self.dp_type()
@@ -312,8 +303,7 @@ class SRModule(Container, DPDocument):
         if not dto:
             log("No ModuleType Object for type name '%s'" % self.dp_type())
         return dto
-    
-##/code-section methods 
+
 
     def mySRModule(self):
         """
@@ -339,17 +329,16 @@ class SRModule(Container, DPDocument):
         """
         args = {'portal_type':'SRModule'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTransferables(self, **kwargs):
         """
         """
         args = {'portal_type':'Transferable'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 @adapter(ISRModule, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRModule updated: %s" % str(obj))
@@ -442,4 +431,3 @@ def fetch_resources(portalbase, uri, resource_type="image"):
     else:
         return data
 
-##/code-section bottom

@@ -39,16 +39,11 @@ setup(name='docpool.base',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'plone.api','plone.formwidget.querystring','collective.monkeypatcher','Products.CMFPlacefulWorkflow','docpool.users','docpool.localbehavior'
-          ##code-section dependencies
           ,' PyPDF2', 'xhtml2pdf', 'Products.CMFPlacefulWorkflow', 'eea.facetednavigation'
-
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

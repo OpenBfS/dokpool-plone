@@ -29,10 +29,8 @@ from plone.dexterity.content import Container
 
 from Products.CMFCore.utils import getToolByName
 
-##code-section imports
 from docpool.elan.config import ELAN_APP
 from zope.interface.declarations import classImplements
-##/code-section imports 
 
 from elan.esd.config import PROJECTNAME
 
@@ -42,18 +40,15 @@ class IELANArchive(form.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
 
 class ELANArchive(Container):
     """
     """
     security = ClassSecurityInfo()
-    
+
     implements(IELANArchive)
-    
-##code-section methods
+
     APP = ELAN_APP
 
     def isSituationDisplay(self):
@@ -61,7 +56,6 @@ class ELANArchive(Container):
         Marker for portlets
         """
         return 1
-##/code-section methods 
 
     def myELANArchive(self):
         """
@@ -87,15 +81,13 @@ class ELANArchive(Container):
         """
         args = {'portal_type':'ContentArea'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANCurrentSituations(self, **kwargs):
         """
         """
         args = {'portal_type':'ELANCurrentSituation'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
-##/code-section bottom

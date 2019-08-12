@@ -38,15 +38,11 @@ setup(name='elan.sitrep',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'elan.esd'
-          ##code-section dependencies
           , 'BeautifulSoup',
-          ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

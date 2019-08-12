@@ -40,14 +40,10 @@ setup(name='docpool.rodos',
           'docpool.base',
           'docpool.event',
           'docpool.transfers'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

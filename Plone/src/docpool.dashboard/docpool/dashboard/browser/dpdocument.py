@@ -7,7 +7,7 @@
 #            http://www.condat.de
 #
 
-"""Define a browser view for the content type. In the FTI 
+"""Define a browser view for the content type. In the FTI
 configured in profiles/default/types/*.xml, this is being set as the default
 view of that content type.
 """
@@ -18,9 +18,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.memoize.instance import memoize
 
-##code-section imports
 from docpool.base.browser.flexible_view import FlexibleView
-##/code-section imports
 
 
 
@@ -29,7 +27,4 @@ class DPDocumentdashboardView(FlexibleView):
     """
     __allow_access_to_unprotected_subobjects__ = 1
     __call__ = ViewPageTemplateFile('dpdocumentdashboard.pt')
-    
-    ##code-section methodslistitem
-    ##/code-section methodslistitem
 

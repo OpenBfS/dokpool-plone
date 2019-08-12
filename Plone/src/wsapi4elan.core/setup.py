@@ -38,14 +38,10 @@ setup(name='wsapi4elan.core',
           'plone.app.relationfield',
           'plone.app.referenceablebehavior',
           'wsapi4plone.core'
-          ##code-section dependencies
-	      ##/code-section dependencies
       ],
-      ##code-section entrypoints      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      ##/code-section entrypoints
       )

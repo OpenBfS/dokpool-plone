@@ -3,6 +3,4 @@
    <!-- File System Directory Views registration -->
     <cmf:registerDirectory name="docpool_config_templates"/>
 
-<!-- ##code-section Additional Parameters -->
-<!-- ##/code-section Additional Parameters -->
 </configure>

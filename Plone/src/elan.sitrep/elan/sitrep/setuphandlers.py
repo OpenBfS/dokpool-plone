@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-##code-section import
 class args:
     def __init__(self, **kw):
         self.__dict__.update(kw)
-##/code-section import
 
 def setupVarious(context):
 
@@ -15,7 +13,6 @@ def setupVarious(context):
 
     if context.readDataFile('elan.sitrep_various.txt') is None:
         return
-##code-section setupcode
     # Add additional setup code here
     cat = getToolByName(context.getSite(), 'sr_catalog')
     # Add indexes and metadatas
@@ -36,7 +33,3 @@ def setupVarious(context):
                 cat.addColumn(index_name)
         except:
             pass    # for metadata
-##/code-section setupcode
-
-##code-section Main
-##/code-section Main 
