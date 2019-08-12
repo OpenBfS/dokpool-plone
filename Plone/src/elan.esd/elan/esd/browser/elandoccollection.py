@@ -22,17 +22,20 @@ from elan.esd.utils import getAvailableCategories, getCategoriesForCurrentUser
 from docpool.event.browser.viewlets.common import EventViewlet
 from Products.CMFCore.utils import getToolByName
 
+
 class ELANDocCollectionView(BrowserView):
     """Default view
     """
 
     __call__ = ViewPageTemplateFile('elandoccollection.pt')
 
+
 class ELANDocCollectionrpopupView(BrowserView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('elandoccollectionrpopup.pt')
+
     def selected_categories(self):
         """
         """
@@ -51,7 +54,6 @@ class ELANDocCollectionrpopupView(BrowserView):
         return v
 
 
-
 class ELANDocCollectionDocView(BrowserView):
     """Default view
     """
@@ -65,7 +67,7 @@ class ELANDocCollectionDocView(BrowserView):
         uid = self.request.get("d", None)
         if uid:
             catalog = getToolByName(self, 'portal_catalog')
-            result  = catalog({'UID' : uid})
+            result = catalog({'UID': uid})
             if len(result) == 1:
                 o = result[0].getObject()
                 return o

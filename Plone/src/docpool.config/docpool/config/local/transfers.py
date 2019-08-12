@@ -11,15 +11,17 @@ def dpAdded(self):
     """
     fresh = True
     if self.content.hasObject("Transfers"):
-        fresh = False # It's a reinstall
+        fresh = False  # It's a reinstall
     createTransferArea(self, fresh)
     if fresh:
         createTransfersGroups(self)
     setTransfersLocalRoles(self)
 
+
 TRANSFER_AREA = [
-    {TYPE: 'DPTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []},
+    {TYPE: 'DPTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []}
 ]
+
 
 def setTransfersLocalRoles(self):
     """
@@ -29,7 +31,9 @@ def setTransfersLocalRoles(self):
     self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
     self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
     if shasattr(self, 'contentconfig', acquire=False):
-        self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
+        self.contentconfig.scen.manage_setLocalRoles(
+            "%s_Receivers" % prefix, ["ContentReceiver"]
+        )
     self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
 
@@ -43,15 +47,21 @@ def createTransfersGroups(self):
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
     # Receivers
-    props = {'allowedDocTypes': [], 'title': 'Content Receivers (%s)' % title,
-             'description': 'Responsible for publishing content received from other ESDs.', 'dp': self.UID()}
-    gtool.addGroup("%s_Receivers" % prefix,
-                   properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Content Receivers (%s)' % title,
+        'description': 'Responsible for publishing content received from other ESDs.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_Receivers" % prefix, properties=props)
     # Senders
-    props = {'allowedDocTypes': [], 'title': 'Content Senders (%s)' % title,
-             'description': 'Responsible for sending content to other ESDs - if allowed by them.', 'dp': self.UID()}
-    gtool.addGroup("%s_Senders" % prefix,
-                   properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Content Senders (%s)' % title,
+        'description': 'Responsible for sending content to other ESDs - if allowed by them.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_Senders" % prefix, properties=props)
 
 
 def createTransferArea(self, fresh):
@@ -62,7 +72,9 @@ def createTransferArea(self, fresh):
     self.content.moveObject("Transfers", 0)
     placeful_wf = getToolByName(self, 'portal_placeful_workflow')
     try:
-        self.content.Transfers.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+        self.content.Transfers.manage_addProduct[
+            'CMFPlacefulWorkflow'
+        ].manage_addWorkflowPolicyConfig()
     except BadRequest, e:
         # print type(e)
         log_exc(e)
@@ -70,6 +82,7 @@ def createTransferArea(self, fresh):
     placefulWfName = 'elan-transfer'
     config.setPolicyIn(policy=placefulWfName, update_security=False)
     config.setPolicyBelow(policy=placefulWfName, update_security=False)
+
 
 def dpRemoved(self):
     """

@@ -7,7 +7,6 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 
 
-
 class WSAPI(object):
     logger = getLogger('WS API')
 
@@ -16,5 +15,5 @@ class WSAPI(object):
         self.context = context
         self.request = request
         alsoProvides(request, IDisableCSRFProtection)
-        
+
         self.builder = getUtility(IContextBuilder)

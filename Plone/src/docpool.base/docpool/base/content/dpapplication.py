@@ -34,19 +34,19 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IDPApplication(form.Schema):
     """
     """
 
 
-
 class DPApplication(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDPApplication)
-
 
     def myDPApplication(self):
         """
@@ -70,15 +70,13 @@ class DPApplication(Container):
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
-        args = {'portal_type':'Image'}
+        args = {'portal_type': 'Image'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

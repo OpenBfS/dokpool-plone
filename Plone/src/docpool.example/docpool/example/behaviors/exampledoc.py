@@ -20,9 +20,9 @@ from Acquisition import aq_inner
 @provider(IFormFieldProvider)
 class IExampleDoc(IDocumentExtension):
     example_attribute = schema.TextLine(
-                        title=_(u'label_example_attribute', default=u'Example Attribute'),
-                        description=_(u'description_example_attribute', default=u''),
-                        required=False,
+        title=_(u'label_example_attribute', default=u'Example Attribute'),
+        description=_(u'description_example_attribute', default=u''),
+        required=False,
     )
     read_permission(example_attribute='docpool.example.AccessExample')
     write_permission(example_attribute='docpool.example.AccessExample')
@@ -38,7 +38,7 @@ class ExampleDoc(FlexibleView):
     def __init__(self, context):
         self.context = context
         self.request = context.REQUEST
-    
+
     def _get_example_attribute(self):
         return self.context.example_attribute
 
@@ -47,9 +47,8 @@ class ExampleDoc(FlexibleView):
             return
         context = aq_inner(self.context)
         context.example_attribute = value
-    
-    example_attribute = property(_get_example_attribute, _set_example_attribute)
 
+    example_attribute = property(_get_example_attribute, _set_example_attribute)
 
     def isClean(self):
         """

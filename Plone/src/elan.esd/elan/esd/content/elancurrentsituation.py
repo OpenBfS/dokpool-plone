@@ -36,15 +36,16 @@ from elan.esd.config import PROJECTNAME
 
 from elan.esd import DocpoolMessageFactory as _
 
+
 class IELANCurrentSituation(form.Schema):
     """
     """
 
 
-
 class ELANCurrentSituation(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IELANCurrentSituation)
@@ -57,10 +58,10 @@ class ELANCurrentSituation(Container):
         # Correct references
         mpath = self.dpSearchPath()
         from docpool.base.utils import queryForObjects
+
         ecs = queryForObjects(self, path=mpath, portal_type="ELANDocCollection")
         for ec in ecs:
             ec.getObject().correctDocTypes()
-
 
     def myELANCurrentSituation(self):
         """
@@ -84,43 +85,41 @@ class ELANCurrentSituation(Container):
     def getDashboardCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'DashboardCollection'}
+        args = {'portal_type': 'DashboardCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'Document'}
+        args = {'portal_type': 'Document'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANDocCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'ELANDocCollection'}
+        args = {'portal_type': 'ELANDocCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANSections(self, **kwargs):
         """
         """
-        args = {'portal_type':'ELANSection'}
+        args = {'portal_type': 'ELANSection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRCollection'}
+        args = {'portal_type': 'SRCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTemplatedDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'TemplatedDocument'}
+        args = {'portal_type': 'TemplatedDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

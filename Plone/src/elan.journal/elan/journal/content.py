@@ -36,19 +36,29 @@ class Journal(Container):
             if update.created == update.modified:
                 modified = None
             else:
-                modified = api.portal.get_localized_time(update.modified, True)  # 28/08/2014 10h58
+                modified = api.portal.get_localized_time(
+                    update.modified, True
+                )  # 28/08/2014 10h58
 
-            updates.append(dict(
-                id=id,
-                creator=update.creator,
-                timestamp=update.timestamp,  # 1409223490.21,
-                datetime=api.portal.get_localized_time(update.created, True),  # 28/08/2014 10h58
-                date=api.portal.get_localized_time(update.created),  # 28/08/2014
-                time=api.portal.get_localized_time(update.created, time_only=True),  # 10h58
-                isoformat=update.created.isoformat()[:-3],  # 2014-08-28T10:58:10.209468
-                modified=modified,
-                title=update.title,
-                text=update.text,
-            ))
+            updates.append(
+                dict(
+                    id=id,
+                    creator=update.creator,
+                    timestamp=update.timestamp,  # 1409223490.21,
+                    datetime=api.portal.get_localized_time(
+                        update.created, True
+                    ),  # 28/08/2014 10h58
+                    date=api.portal.get_localized_time(update.created),  # 28/08/2014
+                    time=api.portal.get_localized_time(
+                        update.created, time_only=True
+                    ),  # 10h58
+                    isoformat=update.created.isoformat()[
+                        :-3
+                    ],  # 2014-08-28T10:58:10.209468
+                    modified=modified,
+                    title=update.title,
+                    text=update.text,
+                )
+            )
         updates.reverse()  # show journal-entries in reverse order
         return updates

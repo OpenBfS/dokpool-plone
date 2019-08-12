@@ -14,7 +14,6 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 
 
-
 from elan.esd import DocpoolMessageFactory as _
 
 from AccessControl.SecurityInfo import allow_module, allow_class
@@ -23,11 +22,14 @@ from AccessControl.SecurityInfo import allow_module, allow_class
 # It will be used to generate add and edit forms. In this case, we don't
 # have an edit form, since there are no editable options.
 
+
 class IRecentPortlet(IPortletDataProvider):
-	pass
+    pass
+
 
 # The assignment is a persistent object used to store the configuration of
 # a particular instantiation of the portlet.
+
 
 class Assignment(base.Assignment):
     implements(IRecentPortlet)
@@ -36,28 +38,38 @@ class Assignment(base.Assignment):
     def title(self):
         return _(u"Recent")
 
+
 # The renderer is like a view (in fact, like a content provider/viewlet). The
 # item self.data will typically be the assignment (although it is possible
 # that the assignment chooses to return a different object - see
 # base.Assignment).
+
 
 class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
 
     render = ViewPageTemplateFile('recent.pt')
+
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
 
         context = aq_inner(self.context)
         try:
-            self.collection = context.esd.recent # Acquire ELANCollection for recent documents
+            self.collection = (
+                context.esd.recent
+            )  # Acquire ELANCollection for recent documents
         except:
             self.collection = None
 
     @property
     def available(self):
-        return (not self.context.isArchive()) and self.collection is not None and self.context.isCurrentSituation() and not self.isEditMode()
+        return (
+            (not self.context.isArchive())
+            and self.collection is not None
+            and self.context.isCurrentSituation()
+            and not self.isEditMode()
+        )
 
     def recent_items(self):
         return self._data()
@@ -72,22 +84,26 @@ class Renderer(base.Renderer):
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True
 
-    def cat_convert(self,clist,over,rec):
+    def cat_convert(self, clist, over, rec):
         cats = ''
         for c in clist:
-          if c not in [over, rec] and c.encode('utf') not in [over, rec]:
-             cats = cats + c + ', '
+            if c not in [over, rec] and c.encode('utf') not in [over, rec]:
+                cats = cats + c + ', '
         cats = '(' + cats + ')'
-        cats = string.replace(cats,', )',')')
+        cats = string.replace(cats, ', )', ')')
         return cats
-#        return codecs.decode(codecs.decode(z,'hex'),'ascii')
+
+    #        return codecs.decode(codecs.decode(z,'hex'),'ascii')
 
     @memoize
     def _data(self):
         try:
-            return self.collection.results(batch=True, b_start=0, b_size=5, sort_on=None, brains=True)
+            return self.collection.results(
+                batch=True, b_start=0, b_size=5, sort_on=None, brains=True
+            )
         except:
             return []
+
 
 class AddForm(base.NullAddForm):
 
@@ -96,6 +112,7 @@ class AddForm(base.NullAddForm):
     def create(self):
         return Assignment()
 
-allow_module("docpool.base.portlets");
-allow_module("docpool.base.portlets.recent");
-allow_class(Renderer);
+
+allow_module("docpool.base.portlets")
+allow_module("docpool.base.portlets.recent")
+allow_class(Renderer)

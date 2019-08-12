@@ -24,21 +24,26 @@ from docpool.transfers.db.model import ChannelPermissions, DocTypePermission
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.base.browser.folderbase import FolderBaseView
 
+
 class DPTransferFolderView(FolderBaseView):
     """Default view
     """
 
     __call__ = ViewPageTemplateFile('dptransferfolder.pt')
+
     def gridHTML(self):
         """
         """
         g = Grid(DocTypePermission, session=__session__)
-        g.configure(include=[g.doc_type.label(_(u"Document Type")).readonly(),g.perm.label(_("Permission"))])
+        g.configure(
+            include=[
+                g.doc_type.label(_(u"Document Type")).readonly(),
+                g.perm.label(_("Permission")),
+            ]
+        )
         permissions = self.context.permissions()
-        #permissions = DocTypePermission.query.all()
+        # permissions = DocTypePermission.query.all()
         # print len(permissions)
         g = g.bind(permissions)
         # print g.render()
         return g.render()
-
-

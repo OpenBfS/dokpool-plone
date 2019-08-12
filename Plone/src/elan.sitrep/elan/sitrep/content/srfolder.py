@@ -37,6 +37,7 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRFolder(form.Schema, ISimpleFolder):
     """
     """
@@ -47,11 +48,13 @@ class ISRFolder(form.Schema, ISimpleFolder):
 class SRFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRFolder)
 
     APP = ELAN_APP
+
     def modTypes(self):
         """
         """
@@ -64,15 +67,23 @@ class SRFolder(Container, SimpleFolder):
         for menu_item in menu_items:
             if menu_item.get('id') == 'SRModule':
                 for mt in self.modTypes():
-                    res.append({'extra':
-                                {'separator': None, 'id': mt[0], 'class': 'contenttype-%s' % mt[0]},
-                                'submenu': None,
-                                'description': '',
-                                'title': mt[1],
-                                'action': '%s/++add++SRModule?form.widgets.docType:list=%s' % (self.absolute_url(), mt[0]),
-                                'selected': False,
+                    res.append(
+                        {
+                            'extra': {
+                                'separator': None,
                                 'id': mt[0],
-                                'icon': None})
+                                'class': 'contenttype-%s' % mt[0],
+                            },
+                            'submenu': None,
+                            'description': '',
+                            'title': mt[1],
+                            'action': '%s/++add++SRModule?form.widgets.docType:list=%s'
+                            % (self.absolute_url(), mt[0]),
+                            'selected': False,
+                            'id': mt[0],
+                            'icon': None,
+                        }
+                    )
             else:
                 res.append(menu_item)
         return res
@@ -99,22 +110,20 @@ class SRFolder(Container, SimpleFolder):
     def getSRFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRFolder'}
+        args = {'portal_type': 'SRFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModule'}
+        args = {'portal_type': 'SRModule'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSituationReports(self, **kwargs):
         """
         """
-        args = {'portal_type':'SituationReport'}
+        args = {'portal_type': 'SituationReport'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

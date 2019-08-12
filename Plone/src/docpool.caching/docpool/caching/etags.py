@@ -12,6 +12,7 @@ from plone import api
 
 from time import time
 
+
 @implementer(IETagValue)
 @adapter(Interface, Interface)
 class DokPoolApps(object):
@@ -35,24 +36,25 @@ class DokPoolApps(object):
         user = api.user.get_current()
         filtered = user.getProperty("filter_active") or False
 
-
         return apps + "-" + scenarios + "-" + str(filtered)
 
+
 cacheTimes = {
-    "DPDocument" : 300,
-    "GroupFolder" : 300,
-    "PrivateFolder" : 300,
-    "ReviewFolder" : 300,
-    "SimpleFolder" : 300,
-    "InfoDocument" : 7200,
-    "InfoFolder" : 3600,
-    "UserFolder" : 300,
-    "ELANArchive" : 7200,
-    "ELANCurrentSituation" : 300,
-    "ELANDocCollection" : 300,
-    "DPTransferFolder" : 300,
-    "Dashboard" : 120,
+    "DPDocument": 300,
+    "GroupFolder": 300,
+    "PrivateFolder": 300,
+    "ReviewFolder": 300,
+    "SimpleFolder": 300,
+    "InfoDocument": 7200,
+    "InfoFolder": 3600,
+    "UserFolder": 300,
+    "ELANArchive": 7200,
+    "ELANCurrentSituation": 300,
+    "ELANDocCollection": 300,
+    "DPTransferFolder": 300,
+    "Dashboard": 120,
 }
+
 
 @implementer(IETagValue)
 @adapter(Interface, Interface)
@@ -73,4 +75,3 @@ class DokPoolCacheTime(object):
         context = getContext(self.published)
         portalTypeName = context.getPortalTypeName()
         return str(time() // cacheTimes.get(portalTypeName, 3600))
-

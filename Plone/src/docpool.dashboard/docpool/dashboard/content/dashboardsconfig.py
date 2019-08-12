@@ -34,19 +34,19 @@ from docpool.dashboard.config import PROJECTNAME
 
 from docpool.dashboard import DocpoolMessageFactory as _
 
+
 class IDashboardsConfig(form.Schema):
     """
     """
 
 
-
 class DashboardsConfig(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDashboardsConfig)
-
 
     def myDashboardsConfig(self):
         """
@@ -70,8 +70,6 @@ class DashboardsConfig(Container):
     def getDashboardCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'DashboardCollection'}
+        args = {'portal_type': 'DashboardCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

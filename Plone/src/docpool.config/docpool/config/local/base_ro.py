@@ -23,10 +23,17 @@ def dpAdded(self):
     copyDocTypes(self)
     self.reindexAll()
 
-CONTENT_AREA = {TYPE: 'ContentArea', TITLE: u'Content Area', ID: 'content', "setExcludeFromNav": True, CHILDREN: [
-    {TYPE: 'Users', TITLE: u'Members', ID: 'Members', CHILDREN: []},
-    {TYPE: 'Groups', TITLE: u'Groups', ID: 'Groups', CHILDREN: []},
-]}
+
+CONTENT_AREA = {
+    TYPE: 'ContentArea',
+    TITLE: u'Content Area',
+    ID: 'content',
+    "setExcludeFromNav": True,
+    CHILDREN: [
+        {TYPE: 'Users', TITLE: u'Members', ID: 'Members', CHILDREN: []},
+        {TYPE: 'Groups', TITLE: u'Groups', ID: 'Groups', CHILDREN: []},
+    ],
+}
 
 
 def createContentArea(self, fresh):
@@ -41,11 +48,13 @@ def createUsers(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    mtool.addMember('%s_dpadmin' % prefix, 'DocPool Administrator (%s)' % title, ['Member'], [])
+    mtool.addMember(
+        '%s_dpadmin' % prefix, 'DocPool Administrator (%s)' % title, ['Member'], []
+    )
     dpadmin = mtool.getMemberById('%s_dpadmin' % prefix)
     dpadmin.setMemberProperties(
-        {"fullname": 'DocPool Administrator (%s)' % title,
-         "dp": self.UID()})
+        {"fullname": 'DocPool Administrator (%s)' % title, "dp": self.UID()}
+    )
     dpadmin.setSecurityProfile(password="admin")
 
 
@@ -75,21 +84,28 @@ def createGroups(self):
     prefix = str(prefix)
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
-    props = {'allowedDocTypes': [], 'title': 'Members (%s)' % title, 'description': 'Users of the DocPool.',
-             'dp': self.UID()}
-    gtool.addGroup("%s_Members" % prefix,
-                   properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Members (%s)' % title,
+        'description': 'Users of the DocPool.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_Members" % prefix, properties=props)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_Members' % prefix)
-    props = {'allowedDocTypes': [], 'title': 'Administrators (%s)' % title,
-             'description': 'Responsible for the administration of the DocPool.', 'dp': self.UID()}
-    gtool.addGroup("%s_Administrators" % prefix,
-                   properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Administrators (%s)' % title,
+        'description': 'Responsible for the administration of the DocPool.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_Administrators" % prefix, properties=props)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_Administrators' % prefix)
 
 
 def navSettings(self):
     IExcludeFromNavigation(self.content).exclude_from_nav = True
     self.content.reindexObject()
+
 
 def copyDocTypes(self):
     """
@@ -98,11 +114,13 @@ def copyDocTypes(self):
         return
     config = self.config
     from docpool.base.utils import _copyPaste
+
     _copyPaste(config, self)
     self.config.setTitle(_("Configuration"))
     self.config.reindexObject()
     self.config.dtypes.setTitle(_("Document Types"))
     self.config.dtypes.reindexObject()
+
 
 def dpRemoved(self):
     deleteGroups(self)
@@ -120,7 +138,9 @@ def deleteGroups(self):
     gids = gtool.getGroupIds()
     for gid in gids:
         if gid.startswith(prefix):
-            gtool.removeGroup(gid)  # also deletes the group folder via event subscribers
+            gtool.removeGroup(
+                gid
+            )  # also deletes the group folder via event subscribers
 
 
 def deleteUsers(self):

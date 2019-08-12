@@ -20,7 +20,8 @@ from AccessControl import allow_module
 DocpoolMessageFactory = MessageFactory('docpool.event')
 allow_class(DocpoolMessageFactory)
 
-allow_module("docpool.event.utils");
+allow_module("docpool.event.utils")
+
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

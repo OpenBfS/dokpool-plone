@@ -32,14 +32,17 @@ from Products.CMFCore.utils import getToolByName
 
 from zope.interface import Interface
 from zope.schema.interfaces import IContextSourceBinder
-from docpool.base.utils import execute_under_special_role, queryForObject, getDocumentPoolSite
+from docpool.base.utils import (
+    execute_under_special_role,
+    queryForObject,
+    getDocumentPoolSite,
+)
 from zope.component.hooks import getSite
 from zope.component import adapter
 from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
 from collective.z3cform.datagridfield import DataGridFieldFactory, DictRow
 from Products.Archetypes.utils import shasattr
-from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
-    IObjectRemovedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectRemovedEvent
 from plone.dexterity.interfaces import IEditFinishedEvent
 from docpool.dbaccess.dbinit import __metadata__, __session__
 from docpool.transfers.db.model import Channel, DocTypePermission, ChannelPermissions
@@ -48,47 +51,55 @@ from Products.CMFPlone.utils import parent
 
 
 from docpool.transfers import DocpoolMessageFactory as _
+
 logger = getLogger("dptransferfolder")
 
 
 from docpool.transfers.config import PROJECTNAME
+
 
 class IDPTransferFolder(form.Schema, IFolderBase):
     """
     """
 
     sendingESD = schema.Choice(
-                        title=_(u'label_dptransferfolder_sendingesd', default=u'The organisation sending content via this transfer folder'),
-                        description=_(u'description_dptransferfolder_sendingesd', default=u''),
-                        required=True,
-                        source = "docpool.base.vocabularies.DocumentPools",
+        title=_(
+            u'label_dptransferfolder_sendingesd',
+            default=u'The organisation sending content via this transfer folder',
+        ),
+        description=_(u'description_dptransferfolder_sendingesd', default=u''),
+        required=True,
+        source="docpool.base.vocabularies.DocumentPools",
     )
-
 
     permLevel = schema.Choice(
-                        title=_(u'label_dptransferfolder_permlevel', default=u'Permission level'),
-                        description=_(u'description_dptransferfolder_permlevel', default=u''),
-                        required=True,
-                        default="read/write",
-                        source="docpool.transfers.vocabularies.Permissions"
+        title=_(u'label_dptransferfolder_permlevel', default=u'Permission level'),
+        description=_(u'description_dptransferfolder_permlevel', default=u''),
+        required=True,
+        default="read/write",
+        source="docpool.transfers.vocabularies.Permissions",
     )
-
 
     unknownDtDefault = schema.Choice(
-                        title=_(u'label_dptransferfolder_unknowndtdefault', default=u'Default for unknown document types'),
-                        description=_(u'description_dptransferfolder_unknowndtdefault', default=u''),
-                        required=True,
-                        default="block",
-                        source="docpool.transfers.vocabularies.UnknownOptions"
+        title=_(
+            u'label_dptransferfolder_unknowndtdefault',
+            default=u'Default for unknown document types',
+        ),
+        description=_(u'description_dptransferfolder_unknowndtdefault', default=u''),
+        required=True,
+        default="block",
+        source="docpool.transfers.vocabularies.UnknownOptions",
     )
 
-
     unknownScenDefault = schema.Choice(
-                        title=_(u'label_dptransferfolder_unknownscendefault', default=u'Default for unknown scenarios'),
-                        description=_(u'description_dptransferfolder_unknownscendefault', default=u''),
-                        required=True,
-                        default="block",
-                        source="docpool.transfers.vocabularies.UnknownOptions"
+        title=_(
+            u'label_dptransferfolder_unknownscendefault',
+            default=u'Default for unknown scenarios',
+        ),
+        description=_(u'description_dptransferfolder_unknownscendefault', default=u''),
+        required=True,
+        default="block",
+        source="docpool.transfers.vocabularies.UnknownOptions",
     )
 
 
@@ -98,6 +109,7 @@ class IDPTransferFolder(form.Schema, IFolderBase):
 class DPTransferFolder(Container, FolderBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDPTransferFolder)
@@ -118,7 +130,11 @@ class DPTransferFolder(Container, FolderBase):
         Do I specifically accept this doc type?
         """
         channel_id = self.channelId()
-        perm = __session__.query(DocTypePermission).filter_by(channel_id=channel_id,doc_type=dt_id).all()
+        perm = (
+            __session__.query(DocTypePermission)
+            .filter_by(channel_id=channel_id, doc_type=dt_id)
+            .all()
+        )
         if perm:
             if perm[0].perm != 'block':
                 return True
@@ -130,34 +146,38 @@ class DPTransferFolder(Container, FolderBase):
     def getMatchingDocumentTypes(self, ids_only=True):
         """
         """
+
         def doIt():
             esd = self.getSendingESD()
             theirDts = esd.myDocumentTypes(ids_only=True)
             myDts = self.myDocumentTypes()
-            #print theirDts
-            #print myDts
+            # print theirDts
+            # print myDts
             if ids_only:
-                return [ dt[0] for dt in myDts if dt[0] in theirDts]
+                return [dt[0] for dt in myDts if dt[0] in theirDts]
             else:
-                return [ dt for dt in myDts if dt[0] in theirDts]
-        return execute_under_special_role(self, "Manager",doIt)
+                return [dt for dt in myDts if dt[0] in theirDts]
+
+        return execute_under_special_role(self, "Manager", doIt)
 
     def ensureMatchingDocumentTypesInDatabase(self):
         """
         """
-        #print "ensureMatching"
+        # print "ensureMatching"
         channel_id = self.channelId()
         dts = self.getMatchingDocumentTypes(ids_only=True)
-        #print dts
+        # print dts
         # first delete
         permissions = self.permissions()
-        dbdts = [ perm.doc_type for perm in permissions]
+        dbdts = [perm.doc_type for perm in permissions]
         for perm in permissions:
             if perm.doc_type not in dts:
                 __session__.delete(perm)
         for dt in dts:
             if dt not in dbdts:
-                p = DocTypePermission(doc_type=dt,perm="publish",channel_id=channel_id)
+                p = DocTypePermission(
+                    doc_type=dt, perm="publish", channel_id=channel_id
+                )
         __session__.flush()
 
     def getSendingESD(self):
@@ -175,15 +195,20 @@ class DPTransferFolder(Container, FolderBase):
         """
         """
         channel_id = self.channelId()
-        permissions = __session__.query(DocTypePermission).filter_by(channel_id=channel_id).order_by(DocTypePermission.doc_type).all()
+        permissions = (
+            __session__.query(DocTypePermission)
+            .filter_by(channel_id=channel_id)
+            .order_by(DocTypePermission.doc_type)
+            .all()
+        )
         return permissions
 
     def channelId(self):
         """
         """
-        esd_from_uid=self.sendingESD
-        tf_uid=self.UID()
-        channel = Channel.get_by(esd_from_uid=esd_from_uid,tf_uid=tf_uid)
+        esd_from_uid = self.sendingESD
+        tf_uid = self.UID()
+        channel = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
         if channel:
             return channel.id
         else:
@@ -198,6 +223,7 @@ class DPTransferFolder(Container, FolderBase):
     def grantReadAccess(self):
         """
         """
+
         def grantRead():
             esd = self.getSendingESD()
             prefix = esd.myPrefix()
@@ -211,6 +237,7 @@ class DPTransferFolder(Container, FolderBase):
     def revokeReadAccess(self):
         """
         """
+
         def revokeRead():
             esd = self.getSendingESD()
             if esd:
@@ -247,43 +274,42 @@ class DPTransferFolder(Container, FolderBase):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
-        args = {'portal_type':'Image'}
+        args = {'portal_type': 'Image'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModule'}
+        args = {'portal_type': 'SRModule'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSituationReports(self, **kwargs):
         """
         """
-        args = {'portal_type':'SituationReport'}
+        args = {'portal_type': 'SituationReport'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-
 def setupChannel(obj, delete=False):
-    esd_from_uid=obj.sendingESD
-    tf_uid=obj.UID()
+    esd_from_uid = obj.sendingESD
+    tf_uid = obj.UID()
     old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
     if old and delete:
         __session__.delete(old)
@@ -291,16 +317,25 @@ def setupChannel(obj, delete=False):
     if not old or delete:
         esd = obj.myDocumentPool()
         cat = getToolByName(obj, 'portal_catalog')
-        from_esd = cat.unrestrictedSearchResults({"portal_type":"DocumentPool", "UID" : esd_from_uid})
+        from_esd = cat.unrestrictedSearchResults(
+            {"portal_type": "DocumentPool", "UID": esd_from_uid}
+        )
         from_esd = from_esd[0]
         dts = obj.getMatchingDocumentTypes(ids_only=True)
-        c = Channel(esd_from_uid=esd_from_uid, esd_from_title=from_esd.Title, tf_uid=tf_uid, title=obj.Title(), esd_to_title=esd.Title())
+        c = Channel(
+            esd_from_uid=esd_from_uid,
+            esd_from_title=from_esd.Title,
+            tf_uid=tf_uid,
+            title=obj.Title(),
+            esd_to_title=esd.Title(),
+        )
         for dt in dts:
-            p = DocTypePermission(doc_type=dt,perm="publish",channel=c)
+            p = DocTypePermission(doc_type=dt, perm="publish", channel=c)
         __session__.flush()
     else:
         c = old
     return c
+
 
 @adapter(IDPTransferFolder, IObjectAddedEvent)
 def created(obj, event=None):
@@ -317,6 +352,7 @@ def created(obj, event=None):
         if obj.permLevel == 'read/write':
             obj.grantReadAccess()
 
+
 @adapter(IDPTransferFolder, IEditFinishedEvent)
 def updated(obj, event=None):
     # Actually, a transfer folder should never allow a change of ESD.
@@ -332,13 +368,14 @@ def updated(obj, event=None):
         else:
             obj.revokeReadAccess()
 
+
 @adapter(IDPTransferFolder, IObjectRemovedEvent)
 def deleted(obj, event=None):
     # Delete all channel settings from the database.
     log("TransferFolder deleted: %s" % str(obj))
     if not obj.isArchive():
-        esd_from_uid=obj.sendingESD
-        tf_uid=obj.UID()
+        esd_from_uid = obj.sendingESD
+        tf_uid = obj.UID()
         old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
         permissions = obj.permissions()
         for perm in permissions:
@@ -349,6 +386,7 @@ def deleted(obj, event=None):
             __session__.flush()
         # Revoke any read access
         obj.revokeReadAccess()
+
 
 class ELANTransferFolder(DPTransferFolder):
     pass

@@ -24,5 +24,3 @@ class SRPhaseView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('srphase.pt')
-
-

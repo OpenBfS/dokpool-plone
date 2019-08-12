@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 
+
 def setupVarious(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.
@@ -12,5 +13,5 @@ def setupVarious(context):
         return
     # Add additional setup code here
     from docpool.config.general.elan import install
-    install(context.getSite())
 
+    install(context.getSite())

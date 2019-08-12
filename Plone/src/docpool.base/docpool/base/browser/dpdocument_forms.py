@@ -8,15 +8,16 @@ from docpool.base import DocpoolMessageFactory as _
 from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.Archetypes.utils import shasattr
 
+
 def checkUpload(form):
     context = form.getContent()
     if shasattr(context, "uploadsAllowed"):
-        return context.uploadsAllowed() # we EDIT a document, that's simple 
+        return context.uploadsAllowed()  # we EDIT a document, that's simple
     else:
         # We are CREATING a document, thus the object does not exist yet
         # context is the folder
         dp_type = context.REQUEST.get("form.widgets.docType")
-        if dp_type:    
+        if dp_type:
             try:
                 dto = context.config.dtypes[dp_type[0]]
                 # print dto
@@ -30,18 +31,19 @@ def checkUpload(form):
 
 class DPDocumentEditForm(EditForm):
     context(IDPDocument)
-    
-    @button.buttonAndHandler(_("label_continue", 
-                               u'Continue with files & images'), 
-                             name='continue',
-                             condition=checkUpload)
+
+    @button.buttonAndHandler(
+        _("label_continue", u'Continue with files & images'),
+        name='continue',
+        condition=checkUpload,
+    )
     def handleContinue(self, action):
-        EditForm.handleApply(self,action)
-    
+        EditForm.handleApply(self, action)
+
     @button.buttonAndHandler(PMF(u'Save'), name='save')
     def handleApply(self, action):
-        EditForm.handleApply(self,action)
-    
+        EditForm.handleApply(self, action)
+
     @button.buttonAndHandler(PMF(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         EditForm.handleCancel(self, action)
@@ -50,14 +52,14 @@ class DPDocumentEditForm(EditForm):
 class DPDocumentAddForm(AddForm):
     name('DPDocument')
 
-
-    @button.buttonAndHandler(_("label_continue", 
-                               u'Continue with files & images'), 
-                             name='continue',
-                             condition=checkUpload)
+    @button.buttonAndHandler(
+        _("label_continue", u'Continue with files & images'),
+        name='continue',
+        condition=checkUpload,
+    )
     def handleContinue(self, action):
         AddForm.handleAdd(self, action)
-        
+
     @button.buttonAndHandler(PMF('Save'), name='save')
     def handleAdd(self, action):
         AddForm.handleAdd(self, action)

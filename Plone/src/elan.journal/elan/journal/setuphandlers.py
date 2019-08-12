@@ -9,6 +9,4 @@ class HiddenProfiles(object):
 
     def getNonInstallableProfiles(self):  # pragma: no cover
         """Do not show on Plone's list of installable profiles."""
-        return [
-            u'elan.journal:uninstall',
-        ]
+        return [u'elan.journal:uninstall']

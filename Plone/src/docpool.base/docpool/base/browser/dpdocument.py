@@ -46,12 +46,12 @@ class DPDocumentView(FlexibleView):
     """
 
     __call__ = ViewPageTemplateFile('dpdocument.pt')
+
     def base_url(self):
         """
         """
         context = aq_inner(self.context)
         return context.restrictedTraverse('@@plone').getCurrentFolderUrl()
-
 
     def quote_plus(self, string):
         """
@@ -62,17 +62,20 @@ class DPDocumentView(FlexibleView):
         """
         """
         kwargs["object_provides"] = [IDPDocument.__identifier__]
-        res = ([b for b in self.context.getFolderContents(kwargs)])
+        res = [b for b in self.context.getFolderContents(kwargs)]
         return res
 
     def dp_buttons(self, items):
         return []
 
+
 class DPDocumentlistitemView(FlexibleView):
     """Additional View
     """
+
     __allow_access_to_unprotected_subobjects__ = 1
     __call__ = ViewPageTemplateFile('dpdocumentlistitem.pt')
+
     def ctype_short(self, file):
         """
         """
@@ -84,12 +87,14 @@ class DPDocumentlistitemView(FlexibleView):
         else:
             return s[0]
 
+
 class DPDocumentinlineView(DPDocumentView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('dpdocumentinline.pt')
     implements(IViewView)
+
 
 class DPDocumentprintView(FlexibleView):
     """Additional View
@@ -98,9 +103,11 @@ class DPDocumentprintView(FlexibleView):
     __call__ = ViewPageTemplateFile('dpdocumentprint.pt')
     implements(IViewView)
 
+
 class DPDocumentdocimageView(BrowserView):
     """Additional View
     """
+
     def __call__(self):
         """
         This is the image - if possible without the legend
@@ -115,7 +122,9 @@ class DPDocumentdocimageView(BrowserView):
         # Get doc image but without legend
         data, filename = self.context.getMyImage(refresh=refresh, full=False)
 
-        header_value= contentDispositionHeader('inline', filename=filename, charset='latin-1')
+        header_value = contentDispositionHeader(
+            'inline', filename=filename, charset='latin-1'
+        )
         response.setHeader('Content-disposition', header_value)
         response.setHeader('Content-Length', len(data))
         return data
@@ -169,14 +178,13 @@ class FileUploadView(BaseFileUploadView):
             content_type = obj.image.contentType
         else:
             return
-        result = {
-            "type": content_type,
-            "size": size
-        }
-        result.update({
-            'url': obj.absolute_url(),
-            'name': obj.getId(),
-            'UID': IUUID(obj),
-            'filename': filename
-        })
+        result = {"type": content_type, "size": size}
+        result.update(
+            {
+                'url': obj.absolute_url(),
+                'name': obj.getId(),
+                'UID': IUUID(obj),
+                'filename': filename,
+            }
+        )
         return result

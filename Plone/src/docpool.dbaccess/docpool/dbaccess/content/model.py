@@ -16,11 +16,11 @@ from datetime import datetime
 from zope.interface.declarations import implements
 
 
-    
 class Item(Entity):
     """
     Oberklasse fuer Aenderungsverfolgung
     """
+
     implements(IAuditing)
     using_options(tablename='vpauditlogs', inheritance='multi', polymorphic=False)
 
@@ -28,13 +28,13 @@ class Item(Entity):
     erzeugungsdatum = Field(DateTime(), default=datetime.now)
     aenderungsnutzer = Field(Unicode(20))
     aenderungsdatum = Field(DateTime())
-    
+
     def _username(self, context):
         """
         """
         mtool = getToolByName(context, 'portal_membership')
         return mtool.getAuthenticatedMember().getUserName()
-    
+
     def wasCreated(self, context):
         """
         """
@@ -43,17 +43,15 @@ class Item(Entity):
         self.aenderungsdatum = self.erzeugungsdatum
         self.erzeugungsnutzer = self._username(context)
         self.aenderungsnutzer = self.erzeugungsnutzer
-        
-        
+
     def wasUpdated(self, context):
         """
         """
         self.aenderungsdatum = datetime.now()
         self.aenderungsnutzer = self._username(context)
-        
+
     def wasDeleted(self, context):
         """
         Nichts zu tun, weil kein Datensatz uebrig bleibt.
         """
         pass
-    

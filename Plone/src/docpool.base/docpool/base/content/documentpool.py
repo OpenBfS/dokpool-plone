@@ -35,8 +35,7 @@ from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
 from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.utils import parent
 from zope.event import notify
-from docpool.base.events import DocumentPoolInitializedEvent,\
-    DocumentPoolRemovedEvent
+from docpool.base.events import DocumentPoolInitializedEvent, DocumentPoolRemovedEvent
 from plone.app.textfield.value import RichTextValue
 from plone.protect.auto import safeWrite
 from docpool.base.content.doctype import IDocType
@@ -49,32 +48,36 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IDocumentPool(form.Schema):
     """
     """
 
     prefix = schema.TextLine(
-                        title=_(u'label_documentpool_prefix', default=u'Prefix names'),
-                        description=_(u'description_documentpool_prefix', default=u'Will be used to construct user and group names. If left blank, the id of the ESD will be used. '),
-                        required=False,
+        title=_(u'label_documentpool_prefix', default=u'Prefix names'),
+        description=_(
+            u'description_documentpool_prefix',
+            default=u'Will be used to construct user and group names. If left blank, the id of the ESD will be used. ',
+        ),
+        required=False,
     )
-
 
     customLogo = NamedBlobImage(
-                        title=_(u'label_documentpool_customlogo', default=u'Custom Logo'),
-                        description=_(u'description_documentpool_customlogo', default=u''),
-                        required=False,
+        title=_(u'label_documentpool_customlogo', default=u'Custom Logo'),
+        description=_(u'description_documentpool_customlogo', default=u''),
+        required=False,
     )
-
 
     supportedApps = schema.List(
-                        title=_(u'label_documentpool_supportedapps', default=u'Applications supported in this document pool'),
-                        description=_(u'description_documentpool_supportedapps', default=u''),
-                        required=False,
-                        missing_value=(),
-                        value_type=schema.Choice(source="docpool.base.vocabularies.SelectableApps"),
+        title=_(
+            u'label_documentpool_supportedapps',
+            default=u'Applications supported in this document pool',
+        ),
+        description=_(u'description_documentpool_supportedapps', default=u''),
+        required=False,
+        missing_value=(),
+        value_type=schema.Choice(source="docpool.base.vocabularies.SelectableApps"),
     )
-
 
     form.widget(supportedApps=CheckBoxFieldWidget)
 
@@ -82,6 +85,7 @@ class IDocumentPool(form.Schema):
 class DocumentPool(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDocumentPool)
@@ -116,17 +120,20 @@ class DocumentPool(Container):
         """
         """
         cat = getToolByName(self, "portal_catalog")
-        res = cat(path=self.dpSearchPath(),object_provides=IDocType.__identifier__,sort_on="getId")
+        res = cat(
+            path=self.dpSearchPath(),
+            object_provides=IDocType.__identifier__,
+            sort_on="getId",
+        )
         if ids_only:
-            return [ dt.getId for dt in res ]
+            return [dt.getId for dt in res]
         else:
-            return [ (dt.getId, dt.Title) for dt in res ]
+            return [(dt.getId, dt.Title) for dt in res]
 
     def dpSearchPath(self):
         """
         """
         return "/".join(self.getPhysicalPath())
-
 
     def deleteText(self, obj):
         """
@@ -144,8 +151,6 @@ class DocumentPool(Container):
     def isActive(self, APP):
         dp_app_state = getMultiAdapter((self, self.REQUEST), name=u'dp_app_state')
         return dp_app_state.isCurrentlyActive(APP)
-
-
 
     def myDocumentPool(self):
         """
@@ -169,14 +174,14 @@ class DocumentPool(Container):
     def getContentAreas(self, **kwargs):
         """
         """
-        args = {'portal_type':'ContentArea'}
+        args = {'portal_type': 'ContentArea'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getDPConfigs(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPConfig'}
+        args = {'portal_type': 'DPConfig'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
@@ -194,6 +199,7 @@ def docPoolAdded(obj, event=None):
     for appdef in implicitApps():
         appdef[2]['dpAddedMethod'](self)
     notify(DocumentPoolInitializedEvent(self))
+
 
 @adapter(IDocumentPool, IEditFinishedEvent)
 def docPoolModified(obj, event=None):
@@ -227,5 +233,3 @@ def docPoolRemoved(obj, event=None):
     for appdef in implicitApps():
         appdef[2]['dpRemovedMethod'](self)
     notify(DocumentPoolRemovedEvent(self))
-
-

@@ -14,7 +14,8 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.interfaces import IDocumentExtension
 
 from docpool.doksys import DocpoolMessageFactory as _
-#from docpool.doksys.vocabularies import SampleType
+
+# from docpool.doksys.vocabularies import SampleType
 
 from Acquisition import aq_inner
 
@@ -37,7 +38,6 @@ class IDoksysDoc(IDocumentExtension):
         description=_(u'description_doksys_Dom', default=u''),
         source="docpool.doksys.Dom",
         required=False,
-
     )
     read_permission(Dom='docpool.doksys.AccessDoksys')
     write_permission(Dom='docpool.doksys.AccessDoksys')
@@ -86,7 +86,10 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(Purpose='docpool.doksys.AccessDoksys')
 
     TrajectoryStartLocation = schema.TextLine(
-        title=_(u'label_doksys_trajectory_start_location', default=u'Trajectory Start Location'),
+        title=_(
+            u'label_doksys_trajectory_start_location',
+            default=u'Trajectory Start Location',
+        ),
         description=_(u'description_doksys_trajectory_start_location', default=u''),
         required=False,
     )
@@ -94,7 +97,9 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(TrajectoryStartLocation='docpool.doksys.AccessDoksys')
 
     TrajectoryEndLocation = schema.TextLine(
-        title=_(u'label_doksys_trajectory_end_location', default=u'Trajectory End Location'),
+        title=_(
+            u'label_doksys_trajectory_end_location', default=u'Trajectory End Location'
+        ),
         description=_(u'description_doksys_trajectory_end_location', default=u''),
         required=False,
     )
@@ -102,7 +107,9 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(TrajectoryEndLocation='docpool.doksys.AccessDoksys')
 
     TrajectoryStartTime = schema.Datetime(
-        title=_(u'label_doksys_trajectory_start_time', default=u'Trajectory Start Time'),
+        title=_(
+            u'label_doksys_trajectory_start_time', default=u'Trajectory Start Time'
+        ),
         description=_(u'description_doksys_trajectory_start_time', default=u''),
         required=False,
     )
@@ -156,7 +163,7 @@ class IDoksysDoc(IDocumentExtension):
     SampleType = schema.Choice(
         title=_(u'label_doksys_sample_type', default=u'Sample Type'),
         description=_(u'description_doksys_sample_type', default=u''),
-        source= "docpool.doksys.SampleType",
+        source="docpool.doksys.SampleType",
         required=False,
     )
     read_permission(SampleType='docpool.doksys.AccessDoksys')
@@ -197,6 +204,7 @@ class IDoksysDoc(IDocumentExtension):
     )
     read_permission(Area='docpool.doksys.AccessDoksys')
     write_permission(Area='docpool.doksys.AccessDoksys')
+
 
 class DoksysDoc(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
@@ -295,7 +303,9 @@ class DoksysDoc(FlexibleView):
         context = aq_inner(self.context)
         context.TrajectoryStartLocation = value
 
-    TrajectoryStartLocation = property(_get_TrajectoryStartLocation, _set_TrajectoryStartLocation)
+    TrajectoryStartLocation = property(
+        _get_TrajectoryStartLocation, _set_TrajectoryStartLocation
+    )
 
     def _get_TrajectoryEndLocation(self):
         return self.context.TrajectoryEndLocation
@@ -306,7 +316,9 @@ class DoksysDoc(FlexibleView):
         context = aq_inner(self.context)
         context.TrajectoryEndLocation = value
 
-    TrajectoryEndLocation = property(_get_TrajectoryEndLocation, _set_TrajectoryEndLocation)
+    TrajectoryEndLocation = property(
+        _get_TrajectoryEndLocation, _set_TrajectoryEndLocation
+    )
 
     def _get_TrajectoryStartTime(self):
         return self.context.TrajectoryStartTime
@@ -436,5 +448,3 @@ class DoksysDoc(FlexibleView):
         """
         # TODO: define if necessary. Method MUST be present in Doc behavior.
         return True
-
-

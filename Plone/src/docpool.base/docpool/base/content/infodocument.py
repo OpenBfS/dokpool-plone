@@ -35,6 +35,7 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IInfoDocument(form.Schema, IDPDocument):
     """
     """
@@ -43,12 +44,14 @@ class IInfoDocument(form.Schema, IDPDocument):
     docType = schema.Choice(
         required=True,
         source="docpool.base.vocabularies.DocumentTypes",
-        default=u"infodoc")
+        default=u"infodoc",
+    )
 
 
 class InfoDocument(Container, DPDocument):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IInfoDocument)
@@ -56,10 +59,8 @@ class InfoDocument(Container, DPDocument):
     def dp_type(self):
         return "General"
 
-
     def category(self):
         return []
-
 
     def dp_type_name(self):
         return "General"
@@ -97,22 +98,20 @@ class InfoDocument(Container, DPDocument):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
-        args = {'portal_type':'Image'}
+        args = {'portal_type': 'Image'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

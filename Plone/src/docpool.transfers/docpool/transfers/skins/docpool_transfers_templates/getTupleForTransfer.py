@@ -8,4 +8,5 @@
 ##title=
 ##
 from docpool.transfers.utils import getTupleForTransfer
+
 return getTupleForTransfer(context, id)

@@ -11,6 +11,7 @@ from Products.CMFPlone.log import log_exc
 class ContentBaseLastModified(object):
     """
     """
+
     def __init__(self, context):
         self.context = context
 
@@ -30,16 +31,21 @@ class ContentBaseLastModified(object):
                 return wdate < modified and modified or wdate
             except:
                 import pytz
+
                 utc = pytz.UTC
-                return wdate.replace(tzinfo=utc) < modified.replace(tzinfo=utc) and modified or wdate
+                return (
+                    wdate.replace(tzinfo=utc) < modified.replace(tzinfo=utc)
+                    and modified
+                    or wdate
+                )
 
         # only one of them
         return wdate or modified
 
+
 @implementer(ILastModified)
 @adapter(IDPDocument)
 class DocumentLastModified(ContentBaseLastModified):
-
     def __init__(self, context):
         super(DocumentLastModified, self).__init__(context)
 
@@ -49,12 +55,13 @@ class DocumentLastModified(ContentBaseLastModified):
         transferred = None
         try:
             from docpool.transfers.behaviors.transferable import ITransferable
+
             t = ITransferable(self.context)
             tEvents = t.transferEvents()
             if len(tEvents) > 0:
                 transferred = tEvents[0]['timeraw']
         except Exception, e:
-            #log_exc(e)
+            # log_exc(e)
             pass
 
         if lm is not None and transferred is not None:
@@ -62,9 +69,13 @@ class DocumentLastModified(ContentBaseLastModified):
                 return lm < transferred and transferred or lm
             except:
                 import pytz
+
                 utc = pytz.UTC
-                return lm.replace(tzinfo=utc) < transferred.replace(tzinfo=utc) and transferred or lm
+                return (
+                    lm.replace(tzinfo=utc) < transferred.replace(tzinfo=utc)
+                    and transferred
+                    or lm
+                )
 
         # only one of them
         return lm or transferred
-

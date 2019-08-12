@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 
+
 def setupVarious(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.
@@ -12,4 +13,5 @@ def setupVarious(context):
         return
     # TODO: Add additional setup code here
     from docpool.rei.general.rei import install
-    install(context,context.getSite())
+
+    install(context, context.getSite())

@@ -20,17 +20,14 @@ class TestSetup(unittest.TestCase):
 
     def test_product_installed(self):
         """Test if docpool.doksys is installed."""
-        self.assertTrue(self.installer.isProductInstalled(
-            'docpool.doksys'))
+        self.assertTrue(self.installer.isProductInstalled('docpool.doksys'))
 
     def test_browserlayer(self):
         """Test that IDocpoolDoksysLayer is registered."""
-        from docpool.doksys.interfaces import (
-            IDocpoolDoksysLayer)
+        from docpool.doksys.interfaces import IDocpoolDoksysLayer
         from plone.browserlayer import utils
-        self.assertIn(
-            IDocpoolDoksysLayer,
-            utils.registered_layers())
+
+        self.assertIn(IDocpoolDoksysLayer, utils.registered_layers())
 
 
 class TestUninstall(unittest.TestCase):
@@ -47,14 +44,11 @@ class TestUninstall(unittest.TestCase):
 
     def test_product_uninstalled(self):
         """Test if docpool.doksys is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled(
-            'docpool.doksys'))
+        self.assertFalse(self.installer.isProductInstalled('docpool.doksys'))
 
     def test_browserlayer_removed(self):
         """Test that IDocpoolDoksysLayer is removed."""
-        from docpool.doksys.interfaces import \
-            IDocpoolDoksysLayer
+        from docpool.doksys.interfaces import IDocpoolDoksysLayer
         from plone.browserlayer import utils
-        self.assertNotIn(
-            IDocpoolDoksysLayer,
-            utils.registered_layers())
+
+        self.assertNotIn(IDocpoolDoksysLayer, utils.registered_layers())

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import random
 from docpool.base.utils import getGroupsForCurrentUser
+
 try:
     from zope.component.hooks import getSite
 except ImportError:
@@ -25,7 +26,7 @@ class ApplicationAPI(WSAPI):
             data = serviced_obj.get_object()
             type_ = serviced_obj.get_type()
             misc = serviced_obj.get_misc()
-            return self.builder.get_path(obj, ''), (data, type_, misc,)
+            return self.builder.get_path(obj, ''), (data, type_, misc)
         else:
             return ()
 
@@ -68,27 +69,37 @@ class ApplicationAPI(WSAPI):
             if group['etypes']:  # Group is ELAN group which can produce documents
                 ids.append(group['id'])
 
-        q = {'path': esdpath + "/content/Groups", 'portal_type': "GroupFolder", 'getId': ids}
+        q = {
+            'path': esdpath + "/content/Groups",
+            'portal_type': "GroupFolder",
+            'getId': ids,
+        }
         return self.context.restrictedTraverse("@@query")(q)
 
     def get_transfer_folders(self, esdpath):
         q = {'path': esdpath + "/content/Transfers", 'portal_type': "DPTransferFolder"}
         return self.context.restrictedTraverse("@@query")(q)
 
-    def create_dp_document(self, folderpath, id, title, description, text, doctype, behaviours):
+    def create_dp_document(
+        self, folderpath, id, title, description, text, doctype, behaviours
+    ):
         """
         Creates a document under folderpath.
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
 
-        return self.create_dp_object(folderpath,
-                                     id,
-                                     {"title": title,
-                                      "description": description,
-                                      "text": text,
-                                      "docType": doctype,
-                                      "local_behaviors": behaviours},
-                                     "DPDocument")
+        return self.create_dp_object(
+            folderpath,
+            id,
+            {
+                "title": title,
+                "description": description,
+                "text": text,
+                "docType": doctype,
+                "local_behaviors": behaviours,
+            },
+            "DPDocument",
+        )
 
     def create_dp_object(self, folderpath, id, properties, type):
         """
@@ -114,16 +125,18 @@ class ApplicationAPI(WSAPI):
         res = self.context.restrictedTraverse("@@put_object")(params)
         return res[0]  # just the path
 
-
-
     def upload_file(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
 
         # print "upload_file"
-        params = {str(path) + "/" + str(id.encode('utf-8')): [{"title": title,
-                                                               "description": description,
-                                                               "file": (data, filename)},
-                                                              "File"]}
+        params = {
+            str(path)
+            + "/"
+            + str(id.encode('utf-8')): [
+                {"title": title, "description": description, "file": (data, filename)},
+                "File",
+            ]
+        }
         # Delegate to post_object
         # print params
         res = self.context.restrictedTraverse("@@post_object")(params)
@@ -133,10 +146,14 @@ class ApplicationAPI(WSAPI):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         # print "upload_image"
         # FIXME - unicode characters break here - use urllib to allow unicode instead of string
-        params = {str(path) + "/" + str(id.encode('utf-8')): [{"title": title,
-                                                               "description": description,
-                                                               "image": (data, filename)},
-                                                              "Image"]}
+        params = {
+            str(path)
+            + "/"
+            + str(id.encode('utf-8')): [
+                {"title": title, "description": description, "image": (data, filename)},
+                "Image",
+            ]
+        }
         # print params
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
@@ -198,12 +215,12 @@ class ApplicationAPI(WSAPI):
         user = mtool.getMemberById(username)
         user.setMemberProperties(properties)
         user.setSecurityProfile(password=password)
-# Nur mit email-Adresse
-#         user = api.user.create(email=email,
-#                                username=username,
-#                                password=password,
-#                                roles=['Member'],
-#                                properties=properties)
+        # Nur mit email-Adresse
+        #         user = api.user.create(email=email,
+        #                                username=username,
+        #                                password=password,
+        #                                roles=['Member'],
+        #                                properties=properties)
         mtool.createMemberArea(username)
         return user.getMemberId()
 
@@ -216,23 +233,22 @@ class ApplicationAPI(WSAPI):
         esd = api.content.get(esdpath, None)
         prefix = esd.prefix
         prefix = str(prefix)
-        groupprops = {'title': title,
-                      'description': description}
+        groupprops = {'title': title, 'description': description}
         if esd:
             groupprops['dp'] = esd.UID()
             title += " ({})".format(esd.Title())
             groupprops['title'] = title
-#        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
+        #        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
         gtool = getToolByName(self, 'portal_groups')
-# trying to add new group with prefix
+        # trying to add new group with prefix
         group = gtool.addGroup("%s_%s" % (prefix, groupname), properties=groupprops)
         if group:
             return groupname
-# seems that adding group was not succesfulr. asuming group already exists
+        # seems that adding group was not succesfulr. asuming group already exists
         group = api.group.get("%s_%s" % (prefix, groupname))
 
-#        if groupprops:
-#            group.setGroupProperties(groupprops)
+        #        if groupprops:
+        #            group.setGroupProperties(groupprops)
         if group:
             return groupname
         else:
@@ -243,9 +259,11 @@ class ApplicationAPI(WSAPI):
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
 
-        props = {'alloweddoctypes': alloweddoctypes,
-                 'title': title,
-                 'description': description}
+        props = {
+            'alloweddoctypes': alloweddoctypes,
+            'title': title,
+            'description': description,
+        }
         esd = api.content.get(esdpath, None)
 
         prefix = esd.prefix
@@ -261,10 +279,8 @@ class ApplicationAPI(WSAPI):
         group = api.group.get(groupname)
         message = "notChanged"
         if group:
-#            group.setProperties(props)
-            gtool.editGroup(
-                groupname,
-                allowedDocTypes=alloweddoctypes)
+            #            group.setProperties(props)
+            gtool.editGroup(groupname, allowedDocTypes=alloweddoctypes)
             gtitle = group.getProperty('title') == title
             gdescription = group.getProperty('description') == description
             gesd = group.getProperty('dp') == esd.UID()
@@ -283,7 +299,9 @@ class ApplicationAPI(WSAPI):
         prefix = str(prefix)
 
         groupname = prefix + "_" + groupname
-        api.group.add_user(groupname=groupname, group=None, username=username, user=None)
+        api.group.add_user(
+            groupname=groupname, group=None, username=username, user=None
+        )
         group = api.group.get(groupname)
         message = "notAdded"
         if group:

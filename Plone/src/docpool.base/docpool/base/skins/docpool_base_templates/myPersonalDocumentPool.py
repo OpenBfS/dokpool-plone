@@ -20,7 +20,7 @@ esd_prefix = parts[0]
 
 
 cat = getToolByName(context, 'portal_catalog', None)
-esds = cat(portal_type="DocumentPool", sort_on = "sortable_title")
+esds = cat(portal_type="DocumentPool", sort_on="sortable_title")
 log(esds)
 if esds:
     for esd in esds:

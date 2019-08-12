@@ -36,15 +36,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IExtendable(form.Schema):
     """
     """
 
 
-
 class Extendable(Item):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IExtendable)
@@ -55,11 +56,14 @@ class Extendable(Item):
         @param applicationName: the name of the application
         @return: the extension object
         """
-        return APP_REGISTRY[applicationName]['documentBehavior'](self) # and APP_REGISTRY[applicationName]['documentBehavior'](self) or self
+        return APP_REGISTRY[applicationName]['documentBehavior'](
+            self
+        )  # and APP_REGISTRY[applicationName]['documentBehavior'](self) or self
 
     def type_extension(self, applicationName):
-        return APP_REGISTRY[applicationName]['typeBehavior'](self) # and APP_REGISTRY[applicationName]['typeBehavior'](self) or self
-
+        return APP_REGISTRY[applicationName]['typeBehavior'](
+            self
+        )  # and APP_REGISTRY[applicationName]['typeBehavior'](self) or self
 
     def myExtensionIcons(self, request):
         """
@@ -69,7 +73,7 @@ class Extendable(Item):
         """
         behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
         if behaviorNames:
-            return [ appIcon(name) for name in behaviorNames if appIcon(name)]
+            return [appIcon(name) for name in behaviorNames if appIcon(name)]
         else:
             return []
 
@@ -80,7 +84,5 @@ class Extendable(Item):
         @return:
         """
         behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
-        #print "myExtensions", behaviorNames
-        return [ self.doc_extension(name) for name in behaviorNames ]
-
-
+        # print "myExtensions", behaviorNames
+        return [self.doc_extension(name) for name in behaviorNames]

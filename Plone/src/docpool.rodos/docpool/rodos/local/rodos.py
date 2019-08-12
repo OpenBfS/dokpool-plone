@@ -4,8 +4,6 @@ import transaction
 from docpool.rodos import DocpoolMessageFactory as _
 
 
-
-
 def dpAdded(self):
     """
     @param self: 
@@ -14,7 +12,7 @@ def dpAdded(self):
     """
     fresh = True
     if self.hasObject("rodos"):
-        fresh = False # It's a reinstall
+        fresh = False  # It's a reinstall
 
     copyRunDisplay(self, fresh)
     transaction.commit()
@@ -28,6 +26,7 @@ def dpAdded(self):
 
     # TODO: further initializations?
 
+
 def copyRunDisplay(self, fresh):
     """
 
@@ -39,14 +38,13 @@ def copyRunDisplay(self, fresh):
         return
     rodos = self.rodos
     from docpool.base.utils import _copyPaste
+
     _copyPaste(rodos, self, safe=False)
     self.rodos.setTitle(_("Run Display"))
     self.rodos.reindexObject()
     # make sure the run display is first
     # TODO if more complex (e.g. second after 'esd')
     self.moveObject("rodos", 0)
-
-
 
 
 def dpRemoved(self):
@@ -56,6 +54,7 @@ def dpRemoved(self):
     """
     # TODO:
     return
+
 
 def createRodosGroups(docpool):
     """
@@ -69,24 +68,34 @@ def createRodosGroups(docpool):
     title = docpool.Title()
     gtool = getToolByName(docpool, 'portal_groups')
     # Group for Rodos application rights
-    props = {'allowedDocTypes': [], 'title': 'Rodos Users (%s)' % title,
-             'description': 'Users with access to Rodos functions.',
-             'dp': docpool.UID()}
-    gtool.addGroup("%s_RodosUsers" % prefix,
-               properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Rodos Users (%s)' % title,
+        'description': 'Users with access to Rodos functions.',
+        'dp': docpool.UID(),
+    }
+    gtool.addGroup("%s_RodosUsers" % prefix, properties=props)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_RodosUsers' % prefix)
 
     # Group for Rodos content administration - if needed, otherwise ignore...
-    props = {'allowedDocTypes': [], 'title': 'Rodos Content Administrators (%s)' % title,
-             'description': 'Responsible for the definition of structure and types.',
-             'dp': docpool.UID()}
-    gtool.addGroup("%s_RodosContentAdministrators" % prefix,
-                   properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_RodosContentAdministrators' % prefix)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Rodos Content Administrators (%s)' % title,
+        'description': 'Responsible for the definition of structure and types.',
+        'dp': docpool.UID(),
+    }
+    gtool.addGroup("%s_RodosContentAdministrators" % prefix, properties=props)
+    gtool.addPrincipalToGroup(
+        '%s_dpadmin' % prefix, '%s_RodosContentAdministrators' % prefix
+    )
 
     # Set Rodos role as a local role for the new group
     docpool.manage_setLocalRoles("%s_RodosUsers" % prefix, ["RodosUser"])
     # Set content admin access to config
-    docpool.config.manage_setLocalRoles("%s_RodosContentAdministrators" % prefix, ["Owner"])
+    docpool.config.manage_setLocalRoles(
+        "%s_RodosContentAdministrators" % prefix, ["Owner"]
+    )
     # and to navigation
-    docpool.rodos.manage_setLocalRoles("%s_RodosContentAdministrators" % prefix, ["ContentAdmin"])
+    docpool.rodos.manage_setLocalRoles(
+        "%s_RodosContentAdministrators" % prefix, ["ContentAdmin"]
+    )

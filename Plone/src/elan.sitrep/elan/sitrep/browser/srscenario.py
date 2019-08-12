@@ -24,5 +24,3 @@ class SRScenarioView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('srscenario.pt')
-
-

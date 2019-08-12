@@ -4,8 +4,7 @@ from docpool.dbaccess.utils import unicode_csv_reader, dtFromString
 from Products.CMFPlone.utils import log, log_exc, safe_unicode
 from docpool.dbaccess.dbinit import __metadata__, __session__
 from zope.event import notify
-from docpool.dbaccess.content.events import ObjectChangedEvent,\
-    ObjectAddedEvent
+from docpool.dbaccess.content.events import ObjectChangedEvent, ObjectAddedEvent
 
 metadata = __metadata__
 session = __session__
@@ -14,30 +13,35 @@ from elixir import *
 
 import transaction
 from StringIO import StringIO
-from datetime import datetime # mindestens für Expressions hilfreich
+from datetime import datetime  # mindestens für Expressions hilfreich
 
-def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=[], context=None):
+
+def genericImportFromCSV(
+    tool, file, typ, request, delimiter=';', updatespalten=[], context=None
+):
     """
     @param updatespalten: Listet die Spalten, die beim Update berücksichtigt werden sollen. Das erlaubt ein Subset,
     während beim INSERT immer alle gültigen Spalten genutzt werden.
     """
-    from docpool.dbaccess.content.dbadmin import getAllEntityFields # zyklischen Import vermeiden
+    from docpool.dbaccess.content.dbadmin import (
+        getAllEntityFields,
+    )  # zyklischen Import vermeiden
+
     klass = tool.getKlass(typ)
     pkfields = tool.pkfields(typ)
-    pkfields = set(pkfields) # Hier kann ein Feld doppelt genannt werden
+    pkfields = set(pkfields)  # Hier kann ein Feld doppelt genannt werden
     efields = getAllEntityFields(klass)
-    #print pkfields
-    #print efields
+    # print pkfields
+    # print efields
     if type(file) in (type(""), type(u"")):
         file = StringIO(file)
-        meldung = [ "Import aus Zeichenkette fuer %s" % (typ) , "",  "" ]
+        meldung = ["Import aus Zeichenkette fuer %s" % (typ), "", ""]
     else:
-        meldung = [ "Import von Datei %s fuer %s" % (file.filename, typ) , "",  "" ]
+        meldung = ["Import von Datei %s fuer %s" % (file.filename, typ), "", ""]
     kopfzeile = file.readline()
-    kopfzeile = kopfzeile.strip() # Zeilenende weg
+    kopfzeile = kopfzeile.strip()  # Zeilenende weg
 
-
-    status = True # = OK
+    status = True  # = OK
 
     spalten = kopfzeile.split(delimiter)
     # So, jetzt haben wir die Namen der zu importierenden Felder.
@@ -45,7 +49,7 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
     # a) ob die Primaerschluesselspalten dabei sind und
     # b) welche Felder ggf. nicht ueberschrieben werden sollen und
     # c) welche Fremdschluessel behandelt werden muessen.
-    #print spalten
+    # print spalten
 
     alle = []
     ungueltig = []
@@ -61,20 +65,20 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
         isComputed = False
         expression = None
         isUnique = False
-        if spalte.startswith("*"): # Unique
+        if spalte.startswith("*"):  # Unique
             isUnique = True
             spalte = spalte[1:]
-        if spalte.find('=') != -1: # Angabe eines Ausdrucks zur Berechnung
+        if spalte.find('=') != -1:  # Angabe eines Ausdrucks zur Berechnung
             parts = spalte.split('=')
             spalte, expression = parts[0], parts[1]
             isComputed = True
-        if spalte.find('|') != -1: # FK Definition
+        if spalte.find('|') != -1:  # FK Definition
             parts = spalte.split('|')
             spalte, fktyp, fkspalte = parts[0], parts[1], parts[2]
             fkklass = tool.getKlass(fktyp)
-            fkcol = getattr(fkklass,fkspalte)
+            fkcol = getattr(fkklass, fkspalte)
             fk[spalte.split(':')[0]] = (fkklass, fkcol)
-        if spalte.find(':') != -1: # Typbezeichnung vorhanden
+        if spalte.find(':') != -1:  # Typbezeichnung vorhanden
             parts = spalte.split(':')
             spalte, styp = parts[0], parts[1]
             if styp in ['date', 'datetime']:
@@ -88,7 +92,9 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
         if isComputed:
             computed[spalte] = expression
 
-        if not spalte in efields and not spalte in pkfields: # Wenn die Spalte unzulässig ist
+        if (
+            not spalte in efields and not spalte in pkfields
+        ):  # Wenn die Spalte unzulässig ist
             ungueltig.append(spalte)
             if spalte in numerisch:
                 numerisch.remove(spalte)
@@ -104,12 +110,10 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
             unique.append(spalte)
         alle.append(spalte)
 
-
-
     mitpk = True
     for pkfield in pkfields:
-        #print pkfield
-        #print alle
+        # print pkfield
+        # print alle
         if pkfield not in alle:
             mitpk = False
 
@@ -119,13 +123,13 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
     meldung.append(u"Ignorierte Spalten: %s" % ", ".join(ungueltig))
     meldung.append(u"")
 
-    #print "mit PK?", mitpk
+    # print "mit PK?", mitpk
 
-    #print alle
-    #print ungueltig
-    #print fk
-    #print numerisch
-    #print daten
+    # print alle
+    # print ungueltig
+    # print fk
+    # print numerisch
+    # print daten
 
     if len(alle) == 0:
         # Nichts zu importieren, ungueltige Daten
@@ -140,31 +144,36 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
     fehler = 0
 
     for row in reader:
-        #log("%d" % summe)
+        # log("%d" % summe)
         orig = row.copy()
         try:
             for u in ungueltig:
                 del row[u]
 
-
-            for c in computed.keys(): # Berechnete Werte eintragen
-                e = computed[c] # Ausdruck
-                v = eval(e) # Wert
+            for c in computed.keys():  # Berechnete Werte eintragen
+                e = computed[c]  # Ausdruck
+                v = eval(e)  # Wert
                 row[c] = v
 
             fkerror = False
-            for f in fk.keys(): # Jetzt die referenzierten Objekte bestimmen
+            for f in fk.keys():  # Jetzt die referenzierten Objekte bestimmen
                 fkklass, fkcol = fk[f]
                 if row[f]:
                     try:
                         if f in numerisch:
-                            r = fkklass.query.filter(fkcol == int(row[f])).one() # FIXME: das funktioniert nur fuer Zeichenketten-Spalten
+                            r = fkklass.query.filter(
+                                fkcol == int(row[f])
+                            ).one()  # FIXME: das funktioniert nur fuer Zeichenketten-Spalten
                         else:
-                            r = fkklass.query.filter(fkcol == row[f]).one() # FIXME: das funktioniert nur fuer Zeichenketten-Spalten
+                            r = fkklass.query.filter(
+                                fkcol == row[f]
+                            ).one()  # FIXME: das funktioniert nur fuer Zeichenketten-Spalten
                         row[f] = r
                     except Exception, e:
-                        #print e
-                        meldung.append(u"Kein Verweis '%s' gefunden - ignoriert" % row[f])
+                        # print e
+                        meldung.append(
+                            u"Kein Verweis '%s' gefunden - ignoriert" % row[f]
+                        )
                         meldung.append(u"Daten: %s" % safe_unicode(str(orig)))
                         meldung.append(u"")
                         fkerror = True
@@ -200,7 +209,7 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
                     elif v == 'False':
                         v = False
                     else:
-                        try: # Es sollte eine Zahl sein
+                        try:  # Es sollte eine Zahl sein
                             v = int(v)
                             if v:
                                 v = True
@@ -212,18 +221,18 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
                 else:
                     row[n] = False
 
-            if not mitpk: # INSERT
+            if not mitpk:  # INSERT
                 # print "INSERT"
                 # TODO: hier ggf. unique Spalten checken
                 if unique:
                     uk_ok = True
                     ukvals = {}
                     for f in unique:
-                        if not row[f]: # Wert fehlt
+                        if not row[f]:  # Wert fehlt
                             uk_ok = False
                         else:
                             ukvals[f] = row[f]
-                    if uk_ok: # Werte zum Check vorhanden
+                    if uk_ok:  # Werte zum Check vorhanden
                         obj = tool.objektdatensatz(typ, **ukvals)
                         if obj:
                             # Es gibt schon einen Eintrag.
@@ -238,7 +247,7 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
                     transaction.commit()
                     inserts += 1
                 except Exception, e:
-                    #print e
+                    # print e
                     transaction.abort()
                     meldung.append(u"Fehler: %s" % str(e))
                     meldung.append("Daten: %s" % safe_unicode(str(orig)))
@@ -246,29 +255,34 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
                     fehler += 1
                     summe += 1
                     continue
-            else: # potentiell UPDATE
+            else:  # potentiell UPDATE
                 # Sind die PK Felder auch gefuellt fuer die Zeile?
                 pk_ok = True
                 pkvals = {}
                 for f in pkfields:
-                    if not row[f]: # Wert fehlt
+                    if not row[f]:  # Wert fehlt
                         pk_ok = False
                     else:
                         pkvals[f] = row[f]
                         del row[f]
-                if pk_ok: # UPDATE
+                if pk_ok:  # UPDATE
                     obj = tool.objektdatensatz(typ, **pkvals)
                     if obj:
                         for cn in row.keys():
-                            if not updatespalten or cn in updatespalten: # Ggf. nur ein Subset updaten
+                            if (
+                                not updatespalten or cn in updatespalten
+                            ):  # Ggf. nur ein Subset updaten
                                 c = row[cn]
                                 setattr(obj, cn, c)
                         notify(ObjectChangedEvent(obj, tool, {}, context))
                         transaction.commit()
                         updates += 1
                     else:
-#                        fehler += 1
-                        meldung.append(u"Kein Objekt zum Schlüssel %s gefunden - neu angelegt" % str(pkvals))
+                        #                        fehler += 1
+                        meldung.append(
+                            u"Kein Objekt zum Schlüssel %s gefunden - neu angelegt"
+                            % str(pkvals)
+                        )
                         meldung.append(u"Daten: %s" % safe_unicode(str(orig)))
                         meldung.append(u"")
                         neu = klass(**row)
@@ -277,7 +291,7 @@ def genericImportFromCSV(tool, file, typ, request, delimiter=';', updatespalten=
                             setattr(neu, f, c)
                         transaction.commit()
                         inserts += 1
-                else: # INSERT
+                else:  # INSERT
                     neu = klass(**row)
                     notify(ObjectAddedEvent(neu, tool, row, context))
                     transaction.commit()

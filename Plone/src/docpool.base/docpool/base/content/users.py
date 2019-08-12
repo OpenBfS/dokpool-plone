@@ -34,19 +34,19 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IUsers(form.Schema):
     """
     """
 
 
-
 class Users(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IUsers)
-
 
     def myUsers(self):
         """
@@ -70,8 +70,6 @@ class Users(Container):
     def getUserFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'UserFolder'}
+        args = {'portal_type': 'UserFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

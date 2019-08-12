@@ -15,17 +15,30 @@ from plone.app.layout.viewlets import common
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 
-from menu import DropDownMenuQueryBuilder, actions_category, actions_tabs_level, \
-    caching_strategy, content_before_actions_tabs, content_tabs_level, enable_caching, \
-    nested_category_prefix, nested_category_sufix, show_actions_tabs, show_content_tabs,\
-    show_nonfolderish_tabs
+from menu import (
+    DropDownMenuQueryBuilder,
+    actions_category,
+    actions_tabs_level,
+    caching_strategy,
+    content_before_actions_tabs,
+    content_tabs_level,
+    enable_caching,
+    nested_category_prefix,
+    nested_category_sufix,
+    show_actions_tabs,
+    show_content_tabs,
+    show_nonfolderish_tabs,
+)
 
 from time import time
 from plone.memoize import ram
 import copy
-from docpool.menu.utils import getFoldersForCurrentUser,\
-    getApplicationDocPoolsForCurrentUser
+from docpool.menu.utils import (
+    getFoldersForCurrentUser,
+    getApplicationDocPoolsForCurrentUser,
+)
 from Products.CMFPlone.i18nl10n import utranslate
+
 
 def menu_cache_key(f, view):
     # menu cache key conssits of:
@@ -33,8 +46,9 @@ def menu_cache_key(f, view):
     # - site can be accessed on different domains
     # - language is important for multilingua sites
 
-    portal_state = getMultiAdapter((view.context, view.request),
-                                   name=u'plone_portal_state')
+    portal_state = getMultiAdapter(
+        (view.context, view.request), name=u'plone_portal_state'
+    )
     site_len = len(portal_state.navigation_root_path().split('/'))
     content_path = view.context.getPhysicalPath()[site_len:]
     if content_tabs_level > 0:
@@ -45,18 +59,14 @@ def menu_cache_key(f, view):
 
     # Cache for five minutes. Note that the HTTP RAM-cache
     # typically purges entries after 60 minutes.
-    return view.__name__ + \
-        path_key + \
-        language + \
-        str(time() // (60 * 5))
+    return view.__name__ + path_key + language + str(time() // (60 * 5))
 
 
 # we are caching the menu structure built out of portal_actions tool
 # this cache key does not take in account expressions and roles settings
 def tabs_cache_key(f, view, site_url):
     portal_state = getMultiAdapter(
-        (view.context, view.request),
-        name=u'plone_portal_state',
+        (view.context, view.request), name=u'plone_portal_state'
     )
     language = portal_state.locale().getLocaleID()
     return site_url + language + str(time() // (60 * 60))
@@ -64,15 +74,19 @@ def tabs_cache_key(f, view, site_url):
 
 def dropdowncache(f):
     def func(view):
-        portal_state = getMultiAdapter((view.context, view.request),
-                                       name=u'plone_portal_state')
+        portal_state = getMultiAdapter(
+            (view.context, view.request), name=u'plone_portal_state'
+        )
         # it is impossible to reliably cache entire rendered menu generated
         # with potral actions strategy.
-        if not enable_caching or show_actions_tabs or \
-            (not portal_state.anonymous() and
-                caching_strategy == 'anonymous'):
+        if (
+            not enable_caching
+            or show_actions_tabs
+            or (not portal_state.anonymous() and caching_strategy == 'anonymous')
+        ):
             return f(view)
         return ram.cache(menu_cache_key)(f)(view)
+
     return func
 
 
@@ -81,6 +95,7 @@ def tabscache(f):
         if not enable_caching:
             return f(view, site_url)
         return ram.cache(tabs_cache_key)(f)(view, site_url)
+
     return func
 
 
@@ -95,14 +110,18 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         # prepare to gather portal tabs
         context = aq_inner(self.context)
         self.tool = getToolByName(context, 'portal_actions')
-        plone_portal_state = getMultiAdapter((self.context, self.request),
-                                             name="plone_portal_state")
+        plone_portal_state = getMultiAdapter(
+            (self.context, self.request), name="plone_portal_state"
+        )
         self.site_url = plone_portal_state.navigation_root_url()
-        context_state = getMultiAdapter((self.context, self.request),
-                                        name="plone_context_state")
-        self.context_url = context_state.is_default_page() and \
-            '/'.join(self.context.absolute_url().split('/')[:-1]) or \
-            self.context.absolute_url()
+        context_state = getMultiAdapter(
+            (self.context, self.request), name="plone_context_state"
+        )
+        self.context_url = (
+            context_state.is_default_page()
+            and '/'.join(self.context.absolute_url().split('/')[:-1])
+            or self.context.absolute_url()
+        )
 
         self.cat_sufix = nested_category_sufix or ''
         self.cat_prefix = nested_category_prefix or ''
@@ -121,8 +140,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                 tabs = self._content_tabs() + tabs
             else:
                 tabs.extend(self._content_tabs())
-        
-        
+
         for tab in tabs:
             if tab['id'].find('config') != -1:
                 tab['item_class'] = "config"
@@ -134,7 +152,6 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             apds.extend(tabs)
             tabs = apds
 
-        
         if not self.context.isArchive():
             ffu = getFoldersForCurrentUser(self.context)
             if ffu:
@@ -142,17 +159,21 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     if not f.has_key('item_class'):
                         f['item_class'] = "personal"
                 tabs.append(
-                    {'id': 'content',
-                     'Title': utranslate("docpool.base", "Content Area", context=self.context),
-                     'Description': '',
-                     'getURL': '',
-                     'show_children': True,
-                     'children': ffu,
-                     'currentItem': False,
-                     'item_class': 'contentarea',
-                     'currentParent': self.context.isPersonal(),
-                     'normalized_review_state': 'visible'}
-                            )
+                    {
+                        'id': 'content',
+                        'Title': utranslate(
+                            "docpool.base", "Content Area", context=self.context
+                        ),
+                        'Description': '',
+                        'getURL': '',
+                        'show_children': True,
+                        'children': ffu,
+                        'currentItem': False,
+                        'item_class': 'contentarea',
+                        'currentParent': self.context.isPersonal(),
+                        'normalized_review_state': 'visible',
+                    }
+                )
         return tabs
 
     def _actions_tabs(self):
@@ -186,8 +207,9 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         active = active and self.context_url == self.site_url
         active = listtabs[current_item]['url'] != self.site_url or active
         if current_item > -1 and current_item < len(listtabs) and active:
-            self.mark_active(listtabs[current_item]['id'],
-                             listtabs[current_item]['url'])
+            self.mark_active(
+                listtabs[current_item]['id'], listtabs[current_item]['url']
+            )
         self._activate(res)
         return res
 
@@ -207,34 +229,40 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     if subcat_id != info['id'] and in_category:
                         subcat = category._getOb(subcat_id)
                         if IActionCategory.providedBy(subcat):
-                            children = normalize_actions(subcat, object,
-                                                         level + 1,
-                                                         info['url'])
+                            children = normalize_actions(
+                                subcat, object, level + 1, info['url']
+                            )
 
                 parent_id = category.getId()
                 parent_id = parent_id.replace(self.cat_prefix, '')
                 parent_id = parent_id.replace(self.cat_sufix, '')
-                tab = {'id': info['id'],
-                       'title': info['title'],
-                       'url': info['url'],
-                       'parent': (parent_id, parent_url)}
+                tab = {
+                    'id': info['id'],
+                    'title': info['title'],
+                    'url': info['url'],
+                    'parent': (parent_id, parent_url),
+                }
                 tabslist.append(tab)
 
-                tab = {'id': info['id'],
-                       'Title': info['title'],
-                       'Description': info['description'],
-                       'getURL': info['url'],
-                       'show_children': len(children) > 0,
-                       'children': children,
-                       'currentItem': False,
-                       'currentParent': False,
-                       'item_icon': {'html_tag': icon},
-                       'normalized_review_state': 'visible'}
+                tab = {
+                    'id': info['id'],
+                    'Title': info['title'],
+                    'Description': info['description'],
+                    'getURL': info['url'],
+                    'show_children': len(children) > 0,
+                    'children': children,
+                    'currentItem': False,
+                    'currentParent': False,
+                    'item_icon': {'html_tag': icon},
+                    'normalized_review_state': 'visible',
+                }
                 tabs.append(tab)
             return tabs
+
         tabslist = []
-        tabs = normalize_actions(self.tool._getOb(actions_category),
-                                 aq_inner(self.context), 0)
+        tabs = normalize_actions(
+            self.tool._getOb(actions_category), aq_inner(self.context), 0
+        )
         return tabs, tabslist
 
     def _activate(self, res):
@@ -252,12 +280,22 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                 self.mark_active(info['parent'][0], info['parent'][1])
                 self.id_chain.append(info['url'])
 
-    def _actionInfos(self, category, object, check_visibility=1,
-                     check_permissions=1, check_condition=1, max=-1):
+    def _actionInfos(
+        self,
+        category,
+        object,
+        check_visibility=1,
+        check_permissions=1,
+        check_condition=1,
+        max=-1,
+    ):
         """Return action infos for a given category"""
         ec = self.tool._getExprContext(object)
-        actions = [ActionInfo(action, ec) for action in category.objectValues()
-                   if IAction.providedBy(action)]
+        actions = [
+            ActionInfo(action, ec)
+            for action in category.objectValues()
+            if IAction.providedBy(action)
+        ]
 
         action_infos = []
         for ai in actions:
@@ -286,11 +324,11 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         if strategy.rootPath is not None and strategy.rootPath.endswith("/"):
             strategy.rootPath = strategy.rootPath[:-1]
 
-        return buildFolderTree(context, obj=context, query=queryBuilder(),
-                               strategy=strategy).get('children', [])
+        return buildFolderTree(
+            context, obj=context, query=queryBuilder(), strategy=strategy
+        ).get('children', [])
 
     @dropdowncache
     def createMenu(self):
         html = self.recurse(children=self.portal_tabs(), level=1)
         return xhtmlslimmer.compress(html).strip(' \n')
-

@@ -24,5 +24,3 @@ class dbadminView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('dbadmin.pt')
-
-

@@ -24,5 +24,3 @@ class SRTextBlockView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('srtextblock.pt')
-
-

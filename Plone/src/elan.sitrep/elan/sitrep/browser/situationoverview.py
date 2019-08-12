@@ -24,5 +24,3 @@ class SituationOverviewView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('situationoverview.pt')
-
-

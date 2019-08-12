@@ -11,6 +11,7 @@ import Acquisition
 from Acquisition import aq_base
 from Products.Archetypes.utils import shasattr
 
+
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
     def __call__(self, request, *args, **kwargs):
         if not kwargs.has_key('args'):
@@ -28,7 +29,8 @@ class FlexibleView(BrowserView):
         @param request:
         """
         super(FlexibleView, self).__init__(context, request)
-#        self.extensions = self.context.myExtensions(request)
+
+    #        self.extensions = self.context.myExtensions(request)
 
     def currentApplication(self):
         """
@@ -61,18 +63,15 @@ class FlexibleView(BrowserView):
 
         if app:
             names = [
-                    "%s_%s_%s" % (app, dtid, vtype),
-                    "%s_%s" % (app, vtype),
-                    "%s_%s" % (dtid, vtype),
-                    "doc_%s" % vtype
-        ]
-        else:
-            names = [
+                "%s_%s_%s" % (app, dtid, vtype),
+                "%s_%s" % (app, vtype),
                 "%s_%s" % (dtid, vtype),
-                "doc_%s" % vtype
+                "doc_%s" % vtype,
             ]
-        #for n in names:
-            # print n
+        else:
+            names = ["%s_%s" % (dtid, vtype), "doc_%s" % vtype]
+        # for n in names:
+        # print n
         for n in names:
             if shasattr(dto, n, acquire=True):
                 o = aq_base(getattr(dto, n))
@@ -97,5 +96,6 @@ class FlexibleView(BrowserView):
         # BUT: code included via macros works!
         options = extendOptions(self.context, self.request, options)
         # Debug here
-        return template(view=self, context=self.context, request=self.request, **options)
-
+        return template(
+            view=self, context=self.context, request=self.request, **options
+        )

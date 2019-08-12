@@ -36,15 +36,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IReviewFolder(form.Schema, ISimpleFolder):
     """
     """
 
 
-
 class ReviewFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IReviewFolder)
@@ -55,7 +56,9 @@ class ReviewFolder(Container, SimpleFolder):
         log("Creating Review Folder")
         placeful_wf = getToolByName(self, 'portal_placeful_workflow')
         try:
-            self.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+            self.manage_addProduct[
+                'CMFPlacefulWorkflow'
+            ].manage_addWorkflowPolicyConfig()
         except BadRequest, e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
@@ -88,15 +91,13 @@ class ReviewFolder(Container, SimpleFolder):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getReviewFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'ReviewFolder'}
+        args = {'portal_type': 'ReviewFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

@@ -15,7 +15,9 @@ class ISystemAPI(Interface):
 
     spec_id = Attribute("The identification name of the specification.")
     spec_version = Attribute("A version number.")
-    spec_url = Attribute("URL where the specification and detailed description can be found.")
+    spec_url = Attribute(
+        "URL where the specification and detailed description can be found."
+    )
 
     def get_capabilities():
         """
@@ -97,7 +99,6 @@ class IApplicationAPI(Interface):
 
 
 class ITypes(Interface):
-
     def get_types(path=''):
         """
         get_types returns a list of addable types for a given context.
@@ -105,7 +106,6 @@ class ITypes(Interface):
 
 
 class IWorkflow(Interface):
-
     def get_workflow(path=''):
         """
         get_workflow returns the workflow state of the object.
@@ -118,7 +118,6 @@ class IWorkflow(Interface):
 
 
 class IDiscussion(Interface):
-
     def get_discussion(path=''):
         """
         get_discussion return the DiscussionItemContainer for the object^

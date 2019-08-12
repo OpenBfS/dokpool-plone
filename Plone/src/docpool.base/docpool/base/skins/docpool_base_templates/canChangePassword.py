@@ -10,6 +10,7 @@
 try:
     from plone import api
     from docpool.base.utils import getGroupsForCurrentUser
+
     roles = api.user.get_roles(obj=context)
     if roles and "Reader" in roles:
         gs = getGroupsForCurrentUser(context)

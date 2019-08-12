@@ -7,14 +7,18 @@ from zope.interface import Interface, implements
 from zope.component.interfaces import ObjectEvent
 from Products.CMFPlone.utils import log, log_exc
 
+
 class IObjectAddedEvent(Interface):
     pass
+
 
 class IObjectChangedEvent(Interface):
     pass
 
+
 class IObjectDeletedEvent(Interface):
     pass
+
 
 class ObjectAddedEvent(ObjectEvent):
     implements(IObjectAddedEvent)
@@ -24,7 +28,10 @@ class ObjectAddedEvent(ObjectEvent):
         self.tool = tool
         self.data = data
         self.context = context
+
+
 #        log('ObjectAddedEvent -> docpool.dbaccess.content.events')
+
 
 class ObjectChangedEvent(ObjectEvent):
     implements(IObjectChangedEvent)
@@ -35,7 +42,10 @@ class ObjectChangedEvent(ObjectEvent):
         self.diff = diff
         self.context = context
         self.comment = comment
+
+
 #        log('ObjectChangedEvent -> docpool.dbaccess.content.events')
+
 
 class ObjectDeletedEvent(ObjectEvent):
     implements(IObjectDeletedEvent)
@@ -44,5 +54,6 @@ class ObjectDeletedEvent(ObjectEvent):
         ObjectEvent.__init__(self, object)
         self.tool = tool
         self.context = context
+
+
 #        log('ObjectDeletedEvent -> docpool.dbaccess.content.events')
-    

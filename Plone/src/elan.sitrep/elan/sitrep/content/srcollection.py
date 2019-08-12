@@ -35,18 +35,16 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRCollection(form.Schema, IELANDocCollection):
     """
     """
 
 
-
 class SRCollection(Item, ELANDocCollection):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRCollection)
-
-
-

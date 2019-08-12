@@ -24,5 +24,3 @@ class ELANArchiveView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('elanarchive.pt')
-
-

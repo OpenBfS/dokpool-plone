@@ -9,33 +9,36 @@ from docpool.base.utils import checkLocalRole
 
 from docpool.dbaccess.interfaces import IProtectedEntityClass
 
+
 class IELANProtectedEntityClass(IProtectedEntityClass):
     pass
+
 
 class IRIXSecurity(DefaultSecurity):
     """
     """
+
     implements(IDataSecurity)
-    #adapts(ISubscriptionSupport)
+    # adapts(ISubscriptionSupport)
     adapts(IELANProtectedEntityClass, IBasicUser)
-    
+
     def __init__(self, klass, user):
         DefaultSecurity.__init__(self, klass, user)
         self.isManager = user.has_role("Manager") or user.has_role("Site Administrator")
-        
+
     def can_access(self):
         return self.isManager
-            
+
     def can_delete(self, item):
         """
         """
         return self.isManager
-    
+
     def can_delete_all(self):
         """
         """
-        return self.isManager          
-    
+        return self.isManager
+
     def can_update(self, item):
         """
         """

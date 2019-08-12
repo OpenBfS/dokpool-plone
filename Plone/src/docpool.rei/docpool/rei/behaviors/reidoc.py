@@ -8,7 +8,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform.directives import read_permission, write_permission
 from plone.autoform import directives as form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
-#from plone.directives import form
+
+# from plone.directives import form
 from zope.interface import provider, implementer
 from zope import schema
 from docpool.base import DocpoolMessageFactory as _
@@ -25,7 +26,6 @@ from docpool.rei import DocpoolMessageFactory as _
 
 from Acquisition import aq_inner
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
-
 
 
 @provider(IFormFieldProvider)
@@ -54,7 +54,7 @@ class IREIDoc(IDocumentExtension):
     ReiLegalBase = schema.Choice(
         title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
         description=_(u'description_rei_ReiLegalBase', default=u''),
-        source= "docpool.rei.vocabularies.ReiLegalBaseVocabulary",
+        source="docpool.rei.vocabularies.ReiLegalBaseVocabulary",
         required=True,
     )
     read_permission(ReiLegalBase='docpool.rei.AccessRei')
@@ -75,7 +75,7 @@ class IREIDoc(IDocumentExtension):
     Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
         description=_(u'description_rei_Year', default=u''),
-        source= "docpool.rei.vocabularies.YearVocabulary",
+        source="docpool.rei.vocabularies.YearVocabulary",
         required=True,
     )
     read_permission(Year='docpool.rei.AccessRei')
@@ -139,9 +139,6 @@ class IREIDoc(IDocumentExtension):
     dexteritytextindexer.searchable('PdfVersion')
 
 
-    
-
-
 class REIDoc(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
 
@@ -163,7 +160,7 @@ class REIDoc(FlexibleView):
         context.StartSampling = value
 
     StartSampling = property(_get_rei_StartSampling, _set_rei_StartSampling)
-    
+
     def _get_rei_StopSampling(self):
         return getInheritedValue(self, "StopSampling")
 
@@ -174,7 +171,7 @@ class REIDoc(FlexibleView):
         context.StopSampling = value
 
     StopSampling = property(_get_rei_StopSampling, _set_rei_StopSampling)
-    
+
     def _get_rei_FederalState(self):
         return getInheritedValue(self, "FederalState")
 
@@ -185,7 +182,7 @@ class REIDoc(FlexibleView):
         context.FederalState = value
 
     FederalState = property(_get_rei_FederalState, _set_rei_FederalState)
-    
+
     def _get_rei_Operator(self):
         return getInheritedValue(self, "Operator")
 
@@ -207,7 +204,7 @@ class REIDoc(FlexibleView):
         context.MstId = value
 
     MstId = property(_get_rei_MstId, _set_rei_MstId)
-    
+
     def _get_rei_ReiLegalBase(self):
         return getInheritedValue(self, "ReiLegalBase")
 
@@ -218,7 +215,7 @@ class REIDoc(FlexibleView):
         context.ReiLegalBase = value
 
     ReiLegalBase = property(_get_rei_ReiLegalBase, _set_rei_ReiLegalBase)
-    
+
     def _get_rei_Year(self):
         return getInheritedValue(self, "Year")
 
@@ -229,7 +226,7 @@ class REIDoc(FlexibleView):
         context.Year = value
 
     Year = property(_get_rei_Year, _set_rei_Year)
-    
+
     def _get_rei_Period(self):
         return getInheritedValue(self, "Period")
 
@@ -240,7 +237,7 @@ class REIDoc(FlexibleView):
         context.Period = value
 
     Period = property(_get_rei_Period, _set_rei_Period)
-    
+
     def _get_rei_Media(self):
         return getInheritedValue(self, "Media")
 
@@ -251,7 +248,7 @@ class REIDoc(FlexibleView):
         context.Media = value
 
     Media = property(_get_rei_Media, _set_rei_Media)
-    
+
     def _get_rei_NuclearInstallation(self):
         return getInheritedValue(self, "NuclearInstallation")
 
@@ -261,8 +258,10 @@ class REIDoc(FlexibleView):
         context = aq_inner(self.context)
         context.NuclearInstallation = value
 
-    NuclearInstallation = property(_get_rei_NuclearInstallation, _set_rei_NuclearInstallation)
-    
+    NuclearInstallation = property(
+        _get_rei_NuclearInstallation, _set_rei_NuclearInstallation
+    )
+
     def _get_rei_PdfVersion(self):
         return getInheritedValue(self, "PdfVersion")
 

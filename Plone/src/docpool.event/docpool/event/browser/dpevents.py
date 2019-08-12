@@ -17,5 +17,3 @@ class DPEventsView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('dpevents.pt')
-
-

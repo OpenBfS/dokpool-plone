@@ -8,14 +8,19 @@ from elixir import *
 db_string = os.environ.get('ELANDB', 'elan')
 db_host = os.environ.get('ELANHOST', 'localhost')
 db_complete = os.environ.get('ELANENGINE', None)
-__metadata__ = metadata 
+__metadata__ = metadata
 if db_complete:
     __metadata__.bind = create_engine("%s" % (db_complete), echo=False)
 else:
-    __metadata__.bind = create_engine("postgres://elan:elan@%s:5432/%s" % (db_host, db_string), echo=False) 
-__session__ = scoped_session(sessionmaker(bind=__metadata__.bind, 
-                                          autocommit=False,
-                                          twophase=False,
-                                          autoflush=True, 
-                                          extension=ZopeTransactionExtension()
-                                          ))
+    __metadata__.bind = create_engine(
+        "postgres://elan:elan@%s:5432/%s" % (db_host, db_string), echo=False
+    )
+__session__ = scoped_session(
+    sessionmaker(
+        bind=__metadata__.bind,
+        autocommit=False,
+        twophase=False,
+        autoflush=True,
+        extension=ZopeTransactionExtension(),
+    )
+)

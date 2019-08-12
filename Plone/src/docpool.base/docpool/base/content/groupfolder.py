@@ -35,15 +35,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IGroupFolder(form.Schema, ISimpleFolder):
     """
     """
 
 
-
 class GroupFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IGroupFolder)
@@ -77,43 +78,41 @@ class GroupFolder(Container, SimpleFolder):
     def getCollaborationFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'CollaborationFolder'}
+        args = {'portal_type': 'CollaborationFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getPrivateFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'PrivateFolder'}
+        args = {'portal_type': 'PrivateFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getReviewFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'ReviewFolder'}
+        args = {'portal_type': 'ReviewFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSimpleFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'SimpleFolder'}
+        args = {'portal_type': 'SimpleFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

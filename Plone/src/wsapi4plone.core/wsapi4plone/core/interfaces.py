@@ -1,8 +1,12 @@
 from zope.interface.interfaces import IInterface
 from zope.interface import Interface, Attribute
 
-from wsapi4plone.core.utilities.interfaces import (IScrubber, IContextBuilder,
-    IServiceLookup, IFormatQueryResults)
+from wsapi4plone.core.utilities.interfaces import (
+    IScrubber,
+    IContextBuilder,
+    IServiceLookup,
+    IFormatQueryResults,
+)
 
 
 class IService(Interface):
@@ -41,7 +45,6 @@ class IService(Interface):
 
 
 class IServiceContainer(IService):
-
     def create_object(type_name, id_):
         """Create a child object of the parent object given the type_name and
         name it with id_."""
@@ -58,8 +61,9 @@ class IServiceExtension(IInterface):
 class IExtension(Interface):
     """An extension that adapts both a service and content object."""
 
-    provides_callback = Attribute("Boolean value that defines whether"
-                                  "this extension provides callback support.")
+    provides_callback = Attribute(
+        "Boolean value that defines whether" "this extension provides callback support."
+    )
 
     def get():
         """Retrieves the extensions results."""

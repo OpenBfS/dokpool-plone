@@ -9,6 +9,7 @@ from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.Archetypes.utils import shasattr
 from zope.component import getMultiAdapter
 
+
 class VocabItem(object):
     def __init__(self, token, value):
         self.token = token
@@ -18,6 +19,7 @@ class VocabItem(object):
 class PrognosisTypesVocabulary(object):
     """
     """
+
     implements(IVocabularyFactory)
 
     def __call__(self, context):
@@ -29,11 +31,14 @@ class PrognosisTypesVocabulary(object):
 
         return SimpleVocabulary(items)
 
+
 PrognosisTypesVocabularyFactory = PrognosisTypesVocabulary()
+
 
 class PrognosisFormsVocabulary(object):
     """
     """
+
     implements(IVocabularyFactory)
 
     def __call__(self, context):
@@ -44,11 +49,14 @@ class PrognosisFormsVocabulary(object):
 
         return SimpleVocabulary(items)
 
+
 PrognosisFormsVocabularyFactory = PrognosisFormsVocabulary()
+
 
 class ReleaseSitesVocabulary(object):
     """
     """
+
     implements(IVocabularyFactory)
 
     def __call__(self, context):
@@ -76,8 +84,8 @@ class ReleaseSitesVocabulary(object):
 
         return SimpleVocabulary(items)
 
-ReleaseSitesVocabularyFactory = ReleaseSitesVocabulary()
 
+ReleaseSitesVocabularyFactory = ReleaseSitesVocabulary()
 
 
 allow_module("docpool.rodos.vocabularies")

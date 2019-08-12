@@ -11,7 +11,8 @@ from Products.CMFCore.permissions import setDefaultRoles
 from AccessControl import allow_class
 
 from AccessControl import allow_module
-allow_module("docpool.elan.config");
+
+allow_module("docpool.elan.config")
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
@@ -21,6 +22,7 @@ DocpoolMessageFactory = MessageFactory('docpool.elan')
 allow_class(DocpoolMessageFactory)
 
 import appregistration
+
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

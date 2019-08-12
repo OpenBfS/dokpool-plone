@@ -21,9 +21,11 @@ DocpoolMessageFactory = MessageFactory('docpool.dbaccess')
 allow_class(DocpoolMessageFactory)
 
 from docpool.dbaccess.content.errors import ObjectDuplicateException
+
 allow_class(ObjectDuplicateException)
 allow_module("docpool.dbaccess")
 allow_module("docpool.dbaccess.utils")
+
 
 def initialize(context):
     """Intializer called when used as a Zope 2 product.

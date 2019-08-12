@@ -23,10 +23,10 @@ from docpool.base.interfaces import IDocTypeExtension
 
 from docpool.rei import DocpoolMessageFactory as _
 
+
 @provider(IFormFieldProvider)
 class IREIType(IDocTypeExtension):
     pass
-
 
 
 class REIType(object):
@@ -35,5 +35,3 @@ class REIType(object):
 
     def __init__(self, context):
         self.context = context
-
-

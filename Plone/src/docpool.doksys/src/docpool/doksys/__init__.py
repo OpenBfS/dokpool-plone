@@ -8,5 +8,3 @@ _ = DocpoolMessageFactory = MessageFactory('docpool.doksys')
 allow_class(DocpoolMessageFactory)
 
 import appregistration
-
-

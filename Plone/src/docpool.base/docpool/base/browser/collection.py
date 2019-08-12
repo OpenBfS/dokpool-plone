@@ -29,5 +29,6 @@ class CollectionlistitemView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('collectionlistitem.pt')
+
     def options(self):
         return extendOptions(self.context, self.request, {})

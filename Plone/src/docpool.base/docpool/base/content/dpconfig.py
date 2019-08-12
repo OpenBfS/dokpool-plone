@@ -34,19 +34,19 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IDPConfig(form.Schema):
     """
     """
 
 
-
 class DPConfig(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDPConfig)
-
 
     def myDPConfig(self):
         """
@@ -70,8 +70,6 @@ class DPConfig(Container):
     def getDocTypess(self, **kwargs):
         """
         """
-        args = {'portal_type':'DocTypes'}
+        args = {'portal_type': 'DocTypes'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

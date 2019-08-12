@@ -81,7 +81,7 @@ verbs = """can be defined in such a way as to impose
     is necessary to impose an interpretation on
     appears to correlate rather closely with
     is rather different from"""
-#List of VERBs chosen for autorecursive obfuscation.
+# List of VERBs chosen for autorecursive obfuscation.
 
 objects = """ problems of phonemic and morphological analysis.
     a corpus of utterance tokens upon which conformity has been defined by the paired utterance test.
@@ -104,6 +104,7 @@ objects = """ problems of phonemic and morphological analysis.
 
 import textwrap, random
 from itertools import chain, islice, izip
+
 
 def chomsky(times=1, line_length=72):
     parts = []

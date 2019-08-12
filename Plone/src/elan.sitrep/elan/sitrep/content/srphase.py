@@ -36,15 +36,16 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRPhase(form.Schema):
     """
     """
 
 
-
 class SRPhase(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRPhase)
@@ -53,19 +54,21 @@ class SRPhase(Container):
         """
         Index method
         """
-        return [ self.getId() ]
+        return [self.getId()]
 
     def getSRPhaseRefs(self):
         """
         Index method
         """
-        return [ self.UID() ]
+        return [self.UID()]
 
     def getPhaseTitle(self):
         """
         """
-        return u"%s: %s" % (self.mySRScenario().Title().decode('utf-8'), self.Title().decode('utf-8'))
-
+        return u"%s: %s" % (
+            self.mySRScenario().Title().decode('utf-8'),
+            self.Title().decode('utf-8'),
+        )
 
     def availableModuleConfigs(self):
         mtypes = self.modTypes()
@@ -76,8 +79,6 @@ class SRPhase(Container):
         for mc in mcs:
             res[mc.modType] = mc
         return res
-
-
 
     def mySRPhase(self):
         """
@@ -101,7 +102,7 @@ class SRPhase(Container):
     def getSRModuleConfigs(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModuleConfig'}
+        args = {'portal_type': 'SRModuleConfig'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 

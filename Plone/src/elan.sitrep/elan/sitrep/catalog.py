@@ -19,6 +19,7 @@ class ISRCatalog(Interface):
     """
     """
 
+
 class SRCatalog(CatalogTool):
     """
     A specific SR catalog tool
@@ -32,13 +33,13 @@ class SRCatalog(CatalogTool):
     plone_tool = 1
 
     security = ClassSecurityInfo()
-    _properties = (
-      {'id':'title', 'type': 'string', 'mode':'w'},)
+    _properties = ({'id': 'title', 'type': 'string', 'mode': 'w'},)
 
     def __init__(self):
         ZCatalog.__init__(self, self.id)
 
     security.declarePublic('enumerateIndexes')
+
     def enumerateIndexes(self):
         """Returns indexes used by catalog"""
         return (
@@ -55,10 +56,10 @@ class SRCatalog(CatalogTool):
             ('review_state', 'FieldIndex', ()),
             ('sortable_title', 'FieldIndex', ()),
             ('allowedRolesAndUsers', 'DPLARAUIndex', ()),
-            )
-        
+        )
 
     security.declareProtected(ManagePortal, 'clearFindAndRebuild')
+
     def clearFindAndRebuild(self):
         """Empties catalog, then finds all contentish objects (i.e. objects
            with an indexObject method), and reindexes them.
@@ -71,15 +72,22 @@ class SRCatalog(CatalogTool):
 
         cat = getToolByName(self, 'portal_catalog')
         # FIXME: Probably only SRTextBlock is needed here...
-        brains = cat({'portal_type': ("SRScenario",
-                                       "SRPhase",
-                                       "SRModuleConfig",
-                                       "SRTextBlock",
-                                       "SituationReport",
-                                       "SRModule") } )
+        brains = cat(
+            {
+                'portal_type': (
+                    "SRScenario",
+                    "SRPhase",
+                    "SRModuleConfig",
+                    "SRTextBlock",
+                    "SituationReport",
+                    "SRModule",
+                )
+            }
+        )
         for brain in brains:
             obj = brain.getObject()
             if obj:
                 self._reindexObject(obj)
+
 
 InitializeClass(SRCatalog)

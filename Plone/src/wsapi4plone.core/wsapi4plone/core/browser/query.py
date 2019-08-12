@@ -15,6 +15,7 @@ from wsapi4plone.core.interfaces import IFormatQueryResults
 
 import DateTime
 
+
 def _convert_datetime(datetime):
     """
     Convert xmlrpclib.DateTime objects into DateTime.DateTime objects
@@ -39,7 +40,7 @@ class Query(object):
         """
         # marshal xmlrpclib.DateTime objects into Zope DateTime.DateTime
         # objects so that DateIndex searching works properly
-        for k,v in filtr.items():
+        for k, v in filtr.items():
             if type(v) == type({}):
                 if v.has_key('query'):
                     filtr[k]['query'] = [
@@ -49,5 +50,7 @@ class Query(object):
         catalog = getToolByName(getSite(), 'portal_catalog')
         brains = catalog(filtr)
         formatter = getUtility(IFormatQueryResults)
-        self.logger.info("- query - Searching catalog with this search criteria: %s." % (filtr))
+        self.logger.info(
+            "- query - Searching catalog with this search criteria: %s." % (filtr)
+        )
         return formatter(brains)

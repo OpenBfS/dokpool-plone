@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 
+
 def dpAdded(self):
     """
     @param self: 
@@ -10,6 +11,7 @@ def dpAdded(self):
     createExampleGroups(self)
     # TODO:
 
+
 def dpRemoved(self):
     """
     @param self:
@@ -17,6 +19,7 @@ def dpRemoved(self):
     """
     # TODO:
     return
+
 
 def createExampleGroups(self):
     """
@@ -30,13 +33,14 @@ def createExampleGroups(self):
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
     # Group for Example application rights
-    props = {'allowedDocTypes': [], 'title': 'Example Users (%s)' % title,
-             'description': 'Users with access to Example functions.',
-             'dp': self.UID()}
-    gtool.addGroup("%s_ExampleUsers" % prefix,
-               properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Example Users (%s)' % title,
+        'description': 'Users with access to Example functions.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_ExampleUsers" % prefix, properties=props)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ExampleUsers' % prefix)
 
     # Set Example role as a local role for the new group
     self.manage_setLocalRoles("%s_ExampleUsers" % prefix, ["ExampleUser"])
-

@@ -24,5 +24,3 @@ class SRConfigView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('srconfig.pt')
-
-

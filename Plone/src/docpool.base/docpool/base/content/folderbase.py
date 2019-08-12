@@ -38,15 +38,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IFolderBase(form.Schema, IContentBase):
     """
     """
 
 
-
 class FolderBase(Container, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IFolderBase)
@@ -67,7 +68,9 @@ class FolderBase(Container, ContentBase):
             wftool = getToolByName(self, 'portal_workflow')
             try:
                 wftool.doActionFor(doc, action)
-                if str(action) == 'publish': # when publishing we also publish any document inside the current document
+                if (
+                    str(action) == 'publish'
+                ):  # when publishing we also publish any document inside the current document
                     for subdoc in doc.getDPDocuments():
                         try:
                             wftool.doActionFor(subdoc, action)
@@ -114,15 +117,13 @@ class FolderBase(Container, ContentBase):
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
-        args = {'portal_type':'Image'}
+        args = {'portal_type': 'Image'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

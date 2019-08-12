@@ -36,7 +36,6 @@ import mimetypes
 from plone import api
 
 
-
 class DocMetaView(BrowserView):
     """Default view
     """

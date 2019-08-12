@@ -13,6 +13,7 @@ from Products.PloneTestCase import PloneTestCase
 
 from wsapi4plone.core.browser.app import ApplicationAPI
 
+
 class TestApp(PloneTestCase.PloneTestCase):
     """Testing the output of the app calls: {get, post, put, delete}_object."""
 
@@ -29,7 +30,10 @@ class TestApp(PloneTestCase.PloneTestCase):
         for path in get_obj_results:
             self.failUnless(type(get_obj_results[path][0]) == dict)
             self.failUnless(type(get_obj_results[path][1]) == str)
-            self.failUnless(type(get_obj_results[path][2]) == dict or get_obj_results[path][2] == None)
+            self.failUnless(
+                type(get_obj_results[path][2]) == dict
+                or get_obj_results[path][2] == None
+            )
 
     def test_anonymous_private_get_object(self):
         app = ApplicationAPI(self.portal, '')
@@ -72,11 +76,24 @@ class TestApp(PloneTestCase.PloneTestCase):
         for path in get_obj_results:
             self.failUnless(type(get_obj_results[path][0]) == dict)
             self.failUnless(type(get_obj_results[path][1]) == str)
-            self.failUnless(type(get_obj_results[path][2]) == dict or get_obj_results[path][2] == None)
+            self.failUnless(
+                type(get_obj_results[path][2]) == dict
+                or get_obj_results[path][2] == None
+            )
 
     def test_anonymous_post_object(self):
         app = ApplicationAPI(self.portal, '')
-        objs = {'news1': [{'description': 'News One', 'title': 'news1', 'text': '\n<p>Hot off the press!</p>\n', 'id': 'news1'}, 'News Item']}
+        objs = {
+            'news1': [
+                {
+                    'description': 'News One',
+                    'title': 'news1',
+                    'text': '\n<p>Hot off the press!</p>\n',
+                    'id': 'news1',
+                },
+                'News Item',
+            ]
+        }
         self.logout()
         try:
             app.post_object(objs)
@@ -90,7 +107,17 @@ class TestApp(PloneTestCase.PloneTestCase):
 
     def test_post_object_without_existing_parent_object(self):
         app = ApplicationAPI(self.portal, '')
-        objs = {'no_folder/news1': [{'description': 'News One', 'title': 'news1', 'text': '\n<p>Hot off the press!</p>\n', 'id': 'news1'}, 'News Item']}
+        objs = {
+            'no_folder/news1': [
+                {
+                    'description': 'News One',
+                    'title': 'news1',
+                    'text': '\n<p>Hot off the press!</p>\n',
+                    'id': 'news1',
+                },
+                'News Item',
+            ]
+        }
         self.login('test_user_1_')
         try:
             app.post_object(objs)
@@ -106,7 +133,17 @@ class TestApp(PloneTestCase.PloneTestCase):
     def test_post_object(self):
         resp = Response(FauxResponse())
         app = ApplicationAPI(self.portal, '')
-        objs = {'news1': [{'description': 'News One', 'title': 'news1', 'text': '\n<p>Hot off the press!</p>\n', 'id': 'news1'}, 'News Item']}
+        objs = {
+            'news1': [
+                {
+                    'description': 'News One',
+                    'title': 'news1',
+                    'text': '\n<p>Hot off the press!</p>\n',
+                    'id': 'news1',
+                },
+                'News Item',
+            ]
+        }
         self.login('test_user_1_')
         post_obj_data = app.post_object(objs)
         self.logout()
@@ -134,7 +171,17 @@ class TestApp(PloneTestCase.PloneTestCase):
 
     def test_put_object_without_existing_object(self):
         app = ApplicationAPI(self.portal, '')
-        objs = {'news1': [{'description': 'News One', 'title': 'news1', 'text': '\n<p>Hot off the press!</p>\n', 'id': 'news1'}, 'News Item']}
+        objs = {
+            'news1': [
+                {
+                    'description': 'News One',
+                    'title': 'news1',
+                    'text': '\n<p>Hot off the press!</p>\n',
+                    'id': 'news1',
+                },
+                'News Item',
+            ]
+        }
         self.login('test_user_1_')
         try:
             app.put_object(objs)
@@ -150,7 +197,14 @@ class TestApp(PloneTestCase.PloneTestCase):
     def test_put_object(self):
         resp = Response(FauxResponse())
         app = ApplicationAPI(self.portal, '')
-        objs = {'front-page': [{'text': "<p>Action and reaction, ebb and flow, trial and error, change - this is the rhythm of living. Out of our over-confidence, fear; out of our fear, clearer vision, fresh hope. And out of hope, progress.</p><br /> --<i>Bruce Barton</i>"}], '/plone/events': [{'description': 'What\'s up doc?'},]}
+        objs = {
+            'front-page': [
+                {
+                    'text': "<p>Action and reaction, ebb and flow, trial and error, change - this is the rhythm of living. Out of our over-confidence, fear; out of our fear, clearer vision, fresh hope. And out of hope, progress.</p><br /> --<i>Bruce Barton</i>"
+                }
+            ],
+            '/plone/events': [{'description': 'What\'s up doc?'}],
+        }
         self.login('test_user_1_')
         put_obj_data = app.put_object(objs)
         self.logout()
@@ -159,9 +213,16 @@ class TestApp(PloneTestCase.PloneTestCase):
         expected_resp = ['/plone/front-page', '/plone/events']
         self.failUnlessEqual(len(put_obj_resp[0]), len(expected_resp))
         for i in put_obj_resp[0]:
-            self.failUnless(i in expected_resp, "'%s' is not in %s?" % (i, expected_resp))
-        self.failUnlessEqual(self.portal['front-page']['text'].getRaw(), objs['front-page'][0]['text'])
-        self.failUnlessEqual(self.portal['events']['description'], objs['/plone/events'][0]['description'])
+            self.failUnless(
+                i in expected_resp, "'%s' is not in %s?" % (i, expected_resp)
+            )
+        self.failUnlessEqual(
+            self.portal['front-page']['text'].getRaw(), objs['front-page'][0]['text']
+        )
+        self.failUnlessEqual(
+            self.portal['events']['description'],
+            objs['/plone/events'][0]['description'],
+        )
 
     def test_anonymous_delete_object(self):
         app = ApplicationAPI(self.portal, '')
@@ -207,7 +268,6 @@ class TestApp(PloneTestCase.PloneTestCase):
 
 
 class TestSchema(PloneTestCase.PloneTestCase):
-
     def afterSetUp(self):
         self.setRoles(['Member', 'Manager'])
 
@@ -237,11 +297,42 @@ class TestSchema(PloneTestCase.PloneTestCase):
         self.logout()
 
         schema_results = schema_resp[0]
-        expected_results = {'startDate': {'required': True, 'type': 'datetime'}, 'endDate': {'required': True, 'type': 'datetime'}, 'contributors': {'required': False, 'type': 'lines'}, 'text': {'required': False, 'type': 'text'}, 'eventUrl': {'required': False, 'type': 'string'}, 'creation_date': {'required': False, 'type': 'datetime'}, 'contactEmail': {'required': False, 'type': 'string'}, 'expirationDate': {'required': False, 'type': 'datetime'}, 'contactName': {'required': False, 'type': 'string'}, 'contactPhone': {'required': False, 'type': 'string'}, 'id': {'required': 0, 'type': 'string'}, 'subject': {'required': False, 'type': 'lines'}, 'attendees': {'required': False, 'type': 'lines'}, 'modification_date': {'required': False, 'type': 'datetime'}, 'title': {'required': 1, 'type': 'string'}, 'relatedItems': {'required': False, 'type': 'reference'}, 'location': {'required': False, 'type': 'string'}, 'eventType': {'required': False, 'type': 'lines'}, 'excludeFromNav': {'required': False, 'type': 'boolean'}, 'description': {'required': False, 'type': 'text'}, 'effectiveDate': {'required': False, 'type': 'datetime'}, 'language': {'required': False, 'type': 'string'}, 'rights': {'required': False, 'type': 'text'}, 'allowDiscussion': {'required': False, 'type': 'boolean'}, 'creators': {'required': False, 'type': 'lines'}}
+        expected_results = {
+            'startDate': {'required': True, 'type': 'datetime'},
+            'endDate': {'required': True, 'type': 'datetime'},
+            'contributors': {'required': False, 'type': 'lines'},
+            'text': {'required': False, 'type': 'text'},
+            'eventUrl': {'required': False, 'type': 'string'},
+            'creation_date': {'required': False, 'type': 'datetime'},
+            'contactEmail': {'required': False, 'type': 'string'},
+            'expirationDate': {'required': False, 'type': 'datetime'},
+            'contactName': {'required': False, 'type': 'string'},
+            'contactPhone': {'required': False, 'type': 'string'},
+            'id': {'required': 0, 'type': 'string'},
+            'subject': {'required': False, 'type': 'lines'},
+            'attendees': {'required': False, 'type': 'lines'},
+            'modification_date': {'required': False, 'type': 'datetime'},
+            'title': {'required': 1, 'type': 'string'},
+            'relatedItems': {'required': False, 'type': 'reference'},
+            'location': {'required': False, 'type': 'string'},
+            'eventType': {'required': False, 'type': 'lines'},
+            'excludeFromNav': {'required': False, 'type': 'boolean'},
+            'description': {'required': False, 'type': 'text'},
+            'effectiveDate': {'required': False, 'type': 'datetime'},
+            'language': {'required': False, 'type': 'string'},
+            'rights': {'required': False, 'type': 'text'},
+            'allowDiscussion': {'required': False, 'type': 'boolean'},
+            'creators': {'required': False, 'type': 'lines'},
+        }
 
         self.failUnlessEqual(len(schema_results), len(expected_results))
         for attr, value in expected_results.iteritems():
-            self.failUnlessEqual(value, schema_results[attr], "%s != %s for schema attribute '%s'" % (value, schema_results[attr], attr))
+            self.failUnlessEqual(
+                value,
+                schema_results[attr],
+                "%s != %s for schema attribute '%s'"
+                % (value, schema_results[attr], attr),
+            )
 
     def test_get_schema_invalid_type(self):
         app = ApplicationAPI(self.portal, '')
@@ -277,11 +368,34 @@ class TestSchema(PloneTestCase.PloneTestCase):
         self.logout()
 
         schema_results = schema_resp[0]
-        expected_results = {'excludeFromNav': {'required': False, 'type': 'boolean'}, 'remoteUrl': {'required': True, 'type': 'string'}, 'description': {'required': False, 'type': 'text'}, 'contributors': {'required': False, 'type': 'lines'}, 'title': {'required': 1, 'type': 'string'}, 'language': {'required': False, 'type': 'string'}, 'rights': {'required': False, 'type': 'text'}, 'modification_date': {'required': False, 'type': 'datetime'}, 'location': {'required': False, 'type': 'string'}, 'creation_date': {'required': False, 'type': 'datetime'}, 'effectiveDate': {'required': False, 'type': 'datetime'}, 'relatedItems': {'required': False, 'type': 'reference'}, 'expirationDate': {'required': False, 'type': 'datetime'}, 'allowDiscussion': {'required': False, 'type': 'boolean'}, 'creators': {'required': False, 'type': 'lines'}, 'id': {'required': 0, 'type': 'string'}, 'subject': {'required': False, 'type': 'lines'}}
+        expected_results = {
+            'excludeFromNav': {'required': False, 'type': 'boolean'},
+            'remoteUrl': {'required': True, 'type': 'string'},
+            'description': {'required': False, 'type': 'text'},
+            'contributors': {'required': False, 'type': 'lines'},
+            'title': {'required': 1, 'type': 'string'},
+            'language': {'required': False, 'type': 'string'},
+            'rights': {'required': False, 'type': 'text'},
+            'modification_date': {'required': False, 'type': 'datetime'},
+            'location': {'required': False, 'type': 'string'},
+            'creation_date': {'required': False, 'type': 'datetime'},
+            'effectiveDate': {'required': False, 'type': 'datetime'},
+            'relatedItems': {'required': False, 'type': 'reference'},
+            'expirationDate': {'required': False, 'type': 'datetime'},
+            'allowDiscussion': {'required': False, 'type': 'boolean'},
+            'creators': {'required': False, 'type': 'lines'},
+            'id': {'required': 0, 'type': 'string'},
+            'subject': {'required': False, 'type': 'lines'},
+        }
 
         self.failUnlessEqual(len(schema_results), len(expected_results))
         for attr, value in expected_results.iteritems():
-            self.failUnlessEqual(value, schema_results[attr], "%s != %s for schema attribute '%s'" % (value, schema_results[attr], attr))
+            self.failUnlessEqual(
+                value,
+                schema_results[attr],
+                "%s != %s for schema attribute '%s'"
+                % (value, schema_results[attr], attr),
+            )
 
     def test_get_schema_with_path_and_non_addable_type(self):
         resp = Response(FauxResponse())

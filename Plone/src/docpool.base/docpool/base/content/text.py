@@ -35,25 +35,23 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IText(form.Schema, IContentBase):
     """
     """
+
     dexteritytextindexer.searchable('text')
     text = RichText(
-                        title=_(u'label_text_text', default=u'Text'),
-                        description=_(u'description_text_text', default=u''),
-                        required=False,
+        title=_(u'label_text_text', default=u'Text'),
+        description=_(u'description_text_text', default=u''),
+        required=False,
     )
-
-
 
 
 class Text(Item, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IText)
-
-
-

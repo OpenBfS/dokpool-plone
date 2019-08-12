@@ -61,7 +61,7 @@ class NetworkOperators(object):
             VocabItem(u'BfS (ABI)', _(u'BfS (ABI)')),
             VocabItem(u'DWD', _(u'DWD')),
             VocabItem(u'auslaend. Messnetze', _(u'auslaend. Messnetze')),
-            VocabItem(u'BfS (ODL)', _(u'BfS (ODL)'))
+            VocabItem(u'BfS (ODL)', _(u'BfS (ODL)')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -75,9 +75,7 @@ class NetworkOperators(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=item.token.encode('utf'),
-                    title=item.value,
+                    value=item.token, token=item.token.encode('utf'), title=item.value
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

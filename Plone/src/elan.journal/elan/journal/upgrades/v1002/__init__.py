@@ -23,8 +23,7 @@ def migrate_journal_workflow(context):
     # all existing journals must use now simple_publication_workflow
     wtool = api.portal.get_tool('portal_workflow')
     with WorkflowChainUpdater(objects, review_state_mapping):
-        wtool.setChainForPortalTypes(
-            ('Journal',), ('simple_publication_workflow',))
+        wtool.setChainForPortalTypes(('Journal',), ('simple_publication_workflow',))
         logger.info('Journal objects now use simple_publication_workflow')
 
     # remove journal_workflow

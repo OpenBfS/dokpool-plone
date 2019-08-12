@@ -15,11 +15,12 @@ content_before_actions_tabs = True
 actions_category = None
 enable_caching = True
 content_tabs_level = 0
-caching_strategy = 'anonymous' # FIXME: maybe cache individually?
+caching_strategy = 'anonymous'  # FIXME: maybe cache individually?
 nested_category_sufix = ''
 nested_category_prefix = ''
 actions_tabs_level = 0
 show_nonfolderish_tabs = True
+
 
 class DropDownMenuQueryBuilder(SitemapQueryBuilder):
 
@@ -48,4 +49,3 @@ class DropDownMenuStrategy(DefaultNavtreeStrategy):
     def __init__(self, context, view=None):
         super(DropDownMenuStrategy, self).__init__(context, view)
         self.bottomLevel = content_tabs_level
-

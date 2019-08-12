@@ -40,15 +40,16 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISituationOverview(form.Schema):
     """
     """
 
 
-
 class SituationOverview(Item):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISituationOverview)
@@ -60,7 +61,6 @@ class SituationOverview(Item):
         """
         return ModuleTypesVocabularyFactory(self, raw=True)
 
-
     def availableSituationReports(self):
         """
         For every situation report:
@@ -69,25 +69,42 @@ class SituationOverview(Item):
         """
         uss = getScenariosForCurrentUser(self)
         path = self.dpSearchPath()
-        reports = queryForObjects(self, path=path, portal_type='SituationReport', sort_on='changed', sort_order='reverse', review_state='published', changed={
-                 'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
-                 'range': 'min' },
-                                  scenarios=uss
-            )
-        #mtypes = self.modTypes()
+        reports = queryForObjects(
+            self,
+            path=path,
+            portal_type='SituationReport',
+            sort_on='changed',
+            sort_order='reverse',
+            review_state='published',
+            changed={
+                'query': (DateTime() - 14).asdatetime().replace(tzinfo=None),
+                'range': 'min',
+            },
+            scenarios=uss,
+        )
+        # mtypes = self.modTypes()
         res1 = []
         res2 = {}
-        for report in [ r.getObject() for r in reports]:
-            #mods = {}
-            #for mt in mtypes:
+        for report in [r.getObject() for r in reports]:
+            # mods = {}
+            # for mt in mtypes:
             #    mods[mt[0]] = None
-            #ms = report.myModules()
-            #for m in ms:
+            # ms = report.myModules()
+            # for m in ms:
             #    mods[m.docType] = m
-            #res2[report.UID()] = ( report, mods )
-            res1.append((report.UID(), "%s %s" % (safe_unicode(report.Title()), self.toLocalizedTime(DateTime(report.changed()), long_format=1))))
-        default = [ ( "", _("Current situation") ) ]
-        ud = [ ( "userdefined", _("User defined") ) ]
+            # res2[report.UID()] = ( report, mods )
+            res1.append(
+                (
+                    report.UID(),
+                    "%s %s"
+                    % (
+                        safe_unicode(report.Title()),
+                        self.toLocalizedTime(DateTime(report.changed()), long_format=1),
+                    ),
+                )
+            )
+        default = [("", _("Current situation"))]
+        ud = [("userdefined", _("User defined"))]
         return default + res1 + ud, res2
 
     def availableModules(self, reportUID=None):
@@ -112,8 +129,6 @@ class SituationOverview(Item):
         return _("No content found")
 
 
-
-
 def _availableModules(self, reportUID=None):
     res = {}
     moduids = {}
@@ -121,28 +136,55 @@ def _availableModules(self, reportUID=None):
     path = self.dpSearchPath()
 
     for mt in self.modTypes():
-            moduids[mt[0]] = None
-            mods = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse',
-                                   review_state='published', changed={
-             'query' : (DateTime() - 14).asdatetime().replace(tzinfo=None),
-             'range': 'min' },
-                                   scenarios=uss
-                                   )
-            modres = [(m.UID, u"%s %s" % (safe_unicode(m.Title), self.toLocalizedTime(DateTime(m.changed), long_format=1))) for m in mods]
-            latest = mods and mods[0].changed or (DateTime() - 14).asdatetime().replace(tzinfo=None)
-            if mods:
-                moduids[mt[0]] = mods[0].UID
-            current = queryForObjects(self, path=path, dp_type=mt[0], portal_type='SRModule', sort_on='changed', sort_order='reverse',
-                                   review_state='private', changed={
-             'query' : latest,
-             'range': 'min' },
-                                   scenarios=uss
-                                   )
-            if current:
-                current = current[0].getObject()
-            else:
-                current = None
-            res[mt[0]] = ( modres, current )
+        moduids[mt[0]] = None
+        mods = queryForObjects(
+            self,
+            path=path,
+            dp_type=mt[0],
+            portal_type='SRModule',
+            sort_on='changed',
+            sort_order='reverse',
+            review_state='published',
+            changed={
+                'query': (DateTime() - 14).asdatetime().replace(tzinfo=None),
+                'range': 'min',
+            },
+            scenarios=uss,
+        )
+        modres = [
+            (
+                m.UID,
+                u"%s %s"
+                % (
+                    safe_unicode(m.Title),
+                    self.toLocalizedTime(DateTime(m.changed), long_format=1),
+                ),
+            )
+            for m in mods
+        ]
+        latest = (
+            mods
+            and mods[0].changed
+            or (DateTime() - 14).asdatetime().replace(tzinfo=None)
+        )
+        if mods:
+            moduids[mt[0]] = mods[0].UID
+        current = queryForObjects(
+            self,
+            path=path,
+            dp_type=mt[0],
+            portal_type='SRModule',
+            sort_on='changed',
+            sort_order='reverse',
+            review_state='private',
+            changed={'query': latest, 'range': 'min'},
+            scenarios=uss,
+        )
+        if current:
+            current = current[0].getObject()
+        else:
+            current = None
+        res[mt[0]] = (modres, current)
     if reportUID:
         report = queryForObject(self, UID=reportUID)
         if report:
@@ -150,4 +192,3 @@ def _availableModules(self, reportUID=None):
             for m in ms:
                 moduids[m.docType] = m.UID()
     return res, moduids
-

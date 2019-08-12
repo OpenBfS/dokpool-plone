@@ -21,10 +21,9 @@ from plone.memoize.instance import memoize
 from docpool.base.browser.flexible_view import FlexibleView
 
 
-
 class DPDocumentdashboardView(FlexibleView):
     """Additional View
     """
+
     __allow_access_to_unprotected_subobjects__ = 1
     __call__ = ViewPageTemplateFile('dpdocumentdashboard.pt')
-

@@ -22,10 +22,12 @@ from zope.interface.interface import Interface
 from Acquisition import aq_inner
 from docpool.base.content.doctype import IDocType
 
+
 @provider(IFormFieldProvider)
 class IELANDocument(ITransferable):
     """
     """
+
     scenarios = schema.List(
         title=_(u'label_dpdocument_scenarios', default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
@@ -44,13 +46,12 @@ def initializeScenarios(data):
         return []
 
 
-
 class ELANDocument(object):
-    
+
     __allow_access_to_unprotected_subobjects__ = 1
-    
+
     security = ClassSecurityInfo()
-    
+
     def __init__(self, context):
         self.context = context
 
@@ -62,10 +63,5 @@ class ELANDocument(object):
             return
         context = aq_inner(self.context)
         context.doc_extension(ELAN_APP).scenarios = value
-    
+
     scenarios = property(_get_scenarios, _set_scenarios)
-    
-
-    
-
-

@@ -34,16 +34,18 @@ from docpool.transfers.config import PROJECTNAME
 
 from docpool.transfers import DocpoolMessageFactory as _
 
+
 @provider(IFormFieldProvider)
 class ITransfersType(form.Schema):
     allowTransfer = schema.Bool(
-        title=_(u'label_doctype_allowtransfer', default=u'Can documents of this type be sent to other ESDs?'),
+        title=_(
+            u'label_doctype_allowtransfer',
+            default=u'Can documents of this type be sent to other ESDs?',
+        ),
         description=_(u'description_doctype_allowtransfer', default=u''),
         required=False,
         default=True,
     )
-
-
 
 
 class TransfersType(object):
@@ -56,14 +58,10 @@ class TransfersType(object):
     def _get_allowTransfer(self):
         return getattr(self.context, "allowTransfer", True)
 
-
     def _set_allowTransfer(self, value):
         if not value:
             return
         context = aq_inner(self.context)
         context.allowTransfer = value
 
-
     allowTransfer = property(_get_allowTransfer, _set_allowTransfer)
-
-

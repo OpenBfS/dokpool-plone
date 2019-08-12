@@ -34,19 +34,19 @@ from elan.esd.config import PROJECTNAME
 
 from elan.esd import DocpoolMessageFactory as _
 
+
 class IELANSection(form.Schema):
     """
     """
 
 
-
 class ELANSection(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IELANSection)
-
 
     def myELANSection(self):
         """
@@ -70,22 +70,20 @@ class ELANSection(Container):
     def getDashboardCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'DashboardCollection'}
+        args = {'portal_type': 'DashboardCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANDocCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'ELANDocCollection'}
+        args = {'portal_type': 'ELANDocCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRCollection'}
+        args = {'portal_type': 'SRCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

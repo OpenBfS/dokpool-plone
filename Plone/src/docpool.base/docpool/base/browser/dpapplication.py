@@ -24,5 +24,3 @@ class DPApplicationView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('dpapplication.pt')
-
-

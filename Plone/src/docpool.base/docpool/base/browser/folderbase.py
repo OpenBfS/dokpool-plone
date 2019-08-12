@@ -36,15 +36,16 @@ class FolderBaselistitemView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('folderbaselistitem.pt')
+
     def options(self):
         return extendOptions(self.context, self.request, {})
+
 
 class FolderBaserpopupView(BrowserView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('folderbaserpopup.pt')
-
 
 
 @implementer(IFolderContentsView)
@@ -59,7 +60,7 @@ class FolderBaseView(BrowserView):
         """
         res = []
         for b in self.buttons(items):
-            if (b['id'] in ['cut','paste']):
+            if b['id'] in ['cut', 'paste']:
                 res.append(b)
         return res
 
@@ -67,7 +68,9 @@ class FolderBaseView(BrowserView):
         buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
-        button_actions = portal_actions.listActionInfos(object=context, categories=('folder_buttons', ))
+        button_actions = portal_actions.listActionInfos(
+            object=context, categories=('folder_buttons',)
+        )
 
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
@@ -95,16 +98,22 @@ class FolderBaseView(BrowserView):
     def getFolderContents(self, kwargs):
         """
         """
-        #print "getFolderContents"
-        kwargs["object_provides"] = [IFolderBase.__identifier__,  ICollection.__identifier__]
-        res = [ b for b in self.context.getFolderContents(kwargs)]
+        # print "getFolderContents"
+        kwargs["object_provides"] = [
+            IFolderBase.__identifier__,
+            ICollection.__identifier__,
+        ]
+        res = [b for b in self.context.getFolderContents(kwargs)]
         # print res
         apps = self.isFilteredBy()
         if apps:
             kwargs['apps_supported'] = apps[0]
-        kwargs["object_provides"] = [IDPDocument.__identifier__, IInfoLink.__identifier__]
+        kwargs["object_provides"] = [
+            IDPDocument.__identifier__,
+            IInfoLink.__identifier__,
+        ]
         res.extend([b for b in self.context.getFolderContents(kwargs)])
-        #print res
+        # print res
         return res
 
     @view.memoize

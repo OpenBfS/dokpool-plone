@@ -39,15 +39,16 @@ from elan.esd.config import PROJECTNAME
 
 from elan.esd import DocpoolMessageFactory as _
 
+
 class IELANInfos(form.Schema, IInfoFolder):
     """
     """
 
 
-
 class ELANInfos(Container, InfoFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IELANInfos)
@@ -76,28 +77,28 @@ class ELANInfos(Container, InfoFolder):
     def getInfoDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoDocument'}
+        args = {'portal_type': 'InfoDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoLinks(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoLink'}
+        args = {'portal_type': 'InfoLink'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
@@ -112,5 +113,3 @@ def infosAdded(obj, event=None):
     prefix = esd.prefix or esd.getId()
     prefix = str(prefix)
     self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-
-

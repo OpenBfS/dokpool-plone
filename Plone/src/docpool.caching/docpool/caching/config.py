@@ -3,5 +3,3 @@
 """
 
 PROJECTNAME = "docpool.caching"
-
-

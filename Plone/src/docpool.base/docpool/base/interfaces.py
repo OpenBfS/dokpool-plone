@@ -24,15 +24,18 @@ from docpool.base.content.dpapplication import IDPApplication
 from docpool.base.content.dpconfig import IDPConfig
 from plone.supermodel import model
 
+
 class IExtension(model.Schema):
     """
     Marker for extension behaviors
     """
 
+
 class IDocumentExtension(IExtension):
     """
     Marker for behaviors for document extensions
     """
+
 
 class IDocTypeExtension(IExtension):
     """

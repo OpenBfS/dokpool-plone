@@ -4,6 +4,7 @@ from Products.ZCatalog.ProgressHandler import ZLogHandler
 
 PAS_TITLE = 'Trusted Proxy Auth'
 
+
 def setupVarious(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.
@@ -15,11 +16,12 @@ def setupVarious(context):
         return
     portal = context.getSite()
     wtool = getToolByName(portal, 'portal_workflow')
-    wtool.updateRoleMappings()    
+    wtool.updateRoleMappings()
     cat = getToolByName(context.getSite(), "portal_catalog")
-#    cat.refreshCatalog(clear=True,pghandler=ZLogHandler(100))
-#    This would destroy the scenarios index
+    #    cat.refreshCatalog(clear=True,pghandler=ZLogHandler(100))
+    #    This would destroy the scenarios index
     setupTrustedProxyAuthPlugin(portal)
+
 
 def _addPlugin(pas, pluginid='trusted_proxy_auth'):
     try:
@@ -29,7 +31,7 @@ def _addPlugin(pas, pluginid='trusted_proxy_auth'):
         return PAS_TITLE + " product not installed"
     installed = pas.objectIds()
     if pluginid in installed:
-        return PAS_TITLE+ ' already installed.'
+        return PAS_TITLE + ' already installed.'
     plugin = TrustedProxyAuthPlugin(pluginid, title=PAS_TITLE)
     plugin.trusted_proxies = PersistentList(['127.0.0.1'])
     plugin.login_header = 'HTTP_X_REMOTE_USER'
@@ -49,8 +51,7 @@ def _addPlugin(pas, pluginid='trusted_proxy_auth'):
             continue
         pas.plugins.activatePlugin(interface, plugin.getId())
         pas.plugins.movePluginsDown(
-            interface,
-            [x[0] for x in pas.plugins.listPlugins(interface)[:-1]],
+            interface, [x[0] for x in pas.plugins.listPlugins(interface)[:-1]]
         )
 
 

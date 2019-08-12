@@ -5,6 +5,7 @@ from xmlrpclib import DateTime as XMLRPCDateTime
 from DateTime import DateTime
 from wsapi4plone.core.interfaces import IScrubber
 
+
 class Scrubber(object):
     implements(IScrubber)
 
@@ -49,7 +50,7 @@ class Scrubber(object):
                 results[k] = unicode(data[k].encode('utf-8'))
             elif type(data[k]) == dict:
                 results[k] = self.dict_scrub(data[k])
-            elif type(data[k]) == DateTime: # correct DateTime values
+            elif type(data[k]) == DateTime:  # correct DateTime values
                 results[k] = XMLRPCDateTime(data[k])
             else:
                 results[k] = data[k]

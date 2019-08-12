@@ -22,12 +22,10 @@ class ViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(self.portal, 'Journal', 'journal')
 
 
 class DefaultViewTestCase(ViewTestCase):
-
     def setUp(self):
         super(DefaultViewTestCase, self).setUp()
         self.view = api.content.get_view('view', self.journal, self.request)
@@ -62,7 +60,6 @@ class DefaultViewTestCase(ViewTestCase):
 
 
 class JournalEntryViewTestCase(ViewTestCase):
-
     def test_no_timestamp_raises_bad_request(self):
         self.request.path = []
         view = api.content.get_view('journalentry', self.journal, self.request)
@@ -90,7 +87,6 @@ class JournalEntryViewTestCase(ViewTestCase):
 
 
 class UpdateViewTestCase(ViewTestCase):
-
     def setUp(self):
         super(UpdateViewTestCase, self).setUp()
         self.view = api.content.get_view('update', self.journal, self.request)
@@ -112,11 +108,9 @@ class UpdateViewTestCase(ViewTestCase):
 
 
 class RecentUpdatesViewTestCase(ViewTestCase):
-
     def setUp(self):
         super(RecentUpdatesViewTestCase, self).setUp()
-        self.view = api.content.get_view(
-            'recent-updates', self.journal, self.request)
+        self.view = api.content.get_view('recent-updates', self.journal, self.request)
 
     def test_needs_hard_refresh_on_edition(self):
         # an edition happened before last update; we already handled it
@@ -159,6 +153,7 @@ class RecentUpdatesViewTestCase(ViewTestCase):
 
     def test_get_latest_journalentries(self):
         from time import sleep
+
         _create_journalentries(self.journal, 10)
         self.assertEqual(len(self.view.get_latest_journalentries()), 10)
         # after one minutes no journal.entreis should be listed

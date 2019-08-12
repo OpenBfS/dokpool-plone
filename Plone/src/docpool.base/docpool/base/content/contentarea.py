@@ -35,19 +35,19 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IContentArea(form.Schema):
     """
     """
 
 
-
 class ContentArea(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IContentArea)
-
 
     def myContentArea(self):
         """
@@ -71,15 +71,13 @@ class ContentArea(Container):
     def getGroupss(self, **kwargs):
         """
         """
-        args = {'portal_type':'Groups'}
+        args = {'portal_type': 'Groups'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getUserss(self, **kwargs):
         """
         """
-        args = {'portal_type':'Users'}
+        args = {'portal_type': 'Users'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

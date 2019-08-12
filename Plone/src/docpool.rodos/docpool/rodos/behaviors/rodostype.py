@@ -23,10 +23,10 @@ from docpool.base.interfaces import IDocTypeExtension
 
 from docpool.rodos import DocpoolMessageFactory as _
 
+
 @provider(IFormFieldProvider)
 class IRodosType(IDocTypeExtension):
     pass
-
 
 
 class RodosType(object):
@@ -35,5 +35,3 @@ class RodosType(object):
 
     def __init__(self, context):
         self.context = context
-
-

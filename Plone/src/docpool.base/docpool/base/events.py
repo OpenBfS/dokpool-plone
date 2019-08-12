@@ -4,9 +4,11 @@ from Products.CMFPlone.utils import log, log_exc
 from zope.component.interfaces import ObjectEvent
 from zope.interface import implements
 
+
 class IDocumentPoolUndeleteable(Interface):
     """Marker interface for objects which should not be deleted.
     """
+
 
 def delete_handler(object, event):
     """
@@ -19,16 +21,20 @@ def delete_handler(object, event):
     except Exception, e:
         log_exc(e)
 
+
 class IDocumentPoolInitializedEvent(Interface):
     """
     """
-    
+
+
 class DocumentPoolInitializedEvent(ObjectEvent):
     implements(IDocumentPoolInitializedEvent)
+
 
 class IDocumentPoolRemovedEvent(Interface):
     """
     """
-    
+
+
 class DocumentPoolRemovedEvent(ObjectEvent):
     implements(IDocumentPoolRemovedEvent)

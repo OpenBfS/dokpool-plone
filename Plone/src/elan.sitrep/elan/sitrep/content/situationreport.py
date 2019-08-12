@@ -50,41 +50,41 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 @provider(IFormFieldProvider)
 class ISituationReport(IDPDocument):
     """
     """
+
     phase = RelationChoice(
-                        title=_(u'label_situationreport_phase', default=u'Phase (scenario-specific)'),
-                        description=_(u'description_situationreport_phase', default=u''),
-                        required=False,
-                        source = "elan.sitrep.vocabularies.Phases",
+        title=_(u'label_situationreport_phase', default=u'Phase (scenario-specific)'),
+        description=_(u'description_situationreport_phase', default=u''),
+        required=False,
+        source="elan.sitrep.vocabularies.Phases",
     )
     form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
 
     currentModules = RelationList(
-                        title=_(u'label_situationreport_currentmodules', default=u'Current Modules'),
-                        description=_(u'description_situationreport_currentmodules', default=u''),
-                        required=False,
-                        value_type=RelationChoice(
-                                                      title=_("Current Modules"),
-                                                    source = "elan.sitrep.vocabularies.CurrentModules",
-
-                                                     ),
-
+        title=_(u'label_situationreport_currentmodules', default=u'Current Modules'),
+        description=_(u'description_situationreport_currentmodules', default=u''),
+        required=False,
+        value_type=RelationChoice(
+            title=_("Current Modules"), source="elan.sitrep.vocabularies.CurrentModules"
+        ),
     )
     form.widget(currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
     form.mode(docType='hidden')
     text = RichText(
         title=_(u'label_situationreport_text', default=u'Introduction'),
         description=_(u'description_situationreport_text', default=u''),
-        required=False
+        required=False,
     )
     docType = schema.Choice(
         required=True,
         source="docpool.base.vocabularies.DocumentTypes",
-        default = u"sitrep",
+        default=u"sitrep",
     )
+
 
 @form.default_value(field=ISituationReport['phase'])
 def initializePhase(data):
@@ -101,10 +101,10 @@ def initializePhase(data):
     return None
 
 
-
 class SituationReport(Container, DPDocument):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISituationReport)
@@ -132,15 +132,14 @@ class SituationReport(Container, DPDocument):
         else:
             return None
 
-
     def myModules(self):
         """
         """
         copied_modules = self.getSRModules()
-        if copied_modules: # should we ever use that
+        if copied_modules:  # should we ever use that
             return copied_modules
-        else: # report under construction
-            return [ m.to_object for m in (self.currentModules or [])]
+        else:  # report under construction
+            return [m.to_object for m in (self.currentModules or [])]
 
     def modulesMeantForMe(self):
         """
@@ -148,7 +147,9 @@ class SituationReport(Container, DPDocument):
         @return:
         """
         modules = back_references(self, "currentReport")
-        return [ mod for mod in modules if mod is not None and mod.myState() == 'private' ]
+        return [
+            mod for mod in modules if mod is not None and mod.myState() == 'private'
+        ]
 
     def publishedModulesMeantForMe(self):
         """
@@ -156,8 +157,9 @@ class SituationReport(Container, DPDocument):
         @return:
         """
         modules = back_references(self, "currentReport")
-        return [ mod for mod in modules if mod is not None and mod.myState() == 'published' ]
-
+        return [
+            mod for mod in modules if mod is not None and mod.myState() == 'published'
+        ]
 
     def moduleState(self):
         """
@@ -200,8 +202,8 @@ class SituationReport(Container, DPDocument):
             except:
                 pass
         res = missing.values()
-        #res = myMods
-        #res.extend(plannedMods)
+        # res = myMods
+        # res.extend(plannedMods)
         return sorted(res)
 
     def publishReport(self, justDoIt=False, duplicate=False):
@@ -214,15 +216,20 @@ class SituationReport(Container, DPDocument):
             new_version = content.copy(source=self, id=self.getId(), safe_id=True)
         # copy modules into the report?
         # We would lose all the reference information, which is important for the situation overview
-        #mods = self.myModules()
-        #for mod in mods:
+        # mods = self.myModules()
+        # for mod in mods:
         #    content.copy(source=mod, target=new_version, safe_id=True)
         # create PDF, upload it
         data = self.restrictedTraverse("@@pdfprint")._generatePDF(raw=True)
-        nice_filename = 'report_%s_%s.pdf' % (self.getId(), datetime.now().strftime('%Y%m%d'))
+        nice_filename = 'report_%s_%s.pdf' % (
+            self.getId(),
+            datetime.now().strftime('%Y%m%d'),
+        )
         nice_filename = safe_unicode(nice_filename)
         field = NamedBlobFile(data=data, filename=nice_filename)
-        fid = new_version.invokeFactory(id=nice_filename, type_name="File", title=self.Title(), description="")
+        fid = new_version.invokeFactory(
+            id=nice_filename, type_name="File", title=self.Title(), description=""
+        )
         f = new_version._getOb(fid)
         f.file = field
         f.reindexObject()
@@ -244,14 +251,14 @@ class SituationReport(Container, DPDocument):
         # link to current modules
         refs = []
         for mt in self.modTypes():
-            #print idx
+            # print idx
             mod = modules.get(mt[0], None)
             if mod:
-                #print mod
+                # print mod
                 try:
                     moduid = mod[0][0]
                     module = queryForObject(self, UID=moduid)
-                    #print module
+                    # print module
                     if module:
                         to_id = intids.getId(module)
                         refs.append(RelationValue(to_id))
@@ -260,9 +267,15 @@ class SituationReport(Container, DPDocument):
         if refs:
             self.currentModules = refs
             self.reindexObject()
-            portalMessage(self, _("Modules have been replaced with current situation overview."), "info")
+            portalMessage(
+                self,
+                _("Modules have been replaced with current situation overview."),
+                "info",
+            )
         else:
-            portalMessage(self, _("No modules found in current situation overview."), "warn")
+            portalMessage(
+                self, _("No modules found in current situation overview."), "warn"
+            )
         return self.restrictedTraverse("@@view")()
 
     def getRepresentativePDF(self):
@@ -276,7 +289,6 @@ class SituationReport(Container, DPDocument):
                 return f
         else:
             return None
-
 
     def mySituationReport(self):
         """
@@ -300,22 +312,20 @@ class SituationReport(Container, DPDocument):
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModule'}
+        args = {'portal_type': 'SRModule'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTransferables(self, **kwargs):
         """
         """
-        args = {'portal_type':'Transferable'}
+        args = {'portal_type': 'Transferable'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

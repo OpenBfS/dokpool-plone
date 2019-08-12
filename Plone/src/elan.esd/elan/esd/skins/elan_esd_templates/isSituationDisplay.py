@@ -13,4 +13,4 @@ from docpool.elan.config import ELAN_APP
 if shasattr(context, "myDocumentPool", acquire=True):
     return context.isActive(ELAN_APP)
 else:
-    return False 
+    return False

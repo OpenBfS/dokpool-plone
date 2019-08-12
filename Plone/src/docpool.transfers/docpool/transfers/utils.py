@@ -1,5 +1,6 @@
 from docpool.transfers.config import TRANSFERS_APP
 
+
 def getTupleForTransfer(self, id):
     """
     """

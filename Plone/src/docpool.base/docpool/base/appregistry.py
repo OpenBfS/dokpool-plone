@@ -6,35 +6,52 @@ APP_REGISTRY = {}
 BEHAVIOR_REGISTRY = {}
 
 
-def registerApp(name, title, typeBehavior, documentBehavior, dpAddedMethod, dpRemovedMethod, icon=None, implicit=False):
+def registerApp(
+    name,
+    title,
+    typeBehavior,
+    documentBehavior,
+    dpAddedMethod,
+    dpRemovedMethod,
+    icon=None,
+    implicit=False,
+):
     """
     @param name:
     @param factoryMethod:
     @return:
     """
-    APP_REGISTRY[name] = {  'title' : title,
-                            'implicit' : implicit,
-                            'icon' : icon,
-                            'typeBehavior' : typeBehavior,
-                            'documentBehavior' : documentBehavior,
-                            'dpAddedMethod': dpAddedMethod,
-                            'dpRemovedMethod': dpRemovedMethod}
+    APP_REGISTRY[name] = {
+        'title': title,
+        'implicit': implicit,
+        'icon': icon,
+        'typeBehavior': typeBehavior,
+        'documentBehavior': documentBehavior,
+        'dpAddedMethod': dpAddedMethod,
+        'dpRemovedMethod': dpRemovedMethod,
+    }
     if typeBehavior:
-        BEHAVIOR_REGISTRY[typeBehavior.__identifier__] = BEHAVIOR_REGISTRY.get(typeBehavior.__identifier__, None) \
-                                                         and BEHAVIOR_REGISTRY[typeBehavior.__identifier__].append(name)\
-                                                         or [name]
+        BEHAVIOR_REGISTRY[typeBehavior.__identifier__] = (
+            BEHAVIOR_REGISTRY.get(typeBehavior.__identifier__, None)
+            and BEHAVIOR_REGISTRY[typeBehavior.__identifier__].append(name)
+            or [name]
+        )
 
     if documentBehavior:
-        BEHAVIOR_REGISTRY[documentBehavior.__identifier__] = BEHAVIOR_REGISTRY.get(documentBehavior.__identifier__, None) \
-                                                         and BEHAVIOR_REGISTRY[documentBehavior.__identifier__].append(name) \
-                                                         or [name]
+        BEHAVIOR_REGISTRY[documentBehavior.__identifier__] = (
+            BEHAVIOR_REGISTRY.get(documentBehavior.__identifier__, None)
+            and BEHAVIOR_REGISTRY[documentBehavior.__identifier__].append(name)
+            or [name]
+        )
 
 
 def appName(name):
     return APP_REGISTRY[name]['title']
 
+
 def appIcon(name):
     return APP_REGISTRY[name]['icon']
+
 
 def extensionFor(obj, name):
     """
@@ -50,6 +67,7 @@ def extensionFor(obj, name):
     else:
         return APP_REGISTRY[name]['typeBehavior']
 
+
 def extensionNameFor(obj, name):
     from docpool.base.interfaces import IDPDocument
 
@@ -58,6 +76,7 @@ def extensionNameFor(obj, name):
     else:
         return APP_REGISTRY[name]['typeBehavior'].__identifier__
 
+
 def activeApps():
     """
     Return all active applications.
@@ -65,7 +84,11 @@ def activeApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps ]
+    return [
+        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        for appname in apps
+    ]
+
 
 def extendingApps():
     """
@@ -74,7 +97,12 @@ def extendingApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if APP_REGISTRY[appname].get('documentBehavior', None) ]
+    return [
+        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        for appname in apps
+        if APP_REGISTRY[appname].get('documentBehavior', None)
+    ]
+
 
 def implicitApps():
     """
@@ -83,7 +111,12 @@ def implicitApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [ ( appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if APP_REGISTRY[appname]['implicit']]
+    return [
+        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        for appname in apps
+        if APP_REGISTRY[appname]['implicit']
+    ]
+
 
 def selectableApps():
     """
@@ -92,5 +125,9 @@ def selectableApps():
     """
     apps = APP_REGISTRY.keys()
     apps.sort()
-    return [(appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname]) for appname in apps if
-        APP_REGISTRY[appname].get('documentBehavior', None) and not APP_REGISTRY[appname]['implicit']]
+    return [
+        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        for appname in apps
+        if APP_REGISTRY[appname].get('documentBehavior', None)
+        and not APP_REGISTRY[appname]['implicit']
+    ]

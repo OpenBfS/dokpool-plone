@@ -13,18 +13,19 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class SituationReportEditForm(EditForm):
     context(ISituationReport)
-    
-        
+
+
 class SituationReportAddForm(AddForm):
     name('SituationReport')
 
+
 class SRModuleEditForm(EditForm):
     context(ISRModule)
-                
+
+
 class SRModuleAddForm(AddForm):
     name('SRModule')
- 
+
     def updateWidgets(self):
         super(SRModuleAddForm, self).updateWidgets()
         del self.widgets['text']
-     

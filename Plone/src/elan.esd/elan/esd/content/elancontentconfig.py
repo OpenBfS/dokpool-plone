@@ -36,21 +36,21 @@ from elan.esd.config import PROJECTNAME
 
 from elan.esd import DocpoolMessageFactory as _
 
+
 class IELANContentConfig(form.Schema):
     """
     """
 
 
-
 class ELANContentConfig(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IELANContentConfig)
 
     APP = ELAN_APP
-
 
     def myELANContentConfig(self):
         """
@@ -74,22 +74,20 @@ class ELANContentConfig(Container):
     def getDPEvents(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPEvents'}
+        args = {'portal_type': 'DPEvents'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getIRIXConfigs(self, **kwargs):
         """
         """
-        args = {'portal_type':'IRIXConfig'}
+        args = {'portal_type': 'IRIXConfig'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTexts(self, **kwargs):
         """
         """
-        args = {'portal_type':'Text'}
+        args = {'portal_type': 'Text'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

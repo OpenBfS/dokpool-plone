@@ -31,7 +31,7 @@ def initialize(context):
 
     """
 
-        # Retrieve the content types that have been registered with Archetypes
+    # Retrieve the content types that have been registered with Archetypes
     # This happens when the content type is imported and the registerType()
     # call in the content type's module is invoked. Actually, this happens
     # during ZCML processing, but we do it here again to be explicit. Of
@@ -41,8 +41,8 @@ def initialize(context):
     from content import dashboardcollection, dashboardsconfig, dashboard
 
     content_types, constructors, ftis = atapi.process_types(
-        atapi.listTypes(config.PROJECTNAME),
-        config.PROJECTNAME)
+        atapi.listTypes(config.PROJECTNAME), config.PROJECTNAME
+    )
 
     # Now initialize all these content types. The initialization process takes
     # care of registering low-level Zope 2 factories, including the relevant
@@ -52,9 +52,9 @@ def initialize(context):
     # in the GenericSetup profile.
 
     for atype, constructor in zip(content_types, constructors):
-        cmfutils.ContentInit("%s: %s" % (config.PROJECTNAME, atype.portal_type),
-            content_types      = (atype,),
-            permission         = config.ADD_PERMISSIONS[atype.portal_type],
-            extra_constructors = (constructor,),
-            ).initialize(context)
-
+        cmfutils.ContentInit(
+            "%s: %s" % (config.PROJECTNAME, atype.portal_type),
+            content_types=(atype,),
+            permission=config.ADD_PERMISSIONS[atype.portal_type],
+            extra_constructors=(constructor,),
+        ).initialize(context)

@@ -24,5 +24,3 @@ class DashboardView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('dashboard.pt')
-
-

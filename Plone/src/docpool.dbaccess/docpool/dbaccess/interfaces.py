@@ -2,6 +2,7 @@
 from zope.interface import Interface, Attribute
 from docpool.dbaccess import DocpoolMessageFactory as _
 
+
 class Idbadmin(Interface):
     """
     Marker interface for .dbadmin
@@ -14,11 +15,13 @@ class IProtectedEntityClass(Interface):
     datenbezogene Berechtigungen geschuetzt werden.
     """
 
+
 class IAuditing(Interface):
     """
     Implemented by all entities which support automatic logging of changes.
     All methods need a Plone context object
     """
+
     def wasCreated(context):
         """
         """
@@ -31,10 +34,12 @@ class IAuditing(Interface):
         """
         """
 
+
 class IDataSecurity(Interface):
     """
     Definiert Methoden zur Berechtigungspruefung
     """
+
     def can_access():
         """
         """

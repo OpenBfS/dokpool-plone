@@ -12,4 +12,4 @@ from Products.Archetypes.utils import shasattr
 if shasattr(context, "myDocumentPool", acquire=True):
     return 1
 else:
-    return False 
+    return False

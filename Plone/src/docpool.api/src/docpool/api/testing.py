@@ -28,22 +28,16 @@ DOCPOOL_API_FIXTURE = DocpoolApiLayer()
 
 
 DOCPOOL_API_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(DOCPOOL_API_FIXTURE,),
-    name='DocpoolApiLayer:IntegrationTesting',
+    bases=(DOCPOOL_API_FIXTURE,), name='DocpoolApiLayer:IntegrationTesting'
 )
 
 
 DOCPOOL_API_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_API_FIXTURE,),
-    name='DocpoolApiLayer:FunctionalTesting',
+    bases=(DOCPOOL_API_FIXTURE,), name='DocpoolApiLayer:FunctionalTesting'
 )
 
 
 DOCPOOL_API_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(
-        DOCPOOL_API_FIXTURE,
-        REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE,
-    ),
+    bases=(DOCPOOL_API_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
     name='DocpoolApiLayer:AcceptanceTesting',
 )

@@ -19,11 +19,16 @@ from docpool.elan.config import ELAN_APP
 def getAvailableCategories(self):
     cat = getToolByName(self, "portal_catalog")
     esd = getDocumentPoolSite(self)
-    res0 = cat(path="/".join(esd.getPhysicalPath()) + "/esd", portal_type = 'ELANDocCollection', dp_type=["active"], sort_on="sortable_title")
+    res0 = cat(
+        path="/".join(esd.getPhysicalPath()) + "/esd",
+        portal_type='ELANDocCollection',
+        dp_type=["active"],
+        sort_on="sortable_title",
+    )
     res = []
     for r in res0:
-      if r.id not in ["recent","overview"]:
-        res.append(r)
+        if r.id not in ["recent", "overview"]:
+            res.append(r)
     return res
 
 
@@ -33,6 +38,7 @@ def getCategoriesForCurrentUser(self):
     if not cs:
         return []
     return list(cs)
+
 
 def setCategoriesForCurrentUser(self, cats):
     """
@@ -45,7 +51,7 @@ def setCategoriesForCurrentUser(self, cats):
 
 def getRelativePath(obj):
     if obj.isArchive():
-        portal_path_length = len( obj.myELANArchive().getPhysicalPath() )
+        portal_path_length = len(obj.myELANArchive().getPhysicalPath())
         content_path = obj.getPhysicalPath()
         return "/".join(content_path[portal_path_length:])
     else:
@@ -53,7 +59,8 @@ def getRelativePath(obj):
         # print obj.portal_url()
         # print obj.portal_url.getRelativeUrl(obj)
         return obj.portal_url.getRelativeUrl(obj)
-    
+
+
 def isElanEsdInstalled(self):
     """
     """
@@ -63,4 +70,3 @@ def isElanEsdInstalled(self):
         if (prod['id'] == 'elan.esd') and (prod['status'] == 'installed'):
             return 1
     return 0
-

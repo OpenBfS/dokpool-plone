@@ -3,6 +3,7 @@ from zope.publisher.interfaces import NotFound
 
 from wsapi4plone.core.interfaces import IContextBuilder
 
+
 class Builder(object):
     implements(IContextBuilder)
 

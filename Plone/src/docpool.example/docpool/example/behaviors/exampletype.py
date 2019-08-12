@@ -23,15 +23,14 @@ from docpool.base.interfaces import IDocTypeExtension
 
 from docpool.example import DocpoolMessageFactory as _
 
+
 @provider(IFormFieldProvider)
 class IExampleType(IDocTypeExtension):
     example_type_attribute = schema.TextLine(
-                        title=_(u'label_example_type_attribute', default=u'Example Type Attribute'),
-                        description=_(u'description_example_type_attribute', default=u''),
-                        required=False,
+        title=_(u'label_example_type_attribute', default=u'Example Type Attribute'),
+        description=_(u'description_example_type_attribute', default=u''),
+        required=False,
     )
-
-
 
 
 class ExampleType(object):
@@ -50,7 +49,6 @@ class ExampleType(object):
         context = aq_inner(self.context)
         context.example_type_attribute = value
 
-    example_type_attribute = property(_get_example_type_attribute, _set_example_type_attribute)
-
-
-
+    example_type_attribute = property(
+        _get_example_type_attribute, _set_example_type_attribute
+    )

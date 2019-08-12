@@ -8,4 +8,12 @@ from docpool.transfers.behaviors.transferstype import ITransfersType
 from docpool.transfers.behaviors.transferable import ITransferable
 
 # Transfers are always available
-registerApp(TRANSFERS_APP, u"Transfer Support", ITransfersType, ITransferable, dpAdded, dpRemoved, implicit=True)
+registerApp(
+    TRANSFERS_APP,
+    u"Transfer Support",
+    ITransfersType,
+    ITransferable,
+    dpAdded,
+    dpRemoved,
+    implicit=True,
+)

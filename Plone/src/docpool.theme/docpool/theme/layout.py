@@ -4,6 +4,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from plone.app.layout.globals import layout as base
 from plone import api
 
+
 class LayoutPolicy(base.LayoutPolicy):
     """
     Enhanced layout policy helper.

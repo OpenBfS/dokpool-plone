@@ -18,8 +18,12 @@ from zope.publisher.interfaces import IPublishTraverse, NotFound
 from plone.namedfile.file import FileChunk
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
-from plone.namedfile.scaling import ImageScaling as OriginalImageScaling,\
-    ImageScale, DefaultImageScalingFactory as OriginalImageScalingFactory
+from plone.namedfile.scaling import (
+    ImageScaling as OriginalImageScaling,
+    ImageScale,
+    DefaultImageScalingFactory as OriginalImageScalingFactory,
+)
+
 _marker = object()
 
 
@@ -27,6 +31,7 @@ import logging
 
 
 logger = logging.getLogger(__name__)
+
 
 class ImageScaling(OriginalImageScaling):
     """ view used for generating (and storing) image scales """
@@ -38,7 +43,7 @@ class ImageScaling(OriginalImageScaling):
         if stack:
             # field and scale name were given...
             scale = stack.pop()
-            image = self.scale(name, scale)             # this is aq-wrapped
+            image = self.scale(name, scale)  # this is aq-wrapped
         elif '-' in name:
             # we got a uid...
             if '.' in name:
@@ -54,27 +59,25 @@ class ImageScaling(OriginalImageScaling):
             if '.' in name:
                 name, ext = name.rsplit('.', 1)
             value = getattr(self.context, name)
-            
+
             # BfS extension:
             if callable(value):
                 value = value()
-            
+
             scale_view = ImageScale(
-                self.context, self.request, data=value, fieldname=name)
+                self.context, self.request, data=value, fieldname=name
+            )
             return scale_view.__of__(self.context)
         if image is not None:
             return image
         raise NotFound(self, name, self.request)
 
-    def create(self,
-               fieldname,
-               direction='thumbnail',
-               height=None,
-               width=None,
-               **parameters):
+    def create(
+        self, fieldname, direction='thumbnail', height=None, width=None, **parameters
+    ):
         """ factory for image scales, see `IImageScaleStorage.scale` """
         orig_value = getattr(self.context, fieldname)
-        
+
         # BfS extension:
         if callable(orig_value):
             orig_value = orig_value()
@@ -107,38 +110,38 @@ class ImageScaling(OriginalImageScaling):
                 parameters['quality'] = quality
 
         try:
-            result = scaleImage(orig_data,
-                                direction=direction,
-                                height=height,
-                                width=width,
-                                **parameters)
+            result = scaleImage(
+                orig_data, direction=direction, height=height, width=width, **parameters
+            )
         except (ConflictError, KeyboardInterrupt):
             raise
         except Exception:
-            exception('could not scale "%r" of %r',
-                      orig_value, self.context.absolute_url())
+            exception(
+                'could not scale "%r" of %r', orig_value, self.context.absolute_url()
+            )
             return
         if result is not None:
             data, format, dimensions = result
             mimetype = 'image/%s' % format.lower()
             value = orig_value.__class__(
-                data, contentType=mimetype, filename=orig_value.filename)
+                data, contentType=mimetype, filename=orig_value.filename
+            )
             value.fieldname = fieldname
             return value, format, dimensions
 
-class ImageScalingFactory(OriginalImageScalingFactory):
 
+class ImageScalingFactory(OriginalImageScalingFactory):
     def __init__(self, context):
         self.context = context
 
     def __call__(
-            self,
-            fieldname=None,
-            direction='thumbnail',
-            height=None,
-            width=None,
-            scale=None,
-            **parameters
+        self,
+        fieldname=None,
+        direction='thumbnail',
+        height=None,
+        width=None,
+        scale=None,
+        **parameters
     ):
 
         """Factory for image scales`.
@@ -157,11 +160,7 @@ class ImageScalingFactory(OriginalImageScalingFactory):
 
         try:
             result = self.create_scale(
-                orig_data,
-                direction=direction,
-                height=height,
-                width=width,
-                **parameters
+                orig_data, direction=direction, height=height, width=width, **parameters
             )
         except (ConflictError, KeyboardInterrupt):
             raise
@@ -171,17 +170,15 @@ class ImageScalingFactory(OriginalImageScalingFactory):
             else:
                 logger.exception(
                     'Could not scale "{0!r}" of {1!r}'.format(
-                        orig_value,
-                        self.context.absolute_url,
-                    ),
+                        orig_value, self.context.absolute_url
+                    )
                 )
                 return
         except Exception, e:
             logger.exception(
                 'Could not scale "{0!r}" of {1!r}'.format(
-                    orig_value,
-                    self.context.absolute_url,
-                ),
+                    orig_value, self.context.absolute_url
+                )
             )
             return
         if result is None:
@@ -189,9 +186,7 @@ class ImageScalingFactory(OriginalImageScalingFactory):
         data, format_, dimensions = result
         mimetype = 'image/{0}'.format(format_.lower())
         value = orig_value.__class__(
-            data,
-            contentType=mimetype,
-            filename=orig_value.filename,
+            data, contentType=mimetype, filename=orig_value.filename
         )
         value.fieldname = fieldname
         return value, format_, dimensions

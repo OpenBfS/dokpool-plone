@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
+
+
 class args:
     def __init__(self, **kw):
         self.__dict__.update(kw)
+
 
 def setupVarious(context):
 
@@ -20,9 +23,11 @@ def setupVarious(context):
         try:
             if index_name not in cat.indexes():
                 if index_type == 'ZCTextIndex':
-                    extra = args(doc_attr=index_name,
-                                 lexicon_id='pg_lexicon',
-                                 index_type='Okapi BM25 Rank')
+                    extra = args(
+                        doc_attr=index_name,
+                        lexicon_id='pg_lexicon',
+                        index_type='Okapi BM25 Rank',
+                    )
                     cat.addIndex(index_name, index_type, extra=extra)
                 else:
                     if extra:
@@ -32,4 +37,4 @@ def setupVarious(context):
             if not index_name in cat.schema():
                 cat.addColumn(index_name)
         except:
-            pass    # for metadata
+            pass  # for metadata

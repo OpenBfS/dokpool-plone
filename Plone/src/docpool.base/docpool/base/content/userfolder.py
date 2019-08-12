@@ -36,15 +36,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IUserFolder(form.Schema, ISimpleFolder):
     """
     """
 
 
-
 class UserFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IUserFolder)
@@ -62,12 +63,13 @@ class UserFolder(Container, SimpleFolder):
                 esd_uid = o.getProperty("dp")
                 if esd_uid:
                     catalog = getToolByName(self, 'portal_catalog')
-                    result  = catalog({'UID' : esd_uid})
+                    result = catalog({'UID': esd_uid})
                     if len(result) == 1:
                         esd = result[0].getObject()
-                # Move me there
+                        # Move me there
                         members = esd.content.Members
                         _cutPaste(self, members, unique=True)
+
         execute_under_special_role(self, "Manager", moveFolder)
 
     def myUserFolder(self):
@@ -92,15 +94,13 @@ class UserFolder(Container, SimpleFolder):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSimpleFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'SimpleFolder'}
+        args = {'portal_type': 'SimpleFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

@@ -30,8 +30,12 @@ from docpool.base.content.folderbase import FolderBase, IFolderBase
 
 from Products.CMFCore.utils import getToolByName
 
-from docpool.base.utils import queryForObjects, portalMessage, execute_under_special_role, \
-getAllowedDocumentTypes
+from docpool.base.utils import (
+    queryForObjects,
+    portalMessage,
+    execute_under_special_role,
+    getAllowedDocumentTypes,
+)
 from Products.CMFPlone.utils import parent
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -40,23 +44,29 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class ISimpleFolder(form.Schema, IFolderBase):
     """
     """
 
     allowedDocTypes = schema.List(
-                        title=_(u'label_simplefolder_alloweddoctypes', default=u'Document types allowed in this folder'),
-                        description=_(u'description_simplefolder_alloweddoctypes', default=u'Leave blank to enable all types configured for the group.'),
-                        required=False,
-                        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
+        title=_(
+            u'label_simplefolder_alloweddoctypes',
+            default=u'Document types allowed in this folder',
+        ),
+        description=_(
+            u'description_simplefolder_alloweddoctypes',
+            default=u'Leave blank to enable all types configured for the group.',
+        ),
+        required=False,
+        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
     )
-
-
 
 
 class SimpleFolder(Container, FolderBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISimpleFolder)
@@ -72,18 +82,28 @@ class SimpleFolder(Container, FolderBase):
         for menu_item in menu_items:
             if menu_item.get('id') == 'DPDocument':
                 for dt in dts:
-                    if not dt.getObject().globalAllow: # only generally allowed doctypes
+                    if (
+                        not dt.getObject().globalAllow
+                    ):  # only generally allowed doctypes
                         continue
                     if not filter or dt.id in self.allowedDocTypes:
-                        res.append({'extra':
-         {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id},
-                                    'submenu': None,
-                                    'description': '',
-                                    'title': dt.Title,
-                                    'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id),
-                                    'selected': False,
+                        res.append(
+                            {
+                                'extra': {
+                                    'separator': None,
                                     'id': dt.id,
-                                    'icon': None})
+                                    'class': 'contenttype-%s' % dt.id,
+                                },
+                                'submenu': None,
+                                'description': '',
+                                'title': dt.Title,
+                                'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
+                                % (self.absolute_url(), dt.id),
+                                'selected': False,
+                                'id': dt.id,
+                                'icon': None,
+                            }
+                        )
             else:
                 res.append(menu_item)
         return res
@@ -115,8 +135,17 @@ class SimpleFolder(Container, FolderBase):
     def containsPublishedDocuments(self):
         """
         """
-        return len(queryForObjects(self, path="/".join(self.getPhysicalPath()), portal_type="DPDocument", review_state="published")) > 0
-
+        return (
+            len(
+                queryForObjects(
+                    self,
+                    path="/".join(self.getPhysicalPath()),
+                    portal_type="DPDocument",
+                    review_state="published",
+                )
+            )
+            > 0
+        )
 
     def publish_doc(self, id, REQUEST=None):
         """
@@ -134,9 +163,6 @@ class SimpleFolder(Container, FolderBase):
             if REQUEST:
                 portalMessage(self, _("The document has been published."), "info")
                 return self.restrictedTraverse("@@view")()
-
-
-
 
     def mySimpleFolder(self):
         """
@@ -160,15 +186,13 @@ class SimpleFolder(Container, FolderBase):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSimpleFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'SimpleFolder'}
+        args = {'portal_type': 'SimpleFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

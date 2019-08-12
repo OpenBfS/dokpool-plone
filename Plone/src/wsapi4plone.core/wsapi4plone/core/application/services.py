@@ -12,8 +12,10 @@ from zope.publisher.interfaces import NotFound
 
 from Products.Archetypes.BaseUnit import BaseUnit
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+
 try:
     from plone.app.blob.interfaces import IBlobWrapper
+
     has_blob_support = True
 except ImportError:
     has_blob_support = False
@@ -33,7 +35,7 @@ class PloneService(Service):
         for p in broken_bones:
             attr_id = p['id']
             # Assemble the bones into an unbroken order
-            mended_bones[attr_id] = dict([ (x, p[x]) for x in p if x != 'id' ])
+            mended_bones[attr_id] = dict([(x, p[x]) for x in p if x != 'id'])
         # Mend the bones with data
         for k in mended_bones:
             if hasattr(self.context[attr], k):
@@ -61,10 +63,11 @@ class PloneService(Service):
 
     def _gather_blob_data(self, attr):
         blob = self.context[attr]
-        gathered_data = {'content_type': blob.content_type,
-                         'data': xmlrpclib.Binary(blob.data),
-                         'size': blob.size(),
-                         }
+        gathered_data = {
+            'content_type': blob.content_type,
+            'data': xmlrpclib.Binary(blob.data),
+            'size': blob.size(),
+        }
         if hasattr(blob, 'title') and blob.title is not None:
             gathered_data['title'] = blob.title
         if hasattr(blob, 'width'):
@@ -85,10 +88,11 @@ class PloneService(Service):
         else:
             # do something with non-AT objects
             # get dictionary form of the schema
-            return # for the time being... no object also comes here
+            return  # for the time being... no object also comes here
 
         fields = schema.values()
-        if not filtr: filtr = schema.keys()
+        if not filtr:
+            filtr = schema.keys()
         skeleton = {}
         for field in fields:
             name = field.getName()
@@ -111,7 +115,7 @@ class PloneService(Service):
             elif isinstance(self.context[k], BaseUnit):
                 # -- it's worse than the x-ray shows --
                 # brittle_bones, tisk tisk
-                # 
+                #
                 # Archetypes' BaseUnit subclasses OFS's File, which has the
                 # _properties attribute, but it loses its 'id' and
                 # 'content_type' ???
@@ -144,7 +148,10 @@ class PloneServiceContainer(PloneService, ServiceContainer):
 
     def create_object(self, type_name, id_):
         new_id = self.context.invokeFactory(type_name=type_name, id=id_)
-        assert new_id == id_, "New id (%s) does not equal the excepted id (%s)." % (new_id, posted_id)
+        assert new_id == id_, "New id (%s) does not equal the excepted id (%s)." % (
+            new_id,
+            posted_id,
+        )
         return id_
 
     def delete_object(self, id_):
@@ -161,10 +168,13 @@ class PloneServiceContainer(PloneService, ServiceContainer):
 
 class PloneRootService(PloneServiceContainer):
     """Adapts a Plone Site object"""
+
     adapts(IPloneSiteRoot)
     # implements(IServiceContainer)
 
     def get_skeleton(self, filtr=[], *args, **kwargs):
-        return {'id': {'required': True, 'type': 'string'},
-                'title': {'required': True, 'type': 'string'},
-                'description': {'required': False, 'type': 'string'}}
+        return {
+            'id': {'required': True, 'type': 'string'},
+            'title': {'required': True, 'type': 'string'},
+            'description': {'required': False, 'type': 'string'},
+        }

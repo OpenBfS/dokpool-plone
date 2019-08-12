@@ -72,8 +72,7 @@ class To1002TestCase(UpgradeBaseTestCase):
         self._do_upgrade(step)
 
         self.assertEqual(
-            wtool.getChainForPortalType('Journal'),
-            ('simple_publication_workflow',)
+            wtool.getChainForPortalType('Journal'), ('simple_publication_workflow',)
         )
 
     @unittest.skipIf(IS_PLONE_5, 'Not needed in Plone 5')

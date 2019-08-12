@@ -4,6 +4,7 @@ from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.behaviors.elandocument import IELANDocument
 
+
 @indexer(IDPDocument)
 def scenarios_indexer(obj):
     try:
@@ -11,12 +12,14 @@ def scenarios_indexer(obj):
     except:
         pass
 
+
 @indexer(IDPDocument)
 def category_indexer(obj):
     try:
         return IELANDocument(obj).category()
     except:
         pass
+
 
 @indexer(IDPDocument)
 def cat_path_indexer(obj):

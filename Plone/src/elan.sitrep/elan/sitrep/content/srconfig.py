@@ -35,15 +35,16 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRConfig(form.Schema):
     """
     """
 
 
-
 class SRConfig(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRConfig)
@@ -72,22 +73,20 @@ class SRConfig(Container):
     def getSRCollectionss(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRCollections'}
+        args = {'portal_type': 'SRCollections'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRScenarios(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRScenario'}
+        args = {'portal_type': 'SRScenario'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRTextBlockss(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRTextBlocks'}
+        args = {'portal_type': 'SRTextBlocks'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

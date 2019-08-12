@@ -17,8 +17,7 @@ class ContentTypeTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(self.portal, 'Journal', 'journal')
 
     def test_adding(self):
         self.assertTrue(IJournal.providedBy(self.journal))
@@ -40,6 +39,7 @@ class ContentTypeTestCase(unittest.TestCase):
 
     def test_exclude_from_navigation_behavior(self):
         from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+
         self.assertTrue(IExcludeFromNavigation.providedBy(self.journal))
 
     def test_content_types_constrains(self):

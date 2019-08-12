@@ -27,15 +27,15 @@ class ViewletTestCase(unittest.TestCase):
         alsoProvides(self.request, IBrowserLayer)
 
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(self.portal, 'Journal', 'journal')
 
     def _get_viewlet_manager(self):
         context = self.journal
         request = self.request
         view = View(context, request)
         manager = queryMultiAdapter(
-            (context, request, view), IViewletManager, 'plone.abovecontent')
+            (context, request, view), IViewletManager, 'plone.abovecontent'
+        )
 
         return manager
 
@@ -50,11 +50,11 @@ class ViewletTestCase(unittest.TestCase):
         manager.update()
         self.assertEqual(len(manager.viewlets), 2)
         viewlets = [v.__name__ for v in manager.viewlets]
-        self.assertListEqual(
-            viewlets, [u'plone.path_bar', u'elan.journal.header'])
+        self.assertListEqual(viewlets, [u'plone.path_bar', u'elan.journal.header'])
 
     def test_viewlet_is_available(self):
         from plone.namedfile.file import NamedBlobImage
+
         manager = self._get_viewlet_manager()
         manager.update()
         viewlet = manager[u'elan.journal.header']

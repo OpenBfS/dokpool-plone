@@ -34,19 +34,19 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IGroups(form.Schema):
     """
     """
 
 
-
 class Groups(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IGroups)
-
 
     def myGroups(self):
         """
@@ -70,8 +70,6 @@ class Groups(Container):
     def getGroupFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'GroupFolder'}
+        args = {'portal_type': 'GroupFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

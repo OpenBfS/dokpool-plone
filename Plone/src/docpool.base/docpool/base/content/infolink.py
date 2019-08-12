@@ -26,7 +26,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFPlone.utils import log, log_exc
 
 from plone.dexterity.content import Item
-from plone.app.contenttypes.content import Link,ILink
+from plone.app.contenttypes.content import Link, ILink
 
 from Products.CMFCore.utils import getToolByName
 
@@ -35,24 +35,18 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IInfoLink(form.Schema, ILink):
     """
     """
 
-    remoteUrl = schema.TextLine(
-        title=u"URL",
-        default=u"http://"
-    )
-
-
+    remoteUrl = schema.TextLine(title=u"URL", default=u"http://")
 
 
 class InfoLink(Item, Link):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IInfoLink)
-
-
-

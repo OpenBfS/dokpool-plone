@@ -32,8 +32,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.utils import shasattr
 from zope.component import adapter
 from zope.lifecycleevent import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectCreatedEvent,\
-    IObjectCopiedEvent
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent, IObjectCopiedEvent
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope.component.interfaces import IObjectEvent
 from plone.dexterity.interfaces import IEditFinishedEvent
@@ -47,28 +46,29 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IContentBase(form.Schema):
     """
     """
 
     created_by = schema.TextLine(
-                        title=_(u'label_contentbase_created_by', default=u'Created by'),
-                        description=_(u'description_contentbase_created_by', default=u''),
-                        required=False,
+        title=_(u'label_contentbase_created_by', default=u'Created by'),
+        description=_(u'description_contentbase_created_by', default=u''),
+        required=False,
     )
     form.omitted('created_by')
 
     modified_by = schema.TextLine(
-                        title=_(u'label_contentbase_modified_by', default=u'Modified by'),
-                        description=_(u'description_contentbase_modified_by', default=u''),
-                        required=False,
+        title=_(u'label_contentbase_modified_by', default=u'Modified by'),
+        description=_(u'description_contentbase_modified_by', default=u''),
+        required=False,
     )
     form.omitted('modified_by')
 
     mdate = schema.Datetime(
-                        title=_(u'label_contentbase_mdate', default=u'Date of last user action'),
-                        description=_(u'description_contentbase_mdate', default=u''),
-                        required=False,
+        title=_(u'label_contentbase_mdate', default=u'Date of last user action'),
+        description=_(u'description_contentbase_mdate', default=u''),
+        required=False,
     )
     form.omitted('mdate')
 
@@ -78,23 +78,30 @@ class IContentBase(form.Schema):
         required=False,
     )
     form.omitted('wdate')
+
+
 @form.default_value(field=IContentBase['mdate'])
 def initializeMdate(data):
     # To get hold of the folder, do: context = data.context
-    return data.context.created().asdatetime().replace(tzinfo=None) or datetime.datetime.now()
+    return (
+        data.context.created().asdatetime().replace(tzinfo=None)
+        or datetime.datetime.now()
+    )
 
 
 class ContentBase(Item):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IContentBase)
 
     def _getUserInfoString(self, plain=False):
         from docpool.base.utils import getUserInfo
+
         userid, fullname, primary_group = getUserInfo(self)
-        #print userid, fullname, primary_group
+        # print userid, fullname, primary_group
         res = safe_unicode(fullname)
         if primary_group:
             if plain:
@@ -116,7 +123,9 @@ class ContentBase(Item):
     def getMdate(self):
         """
         """
-        return (shasattr(self, "mdate") and self.mdate) or self.created().asdatetime().replace(tzinfo=None)
+        return (
+            shasattr(self, "mdate") and self.mdate
+        ) or self.created().asdatetime().replace(tzinfo=None)
 
     def changed(self):
         """
@@ -126,7 +135,7 @@ class ContentBase(Item):
     def update_modified(self):
         """
         """
-        #print "update_modified"
+        # print "update_modified"
         self.modified_by = self._getUserInfoString()
         self.mdate = datetime.datetime.now()
         self.reindexObject()
@@ -152,7 +161,9 @@ class ContentBase(Item):
         """
         Checks if the content has been created in a group folder.
         """
-        return "Groups" in self.getPhysicalPath() or "Transfers" in self.getPhysicalPath()
+        return (
+            "Groups" in self.getPhysicalPath() or "Transfers" in self.getPhysicalPath()
+        )
 
     def myGroup(self):
         """
@@ -160,7 +171,7 @@ class ContentBase(Item):
         pp = self.getPhysicalPath()
         if "Groups" in pp:
             i = pp.index("Groups")
-            return self.restrictedTraverse("/".join(pp[:i+2])).title
+            return self.restrictedTraverse("/".join(pp[: i + 2])).title
         else:
             return "Transfers"
 
@@ -193,14 +204,15 @@ class ContentBase(Item):
 def updateCreated(obj, event=None):
     request = obj.REQUEST
     if request.get('creating', False):
-        #print "#" * 20, "creating"
+        # print "#" * 20, "creating"
         if not obj.isArchive():
             obj.update_created()
         obj.createActions()
 
-#edited
+
+# edited
 @adapter(IContentBase, IEditFinishedEvent)
-#Edit was finished and contents are saved. This event is fired
+# Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
 def updateModified(obj, event=None):
     if not obj.isArchive():
@@ -215,8 +227,9 @@ def markCreateEvent(obj, event):
     request = context.REQUEST
     request.set("creating", True)
 
+
 @adapter(IContentBase, IAfterTransitionEvent)
-#Edit was finished and contents are saved. This event is fired
+# Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
 def updateWorkflow(obj, event=None):
     if not obj.isArchive():

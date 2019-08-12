@@ -36,15 +36,16 @@ from elan.esd.config import PROJECTNAME
 
 from elan.esd import DocpoolMessageFactory as _
 
+
 class IELANArchives(form.Schema):
     """
     """
 
 
-
 class ELANArchives(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IELANArchives)
@@ -79,8 +80,6 @@ class ELANArchives(Container):
     def getELANArchives(self, **kwargs):
         """
         """
-        args = {'portal_type':'ELANArchive'}
+        args = {'portal_type': 'ELANArchive'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

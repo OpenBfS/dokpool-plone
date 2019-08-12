@@ -32,7 +32,7 @@ class DPDocumentirixView(BrowserView):
     __call__ = ViewPageTemplateFile('dpdocumentirix.pt')
 
     def __init__(self, context, request):
-        BrowserView.__init__(self,context,request)
+        BrowserView.__init__(self, context, request)
         self.ic = self.irixConfig()
 
     def elanobject(self):
@@ -92,7 +92,11 @@ class DPDocumentirixView(BrowserView):
     def mtime(self):
         """
         """
-        return self.context.mdate and self.context.mdate.strftime("%Y-%m-%dT%H:%M:%SZ") or ""
+        return (
+            self.context.mdate
+            and self.context.mdate.strftime("%Y-%m-%dT%H:%M:%SZ")
+            or ""
+        )
 
     def attachments(self):
         """
@@ -121,7 +125,11 @@ class DPDocumentirixView(BrowserView):
     def isEventDescription(self):
         """
         """
-        return self.irixType() in ['Event information', 'Public information', 'Public information - Press release']
+        return self.irixType() in [
+            'Event information',
+            'Public information',
+            'Public information - Press release',
+        ]
 
     def isActualRelease(self):
         """
@@ -141,7 +149,9 @@ class DPDocumentirixView(BrowserView):
     def isMeasurements(self):
         """
         """
-        return (self.irixType() in ['Measurements']) and (self.context.dp_type_name() != 'Gamma Dose Rate')
+        return (self.irixType() in ['Measurements']) and (
+            self.context.dp_type_name() != 'Gamma Dose Rate'
+        )
 
     def isProtectiveActions(self):
         """
@@ -157,4 +167,3 @@ class DPDocumentirixView(BrowserView):
         """
         """
         return b64encode(file.index_html().encode('utf-8'))
-

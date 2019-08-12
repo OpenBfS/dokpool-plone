@@ -35,24 +35,30 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRModuleType(form.Schema, IDocType):
     """
     """
 
     docSelection = RelationChoice(
-                        title=_(u'label_srmoduletype_docselection', default=u'Collection for relevant documents'),
-                        description=_(u'description_srmoduletype_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
-                        required=False,
-                        source = "elan.sitrep.vocabularies.Collections",
+        title=_(
+            u'label_srmoduletype_docselection',
+            default=u'Collection for relevant documents',
+        ),
+        description=_(
+            u'description_srmoduletype_docselection',
+            default=u'This collection defines a pre-selection of possible documents to reference within this module.',
+        ),
+        required=False,
+        source="elan.sitrep.vocabularies.Collections",
     )
-
 
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
 
     form.mode(allowUploads='hidden')
     form.mode(publishImmediately='hidden')
     form.mode(globalAllow='hidden')
-#    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
+    #    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
     form.mode(partsPattern='hidden')
     form.mode(pdfPattern='hidden')
     form.mode(imgPattern='hidden')
@@ -62,6 +68,7 @@ class ISRModuleType(form.Schema, IDocType):
 class SRModuleType(Container, DocType):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRModuleType)
@@ -98,15 +105,13 @@ class SRModuleType(Container, DocType):
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
-        args = {'portal_type':'Image'}
+        args = {'portal_type': 'Image'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

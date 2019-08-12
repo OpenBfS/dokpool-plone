@@ -4,12 +4,14 @@ from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.config import ELAN_APP
 
+
 @indexer(IDPDocument)
 def scenarios_indexer(obj):
     try:
         return obj.doc_extension(ELAN_APP).scenarioIndex()
     except:
-        return [ 'nonELANContent' ]
+        return ['nonELANContent']
+
 
 @indexer(IDPDocument)
 def category_indexer(obj):
@@ -17,6 +19,7 @@ def category_indexer(obj):
         return obj.doc_extension(ELAN_APP).category()
     except:
         pass
+
 
 @indexer(IDPDocument)
 def cat_path_indexer(obj):

@@ -13,7 +13,6 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 
 
-
 from elan.sitrep import DocpoolMessageFactory as _
 
 
@@ -21,11 +20,14 @@ from elan.sitrep import DocpoolMessageFactory as _
 # It will be used to generate add and edit forms. In this case, we don't
 # have an edit form, since there are no editable options.
 
+
 class ISRModuleEditPortlet(IPortletDataProvider):
     pass
 
+
 # The assignment is a persistent object used to store the configuration of
 # a particular instantiation of the portlet.
+
 
 class Assignment(base.Assignment):
     implements(ISRModuleEditPortlet)
@@ -34,16 +36,19 @@ class Assignment(base.Assignment):
     def title(self):
         return _(u"SRModuleEdit")
 
+
 # The renderer is like a view (in fact, like a content provider/viewlet). The
 # item self.data will typically be the assignment (although it is possible
 # that the assignment chooses to return a different object - see
 # base.Assignment).
+
 
 class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
 
     render = ViewPageTemplateFile('srmoduleedit.pt')
+
     @property
     def available(self):
         return self.isEditMode()
@@ -55,6 +60,7 @@ class Renderer(base.Renderer):
 
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True
+
 
 class AddForm(base.NullAddForm):
 

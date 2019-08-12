@@ -34,21 +34,23 @@ from docpool.dashboard.config import PROJECTNAME
 
 from docpool.dashboard import DocpoolMessageFactory as _
 
+
 class IDashboard(form.Schema):
     """
     """
 
     dbCollections = RelationList(
-                        title=_(u'label_dashboard_dbcollections', default=u'Document Types'),
-                        description=_(u'description_dashboard_dbcollections', default=u'Select the document types you want to show in this dashboard.'),
-                        required=False,
-                        value_type=RelationChoice(
-                                                      title=_("Document Types"),
-                                                    source = "docpool.dashboard.vocabularies.DashboardCollections",
-
-                                                     ),
+        title=_(u'label_dashboard_dbcollections', default=u'Document Types'),
+        description=_(
+            u'description_dashboard_dbcollections',
+            default=u'Select the document types you want to show in this dashboard.',
+        ),
+        required=False,
+        value_type=RelationChoice(
+            title=_("Document Types"),
+            source="docpool.dashboard.vocabularies.DashboardCollections",
+        ),
     )
-
 
     form.widget(dbCollections='z3c.form.browser.select.CollectionSelectFieldWidget')
 
@@ -56,6 +58,7 @@ class IDashboard(form.Schema):
 class Dashboard(Item):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDashboard)
@@ -66,15 +69,12 @@ class Dashboard(Item):
         get the most recent document (if available).
         """
         res = []
-        for c in (self.dbCollections and self.dbCollections or []):
+        for c in self.dbCollections and self.dbCollections or []:
             coll = c.to_object
             docs = coll.results(b_size=1)
             if len(docs) > 0:
                 res.append((coll.Title(), docs[0]))
             else:
                 res.append((coll.Title(), None))
-#        print res
+        #        print res
         return res
-
-
-

@@ -12,6 +12,7 @@ from Products.PloneTestCase import PloneTestCase
 
 from wsapi4plone.core.browser.workflow import Workflow
 
+
 class TestWorkflow(PloneTestCase.PloneTestCase):
     """What kind of content-types do we have the ability to add using the
     'get_types' call."""
@@ -36,7 +37,7 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         self.logout()
         state = portal_workflow.getInfoFor(fp, 'review_state')
         transitions = portal_workflow.getTransitionsFor(fp)
-        transitions_list = [ x['id'] for x in transitions ]
+        transitions_list = [x['id'] for x in transitions]
 
         self.failUnlessEqual(state, wf_results['state'])
         self.failUnlessEqual(transitions_list, wf_results['transitions'])
@@ -62,7 +63,7 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         state = portal_workflow.getInfoFor(fp, 'review_state')
         transitions = portal_workflow.getTransitionsFor(fp)
         self.logout()
-        transitions_list = [ x['id'] for x in transitions ]
+        transitions_list = [x['id'] for x in transitions]
 
         self.failUnlessEqual(state, wf_results['state'])
         self.failUnlessEqual(transitions_list, wf_results['transitions'])
@@ -75,7 +76,7 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         resp = Response(FauxResponse())
         wf = Workflow(fp, '')
         # Transition the workflow.
-        self.logout() # Make sure we are logged out.
+        self.logout()  # Make sure we are logged out.
         try:
             wf_data = wf.set_workflow('retract')
         except WorkflowException:
@@ -106,8 +107,8 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         state = portal_workflow.getInfoFor(fp, 'review_state')
         self.failUnlessEqual(state, 'private')
 
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestWorkflow))
     return suite
-

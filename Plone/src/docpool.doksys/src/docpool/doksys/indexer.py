@@ -4,12 +4,14 @@ from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.doksys.config import DOKSYS_APP
 
+
 @indexer(IDPDocument)
 def network_operator_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).NetworkOperator
     except:
         pass
+
 
 @indexer(IDPDocument)
 def dom_indexer(obj):
@@ -18,6 +20,7 @@ def dom_indexer(obj):
     except:
         pass
 
+
 @indexer(IDPDocument)
 def legal_base_indexer(obj):
     try:
@@ -25,13 +28,13 @@ def legal_base_indexer(obj):
     except:
         pass
 
+
 @indexer(IDPDocument)
 def measuring_program_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).MeasuringProgram
     except:
         pass
-
 
 
 @indexer(IDPDocument)
@@ -48,6 +51,7 @@ def sampling_end_indexer(obj):
         return obj.doc_extension(DOKSYS_APP).SamplingEnd
     except:
         pass
+
 
 @indexer(IDPDocument)
 def purpose_indexer(obj):
@@ -159,5 +163,3 @@ def area_indexer(obj):
         return obj.doc_extension(DOKSYS_APP).Area
     except:
         pass
-
-

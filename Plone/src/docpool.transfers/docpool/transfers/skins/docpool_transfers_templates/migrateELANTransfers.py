@@ -10,14 +10,12 @@
 from Products.CMFCore.utils import getToolByName
 
 cat = getToolByName(context, 'portal_catalog', None)
-transfers = cat(portal_type="ELANTransfers", sort_on = "sortable_title")
+transfers = cat(portal_type="ELANTransfers", sort_on="sortable_title")
 for transfer in transfers:
     t = transfer.getObject()
     t.migrate()
 
-transfers = cat(portal_type="ELANTransferFolder", sort_on = "sortable_title")
+transfers = cat(portal_type="ELANTransferFolder", sort_on="sortable_title")
 for transfer in transfers:
     t = transfer.getObject()
     t.migrate()
-
-

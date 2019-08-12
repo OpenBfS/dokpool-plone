@@ -34,18 +34,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IDocumentExtension(form.Schema):
     """
     """
 
 
-
 class DocumentExtension(Item):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDocumentExtension)
-
-
-

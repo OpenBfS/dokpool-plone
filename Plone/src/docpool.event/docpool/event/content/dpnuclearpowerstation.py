@@ -11,21 +11,23 @@ from plone.directives import form, dexterity
 
 from plone.dexterity.content import Item
 from logging import getLogger
+
 logger = getLogger("dpnetwork")
 
 from docpool.event import DocpoolMessageFactory as _
 
+
 class IDPNuclearPowerStation(form.Schema):
     """
     """
-    coordinates = schema.TextLine(
-        title=_(u'Coordinates'),
-        required=False)
+
+    coordinates = schema.TextLine(title=_(u'Coordinates'), required=False)
+
 
 class DPNuclearPowerStation(Item):
     """
     """
+
     security = ClassSecurityInfo()
-    
+
     implements(IDPNuclearPowerStation)
-    

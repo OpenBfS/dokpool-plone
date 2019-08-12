@@ -13,6 +13,7 @@ from Products.PloneTestCase import PloneTestCase
 from wsapi4plone.core.browser.query import _convert_datetime, Query
 from wsapi4plone.core.interfaces import IFormatQueryResults
 
+
 class TestQuery(PloneTestCase.PloneTestCase):
     """The 'query' call is basically a middle-person between the client and the
     portal_catalog (a Plone tool that stores index information). The parameters
@@ -58,10 +59,15 @@ class TestQuery(PloneTestCase.PloneTestCase):
         min_date = xmlrpclib.DateTime('20071231T00:00:00')
         # max_date = xmlrpclib.DateTime(datetime.datetime(2007, 1, 1))
         max_date = xmlrpclib.DateTime('20070101T00:00:00')
-        xmlrpc_criteria = {'created': {'query': [min_date, max_date], 'range': 'min:max'}}
-        normal_criteria = {'created': {'query': [_convert_datetime(min_date),
-                                                 _convert_datetime(max_date)],
-                                       'range': 'min:max'}}
+        xmlrpc_criteria = {
+            'created': {'query': [min_date, max_date], 'range': 'min:max'}
+        }
+        normal_criteria = {
+            'created': {
+                'query': [_convert_datetime(min_date), _convert_datetime(max_date)],
+                'range': 'min:max',
+            }
+        }
 
         tool_results = queryFormater(portal_catalog(normal_criteria))
         q_data = q.query(xmlrpc_criteria)
@@ -82,6 +88,7 @@ class TestQuery(PloneTestCase.PloneTestCase):
                     # xmlrpclib converts tuples to lists.
                     q_index[i] = tuple(q_index[i])
                 self.failUnlessEqual(tool_index[i], q_index[i])
+
 
 def test_suite():
     suite = unittest.TestSuite()

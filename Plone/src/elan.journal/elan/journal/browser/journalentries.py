@@ -15,6 +15,7 @@ from zope.publisher.interfaces import IPublishTraverse
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 
+
 @implementer(IPublishTraverse)
 class JournalEntryView(BrowserView, BaseView):
 

@@ -20,28 +20,32 @@ from plone.memoize.instance import memoize
 
 from docpool.elan.config import ELAN_APP
 
+
 class SRModuleView(BrowserView):
     """Default view
     """
 
     __call__ = ViewPageTemplateFile('srmodule.pt')
+
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)
+
 
 class SRModulematerialView(BrowserView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('srmodulematerial.pt')
+
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)
+
 
 class SRModuleinfoView(BrowserView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('srmoduleinfo.pt')
+
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)
-
-

@@ -25,22 +25,16 @@ DOCPOOL_MENU_FIXTURE = DocpoolMenuLayer()
 
 
 DOCPOOL_MENU_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(DOCPOOL_MENU_FIXTURE,),
-    name='DocpoolMenuLayer:IntegrationTesting'
+    bases=(DOCPOOL_MENU_FIXTURE,), name='DocpoolMenuLayer:IntegrationTesting'
 )
 
 
 DOCPOOL_MENU_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_MENU_FIXTURE,),
-    name='DocpoolMenuLayer:FunctionalTesting'
+    bases=(DOCPOOL_MENU_FIXTURE,), name='DocpoolMenuLayer:FunctionalTesting'
 )
 
 
 DOCPOOL_MENU_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(
-        DOCPOOL_MENU_FIXTURE,
-        REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE
-    ),
-    name='DocpoolMenuLayer:AcceptanceTesting'
+    bases=(DOCPOOL_MENU_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
+    name='DocpoolMenuLayer:AcceptanceTesting',
 )

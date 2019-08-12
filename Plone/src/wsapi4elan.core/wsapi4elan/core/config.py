@@ -3,5 +3,3 @@
 """
 
 PROJECTNAME = "wsapi4elan.core"
-
-

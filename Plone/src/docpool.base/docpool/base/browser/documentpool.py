@@ -23,12 +23,12 @@ from Products.CMFPlone.log import log_exc
 from Products.CMFCore.utils import getToolByName
 from plone.subrequest import subrequest
 
+
 class DocumentPoolView(BrowserView):
     """Default view
     """
 
     __call__ = ViewPageTemplateFile('documentpool.pt')
-
 
 
 class HelpView(BrowserView):
@@ -37,13 +37,16 @@ class HelpView(BrowserView):
 
     __call__ = ViewPageTemplateFile('help.pt')
 
+
 class HelpHelper(BrowserView):
-    def  __call__(self):
+    def __call__(self):
         """
         """
+
         def getHTML():
             urltool = getToolByName(self.context, "portal_url")
             portal = urltool.getPortalObject()
             view = portal.unrestrictedTraverse('contentconfig/help/@@view')
             return view()
+
         return execute_under_special_role(self.context, "Manager", getHTML)

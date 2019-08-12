@@ -16,17 +16,18 @@ from z3c.form import field
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from plone.directives import form
 
+
 class IEnhancedPersonalPreferences(model.Schema):
     """ Use all the fields from the default user data schema, and add various
     extra fields.
     """
 
     apps = schema.List(
-                        title=_(u'label_user_apps', default=u'Applications'),
-                        description=_(u'description_user_apps', default=u''),
-                        required=False,
-                        value_type=schema.Choice(source="docpool.base.vocabularies.AvailableApps"),
-                        )
+        title=_(u'label_user_apps', default=u'Applications'),
+        description=_(u'description_user_apps', default=u''),
+        required=False,
+        value_type=schema.Choice(source="docpool.base.vocabularies.AvailableApps"),
+    )
     form.widget(apps=CheckBoxFieldWidget)
 
 
@@ -35,8 +36,10 @@ class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
 
     def get_apps(self):
         return self.context.getProperty('apps', [])
+
     def set_apps(self, value):
         return self.context.setMemberProperties({'apps': value})
+
     dp = property(get_apps, set_apps)
 
 
@@ -59,4 +62,3 @@ def updateWidgets(self):
 
 
 PersonalPreferencesPanel.updateWidgets = updateWidgets
-        

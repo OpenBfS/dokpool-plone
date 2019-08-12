@@ -35,15 +35,16 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRTextBlocks(form.Schema):
     """
     """
 
 
-
 class SRTextBlocks(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRTextBlocks)
@@ -72,15 +73,13 @@ class SRTextBlocks(Container):
     def getSRTextBlocks(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRTextBlock'}
+        args = {'portal_type': 'SRTextBlock'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRTextBlockss(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRTextBlocks'}
+        args = {'portal_type': 'SRTextBlocks'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

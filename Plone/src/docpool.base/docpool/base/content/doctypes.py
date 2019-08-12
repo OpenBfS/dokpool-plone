@@ -34,19 +34,19 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IDocTypes(form.Schema):
     """
     """
 
 
-
 class DocTypes(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDocTypes)
-
 
     def myDocTypes(self):
         """
@@ -70,15 +70,13 @@ class DocTypes(Container):
     def getDocTypes(self, **kwargs):
         """
         """
-        args = {'portal_type':'DocType'}
+        args = {'portal_type': 'DocType'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModuleTypes(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModuleType'}
+        args = {'portal_type': 'SRModuleType'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

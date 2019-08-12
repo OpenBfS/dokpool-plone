@@ -1,4 +1,5 @@
 from cgi import escape
+
 try:
     from zope.component.hooks import getSite
 except ImportError:
@@ -30,12 +31,12 @@ class Discussion(WSAPI):
 
             for k, v in container.objectItems():
                 results[k] = dict(
-                    created = v.created().ISO(),
-                    creators = v.creators,
-                    title = safe_unicode(v.title),
-                    text = safe_unicode(v.text),
-                    cooked_text = escape(safe_unicode(v.cooked_text), quote=True),
-                    in_reply_to = v.in_reply_to or '',
+                    created=v.created().ISO(),
+                    creators=v.creators,
+                    title=safe_unicode(v.title),
+                    text=safe_unicode(v.text),
+                    cooked_text=escape(safe_unicode(v.cooked_text), quote=True),
+                    in_reply_to=v.in_reply_to or '',
                 )
 
         return results

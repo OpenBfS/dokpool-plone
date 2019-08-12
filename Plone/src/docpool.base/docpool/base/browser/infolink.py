@@ -19,11 +19,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.memoize.instance import memoize
 
 
-
 class InfoLinklistitemView(BrowserView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('infolinklistitem.pt')
-
-

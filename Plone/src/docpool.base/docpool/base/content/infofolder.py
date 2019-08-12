@@ -37,15 +37,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IInfoFolder(form.Schema, IFolderBase):
     """
     """
 
 
-
 class InfoFolder(Container, FolderBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IInfoFolder)
@@ -58,7 +59,9 @@ class InfoFolder(Container, FolderBase):
 
             placeful_wf = getToolByName(self, 'portal_placeful_workflow')
             try:
-                self.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+                self.manage_addProduct[
+                    'CMFPlacefulWorkflow'
+                ].manage_addWorkflowPolicyConfig()
             except BadRequest, e:
                 log_exc(e)
             config = placeful_wf.getWorkflowPolicyConfig(self)
@@ -91,22 +94,20 @@ class InfoFolder(Container, FolderBase):
     def getInfoDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoDocument'}
+        args = {'portal_type': 'InfoDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoLinks(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoLink'}
+        args = {'portal_type': 'InfoLink'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

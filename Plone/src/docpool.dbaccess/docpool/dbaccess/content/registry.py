@@ -7,6 +7,7 @@ from elixir import setup_all
 from docpool.dbaccess.dbinit import __session__, __metadata__
 from sqlalchemy.orm import class_mapper
 from Products.CMFPlone.log import log_exc
+
 # Kompatibilitaet fuer SQLAlchemy > 0.6
 try:
     from sqlalchemy.orm import RelationProperty
@@ -15,54 +16,84 @@ except ImportError:
 from formalchemy import FieldSet, Grid
 from formalchemy import Field
 from formalchemy import types
-_ecreg = {} # Laufzeit Registry 
+
+_ecreg = {}  # Laufzeit Registry
 
 # TODO: Export Config
 _exportConfigReg = {}
 _reportConfigReg = {}
 
+
 def getAllEntityFields(klass):
     """
     """
-    cm = class_mapper(klass)                                # SA Mapper dieser Klasse holen
+    cm = class_mapper(klass)  # SA Mapper dieser Klasse holen
     if cm:
-        fields = cm.columns.keys()                           # Spalten lesen
-        for f in cm.primary_key:                 # Primaerschluesselfelder nicht
+        fields = cm.columns.keys()  # Spalten lesen
+        for f in cm.primary_key:  # Primaerschluesselfelder nicht
             if f.name in fields:
                 fields.remove(f.name)
         for r in cm._props.keys():
-            if type(cm._props[r]) == RelationProperty:      # Relationen zufuegen
+            if type(cm._props[r]) == RelationProperty:  # Relationen zufuegen
                 fields.append(r)
         return fields
     else:
         return []
 
+
 def _makeFS(klass, fields):
     """
     Erzeugt aus einer Feldliste und einer Pythonklasse ein Fieldset fuer alle Felder.
     """
-    #print fields
+    # print fields
     fs = FieldSet(klass, session=__session__)
     fs.configure(include=[getattr(fs, fname) for fname in fields])
     return fs
-    
+
+
 def _makeGrid(typ, klass, fields):
     """
     Erzeugt aus einer Feldliste und einer Pythonklasse ein Grid fuer alle Felder.
     """
-#    print fields
+    #    print fields
     first_field = fields[0]
-#    print first_field
-    
+    #    print first_field
+
     g = Grid(klass, session=__session__)
-    g.configure(include=[getattr(g, fname) for fname in fields],readonly=True)
-    g.append(Field('editlink', type=types.String, value=lambda item: "<a href=\"portal_dbadmin/objekt_edit?typ=%s&pk=%s\">Editieren</a>" % (typ, str(item._sa_instance_state.key[1]))))
-#    print getattr(g, first_field)
-    g.insert(getattr(g,first_field), Field('check', type=types.String, value=lambda item: "<input type='checkbox' name='objsel:list' value=\"%s\"/>" % (str(item._sa_instance_state.key[1]))))
+    g.configure(include=[getattr(g, fname) for fname in fields], readonly=True)
+    g.append(
+        Field(
+            'editlink',
+            type=types.String,
+            value=lambda item: "<a href=\"portal_dbadmin/objekt_edit?typ=%s&pk=%s\">Editieren</a>"
+            % (typ, str(item._sa_instance_state.key[1])),
+        )
+    )
+    #    print getattr(g, first_field)
+    g.insert(
+        getattr(g, first_field),
+        Field(
+            'check',
+            type=types.String,
+            value=lambda item: "<input type='checkbox' name='objsel:list' value=\"%s\"/>"
+            % (str(item._sa_instance_state.key[1])),
+        ),
+    )
     return g
 
 
-def registerEntityConfig(typ, klass, gen_fs=False, protect=False, edit_fs=None, create_fs=None, list_fs=None, filter_fs=None, sort_default=None, label=None):
+def registerEntityConfig(
+    typ,
+    klass,
+    gen_fs=False,
+    protect=False,
+    edit_fs=None,
+    create_fs=None,
+    list_fs=None,
+    filter_fs=None,
+    sort_default=None,
+    label=None,
+):
     """
     Erlaubt das programmatische Definieren oder Ueberschreiben von Entity Konfigurationen.
     D.h. statt eines EntityConfig Objekts wird eine interne Registry genutzt, 
@@ -75,21 +106,23 @@ def registerEntityConfig(typ, klass, gen_fs=False, protect=False, edit_fs=None, 
     # print "**************** registerEntityConfig", typ, gen_fs, protect
     if not label:
         label = typ.capitalize()
-        
+
     econfig = {}
-    if _ecreg.has_key(typ): 
+    if _ecreg.has_key(typ):
         econfig = _ecreg[typ]
-        if econfig['protect'] and not protect: # Eintrag ist geschuetzt und wird nicht ueberschrieben
+        if (
+            econfig['protect'] and not protect
+        ):  # Eintrag ist geschuetzt und wird nicht ueberschrieben
             # print "PROTECTED"
             return
     econfig['label'] = label
     econfig['klass'] = klass
     econfig['protect'] = protect
-    
+
     if gen_fs:
         try:
-            fields = getAllEntityFields(klass) 
-            
+            fields = getAllEntityFields(klass)
+
             if not edit_fs:
                 edit_fs = _makeFS(klass, fields)
             if not create_fs:
@@ -100,9 +133,9 @@ def registerEntityConfig(typ, klass, gen_fs=False, protect=False, edit_fs=None, 
                 filter_fs = _makeFS(klass, fields)
             if not sort_default:
                 sort_default = fields[0]
-        except "Exception, e": # Bei ungewoehnlichen (binaeren) Feldern
+        except "Exception, e":  # Bei ungewoehnlichen (binaeren) Feldern
             log_exc(e)
-    
+
     if edit_fs:
         econfig['edit_def'] = edit_fs
     if create_fs:
@@ -113,23 +146,34 @@ def registerEntityConfig(typ, klass, gen_fs=False, protect=False, edit_fs=None, 
         econfig['filter_def'] = filter_fs
     if sort_default:
         econfig['sort_default'] = sort_default
-        
-    #print "Registering...", typ, econfig
+
+    # print "Registering...", typ, econfig
     _ecreg[typ] = econfig
-    
+
+
 def unregisterEntityConfig(typ):
     """
     """
     if _ecreg.has_key(typ):
         del _ecreg[typ]
 
+
 def unregisterExportDBObjectConfig(typ):
     """
     """
     if _exportConfigReg.has_key(typ):
         del _exportConfigReg[typ]
-        
-def registerExportDBObjectConfig(typ, klass, felder, zusatzFelder=None, methodeFuerZusatzFelder=None, name='Standard', encoding=None):
+
+
+def registerExportDBObjectConfig(
+    typ,
+    klass,
+    felder,
+    zusatzFelder=None,
+    methodeFuerZusatzFelder=None,
+    name='Standard',
+    encoding=None,
+):
     """
     @param typ: Registrierte Entitykonfiguration
     @param klass: OR-Klasse/ ggf. Entity-Klasse
@@ -150,14 +194,13 @@ def registerExportDBObjectConfig(typ, klass, felder, zusatzFelder=None, methodeF
         _exportConfigReg[typ].append((name, exConfig))
     else:
         _exportConfigReg[typ] = [(name, exConfig)]
-        
+
+
 def registerReportConfig(typ, klass, reportTemplateName, name='Standard'):
     """
     """
-    reportConfig = {'klass':klass,
-                    'reportTemplateName':reportTemplateName,
-                    }
-    #TODO: nicht doppelt registriern!
+    reportConfig = {'klass': klass, 'reportTemplateName': reportTemplateName}
+    # TODO: nicht doppelt registriern!
     if _reportConfigReg.has_key(typ):
         _reportConfigReg[typ].append((name, reportConfig))
     else:
@@ -172,13 +215,15 @@ def bootstrapRegistry():
     # print "dbadmin: Bootstrapping..."
     # Wir holen uns alle Mapper
     from sqlalchemy.orm import _mapper_registry
+
     for mapper in _mapper_registry.keys():
         klass = mapper.class_
         typ = klass.__name__
         registerEntityConfig(typ.lower(), klass, gen_fs=True)
-    #pprint(_ecreg)
+    # pprint(_ecreg)
+
 
 setup_all()
-#bootstrapRegistry() # Minimale Initialisierung mit dem, was halt schon da ist...
-#Diese feste generische Registierung wollen wir nicht. Das kann bei einzelnen Installationen
-#in kundenspezifischen Produkten aufgerufen werden. Aber generell sollen alle Entities explizit registriert werden.
+# bootstrapRegistry() # Minimale Initialisierung mit dem, was halt schon da ist...
+# Diese feste generische Registierung wollen wir nicht. Das kann bei einzelnen Installationen
+# in kundenspezifischen Produkten aufgerufen werden. Aber generell sollen alle Entities explizit registriert werden.

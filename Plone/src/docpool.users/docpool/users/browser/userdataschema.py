@@ -14,25 +14,29 @@ from zope.component import adapts
 from docpool.users.interfaces import IDocPoolUsersLayer
 from z3c.form import field
 
+
 class IEnhancedUserDataSchema(model.Schema):
     """ Use all the fields from the default user data schema, and add various
     extra fields.
     """
 
     dp = schema.Choice(
-                        title=_(u'label_user_dp', default=u'DocPool'),
-                        description=_(u'description_user_dp', default=u''),
-                        required=False,
-                        source="docpool.base.vocabularies.UserDocumentPools",
-                        )
+        title=_(u'label_user_dp', default=u'DocPool'),
+        description=_(u'description_user_dp', default=u''),
+        required=False,
+        source="docpool.base.vocabularies.UserDocumentPools",
+    )
+
 
 class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedUserDataSchema
 
     def get_dp(self):
         return self.context.getProperty('dp', '')
+
     def set_dp(self, value):
         return self.context.setMemberProperties({'dp': value})
+
     dp = property(get_dp, set_dp)
 
 
@@ -44,6 +48,7 @@ class UserDataPanelExtender(extensible.FormExtender):
         self.add(fields)
         self.form.fields['email'].field.required = False
 
+
 class RegistrationPanelExtender(extensible.FormExtender):
     adapts(Interface, IDocPoolUsersLayer, RegistrationForm)
 
@@ -52,6 +57,7 @@ class RegistrationPanelExtender(extensible.FormExtender):
         self.add(fields)
         self.form.fields['email'].field.required = False
 
+
 class AddUserFormExtender(extensible.FormExtender):
     adapts(Interface, IDocPoolUsersLayer, AddUserForm)
 
@@ -59,6 +65,3 @@ class AddUserFormExtender(extensible.FormExtender):
         fields = field.Fields(IEnhancedUserDataSchema)
         self.add(fields)
         self.form.fields['email'].field.required = False
-        
-
-        

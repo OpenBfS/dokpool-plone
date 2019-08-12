@@ -11,24 +11,25 @@ def createSRTestData(self, prune=False):
     """
     """
     request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)        
+    alsoProvides(request, IDisableCSRFProtection)
     if prune:
         deleteTestData(self)
     createTestData(self)
     return self.restrictedTraverse("@@view")()
 
+
 if not hasattr(DocumentPool, "createSRTestData"):
     DocumentPool.createSRTestData = createSRTestData
-    
 
 
 def createSRConfig(self):
     """
     """
     request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)        
+    alsoProvides(request, IDisableCSRFProtection)
     createConfig(self)
     return self.restrictedTraverse("@@view")()
+
 
 if not hasattr(DocumentPool, "createSRConfig"):
     DocumentPool.createSRConfig = createSRConfig

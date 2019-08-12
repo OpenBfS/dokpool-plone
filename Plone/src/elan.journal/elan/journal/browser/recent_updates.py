@@ -64,8 +64,7 @@ class RecentUpdates(BrowserView, BaseView):
         logger.debug(u'No If-Modified-Since header on the request.')
 
     def __call__(self):
-        logger.debug(
-            u'Processing request from ' + self.request.environ['REMOTE_ADDR'])
+        logger.debug(u'Processing request from ' + self.request.environ['REMOTE_ADDR'])
 
         if self._needs_hard_refresh():
             return ''

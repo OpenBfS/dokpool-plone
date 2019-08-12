@@ -39,15 +39,16 @@ from docpool.transfers.config import PROJECTNAME
 
 from docpool.transfers import DocpoolMessageFactory as _
 
+
 class IDPTransfers(form.Schema):
     """
     """
 
 
-
 class DPTransfers(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IDPTransfers)
@@ -85,7 +86,7 @@ class DPTransfers(Container):
     def getDPTransferFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPTransferFolder'}
+        args = {'portal_type': 'DPTransferFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 

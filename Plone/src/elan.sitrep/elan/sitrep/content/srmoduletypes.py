@@ -35,15 +35,16 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRModuleTypes(form.Schema):
     """
     """
 
 
-
 class SRModuleTypes(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRModuleTypes)
@@ -72,8 +73,6 @@ class SRModuleTypes(Container):
     def getSRModuleTypes(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModuleType'}
+        args = {'portal_type': 'SRModuleType'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

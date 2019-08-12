@@ -51,39 +51,40 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRModule(form.Schema, IDPDocument):
     """
     """
 
     currentReport = RelationChoice(
-                        title=_(u'label_srmodule_currentreport', default=u'Current report'),
-                        description=_(u'description_srmodule_currentreport', default=u'If selected this report defines helpful defaults (text blocks, documents) for the content of this module.'),
-                        required=False,
-                        source = "elan.sitrep.vocabularies.CurrentReports",
+        title=_(u'label_srmodule_currentreport', default=u'Current report'),
+        description=_(
+            u'description_srmodule_currentreport',
+            default=u'If selected this report defines helpful defaults (text blocks, documents) for the content of this module.',
+        ),
+        required=False,
+        source="elan.sitrep.vocabularies.CurrentReports",
     )
 
-
     docType = schema.Choice(
-                        title=_(u'label_srmodule_doctype', default=u'Module Type'),
-                        description=_(u'description_srmodule_doctype', default=u''),
-                        required=True,
-                        source="elan.sitrep.vocabularies.ModuleTypes",
+        title=_(u'label_srmodule_doctype', default=u'Module Type'),
+        description=_(u'description_srmodule_doctype', default=u''),
+        required=True,
+        source="elan.sitrep.vocabularies.ModuleTypes",
     )
     form.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
 
-
     summary = RichText(
-                        title=_(u'label_srtextblock_summary', default=u'Summary'),
-                        description=_(u'description_srtextblock_summary', default=u''),
-                        required=False,
+        title=_(u'label_srtextblock_summary', default=u'Summary'),
+        description=_(u'description_srtextblock_summary', default=u''),
+        required=False,
     )
-
-
 
 
 class SRModule(Container, DPDocument):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRModule)
@@ -117,7 +118,11 @@ class SRModule(Container, DPDocument):
             to_object_title = safe_unicode(self.currentReport.to_object.Title())
             self_title = safe_unicode(self.Title())
 
-            return "%s: %s (%s)" % (to_object_title, self_title, self.toLocalizedTime(DateTime(self.changed()), long_format=1))
+            return "%s: %s (%s)" % (
+                to_object_title,
+                self_title,
+                self.toLocalizedTime(DateTime(self.changed()), long_format=1),
+            )
         else:
             return self.Title()
 
@@ -133,7 +138,15 @@ class SRModule(Container, DPDocument):
         """
         """
         path = self.dpSearchPath()
-        brains = queryForObjects(self, path=path, portal_type='SRModule', dp_type=self.docType,review_state='published', sort_on='changed', sort_order='reverse')
+        brains = queryForObjects(
+            self,
+            path=path,
+            portal_type='SRModule',
+            dp_type=self.docType,
+            review_state='published',
+            sort_on='changed',
+            sort_order='reverse',
+        )
         return brains
 
     def previousVersion(self):
@@ -151,11 +164,13 @@ class SRModule(Container, DPDocument):
         Determines all default filter criteria for text blocks by looking at the currentReport and module type.
         """
         modType = self.docType
-        res = { 'scenario' : None,
-                'phase' : None,
-                'module_type' : modType,
-                'mandatory' : False,
-                'config' : None }
+        res = {
+            'scenario': None,
+            'phase': None,
+            'module_type': modType,
+            'mandatory': False,
+            'config': None,
+        }
         r = self.myReport()
         if r:
             p = r.myPhaseConfig()
@@ -182,13 +197,20 @@ class SRModule(Container, DPDocument):
         """
         """
         path = self.dpSearchPath()
-        return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in queryForObjects(self, path=path, portal_type='SRScenario', sort_on='sortable_title') ]
+        return [("", '---')] + [
+            (brain.getId, brain.Title)
+            for brain in queryForObjects(
+                self, path=path, portal_type='SRScenario', sort_on='sortable_title'
+            )
+        ]
 
     def possibleSRPhases(self):
         """
         """
         path = self.dpSearchPath()
-        raw = queryForObjects(self, path=path, portal_type='SRPhase', sort_on='sortable_title')
+        raw = queryForObjects(
+            self, path=path, portal_type='SRPhase', sort_on='sortable_title'
+        )
         ids = []
         res = []
         for p in raw:
@@ -197,12 +219,12 @@ class SRModule(Container, DPDocument):
             else:
                 ids.append(p.getId)
                 res.append(p)
-        return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in res ]
+        return [("", '---')] + [(brain.getId, brain.Title) for brain in res]
 
     def possibleSRModuleTypes(self):
         """
         """
-        return [ ( "", '---') ] + ModuleTypesVocabularyFactory(self, raw=True)
+        return [("", '---')] + ModuleTypesVocabularyFactory(self, raw=True)
 
     def usingReports(self):
         """
@@ -223,7 +245,7 @@ class SRModule(Container, DPDocument):
         if not mc:
             mc = []
             module_type = df['module_type']
-            mkbrains = sr_cat({'modules':module_type})
+            mkbrains = sr_cat({'modules': module_type})
             for mkbrain in mkbrains:
                 try:
                     res.extend(mkbrain.getObject().currentDocuments()[:20])
@@ -251,28 +273,28 @@ class SRModule(Container, DPDocument):
             mc = df['config']
             if mc:
                 return mc.currentTextBlocks()
-        args = {'portal_type':'SRTextBlock', 'sort_on':'sortable_title', 'path': path }
+        args = {'portal_type': 'SRTextBlock', 'sort_on': 'sortable_title', 'path': path}
         if scenario:
             args['scenarios'] = scenario
         if phase:
             args['phases'] = phase
         if module_type:
             args['modules'] = module_type
-        #print args
+        # print args
         sr_cat = getToolByName(self, 'sr_catalog')
         brains = []
         ids = []
         if module_type:
-            mkbrains = sr_cat({'modules':module_type})
+            mkbrains = sr_cat({'modules': module_type})
             for mkbrain in mkbrains:
                 try:
-                    ids = sr_cat({'modules':mkbrain.getObject().getId()})
-                    brains.extend(ids,)
+                    ids = sr_cat({'modules': mkbrain.getObject().getId()})
+                    brains.extend(ids)
                 except Exception, e:
                     print e
         if (scenario or phase) and module_type:
             brains = sr_cat(**args)
-        return [ brain.getObject() for brain in brains]
+        return [brain.getObject() for brain in brains]
 
     def publishModule(self, justDoIt=False):
         """
@@ -286,24 +308,24 @@ class SRModule(Container, DPDocument):
             portalMessage(self, _("The module has been published."), "info")
             return self.restrictedTraverse("@@view")()
 
-
     def docTypeObj(self):
         mt = self.dp_type()
-        if not mt: # The object is just being initialized and the attributes have not yet been saved
-            mt = self.REQUEST.get('docType','')
-        #dto = queryForObject(self, id=et)
+        if (
+            not mt
+        ):  # The object is just being initialized and the attributes have not yet been saved
+            mt = self.REQUEST.get('docType', '')
+        # dto = queryForObject(self, id=et)
         dto = None
-#        print mt
+        #        print mt
         try:
             dto = self.config.mtypes[mt]
         except Exception, e:
             # et can be empty
-            #print e
+            # print e
             pass
         if not dto:
             log("No ModuleType Object for type name '%s'" % self.dp_type())
         return dto
-
 
     def mySRModule(self):
         """
@@ -327,14 +349,14 @@ class SRModule(Container, DPDocument):
     def getSRModules(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModule'}
+        args = {'portal_type': 'SRModule'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTransferables(self, **kwargs):
         """
         """
-        args = {'portal_type':'Transferable'}
+        args = {'portal_type': 'Transferable'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
@@ -367,14 +389,16 @@ def updated(obj, event=None):
                 # and replace the original one
                 img['src'] = new_uri
 
-        for span in soup.findAll("span", {'class':'snippet'}):
+        for span in soup.findAll("span", {'class': 'snippet'}):
             for anchor in span.findAll("a"):
                 # print anchor
                 href = anchor['href']
                 if '..' in href:
-                  href = href.replace('/..','')
+                    href = href.replace('/..', '')
                 absolute_href = join(base, href)
-                html_data = fetch_resources(portalbase, absolute_href, resource_type="html")
+                html_data = fetch_resources(
+                    portalbase, absolute_href, resource_type="html"
+                )
                 if html_data:
                     ext_soup = BeautifulSoup(html_data)
                     body = ext_soup.find('body')
@@ -387,6 +411,7 @@ def updated(obj, event=None):
         new_html = str(soup)
         obj.text = RichTextValue(safe_unicode(new_html), 'text/html', 'text/html')
 
+
 def join(base, url):
     """
     Join relative URL
@@ -397,13 +422,14 @@ def join(base, url):
         # Already absolute
         return url
 
+
 def fetch_resources(portalbase, uri, resource_type="image"):
     """
     Callback to allow pisa/reportlab to retrieve Images,Stylesheets, etc.
     `uri` is the href attribute from the html link element.
     """
     if uri.startswith(portalbase):
-        response = subrequest(unquote(uri[len(portalbase) + 1:]))
+        response = subrequest(unquote(uri[len(portalbase) + 1 :]))
         if response.status != 200:
             return None
         ct = response.getHeader('content-type')
@@ -430,4 +456,3 @@ def fetch_resources(portalbase, uri, resource_type="image"):
         return data_uri
     else:
         return data
-

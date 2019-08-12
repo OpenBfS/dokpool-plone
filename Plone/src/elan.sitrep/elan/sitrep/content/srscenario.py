@@ -38,31 +38,33 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRScenario(form.Schema):
     """
     """
 
 
-
 class SRScenario(Container):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRScenario)
 
     APP = ELAN_APP
+
     def getSRScenarioNames(self):
         """
         Index Method
         """
-        return [ self.getId() ]
+        return [self.getId()]
 
     def getSRScenarioRefs(self):
         """
         Index Method
         """
-        return [ self.UID() ]
+        return [self.UID()]
 
     def modTypes(self):
         """
@@ -71,13 +73,12 @@ class SRScenario(Container):
 
     def modTypeIds(self):
         mtypes = self.modTypes()
-        return [ mt[0] for mt in mtypes ]
+        return [mt[0] for mt in mtypes]
 
     def getSRScenarios(self):
         """
         """
-        return [ self ]
-
+        return [self]
 
     def mySRScenario(self):
         """
@@ -101,10 +102,9 @@ class SRScenario(Container):
     def getSRPhases(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRPhase'}
+        args = {'portal_type': 'SRPhase'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
 
 
 @adapter(ISRScenario, IEditFinishedEvent)

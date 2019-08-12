@@ -3,8 +3,10 @@ from zope.component import getMultiAdapter
 
 from plone.memoize.instance import memoize
 
-from plone.app.layout.navigation.interfaces import INavtreeStrategy,\
-    INavigationQueryBuilder
+from plone.app.layout.navigation.interfaces import (
+    INavtreeStrategy,
+    INavigationQueryBuilder,
+)
 from plone.app.layout.navigation.navtree import buildFolderTree
 
 from plone.app.portlets.portlets import navigation
@@ -13,8 +15,8 @@ from Products.CMFCore.utils import getToolByName
 from docpool.menu.utils import getFoldersForCurrentUser, adaptQuery
 from Products.Archetypes.utils import shasattr
 
-class Renderer(navigation.Renderer):
 
+class Renderer(navigation.Renderer):
     def __init__(self, context, request, view, manager, data):
         navigation.Renderer.__init__(self, context, request, view, manager, data)
 
@@ -27,21 +29,24 @@ class Renderer(navigation.Renderer):
 
         if context.isPersonal():
             # Special treatment for the user's personal folders
-            #print "Personal", context
-#            pfs = getFoldersForCurrentUser(context, queryBuilderClass=SitemapQueryBuilder, strategy=strategy)
+            # print "Personal", context
+            #            pfs = getFoldersForCurrentUser(context, queryBuilderClass=SitemapQueryBuilder, strategy=strategy)
             pfs = getFoldersForCurrentUser(context)
             return {'children': pfs}
 
         # Otherwise build the normal navigation
-        ft = buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
-        #print ft
+        ft = buildFolderTree(
+            context, obj=context, query=queryBuilder(), strategy=strategy
+        )
+        # print ft
         return ft
 
     def navigation_root(self):
         if shasattr(self.context, "myDocumentPool"):
             return self.context.myDocumentPool()
         return self.getNavRoot()
-    
+
+
 class SitemapQueryBuilder(NavtreeQueryBuilder):
     """Build tree for ELAN Sitemap considering archive structures
     """
@@ -54,6 +59,11 @@ class SitemapQueryBuilder(NavtreeQueryBuilder):
         sitemapDepth = navtree_properties.getProperty('sitemapDepth', 4)
         if context.isArchive() and not context.getId() == "archive":
             sitemapDepth += 3
-        self.query['path'] = {'query': context.isArchive() and not context.getId() == "archive" and "/".join(context.myELANArchive().getPhysicalPath()) or portal_url.getPortalPath(),
-                              'depth': sitemapDepth}
+        self.query['path'] = {
+            'query': context.isArchive()
+            and not context.getId() == "archive"
+            and "/".join(context.myELANArchive().getPhysicalPath())
+            or portal_url.getPortalPath(),
+            'depth': sitemapDepth,
+        }
         adaptQuery(self.query, context)

@@ -8,11 +8,11 @@ from zope.event import notify
 from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 
-TYPE='type'
-TITLE='title'
-ID='id'
-CHILDREN='children'
-specialAttributes=(TYPE, TITLE, ID, CHILDREN)
+TYPE = 'type'
+TITLE = 'title'
+ID = 'id'
+CHILDREN = 'children'
+specialAttributes = (TYPE, TITLE, ID, CHILDREN)
 
 
 def createPloneObjects(parent, definitions, fresh=False):
@@ -24,13 +24,13 @@ def createPloneObjects(parent, definitions, fresh=False):
         if ID in objdef:
             id = objdef[ID]
         else:
-            id = ploneId(parent, title) 
-#        print objdef
-#        print id
-#        print parent    
+            id = ploneId(parent, title)
+        #        print objdef
+        #        print id
+        #        print parent
         # Objekt erzeugen, wenn noch nicht vorhanden
-        if (not parent.hasObject(id)):
-#            print parent
+        if not parent.hasObject(id):
+            #            print parent
             parent.invokeFactory(id=id, type_name=objdef[TYPE], title=title)
             # print "createBasicPortalStructure - %s %s erzeugt" % (objdef[TYPE], id)
         else:
@@ -39,33 +39,37 @@ def createPloneObjects(parent, definitions, fresh=False):
                 if CHILDREN in objdef:
                     obj = parent._getOb(id)
                     createPloneObjects(obj, objdef[CHILDREN], fresh)
-                continue # Do not change objects. They might have been configured
+                continue  # Do not change objects. They might have been configured
         obj = parent._getOb(id)
-        
+
         # Titel soll auf jeden Fall wie oben angegeben lauten
-#        if obj.Title()!=title:
-#            obj.setTitle(title)
-#            print "createBasicPortalStructure - %s %s - neuer Titel: '%s'" % (objdef[TYPE], id, title)
+        #        if obj.Title()!=title:
+        #            obj.setTitle(title)
+        #            print "createBasicPortalStructure - %s %s - neuer Titel: '%s'" % (objdef[TYPE], id, title)
         obj.setTitle(title)
-            
+
         # alle zusaetzlichen Attribute im Objekt setzen
         setAttributes(obj, objdef)
-        notify(ObjectModifiedEvent(obj)) # Otherwise relations will not be correctly indexed
+        notify(
+            ObjectModifiedEvent(obj)
+        )  # Otherwise relations will not be correctly indexed
         obj.reindexObject()
         # alle angegebenen Kinder erzeugen
         if CHILDREN in objdef:
             createPloneObjects(obj, objdef[CHILDREN], fresh)
-    
+
+
 def setAttributes(obj, objdef):
     from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+
     for attr in objdef:
         if not attr in specialAttributes:
-            if attr[:4] == "ref_": # references
-                #print attr
+            if attr[:4] == "ref_":  # references
+                # print attr
                 method = attr.split("_")[1]
                 cat = getToolByName(obj, "portal_catalog")
                 cat_values = cat(id=objdef[attr])
-                
+
                 intids = getUtility(IIntIds)
                 values = []
                 for brain in cat_values:
@@ -74,9 +78,12 @@ def setAttributes(obj, objdef):
                     rel = RelationValue(to_id)
                     values.append(rel)
                 if not values:
-                    print "No values %s configured for object %s " % (objdef[attr], objdef)
-                
-                specialMethod = getattr(obj,method)
+                    print "No values %s configured for object %s " % (
+                        objdef[attr],
+                        objdef,
+                    )
+
+                specialMethod = getattr(obj, method)
                 if callable(specialMethod):
                     specialMethod(values)
                 else:
@@ -88,26 +95,25 @@ def setAttributes(obj, objdef):
                     lbs = ILocalBehaviorSupport(obj)
                     lbs._set_local_behaviors(objdef[attr])
                 elif obj.getPortalTypeName() in ['TemplatedDocument']:
-                    #Archetypes based
+                    # Archetypes based
                     setter = getattr(obj, attr)
                     setter(objdef[attr])
                 else:
-                    #Dexterity based
+                    # Dexterity based
                     setattr(obj, attr, objdef[attr])
-    
 
 
-    
 def ploneId(context, title):
-    PLONE_UTILS=getToolByName(context, 'plone_utils')
+    PLONE_UTILS = getToolByName(context, 'plone_utils')
     return PLONE_UTILS.normalizeString(title)
- 
+
 
 def _setAllowedTypes(folder, types):
     """
     """
-    folder.setConstrainTypesMode(1) # only explicitly allowed types
+    folder.setConstrainTypesMode(1)  # only explicitly allowed types
     folder.setLocallyAllowedTypes(types)
+
 
 def _addAllowedTypes(folder, types):
     existing = folder.getLocallyAllowedTypes()

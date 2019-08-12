@@ -36,15 +36,16 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class IPrivateFolder(form.Schema, ISimpleFolder):
     """
     """
 
 
-
 class PrivateFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IPrivateFolder)
@@ -56,7 +57,9 @@ class PrivateFolder(Container, SimpleFolder):
 
         placeful_wf = getToolByName(self, 'portal_placeful_workflow')
         try:
-            self.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+            self.manage_addProduct[
+                'CMFPlacefulWorkflow'
+            ].manage_addWorkflowPolicyConfig()
         except BadRequest, e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
@@ -66,7 +69,6 @@ class PrivateFolder(Container, SimpleFolder):
         self.reindexObject()
         self.updateSecurity()
         self.reindexObjectSecurity()
-
 
     def myPrivateFolder(self):
         """
@@ -90,22 +92,20 @@ class PrivateFolder(Container, SimpleFolder):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoDocument'}
+        args = {'portal_type': 'InfoDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getPrivateFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'PrivateFolder'}
+        args = {'portal_type': 'PrivateFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

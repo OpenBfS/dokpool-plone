@@ -47,22 +47,25 @@ from elan.irix.config import PROJECTNAME
 
 from elan.irix import DocpoolMessageFactory as _
 
+
 class IIRIXReport(form.Schema, IContentBase):
     """
     """
 
     dbkey = schema.Decimal(
-                        title=_(u'label_irixreport_dbkey', default=u'Primary key in relational database'),
-                        description=_(u'description_irixreport_dbkey', default=u'Database key'),
-                        required=False,
+        title=_(
+            u'label_irixreport_dbkey', default=u'Primary key in relational database'
+        ),
+        description=_(u'description_irixreport_dbkey', default=u'Database key'),
+        required=False,
     )
     form.omitted('dbkey')
-
 
 
 class IRIXReport(Item, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(IIRIXReport)
@@ -119,12 +122,21 @@ class IRIXReport(Item, ContentBase):
                     if mypk == list(b[1]):
                         currentNode = True
         html = ''
-        anchor_class = currentLeaf and 'currentLeaf' or currentNode and 'currentNode' or 'normal'
+        anchor_class = (
+            currentLeaf and 'currentLeaf' or currentNode and 'currentNode' or 'normal'
+        )
         css_class = 'node'
         if el[4]:
             css_class = 'node content'
         html += "<li class='%s'>" % css_class
-        html += "<a class='%s' href='%s/struct_edit?typ=%s&pk=%s&bc=%s'>%s</a>" % (anchor_class, self.absolute_url(), el[1], quote(el[2]), quote(el[3]), el[0])
+        html += "<a class='%s' href='%s/struct_edit?typ=%s&pk=%s&bc=%s'>%s</a>" % (
+            anchor_class,
+            self.absolute_url(),
+            el[1],
+            quote(el[2]),
+            quote(el[3]),
+            el[0],
+        )
         if el[4]:
             html += "<ul class='folder'>"
             for subel in el[4]:
@@ -175,13 +187,13 @@ class IRIXReport(Item, ContentBase):
             return None
 
 
-
 @adapter(IIRIXReport, IObjectAddedEvent)
 def reportAdded(obj, event=None):
     """
     """
     obj.initializeDB()
     obj.reindexObject()
+
 
 @adapter(IIRIXReport, IObjectRemovedEvent)
 def reportRemoved(obj, event=None):

@@ -38,23 +38,28 @@ from docpool.base.config import PROJECTNAME
 
 from docpool.base import DocpoolMessageFactory as _
 
+
 class ICollaborationFolder(form.Schema, ISimpleFolder):
     """
     """
 
     allowedPartnerDocTypes = schema.List(
-                        title=_(u'label_collaborationfolder_allowedpartnerdoctypes', default=u'Document types allowed for the guest group(s)'),
-                        description=_(u'description_collaborationfolder_allowedpartnerdoctypes', default=u''),
-                        required=True,
-                        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
+        title=_(
+            u'label_collaborationfolder_allowedpartnerdoctypes',
+            default=u'Document types allowed for the guest group(s)',
+        ),
+        description=_(
+            u'description_collaborationfolder_allowedpartnerdoctypes', default=u''
+        ),
+        required=True,
+        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
     )
-
-
 
 
 class CollaborationFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ICollaborationFolder)
@@ -66,7 +71,9 @@ class CollaborationFolder(Container, SimpleFolder):
 
         placeful_wf = getToolByName(self, 'portal_placeful_workflow')
         try:
-            self.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+            self.manage_addProduct[
+                'CMFPlacefulWorkflow'
+            ].manage_addWorkflowPolicyConfig()
         except BadRequest, e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
@@ -94,19 +101,29 @@ class CollaborationFolder(Container, SimpleFolder):
             for menu_item in menu_items:
                 if menu_item.get('id') == 'DPDocument':
                     for dt in dts:
-                        #print dt.id
-                        if not dt.getObject().globalAllow: # only generally allowed doctypes
+                        # print dt.id
+                        if (
+                            not dt.getObject().globalAllow
+                        ):  # only generally allowed doctypes
                             continue
                         if not filter or dt.id in self.allowedPartnerDocTypes:
-                            res.append({'extra':
-             {'separator': None, 'id': dt.id, 'class': 'contenttype-%s' % dt.id},
-                                        'submenu': None,
-                                        'description': '',
-                                        'title': dt.Title,
-                                        'action': '%s/++add++DPDocument?form.widgets.docType:list=%s' % (self.absolute_url(), dt.id),
-                                        'selected': False,
+                            res.append(
+                                {
+                                    'extra': {
+                                        'separator': None,
                                         'id': dt.id,
-                                        'icon': None})
+                                        'class': 'contenttype-%s' % dt.id,
+                                    },
+                                    'submenu': None,
+                                    'description': '',
+                                    'title': dt.Title,
+                                    'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
+                                    % (self.absolute_url(), dt.id),
+                                    'selected': False,
+                                    'id': dt.id,
+                                    'icon': None,
+                                }
+                            )
                 else:
                     res.append(menu_item)
             return res
@@ -133,8 +150,6 @@ class CollaborationFolder(Container, SimpleFolder):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-

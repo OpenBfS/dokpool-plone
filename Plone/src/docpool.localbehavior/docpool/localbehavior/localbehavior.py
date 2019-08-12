@@ -9,21 +9,24 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from Acquisition import aq_inner
 from zope.interface import Interface
 
+
 class ILocalBehaviorSupport(form.Schema):
 
     form.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(
         title=u'Behaviors',
-        description=_(u'description_local_behaviors', default=u'Select applications supported for this content,' +
-                     ' changes will be applied after saving'),
+        description=_(
+            u'description_local_behaviors',
+            default=u'Select applications supported for this content,'
+            + ' changes will be applied after saving',
+        ),
         required=False,
-        value_type=schema.Choice(
-            title=u'Applications',
-            vocabulary="LocalBehaviors"
-        )
+        value_type=schema.Choice(title=u'Applications', vocabulary="LocalBehaviors"),
     )
 
-alsoProvides(ILocalBehaviorSupport,IFormFieldProvider)
+
+alsoProvides(ILocalBehaviorSupport, IFormFieldProvider)
+
 
 @form.default_value(field=ILocalBehaviorSupport['local_behaviors'])
 def initializeLocalBehaviors(data):
@@ -44,7 +47,7 @@ class LocalBehaviorSupport(object):
         return list(set(self.context.local_behaviors))
 
     def _set_local_behaviors(self, value):
-        if (type(value) == type([]) or (type(value) == type(tuple))):
+        if type(value) == type([]) or (type(value) == type(tuple)):
             value = list(set(value))
         context = aq_inner(self.context)
         if value is not None:
@@ -53,4 +56,3 @@ class LocalBehaviorSupport(object):
             context.local_behaviors = []
 
     local_behaviors = property(_get_local_behaviors, _set_local_behaviors)
-

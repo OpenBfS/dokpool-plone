@@ -12,6 +12,7 @@ from docpool.base.appregistry import extendingApps
 from docpool.base.interfaces import IDocumentExtension, IDocTypeExtension
 from docpool.base import DocpoolMessageFactory as _
 
+
 def LocalBehaviorsVocabularyFactory(context):
     """
     The local behaviors available to an object are determined as follows:
@@ -28,13 +29,28 @@ def LocalBehaviorsVocabularyFactory(context):
     if 'config' in path:
         isType = True
         print path
-        if path.index('config') == 2: # global config
+        if path.index('config') == 2:  # global config
             apps = dp_app_state.appsPermittedForCurrentUser()
         else:
             apps = dp_app_state.appsSupportedHere()
-        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in extendingApps() if app[0] in apps if not app[2]['implicit']])
-    else: # It's a document
+        return SimpleVocabulary(
+            [
+                SimpleTerm(app[0], title=_(app[1]))
+                for app in extendingApps()
+                if app[0] in apps
+                if not app[2]['implicit']
+            ]
+        )
+    else:  # It's a document
         available_apps = dp_app_state.appsPermittedForObject(request)
-        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in extendingApps() if app[0] in available_apps if not app[2]['implicit']])
+        return SimpleVocabulary(
+            [
+                SimpleTerm(app[0], title=_(app[1]))
+                for app in extendingApps()
+                if app[0] in available_apps
+                if not app[2]['implicit']
+            ]
+        )
+
 
 directlyProvides(LocalBehaviorsVocabularyFactory, IVocabularyFactory)

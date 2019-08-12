@@ -15,8 +15,14 @@ def setupVarious(context):
     # Add additional setup code here
     cat = getToolByName(context.getSite(), "portal_catalog")
 
-    extend_allowed_types(context.getSite(), 'DocumentPool', ["ELANContentConfig","ELANArchives","ELANCurrentSituation","ELANInfos"])
+    extend_allowed_types(
+        context.getSite(),
+        'DocumentPool',
+        ["ELANContentConfig", "ELANArchives", "ELANCurrentSituation", "ELANInfos"],
+    )
     cat.reindexIndex(["scenarios", "category"], REQUEST=context.getSite().REQUEST)
+
+
 #    cat.refreshCatalog(clear=False,pghandler=ZLogHandler(100))
 
 

@@ -39,22 +39,23 @@ from elan.sitrep.config import PROJECTNAME
 
 from elan.sitrep import DocpoolMessageFactory as _
 
+
 class ISRTextBlock(form.Schema, IContentBase):
     """
     """
+
     dexteritytextindexer.searchable('text')
     text = RichText(
-                        title=_(u'label_srtextblock_text', default=u'Text'),
-                        description=_(u'description_srtextblock_text', default=u''),
-                        required=False,
+        title=_(u'label_srtextblock_text', default=u'Text'),
+        description=_(u'description_srtextblock_text', default=u''),
+        required=False,
     )
-
-
 
 
 class SRTextBlock(Item, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
 
     implements(ISRTextBlock)
@@ -65,7 +66,6 @@ class SRTextBlock(Item, ContentBase):
         """
         mcs = back_references(self, "textBlocks")
         return mcs
-
 
     def getSRScenarioNames(self):
         """
@@ -107,18 +107,17 @@ class SRTextBlock(Item, ContentBase):
         """
         Index Method
         """
-        return [ mod.getId() for mod in self.moduleConfigs() ]
+        return [mod.getId() for mod in self.moduleConfigs()]
 
     def getSRModuleRefs(self):
         """
         Index Method
         """
-        return [ mod.UID() for mod in self.moduleConfigs() ]
+        return [mod.UID() for mod in self.moduleConfigs()]
 
     def createActions(self):
         sr_cat = getToolByName(self, "sr_catalog")
         sr_cat._reindexObject(self)
-
 
 
 @adapter(ISRTextBlock, IEditFinishedEvent)
@@ -126,6 +125,7 @@ def updated(obj, event=None):
     log("SRTextBlock updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat._reindexObject(obj)
+
 
 @adapter(ISRTextBlock, IObjectRemovedEvent)
 def removed(obj, event):

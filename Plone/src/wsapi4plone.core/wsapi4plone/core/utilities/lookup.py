@@ -5,7 +5,12 @@ except ImportError:
 from zope.component import getUtility
 from zope.interface import implements
 
-from wsapi4plone.core.interfaces import IContextBuilder, IService, IServiceContainer, IServiceLookup
+from wsapi4plone.core.interfaces import (
+    IContextBuilder,
+    IService,
+    IServiceContainer,
+    IServiceLookup,
+)
 
 
 class ServiceLookup(object):
@@ -79,6 +84,7 @@ class ServiceLookup(object):
         'ServiceContainer'
 
     """
+
     implements(IServiceLookup)
 
     def __call__(self, context, path=''):
