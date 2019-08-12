@@ -14,38 +14,27 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from datetime import datetime
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.dbaccess.interfaces import Idbadmin
+from elan.irix import DocpoolMessageFactory as _
+from elan.irix.db.model import IRIXReport as DBReport
 from plone.dexterity.content import Item
-from docpool.base.content.contentbase import ContentBase, IContentBase
+from plone.directives import form
+from urllib import quote
+from zope import schema
+from zope.component import adapter
+from zope.component import getUtility
+from zope.interface import implements
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectRemovedEvent
 
-from Products.CMFCore.utils import getToolByName
-
-from docpool.dbaccess.dbinit import __metadata__, __session__
 
 metadata = __metadata__
 session = __session__
-
-from zope.component import adapter
-from zope.component import getUtility
-from docpool.dbaccess.interfaces import Idbadmin
-from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
-from elan.irix.db.model import IRIXReport as DBReport
-from datetime import datetime
-from urllib import quote
-
-from elan.irix.config import PROJECTNAME
-
-from elan.irix import DocpoolMessageFactory as _
 
 
 class IIRIXReport(form.Schema, IContentBase):
@@ -74,7 +63,6 @@ class IRIXReport(Item, ContentBase):
         """
         Dummy for CSS
         """
-        pass
 
     def getStructuredType(self):
         """

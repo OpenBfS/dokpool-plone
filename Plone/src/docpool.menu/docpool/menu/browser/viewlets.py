@@ -1,43 +1,33 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-
+from docpool.menu.utils import getApplicationDocPoolsForCurrentUser
+from docpool.menu.utils import getFoldersForCurrentUser
+from menu import actions_category
+from menu import actions_tabs_level
+from menu import caching_strategy
+from menu import content_before_actions_tabs
+from menu import content_tabs_level
+from menu import DropDownMenuQueryBuilder
+from menu import enable_caching
+from menu import nested_category_prefix
+from menu import nested_category_sufix
+from menu import show_actions_tabs
+from menu import show_content_tabs
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from plone.app.layout.navigation.navtree import buildFolderTree
+from plone.app.layout.viewlets import common
+from plone.memoize import ram
+from plone.memoize.compress import xhtmlslimmer
+from Products.CMFCore.ActionInformation import ActionInfo
+from Products.CMFCore.interfaces import IAction
+from Products.CMFCore.interfaces import IActionCategory
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.i18nl10n import utranslate
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from time import time
 from zope.component import getMultiAdapter
 
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.interfaces import IAction, IActionCategory
-from Products.CMFCore.ActionInformation import ActionInfo
-from Products.CMFPlone.utils import versionTupleFromString
-
-from plone.memoize.instance import memoize
-from plone.memoize.compress import xhtmlslimmer
-from plone.app.layout.viewlets import common
-from plone.app.layout.navigation.navtree import buildFolderTree
-from plone.app.layout.navigation.interfaces import INavtreeStrategy
-
-from menu import (
-    DropDownMenuQueryBuilder,
-    actions_category,
-    actions_tabs_level,
-    caching_strategy,
-    content_before_actions_tabs,
-    content_tabs_level,
-    enable_caching,
-    nested_category_prefix,
-    nested_category_sufix,
-    show_actions_tabs,
-    show_content_tabs,
-    show_nonfolderish_tabs,
-)
-
-from time import time
-from plone.memoize import ram
 import copy
-from docpool.menu.utils import (
-    getFoldersForCurrentUser,
-    getApplicationDocPoolsForCurrentUser,
-)
-from Products.CMFPlone.i18nl10n import utranslate
 
 
 def menu_cache_key(f, view):

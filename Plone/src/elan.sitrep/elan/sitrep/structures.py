@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from docpool.config.utils import ID, TITLE, TYPE, CHILDREN, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 
 
 SITUATION_OVERVIEW = [

@@ -3,19 +3,21 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
+from docpool.dbaccess.dbinit import __session__
 from elixir import setup_all
-from docpool.dbaccess.dbinit import __session__, __metadata__
-from sqlalchemy.orm import class_mapper
+from formalchemy import Field
+from formalchemy import FieldSet
+from formalchemy import Grid
+from formalchemy import types
 from Products.CMFPlone.log import log_exc
+from sqlalchemy.orm import class_mapper
+
 
 # Kompatibilitaet fuer SQLAlchemy > 0.6
 try:
     from sqlalchemy.orm import RelationProperty
 except ImportError:
     from sqlalchemy.orm.properties import RelationProperty
-from formalchemy import FieldSet, Grid
-from formalchemy import Field
-from formalchemy import types
 
 _ecreg = {}  # Laufzeit Registry
 

@@ -1,13 +1,8 @@
-from zope.interface import implements
-from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
-from zope.schema.vocabulary import SimpleVocabulary
-from zope.schema.vocabulary import SimpleTerm
-from zope.site.hooks import getSite
-from Products.CMFCore.utils import getToolByName
+from AccessControl.SecurityInfo import allow_module
 from docpool.rodos import DocpoolMessageFactory as _
-from AccessControl.SecurityInfo import allow_module, allow_class
-from Products.Archetypes.utils import shasattr
-from zope.component import getMultiAdapter
+from zope.interface import implements
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class VocabItem(object):

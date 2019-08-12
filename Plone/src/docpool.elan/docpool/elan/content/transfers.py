@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from docpool.base.utils import queryForObject, _copyPaste
+from docpool.base.utils import _copyPaste
 from docpool.elan.config import ELAN_APP
+from docpool.event.utils import getOpenScenarios
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
-from docpool.event.utils import getOpenScenarios
 
 
 def ensureScenariosInTarget(original, copy):

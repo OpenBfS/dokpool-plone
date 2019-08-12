@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.users.browser.userdatapanel import UserDataConfiglet as UDC
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class UserDataConfiglet(UDC):

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-from plone import api
 
 
 def install(self):
@@ -13,4 +11,3 @@ def install(self):
 def configUsers(self, fresh):
     """
     """
-    pass

@@ -1,14 +1,15 @@
+from docpool.base.appregistry import extensionFor
 from docpool.localbehavior.adapter import isSupported
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.behavior.interfaces import IBehaviorAssignable
+from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import getMultiAdapter
 from zope.interface.declarations import getObjectSpecification
 from zope.interface.declarations import implementedBy
 from zope.interface.declarations import Implements
-from docpool.base.appregistry import extensionFor
-from docpool.base.interfaces import IExtension
+
 import logging
+
 
 log = logging.getLogger("docpool.localbehavior")
 
@@ -20,8 +21,6 @@ def patch_fti_localbehavior():
         return
 
     from plone.behavior.interfaces import IBehaviorAssignable
-    from plone.behavior.interfaces import IBehavior
-    from zope.component import queryUtility
 
     _orig_get = FTIAwareSpecification.__get__
 
@@ -154,11 +153,8 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
                 yield form_schema
 
 
-from plone.dexterity.browser.add import DefaultAddForm
+def patched_additionalSchemata():
+    return property(additionalSchemata)  # We get a @property decorated method!
 
-
-patched_additionalSchemata = lambda: property(
-    additionalSchemata
-)  # We get a @property decorated method!
 
 setattr(DefaultAddForm, "additionalSchemata", patched_additionalSchemata())

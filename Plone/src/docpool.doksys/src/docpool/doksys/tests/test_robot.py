@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from docpool.doksys.testing import DOCPOOL_DOKSYS_ACCEPTANCE_TESTING  # noqa
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
-from docpool.doksys.testing import DOCPOOL_DOKSYS_ACCEPTANCE_TESTING  # noqa
 
 import os
 import robotsuite

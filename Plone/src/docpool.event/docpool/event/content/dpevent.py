@@ -9,52 +9,48 @@ __author__ = ''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText, RichTextValue
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Item
-from docpool.base.content.contentbase import ContentBase, IContentBase
-
-from Products.CMFCore.utils import getToolByName
-
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.dexterity.utils import safe_unicode
+from Acquisition import aq_base
 from DateTime import DateTime
-from docpool.config.utils import TYPE, TITLE, ID, CHILDREN, createPloneObjects, ploneId
-from Products.CMFPlone.utils import parent
-from Products.CMFPlone.utils import log
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.utils import portalMessage
-from zope.component import getMultiAdapter
-from Products.Archetypes.utils import DisplayList
-from zope.component import adapter
-from zope.lifecycleevent.interfaces import (
-    IObjectAddedEvent,
-    IObjectMovedEvent,
-    IObjectRemovedEvent,
-    IObjectModifiedEvent,
-)
-from Products.CMFCore.interfaces import IActionSucceededEvent
-from Products.CMFPlone.i18nl10n import utranslate
-import datetime
-from five import grok
-from zope.schema.interfaces import IContextSourceBinder
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
-from docpool.transfers.config import TRANSFERS_APP
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ploneId
+from docpool.event import DocpoolMessageFactory as _
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
-from Acquisition import aq_base, aq_inner
-
+from docpool.transfers.config import TRANSFERS_APP
+from five import grok
 from logging import getLogger
+from plone.app.textfield import RichText
+from plone.app.textfield import RichTextValue
+from plone.autoform import directives
+from plone.dexterity.content import Item
+from plone.dexterity.utils import safe_unicode
+from plone.directives import form
+from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.Archetypes.utils import DisplayList
+from Products.CMFCore.interfaces import IActionSucceededEvent
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.i18nl10n import utranslate
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import parent
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
+from zope.component import adapter
+from zope.interface import alsoProvides
+from zope.interface import implements
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.schema.interfaces import IContextSourceBinder
+
+import datetime
+
 
 logger = getLogger("dpevent")
 
@@ -70,14 +66,6 @@ def availableScenarios(context):
     return ObjPathSourceBinder(
         navigation_tree_query=query, object_provides=IDPEvent.__identifier__
     ).__call__(context)
-
-
-from plone.formwidget.autocomplete import AutocompleteFieldWidget
-from collective.z3cform.mapwidget.widget import MapFieldWidget
-
-from plone.autoform import directives
-
-from docpool.event import DocpoolMessageFactory as _
 
 
 class IDPEvent(form.Schema, IContentBase):
@@ -319,7 +307,8 @@ class DPEvent(Item, ContentBase):
                 folderType = "UserFolder"
             if isTransfer:
                 folderType = "DPTransferFolder"
-            aroot.invokeFactory(folderType, id=fname)  # if not we create a new folder
+            # if not we create a new folder
+            aroot.invokeFactory(folderType, id=fname)
         af = aroot._getOb(fname)
         # 5. and copy the local roles
         mroot = self.content.Members

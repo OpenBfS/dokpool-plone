@@ -13,43 +13,36 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.dpdocument import DPDocument, IDPDocument
-
-from Products.CMFCore.utils import getToolByName
-
-from docpool.base.utils import queryForObjects, back_references, portalMessage
-from plone.api import content
-from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
-from DateTime import DateTime
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.app.textfield.value import RichTextValue
-from Products.CMFPlone.utils import safe_unicode
-from zope.component import adapter
-from plone.dexterity.interfaces import IEditFinishedEvent
-import requests
 from BeautifulSoup import BeautifulSoup
-from PIL import Image
-import urlparse
-from plone.subrequest import subrequest
-from urllib import unquote
+from DateTime import DateTime
+from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import back_references
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObjects
 from docpool.elan.config import ELAN_APP
-
-from elan.sitrep.config import PROJECTNAME
-
 from elan.sitrep import DocpoolMessageFactory as _
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.api import content
+from plone.app.textfield import RichText
+from plone.app.textfield.value import RichTextValue
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.directives import form
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.subrequest import subrequest
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import safe_unicode
+from urllib import unquote
+from z3c.relationfield.schema import RelationChoice
+from zope import schema
+from zope.component import adapter
+from zope.interface import alsoProvides
+from zope.interface import implements
+
+import requests
+import urlparse
 
 
 class ISRModule(form.Schema, IDPDocument):

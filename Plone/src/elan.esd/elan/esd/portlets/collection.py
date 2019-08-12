@@ -1,31 +1,19 @@
 # -*- coding: utf-8 -*-
-from zope.component import getMultiAdapter
 
-from zope.interface import implements
-
+from docpool.base.utils import getDocumentPoolSite
+from elan.esd import DocpoolMessageFactory as _
+from elan.esd.content.elandoccollection import IELANDocCollection
+from five import grok
 from plone.app.portlets.portlets import base
+from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
-
-
-from elan.esd import DocpoolMessageFactory as _
-
-from zope import schema
-from z3c.relationfield.schema import RelationChoice
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import field
-from plone.directives import form as pdform
-from five import grok
+from zope import schema
+from zope.interface import implements
 from zope.schema.interfaces import IContextSourceBinder
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from elan.esd.content.elandoccollection import IELANDocCollection
-from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
-from plone.app.vocabularies.catalog import SearchableTextSourceBinder
-from docpool.base.utils import getDocumentPoolSite
 
 
 @grok.provider(IContextSourceBinder)

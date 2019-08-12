@@ -1,16 +1,10 @@
-from StringIO import StringIO
 from DateTime import DateTime
 from plone.subrequest import subrequest
-from urllib import unquote
-
-from xhtml2pdf.pisa import pisaDocument
-from xhtml2pdf import pisa
-from PyPDF2 import PdfFileWriter, PdfFileReader
-
-from Products.Five import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
-import logging
+from Products.Five import BrowserView
+from StringIO import StringIO
+from urllib import unquote
+from xhtml2pdf import pisa
 
 
 class PrintView(BrowserView):

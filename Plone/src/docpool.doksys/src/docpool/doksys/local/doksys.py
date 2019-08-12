@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from docpool.doksys import DocpoolMessageFactory as _
+from Products.CMFCore.utils import getToolByName
 
 
 def dpAdded(self):
     """
     @param self: 
     @return: 
-        
+
     """
     createDoksysUsers(self)
     createDoksysGroups(self)

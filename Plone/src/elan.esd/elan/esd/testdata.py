@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 
-import transaction
-import time
-from zExceptions import BadRequest
-
-# from Acquisition import aq_base
+from docpool.elan.config import ELAN_APP
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from elan.policy.chomsky import chomsky
+from loremipsum import get_paragraphs
+from plone.app.textfield.value import RichTextValue
+from Products.CMFCore.utils import getToolByName
 
 # from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone.utils import safe_unicode
-from plone.app.textfield.value import RichTextValue
-import datetime
-from Products.CMFCore.utils import getToolByName
-import random
 
-from docpool.elan.config import ELAN_APP
-from elan.policy.chomsky import chomsky
-from loremipsum import get_paragraphs
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+import random
+import time
+import transaction
+
+
+# from Acquisition import aq_base
 
 
 alldtypes = [

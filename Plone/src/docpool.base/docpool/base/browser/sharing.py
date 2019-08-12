@@ -1,10 +1,10 @@
-from plone.memoize.instance import memoize
-from plone.app.workflow.browser.sharing import SharingView as OSV
-from zope.i18n import translate
-from Products.CMFPlone.utils import safe_unicode
-from zope.component import getMultiAdapter
 from Acquisition import aq_parent
 from plone.app.workflow import PloneMessageFactory as _
+from plone.app.workflow.browser.sharing import SharingView as OSV
+from plone.memoize.instance import memoize
+from Products.CMFPlone.utils import safe_unicode
+from zope.component import getMultiAdapter
+from zope.i18n import translate
 
 
 class SharingView(OSV):

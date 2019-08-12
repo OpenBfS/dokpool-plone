@@ -2,39 +2,33 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
-from zope.interface.declarations import classImplements
-from zope.interface import Interface, implements, classProvides, directlyProvides
+from datetime import datetime
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.db.security import IDocpoolProtectedEntityClass
+from elixir import DateTime
+from elixir import Entity
+from elixir import EntityBase
+from elixir import Field
+from elixir import ManyToOne
+from elixir import OneToMany
+from elixir import setup_all
+from elixir import String
+from elixir import Unicode
+from elixir import using_options
+from sqlalchemy import join
+from sqlalchemy.orm import column_property
+from sqlalchemy.orm import mapper
+from sqlalchemy.orm import relation
+from zope.interface import classProvides
 
-from docpool.dbaccess.dbinit import __metadata__, __session__
+import logging
+
 
 metadata = __metadata__
 session = __session__
 
-from elixir import (
-    Entity,
-    EntityBase,
-    Field,
-    String,
-    Unicode,
-    DateTime,
-    OneToMany,
-    ManyToOne,
-    using_options,
-    setup_all,
-)
-from sqlalchemy import or_, and_, join
-from sqlalchemy.orm import (
-    mapper,
-    class_mapper,
-    relation,
-    backref,
-    column_property,
-    ColumnProperty,
-)
-import logging
-from datetime import datetime
-from docpool.transfers import DocpoolMessageFactory as _
-from docpool.transfers.db.security import IDocpoolProtectedEntityClass
 
 DEBUG = 0
 __metadata__.bind.echo = False
@@ -112,7 +106,6 @@ class ReceiverLog(Entity):
 
 class ChannelPermissions(EntityBase):
     classProvides(IDocpoolProtectedEntityClass)
-    pass
 
 
 class ChannelSends(EntityBase):
@@ -124,7 +117,6 @@ class ChannelSends(EntityBase):
 
 class ChannelReceives(EntityBase):
     classProvides(IDocpoolProtectedEntityClass)
-    pass
 
 
 setup_all(create_tables=True)

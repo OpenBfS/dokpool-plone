@@ -13,12 +13,9 @@ view of that content type.
 """
 
 
+from docpool.elan.config import ELAN_APP
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
-from docpool.elan.config import ELAN_APP
 
 
 class SRModuleView(BrowserView):

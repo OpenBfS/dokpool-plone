@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone.interfaces import INonInstallable
-from zope.interface import implementer
-from docpool.config.utils import (
-    ID,
-    TYPE,
-    TITLE,
-    CHILDREN,
-    createPloneObjects,
-    _addAllowedTypes,
-)
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import _createObjectByType
-from zope.component.hooks import getSite
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from plone import api
 from plone.app.textfield.value import RichTextValue
+from Products.CMFPlone.interfaces import INonInstallable
+from Products.CMFPlone.utils import _createObjectByType
+from zope.component.hooks import getSite
+from zope.interface import implementer
 
 import transaction
 

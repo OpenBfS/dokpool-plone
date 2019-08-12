@@ -1,59 +1,45 @@
 # -*- coding: utf-8 -*-
 """Common configuration constants
 """
-from docpool.base.content.dpdocument import IDPDocument
-from plone.autoform.directives import read_permission, write_permission
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
-from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.interface import provider, implementer
-from zope.component import adapter
-from zope import schema
-from docpool.base import DocpoolMessageFactory as _
-from docpool.base.browser.flexible_view import FlexibleView
-from docpool.transfers.config import TRANSFERS_APP
-from five import grok
-from plone.indexer.interfaces import IIndexer
-from Products.ZCatalog.interfaces import IZCatalog
-from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
-
-from docpool.dbaccess.dbinit import __session__
-from docpool.transfers.db.model import (
-    Channel,
-    DocTypePermission,
-    SenderLog,
-    ReceiverLog,
-    ChannelSends,
-    ChannelReceives,
-    ChannelPermissions,
-)
-from sqlalchemy import and_
+from Acquisition import aq_inner
 from datetime import datetime
 from DateTime import DateTime
-from docpool.transfers.content.transfers import (
-    determineTransferFolderObject,
-    ensureDocTypeInTarget,
-    determineChannels,
-)
-from sqlalchemy.sql.expression import desc, or_
-from docpool.base.utils import (
-    execute_under_special_role,
-    _copyPaste,
-    getUserInfo,
-    portalMessage,
-)
-
-from plone import api
-from Products.CMFPlone.utils import log, log_exc
-from docpool.transfers import DocpoolMessageFactory as _
-from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+from docpool.base import DocpoolMessageFactory as _
+from docpool.base.browser.flexible_view import FlexibleView
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import _copyPaste
+from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import getUserInfo
+from docpool.base.utils import portalMessage
+from docpool.dbaccess.dbinit import __session__
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
-
-from Acquisition import aq_inner
-from Products.Archetypes.utils import shasattr
-from docpool.base.interfaces import IDocumentExtension
+from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.config import TRANSFERS_APP
+from docpool.transfers.content.transfers import determineChannels
+from docpool.transfers.content.transfers import determineTransferFolderObject
+from docpool.transfers.content.transfers import ensureDocTypeInTarget
+from docpool.transfers.db.model import Channel
+from docpool.transfers.db.model import ChannelPermissions
+from docpool.transfers.db.model import ChannelReceives
+from docpool.transfers.db.model import ChannelSends
+from docpool.transfers.db.model import DocTypePermission
+from docpool.transfers.db.model import ReceiverLog
+from docpool.transfers.db.model import SenderLog
+from plone import api
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from sqlalchemy import and_
+from sqlalchemy.sql.expression import desc
+from sqlalchemy.sql.expression import or_
+from zope import schema
+from zope.component import adapter
+from zope.interface import provider
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
 @provider(IFormFieldProvider)

@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-from zope.interface import implements
-from zope.component import adapts
-
 from docpool.dbaccess.interfaces import IDataSecurity
+from docpool.dbaccess.interfaces import IProtectedEntityClass
 from docpool.dbaccess.security import DefaultSecurity
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
-from docpool.base.utils import checkLocalRole
-
-from docpool.dbaccess.interfaces import IProtectedEntityClass
+from zope.component import adapts
+from zope.interface import implements
 
 
 class IELANProtectedEntityClass(IProtectedEntityClass):

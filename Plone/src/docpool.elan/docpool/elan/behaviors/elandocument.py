@@ -1,30 +1,23 @@
 # -*- coding: utf-8 -*-
-import string
-
 from AccessControl import ClassSecurityInfo
-
-from plone.autoform.directives import read_permission, write_permission
-from zope.interface import provider, implementer, implements
-from zope.component import adapter
-from plone.autoform.interfaces import IFormFieldProvider
-
-from docpool.elan.config import ELAN_APP
-from zope import schema
-from plone.supermodel import model
-from plone.directives import form
-from z3c.relationfield.schema import RelationChoice, RelationList
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from plone.indexer.interfaces import IIndexer
-from Products.ZCatalog.interfaces import IZCatalog
-from Products.CMFCore.utils import getToolByName
-from plone import api
-from elan.esd import DocpoolMessageFactory as _
-from zope.interface.interface import Interface
 from Acquisition import aq_inner
+from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
 from docpool.elan.behaviors.elandoctype import IELANDocType
-from docpool.base.browser.flexible_view import FlexibleView
+from docpool.elan.config import ELAN_APP
+from elan.esd import DocpoolMessageFactory as _
+from plone import api
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
+from Products.CMFCore.utils import getToolByName
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from zope import schema
+from zope.interface import provider
+
+import string
 
 
 @provider(IFormFieldProvider)

@@ -13,16 +13,12 @@ view of that content type.
 """
 
 
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
-from docpool.dbaccess.dbinit import __session__, __metadata__
-from formalchemy import Grid
-from docpool.transfers.db.model import ChannelPermissions, DocTypePermission
-from docpool.transfers import DocpoolMessageFactory as _
 from docpool.base.browser.folderbase import FolderBaseView
+from docpool.dbaccess.dbinit import __session__
+from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.db.model import DocTypePermission
+from formalchemy import Grid
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DPTransferFolderView(FolderBaseView):

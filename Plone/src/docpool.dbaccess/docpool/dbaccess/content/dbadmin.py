@@ -6,9 +6,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-from Products.PageTemplates.tests.batch import (
-    __allow_access_to_unprotected_subobjects__,
-)
 
 __author__ = ''
 __docformat__ = 'plaintext'
@@ -16,96 +13,66 @@ __docformat__ = 'plaintext'
 """Definition of the dbadmin content type. See dbadmin.py for more
 explanation on the statements below.
 """
-from AccessControl import ClassSecurityInfo
+from DateTime import DateTime
+from datetime import datetime
+from docpool.dbaccess.content.errors import ObjectDuplicateException
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.dbaccess.interfaces import IAuditing
+from docpool.dbaccess.interfaces import IDataSecurity
+from docpool.dbaccess.interfaces import Idbadmin
+from docpool.dbaccess.interfaces import IProtectedEntityClass
+from docpool.dbaccess.security import DefaultSecurity
+from docpool.dbaccess.utils import dtFromString
+from docpool.dbaccess.utils import stringFromDatetime
+from events import ObjectAddedEvent
+from events import ObjectChangedEvent
+from events import ObjectDeletedEvent
+from Products.Archetypes.utils import contentDispositionHeader
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import safe_unicode
+from registry import _ecreg
+from registry import _exportConfigReg
+from registry import _reportConfigReg
+from sqlalchemy import and_
+from sqlalchemy import asc
+from sqlalchemy import desc
+from sqlalchemy.orm import class_mapper
+from sqlalchemy.orm import ColumnProperty
+from zope.component import getMultiAdapter
+from zope.component.hooks import getSite
+from zope.event import notify
 from zope.interface import implements
-from zope.component import adapts
+from zope.pagetemplate.pagetemplate import PageTemplate
 
-from Products.Archetypes.interfaces import IObjectPostValidation
+import copy
+import cStringIO
+import csv
+import forms
+import imports
+import os
+import sys
+import tempfile
+import transaction
+
 
 try:
-    from Products.LinguaPlone import public as atapi
+    pass
 except ImportError:
     # No multilingual support
-    from Products.Archetypes import atapi
+    pass
 
-from Products.ATContentTypes.content import base
-
-from docpool.dbaccess.interfaces import Idbadmin
-from Products.ATContentTypes.content.schemata import finalizeATCTSchema
-
-from Products.CMFCore.utils import getToolByName
-
-
-from docpool.dbaccess.dbinit import __session__, __metadata__
 
 metadata = __metadata__
 session = __session__
 
-from elixir import *
-from sqlalchemy import or_, and_, join, asc, desc, func
-from sqlalchemy.orm import class_mapper, ColumnProperty
 
 # Kompatibilitaet fuer SQLAlchemy > 0.6
 try:
-    from sqlalchemy.orm import RelationProperty
+    pass
 except ImportError:
-    from sqlalchemy.orm.properties import RelationProperty
-
-from formalchemy import FieldSet, Grid
-from formalchemy import config
-from formalchemy import types
-from formalchemy import Field
-from formalchemy import FieldRenderer
-import sys
-import forms
-import imports
-from registry import (
-    _ecreg,
-    registerEntityConfig,
-    _exportConfigReg,
-    registerExportDBObjectConfig,
-    _reportConfigReg,
-    registerReportConfig,
-)
-from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import log_exc
-from zope.event import notify
-from zope.component import adapter
-from events import (
-    IObjectAddedEvent,
-    IObjectDeletedEvent,
-    IObjectChangedEvent,
-    ObjectAddedEvent,
-    ObjectDeletedEvent,
-    ObjectChangedEvent,
-)
-import transaction
-from pprint import pprint
-import copy
-import csv
-from Products.Archetypes.utils import contentDispositionHeader
-import cStringIO
-import os
-import tempfile, zipfile
-from Products.Archetypes.utils import contentDispositionHeader
-from zope.contenttype import guess_content_type
-from DateTime import DateTime
-from Products.CMFPlone.utils import safe_unicode
-from datetime import datetime
-from docpool.dbaccess.content.registry import *
-from docpool.dbaccess.security import DefaultSecurity
-from docpool.dbaccess.interfaces import IDataSecurity, IProtectedEntityClass
-from zope.component import getMultiAdapter
-from docpool.dbaccess.utils import stringFromDatetime, dtFromString
-
-from zope.pagetemplate.pagetemplate import PageTemplate
-from docpool.dbaccess.content.errors import ObjectDuplicateException
-from docpool.dbaccess.interfaces import IAuditing
-from zope.component.hooks import getSite
-
-from docpool.dbaccess.config import PROJECTNAME
-
-from docpool.dbaccess import DocpoolMessageFactory as _
+    pass
 
 
 std_encoding = 'latin-1'
@@ -635,7 +602,8 @@ class dbadmin(object):
         Jeder Datensatz wird einzeln gespeichert, um Events verarbeiten zu koennen.
         """
         typ = request.get('typ')
-        data = self._extractData(request, typ)  # data enthaelt alle Felder der Tabelle
+        # data enthaelt alle Felder der Tabelle
+        data = self._extractData(request, typ)
         # Jetzt muessen alle Zeilen identifiziert und einzeln behandelt werden.
         # print "objekteSpeichern"
         # print data
@@ -644,7 +612,8 @@ class dbadmin(object):
         for pk in datadict.keys():
             if pk and pk != '_':
                 self.objektSpeichern(datadict[pk])
-                transaction.commit()  # Solange es keinen Fehler gibt, committen.
+                # Solange es keinen Fehler gibt, committen.
+                transaction.commit()
 
     def objekteLoeschen(self, request, context=None):
         """
@@ -667,7 +636,6 @@ class dbadmin(object):
     def isManager(self):
         """
         """
-        pass
 
     def cleanForm(self, typ, form):
         """

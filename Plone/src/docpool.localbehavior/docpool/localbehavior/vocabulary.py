@@ -1,16 +1,11 @@
-from zope.interface import directlyProvides
-from zope.component import getUtilitiesFor
-from zope.globalrequest import getRequest
-from zope.component import getMultiAdapter
-
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-
-from plone.behavior.interfaces import IBehavior
-
-from docpool.base.appregistry import extendingApps
-from docpool.base.interfaces import IDocumentExtension, IDocTypeExtension
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.appregistry import extendingApps
+from zope.component import getMultiAdapter
+from zope.globalrequest import getRequest
+from zope.interface import directlyProvides
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 def LocalBehaviorsVocabularyFactory(context):

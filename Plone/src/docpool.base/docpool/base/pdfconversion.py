@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from BTrees.OOBTree import OOBTree
+from cStringIO import StringIO
 from OFS.Image import Image as OFSImage
 from PIL import Image
+from plone.rfc822.interfaces import IPrimaryFieldInfo
 from PyPDF2 import PdfFileReader
 from PyPDF2.utils import PdfReadError
-from cStringIO import StringIO
 from zope.annotation.interfaces import IAnnotations
-from plone.rfc822.interfaces import IPrimaryFieldInfo
 
 import logging
 import subprocess
+
 
 logger = logging.getLogger('docpool.base.pdfconversion')
 

@@ -1,16 +1,15 @@
-from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
-
 from docpool.base.appregistry import appName
-from docpool.base.utils import getGroupsForCurrentUser, queryForObjects
-from zope.component import getMultiAdapter
+from docpool.base.config import BASE_APP
+from docpool.base.utils import getGroupsForCurrentUser
+from docpool.base.utils import queryForObjects
+from docpool.transfers.config import TRANSFERS_APP
+from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-from plone import api
-from zope.site.hooks import getSite
+from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.i18nl10n import utranslate
-from docpool.base.config import BASE_APP
-from docpool.transfers.config import TRANSFERS_APP
+from zope.component import getMultiAdapter
+from zope.site.hooks import getSite
 
 
 def getApplicationDocPoolsForCurrentUser(self, user=None):

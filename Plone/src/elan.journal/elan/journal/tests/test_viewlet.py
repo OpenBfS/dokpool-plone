@@ -4,10 +4,10 @@
 For more information on how to test viewlets, see:
 http://developer.plone.org/views/viewlets.html#finding-viewlets-programmatically
 """
-from plone import api
-from Products.Five.browser import BrowserView as View
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
+from plone import api
+from Products.Five.browser import BrowserView as View
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.viewlet.interfaces import IViewletManager

@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
-from docpool.dbaccess.dbinit import __metadata__, __session__
-from docpool.dbaccess.content.registry import registerEntityConfig
-from formalchemy.fields import HiddenFieldRenderer
+from docpool.dbaccess import DocpoolMessageFactory as _
 from docpool.dbaccess.content.forms import NoRenderer
+from docpool.dbaccess.content.registry import registerEntityConfig
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from formalchemy import Field
+from formalchemy import FieldSet
+from formalchemy import Grid
+from formalchemy import types
 from operator import attrgetter
+from sqlalchemy.orm import class_mapper
+from sqlalchemy.orm.properties import RelationProperty
+
 
 metadata = __metadata__
 session = __session__
-
-from elixir import *
-from sqlalchemy.orm import class_mapper
-from formalchemy import FieldSet, Grid, Field
-from formalchemy import types
-from sqlalchemy.orm.properties import RelationProperty
-from docpool.dbaccess import DocpoolMessageFactory as _
 
 
 class StructuredEntity(object):

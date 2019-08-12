@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from zope.lifecycleevent import ObjectModifiedEvent
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from z3c.relationfield.relation import RelationValue
-from zope.event import notify
-from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+from Products.CMFCore.utils import getToolByName
+from z3c.relationfield.relation import RelationValue
+from zope.component import getUtility
+from zope.event import notify
+from zope.intid.interfaces import IIntIds
+from zope.lifecycleevent import ObjectModifiedEvent
+
 
 TYPE = 'type'
 TITLE = 'title'

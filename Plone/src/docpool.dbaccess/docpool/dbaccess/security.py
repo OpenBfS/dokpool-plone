@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from zope.interface import implements
-from zope.component import adapts
-
-from interfaces import IDataSecurity, IProtectedEntityClass
+from interfaces import IDataSecurity
+from interfaces import IProtectedEntityClass
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
+from zope.component import adapts
+from zope.interface import implements
 
 
 class DefaultSecurity(object):

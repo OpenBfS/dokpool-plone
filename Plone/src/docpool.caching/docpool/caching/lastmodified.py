@@ -3,7 +3,6 @@ from docpool.base.content.dpdocument import IDPDocument
 from z3c.caching.interfaces import ILastModified
 from zope.component import adapter
 from zope.interface import implementer
-from Products.CMFPlone.log import log_exc
 
 
 @implementer(ILastModified)

@@ -5,16 +5,15 @@ __author__ = ''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope import schema
-from plone.directives import form, dexterity
-
-from plone.dexterity.content import Item
+from docpool.event import DocpoolMessageFactory as _
 from logging import getLogger
+from plone.dexterity.content import Item
+from plone.directives import form
+from zope import schema
+from zope.interface import implements
+
 
 logger = getLogger("dpnetwork")
-
-from docpool.event import DocpoolMessageFactory as _
 
 
 class IDPNetwork(form.Schema):

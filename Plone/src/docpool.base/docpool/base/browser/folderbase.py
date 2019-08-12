@@ -13,22 +13,19 @@ view of that content type.
 """
 
 
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from docpool.base.utils import extendOptions
-
-from plone.memoize.instance import memoize
-
 from Acquisition import aq_inner
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
-from Products.CMFCore.utils import getToolByName
+from docpool.base.utils import extendOptions
+from plone import api
 from plone.app.content.browser.interfaces import IFolderContentsView
 from plone.app.contenttypes.interfaces import ICollection
-from zope.interface import implementer
-from plone import api
 from plone.memoize import view
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implementer
 
 
 class FolderBaselistitemView(BrowserView):

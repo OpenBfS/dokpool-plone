@@ -1,9 +1,11 @@
-from sqlalchemy.schema import ThreadLocalMetaData
-from zope.sqlalchemy import ZopeTransactionExtension
-from sqlalchemy.orm import scoped_session, sessionmaker, relation
-from sqlalchemy import create_engine
-import os
 from elixir import *
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session
+from sqlalchemy.orm import sessionmaker
+from zope.sqlalchemy import ZopeTransactionExtension
+
+import os
+
 
 db_string = os.environ.get('ELANDB', 'elan')
 db_host = os.environ.get('ELANHOST', 'localhost')

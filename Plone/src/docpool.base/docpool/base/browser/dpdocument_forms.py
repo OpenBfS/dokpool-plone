@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from plone.directives.dexterity.form import EditForm, AddForm
-from five.grok import context, name
-from docpool.base.content.dpdocument import IDPDocument
-from z3c.form import button
 from docpool.base import DocpoolMessageFactory as _
-from Products.CMFPlone import PloneMessageFactory as PMF
+from docpool.base.content.dpdocument import IDPDocument
+from five.grok import context
+from five.grok import name
+from plone.directives.dexterity.form import AddForm
+from plone.directives.dexterity.form import EditForm
 from Products.Archetypes.utils import shasattr
+from Products.CMFPlone import PloneMessageFactory as PMF
+from z3c.form import button
 
 
 def checkUpload(form):

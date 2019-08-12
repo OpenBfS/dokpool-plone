@@ -2,8 +2,8 @@
 """Adapt a Journal with a container of journal-entries.
 
 """
-from elan.journal.interfaces import IJournal
 from datetime import datetime
+from elan.journal.interfaces import IJournal
 from persistent import Persistent
 from persistent.list import PersistentList
 from plone import api

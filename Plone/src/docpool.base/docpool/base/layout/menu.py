@@ -1,10 +1,6 @@
 """ Menu
 """
-from zope import interface
-from zope.component import queryAdapter
 from plone.app.contentmenu.menu import FactoriesMenu
-from Products.statusmessages.interfaces import IStatusMessage
-from Products.Five.browser import BrowserView
 
 
 class DPFactoriesMenu(FactoriesMenu):

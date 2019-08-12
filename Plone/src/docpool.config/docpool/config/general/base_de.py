@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
-from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+
 import transaction
-from Products.PythonScripts.PythonScript import PythonScript
-from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects
-from docpool.config import _
 
 
 def install(self):

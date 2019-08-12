@@ -14,27 +14,15 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
 from plone.dexterity.content import Container
-from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
-
+from plone.directives import form
 from Products.CMFCore.utils import getToolByName
-
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
-
-from docpool.base.config import PROJECTNAME
-
-from docpool.base import DocpoolMessageFactory as _
+from zope.interface import implements
 
 
 class IPrivateFolder(form.Schema, ISimpleFolder):

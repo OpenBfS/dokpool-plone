@@ -13,12 +13,8 @@ view of that content type.
 """
 
 
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
 from docpool.base.browser.flexible_view import FlexibleView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DPDocumentdashboardView(FlexibleView):

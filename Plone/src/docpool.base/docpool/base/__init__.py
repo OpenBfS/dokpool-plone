@@ -2,27 +2,24 @@
 """Main product initializer
 """
 
-from zope.i18nmessageid import MessageFactory
+from AccessControl import allow_class
+from AccessControl import allow_module
 from docpool.base import config
-
+from plone import api
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore.permissions import setDefaultRoles
+from zope.i18nmessageid import MessageFactory
 
-from AccessControl import allow_class
-
-from AccessControl import allow_module
 
 allow_module("Products.CMFQuickInstallerTool.QuickInstallerTool")
 allow_module("docpool.base")
 allow_module("docpool.base.config")
 allow_module("docpool.base.utils")
-from plone import api
 
 api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
-import monkey
+import monkey  # noqa: F401
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
@@ -31,7 +28,7 @@ import monkey
 DocpoolMessageFactory = MessageFactory('docpool.base')
 allow_class(DocpoolMessageFactory)
 
-import appregistration
+import appregistration  # noqa: F401
 
 
 def initialize(context):

@@ -2,31 +2,24 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
-from model import *
-from docpool.dbaccess.dbinit import __session__, __metadata__
+from docpool.dbaccess.content.forms import *
+from docpool.dbaccess.content.registry import registerEntityConfig
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.db.model import *
+from elixir import *
+from formalchemy import FieldRenderer
+from formalchemy import FieldSet
+from formalchemy import Grid
+from formalchemy.fields import HiddenFieldRenderer
+from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import safe_unicode
+
 
 session = __session__
 metadata = __metadata__
 
-from elixir import *
-
-from docpool.dbaccess.content.dbadmin import (
-    registerEntityConfig,
-    registerExportDBObjectConfig,
-)
-from docpool.dbaccess.content.forms import *
-
-from formalchemy import FieldSet, Grid
-from formalchemy import config
-from formalchemy import types
-from formalchemy import Field
-from formalchemy import FieldRenderer
-from formalchemy.validators import email, required
-from formalchemy.fields import HiddenFieldRenderer
-
-from Products.Archetypes.utils import shasattr
-from Products.CMFPlone.utils import safe_unicode
-from docpool.transfers import DocpoolMessageFactory as _
 
 perm_options = [
     (_(u'publish immediately'), 'publish'),

@@ -13,26 +13,12 @@ __docformat__ = 'plaintext'
 """Definition of the TransfersType content type. See transferstype.py for more
 explanation on the statements below.
 """
-from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.autoform.interfaces import IFormFieldProvider
-from zope.interface import provider, implementer
-from plone.directives import form
-
-
-from plone.dexterity.content import Item
-from docpool.base.interfaces import IDocTypeExtension
-
-from Products.CMFCore.utils import getToolByName
-
 from Acquisition import aq_inner
-from docpool.transfers.config import TRANSFERS_APP
-
-from docpool.transfers.config import PROJECTNAME
-
 from docpool.transfers import DocpoolMessageFactory as _
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
+from zope import schema
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)

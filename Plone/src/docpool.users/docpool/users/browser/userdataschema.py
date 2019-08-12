@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
-from zope.interface import Interface, implements
-from zope import schema
-from plone.app.users.schema import checkEmailAddress
-from Products.CMFPlone import PloneMessageFactory as _p
 from docpool.users import DocpoolMessageFactory as _
-from plone.supermodel import model
-
-from plone.app.users.browser.account import AccountPanelSchemaAdapter
-from plone.app.users.browser.userdatapanel import UserDataPanel
-from plone.app.users.browser.register import RegistrationForm, AddUserForm
-from plone.z3cform.fieldsets import extensible
-from zope.component import adapts
 from docpool.users.interfaces import IDocPoolUsersLayer
+from plone.app.users.browser.account import AccountPanelSchemaAdapter
+from plone.app.users.browser.register import AddUserForm
+from plone.app.users.browser.register import RegistrationForm
+from plone.app.users.browser.userdatapanel import UserDataPanel
+from plone.supermodel import model
+from plone.z3cform.fieldsets import extensible
 from z3c.form import field
+from zope import schema
+from zope.component import adapts
+from zope.interface import Interface
 
 
 class IEnhancedUserDataSchema(model.Schema):

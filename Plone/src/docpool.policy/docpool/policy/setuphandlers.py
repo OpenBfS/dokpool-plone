@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-from Products.ZCatalog.ProgressHandler import ZLogHandler
+
 
 PAS_TITLE = 'Trusted Proxy Auth'
 

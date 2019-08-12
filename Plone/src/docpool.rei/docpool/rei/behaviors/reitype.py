@@ -12,16 +12,9 @@ __docformat__ = 'plaintext'
 
 """
 """
-from zope import schema
-from plone.autoform.interfaces import IFormFieldProvider
-from zope.interface import provider, implementer
-from plone.directives import form
-
-from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
-
-
-from docpool.rei import DocpoolMessageFactory as _
+from plone.autoform.interfaces import IFormFieldProvider
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)

@@ -1,19 +1,14 @@
+from docpool.menu.utils import adaptQuery
+from docpool.menu.utils import getFoldersForCurrentUser
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from plone.app.layout.navigation.navtree import buildFolderTree
+from plone.app.portlets.portlets import navigation
+from plone.memoize.instance import memoize
+from Products.Archetypes.utils import shasattr
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFPlone.utils import aq_inner
 from zope.component import getMultiAdapter
-
-from plone.memoize.instance import memoize
-
-from plone.app.layout.navigation.interfaces import (
-    INavtreeStrategy,
-    INavigationQueryBuilder,
-)
-from plone.app.layout.navigation.navtree import buildFolderTree
-
-from plone.app.portlets.portlets import navigation
-from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
-from Products.CMFCore.utils import getToolByName
-from docpool.menu.utils import getFoldersForCurrentUser, adaptQuery
-from Products.Archetypes.utils import shasattr
 
 
 class Renderer(navigation.Renderer):

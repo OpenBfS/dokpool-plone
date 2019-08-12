@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from Products.Five import BrowserView
-from plone.memoize.view import memoize
-from docpool.base.appregistry import extendingApps, implicitApps
-from plone import api
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.base.appregistry import extendingApps
+from docpool.base.appregistry import implicitApps
 from docpool.base.config import BASE_APP
-from Products.CMFPlone.utils import log_exc
+from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from plone import api
+from plone.memoize.view import memoize
+from Products.Five import BrowserView
 
 
 class ApplicationState(BrowserView):
@@ -37,7 +37,8 @@ class ApplicationState(BrowserView):
                 supportedByType = ILocalBehaviorSupport(dto).local_behaviors
                 # print "supportedByType ", supportedByType
                 available_apps = list(set(available_apps).intersection(supportedByType))
-            except:  # Type may not support local behavior (e.g. SR module types)
+            # Type may not support local behavior (e.g. SR module types)
+            except:
                 pass
         available_apps.extend([app[0] for app in implicitApps()])
         # print "appsPermittedForObject ", available_apps, self.locallyAcivated()

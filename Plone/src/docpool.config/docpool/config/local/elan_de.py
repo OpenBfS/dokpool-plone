@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
-from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects
-from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
-import transaction
-from zExceptions import BadRequest
-from Products.CMFPlone.utils import log_exc
-from docpool.config.local.base import CONTENT_AREA
-from docpool.config import _
 from datetime import datetime
+from docpool.config import _
 from docpool.config.general.elan import connectTypesAndCategories
+from docpool.config.local.base import CONTENT_AREA
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log_exc
+from zExceptions import BadRequest
+
+import transaction
+
 
 # ELAN specific structures
 

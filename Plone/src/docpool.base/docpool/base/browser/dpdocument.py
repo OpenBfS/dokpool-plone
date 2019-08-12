@@ -13,32 +13,24 @@ view of that content type.
 """
 
 
+from Acquisition import aq_inner
+from docpool.base.browser.flexible_view import FlexibleView
+from docpool.base.content.dpdocument import IDPDocument
+from plone import api
+from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
+from plone.app.dexterity.interfaces import IDXFileFactory
+from plone.app.layout.globals.interfaces import IViewView
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.uuid.interfaces import IUUID
+from Products.Archetypes.utils import contentDispositionHeader
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
-from Acquisition import aq_inner, aq_base, ImplicitAcquisitionWrapper
-import urllib
-from plone.app.layout.globals.interfaces import IViewView
-from zope.interface import implements
 from zope.interface import alsoProvides
-from plone.protect.authenticator import createToken
-from Products.Archetypes.utils import shasattr, contentDispositionHeader
-from plone.app.contenttypes.interfaces import IFile
-from zope.pagetemplate.interfaces import IPageTemplateSubclassing
-from Products.PageTemplates.PageTemplate import PageTemplate
-from plone.protect.interfaces import IDisableCSRFProtection
-from docpool.base.utils import execute_under_special_role
-from docpool.base.content.dpdocument import IDPDocument
-import Acquisition
-from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
+from zope.interface import implements
+
 import json
-from plone.app.dexterity.interfaces import IDXFileFactory
-from plone.uuid.interfaces import IUUID
 import mimetypes
-from plone import api
-from docpool.base.browser.flexible_view import FlexibleView
+import urllib
 
 
 class DPDocumentView(FlexibleView):

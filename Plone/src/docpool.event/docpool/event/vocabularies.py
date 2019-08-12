@@ -1,16 +1,14 @@
+from AccessControl.SecurityInfo import allow_module
+from docpool.base.utils import getDocumentPoolSite
+from docpool.event import DocpoolMessageFactory as _
+from five import grok
+from plone.registry.interfaces import IRegistry
+from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
 from zope.interface import implements
-from plone.registry.interfaces import IRegistry
-from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
-from zope.site.hooks import getSite
-from Products.CMFCore.utils import getToolByName
-from docpool.event import DocpoolMessageFactory as _
-from AccessControl.SecurityInfo import allow_module, allow_class
-from docpool.base.utils import getDocumentPoolSite
-from five import grok
-from Products.CMFPlone.utils import parent
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class EventVocabulary(object):

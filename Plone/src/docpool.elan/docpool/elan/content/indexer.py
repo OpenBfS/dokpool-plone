@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.indexer import indexer
-from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.config import ELAN_APP
+from plone.indexer import indexer
 
 
 @indexer(IDPDocument)

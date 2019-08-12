@@ -1,16 +1,11 @@
-from plone.app.caching.operations.etags import LastModified
-from plone.app.caching.operations.utils import getContext
-from plone.app.caching.interfaces import IETagValue
-
-from zope.interface import implements
-from zope.interface import Interface
-from zope.interface import implementer
-
-from zope.component import adapts, getMultiAdapter
-from zope.component import adapter
 from plone import api
-
+from plone.app.caching.interfaces import IETagValue
+from plone.app.caching.operations.utils import getContext
 from time import time
+from zope.component import adapter
+from zope.component import getMultiAdapter
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 @implementer(IETagValue)

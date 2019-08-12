@@ -1,22 +1,31 @@
-from Acquisition import aq_inner
-from zope.component import getAdapter
-from Products.CMFPlone.interfaces import ISecuritySchema
-from zope.component.hooks import getSite
-from Products.Archetypes.utils import shasattr
-from plone.app.users.browser.register import BaseRegistrationForm
-from Products.PlonePAS.tools.groups import GroupsTool
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.log import log
-from plone.app.users.browser.schemaeditor import getFromBaseSchema
-from plone.app.users.schema import IUserDataSchema
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
-from zope.component.globalregistry import provideAdapter
-from docpool.base.content.documentpool import IDocumentPool
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from Products.CMFPlone.utils import normalizeString, safe_unicode
 from AccessControl import getSecurityManager
+from Acquisition import aq_inner
+from docpool.base.content.documentpool import IDocumentPool
+from plone.app.users.browser import userdatapanel
+from plone.app.users.browser.register import BaseRegistrationForm
+from plone.app.users.browser.schemaeditor import getFromBaseSchema
+from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
+from plone.app.users.schema import IUserDataSchema
+from plone.app.users.vocabularies import GroupIdVocabulary
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.Archetypes.utils import shasattr
 from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.controlpanel.browser.usergroups import (
+    UsersGroupsControlPanelView,
+)
+from Products.CMFPlone.interfaces import ISecuritySchema
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from Products.CMFPlone.log import log
+from Products.CMFPlone.utils import normalizeString
+from Products.CMFPlone.utils import safe_unicode
+from Products.PlonePAS.tools.groups import GroupsTool
+from zope.component import getAdapter
+from zope.component.globalregistry import provideAdapter
+from zope.component.hooks import getSite
+from zope.interface import alsoProvides
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 def email_as_username(self):
@@ -81,7 +90,8 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
                 _("There was an existing group folder of the same name. Please check!"),
                 "error",
             )
-            gf = groups._getOb(group_id)  # get the new or old folder and edit it
+            # get the new or old folder and edit it
+            gf = groups._getOb(group_id)
             gf.setTitle(title)
             gf.reindexObject()
         gf = groups._getOb(group_id)  # get the new or old folder and edit it
@@ -140,8 +150,6 @@ def getUserDataSchema():
     return schema
 
 
-from plone.app.users.browser import userdatapanel
-
 userdatapanel.getUserDataSchema = getUserDataSchema
 
 
@@ -179,16 +187,7 @@ def getGroupIds(self, context):
     return SimpleVocabulary(terms)
 
 
-from plone.app.users.vocabularies import GroupIdVocabulary
-
 GroupIdVocabulary.__call__ = getGroupIds
-
-
-from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
-from Products.CMFPlone.controlpanel.browser.usergroups import (
-    UsersGroupsControlPanelView,
-)
 
 
 def __csrfinit__(self, context, request):

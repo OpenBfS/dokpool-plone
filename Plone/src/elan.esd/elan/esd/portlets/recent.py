@@ -1,22 +1,16 @@
 # -*- coding: utf-8 -*-
-import string, codecs
-from zope.component import getMultiAdapter
-
-from zope.interface import implements
-
+from AccessControl.SecurityInfo import allow_class
+from AccessControl.SecurityInfo import allow_module
+from Acquisition import aq_inner
+from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implements
 
-from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
+import string
 
-
-from elan.esd import DocpoolMessageFactory as _
-
-from AccessControl.SecurityInfo import allow_module, allow_class
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
@@ -79,7 +73,7 @@ class Renderer(base.Renderer):
 
     def isEditMode(self):
         """
-	    """
+            """
         path = self.request.get("PATH_INFO", "")
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True

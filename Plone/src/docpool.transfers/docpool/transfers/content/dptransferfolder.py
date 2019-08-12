@@ -14,48 +14,29 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.folderbase import FolderBase, IFolderBase
-
-from Products.CMFCore.utils import getToolByName
-
-from zope.interface import Interface
-from zope.schema.interfaces import IContextSourceBinder
-from docpool.base.utils import (
-    execute_under_special_role,
-    queryForObject,
-    getDocumentPoolSite,
-)
-from zope.component.hooks import getSite
-from zope.component import adapter
-from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
-from collective.z3cform.datagridfield import DataGridFieldFactory, DictRow
-from Products.Archetypes.utils import shasattr
-from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectRemovedEvent
-from plone.dexterity.interfaces import IEditFinishedEvent
-from docpool.dbaccess.dbinit import __metadata__, __session__
-from docpool.transfers.db.model import Channel, DocTypePermission, ChannelPermissions
-from logging import getLogger
-from Products.CMFPlone.utils import parent
-
-
+from docpool.base.content.folderbase import FolderBase
+from docpool.base.content.folderbase import IFolderBase
+from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import queryForObject
+from docpool.dbaccess.dbinit import __session__
 from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.db.model import Channel
+from docpool.transfers.db.model import DocTypePermission
+from logging import getLogger
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.directives import form
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import parent
+from zope import schema
+from zope.component import adapter
+from zope.interface import implements
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+
 
 logger = getLogger("dptransferfolder")
-
-
-from docpool.transfers.config import PROJECTNAME
 
 
 class IDPTransferFolder(form.Schema, IFolderBase):
@@ -218,7 +199,6 @@ class DPTransferFolder(Container, FolderBase):
         """
         Dummy method to indicate that this is a resource with dbadmin functions.
         """
-        pass
 
     def grantReadAccess(self):
         """

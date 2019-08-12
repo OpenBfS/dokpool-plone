@@ -1,19 +1,6 @@
-from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
-from Products.Archetypes.utils import shasattr
-from Products.CMFPlone.log import log_exc
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
-from Products.CMFPlone.utils import parent
-from AccessControl import getSecurityManager
-from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
-from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
-from zope.component.hooks import getSite
+from docpool.base.utils import getDocumentPoolSite
 from plone import api
-from docpool.base.utils import getDocumentPoolSite, getGroupsForCurrentUser
-from docpool.elan.config import ELAN_APP
+from Products.CMFCore.utils import getToolByName
 
 
 def getAvailableCategories(self):

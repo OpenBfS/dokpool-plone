@@ -13,15 +13,10 @@ view of that content type.
 """
 
 
+from docpool.base.utils import execute_under_special_role
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
-from docpool.base.utils import execute_under_special_role
-from Products.CMFPlone.log import log_exc
-from Products.CMFCore.utils import getToolByName
-from plone.subrequest import subrequest
 
 
 class DocumentPoolView(BrowserView):

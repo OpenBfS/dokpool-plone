@@ -14,46 +14,28 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Item
-from plone.app.contenttypes.content import Collection, ICollection
-
-from Products.CMFCore.utils import getToolByName
-
-from docpool.event.utils import getScenariosForCurrentUser
-from elan.esd.utils import getCategoriesForCurrentUser
-from Products.CMFCore.permissions import View
-from plone.formwidget.autocomplete.widget import (
-    AutocompleteFieldWidget,
-    AutocompleteMultiFieldWidget,
-)
-from zope.lifecycleevent.interfaces import IObjectModifiedEvent, IObjectAddedEvent
-from zope.component import adapter
-from five import grok
-from zope.schema.interfaces import IContextSourceBinder
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from z3c.relationfield.relation import RelationValue
-from z3c.relationfield.event import updateRelations
-from docpool.base.content.doctype import IDocType
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
 from docpool.elan.config import ELAN_APP
-
-
-from elan.esd.config import PROJECTNAME
-
+from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
+from elan.esd.utils import getCategoriesForCurrentUser
+from plone.app.contenttypes.content import Collection
+from plone.app.contenttypes.content import ICollection
+from plone.dexterity.content import Item
+from plone.directives import form
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.permissions import View
+from Products.CMFCore.utils import getToolByName
+from z3c.relationfield.event import updateRelations
+from z3c.relationfield.relation import RelationValue
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope.component import adapter
+from zope.component import getUtility
+from zope.interface import alsoProvides
+from zope.interface import implements
+from zope.intid.interfaces import IIntIds
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 
 class IELANDocCollection(form.Schema, ICollection):
@@ -216,7 +198,6 @@ class ELANDocCollection(Item, Collection):
         """Get the query dict from the request or from the object"""
         from zope.site.hooks import getSite
         from plone.app.querystring.querybuilder import QueryBuilder
-        from elan.esd.utils import getRelativePath
 
         # print "modified get"
         request = self.REQUEST

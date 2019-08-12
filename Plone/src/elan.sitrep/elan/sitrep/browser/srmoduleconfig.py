@@ -16,8 +16,6 @@ view of that content type.
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from plone.memoize.instance import memoize
-
 
 class SRModuleConfigView(BrowserView):
     """Default view

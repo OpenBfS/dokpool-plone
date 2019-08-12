@@ -7,6 +7,14 @@
         (CHOMSKY n)  -- for example
         (CHOMSKY 5) generates half a screen of linguistic truth."""
 
+from itertools import chain
+from itertools import islice
+from itertools import izip
+
+import random
+import textwrap
+
+
 leadins = """To characterize a linguistic level L,
     On the other hand,
     This suggests that
@@ -101,9 +109,6 @@ objects = """ problems of phonemic and morphological analysis.
     the requirement that branching is not tolerated within the dominance scope of a complex symbol.
     the strong generative capacity of the theory."""
 # List of OBJECTs selected for profound sententiousness.
-
-import textwrap, random
-from itertools import chain, islice, izip
 
 
 def chomsky(times=1, line_length=72):

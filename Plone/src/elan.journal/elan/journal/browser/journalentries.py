@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from elan.journal import _
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.adapters import JournalEntry
 from elan.journal.browser.base import BaseView
-from datetime import datetime
 from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from time import time
 from zExceptions import NotFound
 from zope.event import notify
+from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.publisher.interfaces import IPublishTraverse
-from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
 
 
 @implementer(IPublishTraverse)

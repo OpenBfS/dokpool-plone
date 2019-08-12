@@ -9,29 +9,14 @@ __author__ = ''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-
-from Products.CMFCore.utils import getToolByName
-
-from zope.interface.declarations import classImplements
-
-from Products.CMFPlone.utils import parent
 from logging import getLogger
+from plone.dexterity.content import Container
+from plone.directives import form
+from Products.CMFPlone.utils import parent
+from zope.interface import implements
+
 
 logger = getLogger("dpevents")
-
-from docpool.event import DocpoolMessageFactory as _
 
 
 class IDPEvents(form.Schema):

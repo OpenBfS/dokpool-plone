@@ -1,19 +1,10 @@
 # -*- coding: utf-8 -*-
-from zope.component import getMultiAdapter
-
-from zope.interface import implements
-
-from plone.app.portlets.portlets import base
-from plone.memoize.instance import memoize
-from plone.portlets.interfaces import IPortletDataProvider
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
-
 
 from elan.sitrep import DocpoolMessageFactory as _
+from plone.app.portlets.portlets import base
+from plone.portlets.interfaces import IPortletDataProvider
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implements
 
 
 # This interface defines the configurable options (if any) for the portlet.
@@ -55,7 +46,7 @@ class Renderer(base.Renderer):
 
     def isEditMode(self):
         """
-    	"""
+        """
         path = self.request.get("PATH_INFO", "")
 
         if path.endswith("/edit") or path.endswith("/@@edit"):

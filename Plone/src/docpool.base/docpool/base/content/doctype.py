@@ -14,35 +14,20 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.extendable import Extendable, IExtendable
-
-from Products.CMFCore.utils import getToolByName
-
-from docpool.base.utils import queryForObjects, queryForObject, back_references
-from Products.Archetypes.utils import DisplayList, shasattr
-from z3c.relationfield.relation import RelationValue
-from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
-from zope.component import getUtility, adapter
-from zope.intid.interfaces import IIntIds
-from five import grok
-from zope.schema.interfaces import IContextSourceBinder
-from plone.dexterity.interfaces import IEditFinishedEvent
-
-from docpool.base.config import PROJECTNAME
-
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.content.extendable import Extendable
+from docpool.base.content.extendable import IExtendable
+from docpool.base.utils import queryForObjects
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.directives import form
+from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import log
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
+from zope.component import adapter
+from zope.interface import implements
 
 
 class IDocType(form.Schema, IExtendable):

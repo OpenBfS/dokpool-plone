@@ -1,24 +1,16 @@
 # -*- coding: utf-8 -*-
-from Products.PluggableAuthService.plugins import ZODBGroupManager
-from Products.PlonePAS.plugins.group import GroupManager
-from Products.CMFCore.utils import getToolByName
+from Acquisition import aq_get
+from Acquisition import aq_inner
 from plone.app.discussion.browser.conversation import ConversationView
-from Products.ZCatalog.CatalogBrains import (
-    AbstractCatalogBrain,
-    _GLOBALREQUEST_INSTALLED,
-    getRequest,
-)
-from Acquisition import aq_get, aq_parent, aq_inner
-from Products.CMFPlone.utils import log, log_exc
+from Products.ZCatalog.CatalogBrains import _GLOBALREQUEST_INSTALLED
+from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
+from Products.ZCatalog.CatalogBrains import getRequest
+
+import ssl
+
 
 # from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
-from Products.PlonePAS.tools.groups import GroupsTool
-from Products.PlonePAS.tools.membership import MembershipTool
 
-from Products.Archetypes.utils import shasattr
-
-from plone.api import user
-from zExceptions import BadRequest
 
 # Patches for the automatic creation of group folders
 
@@ -75,6 +67,5 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
     AbstractCatalogBrain.original_getURL = AbstractCatalogBrain.getURL
     AbstractCatalogBrain.getURL = getURL
 
-import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context

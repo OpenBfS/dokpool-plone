@@ -14,29 +14,15 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-
-from Products.CMFCore.utils import getToolByName
-
-from zope.component import adapter
-from plone.dexterity.interfaces import IEditFinishedEvent
-from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from docpool.elan.config import ELAN_APP
-
-from elan.sitrep.config import PROJECTNAME
-
-from elan.sitrep import DocpoolMessageFactory as _
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.directives import form
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from zope.component import adapter
+from zope.interface import implements
 
 
 class ISRScenario(form.Schema):

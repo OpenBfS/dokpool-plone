@@ -1,7 +1,7 @@
-from zope.component import getMultiAdapter
-from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.layout.viewlets.common import PathBarViewlet
+from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
 
 
 class PathBarViewlet(ViewletBase):

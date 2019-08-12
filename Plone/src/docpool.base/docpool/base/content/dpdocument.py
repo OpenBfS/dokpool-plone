@@ -14,58 +14,46 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.extendable import Extendable, IExtendable
-from docpool.base.content.contentbase import ContentBase, IContentBase
-from plone.app.contenttypes.content import Document, IDocument
-
-from Products.CMFCore.utils import getToolByName
-
-from docpool.base.utils import (
-    queryForObject,
-    queryForObjects,
-    execute_under_special_role,
-    _copyPaste,
-    getUserInfo,
-    portalMessage,
-)
-from Products.CMFPlone.utils import log, log_exc
-from plone.app.discussion.interfaces import IConversation
-from Products.Archetypes.utils import DisplayList, shasattr
-from zope.container.interfaces import IContainerModifiedEvent, IObjectRemovedEvent
-from zope.component import adapter
-from plone import api, namedfile
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from zExceptions import BadRequest
-from plone.memoize import ram
-import re
-from docpool.base.pdfconversion import get_images, metadata, pdfobj, data
-from zope.annotation.interfaces import IAnnotations
 from BTrees.OOBTree import OOBTree
-from StringIO import StringIO
+from collective import dexteritytextindexer
 from docpool.base import DocpoolMessageFactory as _
-from Acquisition import aq_base, aq_parent
-from plone.dexterity.utils import safe_unicode
-from plone.api import content
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.extendable import Extendable
+from docpool.base.content.extendable import IExtendable
+from docpool.base.pdfconversion import data
+from docpool.base.pdfconversion import get_images
+from docpool.base.pdfconversion import metadata
+from docpool.base.pdfconversion import pdfobj
+from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObject
 from PIL import Image
-from zope.interface import alsoProvides
+from plone import api
+from plone import namedfile
+from plone.api import content
+from plone.app.contenttypes.content import Document
+from plone.app.contenttypes.content import IDocument
+from plone.app.discussion.interfaces import IConversation
+from plone.app.textfield import RichText
+from plone.dexterity.content import Container
+from plone.dexterity.utils import safe_unicode
+from plone.directives import form
 from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
+from StringIO import StringIO
+from zExceptions import BadRequest
+from zope import schema
+from zope.annotation.interfaces import IAnnotations
+from zope.component import adapter
 from zope.component import getMultiAdapter
+from zope.container.interfaces import IContainerModifiedEvent
+from zope.interface import alsoProvides
+from zope.interface import implements
 
-from docpool.base.config import PROJECTNAME
-
-from docpool.base import DocpoolMessageFactory as _
+import re
 
 
 class IDPDocument(form.Schema, IDocument, IExtendable, IContentBase):

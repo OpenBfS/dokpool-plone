@@ -1,17 +1,20 @@
-from docpool.base.content.doctype import IDocType
-from zope.interface import implements
-from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
-from zope.schema.vocabulary import SimpleVocabulary
-from zope.schema.vocabulary import SimpleTerm
-from zope.site.hooks import getSite
-from Products.CMFCore.utils import getToolByName
+from AccessControl.SecurityInfo import allow_class
+from AccessControl.SecurityInfo import allow_module
 from docpool.base import DocpoolMessageFactory as _
-from AccessControl.SecurityInfo import allow_module, allow_class
-from Products.Archetypes.utils import shasattr
-from docpool.base.utils import getDocumentPoolSite
+from docpool.base.appregistry import activeApps
+from docpool.base.appregistry import extendingApps
+from docpool.base.appregistry import selectableApps
+from docpool.base.content.doctype import IDocType
 from docpool.base.utils import getAllowedDocumentTypesForGroup
-from docpool.base.appregistry import activeApps, extendingApps, selectableApps
+from docpool.base.utils import getDocumentPoolSite
+from Products.Archetypes.utils import shasattr
+from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
+from zope.interface import implements
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
+from zope.site.hooks import getSite
 
 
 class AvailableAppsVocabulary(object):

@@ -1,50 +1,40 @@
 # -*- coding: utf-8 -*-
-from Products.PluggableAuthService.plugins import ZODBGroupManager
-from Products.PlonePAS.plugins.group import GroupManager
+from docpool.base.browser.dpdocument import DPDocumentinlineView
+from docpool.base.browser.dpdocument import DPDocumentlistitemView
+from docpool.base.browser.dpdocument import DPDocumentprintView
+from docpool.base.browser.dpdocument import DPDocumentView
+from docpool.base.content.documentpool import DocumentPool
+from docpool.base.content.simplefolder import SimpleFolder
+from docpool.base.utils import deleteMemberFolders
+from docpool.elan.config import ELAN_APP
+from docpool.event.utils import getScenariosForCurrentUser
+from elan.esd.testdata import createGroupsAndUsers
+from elan.esd.testdata import createTestDocuments
+from elan.esd.testdata import deleteTestData
+from plone.protect import CheckAuthenticator
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
-from plone.app.discussion.browser.conversation import ConversationView
-from Products.ZCatalog.CatalogBrains import (
-    AbstractCatalogBrain,
-    _GLOBALREQUEST_INSTALLED,
-    getRequest,
-)
-from Products.CMFPlone.utils import aq_get, aq_parent, aq_inner
-from Products.CMFPlone.utils import log
+from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.CatalogTool import CatalogTool
+from Products.CMFPlone.utils import aq_inner
+from zExceptions import Forbidden
+from zope.interface import alsoProvides
+
+import datetime
+import logging
+
 
 # from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
-from Products.PlonePAS.tools.groups import GroupsTool
-from Products.PlonePAS.tools.membership import MembershipTool
 
-from Products.Archetypes.utils import shasattr
-
-from plone.protect.interfaces import IDisableCSRFProtection
 
 # Patches for the dropdown menu to include personal and group folders
 
-from docpool.base.content.documentpool import DocumentPool
-from docpool.elan.config import ELAN_APP
-from elan.esd.testdata import deleteTestData, createGroupsAndUsers, createTestDocuments
-import datetime
-from zope.interface import alsoProvides
-
-
-from plone.protect import CheckAuthenticator
-from zExceptions import Forbidden
-import logging
-from Products.CMFPlone import PloneMessageFactory as _
-from docpool.event.utils import getScenariosForCurrentUser
-from docpool.base.utils import deleteMemberFolders
-from docpool.base.browser.dpdocument import (
-    DPDocumentView,
-    DPDocumentlistitemView,
-    DPDocumentinlineView,
-    DPDocumentprintView,
-)
-from docpool.base.content.simplefolder import SimpleFolder
 
 logger = logging.getLogger('plone.app.controlpanel')
 
 # Patch to change password reset behaviour. Set password to username.
+
+
 def manageUser(self, users=None, resetpassword=None, delete=None):
     if users is None:
         users = []
@@ -141,9 +131,6 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
 #    UOCP.manageUser = manageUser
 
 
-from Products.CMFPlone.CatalogTool import CatalogTool
-
-
 def searchResults(self, REQUEST=None, **kw):
     rqurl = ""
     if hasattr(self.REQUEST, 'URL'):
@@ -158,7 +145,8 @@ def searchResults(self, REQUEST=None, **kw):
     if has_st and not isInternal:  # user query, needs to be personalized
         if has_path:
             path = kw['path']
-            kw['path'] = "%s/content" % path  # Make sure we only search in one area
+            # Make sure we only search in one area
+            kw['path'] = "%s/content" % path
         if has_st[-1] != "*":
             kw['SearchableText'] = has_st + "*"
         scns = getScenariosForCurrentUser(self)

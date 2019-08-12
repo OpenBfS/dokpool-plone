@@ -2,27 +2,26 @@
 """Main product initializer
 """
 
-from zope.i18nmessageid import MessageFactory
-import config
-
+from AccessControl import allow_class
+from AccessControl import allow_module
+from plone import api
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
+from zope.i18nmessageid import MessageFactory
 
-from AccessControl import allow_class
+import config
 
-from AccessControl import allow_module
 
 allow_module("Products.CMFQuickInstallerTool.QuickInstallerTool")
 allow_module("elan.esd")
 allow_module("elan.esd.utils")
 allow_module("elan.esd.portlets.recent")
-from plone import api
 
 api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
-import monkey
+import monkey  # noqa: F401
 
 # DocumentPool specific
 # from monkeyDocumentPool import esdAdded, esdRemoved, configure

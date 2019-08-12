@@ -1,33 +1,22 @@
 from Acquisition import aq_base
-from AccessControl.ZopeGuards import guarded_getattr
 from logging import exception
-from plone.namedfile.interfaces import IAvailableSizes
-from plone.namedfile.interfaces import IStableImageScale
-from plone.namedfile.utils import set_headers, stream_data
-from plone.rfc822.interfaces import IPrimaryFieldInfo
-from plone.scale.storage import AnnotationStorage
-from plone.scale.scale import scaleImage
-from Products.Five import BrowserView
-from xml.sax.saxutils import quoteattr
-from ZODB.POSException import ConflictError
-from zope.component import queryUtility
-from zope.interface import alsoProvides
-from zope.interface import implements
-from zope.traversing.interfaces import ITraversable, TraversalError
-from zope.publisher.interfaces import IPublishTraverse, NotFound
 from plone.namedfile.file import FileChunk
-from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
+from plone.namedfile.interfaces import IStableImageScale
 from plone.namedfile.scaling import (
-    ImageScaling as OriginalImageScaling,
-    ImageScale,
     DefaultImageScalingFactory as OriginalImageScalingFactory,
 )
-
-_marker = object()
-
+from plone.namedfile.scaling import ImageScale
+from plone.namedfile.scaling import ImageScaling as OriginalImageScaling
+from plone.scale.scale import scaleImage
+from plone.scale.storage import AnnotationStorage
+from ZODB.POSException import ConflictError
+from zope.interface import alsoProvides
+from zope.publisher.interfaces import NotFound
 
 import logging
+
+
+_marker = object()
 
 
 logger = logging.getLogger(__name__)
@@ -143,7 +132,6 @@ class ImageScalingFactory(OriginalImageScalingFactory):
         scale=None,
         **parameters
     ):
-
         """Factory for image scales`.
         """
         orig_value = getattr(self.context, fieldname, None)

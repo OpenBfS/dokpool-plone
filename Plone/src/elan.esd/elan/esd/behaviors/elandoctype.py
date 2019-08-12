@@ -1,30 +1,20 @@
 # -*- coding: utf-8 -*-
-from five import grok
-from zope.schema.interfaces import IContextSourceBinder
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from elan.esd.interfaces import IELANDocCollection
-from zope.interface import provider, implementer
-from zope.component import adapter
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.supermodel import model
-from plone.directives import form
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
-from zope import schema
-
-from docpool.base.utils import queryForObjects, queryForObject, back_references
-from Products.Archetypes.utils import DisplayList, shasattr
-from z3c.relationfield.relation import RelationValue
-from plone.formwidget.autocomplete.widget import AutocompleteFieldWidget
-from zope.component import getUtility, adapter
-from zope.intid.interfaces import IIntIds
-from five import grok
-from zope.schema.interfaces import IContextSourceBinder
-
-from plone import api
-from elan.esd import DocpoolMessageFactory as _
-
 from Acquisition import aq_inner
+from docpool.base.utils import back_references
+from docpool.base.utils import queryForObject
+from docpool.base.utils import queryForObjects
+from elan.esd import DocpoolMessageFactory as _
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
+from plone.supermodel import model
+from Products.Archetypes.utils import DisplayList
+from Products.Archetypes.utils import shasattr
+from z3c.relationfield.relation import RelationValue
+from z3c.relationfield.schema import RelationChoice
+from zope import schema
+from zope.component import getUtility
+from zope.interface import provider
+from zope.intid.interfaces import IIntIds
 
 
 @provider(IFormFieldProvider)

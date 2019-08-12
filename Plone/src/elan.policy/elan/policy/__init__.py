@@ -1,5 +1,7 @@
-from AccessControl import allow_module, allow_class
+from AccessControl import allow_class
+from AccessControl import allow_module
 from zope.i18nmessageid import MessageFactory
+
 
 allow_module("elan.policy")
 allow_module("elan.policy.utils")

@@ -1,12 +1,11 @@
-from zope.component import getMultiAdapter
-from zope.interface import alsoProvides, implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form
-from plone.autoform.interfaces import IFormFieldProvider
-from docpool.localbehavior import MessageFactory as _
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from Acquisition import aq_inner
+from docpool.localbehavior import MessageFactory as _
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from zope import schema
+from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 from zope.interface import Interface
 
 
@@ -18,7 +17,7 @@ class ILocalBehaviorSupport(form.Schema):
         description=_(
             u'description_local_behaviors',
             default=u'Select applications supported for this content,'
-            + ' changes will be applied after saving',
+                    ' changes will be applied after saving',
         ),
         required=False,
         value_type=schema.Choice(title=u'Applications', vocabulary="LocalBehaviors"),

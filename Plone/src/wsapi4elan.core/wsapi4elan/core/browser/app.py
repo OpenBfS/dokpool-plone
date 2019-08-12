@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
-import random
 from docpool.base.utils import getGroupsForCurrentUser
-
-try:
-    from zope.component.hooks import getSite
-except ImportError:
-    from zope.component.hooks import getSite
-from zope.interface import implements
-
+from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.utils import getToolByName
 from wsapi4plone.core.browser.interfaces import IApplicationAPI
 from wsapi4plone.core.browser.wsapi import WSAPI
-from wsapi4plone.core.interfaces import IScrubber, IService, IServiceContainer
-from plone import api
-from Products.CMFCore.utils import getToolByName
-from plone.protect.interfaces import IDisableCSRFProtection
+from wsapi4plone.core.interfaces import IService
 from zope.interface import alsoProvides
+from zope.interface import implements
+
+
+try:
+    pass
+except ImportError:
+    pass
 
 
 class ApplicationAPI(WSAPI):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from xmlrpclib import ServerProxy
 from random import random
+from xmlrpclib import ServerProxy
 
 
 def elan_login(username, password):

@@ -13,16 +13,12 @@ view of that content type.
 """
 
 
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
-from docpool.elan.config import ELAN_APP
 from base64 import b64encode
 from datetime import datetime
-from DateTime import DateTime
+from docpool.elan.config import ELAN_APP
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DPDocumentirixView(BrowserView):

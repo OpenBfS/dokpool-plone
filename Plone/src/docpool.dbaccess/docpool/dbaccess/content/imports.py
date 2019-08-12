@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 
-from docpool.dbaccess.utils import unicode_csv_reader, dtFromString
-from Products.CMFPlone.utils import log, log_exc, safe_unicode
-from docpool.dbaccess.dbinit import __metadata__, __session__
+from datetime import datetime  # mindestens für Expressions hilfreich
+from docpool.dbaccess.content.events import ObjectAddedEvent
+from docpool.dbaccess.content.events import ObjectChangedEvent
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.dbaccess.utils import dtFromString
+from docpool.dbaccess.utils import unicode_csv_reader
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import safe_unicode
+from StringIO import StringIO
 from zope.event import notify
-from docpool.dbaccess.content.events import ObjectChangedEvent, ObjectAddedEvent
+
+import transaction
+
 
 metadata = __metadata__
 session = __session__
-
-from elixir import *
-
-import transaction
-from StringIO import StringIO
-from datetime import datetime  # mindestens für Expressions hilfreich
 
 
 def genericImportFromCSV(

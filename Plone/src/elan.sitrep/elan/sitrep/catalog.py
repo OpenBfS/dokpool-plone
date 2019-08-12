@@ -1,18 +1,13 @@
-from zope.interface import Interface, implements
-
-from Acquisition import aq_inner
-from Acquisition import aq_parent
-
-
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
-from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFPlone.CatalogTool import CatalogTool
-
-from plone.protect.interfaces import IDisableCSRFProtection
+from Products.ZCatalog.ZCatalog import ZCatalog
 from zope.interface import alsoProvides
+from zope.interface import implements
+from zope.interface import Interface
 
 
 class ISRCatalog(Interface):

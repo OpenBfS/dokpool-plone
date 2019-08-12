@@ -3,17 +3,17 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
-from docpool.dbaccess.dbinit import __metadata__, __session__
+from datetime import datetime
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.dbaccess.interfaces import IAuditing
+from elixir import *
+from Products.CMFPlone.utils import getToolByName
+from zope.interface.declarations import implements
+
 
 metadata = __metadata__
 session = __session__
-
-from elixir import *
-
-from docpool.dbaccess.interfaces import IAuditing
-from Products.CMFPlone.utils import getToolByName
-from datetime import datetime
-from zope.interface.declarations import implements
 
 
 class Item(Entity):
@@ -54,4 +54,3 @@ class Item(Entity):
         """
         Nichts zu tun, weil kein Datensatz uebrig bleibt.
         """
-        pass

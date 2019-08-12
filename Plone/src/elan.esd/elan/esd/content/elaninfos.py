@@ -14,30 +14,14 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.infofolder import InfoFolder, IInfoFolder
-
-from Products.CMFCore.utils import getToolByName
-
-from zope.component import adapter
-from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
+from docpool.base.content.infofolder import IInfoFolder
+from docpool.base.content.infofolder import InfoFolder
 from docpool.elan.config import ELAN_APP
-from zope.interface.declarations import classImplements
-
-from elan.esd.config import PROJECTNAME
-
-from elan.esd import DocpoolMessageFactory as _
+from plone.dexterity.content import Container
+from plone.directives import form
+from zope.component import adapter
+from zope.interface import implements
+from zope.lifecycleevent import IObjectAddedEvent
 
 
 class IELANInfos(form.Schema, IInfoFolder):

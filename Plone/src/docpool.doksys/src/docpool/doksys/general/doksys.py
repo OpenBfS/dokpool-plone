@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-from docpool.config.utils import (
-    ID,
-    TYPE,
-    TITLE,
-    CHILDREN,
-    createPloneObjects,
-    _addAllowedTypes,
-)
-from docpool.base.events import IDocumentPoolUndeleteable
-from Products.Five.utilities.marker import mark
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from plone import api
+from Products.CMFCore.utils import getToolByName
+
 import transaction
 
 

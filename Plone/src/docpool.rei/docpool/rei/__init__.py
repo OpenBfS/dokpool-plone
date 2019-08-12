@@ -2,14 +2,8 @@
 """Main product initializer
 """
 
-from zope.i18nmessageid import MessageFactory
-from docpool.rei import config
-
-from Products.Archetypes import atapi
-from Products.CMFCore import utils as cmfutils
-from Products.CMFCore.permissions import setDefaultRoles
-
 from AccessControl import allow_class
+from zope.i18nmessageid import MessageFactory
 
 
 # Define a message factory for when this product is internationalised.
@@ -19,7 +13,7 @@ from AccessControl import allow_class
 DocpoolMessageFactory = MessageFactory('docpool.rei')
 allow_class(DocpoolMessageFactory)
 
-import appregistration
+import appregistration  # noqa: F401
 
 
 def initialize(context):
@@ -32,5 +26,3 @@ def initialize(context):
     with Zope and the CMF.
 
     """
-
-    pass

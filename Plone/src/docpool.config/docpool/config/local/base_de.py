@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects
-from Products.CMFCore.utils import getToolByName
+from docpool.config import _
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.Archetypes.utils import shasattr
-import transaction
-from zExceptions import BadRequest
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
-from docpool.config import _
-from datetime import datetime
+
 
 # General Docpool structures
 

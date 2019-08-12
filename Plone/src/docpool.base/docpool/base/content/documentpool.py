@@ -14,39 +14,28 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-from zope.component import getMultiAdapter
-
-from plone.dexterity.content import Container
-
-from Products.CMFCore.utils import getToolByName
-
-from zope.component import adapter
-from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
-from Products.Archetypes.utils import shasattr
-from Products.CMFPlone.utils import parent
-from zope.event import notify
-from docpool.base.events import DocumentPoolInitializedEvent, DocumentPoolRemovedEvent
-from plone.app.textfield.value import RichTextValue
-from plone.protect.auto import safeWrite
-from docpool.base.content.doctype import IDocType
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from docpool.base.appregistry import APP_REGISTRY, implicitApps
-from docpool.base.config import BASE_APP
-from plone.dexterity.interfaces import IEditFinishedEvent
-
-from docpool.base.config import PROJECTNAME
-
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.appregistry import implicitApps
+from docpool.base.config import BASE_APP
+from docpool.base.content.doctype import IDocType
+from docpool.base.events import DocumentPoolInitializedEvent
+from docpool.base.events import DocumentPoolRemovedEvent
+from plone.app.textfield.value import RichTextValue
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.directives import form
+from plone.namedfile.field import NamedBlobImage
+from plone.protect.auto import safeWrite
+from Products.CMFCore.utils import getToolByName
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from zope import schema
+from zope.component import adapter
+from zope.component import getMultiAdapter
+from zope.event import notify
+from zope.interface import implements
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectRemovedEvent
 
 
 class IDocumentPool(form.Schema):

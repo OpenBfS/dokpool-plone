@@ -14,26 +14,11 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from elan.esd.content.elandoccollection import ELANDocCollection
+from elan.esd.content.elandoccollection import IELANDocCollection
 from plone.dexterity.content import Item
-from elan.esd.content.elandoccollection import ELANDocCollection, IELANDocCollection
-
-from Products.CMFCore.utils import getToolByName
-
-
-from docpool.dashboard.config import PROJECTNAME
-
-from docpool.dashboard import DocpoolMessageFactory as _
+from plone.directives import form
+from zope.interface import implements
 
 
 class IDashboardCollection(form.Schema, IELANDocCollection):

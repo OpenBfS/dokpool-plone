@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from docpool.base.appregistry import appName
+from Acquisition import aq_base
 from docpool.base.utils import extendOptions
 from plone.app.contenttypes.interfaces import IFile
+from Products.Archetypes.utils import shasattr
+from Products.Five.browser import BrowserView
+from Products.PageTemplates.PageTemplate import PageTemplate
 from zope.component import getMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
-from Products.PageTemplates.PageTemplate import PageTemplate
-from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
+
 import Acquisition
-from Acquisition import aq_base
-from Products.Archetypes.utils import shasattr
 
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):

@@ -1,21 +1,22 @@
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import aq_inner
+from AccessControl import getSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManagement import setSecurityManager
+from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
+from Acquisition import aq_inner
+from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Archetypes.utils import shasattr
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
+from Products.CMFPlone.utils import aq_inner
+from Products.CMFPlone.utils import parent
+from zc.relation.interfaces import ICatalog
+from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
-from Products.CMFPlone.utils import parent
-from AccessControl import getSecurityManager
-from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
-from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
-from zope.component.hooks import getSite
-from plone import api
-from zope.component import getMultiAdapter
-from Acquisition import aq_base, aq_inner
-from plone.protect.interfaces import IDisableCSRFProtection
 
 
 def queryForObject(self, **kwa):
@@ -339,7 +340,8 @@ def setApplicationsForCurrentUser(self, apps):
     #            new.append(c) # otherwise keep the definition
     #    if not replaced: # if never set before for this docpool
     #        new.append("%s:%s" % (id, ",".join(apps)))
-    new = apps  # Keep it simple at the moment, maybe we need the stuff above later...
+    # Keep it simple at the moment, maybe we need the stuff above later...
+    new = apps
     # print "setApplicationsForCurrentUser ", new
     user.setMemberProperties({"apps": tuple(new)})
 

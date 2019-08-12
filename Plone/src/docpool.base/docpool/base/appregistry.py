@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from plone.behavior.interfaces import IBehavior
-from zope.component import queryUtility
 
 APP_REGISTRY = {}
 BEHAVIOR_REGISTRY = {}

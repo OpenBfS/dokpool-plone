@@ -14,30 +14,14 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-
-from Products.CMFCore.utils import getToolByName
-
-from Products.CMFPlone.utils import parent
 from logging import getLogger
+from plone.dexterity.content import Container
+from plone.directives import form
 from Products.CMFPlone.utils import parent
+from zope.interface import implements
+
 
 logger = getLogger("dptransfers")
-
-from docpool.transfers.config import PROJECTNAME
-
-from docpool.transfers import DocpoolMessageFactory as _
 
 
 class IDPTransfers(form.Schema):

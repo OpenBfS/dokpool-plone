@@ -2,38 +2,33 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
-# from elixir import *
+from AccessControl import Unauthorized
+from docpool.dbaccess import DocpoolMessageFactory as _
 from docpool.dbaccess.dbinit import __session__
-
-from formalchemy import FieldSet, Grid
+from docpool.dbaccess.interfaces import IAuditing
+from docpool.dbaccess.utils import stringFromDatetime
+from formalchemy import CheckBoxFieldRenderer
 from formalchemy import config
+from formalchemy import FieldRenderer
+from formalchemy import FieldSet
+from formalchemy import helpers as h
 from formalchemy import templates
 from formalchemy import types
-from formalchemy import fields
-from formalchemy import Field
-from formalchemy import FieldRenderer, CheckBoxFieldRenderer
-from Products.Archetypes.debug import log_exc
 from formalchemy.fields import RadioSet
-from formalchemy import helpers as h
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log_exc
 from plone.memoize.view import memoize
-from Products.CMFPlone.PloneBatch import Batch
-from ZTUtils import make_query
-from zope.component import getMultiAdapter
-from zope.interface import providedBy
-from docpool.dbaccess.security import DefaultSecurity
-from docpool.dbaccess.interfaces import IDataSecurity, IProtectedEntityClass, IAuditing
-from docpool.dbaccess.utils import stringFromDatetime
+from Products.Archetypes.debug import log_exc
 from Products.Archetypes.utils import shasattr
-from docpool.dbaccess import DocpoolMessageFactory as _
+from Products.CMFPlone.PloneBatch import Batch
+from Products.CMFPlone.utils import log_exc
+from ZTUtils import make_query
 
-from AccessControl import Unauthorized
+# from elixir import *
+import os
+
 
 config.date_format = '%d.%m.%Y'
 config.date_edit_format = 'd-m-y'
 
-import os
 
 tdir = os.path.join(os.path.dirname(__file__), '..', 'fa_tmpl')
 # print tdir

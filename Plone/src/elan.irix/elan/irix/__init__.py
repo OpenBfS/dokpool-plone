@@ -2,14 +2,11 @@
 """Main product initializer
 """
 
-from zope.i18nmessageid import MessageFactory
+from AccessControl import allow_class
 from elan.irix import config
-
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore.permissions import setDefaultRoles
-
-from AccessControl import allow_class
+from zope.i18nmessageid import MessageFactory
 
 
 # Define a message factory for when this product is internationalised.
@@ -37,8 +34,6 @@ def initialize(context):
     # during ZCML processing, but we do it here again to be explicit. Of
     # course, even if we import the module several times, it is only run
     # once!
-
-    from content import irixreport
 
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME), config.PROJECTNAME

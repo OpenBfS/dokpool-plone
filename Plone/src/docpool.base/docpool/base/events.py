@@ -1,8 +1,9 @@
 from AccessControl import Unauthorized
-from zope.interface import Interface
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zope.component.interfaces import ObjectEvent
 from zope.interface import implements
+from zope.interface import Interface
 
 
 class IDocumentPoolUndeleteable(Interface):

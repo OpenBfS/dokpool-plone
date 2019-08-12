@@ -3,9 +3,9 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
-from zope.interface import Interface, implements
 from zope.component.interfaces import ObjectEvent
-from Products.CMFPlone.utils import log, log_exc
+from zope.interface import implements
+from zope.interface import Interface
 
 
 class IObjectAddedEvent(Interface):

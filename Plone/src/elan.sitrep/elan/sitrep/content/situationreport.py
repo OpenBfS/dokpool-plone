@@ -14,41 +14,35 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements, provider
-from zope.component import adapts
-from zope import schema
-from plone.directives import form
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.dpdocument import DPDocument, IDPDocument
-
-from Products.CMFCore.utils import getToolByName
-
-from plone.api import content
-from docpool.base.utils import portalMessage, queryForObject, back_references
-from elan.sitrep.content.situationoverview import _availableModules
 from datetime import datetime
-import re
-from plone.namedfile import NamedBlobFile
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.dexterity.utils import safe_unicode
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from z3c.relationfield.relation import RelationValue
+from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import back_references
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObject
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getActiveScenarios
-from plone.autoform.interfaces import IFormFieldProvider
-
-from elan.sitrep.config import PROJECTNAME
-
 from elan.sitrep import DocpoolMessageFactory as _
+from elan.sitrep.content.situationoverview import _availableModules
+from plone.api import content
+from plone.app.textfield import RichText
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.content import Container
+from plone.dexterity.utils import safe_unicode
+from plone.directives import form
+from plone.namedfile import NamedBlobFile
+from plone.protect.interfaces import IDisableCSRFProtection
+from z3c.relationfield.relation import RelationValue
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
+from zope.component import getUtility
+from zope.interface import alsoProvides
+from zope.interface import implements
+from zope.interface import provider
+from zope.intid.interfaces import IIntIds
+
+import re
 
 
 @provider(IFormFieldProvider)

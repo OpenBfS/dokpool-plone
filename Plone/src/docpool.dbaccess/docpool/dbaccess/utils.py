@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-import time
 from datetime import datetime
-from zope.component import getUtility
 from docpool.dbaccess.interfaces import Idbadmin
+from Products.CMFCore.utils import getToolByName
+from zope.component import getUtility
+
+import time
 
 
 def getTool():

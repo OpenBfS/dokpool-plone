@@ -1,1 +1,1 @@
-import elan.sitrep.monkey
+from elan.sitrep import monkey  # noqa: F401

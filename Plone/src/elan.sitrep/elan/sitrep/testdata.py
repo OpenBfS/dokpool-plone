@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
 
-import transaction
-import time
-from zExceptions import BadRequest
-
-# from Acquisition import aq_base
+from docpool.base.utils import queryForObjects
+from docpool.config.general.elan import DOCTYPES
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
+from docpool.elan.config import ELAN_APP
+from elan.policy.chomsky import chomsky
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from loremipsum import get_paragraphs
+from plone.app.textfield.value import RichTextValue
 
 # from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone.utils import safe_unicode
-from plone.app.textfield.value import RichTextValue
-import datetime
-from Products.CMFCore.utils import getToolByName
-import random
-
-from docpool.elan.config import ELAN_APP
-from elan.policy.chomsky import chomsky
-from loremipsum import get_paragraphs
-from docpool.config.utils import ID, TITLE, TYPE, CHILDREN, createPloneObjects
-from docpool.base.utils import queryForObjects
+from z3c.relationfield.relation import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-from z3c.relationfield.relation import RelationValue
-from docpool.config.general.elan import DOCTYPES
-from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+
+import random
+import transaction
+
+
+# from Acquisition import aq_base
 
 
 SITUATION_OVERVIEW = [
@@ -303,7 +304,6 @@ def createSituationReport(self):
 def deleteTestData(context):
     """
     """
-    pass
 
 
 def createTestData(context, fresh=1):

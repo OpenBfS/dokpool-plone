@@ -14,37 +14,26 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Item
-
-from Products.CMFCore.utils import getToolByName
-
-from Products.Archetypes.utils import shasattr
-from zope.component import adapter
-from zope.lifecycleevent import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectCreatedEvent, IObjectCopiedEvent
-from Products.DCWorkflow.interfaces import IAfterTransitionEvent
-from zope.component.interfaces import IObjectEvent
-from plone.dexterity.interfaces import IEditFinishedEvent
-from DateTime import DateTime
-import datetime
-from plone import api
-from Acquisition import aq_base, aq_inner, aq_parent
-from Products.CMFPlone.utils import safe_unicode
-
-from docpool.base.config import PROJECTNAME
-
+from Acquisition import aq_base
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from docpool.base import DocpoolMessageFactory as _
+from plone import api
+from plone.dexterity.content import Item
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.directives import form
+from Products.Archetypes.utils import shasattr
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
+from Products.DCWorkflow.interfaces import IAfterTransitionEvent
+from zope import schema
+from zope.component import adapter
+from zope.interface import implements
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectCopiedEvent
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
+
+import datetime
 
 
 class IContentBase(form.Schema):
@@ -179,7 +168,6 @@ class ContentBase(Item):
         """
         For override
         """
-        pass
 
     def updateSecurity(self):
         """

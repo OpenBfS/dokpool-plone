@@ -2,16 +2,11 @@
 """Main product initializer
 """
 
-from zope.i18nmessageid import MessageFactory
-from docpool.dbaccess import config
-
-from Products.Archetypes import atapi
-from Products.CMFCore import utils as cmfutils
-from Products.CMFCore.permissions import setDefaultRoles
-
 from AccessControl import allow_class
-
 from AccessControl import allow_module
+from docpool.dbaccess.content.errors import ObjectDuplicateException
+from zope.i18nmessageid import MessageFactory
+
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
@@ -20,7 +15,6 @@ from AccessControl import allow_module
 DocpoolMessageFactory = MessageFactory('docpool.dbaccess')
 allow_class(DocpoolMessageFactory)
 
-from docpool.dbaccess.content.errors import ObjectDuplicateException
 
 allow_class(ObjectDuplicateException)
 allow_module("docpool.dbaccess")
@@ -37,5 +31,3 @@ def initialize(context):
     with Zope and the CMF.
 
     """
-
-    pass

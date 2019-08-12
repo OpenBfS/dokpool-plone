@@ -2,48 +2,32 @@
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
-from zope.interface.declarations import classImplements
-from zope.interface import Interface, implements, classProvides, directlyProvides
+from docpool.dbaccess.content.structured import StructuredEntity
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from elan.irix.db.security import IELANProtectedEntityClass
+from elixir import Boolean
+from elixir import DateTime
+from elixir import Entity
+from elixir import EntityBase
+from elixir import Field
+from elixir import Float
+from elixir import Integer
+from elixir import ManyToOne
+from elixir import OneToMany
+from elixir import setup_all
+from elixir import Unicode
+from elixir import UnicodeText
+from formalchemy.validators import regex
+from sqlalchemy.orm import mapper
+from sqlalchemy.orm import relation
+from zope.interface import classProvides
 
-from docpool.dbaccess.dbinit import __metadata__, __session__
+import logging
+
 
 metadata = __metadata__
 session = __session__
-
-from elixir import (
-    Boolean,
-    Entity,
-    EntityBase,
-    Field,
-    Float,
-    Integer,
-    String,
-    Unicode,
-    UnicodeText,
-    DateTime,
-    OneToMany,
-    ManyToOne,
-    using_options,
-    setup_all,
-)
-from sqlalchemy import or_, and_, join
-from sqlalchemy.orm import (
-    mapper,
-    class_mapper,
-    relation,
-    backref,
-    column_property,
-    ColumnProperty,
-)
-from sqlalchemy.orm.properties import RelationProperty
-import logging
-from datetime import datetime
-from elan.irix import DocpoolMessageFactory as _
-from elan.irix.db.security import IELANProtectedEntityClass
-from docpool.dbaccess.content.structured import StructuredEntity
-
-from formalchemy import FieldSet
-from formalchemy.validators import email, regex
 
 
 DEBUG = 0

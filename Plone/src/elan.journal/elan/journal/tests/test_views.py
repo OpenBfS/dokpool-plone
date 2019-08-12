@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from elan.journal.interfaces import IBrowserLayer
-from elan.journal.testing import INTEGRATION_TESTING
-from elan.journal.tests.utils import _create_journalentries
 from DateTime import DateTime
 from datetime import datetime
 from datetime import timedelta
+from elan.journal.interfaces import IBrowserLayer
+from elan.journal.testing import INTEGRATION_TESTING
+from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from time import time
 from zExceptions import NotFound

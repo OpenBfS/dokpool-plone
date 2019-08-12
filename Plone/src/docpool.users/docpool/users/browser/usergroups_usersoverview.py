@@ -1,21 +1,15 @@
-import logging
 from Acquisition import aq_inner
-from zExceptions import Forbidden
-from itertools import chain
-
-from Products.PluggableAuthService.interfaces.plugins import IRolesPlugin
-from zope.component import getUtility
+from docpool.base.utils import deleteMemberFolders
 from plone.protect import CheckAuthenticator
-from zope.component import getMultiAdapter
-from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFCore.utils import getToolByName
-
-from Products.CMFPlone.utils import normalizeString
+from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import (
     UsersOverviewControlPanel as UOCP,
 )
-from docpool.base.utils import deleteMemberFolders
+from zExceptions import Forbidden
+
+import logging
+
 
 logger = logging.getLogger('Products.CMFPlone')
 

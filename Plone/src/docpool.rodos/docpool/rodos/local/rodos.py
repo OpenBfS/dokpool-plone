@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-import transaction
 from docpool.rodos import DocpoolMessageFactory as _
+from Products.CMFCore.utils import getToolByName
+
+import transaction
 
 
 def dpAdded(self):
     """
     @param self: 
     @return: 
-        
+
     """
     fresh = True
     if self.hasObject("rodos"):

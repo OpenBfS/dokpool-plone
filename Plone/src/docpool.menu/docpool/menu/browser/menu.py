@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
+from docpool.menu.utils import adaptQuery
+from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
+from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 from zope.interface import implements
 
-from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
-from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
-
-from plone.app.layout.navigation.interfaces import INavtreeStrategy
-from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
-
-from docpool.menu.utils import adaptQuery
 
 show_content_tabs = True
 show_actions_tabs = False

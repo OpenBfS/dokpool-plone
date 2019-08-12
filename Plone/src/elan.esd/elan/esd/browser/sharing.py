@@ -1,5 +1,5 @@
-from plone.memoize.instance import memoize
 from plone.app.workflow.browser.sharing import SharingView as OSV
+from plone.memoize.instance import memoize
 
 
 class SharingView(OSV):

@@ -13,14 +13,12 @@ view of that content type.
 """
 
 
+from docpool.event.browser.viewlets.common import EventViewlet
+from elan.esd.utils import getAvailableCategories
+from elan.esd.utils import getCategoriesForCurrentUser
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.memoize.instance import memoize
-
-from elan.esd.utils import getAvailableCategories, getCategoriesForCurrentUser
-from docpool.event.browser.viewlets.common import EventViewlet
-from Products.CMFCore.utils import getToolByName
 
 
 class ELANDocCollectionView(BrowserView):
