@@ -40,7 +40,7 @@ setup(
         'plone.app.contenttypes',
         'plone.app.relationfield',
         'elan.esd',
-        'BeautifulSoup',
+        'beautifulsoup4',
     ],
     entry_points="""
       # -*- Entry points: -*-

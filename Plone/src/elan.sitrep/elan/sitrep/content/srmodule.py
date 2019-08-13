@@ -14,7 +14,7 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 from DateTime import DateTime
 from docpool.base.content.dpdocument import DPDocument
 from docpool.base.content.dpdocument import IDPDocument
