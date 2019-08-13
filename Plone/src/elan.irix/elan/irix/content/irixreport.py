@@ -22,6 +22,7 @@ from docpool.dbaccess.dbinit import __session__
 from docpool.dbaccess.interfaces import Idbadmin
 from elan.irix import DocpoolMessageFactory as _
 from elan.irix.db.model import IRIXReport as DBReport
+from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.supermodel import model
 from six.moves.urllib.parse import quote
@@ -50,7 +51,7 @@ class IIRIXReport(model.Schema, IContentBase):
             default=u'Database key'),
         required=False,
     )
-    form.omitted('dbkey')
+    directives.omitted('dbkey')
 
 
 @implementer(IIRIXReport)

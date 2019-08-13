@@ -18,6 +18,7 @@ from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.elan.config import ELAN_APP
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.interface import implementer
@@ -27,7 +28,7 @@ class ISRFolder(model.Schema, ISimpleFolder):
     """
     """
 
-    form.omitted('allowedDocTypes')
+    directives.omitted('allowedDocTypes')
 
 
 @implementer(ISRFolder)

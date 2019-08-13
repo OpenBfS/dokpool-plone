@@ -15,6 +15,7 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from elan.sitrep import DocpoolMessageFactory as _
+from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model

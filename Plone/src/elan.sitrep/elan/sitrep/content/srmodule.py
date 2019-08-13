@@ -27,6 +27,7 @@ from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.api import content
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model

@@ -21,6 +21,7 @@ from elan.esd import DocpoolMessageFactory as _
 from elan.esd.utils import getCategoriesForCurrentUser
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
+from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection

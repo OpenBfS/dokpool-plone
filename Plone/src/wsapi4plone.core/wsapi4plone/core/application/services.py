@@ -147,7 +147,7 @@ class PloneService(Service):
         self.context.update(**params)
 
 
-implementer_only(IServiceContainer)
+@implementer_only(IServiceContainer)
 class PloneServiceContainer(PloneService, ServiceContainer):
 
     def create_object(self, type_name, id_):

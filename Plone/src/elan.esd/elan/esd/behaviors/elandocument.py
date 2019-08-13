@@ -14,9 +14,9 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 
 @provider(IContextAwareDefaultFactory)
-def initializeScenarios(data):
-    if hasattr(data.context, "getUserSelectedScenarios"):
-        return data.context.getUserSelectedScenarios()
+def initializeScenarios(context):
+    if hasattr(context, "getUserSelectedScenarios"):
+        return context.getUserSelectedScenarios()
     else:
         return []
 
@@ -32,7 +32,7 @@ class IELANDocument(ITransferable):
             default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
-        defaultFactorty=initializeScenarios,
+        defaultFactory=initializeScenarios,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
     )
     read_permission(scenarios='docpool.elan.AccessELAN')
