@@ -5,15 +5,25 @@ from docpool.base.utils import back_references
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
 from elan.esd import DocpoolMessageFactory as _
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
-from Products.Archetypes.utils import DisplayList
 from Products.Archetypes.utils import shasattr
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope.component import getUtility
 from zope.interface import provider
 from zope.intid.interfaces import IIntIds
+from zope.schema.interfaces import IContextAwareDefaultFactory
+
+
+@provider(IContextAwareDefaultFactory)
+def getDefaultCategory(context):
+    """
+    """
+    if hasattr(context, "getDefaultCategory"):
+        return context.getDefaultCategory()
+    else:
+        return None
 
 
 @provider(IFormFieldProvider)
@@ -24,21 +34,10 @@ class IELANDocType(IDocTypeExtension):
         ),
         description=_(u'description_doctype_contentcategory', default=u''),
         required=False,
+        defaultFactory=getDefaultCategory,
         source="elan.esd.vocabularies.Category",
     )
-
-    #    form.widget(contentCategory=SelectWidget)
-    form.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
-
-
-@form.default_value(field=IELANDocType['contentCategory'])
-def getDefaultCategory(data):
-    """
-    """
-    if hasattr(data.context, "getDefaultCategory"):
-        return data.context.getDefaultCategory()
-    else:
-        return None
+    directives.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
 
 
 class ELANDocType(object):

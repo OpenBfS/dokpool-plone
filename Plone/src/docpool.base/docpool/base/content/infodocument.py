@@ -16,17 +16,18 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.dpdocument import DPDocument
 from docpool.base.content.dpdocument import IDPDocument
+from plone.autoform import directives
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
 
 
-class IInfoDocument(form.Schema, IDPDocument):
+class IInfoDocument(model.Schema, IDPDocument):
     """
     """
 
-    form.mode(docType='hidden')
+    directives.mode(docType='hidden')
     docType = schema.Choice(
         required=True,
         source="docpool.base.vocabularies.DocumentTypes",

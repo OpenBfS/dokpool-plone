@@ -27,10 +27,11 @@ from docpool.transfers.db.model import DocTypePermission
 from docpool.transfers.db.model import ReceiverLog
 from docpool.transfers.db.model import SenderLog
 from plone import api
+from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from sqlalchemy import and_
@@ -43,13 +44,13 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
 @provider(IFormFieldProvider)
-class ITransferable(form.Schema):
+class ITransferable(model.Schema):
     transferred_by = schema.TextLine(
         title=_(u'label_dpdocument_transferred_by', default=u'Transferred by'),
         description=_(u'description_dpdocument_transferred_by', default=u''),
         required=False,
     )
-    form.omitted('transferred_by')
+    directives.omitted('transferred_by')
     read_permission(transferred_by='docpool.transfers.AccessTransfers')
     write_permission(transferred_by='docpool.transfers.AccessTransfers')
 
@@ -60,7 +61,7 @@ class ITransferable(form.Schema):
         description=_(u'description_dpdocument_transferred', default=u''),
         required=False,
     )
-    form.omitted('transferred')
+    directives.omitted('transferred')
     read_permission(transferred='docpool.transfers.AccessTransfers')
     write_permission(transferred='docpool.transfers.AccessTransfers')
 
@@ -72,7 +73,7 @@ class ITransferable(form.Schema):
         ),
         required=False,
     )
-    form.omitted('transferLog')
+    directives.omitted('transferLog')
     read_permission(transferLog='docpool.transfers.AccessTransfers')
     write_permission(transferLog='docpool.transfers.AccessTransfers')
 

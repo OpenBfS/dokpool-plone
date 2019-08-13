@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from interfaces import IDataSecurity
-from interfaces import IProtectedEntityClass
+from docpool.dbaccess.interfaces import IDataSecurity
+from docpool.dbaccess.interfaces import IProtectedEntityClass
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
 from zope.component import adapter
 from zope.interface import implementer

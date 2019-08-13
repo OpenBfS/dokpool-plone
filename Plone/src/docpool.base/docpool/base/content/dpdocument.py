@@ -39,7 +39,7 @@ from plone.app.discussion.interfaces import IConversation
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
-from plone.directives import form
+from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
@@ -58,7 +58,7 @@ import re
 from six.moves import map
 
 
-class IDPDocument(form.Schema, IDocument, IExtendable, IContentBase):
+class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
     """
     """
 

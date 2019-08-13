@@ -25,7 +25,7 @@ from docpool.transfers.db.model import DocTypePermission
 from logging import getLogger
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import parent
@@ -39,7 +39,7 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 logger = getLogger("dptransferfolder")
 
 
-class IDPTransferFolder(form.Schema, IFolderBase):
+class IDPTransferFolder(model.Schema, IFolderBase):
     """
     """
 
@@ -90,7 +90,7 @@ class IDPTransferFolder(form.Schema, IFolderBase):
     )
 
 
-#    form.widget(typesConf=DataGridFieldFactory)
+#    directives.widget(typesConf=DataGridFieldFactory)
 
 
 @implementer(IDPTransferFolder)

@@ -17,8 +17,8 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from plone.dexterity.content import Container
-from plone.directives import form
 from Products.Archetypes.utils import shasattr
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -26,7 +26,7 @@ from zExceptions import BadRequest
 from zope.interface import implementer
 
 
-class IInfoFolder(form.Schema, IFolderBase):
+class IInfoFolder(model.Schema, IFolderBase):
     """
     """
 
@@ -41,7 +41,7 @@ class InfoFolder(Container, FolderBase):
     def createActions(self):
         """
         """
-        if shasattr(self, "myGroupFolder", acquire=True):
+        if safe_hasattr(self, "myGroupFolder"):
             log("Creating Private Info Folder")
 
             placeful_wf = getToolByName(self, 'portal_placeful_workflow')

@@ -17,11 +17,11 @@ from AccessControl import ClassSecurityInfo
 from elan.esd.content.elandoccollection import ELANDocCollection
 from elan.esd.content.elandoccollection import IELANDocCollection
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IDashboardCollection(form.Schema, IELANDocCollection):
+class IDashboardCollection(model.Schema, IELANDocCollection):
     """
     """
 

@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -25,7 +25,7 @@ from zExceptions import BadRequest
 from zope.interface import implementer
 
 
-class IPrivateFolder(form.Schema, ISimpleFolder):
+class IPrivateFolder(model.Schema, ISimpleFolder):
     """
     """
 

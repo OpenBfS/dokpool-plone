@@ -4,12 +4,21 @@ from Acquisition import aq_inner
 from docpool.elan.config import ELAN_APP
 from docpool.transfers.behaviors.transferable import ITransferable
 from elan.esd import DocpoolMessageFactory as _
+from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
+
+
+@provider(IContextAwareDefaultFactory)
+def initializeScenarios(data):
+    if hasattr(data.context, "getUserSelectedScenarios"):
+        return data.context.getUserSelectedScenarios()
+    else:
+        return []
 
 
 @provider(IFormFieldProvider)
@@ -23,18 +32,11 @@ class IELANDocument(ITransferable):
             default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
+        defaultFactorty=initializeScenarios,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
     )
     read_permission(scenarios='docpool.elan.AccessELAN')
-    form.widget(scenarios=CheckBoxFieldWidget)
-
-
-@form.default_value(field=IELANDocument['scenarios'])
-def initializeScenarios(data):
-    if hasattr(data.context, "getUserSelectedScenarios"):
-        return data.context.getUserSelectedScenarios()
-    else:
-        return []
+    directives.widget(scenarios=CheckBoxFieldWidget)
 
 
 class ELANDocument(object):

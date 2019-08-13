@@ -20,7 +20,7 @@ from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from plone.api import user
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -29,7 +29,7 @@ from zope import schema
 from zope.interface import implementer
 
 
-class ICollaborationFolder(form.Schema, ISimpleFolder):
+class ICollaborationFolder(model.Schema, ISimpleFolder):
     """
     """
 
@@ -78,7 +78,7 @@ class CollaborationFolder(Container, SimpleFolder):
         """
         """
         # print user.get_roles(obj=self)
-        if not "Reviewer" in user.get_roles(obj=self):
+        if "Reviewer" not in user.get_roles(obj=self):
             return SimpleFolder.customMenu(self, menu_items)
         else:
             # print "Reviewer"

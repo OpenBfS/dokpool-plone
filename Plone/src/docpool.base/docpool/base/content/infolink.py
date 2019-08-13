@@ -17,12 +17,12 @@ from AccessControl import ClassSecurityInfo
 from plone.app.contenttypes.content import ILink
 from plone.app.contenttypes.content import Link
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
 
 
-class IInfoLink(form.Schema, ILink):
+class IInfoLink(model.Schema, ILink):
     """
     """
 

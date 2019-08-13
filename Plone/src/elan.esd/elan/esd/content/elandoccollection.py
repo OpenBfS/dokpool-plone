@@ -22,7 +22,7 @@ from elan.esd.utils import getCategoriesForCurrentUser
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
@@ -39,7 +39,7 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 
-class IELANDocCollection(form.Schema, ICollection):
+class IELANDocCollection(model.Schema, ICollection):
     """
     """
 
@@ -54,10 +54,10 @@ class IELANDocCollection(form.Schema, ICollection):
         ),
     )
 
-    form.widget(docTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
+    directives.widget(docTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
 
 
-#    form.widget(docTypes=AutocompleteMultiFieldWidget)
+#    directives.widget(docTypes=AutocompleteMultiFieldWidget)
 
 
 @implementer(IELANDocCollection)

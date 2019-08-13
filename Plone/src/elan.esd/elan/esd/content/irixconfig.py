@@ -16,12 +16,12 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from elan.esd import DocpoolMessageFactory as _
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
 
 
-class IIRIXConfig(form.Schema):
+class IIRIXConfig(model.Schema):
     """
     """
 

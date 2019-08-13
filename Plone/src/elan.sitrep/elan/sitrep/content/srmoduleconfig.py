@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from z3c.relationfield.schema import RelationChoice
@@ -27,7 +27,7 @@ from zope.component import adapter
 from zope.interface import implementer
 
 
-class ISRModuleConfig(form.Schema):
+class ISRModuleConfig(model.Schema):
     """
     """
 
@@ -74,10 +74,10 @@ class ISRModuleConfig(form.Schema):
         ),
     )
 
-    form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
-    form.widget(
+    directives.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(
         textBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
-    form.widget(
+    directives.widget(
         defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
 
 

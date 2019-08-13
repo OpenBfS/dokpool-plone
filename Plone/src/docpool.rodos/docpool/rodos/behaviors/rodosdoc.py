@@ -10,10 +10,11 @@ from docpool.base.interfaces import IDocumentExtension
 from docpool.base.utils import getInheritedValue
 from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.config import Rodos_APP
+from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
+from plone.supermodel import model
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -62,7 +63,7 @@ class IRodosDoc(IDocumentExtension):
         source="docpool.rodos.vocabularies.PrognosisForms",
         required=True,
     )
-    form.widget(PrognosisForm=RadioFieldWidget)
+    directives.widget(PrognosisForm=RadioFieldWidget)
     read_permission(PrognosisForm='docpool.rodos.AccessRodos')
     write_permission(PrognosisForm='docpool.rodos.AccessRodos')
     dexteritytextindexer.searchable('PrognosisForm')

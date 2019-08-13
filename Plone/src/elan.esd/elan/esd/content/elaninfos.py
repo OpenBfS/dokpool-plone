@@ -18,13 +18,13 @@ from docpool.base.content.infofolder import IInfoFolder
 from docpool.base.content.infofolder import InfoFolder
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from zope.component import adapter
 from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 
 
-class IELANInfos(form.Schema, IInfoFolder):
+class IELANInfos(model.Schema, IInfoFolder):
     """
     """
 

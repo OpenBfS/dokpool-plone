@@ -16,13 +16,13 @@ explanation on the statements below.
 from Acquisition import aq_inner
 from docpool.transfers import DocpoolMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
+from plone.supermodel import model
 from zope import schema
 from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
-class ITransfersType(form.Schema):
+class ITransfersType(model.Schema):
     allowTransfer = schema.Bool(
         title=_(
             u'label_doctype_allowtransfer',

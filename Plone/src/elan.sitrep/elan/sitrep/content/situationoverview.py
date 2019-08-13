@@ -22,12 +22,12 @@ from docpool.event.utils import getScenariosForCurrentUser
 from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFPlone.utils import safe_unicode
 from zope.interface import implementer
 
 
-class ISituationOverview(form.Schema):
+class ISituationOverview(model.Schema):
     """
     """
 

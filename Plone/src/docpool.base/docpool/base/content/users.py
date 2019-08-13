@@ -15,11 +15,11 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IUsers(form.Schema):
+class IUsers(model.Schema):
     """
     """
 

@@ -20,11 +20,11 @@ from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from plone.app.textfield import RichText
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IText(form.Schema, IContentBase):
+class IText(model.Schema, IContentBase):
     """
     """
 

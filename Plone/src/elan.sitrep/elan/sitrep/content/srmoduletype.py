@@ -17,13 +17,14 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.doctype import DocType
 from docpool.base.content.doctype import IDocType
 from elan.sitrep import DocpoolMessageFactory as _
+from plone.autoform import directives
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from zope.interface import implementer
 
 
-class ISRModuleType(form.Schema, IDocType):
+class ISRModuleType(model.Schema, IDocType):
     """
     """
 
@@ -40,16 +41,16 @@ class ISRModuleType(form.Schema, IDocType):
         source="elan.sitrep.vocabularies.Collections",
     )
 
-    form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
 
-    form.mode(allowUploads='hidden')
-    form.mode(publishImmediately='hidden')
-    form.mode(globalAllow='hidden')
+    directives.mode(allowUploads='hidden')
+    directives.mode(publishImmediately='hidden')
+    directives.mode(globalAllow='hidden')
     #    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
-    form.mode(partsPattern='hidden')
-    form.mode(pdfPattern='hidden')
-    form.mode(imgPattern='hidden')
-    form.mode(customViewTemplate='hidden')
+    directives.mode(partsPattern='hidden')
+    directives.mode(pdfPattern='hidden')
+    directives.mode(imgPattern='hidden')
+    directives.mode(customViewTemplate='hidden')
 
 
 @implementer(ISRModuleType)

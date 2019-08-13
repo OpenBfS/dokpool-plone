@@ -21,22 +21,33 @@ from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
 from Products.Archetypes.utils import shasattr
+from plone.supermodel import model
+from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
 from zope.component import adapter
 from zope.interface import implementer
+from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectCopiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
+from zope.schema.interfaces import IContextAwareDefaultFactory
 
 import datetime
 
 
-class IContentBase(form.Schema):
+@provider(IContextAwareDefaultFactory)
+def initializeMdate(context):
+    return (
+        context.created().asdatetime().replace(tzinfo=None)
+        or datetime.datetime.now()
+    )
+
+
+class IContentBase(model.Schema):
     """
     """
 
@@ -45,22 +56,23 @@ class IContentBase(form.Schema):
         description=_(u'description_contentbase_created_by', default=u''),
         required=False,
     )
-    form.omitted('created_by')
+    directives.omitted('created_by')
 
     modified_by = schema.TextLine(
         title=_(u'label_contentbase_modified_by', default=u'Modified by'),
         description=_(u'description_contentbase_modified_by', default=u''),
         required=False,
     )
-    form.omitted('modified_by')
+    directives.omitted('modified_by')
 
     mdate = schema.Datetime(
         title=_(u'label_contentbase_mdate',
                 default=u'Date of last user action'),
         description=_(u'description_contentbase_mdate', default=u''),
         required=False,
+        defaultFactory=initializeMdate,
     )
-    form.omitted('mdate')
+    directives.omitted('mdate')
 
     wdate = schema.Datetime(
         title=_(u'label_contentbase_wdate',
@@ -68,16 +80,7 @@ class IContentBase(form.Schema):
         description=_(u'description_contentbase_wdate', default=u''),
         required=False,
     )
-    form.omitted('wdate')
-
-
-@form.default_value(field=IContentBase['mdate'])
-def initializeMdate(data):
-    # To get hold of the folder, do: context = data.context
-    return (
-        data.context.created().asdatetime().replace(tzinfo=None)
-        or datetime.datetime.now()
-    )
+    directives.omitted('wdate')
 
 
 @implementer(IContentBase)

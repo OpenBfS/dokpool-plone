@@ -18,10 +18,11 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.extendable import Extendable
 from docpool.base.content.extendable import IExtendable
 from docpool.base.utils import queryForObjects
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
 from Products.Archetypes.utils import shasattr
+from plone.supermodel import model
 from Products.CMFPlone.utils import log
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
@@ -30,7 +31,7 @@ from zope.component import adapter
 from zope.interface import implementer
 
 
-class IDocType(form.Schema, IExtendable):
+class IDocType(model.Schema, IExtendable):
     """
     """
 
@@ -118,7 +119,7 @@ class IDocType(form.Schema, IExtendable):
         required=False,
     )
 
-    form.widget(
+    directives.widget(
         allowedDocTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
 
 

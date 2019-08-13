@@ -19,12 +19,12 @@ from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import _cutPaste
 from docpool.base.utils import execute_under_special_role
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
 
 
-class IUserFolder(form.Schema, ISimpleFolder):
+class IUserFolder(model.Schema, ISimpleFolder):
     """
     """
 

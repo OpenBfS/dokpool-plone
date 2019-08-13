@@ -26,10 +26,10 @@ from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.content.situationoverview import _availableModules
 from plone.api import content
 from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
-from plone.directives import form
 from plone.namedfile import NamedBlobFile
 from plone.protect.interfaces import IDisableCSRFProtection
 from z3c.relationfield.relation import RelationValue
@@ -41,8 +41,22 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.interface import provider
 from zope.intid.interfaces import IIntIds
+from zope.schema.interfaces import IContextAwareDefaultFactory
 
 import re
+
+
+@provider(IContextAwareDefaultFactory)
+def initializePhase(context):
+    """
+    This is the phase selected in the first active event. If any.
+    """
+    activeEvents = getActiveScenarios(context)
+    if activeEvents is not None and len(activeEvents) > 0:
+        firstEvent = activeEvents[0].getObject()
+        phase = firstEvent.ScenarioPhase and firstEvent.ScenarioPhase.to_object or None
+        return phase
+    return None
 
 
 @provider(IFormFieldProvider)
@@ -57,8 +71,9 @@ class ISituationReport(IDPDocument):
         description=_(u'description_situationreport_phase', default=u''),
         required=False,
         source="elan.sitrep.vocabularies.Phases",
+        defaultFactory=initializePhase,
     )
-    form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(phase='z3c.form.browser.select.SelectFieldWidget')
 
     currentModules = RelationList(
         title=_(
@@ -72,9 +87,9 @@ class ISituationReport(IDPDocument):
             title=_("Current Modules"), source="elan.sitrep.vocabularies.CurrentModules"
         ),
     )
-    form.widget(
+    directives.widget(
         currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
-    form.mode(docType='hidden')
+    directives.mode(docType='hidden')
     text = RichText(
         title=_(u'label_situationreport_text', default=u'Introduction'),
         description=_(u'description_situationreport_text', default=u''),
@@ -85,21 +100,6 @@ class ISituationReport(IDPDocument):
         source="docpool.base.vocabularies.DocumentTypes",
         default=u"sitrep",
     )
-
-
-@form.default_value(field=ISituationReport['phase'])
-def initializePhase(data):
-    """
-    This is the phase selected in the first active event. If any.
-    """
-    intids = getUtility(IIntIds)
-    context = data.context
-    activeEvents = getActiveScenarios(context)
-    if activeEvents is not None and len(activeEvents) > 0:
-        firstEvent = activeEvents[0].getObject()
-        phase = firstEvent.ScenarioPhase and firstEvent.ScenarioPhase.to_object or None
-        return phase
-    return None
 
 
 @implementer(ISituationReport)

@@ -11,7 +11,7 @@ __docformat__ = 'plaintext'
 from AccessControl import ClassSecurityInfo
 from logging import getLogger
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFPlone.utils import parent
 from zope.interface import implementer
 
@@ -19,7 +19,7 @@ from zope.interface import implementer
 logger = getLogger("dpevents")
 
 
-class IDPEvents(form.Schema):
+class IDPEvents(model.Schema):
     """
     """
 

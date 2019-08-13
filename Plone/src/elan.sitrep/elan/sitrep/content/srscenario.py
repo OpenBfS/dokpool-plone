@@ -18,14 +18,14 @@ from docpool.elan.config import ELAN_APP
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from zope.component import adapter
 from zope.interface import implementer
 
 
-class ISRScenario(form.Schema):
+class ISRScenario(model.Schema):
     """
     """
 

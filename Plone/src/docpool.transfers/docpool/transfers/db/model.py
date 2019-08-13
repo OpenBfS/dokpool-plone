@@ -20,8 +20,8 @@ from elixir import using_options
 from sqlalchemy import join
 from sqlalchemy.orm import column_property
 from sqlalchemy.orm import mapper
+from zope.interface import provider
 from sqlalchemy.orm import relation
-from zope.interface import classProvides
 
 import logging
 
@@ -37,11 +37,11 @@ if DEBUG:
 logger = logging.getLogger("docpool.transfers")
 
 
+@provider(IDocpoolProtectedEntityClass)
 class Channel(Entity):
     """
     """
 
-    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='channels')
 
     title = Field(Unicode(128))
@@ -62,11 +62,11 @@ class Channel(Entity):
         )
 
 
+@provider(IDocpoolProtectedEntityClass)
 class DocTypePermission(Entity):
     """
     """
 
-    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='dtpermissions')
     doc_type = Field(String(80))
     perm = Field(String(20))
@@ -76,11 +76,11 @@ class DocTypePermission(Entity):
         return "%s: %s" % (self.doc_type, _(self.perm))
 
 
+@provider(IDocpoolProtectedEntityClass)
 class SenderLog(Entity):
     """
     """
 
-    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='senderlogs')
     document_uid = Field(String(50))
     document_title = Field(Unicode(250))
@@ -90,11 +90,11 @@ class SenderLog(Entity):
     channel = ManyToOne('Channel')
 
 
+@provider(IDocpoolProtectedEntityClass)
 class ReceiverLog(Entity):
     """
     """
 
-    classProvides(IDocpoolProtectedEntityClass)
     using_options(tablename='receiverlogs')
     document_uid = Field(String(50))
     document_title = Field(Unicode(250))
@@ -104,19 +104,21 @@ class ReceiverLog(Entity):
     channel = ManyToOne('Channel')
 
 
+@provider(IDocpoolProtectedEntityClass)
 class ChannelPermissions(EntityBase):
-    classProvides(IDocpoolProtectedEntityClass)
+    pass
 
 
+@provider(IDocpoolProtectedEntityClass)
 class ChannelSends(EntityBase):
-    classProvides(IDocpoolProtectedEntityClass)
 
     def __repr__(self):
         return "%s: --> %s" % (self.etimestamp, self.esd_to_title)
 
 
+@provider(IDocpoolProtectedEntityClass)
 class ChannelReceives(EntityBase):
-    classProvides(IDocpoolProtectedEntityClass)
+    pass
 
 
 setup_all(create_tables=True)

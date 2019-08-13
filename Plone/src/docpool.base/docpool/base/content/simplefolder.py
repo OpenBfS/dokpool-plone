@@ -21,7 +21,7 @@ from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import portalMessage
 from docpool.base.utils import queryForObjects
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from zope import schema
@@ -29,7 +29,7 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 
 
-class ISimpleFolder(form.Schema, IFolderBase):
+class ISimpleFolder(model.Schema, IFolderBase):
     """
     """
 

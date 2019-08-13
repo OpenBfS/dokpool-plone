@@ -1,17 +1,26 @@
 from Acquisition import aq_inner
 from docpool.localbehavior import MessageFactory as _
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
+from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.component import getMultiAdapter
-from zope.interface import alsoProvides
+from zope.interface import provider
 from zope.interface import Interface
+from zope.schema.interfaces import IContextAwareDefaultFactory
 
 
-class ILocalBehaviorSupport(form.Schema):
+@provider(IContextAwareDefaultFactory)
+def initializeLocalBehaviors(context):
+    dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
+    return dp_app_state.effectiveAppsHere()
 
-    form.widget(local_behaviors=CheckBoxFieldWidget)
+
+@provider(IFormFieldProvider)
+class ILocalBehaviorSupport(model.Schema):
+
+    directives.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(
         title=u'Behaviors',
         description=_(
@@ -20,20 +29,11 @@ class ILocalBehaviorSupport(form.Schema):
                     ' changes will be applied after saving',
         ),
         required=False,
+        defaultFactory=initializeLocalBehaviors,
         value_type=schema.Choice(
             title=u'Applications',
             vocabulary="LocalBehaviors"),
     )
-
-
-alsoProvides(ILocalBehaviorSupport, IFormFieldProvider)
-
-
-@form.default_value(field=ILocalBehaviorSupport['local_behaviors'])
-def initializeLocalBehaviors(data):
-    self = data.context
-    dp_app_state = getMultiAdapter((self, self.REQUEST), name=u'dp_app_state')
-    return dp_app_state.effectiveAppsHere()
 
 
 class ILocalBehaviorSupporting(Interface):

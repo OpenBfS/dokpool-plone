@@ -12,13 +12,22 @@ from plone import api
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
+from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
 
 import string
+
+
+@provider(IContextAwareDefaultFactory)
+def initializeScenarios(context):
+    if hasattr(context, "getUserSelectedScenarios"):
+        return context.getUserSelectedScenarios()
+    else:
+        return []
 
 
 @provider(IFormFieldProvider)
@@ -33,18 +42,11 @@ class IELANDocument(IDocumentExtension):
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
+        defaultFactory=initializeScenarios,
     )
     read_permission(scenarios='docpool.elan.AccessELAN')
     write_permission(scenarios='docpool.elan.AccessELAN')
-    form.widget(scenarios=CheckBoxFieldWidget)
-
-
-@form.default_value(field=IELANDocument['scenarios'])
-def initializeScenarios(data):
-    if hasattr(data.context, "getUserSelectedScenarios"):
-        return data.context.getUserSelectedScenarios()
-    else:
-        return []
+    directives.widget(scenarios=CheckBoxFieldWidget)
 
 
 class ELANDocument(FlexibleView):

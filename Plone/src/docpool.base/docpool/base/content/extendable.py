@@ -18,11 +18,11 @@ from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.appregistry import appIcon
 from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IExtendable(form.Schema):
+class IExtendable(model.Schema):
     """
     """
 

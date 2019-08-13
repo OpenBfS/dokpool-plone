@@ -3,7 +3,7 @@ from docpool.users import DocpoolMessageFactory as _
 from docpool.users.interfaces import IDocPoolUsersLayer
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
 from plone.app.users.browser.personalpreferences import PersonalPreferencesPanel
-from plone.directives import form
+from plone.autoform import directives
 from plone.supermodel import model
 from plone.z3cform.fieldsets import extensible
 from z3c.form import field
@@ -25,7 +25,7 @@ class IEnhancedPersonalPreferences(model.Schema):
         value_type=schema.Choice(
             source="docpool.base.vocabularies.AvailableApps"),
     )
-    form.widget(apps=CheckBoxFieldWidget)
+    directives.widget(apps=CheckBoxFieldWidget)
 
 
 class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):

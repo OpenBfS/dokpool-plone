@@ -30,8 +30,8 @@ from plone.app.textfield import RichTextValue
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.dexterity.utils import safe_unicode
-from plone.directives import form
 from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.interfaces import IActionSucceededEvent
@@ -46,8 +46,10 @@ from zope import schema
 from zope.component import adapter
 from zope.interface import alsoProvides
 from zope.interface import implementer
+from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import IContextSourceBinder
 
 import datetime
@@ -69,7 +71,12 @@ def availableScenarios(context):
     ).__call__(context)
 
 
-class IDPEvent(form.Schema, IContentBase):
+@provider(IContextAwareDefaultFactory)
+def initializeTimeOfEvent(context):
+    return datetime.datetime.today()
+
+
+class IDPEvent(model.Schema, IContentBase):
     """
     """
 
@@ -90,6 +97,7 @@ class IDPEvent(form.Schema, IContentBase):
         title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
         description=_(u'description_dpevent_timeofevent', default=u''),
         required=True,
+        defaultFactory=initializeTimeOfEvent,
     )
 
     Substitute = RelationChoice(
@@ -101,7 +109,7 @@ class IDPEvent(form.Schema, IContentBase):
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
     )
-    form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
     # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
     directives.widget(
@@ -155,12 +163,6 @@ class IDPEvent(form.Schema, IContentBase):
         required=False,
         readonly=True,
     )
-
-
-@form.default_value(field=IDPEvent['TimeOfEvent'])
-def initializeTimeOfEvent(data):
-    # To get hold of the folder, do: context = data.context
-    return datetime.datetime.today()
 
 
 @implementer(IDPEvent)

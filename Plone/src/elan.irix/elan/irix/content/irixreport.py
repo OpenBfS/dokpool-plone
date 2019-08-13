@@ -23,7 +23,7 @@ from docpool.dbaccess.interfaces import Idbadmin
 from elan.irix import DocpoolMessageFactory as _
 from elan.irix.db.model import IRIXReport as DBReport
 from plone.dexterity.content import Item
-from plone.directives import form
+from plone.supermodel import model
 from six.moves.urllib.parse import quote
 from zope import schema
 from zope.component import adapter
@@ -37,7 +37,7 @@ metadata = __metadata__
 session = __session__
 
 
-class IIRIXReport(form.Schema, IContentBase):
+class IIRIXReport(model.Schema, IContentBase):
     """
     """
 

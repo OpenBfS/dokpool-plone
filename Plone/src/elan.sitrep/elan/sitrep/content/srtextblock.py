@@ -22,7 +22,7 @@ from elan.sitrep import DocpoolMessageFactory as _
 from plone.app.textfield import RichText
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from zope.component import adapter
@@ -30,7 +30,7 @@ from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
-class ISRTextBlock(form.Schema, IContentBase):
+class ISRTextBlock(model.Schema, IContentBase):
     """
     """
 

@@ -29,7 +29,7 @@ from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
+from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
@@ -46,7 +46,7 @@ import requests
 import six.moves.urllib.parse
 
 
-class ISRModule(form.Schema, IDPDocument):
+class ISRModule(model.Schema, IDPDocument):
     """
     """
 
@@ -66,7 +66,7 @@ class ISRModule(form.Schema, IDPDocument):
         required=True,
         source="elan.sitrep.vocabularies.ModuleTypes",
     )
-    form.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
 
     summary = RichText(
         title=_(u'label_srtextblock_summary', default=u'Summary'),

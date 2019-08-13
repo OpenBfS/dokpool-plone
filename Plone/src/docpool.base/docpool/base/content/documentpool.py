@@ -22,9 +22,10 @@ from docpool.base.content.doctype import IDocType
 from docpool.base.events import DocumentPoolInitializedEvent
 from docpool.base.events import DocumentPoolRemovedEvent
 from plone.app.textfield.value import RichTextValue
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.directives import form
+from plone.supermodel import model
 from plone.namedfile.field import NamedBlobImage
 from plone.protect.auto import safeWrite
 from Products.CMFCore.utils import getToolByName
@@ -38,7 +39,7 @@ from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
 
 
-class IDocumentPool(form.Schema):
+class IDocumentPool(model.Schema):
     """
     """
 
@@ -69,7 +70,7 @@ class IDocumentPool(form.Schema):
             source="docpool.base.vocabularies.SelectableApps"),
     )
 
-    form.widget(supportedApps=CheckBoxFieldWidget)
+    directives.widget(supportedApps=CheckBoxFieldWidget)
 
 
 @implementer(IDocumentPool)

@@ -21,7 +21,7 @@ from elixir import UnicodeText
 from formalchemy.validators import regex
 from sqlalchemy.orm import mapper
 from sqlalchemy.orm import relation
-from zope.interface import classProvides
+from zope.interface import provider
 
 import logging
 
@@ -37,8 +37,9 @@ if DEBUG:
 logger = logging.getLogger("elan.irix")
 
 
+@provider(IELANProtectedEntityClass)
 class IRIXEntity(StructuredEntity):
-    classProvides(IELANProtectedEntityClass)
+    pass
 
 
 #########################################################################
@@ -511,8 +512,8 @@ class ObjectLocation(Entity, IRIXEntity):
     ObjectInvolved = ManyToOne('ObjectInvolved', ondelete='CASCADE')
 
 
+@provider(IELANProtectedEntityClass)
 class IRIXReport(EntityBase, IRIXEntity):
-    classProvides(IELANProtectedEntityClass)
 
     @classmethod
     def fkName(cls):

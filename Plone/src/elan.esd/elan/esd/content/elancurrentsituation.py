@@ -16,11 +16,11 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IELANCurrentSituation(form.Schema):
+class IELANCurrentSituation(model.Schema):
     """
     """
 
