@@ -39,7 +39,6 @@ setup(
         'collective.dexteritytextindexer',
         'plone.app.contenttypes',
         'plone.app.relationfield',
-        'plone.app.referenceablebehavior',
         'plone.api',
         'plone.formwidget.querystring',
         'collective.monkeypatcher',
