@@ -82,25 +82,37 @@ class Dom(object):
                 _(u'97 _deposition_ground_alpha surface activity_1 month'),
             ),
             VocabItem(
-                u'100 ___gross dose rate_1 min', _(u'100 ___gross dose rate_1 min')
+                u'100 ___gross dose rate_1 min', _(
+                    u'100 ___gross dose rate_1 min')
             ),
             VocabItem(
-                u'101 ___gross dose rate_10 min', _(u'101 ___gross dose rate_10 min')
+                u'101 ___gross dose rate_10 min', _(
+                    u'101 ___gross dose rate_10 min')
             ),
             VocabItem(
-                u'102 ___gross dose rate_30 min', _(u'102 ___gross dose rate_30 min')
-            ),
-            VocabItem(u'103 ___gross dose rate_1 h', _(u'103 ___gross dose rate_1 h')),
-            VocabItem(u'104 ___gross dose rate_2 h', _(u'104 ___gross dose rate_2 h')),
-            VocabItem(u'105 ___gross dose rate_1 d', _(u'105 ___gross dose rate_1 d')),
-            VocabItem(
-                u'107 ___gross dose rate_1 month', _(u'107 ___gross dose rate_1 month')
+                u'102 ___gross dose rate_30 min', _(
+                    u'102 ___gross dose rate_30 min')
             ),
             VocabItem(
-                u'109 ___gross dose rate_1 year', _(u'109 ___gross dose rate_1 year')
+                u'103 ___gross dose rate_1 h',
+                _(u'103 ___gross dose rate_1 h')),
+            VocabItem(
+                u'104 ___gross dose rate_2 h',
+                _(u'104 ___gross dose rate_2 h')),
+            VocabItem(
+                u'105 ___gross dose rate_1 d',
+                _(u'105 ___gross dose rate_1 d')),
+            VocabItem(
+                u'107 ___gross dose rate_1 month', _(
+                    u'107 ___gross dose rate_1 month')
             ),
             VocabItem(
-                u'110 ___high gross dose rate_', _(u'110 ___high gross dose rate_')
+                u'109 ___gross dose rate_1 year', _(
+                    u'109 ___gross dose rate_1 year')
+            ),
+            VocabItem(
+                u'110 ___high gross dose rate_', _(
+                    u'110 ___high gross dose rate_')
             ),
             VocabItem(
                 u'111 ___high gross dose rate_10 min',
@@ -108,23 +120,36 @@ class Dom(object):
             ),
             VocabItem(u'120 ___net dose rate_', _(u'120 ___net dose rate_')),
             VocabItem(
-                u'121 ___net dose rate_10 min', _(u'121 ___net dose rate_10 min')
-            ),
-            VocabItem(u'123 ___net dose rate_1 h', _(u'123 ___net dose rate_1 h')),
-            VocabItem(u'124 ___net dose rate_2 h', _(u'124 ___net dose rate_2 h')),
-            VocabItem(u'125 ___net dose rate_1 d', _(u'125 ___net dose rate_1 d')),
-            VocabItem(u'130 ___cosmic dose rate_', _(u'130 ___cosmic dose rate_')),
-            VocabItem(
-                u'131 ___cosmic dose rate_10 min', _(u'131 ___cosmic dose rate_10 min')
+                u'121 ___net dose rate_10 min', _(
+                    u'121 ___net dose rate_10 min')
             ),
             VocabItem(
-                u'134 ___cosmic dose rate_2 h', _(u'134 ___cosmic dose rate_2 h')
+                u'123 ___net dose rate_1 h',
+                _(u'123 ___net dose rate_1 h')),
+            VocabItem(
+                u'124 ___net dose rate_2 h',
+                _(u'124 ___net dose rate_2 h')),
+            VocabItem(
+                u'125 ___net dose rate_1 d',
+                _(u'125 ___net dose rate_1 d')),
+            VocabItem(
+                u'130 ___cosmic dose rate_',
+                _(u'130 ___cosmic dose rate_')),
+            VocabItem(
+                u'131 ___cosmic dose rate_10 min', _(
+                    u'131 ___cosmic dose rate_10 min')
             ),
             VocabItem(
-                u'135 ___cosmic dose rate_1 d', _(u'135 ___cosmic dose rate_1 d')
+                u'134 ___cosmic dose rate_2 h', _(
+                    u'134 ___cosmic dose rate_2 h')
             ),
             VocabItem(
-                u'140 ___terrestrial dose rate_', _(u'140 ___terrestrial dose rate_')
+                u'135 ___cosmic dose rate_1 d', _(
+                    u'135 ___cosmic dose rate_1 d')
+            ),
+            VocabItem(
+                u'140 ___terrestrial dose rate_', _(
+                    u'140 ___terrestrial dose rate_')
             ),
             VocabItem(
                 u'141 ___terrestrial dose rate_10 min',
@@ -156,7 +181,8 @@ class Dom(object):
             ),
             VocabItem(u'155 ___dose rate_', _(u'155 ___dose rate_')),
             VocabItem(
-                u'156 ___dose rate low energy _', _(u'156 ___dose rate low energy _')
+                u'156 ___dose rate low energy _', _(
+                    u'156 ___dose rate low energy _')
             ),
             VocabItem(
                 u'157 ___dose rate intermediate energy _',
@@ -664,10 +690,12 @@ class Dom(object):
                 _(u'399 _air_aerosol particles_total alpha activity_1 year'),
             ),
             VocabItem(
-                u'403 _air_iodine_activity_1 h', _(u'403 _air_iodine_activity_1 h')
+                u'403 _air_iodine_activity_1 h', _(
+                    u'403 _air_iodine_activity_1 h')
             ),
             VocabItem(
-                u'405 _air_iodine_activity_1 d', _(u'405 _air_iodine_activity_1 d')
+                u'405 _air_iodine_activity_1 d', _(
+                    u'405 _air_iodine_activity_1 d')
             ),
             VocabItem(
                 u'406 _air_iodine_activity_1 week',
@@ -861,16 +889,26 @@ class Dom(object):
             ),
             VocabItem(u'583 _air__volume_1 h', _(u'583 _air__volume_1 h')),
             VocabItem(u'585 _air__volume_1 d', _(u'585 _air__volume_1 d')),
-            VocabItem(u'586 _air__volume_1 week', _(u'586 _air__volume_1 week')),
-            VocabItem(u'587 _air__volume_1 month', _(u'587 _air__volume_1 month')),
-            VocabItem(u'588 _air__volume_3 months', _(u'588 _air__volume_3 months')),
-            VocabItem(u'589 _air__volume_1 year', _(u'589 _air__volume_1 year')),
+            VocabItem(
+                u'586 _air__volume_1 week',
+                _(u'586 _air__volume_1 week')),
+            VocabItem(
+                u'587 _air__volume_1 month',
+                _(u'587 _air__volume_1 month')),
+            VocabItem(
+                u'588 _air__volume_3 months',
+                _(u'588 _air__volume_3 months')),
+            VocabItem(
+                u'589 _air__volume_1 year',
+                _(u'589 _air__volume_1 year')),
             VocabItem(u' ____', _(u' ____')),
             VocabItem(
-                u'591 _air__volume stream_10 min', _(u'591 _air__volume stream_10 min')
+                u'591 _air__volume stream_10 min', _(
+                    u'591 _air__volume stream_10 min')
             ),
             VocabItem(
-                u'592 _air__volume stream_30 min', _(u'592 _air__volume stream_30 min')
+                u'592 _air__volume stream_30 min', _(
+                    u'592 _air__volume stream_30 min')
             ),
             VocabItem(
                 u'593 _air_stack_temperature_10 min',
@@ -881,15 +919,20 @@ class Dom(object):
                 _(u'594 _air_stack_temperature_30 min'),
             ),
             VocabItem(
-                u'595 _air_stack_temperature_1 h', _(u'595 _air_stack_temperature_1 h')
+                u'595 _air_stack_temperature_1 h', _(
+                    u'595 _air_stack_temperature_1 h')
             ),
             VocabItem(
-                u'596 _air__temperature_10 min', _(u'596 _air__temperature_10 min')
+                u'596 _air__temperature_10 min', _(
+                    u'596 _air__temperature_10 min')
             ),
             VocabItem(
-                u'597 _air__temperature_30 min', _(u'597 _air__temperature_30 min')
+                u'597 _air__temperature_30 min', _(
+                    u'597 _air__temperature_30 min')
             ),
-            VocabItem(u'598 _air__temperature_1 h', _(u'598 _air__temperature_1 h')),
+            VocabItem(
+                u'598 _air__temperature_1 h',
+                _(u'598 _air__temperature_1 h')),
             VocabItem(
                 u'599 _air__overall loss factor _',
                 _(u'599 _air__overall loss factor _'),
@@ -911,10 +954,12 @@ class Dom(object):
                 _(u'609 _water__gamma activity_1 year'),
             ),
             VocabItem(
-                u'623 _water__beta activity_1 h', _(u'623 _water__beta activity_1 h')
+                u'623 _water__beta activity_1 h', _(
+                    u'623 _water__beta activity_1 h')
             ),
             VocabItem(
-                u'625 _water__beta activity_1 d', _(u'625 _water__beta activity_1 d')
+                u'625 _water__beta activity_1 d', _(
+                    u'625 _water__beta activity_1 d')
             ),
             VocabItem(
                 u'626 _water__beta activity_1 week',
@@ -1001,16 +1046,20 @@ class Dom(object):
                 _(u'674 _water__specific act.conc._2 h'),
             ),
             VocabItem(
-                u'691 _air__counting rate_10 min', _(u'691 _air__counting rate_10 min')
+                u'691 _air__counting rate_10 min', _(
+                    u'691 _air__counting rate_10 min')
             ),
             VocabItem(
-                u'693 _air__counting rate_1 h', _(u'693 _air__counting rate_1 h')
+                u'693 _air__counting rate_1 h', _(
+                    u'693 _air__counting rate_1 h')
             ),
             VocabItem(
-                u'695 _air__counting rate_1 d', _(u'695 _air__counting rate_1 d')
+                u'695 _air__counting rate_1 d', _(
+                    u'695 _air__counting rate_1 d')
             ),
             VocabItem(
-                u'696 _air__counting rate_1 week', _(u'696 _air__counting rate_1 week')
+                u'696 _air__counting rate_1 week', _(
+                    u'696 _air__counting rate_1 week')
             ),
             VocabItem(
                 u'697 _air__counting rate_1 month',
@@ -1020,12 +1069,19 @@ class Dom(object):
                 u'698 _air__counting rate_3 months',
                 _(u'698 _air__counting rate_3 months'),
             ),
-            VocabItem(u'706 _water__volume_1 week', _(u'706 _water__volume_1 week')),
-            VocabItem(u'707 _water__volume_1 month', _(u'707 _water__volume_1 month')),
             VocabItem(
-                u'708 _water__volume_3 months', _(u'708 _water__volume_3 months')
+                u'706 _water__volume_1 week',
+                _(u'706 _water__volume_1 week')),
+            VocabItem(
+                u'707 _water__volume_1 month',
+                _(u'707 _water__volume_1 month')),
+            VocabItem(
+                u'708 _water__volume_3 months', _(
+                    u'708 _water__volume_3 months')
             ),
-            VocabItem(u'709 _water__volume_1 year', _(u'709 _water__volume_1 year')),
+            VocabItem(
+                u'709 _water__volume_1 year',
+                _(u'709 _water__volume_1 year')),
             VocabItem(
                 u'711 _water__volume stream_10 min',
                 _(u'711 _water__volume stream_10 min'),
@@ -1035,10 +1091,12 @@ class Dom(object):
                 _(u'712 _water__volume stream_30 min'),
             ),
             VocabItem(
-                u'716 _water__temperature_10 min', _(u'716 _water__temperature_10 min')
+                u'716 _water__temperature_10 min', _(
+                    u'716 _water__temperature_10 min')
             ),
             VocabItem(
-                u'717 _water__temperature_30 min', _(u'717 _water__temperature_30 min')
+                u'717 _water__temperature_30 min', _(
+                    u'717 _water__temperature_30 min')
             ),
             VocabItem(
                 u'786 _air_meteo_temperature_10 min',
@@ -1049,23 +1107,28 @@ class Dom(object):
                 _(u'787 _air_meteo_temperature_30 min'),
             ),
             VocabItem(
-                u'788 _air_meteo_temperature_1 h', _(u'788 _air_meteo_temperature_1 h')
+                u'788 _air_meteo_temperature_1 h', _(
+                    u'788 _air_meteo_temperature_1 h')
             ),
             VocabItem(
                 u'791 __meteo_air pressure_10 min',
                 _(u'791 __meteo_air pressure_10 min'),
             ),
             VocabItem(
-                u'793 __meteo_air pressure_1 h', _(u'793 __meteo_air pressure_1 h')
+                u'793 __meteo_air pressure_1 h', _(
+                    u'793 __meteo_air pressure_1 h')
             ),
             VocabItem(
                 u'796 __meteo_rel. humidity_10 min',
                 _(u'796 __meteo_rel. humidity_10 min'),
             ),
             VocabItem(
-                u'797 __meteo_rel. humidity_1 h', _(u'797 __meteo_rel. humidity_1 h')
+                u'797 __meteo_rel. humidity_1 h', _(
+                    u'797 __meteo_rel. humidity_1 h')
             ),
-            VocabItem(u'800 __meteo_precipitation_', _(u'800 __meteo_precipitation_')),
+            VocabItem(
+                u'800 __meteo_precipitation_',
+                _(u'800 __meteo_precipitation_')),
             VocabItem(
                 u'801 __meteo_precipitation_10 min',
                 _(u'801 __meteo_precipitation_10 min'),
@@ -1075,19 +1138,24 @@ class Dom(object):
                 _(u'802 __meteo_precipitation_30 min'),
             ),
             VocabItem(
-                u'803 __meteo_precipitation_1 h', _(u'803 __meteo_precipitation_1 h')
+                u'803 __meteo_precipitation_1 h', _(
+                    u'803 __meteo_precipitation_1 h')
             ),
             VocabItem(
-                u'804 __meteo_precipitation_2 h', _(u'804 __meteo_precipitation_2 h')
+                u'804 __meteo_precipitation_2 h', _(
+                    u'804 __meteo_precipitation_2 h')
             ),
             VocabItem(
-                u'805 __meteo_precipitation_1 d', _(u'805 __meteo_precipitation_1 d')
+                u'805 __meteo_precipitation_1 d', _(
+                    u'805 __meteo_precipitation_1 d')
             ),
             VocabItem(
-                u'806 __meteo_precipitation_1 wo', _(u'806 __meteo_precipitation_1 wo')
+                u'806 __meteo_precipitation_1 wo', _(
+                    u'806 __meteo_precipitation_1 wo')
             ),
             VocabItem(
-                u'807 __meteo_precipitation_1 m', _(u'807 __meteo_precipitation_1 m')
+                u'807 __meteo_precipitation_1 m', _(
+                    u'807 __meteo_precipitation_1 m')
             ),
             VocabItem(
                 u'815 __meteo_precipitation snow_1 d',
@@ -1122,10 +1190,12 @@ class Dom(object):
                 _(u'832 __meteo_wind velocity_30 min'),
             ),
             VocabItem(
-                u'833 __meteo_wind velocity_1 h', _(u'833 __meteo_wind velocity_1 h')
+                u'833 __meteo_wind velocity_1 h', _(
+                    u'833 __meteo_wind velocity_1 h')
             ),
             VocabItem(
-                u'834 __meteo_wind velocity_2 h', _(u'834 __meteo_wind velocity_2 h')
+                u'834 __meteo_wind velocity_2 h', _(
+                    u'834 __meteo_wind velocity_2 h')
             ),
             VocabItem(
                 u'836 __meteo_wind veloc. fluctuation (sigma w)_10 min',
@@ -1148,10 +1218,12 @@ class Dom(object):
                 _(u'842 __meteo_wind direction_30 min'),
             ),
             VocabItem(
-                u'843 __meteo_wind direction_1 h', _(u'843 __meteo_wind direction_1 h')
+                u'843 __meteo_wind direction_1 h', _(
+                    u'843 __meteo_wind direction_1 h')
             ),
             VocabItem(
-                u'844 __meteo_wind direction_2 h', _(u'844 __meteo_wind direction_2 h')
+                u'844 __meteo_wind direction_2 h', _(
+                    u'844 __meteo_wind direction_2 h')
             ),
             VocabItem(
                 u'851 __meteo_wind dir. fluctuation (sigma ?)_10 min',
@@ -1250,16 +1322,20 @@ class Dom(object):
                 _(u'898 __meteo_stability class (1-6) (temp. gradient)_1 h'),
             ),
             VocabItem(
-                u'951 ___electrical power_10 min', _(u'951 ___electrical power_10 min')
+                u'951 ___electrical power_10 min', _(
+                    u'951 ___electrical power_10 min')
             ),
             VocabItem(
-                u'953 ___electrical power_1 h', _(u'953 ___electrical power_1 h')
+                u'953 ___electrical power_1 h', _(
+                    u'953 ___electrical power_1 h')
             ),
             VocabItem(
-                u'955 ___electrical power_1 d', _(u'955 ___electrical power_1 d')
+                u'955 ___electrical power_1 d', _(
+                    u'955 ___electrical power_1 d')
             ),
             VocabItem(
-                u'956 ___electrical power_1 week', _(u'956 ___electrical power_1 week')
+                u'956 ___electrical power_1 week', _(
+                    u'956 ___electrical power_1 week')
             ),
             VocabItem(
                 u'957 ___electrical power_1 month',
@@ -1270,19 +1346,32 @@ class Dom(object):
                 _(u'958 ___electrical power_3 months'),
             ),
             VocabItem(
-                u'959 ___electrical power_1 year', _(u'959 ___electrical power_1 year')
-            ),
-            VocabItem(u'961 ___therm. power_10 min', _(u'961 ___therm. power_10 min')),
-            VocabItem(u'963 ___therm. power_1 h', _(u'963 ___therm. power_1 h')),
-            VocabItem(u'965 ___therm. power_1 d', _(u'965 ___therm. power_1 d')),
-            VocabItem(u'966 ___therm. power_1 week', _(u'966 ___therm. power_1 week')),
-            VocabItem(
-                u'967 ___therm. power_1 month', _(u'967 ___therm. power_1 month')
+                u'959 ___electrical power_1 year', _(
+                    u'959 ___electrical power_1 year')
             ),
             VocabItem(
-                u'968 ___therm. power_3 months', _(u'968 ___therm. power_3 months')
+                u'961 ___therm. power_10 min',
+                _(u'961 ___therm. power_10 min')),
+            VocabItem(
+                u'963 ___therm. power_1 h',
+                _(u'963 ___therm. power_1 h')),
+            VocabItem(
+                u'965 ___therm. power_1 d',
+                _(u'965 ___therm. power_1 d')),
+            VocabItem(
+                u'966 ___therm. power_1 week',
+                _(u'966 ___therm. power_1 week')),
+            VocabItem(
+                u'967 ___therm. power_1 month', _(
+                    u'967 ___therm. power_1 month')
             ),
-            VocabItem(u'969 ___therm. power_1 year', _(u'969 ___therm. power_1 year')),
+            VocabItem(
+                u'968 ___therm. power_3 months', _(
+                    u'968 ___therm. power_3 months')
+            ),
+            VocabItem(
+                u'969 ___therm. power_1 year',
+                _(u'969 ___therm. power_1 year')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.

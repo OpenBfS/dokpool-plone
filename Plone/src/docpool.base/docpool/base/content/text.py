@@ -21,7 +21,7 @@ from docpool.base.content.contentbase import IContentBase
 from plone.app.textfield import RichText
 from plone.dexterity.content import Item
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IText(form.Schema, IContentBase):
@@ -36,10 +36,9 @@ class IText(form.Schema, IContentBase):
     )
 
 
+@implementer(IText)
 class Text(Item, ContentBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IText)

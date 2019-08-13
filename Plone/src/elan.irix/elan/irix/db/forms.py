@@ -19,9 +19,13 @@ metadata = __metadata__
 def cListe(context=None):
     g = Grid(IRIXReport, session=__session__)
     g.configure(
-        include=[g.title.label(_(u"Title")), g.timestamp.label(_(u"Timestamp"))]
+        include=[
+            g.title.label(
+                _(u"Title")), g.timestamp.label(
+                _(u"Timestamp"))]
     )
-    return {'form': g, 'importRestricted': True, 'sortNames': ["title", "timestamp"]}
+    return {'form': g, 'importRestricted': True,
+            'sortNames': ["title", "timestamp"]}
 
 
 registerEntityConfig(

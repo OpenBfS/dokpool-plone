@@ -43,7 +43,7 @@ class DPDocumentirixView(BrowserView):
         try:
             ic = self.context.contentconfig.irix
             return ic
-        except:
+        except BaseException:
             return None
 
     def timestamp(self):
@@ -61,7 +61,7 @@ class DPDocumentirixView(BrowserView):
                 for s in all_scns:
                     if s.Title == scn:
                         return s.getObject()
-        except:
+        except BaseException:
             pass
         return None
 
@@ -104,7 +104,8 @@ class DPDocumentirixView(BrowserView):
         """
         d = self.context.Description()
         t = self.context.Title()
-        txt = self.context.text and self.context.text.output.encode('utf-8') or ''
+        txt = self.context.text and self.context.text.output.encode(
+            'utf-8') or ''
         return "%s - %s: %s" % (d, t, txt)
 
     def irixType(self):
@@ -135,7 +136,8 @@ class DPDocumentirixView(BrowserView):
     def isMeteoInfo(self):
         """
         """
-        return self.irixType() in ['Meteorology', 'Model result - Plume trajectory']
+        return self.irixType() in ['Meteorology',
+                                   'Model result - Plume trajectory']
 
     def isFutureRelease(self):
         """

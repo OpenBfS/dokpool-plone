@@ -20,7 +20,7 @@ from docpool.elan.config import ELAN_APP
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRFolder(form.Schema, ISimpleFolder):
@@ -30,13 +30,12 @@ class ISRFolder(form.Schema, ISimpleFolder):
     form.omitted('allowedDocTypes')
 
 
+@implementer(ISRFolder)
 class SRFolder(Container, SimpleFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRFolder)
 
     APP = ELAN_APP
 

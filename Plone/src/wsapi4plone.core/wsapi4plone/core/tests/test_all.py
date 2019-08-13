@@ -2,7 +2,7 @@
 import os
 import doctest
 import unittest
-import xmlrpclib
+import six.moves.xmlrpc_client
 
 from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase
@@ -29,7 +29,7 @@ PloneTestCase.setupPloneSite()
 
 
 def format_xmlrpc(method_name, params=tuple()):
-    return xmlrpclib.dumps(params, method_name)
+    return six.moves.xmlrpc_client.dumps(params, method_name)
 
 
 class DocTestCase(PloneTestCase.PloneTestCase):
@@ -45,7 +45,8 @@ class DocTestCase(PloneTestCase.PloneTestCase):
                 'email': 'test@example.com',
             },
         )
-        self.app.plone.portal_groups.getGroupById('Administrators').addMember(usr)
+        self.app.plone.portal_groups.getGroupById(
+            'Administrators').addMember(usr)
         self.logout()
         response = self.publish(
             "plone/login_form?came_from=&form.submitted=1&js_enabled=0&cookies_enabled=&login_name=&pwd_empty=0&__ac_name=%s&__ac_password=%s&submit=Log+in"

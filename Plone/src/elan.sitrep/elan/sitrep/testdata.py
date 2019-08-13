@@ -21,6 +21,7 @@ from zope.intid.interfaces import IIntIds
 
 import random
 import transaction
+from six.moves import range
 
 
 # from Acquisition import aq_base
@@ -155,7 +156,8 @@ MODTYPES = [
     }
 ]
 SRCONFIG = [
-    {TYPE: 'SRConfig', TITLE: 'SR Configuration', ID: 'srconfig', CHILDREN: SCENARIOS}
+    {TYPE: 'SRConfig', TITLE: 'SR Configuration',
+        ID: 'srconfig', CHILDREN: SCENARIOS}
 ]
 
 
@@ -239,10 +241,11 @@ def createSituationReport(self):
     g = None
     try:
         g = self.content.Groups[gname]
-    except:
+    except BaseException:
         return
     createPloneObjects(
-        g, [{TYPE: 'SRFolder', TITLE: 'Lagebericht', ID: 'lagebericht', CHILDREN: []}]
+        g, [{TYPE: 'SRFolder', TITLE: 'Lagebericht',
+             ID: 'lagebericht', CHILDREN: []}]
     )
     path = g.lagebericht
     intids = getUtility(IIntIds)

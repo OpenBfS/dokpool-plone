@@ -9,12 +9,13 @@ from Products.CMFCore.utils import getToolByName
 HAS_ELAN = True
 try:
     from docpool.elan.config import ELAN_APP
-except:
+except BaseException:
     HAS_ELAN = False
 
 
 def determineChannels(transfer_ids):
-    channels = __session__.query(Channel).filter(Channel.id.in_(transfer_ids)).all()
+    channels = __session__.query(Channel).filter(
+        Channel.id.in_(transfer_ids)).all()
     return channels
 
 

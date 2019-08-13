@@ -7,7 +7,7 @@ from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.interface import implements
+from zope.interface import implementer
 
 import string
 
@@ -25,8 +25,8 @@ class IRecentPortlet(IPortletDataProvider):
 # a particular instantiation of the portlet.
 
 
+@implementer(IRecentPortlet)
 class Assignment(base.Assignment):
-    implements(IRecentPortlet)
 
     @property
     def title(self):
@@ -53,7 +53,7 @@ class Renderer(base.Renderer):
             self.collection = (
                 context.esd.recent
             )  # Acquire ELANCollection for recent documents
-        except:
+        except BaseException:
             self.collection = None
 
     @property
@@ -95,7 +95,7 @@ class Renderer(base.Renderer):
             return self.collection.results(
                 batch=True, b_start=0, b_size=5, sort_on=None, brains=True
             )
-        except:
+        except BaseException:
             return []
 
 

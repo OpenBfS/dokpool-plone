@@ -33,7 +33,7 @@ from zope import schema
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.event import notify
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
 
@@ -65,19 +65,19 @@ class IDocumentPool(form.Schema):
         description=_(u'description_documentpool_supportedapps', default=u''),
         required=False,
         missing_value=(),
-        value_type=schema.Choice(source="docpool.base.vocabularies.SelectableApps"),
+        value_type=schema.Choice(
+            source="docpool.base.vocabularies.SelectableApps"),
     )
 
     form.widget(supportedApps=CheckBoxFieldWidget)
 
 
+@implementer(IDocumentPool)
 class DocumentPool(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDocumentPool)
 
     def logoSrc(self):
         if self.customLogo:
@@ -138,7 +138,8 @@ class DocumentPool(Container):
         return self.supportedApps
 
     def isActive(self, APP):
-        dp_app_state = getMultiAdapter((self, self.REQUEST), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter(
+            (self, self.REQUEST), name=u'dp_app_state')
         return dp_app_state.isCurrentlyActive(APP)
 
     def myDocumentPool(self):

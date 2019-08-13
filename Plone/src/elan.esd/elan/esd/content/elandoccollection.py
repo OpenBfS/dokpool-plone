@@ -7,6 +7,7 @@
 #            http://www.condat.de
 #
 
+from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -32,7 +33,7 @@ from z3c.relationfield.schema import RelationList
 from zope.component import adapter
 from zope.component import getUtility
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
@@ -43,7 +44,9 @@ class IELANDocCollection(form.Schema, ICollection):
     """
 
     docTypes = RelationList(
-        title=_(u'label_elandoccollection_doctypes', default=u'Document Types'),
+        title=_(
+            u'label_elandoccollection_doctypes',
+            default=u'Document Types'),
         description=_(u'description_elandoccollection_doctypes', default=u''),
         required=False,
         value_type=RelationChoice(
@@ -57,13 +60,12 @@ class IELANDocCollection(form.Schema, ICollection):
 #    form.widget(docTypes=AutocompleteMultiFieldWidget)
 
 
+@implementer(IELANDocCollection)
 class ELANDocCollection(Item, Collection):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IELANDocCollection)
 
     def testSearch(self):
         """
@@ -79,7 +81,7 @@ class ELANDocCollection(Item, Collection):
         res = self.portal_catalog(**kw)
         # print len(res)
         for r in res:
-            print r.Title
+            print(r.Title)
 
     def getUserSelectedScenarios(self):
         """
@@ -95,7 +97,8 @@ class ELANDocCollection(Item, Collection):
         # print usc
         return usc
 
-    def results(self, batch=True, b_start=0, b_size=10, sort_on=None, brains=False):
+    def results(self, batch=True, b_start=0,
+                b_size=10, sort_on=None, brains=False):
         """Get results override, implicit = True"""
         if sort_on is None:
             sort_on = self.sort_on
@@ -125,7 +128,7 @@ class ELANDocCollection(Item, Collection):
                     tid = t.getId()
                     try:
                         new = self.config.dtypes[tid]
-                    except:
+                    except BaseException:
                         pass
                     if new:
                         to_id = intids.getId(new)
@@ -218,10 +221,12 @@ class ELANDocCollection(Item, Collection):
             # Not in the archive:
             value = list(value[:])  # Otherwise we change the stored query!
             if not self.isArchive():
-                # First implicit filter: the user has select scenario(s) as a filter
+                # First implicit filter: the user has select scenario(s) as a
+                # filter
                 uss = self.getUserSelectedScenarios()
                 if uss:
-                    # This is THE modification: append the implicit criterion for the scenario(s)
+                    # This is THE modification: append the implicit criterion
+                    # for the scenario(s)
                     value.append(
                         {
                             'i': 'scenarios',
@@ -266,7 +271,8 @@ class ELANDocCollection(Item, Collection):
 
             # mpath = getRelativePath(m)
             mpath = "content"
-            # Just one path allowed in the path criterion. Must be the part after the portal root, e.g. '/Members'
+            # Just one path allowed in the path criterion. Must be the part
+            # after the portal root, e.g. '/Members'
             value.append(
                 {
                     'i': 'path',

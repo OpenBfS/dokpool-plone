@@ -45,7 +45,10 @@ setup(
     packages=find_packages(),
     namespace_packages=['wsapi4plone'],
     extras_require=dict(
-        test=['Products.PloneTestCase', 'zope.app.container', 'zope.app.testing'],
+        test=[
+            'Products.PloneTestCase',
+            'zope.app.container',
+            'zope.app.testing'],
         blob=['plone.app.blob'],
         plone33=[
             'collective.autopermission==1.0b2',
@@ -56,10 +59,10 @@ setup(
     install_requires=[
         'setuptools',
         'collective.autopermission',
-        ##'Plone',
+        # 'Plone',
         # We have support for plone.app.blob, but only use it
         # when it's already available (e.g Plone >= 4).
-        ##'plone.app.blob',
+        # 'plone.app.blob',
     ],
     entry_points="""
         # -*- Entry points: -*-

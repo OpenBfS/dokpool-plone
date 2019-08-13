@@ -20,7 +20,7 @@ from plone.directives import form
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRPhase(form.Schema):
@@ -28,13 +28,12 @@ class ISRPhase(form.Schema):
     """
 
 
+@implementer(ISRPhase)
 class SRPhase(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRPhase)
 
     def getSRPhaseNames(self):
         """

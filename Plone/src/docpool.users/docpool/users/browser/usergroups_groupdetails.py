@@ -23,7 +23,9 @@ class GroupDetailsControlPanel(GDCP):
         if self.group is not None:
             self.grouptitle = self.group.getGroupTitleOrName()
 
-        self.request.set('grouproles', self.group.getRoles() if self.group else [])
+        self.request.set(
+            'grouproles',
+            self.group.getRoles() if self.group else [])
 
         submitted = self.request.form.get('form.submitted', False)
         if submitted:
@@ -60,7 +62,10 @@ class GroupDetailsControlPanel(GDCP):
 
                 if isDP:
                     # Add reference to DocumentPool here
-                    props = {'title': title, 'description': description, 'dp': dp.UID()}
+                    props = {
+                        'title': title,
+                        'description': description,
+                        'dp': dp.UID()}
                     # Put it in the request for later processing (see below)
                     self.request.set("dp", dp.UID())
                 else:
@@ -87,7 +92,10 @@ class GroupDetailsControlPanel(GDCP):
                     return self.index()
 
                 self.group = self.gtool.getGroupById(addname)
-                msg = _(u'Group ${name} has been added.', mapping={u'name': addname})
+                msg = _(
+                    u'Group ${name} has been added.',
+                    mapping={
+                        u'name': addname})
 
             elif self.groupname:
                 self.gtool.editGroup(
@@ -110,14 +118,17 @@ class GroupDetailsControlPanel(GDCP):
                 processed[id] = self.request.get(id, None)
                 try:
                     processed['dp'] = context.UID()
-                except:
+                except BaseException:
                     pass
 
             if self.group:
-                # for what reason ever, the very first group created does not exist
+                # for what reason ever, the very first group created does not
+                # exist
                 self.group.setGroupProperties(processed)
 
-            IStatusMessage(self.request).add(msg, type=self.group and 'info' or 'error')
+            IStatusMessage(
+                self.request).add(
+                msg, type=self.group and 'info' or 'error')
             if self.group and not self.groupname:
                 target_url = '%s/%s' % (
                     self.context.absolute_url(),

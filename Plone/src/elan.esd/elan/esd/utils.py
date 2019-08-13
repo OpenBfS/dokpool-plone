@@ -30,7 +30,7 @@ def getCategoriesForCurrentUser(self):
 def setCategoriesForCurrentUser(self, cats):
     """
     """
-    if type(cats) == type(""):
+    if isinstance(cats, type("")):
         cats = [cats]
     user = api.user.get_current()
     user.setMemberProperties({"categories": cats})

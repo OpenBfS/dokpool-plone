@@ -19,7 +19,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from plone.dexterity.content import Container
 from plone.directives import form
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IInfoDocument(form.Schema, IDPDocument):
@@ -34,13 +34,12 @@ class IInfoDocument(form.Schema, IDPDocument):
     )
 
 
+@implementer(IInfoDocument)
 class InfoDocument(Container, DPDocument):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IInfoDocument)
 
     def dp_type(self):
         return "General"

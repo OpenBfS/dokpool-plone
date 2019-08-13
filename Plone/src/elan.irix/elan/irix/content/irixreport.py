@@ -24,11 +24,11 @@ from elan.irix import DocpoolMessageFactory as _
 from elan.irix.db.model import IRIXReport as DBReport
 from plone.dexterity.content import Item
 from plone.directives import form
-from urllib import quote
+from six.moves.urllib.parse import quote
 from zope import schema
 from zope.component import adapter
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
 
@@ -45,19 +45,20 @@ class IIRIXReport(form.Schema, IContentBase):
         title=_(
             u'label_irixreport_dbkey', default=u'Primary key in relational database'
         ),
-        description=_(u'description_irixreport_dbkey', default=u'Database key'),
+        description=_(
+            u'description_irixreport_dbkey',
+            default=u'Database key'),
         required=False,
     )
     form.omitted('dbkey')
 
 
+@implementer(IIRIXReport)
 class IRIXReport(Item, ContentBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IIRIXReport)
 
     def pkfields(self):
         """
@@ -145,7 +146,8 @@ class IRIXReport(Item, ContentBase):
     def initializeDB(self):
         """
         """
-        # TODO: IRIXReport DB object with default data acquired from IRIX config
+        # TODO: IRIXReport DB object with default data acquired from IRIX
+        # config
         ic = self.irixConfig()
         dbReport = DBReport()
         dbReport.title = self.Title()
@@ -171,7 +173,7 @@ class IRIXReport(Item, ContentBase):
         try:
             ic = self.contentconfig.irix
             return ic
-        except:
+        except BaseException:
             return None
 
 

@@ -146,7 +146,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             ffu = getFoldersForCurrentUser(self.context)
             if ffu:
                 for f in ffu:
-                    if not f.has_key('item_class'):
+                    if 'item_class' not in f:
                         f['item_class'] = "personal"
                 tabs.append(
                     {

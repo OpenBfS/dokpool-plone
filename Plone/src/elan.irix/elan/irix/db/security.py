@@ -3,25 +3,25 @@ from docpool.dbaccess.interfaces import IDataSecurity
 from docpool.dbaccess.interfaces import IProtectedEntityClass
 from docpool.dbaccess.security import DefaultSecurity
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
-from zope.component import adapts
-from zope.interface import implements
+from zope.component import adapter
+from zope.interface import implementer
 
 
 class IELANProtectedEntityClass(IProtectedEntityClass):
     pass
 
 
+@implementer(IDataSecurity)
+@adapter(IELANProtectedEntityClass, IBasicUser)
 class IRIXSecurity(DefaultSecurity):
     """
     """
-
-    implements(IDataSecurity)
     # adapts(ISubscriptionSupport)
-    adapts(IELANProtectedEntityClass, IBasicUser)
 
     def __init__(self, klass, user):
         DefaultSecurity.__init__(self, klass, user)
-        self.isManager = user.has_role("Manager") or user.has_role("Site Administrator")
+        self.isManager = user.has_role(
+            "Manager") or user.has_role("Site Administrator")
 
     def can_access(self):
         return self.isManager

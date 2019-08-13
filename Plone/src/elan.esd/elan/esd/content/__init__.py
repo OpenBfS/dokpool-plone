@@ -1,4 +1,5 @@
-# For backward compatibility we need to have aliases for the former types for transfers
+# For backward compatibility we need to have aliases for the former types
+# for transfers
 from docpool.event.content import dpevent
 from docpool.event.content import dpevents
 from docpool.transfers.content import dptransferfolder

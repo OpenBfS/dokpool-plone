@@ -23,7 +23,7 @@ from plone.directives import form
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IFolderBase(form.Schema, IContentBase):
@@ -31,13 +31,12 @@ class IFolderBase(form.Schema, IContentBase):
     """
 
 
+@implementer(IFolderBase)
 class FolderBase(Container, ContentBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IFolderBase)
 
     def change_state(self, id, action, backToReferer=False, REQUEST=None):
         """
@@ -49,7 +48,7 @@ class FolderBase(Container, ContentBase):
         doc = None
         try:
             doc = self._getOb(id)
-        except:
+        except BaseException:
             pass
         if doc:
             wftool = getToolByName(self, 'portal_workflow')
@@ -61,13 +60,14 @@ class FolderBase(Container, ContentBase):
                     for subdoc in doc.getDPDocuments():
                         try:
                             wftool.doActionFor(subdoc, action)
-                        except:
+                        except BaseException:
                             pass
-            except:
+            except BaseException:
                 return self.restrictedTraverse("@@view")()
             if REQUEST:
                 last_referer = REQUEST.get('HTTP_REFERER')
-                portalMessage(self, _("The document state has been changed."), "info")
+                portalMessage(
+                    self, _("The document state has been changed."), "info")
                 if backToReferer and last_referer:
                     return REQUEST.RESPONSE.redirect(last_referer)
                 else:

@@ -15,7 +15,8 @@ class ContentTypeTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(
+                self.portal, 'Journal', 'journal')
 
     def test_adding(self):
         adapter = IJournalEntryContainer(self.journal)

@@ -9,6 +9,7 @@ from zope.annotation.interfaces import IAnnotations
 
 import logging
 import subprocess
+from six.moves import range
 
 
 logger = logging.getLogger('docpool.base.pdfconversion')
@@ -56,14 +57,14 @@ def pdfobj(doc):
     pdf = None
     try:
         pdf = PdfFileReader(StringIO(data(doc)))
-    except:
+    except BaseException:
         logger.warn('Error opening pdf file, trying to fix it...')
         fixed_data = _fixPdf(data(doc))
 
         # try to reopen the pdf file again
         try:
             pdf = PdfFileReader(StringIO(fixed_data))
-        except:
+        except BaseException:
             logger.warn('This pdf file cannot be fixed.')
 
     if pdf and pdf.isEncrypted:
@@ -71,7 +72,7 @@ def pdfobj(doc):
             decrypt = pdf.decrypt('')
             if decrypt == 0:
                 logger.warn('This pdf is password protected.')
-        except:
+        except BaseException:
             logger.warn('Errors while decrypting the pdf file.')
 
     return pdf

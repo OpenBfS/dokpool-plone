@@ -16,7 +16,7 @@ def doc_apps_indexer(obj):
     res = [BASE_APP]
     try:
         res.extend(ILocalBehaviorSupport(obj).local_behaviors)
-    except:
+    except BaseException:
         pass
     res.extend(base_apps_indexer(obj)())
     return list(set(res))
@@ -26,7 +26,7 @@ def doc_apps_indexer(obj):
 def docpool_apps_indexer(obj):
     try:
         return obj.supportedApps
-    except:
+    except BaseException:
         pass
 
 
@@ -36,7 +36,7 @@ def container_apps_indexer(obj):
     try:
         res = ILocalBehaviorSupport(obj).local_behaviors
         return list(set(res))
-    except:
+    except BaseException:
         return base_apps_indexer(obj)
 
 

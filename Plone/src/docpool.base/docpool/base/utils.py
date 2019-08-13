@@ -49,7 +49,8 @@ def getAllowedDocumentTypes(self):
 
     grps = getGroupsForCurrentUser(self)
     dts = []
-    # Determine the union of the allowed documents for each of the user's groups
+    # Determine the union of the allowed documents for each of the user's
+    # groups
     if grps:
         for grp in grps:
             if not isGF or grp['id'] in self.getPhysicalPath():
@@ -108,7 +109,7 @@ def getGroupsForCurrentUser(self, user=None):
             if etypes:
                 title = grp.getProperty('title', '')
                 res.append({'id': g.id, 'title': title, 'etypes': etypes})
-        except Exception, e:
+        except Exception as e:
             log_exc(e)
     return res
 
@@ -120,13 +121,13 @@ def deleteMemberFolders(self, member_ids):
         try:
             members = self.content.Members
             members.manage_delObjects([mid.replace("-", "--")])
-        except Exception, e:
+        except Exception as e:
             log_exc(e)
             try:
                 self.portal_membership.getMembersFolder().manage_delObjects(
                     [mid.replace("-", "--")]
                 )
-            except Exception, e:
+            except Exception as e:
                 log_exc(e)
 
 
@@ -178,7 +179,7 @@ def back_references(source_object, attribute_name):
             if obj is not None and checkPermission('zope2.View', obj):
                 result.append(obj)
         return result
-    except Exception, e:
+    except Exception as e:
         log_exc(e)
         return []
 
@@ -196,7 +197,10 @@ def _cutPaste(source_obj, target_folder_obj, unique=False):
     if unique:
         if target_folder_obj.hasObject(source_obj.getId()):
             return
-    result = api.content.move(source=source_obj, target=target_folder_obj, safe_id=True)
+    result = api.content.move(
+        source=source_obj,
+        target=target_folder_obj,
+        safe_id=True)
 
 
 def getDocumentPoolSite(context):
@@ -236,7 +240,7 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
             doSomeNormallyNotAllowedStuff,
             source_folder, target_folder)
 
-    @param context: Bei uns, um die PortalWurzel zu erreichen. 
+    @param context: Bei uns, um die PortalWurzel zu erreichen.
 
     @param function: Method to be called with special priviledges
 
@@ -270,7 +274,7 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
             # Call the function
             return function(*args, **kwargs)
 
-        except:
+        except BaseException:
             # If special exception handlers are needed, run them here
             raise
     finally:
@@ -308,11 +312,12 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
                 request, filtered=False
             )
         else:  # but in all other areas
-            permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=True)
+            permitted_apps = dp_app_state.appsEffectiveForObject(
+                request, filtered=True)
         permitted_apps.sort()
         # print "getActiveAllowed ", permitted_apps
         return permitted_apps
-    except Exception, e:
+    except Exception as e:
         log_exc(e)
         return []
 

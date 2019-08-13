@@ -4,7 +4,7 @@ from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
-from zope.interface import implements
+from zope.interface import implementer
 
 
 show_content_tabs = True
@@ -20,9 +20,8 @@ actions_tabs_level = 0
 show_nonfolderish_tabs = True
 
 
+@implementer(INavigationQueryBuilder)
 class DropDownMenuQueryBuilder(SitemapQueryBuilder):
-
-    implements(INavigationQueryBuilder)
 
     def __init__(self, context):
         super(DropDownMenuQueryBuilder, self).__init__(context)
@@ -40,9 +39,8 @@ class DropDownMenuQueryBuilder(SitemapQueryBuilder):
         # print self.query
 
 
+@implementer(INavtreeStrategy)
 class DropDownMenuStrategy(DefaultNavtreeStrategy):
-
-    implements(INavtreeStrategy)
 
     def __init__(self, context, view=None):
         super(DropDownMenuStrategy, self).__init__(context, view)

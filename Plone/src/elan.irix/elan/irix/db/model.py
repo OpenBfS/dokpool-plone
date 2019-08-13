@@ -110,8 +110,10 @@ class Identification(Entity, IRIXEntity):
         Only include the normal fields, not references to subobjects or superobjects.
         """
         return [
-            fs.OrganisationReporting.label("Reporting organisation").required(),
-            fs.DatetimeOfSubmittal.label("Date & time of submittal").required(),
+            fs.OrganisationReporting.label(
+                "Reporting organisation").required(),
+            fs.DatetimeOfSubmittal.label(
+                "Date & time of submittal").required(),
             fs.ReportContext.label("Report Context")
             .dropdown(
                 options=[
@@ -159,7 +161,10 @@ class ReportTo(Entity, IRIXEntity):
     _c_max_ = 100
     OrganisationID = Field(Unicode(100), required=True)
     Through = Field(Unicode(100))
-    Identification = ManyToOne("Identification", ondelete='CASCADE', required=True)
+    Identification = ManyToOne(
+        "Identification",
+        ondelete='CASCADE',
+        required=True)
 
     def __repr__(self):
         """
@@ -178,7 +183,10 @@ class ReportBasis(Entity, IRIXEntity):
     _c_max_ = 100
     name = Field(Unicode(100), required=True)
     scheme = Field(Unicode(100))
-    Identification = ManyToOne("Identification", ondelete='CASCADE', required=True)
+    Identification = ManyToOne(
+        "Identification",
+        ondelete='CASCADE',
+        required=True)
 
     def __repr__(self):
         """
@@ -197,7 +205,10 @@ class EventIdentification(Entity, IRIXEntity):
     _c_max_ = 100
     name = Field(Unicode(100), required=True)
     Organisation = Field(Unicode(100), required=True)
-    Identification = ManyToOne("Identification", ondelete='CASCADE', required=True)
+    Identification = ManyToOne(
+        "Identification",
+        ondelete='CASCADE',
+        required=True)
 
     def __repr__(self):
         """
@@ -214,11 +225,15 @@ class Identifications(Entity, IRIXEntity):
 
     _c_min_ = 1
     _c_max_ = 1
-    PersonalContactAddresses = OneToMany('PersonalContactAddress', cascade='all')
+    PersonalContactAddresses = OneToMany(
+        'PersonalContactAddress', cascade='all')
     OrganisationContactAddresses = OneToMany(
         'OrganisationContactAddress', cascade='all'
     )  # required
-    Identification = ManyToOne("Identification", ondelete='CASCADE', required=True)
+    Identification = ManyToOne(
+        "Identification",
+        ondelete='CASCADE',
+        required=True)
 
 
 class PersonalContactAddress(Entity, IRIXEntity):
@@ -235,7 +250,10 @@ class PersonalContactAddress(Entity, IRIXEntity):
     FaxNumber = Field(Unicode(100))
     EmailAddress = Field(Unicode(100))
     Description = Field(UnicodeText)
-    Identifications = ManyToOne("Identifications", ondelete='CASCADE', required=True)
+    Identifications = ManyToOne(
+        "Identifications",
+        ondelete='CASCADE',
+        required=True)
 
     def __repr__(self):
         """
@@ -261,7 +279,10 @@ class OrganisationContactAddress(Entity, IRIXEntity):
     FaxNumber = Field(Unicode(100))
     EmailAddress = Field(Unicode(100))
     Description = Field(UnicodeText)
-    Identifications = ManyToOne("Identifications", ondelete='CASCADE', required=True)
+    Identifications = ManyToOne(
+        "Identifications",
+        ondelete='CASCADE',
+        required=True)
 
     def __repr__(self):
         """
@@ -302,7 +323,8 @@ class EventInformation(Entity, IRIXEntity):
     DateAndTimeOfEvent = Field(DateTime, required=True)
     LocationOfEvent = OneToMany('Location', cascade='all')
     ObjectInvolved = OneToMany('ObjectInvolved', cascade='all')
-    EmergencyClassification = OneToMany('EmergencyClassification', cascade='all')
+    EmergencyClassification = OneToMany(
+        'EmergencyClassification', cascade='all')
     PlantStatus = OneToMany('PlantStatus', cascade='all')
     INESClassification = OneToMany('INESClassification', cascade='all')
     EventDescription = Field(UnicodeText)
@@ -319,7 +341,10 @@ class PlantStatus(Entity, IRIXEntity):
     SpentFuelState = Field(UnicodeText)
     TrendInConditions = Field(Unicode(100))
     Description = Field(UnicodeText)
-    EventInformation = ManyToOne('EventInformation', ondelete='CASCADE', required=True)
+    EventInformation = ManyToOne(
+        'EventInformation',
+        ondelete='CASCADE',
+        required=True)
 
 
 class CoreState(Entity, IRIXEntity):
@@ -369,7 +394,10 @@ class ObjectInvolved(Entity, IRIXEntity):
     SourceCharacteristics = OneToMany('Source', cascade='all')
     ReactorCharacteristics = OneToMany('ReactorCharacteristics', cascade='all')
     Description = Field(UnicodeText)
-    EventInformation = ManyToOne('EventInformation', ondelete='CASCADE', required=True)
+    EventInformation = ManyToOne(
+        'EventInformation',
+        ondelete='CASCADE',
+        required=True)
 
 
 class Source(Entity, IRIXEntity):
@@ -382,7 +410,10 @@ class Source(Entity, IRIXEntity):
     Shielded = Field(Boolean)
     Nuclides = OneToMany('Nuclide', cascade='all')
     Description = Field(UnicodeText)
-    ObjectInvolved = ManyToOne('ObjectInvolved', ondelete='CASCADE', required=True)
+    ObjectInvolved = ManyToOne(
+        'ObjectInvolved',
+        ondelete='CASCADE',
+        required=True)
 
 
 class Nuclide(Entity, IRIXEntity):
@@ -408,7 +439,10 @@ class ReactorCharacteristics(Entity, IRIXEntity):
     ThermalPower = Field(Integer)
     ElectricalPower = Field(Integer)
     Description = Field(UnicodeText)
-    ObjectInvolved = ManyToOne('ObjectInvolved', ondelete='CASCADE', required=True)
+    ObjectInvolved = ManyToOne(
+        'ObjectInvolved',
+        ondelete='CASCADE',
+        required=True)
 
 
 class INESClassification(Entity, IRIXEntity):
@@ -421,7 +455,10 @@ class INESClassification(Entity, IRIXEntity):
     StatusOfClassification = Field(Unicode(100), required=True)
     DateTimeOfDeclaration = Field(DateTime)
     BasisForClassification = Field(UnicodeText)
-    EventInformation = ManyToOne('EventInformation', ondelete='CASCADE', required=True)
+    EventInformation = ManyToOne(
+        'EventInformation',
+        ondelete='CASCADE',
+        required=True)
 
 
 class EmergencyClassification(Entity, IRIXEntity):
@@ -434,7 +471,10 @@ class EmergencyClassification(Entity, IRIXEntity):
     EmergencyClassDescription = Field(Unicode(255))
     DateTimeOfDeclaration = Field(DateTime)
     BasisForClassification = Field(UnicodeText)
-    EventInformation = ManyToOne('EventInformation', ondelete='CASCADE', required=True)
+    EventInformation = ManyToOne(
+        'EventInformation',
+        ondelete='CASCADE',
+        required=True)
 
 
 class Location(Entity, IRIXEntity):

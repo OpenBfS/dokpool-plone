@@ -1,13 +1,13 @@
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 
 import Missing
 
 from wsapi4plone.core.interfaces import IFormatQueryResults, IScrubber
 
 
+@implementer(IFormatQueryResults)
 class FormatQueryResults(object):
-    implements(IFormatQueryResults)
 
     masking = {
         'cmf_uid': None,
@@ -28,7 +28,7 @@ class FormatQueryResults(object):
             for neuron in brain.schema():
                 if brain[neuron] == Missing.Value:
                     continue
-                elif neuron in self.masking.keys():
+                elif neuron in list(self.masking.keys()):
                     if self.masking[neuron]:
                         grey_matter[path][self.masking[neuron]] = brain[neuron]
                     else:

@@ -10,7 +10,7 @@ class ISystemAPI(Interface):
     A specification for the XML-RPC Introspection protocol, found at
     (http://xmlrpc-c.sourceforge.net/introspection.html). XML-RPC
     Introspection is a facility of XML-RPC clients and servers that enables
-    a client to learn from a server what XML-RPC methods it implements. 
+    a client to learn from a server what XML-RPC methods it implements.
     """
 
     spec_id = Attribute("The identification name of the specification.")
@@ -87,12 +87,12 @@ class IApplicationAPI(Interface):
         Delivers a schema in a dictionary format, where keys are attribute names
         and there values are a dictionary of required, type and value information.
         e.g.:
-        
+
         {'attribute_name':
             {'required': (True or False) or (1 or 0)
              'type': lines, text, boolean, etc.
              'value': ... }, ... }
-        
+
         If type is 'True', then no object exists to get a schema from. path in
         this case is the type_name. This indicates two functionalities in one method.
         """

@@ -7,8 +7,8 @@ import transaction
 
 def dpAdded(self):
     """
-    @param self: 
-    @return: 
+    @param self:
+    @return:
 
     """
     fresh = True
@@ -21,7 +21,8 @@ def dpAdded(self):
     if fresh:
         # connectTypesAndCategories(self) # TOOD: only when RODOS doctypes need to be added to ELAN categories
         # self.rodos.correctAllDocTypes() # TODO: if the run display templates contains collections
-        # with references to global doctypes, which need to be adapted to local doctypes.
+        # with references to global doctypes, which need to be adapted to local
+        # doctypes.
         createRodosGroups(self)
     self.reindexAll()
 
@@ -60,8 +61,8 @@ def dpRemoved(self):
 def createRodosGroups(docpool):
     """
     Create Group for rodos application access
-    @param self: 
-    @return: 
+    @param self:
+    @return:
     """
 
     prefix = docpool.prefix or docpool.getId()

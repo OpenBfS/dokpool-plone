@@ -9,10 +9,12 @@
 
 from itertools import chain
 from itertools import islice
-from itertools import izip
+from six.moves import map
+
 
 import random
 import textwrap
+from six.moves import zip
 
 
 leadins = """To characterize a linguistic level L,
@@ -114,8 +116,8 @@ objects = """ problems of phonemic and morphological analysis.
 def chomsky(times=1, line_length=72):
     parts = []
     for part in (leadins, subjects, verbs, objects):
-        phraselist = map(str.strip, part.splitlines())
+        phraselist = list(map(str.strip, part.splitlines()))
         random.shuffle(phraselist)
         parts.append(phraselist)
-    output = chain(*islice(izip(*parts), 0, times))
+    output = chain(*islice(zip(*parts), 0, times))
     return textwrap.fill(' '.join(output), line_length)

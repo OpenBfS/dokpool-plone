@@ -6,7 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import CatalogTool
 from Products.ZCatalog.ZCatalog import ZCatalog
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 
 
@@ -15,12 +15,11 @@ class ISRCatalog(Interface):
     """
 
 
+@implementer(ISRCatalog)
 class SRCatalog(CatalogTool):
     """
     A specific SR catalog tool
     """
-
-    implements(ISRCatalog)
 
     title = 'Situation Report Catalog'
     id = 'sr_catalog'

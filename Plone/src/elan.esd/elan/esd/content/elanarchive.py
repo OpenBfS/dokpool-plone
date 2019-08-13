@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IELANArchive(form.Schema):
@@ -25,13 +25,12 @@ class IELANArchive(form.Schema):
     """
 
 
+@implementer(IELANArchive)
 class ELANArchive(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IELANArchive)
 
     APP = ELAN_APP
 

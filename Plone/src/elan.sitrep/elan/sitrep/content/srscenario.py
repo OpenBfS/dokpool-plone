@@ -22,7 +22,7 @@ from plone.directives import form
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRScenario(form.Schema):
@@ -30,13 +30,12 @@ class ISRScenario(form.Schema):
     """
 
 
+@implementer(ISRScenario)
 class SRScenario(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRScenario)
 
     APP = ELAN_APP
 

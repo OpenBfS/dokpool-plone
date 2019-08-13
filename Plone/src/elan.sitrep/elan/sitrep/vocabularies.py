@@ -1,7 +1,7 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -69,11 +69,10 @@ def phase_title(brain):
     return brain.getObject().getPhaseTitle()
 
 
+@implementer(IVocabularyFactory)
 class PhasesVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context
@@ -90,11 +89,10 @@ class PhasesVocabulary(object):
 PhasesVocabularyFactory = PhasesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class CurrentReportsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context
@@ -114,11 +112,10 @@ def module_title(brain):
     return brain.getObject().getModuleTitle()
 
 
+@implementer(IVocabularyFactory)
 class CurrentModulesVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         return _createVocab(
@@ -146,11 +143,10 @@ def moduleFilter(context, brain):
 CurrentModulesVocabularyFactory = CurrentModulesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class PastReportsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context
@@ -166,11 +162,10 @@ class PastReportsVocabulary(object):
 PastReportsVocabularyFactory = PastReportsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ModuleTypesVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context
@@ -182,11 +177,10 @@ class ModuleTypesVocabulary(object):
 ModuleTypesVocabularyFactory = ModuleTypesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class CollectionsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context
@@ -196,11 +190,10 @@ class CollectionsVocabulary(object):
 CollectionsVocabularyFactory = CollectionsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class TextBlocksVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context

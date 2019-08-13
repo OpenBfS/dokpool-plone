@@ -27,7 +27,7 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IDocType(form.Schema, IExtendable):
@@ -44,7 +44,9 @@ class IDocType(form.Schema, IExtendable):
     )
 
     publishImmediately = schema.Bool(
-        title=_(u'label_doctype_publishimmediately', default=u'Publish immediately?'),
+        title=_(
+            u'label_doctype_publishimmediately',
+            default=u'Publish immediately?'),
         description=_(u'description_doctype_publishimmediately', default=u''),
         required=False,
         default=False,
@@ -109,21 +111,23 @@ class IDocType(form.Schema, IExtendable):
     )
 
     customViewTemplate = schema.TextLine(
-        title=_(u'label_doctype_customviewtemplate', default=u'Custom View Template'),
+        title=_(
+            u'label_doctype_customviewtemplate',
+            default=u'Custom View Template'),
         description=_(u'description_doctype_customviewtemplate', default=u''),
         required=False,
     )
 
-    form.widget(allowedDocTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
+    form.widget(
+        allowedDocTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
 
 
+@implementer(IDocType)
 class DocType(Container, Extendable):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDocType)
 
     def myDocType(self):
         """
@@ -172,5 +176,5 @@ def updated(obj, event=None):
     for doc in docs:
         try:
             doc.getObject().reindexObject()
-        except:
+        except BaseException:
             pass

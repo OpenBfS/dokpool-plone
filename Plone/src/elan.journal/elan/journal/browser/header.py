@@ -13,7 +13,7 @@ class Header(ViewletBase):
         is_journalentry = self.request['PARENTS'][0].__name__ == 'journalentry'
         try:
             image = self.context.image
-        except:
+        except BaseException:
             image = None
 
         return image is not None and not is_journalentry

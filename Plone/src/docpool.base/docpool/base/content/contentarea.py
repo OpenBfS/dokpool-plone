@@ -16,7 +16,7 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IContentArea(form.Schema):
@@ -24,13 +24,12 @@ class IContentArea(form.Schema):
     """
 
 
+@implementer(IContentArea)
 class ContentArea(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IContentArea)
 
     def myContentArea(self):
         """

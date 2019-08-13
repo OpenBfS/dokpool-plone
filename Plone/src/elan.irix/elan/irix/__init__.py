@@ -7,6 +7,7 @@ from elan.irix import config
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
 from zope.i18nmessageid import MessageFactory
+from six.moves import zip
 
 
 # Define a message factory for when this product is internationalised.

@@ -5,6 +5,7 @@
 #            http://www.condat.de
 #
 
+from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -44,7 +45,7 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.schema.interfaces import IContextSourceBinder
@@ -103,14 +104,16 @@ class IDPEvent(form.Schema, IContentBase):
     form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
     # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
-    directives.widget(ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(
+        ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
     ScenarioPhase = RelationChoice(
         title=_(u"Scenario & Phase"),
         vocabulary=u"docpool.event.vocabularies.Phases",
         required=False,
     )
 
-    directives.widget(ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(
+        ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
     ScenarioLocation = RelationChoice(
         title=_(u'Scenario location'),
         vocabulary=u"docpool.event.vocabularies.PowerStations",
@@ -130,7 +133,8 @@ class IDPEvent(form.Schema, IContentBase):
     SectorizingSampleTypes = schema.List(
         title=_(u'Sectorizing sample types'),
         required=False,
-        value_type=schema.Choice(source=u"docpool.event.vocabularies.SampleTypes"),
+        value_type=schema.Choice(
+            source=u"docpool.event.vocabularies.SampleTypes"),
     )
 
     directives.widget(
@@ -139,7 +143,8 @@ class IDPEvent(form.Schema, IContentBase):
     SectorizingNetworks = RelationList(
         title=_(u'Sectorizing networks'),
         required=False,
-        value_type=RelationChoice(source=u'docpool.event.vocabularies.Networks'),
+        value_type=RelationChoice(
+            source=u'docpool.event.vocabularies.Networks'),
     )
 
     AreaOfInterest = schema.Text(title=_(u"Area of interest"), required=False)
@@ -158,13 +163,12 @@ def initializeTimeOfEvent(data):
     return datetime.datetime.today()
 
 
+@implementer(IDPEvent)
 class DPEvent(Item, ContentBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPEvent)
 
     def print_dict(self):
         """
@@ -460,17 +464,20 @@ class DPEvent(Item, ContentBase):
         scns = None
         try:
             scns = IELANDocument(source_obj).scenarios
-        except:
-            # Object could have lost its ELAN behavior but that means we can potentially delete it
+        except BaseException:
+            # Object could have lost its ELAN behavior but that means we can
+            # potentially delete it
             scns = ['dummy']
         if len(scns) == 1:  # only the one scenario --> potential delete
             # Check for other applications than ELAN
             apps = ILocalBehaviorSupport(source_obj).local_behaviors
-            if apps and len(apps) > 1:  # There are others --> only remove ELAN behavior
+            if apps and len(
+                    apps) > 1:  # There are others --> only remove ELAN behavior
                 try:
                     apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(source_obj).local_behaviors = list(set(apps))
-                except Exception, e:
+                    ILocalBehaviorSupport(
+                        source_obj).local_behaviors = list(set(apps))
+                except Exception as e:
                     log_exc(e)
             else:  # we delete
                 p = parent(source_obj)
@@ -526,7 +533,7 @@ def eventAdded(obj, event=None):
 
 
 def addLogEntry(old_changelog, obj):
-    print obj.SectorizingNetworks
+    print(obj.SectorizingNetworks)
     mdate, userInfo = obj.modInfo()
     text = """
     <tr>
@@ -545,11 +552,11 @@ def addLogEntry(old_changelog, obj):
         obj.OperationMode,
         obj.phaseInfo(),
         ", ".join(
-            obj.SectorizingSampleTypes if obj.SectorizingSampleTypes != None else ' '
+            obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else ' '
         ),
         ", ".join(
             (n.to_object.Title() for n in obj.SectorizingNetworks)
-            if obj.SectorizingNetworks != None
+            if obj.SectorizingNetworks is not None
             else ' '
         ),
     )
@@ -621,7 +628,7 @@ def eventChanged(obj, event=None):
                         docobj.scenarios = scens
                         docobj.reindexObject()
                         # print "changed", docobj
-                except Exception, e:
+                except Exception as e:
                     log_exc(e)
 
 
@@ -642,5 +649,5 @@ def eventPublished(obj, event=None):
                 if scens and obj.getId() in scens:
                     docobj.reindexObject()
                     # print "changed", docobj
-            except Exception, e:
+            except Exception as e:
                 log_exc(e)

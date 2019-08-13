@@ -4,21 +4,20 @@ from docpool.dbaccess.interfaces import IDataSecurity
 from docpool.dbaccess.interfaces import IProtectedEntityClass
 from docpool.dbaccess.security import DefaultSecurity
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
-from zope.component import adapts
-from zope.interface import implements
+from zope.component import adapter
+from zope.interface import implementer
 
 
 class IDocpoolProtectedEntityClass(IProtectedEntityClass):
     pass
 
 
+@implementer(IDataSecurity)
+@adapter(IDocpoolProtectedEntityClass, IBasicUser)
 class ChannelSecurity(DefaultSecurity):
     """
     """
-
-    implements(IDataSecurity)
     # adapts(ISubscriptionSupport)
-    adapts(IDocpoolProtectedEntityClass, IBasicUser)
 
     def __init__(self, klass, user):
         DefaultSecurity.__init__(self, klass, user)
@@ -47,7 +46,8 @@ class ChannelSecurity(DefaultSecurity):
         # print "can_delete_all"
         # print self.user
         # print self.context
-        return self.isManager or self.user.has_role("Owner", self.getContextObj())
+        return self.isManager or self.user.has_role(
+            "Owner", self.getContextObj())
 
     def can_update(self, item):
         """

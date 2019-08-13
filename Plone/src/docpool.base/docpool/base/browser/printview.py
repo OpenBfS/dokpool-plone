@@ -3,7 +3,7 @@ from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from StringIO import StringIO
-from urllib import unquote
+from six.moves.urllib.parse import unquote
 from xhtml2pdf import pisa
 
 
@@ -22,7 +22,7 @@ class PrintView(BrowserView):
             portal = urltool.getPortalObject()
             base = portal.absolute_url()
             if uri.startswith(base):
-                response = subrequest(unquote(uri[len(base) + 1 :]))
+                response = subrequest(unquote(uri[len(base) + 1:]))
                 if response.status != 200:
                     return None
                 try:
@@ -71,7 +71,8 @@ class PrintView(BrowserView):
         # close output file
         resultFile.close()  # close output file
         now = DateTime()
-        nice_filename = '%s_%s' % (self.context.getId(), now.strftime('%Y%m%d'))
+        nice_filename = '%s_%s' % (
+            self.context.getId(), now.strftime('%Y%m%d'))
 
         if not raw:
             self.request.response.setHeader(

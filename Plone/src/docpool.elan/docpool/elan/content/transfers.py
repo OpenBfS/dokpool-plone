@@ -33,7 +33,7 @@ def ensureScenariosInTarget(original, copy):
             new_scenarios.append(id)
     try:
         copy.doc_extension(ELAN_APP).scenarios = new_scenarios
-    except Exception, e:
+    except Exception as e:
         log_exc(e)
     copy.reindexObject()
 

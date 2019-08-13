@@ -8,7 +8,7 @@ from plone.indexer import indexer
 def scenarios_indexer(obj):
     try:
         return IELANDocument(obj).scenarioIndex()
-    except:
+    except BaseException:
         pass
 
 
@@ -16,7 +16,7 @@ def scenarios_indexer(obj):
 def category_indexer(obj):
     try:
         return IELANDocument(obj).category()
-    except:
+    except BaseException:
         pass
 
 
@@ -24,5 +24,5 @@ def category_indexer(obj):
 def cat_path_indexer(obj):
     try:
         return IELANDocument(obj).cat_path()
-    except:
+    except BaseException:
         pass

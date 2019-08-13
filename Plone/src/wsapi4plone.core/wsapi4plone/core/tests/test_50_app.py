@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-import xmlrpclib
+import six.moves.xmlrpc_client
 
 from AccessControl import Unauthorized
 from zope.component import getUtility
@@ -12,6 +12,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.PloneTestCase import PloneTestCase
 
 from wsapi4plone.core.browser.app import ApplicationAPI
+import six
 
 
 class TestApp(PloneTestCase.PloneTestCase):
@@ -23,16 +24,17 @@ class TestApp(PloneTestCase.PloneTestCase):
     def test_anonymous_get_object(self):
         resp = Response(FauxResponse())
         app = ApplicationAPI(self.portal, '')
-        get_obj_data = app.get_object(['/'.join(self.folder.getPhysicalPath()), ''])
+        get_obj_data = app.get_object(
+            ['/'.join(self.folder.getPhysicalPath()), ''])
         resp.setBody(get_obj_data)
-        get_obj_resp, method = xmlrpclib.loads(resp._body)
+        get_obj_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         get_obj_results = get_obj_resp[0]
         for path in get_obj_results:
-            self.failUnless(type(get_obj_results[path][0]) == dict)
-            self.failUnless(type(get_obj_results[path][1]) == str)
+            self.failUnless(isinstance(get_obj_results[path][0], dict))
+            self.failUnless(isinstance(get_obj_results[path][1], str))
             self.failUnless(
-                type(get_obj_results[path][2]) == dict
-                or get_obj_results[path][2] == None
+                isinstance(get_obj_results[path][2], dict)
+                or get_obj_results[path][2] is None
             )
 
     def test_anonymous_private_get_object(self):
@@ -47,7 +49,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except Unauthorized:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
 
     def test_get_object_without_existing_object(self):
@@ -59,7 +61,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except NotFound:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The NotFound exception should have been raised.")
@@ -68,17 +70,18 @@ class TestApp(PloneTestCase.PloneTestCase):
         resp = Response(FauxResponse())
         app = ApplicationAPI(self.portal, '')
         self.login('test_user_1_')
-        get_obj_data = app.get_object(['/'.join(self.folder.getPhysicalPath()), ''])
+        get_obj_data = app.get_object(
+            ['/'.join(self.folder.getPhysicalPath()), ''])
         self.logout()
         resp.setBody(get_obj_data)
-        get_obj_resp, method = xmlrpclib.loads(resp._body)
+        get_obj_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         get_obj_results = get_obj_resp[0]
         for path in get_obj_results:
-            self.failUnless(type(get_obj_results[path][0]) == dict)
-            self.failUnless(type(get_obj_results[path][1]) == str)
+            self.failUnless(isinstance(get_obj_results[path][0], dict))
+            self.failUnless(isinstance(get_obj_results[path][1], str))
             self.failUnless(
-                type(get_obj_results[path][2]) == dict
-                or get_obj_results[path][2] == None
+                isinstance(get_obj_results[path][2], dict)
+                or get_obj_results[path][2] is None
             )
 
     def test_anonymous_post_object(self):
@@ -100,7 +103,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except Unauthorized:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The Unauthorized exception should have been raised.")
@@ -124,7 +127,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except NotFound:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The NotFound exception should have been raised.")
@@ -148,25 +151,25 @@ class TestApp(PloneTestCase.PloneTestCase):
         post_obj_data = app.post_object(objs)
         self.logout()
         resp.setBody(post_obj_data)
-        post_obj_resp, method = xmlrpclib.loads(resp._body)
+        post_obj_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         self.failUnlessEqual(post_obj_resp[0], ['/plone/news1'])
         self.assertTrue(self.portal['news1'])
 
     # Lots of digging required to figure out why this test
     # isn't working as it should. Manual tests of this call
     # work as expected (security prevents anonymous puts).
-    ##def test_anonymous_put_object(self):
+    # def test_anonymous_put_object(self):
     ##    app = ApplicationAPI(self.portal, '')
     ##    objs = {'front-page': [{'text': "<p>Action and reaction, ebb and flow, trial and error, change - this is the rhythm of living. Out of our over-confidence, fear; out of our fear, clearer vision, fresh hope. And out of hope, progress.</p><br /> --<i>Bruce Barton</i>"}], '/plone/events': [{'description': 'What\'s up doc?'},]}
-    ##    self.logout()
-    ##    try:
-    ##        app.put_object(objs)
-    ##    except Unauthorized:
-    ##        # The expected result.
+    # self.logout()
+    # try:
+    # app.put_object(objs)
+    # except Unauthorized:
+    # The expected result.
     ##        self.fail('this should happen?!?')
-    ##    except Exception, e:
-    ##        self.fail(e)
-    ##    else:
+    # except Exception, e:
+    # self.fail(e)
+    # else:
     ##        self.fail("The Unauthorized exception should have been raised.")
 
     def test_put_object_without_existing_object(self):
@@ -188,7 +191,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except NotFound:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The NotFound exception should have been raised.")
@@ -209,7 +212,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         put_obj_data = app.put_object(objs)
         self.logout()
         resp.setBody(put_obj_data)
-        put_obj_resp, method = xmlrpclib.loads(resp._body)
+        put_obj_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         expected_resp = ['/plone/front-page', '/plone/events']
         self.failUnlessEqual(len(put_obj_resp[0]), len(expected_resp))
         for i in put_obj_resp[0]:
@@ -233,7 +236,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except Unauthorized:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The Unauthorized exception should have been raised.")
@@ -247,7 +250,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         except NotFound:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The NotFound exception should have been raised.")
@@ -262,7 +265,7 @@ class TestApp(PloneTestCase.PloneTestCase):
         del_obj_data = app.delete_object(objs)
         self.logout()
         resp.setBody(del_obj_data)
-        del_obj_resp, method = xmlrpclib.loads(resp._body)
+        del_obj_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         self.failUnlessEqual(del_obj_resp[0], None)
         self.failUnlessEqual(self.portal.get('news1', 100), 100)
 
@@ -280,7 +283,7 @@ class TestSchema(PloneTestCase.PloneTestCase):
         except Unauthorized:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The Unauthorized exception should have been raised.")
@@ -293,7 +296,7 @@ class TestSchema(PloneTestCase.PloneTestCase):
         self.login('test_user_1_')
         schema_data = app.get_schema(type_)
         resp.setBody(schema_data)
-        schema_resp, method = xmlrpclib.loads(resp._body)
+        schema_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         self.logout()
 
         schema_results = schema_resp[0]
@@ -326,7 +329,7 @@ class TestSchema(PloneTestCase.PloneTestCase):
         }
 
         self.failUnlessEqual(len(schema_results), len(expected_results))
-        for attr, value in expected_results.iteritems():
+        for attr, value in six.iteritems(expected_results):
             self.failUnlessEqual(
                 value,
                 schema_results[attr],
@@ -343,7 +346,7 @@ class TestSchema(PloneTestCase.PloneTestCase):
         except ValueError:
             # The expected result.
             pass
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
         else:
             self.fail("The Unauthorized exception should have been raised.")
@@ -364,7 +367,7 @@ class TestSchema(PloneTestCase.PloneTestCase):
         self.login('test_user_1_')
         schema_data = app.get_schema(type_, "Members")
         resp.setBody(schema_data)
-        schema_resp, method = xmlrpclib.loads(resp._body)
+        schema_resp, method = six.moves.xmlrpc_client.loads(resp._body)
         self.logout()
 
         schema_results = schema_resp[0]
@@ -389,7 +392,7 @@ class TestSchema(PloneTestCase.PloneTestCase):
         }
 
         self.failUnlessEqual(len(schema_results), len(expected_results))
-        for attr, value in expected_results.iteritems():
+        for attr, value in six.iteritems(expected_results):
             self.failUnlessEqual(
                 value,
                 schema_results[attr],

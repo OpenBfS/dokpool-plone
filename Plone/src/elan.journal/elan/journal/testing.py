@@ -46,7 +46,8 @@ INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,), name='elan.journal:Integration'
 )
 
-FUNCTIONAL_TESTING = FunctionalTesting(bases=(FIXTURE,), name='elan.journal:Functional')
+FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FIXTURE,), name='elan.journal:Functional')
 
 ROBOT_TESTING = FunctionalTesting(
     bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),

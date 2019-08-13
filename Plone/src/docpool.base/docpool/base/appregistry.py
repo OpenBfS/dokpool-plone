@@ -80,8 +80,7 @@ def activeApps():
     Return all active applications.
     @return:
     """
-    apps = APP_REGISTRY.keys()
-    apps.sort()
+    apps = sorted(APP_REGISTRY.keys())
     return [
         (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
         for appname in apps
@@ -93,8 +92,7 @@ def extendingApps():
     Just those apps, that actually provide dynamic extensions to documents.
     @return:
     """
-    apps = APP_REGISTRY.keys()
-    apps.sort()
+    apps = sorted(APP_REGISTRY.keys())
     return [
         (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
         for appname in apps
@@ -107,8 +105,7 @@ def implicitApps():
     Return all implicit applications which do not require special activation per object.
     @return:
     """
-    apps = APP_REGISTRY.keys()
-    apps.sort()
+    apps = sorted(APP_REGISTRY.keys())
     return [
         (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
         for appname in apps
@@ -121,8 +118,7 @@ def selectableApps():
     Just those apps, that correspond to a main application, i.e. they provide behavior and they are not implicit.
     @return:
     """
-    apps = APP_REGISTRY.keys()
-    apps.sort()
+    apps = sorted(APP_REGISTRY.keys())
     return [
         (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
         for appname in apps

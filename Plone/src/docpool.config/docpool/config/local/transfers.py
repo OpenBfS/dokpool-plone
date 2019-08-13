@@ -32,14 +32,20 @@ def setTransfersLocalRoles(self):
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
-    self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
-    self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
+    self.content.Transfers.manage_setLocalRoles(
+        "%s_Receivers" % prefix, ["Owner"])
+    self.content.Transfers.manage_setLocalRoles(
+        "%s_Administrators" % prefix, ["Owner"])
     if shasattr(self, 'contentconfig', acquire=False):
         self.contentconfig.scen.manage_setLocalRoles(
             "%s_Receivers" % prefix, ["ContentReceiver"]
         )
-    self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
-    self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
+    self.config.manage_setLocalRoles(
+        "%s_Receivers" %
+        prefix, ["ContentReceiver"])
+    self.content.Groups.manage_setLocalRoles(
+        "%s_Senders" %
+        prefix, ["ContentSender"])
 
 
 def createTransfersGroups(self):
@@ -79,7 +85,7 @@ def createTransferArea(self, fresh):
         self.content.Transfers.manage_addProduct[
             'CMFPlacefulWorkflow'
         ].manage_addWorkflowPolicyConfig()
-    except BadRequest, e:
+    except BadRequest as e:
         # print type(e)
         log_exc(e)
     config = placeful_wf.getWorkflowPolicyConfig(self.content.Transfers)

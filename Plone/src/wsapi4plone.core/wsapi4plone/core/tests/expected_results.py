@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-import xmlrpclib
+import six.moves.xmlrpc_client
 
 from DateTime import DateTime
 import wsapi4plone.core as wsapi4plone
@@ -81,7 +81,7 @@ IMAGE1 = {
     'image': {
         'alt': 'image1',
         'content_type': 'image/png',
-        'data': xmlrpclib.Binary(data),
+        'data': six.moves.xmlrpc_client.Binary(data),
         'height': 10,
         'size': 262,
         'title': 'image1',

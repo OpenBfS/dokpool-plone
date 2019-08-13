@@ -19,7 +19,7 @@ from docpool.base.content.simplefolder import SimpleFolder
 from plone.dexterity.content import Container
 from plone.directives import form
 from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IGroupFolder(form.Schema, ISimpleFolder):
@@ -27,13 +27,12 @@ class IGroupFolder(form.Schema, ISimpleFolder):
     """
 
 
+@implementer(IGroupFolder)
 class GroupFolder(Container, SimpleFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IGroupFolder)
 
     def getGroupOfFolder(self):
         """

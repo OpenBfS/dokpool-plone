@@ -16,7 +16,7 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from plone.dexterity.content import Item
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IDocumentExtension(form.Schema):
@@ -24,10 +24,9 @@ class IDocumentExtension(form.Schema):
     """
 
 
+@implementer(IDocumentExtension)
 class DocumentExtension(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDocumentExtension)

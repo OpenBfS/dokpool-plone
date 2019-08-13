@@ -7,7 +7,7 @@ from wsapi4plone.core.browser.interfaces import IApplicationAPI
 from wsapi4plone.core.browser.wsapi import WSAPI
 from wsapi4plone.core.interfaces import IService
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 
 try:
@@ -16,8 +16,8 @@ except ImportError:
     pass
 
 
+@implementer(IApplicationAPI)
 class ApplicationAPI(WSAPI):
-    implements(IApplicationAPI)
 
     def _get_object_data(self, obj):
         if obj:
@@ -76,7 +76,8 @@ class ApplicationAPI(WSAPI):
         return self.context.restrictedTraverse("@@query")(q)
 
     def get_transfer_folders(self, esdpath):
-        q = {'path': esdpath + "/content/Transfers", 'portal_type': "DPTransferFolder"}
+        q = {'path': esdpath + "/content/Transfers",
+             'portal_type': "DPTransferFolder"}
         return self.context.restrictedTraverse("@@query")(q)
 
     def create_dp_document(
@@ -106,7 +107,7 @@ class ApplicationAPI(WSAPI):
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
 
-        params = {str(folderpath) + "/" + str(id.encode('utf-8')): [properties, type]}
+        params = {str(folderpath) + "/" + str(id.encode('utf-8'))                  : [properties, type]}
 
         # Delegate to post_object
         res = self.context.restrictedTraverse("@@post_object")(params)
@@ -132,7 +133,8 @@ class ApplicationAPI(WSAPI):
             str(path)
             + "/"
             + str(id.encode('utf-8')): [
-                {"title": title, "description": description, "file": (data, filename)},
+                {"title": title, "description": description,
+                    "file": (data, filename)},
                 "File",
             ]
         }
@@ -144,12 +146,14 @@ class ApplicationAPI(WSAPI):
     def upload_image(self, path, id, title, description, data, filename):
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         # print "upload_image"
-        # FIXME - unicode characters break here - use urllib to allow unicode instead of string
+        # FIXME - unicode characters break here - use urllib to allow unicode
+        # instead of string
         params = {
             str(path)
             + "/"
             + str(id.encode('utf-8')): [
-                {"title": title, "description": description, "image": (data, filename)},
+                {"title": title, "description": description,
+                    "image": (data, filename)},
                 "Image",
             ]
         }
@@ -240,10 +244,12 @@ class ApplicationAPI(WSAPI):
         #        group = api.group.create(groupname=groupname, title=title, description=description, roles=[], groups=[])
         gtool = getToolByName(self, 'portal_groups')
         # trying to add new group with prefix
-        group = gtool.addGroup("%s_%s" % (prefix, groupname), properties=groupprops)
+        group = gtool.addGroup("%s_%s" %
+                               (prefix, groupname), properties=groupprops)
         if group:
             return groupname
-        # seems that adding group was not succesfulr. asuming group already exists
+        # seems that adding group was not succesfulr. asuming group already
+        # exists
         group = api.group.get("%s_%s" % (prefix, groupname))
 
         #        if groupprops:
@@ -253,7 +259,8 @@ class ApplicationAPI(WSAPI):
         else:
             return "fail"
 
-    def put_group(self, groupname, title, description, esdpath, alloweddoctypes):
+    def put_group(self, groupname, title, description,
+                  esdpath, alloweddoctypes):
         """
         """
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
@@ -283,7 +290,8 @@ class ApplicationAPI(WSAPI):
             gtitle = group.getProperty('title') == title
             gdescription = group.getProperty('description') == description
             gesd = group.getProperty('dp') == esd.UID()
-            galloweddoctypes = group.getProperty('allowedDocTypes') == alloweddoctypes
+            galloweddoctypes = group.getProperty(
+                'allowedDocTypes') == alloweddoctypes
             if gtitle and gdescription and gesd and galloweddoctypes:
                 message = "changed"
         return message

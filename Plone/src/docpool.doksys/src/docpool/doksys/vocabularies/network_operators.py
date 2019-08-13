@@ -42,7 +42,9 @@ class NetworkOperators(object):
             VocabItem(u'Sachsen-Anhalt', _(u'Sachsen-Anhalt')),
             VocabItem(u'Thueringen', _(u'Thueringen')),
             VocabItem(u'Bundeswehr', _(u'Bundeswehr')),
-            VocabItem(u'Endlager (Bundesaufsicht)', _(u'Endlager (Bundesaufsicht)')),
+            VocabItem(
+                u'Endlager (Bundesaufsicht)',
+                _(u'Endlager (Bundesaufsicht)')),
             VocabItem(u'ZdB-Testnetz', _(u'ZdB-Testnetz')),
             VocabItem(u'BfS (Spuren)', _(u'BfS (Spuren)')),
             VocabItem(u'vTI', _(u'vTI')),

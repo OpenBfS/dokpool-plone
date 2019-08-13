@@ -11,7 +11,8 @@ setup(
     description="",
     long_description="""\
 """,
-    # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+    # Get more strings from
+    # http://www.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",

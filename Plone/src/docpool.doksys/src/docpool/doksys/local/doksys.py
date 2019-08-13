@@ -5,8 +5,8 @@ from Products.CMFCore.utils import getToolByName
 
 def dpAdded(self):
     """
-    @param self: 
-    @return: 
+    @param self:
+    @return:
 
     """
     createDoksysUsers(self)
@@ -45,8 +45,16 @@ def createDoksysGroups(self):
         'dp': self.UID(),
     }
     gtool.addGroup("%s_DoksysUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup('%s_doksysadmin' % prefix, '%s_DoksysUsers' % prefix)
-    gtool.addPrincipalToGroup('%s_doksysadmin' % prefix, '%s_Administrators' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_doksysadmin' %
+        prefix,
+        '%s_DoksysUsers' %
+        prefix)
+    gtool.addPrincipalToGroup(
+        '%s_doksysadmin' %
+        prefix,
+        '%s_Administrators' %
+        prefix)
 
     # Set Doksys role as a local role for the new group
     self.manage_setLocalRoles("%s_DoksysUsers" % prefix, ["DoksysUser"])
@@ -59,7 +67,8 @@ def createDoksysUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_doksysadmin' % prefix, 'DokSys Administrator (%s)' % title, ['Member'], []
+        '%s_doksysadmin' % prefix, 'DokSys Administrator (%s)' % title, [
+            'Member'], []
     )
     doksysadmin = mtool.getMemberById('%s_doksysadmin' % prefix)
     doksysadmin.setMemberProperties(

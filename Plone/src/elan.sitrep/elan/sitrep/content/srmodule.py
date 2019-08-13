@@ -6,6 +6,7 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
+from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -34,15 +35,15 @@ from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import safe_unicode
-from urllib import unquote
+from six.moves.urllib.parse import unquote
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 import requests
-import urlparse
+import six.moves.urllib.parse
 
 
 class ISRModule(form.Schema, IDPDocument):
@@ -74,13 +75,12 @@ class ISRModule(form.Schema, IDPDocument):
     )
 
 
+@implementer(ISRModule)
 class SRModule(Container, DPDocument):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRModule)
 
     APP = ELAN_APP
 
@@ -89,7 +89,9 @@ class SRModule(Container, DPDocument):
         df = self.defaultFilter()
         mc = df['config']
         if mc:
-            defaultTextBlocks = [tb.to_object for tb in (mc.defaultTextBlocks or [])]
+            defaultTextBlocks = [
+                tb.to_object for tb in (
+                    mc.defaultTextBlocks or [])]
             if defaultTextBlocks:
                 text = u""
                 for tb in defaultTextBlocks:
@@ -97,7 +99,10 @@ class SRModule(Container, DPDocument):
                         text = text + safe_unicode(tb.text.output)
                 self.text = RichTextValue(text, 'text/html', 'text/html')
                 return
-        self.text = RichTextValue(_(u"No information."), 'text/plain', 'text/html')
+        self.text = RichTextValue(
+            _(u"No information."),
+            'text/plain',
+            'text/html')
 
     def customMenu(self, menu_items):
         """
@@ -108,7 +113,8 @@ class SRModule(Container, DPDocument):
         """
         """
         if self.currentReport:
-            to_object_title = safe_unicode(self.currentReport.to_object.Title())
+            to_object_title = safe_unicode(
+                self.currentReport.to_object.Title())
             self_title = safe_unicode(self.Title())
 
             return "%s: %s (%s)" % (
@@ -170,7 +176,8 @@ class SRModule(Container, DPDocument):
             if p:
                 res['phase'] = p.getId()
                 res['scenario'] = p.mySRScenario().getId()
-                # my module is mandatory if the designated phase has a moduleconfig for my type
+                # my module is mandatory if the designated phase has a
+                # moduleconfig for my type
                 mcs = p.availableModuleConfigs()
                 if mcs.get(modType, None):
                     res['mandatory'] = True
@@ -242,8 +249,8 @@ class SRModule(Container, DPDocument):
             for mkbrain in mkbrains:
                 try:
                     res.extend(mkbrain.getObject().currentDocuments()[:20])
-                except Exception, e:
-                    print e
+                except Exception as e:
+                    print(e)
         if not res:
             mt = self.docTypeObj()
             if mt:
@@ -266,7 +273,10 @@ class SRModule(Container, DPDocument):
             mc = df['config']
             if mc:
                 return mc.currentTextBlocks()
-        args = {'portal_type': 'SRTextBlock', 'sort_on': 'sortable_title', 'path': path}
+        args = {
+            'portal_type': 'SRTextBlock',
+            'sort_on': 'sortable_title',
+            'path': path}
         if scenario:
             args['scenarios'] = scenario
         if phase:
@@ -283,8 +293,8 @@ class SRModule(Container, DPDocument):
                 try:
                     ids = sr_cat({'modules': mkbrain.getObject().getId()})
                     brains.extend(ids)
-                except Exception, e:
-                    print e
+                except Exception as e:
+                    print(e)
         if (scenario or phase) and module_type:
             brains = sr_cat(**args)
         return [brain.getObject() for brain in brains]
@@ -312,7 +322,7 @@ class SRModule(Container, DPDocument):
         #        print mt
         try:
             dto = self.config.mtypes[mt]
-        except Exception, e:
+        except Exception as e:
             # et can be empty
             # print e
             pass
@@ -359,7 +369,8 @@ def updated(obj, event=None):
     log("SRModule updated: %s" % str(obj))
     # TODO:
     # read text, find all image links, replace with data URLs
-    # find all html snippet links (marked with a css class), replace with html content.
+    # find all html snippet links (marked with a css class), replace with html
+    # content.
     html = obj.text and obj.text.output or ''
     if html:
         urltool = getToolByName(obj, "portal_url")
@@ -370,7 +381,7 @@ def updated(obj, event=None):
         soup = BeautifulSoup(html)
         # first we handle all images
         for img in soup.findAll('img'):
-            print img
+            print(img)
             src = img['src']
             if src.startswith("data"):
                 continue
@@ -400,9 +411,13 @@ def updated(obj, event=None):
                         anchor.replaceWith(body)
                     else:
                         anchor.replaceWith(ext_soup)
-        # finally we replace the html of the module with the manipulated version
+        # finally we replace the html of the module with the manipulated
+        # version
         new_html = str(soup)
-        obj.text = RichTextValue(safe_unicode(new_html), 'text/html', 'text/html')
+        obj.text = RichTextValue(
+            safe_unicode(new_html),
+            'text/html',
+            'text/html')
 
 
 def join(base, url):
@@ -410,7 +425,7 @@ def join(base, url):
     Join relative URL
     """
     if not (url.startswith("/") or "://" in url):
-        return urlparse.urljoin(base, url)
+        return six.moves.urllib.parse.urljoin(base, url)
     else:
         # Already absolute
         return url
@@ -422,7 +437,7 @@ def fetch_resources(portalbase, uri, resource_type="image"):
     `uri` is the href attribute from the html link element.
     """
     if uri.startswith(portalbase):
-        response = subrequest(unquote(uri[len(portalbase) + 1 :]))
+        response = subrequest(unquote(uri[len(portalbase) + 1:]))
         if response.status != 200:
             return None
         ct = response.getHeader('content-type')

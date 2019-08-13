@@ -13,9 +13,10 @@ import Acquisition
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
     def __call__(self, request, *args, **kwargs):
-        if not kwargs.has_key('args'):
+        if 'args' not in kwargs:
             kwargs['args'] = args
-        return self.pt_render(extra_context={'options': kwargs, 'request': request})
+        return self.pt_render(
+            extra_context={'options': kwargs, 'request': request})
 
 
 class FlexibleView(BrowserView):
@@ -37,7 +38,8 @@ class FlexibleView(BrowserView):
         app_defined_by_behaviour = getattr(self, "appname", None)
         if app_defined_by_behaviour:
             return app_defined_by_behaviour
-        dp_app_state = getMultiAdapter((self, self.request), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter(
+            (self, self.request), name=u'dp_app_state')
         active_apps = dp_app_state.appsActivatedByCurrentUser()
         if len(active_apps) > 0:
             return active_apps[0]

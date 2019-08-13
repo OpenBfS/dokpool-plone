@@ -22,13 +22,13 @@ class ApplicationState(BrowserView):
             dto = self.context.docTypeObj()
         else:
             dtFromRequest = request.get('form.widgets.docType', [''])
-            if type(dtFromRequest) == type(''):
+            if isinstance(dtFromRequest, type('')):
                 dtFromRequest = [dtFromRequest]
             dt = request.get('docType', dtFromRequest[0])
             if dt:
                 try:
                     dto = self.context.config.dtypes[dt]
-                except Exception, e:
+                except Exception as e:
                     # print "no doctype %s available to check specific app support" % dt
                     pass
 
@@ -36,9 +36,10 @@ class ApplicationState(BrowserView):
             try:
                 supportedByType = ILocalBehaviorSupport(dto).local_behaviors
                 # print "supportedByType ", supportedByType
-                available_apps = list(set(available_apps).intersection(supportedByType))
+                available_apps = list(
+                    set(available_apps).intersection(supportedByType))
             # Type may not support local behavior (e.g. SR module types)
-            except:
+            except BaseException:
                 pass
         available_apps.extend([app[0] for app in implicitApps()])
         # print "appsPermittedForObject ", available_apps, self.locallyAcivated()
@@ -75,7 +76,7 @@ class ApplicationState(BrowserView):
             # Administrators have every application right
             if "Manager" in roles or "Site Administrator" in roles:
                 return [app[0] for app in extendingApps()]
-        except:
+        except BaseException:
             pass
         # Others have explicit roles
         res = []
@@ -130,7 +131,7 @@ class ApplicationState(BrowserView):
         """
         try:
             return list(set(self.context.allSupportedApps()))
-        except:
+        except BaseException:
             return []
 
     @memoize

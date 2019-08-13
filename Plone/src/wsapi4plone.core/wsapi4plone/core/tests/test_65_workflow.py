@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-import xmlrpclib
+import six.moves.xmlrpc_client
 
 from zope.component import getUtility
 from ZPublisher.xmlrpc import Response
@@ -30,7 +30,7 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         wf_data = wf.get_workflow()
         resp.setBody(wf_data)
         wf_body = resp._body
-        wf_resp, method = xmlrpclib.loads(wf_body)
+        wf_resp, method = six.moves.xmlrpc_client.loads(wf_body)
         wf_results = wf_resp[0]
         # Now, get the results directly from the tool.
         portal_workflow = getToolByName(self.portal, 'portal_workflow')
@@ -55,7 +55,7 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         self.logout()
         resp.setBody(wf_data)
         wf_body = resp._body
-        wf_resp, method = xmlrpclib.loads(wf_body)
+        wf_resp, method = six.moves.xmlrpc_client.loads(wf_body)
         wf_results = wf_resp[0]
         # Now, get the results directly from the tool.
         portal_workflow = getToolByName(self.portal, 'portal_workflow')
@@ -98,7 +98,7 @@ class TestWorkflow(PloneTestCase.PloneTestCase):
         self.logout()
         resp.setBody(wf_data)
         wf_body = resp._body
-        wf_resp, method = xmlrpclib.loads(wf_body)
+        wf_resp, method = six.moves.xmlrpc_client.loads(wf_body)
         wf_results = wf_resp[0]
         # Test the result of the set_workflow call is None.
         self.failUnlessEqual(wf_results, None)

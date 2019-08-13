@@ -51,7 +51,8 @@ def createUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_dpadmin' % prefix, 'DocPool Administrator (%s)' % title, ['Member'], []
+        '%s_dpadmin' % prefix, 'DocPool Administrator (%s)' % title, [
+            'Member'], []
     )
     dpadmin = mtool.getMemberById('%s_dpadmin' % prefix)
     dpadmin.setMemberProperties(
@@ -71,7 +72,9 @@ def setLocalRoles(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     self.manage_setLocalRoles("%s_Members" % prefix, ["Reader"])
-    self.manage_setLocalRoles("%s_Administrators" % prefix, ["Site Administrator"])
+    self.manage_setLocalRoles(
+        "%s_Administrators" %
+        prefix, ["Site Administrator"])
 
 
 def createGroups(self):
@@ -101,7 +104,11 @@ def createGroups(self):
         'dp': self.UID(),
     }
     gtool.addGroup("%s_Administrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_Administrators' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_dpadmin' %
+        prefix,
+        '%s_Administrators' %
+        prefix)
 
 
 def navSettings(self):
@@ -157,5 +164,5 @@ def deleteUsers(self):
         if uid.startswith(prefix):
             try:
                 mtool.deleteMembers([uid])  # also deletes the member folders
-            except Exception, e:
+            except Exception as e:
                 log_exc(e)

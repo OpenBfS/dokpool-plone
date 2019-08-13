@@ -3,18 +3,18 @@ try:
 except ImportError:
     from zope.app.container.interfaces import IContainer
 
-from zope.component import adapts, getMultiAdapter, getUtilitiesFor, queryMultiAdapter
-from zope.interface import implements, implementsOnly, Interface
+from zope.component import adapter, getMultiAdapter, getUtilitiesFor, queryMultiAdapter
+from zope.interface import implementer, implementer_only, Interface
 
 from wsapi4plone.core.interfaces import IService, IServiceContainer
 from wsapi4plone.core.interfaces import IExtension, IServiceExtension
+import six
 
 
+@implementer(IService)
+@adapter(Interface)
 class Service(object):
     """The service base class."""
-
-    adapts(Interface)
-    implements(IService)
 
     def __init__(self, context):
         self.context = context
@@ -57,8 +57,8 @@ class Service(object):
     def set_extensions(self, params={}):
         extensions = [(n, i) for n, i in getUtilitiesFor(IServiceExtension)]
         extensions = dict(extensions)
-        for ext_name, ext_params in params.iteritems():
-            if ext_name in extensions.keys():
+        for ext_name, ext_params in six.iteritems(params):
+            if ext_name in list(extensions.keys()):
                 ext = getMultiAdapter(
                     (self, self.context), extensions[ext_name], name=ext_name
                 )
@@ -77,9 +77,9 @@ class Service(object):
         )
 
 
+@implementer_only(IServiceContainer)
+@adapter(IContainer)
 class ServiceContainer(Service):
-    adapts(IContainer)
-    implementsOnly(IServiceContainer)
 
     def delete_object(self, id_):
         raise NotImplementedError(

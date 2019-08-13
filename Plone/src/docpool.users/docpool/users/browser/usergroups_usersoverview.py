@@ -85,7 +85,8 @@ class UsersOverviewControlPanel(UOCP):
                 reset_passwords_message = _(
                     u"reset_passwords_msg",
                     default=u"The following users have been sent an e-mail with link to reset their password: ${user_ids}",
-                    mapping={u"user_ids": ', '.join(users_with_reset_passwords)},
+                    mapping={u"user_ids": ', '.join(
+                        users_with_reset_passwords)},
                 )
                 utils.addPortalMessage(reset_passwords_message)
             utils.addPortalMessage(_(u'Changes applied.'))

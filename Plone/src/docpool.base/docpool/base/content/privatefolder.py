@@ -22,7 +22,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IPrivateFolder(form.Schema, ISimpleFolder):
@@ -30,13 +30,12 @@ class IPrivateFolder(form.Schema, ISimpleFolder):
     """
 
 
+@implementer(IPrivateFolder)
 class PrivateFolder(Container, SimpleFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IPrivateFolder)
 
     def createActions(self):
         """
@@ -48,7 +47,7 @@ class PrivateFolder(Container, SimpleFolder):
             self.manage_addProduct[
                 'CMFPlacefulWorkflow'
             ].manage_addWorkflowPolicyConfig()
-        except BadRequest, e:
+        except BadRequest as e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
         placefulWfName = 'dp-private-folder'

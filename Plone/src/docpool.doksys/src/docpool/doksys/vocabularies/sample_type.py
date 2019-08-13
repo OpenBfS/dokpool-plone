@@ -44,7 +44,9 @@ class SampleType(object):
             ),
             VocabItem(u'Klaerschlamm', _(u'Klaerschlamm')),
             VocabItem(u'Verbrennungsanlage', _(u'Verbrennungsanlage')),
-            VocabItem(u'Filterstaub, Filterasche', _(u'Filterstaub, Filterasche')),
+            VocabItem(
+                u'Filterstaub, Filterasche',
+                _(u'Filterstaub, Filterasche')),
             VocabItem(u'Kesselasche, Schlacke', _(u'Kesselasche, Schlacke')),
             VocabItem(
                 u'Feste Rueckstaende aus Rauchgaswaesche',
@@ -55,7 +57,9 @@ class SampleType(object):
                 _(u'Fluessige Rueckstaende aus Rauchgaswaesche'),
             ),
             VocabItem(u'Muelldeponie', _(u'Muelldeponie')),
-            VocabItem(u'Sicker- und Grundwasser', _(u'Sicker- und Grundwasser')),
+            VocabItem(
+                u'Sicker- und Grundwasser',
+                _(u'Sicker- und Grundwasser')),
             VocabItem(u'Deponieoberflaeche', _(u'Deponieoberflaeche')),
             VocabItem(u'Kompostierungsanlage', _(u'Kompostierungsanlage')),
             VocabItem(u'Kompost', _(u'Kompost')),
@@ -122,7 +126,9 @@ class SampleType(object):
                 u'Gruenfutter (einschl. Weide- und Wiesenbewuchs)',
                 _(u'Gruenfutter (einschl. Weide- und Wiesenbewuchs)'),
             ),
-            VocabItem(u'Weide- u. Wiesenbewuchs', _(u'Weide- u. Wiesenbewuchs')),
+            VocabItem(
+                u'Weide- u. Wiesenbewuchs',
+                _(u'Weide- u. Wiesenbewuchs')),
             VocabItem(
                 u'Gruenfutterpflanzen (ausser Weide- u. Wiesenbewuchs)',
                 _(u'Gruenfutterpflanzen (ausser Weide- u. Wiesenbewuchs)'),
@@ -140,12 +146,17 @@ class SampleType(object):
                 _(u'Futterkartoffeln und Futterrueben'),
             ),
             VocabItem(
-                u'Heu, Stroh, Cobs, Trockenmehle', _(u'Heu, Stroh, Cobs, Trockenmehle')
+                u'Heu, Stroh, Cobs, Trockenmehle', _(
+                    u'Heu, Stroh, Cobs, Trockenmehle')
             ),
             VocabItem(u'Heu', _(u'Heu')),
-            VocabItem(u'Stroh, Cobs, Trockenmehle', _(u'Stroh, Cobs, Trockenmehle')),
+            VocabItem(
+                u'Stroh, Cobs, Trockenmehle',
+                _(u'Stroh, Cobs, Trockenmehle')),
             VocabItem(u'Sonstige Futtermittel', _(u'Sonstige Futtermittel')),
-            VocabItem(u'Mischfuttermittelrohstoffe', _(u'Mischfuttermittelrohstoffe')),
+            VocabItem(
+                u'Mischfuttermittelrohstoffe',
+                _(u'Mischfuttermittelrohstoffe')),
             VocabItem(u'Maisprodukte', _(u'Maisprodukte')),
             VocabItem(u'Schrote', _(u'Schrote')),
             VocabItem(u'Maniok und Tapioka', _(u'Maniok und Tapioka')),
@@ -153,17 +164,21 @@ class SampleType(object):
             VocabItem(u'Kraftfuttermischungen', _(u'Kraftfuttermischungen')),
             VocabItem(u'Gewaesser', _(u'Gewaesser')),
             VocabItem(u'Fliessgewaesser', _(u'Fliessgewaesser')),
-            VocabItem(u'Wasser in Fliessgewaessern', _(u'Wasser in Fliessgewaessern')),
+            VocabItem(
+                u'Wasser in Fliessgewaessern',
+                _(u'Wasser in Fliessgewaessern')),
             VocabItem(
                 u'Schwebstoff in Fliessgewaessern',
                 _(u'Schwebstoff in Fliessgewaessern'),
             ),
             VocabItem(
-                u'Sediment in Fliessgewaessern', _(u'Sediment in Fliessgewaessern')
+                u'Sediment in Fliessgewaessern', _(
+                    u'Sediment in Fliessgewaessern')
             ),
             VocabItem(u'Stehende Gewaesser', _(u'Stehende Gewaesser')),
             VocabItem(
-                u'Wasser in stehenden Gewaessern', _(u'Wasser in stehenden Gewaessern')
+                u'Wasser in stehenden Gewaessern', _(
+                    u'Wasser in stehenden Gewaessern')
             ),
             VocabItem(
                 u'Schwebstoffe in stehenden Gewaessern',
@@ -175,8 +190,12 @@ class SampleType(object):
             ),
             VocabItem(u'Meer', _(u'Meer')),
             VocabItem(u'Meerwasser', _(u'Meerwasser')),
-            VocabItem(u'Schwebstoffe im Meerwasser', _(u'Schwebstoffe im Meerwasser')),
-            VocabItem(u'Sedimente im Meerwasser', _(u'Sedimente im Meerwasser')),
+            VocabItem(
+                u'Schwebstoffe im Meerwasser',
+                _(u'Schwebstoffe im Meerwasser')),
+            VocabItem(
+                u'Sedimente im Meerwasser',
+                _(u'Sedimente im Meerwasser')),
             VocabItem(u'Grundwasser', _(u'Grundwasser')),
             VocabItem(
                 u'Grundwasser (nicht zur Trinkwassergewinnung)',
@@ -201,7 +220,9 @@ class SampleType(object):
                 u'Bio-Indikatoren, Tabak und Arzneimittel',
                 _(u'Bio-Indikatoren, Tabak und Arzneimittel'),
             ),
-            VocabItem(u'Pflanzliche Indikatoren', _(u'Pflanzliche Indikatoren')),
+            VocabItem(
+                u'Pflanzliche Indikatoren',
+                _(u'Pflanzliche Indikatoren')),
             VocabItem(u'Blaetter', _(u'Blaetter')),
             VocabItem(u'Nadeln', _(u'Nadeln')),
             VocabItem(u'Gras', _(u'Gras')),
@@ -223,16 +244,22 @@ class SampleType(object):
             VocabItem(u'Luft und Niederschlag', _(u'Luft und Niederschlag')),
             VocabItem(u'Luft/Gammastrahlung', _(u'Luft/Gammastrahlung')),
             VocabItem(u'Gamma-Ortsdosis', _(u'Gamma-Ortsdosis')),
-            VocabItem(u'Gamma-Ortsdosisleistung', _(u'Gamma-Ortsdosisleistung')),
-            VocabItem(u'Luft/Neutronenstrahlung', _(u'Luft/Neutronenstrahlung')),
+            VocabItem(
+                u'Gamma-Ortsdosisleistung',
+                _(u'Gamma-Ortsdosisleistung')),
+            VocabItem(
+                u'Luft/Neutronenstrahlung',
+                _(u'Luft/Neutronenstrahlung')),
             VocabItem(u'Neutronen-Ortsdosis', _(u'Neutronen-Ortsdosis')),
             VocabItem(
-                u'Neutronen-Ortsdosisleistung', _(u'Neutronen-Ortsdosisleistung')
+                u'Neutronen-Ortsdosisleistung', _(
+                    u'Neutronen-Ortsdosisleistung')
             ),
             VocabItem(u'Luft/Aerosole', _(u'Luft/Aerosole')),
             VocabItem(u'Aerosole', _(u'Aerosole')),
             VocabItem(
-                u'Bilanzierungsmessung Aerosole', _(u'Bilanzierungsmessung Aerosole')
+                u'Bilanzierungsmessung Aerosole', _(
+                    u'Bilanzierungsmessung Aerosole')
             ),
             VocabItem(
                 u'Luft/gasfoermige Komponenten (einschl. Iod)',
@@ -245,7 +272,8 @@ class SampleType(object):
                 _(u'andere gasfoermige Komponenten (ausser Iod u. Edelgase)'),
             ),
             VocabItem(
-                u'Bilanzierungsmessung Luft/Iod', _(u'Bilanzierungsmessung Luft/Iod')
+                u'Bilanzierungsmessung Luft/Iod', _(
+                    u'Bilanzierungsmessung Luft/Iod')
             ),
             VocabItem(
                 u'Bilanzierungsmessung Luft/Edelgase',
@@ -273,14 +301,16 @@ class SampleType(object):
             VocabItem(u'Niederschlagsmenge', _(u'Niederschlagsmenge')),
             VocabItem(u'Spurenmessung Luft', _(u'Spurenmessung Luft')),
             VocabItem(
-                u'Spurenmessung Luft - Aerosole', _(u'Spurenmessung Luft - Aerosole')
+                u'Spurenmessung Luft - Aerosole', _(
+                    u'Spurenmessung Luft - Aerosole')
             ),
             VocabItem(
                 u'Spurenmessung Luft - gasfoermige Komponenten (einschl. Iod)',
                 _(u'Spurenmessung Luft - gasfoermige Komponenten (einschl. Iod)'),
             ),
             VocabItem(
-                u'Spurenmessung Luft - Edelgase', _(u'Spurenmessung Luft - Edelgase')
+                u'Spurenmessung Luft - Edelgase', _(
+                    u'Spurenmessung Luft - Edelgase')
             ),
             VocabItem(u'Meteo-Umweltbereich', _(u'Meteo-Umweltbereich')),
             VocabItem(
@@ -291,7 +321,8 @@ class SampleType(object):
             VocabItem(u'Sammelmilch (Kuh-)', _(u'Sammelmilch (Kuh-)')),
             VocabItem(u'Hofmilch (Kuh-)', _(u'Hofmilch (Kuh-)')),
             VocabItem(
-                u'bearbeitete Trinkmilch (Kuh-)', _(u'bearbeitete Trinkmilch (Kuh-)')
+                u'bearbeitete Trinkmilch (Kuh-)', _(
+                    u'bearbeitete Trinkmilch (Kuh-)')
             ),
             VocabItem(
                 u'Milch anderer Tiere (Schaf, Ziege, Stute)',
@@ -363,7 +394,8 @@ class SampleType(object):
                 _(u'Beerenobst, ungeschuetzter Anbau (ausser Wald-/Wildbeeren)'),
             ),
             VocabItem(
-                u'Beerenobst, geschuetzter Anbau', _(u'Beerenobst, geschuetzter Anbau')
+                u'Beerenobst, geschuetzter Anbau', _(
+                    u'Beerenobst, geschuetzter Anbau')
             ),
             VocabItem(u'Wald-/Wildbeeren', _(u'Wald-/Wildbeeren')),
             VocabItem(u'Sonstige Obstarten', _(u'Sonstige Obstarten')),
@@ -375,7 +407,9 @@ class SampleType(object):
             VocabItem(u'Lammfleisch', _(u'Lammfleisch')),
             VocabItem(u'Haarwildfleisch', _(u'Haarwildfleisch')),
             VocabItem(u'Sonstiges Fleisch', _(u'Sonstiges Fleisch')),
-            VocabItem(u'Fisch und Meeresfruechte', _(u'Fisch und Meeresfruechte')),
+            VocabItem(
+                u'Fisch und Meeresfruechte',
+                _(u'Fisch und Meeresfruechte')),
             VocabItem(u'Suesswasserfisch', _(u'Suesswasserfisch')),
             VocabItem(u'Seefisch', _(u'Seefisch')),
             VocabItem(u'Meeresfruechte', _(u'Meeresfruechte')),
@@ -394,7 +428,8 @@ class SampleType(object):
                 _(u'Reinwasser aus ungeschuetzten Rohwasservorkommen'),
             ),
             VocabItem(
-                u'Reinwasser aus Mischrohwasser', _(u'Reinwasser aus Mischrohwasser')
+                u'Reinwasser aus Mischrohwasser', _(
+                    u'Reinwasser aus Mischrohwasser')
             ),
             VocabItem(
                 u'Rohwasser, geschuetzt, aus Grund- und Tiefenwasser (ungueltig)',
@@ -405,7 +440,8 @@ class SampleType(object):
                 _(u'Rohwasser, ungeschuetzt, aus Oberflaechenwasser (ungueltig)'),
             ),
             VocabItem(
-                u'Zisternenwasser (ungueltig)', _(u'Zisternenwasser (ungueltig)')
+                u'Zisternenwasser (ungueltig)', _(
+                    u'Zisternenwasser (ungueltig)')
             ),
             VocabItem(
                 u'Gesamtnahrung, Fertiggerichte und Getraenke',
@@ -440,7 +476,8 @@ class SampleType(object):
             VocabItem(u'Nahrungsmittelprodukte', _(u'Nahrungsmittelprodukte')),
             VocabItem(u'Kaese aus Kuhmilch', _(u'Kaese aus Kuhmilch')),
             VocabItem(
-                u'Kaese aus Milch anderer Tiere', _(u'Kaese aus Milch anderer Tiere')
+                u'Kaese aus Milch anderer Tiere', _(
+                    u'Kaese aus Milch anderer Tiere')
             ),
             VocabItem(
                 u'Milchprodukte ausser Kaese, Frischprodukte',
@@ -493,7 +530,8 @@ class SampleType(object):
                 _(u'Kulturpilzprodukte, haltbar gemacht'),
             ),
             VocabItem(
-                u'Getreideprodukte ausser Brot', _(u'Getreideprodukte ausser Brot')
+                u'Getreideprodukte ausser Brot', _(
+                    u'Getreideprodukte ausser Brot')
             ),
             VocabItem(u'Brote und Gebaecke', _(u'Brote und Gebaecke')),
             VocabItem(
@@ -501,10 +539,12 @@ class SampleType(object):
                 _(u'Obstprodukte, Frischprodukte auch tiefgefroren'),
             ),
             VocabItem(
-                u'Obstprodukte, Trockenprodukte', _(u'Obstprodukte, Trockenprodukte')
+                u'Obstprodukte, Trockenprodukte', _(
+                    u'Obstprodukte, Trockenprodukte')
             ),
             VocabItem(
-                u'Obstprodukte, haltbar gemacht', _(u'Obstprodukte, haltbar gemacht')
+                u'Obstprodukte, haltbar gemacht', _(
+                    u'Obstprodukte, haltbar gemacht')
             ),
             VocabItem(
                 u'Fleischprodukte u. Wurstwaren, ohne Wild, Frischprod. auch tiefgefr.',
@@ -529,7 +569,8 @@ class SampleType(object):
                 _(u'Fischprodukte, Frischprod. auch tiefgefr.'),
             ),
             VocabItem(
-                u'Fischprodukte, haltbar gemacht', _(u'Fischprodukte, haltbar gemacht')
+                u'Fischprodukte, haltbar gemacht', _(
+                    u'Fischprodukte, haltbar gemacht')
             ),
             VocabItem(
                 u'Meeresfruechteprodukte, Frischprod. auch tiefgefr.',
@@ -539,19 +580,24 @@ class SampleType(object):
                 u'Meeresfruechteprodukte, haltbar gemacht',
                 _(u'Meeresfruechteprodukte, haltbar gemacht'),
             ),
-            VocabItem(u'Sonstige Nahrungsmittel', _(u'Sonstige Nahrungsmittel')),
+            VocabItem(
+                u'Sonstige Nahrungsmittel',
+                _(u'Sonstige Nahrungsmittel')),
             VocabItem(u'Huehnereier', _(u'Huehnereier')),
             VocabItem(u'Honig', _(u'Honig')),
             VocabItem(u'weitere Nahrungsmittel', _(u'weitere Nahrungsmittel')),
             VocabItem(
-                u'Umweltbereiche fuer Stoerfall', _(u'Umweltbereiche fuer Stoerfall')
+                u'Umweltbereiche fuer Stoerfall', _(
+                    u'Umweltbereiche fuer Stoerfall')
             ),
             VocabItem(u'Luft - Stoerfall', _(u'Luft - Stoerfall')),
             VocabItem(
                 u'Luft/aeussere Strahlung (Gamma-ODL) - Stoerfall',
                 _(u'Luft/aeussere Strahlung (Gamma-ODL) - Stoerfall'),
             ),
-            VocabItem(u'Luft/Aerosole - Stoerfall', _(u'Luft/Aerosole - Stoerfall')),
+            VocabItem(
+                u'Luft/Aerosole - Stoerfall',
+                _(u'Luft/Aerosole - Stoerfall')),
             VocabItem(
                 u'Luft/gasfoermiges Iod - Stoerfall',
                 _(u'Luft/gasfoermiges Iod - Stoerfall'),
@@ -561,7 +607,8 @@ class SampleType(object):
                 _(u'Luft/aeussere Strahlung (Gamma-OD) -Stoerfall'),
             ),
             VocabItem(
-                u'Boden/-Oberflaeche - Stoerfall', _(u'Boden/-Oberflaeche - Stoerfall')
+                u'Boden/-Oberflaeche - Stoerfall', _(
+                    u'Boden/-Oberflaeche - Stoerfall')
             ),
             VocabItem(
                 u'Bodenoberflaeche (unversiegelt, in-situ, flaechenbezogene Aktivitaet) - Stoerfall',
@@ -577,7 +624,8 @@ class SampleType(object):
                 ),
             ),
             VocabItem(
-                u'Pflanzen/Bewuchs - Stoerfall', _(u'Pflanzen/Bewuchs - Stoerfall')
+                u'Pflanzen/Bewuchs - Stoerfall', _(
+                    u'Pflanzen/Bewuchs - Stoerfall')
             ),
             VocabItem(
                 u'Weide- und Wiesenbewuchs - Stoerfall',
@@ -603,15 +651,23 @@ class SampleType(object):
                 u'Oberflaechenwasser (Viehtraenke) - Stoerfall',
                 _(u'Oberflaechenwasser (Viehtraenke) - Stoerfall'),
             ),
-            VocabItem(u'Rindfleisch - Stoerfall', _(u'Rindfleisch - Stoerfall')),
-            VocabItem(u'Kalbfleisch - Stoerfall', _(u'Kalbfleisch - Stoerfall')),
             VocabItem(
-                u'Schweinefleisch - Stoerfall', _(u'Schweinefleisch - Stoerfall')
+                u'Rindfleisch - Stoerfall',
+                _(u'Rindfleisch - Stoerfall')),
+            VocabItem(
+                u'Kalbfleisch - Stoerfall',
+                _(u'Kalbfleisch - Stoerfall')),
+            VocabItem(
+                u'Schweinefleisch - Stoerfall', _(
+                    u'Schweinefleisch - Stoerfall')
             ),
             VocabItem(
-                u'Gefluegelfleisch - Stoerfall', _(u'Gefluegelfleisch - Stoerfall')
+                u'Gefluegelfleisch - Stoerfall', _(
+                    u'Gefluegelfleisch - Stoerfall')
             ),
-            VocabItem(u'Lammfleisch - Stoerfall', _(u'Lammfleisch - Stoerfall')),
+            VocabItem(
+                u'Lammfleisch - Stoerfall',
+                _(u'Lammfleisch - Stoerfall')),
             VocabItem(
                 u'Blattgemuese, ungeschuetzter Anbau - Stoerfall',
                 _(u'Blattgemuese, ungeschuetzter Anbau - Stoerfall'),
@@ -646,7 +702,8 @@ class SampleType(object):
                 _(u'Beerenobst (ausser Wald-/Wildbeeren) - Stoerfall'),
             ),
             VocabItem(
-                u'Sonstige Obstarten - Stoerfall', _(u'Sonstige Obstarten - Stoerfall')
+                u'Sonstige Obstarten - Stoerfall', _(
+                    u'Sonstige Obstarten - Stoerfall')
             ),
             VocabItem(u'Sonstige Mediengruppen', _(u'Sonstige Mediengruppen')),
             VocabItem(u'Baustoffe', _(u'Baustoffe')),

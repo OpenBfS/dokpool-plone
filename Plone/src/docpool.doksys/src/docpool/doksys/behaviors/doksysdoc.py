@@ -20,7 +20,8 @@ from zope.interface import provider
 
 @provider(IFormFieldProvider)
 class IDoksysDoc(IDocumentExtension):
-    # dexteritytextindexer.searchable('NetworkOperator')  if a field is supposed to be fulltext searchable
+    # dexteritytextindexer.searchable('NetworkOperator')  if a field is
+    # supposed to be fulltext searchable
 
     NetworkOperator = schema.Choice(
         title=_(u'label_doksys_network_operator', default=u'Network Operator'),
@@ -50,7 +51,9 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(LegalBase='docpool.doksys.AccessDoksys')
 
     MeasuringProgram = schema.Choice(
-        title=_(u'label_doksys_measuring_program', default=u'Measuring Program'),
+        title=_(
+            u'label_doksys_measuring_program',
+            default=u'Measuring Program'),
         description=_(u'description_doksys_measuring_program', default=u''),
         source="docpool.doksys.MeasuringProgram",
         required=False,
@@ -88,7 +91,9 @@ class IDoksysDoc(IDocumentExtension):
             u'label_doksys_trajectory_start_location',
             default=u'Trajectory Start Location',
         ),
-        description=_(u'description_doksys_trajectory_start_location', default=u''),
+        description=_(
+            u'description_doksys_trajectory_start_location',
+            default=u''),
         required=False,
     )
     read_permission(TrajectoryStartLocation='docpool.doksys.AccessDoksys')
@@ -98,7 +103,9 @@ class IDoksysDoc(IDocumentExtension):
         title=_(
             u'label_doksys_trajectory_end_location', default=u'Trajectory End Location'
         ),
-        description=_(u'description_doksys_trajectory_end_location', default=u''),
+        description=_(
+            u'description_doksys_trajectory_end_location',
+            default=u''),
         required=False,
     )
     read_permission(TrajectoryEndLocation='docpool.doksys.AccessDoksys')
@@ -108,14 +115,18 @@ class IDoksysDoc(IDocumentExtension):
         title=_(
             u'label_doksys_trajectory_start_time', default=u'Trajectory Start Time'
         ),
-        description=_(u'description_doksys_trajectory_start_time', default=u''),
+        description=_(
+            u'description_doksys_trajectory_start_time',
+            default=u''),
         required=False,
     )
     read_permission(TrajectoryStartTime='docpool.doksys.AccessDoksys')
     write_permission(TrajectoryStartTime='docpool.doksys.AccessDoksys')
 
     TrajectoryEndTime = schema.Datetime(
-        title=_(u'label_doksys_trajectory_end_time', default=u'Trajectory End Time'),
+        title=_(
+            u'label_doksys_trajectory_end_time',
+            default=u'Trajectory End Time'),
         description=_(u'description_doksys_trajectory_end_time', default=u''),
         required=False,
     )
@@ -168,7 +179,9 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(SampleType='docpool.doksys.AccessDoksys')
 
     MeasurementCategory = schema.Choice(
-        title=_(u'label_doksys_measurement_category', default=u'Measurement Category'),
+        title=_(
+            u'label_doksys_measurement_category',
+            default=u'Measurement Category'),
         description=_(u'description_doksys_measurement_category', default=u''),
         source="docpool.doksys.MeasurementCategory",
         required=False,
@@ -327,7 +340,9 @@ class DoksysDoc(FlexibleView):
         context = aq_inner(self.context)
         context.TrajectoryStartTime = value
 
-    TrajectoryStartTime = property(_get_TrajectoryStartTime, _set_TrajectoryStartTime)
+    TrajectoryStartTime = property(
+        _get_TrajectoryStartTime,
+        _set_TrajectoryStartTime)
 
     def _get_TrajectoryEndTime(self):
         return self.context.TrajectoryEndTime
@@ -338,7 +353,9 @@ class DoksysDoc(FlexibleView):
         context = aq_inner(self.context)
         context.TrajectoryEndTime = value
 
-    TrajectoryEndTime = property(_get_TrajectoryEndTime, _set_TrajectoryEndTime)
+    TrajectoryEndTime = property(
+        _get_TrajectoryEndTime,
+        _set_TrajectoryEndTime)
 
     def _get_Status(self):
         return self.context.Status
@@ -404,7 +421,9 @@ class DoksysDoc(FlexibleView):
         context = aq_inner(self.context)
         context.MeasurementCategory = value
 
-    MeasurementCategory = property(_get_MeasurementCategory, _set_MeasurementCategory)
+    MeasurementCategory = property(
+        _get_MeasurementCategory,
+        _set_MeasurementCategory)
 
     def _get_Duration(self):
         return self.context.Duration

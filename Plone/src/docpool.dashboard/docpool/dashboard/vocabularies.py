@@ -1,17 +1,16 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
+@implementer(IVocabularyFactory)
 class DashboardCollectionsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         # print context

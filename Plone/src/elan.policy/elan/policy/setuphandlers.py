@@ -27,7 +27,7 @@ def _addPlugin(pas, pluginid='trusted_proxy_auth'):
     try:
         from pas.plugins.trustedproxyauth.plugin import TrustedProxyAuthPlugin
         from ZODB.PersistentList import PersistentList
-    except:
+    except BaseException:
         return PAS_TITLE + " product not installed"
     installed = pas.objectIds()
     if pluginid in installed:

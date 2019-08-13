@@ -50,7 +50,8 @@ def cpFilter(context=None):
     if shasattr(self, "myDPTransferFolder", acquire=True):
         c_field = ffs.channel_id.with_renderer(HiddenFieldRenderer)
     else:
-        c_field = ffs.channel.with_null_as(('---', '')).dropdown(multiple=True, size=5)
+        c_field = ffs.channel.with_null_as(
+            ('---', '')).dropdown(multiple=True, size=5)
     ffs.configure(
         include=[
             c_field,
@@ -72,7 +73,7 @@ def cpListe(context=None):
             """render html for read only mode"""
             # print self._value
             # print self.dts
-            if self._value and self.dts.has_key(self._value):
+            if self._value and self._value in self.dts:
                 return u"%s (%s)" % (
                     safe_unicode(self.dts[self._value]),
                     safe_unicode(self._value),
@@ -89,7 +90,8 @@ def cpListe(context=None):
         for dt in dts:
             DTRenderer.dts[safe_unicode(dt[0])] = dt[1]
 
-        # Here me make sure that all current matching document types are in the database.
+        # Here me make sure that all current matching document types are in the
+        # database.
         obj.ensureMatchingDocumentTypesInDatabase()
     else:
         DTRenderer.dts = {}
@@ -103,7 +105,8 @@ def cpListe(context=None):
             g.perm.label(_("Permission")).dropdown(perm_options),
         ]
     )
-    return {'form': g, 'importRestricted': True, 'sortNames': ["doc_type", "perm"]}
+    return {'form': g, 'importRestricted': True,
+            'sortNames': ["doc_type", "perm"]}
 
 
 def cpEdit(context=None):
@@ -130,7 +133,10 @@ def cFilter(context=None):
     ffs = FieldSet(Channel, session=__session__)
     ffs.permissions.is_collection = True
     ffs.configure(
-        include=[ffs.title.label(_(u"Title")), ffs.permissions.label(_(u"Permissions"))]
+        include=[
+            ffs.title.label(
+                _(u"Title")), ffs.permissions.label(
+                _(u"Permissions"))]
     )
     return {'form': ffs}
 
@@ -138,9 +144,13 @@ def cFilter(context=None):
 def cListe(context=None):
     g = Grid(Channel, session=__session__)
     g.configure(
-        include=[g.title.label(_(u"Title")), g.timestamp.label(_(u"Timestamp"))]
+        include=[
+            g.title.label(
+                _(u"Title")), g.timestamp.label(
+                _(u"Timestamp"))]
     )
-    return {'form': g, 'importRestricted': True, 'sortNames': ["title", "timestamp"]}
+    return {'form': g, 'importRestricted': True,
+            'sortNames': ["title", "timestamp"]}
 
 
 registerEntityConfig(

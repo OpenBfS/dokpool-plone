@@ -19,7 +19,7 @@ from plone.dexterity.content import Item
 from plone.directives import form
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IDashboard(form.Schema):
@@ -39,16 +39,16 @@ class IDashboard(form.Schema):
         ),
     )
 
-    form.widget(dbCollections='z3c.form.browser.select.CollectionSelectFieldWidget')
+    form.widget(
+        dbCollections='z3c.form.browser.select.CollectionSelectFieldWidget')
 
 
+@implementer(IDashboard)
 class Dashboard(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDashboard)
 
     def currentDocuments(self):
         """

@@ -4,8 +4,8 @@ from Products.CMFCore.utils import getToolByName
 
 def dpAdded(self):
     """
-    @param self: 
-    @return: 
+    @param self:
+    @return:
 
     """
     createExampleGroups(self)
@@ -24,8 +24,8 @@ def dpRemoved(self):
 def createExampleGroups(self):
     """
     Create Group for example application access
-    @param self: 
-    @return: 
+    @param self:
+    @return:
     """
 
     prefix = self.prefix or self.getId()
@@ -40,7 +40,11 @@ def createExampleGroups(self):
         'dp': self.UID(),
     }
     gtool.addGroup("%s_ExampleUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ExampleUsers' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_dpadmin' %
+        prefix,
+        '%s_ExampleUsers' %
+        prefix)
 
     # Set Example role as a local role for the new group
     self.manage_setLocalRoles("%s_ExampleUsers" % prefix, ["ExampleUser"])

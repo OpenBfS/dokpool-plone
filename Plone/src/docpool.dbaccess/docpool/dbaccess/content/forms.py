@@ -24,6 +24,7 @@ from ZTUtils import make_query
 
 # from elixir import *
 import os
+import six
 
 
 config.date_format = '%d.%m.%Y'
@@ -109,7 +110,9 @@ class BatchBase(object):
         template_id = self.__name__
         if template_id == 'view':
             template_id = None
-        qry = make_query(self.request.form, {'sort_on': column, 'sort_order': so})
+        qry = make_query(
+            self.request.form, {
+                'sort_on': column, 'sort_order': so})
         if template_id:
             return "%s/%s?%s" % (self.context.absolute_url(), template_id, qry)
         else:
@@ -175,14 +178,15 @@ class ListView(BatchBase):
             hasattr(self, "filter") and self.filter or fdef.get('filter', None)
         )
         self.has_create = (
-            self.tool.create_def(self.typ, security=self.security)['form'] is not None
+            self.tool.create_def(self.typ, security=self.security)[
+                'form'] is not None
         )
 
     def checkAccess(self):
         """
         """
         if not self.can_access:
-            raise Unauthorized, "Keine Berechtigung fuer diesen Typ"
+            raise Unauthorized("Keine Berechtigung fuer diesen Typ")
         else:
             return True
 
@@ -203,9 +207,9 @@ class ListView(BatchBase):
         for k in of.keys():
             if of[k]:
                 fname = k.split('-')[-1]
-                if type(of[k]) == type([]):
+                if isinstance(of[k], type([])):
                     res.append((fname, of[k]))
-                elif type(of[k]) == int:
+                elif isinstance(of[k], int):
                     res.append((fname, of[k]))
                 elif len(of[k]) > 0:
                     res.append((fname, '%' + of[k].replace('*', '%') + '%'))
@@ -236,7 +240,8 @@ class ListView(BatchBase):
         b = []
         if self.security.can_delete_all():
             b.append(
-                ('delete', _(u'Delete'), 'return ' + _('sicherheitsabfrage') + '();')
+                ('delete', _(u'Delete'), 'return ' +
+                 _('sicherheitsabfrage') + '();')
             )
         if self.has_create and self.security.can_create():
             b.append(('create', _(u'New'), ''))
@@ -254,7 +259,8 @@ class ListView(BatchBase):
 
     #    @memoize
     def getSorting(self):
-        sort_on = self.request.form.get('sort_on') or self.tool.sort_default(self.typ)
+        sort_on = self.request.form.get(
+            'sort_on') or self.tool.sort_default(self.typ)
         sort_order = self.request.form.get('sort_order') or 'ascending'
         return {'sort_on': sort_on, 'sort_order': sort_order}
 
@@ -277,8 +283,10 @@ class ListView(BatchBase):
         """
         """
         res = []
-        collection = self.tool.list_def(self.typ)['form'].bind(self.getBatchObj())
-        for field in collection.render_fields.itervalues():
+        collection = self.tool.list_def(
+            self.typ)['form'].bind(
+            self.getBatchObj())
+        for field in six.itervalues(collection.render_fields):
             if field.key not in ['editlink', 'check']:
                 res.append(field.key)
         return res
@@ -336,7 +344,7 @@ class EditView(object):
         self.can_delete = False
         if self.create:
             if not self.security.can_create():
-                raise Unauthorized, "Keine Berechtigung zum Erzeugen"
+                raise Unauthorized("Keine Berechtigung zum Erzeugen")
             else:
                 defs = self.tool.create_def(
                     self.typ, readonly=self.readonly, security=self.security
@@ -366,7 +374,9 @@ class EditView(object):
             self.prolog = defs.get('prolog', None)
             self.epilog = defs.get('epilog', None)
             self.form = defs['form']
-            self.allowMinor = (not self.readonly) and defs.get('allowMinor', False)
+            self.allowMinor = (
+                not self.readonly) and defs.get(
+                'allowMinor', False)
             # print self.allowMinor
             if IAuditing.providedBy(
                 self.sd
@@ -388,7 +398,8 @@ class EditView(object):
         self.defaults = defs.get('defaults', None)
         self.can_access = self.security.can_access()
         if not self.can_access:
-            raise Unauthorized, "Keine Berechtigung zum Zugriff auf diese Daten"
+            raise Unauthorized(
+                "Keine Berechtigung zum Zugriff auf diese Daten")
 
     @memoize
     def _getObjectFields(self):
@@ -397,7 +408,11 @@ class EditView(object):
     def herkunft(self):
         """
         """
-        h = self.request.get('herkunft', None) or self.request.get('HTTP_REFERER', None)
+        h = self.request.get(
+            'herkunft',
+            None) or self.request.get(
+            'HTTP_REFERER',
+            None)
         if h and h.find('typ=') == -1:
             h = "%s?typ=%s" % (h, self.typ)
         return h
@@ -406,7 +421,7 @@ class EditView(object):
         """
         """
         if not self.can_access:
-            raise Unauthorized, "Keine Berechtigung fuer diesen Typ"
+            raise Unauthorized("Keine Berechtigung fuer diesen Typ")
         else:
             return True
 
@@ -456,12 +471,13 @@ class EditView(object):
                         )
                 else:
                     for key in of:
-                        if hasattr(self.sd, key) and getattr(self.sd, key) is None:
+                        if hasattr(self.sd, key) and getattr(
+                                self.sd, key) is None:
                             setattr(self.sd, key, of[key])
             try:
                 bf = form.bind(self.sd, **kwargs)
                 html = bf.render()
-            except Exception, e:  # Hier gibt es leider einen Unterschied zwischen Elixir Entities und gemappten SA Klassen
+            except Exception as e:  # Hier gibt es leider einen Unterschied zwischen Elixir Entities und gemappten SA Klassen
                 log_exc(e)
                 html = form.bind(self.sd(), **kwargs).render()
             return pre + html
@@ -489,7 +505,7 @@ class EditView(object):
                     setattr(self.sd, key, of[key])
         try:
             return form.bind(self.sd, **kwargs).render()
-        except Exception, e:  # Hier gibt es leider einen Unterschied zwischen Elixir Entities und gemappten SA Klassen
+        except Exception as e:  # Hier gibt es leider einen Unterschied zwischen Elixir Entities und gemappten SA Klassen
             log_exc(e)
             return form.bind(self.sd(), **kwargs).render()
 
@@ -538,7 +554,8 @@ class StructuredEditView(EditView):
         pp = self.parentPath()
         ap = self.context.absolute_url()
         if len(pp) > 0:
-            h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (ap, self.typ, self.pk, str(pp))
+            h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (
+                ap, self.typ, self.pk, str(pp))
         else:
             h = "%s/struct_edit?typ=%s&pk=%s" % (ap, self.typ, self.pk)
         return h
@@ -550,7 +567,8 @@ class StructuredEditView(EditView):
         ap = self.context.absolute_url()
         if len(pp) > 0:
             last = pp.pop()
-            h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (ap, last[0], last[1], str(pp))
+            h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (
+                ap, last[0], last[1], str(pp))
         else:
             h = "%s/struct_edit?typ=%s&pk=%s" % (ap, self.typ, self.pk)
         return h
@@ -619,7 +637,7 @@ class DateTimeAsTextRenderer(FieldRenderer):
         return value
 
     def _serialized_value(self):
-        if self.params.has_key(self.name):
+        if self.name in self.params:
             v = self.params.getone(self.name)
             if v:
                 v1 = v.split(' ')
@@ -647,7 +665,7 @@ class DateTimeAsTextRenderer(FieldRenderer):
 
 class DateAsTextRenderer(FieldRenderer):
     def _serialized_value(self):
-        if self.params.has_key(self.name):
+        if self.name in self.params:
             v = self.params.getone(self.name)
             v2 = v.split('.')
             v2.reverse()
@@ -675,11 +693,11 @@ class DateAsTextRenderer(FieldRenderer):
 
 class DateRangeRenderer(FieldRenderer):
     def _serialized_value(self):
-        if self.params.has_key("%s__von" % self.name):
+        if "%s__von" % self.name in self.params:
             von = self.params.getone("%s__von" % self.name)
         else:
             von = ''
-        if self.params.has_key("%s__bis" % self.name):
+        if "%s__bis" % self.name in self.params:
             bis = self.params.getone("%s__bis" % self.name)
         else:
             bis = ''
@@ -740,7 +758,12 @@ class JaNeinRadioSet(RadioSet):
                 **kwargs
             )
             label = h.label(choice_name, for_=choice_id)
-            self.radios.append(h.literal(self.format % dict(field=radio, label=label)))
+            self.radios.append(
+                h.literal(
+                    self.format %
+                    dict(
+                        field=radio,
+                        label=label)))
         return h.tag("br").join(self.radios)
 
     def render(self, **kwargs):

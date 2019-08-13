@@ -70,7 +70,8 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
         for app_name in app_names:
             if app_name == 'base':
                 if self.isAdmin():
-                    app_title = utranslate("docpool.menu", "Docpool Base", context=self)
+                    app_title = utranslate(
+                        "docpool.menu", "Docpool Base", context=self)
                 else:
                     continue
             else:
@@ -113,7 +114,8 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
     return apps_root
 
 
-def getFoldersForCurrentUser(self, user=None, queryBuilderClass=None, strategy=None):
+def getFoldersForCurrentUser(
+        self, user=None, queryBuilderClass=None, strategy=None):
     """
     example = {'getURL': 'http://localhost:8081/Plone/basics', 'Title': 'Basics', 'creation_date': '2012-06-28T16:31:29+02:00', 'item_icon': None, 'id': 'basics', 'no_display': False, 'show_children': True, 'UID': '00a874166069411189bbc0c86c9caab7', 'normalized_review_state': 'published', 'depth': 1, 'children': [], 'currentItem': False, 'review_state': 'published', 'getRemoteUrl': None, 'portal_type': 'Folder', 'path': '/Plone/basics', 'Description': '', 'useRemoteUrl': False, 'normalized_id': 'basics', 'normalized_portal_type': 'folder', 'Creator': 'admin', 'absolute_url': 'http://localhost:8081/Plone/basics', 'item': None, 'currentParent': False, 'link_remote': None}
     """
@@ -165,7 +167,7 @@ def getFoldersForCurrentUser(self, user=None, queryBuilderClass=None, strategy=N
                     strategy=strategy,
                 )
                 #                print gft
-                if gft.has_key("show_children"):
+                if "show_children" in gft:
                     gft['item_class'] = "personal"
                     gres.append(gft)
     res.extend(gres)
@@ -177,9 +179,8 @@ def getFoldersForCurrentUser(self, user=None, queryBuilderClass=None, strategy=N
             strategy=strategy,
         )
     ]
-    if mfolder and not mfolder[0].has_key(
-        "show_children"
-    ):  # A folder for the user has not been found, e.g. in archive
+    # A folder for the user has not been found, e.g. in archive
+    if mfolder and "show_children" not in mfolder[0]:
         #        print "has no user folder"
         mfolder = []
     else:
@@ -210,7 +211,8 @@ def getFoldersForCurrentUser(self, user=None, queryBuilderClass=None, strategy=N
 #             log_exc(e)
 
 
-def _folderTree(context, path, filter={}, queryBuilderClass=None, strategy=None):
+def _folderTree(context, path, filter={},
+                queryBuilderClass=None, strategy=None):
     """Return tree of tabs based on content structure"""
 
     from docpool.menu.browser.menu import DropDownMenuQueryBuilder
@@ -219,15 +221,24 @@ def _folderTree(context, path, filter={}, queryBuilderClass=None, strategy=None)
         queryBuilder = DropDownMenuQueryBuilder(context)
         query = queryBuilder()
         query.update(filter)
-        query['path'] = {'query': path, 'depth': 1, 'navtree': 1, 'navtree_start': 2}
+        query['path'] = {
+            'query': path,
+            'depth': 1,
+            'navtree': 1,
+            'navtree_start': 2}
     else:
         queryBuilder = queryBuilderClass(context)
         query = queryBuilder()
-        query['path'] = {'query': path, 'depth': 1, 'navtree': 1, 'navtree_start': 2}
+        query['path'] = {
+            'query': path,
+            'depth': 1,
+            'navtree': 1,
+            'navtree_start': 2}
     if not strategy:
         strategy = getMultiAdapter((context, None), INavtreeStrategy)
     strategy.rootPath = path
-    return buildFolderTree(context, obj=context, query=query, strategy=strategy)
+    return buildFolderTree(context, obj=context,
+                           query=query, strategy=strategy)
 
 
 def adaptQuery(query, context):

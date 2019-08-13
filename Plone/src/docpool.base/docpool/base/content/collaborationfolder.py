@@ -26,7 +26,7 @@ from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ICollaborationFolder(form.Schema, ISimpleFolder):
@@ -42,17 +42,17 @@ class ICollaborationFolder(form.Schema, ISimpleFolder):
             u'description_collaborationfolder_allowedpartnerdoctypes', default=u''
         ),
         required=True,
-        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
+        value_type=schema.Choice(
+            source="docpool.base.vocabularies.GroupDocType"),
     )
 
 
+@implementer(ICollaborationFolder)
 class CollaborationFolder(Container, SimpleFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ICollaborationFolder)
 
     def createActions(self):
         """
@@ -64,7 +64,7 @@ class CollaborationFolder(Container, SimpleFolder):
             self.manage_addProduct[
                 'CMFPlacefulWorkflow'
             ].manage_addWorkflowPolicyConfig()
-        except BadRequest, e:
+        except BadRequest as e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
         placefulWfName = 'dp-collaboration-folder'

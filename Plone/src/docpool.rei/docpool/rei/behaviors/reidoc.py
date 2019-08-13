@@ -37,7 +37,8 @@ class IREIDoc(IDocumentExtension):
     MstId = schema.List(
         title=_(u'label_rei_MstId', default=u'Messstellen-ID'),
         description=_(u'description_rei_MstId', default=u''),
-        value_type=schema.Choice(source="docpool.rei.vocabularies.MstVocabulary"),
+        value_type=schema.Choice(
+            source="docpool.rei.vocabularies.MstVocabulary"),
         required=False,
     )
     read_permission(MstId='docpool.rei.AccessRei')
@@ -58,7 +59,8 @@ class IREIDoc(IDocumentExtension):
     Origin = schema.List(
         title=_(u'label_rei_Origin', default=u'Ersteller'),
         description=_(u'description_rei_Origin', default=u''),
-        value_type=schema.Choice(source=u"docpool.rei.vocabularies.OriginVocabulary"),
+        value_type=schema.Choice(
+            source=u"docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
     )
     read_permission(Origin='docpool.rei.AccessRei')
@@ -96,7 +98,9 @@ class IREIDoc(IDocumentExtension):
     dexteritytextindexer.searchable('Media')
 
     NuclearInstallation = schema.Choice(
-        title=_(u'label_rei_NuclearInstallation', default=u'NuclearInstallation'),
+        title=_(
+            u'label_rei_NuclearInstallation',
+            default=u'NuclearInstallation'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
         source="docpool.rei.vocabularies.NuclearInstallationVocabulary",
         required=True,

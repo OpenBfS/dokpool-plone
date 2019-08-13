@@ -19,5 +19,5 @@ try:
         else:
             return False
     return True
-except Exception, e:
+except Exception as e:
     return False

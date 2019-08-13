@@ -34,7 +34,8 @@ class BaseWriteExension(object):
         else:
             raise NotImplementedError(
                 "%s does not implement the set_extension method. This "
-                "extension has adapted %s and %s." % (name, self.service, self.context)
+                "extension has adapted %s and %s." % (
+                    name, self.service, self.context)
             )
 
     def get_skeleton(self):

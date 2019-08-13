@@ -28,7 +28,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectCopiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
@@ -55,14 +55,16 @@ class IContentBase(form.Schema):
     form.omitted('modified_by')
 
     mdate = schema.Datetime(
-        title=_(u'label_contentbase_mdate', default=u'Date of last user action'),
+        title=_(u'label_contentbase_mdate',
+                default=u'Date of last user action'),
         description=_(u'description_contentbase_mdate', default=u''),
         required=False,
     )
     form.omitted('mdate')
 
     wdate = schema.Datetime(
-        title=_(u'label_contentbase_wdate', default=u'Date of last workflow action'),
+        title=_(u'label_contentbase_wdate',
+                default=u'Date of last workflow action'),
         description=_(u'description_contentbase_wdate', default=u''),
         required=False,
     )
@@ -78,13 +80,12 @@ def initializeMdate(data):
     )
 
 
+@implementer(IContentBase)
 class ContentBase(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IContentBase)
 
     def _getUserInfoString(self, plain=False):
         from docpool.base.utils import getUserInfo

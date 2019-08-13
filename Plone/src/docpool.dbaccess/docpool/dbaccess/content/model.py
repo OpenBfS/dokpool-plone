@@ -9,20 +9,22 @@ from docpool.dbaccess.dbinit import __session__
 from docpool.dbaccess.interfaces import IAuditing
 from elixir import *
 from Products.CMFPlone.utils import getToolByName
-from zope.interface.declarations import implements
+from zope.interface import implementer
 
 
 metadata = __metadata__
 session = __session__
 
 
+@implementer(IAuditing)
 class Item(Entity):
     """
     Oberklasse fuer Aenderungsverfolgung
     """
-
-    implements(IAuditing)
-    using_options(tablename='vpauditlogs', inheritance='multi', polymorphic=False)
+    using_options(
+        tablename='vpauditlogs',
+        inheritance='multi',
+        polymorphic=False)
 
     erzeugungsnutzer = Field(Unicode(20))
     erzeugungsdatum = Field(DateTime(), default=datetime.now)

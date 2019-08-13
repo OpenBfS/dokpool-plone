@@ -9,6 +9,7 @@ from plone import api
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
 from zope.i18nmessageid import MessageFactory
+from six.moves import zip
 
 
 allow_module("Products.CMFQuickInstallerTool.QuickInstallerTool")

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.relation import RelationValue
@@ -79,10 +80,10 @@ def setAttributes(obj, objdef):
                     rel = RelationValue(to_id)
                     values.append(rel)
                 if not values:
-                    print "No values %s configured for object %s " % (
+                    print("No values %s configured for object %s " % (
                         objdef[attr],
                         objdef,
-                    )
+                    ))
 
                 specialMethod = getattr(obj, method)
                 if callable(specialMethod):

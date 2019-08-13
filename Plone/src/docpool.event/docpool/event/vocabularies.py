@@ -5,17 +5,16 @@ from five import grok
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
+@implementer(IVocabularyFactory)
 class EventVocabulary(object):
-    """    
     """
-
-    implements(IVocabularyFactory)
+    """
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -24,11 +23,10 @@ class EventVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [
+        items = sorted([
             (t.Title, t.id)
             for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
-        ]
-        items.sort()
+        ])
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -36,11 +34,10 @@ class EventVocabulary(object):
 EventVocabularyFactory = EventVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class EventRefVocabulary(object):
-    """    
     """
-
-    implements(IVocabularyFactory)
+    """
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -49,10 +46,9 @@ class EventRefVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [
+        items = sorted([
             (t.Title, t.UID) for t in cat({"portal_type": "DPEvent", "path": path})
-        ]
-        items.sort()
+        ])
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -60,11 +56,10 @@ class EventRefVocabulary(object):
 EventRefVocabularyFactory = EventRefVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class EventSubstituteVocabulary(object):
-    """    
     """
-
-    implements(IVocabularyFactory)
+    """
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -73,11 +68,10 @@ class EventSubstituteVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [
+        items = sorted([
             (t.Title, t.getObject())
             for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
-        ]
-        items.sort()
+        ])
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -95,16 +89,17 @@ class PhasesVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [
+        items = sorted([
             (t.getObject().getPhaseTitle(), t.getObject())
             for t in cat({"portal_type": "SRPhase", "path": path})
-        ]
-        items.sort()
+        ])
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 
 
-grok.global_utility(PhasesVocabulary, name=u"docpool.event.vocabularies.Phases")
+grok.global_utility(
+    PhasesVocabulary,
+    name=u"docpool.event.vocabularies.Phases")
 
 
 class ModesVocabulary(object):
@@ -113,10 +108,12 @@ class ModesVocabulary(object):
     def __call__(self, context):
         terms = []
         terms.append(
-            SimpleVocabulary.createTerm("routine", "routine", _(u"Routine mode"))
+            SimpleVocabulary.createTerm(
+                "routine", "routine", _(u"Routine mode"))
         )
         terms.append(
-            SimpleVocabulary.createTerm("intensive", "intensive", _(u"Intensive mode"))
+            SimpleVocabulary.createTerm(
+                "intensive", "intensive", _(u"Intensive mode"))
         )
         return SimpleVocabulary(terms)
 
@@ -134,16 +131,17 @@ class NetworksVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [
+        items = sorted([
             (t.Title, t.getObject())
             for t in cat({"portal_type": "DPNetwork", "path": path})
-        ]
-        items.sort()
+        ])
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 
 
-grok.global_utility(NetworksVocabulary, name=u"docpool.event.vocabularies.Networks")
+grok.global_utility(
+    NetworksVocabulary,
+    name=u"docpool.event.vocabularies.Networks")
 
 
 class PowerStationsVocabulary(object):
@@ -156,11 +154,10 @@ class PowerStationsVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [
+        items = sorted([
             (t.Title, t.getObject())
             for t in cat({"portal_type": "DPNuclearPowerStation", "path": path})
-        ]
-        items.sort()
+        ])
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 

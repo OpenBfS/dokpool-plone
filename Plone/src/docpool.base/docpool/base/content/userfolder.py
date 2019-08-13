@@ -21,7 +21,7 @@ from docpool.base.utils import execute_under_special_role
 from plone.dexterity.content import Container
 from plone.directives import form
 from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IUserFolder(form.Schema, ISimpleFolder):
@@ -29,13 +29,12 @@ class IUserFolder(form.Schema, ISimpleFolder):
     """
 
 
+@implementer(IUserFolder)
 class UserFolder(Container, SimpleFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IUserFolder)
 
     def notifyMemberAreaCreated(self):
         """

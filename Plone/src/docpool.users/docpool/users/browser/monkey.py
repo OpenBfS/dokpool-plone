@@ -30,7 +30,8 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 def email_as_username(self):
     # We need to set the right context here - the portal root
-    return getAdapter(aq_inner(getSite()), ISecuritySchema).get_use_email_as_login()
+    return getAdapter(aq_inner(getSite()),
+                      ISecuritySchema).get_use_email_as_login()
 
 
 def applyProperties(self, userid, data):
@@ -45,7 +46,8 @@ def applyProperties(self, userid, data):
         BaseRegistrationForm._old_applyProperties(self, userid, data)
 
 
-def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args, **kw):
+def addGroup(self, id, roles=[], groups=[],
+             properties=None, REQUEST=None, *args, **kw):
     from docpool.base import DocpoolMessageFactory as _
     from docpool.base.utils import portalMessage
 

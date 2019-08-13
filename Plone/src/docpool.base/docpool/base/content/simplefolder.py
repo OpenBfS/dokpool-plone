@@ -26,7 +26,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from zope import schema
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISimpleFolder(form.Schema, IFolderBase):
@@ -43,17 +43,17 @@ class ISimpleFolder(form.Schema, IFolderBase):
             default=u'Leave blank to enable all types configured for the group.',
         ),
         required=False,
-        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
+        value_type=schema.Choice(
+            source="docpool.base.vocabularies.GroupDocType"),
     )
 
 
+@implementer(ISimpleFolder)
 class SimpleFolder(Container, FolderBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISimpleFolder)
 
     def customMenu(self, menu_items):
         """
@@ -139,13 +139,14 @@ class SimpleFolder(Container, FolderBase):
         doc = None
         try:
             doc = self._getOb(id)
-        except:
+        except BaseException:
             pass
         if doc:
             wftool = getToolByName(self, 'portal_workflow')
             wftool.doActionFor(doc, 'publish')
             if REQUEST:
-                portalMessage(self, _("The document has been published."), "info")
+                portalMessage(
+                    self, _("The document has been published."), "info")
                 return self.restrictedTraverse("@@view")()
 
     def mySimpleFolder(self):

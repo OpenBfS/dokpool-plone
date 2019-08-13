@@ -7,15 +7,15 @@ try:
 except ImportError:
     from zope.component.hooks import getSite
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 
 from wsapi4plone.core.browser.interfaces import IApplicationAPI
 from wsapi4plone.core.browser.wsapi import WSAPI
 from wsapi4plone.core.interfaces import IScrubber, IService, IServiceContainer
 
 
+@implementer(IApplicationAPI)
 class ApplicationAPI(WSAPI):
-    implements(IApplicationAPI)
 
     def get_object(self, paths=['']):
         """
@@ -30,8 +30,11 @@ class ApplicationAPI(WSAPI):
             data = serviced_obj.get_object()
             type_ = serviced_obj.get_type()
             misc = serviced_obj.get_misc()
-            objs[self.builder.get_path(self.context, path)] = (data, type_, misc)
-            self.logger.info("- get_object - Gathering data for %s." % repr(obj))
+            objs[self.builder.get_path(self.context, path)] = (
+                data, type_, misc)
+            self.logger.info(
+                "- get_object - Gathering data for %s." %
+                repr(obj))
         return objs
 
     def post_object(self, params):
@@ -42,7 +45,8 @@ class ApplicationAPI(WSAPI):
                       - { path: [{ attr: value, ...}, type_name], ...}
         =returns [path, ...]
         """
-        assert type(params) == dict, "The first agument must be a dictionary."
+        assert isinstance(
+            params, dict), "The first agument must be a dictionary."
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
         results = []
         for path in params:
@@ -70,7 +74,10 @@ class ApplicationAPI(WSAPI):
                 "- post_object - Creating object at %s of %s type."
                 % (repr(obj), type_name)
             )
-            results.append(self.builder.get_path(serviced_obj.context, created_obj_id))
+            results.append(
+                self.builder.get_path(
+                    serviced_obj.context,
+                    created_obj_id))
 
             # set the additional values
             created_obj = self.builder(obj, created_obj_id)
@@ -90,7 +97,8 @@ class ApplicationAPI(WSAPI):
                       - { path: [{ attr: value, ...}], ...}
         =returns [path, ...]
         """
-        assert type(params) == dict, "The first argument must be a dictionary."
+        assert isinstance(
+            params, dict), "The first argument must be a dictionary."
         alsoProvides(self.context.REQUEST, IDisableCSRFProtection)
 
         results = []
@@ -99,7 +107,9 @@ class ApplicationAPI(WSAPI):
             obj = self.builder(self.context, path)
 
             serviced_obj = IService(obj)
-            self.logger.info("- put_object - Set properties for %s." % repr(obj))
+            self.logger.info(
+                "- put_object - Set properties for %s." %
+                repr(obj))
             serviced_obj.set_properties(properties)
             results.append(self.builder.get_path(self.context, path))
             # TODO pumazi: notifiers and possibly reindex
@@ -122,7 +132,8 @@ class ApplicationAPI(WSAPI):
             obj = self.builder(self.context, path)
             parent_serviced_obj = IServiceContainer(obj)
             self.logger.info(
-                "- delete_object - Deleting %s from %s." % (delete_id, repr(obj))
+                "- delete_object - Deleting %s from %s." % (
+                    delete_id, repr(obj))
             )
             parent_serviced_obj.delete_object(delete_id)
         return

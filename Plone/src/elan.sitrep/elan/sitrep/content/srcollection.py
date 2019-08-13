@@ -18,7 +18,7 @@ from elan.esd.content.elandoccollection import ELANDocCollection
 from elan.esd.content.elandoccollection import IELANDocCollection
 from plone.dexterity.content import Item
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRCollection(form.Schema, IELANDocCollection):
@@ -26,10 +26,9 @@ class ISRCollection(form.Schema, IELANDocCollection):
     """
 
 
+@implementer(ISRCollection)
 class SRCollection(Item, ELANDocCollection):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRCollection)

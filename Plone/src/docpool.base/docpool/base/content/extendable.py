@@ -19,7 +19,7 @@ from docpool.base.appregistry import appIcon
 from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
 from plone.dexterity.content import Item
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IExtendable(form.Schema):
@@ -27,13 +27,12 @@ class IExtendable(form.Schema):
     """
 
 
+@implementer(IExtendable)
 class Extendable(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IExtendable)
 
     def doc_extension(self, applicationName):
         """
@@ -56,7 +55,8 @@ class Extendable(Item):
         @param request:
         @return:
         """
-        behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
+        behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(
+            self, request)
         if behaviorNames:
             return [appIcon(name) for name in behaviorNames if appIcon(name)]
         else:
@@ -68,6 +68,7 @@ class Extendable(Item):
 
         @return:
         """
-        behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(self, request)
+        behaviorNames = getActiveAllowedPersonalBehaviorsForDocument(
+            self, request)
         # print "myExtensions", behaviorNames
         return [self.doc_extension(name) for name in behaviorNames]

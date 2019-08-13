@@ -43,7 +43,7 @@ from sqlalchemy.orm import ColumnProperty
 from zope.component import getMultiAdapter
 from zope.component.hooks import getSite
 from zope.event import notify
-from zope.interface import implements
+from zope.interface import implementer
 from zope.pagetemplate.pagetemplate import PageTemplate
 
 import copy
@@ -55,6 +55,7 @@ import os
 import sys
 import tempfile
 import transaction
+import six
 
 
 try:
@@ -78,8 +79,8 @@ except ImportError:
 std_encoding = 'latin-1'
 
 
+@implementer(Idbadmin)
 class dbadmin(object):
-    implements(Idbadmin)
     """
     """
 
@@ -89,7 +90,7 @@ class dbadmin(object):
         """
         Liefert die ids aller registrierten Typen.
         """
-        ks = _ecreg.keys()
+        ks = list(_ecreg.keys())
         liste = []
         # Hier pruefen wir aber noch Berechtigungen
         for k in ks:
@@ -117,13 +118,14 @@ class dbadmin(object):
                 a = DefaultSecurity(klass, user)
             a.setContextObj(context)
             return a
-        except Exception, e:  # Wenn keiner definiert ist bzw. die Interfaces fehlen, dann greift der Default
+        except Exception as e:  # Wenn keiner definiert ist bzw. die Interfaces fehlen, dann greift der Default
             log_exc(e)
             a = DefaultSecurity(klass, user)
             a.setContextObj(context)
             return a
 
-    def edit_def(self, typ, from_ec=False, makeFS=True, readonly=False, security=None):
+    def edit_def(self, typ, from_ec=False, makeFS=True,
+                 readonly=False, security=None):
         """
         Liefert das Fieldset zum Editieren von Objekten vom Typ 'typ'.
         Wenn 'from_ec' == True, wird in jedem Fall die Definition aus
@@ -138,14 +140,14 @@ class dbadmin(object):
         klass = None
         typ = typ.lower()
         if not from_ec:
-            if _ecreg.has_key(typ):
+            if typ in _ecreg:
                 fields = _ecreg[typ]['edit_def']
                 klass = _ecreg[typ]['klass']
 
         if callable(fields):  # Funktion statt fertiges Formular
             fields = fields(security)
 
-        if type(fields) != type({}):  # Ist noch kein dictionary
+        if not isinstance(fields, type({})):  # Ist noch kein dictionary
             fields = {
                 'form': fields,
                 'prolog': None,
@@ -177,17 +179,18 @@ class dbadmin(object):
 
         typ = typ.lower()
         if not from_ec:
-            if _ecreg.has_key(typ):
+            if typ in _ecreg:
                 fields = _ecreg[typ].get('create_def', None)
                 klass = _ecreg[typ]['klass']
 
         if callable(fields):  # Funktion statt fertiges Formular
             fields = fields(security)  # immer Kontext mitliefern
 
-        if type(fields) == type({}):  # Ist schon ein dictionary
+        if isinstance(fields, type({})):  # Ist schon ein dictionary
             return fields
         else:  # Dummy-Werte einfügen
-            return {'form': fields, 'prolog': None, 'epilog': None, 'allowMinor': False}
+            return {'form': fields, 'prolog': None,
+                    'epilog': None, 'allowMinor': False}
 
     def list_def(self, typ, from_ec=False, makeGrid=True, security=None):
         """
@@ -204,14 +207,14 @@ class dbadmin(object):
 
         typ = typ.lower()
         if not from_ec:
-            if _ecreg.has_key(typ):
+            if typ in _ecreg:
                 fields = _ecreg[typ]['list_def']
                 klass = _ecreg[typ]['klass']
 
         if callable(fields):  # Funktion statt fertiges Formular
             fields = fields(security)  # immer Kontext mitliefern
 
-        if type(fields) == type({}):  # Ist schon ein dictionary
+        if isinstance(fields, type({})):  # Ist schon ein dictionary
             return fields
         else:  # Dummy-Werte einfügen
             return {'form': fields, 'prolog': None, 'epilog': None}
@@ -231,14 +234,14 @@ class dbadmin(object):
 
         typ = typ.lower()
         if not from_ec:
-            if _ecreg.has_key(typ):
+            if typ in _ecreg:
                 fields = _ecreg[typ]['filter_def']
                 klass = _ecreg[typ]['klass']
 
         if callable(fields):  # Funktion statt fertiges Formular
             fields = fields(security)
 
-        if type(fields) == type({}):  # Ist schon ein dictionary
+        if isinstance(fields, type({})):  # Ist schon ein dictionary
             return fields
         else:  # Dummy-Werte einfügen
             return {'form': fields}
@@ -253,7 +256,7 @@ class dbadmin(object):
         """
         typ = typ.lower()
         if not from_ec:
-            if _ecreg.has_key(typ):
+            if typ in _ecreg:
                 return _ecreg[typ]['sort_default']
 
         return None
@@ -263,7 +266,7 @@ class dbadmin(object):
         Liefert die Namen der Felder, welche den PK definieren.
         """
         typ = typ.lower()
-        if _ecreg.has_key(typ):
+        if typ in _ecreg:
             klass = _ecreg[typ]['klass']  # Python Klasse bestimmen
             cm = class_mapper(klass)  # SA Mapper dieser Klasse holen
 
@@ -279,7 +282,7 @@ class dbadmin(object):
         Liefert die Python Klasse zu 'typ'
         """
         typ = typ.lower()
-        if _ecreg.has_key(typ):
+        if typ in _ecreg:
             klass = _ecreg[typ]['klass']  # Python Klasse bestimmen
             return klass
         else:
@@ -290,7 +293,7 @@ class dbadmin(object):
         Liefert den Klartextnamen fuer den typ.
         """
         typ = typ.lower()
-        if _ecreg.has_key(typ):
+        if typ in _ecreg:
             label = _ecreg[typ]['label']
             return label
         else:
@@ -311,7 +314,8 @@ class dbadmin(object):
     def getSEListViewObj(self, request, context, typ, filter, parentView):
         """
         """
-        return forms.SEListView(self, request, context, typ, filter, parentView)
+        return forms.SEListView(self, request, context,
+                                typ, filter, parentView)
 
     def getEditViewObj(self, request, create, context):
         """
@@ -337,7 +341,7 @@ class dbadmin(object):
         else:
             sfun = desc
         sort_join_field = None
-        if type(sort_on) == list:
+        if isinstance(sort_on, list):
             sort = tuple([sfun(getattr(klass, att)) for att in sort_on])
         else:
             if sort_on:
@@ -357,14 +361,17 @@ class dbadmin(object):
             krit = []
             for f in filter:
                 # Zuerst spezielle Faelle behandeln
-                if type(f[1]) == list:
-                    # wenn der wert eine Liste ist, so gucken wir per SQL-IN nach den elementen der sequenz
+                if isinstance(f[1], list):
+                    # wenn der wert eine Liste ist, so gucken wir per SQL-IN
+                    # nach den elementen der sequenz
                     krit.append(getattr(klass, f[0]).in_(f[1]))
                 elif f[0].find('__') != -1:  # Spezieller Filter mit mehreren Feldern
                     names = f[0].split('__')
                     val = f[1]
                     att = getattr(klass, names[0])
-                    t = getattr(att.parententity.c, att.key).type.__class__.__name__
+                    t = getattr(
+                        att.parententity.c,
+                        att.key).type.__class__.__name__
                     if len(val) > 4:
                         if val[0] == '%':
                             val = val[1:]
@@ -382,8 +389,11 @@ class dbadmin(object):
                         # print "bis", val
                 else:  # Jetzt die normalen Typen
                     a = getattr(klass, f[0])
-                    # Jetzt den Namen des Typs auf verschlungenen Wegen beschaffen
-                    t = getattr(a.parententity.c, a.key).type.__class__.__name__
+                    # Jetzt den Namen des Typs auf verschlungenen Wegen
+                    # beschaffen
+                    t = getattr(
+                        a.parententity.c,
+                        a.key).type.__class__.__name__
                     if t == 'Boolean':
                         v = f[1]
                         if v:
@@ -398,22 +408,22 @@ class dbadmin(object):
                                         v = True
                                     else:
                                         v = False
-                                except:
+                                except BaseException:
                                     v = True
                         else:
                             v = False
                         krit.append(a == v)
                     elif t == 'Integer':
                         v = f[1]
-                        if type(v) != int:
+                        if not isinstance(v, int):
                             if v:
                                 v = int(v[1:-1])  # % entfernen
                         krit.append(a == v)
-                    elif type(f[1]) == str or type(f[1]) == unicode:
+                    elif isinstance(f[1], str) or isinstance(f[1], six.text_type):
                         if f[1] == 'is Null':
-                            krit.append(a == None)
+                            krit.append(a is None)
                         elif f[1] == 'is not Null':
-                            krit.append(a != None)
+                            krit.append(a is not None)
                         # ansonsten handelt es sich um ein LIKE
                         else:
                             krit.append(a.like(f[1].replace('*', '%')))
@@ -444,7 +454,7 @@ class dbadmin(object):
         for key in request.keys():
             if key.lower().startswith(typ.lower()):
                 data[key] = request[key]
-                if type(data[key]) == type(''):
+                if isinstance(data[key], type('')):
                     data[key] = data[key].decode('utf-8')
         # print data
         return data
@@ -470,7 +480,7 @@ class dbadmin(object):
         try:
             res = __session__.query(klass).filter_by(**pkvals).one()
             return res
-        except Exception, e:
+        except Exception as e:
             log_exc(e)
             return None
 
@@ -482,7 +492,7 @@ class dbadmin(object):
             res = __session__.query(klass).filter_by(**filtervals).all()
             if len(res) > 0:
                 return res[0]
-        except:
+        except BaseException:
             return None
 
     def _diff(self, obj, data):
@@ -499,7 +509,7 @@ class dbadmin(object):
             if isinstance(old_value, int):
                 try:
                     new_value = int(new_value)
-                except Exception, e:
+                except Exception as e:
                     log_exc(e)
                     log_exc(fname)
 
@@ -547,8 +557,10 @@ class dbadmin(object):
             defs = self.create_def
         try:
             # print data
-            fsobj = defs(typ, security=security)['form'].bind(obj, data=data, **kwargs)
-        except Exception, e:
+            fsobj = defs(
+                typ, security=security)['form'].bind(
+                obj, data=data, **kwargs)
+        except Exception as e:
             log_exc(e)
             fsobj = defs(typ, security=security)['form'].bind(
                 obj(), data=data, **kwargs
@@ -643,7 +655,8 @@ class dbadmin(object):
         """
         typ = typ.capitalize()
         for key in form.keys():
-            if not (key.startswith(typ) or key in ['typ', 'sort_on', 'sort_order']):
+            if not (key.startswith(typ) or key in [
+                    'typ', 'sort_on', 'sort_order']):
                 del form[key]
 
     def objekteImportieren(self, typ, importfile, request, context=None):
@@ -655,7 +668,7 @@ class dbadmin(object):
             )
             log("Daten importiert.")
             return meldung, status
-        except "Exception", e:
+        except "Exception" as e:
             log_exc("Daten konnten nicht importiert werden: %s" % importfile)
             return [str(e)], False
 
@@ -668,7 +681,7 @@ class dbadmin(object):
         for k in of.keys():
             if of[k]:
                 fname = k.split('-')[-1]
-                if type(of[k]) == type([]):
+                if isinstance(of[k], type([])):
                     res.append((fname, of[k]))
                 elif len(of[k]) > 0:
                     res.append((fname, '%' + of[k].replace('*', '%') + '%'))
@@ -678,10 +691,10 @@ class dbadmin(object):
         """
         Sonderbehandlung fuer Datumswerte und Boolean. Unicode Handling
         """
-        for field, value in dict.iteritems():
-            if type(value) == datetime:
+        for field, value in six.iteritems(dict):
+            if isinstance(value, datetime):
                 dict[field] = value.strftime('%d.%m.%Y %H:%M:%S')
-            elif type(value) == unicode:
+            elif isinstance(value, six.text_type):
                 if value:
                     dict[field] = value.encode(encoding)
         return dict
@@ -690,7 +703,7 @@ class dbadmin(object):
         """
         """
         typ = typ.lower()
-        if _exportConfigReg.has_key(typ):
+        if typ in _exportConfigReg:
             configs = _exportConfigReg[typ]
             return [c[0] for c in configs]
         else:
@@ -741,7 +754,8 @@ class dbadmin(object):
                     exportConfig = ec[1]
             column_def = column_names_meta
             spalten = []
-            # Wenn es eine Exportkonfiguration fuer die Entity gibt, dann verwende deren Optionen.
+            # Wenn es eine Exportkonfiguration fuer die Entity gibt, dann
+            # verwende deren Optionen.
             if exportConfig:
                 if not encoding:
                     e = exportConfig.get('encoding', None)
@@ -828,7 +842,7 @@ class dbadmin(object):
                     obj_dict = {}
                     if (
                         exportConfig
-                        and exportConfig.has_key('methodeFuerZusatzFelder')
+                        and 'methodeFuerZusatzFelder' in exportConfig
                         and exportConfig['methodeFuerZusatzFelder']
                     ):
                         obj_dict = exportConfig['methodeFuerZusatzFelder'](
@@ -886,7 +900,8 @@ class dbadmin(object):
                                     long = False
                                     if styp == 'datetime':
                                         long = True
-                                    value = stringFromDatetime(value, long=long)
+                                    value = stringFromDatetime(
+                                        value, int=int)
                                     # print value
                             elif styp in ['string']:
                                 if value:
@@ -895,7 +910,7 @@ class dbadmin(object):
                     else:
                         row = obj_dict
                     dw.writerow(self.latin_1_encode(row, encoding))
-                except Exception, e:
+                except Exception as e:
                     errors += 1
                     log_exc(e)
                     log(row)
@@ -913,7 +928,7 @@ class dbadmin(object):
 
             try:
                 os.remove(tmpfilename)
-            except Exception, e:
+            except Exception as e:
                 log_exc(e)
 
             if REQUEST is not None and not justData:
@@ -996,7 +1011,9 @@ class dbadmin(object):
                 # print len(objekte)
 
                 if not templatevars:
-                    templatevars = {'objekte': objekte, 'reportcontext': reportcontext}
+                    templatevars = {
+                        'objekte': objekte,
+                        'reportcontext': reportcontext}
                 else:
                     templatevars['objekte'] = objekte
                     templatevars['reportcontext'] = reportcontext
@@ -1076,8 +1093,10 @@ def _prepareGridData(data):
         if len(pkexpr) < 1:  # Kein Editformularfeld, sondern vom Filterformular!
             continue
         typ = fn.split('-')[0].lower()  # Typ am Anfang
-        if not res.has_key(pkexpr):  # weiteres Objekt
-            res[pkexpr] = {fn: data[fn], 'typ': typ, 'pk': str(pkexpr.split('_'))}
+        if pkexpr not in res:  # weiteres Objekt
+            res[pkexpr] = {
+                fn: data[fn], 'typ': typ, 'pk': str(
+                    pkexpr.split('_'))}
         else:  # weiterer Wert fuer bereits erkanntes Objekt
             res[pkexpr][fn] = data[fn]
     # print "prepareGridData"

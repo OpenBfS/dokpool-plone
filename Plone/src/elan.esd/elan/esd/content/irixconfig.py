@@ -18,7 +18,7 @@ from elan.esd import DocpoolMessageFactory as _
 from plone.dexterity.content import Item
 from plone.directives import form
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IIRIXConfig(form.Schema):
@@ -30,7 +30,9 @@ class IIRIXConfig(form.Schema):
             u'label_irixconfig_organisationreporting',
             default=u'Reporting State / Organisation',
         ),
-        description=_(u'description_irixconfig_organisationreporting', default=u''),
+        description=_(
+            u'description_irixconfig_organisationreporting',
+            default=u''),
         required=True,
     )
 
@@ -47,20 +49,28 @@ class IIRIXConfig(form.Schema):
     )
 
     organisationName = schema.TextLine(
-        title=_(u'label_irixconfig_organisationname', default=u'Name of organisation'),
+        title=_(
+            u'label_irixconfig_organisationname',
+            default=u'Name of organisation'),
         description=_(u'description_irixconfig_organisationname', default=u''),
         required=True,
     )
 
     organisationId = schema.TextLine(
-        title=_(u'label_irixconfig_organisationid', default=u'ID of organisation'),
+        title=_(
+            u'label_irixconfig_organisationid',
+            default=u'ID of organisation'),
         description=_(u'description_irixconfig_organisationid', default=u''),
         required=True,
     )
 
     organisationCountry = schema.TextLine(
-        title=_(u'label_irixconfig_organisationcountry', default=u'Country code'),
-        description=_(u'description_irixconfig_organisationcountry', default=u''),
+        title=_(
+            u'label_irixconfig_organisationcountry',
+            default=u'Country code'),
+        description=_(
+            u'description_irixconfig_organisationcountry',
+            default=u''),
         required=True,
     )
 
@@ -71,13 +81,19 @@ class IIRIXConfig(form.Schema):
     )
 
     organisationEmail = schema.TextLine(
-        title=_(u'label_irixconfig_organisationemail', default=u'Email address'),
-        description=_(u'description_irixconfig_organisationemail', default=u''),
+        title=_(
+            u'label_irixconfig_organisationemail',
+            default=u'Email address'),
+        description=_(
+            u'description_irixconfig_organisationemail',
+            default=u''),
         required=True,
     )
 
     sourceText = schema.TextLine(
-        title=_(u'label_irixconfig_sourcetext', default=u'Information source text'),
+        title=_(
+            u'label_irixconfig_sourcetext',
+            default=u'Information source text'),
         description=_(u'description_irixconfig_sourcetext', default=u''),
         required=True,
     )
@@ -87,7 +103,9 @@ class IIRIXConfig(form.Schema):
             u'label_irixconfig_sourcedescription',
             default=u'Information source description',
         ),
-        description=_(u'description_irixconfig_sourcedescription', default=u''),
+        description=_(
+            u'description_irixconfig_sourcedescription',
+            default=u''),
         required=True,
     )
 
@@ -100,10 +118,9 @@ class IIRIXConfig(form.Schema):
     )
 
 
+@implementer(IIRIXConfig)
 class IRIXConfig(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IIRIXConfig)

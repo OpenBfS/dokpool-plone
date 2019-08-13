@@ -9,7 +9,7 @@ from plone.z3cform.fieldsets import extensible
 from z3c.form import field
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
-from zope.component import adapts
+from zope.component import adapter
 from zope.interface import Interface
 
 
@@ -22,7 +22,8 @@ class IEnhancedPersonalPreferences(model.Schema):
         title=_(u'label_user_apps', default=u'Applications'),
         description=_(u'description_user_apps', default=u''),
         required=False,
-        value_type=schema.Choice(source="docpool.base.vocabularies.AvailableApps"),
+        value_type=schema.Choice(
+            source="docpool.base.vocabularies.AvailableApps"),
     )
     form.widget(apps=CheckBoxFieldWidget)
 
@@ -39,8 +40,8 @@ class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
     dp = property(get_apps, set_apps)
 
 
+@adapter(Interface, IDocPoolUsersLayer, PersonalPreferencesPanel)
 class PersonalPreferencesPanelExtender(extensible.FormExtender):
-    adapts(Interface, IDocPoolUsersLayer, PersonalPreferencesPanel)
 
     def update(self):
         fields = field.Fields(IEnhancedPersonalPreferences)

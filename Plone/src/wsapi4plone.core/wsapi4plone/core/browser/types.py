@@ -1,11 +1,11 @@
-from zope.interface import implements
+from zope.interface import implementer
 
 from interfaces import ITypes
 from wsapi import WSAPI
 
 
+@implementer(ITypes)
 class Types(WSAPI):
-    implements(ITypes)
 
     def get_types(self, path=''):
         """
@@ -14,6 +14,7 @@ class Types(WSAPI):
             [('Document', 'Page'), ('Link', 'Link'), ... ] ).
         """
         obj = self.builder(self.context, path)
-        types = [(type_.id, type_.title_or_id()) for type_ in obj.allowedContentTypes()]
+        types = [(type_.id, type_.title_or_id())
+                 for type_ in obj.allowedContentTypes()]
         self.logger.info("- get_types - Getting type names.")
         return types

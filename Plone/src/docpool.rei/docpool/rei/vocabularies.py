@@ -2,7 +2,7 @@
 from AccessControl.SecurityInfo import allow_module
 from datetime import date
 from docpool.rei import DocpoolMessageFactory as _
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
 
@@ -14,16 +14,16 @@ class VocabItem(object):
         self.title = title
 
 
+@implementer(IVocabularyFactory)
 class AuthorityVocabulary(object):
     """
     """
 
-    implements(IVocabularyFactory)
-
     def __call__(self, context):
         items = [
             VocabItem(
-                u'Schleswig-Holstein', _(u'Schleswig-Holstein'), u'Schleswig-Holstein'
+                u'Schleswig-Holstein', _(
+                    u'Schleswig-Holstein'), u'Schleswig-Holstein'
             ),
             VocabItem(u'Hamburg', _(u'Hamburg'), u'Hamburg'),
             VocabItem(u'Niedersachsen', _(u'Niedersachsen'), u'Niedersachsen'),
@@ -34,7 +34,10 @@ class AuthorityVocabulary(object):
                 u'Nordrhein-Westfalen',
             ),
             VocabItem(u'Hessen', _(u'Hessen'), u'Hessen'),
-            VocabItem(u'Rheinland-Pfalz', _(u'Rheinland-Pfalz'), u'Rheinland-Pfalz'),
+            VocabItem(
+                u'Rheinland-Pfalz',
+                _(u'Rheinland-Pfalz'),
+                u'Rheinland-Pfalz'),
             VocabItem(
                 u'Baden-Württemberg', _(u'Baden-Württemberg'), u'Baden-Württemberg'
             ),
@@ -48,7 +51,10 @@ class AuthorityVocabulary(object):
                 u'Mecklenburg-Vorpommern',
             ),
             VocabItem(u'Sachsen', _(u'Sachsen'), u'Sachsen'),
-            VocabItem(u'Sachsen-Anhalt', _(u'Sachsen-Anhalt'), u'Sachsen-Anhalt'),
+            VocabItem(
+                u'Sachsen-Anhalt',
+                _(u'Sachsen-Anhalt'),
+                u'Sachsen-Anhalt'),
             VocabItem(u'Thüringen', _(u'Thüringen'), u'Thüringen'),
             VocabItem(u'BfE', _(u'BfE'), u'BfE'),
         ]
@@ -59,11 +65,10 @@ class AuthorityVocabulary(object):
 AuthorityVocabularyFactory = AuthorityVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ReiLegalBaseVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -78,11 +83,10 @@ class ReiLegalBaseVocabulary(object):
 ReiLegalBaseVocabularyFactory = ReiLegalBaseVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class MediaVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -99,11 +103,10 @@ class MediaVocabulary(object):
 MediaVocabularyFactory = MediaVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class PeriodVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -134,11 +137,10 @@ class PeriodVocabulary(object):
 PeriodVocabularyFactory = PeriodVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class PdfVersionVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [VocabItem(u'PDF/A-1b', _(u'PDF/A-1b'), u'PDF/A-1b')]
@@ -149,11 +151,10 @@ class PdfVersionVocabulary(object):
 PdfVersionVocabularyFactory = PdfVersionVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class MstVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -241,14 +242,20 @@ class MstVocabulary(object):
             VocabItem(u'8082 ', _(u'8082 '), u'(BW-LDZ-Karlsruhe) '),
             VocabItem(u'8083 ', _(u'8083 '), u'BW-MIN2-Stuttgart_REIAB '),
             VocabItem(u'8101 ', _(u'8101 '), u'BW-KTA-Obrigheim '),
-            VocabItem(u'8106 ', _(u'8106 '), u'BW-ML-EggensteinLeopoldshafen_KIT '),
+            VocabItem(
+                u'8106 ',
+                _(u'8106 '),
+                u'BW-ML-EggensteinLeopoldshafen_KIT '),
             VocabItem(u'8111 ', _(u'8111 '), u'BW-KTA-Neckarwestheim '),
             VocabItem(u'8121 ', _(u'8121 '), u'BW-KTA-Philippsburg '),
             VocabItem(u'8131 ', _(u'8131 '), u'BW-KTA-Heidelberg '),
             VocabItem(u'8201 ', _(u'8201 '), u'BW-MST4-Weingarten '),
             VocabItem(u'8210 ', _(u'8210 '), u'LFS BW '),
             VocabItem(u'8211 ', _(u'8211 '), u'BW-MM-CBRN '),
-            VocabItem(u'8221 ', _(u'8221 '), u'BW-ML-EggensteinLeopoldshafen_KHG '),
+            VocabItem(
+                u'8221 ',
+                _(u'8221 '),
+                u'BW-ML-EggensteinLeopoldshafen_KHG '),
             VocabItem(u'8511 ', _(u'8511 '), u'BW-KTA-Neckarwestheim_SZL '),
             VocabItem(u'8521 ', _(u'8521 '), u'BW-KTA-Philippsburg_SZL '),
             VocabItem(u'9010 ', _(u'9010 '), u'(BY-MST1-Augsburg) '),
@@ -334,7 +341,10 @@ class MstVocabulary(object):
                 _(u'20080 '),
                 u'BfS - Kontaktstelle internat. Datenaustausch ',
             ),
-            VocabItem(u'20090 ', _(u'20090 '), u'BfS - ODL Messnetz-Zentrale '),
+            VocabItem(
+                u'20090 ',
+                _(u'20090 '),
+                u'BfS - ODL Messnetz-Zentrale '),
             VocabItem(u'20100 ', _(u'20100 '), u'PTB '),
             VocabItem(u'20110 ', _(u'20110 '), u'BfS  LSt AB '),
             VocabItem(u'20120 ', _(u'20120 '), u'BfS-Spur-Freiburg_01 '),
@@ -350,11 +360,10 @@ class MstVocabulary(object):
 MstVocabularyFactory = MstVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class OriginVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -372,18 +381,19 @@ class OriginVocabulary(object):
 OriginVocabularyFactory = OriginVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class YearVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = []
         today = date.today()
         year = today.year
         while year > 1986:
-            items.append(SimpleVocabulary.createTerm(year, str(year), str(year)))
+            items.append(
+                SimpleVocabulary.createTerm(
+                    year, str(year), str(year)))
             year = year - 1
         #       items = [
         #              VocabItem(u'2013', _(u'2013')),
@@ -402,11 +412,10 @@ class YearVocabulary(object):
 YearVocabularyFactory = YearVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class NuclearInstallationVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -426,7 +435,8 @@ class NuclearInstallationVocabulary(object):
                 u'UELM Endlager für radioaktive Abfälle Morsleben (ERAM) ',
             ),
             VocabItem(
-                u'UFRC KKW Cattenom ', _(u'UFRC KKW Cattenom '), u'UFRC KKW Cattenom '
+                u'UFRC KKW Cattenom ', _(
+                    u'UFRC KKW Cattenom '), u'UFRC KKW Cattenom '
             ),
             VocabItem(
                 u'UFRF KKW Fessenheim ',
@@ -439,7 +449,8 @@ class NuclearInstallationVocabulary(object):
                 u'U01A Helmholtz-Zentrum Geesthacht ',
             ),
             VocabItem(
-                u'U01B KKW Krümmel ', _(u'U01B KKW Krümmel '), u'U01B KKW Krümmel '
+                u'U01B KKW Krümmel ', _(
+                    u'U01B KKW Krümmel '), u'U01B KKW Krümmel '
             ),
             VocabItem(
                 u'U01C KKW Brunsbüttel ',
@@ -447,7 +458,8 @@ class NuclearInstallationVocabulary(object):
                 u'U01C KKW Brunsbüttel ',
             ),
             VocabItem(
-                u'U01D KKW Brokdorf ', _(u'U01D KKW Brokdorf '), u'U01D KKW Brokdorf '
+                u'U01D KKW Brokdorf ', _(
+                    u'U01D KKW Brokdorf '), u'U01D KKW Brokdorf '
             ),
             VocabItem(
                 u'U01I Interimslager Krümmel ',
@@ -485,23 +497,31 @@ class NuclearInstallationVocabulary(object):
                 u'U03C Standortzwischenlager Unterweser ',
             ),
             VocabItem(
-                u'U03E KKW Emsland ', _(u'U03E KKW Emsland '), u'U03E KKW Emsland '
+                u'U03E KKW Emsland ', _(
+                    u'U03E KKW Emsland '), u'U03E KKW Emsland '
             ),
             VocabItem(
-                u'U03G KKW Grohnde ', _(u'U03G KKW Grohnde '), u'U03G KKW Grohnde '
+                u'U03G KKW Grohnde ', _(
+                    u'U03G KKW Grohnde '), u'U03G KKW Grohnde '
             ),
             VocabItem(
                 u'U03K Endlager Konrad ',
                 _(u'U03K Endlager Konrad '),
                 u'U03K Endlager Konrad ',
             ),
-            VocabItem(u'U03L KKW Lingen ', _(u'U03L KKW Lingen '), u'U03L KKW Lingen '),
+            VocabItem(
+                u'U03L KKW Lingen ',
+                _(u'U03L KKW Lingen '),
+                u'U03L KKW Lingen '),
             VocabItem(
                 u'U03P BGZ - Betrieb Gorleben ',
                 _(u'U03P BGZ - Betrieb Gorleben '),
                 u'U03P BGZ - Betrieb Gorleben ',
             ),
-            VocabItem(u'U03S KKW Stade ', _(u'U03S KKW Stade '), u'U03S KKW Stade '),
+            VocabItem(
+                u'U03S KKW Stade ',
+                _(u'U03S KKW Stade '),
+                u'U03S KKW Stade '),
             VocabItem(
                 u'U03U KKW Unterweser ',
                 _(u'U03U KKW Unterweser '),
@@ -552,7 +572,10 @@ class NuclearInstallationVocabulary(object):
                 _(u'U07M KKW Mülheim-Kärlich '),
                 u'U07M KKW Mülheim-Kärlich ',
             ),
-            VocabItem(u'U07U Uni Mainz ', _(u'U07U Uni Mainz '), u'U07U Uni Mainz '),
+            VocabItem(
+                u'U07U Uni Mainz ',
+                _(u'U07U Uni Mainz '),
+                u'U07U Uni Mainz '),
             VocabItem(
                 u'U08H DKFZ Heidelberg ',
                 _(u'U08H DKFZ Heidelberg '),
@@ -585,12 +608,22 @@ class NuclearInstallationVocabulary(object):
                 _(u'U08P EnKK Philippsburg '),
                 u'U08P EnKK Philippsburg ',
             ),
-            VocabItem(u'U08W KKW Wyhl ', _(u'U08W KKW Wyhl '), u'U08W KKW Wyhl '),
             VocabItem(
-                u'U09A KKW Isar 1+2 ', _(u'U09A KKW Isar 1+2 '), u'U09A KKW Isar 1+2 '
+                u'U08W KKW Wyhl ',
+                _(u'U08W KKW Wyhl '),
+                u'U08W KKW Wyhl '),
+            VocabItem(
+                u'U09A KKW Isar 1+2 ', _(
+                    u'U09A KKW Isar 1+2 '), u'U09A KKW Isar 1+2 '
             ),
-            VocabItem(u'U09B KKW Isar1 ', _(u'U09B KKW Isar1 '), u'U09B KKW Isar1 '),
-            VocabItem(u'U09C KKW Isar2 ', _(u'U09C KKW Isar2 '), u'U09C KKW Isar2 '),
+            VocabItem(
+                u'U09B KKW Isar1 ',
+                _(u'U09B KKW Isar1 '),
+                u'U09B KKW Isar1 '),
+            VocabItem(
+                u'U09C KKW Isar2 ',
+                _(u'U09C KKW Isar2 '),
+                u'U09C KKW Isar2 '),
             VocabItem(
                 u'U09D KKW Grafenrheinfeld ',
                 _(u'U09D KKW Grafenrheinfeld '),

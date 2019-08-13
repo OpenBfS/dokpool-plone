@@ -35,7 +35,8 @@ def configUsers(plonesite, fresh):
         doksysadmin.setMemberProperties({"fullname": 'DokSys Administrator'})
         doksysadmin.setSecurityProfile(password="admin")
         mtool.addMember(
-            'doksysmanager', 'DokSys Manager (global)', ['Manager', 'Member'], []
+            'doksysmanager', 'DokSys Manager (global)', [
+                'Manager', 'Member'], []
         )
         doksysmanager = mtool.getMemberById('doksysmanager')
         doksysmanager.setMemberProperties({"fullname": 'DokSys Manager'})

@@ -12,7 +12,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import field
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IContextSourceBinder
 
 
@@ -49,8 +49,8 @@ class ICollectionPortlet(IPortletDataProvider):
 # a particular instantiation of the portlet.
 
 
+@implementer(ICollectionPortlet)
 class Assignment(base.Assignment):
-    implements(ICollectionPortlet)
 
     def __init__(self, collection=None):
         self.collection = collection
@@ -110,7 +110,7 @@ class Renderer(base.Renderer):
             return self.collection.results(
                 batch=True, b_start=0, b_size=10, sort_on=None, brains=True
             )
-        except:
+        except BaseException:
             return []
 
 

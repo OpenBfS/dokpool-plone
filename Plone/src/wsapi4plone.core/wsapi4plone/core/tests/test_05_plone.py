@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import unittest
-import xmlrpclib
+import six.moves.xmlrpc_client
 
 from zope.component import getMultiAdapter, getSiteManager
 from zope.interface import Interface
@@ -77,7 +77,8 @@ class BaseTestCase(PloneTestCase.PloneTestCase):
         from wsapi4plone.core.application.services import PloneRootService
 
         sm.registerAdapter(
-            PloneRootService, required=(IPloneSiteRoot,), provided=IServiceContainer
+            PloneRootService, required=(
+                IPloneSiteRoot,), provided=IServiceContainer
         )
 
     def afterTearDown(self):
@@ -154,8 +155,8 @@ class TestPloneRootService(BasePloneRootServiceTestCase):
         self.logout()
         actual = portal
         expected = PORTAL_VALUES
-        actual_keys = actual.keys()
-        expected_keys = expected.keys()
+        actual_keys = list(actual.keys())
+        expected_keys = list(expected.keys())
 
         def diff(a, b):
             c = set(a).difference(set(b))
@@ -216,7 +217,10 @@ class BasePloneContentsExtensionTestCase(BasePloneRootServiceTestCase):
         from wsapi4plone.core.interfaces import IServiceExtension
         from wsapi4plone.core.application.interfaces import IPloneContents
 
-        sm.registerUtility(IPloneContents, provided=IServiceExtension, name='contents')
+        sm.registerUtility(
+            IPloneContents,
+            provided=IServiceExtension,
+            name='contents')
         # Register the extension itself
         from wsapi4plone.core.interfaces import IServiceContainer
         from wsapi4plone.core.application.extensions import PloneContents
@@ -233,7 +237,8 @@ class BasePloneContentsExtensionTestCase(BasePloneRootServiceTestCase):
         from wsapi4plone.core.application.extensions import PloneFolderContents
 
         sm.registerAdapter(
-            PloneFolderContents, required=(IContainer,), provided=IContentsQuery
+            PloneFolderContents, required=(
+                IContainer,), provided=IContentsQuery
         )
         # IFormatQueryResults is registered for IContentsQuery
         from wsapi4plone.core.utilities.interfaces import IFormatQueryResults
@@ -271,7 +276,8 @@ class BasePloneContentsExtensionTestCase(BasePloneRootServiceTestCase):
         from wsapi4plone.core.application.extensions import PloneFolderContents
 
         sm.unregisterAdapter(
-            factory=PloneFolderContents, required=(IContainer,), provided=IContentsQuery
+            factory=PloneFolderContents, required=(
+                IContainer,), provided=IContentsQuery
         )
         # IFormatQueryResults is registered for IContentsQuery
         from wsapi4plone.core.utilities.interfaces import IFormatQueryResults

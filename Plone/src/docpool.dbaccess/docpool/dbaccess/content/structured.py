@@ -161,7 +161,7 @@ class StructuredEntity(object):
         cm = class_mapper(cls)
         entities = []
         for r in cm._props._list:
-            if type(cm._props[r]) == RelationProperty:
+            if isinstance(cm._props[r], RelationProperty):
                 p = cm._props[r]
                 if p.uselist:
                     entities.append(p.mapper.class_)
@@ -172,7 +172,7 @@ class StructuredEntity(object):
     def superentity(cls):
         cm = class_mapper(cls)
         for r in cm._props._list:
-            if type(cm._props[r]) == RelationProperty:
+            if isinstance(cm._props[r], RelationProperty):
                 p = cm._props[r]
                 if not p.uselist:
                     return p.mapper.class_

@@ -48,7 +48,8 @@ class Journal(Container):
                     datetime=api.portal.get_localized_time(
                         update.created, True
                     ),  # 28/08/2014 10h58
-                    date=api.portal.get_localized_time(update.created),  # 28/08/2014
+                    date=api.portal.get_localized_time(
+                        update.created),  # 28/08/2014
                     time=api.portal.get_localized_time(
                         update.created, time_only=True
                     ),  # 10h58

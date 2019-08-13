@@ -19,7 +19,8 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(
+                self.portal, 'Journal', 'journal')
         self.view = api.content.get_view(
             'base-journalentry', self.journal, self.request
         )
@@ -67,7 +68,8 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(
+                self.portal, 'Journal', 'journal')
 
     def test_add_journalentry_no_parameters(self):
         self.journal.unrestrictedTraverse('add-journalentry')()
@@ -107,7 +109,8 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(
+                self.portal, 'Journal', 'journal')
         adapter = IJournalEntryContainer(self.journal)
         adapter.add(JournalEntry(u'', u'Edit me!'))
 
@@ -142,7 +145,8 @@ class DeleteJournalEntryViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(
+                self.portal, 'Journal', 'journal')
         adapter = IJournalEntryContainer(self.journal)
         adapter.add(JournalEntry(u'', u'Delete me!'))
 

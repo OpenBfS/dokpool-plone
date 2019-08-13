@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from zope.interface import implements, Interface
+from zope.interface import implementer, Interface
 from zope.interface.verify import verifyObject
 from zope.component import getMultiAdapter, getSiteManager
 from zope.app.container.interfaces import IContainer
@@ -20,12 +20,14 @@ from wsapi4plone.core.extension import BaseExtension
 # ################### #
 
 
+@implementer(Interface)
 class Dummy(object):
-    implements(Interface)
+    pass
 
 
+@implementer(IContainer)
 class DummyContainer(object):
-    implements(IContainer)
+    pass
 
 
 class ICrashTestExtension(IReadExtension, ICallbackExtension):
@@ -44,22 +46,23 @@ class BaseCrashTestExtension(BaseExtension):
         return getattr(self.context, 'has_crashed', False)
 
 
+@implementer(ICrashTestExtension)
 class ReadOnlyCrashTestExtension(BaseCrashTestExtension):
-    implements(ICrashTestExtension)
 
     def get_callback(self):
         return self.get()
 
 
+@implementer(ICrashTestWriteExtension)
 class WriteCrashTestExtension(BaseCrashTestExtension):
-    implements(ICrashTestWriteExtension)
 
     def set(self, has_crashed):
         """Crash or repair the dummy object."""
         if not isinstance(has_crashed, bool):
             raise TypeError(
                 "%s.set_extension argument has_crashed is not "
-                "a boolean value. Recieved: %s" % (self.__class__.__name__, has_crashed)
+                "a boolean value. Recieved: %s" % (
+                    self.__class__.__name__, has_crashed)
             )
         self.context.has_crashed = has_crashed
 
@@ -78,7 +81,7 @@ class BaseExtensionTestCase(ServiceTestCase):
 
     def setUp(self):
         super(BaseExtensionTestCase, self).setUp()
-        if not self.ext_key and not instance(self.ext_key, str):
+        if not self.ext_key and not isinstance(self.ext_key, str):
             raise ValueError(
                 "You must assign a value to 'ext_key' in your "
                 "test case. Otherwise the test case will not "
@@ -236,7 +239,12 @@ class TestWriteExtension(BaseExtensionTestCase):
         ext.set(has_crashed=has_crashed)
         # Verify the change.
         context = self.serviced_object.context
-        self.failUnlessEqual(getattr(context, 'has_crashed', None), has_crashed)
+        self.failUnlessEqual(
+            getattr(
+                context,
+                'has_crashed',
+                None),
+            has_crashed)
 
     def test_set_extensions(self):
         has_crashed = True

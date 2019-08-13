@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from random import random
-from xmlrpclib import ServerProxy
+from six.moves.xmlrpc_client import ServerProxy
 
 
 def elan_login(username, password):
@@ -21,14 +22,14 @@ def _queryObjects(client, path, type):
     """
     q = client.query({'path': path, 'portal_type': type})
     # print len(q)
-    return q.keys()
+    return list(q.keys())
 
 
 def _getContents(client, path):
     obj = client.get_object([path])
     info = obj.get(path)
     contents = info[2]['contents']
-    return contents.keys()
+    return list(contents.keys())
 
 
 def getTypes(client, esdpath):
@@ -44,7 +45,7 @@ client.get_object()
 # print client.get_object(['/Plone/front-page', 'bfs'])
 
 esds = getESDs(client)
-print esds
+print(esds)
 for esdpath in esds:
     ts = getTypes(client, esdpath)
     for t in ts:
@@ -52,11 +53,11 @@ for esdpath in esds:
         o = client.get_object([t])
         # print o
 
-print client.get_primary_documentpool()[0]
+print(client.get_primary_documentpool()[0])
 esdpath = "/dokpool/bund"
 group_folders = client.get_group_folders(esdpath)
-print group_folders
-ufpath = group_folders.keys()[0]
+print(group_folders)
+ufpath = list(group_folders.keys())[0]
 """
         @param params - dictionary of path with a list value where list item zero are
                         attribute names and their respective values; and list item one
@@ -87,7 +88,7 @@ newpath = client.create_dp_document(
     "eventinformation",
     behaviours,
 )
-print newpath
+print(newpath)
 params = {"scenarios": scenarios, "subjects": ["Henning", "Rietz"]}
 client.update_dp_object(newpath, params)
 

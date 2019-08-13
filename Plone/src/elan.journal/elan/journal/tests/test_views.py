@@ -22,7 +22,8 @@ class ViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
         with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(self.portal, 'Journal', 'journal')
+            self.journal = api.content.create(
+                self.portal, 'Journal', 'journal')
 
 
 class DefaultViewTestCase(ViewTestCase):
@@ -80,7 +81,9 @@ class JournalEntryViewTestCase(ViewTestCase):
         view.publishTraverse(self.request, timestamp)
         rendered = view()
         self.assertIn('itemtype="http://schema.org/BlogPosting"', rendered)
-        self.assertIn('<span property="rnews:author">test_user_1_</span>', rendered)
+        self.assertIn(
+            '<span property="rnews:author">test_user_1_</span>',
+            rendered)
         self.assertIn('<span property="rnews:datePublished">', rendered)
         self.assertNotIn('<span property="rnews:dateModified">', rendered)
         self.assertIn('data-timestamp="{0}"'.format(timestamp), rendered)
@@ -110,7 +113,8 @@ class UpdateViewTestCase(ViewTestCase):
 class RecentUpdatesViewTestCase(ViewTestCase):
     def setUp(self):
         super(RecentUpdatesViewTestCase, self).setUp()
-        self.view = api.content.get_view('recent-updates', self.journal, self.request)
+        self.view = api.content.get_view(
+            'recent-updates', self.journal, self.request)
 
     def test_needs_hard_refresh_on_edition(self):
         # an edition happened before last update; we already handled it

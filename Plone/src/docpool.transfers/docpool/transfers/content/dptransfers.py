@@ -18,7 +18,7 @@ from logging import getLogger
 from plone.dexterity.content import Container
 from plone.directives import form
 from Products.CMFPlone.utils import parent
-from zope.interface import implements
+from zope.interface import implementer
 
 
 logger = getLogger("dptransfers")
@@ -29,13 +29,12 @@ class IDPTransfers(form.Schema):
     """
 
 
+@implementer(IDPTransfers)
 class DPTransfers(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPTransfers)
 
     def migrate(self):
         f = parent(self)

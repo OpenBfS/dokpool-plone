@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -36,7 +37,9 @@ def configUsers(plonesite, fresh):
         reiadmin = mtool.getMemberById('reiadmin')
         reiadmin.setMemberProperties({"fullname": 'REI Administrator'})
         reiadmin.setSecurityProfile(password="admin")
-        mtool.addMember('reimanager', 'REI Manager (global)', ['Manager', 'Member'], [])
+        mtool.addMember(
+            'reimanager', 'REI Manager (global)', [
+                'Manager', 'Member'], [])
         reimanager = mtool.getMemberById('reimanager')
         reimanager.setMemberProperties({"fullname": 'REI Manager'})
         reimanager.setSecurityProfile(password="admin")
@@ -64,12 +67,12 @@ def createREINavigation(plonesite, fresh):
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
     #    create_all_private_collection(plonesite)
     create_all_collection(plonesite)
-    print "struktur angelegt"
+    print("struktur angelegt")
 
 
 def createREIDocTypes(plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
-    print "REI Bericht angelegt"
+    print("REI Bericht angelegt")
 
 
 def changeREINavigation(plonesite, fresh):
@@ -103,11 +106,14 @@ def create_all_collection(plonesite):
             'v': [u'reireport'],
         }
     ]
-    iwas.text = RichTextValue('<p>Alle Reiberichte<p>', 'text/html', 'text/x-html-safe')
+    iwas.text = RichTextValue(
+        '<p>Alle Reiberichte<p>',
+        'text/html',
+        'text/x-html-safe')
 
     iwas.setLayout('docpool_collection_view')
 
-    print "Collection Alle angelegt"
+    print("Collection Alle angelegt")
 
 
 def create_all_private_collection(plonesite):
@@ -138,11 +144,14 @@ def create_all_private_collection(plonesite):
             u'v': ["pending"],
         },
     ]
-    iwas.text = RichTextValue('<p>Noch freizugeben<p>', 'text/html', 'text/x-html-safe')
+    iwas.text = RichTextValue(
+        '<p>Noch freizugeben<p>',
+        'text/html',
+        'text/x-html-safe')
 
     iwas.setLayout('docpool_collection_view')
 
-    print "Collection Alle eingereicht angelegt"
+    print("Collection Alle eingereicht angelegt")
 
 
 BASICSTRUCTURE = [

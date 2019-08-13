@@ -13,7 +13,7 @@ from logging import getLogger
 from plone.dexterity.content import Container
 from plone.directives import form
 from Products.CMFPlone.utils import parent
-from zope.interface import implements
+from zope.interface import implementer
 
 
 logger = getLogger("dpevents")
@@ -24,13 +24,12 @@ class IDPEvents(form.Schema):
     """
 
 
+@implementer(IDPEvents)
 class DPEvents(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPEvents)
 
     def migrate(self):
         f = parent(self)

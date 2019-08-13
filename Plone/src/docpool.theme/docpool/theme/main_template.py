@@ -21,5 +21,5 @@ class MainTemplate(OrigMainTemplate):
                 return OrigMainTemplate.ajax_template
             else:
                 return OrigMainTemplate.main_template
-        except:
+        except BaseException:
             return OrigMainTemplate.main_template

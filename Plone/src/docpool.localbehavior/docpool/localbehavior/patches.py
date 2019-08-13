@@ -83,7 +83,8 @@ def patch_fti_localbehavior():
                 for behavior_registration in assignable.enumerateBehaviors():
                     if behavior_registration.marker:
                         # print behavior_registration.marker
-                        dynamically_provided.append(behavior_registration.marker)
+                        dynamically_provided.append(
+                            behavior_registration.marker)
 
             # DOCPOOL: this is the new part!
             for name in getattr(inst, 'local_behaviors', []) or []:
@@ -140,13 +141,17 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
     if portal_type is None:
         portal_type = context.portal_type
 
-    # DOCPOOL modification! We only want to see behaviors that are allowed here.
+    # DOCPOOL modification! We only want to see behaviors that are allowed
+    # here.
     dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
     available_apps = dp_app_state.appsPermittedForObject(context.REQUEST)
     activated_apps = dp_app_state.appsActivatedByCurrentUser()
-    effective_apps = list(set(available_apps).intersection(set(activated_apps)))
+    effective_apps = list(
+        set(available_apps).intersection(
+            set(activated_apps)))
 
-    for schema_interface in SCHEMA_CACHE.behavior_schema_interfaces(portal_type):
+    for schema_interface in SCHEMA_CACHE.behavior_schema_interfaces(
+            portal_type):
         if isSupported(effective_apps, schema_interface):
             form_schema = IFormFieldProvider(schema_interface, None)
             if form_schema is not None:

@@ -16,7 +16,7 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IGroups(form.Schema):
@@ -24,13 +24,12 @@ class IGroups(form.Schema):
     """
 
 
+@implementer(IGroups)
 class Groups(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IGroups)
 
     def myGroups(self):
         """

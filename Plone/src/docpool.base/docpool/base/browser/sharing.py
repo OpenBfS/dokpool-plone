@@ -62,7 +62,8 @@ class SharingView(OSV):
         info = []
 
         # BfS: we need the Plone Site here, because we want to see ALL groups
-        hunter = getMultiAdapter((aq_parent(context), self.request), name='pas_search')
+        hunter = getMultiAdapter(
+            (aq_parent(context), self.request), name='pas_search')
 
         for principal_info in search_for_principal(hunter, search_term):
             principal_id = principal_info[id_key]

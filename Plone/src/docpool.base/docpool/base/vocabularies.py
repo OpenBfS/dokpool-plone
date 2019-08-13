@@ -10,21 +10,21 @@ from docpool.base.utils import getDocumentPoolSite
 from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
 
 
+@implementer(IVocabularyFactory)
 class AvailableAppsVocabulary(object):
     """
     """
 
-    implements(IVocabularyFactory)
-
     def __call__(self, context):
-        dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter(
+            (context, context.REQUEST), name=u'dp_app_state')
         available = dp_app_state.appsPermittedForCurrentUser()
         return SimpleVocabulary(
             [
@@ -38,11 +38,10 @@ class AvailableAppsVocabulary(object):
 AvailableAppsVocabularyFactory = AvailableAppsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ActiveAppsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
 
@@ -54,11 +53,10 @@ class ActiveAppsVocabulary(object):
 ActiveAppsVocabularyFactory = ActiveAppsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ExtendingAppsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
 
@@ -70,11 +68,10 @@ class ExtendingAppsVocabulary(object):
 ExtendingAppsVocabularyFactory = ExtendingAppsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class SelectableAppsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
 
@@ -86,11 +83,10 @@ class SelectableAppsVocabulary(object):
 SelectableAppsVocabularyFactory = SelectableAppsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class StatusVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary(
@@ -105,29 +101,28 @@ class StatusVocabulary(object):
 StatusVocabularyFactory = StatusVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class DTOptionsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         # print context
         if not context:
             return []
         return SimpleVocabulary(
-            [SimpleTerm(dt[0], title=dt[1]) for dt in context.getMatchingDocTypes()]
+            [SimpleTerm(dt[0], title=dt[1])
+             for dt in context.getMatchingDocTypes()]
         )
 
 
 DTOptionsVocabularyFactory = DTOptionsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class DocumentTypesVocabulary(object):
-    """    
     """
-
-    implements(IVocabularyFactory)
+    """
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -136,7 +131,8 @@ class DocumentTypesVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = [(t.Title, t.id) for t in cat({"portal_type": "DocType", "path": path})]
+        items = [(t.Title, t.id)
+                 for t in cat({"portal_type": "DocType", "path": path})]
         items.extend(
             [
                 ('infodoc', 'infodoc'),
@@ -153,11 +149,10 @@ class DocumentTypesVocabulary(object):
 DocumentTypesVocabularyFactory = DocumentTypesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class DocTypeVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False, filtered=False):
         # print context
@@ -199,11 +194,10 @@ class DocTypeVocabulary(object):
 DocTypeVocabularyFactory = DocTypeVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class GroupDocTypeVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         types = getAllowedDocumentTypesForGroup(context)
@@ -217,11 +211,10 @@ class GroupDocTypeVocabulary(object):
 GroupDocTypeVocabularyFactory = GroupDocTypeVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class DocumentPoolVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
         my_uid = None
@@ -239,7 +232,8 @@ class DocumentPoolVocabulary(object):
             {"portal_type": "DocumentPool", "sort_on": "sortable_title"}
         )
         # print len(esds)
-        esds = [(brain.UID, brain.Title) for brain in esds if brain.UID != my_uid]
+        esds = [(brain.UID, brain.Title)
+                for brain in esds if brain.UID != my_uid]
         # print esds
         if not raw:
             items = [SimpleTerm(i[0], i[0], i[1]) for i in esds]
@@ -251,11 +245,10 @@ class DocumentPoolVocabulary(object):
 DocumentPoolVocabularyFactory = DocumentPoolVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class UserDocumentPoolVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context, raw=False):
 

@@ -134,7 +134,9 @@ class IRodosDoc(IDocumentExtension):
             u'label_rodos_NumericWeatherPredictionDate',
             default=u'Numeric Weather Prediction Date',
         ),
-        description=_(u'description_rodos_NumericWeatherPredictionDate', default=u''),
+        description=_(
+            u'description_rodos_NumericWeatherPredictionDate',
+            default=u''),
         required=False,
     )
     read_permission(NumericWeatherPredictionDate='docpool.rodos.AccessRodos')
@@ -217,7 +219,9 @@ class RodosDoc(FlexibleView):
         context = aq_inner(self.context)
         context.PrognosisBegin = value
 
-    PrognosisBegin = property(_get_rodos_PrognosisBegin, _set_rodos_PrognosisBegin)
+    PrognosisBegin = property(
+        _get_rodos_PrognosisBegin,
+        _set_rodos_PrognosisBegin)
 
     def _get_rodos_PrognosisEnd(self):
         return getInheritedValue(self, "PrognosisEnd")
@@ -263,7 +267,9 @@ class RodosDoc(FlexibleView):
         context = aq_inner(self.context)
         context.CalculationDate = value
 
-    CalculationDate = property(_get_rodos_CalculationDate, _set_rodos_CalculationDate)
+    CalculationDate = property(
+        _get_rodos_CalculationDate,
+        _set_rodos_CalculationDate)
 
     def _get_rodos_ProjectUser(self):
         return getInheritedValue(self, "ProjectUser")
@@ -285,7 +291,9 @@ class RodosDoc(FlexibleView):
         context = aq_inner(self.context)
         context.PrognosisType = value
 
-    PrognosisType = property(_get_rodos_PrognosisType, _set_rodos_PrognosisType)
+    PrognosisType = property(
+        _get_rodos_PrognosisType,
+        _set_rodos_PrognosisType)
 
     def _get_rodos_PrognosisForm(self):
         return getInheritedValue(self, "PrognosisForm")
@@ -296,7 +304,9 @@ class RodosDoc(FlexibleView):
         context = aq_inner(self.context)
         context.PrognosisForm = value
 
-    PrognosisForm = property(_get_rodos_PrognosisForm, _set_rodos_PrognosisForm)
+    PrognosisForm = property(
+        _get_rodos_PrognosisForm,
+        _set_rodos_PrognosisForm)
 
     def isClean(self):
         """

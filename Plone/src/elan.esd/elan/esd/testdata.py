@@ -13,6 +13,7 @@ from Products.CMFPlone.utils import safe_unicode
 import random
 import time
 import transaction
+from six.moves import range
 
 
 # from Acquisition import aq_base
@@ -123,7 +124,8 @@ def createGroupsAndUsers(context):
     mtool = getToolByName(context, 'portal_membership', None)
     mtool.addMember('%s_user1' % prefix, 'User 1 (%s)' % title, ['Member'], [])
     user1 = mtool.getMemberById('%s_user1' % prefix)
-    user1.setMemberProperties({"fullname": 'User 1 (%s)' % title, "dp": context.UID()})
+    user1.setMemberProperties(
+        {"fullname": 'User 1 (%s)' % title, "dp": context.UID()})
     user1.setSecurityProfile(password="user1")
     mtool.createMemberArea('%s_user1' % prefix)
     gtool.addPrincipalToGroup('%s_user1' % prefix, '%s_Group1' % prefix)
@@ -131,7 +133,8 @@ def createGroupsAndUsers(context):
     gtool.addPrincipalToGroup('%s_user1' % prefix, '%s_Members' % prefix)
     mtool.addMember('%s_user2' % prefix, 'User 2 (%s)' % title, ['Member'], [])
     user2 = mtool.getMemberById('%s_user2' % prefix)
-    user2.setMemberProperties({"fullname": 'User 2 (%s)' % title, "dp": context.UID()})
+    user2.setMemberProperties(
+        {"fullname": 'User 2 (%s)' % title, "dp": context.UID()})
     user2.setSecurityProfile(password="user2")
     mtool.createMemberArea('%s_user2' % prefix)
     gtool.addPrincipalToGroup('%s_user2' % prefix, '%s_Group2' % prefix)

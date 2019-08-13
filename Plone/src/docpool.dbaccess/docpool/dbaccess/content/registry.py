@@ -31,12 +31,13 @@ def getAllEntityFields(klass):
     """
     cm = class_mapper(klass)  # SA Mapper dieser Klasse holen
     if cm:
-        fields = cm.columns.keys()  # Spalten lesen
+        fields = list(cm.columns.keys())  # Spalten lesen
         for f in cm.primary_key:  # Primaerschluesselfelder nicht
             if f.name in fields:
                 fields.remove(f.name)
         for r in cm._props.keys():
-            if type(cm._props[r]) == RelationProperty:  # Relationen zufuegen
+            if isinstance(
+                    cm._props[r], RelationProperty):  # Relationen zufuegen
                 fields.append(r)
         return fields
     else:
@@ -98,7 +99,7 @@ def registerEntityConfig(
 ):
     """
     Erlaubt das programmatische Definieren oder Ueberschreiben von Entity Konfigurationen.
-    D.h. statt eines EntityConfig Objekts wird eine interne Registry genutzt, 
+    D.h. statt eines EntityConfig Objekts wird eine interne Registry genutzt,
     um alle Aspekte der Darstellung persistent abzulegen.
     Wenn 'protect' = True, dann werden die Eintraege durch einen erneuten Aufruf nicht ueberschrieben -
         es sei denn, der erneute Aufruf spezifiziert wieder 'protect' = True.
@@ -110,7 +111,7 @@ def registerEntityConfig(
         label = typ.capitalize()
 
     econfig = {}
-    if _ecreg.has_key(typ):
+    if typ in _ecreg:
         econfig = _ecreg[typ]
         if (
             econfig['protect'] and not protect
@@ -156,14 +157,14 @@ def registerEntityConfig(
 def unregisterEntityConfig(typ):
     """
     """
-    if _ecreg.has_key(typ):
+    if typ in _ecreg:
         del _ecreg[typ]
 
 
 def unregisterExportDBObjectConfig(typ):
     """
     """
-    if _exportConfigReg.has_key(typ):
+    if typ in _exportConfigReg:
         del _exportConfigReg[typ]
 
 
@@ -192,7 +193,7 @@ def registerExportDBObjectConfig(
     exConfig['zusatzFelder'] = zusatzFelder
     exConfig['methodeFuerZusatzFelder'] = methodeFuerZusatzFelder
     exConfig['encoding'] = encoding
-    if _exportConfigReg.has_key(typ):
+    if typ in _exportConfigReg:
         _exportConfigReg[typ].append((name, exConfig))
     else:
         _exportConfigReg[typ] = [(name, exConfig)]
@@ -203,7 +204,7 @@ def registerReportConfig(typ, klass, reportTemplateName, name='Standard'):
     """
     reportConfig = {'klass': klass, 'reportTemplateName': reportTemplateName}
     # TODO: nicht doppelt registriern!
-    if _reportConfigReg.has_key(typ):
+    if typ in _reportConfigReg:
         _reportConfigReg[typ].append((name, reportConfig))
     else:
         _reportConfigReg[typ] = [(name, reportConfig)]
@@ -228,4 +229,5 @@ def bootstrapRegistry():
 setup_all()
 # bootstrapRegistry() # Minimale Initialisierung mit dem, was halt schon da ist...
 # Diese feste generische Registierung wollen wir nicht. Das kann bei einzelnen Installationen
-# in kundenspezifischen Produkten aufgerufen werden. Aber generell sollen alle Entities explizit registriert werden.
+# in kundenspezifischen Produkten aufgerufen werden. Aber generell sollen
+# alle Entities explizit registriert werden.

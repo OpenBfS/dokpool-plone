@@ -26,7 +26,7 @@ from plone.directives import form
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
@@ -42,13 +42,12 @@ class ISRTextBlock(form.Schema, IContentBase):
     )
 
 
+@implementer(ISRTextBlock)
 class SRTextBlock(Item, ContentBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRTextBlock)
 
     def moduleConfigs(self):
         """

@@ -8,7 +8,7 @@ from plone.indexer import indexer
 def network_operator_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).NetworkOperator
-    except:
+    except BaseException:
         pass
 
 
@@ -16,7 +16,7 @@ def network_operator_indexer(obj):
 def dom_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).Dom
-    except:
+    except BaseException:
         pass
 
 
@@ -24,7 +24,7 @@ def dom_indexer(obj):
 def legal_base_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).LegalBase
-    except:
+    except BaseException:
         pass
 
 
@@ -32,7 +32,7 @@ def legal_base_indexer(obj):
 def measuring_program_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).MeasuringProgram
-    except:
+    except BaseException:
         pass
 
 
@@ -40,7 +40,7 @@ def measuring_program_indexer(obj):
 def sampling_begin_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).SamplingBegin
-    except:
+    except BaseException:
         pass
 
 
@@ -48,7 +48,7 @@ def sampling_begin_indexer(obj):
 def sampling_end_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).SamplingEnd
-    except:
+    except BaseException:
         pass
 
 
@@ -56,7 +56,7 @@ def sampling_end_indexer(obj):
 def purpose_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).Purpose
-    except:
+    except BaseException:
         pass
 
 
@@ -64,7 +64,7 @@ def purpose_indexer(obj):
 def trajectory_start_location_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).TrajectoryStartLocation
-    except:
+    except BaseException:
         pass
 
 
@@ -72,7 +72,7 @@ def trajectory_start_location_indexer(obj):
 def trajectory_end_location_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).TrajectoryEndLocation
-    except:
+    except BaseException:
         pass
 
 
@@ -80,7 +80,7 @@ def trajectory_end_location_indexer(obj):
 def trajectory_start_time_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).TrajectoryStartTime
-    except:
+    except BaseException:
         pass
 
 
@@ -88,7 +88,7 @@ def trajectory_start_time_indexer(obj):
 def trajectory_end_time_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).TrajectoryEndTime
-    except:
+    except BaseException:
         pass
 
 
@@ -96,7 +96,7 @@ def trajectory_end_time_indexer(obj):
 def status_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).Status
-    except:
+    except BaseException:
         pass
 
 
@@ -104,7 +104,7 @@ def status_indexer(obj):
 def operation_mode_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).OperationMode
-    except:
+    except BaseException:
         pass
 
 
@@ -112,7 +112,7 @@ def operation_mode_indexer(obj):
 def data_type_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).DataType
-    except:
+    except BaseException:
         pass
 
 
@@ -120,7 +120,7 @@ def data_type_indexer(obj):
 def sample_type_id_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).SampleTypeId
-    except:
+    except BaseException:
         pass
 
 
@@ -128,7 +128,7 @@ def sample_type_id_indexer(obj):
 def sample_type_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).SampleType
-    except:
+    except BaseException:
         pass
 
 
@@ -136,7 +136,7 @@ def sample_type_indexer(obj):
 def measurement_category_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).MeasurementCategory
-    except:
+    except BaseException:
         pass
 
 
@@ -144,7 +144,7 @@ def measurement_category_indexer(obj):
 def duration_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).Duration
-    except:
+    except BaseException:
         pass
 
 
@@ -152,7 +152,7 @@ def duration_indexer(obj):
 def type_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).Type
-    except:
+    except BaseException:
         pass
 
 
@@ -160,5 +160,5 @@ def type_indexer(obj):
 def area_indexer(obj):
     try:
         return obj.doc_extension(DOKSYS_APP).Area
-    except:
+    except BaseException:
         pass

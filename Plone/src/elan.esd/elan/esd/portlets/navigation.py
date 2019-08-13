@@ -13,7 +13,8 @@ from zope.component import getMultiAdapter
 
 class Renderer(navigation.Renderer):
     def __init__(self, context, request, view, manager, data):
-        navigation.Renderer.__init__(self, context, request, view, manager, data)
+        navigation.Renderer.__init__(
+            self, context, request, view, manager, data)
 
     @memoize
     def getNavTree(self, _marker=[]):

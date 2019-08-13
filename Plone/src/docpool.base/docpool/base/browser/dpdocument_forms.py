@@ -27,7 +27,7 @@ def checkUpload(form):
                     return True
                 else:
                     return False
-            except:
+            except BaseException:
                 return False
 
 

@@ -35,6 +35,9 @@ DOCPOOL_MENU_FUNCTIONAL_TESTING = FunctionalTesting(
 
 
 DOCPOOL_MENU_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_MENU_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
+    bases=(
+        DOCPOOL_MENU_FIXTURE,
+        REMOTE_LIBRARY_BUNDLE_FIXTURE,
+        z2.ZSERVER_FIXTURE),
     name='DocpoolMenuLayer:AcceptanceTesting',
 )

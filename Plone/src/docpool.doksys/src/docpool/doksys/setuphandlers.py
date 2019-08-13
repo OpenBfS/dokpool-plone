@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -122,7 +123,7 @@ def create_1day_collection(plonesite):
 
     lday.setLayout('summary_view')
 
-    print "1day Collection angelegt"
+    print("1day Collection angelegt")
 
 
 def create_purpose_collections(plonesite):
@@ -192,7 +193,7 @@ def create_purpose_collections(plonesite):
     iwas.setLayout('summary_view')
     #
 
-    print "Purpose Collection angelegt"
+    print("Purpose Collection angelegt")
 
 
 def create_sample_collections(plonesite):
@@ -222,7 +223,10 @@ def create_sample_collections(plonesite):
             u'v': u'B*',
         },
     ]
-    iwas.text = RichTextValue('<p>Ergebnisse Boden<p>', 'text/html', 'text/x-html-safe')
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Boden<p>',
+        'text/html',
+        'text/x-html-safe')
     iwas.setLayout('summary_view')
 
     title = 'Ergebnisse Futtermittel'
@@ -310,7 +314,10 @@ def create_sample_collections(plonesite):
             u'v': u'L*',
         },
     ]
-    iwas.text = RichTextValue('<p>Ergebnisse Luft<p>', 'text/html', 'text/x-html-safe')
+    iwas.text = RichTextValue(
+        '<p>Ergebnisse Luft<p>',
+        'text/html',
+        'text/x-html-safe')
     iwas.setLayout('summary_view')
 
     title = 'Ergebnisse Nahrungsmittel'
@@ -373,7 +380,7 @@ def create_sample_collections(plonesite):
     )
     iwas.setLayout('summary_view')
 
-    print "Sample Type Collection angelegt"
+    print("Sample Type Collection angelegt")
 
 
 BASICSTRUCTURE = [

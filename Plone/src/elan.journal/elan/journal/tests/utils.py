@@ -4,6 +4,7 @@ from elan.journal.adapters import JournalEntry
 from time import sleep
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
+from six.moves import range
 
 
 def _create_journalentries(context, count):

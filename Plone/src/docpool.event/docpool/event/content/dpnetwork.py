@@ -10,7 +10,7 @@ from logging import getLogger
 from plone.dexterity.content import Item
 from plone.directives import form
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 
 
 logger = getLogger("dpnetwork")
@@ -23,10 +23,9 @@ class IDPNetwork(form.Schema):
     area = schema.Text(title=_(u"Area coordinates"), required=False)
 
 
+@implementer(IDPNetwork)
 class DPNetwork(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPNetwork)

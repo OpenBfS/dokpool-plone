@@ -2,7 +2,7 @@ try:
     from zope.component.hooks import getSite
 except ImportError:
     from zope.component.hooks import getSite
-from zope.interface import implements
+from zope.interface import implementer
 
 from interfaces import IWorkflow
 from wsapi import WSAPI
@@ -10,8 +10,8 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 
 
+@implementer(IWorkflow)
 class Workflow(WSAPI):
-    implements(IWorkflow)
 
     def get_workflow(self, path=''):
         """
@@ -23,7 +23,9 @@ class Workflow(WSAPI):
         portal_workflow = getSite().portal_workflow
         results = {}
 
-        self.logger.info("- get_workflow - Getting workflow state for %s." % (obj))
+        self.logger.info(
+            "- get_workflow - Getting workflow state for %s." %
+            (obj))
 
         results['state'] = current_state = portal_workflow.getInfoFor(
             obj, 'review_state'

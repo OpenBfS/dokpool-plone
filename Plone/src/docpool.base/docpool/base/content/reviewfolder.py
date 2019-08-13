@@ -22,7 +22,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IReviewFolder(form.Schema, ISimpleFolder):
@@ -30,13 +30,12 @@ class IReviewFolder(form.Schema, ISimpleFolder):
     """
 
 
+@implementer(IReviewFolder)
 class ReviewFolder(Container, SimpleFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IReviewFolder)
 
     def createActions(self):
         """
@@ -47,7 +46,7 @@ class ReviewFolder(Container, SimpleFolder):
             self.manage_addProduct[
                 'CMFPlacefulWorkflow'
             ].manage_addWorkflowPolicyConfig()
-        except BadRequest, e:
+        except BadRequest as e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
         placefulWfName = 'dp-review-folder'

@@ -19,7 +19,10 @@ SRCONFIG = [
         TITLE: 'SR Configuration',
         ID: 'srconfig',
         CHILDREN: [
-            {TYPE: 'SRCollections', TITLE: 'SR Collections', ID: 'colls', CHILDREN: []},
+            {TYPE: 'SRCollections',
+             TITLE: 'SR Collections',
+             ID: 'colls',
+             CHILDREN: []},
             {
                 TYPE: 'SRTextBlocks',
                 TITLE: 'Text Blocks',

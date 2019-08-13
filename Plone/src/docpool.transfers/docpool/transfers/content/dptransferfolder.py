@@ -31,7 +31,7 @@ from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import parent
 from zope import schema
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
@@ -54,7 +54,9 @@ class IDPTransferFolder(form.Schema, IFolderBase):
     )
 
     permLevel = schema.Choice(
-        title=_(u'label_dptransferfolder_permlevel', default=u'Permission level'),
+        title=_(
+            u'label_dptransferfolder_permlevel',
+            default=u'Permission level'),
         description=_(u'description_dptransferfolder_permlevel', default=u''),
         required=True,
         default="read/write",
@@ -66,7 +68,9 @@ class IDPTransferFolder(form.Schema, IFolderBase):
             u'label_dptransferfolder_unknowndtdefault',
             default=u'Default for unknown document types',
         ),
-        description=_(u'description_dptransferfolder_unknowndtdefault', default=u''),
+        description=_(
+            u'description_dptransferfolder_unknowndtdefault',
+            default=u''),
         required=True,
         default="block",
         source="docpool.transfers.vocabularies.UnknownOptions",
@@ -77,7 +81,9 @@ class IDPTransferFolder(form.Schema, IFolderBase):
             u'label_dptransferfolder_unknownscendefault',
             default=u'Default for unknown scenarios',
         ),
-        description=_(u'description_dptransferfolder_unknownscendefault', default=u''),
+        description=_(
+            u'description_dptransferfolder_unknownscendefault',
+            default=u''),
         required=True,
         default="block",
         source="docpool.transfers.vocabularies.UnknownOptions",
@@ -87,13 +93,12 @@ class IDPTransferFolder(form.Schema, IFolderBase):
 #    form.widget(typesConf=DataGridFieldFactory)
 
 
+@implementer(IDPTransferFolder)
 class DPTransferFolder(Container, FolderBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPTransferFolder)
 
     def migrate(self):
         f = parent(self)

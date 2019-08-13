@@ -20,7 +20,7 @@ from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
 from plone.directives import form
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 
 
@@ -29,13 +29,12 @@ class IELANInfos(form.Schema, IInfoFolder):
     """
 
 
+@implementer(IELANInfos)
 class ELANInfos(Container, InfoFolder):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IELANInfos)
 
     APP = ELAN_APP
 
@@ -96,4 +95,6 @@ def infosAdded(obj, event=None):
     esd = self.myDocumentPool()
     prefix = esd.prefix or esd.getId()
     prefix = str(prefix)
-    self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
+    self.manage_setLocalRoles(
+        "%s_ContentAdministrators" %
+        prefix, ["ContentAdmin"])

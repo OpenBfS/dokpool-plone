@@ -139,7 +139,7 @@ def searchResults(self, REQUEST=None, **kw):
     has_st = kw.get('SearchableText', None)
     has_path = kw.get('path', None)
     isInternal = kw.get('object_provides', None)
-    if has_st and type(has_st) == type({}):
+    if has_st and isinstance(has_st, type({})):
         has_st = has_st.get('query', None)
         isInternal = True
     if has_st and not isInternal:  # user query, needs to be personalized
@@ -186,7 +186,7 @@ def createTestData(self, count=100, prune=False):
             Status="active",
             TimeOfEvent=datetime.datetime.today(),
         )
-    except:
+    except BaseException:
         pass
     try:
         self.contentconfig.scen.invokeFactory(
@@ -198,7 +198,7 @@ def createTestData(self, count=100, prune=False):
             exercise=True,
             TimeOfEvent=datetime.datetime.today(),
         )
-    except:
+    except BaseException:
         pass
     createTestDocuments(self, count)
     self.reindexAll()

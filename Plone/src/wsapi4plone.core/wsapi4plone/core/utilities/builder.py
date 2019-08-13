@@ -1,11 +1,12 @@
-from zope.interface import implements
+from zope.interface import implementer
 from zope.publisher.interfaces import NotFound
 
 from wsapi4plone.core.interfaces import IContextBuilder
+import six
 
 
+@implementer(IContextBuilder)
 class Builder(object):
-    implements(IContextBuilder)
 
     def __call__(self, context, path):
         """
@@ -14,7 +15,7 @@ class Builder(object):
         """
         if not path:
             found_object = context
-        elif type(path) == str or type(path) == unicode:
+        elif isinstance(path, str) or isinstance(path, six.text_type):
             try:
                 found_object = context.restrictedTraverse(path)
             except KeyError:

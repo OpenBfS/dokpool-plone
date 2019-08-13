@@ -16,7 +16,7 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IDPConfig(form.Schema):
@@ -24,13 +24,12 @@ class IDPConfig(form.Schema):
     """
 
 
+@implementer(IDPConfig)
 class DPConfig(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPConfig)
 
     def myDPConfig(self):
         """

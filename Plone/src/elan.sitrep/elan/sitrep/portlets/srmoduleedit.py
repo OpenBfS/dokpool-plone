@@ -4,7 +4,7 @@ from elan.sitrep import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.interface import implements
+from zope.interface import implementer
 
 
 # This interface defines the configurable options (if any) for the portlet.
@@ -20,8 +20,8 @@ class ISRModuleEditPortlet(IPortletDataProvider):
 # a particular instantiation of the portlet.
 
 
+@implementer(ISRModuleEditPortlet)
 class Assignment(base.Assignment):
-    implements(ISRModuleEditPortlet)
 
     @property
     def title(self):

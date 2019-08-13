@@ -3,17 +3,18 @@
 import unittest
 
 from zope.component import getSiteManager
-from zope.interface import implements, Interface
+from zope.interface import implementer, Interface
 from zope.app.container.interfaces import IContainer
 
 
+@implementer(Interface)
 class Dummy(object):
-    implements(Interface)
+    pass
 
 
+@implementer(IContainer)
 class DummyContainer(object):
-    implements(IContainer)
-
+    pass
 
 # ########################### #
 #   Base Service Test Cases   #
@@ -50,7 +51,8 @@ class ServiceContainerTestCase(ServiceTestCase):
         from wsapi4plone.core.service import ServiceContainer
 
         sm.registerAdapter(
-            ServiceContainer, required=(IContainer,), provided=IServiceContainer
+            ServiceContainer, required=(
+                IContainer,), provided=IServiceContainer
         )
         dummy_container = DummyContainer()
         self.serviced_container = IServiceContainer(dummy_container)

@@ -304,7 +304,8 @@ ESDCOLLECTIONS = [
         DOCTYPES: [],
         CHILDREN: [],
     },
-    {TYPE: 'Dashboard', TITLE: 'Pinnwand', ID: 'dashboard', "setExcludeFromNav": True},
+    {TYPE: 'Dashboard', TITLE: 'Pinnwand',
+        ID: 'dashboard', "setExcludeFromNav": True},
     {
         TYPE: 'SituationOverview',
         TITLE: 'Lageübersicht',
@@ -527,115 +528,117 @@ def connectTypesAndCategories(self):
         self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory(
             'notifications'
         )
-    except Exception, e:
+    except Exception as e:
         log_exc(e)
     try:
-        self.config.dtypes.note.type_extension(ELAN_APP).setCCategory('notifications')
-    except:
+        self.config.dtypes.note.type_extension(
+            ELAN_APP).setCCategory('notifications')
+    except BaseException:
         pass
     try:
         self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory(
             'event-npp-information'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory(
             'event-npp-information'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory(
             'weather-information'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.trajectory.type_extension(ELAN_APP).setCCategory(
             'trajectories'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory(
             'npp-projections'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
             'rodos'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory(
             'other'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory(
             'gamma-dose-rate'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory(
             'air-activity'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.groundcontamination.type_extension(ELAN_APP).setCCategory(
             'ground-contamination'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.mresult_feed.type_extension(ELAN_APP).setCCategory(
             'food-and-feed'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.mresult_food.type_extension(ELAN_APP).setCCategory(
             'food-and-feed'
         )
-    except:
+    except BaseException:
         pass
     try:
-        self.config.dtypes.mresult_water.type_extension(ELAN_APP).setCCategory('water')
-    except:
+        self.config.dtypes.mresult_water.type_extension(
+            ELAN_APP).setCCategory('water')
+    except BaseException:
         pass
     try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory(
             'situation-reports'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory(
             'situation-reports'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory(
             'protective-actions'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory(
             'media-releases'
         )
-    except:
+    except BaseException:
         pass
     try:
         self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
             'instructions-to-the-public'
         )
-    except:
+    except BaseException:
         pass

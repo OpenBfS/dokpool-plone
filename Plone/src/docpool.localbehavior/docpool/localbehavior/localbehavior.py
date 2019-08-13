@@ -20,7 +20,9 @@ class ILocalBehaviorSupport(form.Schema):
                     ' changes will be applied after saving',
         ),
         required=False,
-        value_type=schema.Choice(title=u'Applications', vocabulary="LocalBehaviors"),
+        value_type=schema.Choice(
+            title=u'Applications',
+            vocabulary="LocalBehaviors"),
     )
 
 
@@ -46,7 +48,7 @@ class LocalBehaviorSupport(object):
         return list(set(self.context.local_behaviors))
 
     def _set_local_behaviors(self, value):
-        if type(value) == type([]) or (type(value) == type(tuple)):
+        if isinstance(value, type([])) or (isinstance(value, type(tuple))):
             value = list(set(value))
         context = aq_inner(self.context)
         if value is not None:

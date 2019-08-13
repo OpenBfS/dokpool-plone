@@ -24,7 +24,7 @@ from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.dexterity.content import Item
 from plone.directives import form
 from Products.CMFPlone.utils import safe_unicode
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISituationOverview(form.Schema):
@@ -32,13 +32,12 @@ class ISituationOverview(form.Schema):
     """
 
 
+@implementer(ISituationOverview)
 class SituationOverview(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISituationOverview)
 
     APP = ELAN_APP
 
@@ -85,7 +84,10 @@ class SituationOverview(Item):
                     "%s %s"
                     % (
                         safe_unicode(report.Title()),
-                        self.toLocalizedTime(DateTime(report.changed()), long_format=1),
+                        self.toLocalizedTime(
+                            DateTime(
+                                report.changed()),
+                            long_format=1),
                     ),
                 )
             )

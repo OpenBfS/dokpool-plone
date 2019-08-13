@@ -23,7 +23,9 @@ from zope.interface import provider
 @provider(IFormFieldProvider)
 class IExampleType(IDocTypeExtension):
     example_type_attribute = schema.TextLine(
-        title=_(u'label_example_type_attribute', default=u'Example Type Attribute'),
+        title=_(
+            u'label_example_type_attribute',
+            default=u'Example Type Attribute'),
         description=_(u'description_example_type_attribute', default=u''),
         required=False,
     )

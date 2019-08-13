@@ -54,7 +54,8 @@ def getURL(self, relative=0, original=False):
     ):
         if self.cat_path:
             # This is it: we use the path of the category
-            return "%s/@@dview?d=%s&disable_border=1" % (self.cat_path, self.UID)
+            return "%s/@@dview?d=%s&disable_border=1" % (
+                self.cat_path, self.UID)
         else:
             pass
             # print "no cat_path"

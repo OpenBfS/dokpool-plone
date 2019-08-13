@@ -24,7 +24,7 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRModuleConfig(form.Schema):
@@ -65,7 +65,9 @@ class ISRModuleConfig(form.Schema):
             u'label_srmoduletype_defaulttextblocks',
             default=u'Default Text (when freshly created)',
         ),
-        description=_(u'description_srmoduletype_defaulttextblocks', default=u''),
+        description=_(
+            u'description_srmoduletype_defaulttextblocks',
+            default=u''),
         required=False,
         value_type=RelationChoice(
             title=_("Default Text"), source="elan.sitrep.vocabularies.TextBlocks"
@@ -73,17 +75,18 @@ class ISRModuleConfig(form.Schema):
     )
 
     form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
-    form.widget(textBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
-    form.widget(defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
+    form.widget(
+        textBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
+    form.widget(
+        defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
 
 
+@implementer(ISRModuleConfig)
 class SRModuleConfig(Item):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRModuleConfig)
 
     def getSRModuleNames(self):
         """

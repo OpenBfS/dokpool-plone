@@ -20,7 +20,7 @@ from elan.sitrep import DocpoolMessageFactory as _
 from plone.dexterity.content import Container
 from plone.directives import form
 from z3c.relationfield.schema import RelationChoice
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRModuleType(form.Schema, IDocType):
@@ -52,13 +52,12 @@ class ISRModuleType(form.Schema, IDocType):
     form.mode(customViewTemplate='hidden')
 
 
+@implementer(ISRModuleType)
 class SRModuleType(Container, DocType):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRModuleType)
 
     def currentDocuments(self):
         """

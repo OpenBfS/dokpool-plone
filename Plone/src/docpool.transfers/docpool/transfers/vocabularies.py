@@ -1,16 +1,15 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.transfers import DocpoolMessageFactory as _
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
+@implementer(IVocabularyFactory)
 class PermissionsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary(
@@ -25,11 +24,10 @@ class PermissionsVocabulary(object):
 PermissionsVocabularyFactory = PermissionsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class UnknownOptionsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary(
@@ -43,11 +41,10 @@ class UnknownOptionsVocabulary(object):
 UnknownOptionsVocabularyFactory = UnknownOptionsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class DTPermOptionsVocabulary(object):
     """
     """
-
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary(

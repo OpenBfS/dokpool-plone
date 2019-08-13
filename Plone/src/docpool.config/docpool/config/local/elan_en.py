@@ -40,7 +40,7 @@ def dpAdded(self):
             self.archive.manage_addProduct[
                 'CMFPlacefulWorkflow'
             ].manage_addWorkflowPolicyConfig()
-        except BadRequest, e:
+        except BadRequest as e:
             # print type(e)
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self.archive)
@@ -156,7 +156,8 @@ def createELANUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_elanadmin' % prefix, 'ELAN Administrator (%s)' % title, ['Member'], []
+        '%s_elanadmin' % prefix, 'ELAN Administrator (%s)' % title, [
+            'Member'], []
     )
     elanadmin = mtool.getMemberById('%s_elanadmin' % prefix)
     elanadmin.setMemberProperties(
@@ -164,7 +165,8 @@ def createELANUsers(self):
     )
     elanadmin.setSecurityProfile(password="admin")
     mtool.addMember(
-        '%s_contentadmin' % prefix, 'Content Admin (%s)' % title, ['Member'], []
+        '%s_contentadmin' % prefix, 'Content Admin (%s)' % title, [
+            'Member'], []
     )
     contentadmin = mtool.getMemberById('%s_contentadmin' % prefix)
     contentadmin.setMemberProperties(
@@ -186,7 +188,9 @@ def setELANLocalRoles(self):
     self.contentconfig.manage_setLocalRoles(
         "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
     )
-    self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
+    self.esd.manage_setLocalRoles(
+        "%s_ContentAdministrators" %
+        prefix, ["ContentAdmin"])
     self.archive.manage_setLocalRoles(
         "%s_ContentAdministrators" % prefix, ["DocPoolAdmin"]
     )
@@ -194,7 +198,9 @@ def setELANLocalRoles(self):
         "%s_ContentAdministrators" % prefix, ["Site Administrator"]
     )
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
-    self.config.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Owner"])
+    self.config.manage_setLocalRoles(
+        "%s_ContentAdministrators" %
+        prefix, ["Owner"])
 
 
 def createELANGroups(self):
@@ -210,8 +216,16 @@ def createELANGroups(self):
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
     gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Members' % prefix)
-    gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_Members' % prefix)
-    gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Administrators' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_contentadmin' %
+        prefix,
+        '%s_Members' %
+        prefix)
+    gtool.addPrincipalToGroup(
+        '%s_elanadmin' %
+        prefix,
+        '%s_Administrators' %
+        prefix)
     # Content administrator group
     props = {
         'allowedDocTypes': [],
@@ -232,7 +246,11 @@ def createELANGroups(self):
     }
     gtool.addGroup("%s_ELANUsers" % prefix, properties=props)
     gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_ELANUsers' % prefix)
-    gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_ELANUsers' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_contentadmin' %
+        prefix,
+        '%s_ELANUsers' %
+        prefix)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ELANUsers' % prefix)
 
 

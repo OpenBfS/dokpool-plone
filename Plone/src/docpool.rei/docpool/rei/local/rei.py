@@ -7,8 +7,8 @@ import transaction
 
 def dpAdded(self):
     """
-    @param self: 
-    @return: 
+    @param self:
+    @return:
 
     """
     fresh = True
@@ -21,7 +21,8 @@ def dpAdded(self):
     if fresh:
         # connectTypesAndCategories(self) # TOOD: only when REI doctypes need to be added to ELAN categories
         # self.rei.correctAllDocTypes() # TODO: if the run display templates contains collections
-        # with references to global doctypes, which need to be adapted to local doctypes.
+        # with references to global doctypes, which need to be adapted to local
+        # doctypes.
         createREIUsers(self)
         createREIGroups(self)
     self.reindexAll()
@@ -61,8 +62,8 @@ def dpRemoved(self):
 def createREIGroups(docpool):
     """
     Create Group for rei application access
-    @param self: 
-    @return: 
+    @param self:
+    @return:
     """
 
     prefix = docpool.prefix or docpool.getId()
@@ -90,7 +91,11 @@ def createREIGroups(docpool):
     gtool.addPrincipalToGroup(
         '%s_dpadmin' % prefix, '%s_REIContentAdministrators' % prefix
     )
-    gtool.addPrincipalToGroup('%s_reiadmin' % prefix, '%s_Administrators' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_reiadmin' %
+        prefix,
+        '%s_Administrators' %
+        prefix)
 
     # Set REI role as a local role for the new group
     docpool.manage_setLocalRoles("%s_REIUsers" % prefix, ["REIUser"])
@@ -111,7 +116,8 @@ def createREIUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_reiadmin' % prefix, 'REI Administrator (%s)' % title, ['Member'], []
+        '%s_reiadmin' % prefix, 'REI Administrator (%s)' % title, [
+            'Member'], []
     )
     reiadmin = mtool.getMemberById('%s_reiadmin' % prefix)
     reiadmin.setMemberProperties(

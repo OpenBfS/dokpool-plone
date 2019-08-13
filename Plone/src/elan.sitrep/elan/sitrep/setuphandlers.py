@@ -36,5 +36,5 @@ def setupVarious(context):
 
             if not index_name in cat.schema():
                 cat.addColumn(index_name)
-        except:
+        except BaseException:
             pass  # for metadata

@@ -38,7 +38,7 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import getUtility
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import provider
 from zope.intid.interfaces import IIntIds
 
@@ -51,7 +51,9 @@ class ISituationReport(IDPDocument):
     """
 
     phase = RelationChoice(
-        title=_(u'label_situationreport_phase', default=u'Phase (scenario-specific)'),
+        title=_(
+            u'label_situationreport_phase',
+            default=u'Phase (scenario-specific)'),
         description=_(u'description_situationreport_phase', default=u''),
         required=False,
         source="elan.sitrep.vocabularies.Phases",
@@ -59,14 +61,19 @@ class ISituationReport(IDPDocument):
     form.widget(phase='z3c.form.browser.select.SelectFieldWidget')
 
     currentModules = RelationList(
-        title=_(u'label_situationreport_currentmodules', default=u'Current Modules'),
-        description=_(u'description_situationreport_currentmodules', default=u''),
+        title=_(
+            u'label_situationreport_currentmodules',
+            default=u'Current Modules'),
+        description=_(
+            u'description_situationreport_currentmodules',
+            default=u''),
         required=False,
         value_type=RelationChoice(
             title=_("Current Modules"), source="elan.sitrep.vocabularies.CurrentModules"
         ),
     )
-    form.widget(currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
+    form.widget(
+        currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
     form.mode(docType='hidden')
     text = RichText(
         title=_(u'label_situationreport_text', default=u'Introduction'),
@@ -95,13 +102,12 @@ def initializePhase(data):
     return None
 
 
+@implementer(ISituationReport)
 class SituationReport(Container, DPDocument):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISituationReport)
 
     APP = ELAN_APP
 
@@ -178,14 +184,14 @@ class SituationReport(Container, DPDocument):
             try:
                 missing[mod.docType][0] = 'planned'
                 missing[mod.docType][2] = mod
-            except:
+            except BaseException:
                 pass
 
         for mod in publishedMods:
             try:
                 missing[mod.docType][0] = 'published'
                 missing[mod.docType][2] = mod
-            except:
+            except BaseException:
                 pass
 
         # Even better: those ready
@@ -193,9 +199,9 @@ class SituationReport(Container, DPDocument):
             try:
                 missing[mod.docType][0] = 'ready'
                 missing[mod.docType][2] = mod
-            except:
+            except BaseException:
                 pass
-        res = missing.values()
+        res = list(missing.values())
         # res = myMods
         # res.extend(plannedMods)
         return sorted(res)
@@ -207,7 +213,8 @@ class SituationReport(Container, DPDocument):
         alsoProvides(request, IDisableCSRFProtection)
         new_version = self
         if duplicate:
-            new_version = content.copy(source=self, id=self.getId(), safe_id=True)
+            new_version = content.copy(
+                source=self, id=self.getId(), safe_id=True)
         # copy modules into the report?
         # We would lose all the reference information, which is important for the situation overview
         # mods = self.myModules()
@@ -256,7 +263,7 @@ class SituationReport(Container, DPDocument):
                     if module:
                         to_id = intids.getId(module)
                         refs.append(RelationValue(to_id))
-                except:
+                except BaseException:
                     pass
         if refs:
             self.currentModules = refs
@@ -275,7 +282,7 @@ class SituationReport(Container, DPDocument):
     def getRepresentativePDF(self):
         """
         """
-        pdfPattern = "report.*\.pdf"
+        pdfPattern = r"report.*\.pdf"
         p = re.compile(pdfPattern, re.IGNORECASE)
         files = self.getFiles()
         for f in files:

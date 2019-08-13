@@ -102,7 +102,8 @@ def createAdminstructure(plonesite, fresh):
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
 
 
-# Since Plone 5.08 this has been problematic as the toolbar cannot handle a script as default content.
+# Since Plone 5.08 this has been problematic as the toolbar cannot handle
+# a script as default content.
 def setFrontpage(self):
     """
     """
@@ -114,7 +115,7 @@ def setFrontpage(self):
     r = "redirect"
     try:
         id = self._setObject(r, PythonScript(r))
-    except:
+    except BaseException:
         pass
     ps = self._getOb(r)
     ps.write(
@@ -271,9 +272,9 @@ def createGroups(self):
         gdata.manage_addProperty(
             "allowedDocTypes", "possibleDocTypes", "multiple selection"
         )
-    except:
+    except BaseException:
         pass
     try:
         gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
-    except:
+    except BaseException:
         pass

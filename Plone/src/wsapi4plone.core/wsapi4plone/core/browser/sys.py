@@ -1,10 +1,10 @@
-from zope.interface import implements
+from zope.interface import implementer
 
 from interfaces import ISystemAPI
 
 
+@implementer(ISystemAPI)
 class SystemAPI(object):
-    implements(ISystemAPI)
 
     spec_id = "introspect"
     spec_version = 1

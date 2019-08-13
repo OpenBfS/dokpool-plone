@@ -26,11 +26,11 @@ from Products.Archetypes.utils import contentDispositionHeader
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 import json
 import mimetypes
-import urllib
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
 
 class DPDocumentView(FlexibleView):
@@ -48,7 +48,7 @@ class DPDocumentView(FlexibleView):
     def quote_plus(self, string):
         """
         """
-        return urllib.quote_plus(string)
+        return six.moves.urllib.parse.quote_plus(string)
 
     def getFolderContents(self, kwargs):
         """
@@ -80,20 +80,20 @@ class DPDocumentlistitemView(FlexibleView):
             return s[0]
 
 
+@implementer(IViewView)
 class DPDocumentinlineView(DPDocumentView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('dpdocumentinline.pt')
-    implements(IViewView)
 
 
+@implementer(IViewView)
 class DPDocumentprintView(FlexibleView):
     """Additional View
     """
 
     __call__ = ViewPageTemplateFile('dpdocumentprint.pt')
-    implements(IViewView)
 
 
 class DPDocumentdocimageView(BrowserView):
@@ -109,7 +109,9 @@ class DPDocumentdocimageView(BrowserView):
         refresh = request.get("refresh", False)
         response = request.RESPONSE
         response.setHeader('Content-Type', 'image/png')
-        response.setHeader('Cache-control', 'max-age=300,s-maxage=300,must-revalidate')
+        response.setHeader(
+            'Cache-control',
+            'max-age=300,s-maxage=300,must-revalidate')
 
         # Get doc image but without legend
         data, filename = self.context.getMyImage(refresh=refresh, full=False)

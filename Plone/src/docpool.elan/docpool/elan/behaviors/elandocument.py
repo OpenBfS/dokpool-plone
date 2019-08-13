@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
@@ -26,7 +27,9 @@ class IELANDocument(IDocumentExtension):
     """
 
     scenarios = schema.List(
-        title=_(u'label_dpdocument_scenarios', default=u'Belongs to scenarios'),
+        title=_(
+            u'label_dpdocument_scenarios',
+            default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
@@ -100,8 +103,8 @@ class ELANDocument(FlexibleView):
     def debugvalues(self):
         """
         """
-        print self.context.scenarios
-        print self.context.docType
+        print(self.context.scenarios)
+        print(self.context.docType)
 
     def getScenarioNames(self):
         """
@@ -167,7 +170,7 @@ class ELANDocument(FlexibleView):
                     aup = "/".join(aup.split("/")[4:])
                     return aup
                 # print "no cat"
-        except:
+        except BaseException:
             return ""
 
     def typeAndCat(self):

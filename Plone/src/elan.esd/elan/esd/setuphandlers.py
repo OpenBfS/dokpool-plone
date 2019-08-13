@@ -19,7 +19,8 @@ def setupVarious(context):
         'DocumentPool',
         ["ELANContentConfig", "ELANArchives", "ELANCurrentSituation", "ELANInfos"],
     )
-    cat.reindexIndex(["scenarios", "category"], REQUEST=context.getSite().REQUEST)
+    cat.reindexIndex(["scenarios", "category"],
+                     REQUEST=context.getSite().REQUEST)
 
 
 #    cat.refreshCatalog(clear=False,pghandler=ZLogHandler(100))

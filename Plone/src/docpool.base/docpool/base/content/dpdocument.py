@@ -7,6 +7,7 @@
 #            http://www.condat.de
 #
 
+from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -51,9 +52,10 @@ from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 import re
+from six.moves import map
 
 
 class IDPDocument(form.Schema, IDocument, IExtendable, IContentBase):
@@ -75,13 +77,12 @@ class IDPDocument(form.Schema, IDocument, IExtendable, IContentBase):
     )
 
 
+@implementer(IDPDocument)
 class DPDocument(Container, Document, Extendable, ContentBase):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IDPDocument)
 
     def change_state(self, id, action, REQUEST=None):
         """
@@ -93,7 +94,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         doc = None
         try:
             doc = self._getOb(id)
-        except:
+        except BaseException:
             pass
         if doc:
             wftool = getToolByName(self, 'portal_workflow')
@@ -105,12 +106,13 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                     for subdoc in doc.getDPDocuments():
                         try:
                             wftool.doActionFor(subdoc, action)
-                        except:
+                        except BaseException:
                             pass
-            except:
+            except BaseException:
                 return self.restrictedTraverse("@@view")()
             if REQUEST:
-                portalMessage(self, _("The document state has been changed."), "info")
+                portalMessage(
+                    self, _("The document state has been changed."), "info")
                 return self.restrictedTraverse("@@view")()
 
     def isClean(self):
@@ -149,7 +151,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                 self.manage_addProduct[
                     'CMFPlacefulWorkflow'
                 ].manage_addWorkflowPolicyConfig()
-            except BadRequest, e:
+            except BadRequest as e:
                 log_exc(e)
             config = placeful_wf.getWorkflowPolicyConfig(self)
             placefulWfName = 'dp-guest-document'
@@ -290,7 +292,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         dto = None
         try:
             dto = self.config.dtypes[et]
-        except Exception, e:
+        except Exception as e:
             # et can be empty
             # print e
             pass
@@ -373,7 +375,8 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         alsoProvides(request, IDisableCSRFProtection)
         position = position.lower()
         # we need to find all other ids for the same type
-        ssids = [o.getId for o in self.getFolderContents({'portal_type': ptype})]
+        ssids = [o.getId for o in self.getFolderContents(
+            {'portal_type': ptype})]
         # print ssids
         if position == 'up':
             self.moveObjectsUp(id, 1, ssids)
@@ -524,7 +527,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                         ptype = "string"
                         try:
                             name, ptype = name.split(":")
-                        except:
+                        except BaseException:
                             pass
                         self.setDPProperty(name, value, ptype)
                         msg = "set"
@@ -546,7 +549,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         """
         The map image is expected to be a file with with a name like 'xxx-map.png' or 'yyy_map.jpg'.
         """
-        return self.getFileOrImageByPattern(".*[-_]map\..*")
+        return self.getFileOrImageByPattern(r".*[-_]map\..*")
 
     def getMapImage(self, scale=""):
         """
@@ -560,7 +563,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     def getLegendImageObj(self):
         """
         """
-        return self.getFileOrImageByPattern(".*[-_]legend\..*")
+        return self.getFileOrImageByPattern(r".*[-_]legend\..*")
 
     def getLegendImage(self, scale=""):
         """
@@ -594,10 +597,11 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                     return mapimg.image.data, dateiname
                 else:
                     # combine into one image if full=True and legend available
-                    images = map(
+                    images = list(map(
                         Image.open,
-                        [StringIO(mapimg.image.data), StringIO(legendimg.image.data)],
-                    )
+                        [StringIO(mapimg.image.data), StringIO(
+                            legendimg.image.data)],
+                    ))
                     w = sum(i.size[0] for i in images)
                     mh = max(i.size[1] for i in images)
 
@@ -633,7 +637,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             if img:
                 dateiname = '%s.%s' % (img.getId(), "png")
                 return img.image.data, dateiname
-        except Exception, e:
+        except Exception as e:
             log_exc(e)
             # TODO: Idea: support default image in DocType
             # Show Default image, if no other image is available
@@ -681,8 +685,8 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         """
         from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 
-        print type(self.local_behaviors)
-        print self.local_behaviors
+        print(type(self.local_behaviors))
+        print(self.local_behaviors)
         return ILocalBehaviorSupport(self).local_behaviors
 
     def myDPDocument(self):

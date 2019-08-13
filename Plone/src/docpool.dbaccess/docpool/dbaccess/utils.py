@@ -5,6 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 
 import time
+import six
 
 
 def getTool():
@@ -19,15 +20,15 @@ def portalMessage(self, msg, type='info'):
 def dtFromString(date):
     try:
         return datetime(*(time.strptime(date, "%d.%m.%Y %H:%M:%S")[0:6]))
-    except:
+    except BaseException:
         pass
     try:
         return datetime(*(time.strptime(date, "%d.%m.%Y %H:%M")[0:6]))
-    except:
+    except BaseException:
         pass
     try:
         return datetime(*(time.strptime(date, "%d.%m.%Y")[0:6]))
-    except:
+    except BaseException:
         pass
     return None
 
@@ -48,7 +49,7 @@ def stringFromDatetime(dt, long=True):
     """
     expects datetime
     """
-    if long:
+    if int:
         return "%02d.%02d.%04d %02d:%02d:%02d" % (
             dt.day,
             dt.month,
@@ -73,8 +74,8 @@ def unicode_csv_reader(unicode_csv_data, delimiter, fieldnames):
         res = {}
         for field in row.keys():
             try:
-                res[field] = unicode(row[field], 'utf-8')
-            except:
+                res[field] = six.text_type(row[field], 'utf-8')
+            except BaseException:
                 res[field] = row[field]
             if row[field] == '0':
                 res[field] = False

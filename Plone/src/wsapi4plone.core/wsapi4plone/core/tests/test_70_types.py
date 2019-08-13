@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-import xmlrpclib
+import six.moves.xmlrpc_client
 
 from zope.component import getUtility
 from ZPublisher.xmlrpc import Response
@@ -24,7 +24,7 @@ class TestTypes(PloneTestCase.PloneTestCase):
         t_data = t.get_types()
         resp.setBody(t_data)
         t_body = resp._body
-        t_resp, method = xmlrpclib.loads(t_body)
+        t_resp, method = six.moves.xmlrpc_client.loads(t_body)
         t_results = t_resp[0]
         self.failUnlessEqual(type_results, t_results)
 

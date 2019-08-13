@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISRTextBlocks(form.Schema):
@@ -25,13 +25,12 @@ class ISRTextBlocks(form.Schema):
     """
 
 
+@implementer(ISRTextBlocks)
 class SRTextBlocks(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(ISRTextBlocks)
 
     APP = ELAN_APP
 

@@ -46,7 +46,9 @@ class ExampleDoc(FlexibleView):
         context = aq_inner(self.context)
         context.example_attribute = value
 
-    example_attribute = property(_get_example_attribute, _set_example_attribute)
+    example_attribute = property(
+        _get_example_attribute,
+        _set_example_attribute)
 
     def isClean(self):
         """

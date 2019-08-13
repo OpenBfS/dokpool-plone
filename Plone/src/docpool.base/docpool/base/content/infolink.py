@@ -19,7 +19,7 @@ from plone.app.contenttypes.content import Link
 from plone.dexterity.content import Item
 from plone.directives import form
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IInfoLink(form.Schema, ILink):
@@ -29,10 +29,9 @@ class IInfoLink(form.Schema, ILink):
     remoteUrl = schema.TextLine(title=u"URL", default=u"http://")
 
 
+@implementer(IInfoLink)
 class InfoLink(Item, Link):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IInfoLink)

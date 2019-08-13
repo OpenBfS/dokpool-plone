@@ -18,7 +18,9 @@ class IELANDocument(ITransferable):
     """
 
     scenarios = schema.List(
-        title=_(u'label_dpdocument_scenarios', default=u'Belongs to scenarios'),
+        title=_(
+            u'label_dpdocument_scenarios',
+            default=u'Belongs to scenarios'),
         description=_(u'description_dpdocument_scenarios', default=u''),
         required=True,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),

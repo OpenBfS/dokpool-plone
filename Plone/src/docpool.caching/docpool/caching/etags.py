@@ -20,7 +20,8 @@ class DokPoolApps(object):
 
     def __call__(self):
         context = getContext(self.published)
-        dp_app_state = getMultiAdapter((context, self.request), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter(
+            (context, self.request), name=u'dp_app_state')
         apps = ";".join(dp_app_state.effectiveAppsHere())
 
         scenarios = ""

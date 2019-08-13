@@ -9,7 +9,7 @@ from plone.supermodel import model
 from plone.z3cform.fieldsets import extensible
 from z3c.form import field
 from zope import schema
-from zope.component import adapts
+from zope.component import adapter
 from zope.interface import Interface
 
 
@@ -38,8 +38,8 @@ class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     dp = property(get_dp, set_dp)
 
 
+@adapter(Interface, IDocPoolUsersLayer, UserDataPanel)
 class UserDataPanelExtender(extensible.FormExtender):
-    adapts(Interface, IDocPoolUsersLayer, UserDataPanel)
 
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
@@ -47,8 +47,8 @@ class UserDataPanelExtender(extensible.FormExtender):
         self.form.fields['email'].field.required = False
 
 
+@adapter(Interface, IDocPoolUsersLayer, RegistrationForm)
 class RegistrationPanelExtender(extensible.FormExtender):
-    adapts(Interface, IDocPoolUsersLayer, RegistrationForm)
 
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
@@ -56,8 +56,8 @@ class RegistrationPanelExtender(extensible.FormExtender):
         self.form.fields['email'].field.required = False
 
 
+@adapter(Interface, IDocPoolUsersLayer, AddUserForm)
 class AddUserFormExtender(extensible.FormExtender):
-    adapts(Interface, IDocPoolUsersLayer, AddUserForm)
 
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)

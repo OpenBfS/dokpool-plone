@@ -28,7 +28,7 @@ class ContentBaseLastModified(object):
         if wdate is not None and modified is not None:
             try:
                 return wdate < modified and modified or wdate
-            except:
+            except BaseException:
                 import pytz
 
                 utc = pytz.UTC
@@ -59,14 +59,14 @@ class DocumentLastModified(ContentBaseLastModified):
             tEvents = t.transferEvents()
             if len(tEvents) > 0:
                 transferred = tEvents[0]['timeraw']
-        except Exception, e:
+        except Exception as e:
             # log_exc(e)
             pass
 
         if lm is not None and transferred is not None:
             try:
                 return lm < transferred and transferred or lm
-            except:
+            except BaseException:
                 import pytz
 
                 utc = pytz.UTC

@@ -41,7 +41,9 @@ def genericImportFromCSV(
         file = StringIO(file)
         meldung = ["Import aus Zeichenkette fuer %s" % (typ), "", ""]
     else:
-        meldung = ["Import von Datei %s fuer %s" % (file.filename, typ), "", ""]
+        meldung = [
+            "Import von Datei %s fuer %s" %
+            (file.filename, typ), "", ""]
     kopfzeile = file.readline()
     kopfzeile = kopfzeile.strip()  # Zeilenende weg
 
@@ -108,7 +110,7 @@ def genericImportFromCSV(
                 daten.remove(spalte)
             if spalte in bool:
                 bool.remove(spalte)
-            if computed.has_key(spalte):
+            if spalte in computed:
                 del computed[spalte]
         elif isUnique:
             unique.append(spalte)
@@ -173,7 +175,7 @@ def genericImportFromCSV(
                                 fkcol == row[f]
                             ).one()  # FIXME: das funktioniert nur fuer Zeichenketten-Spalten
                         row[f] = r
-                    except Exception, e:
+                    except Exception as e:
                         # print e
                         meldung.append(
                             u"Kein Verweis '%s' gefunden - ignoriert" % row[f]
@@ -189,7 +191,8 @@ def genericImportFromCSV(
                 summe += 1
                 continue
 
-            # jetzt werden die Typen konvertiert soweit noetig, fehlende Werte werden geNULLt
+            # jetzt werden die Typen konvertiert soweit noetig, fehlende Werte
+            # werden geNULLt
             for d in daten:
                 if row[d] and len(row[d]) > 2:
                     row[d] = dtFromString(row[d])
@@ -219,7 +222,7 @@ def genericImportFromCSV(
                                 v = True
                             else:
                                 v = False
-                        except:
+                        except BaseException:
                             v = True
                     row[n] = v
                 else:
@@ -250,7 +253,7 @@ def genericImportFromCSV(
                 try:
                     transaction.commit()
                     inserts += 1
-                except Exception, e:
+                except Exception as e:
                     # print e
                     transaction.abort()
                     meldung.append(u"Fehler: %s" % str(e))
@@ -300,7 +303,7 @@ def genericImportFromCSV(
                     notify(ObjectAddedEvent(neu, tool, row, context))
                     transaction.commit()
                     inserts += 1
-        except Exception, e:
+        except Exception as e:
             transaction.abort()
             fehler += 1
             meldung.append(u"Fehler: %s" % str(e))

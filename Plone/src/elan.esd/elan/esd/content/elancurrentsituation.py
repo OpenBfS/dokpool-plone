@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
 from plone.directives import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IELANCurrentSituation(form.Schema):
@@ -25,13 +25,12 @@ class IELANCurrentSituation(form.Schema):
     """
 
 
+@implementer(IELANCurrentSituation)
 class ELANCurrentSituation(Container):
     """
     """
 
     security = ClassSecurityInfo()
-
-    implements(IELANCurrentSituation)
 
     APP = ELAN_APP
 
@@ -42,7 +41,8 @@ class ELANCurrentSituation(Container):
         mpath = self.dpSearchPath()
         from docpool.base.utils import queryForObjects
 
-        ecs = queryForObjects(self, path=mpath, portal_type="ELANDocCollection")
+        ecs = queryForObjects(
+            self, path=mpath, portal_type="ELANDocCollection")
         for ec in ecs:
             ec.getObject().correctDocTypes()
 
