@@ -16,7 +16,7 @@ allow_module("docpool.elan.config")
 DocpoolMessageFactory = MessageFactory('docpool.elan')
 allow_class(DocpoolMessageFactory)
 
-import appregistration  # noqa: F401
+from docpool.elan import appregistration  # noqa: F401
 
 
 def initialize(context):

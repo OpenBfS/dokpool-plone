@@ -20,7 +20,7 @@ allow_module("docpool.base.utils")
 api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
-import monkey  # noqa: F401
+from docpool.base import monkey  # noqa: F401
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
@@ -29,7 +29,7 @@ import monkey  # noqa: F401
 DocpoolMessageFactory = MessageFactory('docpool.base')
 allow_class(DocpoolMessageFactory)
 
-import appregistration  # noqa: F401
+from docpool.base import appregistration  # noqa: F401
 
 
 def initialize(context):

@@ -13,7 +13,7 @@ from zope.i18nmessageid import MessageFactory
 DocpoolMessageFactory = MessageFactory('docpool.rei')
 allow_class(DocpoolMessageFactory)
 
-import appregistration  # noqa: F401
+from docpool.rei import appregistration  # noqa: F401
 
 
 def initialize(context):

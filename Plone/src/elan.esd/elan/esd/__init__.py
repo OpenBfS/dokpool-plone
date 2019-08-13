@@ -9,7 +9,7 @@ from Products.Archetypes import atapi
 from Products.CMFCore import utils as cmfutils
 from zope.i18nmessageid import MessageFactory
 
-import config
+from elan.esd import config
 from six.moves import zip
 
 
@@ -22,7 +22,7 @@ api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
-import monkey  # noqa: F401
+from elan.esd import monkey  # noqa: F401
 
 # DocumentPool specific
 # from monkeyDocumentPool import esdAdded, esdRemoved, configure

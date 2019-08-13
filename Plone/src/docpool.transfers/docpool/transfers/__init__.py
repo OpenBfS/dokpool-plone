@@ -17,7 +17,7 @@ allow_module("docpool.transfers.utils")
 DocpoolMessageFactory = MessageFactory('docpool.transfers')
 allow_class(DocpoolMessageFactory)
 
-import appregistration  # noqa: F401
+from docpool.transfers import appregistration  # noqa: F401
 
 
 def initialize(context):
