@@ -2,9 +2,8 @@
 from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone.app.discussion.browser.conversation import ConversationView
-from Products.ZCatalog.CatalogBrains import _GLOBALREQUEST_INSTALLED
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
-from Products.ZCatalog.CatalogBrains import getRequest
+from zope.globalrequest import getRequest
 
 import ssl
 
@@ -44,7 +43,7 @@ def getURL(self, relative=0, original=False):
     Also we make sure that sections don't get an URL, so they are not linked to in the navigation.
     """
     request = aq_get(self, 'REQUEST', None)
-    if request is None and _GLOBALREQUEST_INSTALLED:
+    if request is None:
         request = getRequest()
     if (
         (not original)
