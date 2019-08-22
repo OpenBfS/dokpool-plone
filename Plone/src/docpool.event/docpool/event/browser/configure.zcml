@@ -1,5 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser"
-           xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.event">
+           i18n_domain="docpool.event">
 
     <include package="plone.app.contentmenu"/>
     <include package=".viewlets"/>

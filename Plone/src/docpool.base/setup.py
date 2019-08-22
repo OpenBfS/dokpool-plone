@@ -45,7 +45,7 @@ setup(
         'Products.CMFPlacefulWorkflow',
         'docpool.users',
         'docpool.localbehavior',
-        ' PyPDF2',
+        'PyPDF2',
         'xhtml2pdf',
         'Products.CMFPlacefulWorkflow',
         'eea.facetednavigation',
