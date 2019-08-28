@@ -1,8 +1,6 @@
-<configure xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" xmlns="http://namespaces.zope.org/zope" i18n_domain="docpool.base">
+<configure xmlns:browser="http://namespaces.zope.org/browser" xmlns="http://namespaces.zope.org/zope" i18n_domain="docpool.base">
 
     <include package="plone.app.contentmenu" />
-
-    <grok:grok package="."/>
 
     <browser:page permission="zope2.View"
                   name="pdfprint"
