@@ -32,7 +32,7 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'plone.app.dexterity [relations, grok]',
+        'plone.app.dexterity [relations]',
         'collective.autopermission',
         'plone.namedfile [blobs]',
         'collective.z3cform.datagridfield',
