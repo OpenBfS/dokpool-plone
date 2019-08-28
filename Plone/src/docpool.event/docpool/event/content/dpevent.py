@@ -23,14 +23,12 @@ from docpool.config.utils import ploneId
 from docpool.event import DocpoolMessageFactory as _
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
-from five import grok
 from logging import getLogger
 from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.dexterity.utils import safe_unicode
-from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Archetypes.utils import DisplayList
@@ -46,11 +44,8 @@ from zope import schema
 from zope.component import adapter
 from zope.interface import alsoProvides
 from zope.interface import implementer
-from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
-from zope.schema.interfaces import IContextAwareDefaultFactory
-from zope.schema.interfaces import IContextSourceBinder
 
 import datetime
 
@@ -58,21 +53,7 @@ import datetime
 logger = getLogger("dpevent")
 
 
-@grok.provider(IContextSourceBinder)
-def availableScenarios(context):
-    if hasattr(context, "dpSearchPath"):
-        path = context.dpSearchPath() + "/contentconfig/scen"
-    else:
-        path = "/Plone/contentconfig/scen"
-    query = {"portal_type": ["DPEvent"], "path": {'query': path}}
-
-    return ObjPathSourceBinder(
-        navigation_tree_query=query, object_provides=IDPEvent.__identifier__
-    ).__call__(context)
-
-
-@provider(IContextAwareDefaultFactory)
-def initializeTimeOfEvent(context):
+def initializeTimeOfEvent():
     return datetime.datetime.today()
 
 

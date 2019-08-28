@@ -1,7 +1,5 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:grok="http://namespaces.zope.org/grok" xmlns:five="http://namespaces.zope.org/five" i18n_domain="docpool.event">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" i18n_domain="docpool.event">
 
-
-  <grok:grok package="." />
 
   <subscriber handler=".dpevent.eventAdded" />
   <subscriber handler=".dpevent.eventChanged" />

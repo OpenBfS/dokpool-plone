@@ -1,7 +1,6 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from docpool.event import DocpoolMessageFactory as _
-from five import grok
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
@@ -79,8 +78,8 @@ class EventSubstituteVocabulary(object):
 EventSubstituteVocabularyFactory = EventSubstituteVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class PhasesVocabulary(object):
-    grok.implements(IVocabularyFactory)
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -97,13 +96,11 @@ class PhasesVocabulary(object):
         return SimpleVocabulary(items)
 
 
-grok.global_utility(
-    PhasesVocabulary,
-    name=u"docpool.event.vocabularies.Phases")
+PhasesVocabularyFactory = PhasesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ModesVocabulary(object):
-    grok.implements(IVocabularyFactory)
 
     def __call__(self, context):
         terms = []
@@ -118,11 +115,11 @@ class ModesVocabulary(object):
         return SimpleVocabulary(terms)
 
 
-grok.global_utility(ModesVocabulary, name=u"docpool.event.vocabularies.Modes")
+ModesVocabularyFactory = ModesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class NetworksVocabulary(object):
-    grok.implements(IVocabularyFactory)
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -139,13 +136,11 @@ class NetworksVocabulary(object):
         return SimpleVocabulary(items)
 
 
-grok.global_utility(
-    NetworksVocabulary,
-    name=u"docpool.event.vocabularies.Networks")
+NetworksVocabularyFactory = NetworksVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class PowerStationsVocabulary(object):
-    grok.implements(IVocabularyFactory)
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -162,13 +157,11 @@ class PowerStationsVocabulary(object):
         return SimpleVocabulary(items)
 
 
-grok.global_utility(
-    PowerStationsVocabulary, name=u"docpool.event.vocabularies.PowerStations"
-)
+PowerStationsVocabularyFactory = PowerStationsVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class SampleTypesVocabulary(object):
-    grok.implements(IVocabularyFactory)
 
     def __call__(self, context):
         registry = queryUtility(IRegistry)
@@ -181,9 +174,7 @@ class SampleTypesVocabulary(object):
         return SimpleVocabulary(terms)
 
 
-grok.global_utility(
-    SampleTypesVocabulary, name=u"docpool.event.vocabularies.SampleTypes"
-)
+SampleTypesVocabularyFactory = SampleTypesVocabulary()
 
 allow_module("docpool.event.vocabularies")
 # allow_class(ELANESDVocabulary)

@@ -44,5 +44,25 @@
     component=".vocabularies.EventSubstituteVocabularyFactory"
     name="docpool.event.vocabularies.EventSubstitutes"
     />
+  <utility
+    component=".vocabularies.PhasesVocabularyFactory"
+    name="docpool.event.vocabularies.Phases"
+    />
+  <utility
+    component=".vocabularies.ModesVocabularyFactory"
+    name="docpool.event.vocabularies.Modes"
+    />
+  <utility
+    component=".vocabularies.NetworksVocabularyFactory"
+    name="docpool.event.vocabularies.Networks"
+    />
+  <utility
+    component=".vocabularies.PowerStationsVocabularyFactory"
+    name="docpool.event.vocabularies.PowerStations"
+    />
+  <utility
+    component=".vocabularies.SampleTypesVocabularyFactory"
+    name="docpool.event.vocabularies.SampleTypes"
+    />
 
 </configure>
