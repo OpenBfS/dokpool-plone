@@ -37,6 +37,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import safe_unicode
 from six.moves.urllib.parse import unquote
+from z3c.form.interfaces import IAddForm
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
@@ -50,6 +51,8 @@ import six.moves.urllib.parse
 class ISRModule(model.Schema, IDPDocument):
     """
     """
+
+    directives.omitted(IAddForm, 'text')
 
     currentReport = RelationChoice(
         title=_(u'label_srmodule_currentreport', default=u'Current report'),
