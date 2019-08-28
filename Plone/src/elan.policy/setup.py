@@ -32,7 +32,6 @@ setup(
         'Products.CMFPlacefulWorkflow',
         'plone.app.caching',
         'plone.app.upgrade',
-        'plone.formwidget.contenttree',
         'docpool.theme',
         'docpool.base',
         'docpool.users',

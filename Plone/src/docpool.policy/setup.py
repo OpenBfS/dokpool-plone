@@ -31,7 +31,6 @@ setup(
         # -*- Extra requirements: -*-
         'plone.app.caching',
         'plone.app.upgrade',
-        'plone.formwidget.contenttree',
         'docpool.theme',
         'docpool.base',
         'docpool.transfers',
