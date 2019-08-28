@@ -2,10 +2,7 @@
 
 from docpool.base.utils import getDocumentPoolSite
 from elan.esd import DocpoolMessageFactory as _
-from elan.esd.content.elandoccollection import IELANDocCollection
-from five import grok
 from plone.app.portlets.portlets import base
-from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.CMFCore.utils import getToolByName
@@ -13,22 +10,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import field
 from zope import schema
 from zope.interface import implementer
-from zope.schema.interfaces import IContextSourceBinder
-
-
-@grok.provider(IContextSourceBinder)
-def availableCategories(context):
-    # print context
-    if hasattr(context, "dpSearchPath"):
-        path = context.dpSearchPath() + "/esd"
-        context = context.myDocumentPool()
-    else:
-        path = "/Plone/esd"
-    query = {"portal_type": ["ELANDocCollection"], "path": {'query': path}}
-    # print query
-    return ObjPathSourceBinder(
-        navigation_tree_query=query, object_provides=IELANDocCollection.__identifier__
-    ).__call__(context)
 
 
 # This interface defines the configurable options (if any) for the portlet.
