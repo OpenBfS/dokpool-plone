@@ -35,7 +35,6 @@ setup(
         'plone.app.dexterity [relations]',
         'collective.autopermission',
         'plone.namedfile [blobs]',
-        'collective.z3cform.datagridfield',
         'collective.dexteritytextindexer',
         'plone.app.contenttypes',
         'plone.app.relationfield',

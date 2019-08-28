@@ -90,9 +90,6 @@ class IDPTransferFolder(model.Schema, IFolderBase):
     )
 
 
-#    directives.widget(typesConf=DataGridFieldFactory)
-
-
 @implementer(IDPTransferFolder)
 class DPTransferFolder(Container, FolderBase):
     """

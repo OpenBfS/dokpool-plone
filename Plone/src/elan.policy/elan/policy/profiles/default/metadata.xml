@@ -3,7 +3,6 @@
     <version>1.1</version>
     <dependencies>
         <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
-        <dependency>profile-collective.z3cform.datagridfield:default</dependency>
         <dependency>profile-plone.app.caching:default</dependency>
         <dependency>profile-docpool.theme:default</dependency>
         <dependency>profile-docpool.base:default</dependency>
