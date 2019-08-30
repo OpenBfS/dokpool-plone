@@ -8,8 +8,6 @@
     <!-- Include direct package dependencies -->
     <includeDependencies package="." />
 
-    <five:registerPackage package="." initialize=".initialize" />
-
     <genericsetup:registerProfile
       name="default"
       title="docpool.policy"

@@ -4,8 +4,6 @@
     <includeDependencies package="." />
     <include package="zope.annotation" />
 
-    <five:registerPackage package="." initialize=".initialize"/>
-
     <!-- Include the sub-packages that use their own configure.zcml files. -->
 
 
