@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from plone.dexterity.content import Container
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import base_hasattr
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
@@ -41,7 +41,7 @@ class InfoFolder(Container, FolderBase):
     def createActions(self):
         """
         """
-        if safe_hasattr(self, "myGroupFolder"):
+        if base_hasattr(self, "myGroupFolder"):
             log("Creating Private Info Folder")
 
             placeful_wf = getToolByName(self, 'portal_placeful_workflow')

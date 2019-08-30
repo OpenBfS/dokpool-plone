@@ -16,9 +16,8 @@ from formalchemy import templates
 from formalchemy import types
 from formalchemy.fields import RadioSet
 from plone.memoize.view import memoize
-from Products.Archetypes.debug import log_exc
-from Products.Archetypes.utils import shasattr
 from Products.CMFPlone.PloneBatch import Batch
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
 from ZTUtils import make_query
 
@@ -325,11 +324,11 @@ class EditView(object):
         self.create = create and True or False
         pk = request.get('pk', None)
         if not self.typ:
-            if shasattr(context, "getStructuredType"):
+            if base_hasattr(context, "getStructuredType"):
                 self.typ = context.getStructuredType()
         if not pk:
             if not self.create:
-                if shasattr(context, "getPrimaryKey"):
+                if base_hasattr(context, "getPrimaryKey"):
                     pk = str(context.getPrimaryKey())
                 else:
                     pk = '{}'

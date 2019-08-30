@@ -21,10 +21,10 @@ from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
-from Products.Archetypes.utils import shasattr
 from plone.supermodel import model
 from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_unicode
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
@@ -117,7 +117,7 @@ class ContentBase(Item):
         """
         """
         return (
-            shasattr(self, "mdate") and self.mdate
+            base_hasattr(self, "mdate") and self.mdate
         ) or self.created().asdatetime().replace(tzinfo=None)
 
     def changed(self):

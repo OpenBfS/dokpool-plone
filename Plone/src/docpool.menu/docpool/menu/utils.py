@@ -6,7 +6,8 @@ from docpool.transfers.config import TRANSFERS_APP
 from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import safe_hasattr
 from Products.CMFPlone.i18nl10n import utranslate
 from zope.component import getMultiAdapter
 from zope.site.hooks import getSite
@@ -38,7 +39,7 @@ def getApplicationDocPoolsForCurrentUser(self, user=None):
     if len(active_apps) > 0:
         current_app = appName(active_apps[0])
     current_dp = None
-    if shasattr(self, "myDocumentPool", True):
+    if safe_hasattr(self, "myDocumentPool"):
         current_dp = self.myDocumentPool()
     root_title = (
         current_dp is None
@@ -124,7 +125,7 @@ def getFoldersForCurrentUser(
             return None
         user = api.user.get_current()
     res = []
-    if not shasattr(self, "content", True):
+    if not safe_hasattr(self, "content"):
         return res
     rres = []
     # FIXME: this code knows about a specific application
@@ -158,7 +159,7 @@ def getFoldersForCurrentUser(
         if group['etypes']:  # Group is ELAN group which can produce documents
             hasGroup = True
             #            print group, "isELAN"
-            if shasattr(g, group['id']):  # only when the folder really exists
+            if base_hasattr(g, group['id']):  # only when the folder really exists
                 #                print "exists"
                 gft = _folderTree(
                     self,

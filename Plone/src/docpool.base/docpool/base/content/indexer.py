@@ -7,7 +7,7 @@ from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import base_hasattr
 
 
 @indexer(IDPDocument)
@@ -43,7 +43,7 @@ def container_apps_indexer(obj):
 @indexer(IDexterityContent)
 def base_apps_indexer(obj):
     # print "base_apps_indexer", obj
-    if shasattr(obj, "APP"):
+    if base_hasattr(obj, "APP"):
         return [obj.APP]
     else:
         return [BASE_APP]

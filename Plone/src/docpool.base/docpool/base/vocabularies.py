@@ -7,7 +7,6 @@ from docpool.base.appregistry import selectableApps
 from docpool.base.content.doctype import IDocType
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
 from zope.interface import implementer
@@ -218,7 +217,7 @@ class DocumentPoolVocabulary(object):
 
     def __call__(self, context, raw=False):
         my_uid = None
-        if shasattr(context, "myDocumentPool", True):
+        if getattr(context, "myDocumentPool", None) is not None:
             my_uid = context.myDocumentPool().UID()
 
         site = getSite()

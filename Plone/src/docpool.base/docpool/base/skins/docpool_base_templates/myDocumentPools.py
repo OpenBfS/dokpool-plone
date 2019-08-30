@@ -8,7 +8,6 @@
 ##title=
 ##
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
 
 cat = getToolByName(context, 'portal_catalog', None)
 esds = cat(portal_type="DocumentPool", sort_on="sortable_title")

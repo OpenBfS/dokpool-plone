@@ -13,7 +13,7 @@ from formalchemy import FieldRenderer
 from formalchemy import FieldSet
 from formalchemy import Grid
 from formalchemy.fields import HiddenFieldRenderer
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import safe_hasattr
 from Products.CMFPlone.utils import safe_unicode
 
 
@@ -31,7 +31,7 @@ perm_options = [
 def p_pre_filter(context):
     """
     """
-    if shasattr(context, "myDPTransferFolder", acquire=True):
+    if safe_hasattr(context, "myDPTransferFolder"):
         channel_id = context.channelId()
         if channel_id:
             return {
@@ -47,7 +47,7 @@ def cpFilter(context=None):
     ffs = FieldSet(ChannelPermissions, session=__session__)
     ffs.channel.is_collection = True
     self = context.getContextObj()
-    if shasattr(self, "myDPTransferFolder", acquire=True):
+    if safe_hasattr(self, "myDPTransferFolder"):
         c_field = ffs.channel_id.with_renderer(HiddenFieldRenderer)
     else:
         c_field = ffs.channel.with_null_as(
@@ -83,7 +83,7 @@ def cpListe(context=None):
 
     obj = context.getContextObj()
     # print obj
-    if shasattr(obj, "myDocumentTypes", True):
+    if safe_hasattr(obj, "myDocumentTypes"):
         # print "ja"
         dts = obj.myDocumentTypes()
         DTRenderer.dts = {}

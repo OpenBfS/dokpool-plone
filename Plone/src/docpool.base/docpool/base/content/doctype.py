@@ -21,7 +21,7 @@ from docpool.base.utils import queryForObjects
 from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import safe_hasattr
 from plone.supermodel import model
 from Products.CMFPlone.utils import log
 from z3c.relationfield.schema import RelationChoice
@@ -171,7 +171,7 @@ def updated(obj, event=None):
     # the read permissions for the sending ESD accordingly.
     log("DocType updated: %s" % str(obj))
     mpath = "/"
-    if shasattr(obj, "dpSearchPath", acquire=True):
+    if safe_hasattr(obj, "dpSearchPath"):
         mpath = obj.dpSearchPath()
     docs = queryForObjects(obj, path=mpath, docType=obj.getId())
     for doc in docs:

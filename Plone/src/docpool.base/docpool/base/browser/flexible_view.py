@@ -2,7 +2,8 @@
 from Acquisition import aq_base
 from docpool.base.utils import extendOptions
 from plone.app.contenttypes.interfaces import IFile
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import safe_hasattr
 from Products.Five.browser import BrowserView
 from Products.PageTemplates.PageTemplate import PageTemplate
 from zope.component import getMultiAdapter
@@ -52,7 +53,7 @@ class FlexibleView(BrowserView):
         dto = doc.docTypeObj()
         app = self.currentApplication()
         dtid = doc.getPortalTypeName().lower()
-        if shasattr(doc, "typeName"):
+        if base_hasattr(doc, "typeName"):
             dtid = doc.typeName()
         if dto:
             dtid = dto.customViewTemplate
@@ -74,7 +75,7 @@ class FlexibleView(BrowserView):
         # for n in names:
         # print n
         for n in names:
-            if shasattr(dto, n, acquire=True):
+            if safe_hasattr(dto, n):
                 o = aq_base(getattr(dto, n))
                 if IFile.providedBy(o):
                     f = o.file.open()

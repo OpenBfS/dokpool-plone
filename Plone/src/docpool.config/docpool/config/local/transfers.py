@@ -4,8 +4,8 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 
@@ -36,7 +36,7 @@ def setTransfersLocalRoles(self):
         "%s_Receivers" % prefix, ["Owner"])
     self.content.Transfers.manage_setLocalRoles(
         "%s_Administrators" % prefix, ["Owner"])
-    if shasattr(self, 'contentconfig', acquire=False):
+    if base_hasattr(self, 'contentconfig'):
         self.contentconfig.scen.manage_setLocalRoles(
             "%s_Receivers" % prefix, ["ContentReceiver"]
         )

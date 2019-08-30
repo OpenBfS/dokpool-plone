@@ -5,10 +5,9 @@ from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_inner
 from plone import api
 from plone.protect.interfaces import IDisableCSRFProtection
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
-from Products.CMFPlone.utils import aq_inner
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import parent
 from zc.relation.interfaces import ICatalog
 from zope.component import getMultiAdapter
@@ -207,7 +206,7 @@ def getDocumentPoolSite(context):
     """
     """
     # print context
-    if shasattr(context, "myDocumentPool", acquire=True):
+    if getattr(context, "myDocumentPool", None) is not None:
         return context.myDocumentPool()
     else:
         return getSite()
@@ -384,7 +383,7 @@ def extendOptions(context, request, options):
 
 def getInheritedValue(behaviour_obj, key):
     parentObject = parent(behaviour_obj.context)
-    if shasattr(parentObject, key):
+    if base_hasattr(parentObject, key):
         return getattr(parentObject, key)
     else:
         return getattr(behaviour_obj.context, key)

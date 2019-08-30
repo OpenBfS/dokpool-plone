@@ -8,8 +8,6 @@
 ##title=
 ##
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
-from AccessControl import Unauthorized
 from plone import api
 from Products.CMFPlone.utils import log
 

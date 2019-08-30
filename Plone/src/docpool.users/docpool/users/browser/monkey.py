@@ -8,7 +8,6 @@ from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
 from plone.app.users.schema import IUserDataSchema
 from plone.app.users.vocabularies import GroupIdVocabulary
 from plone.protect.interfaces import IDisableCSRFProtection
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups import (
@@ -17,6 +16,7 @@ from Products.CMFPlone.controlpanel.browser.usergroups import (
 from Products.CMFPlone.interfaces import ISecuritySchema
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.log import log
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import normalizeString
 from Products.CMFPlone.utils import safe_unicode
 from Products.PlonePAS.tools.groups import GroupsTool
@@ -36,7 +36,7 @@ def email_as_username(self):
 
 def applyProperties(self, userid, data):
     # we need to add the correct DP reference to the data
-    if shasattr(self.context, "myDocumentPool"):
+    if base_hasattr(self.context, "myDocumentPool"):
         dp = self.context
         prefix = dp.prefix or dp.getId()
         prefix = str(prefix)
@@ -121,7 +121,7 @@ def removeGroup(self, group_id, REQUEST=None):
         if len(result) == 1:
             esd = result[0].getObject()
             context = esd.content
-    if shasattr(context, "Groups"):
+    if base_hasattr(context, "Groups"):
         groups = context.Groups
         if groups.hasObject(group_id):
             g = groups._getOb(group_id)

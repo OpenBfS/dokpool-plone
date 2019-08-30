@@ -1,11 +1,11 @@
 from Acquisition import aq_inner
 from plone.protect import CheckAuthenticator
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import (
     GroupDetailsControlPanel as GDCP,
 )
+from Products.CMFPlone.utils import base_hasattr
 from Products.statusmessages.interfaces import IStatusMessage
 
 
@@ -48,7 +48,7 @@ class GroupDetailsControlPanel(GDCP):
                 # BfS: modifications for local user management:
                 # Automatically change id and titel with prefix
                 # when we are inside a DocumentPool
-                if shasattr(self.context, "myDocumentPool"):
+                if base_hasattr(self.context, "myDocumentPool"):
                     dp = self.context
                     prefix = dp.prefix or dp.getId()
                     prefix = str(prefix)

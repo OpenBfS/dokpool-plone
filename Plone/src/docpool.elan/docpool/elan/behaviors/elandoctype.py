@@ -7,7 +7,7 @@ from docpool.base.utils import queryForObjects
 from elan.esd import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import safe_hasattr
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope.component import getUtility
@@ -85,7 +85,7 @@ class ELANDocType(object):
         """
         """
         mpath = "/"
-        if shasattr(self.context, "dpSearchPath", acquire=True):
+        if safe_hasattr(self.context, "dpSearchPath"):
             mpath = self.context.dpSearchPath()
         ecs = queryForObjects(
             self.context,
@@ -113,7 +113,7 @@ class ELANDocType(object):
         """
         """
         mpath = "/"
-        if shasattr(self.context, "dpSearchPath", acquire=True):
+        if safe_hasattr(self.context, "dpSearchPath"):
             mpath = self.context.dpSearchPath()
         o = queryForObject(
             self.context, path=mpath, portal_type="ELANDocCollection", id=id

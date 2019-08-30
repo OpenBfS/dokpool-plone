@@ -6,8 +6,8 @@ from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
 
 
@@ -119,7 +119,7 @@ def navSettings(self):
 def copyDocTypes(self):
     """
     """
-    if shasattr(self, "config", acquire=False):
+    if base_hasattr(self, "config"):
         return
     config = self.config
     from docpool.base.utils import _copyPaste

@@ -1,13 +1,13 @@
+from Acquisition import aq_inner
 from docpool.menu.utils import adaptQuery
 from docpool.menu.utils import getFoldersForCurrentUser
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
 from plone.memoize.instance import memoize
-from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
-from Products.CMFPlone.utils import aq_inner
+from Products.CMFPlone.utils import base_hasattr
 from zope.component import getMultiAdapter
 
 
@@ -38,7 +38,7 @@ class Renderer(navigation.Renderer):
         return ft
 
     def navigation_root(self):
-        if shasattr(self.context, "myDocumentPool"):
+        if base_hasattr(self.context, "myDocumentPool"):
             return self.context.myDocumentPool()
         return self.getNavRoot()
 

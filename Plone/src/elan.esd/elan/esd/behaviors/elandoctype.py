@@ -8,7 +8,7 @@ from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.Archetypes.utils import DisplayList
-from Products.Archetypes.utils import shasattr
+from Products.CMFPlone.utils import safe_hasattr
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
@@ -110,7 +110,7 @@ class ELANDocType(object):
         """
         """
         mpath = "/"
-        if shasattr(self.context, "dpSearchPath", acquire=True):
+        if safe_hasattr(self.context, "dpSearchPath"):
             mpath = self.context.dpSearchPath()
         ecs = queryForObjects(
             self.context,
@@ -138,7 +138,7 @@ class ELANDocType(object):
         """
         """
         mpath = "/"
-        if shasattr(self.context, "dpSearchPath", acquire=True):
+        if safe_hasattr(self.context, "dpSearchPath"):
             mpath = self.context.dpSearchPath()
         o = queryForObject(
             self.context, path=mpath, portal_type="ELANDocCollection", id=id
