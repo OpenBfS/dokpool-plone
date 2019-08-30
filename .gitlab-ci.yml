@@ -5,6 +5,7 @@ before_script:
   - /usr/bin/virtualenv .
   - cp config-template.cfg.tmpl config.cfg
   - ./bin/pip install -r requirements.txt
+  - ./bin/pip install psycopg2
   - ./bin/buildout bootstrap
   - ./bin/buildout -N -t 3 -c test_ci_server.cfg
 check:
