@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from docpool.rei import DocpoolMessageFactory as _
+from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.rei.config import REI_APP
 from Products.CMFCore.utils import getToolByName
-
-import transaction
+from zope.annotation.interfaces import IAnnotations
 
 
 def dpAdded(self):
@@ -11,18 +12,17 @@ def dpAdded(self):
     @return:
 
     """
-    fresh = True
-    if self.hasObject("rei"):
-        fresh = False  # It's a reinstall
-
-    copyberichte(self, fresh)
-    transaction.commit()
+    annotations = IAnnotations(self)
+    fresh = REI_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(REI_APP)
 
     if fresh:
         # connectTypesAndCategories(self) # TOOD: only when REI doctypes need to be added to ELAN categories
         # self.rei.correctAllDocTypes() # TODO: if the run display templates contains collections
         # with references to global doctypes, which need to be adapted to local
         # doctypes.
+        copyberichte(self)
         createREIUsers(self)
         createREIGroups(self)
     self.reindexAll()
@@ -30,22 +30,20 @@ def dpAdded(self):
     # TODO: further initializations?
 
 
-def copyberichte(self, fresh):
+def copyberichte(self):
     """
 
     @param self:
     @param fresh:
     @return:
     """
-    if not fresh:
-        return
     berichte = self.berichte
     from docpool.base.utils import _copyPaste
 
     _copyPaste(berichte, self, safe=False)
     self.berichte.setTitle(_("Berichte"))
     self.berichte.reindexObject()
-    # make sure the folde berichte is first
+    # make sure the folder berichte is first
     # TODO if more complex (e.g. second after 'esd')
     self.moveObject("berichte", 0)
 
