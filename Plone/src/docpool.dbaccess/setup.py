@@ -35,7 +35,6 @@ setup(
         'Elixir',
         'Formalchemy',
         'zope.sqlalchemy',
-        'psycopg2',
     ],
     entry_points="""
       # -*- Entry points: -*-
