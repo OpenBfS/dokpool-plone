@@ -17,7 +17,7 @@ def dpAdded(self):
     if fresh:
         annotations[APPLICATIONS_KEY].append(DOKSYS_APP)
 
-    if not fresh:
+    if fresh:
         createDoksysUsers(self)
         createDoksysGroups(self)
         setDoksysLocalRoles(self)
