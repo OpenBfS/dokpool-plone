@@ -7,10 +7,10 @@ before_script:
   - ./bin/pip install -r requirements.txt
   - ./bin/buildout bootstrap
   - ./bin/buildout -N -t 3 -c test_ci_server.cfg
-check:
-  script:
-    - pre-commit install
-    - pre-commit run --all-files
+#check:
+#  script:
+#    - pre-commit install
+#    - pre-commit run --all-files
 test:
   script:
     - ./bin/test
