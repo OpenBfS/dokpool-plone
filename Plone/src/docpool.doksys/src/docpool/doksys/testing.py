@@ -18,10 +18,23 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import docpool.base
+        import docpool.config
+        import docpool.event
+        import docpool.elan
+        import docpool.transfers
+        import wsapi4plone.core
+        self.loadZCML(package=docpool.base)
+        self.loadZCML(package=docpool.config)
+        self.loadZCML(package=docpool.event)
+        # required since we need to be able to add DBTranfers
+        self.loadZCML(package=docpool.transfers)
+        self.loadZCML(package=wsapi4plone.core)
         self.loadZCML(package=docpool.doksys)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'docpool.doksys:default')
+        applyProfile(portal, 'docpool.transfers:default')
 
 
 DOCPOOL_DOKSYS_FIXTURE = DocpoolDoksysLayer()

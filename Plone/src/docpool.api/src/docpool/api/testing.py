@@ -18,6 +18,10 @@ class DocpoolApiLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import wsapi4elan.core
+        import plone.restapi
+        self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=wsapi4elan.core)
         self.loadZCML(package=docpool.api)
 
     def setUpPloneSite(self, portal):

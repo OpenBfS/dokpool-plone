@@ -27,7 +27,7 @@ from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from plone.namedfile.field import NamedBlobImage
-from plone.protect.auto import safeWrite
+from plone.protect.utils import safeWrite
 from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema

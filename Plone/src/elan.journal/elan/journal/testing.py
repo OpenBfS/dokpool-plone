@@ -32,11 +32,17 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import elan.journal
-
+        # required because docpool.base:default sets the permissions of wsapi4plone.core
+        import wsapi4plone.core
+        import docpool.base
+        self.loadZCML(package=docpool.base)
+        self.loadZCML(package=wsapi4plone.core)
         self.loadZCML(package=elan.journal)
         self.loadZCML('testing.zcml', package=elan.journal)
 
     def setUpPloneSite(self, portal):
+        # required because the templates in elan.journal use skin-scripts from docpool.base
+        self.applyProfile(portal, 'docpool.base:default')
         self.applyProfile(portal, 'elan.journal:default')
 
 
