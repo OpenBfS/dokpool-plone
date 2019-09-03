@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
-  <import-step id="docpool_base_various" version="20150507-01"
-               handler="docpool.base.setuphandlers.setupVarious"
-               title="docpool.base index rebuilding">
- </import-step>
-</import-steps>

@@ -22,6 +22,7 @@
     name="docpool.theme"
     />
 
+  <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot
       directory="template_overrides"
       layer=".interfaces.ICustomTheme"
@@ -29,7 +30,7 @@
 
   <include package=".browser" />
   <include file="skins.zcml" />
-  
+
   <browser:page
       for="*"
       name="main_template"

@@ -16,9 +16,14 @@
 
     <!-- Register the installation GenericSetup extension profile -->
 
-
-    <genericsetup:registerProfile name="default" title="docpool.base" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
-
+    <genericsetup:registerProfile
+        name="default"
+        title="docpool.base"
+        directory="profiles/default"
+        description="Installs the docpool.base add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.post_install"
+        />
 
    <include file="skins.zcml" />
 
