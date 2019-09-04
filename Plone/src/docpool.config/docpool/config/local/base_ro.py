@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from docpool.base.config import BASE_APP
+from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
@@ -9,6 +11,7 @@ from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
+from zope.annotation.interfaces import IAnnotations
 
 
 # General Docpool structures
@@ -17,7 +20,12 @@ from Products.CMFPlone.utils import log_exc
 def dpAdded(self):
     """
     """
-    createContentArea(self, True)
+    annotations = IAnnotations(self)
+    fresh = BASE_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(BASE_APP)
+
+    createContentArea(self, fresh)
     createUsers(self)
     createGroups(self)
     setLocalRoles(self)

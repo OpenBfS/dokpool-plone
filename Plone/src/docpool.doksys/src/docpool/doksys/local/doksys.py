@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
-from docpool.doksys.config import DOKSYS_APP
 from docpool.doksys import DocpoolMessageFactory as _
+from docpool.doksys.config import DOKSYS_APP
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 

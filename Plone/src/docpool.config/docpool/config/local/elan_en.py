@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
 from docpool.config.general.elan import connectTypesAndCategories
 from docpool.config.local.base import CONTENT_AREA
@@ -8,9 +9,11 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
+from docpool.elan.config import ELAN_APP
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
+from zope.annotation.interfaces import IAnnotations
 
 import transaction
 
@@ -21,9 +24,11 @@ import transaction
 def dpAdded(self):
     """
     """
-    fresh = True
-    if self.hasObject("esd"):
-        fresh = False  # It's a reinstall
+    annotations = IAnnotations(self)
+    fresh = ELAN_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(ELAN_APP)
+
     copyCurrentSituation(self, fresh)
     transaction.commit()
     createBasicPortalStructure(self, fresh)

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.example.config import EXAMPLE_APP
 from Products.CMFCore.utils import getToolByName
+from zope.annotation.interfaces import IAnnotations
 
 
 def dpAdded(self):
@@ -8,8 +11,14 @@ def dpAdded(self):
     @return:
 
     """
-    createExampleGroups(self)
-    # TODO:
+    annotations = IAnnotations(self)
+    fresh = EXAMPLE_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(EXAMPLE_APP)
+
+    if fresh:
+        createExampleGroups(self)
+        # TODO:
 
 
 def dpRemoved(self):

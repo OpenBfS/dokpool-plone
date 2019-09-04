@@ -6,4 +6,4 @@ PROJECTNAME = "docpool.rodos"
 
 
 # TODO
-Rodos_APP = "rodos"
+RODOS_APP = "rodos"
