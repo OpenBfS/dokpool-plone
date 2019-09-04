@@ -22,6 +22,7 @@
   <records prefix="plone.resources/jquery-marquee"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/jquery.marquee.js</value>
+      <value key="deps">jquery</value>
   </records>
   <records prefix="plone.resources/docpool-functions"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
