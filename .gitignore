@@ -30,3 +30,4 @@ Plone/\.pydevproject
 .settings
 Plone/etc/zodbpack.conf
 local-develop.cfg
+.plone.versioncheck.tracked.json
