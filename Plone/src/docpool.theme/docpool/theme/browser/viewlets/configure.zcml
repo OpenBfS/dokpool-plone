@@ -13,4 +13,13 @@
                      class=".path_bar.PathBarViewlet"
                      layer="docpool.theme.interfaces.ICustomTheme"
                      permission="zope2.View"  />
+
+    <!-- The logo -->
+    <browser:viewlet
+        name="docpool.logo"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".common.LogoDocpoolViewlet"
+        permission="zope2.View"
+        />
+
 </configure>
