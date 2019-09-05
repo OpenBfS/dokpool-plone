@@ -12,6 +12,7 @@ def registerApp(
     dpAddedMethod,
     dpRemovedMethod,
     icon=None,
+    logo=None,
     implicit=False,
 ):
     """
@@ -23,6 +24,7 @@ def registerApp(
         'title': title,
         'implicit': implicit,
         'icon': icon,
+        'logo': logo,
         'typeBehavior': typeBehavior,
         'documentBehavior': documentBehavior,
         'dpAddedMethod': dpAddedMethod,
