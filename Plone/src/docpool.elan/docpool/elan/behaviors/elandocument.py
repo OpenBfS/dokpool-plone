@@ -48,6 +48,13 @@ class IELANDocument(IDocumentExtension):
     write_permission(scenarios='docpool.elan.AccessELAN')
     directives.widget(scenarios=CheckBoxFieldWidget)
 
+    scenarios_to_keep = schema.List(
+        required=False,
+        value_type=schema.TextLine(),
+    )
+    read_permission(scenarios_to_keep='docpool.elan.AccessELAN')
+    directives.mode(scenarios_to_keep='hidden')
+
 
 class ELANDocument(FlexibleView):
 
@@ -68,9 +75,19 @@ class ELANDocument(FlexibleView):
         if not value:
             return
         context = aq_inner(self.context)
-        context.scenarios = value
+        scenarios_to_keep = self.request.form.get(
+            'form.widgets.IELANDocument.scenarios_to_keep', '').splitlines()
+        context.scenarios = scenarios_to_keep + value
 
     scenarios = property(_get_scenarios, _set_scenarios)
+
+    @property
+    def scenarios_to_keep(self):
+        return [s.id for s in self.myScenarioObjects() if s.Status != 'active']
+
+    @scenarios_to_keep.setter
+    def scenarios_to_keep(self, value):
+        pass
 
     def isClean(self):
         """
