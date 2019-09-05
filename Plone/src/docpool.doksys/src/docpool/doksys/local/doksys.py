@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.doksys import DocpoolMessageFactory as _
+from docpool.doksys.config import DOKSYS_APP
 from Products.CMFCore.utils import getToolByName
+from zope.annotation.interfaces import IAnnotations
 
 
 def dpAdded(self):
@@ -9,10 +12,16 @@ def dpAdded(self):
     @return:
 
     """
-    createDoksysUsers(self)
-    createDoksysGroups(self)
-    setDoksysLocalRoles(self)
-    copyDoksysNavigation(self)
+    annotations = IAnnotations(self)
+    fresh = DOKSYS_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(DOKSYS_APP)
+
+    if fresh:
+        createDoksysUsers(self)
+        createDoksysGroups(self)
+        setDoksysLocalRoles(self)
+        copyDoksysNavigation(self)
     self.reindexAll()
     # TODO:
 

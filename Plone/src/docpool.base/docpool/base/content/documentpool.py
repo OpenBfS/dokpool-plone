@@ -21,6 +21,7 @@ from docpool.base.config import BASE_APP
 from docpool.base.content.doctype import IDocType
 from docpool.base.events import DocumentPoolInitializedEvent
 from docpool.base.events import DocumentPoolRemovedEvent
+from persistent.list import PersistentList
 from plone.app.textfield.value import RichTextValue
 from plone.autoform import directives
 from plone.dexterity.content import Container
@@ -31,12 +32,15 @@ from plone.protect.utils import safeWrite
 from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.event import notify
 from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
+
+APPLICATIONS_KEY = 'docpool_applications_key'
 
 
 class IDocumentPool(model.Schema):
@@ -182,6 +186,11 @@ def docPoolAdded(obj, event=None):
     """
     """
     self = obj
+    # initialize cache for enabled apps
+    annotations = IAnnotations(self)
+    if APPLICATIONS_KEY not in annotations:
+        annotations[APPLICATIONS_KEY] = PersistentList()
+
     # Trigger my own method
     APP_REGISTRY[BASE_APP]['dpAddedMethod'](self)
     # Trigger configs for all supported applications

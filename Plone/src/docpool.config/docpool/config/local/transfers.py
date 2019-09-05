@@ -1,21 +1,26 @@
 # -*- coding: utf-8 -*-
+from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
+from docpool.transfers.config import TRANSFERS_APP
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
+from zope.annotation.interfaces import IAnnotations
 
 
 def dpAdded(self):
     """
     """
-    fresh = True
-    if self.content.hasObject("Transfers"):
-        fresh = False  # It's a reinstall
+    annotations = IAnnotations(self)
+    fresh = TRANSFERS_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(TRANSFERS_APP)
+
     createTransferArea(self, fresh)
     if fresh:
         createTransfersGroups(self)

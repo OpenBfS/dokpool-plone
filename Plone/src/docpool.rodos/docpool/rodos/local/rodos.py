@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.rodos.config import RODOS_APP
 from docpool.rodos import DocpoolMessageFactory as _
 from Products.CMFCore.utils import getToolByName
+from zope.annotation.interfaces import IAnnotations
 
 import transaction
 
@@ -11,9 +14,10 @@ def dpAdded(self):
     @return:
 
     """
-    fresh = True
-    if self.hasObject("rodos"):
-        fresh = False  # It's a reinstall
+    annotations = IAnnotations(self)
+    fresh = RODOS_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(RODOS_APP)
 
     copyRunDisplay(self, fresh)
     transaction.commit()
@@ -38,6 +42,7 @@ def copyRunDisplay(self, fresh):
     """
     if not fresh:
         return
+    # FIXME: so far there is no object 'rodos' on a fresh install
     rodos = self.rodos
     from docpool.base.utils import _copyPaste
 
