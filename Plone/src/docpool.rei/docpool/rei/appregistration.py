@@ -20,6 +20,10 @@ registerApp(
     IREIDoc,
     dpAdded,
     dpRemoved,
+    # Todo Skins folder
+    # /src/docpool.elan/docpool/elan/skins/docpool_elan_images/
     icon="rei_app_icon.png",
+    # ./src/docpool.theme/docpool/theme/skins/docpooltheme_images/
+    logo="reilogo.png",
     implicit=False,
 )
