@@ -13,13 +13,16 @@ from docpool.example.local.example import dpRemoved
 
 # TODO: register any app specific type extension, doc extension, methods
 # to be executed when docpools are created
-registerApp(
-    EXAMPLE_APP,
-    u"Example App",
-    IExampleType,
-    IExampleDoc,
-    dpAdded,
-    dpRemoved,
-    icon="example_app_icon.png",
-    implicit=False,
-)
+
+
+# Uncomment to registerApp:
+# registerApp(
+#     EXAMPLE_APP,
+#     u"Example App",
+#     IExampleType,
+#     IExampleDoc,
+#     dpAdded,
+#     dpRemoved,
+#     icon="example_app_icon.png",
+#     implicit=False,
+# )
