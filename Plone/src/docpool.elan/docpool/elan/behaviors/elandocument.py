@@ -68,18 +68,18 @@ class ELANDocument(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    def _get_scenarios(self):
+    @property
+    def scenarios(self):
         return self.context.scenarios
 
-    def _set_scenarios(self, value):
+    @scenarios.setter
+    def scenarios(self, value):
         if not value:
             return
         context = aq_inner(self.context)
         scenarios_to_keep = self.request.form.get(
             'form.widgets.IELANDocument.scenarios_to_keep', '').splitlines()
         context.scenarios = scenarios_to_keep + value
-
-    scenarios = property(_get_scenarios, _set_scenarios)
 
     @property
     def scenarios_to_keep(self):
