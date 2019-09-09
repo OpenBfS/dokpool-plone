@@ -45,8 +45,6 @@ class TransfersType(object):
         return getattr(self.context, "allowTransfer", True)
 
     def _set_allowTransfer(self, value):
-        if not value:
-            return
         context = aq_inner(self.context)
         context.allowTransfer = value
 
