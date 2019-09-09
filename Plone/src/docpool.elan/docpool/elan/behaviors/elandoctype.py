@@ -48,8 +48,6 @@ class ELANDocType(object):
         return self.context.contentCategory
 
     def _set_contentCategory(self, value):
-        if not value:
-            return
         context = aq_inner(self.context)
         context.contentCategory = value
 
