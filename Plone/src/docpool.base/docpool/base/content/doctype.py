@@ -167,9 +167,6 @@ class DocType(Container, Extendable):
 
 @adapter(IDocType, IEditFinishedEvent)
 def updated(obj, event=None):
-    # Actually, a transfer folder should never allow a change of ESD.
-    # But the permission level could have been changed. So we adapt
-    # the read permissions for the sending ESD accordingly.
     log("DocType updated: %s" % str(obj))
     catalog = api.portal.get_tool('portal_catalog')
     mpath = "/"
