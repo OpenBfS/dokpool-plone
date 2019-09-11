@@ -172,11 +172,16 @@ def updated(obj, event=None):
     mpath = "/"
     if safe_hasattr(obj, "dpSearchPath"):
         mpath = obj.dpSearchPath()
-    docs = queryForObjects(obj, path=mpath, dp_type=obj.getId())
-    for doc in docs:
+    brains = queryForObjects(
+        obj,
+        portal_type='DPDocument',
+        path=mpath,
+        dp_type=obj.getId(),
+        )
+    for brain in brains:
         try:
             # reindex object without changing the modification-date.
-            log('Reindexing ' + doc.getPath())
-            catalog._reindexObject(doc.getObject())
+            log('Reindexing ' + brain.getPath())
+            catalog._reindexObject(brain.getObject())
         except BaseException as e:
             log(e)
