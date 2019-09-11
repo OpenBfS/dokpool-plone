@@ -7,6 +7,7 @@ from docpool.base.utils import queryForObjects
 from elan.esd import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
+from Products.Archetypes.utils import DisplayList
 from Products.CMFPlone.utils import safe_hasattr
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
