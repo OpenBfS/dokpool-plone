@@ -8,9 +8,9 @@
 ##title=
 ##
 from AccessControl import Unauthorized
+
 esd = context.myPersonalDocumentPool()
 if esd:
     return esd.absolute_url()
 else:
     raise Unauthorized()
-

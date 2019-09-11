@@ -1,9 +1,8 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.dashboard">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.dashboard">
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
-    
+
    <browser:resourceDirectory
       name="docpool.dashboard.stylesheets"
       directory="stylesheets"
@@ -11,29 +10,28 @@
 
     <browser:page permission="zope2.View" name="dashboard" for="docpool.base.interfaces.IDPDocument"
                   class="docpool.dashboard.browser.dpdocument.DPDocumentdashboardView"/>
-<!-- ##/code-section Main -->
 
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <browser:page permission="zope2.View" name="view" for="..interfaces.IDashboard" class=".dashboard.DashboardView" />
-        
-        
-        
-        
-                                        
-    
+
+
+
+
+
+
 </configure>

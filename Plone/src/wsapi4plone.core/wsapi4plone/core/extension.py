@@ -9,8 +9,7 @@ class BaseExtension(object):
     def __init__(self, service, context):
         self.service = service
         self.context = context
-        if hasattr(self, 'update') and \
-           callable(getattr(self, 'update', None)):
+        if hasattr(self, 'update') and callable(getattr(self, 'update', None)):
             self.update()
 
     @property
@@ -20,8 +19,9 @@ class BaseExtension(object):
     def get(self):
         raise NotImplementedError(
             "%s does not implement the get_extension method. This extension "
-            "has adapted %s and %s." % (self.__class__.__name__, self.service,
-            self.context))
+            "has adapted %s and %s."
+            % (self.__class__.__name__, self.service, self.context)
+        )
 
 
 class BaseWriteExension(object):
@@ -34,11 +34,13 @@ class BaseWriteExension(object):
         else:
             raise NotImplementedError(
                 "%s does not implement the set_extension method. This "
-                "extension has adapted %s and %s." % (name, self.service,
-                self.context))
+                "extension has adapted %s and %s." % (
+                    name, self.service, self.context)
+            )
 
     def get_skeleton(self):
         raise NotImplementedError(
             "%s does not implement the get_skeleton method. This extension "
-            "has adapted %s and %s." % (self.__class__.__name__, self.service,
-            self.context))
+            "has adapted %s and %s."
+            % (self.__class__.__name__, self.service, self.context)
+        )

@@ -1,11 +1,9 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="wsapi4elan.core">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="wsapi4elan.core">
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
     <include file="site.zcml" />
     <include file="content.zcml" />
-    
-<!-- ##/code-section Main -->    
+
 
 </configure>

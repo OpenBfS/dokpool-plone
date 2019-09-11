@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
-from plone.indexer import indexer
-from Products.CMFPlone import log
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.config import ELAN_APP
+from plone.indexer import indexer
+
 
 @indexer(IDPDocument)
 def scenarios_indexer(obj):
     try:
         return obj.doc_extension(ELAN_APP).scenarioIndex()
-    except:
-        return [ 'nonELANContent' ]
+    except BaseException:
+        return ['nonELANContent']
+
 
 @indexer(IDPDocument)
 def category_indexer(obj):
     try:
         return obj.doc_extension(ELAN_APP).category()
-    except:
+    except BaseException:
         pass
+
 
 @indexer(IDPDocument)
 def cat_path_indexer(obj):
     try:
         return obj.doc_extension(ELAN_APP).cat_path()
-    except:
+    except BaseException:
         pass

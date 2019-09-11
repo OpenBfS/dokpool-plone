@@ -3,7 +3,3 @@
 """
 
 PROJECTNAME = "elan.sitrep"
-
-
-##code-section config
-##/code-section config

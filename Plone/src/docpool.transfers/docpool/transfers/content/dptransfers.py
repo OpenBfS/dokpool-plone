@@ -14,49 +14,28 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from Products.CMFPlone.utils import parent
 from logging import getLogger
+from plone.dexterity.content import Container
+from plone.supermodel import model
 from Products.CMFPlone.utils import parent
+from zope.interface import implementer
+
 
 logger = getLogger("dptransfers")
-##/code-section imports
 
-from docpool.transfers.config import PROJECTNAME
 
-from docpool.transfers import DocpoolMessageFactory as _
-
-class IDPTransfers(form.Schema):
+class IDPTransfers(model.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(IDPTransfers)
 class DPTransfers(Container):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IDPTransfers)
-    
-##code-section methods
+
     def migrate(self):
         f = parent(self)
         if hasattr(self, '_setPortalTypeName'):
@@ -67,8 +46,6 @@ class DPTransfers(Container):
         f[myid] = self
         logger.info(self.__class__)
         logger.info(self.getPortalTypeName())
-
-    ##/code-section methods
 
     def myDPTransfers(self):
         """
@@ -92,12 +69,10 @@ class DPTransfers(Container):
     def getDPTransferFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPTransferFolder'}
+        args = {'portal_type': 'DPTransferFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 class ELANTransfers(DPTransfers):
     pass
-##/code-section bottom

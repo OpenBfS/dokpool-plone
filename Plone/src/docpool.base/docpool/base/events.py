@@ -1,12 +1,15 @@
 from AccessControl import Unauthorized
-from zope.interface import Interface
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zope.component.interfaces import ObjectEvent
-from zope.interface import implements
+from zope.interface import implementer
+from zope.interface import Interface
+
 
 class IDocumentPoolUndeleteable(Interface):
     """Marker interface for objects which should not be deleted.
     """
+
 
 def delete_handler(object, event):
     """
@@ -16,19 +19,25 @@ def delete_handler(object, event):
     try:
         if not object.isAdmin():
             raise Unauthorized
-    except Exception, e:
+    except Exception as e:
         log_exc(e)
+
 
 class IDocumentPoolInitializedEvent(Interface):
     """
     """
-    
+
+
+@implementer(IDocumentPoolInitializedEvent)
 class DocumentPoolInitializedEvent(ObjectEvent):
-    implements(IDocumentPoolInitializedEvent)
+    pass
+
 
 class IDocumentPoolRemovedEvent(Interface):
     """
     """
-    
+
+
+@implementer(IDocumentPoolRemovedEvent)
 class DocumentPoolRemovedEvent(ObjectEvent):
-    implements(IDocumentPoolRemovedEvent)
+    pass

@@ -14,82 +14,68 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from datetime import datetime
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
+from docpool.dbaccess.dbinit import __metadata__
+from docpool.dbaccess.dbinit import __session__
+from docpool.dbaccess.interfaces import Idbadmin
+from elan.irix import DocpoolMessageFactory as _
+from elan.irix.db.model import IRIXReport as DBReport
+from plone.autoform import directives
 from plone.dexterity.content import Item
-from docpool.base.content.contentbase import ContentBase, IContentBase
+from plone.supermodel import model
+from six.moves.urllib.parse import quote
+from zope import schema
+from zope.component import adapter
+from zope.component import getUtility
+from zope.interface import implementer
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectRemovedEvent
 
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from docpool.dbaccess.dbinit import __metadata__, __session__
 
 metadata = __metadata__
 session = __session__
 
-from zope.component import adapter
-from zope.component import getUtility
-from docpool.dbaccess.interfaces import Idbadmin
-from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
-from elan.irix.db.model import IRIXReport as DBReport
-from datetime import datetime
-from urllib import quote
-##/code-section imports 
 
-from elan.irix.config import PROJECTNAME
-
-from elan.irix import DocpoolMessageFactory as _
-
-class IIRIXReport(form.Schema, IContentBase):
+class IIRIXReport(model.Schema, IContentBase):
     """
     """
-        
+
     dbkey = schema.Decimal(
-                        title=_(u'label_irixreport_dbkey', default=u'Primary key in relational database'),
-                        description=_(u'description_irixreport_dbkey', default=u'Database key'),
-                        required=False,
-##code-section field_dbkey
-##/code-section field_dbkey                           
+        title=_(
+            u'label_irixreport_dbkey', default=u'Primary key in relational database'
+        ),
+        description=_(
+            u'description_irixreport_dbkey',
+            default=u'Database key'),
+        required=False,
     )
-    form.omitted('dbkey')
-
-##code-section interface
-##/code-section interface
+    directives.omitted('dbkey')
 
 
+@implementer(IIRIXReport)
 class IRIXReport(Item, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IIRIXReport)
-    
-##code-section methods
+
     def pkfields(self):
         """
         Dummy for CSS
         """
-        pass
 
     def getStructuredType(self):
         """
         """
         return "irixreport"
-    
+
     def getPrimaryKey(self):
         """
         """
         return [self.dbkey]
-    
+
     def dbObj(self):
         """
         """
@@ -99,7 +85,7 @@ class IRIXReport(Item, ContentBase):
         # print pkvals
         obj = dba.objektdatensatz(self.getStructuredType(), **pkvals)
         return obj
-        
+
     def navigationHTML(self):
         """
         """
@@ -107,14 +93,14 @@ class IRIXReport(Item, ContentBase):
         os = obj.getSubObjects()
         html = self.navElement(os)
         return html
-        
+
     def navElement(self, el):
         """
         """
         typ, pk, bc = self.currentState()
         mytyp = el[1]
         mypk = eval(el[2])
-        
+
         currentLeaf = False
         currentNode = False
         if typ == el[1]:
@@ -126,12 +112,21 @@ class IRIXReport(Item, ContentBase):
                     if mypk == list(b[1]):
                         currentNode = True
         html = ''
-        anchor_class = currentLeaf and 'currentLeaf' or currentNode and 'currentNode' or 'normal'
+        anchor_class = (
+            currentLeaf and 'currentLeaf' or currentNode and 'currentNode' or 'normal'
+        )
         css_class = 'node'
         if el[4]:
             css_class = 'node content'
         html += "<li class='%s'>" % css_class
-        html += "<a class='%s' href='%s/struct_edit?typ=%s&pk=%s&bc=%s'>%s</a>" % (anchor_class, self.absolute_url(), el[1], quote(el[2]), quote(el[3]), el[0])
+        html += "<a class='%s' href='%s/struct_edit?typ=%s&pk=%s&bc=%s'>%s</a>" % (
+            anchor_class,
+            self.absolute_url(),
+            el[1],
+            quote(el[2]),
+            quote(el[3]),
+            el[0],
+        )
         if el[4]:
             html += "<ul class='folder'>"
             for subel in el[4]:
@@ -139,7 +134,7 @@ class IRIXReport(Item, ContentBase):
             html += "</ul>"
         html += "</li>"
         return html
-        
+
     def currentState(self):
         """
         """
@@ -148,11 +143,12 @@ class IRIXReport(Item, ContentBase):
         pk = eval(request.get("pk", '[]'))
         bc = eval(request.get("bc", '[]'))
         return typ, pk, bc
-    
+
     def initializeDB(self):
         """
         """
-        # TODO: IRIXReport DB object with default data acquired from IRIX config
+        # TODO: IRIXReport DB object with default data acquired from IRIX
+        # config
         ic = self.irixConfig()
         dbReport = DBReport()
         dbReport.title = self.Title()
@@ -173,18 +169,15 @@ class IRIXReport(Item, ContentBase):
         # print self.dbkey
         self.reindexObject()
         # store PK
-        
+
     def irixConfig(self):
         try:
             ic = self.contentconfig.irix
             return ic
-        except:
+        except BaseException:
             return None
-            
-##/code-section methods 
 
 
-##code-section bottom
 @adapter(IIRIXReport, IObjectAddedEvent)
 def reportAdded(obj, event=None):
     """
@@ -192,9 +185,9 @@ def reportAdded(obj, event=None):
     obj.initializeDB()
     obj.reindexObject()
 
+
 @adapter(IIRIXReport, IObjectRemovedEvent)
 def reportRemoved(obj, event=None):
     """
     """
     obj.deleteData()
-##/code-section bottom 

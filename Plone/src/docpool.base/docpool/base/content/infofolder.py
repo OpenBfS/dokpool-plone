@@ -14,57 +14,42 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from docpool.base.content.folderbase import FolderBase
+from docpool.base.content.folderbase import IFolderBase
 from plone.dexterity.content import Container
-from docpool.base.content.folderbase import FolderBase, IFolderBase
-
+from Products.CMFPlone.utils import base_hasattr
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
-
-##code-section imports
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
-from Products.Archetypes.utils import shasattr
-##/code-section imports 
+from zope.interface import implementer
 
-from docpool.base.config import PROJECTNAME
 
-from docpool.base import DocpoolMessageFactory as _
-
-class IInfoFolder(form.Schema, IFolderBase):
+class IInfoFolder(model.Schema, IFolderBase):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(IInfoFolder)
 class InfoFolder(Container, FolderBase):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IInfoFolder)
-    
-##code-section methods
+
     def createActions(self):
         """
         """
-        if shasattr(self, "myGroupFolder", acquire=True):
+        if base_hasattr(self, "myGroupFolder"):
             log("Creating Private Info Folder")
-    
+
             placeful_wf = getToolByName(self, 'portal_placeful_workflow')
             try:
-                self.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
-            except BadRequest, e:
+                self.manage_addProduct[
+                    'CMFPlacefulWorkflow'
+                ].manage_addWorkflowPolicyConfig()
+            except BadRequest as e:
                 log_exc(e)
             config = placeful_wf.getWorkflowPolicyConfig(self)
             placefulWfName = 'dp-private-infofolder'
@@ -73,7 +58,6 @@ class InfoFolder(Container, FolderBase):
             self.reindexObject()
             self.updateSecurity()
             self.reindexObjectSecurity()
-##/code-section methods 
 
     def myInfoFolder(self):
         """
@@ -97,24 +81,20 @@ class InfoFolder(Container, FolderBase):
     def getInfoDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoDocument'}
+        args = {'portal_type': 'InfoDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoLinks(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoLink'}
+        args = {'portal_type': 'InfoLink'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
-
-
-##code-section bottom
-##/code-section bottom 
+        return [obj.getObject() for obj in self.getFolderContents(args)]

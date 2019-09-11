@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <tal:block i18n:domain="docpool.base">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <html>
     <head>
 <style>
@@ -10,7 +9,7 @@
         -pdf-frame-content: header_content;
         left: 50pt; width: 512pt; top: 30pt; height: 58pt;
      /*   -pdf-frame-border: 1; */
-    }    
+    }
     @frame content_frame {
         left: 50pt; width: 512pt; top: 90pt; height: 710pt;
      /*   -pdf-frame-border: 1; */
@@ -28,8 +27,8 @@ body {
     font-family: Arial;
     color: #000000;
 }
-    
-    
+
+
 p {
     line-height: 14px;
     font-size: 12px;
@@ -39,13 +38,12 @@ p {
 .image .caption {
     display: block;
 }
-    
+
 </style>
 
     </head>
-    <body> 
+    <body>
     <tal:insert replace="structure python:view.myView('print', **options)" />
     </body>
     </html>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

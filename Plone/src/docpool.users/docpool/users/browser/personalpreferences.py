@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
-from plone.app.users.browser.personalpreferences import PersonalPreferencesPanel
-from zope.interface import Interface, implements
-from zope import schema
-from plone.app.users.schema import checkEmailAddress
-from Products.CMFPlone import PloneMessageFactory as _p
 from docpool.users import DocpoolMessageFactory as _
-from plone.supermodel import model
-
-from plone.app.users.browser.account import AccountPanelSchemaAdapter
-from plone.app.users.browser.register import RegistrationForm, AddUserForm
-from plone.z3cform.fieldsets import extensible
-from zope.component import adapts
 from docpool.users.interfaces import IDocPoolUsersLayer
+from plone.app.users.browser.account import AccountPanelSchemaAdapter
+from plone.app.users.browser.personalpreferences import PersonalPreferencesPanel
+from plone.autoform import directives
+from plone.supermodel import model
+from plone.z3cform.fieldsets import extensible
 from z3c.form import field
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from plone.directives import form
+from zope import schema
+from zope.component import adapter
+from zope.interface import Interface
+
 
 class IEnhancedPersonalPreferences(model.Schema):
     """ Use all the fields from the default user data schema, and add various
@@ -22,12 +19,13 @@ class IEnhancedPersonalPreferences(model.Schema):
     """
 
     apps = schema.List(
-                        title=_(u'label_user_apps', default=u'Applications'),
-                        description=_(u'description_user_apps', default=u''),
-                        required=False,
-                        value_type=schema.Choice(source="docpool.base.vocabularies.AvailableApps"),
-                        )
-    form.widget(apps=CheckBoxFieldWidget)
+        title=_(u'label_user_apps', default=u'Applications'),
+        description=_(u'description_user_apps', default=u''),
+        required=False,
+        value_type=schema.Choice(
+            source="docpool.base.vocabularies.AvailableApps"),
+    )
+    directives.widget(apps=CheckBoxFieldWidget)
 
 
 class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
@@ -35,13 +33,15 @@ class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
 
     def get_apps(self):
         return self.context.getProperty('apps', [])
+
     def set_apps(self, value):
         return self.context.setMemberProperties({'apps': value})
+
     dp = property(get_apps, set_apps)
 
 
+@adapter(Interface, IDocPoolUsersLayer, PersonalPreferencesPanel)
 class PersonalPreferencesPanelExtender(extensible.FormExtender):
-    adapts(Interface, IDocPoolUsersLayer, PersonalPreferencesPanel)
 
     def update(self):
         fields = field.Fields(IEnhancedPersonalPreferences)
@@ -59,4 +59,3 @@ def updateWidgets(self):
 
 
 PersonalPreferencesPanel.updateWidgets = updateWidgets
-        

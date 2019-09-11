@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
-##code-section imports
 from docpool.event.content.dpevent import IDPEvent
 from docpool.event.content.dpevents import IDPEvents
 from docpool.event import DocpoolMessageFactory as _
-##/code-section imports
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-##code-section manual code
-##/code-section manual code
+
+class IDocpoolEventLayer(IDefaultBrowserLayer):
+    """Marker interface that defines a browser layer."""

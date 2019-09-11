@@ -1,5 +1,4 @@
 <tal:block i18n:domain="elan.sitrep">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <tal:def define="dummy python:request.set('ajax_load',1);
                  dummy python:request.set('ajax_include_head',1);">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
@@ -45,19 +44,19 @@ function insertTextblock (selector) {
                                     wtitle string:Scenario;
                                     options context/possibleSRScenarios;
                                     f_value f_scenario">
-                 <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
+                 <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>
                 </tal:widget>
                 <tal:widget define="wname string:phase;
                                     wtitle string:Phase;
                                     options context/possibleSRPhases;
                                     f_value f_phase">
-                 <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
+                 <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>
                 </tal:widget>
                 <tal:widget define="wname string:module_type;
                                     wtitle string:Module type;
                                     options context/possibleSRModuleTypes;
                                     f_value f_modtype">
-                 <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>                
+                 <div metal:use-macro="context/@@sitrep.macros/macros/selectwidget"/>
                 </tal:widget>
                 <div class="formControls">
                     <input id="form-buttons-filter" class="submit-widget button-field" type="submit" value="Filter" name="form.buttons.filter" i18n:attributes="value">
@@ -65,12 +64,12 @@ function insertTextblock (selector) {
                     <input tal:replace="structure context/@@authenticator/authenticator" />
                     <input type="hidden" name="filtered" value="1" />
                 </div>
-                
+
              </form>
              <table id="tbtable"
                  class="listing responsive"
                  summary="Text block listing"
-                 tal:condition="nocall: textblocks">     
+                 tal:condition="nocall: textblocks">
             <thead>
                 <tr>
                     <th class="nosort actions"></th>
@@ -85,7 +84,7 @@ function insertTextblock (selector) {
              <td class="actions">
              <a i18n:translate="" onclick="" class="submit-widget button-field context"
                 tal:attributes="onclick python:'insertTextblock(\'#tb_%s\');;return false;;' % tb.UID();">Paste</a>
-             
+
              </td>
              <td class="title">
                 <h4 tal:content="tb/Title"></h4>
@@ -93,12 +92,12 @@ function insertTextblock (selector) {
                  tal:content="structure tb/Description"> description </div>
 
               <div class="fulltext" tal:attributes="id string:tb_${tb/UID}" tal:content="structure tb/text/output|nothing" />
-             
+
              </td>
              <td class="metadata">
                  <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
              </td>
-                
+
              </tr>
              </tal:loop>
              </tbody>
@@ -108,10 +107,10 @@ function insertTextblock (selector) {
 	         <h1 i18n:translate="">Previous version</h1>
 	         <tal:def define="context nocall:previous">
 	         <div metal:use-macro="context/@@sitrep.macros/macros/module"/>
-            <div class="formControls">	         
+            <div class="formControls">
              <a i18n:translate="" onclick="" class="submit-widget button-field context"
                 tal:attributes="onclick python:'insertTextblock(\'#html_%s\');;return false;;' % context.getId();">Paste to module editor</a>
-            </div>	         
+            </div>
              </tal:def>
 	       </section>
            <section tal:condition="nocall:visualisations">
@@ -119,7 +118,7 @@ function insertTextblock (selector) {
              <table id="vistable"
                  class="listing responsive"
                  summary="Visualisations listing"
-                 tal:condition="nocall: visualisations">     
+                 tal:condition="nocall: visualisations">
             <thead>
                 <tr>
                     <th class="nosort actions"></th>
@@ -136,7 +135,7 @@ function insertTextblock (selector) {
              <td class="actions">
              <a i18n:translate="" onclick="" class="submit-widget button-field context"
                 tal:attributes="onclick python:'insertTextblock(\'#vis_%s\');;return false;;' % vis.UID();">Paste</a>
-             
+
              </td>
              <td class="title">
                 <h4 tal:content="vis/Title"></h4>
@@ -145,14 +144,14 @@ function insertTextblock (selector) {
 
               <div class="image" tal:attributes="id string:vis_${vis/UID}">
                  <img data-mce-src="resolveuid/${vis/UID}/@@images/image" data-val="${vis/UID}" data-linktype="image" alt="${vis/Title}" src="resolveuid/${vis/UID}/@@images/image/large" class="image-inline" title="${vis/Title}" data-scale="large" data-mce-selected="1">
-                 <span class="caption"><i18n:var translate="">Fig.</i18n:var> : ${vis/Title} <tal:if condition="vis/Description"> - ${vis/Description}</tal:if></span> 
+                 <span class="caption"><i18n:var translate="">Fig.</i18n:var> : ${vis/Title} <tal:if condition="vis/Description"> - ${vis/Description}</tal:if></span>
               </div>
-             
+
              </td>
              <td class="metadata">
                  <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
              </td>
-                
+
              </tr>
              </tal:loop>
             </tbody>
@@ -163,5 +162,4 @@ function insertTextblock (selector) {
 </body>
 </html>
 </tal:def>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

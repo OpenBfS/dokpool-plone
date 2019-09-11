@@ -5,23 +5,21 @@
      of this file for more information.
   -->
 <portlets>
-    
+
         <portlet description="" addview="elan.irix.irix_navigation" title="irix_navigation" />
-            
-    
-    
-    
-       <assignment name="irix_navigation" category="content_type" key="IRIXReport" manager="plone.leftcolumn" type="elan.irix.irix_navigation" />        
-    
-    
-    
-    
-    
-    
-<!-- ##code-section custom_portlets -->
+
+
+
+
+       <assignment name="irix_navigation" category="content_type" key="IRIXReport" manager="plone.leftcolumn" type="elan.irix.irix_navigation" />
+
+
+
+
+
+
 <assignment remove="true" name="calendar" category="context" key="/" manager="plone.rightcolumn" type="portlets.Calendar" />
 <assignment remove="true" name="events" category="context" key="/" manager="plone.rightcolumn" type="portlets.Events" />
 <assignment remove="true" name="news" category="context" key="/" manager="plone.rightcolumn" type="portlets.News" />
-<!-- ##/code-section custom_portlets -->    
-  
+
 </portlets>

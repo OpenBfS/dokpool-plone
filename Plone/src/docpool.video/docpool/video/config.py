@@ -3,7 +3,3 @@
 """
 
 PROJECTNAME = "docpool.video"
-
-
-##code-section config
-##/code-section config

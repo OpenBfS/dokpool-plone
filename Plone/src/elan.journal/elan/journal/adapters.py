@@ -2,19 +2,19 @@
 """Adapt a Journal with a container of journal-entries.
 
 """
-from elan.journal.interfaces import IJournal
 from datetime import datetime
+from elan.journal.interfaces import IJournal
 from persistent import Persistent
 from persistent.list import PersistentList
 from plone import api
 from time import time
 from zope.annotation.interfaces import IAnnotations
-from zope.component import adapts
+from zope.component import adapter
 from zope.container.contained import ObjectAddedEvent
 from zope.container.contained import ObjectRemovedEvent
 from zope.event import notify
 from zope.interface import Attribute
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 
 
@@ -34,10 +34,10 @@ class IJournalEntry(Interface):
     text = Attribute('Text of the journalentry.')
 
 
+@implementer(IJournalEntryContainer)
+@adapter(IJournal)
 class JournalEntryContainer(Persistent):
 
-    implements(IJournalEntryContainer)
-    adapts(IJournal)
     ANNO_KEY = 'journal.journalentries'
 
     def __init__(self, context):
@@ -78,16 +78,15 @@ class JournalEntryContainer(Persistent):
         notify(event)
 
     def delete(self, id):
-        event = ObjectRemovedEvent(self[id], oldParent=self.context, oldName=id)
+        event = ObjectRemovedEvent(
+            self[id], oldParent=self.context, oldName=id)
         self.remove(id)
         notify(event)
 
 
+@implementer(IJournalEntry)
 class JournalEntry(Persistent):
-
     """An entry to a Journal."""
-
-    implements(IJournalEntry)
 
     def __init__(self, title, text):
         self.__parent__ = self.__name__ = None

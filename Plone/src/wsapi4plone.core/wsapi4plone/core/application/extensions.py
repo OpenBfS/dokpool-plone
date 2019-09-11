@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 
 from wsapi4plone.core.interfaces import IFormatQueryResults
 from wsapi4plone.core.extension import BaseExtension
-from wsapi4plone.core.application.interfaces import (
-    IPloneContents, IContentsQuery,)
+from wsapi4plone.core.application.interfaces import IPloneContents, IContentsQuery
 
 
+@implementer(IPloneContents)
 class PloneContents(BaseExtension):
-    implements(IPloneContents)
 
     @property
     def contents_query(self):
@@ -19,8 +18,7 @@ class PloneContents(BaseExtension):
 
     def get_callback(self):
         query_args = self.contents_query.arguments()
-        contents = {'function': 'query',
-                    'args': query_args}
+        contents = {'function': 'query', 'args': query_args}
 
     def get(self):
         formatter = getUtility(IFormatQueryResults)
@@ -28,7 +26,6 @@ class PloneContents(BaseExtension):
 
 
 class BaseContentQuery(object):
-
     def __init__(self, context):
         self.context = context
 
@@ -37,9 +34,7 @@ class BaseContentQuery(object):
 
 
 class PloneFolderContents(BaseContentQuery):
-
     def arguments(self):
-        arg = {'path': {
-            'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}
-            }
+        arg = {
+            'path': {'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}}
         return (arg,)

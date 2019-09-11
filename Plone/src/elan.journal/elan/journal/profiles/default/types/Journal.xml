@@ -47,7 +47,7 @@
       url_expr="string:${object_url}" visible="True">
     <permission value="View" />
   </action>
-  <action title="Update" action_id="add_entry" category="object" condition_expr=""
+  <action title="Update" action_id="update" category="object" condition_expr=""
       url_expr="string:${object_url}/update" visible="True"
       i18n:attributes="title">
     <permission value="elan.journal: Add JournalEntry" />

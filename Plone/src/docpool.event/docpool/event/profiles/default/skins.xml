@@ -5,19 +5,15 @@
  <object name="docpool_event_images" meta_type="Filesystem Directory View" directory="docpool.event:skins/docpool_event_images"/>
  <object name="docpool_event_templates" meta_type="Filesystem Directory View" directory="docpool.event:skins/docpool_event_templates"/>
  <object name="docpool_event_styles" meta_type="Filesystem Directory View" directory="docpool.event:skins/docpool_event_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="docpool_event_images" insert-after="custom"/>
   <layer name="docpool_event_templates" insert-after="custom"/>
   <layer name="docpool_event_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

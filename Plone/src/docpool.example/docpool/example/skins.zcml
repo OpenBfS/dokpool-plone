@@ -5,6 +5,4 @@
     <cmf:registerDirectory name="docpool_example_templates"/>
     <cmf:registerDirectory name="docpool_example_styles"/>
 
-<!-- ##code-section Additional Parameters -->
-<!-- ##/code-section Additional Parameters -->
 </configure>

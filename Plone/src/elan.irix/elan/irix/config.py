@@ -3,7 +3,3 @@
 """
 
 PROJECTNAME = "elan.irix"
-
-
-##code-section config
-##/code-section config

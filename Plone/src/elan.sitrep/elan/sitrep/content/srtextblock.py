@@ -14,65 +14,47 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
 from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Item
-from docpool.base.content.contentbase import ContentBase, IContentBase
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.utils import back_references
-from zope.component import adapter
-from plone.dexterity.interfaces import IEditFinishedEvent
-from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-##/code-section imports 
-
-from elan.sitrep.config import PROJECTNAME
-
 from elan.sitrep import DocpoolMessageFactory as _
+from plone.app.textfield import RichText
+from plone.dexterity.content import Item
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.supermodel import model
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from zope.component import adapter
+from zope.interface import implementer
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
-class ISRTextBlock(form.Schema, IContentBase):
+
+class ISRTextBlock(model.Schema, IContentBase):
     """
     """
-    dexteritytextindexer.searchable('text')    
+
+    dexteritytextindexer.searchable('text')
     text = RichText(
-                        title=_(u'label_srtextblock_text', default=u'Text'),
-                        description=_(u'description_srtextblock_text', default=u''),
-                        required=False,
-##code-section field_text
-##/code-section field_text                           
+        title=_(u'label_srtextblock_text', default=u'Text'),
+        description=_(u'description_srtextblock_text', default=u''),
+        required=False,
     )
-    
-
-##code-section interface
-##/code-section interface
 
 
+@implementer(ISRTextBlock)
 class SRTextBlock(Item, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(ISRTextBlock)
-    
-##code-section methods
+
     def moduleConfigs(self):
         """
         All SRModuleConfigs, where I am used
         """
         mcs = back_references(self, "textBlocks")
         return mcs
-
 
     def getSRScenarioNames(self):
         """
@@ -114,28 +96,26 @@ class SRTextBlock(Item, ContentBase):
         """
         Index Method
         """
-        return [ mod.getId() for mod in self.moduleConfigs() ]
+        return [mod.getId() for mod in self.moduleConfigs()]
 
     def getSRModuleRefs(self):
         """
         Index Method
         """
-        return [ mod.UID() for mod in self.moduleConfigs() ]
-    
+        return [mod.UID() for mod in self.moduleConfigs()]
+
     def createActions(self):
         sr_cat = getToolByName(self, "sr_catalog")
         sr_cat._reindexObject(self)
-        
-##/code-section methods 
 
 
-##code-section bottom
 @adapter(ISRTextBlock, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRTextBlock updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat._reindexObject(obj)
-    
+
+
 @adapter(ISRTextBlock, IObjectRemovedEvent)
 def removed(obj, event):
     log("SRTextBlock removed: %s" % str(obj))
@@ -144,4 +124,3 @@ def removed(obj, event):
     id = event.oldName
     path = "/".join(op.getPhysicalPath()) + "/" + id
     sr_cat.uncatalog_object(path)
-##/code-section bottom 

@@ -1,5 +1,4 @@
 <table i18n:domain="docpool.base">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <tr tal:define="options view/options;
                  dpbrain options/dpbrain;
                  isOverview options/isOverview;
@@ -20,16 +19,15 @@
                  item_type_class python:'contenttype-' + normalizeString(item_ptype);
                  "
     class="wrapper">
-                    
+
                 <td class="actions">
                 </td>
                 <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/foldercontent"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/foldercontent"/>
                 </td>
                 <td class="metadata">
                     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
                 </td>
 
 </tr>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </table>

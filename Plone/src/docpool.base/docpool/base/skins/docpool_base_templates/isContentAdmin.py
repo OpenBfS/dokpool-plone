@@ -10,6 +10,7 @@
 try:
     if hasattr(context, "myDocumentPool"):
         from plone import api
+
         roles = api.user.get_roles(obj=context)
         if "Manager" in roles or "Site Administrator" in roles:
             return True

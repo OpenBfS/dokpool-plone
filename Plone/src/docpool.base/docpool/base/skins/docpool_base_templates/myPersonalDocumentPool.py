@@ -8,8 +8,6 @@
 ##title=
 ##
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
-from AccessControl import Unauthorized
 from plone import api
 from Products.CMFPlone.utils import log
 
@@ -20,7 +18,7 @@ esd_prefix = parts[0]
 
 
 cat = getToolByName(context, 'portal_catalog', None)
-esds = cat(portal_type="DocumentPool", sort_on = "sortable_title")
+esds = cat(portal_type="DocumentPool", sort_on="sortable_title")
 log(esds)
 if esds:
     for esd in esds:

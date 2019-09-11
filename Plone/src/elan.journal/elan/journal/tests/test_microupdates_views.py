@@ -22,7 +22,8 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
             self.journal = api.content.create(
                 self.portal, 'Journal', 'journal')
         self.view = api.content.get_view(
-            'base-journalentry', self.journal, self.request)
+            'base-journalentry', self.journal, self.request
+        )
         adapter = IJournalEntryContainer(self.journal)
         adapter.add(JournalEntry(u'', u'Check me!'))
 
@@ -36,7 +37,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'No journalentry selected.'
+        expected = u'No entry selected.'
         self.assertEqual(msg[0].message, expected)
 
     def test_validate_journalentry_invalid_id(self):

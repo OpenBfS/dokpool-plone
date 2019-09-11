@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-##code-section import
-##/code-section import
+from Products.CMFPlone.interfaces import INonInstallable
+from zope.interface import implementer
 
-def setupVarious(context):
 
-    # Ordinarily, GenericSetup handlers check for the existence of XML files.
-    # Here, we are not parsing an XML file, but we use this text file as a
-    # flag to check that we actually meant for this import step to be run.
-    # The file is found in profiles/default.
+@implementer(INonInstallable)
+class HiddenProfiles(object):
 
-    if context.readDataFile('docpool.event_various.txt') is None:
-        return
-##code-section setupcode
-    # TODO: Add additional setup code here
-##/code-section setupcode
+    def getNonInstallableProfiles(self):
+        """Hide uninstall profile from site-creation and quickinstaller."""
+        return [
+            'docpool.event:uninstall',
+        ]
 
-##code-section Main
-##/code-section Main 
+
+def post_install(context):
+    """Post install script"""
+    # Do something at the end of the installation of this package.
+
+
+def uninstall(context):
+    """Uninstall script"""
+    # Do something at the end of the uninstallation of this package.

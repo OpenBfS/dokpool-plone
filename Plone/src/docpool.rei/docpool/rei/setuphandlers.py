@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-##code-section import
-##/code-section import
+
 
 def setupVarious(context):
 
@@ -12,12 +10,7 @@ def setupVarious(context):
 
     if context.readDataFile('docpool.rei_various.txt') is None:
         return
-##code-section setupcode
     # TODO: Add additional setup code here
     from docpool.rei.general.rei import install
-    install(context,context.getSite())
 
-        ##/code-section setupcode
-
-##code-section Main
-##/code-section Main 
+    install(context, context.getSite())

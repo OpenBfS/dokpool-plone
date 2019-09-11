@@ -14,45 +14,22 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
 from plone.dexterity.content import Container
+from plone.supermodel import model
+from zope.interface import implementer
 
-from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
-
-from docpool.dashboard.config import PROJECTNAME
-
-from docpool.dashboard import DocpoolMessageFactory as _
-
-class IDashboardsConfig(form.Schema):
+class IDashboardsConfig(model.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(IDashboardsConfig)
 class DashboardsConfig(Container):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IDashboardsConfig)
-    
-##code-section methods
-##/code-section methods 
 
     def myDashboardsConfig(self):
         """
@@ -76,10 +53,6 @@ class DashboardsConfig(Container):
     def getDashboardCollections(self, **kwargs):
         """
         """
-        args = {'portal_type':'DashboardCollection'}
+        args = {'portal_type': 'DashboardCollection'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
-
-
-##code-section bottom
-##/code-section bottom 
+        return [obj.getObject() for obj in self.getFolderContents(args)]

@@ -40,6 +40,8 @@ class Update(View):
     def __call__(self):
         self.start = int(self.request.get('b_start', 0))
         if self.start != 0:
-            msg = _(u'You must be on the first page of the batch to add journal entries.')
+            msg = _(
+                u'You must be on the first page of the batch to add journal entries.'
+            )
             api.portal.show_message(msg, self.request, type='info')
         return self.index()

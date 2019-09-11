@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-##code-section import
+
+
 class args:
     def __init__(self, **kw):
         self.__dict__.update(kw)
-##/code-section import
+
 
 def setupVarious(context):
 
@@ -15,7 +16,6 @@ def setupVarious(context):
 
     if context.readDataFile('elan.sitrep_various.txt') is None:
         return
-##code-section setupcode
     # Add additional setup code here
     cat = getToolByName(context.getSite(), 'sr_catalog')
     # Add indexes and metadatas
@@ -23,9 +23,11 @@ def setupVarious(context):
         try:
             if index_name not in cat.indexes():
                 if index_type == 'ZCTextIndex':
-                    extra = args(doc_attr=index_name,
-                                 lexicon_id='pg_lexicon',
-                                 index_type='Okapi BM25 Rank')
+                    extra = args(
+                        doc_attr=index_name,
+                        lexicon_id='pg_lexicon',
+                        index_type='Okapi BM25 Rank',
+                    )
                     cat.addIndex(index_name, index_type, extra=extra)
                 else:
                     if extra:
@@ -34,9 +36,5 @@ def setupVarious(context):
 
             if not index_name in cat.schema():
                 cat.addColumn(index_name)
-        except:
-            pass    # for metadata
-##/code-section setupcode
-
-##code-section Main
-##/code-section Main 
+        except BaseException:
+            pass  # for metadata

@@ -3,8 +3,8 @@
 """
 
 PROJECTNAME = "docpool.dbaccess"
-#LEFT_PORTLET_COLUMN = u"plone.leftcolumn"
-#RIGHT_PORTLET_COLUMN = u"plone.rightcolumn"
+# LEFT_PORTLET_COLUMN = u"plone.leftcolumn"
+# RIGHT_PORTLET_COLUMN = u"plone.rightcolumn"
 
 # portlets are not implemented
 # PROMOTIONS_PORTLET_COLUMN = u"plone.rightcolumn"
@@ -19,8 +19,4 @@ PROJECTNAME = "docpool.dbaccess"
 # them sensibly. This is good practice, because it makes it
 # easier to find permissions in the Security tab in the ZMI.
 
-ADD_PERMISSIONS = {
-}
-
-##code-section config
-##/code-section config
+ADD_PERMISSIONS = {}

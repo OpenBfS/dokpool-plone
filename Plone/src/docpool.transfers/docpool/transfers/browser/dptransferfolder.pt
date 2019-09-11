@@ -1,24 +1,18 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.transfers" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
-<!-- ##code-section Head -->
-<!-- ##/code-section Head -->    
 
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
-<!-- ##code-section Main -->
 <form>
 </form>
         <div class="documentDescription" i18n:translate="">Transfer Folder: filter not active!</div>
 		<a href="" tal:attributes="href string:${context/absolute_url}/objekt_liste?typ=channelpermissions"
-		class="pat-plone-modal" 
+		class="pat-plone-modal"
 		i18n:translate="">Edit Permissions</a>
         <br /><br />
-    	<div metal:use-macro="here/@@dp.macros/macros/listing"/>   
-<!-- ##/code-section Main -->    
+    	<div metal:use-macro="here/@@dp.macros/macros/listing"/>
 </metal:content-core>
 </metal:content-core>
 
-<!-- ##code-section Bottom -->
-<!-- ##/code-section Bottom -->  
 </body>
 </html>

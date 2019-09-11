@@ -1,41 +1,40 @@
 # -*- coding: utf-8 -*-
-from Products.PluggableAuthService.plugins import ZODBGroupManager
-from Products.PlonePAS.plugins.group import GroupManager
-from Products.CMFCore.utils import getToolByName
-from plone.app.discussion.browser.conversation import ConversationView
-from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain, _GLOBALREQUEST_INSTALLED, getRequest
-from Products.CMFPlone.utils import aq_get, aq_parent, aq_inner
-from Products.CMFPlone.utils import log
-#from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
-from Products.PlonePAS.tools.groups import GroupsTool
-from Products.PlonePAS.tools.membership import MembershipTool
-
-from Products.Archetypes.utils import shasattr
-
-from plone.protect.interfaces import IDisableCSRFProtection
-# Patches for the dropdown menu to include personal and group folders
-
+from docpool.base.browser.dpdocument import DPDocumentinlineView
+from docpool.base.browser.dpdocument import DPDocumentlistitemView
+from docpool.base.browser.dpdocument import DPDocumentprintView
+from docpool.base.browser.dpdocument import DPDocumentView
 from docpool.base.content.documentpool import DocumentPool
+from docpool.base.content.simplefolder import SimpleFolder
+from docpool.base.utils import deleteMemberFolders
 from docpool.elan.config import ELAN_APP
-from elan.esd.testdata import deleteTestData, createGroupsAndUsers,\
-    createTestDocuments
-import datetime
+from docpool.event.utils import getScenariosForCurrentUser
+from elan.esd.testdata import createGroupsAndUsers
+from elan.esd.testdata import createTestDocuments
+from elan.esd.testdata import deleteTestData
+from plone.protect import CheckAuthenticator
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.CatalogTool import CatalogTool
+from Products.CMFPlone.utils import aq_inner
+from zExceptions import Forbidden
 from zope.interface import alsoProvides
 
-
-from plone.protect import CheckAuthenticator
-from zExceptions import Forbidden
+import datetime
 import logging
-from Products.CMFPlone import PloneMessageFactory as _
-from docpool.event.utils import getScenariosForCurrentUser
-from docpool.base.utils import deleteMemberFolders
-from docpool.base.browser.dpdocument import DPDocumentView,\
-    DPDocumentlistitemView, DPDocumentinlineView, DPDocumentprintView
-from docpool.base.content.simplefolder import SimpleFolder
+
+
+# from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
+
+
+# Patches for the dropdown menu to include personal and group folders
+
 
 logger = logging.getLogger('plone.app.controlpanel')
 
-# Patch to change password reset behaviour. Set password to username.   
+# Patch to change password reset behaviour. Set password to username.
+
+
 def manageUser(self, users=None, resetpassword=None, delete=None):
     if users is None:
         users = []
@@ -71,7 +70,9 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
                 # If the email field was disabled (ie: non-writeable), the
                 # property might not exist.
                 if user.email != member.getProperty('email'):
-                    utils.setMemberProperties(member, REQUEST=context.REQUEST, email=user.email)
+                    utils.setMemberProperties(
+                        member, REQUEST=context.REQUEST, email=user.email
+                    )
                     utils.addPortalMessage(_(u'Changes applied.'))
 
             # If reset password has been checked email user a new password
@@ -79,7 +80,7 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
             if hasattr(user, 'resetpassword'):
                 if 'Manager' in current_roles and not self.is_zope_manager:
                     raise Forbidden
-                # ELAN: set password to userid                
+                # ELAN: set password to userid
                 pw = user.id
 
             roles = user.get('roles', [])
@@ -90,11 +91,13 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
 
             # Ideally, we would like to detect if any role assignment has
             # actually changed, and only then issue "Changes applied".
-            acl_users.userFolderEditUser(user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST)
+            acl_users.userFolderEditUser(
+                user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST
+            )
 
             if pw:
-                pass # ELAN: nothing more, password has already been set above
-            
+                pass  # ELAN: nothing more, password has already been set above
+
         if delete:
             self.deleteMembers(delete)
             deleteMemberFolders(context, delete)
@@ -103,36 +106,31 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
             reset_passwords_message = _(
                 u"reset_passwords_msg",
                 default=u"The following users have been sent an e-mail with link to reset their password: ${user_ids}",
-                mapping={
-                    u"user_ids" : ', '.join(users_with_reset_passwords),
-                    },
-                )
+                mapping={u"user_ids": ', '.join(users_with_reset_passwords)},
+            )
             utils.addPortalMessage(reset_passwords_message)
         if users_failed_reset_passwords:
             failed_passwords_message = _(
                 u'failed_passwords_msg',
                 default=u'A password reset e-mail could not be sent to the following users: ${user_ids}',
-                mapping={
-                    u'user_ids' : ', '.join(users_failed_reset_passwords),
-                    },
-                )
+                mapping={u'user_ids': ', '.join(users_failed_reset_passwords)},
+            )
             utils.addPortalMessage(failed_passwords_message, type='error')
 
         # TODO: issue message only if something actually has changed
         utils.addPortalMessage(_(u'Changes applied.'))
-  
-    
-#if not hasattr(UsersOverviewControlPanel, "original_manageUser"):
-#    UsersOverviewControlPanel.original_manageUser = UsersOverviewControlPanel.manageUser
-#    UsersOverviewControlPanel.manageUser = manageUser    
 
-#from docpool.users.browser.usergroups import UsersOverviewControlPanel as UOCP
-#if not hasattr(UOCP, "original_manageUser"):
+
+# if not hasattr(UsersOverviewControlPanel, "original_manageUser"):
+#    UsersOverviewControlPanel.original_manageUser = UsersOverviewControlPanel.manageUser
+#    UsersOverviewControlPanel.manageUser = manageUser
+
+# from docpool.users.browser.usergroups import UsersOverviewControlPanel as UOCP
+# if not hasattr(UOCP, "original_manageUser"):
 #    UOCP.original_manageUser = UsersOverviewControlPanel.original_manageUser
 #    UOCP.manageUser = manageUser
 
 
-from Products.CMFPlone.CatalogTool import CatalogTool     
 def searchResults(self, REQUEST=None, **kw):
     rqurl = ""
     if hasattr(self.REQUEST, 'URL'):
@@ -141,28 +139,31 @@ def searchResults(self, REQUEST=None, **kw):
     has_st = kw.get('SearchableText', None)
     has_path = kw.get('path', None)
     isInternal = kw.get('object_provides', None)
-    if has_st and type(has_st) == type({}):
+    if has_st and isinstance(has_st, type({})):
         has_st = has_st.get('query', None)
         isInternal = True
-    if has_st and not isInternal: # user query, needs to be personalized
+    if has_st and not isInternal:  # user query, needs to be personalized
         if has_path:
             path = kw['path']
-            kw['path'] = "%s/content" % path # Make sure we only search in one area
+            # Make sure we only search in one area
+            kw['path'] = "%s/content" % path
         if has_st[-1] != "*":
             kw['SearchableText'] = has_st + "*"
         scns = getScenariosForCurrentUser(self)
         if not isArchive:
             if scns:
                 kw['scenarios'] = scns
-            else: # If we don't have a filter
+            else:  # If we don't have a filter
                 kw['scenarios'] = ['dontfindanything']
-    #print kw
+    # print kw
     return self.original_searchResults(REQUEST, **kw)
+
 
 if not hasattr(CatalogTool, "original_searchResults"):
     CatalogTool.original_searchResults = CatalogTool.searchResults
     CatalogTool.searchResults = searchResults
     CatalogTool.__call__ = searchResults
+
 
 def createTestData(self, count=100, prune=False):
     """
@@ -171,22 +172,38 @@ def createTestData(self, count=100, prune=False):
     before it is created afresh.
     """
     request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)        
-    
+    alsoProvides(request, IDisableCSRFProtection)
+
     if prune:
         deleteTestData(self)
     createGroupsAndUsers(self)
     try:
-        self.contentconfig.scen.invokeFactory(id="scenario1", type_name="DPEvent", title="Scenario 1", description="This is scenario 1", Status="active", TimeOfEvent=datetime.datetime.today())
-    except:
+        self.contentconfig.scen.invokeFactory(
+            id="scenario1",
+            type_name="DPEvent",
+            title="Scenario 1",
+            description="This is scenario 1",
+            Status="active",
+            TimeOfEvent=datetime.datetime.today(),
+        )
+    except BaseException:
         pass
     try:
-        self.contentconfig.scen.invokeFactory(id="scenario2", type_name="DPEvent", title="Scenario 2", description="This is scenario 2", Status="active", exercise=True, TimeOfEvent=datetime.datetime.today())
-    except:
+        self.contentconfig.scen.invokeFactory(
+            id="scenario2",
+            type_name="DPEvent",
+            title="Scenario 2",
+            description="This is scenario 2",
+            Status="active",
+            exercise=True,
+            TimeOfEvent=datetime.datetime.today(),
+        )
+    except BaseException:
         pass
     createTestDocuments(self, count)
     self.reindexAll()
     return self.restrictedTraverse('@@view')()
+
 
 if not hasattr(DocumentPool, "createTestData"):
     DocumentPool.createTestData = createTestData
@@ -197,15 +214,19 @@ def getUserSelectedScenarios(self):
     """
     # FIXME
     from docpool.event.utils import getScenariosForCurrentUser
+
     usc = getScenariosForCurrentUser(self)
     return usc
+
 
 # The folder needs an extension to determine the currently selected scenario.
 if not hasattr(SimpleFolder, "getUserSelectedScenarios"):
     SimpleFolder.getUserSelectedScenarios = getUserSelectedScenarios
 
+
 def elanobject(self):
     return self.context.doc_extension(ELAN_APP)
+
 
 DPDocumentView.elanobject = elanobject
 DPDocumentlistitemView.elanobject = elanobject

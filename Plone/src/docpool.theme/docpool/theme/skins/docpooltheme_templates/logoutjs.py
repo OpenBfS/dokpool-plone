@@ -8,9 +8,12 @@
 ##title=
 ##
 
-return """   <script type='text/javascript'>
+return (
+    """   <script type='text/javascript'>
    function close_overview() {
         chron=window.open('','Overview','');chron.close();
         window.location.href= '%s/logout';
     }   
-   </script>""" % context.portal_url()
+   </script>"""
+    % context.portal_url()
+)

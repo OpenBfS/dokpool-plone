@@ -7,11 +7,7 @@
         <dependency>profile-docpool.transfers:default</dependency>
         <dependency>profile-elan.esd:default</dependency>
         <dependency>profile-elan.sitrep:default</dependency>
-    <!-- ##code-section Dependencies -->
-    
-    <!-- ##/code-section Dependencies -->
-    </dependencies>    
-    <!-- ##code-section View -->
-    
-    <!-- ##/code-section View -->
+
+    </dependencies>
+
 </metadata>

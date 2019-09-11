@@ -28,7 +28,7 @@ class Area(object):
             VocabItem(u'D', _(u'D')),
             VocabItem(u'EU', _(u'EU')),
             VocabItem(u'ME', _(u'ME')),
-            VocabItem(u'World', _(u'World'))
+            VocabItem(u'World', _(u'World')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -42,9 +42,7 @@ class Area(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=item.token.encode('utf'),
-                    title=item.value,
+                    value=item.token, token=item.token.encode('utf'), title=item.value
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

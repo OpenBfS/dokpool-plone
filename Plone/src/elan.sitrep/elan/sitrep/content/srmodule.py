@@ -6,6 +6,7 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
+from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -13,90 +14,78 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.dpdocument import DPDocument, IDPDocument
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from docpool.base.utils import queryForObjects, back_references, portalMessage
-from plone.api import content
-from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from bs4 import BeautifulSoup
 from DateTime import DateTime
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.app.textfield.value import RichTextValue
-from Products.CMFPlone.utils import safe_unicode
-from zope.component import adapter
-from plone.dexterity.interfaces import IEditFinishedEvent
-import requests
-from BeautifulSoup import BeautifulSoup
-from PIL import Image
-import urlparse
-from plone.subrequest import subrequest
-from urllib import unquote
+from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import back_references
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObjects
 from docpool.elan.config import ELAN_APP
-##/code-section imports
-
-from elan.sitrep.config import PROJECTNAME
-
 from elan.sitrep import DocpoolMessageFactory as _
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.api import content
+from plone.app.textfield import RichText
+from plone.app.textfield.value import RichTextValue
+from plone.autoform import directives
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.supermodel import model
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.subrequest import subrequest
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import safe_unicode
+from six.moves.urllib.parse import unquote
+from z3c.form.interfaces import IAddForm
+from z3c.relationfield.schema import RelationChoice
+from zope import schema
+from zope.component import adapter
+from zope.interface import alsoProvides
+from zope.interface import implementer
 
-class ISRModule(form.Schema, IDPDocument):
+import requests
+import six.moves.urllib.parse
+
+
+class ISRModule(model.Schema, IDPDocument):
     """
     """
-        
+
+    directives.omitted(IAddForm, 'text')
+
     currentReport = RelationChoice(
-                        title=_(u'label_srmodule_currentreport', default=u'Current report'),
-                        description=_(u'description_srmodule_currentreport', default=u'If selected this report defines helpful defaults (text blocks, documents) for the content of this module.'),
-                        required=False,
-##code-section field_currentReport
-                        source = "elan.sitrep.vocabularies.CurrentReports",
-##/code-section field_currentReport                           
+        title=_(u'label_srmodule_currentreport', default=u'Current report'),
+        description=_(
+            u'description_srmodule_currentreport',
+            default=u'If selected this report defines helpful defaults (text blocks, documents) for the content of this module.',
+        ),
+        required=False,
+        source="elan.sitrep.vocabularies.CurrentReports",
     )
-    
 
-##code-section interface
     docType = schema.Choice(
-                        title=_(u'label_srmodule_doctype', default=u'Module Type'),
-                        description=_(u'description_srmodule_doctype', default=u''),
-                        required=True,
-                        source="elan.sitrep.vocabularies.ModuleTypes",
+        title=_(u'label_srmodule_doctype', default=u'Module Type'),
+        description=_(u'description_srmodule_doctype', default=u''),
+        required=True,
+        source="elan.sitrep.vocabularies.ModuleTypes",
     )
-    form.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
-
-##/code-section interface
+    directives.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
 
     summary = RichText(
-                        title=_(u'label_srtextblock_summary', default=u'Summary'),
-                        description=_(u'description_srtextblock_summary', default=u''),
-                        required=False,
-##code-section field_text
-##/code-section field_text                           
+        title=_(u'label_srtextblock_summary', default=u'Summary'),
+        description=_(u'description_srtextblock_summary', default=u''),
+        required=False,
     )
 
 
-
-
+@implementer(ISRModule)
 class SRModule(Container, DPDocument):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(ISRModule)
-    
-##code-section methods
+
     APP = ELAN_APP
 
     def createActions(self):
@@ -104,7 +93,9 @@ class SRModule(Container, DPDocument):
         df = self.defaultFilter()
         mc = df['config']
         if mc:
-            defaultTextBlocks = [tb.to_object for tb in (mc.defaultTextBlocks or [])]
+            defaultTextBlocks = [
+                tb.to_object for tb in (
+                    mc.defaultTextBlocks or [])]
             if defaultTextBlocks:
                 text = u""
                 for tb in defaultTextBlocks:
@@ -112,24 +103,32 @@ class SRModule(Container, DPDocument):
                         text = text + safe_unicode(tb.text.output)
                 self.text = RichTextValue(text, 'text/html', 'text/html')
                 return
-        self.text = RichTextValue(_(u"No information."), 'text/plain', 'text/html')
+        self.text = RichTextValue(
+            _(u"No information."),
+            'text/plain',
+            'text/html')
 
     def customMenu(self, menu_items):
         """
         """
         return menu_items
-    
+
     def getModuleTitle(self):
         """
         """
         if self.currentReport:
-            to_object_title = safe_unicode(self.currentReport.to_object.Title())
+            to_object_title = safe_unicode(
+                self.currentReport.to_object.Title())
             self_title = safe_unicode(self.Title())
 
-            return "%s: %s (%s)" % (to_object_title, self_title, self.toLocalizedTime(DateTime(self.changed()), long_format=1))
+            return "%s: %s (%s)" % (
+                to_object_title,
+                self_title,
+                self.toLocalizedTime(DateTime(self.changed()), long_format=1),
+            )
         else:
             return self.Title()
-    
+
     def myReport(self):
         """
         """
@@ -137,14 +136,22 @@ class SRModule(Container, DPDocument):
             return self.currentReport.to_object
         else:
             return None
-        
+
     def previousVersions(self):
         """
         """
         path = self.dpSearchPath()
-        brains = queryForObjects(self, path=path, portal_type='SRModule', dp_type=self.docType,review_state='published', sort_on='changed', sort_order='reverse')        
+        brains = queryForObjects(
+            self,
+            path=path,
+            portal_type='SRModule',
+            dp_type=self.docType,
+            review_state='published',
+            sort_on='changed',
+            sort_order='reverse',
+        )
         return brains
-    
+
     def previousVersion(self):
         """
         The previous version is the instance youngest published instance of SRModule with the same Module Type.
@@ -154,30 +161,33 @@ class SRModule(Container, DPDocument):
             return pv[0].getObject()
         else:
             return None
-        
+
     def defaultFilter(self):
         """
         Determines all default filter criteria for text blocks by looking at the currentReport and module type.
         """
         modType = self.docType
-        res = { 'scenario' : None,
-                'phase' : None,
-                'module_type' : modType,
-                'mandatory' : False,
-                'config' : None }
+        res = {
+            'scenario': None,
+            'phase': None,
+            'module_type': modType,
+            'mandatory': False,
+            'config': None,
+        }
         r = self.myReport()
         if r:
             p = r.myPhaseConfig()
             if p:
                 res['phase'] = p.getId()
                 res['scenario'] = p.mySRScenario().getId()
-                # my module is mandatory if the designated phase has a moduleconfig for my type
+                # my module is mandatory if the designated phase has a
+                # moduleconfig for my type
                 mcs = p.availableModuleConfigs()
                 if mcs.get(modType, None):
                     res['mandatory'] = True
                     res['config'] = mcs.get(modType, None)
         return res
-    
+
     def getFilter(self, request):
         """
         """
@@ -186,18 +196,25 @@ class SRModule(Container, DPDocument):
         phase = request.get('phase', df['phase'])
         module_type = request.get('module_type', df['module_type'])
         return scenario, phase, module_type
-    
+
     def possibleSRScenarios(self):
         """
         """
         path = self.dpSearchPath()
-        return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in queryForObjects(self, path=path, portal_type='SRScenario', sort_on='sortable_title') ]
+        return [("", '---')] + [
+            (brain.getId, brain.Title)
+            for brain in queryForObjects(
+                self, path=path, portal_type='SRScenario', sort_on='sortable_title'
+            )
+        ]
 
     def possibleSRPhases(self):
         """
         """
         path = self.dpSearchPath()
-        raw = queryForObjects(self, path=path, portal_type='SRPhase', sort_on='sortable_title')
+        raw = queryForObjects(
+            self, path=path, portal_type='SRPhase', sort_on='sortable_title'
+        )
         ids = []
         res = []
         for p in raw:
@@ -206,12 +223,12 @@ class SRModule(Container, DPDocument):
             else:
                 ids.append(p.getId)
                 res.append(p)
-        return [ ( "", '---') ] + [ ( brain.getId, brain.Title) for brain in res ]
-        
+        return [("", '---')] + [(brain.getId, brain.Title) for brain in res]
+
     def possibleSRModuleTypes(self):
         """
         """
-        return [ ( "", '---') ] + ModuleTypesVocabularyFactory(self, raw=True)
+        return [("", '---')] + ModuleTypesVocabularyFactory(self, raw=True)
 
     def usingReports(self):
         """
@@ -219,7 +236,7 @@ class SRModule(Container, DPDocument):
         """
         reports = back_references(self, "currentModules")
         return reports
-    
+
     def visualisations(self):
         """
         """
@@ -232,18 +249,18 @@ class SRModule(Container, DPDocument):
         if not mc:
             mc = []
             module_type = df['module_type']
-            mkbrains = sr_cat({'modules':module_type})
+            mkbrains = sr_cat({'modules': module_type})
             for mkbrain in mkbrains:
                 try:
                     res.extend(mkbrain.getObject().currentDocuments()[:20])
-                except Exception, e:
-                    print e
+                except Exception as e:
+                    print(e)
         if not res:
             mt = self.docTypeObj()
             if mt:
                 res = mt.currentDocuments()[:20]
-        return res 
-        
+        return res
+
     def textBlocks(self):
         """
         """
@@ -260,60 +277,62 @@ class SRModule(Container, DPDocument):
             mc = df['config']
             if mc:
                 return mc.currentTextBlocks()
-        args = {'portal_type':'SRTextBlock', 'sort_on':'sortable_title', 'path': path }
+        args = {
+            'portal_type': 'SRTextBlock',
+            'sort_on': 'sortable_title',
+            'path': path}
         if scenario:
             args['scenarios'] = scenario
         if phase:
             args['phases'] = phase
         if module_type:
             args['modules'] = module_type
-        #print args
+        # print args
         sr_cat = getToolByName(self, 'sr_catalog')
         brains = []
         ids = []
         if module_type:
-            mkbrains = sr_cat({'modules':module_type})
+            mkbrains = sr_cat({'modules': module_type})
             for mkbrain in mkbrains:
                 try:
-                    ids = sr_cat({'modules':mkbrain.getObject().getId()})
-                    brains.extend(ids,)
-                except Exception, e:
-                    print e
+                    ids = sr_cat({'modules': mkbrain.getObject().getId()})
+                    brains.extend(ids)
+                except Exception as e:
+                    print(e)
         if (scenario or phase) and module_type:
             brains = sr_cat(**args)
-        return [ brain.getObject() for brain in brains]
-        
+        return [brain.getObject() for brain in brains]
+
     def publishModule(self, justDoIt=False):
         """
         """
         request = self.REQUEST
-        alsoProvides(request, IDisableCSRFProtection)        
+        alsoProvides(request, IDisableCSRFProtection)
 
         new_version = content.copy(source=self, id=self.getId(), safe_id=True)
         content.transition(new_version, transition="publish")
         if not justDoIt:
             portalMessage(self, _("The module has been published."), "info")
             return self.restrictedTraverse("@@view")()
-        
 
     def docTypeObj(self):
         mt = self.dp_type()
-        if not mt: # The object is just being initialized and the attributes have not yet been saved
-            mt = self.REQUEST.get('docType','')
-        #dto = queryForObject(self, id=et)
+        if (
+            not mt
+        ):  # The object is just being initialized and the attributes have not yet been saved
+            mt = self.REQUEST.get('docType', '')
+        # dto = queryForObject(self, id=et)
         dto = None
-#        print mt
+        #        print mt
         try:
             dto = self.config.mtypes[mt]
-        except Exception, e:
+        except Exception as e:
             # et can be empty
-            #print e
+            # print e
             pass
         if not dto:
             log("No ModuleType Object for type name '%s'" % self.dp_type())
         return dto
-    
-##/code-section methods 
 
     def mySRModule(self):
         """
@@ -337,25 +356,25 @@ class SRModule(Container, DPDocument):
     def getSRModules(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModule'}
+        args = {'portal_type': 'SRModule'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getTransferables(self, **kwargs):
         """
         """
-        args = {'portal_type':'Transferable'}
+        args = {'portal_type': 'Transferable'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 @adapter(ISRModule, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRModule updated: %s" % str(obj))
     # TODO:
     # read text, find all image links, replace with data URLs
-    # find all html snippet links (marked with a css class), replace with html content.
+    # find all html snippet links (marked with a css class), replace with html
+    # content.
     html = obj.text and obj.text.output or ''
     if html:
         urltool = getToolByName(obj, "portal_url")
@@ -366,7 +385,7 @@ def updated(obj, event=None):
         soup = BeautifulSoup(html)
         # first we handle all images
         for img in soup.findAll('img'):
-            print img
+            print(img)
             src = img['src']
             if src.startswith("data"):
                 continue
@@ -378,14 +397,16 @@ def updated(obj, event=None):
                 # and replace the original one
                 img['src'] = new_uri
 
-        for span in soup.findAll("span", {'class':'snippet'}):
+        for span in soup.findAll("span", {'class': 'snippet'}):
             for anchor in span.findAll("a"):
                 # print anchor
                 href = anchor['href']
                 if '..' in href:
-                  href = href.replace('/..','')
+                    href = href.replace('/..', '')
                 absolute_href = join(base, href)
-                html_data = fetch_resources(portalbase, absolute_href, resource_type="html")
+                html_data = fetch_resources(
+                    portalbase, absolute_href, resource_type="html"
+                )
                 if html_data:
                     ext_soup = BeautifulSoup(html_data)
                     body = ext_soup.find('body')
@@ -394,19 +415,25 @@ def updated(obj, event=None):
                         anchor.replaceWith(body)
                     else:
                         anchor.replaceWith(ext_soup)
-        # finally we replace the html of the module with the manipulated version
+        # finally we replace the html of the module with the manipulated
+        # version
         new_html = str(soup)
-        obj.text = RichTextValue(safe_unicode(new_html), 'text/html', 'text/html')
+        obj.text = RichTextValue(
+            safe_unicode(new_html),
+            'text/html',
+            'text/html')
+
 
 def join(base, url):
     """
     Join relative URL
     """
     if not (url.startswith("/") or "://" in url):
-        return urlparse.urljoin(base, url)
+        return six.moves.urllib.parse.urljoin(base, url)
     else:
         # Already absolute
         return url
+
 
 def fetch_resources(portalbase, uri, resource_type="image"):
     """
@@ -441,5 +468,3 @@ def fetch_resources(portalbase, uri, resource_type="image"):
         return data_uri
     else:
         return data
-
-##/code-section bottom

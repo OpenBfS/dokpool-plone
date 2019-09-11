@@ -29,3 +29,5 @@ Plone/\.pydevproject
 .DS_Store
 .settings
 Plone/etc/zodbpack.conf
+local-develop.cfg
+.plone.versioncheck.tracked.json

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
+from docpool.api.testing import DOCPOOL_API_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from docpool.api.testing import DOCPOOL_API_INTEGRATION_TESTING  # noqa
 
 import unittest
 
@@ -20,17 +20,14 @@ class TestSetup(unittest.TestCase):
 
     def test_product_installed(self):
         """Test if docpool.api is installed."""
-        self.assertTrue(self.installer.isProductInstalled(
-            'docpool.api'))
+        self.assertTrue(self.installer.isProductInstalled('docpool.api'))
 
     def test_browserlayer(self):
         """Test that IDocpoolApiLayer is registered."""
-        from docpool.api.interfaces import (
-            IDocpoolApiLayer)
+        from docpool.api.interfaces import IDocpoolApiLayer
         from plone.browserlayer import utils
-        self.assertIn(
-            IDocpoolApiLayer,
-            utils.registered_layers())
+
+        self.assertIn(IDocpoolApiLayer, utils.registered_layers())
 
 
 class TestUninstall(unittest.TestCase):
@@ -47,14 +44,11 @@ class TestUninstall(unittest.TestCase):
 
     def test_product_uninstalled(self):
         """Test if docpool.api is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled(
-            'docpool.api'))
+        self.assertFalse(self.installer.isProductInstalled('docpool.api'))
 
     def test_browserlayer_removed(self):
         """Test that IDocpoolApiLayer is removed."""
-        from docpool.api.interfaces import \
-            IDocpoolApiLayer
+        from docpool.api.interfaces import IDocpoolApiLayer
         from plone.browserlayer import utils
-        self.assertNotIn(
-            IDocpoolApiLayer,
-            utils.registered_layers())
+
+        self.assertNotIn(IDocpoolApiLayer, utils.registered_layers())

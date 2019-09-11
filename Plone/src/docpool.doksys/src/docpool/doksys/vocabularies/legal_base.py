@@ -32,7 +32,7 @@ class LegalBase(object):
             VocabItem(u'Land', _(u'Land')),
             VocabItem(u'SPARSE', _(u'SPARSE')),
             VocabItem(u'REI-E', _(u'REI-E')),
-            VocabItem(u'REI-I', _(u'REI-I'))
+            VocabItem(u'REI-I', _(u'REI-I')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -46,9 +46,7 @@ class LegalBase(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=item.token.encode('utf'),
-                    title=item.value,
+                    value=item.token, token=item.token.encode('utf'), title=item.value
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

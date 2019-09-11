@@ -5,19 +5,15 @@
  <object name="docpool_dbaccess_images" meta_type="Filesystem Directory View" directory="docpool.dbaccess:skins/docpool_dbaccess_images"/>
  <object name="docpool_dbaccess_templates" meta_type="Filesystem Directory View" directory="docpool.dbaccess:skins/docpool_dbaccess_templates"/>
  <object name="docpool_dbaccess_styles" meta_type="Filesystem Directory View" directory="docpool.dbaccess:skins/docpool_dbaccess_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="docpool_dbaccess_images" insert-after="custom"/>
   <layer name="docpool_dbaccess_templates" insert-after="custom"/>
   <layer name="docpool_dbaccess_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

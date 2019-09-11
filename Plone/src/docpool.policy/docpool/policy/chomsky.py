@@ -7,6 +7,16 @@
         (CHOMSKY n)  -- for example
         (CHOMSKY 5) generates half a screen of linguistic truth."""
 
+from itertools import chain
+from itertools import islice
+from six.moves import map
+
+
+import random
+import textwrap
+from six.moves import zip
+
+
 leadins = """To characterize a linguistic level L,
     On the other hand,
     This suggests that
@@ -81,7 +91,7 @@ verbs = """can be defined in such a way as to impose
     is necessary to impose an interpretation on
     appears to correlate rather closely with
     is rather different from"""
-#List of VERBs chosen for autorecursive obfuscation.
+# List of VERBs chosen for autorecursive obfuscation.
 
 objects = """ problems of phonemic and morphological analysis.
     a corpus of utterance tokens upon which conformity has been defined by the paired utterance test.
@@ -102,14 +112,12 @@ objects = """ problems of phonemic and morphological analysis.
     the strong generative capacity of the theory."""
 # List of OBJECTs selected for profound sententiousness.
 
-import textwrap, random
-from itertools import chain, islice, izip
 
 def chomsky(times=1, line_length=72):
     parts = []
     for part in (leadins, subjects, verbs, objects):
-        phraselist = map(str.strip, part.splitlines())
+        phraselist = list(map(str.strip, part.splitlines()))
         random.shuffle(phraselist)
         parts.append(phraselist)
-    output = chain(*islice(izip(*parts), 0, times))
+    output = chain(*islice(zip(*parts), 0, times))
     return textwrap.fill(' '.join(output), line_length)

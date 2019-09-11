@@ -7,39 +7,30 @@
 #            http://www.condat.de
 #
 
-"""Define a browser view for the content type. In the FTI 
+"""Define a browser view for the content type. In the FTI
 configured in profiles/default/types/*.xml, this is being set as the default
 view of that content type.
 """
 
 
+from base64 import b64encode
+from datetime import datetime
+from docpool.elan.config import ELAN_APP
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from plone.memoize.instance import memoize
 
-##code-section imports
-from docpool.elan.config import ELAN_APP
-from base64 import b64encode
-from datetime import datetime
-from DateTime import DateTime
-from Products.CMFCore.utils import getToolByName
-##/code-section imports
-
-
-##code-section bottom
 class DPDocumentirixView(BrowserView):
     """Additional View
     """
-    
+
     __call__ = ViewPageTemplateFile('dpdocumentirix.pt')
-    
-    ##code-section methodsirix
-    
+
     def __init__(self, context, request):
-        BrowserView.__init__(self,context,request)
+        BrowserView.__init__(self, context, request)
         self.ic = self.irixConfig()
-        
+
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)
 
@@ -47,18 +38,18 @@ class DPDocumentirixView(BrowserView):
         """
         """
         return "%s.xml" % self.context.getId()
-        
+
     def irixConfig(self):
         try:
             ic = self.context.contentconfig.irix
             return ic
-        except:
+        except BaseException:
             return None
-        
+
     def timestamp(self):
         date = datetime.utcnow()
         return date.strftime("%Y-%m-%dT%H:%M:%SZ")
-    
+
     def scenario(self):
         try:
             scns = self.context.scenarios
@@ -70,10 +61,10 @@ class DPDocumentirixView(BrowserView):
                 for s in all_scns:
                     if s.Title == scn:
                         return s.getObject()
-        except:
+        except BaseException:
             pass
         return None
-    
+
     def scenarioType(self):
         """
         """
@@ -84,7 +75,7 @@ class DPDocumentirixView(BrowserView):
             else:
                 return "Emergency"
         return "Unknown"
-        
+
     def scenarioTime(self):
         """
         """
@@ -93,25 +84,30 @@ class DPDocumentirixView(BrowserView):
             dt = scen.TimeOfEvent
             return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
         return self.timestamp()
-    
+
     def mtime(self):
         """
         """
-        return self.context.mdate and self.context.mdate.strftime("%Y-%m-%dT%H:%M:%SZ") or ""
-    
+        return (
+            self.context.mdate
+            and self.context.mdate.strftime("%Y-%m-%dT%H:%M:%SZ")
+            or ""
+        )
+
     def attachments(self):
         """
         """
         return self.context.getFiles()
-            
+
     def docText(self):
         """
         """
         d = self.context.Description()
         t = self.context.Title()
-        txt = self.context.text and self.context.text.output.encode('utf-8') or ''
+        txt = self.context.text and self.context.text.output.encode(
+            'utf-8') or ''
         return "%s - %s: %s" % (d, t, txt)
-        
+
     def irixType(self):
         """
         """
@@ -122,46 +118,50 @@ class DPDocumentirixView(BrowserView):
             if parts[0] == et:
                 return parts[1]
         return "Unknown"
-    
+
     def isEventDescription(self):
         """
         """
-        return self.irixType() in ['Event information', 'Public information', 'Public information - Press release']
-    
+        return self.irixType() in [
+            'Event information',
+            'Public information',
+            'Public information - Press release',
+        ]
+
     def isActualRelease(self):
         """
         """
         return self.irixType() in ['Plant status']
-    
+
     def isMeteoInfo(self):
         """
         """
-        return self.irixType() in ['Meteorology', 'Model result - Plume trajectory']
-    
+        return self.irixType() in ['Meteorology',
+                                   'Model result - Plume trajectory']
+
     def isFutureRelease(self):
         """
         """
         return self.irixType() in ['Model result']
-    
+
     def isMeasurements(self):
         """
         """
-        return (self.irixType() in ['Measurements']) and (self.context.dp_type_name() != 'Gamma Dose Rate')
-    
+        return (self.irixType() in ['Measurements']) and (
+            self.context.dp_type_name() != 'Gamma Dose Rate'
+        )
+
     def isProtectiveActions(self):
         """
         """
         return self.irixType() in ['Protective actions']
-    
+
     def isDoseRate(self):
         """
         """
         return self.context.dp_type_name() in ['Gamma Dose Rate']
-    
+
     def base64(self, file):
         """
         """
         return b64encode(file.index_html().encode('utf-8'))
-        
-    
-##/code-section bottom

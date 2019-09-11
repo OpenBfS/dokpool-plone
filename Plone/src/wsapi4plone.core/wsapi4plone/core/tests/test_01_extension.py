@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from zope.interface import implements, Interface
+from zope.interface import implementer, Interface
 from zope.interface.verify import verifyObject
 from zope.component import getMultiAdapter, getSiteManager
 from zope.app.container.interfaces import IContainer
 
 from wsapi4plone.core.tests.test_00_service import ServiceTestCase
 from wsapi4plone.core.interfaces import (
-    ICallbackExtension, IReadExtension, IWriteExtension)
+    ICallbackExtension,
+    IReadExtension,
+    IWriteExtension,
+)
 from wsapi4plone.core.extension import BaseExtension
 
 
@@ -17,12 +20,14 @@ from wsapi4plone.core.extension import BaseExtension
 # ################### #
 
 
+@implementer(Interface)
 class Dummy(object):
-    implements(Interface)
+    pass
 
 
+@implementer(IContainer)
 class DummyContainer(object):
-    implements(IContainer)
+    pass
 
 
 class ICrashTestExtension(IReadExtension, ICallbackExtension):
@@ -41,22 +46,24 @@ class BaseCrashTestExtension(BaseExtension):
         return getattr(self.context, 'has_crashed', False)
 
 
+@implementer(ICrashTestExtension)
 class ReadOnlyCrashTestExtension(BaseCrashTestExtension):
-    implements(ICrashTestExtension)
 
     def get_callback(self):
         return self.get()
 
 
+@implementer(ICrashTestWriteExtension)
 class WriteCrashTestExtension(BaseCrashTestExtension):
-    implements(ICrashTestWriteExtension)
 
     def set(self, has_crashed):
         """Crash or repair the dummy object."""
         if not isinstance(has_crashed, bool):
-            raise TypeError("%s.set_extension argument has_crashed is not "
-                            "a boolean value. Recieved: %s" % \
-                            (self.__class__.__name__, has_crashed))
+            raise TypeError(
+                "%s.set_extension argument has_crashed is not "
+                "a boolean value. Recieved: %s" % (
+                    self.__class__.__name__, has_crashed)
+            )
         self.context.has_crashed = has_crashed
 
     def get_skeleton(self):
@@ -74,25 +81,30 @@ class BaseExtensionTestCase(ServiceTestCase):
 
     def setUp(self):
         super(BaseExtensionTestCase, self).setUp()
-        if not self.ext_key and not instance(self.ext_key, str):
-            raise ValueError("You must assign a value to 'ext_key' in your "
-                             "test case. Otherwise the test case will not "
-                             "work correctly.")
+        if not self.ext_key and not isinstance(self.ext_key, str):
+            raise ValueError(
+                "You must assign a value to 'ext_key' in your "
+                "test case. Otherwise the test case will not "
+                "work correctly."
+            )
 
     def test_extension_implements(self):
         from wsapi4plone.core.interfaces import IExtension
+
         obj = self.serviced_object.context
-        ext = getMultiAdapter((self.serviced_object, obj,),
-                              IExtension, name=self.ext_key)
+        ext = getMultiAdapter(
+            (self.serviced_object, obj), IExtension, name=self.ext_key
+        )
         self.assert_(verifyObject(IExtension, ext))
 
     def get_extension(self):
         context = self.serviced_object.context
         # Grab the extension
         from wsapi4plone.core.interfaces import IExtension
-        ext = getMultiAdapter((self.serviced_object, context,),
-                              IExtension,
-                              name=self.ext_key)
+
+        ext = getMultiAdapter(
+            (self.serviced_object, context), IExtension, name=self.ext_key
+        )
         return ext
 
 
@@ -104,41 +116,52 @@ class TestReadExtension(BaseExtensionTestCase):
         super(TestReadExtension, self).setUp()
         sm = getSiteManager()
         # Register the example extension
-        from wsapi4plone.core.interfaces import (IService, IServiceExtension)
-        sm.registerUtility(ICrashTestExtension,
-                           provided=IServiceExtension,
-                           name=self.ext_key)
-        sm.registerAdapter(ReadOnlyCrashTestExtension,
-                           required=(IService, Interface,),
-                           provided=ICrashTestExtension,
-                           name=self.ext_key)
+        from wsapi4plone.core.interfaces import IService, IServiceExtension
+
+        sm.registerUtility(
+            ICrashTestExtension, provided=IServiceExtension, name=self.ext_key
+        )
+        sm.registerAdapter(
+            ReadOnlyCrashTestExtension,
+            required=(IService, Interface),
+            provided=ICrashTestExtension,
+            name=self.ext_key,
+        )
 
     def tearDown(self):
         sm = getSiteManager()
         # Unregister the example extension
-        from wsapi4plone.core.interfaces import (IService, IServiceExtension)
-        assert sm.unregisterUtility(component=ICrashTestExtension,
-                                    provided=IServiceExtension,
-                                    name=self.ext_key)
-        assert sm.unregisterAdapter(factory=ReadOnlyCrashTestExtension,
-                                    required=(IService, Interface,),
-                                    provided=ICrashTestExtension,
-                                    name=self.ext_key)
+        from wsapi4plone.core.interfaces import IService, IServiceExtension
+
+        assert sm.unregisterUtility(
+            component=ICrashTestExtension, provided=IServiceExtension, name=self.ext_key
+        )
+        assert sm.unregisterAdapter(
+            factory=ReadOnlyCrashTestExtension,
+            required=(IService, Interface),
+            provided=ICrashTestExtension,
+            name=self.ext_key,
+        )
         super(TestReadExtension, self).tearDown()
 
     def test_verfiy_write_provider(self):
         from wsapi4plone.core.interfaces import IExtension, IReadExtension
+
         obj = self.serviced_object.context
-        ext = getMultiAdapter((self.serviced_object, obj,),
-                              IExtension, name=self.ext_key)
+        ext = getMultiAdapter(
+            (self.serviced_object, obj), IExtension, name=self.ext_key
+        )
         self.assert_(verifyObject(IReadExtension, ext))
 
     def test_verify_extension_registration(self):
         result = self.serviced_object.get_extensions()
         key = self.ext_key
-        self.assertTrue(key in result, "Couldn't find the " \
-            "extension data. The component must not have been registered " \
-            "properly.")
+        self.assertTrue(
+            key in result,
+            "Couldn't find the "
+            "extension data. The component must not have been registered "
+            "properly.",
+        )
 
     def test_extension_data_as_callback(self):
         key = '%s.callback' % self.ext_key
@@ -163,26 +186,34 @@ class TestWriteExtension(BaseExtensionTestCase):
         super(TestWriteExtension, self).setUp()
         sm = getSiteManager()
         # Register the example extension
-        from wsapi4plone.core.interfaces import (IService, IServiceExtension)
-        sm.registerUtility(ICrashTestWriteExtension,
-                           provided=IServiceExtension,
-                           name=self.ext_key)
-        sm.registerAdapter(WriteCrashTestExtension,
-                           required=(IService, Interface,),
-                           provided=ICrashTestWriteExtension,
-                           name=self.ext_key)
+        from wsapi4plone.core.interfaces import IService, IServiceExtension
+
+        sm.registerUtility(
+            ICrashTestWriteExtension, provided=IServiceExtension, name=self.ext_key
+        )
+        sm.registerAdapter(
+            WriteCrashTestExtension,
+            required=(IService, Interface),
+            provided=ICrashTestWriteExtension,
+            name=self.ext_key,
+        )
 
     def tearDown(self):
         sm = getSiteManager()
         # Unregister the example extension
-        from wsapi4plone.core.interfaces import (IService, IServiceExtension)
-        assert sm.unregisterUtility(component=ICrashTestWriteExtension,
-                                    provided=IServiceExtension,
-                                    name=self.ext_key)
-        assert sm.unregisterAdapter(factory=WriteCrashTestExtension,
-                                    required=(IService, Interface,),
-                                    provided=ICrashTestWriteExtension,
-                                    name=self.ext_key)
+        from wsapi4plone.core.interfaces import IService, IServiceExtension
+
+        assert sm.unregisterUtility(
+            component=ICrashTestWriteExtension,
+            provided=IServiceExtension,
+            name=self.ext_key,
+        )
+        assert sm.unregisterAdapter(
+            factory=WriteCrashTestExtension,
+            required=(IService, Interface),
+            provided=ICrashTestWriteExtension,
+            name=self.ext_key,
+        )
         super(TestWriteExtension, self).tearDown()
 
     # We break interface verification because we use keyword arguments in
@@ -208,7 +239,11 @@ class TestWriteExtension(BaseExtensionTestCase):
         ext.set(has_crashed=has_crashed)
         # Verify the change.
         context = self.serviced_object.context
-        self.failUnlessEqual(getattr(context, 'has_crashed', None),
+        self.failUnlessEqual(
+            getattr(
+                context,
+                'has_crashed',
+                None),
             has_crashed)
 
     def test_set_extensions(self):

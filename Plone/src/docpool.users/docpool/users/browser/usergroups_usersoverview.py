@@ -1,26 +1,20 @@
-import logging
 from Acquisition import aq_inner
-from zExceptions import Forbidden
-from itertools import chain
-
-from Products.PluggableAuthService.interfaces.plugins import IRolesPlugin
-from zope.component import getUtility
-from plone.protect import CheckAuthenticator
-from zope.component import getMultiAdapter
-from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFPlone import PloneMessageFactory as _
-from Products.CMFCore.utils import getToolByName
-
-from Products.CMFPlone.utils import normalizeString
-from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import \
-    UsersOverviewControlPanel as UOCP
 from docpool.base.utils import deleteMemberFolders
+from plone.protect import CheckAuthenticator
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import (
+    UsersOverviewControlPanel as UOCP,
+)
+from zExceptions import Forbidden
+
+import logging
+
 
 logger = logging.getLogger('Products.CMFPlone')
 
 
 class UsersOverviewControlPanel(UOCP):
-
     def manageUser(self, users=[], resetpassword=[], delete=[]):
         """
         Override in order to change password reset behavior: set password == userid
@@ -50,7 +44,9 @@ class UsersOverviewControlPanel(UOCP):
                     # If the email field was disabled (ie: non-writeable), the
                     # property might not exist.
                     if user.email != member.getProperty('email'):
-                        utils.setMemberProperties(member, REQUEST=context.REQUEST, email=user.email)
+                        utils.setMemberProperties(
+                            member, REQUEST=context.REQUEST, email=user.email
+                        )
                         utils.addPortalMessage(_(u'Changes applied.'))
 
                 # If reset password has been checked email user a new password
@@ -58,11 +54,13 @@ class UsersOverviewControlPanel(UOCP):
                 if hasattr(user, 'resetpassword'):
                     if 'Manager' in current_roles and not self.is_zope_manager:
                         raise Forbidden
-                    if not context.unrestrictedTraverse('@@overview-controlpanel').mailhost_warning():
+                    if not context.unrestrictedTraverse(
+                        '@@overview-controlpanel'
+                    ).mailhost_warning():
                         pw = regtool.generatePassword()
                     else:
                         ######
-                        # BfS: set password to userid                
+                        # BfS: set password to userid
                         pw = user.id
 
                 roles = user.get('roles', [])
@@ -71,7 +69,9 @@ class UsersOverviewControlPanel(UOCP):
                     if ('Manager' in roles) != ('Manager' in current_roles):
                         raise Forbidden
 
-                acl_users.userFolderEditUser(user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST)
+                acl_users.userFolderEditUser(
+                    user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST
+                )
                 if pw and pw != user.id:
                     context.REQUEST.form['new_password'] = pw
                     regtool.mailPassword(user.id, context.REQUEST)
@@ -85,9 +85,8 @@ class UsersOverviewControlPanel(UOCP):
                 reset_passwords_message = _(
                     u"reset_passwords_msg",
                     default=u"The following users have been sent an e-mail with link to reset their password: ${user_ids}",
-                    mapping={
-                        u"user_ids" : ', '.join(users_with_reset_passwords),
-                        },
-                    )
+                    mapping={u"user_ids": ', '.join(
+                        users_with_reset_passwords)},
+                )
                 utils.addPortalMessage(reset_passwords_message)
             utils.addPortalMessage(_(u'Changes applied.'))

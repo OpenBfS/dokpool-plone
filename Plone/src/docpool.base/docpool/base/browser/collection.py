@@ -1,7 +1,7 @@
+from docpool.base.utils import extendOptions
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
-from docpool.base.utils import extendOptions
 
 
 class CollectionDocView(BrowserView):
@@ -30,7 +30,5 @@ class CollectionlistitemView(BrowserView):
 
     __call__ = ViewPageTemplateFile('collectionlistitem.pt')
 
-    ##code-section methodslistitem
     def options(self):
         return extendOptions(self.context, self.request, {})
-    ##/code-section methodslistitem

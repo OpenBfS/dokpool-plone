@@ -2,12 +2,9 @@
       i18n:domain="docpool.base" xml:lang="en" metal:use-macro="context/main_template/macros/master"
       xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
-<!-- ##code-section Head -->
-<!-- ##/code-section Head -->
 
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
-        <!-- ##code-section Main -->
         <tal:if define="personal context/isPersonal;
                         individual python:personal and context.isIndividual()"
                 condition="personal">
@@ -23,11 +20,8 @@
                 />&nbsp;<label for="activateFilter" i18n:translate="">Filter contents according to application?</label></form>
         </tal:if>
         <div metal:use-macro="here/@@dp.macros/macros/listing"/>
-        <!-- ##/code-section Main -->
     </metal:content-core>
 </metal:content-core>
 
-<!-- ##code-section Bottom -->
-<!-- ##/code-section Bottom -->
 </body>
 </html>

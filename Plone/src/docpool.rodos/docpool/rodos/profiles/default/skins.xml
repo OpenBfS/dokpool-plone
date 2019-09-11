@@ -5,19 +5,15 @@
  <object name="docpool_rodos_images" meta_type="Filesystem Directory View" directory="docpool.rodos:skins/docpool_rodos_images"/>
  <object name="docpool_rodos_templates" meta_type="Filesystem Directory View" directory="docpool.rodos:skins/docpool_rodos_templates"/>
  <object name="docpool_rodos_styles" meta_type="Filesystem Directory View" directory="docpool.rodos:skins/docpool_rodos_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="docpool_rodos_images" insert-after="custom"/>
   <layer name="docpool_rodos_templates" insert-after="custom"/>
   <layer name="docpool_rodos_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

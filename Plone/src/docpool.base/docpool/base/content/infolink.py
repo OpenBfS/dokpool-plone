@@ -14,53 +14,24 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from plone.app.contenttypes.content import ILink
+from plone.app.contenttypes.content import Link
 from plone.dexterity.content import Item
-from plone.app.contenttypes.content import Link,ILink
+from plone.supermodel import model
+from zope import schema
+from zope.interface import implementer
 
-from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
-
-from docpool.base.config import PROJECTNAME
-
-from docpool.base import DocpoolMessageFactory as _
-
-class IInfoLink(form.Schema, ILink):
+class IInfoLink(model.Schema, ILink):
     """
     """
 
-##code-section interface
-    remoteUrl = schema.TextLine(
-        title=u"URL",
-        default=u"http://"
-    )
+    remoteUrl = schema.TextLine(title=u"URL", default=u"http://")
 
 
-##/code-section interface
-
-
+@implementer(IInfoLink)
 class InfoLink(Item, Link):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IInfoLink)
-    
-##code-section methods
-##/code-section methods 
-
-
-##code-section bottom
-##/code-section bottom 

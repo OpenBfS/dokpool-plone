@@ -1,5 +1,4 @@
 <tal:block i18n:domain="elan.esd">
-<!-- ##code-section Portlet -->
    <dl class="portlet" id="overviewportlet" tal:define="DateTime python:modules['DateTime'].DateTime">
        <dt class="portletHeader">
            <a href="#" onclick="makePopUp(800, 1000, this.href, 'Overview', 200, 200, 1, 1); return false;" tal:attributes="href string:${context/esd/absolute_url}/overview/@@rpopup?popup_load=1" i18n:translate="">Chronological Overview</a>
@@ -7,6 +6,5 @@
        <dt class="portletHeader" tal:repeat="o view/specialObjects">
            <a href="#" onclick="makePopUp(1200, 800, this.href, 'Overview', 200, 200, 1, 1); return false;" tal:attributes="href string:${o/getURL}?popup_load=1" tal:content="o/Title"></a>
        </dt>
-   </dl>        
-<!-- ##/code-section Portlet -->    
+   </dl>
 </tal:block>

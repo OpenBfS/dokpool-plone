@@ -22,23 +22,22 @@ from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.contentarea import IContentArea
 from docpool.base.content.dpapplication import IDPApplication
 from docpool.base.content.dpconfig import IDPConfig
-##code-section imports
 from plone.supermodel import model
-##/code-section imports
 
-##code-section manual code
+
 class IExtension(model.Schema):
     """
     Marker for extension behaviors
     """
+
 
 class IDocumentExtension(IExtension):
     """
     Marker for behaviors for document extensions
     """
 
+
 class IDocTypeExtension(IExtension):
     """
     Marker for behaviors for doc type extensions
     """
-##/code-section manual code

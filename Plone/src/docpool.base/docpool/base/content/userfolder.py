@@ -14,46 +14,28 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
+from docpool.base.utils import _cutPaste
+from docpool.base.utils import execute_under_special_role
 from plone.dexterity.content import Container
-from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
-
+from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
+from zope.interface import implementer
 
-##code-section imports
-from docpool.base.utils import execute_under_special_role, _cutPaste
-##/code-section imports 
 
-from docpool.base.config import PROJECTNAME
-
-from docpool.base import DocpoolMessageFactory as _
-
-class IUserFolder(form.Schema, ISimpleFolder):
+class IUserFolder(model.Schema, ISimpleFolder):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(IUserFolder)
 class UserFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IUserFolder)
-    
-##code-section methods
+
     def notifyMemberAreaCreated(self):
         """
         Move the member area to the proper location.
@@ -67,14 +49,14 @@ class UserFolder(Container, SimpleFolder):
                 esd_uid = o.getProperty("dp")
                 if esd_uid:
                     catalog = getToolByName(self, 'portal_catalog')
-                    result  = catalog({'UID' : esd_uid})
+                    result = catalog({'UID': esd_uid})
                     if len(result) == 1:
                         esd = result[0].getObject()
-                # Move me there
+                        # Move me there
                         members = esd.content.Members
                         _cutPaste(self, members, unique=True)
+
         execute_under_special_role(self, "Manager", moveFolder)
-##/code-section methods 
 
     def myUserFolder(self):
         """
@@ -98,17 +80,13 @@ class UserFolder(Container, SimpleFolder):
     def getDPDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'DPDocument'}
+        args = {'portal_type': 'DPDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSimpleFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'SimpleFolder'}
+        args = {'portal_type': 'SimpleFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
-
-
-##code-section bottom
-##/code-section bottom 
+        return [obj.getObject() for obj in self.getFolderContents(args)]

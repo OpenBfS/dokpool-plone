@@ -40,6 +40,7 @@ class ContentTypeTestCase(unittest.TestCase):
 
     def test_exclude_from_navigation_behavior(self):
         from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+
         self.assertTrue(IExcludeFromNavigation.providedBy(self.journal))
 
     def test_content_types_constrains(self):

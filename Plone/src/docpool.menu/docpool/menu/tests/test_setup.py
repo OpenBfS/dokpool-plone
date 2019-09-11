@@ -3,7 +3,7 @@
 from docpool.menu.testing import DOCPOOL_MENU_INTEGRATION_TESTING  # noqa
 from plone import api
 
-import unittest2 as unittest
+import unittest
 
 
 class TestSetup(unittest.TestCase):
@@ -24,6 +24,7 @@ class TestSetup(unittest.TestCase):
         """Test that IDocpoolMenuLayer is registered."""
         from docpool.menu.interfaces import IDocpoolMenuLayer
         from plone.browserlayer import utils
+
         self.assertIn(IDocpoolMenuLayer, utils.registered_layers())
 
 
@@ -44,4 +45,5 @@ class TestUninstall(unittest.TestCase):
         """Test that IDocpoolMenuLayer is removed."""
         from docpool.menu.interfaces import IDocpoolMenuLayer
         from plone.browserlayer import utils
+
         self.assertNotIn(IDocpoolMenuLayer, utils.registered_layers())

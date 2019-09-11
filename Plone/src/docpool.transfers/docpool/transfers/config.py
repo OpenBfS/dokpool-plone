@@ -5,6 +5,4 @@
 PROJECTNAME = "docpool.transfers"
 
 
-##code-section config
 TRANSFERS_APP = "transfers"
-##/code-section config

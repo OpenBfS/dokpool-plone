@@ -3,11 +3,7 @@
     <version>1.0.7</version>
     <dependencies>
         <dependency>profile-wsapi4plone.core:default</dependency>
-    <!-- ##code-section Dependencies -->
-    
-    <!-- ##/code-section Dependencies -->
-    </dependencies>    
-    <!-- ##code-section View -->
-    
-    <!-- ##/code-section View -->
+
+    </dependencies>
+
 </metadata>

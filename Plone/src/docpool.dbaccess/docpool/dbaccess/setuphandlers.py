@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-##code-section import
-##/code-section import
+
 
 def setupVarious(context):
 
@@ -12,9 +10,4 @@ def setupVarious(context):
 
     if context.readDataFile('docpool.dbaccess_various.txt') is None:
         return
-##code-section setupcode
     # Add additional setup code here
-##/code-section setupcode
-
-##code-section Main
-##/code-section Main 

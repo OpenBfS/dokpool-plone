@@ -14,47 +14,21 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
+from elan.esd.content.elandoccollection import ELANDocCollection
+from elan.esd.content.elandoccollection import IELANDocCollection
 from plone.dexterity.content import Item
-from elan.esd.content.elandoccollection import ELANDocCollection, IELANDocCollection
+from plone.supermodel import model
+from zope.interface import implementer
 
-from Products.CMFCore.utils import getToolByName
 
-##code-section imports
-##/code-section imports 
-
-from elan.sitrep.config import PROJECTNAME
-
-from elan.sitrep import DocpoolMessageFactory as _
-
-class ISRCollection(form.Schema, IELANDocCollection):
+class ISRCollection(model.Schema, IELANDocCollection):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(ISRCollection)
 class SRCollection(Item, ELANDocCollection):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(ISRCollection)
-    
-##code-section methods
-##/code-section methods 
-
-
-##code-section bottom
-##/code-section bottom 

@@ -1,37 +1,56 @@
 # -*- coding: utf-8 -*-
-from Products.Archetypes.utils import shasattr
-from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects
-from zExceptions import BadRequest
-from Products.CMFPlone.utils import log_exc
+from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
+from docpool.transfers.config import TRANSFERS_APP
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import log_exc
+from zExceptions import BadRequest
+from zope.annotation.interfaces import IAnnotations
 
 
 def dpAdded(self):
     """
     """
-    fresh = True
-    if self.content.hasObject("Transfers"):
-        fresh = False # It's a reinstall
+    annotations = IAnnotations(self)
+    fresh = TRANSFERS_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(TRANSFERS_APP)
+
     createTransferArea(self, fresh)
     if fresh:
         createTransfersGroups(self)
     setTransfersLocalRoles(self)
 
+
 TRANSFER_AREA = [
-    {TYPE: 'DPTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []},
+    {TYPE: 'DPTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []}
 ]
+
 
 def setTransfersLocalRoles(self):
     """
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
-    self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
-    self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
-    if shasattr(self, 'contentconfig', acquire=False):
-        self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
-    self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
-    self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
+    self.content.Transfers.manage_setLocalRoles(
+        "%s_Receivers" % prefix, ["Owner"])
+    self.content.Transfers.manage_setLocalRoles(
+        "%s_Administrators" % prefix, ["Owner"])
+    if base_hasattr(self, 'contentconfig'):
+        self.contentconfig.scen.manage_setLocalRoles(
+            "%s_Receivers" % prefix, ["ContentReceiver"]
+        )
+    self.config.manage_setLocalRoles(
+        "%s_Receivers" %
+        prefix, ["ContentReceiver"])
+    self.content.Groups.manage_setLocalRoles(
+        "%s_Senders" %
+        prefix, ["ContentSender"])
 
 
 def createTransfersGroups(self):
@@ -43,15 +62,21 @@ def createTransfersGroups(self):
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
     # Receivers
-    props = {'allowedDocTypes': [], 'title': 'Content Receivers (%s)' % title,
-             'description': 'Responsible for publishing content received from other ESDs.', 'dp': self.UID()}
-    gtool.addGroup("%s_Receivers" % prefix,
-                   properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Content Receivers (%s)' % title,
+        'description': 'Responsible for publishing content received from other ESDs.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_Receivers" % prefix, properties=props)
     # Senders
-    props = {'allowedDocTypes': [], 'title': 'Content Senders (%s)' % title,
-             'description': 'Responsible for sending content to other ESDs - if allowed by them.', 'dp': self.UID()}
-    gtool.addGroup("%s_Senders" % prefix,
-                   properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Content Senders (%s)' % title,
+        'description': 'Responsible for sending content to other ESDs - if allowed by them.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_Senders" % prefix, properties=props)
 
 
 def createTransferArea(self, fresh):
@@ -62,14 +87,17 @@ def createTransferArea(self, fresh):
     self.content.moveObject("Transfers", 0)
     placeful_wf = getToolByName(self, 'portal_placeful_workflow')
     try:
-        self.content.Transfers.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
-    except BadRequest, e:
+        self.content.Transfers.manage_addProduct[
+            'CMFPlacefulWorkflow'
+        ].manage_addWorkflowPolicyConfig()
+    except BadRequest as e:
         # print type(e)
         log_exc(e)
     config = placeful_wf.getWorkflowPolicyConfig(self.content.Transfers)
     placefulWfName = 'elan-transfer'
     config.setPolicyIn(policy=placefulWfName, update_security=False)
     config.setPolicyBelow(policy=placefulWfName, update_security=False)
+
 
 def dpRemoved(self):
     """

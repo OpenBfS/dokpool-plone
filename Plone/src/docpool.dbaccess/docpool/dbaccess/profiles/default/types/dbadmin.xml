@@ -10,36 +10,32 @@
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-     
+
  </property>
  <property name="allow_discussion">False</property>
  <!-- The next two properties define the default view and available view
       methods, i.e. those selectable in the "display" menu. This is the
-      added functionality that a "Factory-based Type Information with dynamic 
+      added functionality that a "Factory-based Type Information with dynamic
       views" provides over a regular Factory-based Type Information".
    -->
- <property name="default_view">view</property> 
+ <property name="default_view">view</property>
  <property name="view_methods">
   <element value="view" />
-##code-section view_methods
   <element value="base_view" />
-    
-##/code-section view_methods
+
  </property>
  <alias from="(Default)" to="(dynamic view)" />
  <alias from="edit" to="atct_edit" />
  <alias from="sharing" to="@@sharing" />
  <alias from="view" to="(selected layout)" />
- 
+
  <action title="View" action_id="view" category="object" condition_expr="" visible="True" url_expr="string:${object_url}/view">
   <permission value="View" />
  </action>
- 
+
  <action title="Edit" action_id="edit" category="object" condition_expr="" url_expr="string:${object_url}/edit" visible="True">
   <permission value="Modify portal content" />
  </action>
- 
-##code-section actions
-##/code-section actions
+
 
 </object>

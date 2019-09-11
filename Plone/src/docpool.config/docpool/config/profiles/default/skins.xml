@@ -3,17 +3,13 @@
 <object name="portal_skins" meta_type="Plone Skins Tool" allow_any="False" cookie_persistence="False" request_varname="plone_skin">
 
  <object name="docpool_config_templates" meta_type="Filesystem Directory View" directory="docpool.config:skins/docpool_config_templates"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="docpool_config_templates" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

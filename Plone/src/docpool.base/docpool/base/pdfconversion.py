@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-from BTrees.OOBTree import OOBTree
+from cStringIO import StringIO
 from OFS.Image import Image as OFSImage
 from PIL import Image
+from plone.rfc822.interfaces import IPrimaryFieldInfo
 from PyPDF2 import PdfFileReader
 from PyPDF2.utils import PdfReadError
-from cStringIO import StringIO
 from zope.annotation.interfaces import IAnnotations
-from plone.rfc822.interfaces import IPrimaryFieldInfo
 
 import logging
 import subprocess
+from six.moves import range
+
 
 logger = logging.getLogger('docpool.base.pdfconversion')
 
@@ -35,11 +36,13 @@ def content_type(doc):
     except (TypeError, AssertionError):
         pass
 
+
 def data(doc):
     try:
         return IPrimaryFieldInfo(doc).value.data
     except (TypeError, AssertionError):
         pass
+
 
 def _fixPdf(string):
     try:
@@ -49,18 +52,19 @@ def _fixPdf(string):
         logger.error('Unable to fix pdf file.')
         return string
 
+
 def pdfobj(doc):
     pdf = None
     try:
         pdf = PdfFileReader(StringIO(data(doc)))
-    except:
+    except BaseException:
         logger.warn('Error opening pdf file, trying to fix it...')
         fixed_data = _fixPdf(data(doc))
 
         # try to reopen the pdf file again
         try:
             pdf = PdfFileReader(StringIO(fixed_data))
-        except:
+        except BaseException:
             logger.warn('This pdf file cannot be fixed.')
 
     if pdf and pdf.isEncrypted:
@@ -68,13 +72,15 @@ def pdfobj(doc):
             decrypt = pdf.decrypt('')
             if decrypt == 0:
                 logger.warn('This pdf is password protected.')
-        except:
+        except BaseException:
             logger.warn('Errors while decrypting the pdf file.')
 
     return pdf
 
+
 def pages(pdf):
     return pdf.getNumPages()
+
 
 def metadata(pdf):
     data = {}
@@ -91,10 +97,8 @@ def metadata(pdf):
 
 
 def get_images(doc, page_start=0, pages=1):
-    thumb_size = (128,
-                  128)
-    preview_size = (1024,
-                    1024)
+    thumb_size = (128, 128)
+    preview_size = (1024, 1024)
 
     # set up the images dict
     images = {}
@@ -125,31 +129,36 @@ def get_images(doc, page_start=0, pages=1):
 
         img_thumb.thumbnail(thumb_size, Image.ANTIALIAS)
         # save the resulting thumbnail in the file object
-        img_thumb.save(raw_image_thumb,
-                       format=img_thumb_format,
-                       quality=img_thumb_quality,
-                       optimize=img_thumb_optimize,
-                       progressive=img_thumb_progressive)
+        img_thumb.save(
+            raw_image_thumb,
+            format=img_thumb_format,
+            quality=img_thumb_quality,
+            optimize=img_thumb_optimize,
+            progressive=img_thumb_progressive,
+        )
         # use PIL to generate preview from image_result
         img_preview = Image.open(StringIO(raw_image))
         img_preview.thumbnail(preview_size, Image.ANTIALIAS)
         # save the resulting thumbnail in the file object
-        img_preview.save(raw_image_preview,
-                         format=img_preview_format,
-                         quality=img_preview_quality,
-                         optimize=img_preview_optimize,
-                         progressive=img_preview_progressive)
+        img_preview.save(
+            raw_image_preview,
+            format=img_preview_format,
+            quality=img_preview_quality,
+            optimize=img_preview_optimize,
+            progressive=img_preview_progressive,
+        )
         # create the OFS.Image objects
-        image_full_object = OFSImage(
-            image_id, image_title, raw_image_preview)
+        image_full_object = OFSImage(image_id, image_title, raw_image_preview)
         image_thumb_object = OFSImage(
-            image_thumb_id, image_thumb_title, raw_image_thumb)
+            image_thumb_id, image_thumb_title, raw_image_thumb
+        )
         # add the objects to the images dict
         images[image_id] = image_full_object
         images[image_thumb_id] = image_thumb_object
         logger.info('Thumbnail generated.')
 
     return images
+
 
 def ghostscript_transform(doc, page_num):
     """
@@ -179,10 +188,9 @@ def ghostscript_transform(doc, page_num):
     # run the ghostscript command on the pdf file, capture the output
     # png file of the specified page number
     bufsize = -1
-    gs_process = subprocess.Popen(gs_cmd,
-                                  bufsize=bufsize,
-                                  stdout=subprocess.PIPE,
-                                  stdin=subprocess.PIPE)
+    gs_process = subprocess.Popen(
+        gs_cmd, bufsize=bufsize, stdout=subprocess.PIPE, stdin=subprocess.PIPE
+    )
     gs_process.stdin.write(data(doc))
     image_result = gs_process.communicate()[0]
     gs_process.stdin.close()
@@ -190,8 +198,10 @@ def ghostscript_transform(doc, page_num):
     if return_code == 0:
         logger.info('Ghostscript processed one page of a pdf file.')
     else:
-        logger.warn('Ghostscript process did not exit cleanly! '
-                    'Error Code: {0}'.format(return_code))
+        logger.warn(
+            'Ghostscript process did not exit cleanly! '
+            'Error Code: {0}'.format(return_code)
+        )
         image_result = None
     return image_result
 

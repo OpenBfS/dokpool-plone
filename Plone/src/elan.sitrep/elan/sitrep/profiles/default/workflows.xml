@@ -1,110 +1,106 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
 <!-- Workflow allocation -->
-<!-- ##code-section object -->
  <object name="sr_module_workflow" meta_type="Workflow"/>
  <object name="sr_report_workflow" meta_type="Workflow"/>
-<!-- ##/code-section object -->  
  <bindings>
-<!-- ##code-section bindings -->
-<!-- ##/code-section bindings -->
-    
-    
+
+
    <type type_id="SRConfig">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRScenario">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRPhase">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRModuleConfig">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRCollections">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRCollection">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRTextBlocks">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRTextBlock">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SituationOverview">
     <bound-workflow workflow_id="dp_one_state_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRFolder">
     <bound-workflow workflow_id="dp_folder_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRModule">
     <bound-workflow workflow_id="sr_module_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRModuleTypes">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SRModuleType">
     <bound-workflow workflow_id="dp_admin_workflow" />
    </type>
-   
-    
-    
-    
+
+
+
+
    <type type_id="SituationReport">
     <bound-workflow workflow_id="sr_report_workflow" />
    </type>
-   
-    
+
+
  </bindings>
 </object>

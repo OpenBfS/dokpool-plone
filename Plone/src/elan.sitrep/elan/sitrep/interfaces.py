@@ -14,9 +14,4 @@ from elan.sitrep.content.srmodule import ISRModule
 from elan.sitrep.content.srmoduletypes import ISRModuleTypes
 from elan.sitrep.content.srmoduletype import ISRModuleType
 from elan.sitrep.content.situationreport import ISituationReport
-##code-section imports
 from elan.sitrep import DocpoolMessageFactory as _
-##/code-section imports
-
-##code-section manual code
-##/code-section manual code

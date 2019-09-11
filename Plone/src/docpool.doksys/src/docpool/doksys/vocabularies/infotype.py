@@ -33,7 +33,7 @@ class InfoType(object):
             VocabItem(u'trocken', _(u'trocken')),
             VocabItem(u'Messergebnisse', _(u'Messergebnisse')),
             VocabItem(u'Ueberblick', _(u'Ueberblick')),
-            VocabItem(u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich'))
+            VocabItem(u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -47,9 +47,7 @@ class InfoType(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=item.token.encode('utf'),
-                    title=item.value,
+                    value=item.token, token=item.token.encode('utf'), title=item.value
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

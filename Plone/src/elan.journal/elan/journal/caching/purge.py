@@ -2,16 +2,15 @@
 from elan.journal.interfaces import IJournal
 from plone.app.caching.purge import ContentPurgePaths
 from z3c.caching.interfaces import IPurgePaths
-from zope.component import adapts
-from zope.interface import implements
+from zope.component import adapter
+from zope.interface import implementer
 
 
+@implementer(IPurgePaths)
+@adapter(IJournal)
 class LiveBlogPurgePaths(ContentPurgePaths):
 
     """Paths to purge for LiveBlog."""
-
-    implements(IPurgePaths)
-    adapts(IJournal)
 
     def getRelativePaths(self):
         paths = super(LiveBlogPurgePaths, self).getRelativePaths()

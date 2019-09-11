@@ -5,19 +5,15 @@
  <object name="docpool_base_images" meta_type="Filesystem Directory View" directory="docpool.base:skins/docpool_base_images"/>
  <object name="docpool_base_templates" meta_type="Filesystem Directory View" directory="docpool.base:skins/docpool_base_templates"/>
  <object name="docpool_base_styles" meta_type="Filesystem Directory View" directory="docpool.base:skins/docpool_base_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="docpool_base_images" insert-after="custom"/>
   <layer name="docpool_base_templates" insert-after="custom"/>
   <layer name="docpool_base_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

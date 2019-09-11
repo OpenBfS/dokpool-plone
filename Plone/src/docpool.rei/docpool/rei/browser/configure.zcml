@@ -1,9 +1,7 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.rei">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.rei">
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
-    
-<!-- ##/code-section Main -->    
+
 
 </configure>

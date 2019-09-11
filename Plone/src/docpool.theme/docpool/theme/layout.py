@@ -1,8 +1,9 @@
 """ Override the default Plone layout utility.
 """
 from docpool.base.content.dpdocument import IDPDocument
-from plone.app.layout.globals import layout as base
 from plone import api
+from plone.app.layout.globals import layout as base
+
 
 class LayoutPolicy(base.LayoutPolicy):
     """

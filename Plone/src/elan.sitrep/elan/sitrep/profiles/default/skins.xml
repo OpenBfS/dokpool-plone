@@ -5,19 +5,15 @@
  <object name="elan_sitrep_images" meta_type="Filesystem Directory View" directory="elan.sitrep:skins/elan_sitrep_images"/>
  <object name="elan_sitrep_templates" meta_type="Filesystem Directory View" directory="elan.sitrep:skins/elan_sitrep_templates"/>
  <object name="elan_sitrep_styles" meta_type="Filesystem Directory View" directory="elan.sitrep:skins/elan_sitrep_styles"/>
-    
-    <!-- ##code-section object -->
-    
-    <!-- ##/code-section object -->
+
+
 
  <skin-path name="*">
   <layer name="elan_sitrep_images" insert-after="custom"/>
   <layer name="elan_sitrep_templates" insert-after="custom"/>
   <layer name="elan_sitrep_styles" insert-after="custom"/>
-     
-    <!-- ##code-section layer -->
-    
-    <!-- ##/code-section layer -->
+
+
  </skin-path>
 
 

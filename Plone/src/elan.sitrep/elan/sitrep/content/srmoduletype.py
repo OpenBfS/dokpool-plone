@@ -14,65 +14,52 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.doctype import DocType, IDocType
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-##/code-section imports 
-
-from elan.sitrep.config import PROJECTNAME
-
+from docpool.base.content.doctype import DocType
+from docpool.base.content.doctype import IDocType
 from elan.sitrep import DocpoolMessageFactory as _
+from plone.autoform import directives
+from plone.dexterity.content import Container
+from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice
+from zope.interface import implementer
 
-class ISRModuleType(form.Schema, IDocType):
+
+class ISRModuleType(model.Schema, IDocType):
     """
     """
-        
+
     docSelection = RelationChoice(
-                        title=_(u'label_srmoduletype_docselection', default=u'Collection for relevant documents'),
-                        description=_(u'description_srmoduletype_docselection', default=u'This collection defines a pre-selection of possible documents to reference within this module.'),
-                        required=False,
-##code-section field_docSelection
-                        source = "elan.sitrep.vocabularies.Collections",
-##/code-section field_docSelection                           
+        title=_(
+            u'label_srmoduletype_docselection',
+            default=u'Collection for relevant documents',
+        ),
+        description=_(
+            u'description_srmoduletype_docselection',
+            default=u'This collection defines a pre-selection of possible documents to reference within this module.',
+        ),
+        required=False,
+        source="elan.sitrep.vocabularies.Collections",
     )
-    
 
-##code-section interface
-    form.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
 
-    form.mode(allowUploads='hidden')
-    form.mode(publishImmediately='hidden')
-    form.mode(globalAllow='hidden')
-#    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
-    form.mode(partsPattern='hidden')
-    form.mode(pdfPattern='hidden')
-    form.mode(imgPattern='hidden')
-    form.mode(customViewTemplate='hidden')
-##/code-section interface
+    directives.mode(allowUploads='hidden')
+    directives.mode(publishImmediately='hidden')
+    directives.mode(globalAllow='hidden')
+    #    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
+    directives.mode(partsPattern='hidden')
+    directives.mode(pdfPattern='hidden')
+    directives.mode(imgPattern='hidden')
+    directives.mode(customViewTemplate='hidden')
 
 
+@implementer(ISRModuleType)
 class SRModuleType(Container, DocType):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(ISRModuleType)
-    
-##code-section methods
+
     def currentDocuments(self):
         """
         Return the documents from the referenced collection - if any.
@@ -82,7 +69,6 @@ class SRModuleType(Container, DocType):
             return coll.results(batch=False)
         else:
             return []
-##/code-section methods 
 
     def mySRModuleType(self):
         """
@@ -106,17 +92,13 @@ class SRModuleType(Container, DocType):
     def getFiles(self, **kwargs):
         """
         """
-        args = {'portal_type':'File'}
+        args = {'portal_type': 'File'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
         """
         """
-        args = {'portal_type':'Image'}
+        args = {'portal_type': 'Image'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
-
-
-##code-section bottom
-##/code-section bottom 
+        return [obj.getObject() for obj in self.getFolderContents(args)]

@@ -10,8 +10,11 @@
 from Products.CMFCore.utils import getToolByName
 from docpool.base.utils import execute_under_special_role
 from Products.CMFQuickInstallerTool.QuickInstallerTool import QuickInstallerTool
+
 qi = getToolByName(context, 'portal_quickinstaller')
-v = execute_under_special_role(context, "Manager", QuickInstallerTool.getProductVersion, qi, 'docpool.base')
+v = execute_under_special_role(
+    context, "Manager", QuickInstallerTool.getProductVersion, qi, 'docpool.base'
+)
 if v:
     return v
 else:

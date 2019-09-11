@@ -4,10 +4,10 @@
 For more information on how to test viewlets, see:
 http://developer.plone.org/views/viewlets.html#finding-viewlets-programmatically
 """
-from plone import api
-from Products.Five.browser import BrowserView as View
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
+from plone import api
+from Products.Five.browser import BrowserView as View
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.viewlet.interfaces import IViewletManager
@@ -35,7 +35,8 @@ class ViewletTestCase(unittest.TestCase):
         request = self.request
         view = View(context, request)
         manager = queryMultiAdapter(
-            (context, request, view), IViewletManager, 'plone.abovecontent')
+            (context, request, view), IViewletManager, 'plone.abovecontent'
+        )
 
         return manager
 
@@ -51,10 +52,12 @@ class ViewletTestCase(unittest.TestCase):
         self.assertEqual(len(manager.viewlets), 2)
         viewlets = [v.__name__ for v in manager.viewlets]
         self.assertListEqual(
-            viewlets, [u'plone.path_bar', u'elan.journal.header'])
+            viewlets, [
+                u'plone.path_bar', u'elan.journal.header'])
 
     def test_viewlet_is_available(self):
         from plone.namedfile.file import NamedBlobImage
+
         manager = self._get_viewlet_manager()
         manager.update()
         viewlet = manager[u'elan.journal.header']

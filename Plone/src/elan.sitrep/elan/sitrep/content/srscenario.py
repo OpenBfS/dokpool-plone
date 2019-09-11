@@ -14,76 +14,56 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from zope.component import adapter
-from plone.dexterity.interfaces import IEditFinishedEvent
-from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from docpool.elan.config import ELAN_APP
-##/code-section imports 
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IEditFinishedEvent
+from plone.supermodel import model
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log
+from zope.component import adapter
+from zope.interface import implementer
 
-from elan.sitrep.config import PROJECTNAME
 
-from elan.sitrep import DocpoolMessageFactory as _
-
-class ISRScenario(form.Schema):
+class ISRScenario(model.Schema):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(ISRScenario)
 class SRScenario(Container):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(ISRScenario)
-    
-##code-section methods
+
     APP = ELAN_APP
+
     def getSRScenarioNames(self):
         """
         Index Method
         """
-        return [ self.getId() ]
+        return [self.getId()]
 
     def getSRScenarioRefs(self):
         """
         Index Method
         """
-        return [ self.UID() ]
+        return [self.UID()]
 
     def modTypes(self):
         """
         """
         return ModuleTypesVocabularyFactory(self, raw=True)
-    
+
     def modTypeIds(self):
         mtypes = self.modTypes()
-        return [ mt[0] for mt in mtypes ]
-    
+        return [mt[0] for mt in mtypes]
+
     def getSRScenarios(self):
         """
         """
-        return [ self ]
-
-##/code-section methods 
+        return [self]
 
     def mySRScenario(self):
         """
@@ -107,16 +87,13 @@ class SRScenario(Container):
     def getSRPhases(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRPhase'}
+        args = {'portal_type': 'SRPhase'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
-
-##code-section bottom
 
 @adapter(ISRScenario, IEditFinishedEvent)
 def updated(obj, event=None):
     log("SRScenario updated: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     sr_cat._reindexObject(obj)
-##/code-section bottom 

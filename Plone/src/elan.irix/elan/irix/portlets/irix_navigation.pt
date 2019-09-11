@@ -1,9 +1,7 @@
 <tal:block i18n:domain="elan.irix">
-<!-- ##code-section Portlet -->
 <div id="irix_tree" tal:define="os view/objectstructure">
 <ul class="folder">
 	<tal:var replace="structure os" />
 </ul>
 </div>
-<!-- ##/code-section Portlet -->    
 </tal:block>

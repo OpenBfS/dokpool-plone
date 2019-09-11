@@ -7,9 +7,8 @@
 ##parameters=
 ##title=
 ##
-from Products.Archetypes.utils import shasattr
 
-if shasattr(context, "myELANCurrentSituation", acquire=True):
-    return 1 #FIXME: 
+if getattr(context, "myELANCurrentSituation", None) is not None:
+    return 1  # FIXME:
 else:
-    return False 
+    return False

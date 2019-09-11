@@ -5,80 +5,59 @@
 #            http://www.condat.de
 #
 
+from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText, RichTextValue
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Item
-from docpool.base.content.contentbase import ContentBase, IContentBase
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.dexterity.utils import safe_unicode
+from Acquisition import aq_base
 from DateTime import DateTime
-from docpool.config.utils import TYPE, TITLE, ID, CHILDREN, createPloneObjects, ploneId
-from Products.CMFPlone.utils import parent
-from Products.CMFPlone.utils import log
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.utils import portalMessage
-from zope.component import getMultiAdapter
-from Products.Archetypes.utils import DisplayList
-from zope.component import adapter
-from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectMovedEvent, IObjectRemovedEvent, \
-    IObjectModifiedEvent
-from Products.CMFCore.interfaces import IActionSucceededEvent
-from Products.CMFPlone.i18nl10n import utranslate
-import datetime
-from five import grok
-from zope.schema.interfaces import IContextSourceBinder
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
-from docpool.transfers.config import TRANSFERS_APP
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ploneId
+from docpool.event import DocpoolMessageFactory as _
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
-from Acquisition import aq_base, aq_inner
-
+from docpool.transfers.config import TRANSFERS_APP
 from logging import getLogger
+from plone.app.textfield import RichText
+from plone.app.textfield import RichTextValue
+from plone.autoform import directives
+from plone.dexterity.content import Item
+from plone.dexterity.utils import safe_unicode
+from plone.supermodel import model
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.Archetypes.utils import DisplayList
+from Products.CMFCore.interfaces import IActionSucceededEvent
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.i18nl10n import utranslate
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import parent
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
+from zope.component import adapter
+from zope.interface import alsoProvides
+from zope.interface import implementer
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+
+import datetime
+
 
 logger = getLogger("dpevent")
 
 
-@grok.provider(IContextSourceBinder)
-def availableScenarios(context):
-    if hasattr(context, "dpSearchPath"):
-        path = context.dpSearchPath() + "/contentconfig/scen"
-    else:
-        path = "/Plone/contentconfig/scen"
-    query = {"portal_type": ["DPEvent"],
-             "path": {'query': path}
-             }
-
-    return ObjPathSourceBinder(navigation_tree_query=query, object_provides=IDPEvent.__identifier__).__call__(context)
+def initializeTimeOfEvent():
+    return datetime.datetime.today()
 
 
-from plone.formwidget.autocomplete import AutocompleteFieldWidget
-from collective.z3cform.mapwidget.widget import MapFieldWidget
-
-from plone.autoform import directives
-##/code-section imports
-
-from docpool.event import DocpoolMessageFactory as _
-
-
-class IDPEvent(form.Schema, IContentBase):
+class IDPEvent(model.Schema, IContentBase):
     """
     """
 
@@ -86,106 +65,94 @@ class IDPEvent(form.Schema, IContentBase):
         title=_(u'label_dpevent_status', default=u'Status of the scenario'),
         description=_(u'description_dpevent_status', default=u''),
         required=True,
-        ##code-section field_status
         source="docpool.base.vocabularies.Status",
-        ##/code-section field_status
     )
 
     Exercise = schema.Bool(
         title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
         description=_(u'description_dpevent_exercise', default=u''),
         required=False,
-        ##code-section field_exercise
-        ##/code-section field_exercise
     )
 
     TimeOfEvent = schema.Datetime(
         title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
         description=_(u'description_dpevent_timeofevent', default=u''),
         required=True,
-        ##code-section field_timeOfEvent
-        ##/code-section field_timeOfEvent
+        defaultFactory=initializeTimeOfEvent,
     )
 
     Substitute = RelationChoice(
         title=_(u'label_dpevent_substitute', default=u'Substitute scenario'),
-        description=_(u'description_dpevent_substitute',
-                      default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.'),
+        description=_(
+            u'description_dpevent_substitute',
+            default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.',
+        ),
         required=False,
-        ##code-section field_substitute
-        source="docpool.event.vocabularies.EventSubstitutes"
-        ##/code-section field_substitute
+        source="docpool.event.vocabularies.EventSubstitutes",
     )
-    form.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
     # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
-    directives.widget(ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(
+        ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
     ScenarioPhase = RelationChoice(
         title=_(u"Scenario & Phase"),
         vocabulary=u"docpool.event.vocabularies.Phases",
         required=False,
     )
 
-    directives.widget(ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(
+        ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
     ScenarioLocation = RelationChoice(
         title=_(u'Scenario location'),
         vocabulary=u"docpool.event.vocabularies.PowerStations",
-        required=False)
+        required=False,
+    )
 
     ScenarioCoordinates = schema.TextLine(
-        title=_(u'Scenario coordinates'),
-        required=False)
+        title=_(u'Scenario coordinates'), required=False
+    )
 
     OperationMode = schema.Choice(
         title=_(u'Operation mode'),
         vocabulary=u"docpool.event.vocabularies.Modes",
-        required=False)
+        required=False,
+    )
 
     SectorizingSampleTypes = schema.List(
         title=_(u'Sectorizing sample types'),
         required=False,
-        value_type = schema.Choice(source=u"docpool.event.vocabularies.SampleTypes"),
+        value_type=schema.Choice(
+            source=u"docpool.event.vocabularies.SampleTypes"),
     )
 
-    directives.widget(SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget')
+    directives.widget(
+        SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
+    )
     SectorizingNetworks = RelationList(
         title=_(u'Sectorizing networks'),
         required=False,
-        value_type=RelationChoice(source=u'docpool.event.vocabularies.Networks')
+        value_type=RelationChoice(
+            source=u'docpool.event.vocabularies.Networks'),
     )
 
-    AreaOfInterest = schema.Text(
-        title=_(u"Area of interest"),
-        required=False
-    )
+    AreaOfInterest = schema.Text(title=_(u"Area of interest"), required=False)
 
     changelog = RichText(
-                        title=_(u'label_dpevent_changelog', default=u'Changelog'),
-                        description=_(u''),
-                        required=False,
-                        readonly=True
+        title=_(u'label_dpevent_changelog', default=u'Changelog'),
+        description=_(u''),
+        required=False,
+        readonly=True,
     )
 
-    ##code-section interface
 
-
-@form.default_value(field=IDPEvent['TimeOfEvent'])
-def initializeTimeOfEvent(data):
-    # To get hold of the folder, do: context = data.context
-    return datetime.datetime.today()
-
-
-##/code-section interface
-
-
+@implementer(IDPEvent)
 class DPEvent(Item, ContentBase):
     """
     """
+
     security = ClassSecurityInfo()
 
-    implements(IDPEvent)
-
-    ##code-section methods
     def print_dict(self):
         """
 
@@ -231,7 +198,13 @@ class DPEvent(Item, ContentBase):
     def getStates(self):
         """
         """
-        return DisplayList([('active', _('active')), ('inactive', _('inactive')), ('closed', _('closed'))])
+        return DisplayList(
+            [
+                ('active', _('active')),
+                ('inactive', _('inactive')),
+                ('closed', _('closed')),
+            ]
+        )
 
     def dp_type(self):
         """
@@ -321,7 +294,8 @@ class DPEvent(Item, ContentBase):
                 folderType = "UserFolder"
             if isTransfer:
                 folderType = "DPTransferFolder"
-            aroot.invokeFactory(folderType, id=fname)  # if not we create a new folder
+            # if not we create a new folder
+            aroot.invokeFactory(folderType, id=fname)
         af = aroot._getOb(fname)
         # 5. and copy the local roles
         mroot = self.content.Members
@@ -361,9 +335,15 @@ class DPEvent(Item, ContentBase):
             wf_state = source_brain.review_state
             wftool = getToolByName(self, 'portal_workflow')
             # print wf_state, wftool.getInfoFor(copied_obj, 'review_state')
-            if wf_state == "published" and wftool.getInfoFor(copied_obj, 'review_state') != 'published':
+            if (
+                wf_state == "published"
+                and wftool.getInfoFor(copied_obj, 'review_state') != 'published'
+            ):
                 wftool.doActionFor(copied_obj, 'publish')
-            if wf_state == "pending" and wftool.getInfoFor(copied_obj, 'review_state') == 'private':
+            if (
+                wf_state == "pending"
+                and wftool.getInfoFor(copied_obj, 'review_state') == 'private'
+            ):
                 wftool.doActionFor(copied_obj, 'submit')
             copied_obj.setModificationDate(mdate)
             events = source_obj.doc_extension(TRANSFERS_APP).transferEvents()
@@ -385,7 +365,7 @@ class DPEvent(Item, ContentBase):
 
     def _createArchiveFolders(self):
         """
-        We create an archive object. Into it, we copy the complete ESD hierarchy. 
+        We create an archive object. Into it, we copy the complete ESD hierarchy.
         We also create two folders "Members" and "Groups", which will hold all the
         documents for the scenario.
         """
@@ -405,7 +385,12 @@ class DPEvent(Item, ContentBase):
         navSettings(arc)
 
         # copy the ESD folders
-        objs = [o.getId for o in e.getFolderContents({'portal_type': ['ELANSection', 'ELANDocCollection']})]
+        objs = [
+            o.getId
+            for o in e.getFolderContents(
+                {'portal_type': ['ELANSection', 'ELANDocCollection']}
+            )
+        ]
         # print objs
         cb_copy_data = e.manage_copyObjects(objs)  # Copy aus der Quelle
         result = arc.esd.manage_pasteObjects(cb_copy_data)
@@ -445,7 +430,9 @@ class DPEvent(Item, ContentBase):
         for doc in tdocs:
             self._purgeDocument(doc)
         if REQUEST:
-            portalMessage(self, _("There are no more documents for this scenario."), "info")
+            portalMessage(
+                self, _("There are no more documents for this scenario."), "info"
+            )
             return self.restrictedTraverse("view")()
 
     def _purgeDocument(self, source_brain):
@@ -454,22 +441,26 @@ class DPEvent(Item, ContentBase):
         """
         from docpool.elan.config import ELAN_APP
         from docpool.elan.behaviors.elandocument import IELANDocument
+
         source_obj = source_brain.getObject()
         # determine parent folder for copy
         scns = None
         try:
             scns = IELANDocument(source_obj).scenarios
-        except:
-            # Object could have lost its ELAN behavior but that means we can potentially delete it
+        except BaseException:
+            # Object could have lost its ELAN behavior but that means we can
+            # potentially delete it
             scns = ['dummy']
         if len(scns) == 1:  # only the one scenario --> potential delete
             # Check for other applications than ELAN
             apps = ILocalBehaviorSupport(source_obj).local_behaviors
-            if apps and len(apps) > 1:  # There are others --> only remove ELAN behavior
+            if apps and len(
+                    apps) > 1:  # There are others --> only remove ELAN behavior
                 try:
                     apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(source_obj).local_behaviors = list(set(apps))
-                except Exception, e:
+                    ILocalBehaviorSupport(
+                        source_obj).local_behaviors = list(set(apps))
+                except Exception as e:
                     log_exc(e)
             else:  # we delete
                 p = parent(source_obj)
@@ -505,13 +496,12 @@ class DPEvent(Item, ContentBase):
         Is it published? Is it active?
         """
         wftool = getToolByName(self, 'portal_workflow')
-        return (wftool.getInfoFor(self, 'review_state') == 'published' and self.Status == 'active')
+        return (
+            wftool.getInfoFor(self, 'review_state') == 'published'
+            and self.Status == 'active'
+        )
 
 
-##/code-section methods
-
-
-##code-section bottom
 class ELANScenario(DPEvent):
     pass
 
@@ -526,7 +516,7 @@ def eventAdded(obj, event=None):
 
 
 def addLogEntry(old_changelog, obj):
-    print obj.SectorizingNetworks
+    print(obj.SectorizingNetworks)
     mdate, userInfo = obj.modInfo()
     text = """
     <tr>
@@ -544,17 +534,26 @@ def addLogEntry(old_changelog, obj):
         obj.Status,
         obj.OperationMode,
         obj.phaseInfo(),
-        ", ".join (obj.SectorizingSampleTypes if obj.SectorizingSampleTypes != None else ' '),
-        ", ".join((n.to_object.Title() for n in obj.SectorizingNetworks) if obj.SectorizingNetworks != None else ' ')
+        ", ".join(
+            obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else ' '
+        ),
+        ", ".join(
+            (n.to_object.Title() for n in obj.SectorizingNetworks)
+            if obj.SectorizingNetworks is not None
+            else ' '
+        ),
     )
-    new_changelog = old_changelog.replace("""<tr class="last"></tr>""", safe_unicode(text))
+    new_changelog = old_changelog.replace(
+        """<tr class="last"></tr>""", safe_unicode(text)
+    )
     obj.changelog = RichTextValue(new_changelog, 'text/html', 'text/html')
+
 
 @adapter(IDPEvent, IObjectModifiedEvent)
 def eventChanged(obj, event=None):
     """
     """
-    #print 'eventChanged'
+    # print 'eventChanged'
     # write changelog
     old_changelog = """
     <table>
@@ -564,8 +563,8 @@ def eventChanged(obj, event=None):
     <th>%s</th>
     <th>%s</th>
     <th>%s</th>
-    <th>%s</th>    
-    <th>%s</th>    
+    <th>%s</th>
+    <th>%s</th>
     </tr>
     </thead>
     <tbody>
@@ -578,9 +577,9 @@ def eventChanged(obj, event=None):
         _(u"Operation mode"),
         _(u"Phase"),
         _(u"Sectorizing sample types"),
-        _(u"Sectorizing networks")
+        _(u"Sectorizing networks"),
     )
-    if (obj.changelog):
+    if obj.changelog:
         old_changelog = safe_unicode(obj.changelog.output)
 
     addLogEntry(old_changelog, obj)
@@ -612,7 +611,7 @@ def eventChanged(obj, event=None):
                         docobj.scenarios = scens
                         docobj.reindexObject()
                         # print "changed", docobj
-                except Exception, e:
+                except Exception as e:
                     log_exc(e)
 
 
@@ -633,7 +632,5 @@ def eventPublished(obj, event=None):
                 if scens and obj.getId() in scens:
                     docobj.reindexObject()
                     # print "changed", docobj
-            except Exception, e:
+            except Exception as e:
                 log_exc(e)
-
-##/code-section bottom

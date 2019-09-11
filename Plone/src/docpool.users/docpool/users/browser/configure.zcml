@@ -1,9 +1,8 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="docpool.users">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.users">
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
-  <include file="monkey.zcml" />	    
+  <include file="monkey.zcml" />
 
   <browser:page
     name="usergroup-controlpanel"
@@ -66,7 +65,7 @@
       permission="zope2.View"
       layer="docpool.users.interfaces.IDocPoolUsersLayer"
   />
-  
+
   <browser:page
       for="docpool.base.interfaces.IDocumentPool"
       name="user-information"
@@ -74,7 +73,7 @@
       permission="plone.app.controlpanel.UsersAndGroups"
       layer="docpool.users.interfaces.IDocPoolUsersLayer"
     />
-    
+
   <browser:page
       name="overview-controlpanel"
       for="docpool.base.interfaces.IDocumentPool"
@@ -116,10 +115,9 @@
     />
 
   <adapter
-    for="plone.app.layout.navigation.interfaces.INavigationRoot"  
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory="Products.CMFPlone.controlpanel.bbb.usergroups.UserGroupsSettingsControlPanelAdapter"
 />
-            
-<!-- ##/code-section Main -->    
+
 
 </configure>

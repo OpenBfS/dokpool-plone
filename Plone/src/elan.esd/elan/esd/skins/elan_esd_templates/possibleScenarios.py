@@ -11,4 +11,4 @@
 from docpool.event.utils import getActiveScenarios
 
 aedt = getActiveScenarios(context)
-return [ (t.getId, t.Title) for t in aedt ]
+return [(t.getId, t.Title) for t in aedt]

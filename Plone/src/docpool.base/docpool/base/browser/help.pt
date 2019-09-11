@@ -1,5 +1,4 @@
 <tal:block i18n:domain="docpool.base">
-<tal:var replace="nothing"><!-- ##code-section View --></tal:var>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       i18n:domain="docpool.base" xml:lang="en"
@@ -11,13 +10,12 @@
 <metal:block fill-slot="column_two_slot" />
 
 <metal:content-core fill-slot="main">
-<metal:content-core define-macro="main">                               
+<metal:content-core define-macro="main">
     <script type="text/javascript">
         jQuery("#content").load("@@helphtml #content");
-    </script>  
+    </script>
 </metal:content-core>
 </metal:content-core>
 </body>
 </html>
-<tal:var replace="nothing"><!-- ##/code-section View --></tal:var>   
 </tal:block>

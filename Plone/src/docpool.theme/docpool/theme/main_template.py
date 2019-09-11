@@ -1,6 +1,5 @@
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from Products.CMFPlone.browser.main_template import MainTemplate as OrigMainTemplate
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class MainTemplate(OrigMainTemplate):
@@ -12,12 +11,15 @@ class MainTemplate(OrigMainTemplate):
 
     @property
     def template(self):
-      try:
-        if self.request.form.get('popup_load') or self.request['URL'].find('@@inline') > - 1:
-            return self.popup_template
-        elif self.request.form.get('ajax_load'):
-            return OrigMainTemplate.ajax_template
-        else:
+        try:
+            if (
+                self.request.form.get('popup_load')
+                or self.request['URL'].find('@@inline') > -1
+            ):
+                return self.popup_template
+            elif self.request.form.get('ajax_load'):
+                return OrigMainTemplate.ajax_template
+            else:
+                return OrigMainTemplate.main_template
+        except BaseException:
             return OrigMainTemplate.main_template
-      except:
-        return OrigMainTemplate.main_template

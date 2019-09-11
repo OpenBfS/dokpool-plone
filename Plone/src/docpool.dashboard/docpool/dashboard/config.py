@@ -3,7 +3,3 @@
 """
 
 PROJECTNAME = "docpool.dashboard"
-
-
-##code-section config
-##/code-section config

@@ -1,53 +1,63 @@
 # -*- coding: utf-8 -*-
-from xmlrpclib import ServerProxy
+from __future__ import print_function
 from random import random
+from six.moves.xmlrpc_client import ServerProxy
+
+
 def elan_login(username, password):
-    return ServerProxy("http://%s:%s@localhost:8081/dokpool" % (username, password), verbose=True)
+    return ServerProxy(
+        "http://%s:%s@localhost:8081/dokpool" % (username, password), verbose=True
+    )
+
 
 def getESDs(client):
     """
     Determine all available ESDs, i.e. Top-Level Obects of type ELANESD
     """
     return _queryObjects(client, "/", "DocumentPool")
-    
+
+
 def _queryObjects(client, path, type):
     """
     """
-    q = client.query({ 'path': path, 'portal_type': type })
+    q = client.query({'path': path, 'portal_type': type})
     # print len(q)
-    return q.keys()
+    return list(q.keys())
+
 
 def _getContents(client, path):
-    obj = client.get_object([ path ])
+    obj = client.get_object([path])
     info = obj.get(path)
     contents = info[2]['contents']
-    return contents.keys()
+    return list(contents.keys())
+
 
 def getTypes(client, esdpath):
     """
     """
     return _queryObjects(client, esdpath, "DocType")
 
+
 client = elan_login("elanmanager", "admin")
 client.get_object()
-#q = client.query()
-#print len(q)
-#print client.get_object(['/Plone/front-page', 'bfs'])
+# q = client.query()
+# print len(q)
+# print client.get_object(['/Plone/front-page', 'bfs'])
 
 esds = getESDs(client)
-print esds
+print(esds)
 for esdpath in esds:
     ts = getTypes(client, esdpath)
     for t in ts:
         # print t
         o = client.get_object([t])
         # print o
-        
-print client.get_primary_documentpool()[0]
+
+print(client.get_primary_documentpool()[0])
 esdpath = "/dokpool/bund"
 group_folders = client.get_group_folders(esdpath)
-print group_folders
-ufpath = group_folders.keys()[0]
+print(group_folders)
+ufpath = list(group_folders.keys())[0]
 """
         @param params - dictionary of path with a list value where list item zero are
                         attribute names and their respective values; and list item one
@@ -55,15 +65,31 @@ ufpath = group_folders.keys()[0]
                       - { path: [{ attr: value, ...}, type_name], ...}
         =returns [path, ...]
 """
-params = { ufpath + "/neue" : [ { "title": "Titel", 
-                                   "description" : "Beschreibung",
-                                   "text" : "<p>Text</p>",
-                                   "docType" : "eventinformation"} , "DPDocument"] }
+params = {
+    ufpath
+    + "/neue": [
+        {
+            "title": "Titel",
+            "description": "Beschreibung",
+            "text": "<p>Text</p>",
+            "docType": "eventinformation",
+        },
+        "DPDocument",
+    ]
+}
 scenarios = ["demo-am-24-4"]
 behaviours = ['elan']
-newpath = client.create_dp_document(ufpath, "ganzneues" + str(random() * 100000), "Titel", "Beschreibung", "<p>Neuer Text</p>", "eventinformation", behaviours)
-print newpath
-params = { "scenarios" : scenarios, "subjects" : ["Henning", "Rietz"] }
+newpath = client.create_dp_document(
+    ufpath,
+    "ganzneues" + str(random() * 100000),
+    "Titel",
+    "Beschreibung",
+    "<p>Neuer Text</p>",
+    "eventinformation",
+    behaviours,
+)
+print(newpath)
+params = {"scenarios": scenarios, "subjects": ["Henning", "Rietz"]}
 client.update_dp_object(newpath, params)
 
 # from xmlrpclib import Binary

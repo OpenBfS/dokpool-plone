@@ -14,51 +14,29 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.infofolder import InfoFolder, IInfoFolder
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from zope.component import adapter
-from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
+from docpool.base.content.infofolder import IInfoFolder
+from docpool.base.content.infofolder import InfoFolder
 from docpool.elan.config import ELAN_APP
-from zope.interface.declarations import classImplements
-##/code-section imports 
+from plone.dexterity.content import Container
+from plone.supermodel import model
+from zope.component import adapter
+from zope.interface import implementer
+from zope.lifecycleevent import IObjectAddedEvent
 
-from elan.esd.config import PROJECTNAME
 
-from elan.esd import DocpoolMessageFactory as _
-
-class IELANInfos(form.Schema, IInfoFolder):
+class IELANInfos(model.Schema, IInfoFolder):
     """
     """
 
-##code-section interface
-##/code-section interface
 
-
+@implementer(IELANInfos)
 class ELANInfos(Container, InfoFolder):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IELANInfos)
-    
-##code-section methods
+
     APP = ELAN_APP
-##/code-section methods 
 
     def myELANInfos(self):
         """
@@ -82,33 +60,32 @@ class ELANInfos(Container, InfoFolder):
     def getInfoDocuments(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoDocument'}
+        args = {'portal_type': 'InfoDocument'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoFolder'}
+        args = {'portal_type': 'InfoFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getInfoLinks(self, **kwargs):
         """
         """
-        args = {'portal_type':'InfoLink'}
+        args = {'portal_type': 'InfoLink'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-##code-section bottom
 @adapter(IELANInfos, IObjectAddedEvent)
 def infosAdded(obj, event=None):
     """
@@ -118,7 +95,6 @@ def infosAdded(obj, event=None):
     esd = self.myDocumentPool()
     prefix = esd.prefix or esd.getId()
     prefix = str(prefix)
-    self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-    
-    
-##/code-section bottom 
+    self.manage_setLocalRoles(
+        "%s_ContentAdministrators" %
+        prefix, ["ContentAdmin"])

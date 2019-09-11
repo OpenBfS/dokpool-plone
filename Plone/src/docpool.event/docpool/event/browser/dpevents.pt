@@ -1,11 +1,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.event" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
-<!-- ##code-section Head -->
-<!-- ##/code-section Head -->    
 
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
-<!-- ##code-section Main -->
 <table style="width:65%;" class="elanlisting" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 <thead>
 <tr><th i18n:translate="">Created</th><th i18n:translate="">Title/Description</th><th i18n:translate="">Status</th></tr>
@@ -20,17 +17,14 @@
 <td style="width:40%;" tal:define="exercise scenario/Exercise"><a href="" tal:attributes="href scenario/absolute_url">
                 <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br>
                 </tal:if><b><tal:var replace="scenario/Title"/></b></a><br>
-<span tal:content="python:scenario.Description().decode('utf-8')" /></td> 
+<span tal:content="python:scenario.Description().decode('utf-8')" /></td>
 <td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
 </tr>
 </tbody>
 </table>
-    
-<!-- ##/code-section Main -->    
+
 </metal:content-core>
 </metal:content-core>
 
-<!-- ##code-section Bottom -->
-<!-- ##/code-section Bottom -->  
 </body>
 </html>

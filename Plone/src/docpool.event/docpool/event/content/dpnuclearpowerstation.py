@@ -5,27 +5,27 @@ __author__ = ''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope import schema
-from plone.directives import form, dexterity
-
-from plone.dexterity.content import Item
+from docpool.event import DocpoolMessageFactory as _
 from logging import getLogger
+from plone.dexterity.content import Item
+from plone.supermodel import model
+from zope import schema
+from zope.interface import implementer
+
+
 logger = getLogger("dpnetwork")
 
-from docpool.event import DocpoolMessageFactory as _
 
-class IDPNuclearPowerStation(form.Schema):
+class IDPNuclearPowerStation(model.Schema):
     """
     """
-    coordinates = schema.TextLine(
-        title=_(u'Coordinates'),
-        required=False)
 
+    coordinates = schema.TextLine(title=_(u'Coordinates'), required=False)
+
+
+@implementer(IDPNuclearPowerStation)
 class DPNuclearPowerStation(Item):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(IDPNuclearPowerStation)
-    

@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
-from docpool.base.appregistry import appName
+from Acquisition import aq_base
 from docpool.base.utils import extendOptions
 from plone.app.contenttypes.interfaces import IFile
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import safe_hasattr
+from Products.Five.browser import BrowserView
+from Products.PageTemplates.PageTemplate import PageTemplate
 from zope.component import getMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
-from Products.PageTemplates.PageTemplate import PageTemplate
-from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
+
 import Acquisition
-from Acquisition import aq_base
-from Products.Archetypes.utils import shasattr
+
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
     def __call__(self, request, *args, **kwargs):
-        if not kwargs.has_key('args'):
+        if 'args' not in kwargs:
             kwargs['args'] = args
-        return self.pt_render(extra_context={'options': kwargs, 'request': request})
+        return self.pt_render(
+            extra_context={'options': kwargs, 'request': request})
 
 
 class FlexibleView(BrowserView):
@@ -28,7 +30,8 @@ class FlexibleView(BrowserView):
         @param request:
         """
         super(FlexibleView, self).__init__(context, request)
-#        self.extensions = self.context.myExtensions(request)
+
+    #        self.extensions = self.context.myExtensions(request)
 
     def currentApplication(self):
         """
@@ -36,7 +39,8 @@ class FlexibleView(BrowserView):
         app_defined_by_behaviour = getattr(self, "appname", None)
         if app_defined_by_behaviour:
             return app_defined_by_behaviour
-        dp_app_state = getMultiAdapter((self, self.request), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter(
+            (self, self.request), name=u'dp_app_state')
         active_apps = dp_app_state.appsActivatedByCurrentUser()
         if len(active_apps) > 0:
             return active_apps[0]
@@ -49,7 +53,7 @@ class FlexibleView(BrowserView):
         dto = doc.docTypeObj()
         app = self.currentApplication()
         dtid = doc.getPortalTypeName().lower()
-        if shasattr(doc, "typeName"):
+        if base_hasattr(doc, "typeName"):
             dtid = doc.typeName()
         if dto:
             dtid = dto.customViewTemplate
@@ -61,20 +65,17 @@ class FlexibleView(BrowserView):
 
         if app:
             names = [
-                    "%s_%s_%s" % (app, dtid, vtype),
-                    "%s_%s" % (app, vtype),
-                    "%s_%s" % (dtid, vtype),
-                    "doc_%s" % vtype
-        ]
-        else:
-            names = [
+                "%s_%s_%s" % (app, dtid, vtype),
+                "%s_%s" % (app, vtype),
                 "%s_%s" % (dtid, vtype),
-                "doc_%s" % vtype
+                "doc_%s" % vtype,
             ]
-        #for n in names:
-            # print n
+        else:
+            names = ["%s_%s" % (dtid, vtype), "doc_%s" % vtype]
+        # for n in names:
+        # print n
         for n in names:
-            if shasattr(dto, n, acquire=True):
+            if safe_hasattr(dto, n):
                 o = aq_base(getattr(dto, n))
                 if IFile.providedBy(o):
                     f = o.file.open()
@@ -97,5 +98,6 @@ class FlexibleView(BrowserView):
         # BUT: code included via macros works!
         options = extendOptions(self.context, self.request, options)
         # Debug here
-        return template(view=self, context=self.context, request=self.request, **options)
-
+        return template(
+            view=self, context=self.context, request=self.request, **options
+        )

@@ -7,10 +7,9 @@
 ##parameters=
 ##title=
 ##
-from Products.Archetypes.utils import shasattr
 from docpool.elan.config import ELAN_APP
 
-if shasattr(context, "myDocumentPool", acquire=True):
+if getattr(context, "myDocumentPool", None) is not None:
     return context.isActive(ELAN_APP)
 else:
-    return False 
+    return False

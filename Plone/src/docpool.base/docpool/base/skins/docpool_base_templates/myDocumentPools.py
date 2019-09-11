@@ -8,9 +8,8 @@
 ##title=
 ##
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
 
 cat = getToolByName(context, 'portal_catalog', None)
-esds = cat(portal_type="DocumentPool", sort_on = "sortable_title")
-esds = [ (brain.getURL(), brain.Title) for brain in esds]
+esds = cat(portal_type="DocumentPool", sort_on="sortable_title")
+esds = [(brain.getURL(), brain.Title) for brain in esds]
 return esds

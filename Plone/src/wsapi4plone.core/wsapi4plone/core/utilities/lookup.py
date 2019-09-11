@@ -3,11 +3,17 @@ try:
 except ImportError:
     from zope.app.container.interfaces import IContainer
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 
-from wsapi4plone.core.interfaces import IContextBuilder, IService, IServiceContainer, IServiceLookup
+from wsapi4plone.core.interfaces import (
+    IContextBuilder,
+    IService,
+    IServiceContainer,
+    IServiceLookup,
+)
 
 
+@implementer(IServiceLookup)
 class ServiceLookup(object):
     """
     Lookup a Service based on the path.
@@ -33,7 +39,7 @@ class ServiceLookup(object):
         ...             results.append(obj.__name__)
         ...     results.reverse()
         ...     return u'/'.join(results)
-        ... 
+        ...
         >>> getPath(loc2)
         u'/container/subcontainer/loc2'
 
@@ -79,7 +85,6 @@ class ServiceLookup(object):
         'ServiceContainer'
 
     """
-    implements(IServiceLookup)
 
     def __call__(self, context, path=''):
         builder = getUtility(IContextBuilder)

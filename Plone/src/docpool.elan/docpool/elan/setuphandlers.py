@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-##code-section import
-##/code-section import
+
 
 def setupVarious(context):
 
@@ -12,12 +10,7 @@ def setupVarious(context):
 
     if context.readDataFile('docpool.elan_various.txt') is None:
         return
-##code-section setupcode
     # Add additional setup code here
     from docpool.config.general.elan import install
+
     install(context.getSite())
-
-##/code-section setupcode
-
-##code-section Main
-##/code-section Main 

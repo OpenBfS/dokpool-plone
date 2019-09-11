@@ -3,21 +3,17 @@
       i18n:domain="plone">
     <body>
         <div metal:fill-slot="main">
-<!-- ##code-section Top -->       
-<!-- ##/code-section Top -->
         <h3>Ergebnisse des Imports</h3>
         <pre tal:content="request/meldung"></pre>
-        
+
         <div id="formcontrols">
             <input id="importconfirm" class="standalone" type="button"
             value="Weiter" name="form.button.confirm" tal:attributes="onclick string:window.location.href='${context/absolute_url}/objekt_liste?typ=${request/typ}';;return false;;" />
-        
+
         </div>
 
 
-<!-- ##code-section Bottom -->    
-<!-- ##/code-section Bottom -->            
-        </div>        
+        </div>
     </body>
-</html>  
+</html>
 

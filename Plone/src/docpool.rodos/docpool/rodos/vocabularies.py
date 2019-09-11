@@ -1,13 +1,9 @@
-from zope.interface import implements
-from zope.schema.interfaces import IVocabularyFactory, IBaseVocabulary
-from zope.schema.vocabulary import SimpleVocabulary
-from zope.schema.vocabulary import SimpleTerm
-from zope.site.hooks import getSite
-from Products.CMFCore.utils import getToolByName
+from AccessControl.SecurityInfo import allow_module
 from docpool.rodos import DocpoolMessageFactory as _
-from AccessControl.SecurityInfo import allow_module, allow_class
-from Products.Archetypes.utils import shasattr
-from zope.component import getMultiAdapter
+from zope.interface import implementer
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleVocabulary
+
 
 class VocabItem(object):
     def __init__(self, token, value):
@@ -15,10 +11,10 @@ class VocabItem(object):
         self.value = value
 
 
+@implementer(IVocabularyFactory)
 class PrognosisTypesVocabulary(object):
     """
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -29,12 +25,14 @@ class PrognosisTypesVocabulary(object):
 
         return SimpleVocabulary(items)
 
+
 PrognosisTypesVocabularyFactory = PrognosisTypesVocabulary()
 
+
+@implementer(IVocabularyFactory)
 class PrognosisFormsVocabulary(object):
     """
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -44,12 +42,14 @@ class PrognosisFormsVocabulary(object):
 
         return SimpleVocabulary(items)
 
+
 PrognosisFormsVocabularyFactory = PrognosisFormsVocabulary()
 
+
+@implementer(IVocabularyFactory)
 class ReleaseSitesVocabulary(object):
     """
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = [
@@ -76,8 +76,8 @@ class ReleaseSitesVocabulary(object):
 
         return SimpleVocabulary(items)
 
-ReleaseSitesVocabularyFactory = ReleaseSitesVocabulary()
 
+ReleaseSitesVocabularyFactory = ReleaseSitesVocabulary()
 
 
 allow_module("docpool.rodos.vocabularies")

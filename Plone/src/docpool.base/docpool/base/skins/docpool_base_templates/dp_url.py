@@ -7,9 +7,8 @@
 ##parameters=
 ##title=
 ##
-from Products.Archetypes.utils import shasattr
 
-if shasattr(context, "myDocumentPool", True):
+if getattr(context, "myDocumentPool", None) is not None:
     return context.myDocumentPool().absolute_url()
 else:
     return context.portal_url()

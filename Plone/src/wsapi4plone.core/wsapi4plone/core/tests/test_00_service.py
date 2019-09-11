@@ -3,17 +3,18 @@
 import unittest
 
 from zope.component import getSiteManager
-from zope.interface import implements, Interface
+from zope.interface import implementer, Interface
 from zope.app.container.interfaces import IContainer
 
 
+@implementer(Interface)
 class Dummy(object):
-    implements(Interface)
+    pass
 
 
+@implementer(IContainer)
 class DummyContainer(object):
-    implements(IContainer)
-
+    pass
 
 # ########################### #
 #   Base Service Test Cases   #
@@ -21,15 +22,13 @@ class DummyContainer(object):
 
 
 class ServiceTestCase(unittest.TestCase):
-
     def setUp(self):
         sm = getSiteManager()
         # Register the base service adapter.
         from wsapi4plone.core.interfaces import IService
         from wsapi4plone.core.service import Service
-        sm.registerAdapter(Service,
-                           required=(Interface,),
-                           provided=IService)
+
+        sm.registerAdapter(Service, required=(Interface,), provided=IService)
         # Adapter a dummy object to play with in the tests.
         dummy = Dummy()
         self.serviced_object = IService(dummy)
@@ -39,20 +38,22 @@ class ServiceTestCase(unittest.TestCase):
         sm = getSiteManager()
         # Unregister the service adapter
         from wsapi4plone.core.service import Service
+
         assert sm.unregisterAdapter(factory=Service)
 
 
 class ServiceContainerTestCase(ServiceTestCase):
-
     def setUp(self):
         super(ServiceContainerTestCase, self).setUp()
         sm = getSiteManager()
         # Register the base service container adapter.
         from wsapi4plone.core.interfaces import IServiceContainer
         from wsapi4plone.core.service import ServiceContainer
-        sm.registerAdapter(ServiceContainer,
-                           required=(IContainer,),
-                           provided=IServiceContainer)
+
+        sm.registerAdapter(
+            ServiceContainer, required=(
+                IContainer,), provided=IServiceContainer
+        )
         dummy_container = DummyContainer()
         self.serviced_container = IServiceContainer(dummy_container)
 
@@ -61,6 +62,7 @@ class ServiceContainerTestCase(ServiceTestCase):
         sm = getSiteManager()
         # Unregister the service container adapter.
         from wsapi4plone.core.service import ServiceContainer
+
         assert sm.unregisterAdapter(factory=ServiceContainer)
         super(ServiceContainerTestCase, self).tearDown()
 
@@ -71,7 +73,6 @@ class ServiceContainerTestCase(ServiceTestCase):
 
 
 class TestService(ServiceTestCase):
-
     def test_context(self):
         self.failUnlessEqual(Dummy, self.serviced_object.context.__class__)
 
@@ -80,24 +81,30 @@ class TestService(ServiceTestCase):
             skel = self.serviced_object.get_skeleton(filtr=[])
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % skel)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % skel
+        )
 
     def test_get_object(self):
         try:
             obj = self.serviced_object.get_object(attrs=[])
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % obj)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % obj
+        )
 
     def test_get_type(self):
         try:
             type = self.serviced_object.get_type()
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % type)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % type
+        )
 
     # See the extensions tests for tests regarding the {get,set}_extensions
     # methods.
@@ -107,38 +114,45 @@ class TestService(ServiceTestCase):
             props = self.serviced_object.set_properties(params={})
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % props)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % props
+        )
 
     def test_clipboard(self):
         try:
-            cb = self.serviced_object.clipboard(action='',
-                                                target='somewhere',
-                                                destination='elsewhere')
+            cb = self.serviced_object.clipboard(
+                action='', target='somewhere', destination='elsewhere'
+            )
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % cb)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % cb
+        )
 
 
 class TestServiceContainer(ServiceContainerTestCase):
-
     def test_create_object(self):
         create_object = self.serviced_container.create_object
         try:
             obj = create_object(type_name='object_type', id_='object')
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % obj)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % obj
+        )
 
     def test_delete_object(self):
         try:
             is_deleted = self.serviced_container.delete_object(id_='object')
         except NotImplementedError:
             return
-        self.fail("Something was returned from a method that is not "
-                  "implemented. returned: %s" % is_deleted)
+        self.fail(
+            "Something was returned from a method that is not "
+            "implemented. returned: %s" % is_deleted
+        )
 
 
 def test_suite():

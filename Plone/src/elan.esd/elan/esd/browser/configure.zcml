@@ -1,9 +1,7 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:grok="http://namespaces.zope.org/grok" i18n_domain="elan.esd">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="elan.esd">
 
     <include package="plone.app.contentmenu" />
 
-<!-- ##code-section Main -->
-    <grok:grok package="." />    
     <include package=".viewlets" />
 
     <browser:page permission="zope2.View"
@@ -16,55 +14,54 @@
                           name="dview"
                           for="..content.elandoccollection.IELANDocCollection"
                           class=".elandoccollection.ELANDocCollectionDocView" />
-                  
-           
+
+
      <browser:page permission="zope2.View"
                           name="irix"
                           for="docpool.base.interfaces.IDPDocument"
                           class=".dpdocument.DPDocumentirixView" />
 
-                            
-                            
-    
-    
-<!-- ##/code-section Main -->
 
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
             <browser:page permission="zope2.View" name="view" for="..interfaces.IELANDocCollection" class=".elandoccollection.ELANDocCollectionView" />
-        
-        
-        
-        
-                
-    
-            <browser:page permission="zope2.View" name="rpopup" for="..interfaces.IELANDocCollection" class=".elandoccollection.ELANDocCollectionrpopupView" />
-                    
-                            
-    
-    
-        
-        
-        
-        
-                                        
-    
-    
-        
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IELANArchive" class=".elanarchive.ELANArchiveView" />
-        
 
-        
-        
-        
-        
-                                        
-    
+
+
+
+
+
+            <browser:page permission="zope2.View" name="rpopup" for="..interfaces.IELANDocCollection" class=".elandoccollection.ELANDocCollectionrpopupView" />
+
+
+
+
+
+
+
+
+
+
+
+
+            <browser:page permission="zope2.View" name="view" for="..interfaces.IELANArchive" class=".elanarchive.ELANArchiveView" />
+
+
+
+
+
+
+
+
 </configure>

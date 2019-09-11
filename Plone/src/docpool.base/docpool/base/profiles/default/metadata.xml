@@ -4,16 +4,12 @@
     <dependencies>
         <dependency>profile-docpool.users:default</dependency>
         <dependency>profile-docpool.localbehavior:default</dependency>
-    <!-- ##code-section Dependencies -->
        <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
        <dependency>profile-plone.app.dexterity:default</dependency>
        <dependency>profile-plone.app.relationfield:default</dependency>
        <dependency>profile-plone.app.contenttypes:default</dependency>
-       <dependency>profile-plone.app.contenttypes:plone-content</dependency>   
+       <dependency>profile-plone.app.contenttypes:plone-content</dependency>
        <dependency>profile-eea.facetednavigation:default</dependency>
-    <!-- ##/code-section Dependencies -->
-    </dependencies>    
-    <!-- ##code-section View -->
-    
-    <!-- ##/code-section View -->
+    </dependencies>
+
 </metadata>

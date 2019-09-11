@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from App.Common import rfc1123_date
+from datetime import datetime
 from elan.journal.browser.base import BaseView
 from elan.journal.logger import logger
-from datetime import datetime
 from time import time
 from zope.publisher.browser import BrowserView
 
@@ -46,7 +46,8 @@ class RecentUpdates(BrowserView, BaseView):
             header = header.split(';')[0]
             try:
                 # parse RFC 1123 format and normalize for comparison
-                mod_since = datetime.strptime(header, '%a, %d %b %Y %H:%M:%S %Z')
+                mod_since = datetime.strptime(
+                    header, '%a, %d %b %Y %H:%M:%S %Z')
                 mod_since = mod_since.strftime('%Y-%m-%d %H:%M:%S')
             except (TypeError, ValueError):
                 mod_since = None
@@ -65,7 +66,8 @@ class RecentUpdates(BrowserView, BaseView):
 
     def __call__(self):
         logger.debug(
-            u'Processing request from ' + self.request.environ['REMOTE_ADDR'])
+            u'Processing request from ' +
+            self.request.environ['REMOTE_ADDR'])
 
         if self._needs_hard_refresh():
             return ''

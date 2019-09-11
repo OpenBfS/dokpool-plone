@@ -1,15 +1,18 @@
+from docpool.base.appregistry import extensionFor
 from docpool.localbehavior.adapter import isSupported
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.behavior.interfaces import IBehaviorAssignable
+from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import getMultiAdapter
 from zope.interface.declarations import getObjectSpecification
 from zope.interface.declarations import implementedBy
 from zope.interface.declarations import Implements
-from docpool.base.appregistry import extensionFor
-from docpool.base.interfaces import IExtension
+
 import logging
+
+
 log = logging.getLogger("docpool.localbehavior")
+
 
 def patch_fti_localbehavior():
     from plone.dexterity.content import FTIAwareSpecification
@@ -18,8 +21,6 @@ def patch_fti_localbehavior():
         return
 
     from plone.behavior.interfaces import IBehaviorAssignable
-    from plone.behavior.interfaces import IBehavior
-    from zope.component import queryUtility
 
     _orig_get = FTIAwareSpecification.__get__
 
@@ -61,7 +62,7 @@ def patch_fti_localbehavior():
             inst._p_mtime,
             SCHEMA_CACHE.modified(portal_type),
             SCHEMA_CACHE.invalidations,
-            hash(direct_spec)
+            hash(direct_spec),
         )
         if cache is not None and cache[:-1] == updated:
             if cache[-1] is not None:
@@ -81,41 +82,45 @@ def patch_fti_localbehavior():
             if assignable is not None:
                 for behavior_registration in assignable.enumerateBehaviors():
                     if behavior_registration.marker:
-                        #print behavior_registration.marker
+                        # print behavior_registration.marker
                         dynamically_provided.append(
-                            behavior_registration.marker
-                        )
+                            behavior_registration.marker)
 
             # DOCPOOL: this is the new part!
-            for name in (getattr(inst, 'local_behaviors', []) or []):
+            for name in getattr(inst, 'local_behaviors', []) or []:
                 # print "getting local behavior ", name
                 dynamically_provided.append(extensionFor(inst, name))
-#                behavior = extensionFor(inst, name)
-#                print behavior
-#                if behavior.marker is not None:
-#                    print behavior.marker
-#                    dynamically_provided.append(behavior.marker)
+        #                behavior = extensionFor(inst, name)
+        #                print behavior
+        #                if behavior.marker is not None:
+        #                    print behavior.marker
+        #                    dynamically_provided.append(behavior.marker)
 
         finally:
             del self.__recursion__
 
         if not dynamically_provided:
             # rare case if no schema nor behaviors with markers are set
-            inst._v__providedBy__ = updated + (None, )
+            inst._v__providedBy__ = updated + (None,)
             return spec
 
         dynamically_provided.append(spec)
         all_spec = Implements(*dynamically_provided)
-        inst._v__providedBy__ = updated + (all_spec, )
+        inst._v__providedBy__ = updated + (all_spec,)
         return all_spec
 
     FTIAwareSpecification.__get__ = __get__
     FTIAwareSpecification.__localbehavior_patched = True
 
+
 # patch_fti_localbehavior()
 
+
 def additionalSchemata(self):
-    return getAdditionalSchemataWithLocalbehavior(context=self.context, request=self.request, portal_type=self.portal_type)
+    return getAdditionalSchemataWithLocalbehavior(
+        context=self.context, request=self.request, portal_type=self.portal_type
+    )
+
 
 def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
     """Get additional schemata for this context or this portal_type.
@@ -129,29 +134,32 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
     are set, the portal_type might get ignored, depending on which
     code path is taken.
     """
-    log.debug("getAdditionalSchemata with context %r and portal_type %s",
-              context, portal_type)
+    log.debug(
+        "getAdditionalSchemata with context %r and portal_type %s", context, portal_type
+    )
     # Usually an add-form.
     if portal_type is None:
         portal_type = context.portal_type
 
-    # DOCPOOL modification! We only want to see behaviors that are allowed here.
+    # DOCPOOL modification! We only want to see behaviors that are allowed
+    # here.
     dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
     available_apps = dp_app_state.appsPermittedForObject(context.REQUEST)
     activated_apps = dp_app_state.appsActivatedByCurrentUser()
-    effective_apps = list(set(available_apps).intersection(set(activated_apps)))
+    effective_apps = list(
+        set(available_apps).intersection(
+            set(activated_apps)))
 
     for schema_interface in SCHEMA_CACHE.behavior_schema_interfaces(
-        portal_type
-    ):
+            portal_type):
         if isSupported(effective_apps, schema_interface):
             form_schema = IFormFieldProvider(schema_interface, None)
             if form_schema is not None:
                 yield form_schema
 
-from  plone.dexterity.browser.add import DefaultAddForm
 
+def patched_additionalSchemata():
+    return property(additionalSchemata)  # We get a @property decorated method!
 
-patched_additionalSchemata = lambda : property(additionalSchemata)  # We get a @property decorated method!
 
 setattr(DefaultAddForm, "additionalSchemata", patched_additionalSchemata())

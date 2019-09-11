@@ -1,23 +1,34 @@
 # -*- coding: utf-8 -*-
-from docpool.config.utils import ID, TYPE, TITLE, CHILDREN, createPloneObjects
-from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
-import transaction
-from zExceptions import BadRequest
-from Products.CMFPlone.utils import log_exc
-from docpool.config.local.base import CONTENT_AREA
-from docpool.config import _
 from datetime import datetime
+from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.config import _
 from docpool.config.general.elan import connectTypesAndCategories
+from docpool.config.local.base import CONTENT_AREA
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
+from docpool.elan.config import ELAN_APP
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import log_exc
+from zExceptions import BadRequest
+from zope.annotation.interfaces import IAnnotations
+
+import transaction
+
 
 # ELAN specific structures
+
 
 def dpAdded(self):
     """
     """
-    fresh = True
-    if self.hasObject("esd"):
-        fresh = False # It's a reinstall
+    annotations = IAnnotations(self)
+    fresh = ELAN_APP not in annotations[APPLICATIONS_KEY]
+    if fresh:
+        annotations[APPLICATIONS_KEY].append(ELAN_APP)
+
     copyCurrentSituation(self, fresh)
     transaction.commit()
     createBasicPortalStructure(self, fresh)
@@ -31,8 +42,10 @@ def dpAdded(self):
 
         placeful_wf = getToolByName(self, 'portal_placeful_workflow')
         try:
-            self.archive.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
-        except BadRequest, e:
+            self.archive.manage_addProduct[
+                'CMFPlacefulWorkflow'
+            ].manage_addWorkflowPolicyConfig()
+        except BadRequest as e:
             # print type(e)
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self.archive)
@@ -46,55 +59,87 @@ def dpAdded(self):
 
 
 BASICSTRUCTURE = [
-    {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: []},
+    {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: []}
 ]
 
-ARCHIVESTRUCTURE = [{TYPE: 'ELANCurrentSituation', TITLE: 'Elektronische Lagedarstellung', ID: 'esd', CHILDREN: []},
-                    CONTENT_AREA,
-                    ]
+ARCHIVESTRUCTURE = [
+    {
+        TYPE: 'ELANCurrentSituation',
+        TITLE: 'Elektronische Lagedarstellung',
+        ID: 'esd',
+        CHILDREN: [],
+    },
+    CONTENT_AREA,
+]
 
 ADMINSTRUCTURE = [
-    {TYPE: 'ELANContentConfig', TITLE: 'Konfiguration Inhalte', ID: 'contentconfig', CHILDREN: [
-        {TYPE: 'DPEvents', TITLE: u'Ereignisse', ID: 'scen', CHILDREN: [
-            {TYPE: 'DPEvent', TITLE: u'Normalfall', ID: 'routinemode', "Status": "active",
-             "TimeOfEvent": datetime.now(), CHILDREN: []}
-        ]},
-        {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
-        {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
-        {TYPE: 'DashboardsConfig', TITLE: u'Dokumentsammlungen Pinnwand', ID: 'dbconfig', CHILDREN: []},
-        {TYPE: 'IRIXConfig', TITLE: u'Konfiguration IRIX', ID: 'irix',
-         'organisationReporting': 'www.yourorganisation.org',
-         'contactName': 'Your Contact Name',
-         'contactEmail': 'contact@yourorganisation.org',
-         'organisationName': 'Your Organisation',
-         'organisationId': 'www.yourorganisation.org',
-         'organisationCountry': 'DE',
-         'organisationWeb': 'http://www.yourorganisation.org',
-         'organisationEmail': 'info@yourorganisation.org',
-         'sourceText': 'ELAN-E Electronic Situation Display',
-         'sourceDescription': 'http://elan.yourorganisation.org',
-         'typeMapping': ('Event Information:Event information',
-                         'Notification:Event information',
-                         'Situation Report:Event information',
-                         'NPP Information:Plant status',
-                         'Weather Information:Meteorology',
-                         'Gamma Dose Rate:Measurements',
-                         'Air Activity:Measurements',
-                         'Ground Contamination:Measurements',
-                         'Measurement Result Food:Measurements',
-                         'Measurement Result Feed:Measurements',
-                         'Measurement Result Water:Measurements',
-                         'Protective Actions:Protective actions',
-                         'Instructions to the Public:Public information',
-                         'Media Release:Public information - Press release',
-                         'NPP Projection:Model result',
-                         'RODOS Projection:Model result',
-                         'Other Projection:Model result',
-                         'Trajectory:Model result - Plume trajectory'),
-
-         CHILDREN: [],}
-    ]}]
-
+    {
+        TYPE: 'ELANContentConfig',
+        TITLE: 'Konfiguration Inhalte',
+        ID: 'contentconfig',
+        CHILDREN: [
+            {
+                TYPE: 'DPEvents',
+                TITLE: u'Ereignisse',
+                ID: 'scen',
+                CHILDREN: [
+                    {
+                        TYPE: 'DPEvent',
+                        TITLE: u'Normalfall',
+                        ID: 'routinemode',
+                        "Status": "active",
+                        "TimeOfEvent": datetime.now(),
+                        CHILDREN: [],
+                    }
+                ],
+            },
+            {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
+            {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
+            {
+                TYPE: 'DashboardsConfig',
+                TITLE: u'Dokumentsammlungen Pinnwand',
+                ID: 'dbconfig',
+                CHILDREN: [],
+            },
+            {
+                TYPE: 'IRIXConfig',
+                TITLE: u'Konfiguration IRIX',
+                ID: 'irix',
+                'organisationReporting': 'www.yourorganisation.org',
+                'contactName': 'Your Contact Name',
+                'contactEmail': 'contact@yourorganisation.org',
+                'organisationName': 'Your Organisation',
+                'organisationId': 'www.yourorganisation.org',
+                'organisationCountry': 'DE',
+                'organisationWeb': 'http://www.yourorganisation.org',
+                'organisationEmail': 'info@yourorganisation.org',
+                'sourceText': 'ELAN-E Electronic Situation Display',
+                'sourceDescription': 'http://elan.yourorganisation.org',
+                'typeMapping': (
+                    'Event Information:Event information',
+                    'Notification:Event information',
+                    'Situation Report:Event information',
+                    'NPP Information:Plant status',
+                    'Weather Information:Meteorology',
+                    'Gamma Dose Rate:Measurements',
+                    'Air Activity:Measurements',
+                    'Ground Contamination:Measurements',
+                    'Measurement Result Food:Measurements',
+                    'Measurement Result Feed:Measurements',
+                    'Measurement Result Water:Measurements',
+                    'Protective Actions:Protective actions',
+                    'Instructions to the Public:Public information',
+                    'Media Release:Public information - Press release',
+                    'NPP Projection:Model result',
+                    'RODOS Projection:Model result',
+                    'Other Projection:Model result',
+                    'Trajectory:Model result - Plume trajectory',
+                ),
+                CHILDREN: [],
+            },
+        ],
+    }
+]
 
 
 def createBasicPortalStructure(plonesite, fresh):
@@ -115,17 +160,23 @@ def createELANUsers(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    mtool.addMember('%s_elanadmin' % prefix, 'ELAN Administrator (%s)' % title, ['Member'], [])
+    mtool.addMember(
+        '%s_elanadmin' % prefix, 'ELAN Administrator (%s)' % title, [
+            'Member'], []
+    )
     elanadmin = mtool.getMemberById('%s_elanadmin' % prefix)
     elanadmin.setMemberProperties(
-        {"fullname": 'ELAN Administrator (%s)' % title,
-         "dp": self.UID()})
+        {"fullname": 'ELAN Administrator (%s)' % title, "dp": self.UID()}
+    )
     elanadmin.setSecurityProfile(password="admin")
-    mtool.addMember('%s_contentadmin' % prefix, 'Content Admin (%s)' % title, ['Member'], [])
+    mtool.addMember(
+        '%s_contentadmin' % prefix, 'Content Admin (%s)' % title, [
+            'Member'], []
+    )
     contentadmin = mtool.getMemberById('%s_contentadmin' % prefix)
     contentadmin.setMemberProperties(
-        {"fullname": 'Content Admin (%s)' % title,
-         "dp": self.UID()})
+        {"fullname": 'Content Admin (%s)' % title, "dp": self.UID()}
+    )
     contentadmin.setSecurityProfile(password="admin")
 
 
@@ -139,12 +190,22 @@ def setELANLocalRoles(self):
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
-    self.contentconfig.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
-    self.archive.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["DocPoolAdmin"])
-    self.content.Groups.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Site Administrator"])
-    self.esd.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])
+    self.contentconfig.manage_setLocalRoles(
+        "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
+    )
+    self.archive.manage_setLocalRoles(
+        "%s_ContentAdministrators" % prefix, ["DocPoolAdmin"]
+    )
+    self.content.Groups.manage_setLocalRoles(
+        "%s_ContentAdministrators" % prefix, ["Site Administrator"]
+    )
+    self.esd.manage_setLocalRoles(
+        "%s_ContentAdministrators" %
+        prefix, ["ContentAdmin"])
     self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
-    self.config.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["Owner"])
+    self.config.manage_setLocalRoles(
+        "%s_ContentAdministrators" %
+        prefix, ["Owner"])
 
 
 def createELANGroups(self):
@@ -160,23 +221,41 @@ def createELANGroups(self):
     title = self.Title()
     gtool = getToolByName(self, 'portal_groups')
     gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Members' % prefix)
-    gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_Members' % prefix)
-    gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Administrators' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_contentadmin' %
+        prefix,
+        '%s_Members' %
+        prefix)
+    gtool.addPrincipalToGroup(
+        '%s_elanadmin' %
+        prefix,
+        '%s_Administrators' %
+        prefix)
     # Content administrator group
-    props = {'allowedDocTypes': [], 'title': 'Content Administrators (%s)' % title,
-             'description': 'Responsible for the definition of scenarios, ticker texts and additional content.',
-             'dp': self.UID()}
-    gtool.addGroup("%s_ContentAdministrators" % prefix,
-                   properties=props)
-    gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_ContentAdministrators' % prefix)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'Content Administrators (%s)' % title,
+        'description': 'Responsible for the definition of scenarios, ticker texts and additional content.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_ContentAdministrators" % prefix, properties=props)
+    gtool.addPrincipalToGroup(
+        '%s_contentadmin' % prefix, '%s_ContentAdministrators' % prefix
+    )
     # Group for ELAN application rights
-    props = {'allowedDocTypes': [], 'title': 'ELAN Users (%s)' % title,
-             'description': 'Users with access to ELAN functions.',
-             'dp': self.UID()}
-    gtool.addGroup("%s_ELANUsers" % prefix,
-               properties=props)
+    props = {
+        'allowedDocTypes': [],
+        'title': 'ELAN Users (%s)' % title,
+        'description': 'Users with access to ELAN functions.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_ELANUsers" % prefix, properties=props)
     gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_ELANUsers' % prefix)
-    gtool.addPrincipalToGroup('%s_contentadmin' % prefix, '%s_ELANUsers' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_contentadmin' %
+        prefix,
+        '%s_ELANUsers' %
+        prefix)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ELANUsers' % prefix)
 
 
@@ -187,11 +266,13 @@ def copyCurrentSituation(self, fresh):
         return
     esd = self.esd
     from docpool.base.utils import _copyPaste
+
     _copyPaste(esd, self, safe=False)
     self.esd.setTitle(_("Aktuelle Lage"))
     self.esd.reindexObject()
     # make sure the current situation is first
     self.moveObject("esd", 0)
+
 
 def dpRemoved(self):
     """

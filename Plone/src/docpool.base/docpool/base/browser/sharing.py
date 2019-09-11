@@ -1,27 +1,29 @@
-from plone.memoize.instance import memoize
-from plone.app.workflow.browser.sharing import SharingView as OSV
-from zope.i18n import translate
-from Products.CMFPlone.utils import safe_unicode
-from zope.component import getMultiAdapter
 from Acquisition import aq_parent
 from plone.app.workflow import PloneMessageFactory as _
+from plone.app.workflow.browser.sharing import SharingView as OSV
+from plone.memoize.instance import memoize
+from Products.CMFPlone.utils import safe_unicode
+from zope.component import getMultiAdapter
+from zope.i18n import translate
+
 
 class SharingView(OSV):
-
     @memoize
     def roles(self):
         """
         Reduce the available roles for sharing
         """
         pairs = OSV.roles(self)
-        return [ p for p in pairs if p['id'] == 'Reader' ]
+        return [p for p in pairs if p['id'] == 'Reader']
 
-    def _principal_search_results(self,
-                                  search_for_principal,
-                                  get_principal_by_id,
-                                  get_principal_title,
-                                  principal_type,
-                                  id_key):
+    def _principal_search_results(
+        self,
+        search_for_principal,
+        get_principal_by_id,
+        get_principal_title,
+        principal_type,
+        id_key,
+    ):
         """Return search results for a query to add new users or groups.
 
         Returns a list of dicts, as per role_settings().
@@ -42,20 +44,27 @@ class SharingView(OSV):
         """
         context = self.context
 
-        translated_message = translate(_(u"Search for user or group"),
-                context=self.request)
+        translated_message = translate(
+            _(u"Search for user or group"), context=self.request
+        )
         search_term = safe_unicode(self.request.form.get('search_term', None))
         if not search_term or search_term == translated_message:
             return []
 
-        existing_principals = set([p['id'] for p in self.existing_role_settings()
-                                if p['type'] == principal_type])
+        existing_principals = set(
+            [
+                p['id']
+                for p in self.existing_role_settings()
+                if p['type'] == principal_type
+            ]
+        )
         empty_roles = dict([(r['id'], False) for r in self.roles()])
         info = []
 
         # BfS: we need the Plone Site here, because we want to see ALL groups
-        hunter = getMultiAdapter((aq_parent(context), self.request), name='pas_search')
-        
+        hunter = getMultiAdapter(
+            (aq_parent(context), self.request), name='pas_search')
+
         for principal_info in search_for_principal(hunter, search_term):
             principal_id = principal_info[id_key]
             if principal_id not in existing_principals:
@@ -70,10 +79,13 @@ class SharingView(OSV):
                 login = principal.getUserName()
                 if principal_type == 'group':
                     login = None
-                info.append(dict(id = principal_id,
-                                 title = get_principal_title(principal,
-                                                             principal_id),
-                                 login = login,
-                                 type = principal_type,
-                                 roles = roles))
+                info.append(
+                    dict(
+                        id=principal_id,
+                        title=get_principal_title(principal, principal_id),
+                        login=login,
+                        type=principal_type,
+                        roles=roles,
+                    )
+                )
         return info

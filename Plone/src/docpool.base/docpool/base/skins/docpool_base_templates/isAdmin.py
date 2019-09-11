@@ -9,9 +9,10 @@
 ##
 try:
     from plone import api
+
     roles = api.user.get_roles(obj=context)
     if roles and "Manager" in roles or "Site Administrator" in roles:
         return True
     return False
-except Exception, e:
+except Exception as e:
     return False

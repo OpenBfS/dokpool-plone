@@ -1,3 +1,3 @@
-##code-section main
-import security, model, forms
-##/code-section main 
+from elan.irix.db import forms
+from elan.irix.db import model
+from elan.irix.db import security

@@ -15,4 +15,3 @@ class IJournal(Interface):
     """A journal is a blog post which is intended to provide a rolling
     textual coverage of an ongoing event.
     """
-

@@ -14,49 +14,32 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements
-from zope.component import adapts
-from zope import schema
-from plone.directives import form, dexterity
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
-from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from Products.CMFPlone.utils import log, log_exc
-
-from plone.dexterity.content import Container
-from docpool.base.content.simplefolder import SimpleFolder, ISimpleFolder
-
-from Products.CMFCore.utils import getToolByName
-
-##code-section imports
-from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
 from docpool.elan.config import ELAN_APP
-##/code-section imports 
+from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.autoform import directives
+from plone.dexterity.content import Container
+from plone.supermodel import model
+from zope.interface import implementer
 
-from elan.sitrep.config import PROJECTNAME
 
-from elan.sitrep import DocpoolMessageFactory as _
-
-class ISRFolder(form.Schema, ISimpleFolder):
+class ISRFolder(model.Schema, ISimpleFolder):
     """
     """
 
-##code-section interface
-    form.omitted('allowedDocTypes')
-##/code-section interface
+    directives.omitted('allowedDocTypes')
 
 
+@implementer(ISRFolder)
 class SRFolder(Container, SimpleFolder):
     """
     """
+
     security = ClassSecurityInfo()
-    
-    implements(ISRFolder)
-    
-##code-section methods
+
     APP = ELAN_APP
+
     def modTypes(self):
         """
         """
@@ -69,19 +52,26 @@ class SRFolder(Container, SimpleFolder):
         for menu_item in menu_items:
             if menu_item.get('id') == 'SRModule':
                 for mt in self.modTypes():
-                    res.append({'extra': 
-                                {'separator': None, 'id': mt[0], 'class': 'contenttype-%s' % mt[0]}, 
-                                'submenu': None, 
-                                'description': '', 
-                                'title': mt[1], 
-                                'action': '%s/++add++SRModule?form.widgets.docType:list=%s' % (self.absolute_url(), mt[0]), 
-                                'selected': False, 
-                                'id': mt[0], 
-                                'icon': None})
+                    res.append(
+                        {
+                            'extra': {
+                                'separator': None,
+                                'id': mt[0],
+                                'class': 'contenttype-%s' % mt[0],
+                            },
+                            'submenu': None,
+                            'description': '',
+                            'title': mt[1],
+                            'action': '%s/++add++SRModule?form.widgets.docType:list=%s'
+                            % (self.absolute_url(), mt[0]),
+                            'selected': False,
+                            'id': mt[0],
+                            'icon': None,
+                        }
+                    )
             else:
                 res.append(menu_item)
         return res
-##/code-section methods 
 
     def mySRFolder(self):
         """
@@ -105,24 +95,20 @@ class SRFolder(Container, SimpleFolder):
     def getSRFolders(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRFolder'}
+        args = {'portal_type': 'SRFolder'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
         """
         """
-        args = {'portal_type':'SRModule'}
+        args = {'portal_type': 'SRModule'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSituationReports(self, **kwargs):
         """
         """
-        args = {'portal_type':'SituationReport'}
+        args = {'portal_type': 'SituationReport'}
         args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)] 
-
-
-##code-section bottom
-##/code-section bottom 
+        return [obj.getObject() for obj in self.getFolderContents(args)]
