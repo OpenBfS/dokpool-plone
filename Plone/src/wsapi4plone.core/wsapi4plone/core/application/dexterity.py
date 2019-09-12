@@ -7,11 +7,6 @@ from zope.component import adapter, getUtility
 from zope.interface import implementer, implementer_only
 from zope.event import notify
 
-from Products.ATContentTypes.interface.topic import IATTopic
-from Products.Archetypes.BaseUnit import BaseUnit
-from Products.Archetypes.interfaces import IBaseFolder, IBaseObject
-from Products.Archetypes.event import ObjectInitializedEvent
-
 from wsapi4plone.core.interfaces import IFormatQueryResults, IServiceContainer
 from plone.app.textfield import RichText
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
@@ -31,7 +26,6 @@ from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import getUtility
 from datetime import datetime
-from Products.ATContentTypes.utils import DT2dt
 from z3c.relationfield.schema import RelationList, RelationChoice
 from z3c.relationfield.relation import RelationValue
 
@@ -118,10 +112,8 @@ class DexterityObjectService(PloneService):
     def set_properties(self, params):
         for par in params:
             if isinstance(params[par], six.moves.xmlrpc_client.DateTime):
-                params[par] = DT2dt(
-                    DateTime(
-                        params[par].value)).replace(
-                    tzinfo=None)
+                params[par] = DateTime(
+                    params[par].value).asdatetime().replace(tzinfo=None)
             elif isinstance(params[par], six.moves.xmlrpc_client.Binary):
                 # import pdb; pdb.set_trace()
                 params[par] = params[par].data
