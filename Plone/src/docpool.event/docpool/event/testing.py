@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.events import EditFinishedEvent
 from plone.testing import z2
-
-import docpool.event
+from zope.event import notify
 
 
 class DocpoolEventLayer(PloneSandboxLayer):
@@ -18,6 +21,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import docpool.event
         import docpool.config
         import docpool.base
         import docpool.elan
@@ -38,6 +42,19 @@ class DocpoolEventLayer(PloneSandboxLayer):
         applyProfile(portal, 'docpool.base:default')
         applyProfile(portal, 'elan.policy:default')
         applyProfile(portal, 'docpool.event:default')
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+        # Create a docpool
+        # Do it here because it takes a long time and creating a docpool
+        # in each test or test-setup will lead to very long tests.
+        # TODO: Move this to a different layer to allow shorter tests
+        docpool = api.content.create(
+            container=portal,
+            type='DocumentPool',
+            id='test_docpool',
+            title=u'Test Dokpool',
+            supportedApps=('elan',),
+        )
+        notify(EditFinishedEvent(docpool))
 
 
 DOCPOOL_EVENT_FIXTURE = DocpoolEventLayer()

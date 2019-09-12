@@ -84,13 +84,7 @@ class TestDocTypes(unittest.TestCase):
         from docpool.base.appregistry import selectableApps
 
         self.assertEqual([i[0] for i in selectableApps()], ['doksys', 'elan'])
-        docpool = api.content.create(
-            container=self.portal,
-            type='DocumentPool',
-            id='test_docpool',
-            title=u'Test Doksys',
-            supportedApps=('elan',),
-        )
+        docpool = self.portal['test_docpool']
 
         self.assertEqual(
             docpool.keys(), ['esd', 'content', 'config', 'archive', 'contentconfig']
@@ -237,15 +231,7 @@ class TestDocTypes(unittest.TestCase):
         )
 
     def test_doctypes_change_event(self):
-        # create a docpool
-        docpool = api.content.create(
-            container=self.portal,
-            type='DocumentPool',
-            id='test_docpool',
-            title=u'Test Dokpool',
-            supportedApps=('elan',),
-        )
-        notify(EditFinishedEvent(docpool))
+        docpool = self.portal['test_docpool']
 
         # check for available subtypes of DPDocument
         voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')

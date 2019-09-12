@@ -4,8 +4,6 @@ from plone.dexterity.interfaces import IDexterityFTI
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from zope.event import notify
-from plone.dexterity.events import EditFinishedEvent
 
 import unittest
 
@@ -26,14 +24,7 @@ class TestEvent(unittest.TestCase):
         self.assertTrue(IDexterityFTI.providedBy(portal_types['DPNuclearPowerStation']))
 
     def test_add_event(self):
-        docpool = api.content.create(
-            container=self.portal,
-            type='DocumentPool',
-            id='test_docpool',
-            title=u'Test Doksys',
-            supportedApps=('elan',),
-            )
-        notify(EditFinishedEvent(docpool))
+        docpool = self.portal['test_docpool']
         container = docpool['contentconfig']['scen']
         event = api.content.create(
             container=container,
