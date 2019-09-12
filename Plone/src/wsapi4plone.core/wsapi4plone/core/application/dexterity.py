@@ -1,35 +1,22 @@
-import six.moves.xmlrpc_client
-from six.moves.xmlrpc_client import DateTime as XMLRPCDateTime
-
 from DateTime import DateTime
-from OFS.Image import File
-from zope.component import adapter, getUtility
-from zope.interface import implementer, implementer_only
-from zope.event import notify
-
-from wsapi4plone.core.interfaces import IFormatQueryResults, IServiceContainer
 from plone.app.textfield import RichText
+from plone.behavior.interfaces import IBehaviorAssignable
+from plone.dexterity.interfaces import IDexterityContent, IDexterityContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from Products.CMFPlone.utils import safe_unicode
-import six
-
-try:
-    from wsapi4plone.core.services import PloneService, PloneServiceContainer
-except ImportError:
-    from wsapi4plone.core.application.services import (
-        PloneService,
-        PloneServiceContainer,
-    )
-from plone.dexterity.interfaces import IDexterityContent, IDexterityContainer
-from zope.schema import getFieldsInOrder
-from plone.behavior.interfaces import IBehaviorAssignable
-from plone.dexterity.interfaces import IDexterityFTI
-from zope.component import getUtility
-from datetime import datetime
-from z3c.relationfield.schema import RelationList, RelationChoice
+from six.moves.xmlrpc_client import DateTime as XMLRPCDateTime
+from wsapi4plone.core.application.services import PloneService
+from wsapi4plone.core.application.services import PloneServiceContainer
+from wsapi4plone.core.interfaces import IServiceContainer
 from z3c.relationfield.relation import RelationValue
+from z3c.relationfield.schema import RelationList, RelationChoice
+from zope.component import adapter
+from zope.interface import implementer_only
+from zope.schema import getFieldsInOrder
 
 import logging
+import six
+import six.moves.xmlrpc_client
 
 logger = logging.getLogger("WSA API USER")
 

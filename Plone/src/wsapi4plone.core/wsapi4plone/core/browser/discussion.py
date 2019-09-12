@@ -1,15 +1,9 @@
 from cgi import escape
-
-try:
-    from zope.component.hooks import getSite
-except ImportError:
-    from zope.component.hooks import getSite
-from zope.interface import implementer
-
 from Products.CMFPlone.utils import safe_unicode
-
-from interfaces import IDiscussion
-from wsapi import WSAPI
+from wsapi4plone.core.browser.interfaces import IDiscussion
+from wsapi4plone.core.browser.wsapi import WSAPI
+from zope.component.hooks import getSite
+from zope.interface import implementer
 
 
 @implementer(IDiscussion)

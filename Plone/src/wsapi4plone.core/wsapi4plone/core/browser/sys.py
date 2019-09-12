@@ -1,6 +1,5 @@
+from wsapi4plone.core.browser.interfaces import ISystemAPI
 from zope.interface import implementer
-
-from interfaces import ISystemAPI
 
 
 @implementer(ISystemAPI)
