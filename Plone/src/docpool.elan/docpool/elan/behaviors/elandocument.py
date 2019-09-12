@@ -74,12 +74,13 @@ class ELANDocument(FlexibleView):
 
     @scenarios.setter
     def scenarios(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
         scenarios_to_keep = self.request.form.get(
             'form.widgets.IELANDocument.scenarios_to_keep', '').splitlines()
-        context.scenarios = scenarios_to_keep + value
+        new_scenarios = scenarios_to_keep + value
+        if not new_scenarios:
+            return
+        context = aq_inner(self.context)
+        context.scenarios = new_scenarios
 
     @property
     def scenarios_to_keep(self):
