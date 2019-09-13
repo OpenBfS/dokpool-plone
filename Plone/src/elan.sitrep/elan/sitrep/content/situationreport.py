@@ -54,7 +54,7 @@ def initializePhase(context):
     activeEvents = getActiveScenarios(context)
     if activeEvents is not None and len(activeEvents) > 0:
         firstEvent = activeEvents[0].getObject()
-        phase = firstEvent.ScenarioPhase and firstEvent.ScenarioPhase.to_object or None
+        phase = firstEvent.EventPhase and firstEvent.EventPhase.to_object or None
         return phase
     return None
 

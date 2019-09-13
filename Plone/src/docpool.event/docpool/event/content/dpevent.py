@@ -64,7 +64,7 @@ class IDPEvent(model.Schema, IContentBase):
     """
 
     Status = schema.Choice(
-        title=_(u'label_dpevent_status', default=u'Status of the scenario'),
+        title=_(u'label_dpevent_status', default=u'Status of the event'),
         description=_(u'description_dpevent_status', default=u''),
         required=True,
         source="docpool.base.vocabularies.Status",
@@ -84,35 +84,35 @@ class IDPEvent(model.Schema, IContentBase):
     )
 
     Substitute = RelationChoice(
-        title=_(u'label_dpevent_substitute', default=u'Substitute scenario'),
+        title=_(u'label_dpevent_substitute', default=u'Substitute event'),
         description=_(
             u'description_dpevent_substitute',
-            default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.',
+            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',
         ),
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
     )
     directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
-    # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
+    # directives.widget(EventPhase=AutocompleteFieldWidget)
     directives.widget(
-        ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
-    ScenarioPhase = RelationChoice(
+        EventPhase='z3c.form.browser.select.SelectFieldWidget')
+    EventPhase = RelationChoice(
         title=_(u"Scenario & Phase"),
         vocabulary=u"docpool.event.vocabularies.Phases",
         required=False,
     )
 
     directives.widget(
-        ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
-    ScenarioLocation = RelationChoice(
-        title=_(u'Scenario location'),
+        EventLocation='z3c.form.browser.select.SelectFieldWidget')
+    EventLocation = RelationChoice(
+        title=_(u'Event location'),
         vocabulary=u"docpool.event.vocabularies.PowerStations",
         required=False,
     )
 
-    ScenarioCoordinates = WKT(
-        title=_(u"Scenario coordinates"),
+    EventCoordinates = WKT(
+        title=_(u"Event coordinates"),
         required=False,
     )
 
@@ -197,8 +197,8 @@ class DPEvent(Item, ContentBase):
         """
         :return:
         """
-        if self.ScenarioPhase:
-            return self.ScenarioPhase.to_object.getPhaseTitle()
+        if self.EventPhase:
+            return self.EventPhase.to_object.getPhaseTitle()
         return ""
 
     def getStates(self):
@@ -513,7 +513,7 @@ class DPEvent(Item, ContentBase):
             return
         return coordinates.bounds
 
-    def coordinates(self, fieldname='ScenarioCoordinates'):
+    def coordinates(self, fieldname='EventCoordinates'):
         wkt = getattr(self, fieldname, None)
         if not wkt:
             return
