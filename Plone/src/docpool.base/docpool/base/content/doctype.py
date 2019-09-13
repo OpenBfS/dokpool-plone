@@ -18,6 +18,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.extendable import Extendable
 from docpool.base.content.extendable import IExtendable
 from docpool.base.utils import queryForObjects
+from plone import api
 from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
@@ -166,16 +167,21 @@ class DocType(Container, Extendable):
 
 @adapter(IDocType, IEditFinishedEvent)
 def updated(obj, event=None):
-    # Actually, a transfer folder should never allow a change of ESD.
-    # But the permission level could have been changed. So we adapt
-    # the read permissions for the sending ESD accordingly.
     log("DocType updated: %s" % str(obj))
+    catalog = api.portal.get_tool('portal_catalog')
     mpath = "/"
     if safe_hasattr(obj, "dpSearchPath"):
         mpath = obj.dpSearchPath()
-    docs = queryForObjects(obj, path=mpath, docType=obj.getId())
-    for doc in docs:
+    brains = queryForObjects(
+        obj,
+        portal_type='DPDocument',
+        path=mpath,
+        dp_type=obj.getId(),
+        )
+    for brain in brains:
         try:
-            doc.getObject().reindexObject()
-        except BaseException:
-            pass
+            # reindex object without changing the modification-date.
+            log('Reindexing ' + brain.getPath())
+            catalog._reindexObject(brain.getObject())
+        except BaseException as e:
+            log(e)
