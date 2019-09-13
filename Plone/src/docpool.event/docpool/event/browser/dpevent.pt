@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/@@main_template/macros/master"
+    i18n:domain="docpool.event">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core">
+
+    <div tal:define="widget python:view.widgets['Status']"
+         class="field">
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['Exercise']"
+         class="field">
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['TimeOfEvent']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['Substitute']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['EventPhase']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['EventLocation']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['EventCoordinates'];
+                     view python:widget;"
+         tal:condition="python:context.EventCoordinates"
+         class="field">
+        <label tal:content="widget/label" />
+        <br />
+        <div id="" class=""
+             tal:attributes="id view/id;
+                              class view/klass;
+                              style view/style;
+                              title view/title;
+                              lang view/lang;
+                              onclick view/onclick;
+                              ondblclick view/ondblclick;
+                              onmousedown view/onmousedown;
+                              onmouseup view/onmouseup;
+                              onmouseover view/onmouseover;
+                              onmousemove view/onmousemove;
+                              onmouseout view/onmouseout;
+                              onkeypress view/onkeypress;
+                              onkeydown view/onkeydown;
+                              onkeyup view/onkeyup;
+                              ">
+        </div>
+        <div tal:define="cgmap view/cgmap">
+          <metal:use use-macro="context/@@collectivegeo-macros/openlayers"/>
+          <metal:map use-macro="context/@@collectivegeo-macros/map-widget" />
+        </div>
+    </div>
+
+    <div tal:define="widget python:view.widgets['OperationMode']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['SectorizingSampleTypes']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+    <div tal:define="widget python:view.widgets['AreaOfInterest'];
+                     view python:widget;"
+         tal:condition="python:context.AreaOfInterest"
+         class="field">
+        <label tal:content="widget/label" />
+        <br />
+        <div id="" class=""
+             tal:attributes="id view/id;
+                              class view/klass;
+                              style view/style;
+                              title view/title;
+                              lang view/lang;
+                              onclick view/onclick;
+                              ondblclick view/ondblclick;
+                              onmousedown view/onmousedown;
+                              onmouseup view/onmouseup;
+                              onmouseover view/onmouseover;
+                              onmousemove view/onmousemove;
+                              onmouseout view/onmouseout;
+                              onkeypress view/onkeypress;
+                              onkeydown view/onkeydown;
+                              onkeyup view/onkeyup;
+                              ">
+        </div>
+        <div tal:define="cgmap view/cgmap">
+          <metal:use use-macro="context/@@collectivegeo-macros/openlayers"/>
+          <metal:map use-macro="context/@@collectivegeo-macros/map-widget" />
+        </div>
+    </div>
+
+    <div tal:define="widget python:view.widgets['changelog']"
+         class="field" >
+        <label tal:content="widget/label" />
+        <br />
+        <div tal:content="structure widget/render" />
+    </div>
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

@@ -1,15 +1,32 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser"
-           i18n_domain="docpool.event">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="docpool.event">
 
-    <include package="plone.app.contentmenu"/>
-    <include package=".viewlets"/>
+  <include package="plone.app.contentmenu"/>
+  <include package=".viewlets"/>
 
-    <browser:page permission="zope2.View"
-                  name="event.macros"
-                  for="*"
-                  template="event_macros.pt"
-    />
-    <browser:page permission="zope2.View" name="view" for="..interfaces.IDPEvents" class=".dpevents.DPEventsView"/>
+  <browser:page
+      name="event.macros"
+      for="*"
+      template="event_macros.pt"
+      permission="zope2.View"
+      />
 
+  <browser:page
+      name="view"
+      for="..interfaces.IDPEvents"
+      class=".dpevents.DPEventsView"
+      template="dpevents.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="view"
+      for="..interfaces.IDPEvent"
+      class=".dpevent.DPEventView"
+      template="dpevent.pt"
+      permission="zope2.View"
+      />
 
 </configure>
