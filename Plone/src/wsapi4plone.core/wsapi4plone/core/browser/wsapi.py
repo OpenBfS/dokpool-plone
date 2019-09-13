@@ -1,9 +1,7 @@
 from logging import getLogger
-
-from zope.component import getUtility
-
-from wsapi4plone.core.interfaces import IContextBuilder
 from plone.protect.interfaces import IDisableCSRFProtection
+from wsapi4plone.core.interfaces import IContextBuilder
+from zope.component import getUtility
 from zope.interface import alsoProvides
 
 

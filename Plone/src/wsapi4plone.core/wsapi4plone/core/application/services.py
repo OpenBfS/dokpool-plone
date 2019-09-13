@@ -10,7 +10,6 @@ from zope.component import adapter, getUtility
 from zope.interface import implementer, implementer_only
 from zope.publisher.interfaces import NotFound
 
-from Products.Archetypes.BaseUnit import BaseUnit
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
 try:
@@ -116,14 +115,6 @@ class PloneService(Service):
         for k in skeleton.keys():
             if self.context.get(k, None) is None:
                 skeleton[k] = None
-            elif isinstance(self.context[k], BaseUnit):
-                # -- it's worse than the x-ray shows --
-                # brittle_bones, tisk tisk
-                #
-                # Archetypes' BaseUnit subclasses OFS's File, which has the
-                # _properties attribute, but it loses its 'id' and
-                # 'content_type' ???
-                skeleton[k] = self.context[k].getRaw()
             elif isinstance(self.context[k], File):
                 skeleton[k] = self._gather_file_data(k)
             elif has_blob_support and IBlobWrapper.providedBy(self.context[k]):

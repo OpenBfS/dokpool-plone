@@ -1,7 +1,6 @@
+from wsapi4plone.core.browser.interfaces import ITypes
+from wsapi4plone.core.browser.wsapi import WSAPI
 from zope.interface import implementer
-
-from interfaces import ITypes
-from wsapi import WSAPI
 
 
 @implementer(ITypes)

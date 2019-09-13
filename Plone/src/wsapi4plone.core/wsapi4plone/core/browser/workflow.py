@@ -1,13 +1,9 @@
-try:
-    from zope.component.hooks import getSite
-except ImportError:
-    from zope.component.hooks import getSite
-from zope.interface import implementer
-
-from interfaces import IWorkflow
-from wsapi import WSAPI
 from plone.protect.interfaces import IDisableCSRFProtection
+from wsapi4plone.core.browser.interfaces import IWorkflow
+from wsapi4plone.core.browser.wsapi import WSAPI
+from zope.component.hooks import getSite
 from zope.interface import alsoProvides
+from zope.interface import implementer
 
 
 @implementer(IWorkflow)

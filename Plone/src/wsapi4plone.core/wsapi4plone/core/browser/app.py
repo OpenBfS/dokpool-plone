@@ -1,17 +1,12 @@
-import random
 from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
-
-try:
-    from zope.component.hooks import getSite
-except ImportError:
-    from zope.component.hooks import getSite
-from zope.component import getUtility
-from zope.interface import implementer
-
 from wsapi4plone.core.browser.interfaces import IApplicationAPI
 from wsapi4plone.core.browser.wsapi import WSAPI
-from wsapi4plone.core.interfaces import IScrubber, IService, IServiceContainer
+from wsapi4plone.core.interfaces import IService
+from wsapi4plone.core.interfaces import IServiceContainer
+from zope.interface import alsoProvides
+from zope.interface import implementer
+
+import random
 
 
 @implementer(IApplicationAPI)

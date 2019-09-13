@@ -1,17 +1,10 @@
 from logging import getLogger
-
-try:
-    from zope.component.hooks import getSite
-except ImportError:
-    from zope.component.hooks import getSite
-from zope.component import getUtility
-from zope.interface import implementer
-
 from Products.CMFCore.utils import getToolByName
-
 from wsapi4plone.core.browser.interfaces import IQuery
-from wsapi4plone.core.browser.wsapi import WSAPI
 from wsapi4plone.core.interfaces import IFormatQueryResults
+from zope.component import getUtility
+from zope.component.hooks import getSite
+from zope.interface import implementer
 
 import DateTime
 

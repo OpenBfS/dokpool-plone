@@ -1,41 +1,22 @@
-import six.moves.xmlrpc_client
-from six.moves.xmlrpc_client import DateTime as XMLRPCDateTime
-
 from DateTime import DateTime
-from OFS.Image import File
-from zope.component import adapter, getUtility
-from zope.interface import implementer, implementer_only
-from zope.event import notify
-
-from Products.ATContentTypes.interface.topic import IATTopic
-from Products.Archetypes.BaseUnit import BaseUnit
-from Products.Archetypes.interfaces import IBaseFolder, IBaseObject
-from Products.Archetypes.event import ObjectInitializedEvent
-
-from wsapi4plone.core.interfaces import IFormatQueryResults, IServiceContainer
 from plone.app.textfield import RichText
+from plone.behavior.interfaces import IBehaviorAssignable
+from plone.dexterity.interfaces import IDexterityContent, IDexterityContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from Products.CMFPlone.utils import safe_unicode
-import six
-
-try:
-    from wsapi4plone.core.services import PloneService, PloneServiceContainer
-except ImportError:
-    from wsapi4plone.core.application.services import (
-        PloneService,
-        PloneServiceContainer,
-    )
-from plone.dexterity.interfaces import IDexterityContent, IDexterityContainer
-from zope.schema import getFieldsInOrder
-from plone.behavior.interfaces import IBehaviorAssignable
-from plone.dexterity.interfaces import IDexterityFTI
-from zope.component import getUtility
-from datetime import datetime
-from Products.ATContentTypes.utils import DT2dt
-from z3c.relationfield.schema import RelationList, RelationChoice
+from six.moves.xmlrpc_client import DateTime as XMLRPCDateTime
+from wsapi4plone.core.application.services import PloneService
+from wsapi4plone.core.application.services import PloneServiceContainer
+from wsapi4plone.core.interfaces import IServiceContainer
 from z3c.relationfield.relation import RelationValue
+from z3c.relationfield.schema import RelationList, RelationChoice
+from zope.component import adapter
+from zope.interface import implementer_only
+from zope.schema import getFieldsInOrder
 
 import logging
+import six
+import six.moves.xmlrpc_client
 
 logger = logging.getLogger("WSA API USER")
 
@@ -118,10 +99,8 @@ class DexterityObjectService(PloneService):
     def set_properties(self, params):
         for par in params:
             if isinstance(params[par], six.moves.xmlrpc_client.DateTime):
-                params[par] = DT2dt(
-                    DateTime(
-                        params[par].value)).replace(
-                    tzinfo=None)
+                params[par] = DateTime(
+                    params[par].value).asdatetime().replace(tzinfo=None)
             elif isinstance(params[par], six.moves.xmlrpc_client.Binary):
                 # import pdb; pdb.set_trace()
                 params[par] = params[par].data
