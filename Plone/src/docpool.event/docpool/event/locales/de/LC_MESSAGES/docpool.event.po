@@ -78,7 +78,7 @@ msgstr "Ereignis Koordinaten"
 
 #: docpool.event/docpool/event/content/dpevent.py:109
 msgid "Event location"
-msgstr "Ereignis Ort"
+msgstr "Ereignisort"
 
 #: docpool.event/docpool/event/browser/event_macros.pt:49
 msgid "Filter"
