@@ -38,6 +38,8 @@ setup(
         'collective.dexteritytextindexer',
         'plone.app.contenttypes',
         'plone.app.relationfield',
+        'collective.z3cform.mapwidget',
+        'pygeoif',
     ],
     entry_points="""
       # -*- Entry points: -*-

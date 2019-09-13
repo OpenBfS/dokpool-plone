@@ -11,6 +11,7 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
+from collective.z3cform.mapwidget import WKT
 from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -29,8 +30,8 @@ from plone.app.textfield import RichTextValue
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.dexterity.utils import safe_unicode
-from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
+from plone.supermodel import model
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
@@ -38,6 +39,7 @@ from Products.CMFPlone.i18nl10n import utranslate
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
+from pygeoif import geometry
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -109,8 +111,9 @@ class IDPEvent(model.Schema, IContentBase):
         required=False,
     )
 
-    ScenarioCoordinates = schema.TextLine(
-        title=_(u'Scenario coordinates'), required=False
+    ScenarioCoordinates = WKT(
+        title=_(u"Scenario coordinates"),
+        required=False,
     )
 
     OperationMode = schema.Choice(
@@ -136,7 +139,10 @@ class IDPEvent(model.Schema, IContentBase):
             source=u'docpool.event.vocabularies.Networks'),
     )
 
-    AreaOfInterest = schema.Text(title=_(u"Area of interest"), required=False)
+    AreaOfInterest = WKT(
+        title=_(u"Area of interest"),
+        required=False,
+    )
 
     changelog = RichText(
         title=_(u'label_dpevent_changelog', default=u'Changelog'),
@@ -500,6 +506,18 @@ class DPEvent(Item, ContentBase):
             wftool.getInfoFor(self, 'review_state') == 'published'
             and self.Status == 'active'
         )
+
+    def bounds(self, fieldname='AreaOfInterest'):
+        coordinates = self.coordinates(fieldname)
+        if not coordinates:
+            return
+        return coordinates.bounds
+
+    def coordinates(self, fieldname='ScenarioCoordinates'):
+        wkt = getattr(self, fieldname, None)
+        if not wkt:
+            return
+        return geometry.from_wkt(wkt)
 
 
 class ELANScenario(DPEvent):
