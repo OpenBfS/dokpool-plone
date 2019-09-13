@@ -14,7 +14,7 @@
          tal:attributes="alt view/logo_title;
                          title view/logo_title;
                          src logo" /></a>
-    <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app['logo']">
+    <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app.get('logo', False)">
 
           <img src="" tal:attributes="src active_app/logo">
 
