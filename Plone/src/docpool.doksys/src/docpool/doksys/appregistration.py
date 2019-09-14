@@ -19,6 +19,10 @@ registerApp(
     IDoksysDoc,
     dpAdded,
     dpRemoved,
+    # Todo Skins folder
+    # /src/docpool.elan/docpool/elan/skins/docpool_elan_images/
     icon="doksys_app_icon.png",
     implicit=False,
+    # ./src/docpool.theme/docpool/theme/skins/docpooltheme_images/
+    logo="doksyslogo.png",
 )

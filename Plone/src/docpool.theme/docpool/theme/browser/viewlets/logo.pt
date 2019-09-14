@@ -14,19 +14,11 @@
          tal:attributes="alt view/logo_title;
                          title view/logo_title;
                          src logo" /></a>
-         <span tal:condition="python:'esd' in str(context.absolute_url())">
-          <img src="elanlogo.png">
-         </span>
-         <span tal:condition="python:'searches' in str(context.absolute_url())">
-           <img src="doksyslogo.png">
-         </span>
-         <span tal:condition="python:'rodos' in str(context.absolute_url())">
-           <img src="rodoslogo.png">
-         </span>
-         <span tal:condition="python:'berichte' in str(context.absolute_url())">
-           <img src="reilogo.png">
-         </span>
+    <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app.get('logo', False)">
 
+          <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
+
+    </tal:app_logo>
         <p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
 
    
