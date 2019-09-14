@@ -16,7 +16,7 @@
                          src logo" /></a>
     <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app.get('logo', False)">
 
-          <img src="" tal:attributes="src active_app/logo">
+          <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
 
     </tal:app_logo>
         <p class="version" tal:content="context/docpoolversion|nothing">1.0</p>
