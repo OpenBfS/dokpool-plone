@@ -26,8 +26,8 @@ class LogoDocpoolViewlet(LogoViewlet):
     def getActiveApp(self):
         user = api.user.get_current()
         if not user:
-            return
+            return {}
         active_app = user.getProperty('apps')
         if not active_app:
-            return
+            return {}
         return APP_REGISTRY[active_app[0]]
