@@ -18,4 +18,11 @@
       directory="static"
       />
 
+  <browser:page
+      name="docpool_setup"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".setup.DocpoolSetup"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
