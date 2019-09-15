@@ -19,6 +19,7 @@ from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.appregistry import implicitApps
 from docpool.base.config import BASE_APP
 from docpool.base.content.doctype import IDocType
+from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.events import DocumentPoolInitializedEvent
 from docpool.base.events import DocumentPoolRemovedEvent
 from persistent.list import PersistentList
@@ -211,12 +212,33 @@ def docPoolModified(obj, event=None):
     @return:
     """
     self = obj
+
+    # We shouldn't really care about group folders in this piece of code.
+    # Using events sounds better but would make it complicated to pass
+    # information from before changing application support to afterwards.
+
+    # Store locally allowed types on group folders for fixing immediately
+    # addable types later in case editing supported applications changed
+    # something about them.
+    cat = getToolByName(self, "portal_catalog")
+    group_folders = set(brain.getObject() for brain in cat(
+        path=self.dpSearchPath(),
+        object_provides=IGroupFolder.__identifier__,
+    ))
+    allowed_before = {
+        gf: gf.get_locally_allowed_types() for gf in group_folders}
+
     # Trigger configs for all supported applications
     if self.supportedApps:
         for app in self.supportedApps:
             APP_REGISTRY[app]['dpAddedMethod'](self)
     for appdef in implicitApps():
         appdef[2]['dpAddedMethod'](self)
+
+    # Modify immediately addable types if necessary (keeping the order of
+    # locally allowed types as the constrains form does).
+    for gf in group_folders:
+        gf.update_immediately_addable_types(allowed_before[gf])
 
 
 @adapter(IDocumentPool, IObjectRemovedEvent)

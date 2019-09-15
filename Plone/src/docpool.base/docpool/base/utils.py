@@ -18,6 +18,15 @@ from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 
 
+RARELY_USED_TYPES = {
+    'Collection',
+    'InfoFolder',
+    'ReviewFolder',
+    'CollaborationFolder',
+    'PrivateFolder',
+}
+
+
 def queryForObject(self, **kwa):
     """
     """
