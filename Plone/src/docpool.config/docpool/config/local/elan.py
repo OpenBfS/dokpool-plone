@@ -190,6 +190,7 @@ def setELANLocalRoles(self):
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
+    self.manage_setLocalRoles("%s_elanadmin" % prefix, ["ELANAdmin"])
     self.contentconfig.manage_setLocalRoles(
         "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
     )
