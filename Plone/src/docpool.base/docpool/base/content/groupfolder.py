@@ -108,6 +108,7 @@ class GroupFolder(Container, SimpleFolder):
     def update_immediately_addable_types(self):
         constrain = ISelectableConstrainTypes(self)
         constrain.setConstrainTypesMode(constraintypes.ENABLED)
+        allowed = constrain.getLocallyAllowedTypes()
         immed = set(constrain.getImmediatelyAddableTypes())
         # retain order of allowed types just like the stock form does
         constrain.setImmediatelyAddableTypes(
