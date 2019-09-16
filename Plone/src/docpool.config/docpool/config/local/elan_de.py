@@ -190,7 +190,7 @@ def setELANLocalRoles(self):
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
-    self.manage_setLocalRoles("%s_elanadmin" % prefix, ["ELANAdmin"])
+    self.manage_setLocalRoles("%s_ELANAdmins" % prefix, ["ELANAdmin"])
     self.contentconfig.manage_setLocalRoles(
         "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
     )
@@ -258,6 +258,16 @@ def createELANGroups(self):
         '%s_ELANUsers' %
         prefix)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ELANUsers' % prefix)
+    # Group for ELAN admin rights
+    props = {
+        'allowedDocTypes': [],
+        'title': 'ELAN Admins (%s)' % title,
+        'description': 'Users with admin privileges for ELAN.',
+        'dp': self.UID(),
+    }
+    gtool.addGroup("%s_ELANAdmins" % prefix, properties=props)
+    gtool.addPrincipalToGroup(
+        '%s_elanadmin' % prefix, '%s_ELANAdmins' % prefix)
 
 
 def copyCurrentSituation(self, fresh):
