@@ -3,7 +3,6 @@
     <version>0.0.2</version>
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
-
+        <dependency>profile-collective.z3cform.mapwidget:default</dependency>
     </dependencies>
-
 </metadata>

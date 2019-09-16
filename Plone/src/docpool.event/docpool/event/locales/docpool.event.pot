@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-12-21 09:44+0000\n"
+"POT-Creation-Date: 2019-09-13 17:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.event\n"
 
-#: docpool.event/docpool/event/browser/dpevents.pt:21
+#: docpool.event/docpool/event/content/dpevent.py:149
+msgid ""
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevents.pt:18
 msgid "++++ Exercise ++++"
 msgstr ""
 
@@ -33,19 +37,19 @@ msgstr ""
 msgid "Archiving"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpnetwork.py:22
+#: docpool.event/docpool/event/content/dpnetwork.py:23
 msgid "Area coordinates"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:157
+#: docpool.event/docpool/event/content/dpevent.py:143
 msgid "Area of interest"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpnuclearpowerstation.py:22
+#: docpool.event/docpool/event/content/dpnuclearpowerstation.py:23
 msgid "Coordinates"
 msgstr ""
 
-#: docpool.event/docpool/event/browser/dpevents.pt:11
+#: docpool.event/docpool/event/browser/dpevents.pt:8
 msgid "Created"
 msgstr ""
 
@@ -65,24 +69,44 @@ msgstr ""
 msgid "DP Nuclear Power Station"
 msgstr ""
 
+#: docpool.event/docpool/event/content/dpevent.py:593
+msgid "Date"
+msgstr ""
+
 #: docpool.event/docpool/event/profiles/default/actions.xml
 msgid "Edit Scenarios"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:115
+msgid "Event coordinates"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:109
+msgid "Event location"
 msgstr ""
 
 #: docpool.event/docpool/event/browser/event_macros.pt:49
 msgid "Filter"
 msgstr ""
 
-#: docpool.event/docpool/event/vocabularies.py:97
+#: docpool.event/docpool/event/configure.zcml:24
+msgid "Installs the docpool.event add-on."
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py:113
 msgid "Intensive mode"
 msgstr ""
 
-#: docpool.event/docpool/event/browser/dpevents.pt:18
+#: docpool.event/docpool/event/browser/dpevents.pt:15
 msgid "LT"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:139
+#: docpool.event/docpool/event/content/dpevent.py:120
 msgid "Operation mode"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:596
+msgid "Phase"
 msgstr ""
 
 #: docpool.event/docpool/event/browser/event_macros.pt:14
@@ -93,31 +117,23 @@ msgstr ""
 msgid "Purge"
 msgstr ""
 
-#: docpool.event/docpool/event/vocabularies.py:96
+#: docpool.event/docpool/event/vocabularies.py:109
 msgid "Routine mode"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:123
+#: docpool.event/docpool/event/content/dpevent.py:101
 msgid "Scenario & Phase"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:257
+#: docpool.event/docpool/event/content/dpevent.py:245
 msgid "Scenario archived"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:135
-msgid "Scenario coordinates"
-msgstr ""
-
-#: docpool.event/docpool/event/content/dpevent.py:130
-msgid "Scenario location"
-msgstr ""
-
-#: docpool.event/docpool/event/content/dpevent.py:151
+#: docpool.event/docpool/event/content/dpevent.py:136
 msgid "Sectorizing networks"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:144
+#: docpool.event/docpool/event/content/dpevent.py:126
 msgid "Sectorizing sample types"
 msgstr ""
 
@@ -125,44 +141,49 @@ msgstr ""
 msgid "Snapshot"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:280
+#: docpool.event/docpool/event/content/dpevent.py:268
 msgid "Snapshot created"
 msgstr ""
 
-#: docpool.event/docpool/event/browser/dpevents.pt:11
+#: docpool.event/docpool/event/browser/dpevents.pt:8
+#: docpool.event/docpool/event/content/dpevent.py:594
 msgid "Status"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:437
+#: docpool.event/docpool/event/content/dpevent.py:440
 msgid "There are no more documents for this scenario."
 msgstr ""
 
-#: docpool.event/docpool/event/browser/dpevents.pt:11
+#: docpool.event/docpool/event/browser/dpevents.pt:8
 msgid "Title/Description"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:225
+#: docpool.event/docpool/event/configure.zcml:33
+msgid "Uninstalls the docpool.event add-on."
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:209
 msgid "active"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:225
+#: docpool.event/docpool/event/content/dpevent.py:211
 msgid "closed"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:96
+#: docpool.event/docpool/event/content/dpevent.py:75
 msgid "description_dpevent_exercise"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:87
+#: docpool.event/docpool/event/content/dpevent.py:68
 msgid "description_dpevent_status"
 msgstr ""
 
-#. Default: "Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios."
-#: docpool.event/docpool/event/content/dpevent.py:112
+#. Default: "Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events."
+#: docpool.event/docpool/event/content/dpevent.py:88
 msgid "description_dpevent_substitute"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:104
+#: docpool.event/docpool/event/content/dpevent.py:81
 msgid "description_dpevent_timeofevent"
 msgstr ""
 
@@ -170,26 +191,35 @@ msgstr ""
 msgid "docpool.event"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:225
+#: docpool.event/docpool/event/configure.zcml:33
+msgid "docpool.event (uninstall)"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py:210
 msgid "inactive"
 msgstr ""
 
+#. Default: "Changelog"
+#: docpool.event/docpool/event/content/dpevent.py:148
+msgid "label_dpevent_changelog"
+msgstr ""
+
 #. Default: "Is this an exercise?"
-#: docpool.event/docpool/event/content/dpevent.py:95
+#: docpool.event/docpool/event/content/dpevent.py:74
 msgid "label_dpevent_exercise"
 msgstr ""
 
-#. Default: "Status of the scenario"
-#: docpool.event/docpool/event/content/dpevent.py:86
+#. Default: "Status of the event"
+#: docpool.event/docpool/event/content/dpevent.py:67
 msgid "label_dpevent_status"
 msgstr ""
 
-#. Default: "Substitute scenario"
-#: docpool.event/docpool/event/content/dpevent.py:111
+#. Default: "Substitute event"
+#: docpool.event/docpool/event/content/dpevent.py:87
 msgid "label_dpevent_substitute"
 msgstr ""
 
 #. Default: "Time of event"
-#: docpool.event/docpool/event/content/dpevent.py:103
+#: docpool.event/docpool/event/content/dpevent.py:80
 msgid "label_dpevent_timeofevent"
 msgstr ""

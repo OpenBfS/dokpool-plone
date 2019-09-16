@@ -11,6 +11,7 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
+from collective.z3cform.mapwidget import WKT
 from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -29,8 +30,8 @@ from plone.app.textfield import RichTextValue
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.dexterity.utils import safe_unicode
-from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
+from plone.supermodel import model
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
@@ -38,6 +39,7 @@ from Products.CMFPlone.i18nl10n import utranslate
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
+from pygeoif import geometry
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -62,7 +64,7 @@ class IDPEvent(model.Schema, IContentBase):
     """
 
     Status = schema.Choice(
-        title=_(u'label_dpevent_status', default=u'Status of the scenario'),
+        title=_(u'label_dpevent_status', default=u'Status of the event'),
         description=_(u'description_dpevent_status', default=u''),
         required=True,
         source="docpool.base.vocabularies.Status",
@@ -82,35 +84,36 @@ class IDPEvent(model.Schema, IContentBase):
     )
 
     Substitute = RelationChoice(
-        title=_(u'label_dpevent_substitute', default=u'Substitute scenario'),
+        title=_(u'label_dpevent_substitute', default=u'Substitute event'),
         description=_(
             u'description_dpevent_substitute',
-            default=u'Only relevant for private scenarios received from another organisation. Allows you map content for this scenario to one of you own scenarios.',
+            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',
         ),
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
     )
     directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
 
-    # directives.widget(ScenarioPhase=AutocompleteFieldWidget)
+    # directives.widget(EventPhase=AutocompleteFieldWidget)
     directives.widget(
-        ScenarioPhase='z3c.form.browser.select.SelectFieldWidget')
-    ScenarioPhase = RelationChoice(
+        EventPhase='z3c.form.browser.select.SelectFieldWidget')
+    EventPhase = RelationChoice(
         title=_(u"Scenario & Phase"),
         vocabulary=u"docpool.event.vocabularies.Phases",
         required=False,
     )
 
     directives.widget(
-        ScenarioLocation='z3c.form.browser.select.SelectFieldWidget')
-    ScenarioLocation = RelationChoice(
-        title=_(u'Scenario location'),
+        EventLocation='z3c.form.browser.select.SelectFieldWidget')
+    EventLocation = RelationChoice(
+        title=_(u'Event location'),
         vocabulary=u"docpool.event.vocabularies.PowerStations",
         required=False,
     )
 
-    ScenarioCoordinates = schema.TextLine(
-        title=_(u'Scenario coordinates'), required=False
+    EventCoordinates = WKT(
+        title=_(u"Event coordinates"),
+        required=False,
     )
 
     OperationMode = schema.Choice(
@@ -136,7 +139,10 @@ class IDPEvent(model.Schema, IContentBase):
             source=u'docpool.event.vocabularies.Networks'),
     )
 
-    AreaOfInterest = schema.Text(title=_(u"Area of interest"), required=False)
+    AreaOfInterest = WKT(
+        title=_(u"Area of interest"),
+        required=False,
+    )
 
     changelog = RichText(
         title=_(u'label_dpevent_changelog', default=u'Changelog'),
@@ -191,8 +197,8 @@ class DPEvent(Item, ContentBase):
         """
         :return:
         """
-        if self.ScenarioPhase:
-            return self.ScenarioPhase.to_object.getPhaseTitle()
+        if self.EventPhase:
+            return self.EventPhase.to_object.getPhaseTitle()
         return ""
 
     def getStates(self):
@@ -500,6 +506,18 @@ class DPEvent(Item, ContentBase):
             wftool.getInfoFor(self, 'review_state') == 'published'
             and self.Status == 'active'
         )
+
+    def bounds(self, fieldname='AreaOfInterest'):
+        coordinates = self.coordinates(fieldname)
+        if not coordinates:
+            return
+        return coordinates.bounds
+
+    def coordinates(self, fieldname='EventCoordinates'):
+        wkt = getattr(self, fieldname, None)
+        if not wkt:
+            return
+        return geometry.from_wkt(wkt)
 
 
 class ELANScenario(DPEvent):
