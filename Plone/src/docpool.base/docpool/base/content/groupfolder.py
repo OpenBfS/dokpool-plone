@@ -105,17 +105,10 @@ class GroupFolder(Container, SimpleFolder):
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
-    def get_locally_allowed_types(self):
-        constrain = ISelectableConstrainTypes(self)
-        return constrain.getLocallyAllowedTypes()
-
-    def update_immediately_addable_types(self, allowed_before=()):
+    def update_immediately_addable_types(self):
         constrain = ISelectableConstrainTypes(self)
         constrain.setConstrainTypesMode(constraintypes.ENABLED)
-        allowed = self.get_locally_allowed_types()
-        # keep config as much as possible, add new types (filtered)
         immed = set(constrain.getImmediatelyAddableTypes())
-        immed.update(set(allowed) - set(allowed_before) - RARELY_USED_TYPES)
         # retain order of allowed types just like the stock form does
         constrain.setImmediatelyAddableTypes(
-            [t for t in allowed if t in immed])
+            [t for t in allowed if t in immed - RARELY_USED_TYPES])
