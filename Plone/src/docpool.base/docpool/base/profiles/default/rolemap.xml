@@ -228,6 +228,12 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
+    <permission name="Docpool: Manage Addable Types" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
+    </permission>
     <permission name="FTP access" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>

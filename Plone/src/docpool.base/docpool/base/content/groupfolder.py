@@ -16,9 +16,12 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
+from docpool.base.utils import RARELY_USED_TYPES
+from plone.app.content.browser import constraintypes
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from zope.interface import implementer
 
 
@@ -101,3 +104,12 @@ class GroupFolder(Container, SimpleFolder):
         args = {'portal_type': 'SimpleFolder'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
+
+    def update_immediately_addable_types(self):
+        constrain = ISelectableConstrainTypes(self)
+        constrain.setConstrainTypesMode(constraintypes.ENABLED)
+        allowed = constrain.getLocallyAllowedTypes()
+        immed = set(constrain.getImmediatelyAddableTypes())
+        # retain order of allowed types just like the stock form does
+        constrain.setImmediatelyAddableTypes(
+            [t for t in allowed if t in immed - RARELY_USED_TYPES])

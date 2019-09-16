@@ -94,6 +94,9 @@
    <permission id="docpool.base.AddDPConfig" title="Docpool: Add DPConfig" />
 
 
+   <permission id="docpool.base.ManageAddableTypes" title="Docpool: Manage Addable Types" />
+
+
   <utility
     component=".vocabularies.SelectableAppsVocabularyFactory"
     name="docpool.base.vocabularies.SelectableApps"

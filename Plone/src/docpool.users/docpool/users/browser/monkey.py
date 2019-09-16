@@ -99,6 +99,7 @@ def addGroup(self, id, roles=[], groups=[],
         gf = groups._getOb(group_id)  # get the new or old folder and edit it
         mtool = getToolByName(context, "portal_membership")
         mtool.setLocalRoles(gf, [group_id], 'Owner')
+        gf.update_immediately_addable_types()
     return ret
 
 

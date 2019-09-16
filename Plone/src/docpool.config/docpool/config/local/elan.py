@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.base.utils import RARELY_USED_TYPES
 from docpool.config import _
 from docpool.config.general.elan import connectTypesAndCategories
 from docpool.config.local.base import CONTENT_AREA
@@ -19,6 +20,8 @@ import transaction
 
 
 # ELAN specific structures
+
+RARELY_USED_TYPES.add('SRFolder')
 
 
 def dpAdded(self):
