@@ -75,7 +75,6 @@
       <role name="ContentAdmin"/>
     </permission>
     <permission name="Docpool: Add SRFolder" acquire="True">
-      <role name="Site Administrator"/>
       <role name="ELANAdmin"/>
     </permission>
     <permission name="Docpool: Add SRModule" acquire="True">
