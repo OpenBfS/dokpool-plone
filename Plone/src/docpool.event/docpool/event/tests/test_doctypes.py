@@ -322,7 +322,7 @@ class TestDocTypes(unittest.TestCase):
             set(doctypes_ids),
         )
 
-        # portal_types are still the same, except SRFolder
+        # portal_types are still the same
         self.assertEqual(
             [i.id for i in folder.allowedContentTypes()],
             [
@@ -333,6 +333,7 @@ class TestDocTypes(unittest.TestCase):
                 'ReviewFolder',
                 'CollaborationFolder',
                 'PrivateFolder',
+                'SRFolder',
             ],
         )
 

@@ -2,7 +2,6 @@
 <rolemap>
   <roles>
     <role name="ELANUser"/>
-    <role name="ELANAdmin"/>
   </roles>
   <permissions>
     <permission name="Docpool: Add ELANArchive" acquire="True">

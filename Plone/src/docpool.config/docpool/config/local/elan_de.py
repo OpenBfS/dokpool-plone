@@ -190,7 +190,9 @@ def setELANLocalRoles(self):
     """
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
-    self.manage_setLocalRoles("%s_ELANAdmins" % prefix, ["ELANAdmin"])
+    self.manage_setLocalRoles(
+        "%s_SituationReportAdmins" % prefix, ["SituationReportAdmin"]
+    )
     self.contentconfig.manage_setLocalRoles(
         "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
     )
@@ -258,16 +260,20 @@ def createELANGroups(self):
         '%s_ELANUsers' %
         prefix)
     gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ELANUsers' % prefix)
-    # Group for ELAN admin rights
+    # Group for Situation Report users
     props = {
         'allowedDocTypes': [],
-        'title': 'ELAN Admins (%s)' % title,
-        'description': 'Users with admin privileges for ELAN.',
+        'title': 'Situation Report Admins/Lagebild (%s)' % title,
+        'description': 'Users who can manage situation reports.',
         'dp': self.UID(),
     }
-    gtool.addGroup("%s_ELANAdmins" % prefix, properties=props)
+    gtool.addGroup("%s_SituationReportAdmins" % prefix, properties=props)
     gtool.addPrincipalToGroup(
-        '%s_elanadmin' % prefix, '%s_ELANAdmins' % prefix)
+        '%s_contentadmin' % prefix, '%s_SituationReportAdmins' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_dpadmin' % prefix, '%s_SituationReportAdmins' % prefix)
+    gtool.addPrincipalToGroup(
+        '%s_elanadmin' % prefix, '%s_SituationReportAdmins' % prefix)
 
 
 def copyCurrentSituation(self, fresh):
