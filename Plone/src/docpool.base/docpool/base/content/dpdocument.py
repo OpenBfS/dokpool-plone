@@ -644,6 +644,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             img = getattr(self, 'docdefaultimage.png')
             return img._data, 'docdefaultimage.png'
 
+    @property
     def image(self):
         """
         """

@@ -9,6 +9,7 @@ from plone.namedfile.scaling import ImageScale
 from plone.namedfile.scaling import ImageScaling as OriginalImageScaling
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
+from Products.CMFPlone.utils import safe_callable
 from ZODB.POSException import ConflictError
 from zope.interface import alsoProvides
 from zope.publisher.interfaces import NotFound
@@ -135,9 +136,10 @@ class ImageScalingFactory(OriginalImageScalingFactory):
         """Factory for image scales`.
         """
         orig_value = getattr(self.context, fieldname, None)
-        orig_value = orig_value()
         if not orig_value:
             return
+        if safe_callable(orig_value):
+            orig_value = orig_value()
 
         orig_data = getattr(aq_base(orig_value), 'data', orig_value)
 
