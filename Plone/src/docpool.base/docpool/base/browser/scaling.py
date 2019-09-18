@@ -136,6 +136,8 @@ class ImageScalingFactory(OriginalImageScalingFactory):
         """
         orig_value = getattr(self.context, fieldname, None)
         orig_value = orig_value()
+        if not orig_value:
+            return
 
         orig_data = getattr(aq_base(orig_value), 'data', orig_value)
 

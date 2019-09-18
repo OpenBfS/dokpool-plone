@@ -649,10 +649,12 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         """
         # We need to acquire Manager rights here, since we are called in traversal code,
         # which unfortunately comes as Anoymous
-        data, filename = execute_under_special_role(
+        result = execute_under_special_role(
             self, "Manager", self.getMyImage, False
         )
-        return namedfile.NamedImage(data, filename=safe_unicode(filename))
+        if result:
+            data, filename = result
+            return namedfile.NamedImage(data, filename=safe_unicode(filename))
 
     def myState(self):
         """
