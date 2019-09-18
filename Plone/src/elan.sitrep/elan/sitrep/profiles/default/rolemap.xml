@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <rolemap>
+  <roles>
+    <role name="SituationReportAdmin"/>
+  </roles>
   <permissions>
     <permission name="Docpool: Add SituationOverview" acquire="True">
       <role name="Manager"/>
@@ -77,8 +80,7 @@
     <permission name="Docpool: Add SRFolder" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="Owner"/>
+      <role name="SituationReportAdmin"/>
     </permission>
     <permission name="Docpool: Add SRModule" acquire="True">
       <role name="Manager"/>
