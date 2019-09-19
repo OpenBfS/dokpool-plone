@@ -70,7 +70,7 @@ To build **Dokpool** on a current Linux Distribution you simply have to clone th
 - Python2.7 
 - Libraries: 
 ```sh
-$ apt-get install python libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales
+$ apt-get install git python libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales
 ```
 
 #### Additional requirements for varnish
