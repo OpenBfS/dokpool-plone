@@ -259,12 +259,7 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
     @param kwargs: Passed to the function
     """
 
-    portal_state = getMultiAdapter(
-        (context, context.REQUEST), name=u'plone_portal_state'
-    )
-    portal = portal_state.portal()
-    if not portal:
-        return
+    portal = api.portal.get()
     sm = getSecurityManager()
 
     try:
