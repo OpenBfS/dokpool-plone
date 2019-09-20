@@ -8,6 +8,7 @@ from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
+from Products.PythonScripts.PythonScript import PythonScript
 
 import transaction
 
@@ -23,8 +24,7 @@ def install(self):
     navSettings(self)
     createGroups(self)
     configureFiltering(self)
-    # setFrontpage(self)
-
+    setFrontpage(self)
 
 # Further base structures
 
@@ -99,6 +99,24 @@ def createAdminstructure(plonesite, fresh):
     """
     """
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
+
+
+def setFrontpage(self):
+    """
+    """
+    script_name = 'redirect'
+    if script_name not in self.keys():
+        self._setObject(script_name, PythonScript(script_name))
+    ps = self._getOb(script_name)
+    ps.write(
+        """
+if not context.isAdmin():
+    container.REQUEST.RESPONSE.redirect(context.myFirstDocumentPool())
+else:
+    container.REQUEST.RESPONSE.redirect(context.absolute_url() + "/folder_contents")
+"""
+    )
+    self.setLayout(script_name)
 
 
 def configureFiltering(self):
