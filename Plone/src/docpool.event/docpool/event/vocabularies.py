@@ -162,22 +162,6 @@ class PowerStationsVocabulary(object):
 PowerStationsVocabularyFactory = PowerStationsVocabulary()
 
 
-@implementer(IVocabularyFactory)
-class SampleTypesVocabulary(object):
-
-    def __call__(self, context):
-        registry = queryUtility(IRegistry)
-        terms = []
-        if registry is not None:
-            for sType in registry.get('docpool.event.sampleTypes', ()):
-                # create a term - the arguments are the value, the token, and
-                # the title (optional)
-                terms.append(SimpleVocabulary.createTerm(sType, sType, sType))
-        return SimpleVocabulary(terms)
-
-
-SampleTypesVocabularyFactory = SampleTypesVocabulary()
-
 allow_module("docpool.event.vocabularies")
 # allow_class(ELANESDVocabulary)
 
