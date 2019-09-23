@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from docpool.event import DocpoolMessageFactory as _
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_encode
 from zope.component import queryUtility
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -178,3 +180,19 @@ SampleTypesVocabularyFactory = SampleTypesVocabulary()
 
 allow_module("docpool.event.vocabularies")
 # allow_class(ELANESDVocabulary)
+
+
+@implementer(IVocabularyFactory)
+class AlertingStatusVocabulary(object):
+
+    def __call__(self, context):
+        values = [
+            (u'none', u'keine'),
+            (u'initialized', u'ausgelöst'),
+            (u'alerted', u'durchgeführt'),
+            ]
+        # value, token, title
+        return SimpleVocabulary([SimpleTerm(i[0], i[0], i[1]) for i in values])
+
+
+AlertingStatusVocabularyFactory = AlertingStatusVocabulary()
