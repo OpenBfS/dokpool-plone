@@ -24,8 +24,7 @@ def install(self):
     navSettings(self)
     createGroups(self)
     configureFiltering(self)
-    # setFrontpage(self)
-
+    setFrontpage(self)
 
 # Further base structures
 
@@ -102,22 +101,13 @@ def createAdminstructure(plonesite, fresh):
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
 
 
-# Since Plone 5.08 this has been problematic as the toolbar cannot handle
-# a script as default content.
 def setFrontpage(self):
     """
     """
-    ttool = getToolByName(self, "portal_types")
-    obj = ttool._getOb("Plone Site")
-    #    obj._updateProperty("default_view", "redirect")
-    #    obj._updateProperty("immediate_view", "redirect")
-    obj.reindexObject()
-    r = "redirect"
-    try:
-        id = self._setObject(r, PythonScript(r))
-    except BaseException:
-        pass
-    ps = self._getOb(r)
+    script_name = 'redirect'
+    if script_name not in self.keys():
+        self._setObject(script_name, PythonScript(script_name))
+    ps = self._getOb(script_name)
     ps.write(
         """
 if not context.isAdmin():
@@ -126,7 +116,7 @@ else:
     container.REQUEST.RESPONSE.redirect(context.absolute_url() + "/folder_contents")
 """
     )
-    self.setDefaultPage(r)
+    self.setLayout(script_name)
 
 
 def configureFiltering(self):
