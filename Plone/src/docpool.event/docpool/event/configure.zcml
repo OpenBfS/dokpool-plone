@@ -71,8 +71,8 @@
     name="docpool.event.vocabularies.PowerStations"
     />
   <utility
-    component=".vocabularies.SampleTypesVocabularyFactory"
-    name="docpool.event.vocabularies.SampleTypes"
+    component=".vocabularies.AlertingStatusVocabularyFactory"
+    name="docpool.event.vocabularies.AlertingStatus"
     />
 
 </configure>

@@ -70,10 +70,18 @@ class IDPEvent(model.Schema, IContentBase):
         source="docpool.base.vocabularies.Status",
     )
 
+    AlertingStatus = schema.Choice(
+        title=_(u'label_dpevent_alerting_status', default=u'Status of Alerting'),
+        description=_(u'description_dpevent_alerting_status', default=u''),
+        required=True,
+        source="docpool.event.vocabularies.AlertingStatus",
+    )
+
     Exercise = schema.Bool(
         title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
         description=_(u'description_dpevent_exercise', default=u''),
         required=False,
+        default=True,
     )
 
     TimeOfEvent = schema.Datetime(
@@ -81,6 +89,29 @@ class IDPEvent(model.Schema, IContentBase):
         description=_(u'description_dpevent_timeofevent', default=u''),
         required=True,
         defaultFactory=initializeTimeOfEvent,
+    )
+
+    SectorizingSampleTypes = schema.List(
+        title=_(u'Sectorizing sample types'),
+        required=False,
+        value_type=schema.Choice(
+            source=u"docpool.doksys.SampleTypeIds"),
+    )
+
+    directives.widget(
+        SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
+    )
+    SectorizingNetworks = RelationList(
+        title=_(u'Sectorizing networks'),
+        required=False,
+        value_type=RelationChoice(
+            source=u'docpool.event.vocabularies.Networks'),
+    )
+
+    OperationMode = schema.Choice(
+        title=_(u'Operation mode'),
+        vocabulary=u"docpool.event.vocabularies.Modes",
+        required=False,
     )
 
     Substitute = RelationChoice(
@@ -114,29 +145,6 @@ class IDPEvent(model.Schema, IContentBase):
     EventCoordinates = WKT(
         title=_(u"Event coordinates"),
         required=False,
-    )
-
-    OperationMode = schema.Choice(
-        title=_(u'Operation mode'),
-        vocabulary=u"docpool.event.vocabularies.Modes",
-        required=False,
-    )
-
-    SectorizingSampleTypes = schema.List(
-        title=_(u'Sectorizing sample types'),
-        required=False,
-        value_type=schema.Choice(
-            source=u"docpool.event.vocabularies.SampleTypes"),
-    )
-
-    directives.widget(
-        SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
-    )
-    SectorizingNetworks = RelationList(
-        title=_(u'Sectorizing networks'),
-        required=False,
-        value_type=RelationChoice(
-            source=u'docpool.event.vocabularies.Networks'),
     )
 
     AreaOfInterest = WKT(
