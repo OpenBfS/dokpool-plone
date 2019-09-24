@@ -16,7 +16,6 @@ parts =
     i18nize_policy
     zodbpack-conf
     cron-pack
-    resources
     
     ${buildout:varnish-parts}
     
@@ -65,8 +64,10 @@ rel-storage =
     type postgresql
     dsn ${database:dsn}
     blob-dir ./blobs
-    shared-blob-dir false
+    shared-blob-dir true
 environment-vars =    
     zope_i18n_compile_mo_files true
+    PTS_LANGUAGES de
+    zope_i18n_allowed_languages de
     PLONE_CSRF_DISABLED false
     ELANENGINE ${env_config:ec_elan_engine}
