@@ -29,6 +29,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.menu
         import wsapi4plone.core
         import elan.policy
+        import docpool.doksys
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.config)
@@ -36,6 +37,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.menu)
         self.loadZCML(package=wsapi4plone.core)
         self.loadZCML(package=elan.policy)
+        self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=docpool.event)
 
     def setUpPloneSite(self, portal):
