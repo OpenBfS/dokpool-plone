@@ -48,6 +48,7 @@ varnish         = ${env_config:ec_varnish_host}
 
 [database]
 dsn = dbname=${env_config:ec_pg_dbname} user=${env_config:ec_pg_user} host=${env_config:ec_pg_host} password=${env_config:ec_pg_password} port=${env_config:ec_pg_port}
+elan = ${env_config:ec_elan_engine}
 
 [varnish-options]
 storage = malloc,512M
@@ -70,4 +71,4 @@ environment-vars =
     PTS_LANGUAGES de
     zope_i18n_allowed_languages de
     PLONE_CSRF_DISABLED false
-    ELANENGINE ${env_config:ec_elan_engine}
+    ELANENGINE ${database:elan}
