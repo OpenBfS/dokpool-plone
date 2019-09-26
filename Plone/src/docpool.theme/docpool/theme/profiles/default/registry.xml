@@ -49,8 +49,8 @@
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="depends">plone</value>
-    <value key="jscompilation">++plone++static/docpool-compiled.js</value>
-    <value key="csscompilation">++plone++static/docpool-compiled.css</value>    
+    <value key="jscompilation">++theme++docpool.theme/docpool-compiled.js</value>
+    <value key="csscompilation">++theme++docpool.theme/docpool-compiled.css</value>
   </records>
   <records prefix="plone.bundles/docpool-anon"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>

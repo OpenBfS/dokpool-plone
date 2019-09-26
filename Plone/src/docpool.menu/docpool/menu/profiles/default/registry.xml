@@ -23,8 +23,8 @@
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="depends">plone</value>
-    <value key="jscompilation">++plone++static/docpool-menu-compiled.js</value>
-    <value key="csscompilation">++plone++static/docpool-menu-compiled.css</value>    
+    <value key="jscompilation">++theme++docpool.theme/docpool-menu-compiled.js</value>
+    <value key="csscompilation">++theme++docpool.theme/docpool-menu-compiled.css</value>
   </records>
 
 </registry>
