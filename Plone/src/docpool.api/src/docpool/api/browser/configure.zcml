@@ -21,6 +21,7 @@
   <browser:page
       name="docpool_setup"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      template="docpool_setup.pt"
       class=".setup.DocpoolSetup"
       permission="cmf.ManagePortal"
       />
