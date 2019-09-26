@@ -53,7 +53,14 @@ def addGroup(self, id, roles=[], groups=[],
 
     log("Adding group %s" % id)
     ret = GroupsTool._old_addGroup(
-        self, id, roles=roles, groups=groups, properties=properties, REQUEST=REQUEST
+        self,
+        id,
+        roles=roles,
+        groups=groups,
+        properties=properties,
+        REQUEST=REQUEST,
+        *args,
+        **kw
     )
     if not ret:
         return ret
