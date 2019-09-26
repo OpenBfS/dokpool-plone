@@ -99,7 +99,7 @@ class DocpoolSetup(BrowserView):
                     description=u'foo',
                     docType=doctype_id,
                     text=RichTextValue(u'<p>Body one</p>', 'text/html', 'text/x-html-safe'),
-                    local_behaviors=['elan'],
+                    local_behaviors=['elan', 'doksys'],
                     scenarios=[event_id],
                 )
                 modified(new)
@@ -121,6 +121,13 @@ class DocpoolSetup(BrowserView):
 
         This is mimiking the code in docpool.users
         """
+        # get all doctypes to enable it for the new group
+        voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
+        doctypes = voc(docpool).by_value
+        doctypes_ids = [i.id for i in doctypes]
+
+        # First add a group to hold the user
+        # TODO: if a group by that name exists use it instead
         gtool = getToolByName(docpool, 'portal_groups')
         docpool_uid = IUUID(docpool)
         docpool_title = docpool.Title()
@@ -134,8 +141,10 @@ class DocpoolSetup(BrowserView):
             'title': group_title,
             'description': 'A group to test with',
             'dp': docpool_uid,
+            'allowedDocTypes': doctypes_ids,
         }
         # this uses the monkey-patched addGroup from docpool.users
+        # it will create a group-folder inside the docpool
         gtool.addGroup(
             addname,
             (),
@@ -145,19 +154,9 @@ class DocpoolSetup(BrowserView):
             description=description,
             REQUEST=self.request,
         )
-        # it should create some content inside teh docpool. check for it:
-        docpool.keys
         group1 = api.group.get(addname)
 
-        # enable all doctypes for the new group
-        voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
-        doctypes = voc(docpool).by_value
-        doctypes_ids = [i.id for i in doctypes]
-        group1.setGroupProperties({'allowedDocTypes': doctypes_ids})
-        # set docpool on group
-        group1.setGroupProperties({'dp': docpool_uid})
-
-        # add a user to test with
+        # add the user
         user_fullname = '{} ({})'.format(username, docpool_title)
         user = api.user.create(
             email=u'tester@plone.org',
@@ -167,9 +166,14 @@ class DocpoolSetup(BrowserView):
             properties={'fullname': user_fullname},
         )
         user.setMemberProperties(
-            {'fullname': user_fullname, 'dp': docpool_uid}
+            {
+                'fullname': user_fullname,
+                'dp': docpool_uid,
+                'apps': ['elan', 'doksys'],
+            }
         )
         api.group.add_user(group=group1, user=user)
+        api.group.add_user(groupname='{}_Members'.format(prefix), user=user)
         api.group.add_user(groupname='{}_DoksysUsers'.format(prefix), user=user)
         api.group.add_user(groupname='{}_ELANUsers'.format(prefix), user=user)
         return user
