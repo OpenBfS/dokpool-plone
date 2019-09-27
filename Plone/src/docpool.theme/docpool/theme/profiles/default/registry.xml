@@ -61,7 +61,7 @@
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="jscompilation"></value>
-    <value key="csscompilation">++plone++static/docpool-anon-compiled.css</value>    
+    <value key="csscompilation">++theme++docpool.theme/docpool-anon-compiled.css</value>
   </records>
   <records prefix="plone.bundles/docpool-nonadmin"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
@@ -72,6 +72,6 @@
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="jscompilation"></value>
-    <value key="csscompilation">++plone++static/docpool-nonadmin-compiled.css</value>    
+    <value key="csscompilation">++theme++docpool.theme/docpool-nonadmin-compiled.css</value>
   </records>
 </registry>

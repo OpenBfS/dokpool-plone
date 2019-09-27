@@ -25,7 +25,7 @@
     <value key="enabled">True</value>
     <value key="depends">docpool</value>
     <value key="jscompilation"></value>
-    <value key="csscompilation">++plone++static/docpool-dashboard-compiled.css</value>    
+    <value key="csscompilation">++resource++docpool.dashboard.stylesheets/docpool-dashboard-compiled.css</value>
   </records>
 
 
