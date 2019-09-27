@@ -11,7 +11,7 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js"></value>
       <value key="css">
-        <element>++resource++docpool.dashboard.stylesheets/dashboard.less</element>
+        <element>++plone++docpool.dashboard/dashboard.less</element>
       </value>
   </records>
   
