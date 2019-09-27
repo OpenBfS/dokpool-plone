@@ -2,15 +2,15 @@
           i18n:domain="docpool.theme">
   <records prefix="plone.resources/docpool-menu"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js">++resource++docpool.menu/init-menu.js</value>
+      <value key="js">++plone++docpool.menu/init-menu.js</value>
       <value key="css">
-        <element>++resource++docpool.menu/responsive-menu.less</element>
+        <element>++plone++docpool.menu/responsive-menu.less</element>
       </value>
       <value key="deps">docpool-menu-plugin</value>
   </records>
   <records prefix="plone.resources/docpool-menu-plugin"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js">++resource++docpool.menu/responsive-menu.js</value>
+      <value key="js">++plone++docpool.menu/responsive-menu.js</value>
       <value key="deps">jquery</value>
       <value key="export"></value>
   </records>
@@ -23,8 +23,9 @@
     <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="depends">plone</value>
-    <value key="jscompilation">++plone++static/docpool-menu-compiled.js</value>
-    <value key="csscompilation">++plone++static/docpool-menu-compiled.css</value>    
+    <value key="jscompilation">++plone++docpool.menu/docpool-menu-compiled.js</value>
+    <value key="csscompilation">++plone++docpool.menu/docpool-menu-compiled.css</value>
+    <value key="last_compilation">2019-09-27 10:25:59</value>
   </records>
 
 </registry>

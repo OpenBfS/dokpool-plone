@@ -1,0 +1,70 @@
+/* line 5, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile {
+  border: 1px solid;
+  float: left;
+  padding: 0 10px 10px;
+  width: 300px;
+  height: 300px;
+  overflow-x: scroll;
+}
+/* line 14, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .visualization .whole {
+  max-width: 90%;
+  height: auto;
+  float: left;
+}
+/* line 15, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .visualization .whole img {
+  width: 100%;
+}
+/* line 22, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .visualization .map {
+  max-width: 66%;
+  height: auto;
+  float: left;
+}
+/* line 23, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .visualization .map img {
+  width: 100%;
+}
+/* line 30, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .visualization .legend {
+  max-width: 34%;
+  height: auto;
+  float: left;
+}
+/* line 31, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .visualization .legend img {
+  width: 100%;
+}
+/* line 40, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.dashboard .doctile .metadata {
+  vertical-align: bottom;
+}
+/* line 47, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.portaltype-dashboard #sidebar {
+  display: none;
+}
+/* line 50, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.portaltype-dashboard .col-sm-9 {
+  width: 100%;
+}
+/* line 53, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+.portaltype-dashboard #viewlet-below-content-body {
+  clear: both;
+}
+@media (min-width: 992px) {
+  /* line 62, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+  .dashboard .doctile {
+    width: 400px;
+    height: 320px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 70, http://localhost:8081/Plone3/++resource++docpool.dashboard.stylesheets/dashboard.less */
+  .dashboard .doctile {
+    width: 500px;
+    height: 400px;
+  }
+}
+

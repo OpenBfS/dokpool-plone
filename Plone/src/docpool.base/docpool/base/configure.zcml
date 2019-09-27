@@ -9,6 +9,7 @@
     <include package=".browser" />
     <include package=".content" />
     <include package=".portlets" />
+    <include file="upgrades.zcml" />
 
     <include package="plone.app.relationfield" />
     <include package="collective.autopermission" />

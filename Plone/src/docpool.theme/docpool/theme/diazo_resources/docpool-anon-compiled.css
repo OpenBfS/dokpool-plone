@@ -1,0 +1,7 @@
+/* line 3, http://localhost:8081/Plone3/++theme++docpool.theme/static/anonymous.less */
+#portal-searchbox,
+#portal-breadcrumbs,
+#portal-anontools {
+  display: none !important;
+}
+

@@ -4,7 +4,7 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js"></value>
       <value key="css">
-        <element>++resource++docpool.config/custom.less</element>
+        <element>++plone++docpool.config/docpool-config.less</element>
       </value>
   </records>
   
@@ -18,7 +18,7 @@
     <value key="enabled">True</value>
     <value key="depends">docpool</value>
     <value key="jscompilation"></value>
-    <value key="csscompilation">++plone++static/docpool-config-compiled.css</value>    
+    <value key="csscompilation">++plone++docpool.config/docpool-config-compiled.css</value>
+    <value key="last_compilation">2019-09-27 10:25:59</value>
   </records>
->
 </registry>

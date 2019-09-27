@@ -9,6 +9,11 @@
     <include package=".browser" />
     <include package=".content" />
 
+    <plone:static
+      directory="static"
+      type="plone"
+      name="docpool.dashboard"
+      />
 
     <include package="plone.app.relationfield" />
     <include package="collective.autopermission" />

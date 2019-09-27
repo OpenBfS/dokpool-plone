@@ -1,0 +1,78 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.base">
+
+    <records prefix="plone.resources/docpool-config"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js"></value>
+        <value key="css">
+            <element>++plone++docpool.config/docpool-config.less</element>
+        </value>
+    </records>
+
+    <records prefix="plone.resources/docpool-dashboard"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js"></value>
+        <value key="css">
+            <element>++plone++docpool.dashboard/dashboard.less</element>
+        </value>
+    </records>
+
+    <records prefix="plone.resources/docpool-menu"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js">++plone++docpool.menu/init-menu.js</value>
+        <value key="css">
+            <element>++plone++docpool.menu/responsive-menu.less</element>
+        </value>
+    </records>
+
+    <records prefix="plone.resources/docpool-menu-plugin"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js">++plone++docpool.menu/responsive-menu.js</value>
+    </records>
+
+    <records prefix="plone.resources/elan-sitrep"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="css">
+            <element>++plone++elan.sitrep/sitrep.less</element>
+        </value>
+    </records>
+
+    <records prefix="plone.bundles/docpool-config"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="csscompilation">++plone++docpool.config/docpool-config-compiled.css</value>
+        <value key="last_compilation">2019-09-27 10:25:59</value>
+    </records>
+
+    <records prefix="plone.bundles/docpool-menu"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="jscompilation">++plone++docpool.menu/docpool-menu-compiled.js</value>
+        <value key="csscompilation">++plone++docpool.menu/docpool-menu-compiled.css</value>
+        <value key="last_compilation">2019-09-27 10:25:59</value>
+    </records>
+
+    <records prefix="plone.bundles/docpool"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="jscompilation">++theme++docpool.theme/docpool-compiled.js</value>
+        <value key="csscompilation">++theme++docpool.theme/docpool-compiled.css</value>
+        <value key="last_compilation">2019-09-27 10:25:59</value>
+    </records>
+
+    <records prefix="plone.bundles/docpool-anon"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="csscompilation">++theme++docpool.theme/docpool-anon-compiled.css</value>
+        <value key="last_compilation">2019-09-27 10:25:59</value>
+    </records>
+
+    <records prefix="plone.bundles/docpool-nonadmin"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="csscompilation">++theme++docpool.theme/docpool-nonadmin-compiled.css</value>
+        <value key="last_compilation">2019-09-27 10:25:59</value>
+    </records>
+
+    <records prefix="plone.bundles/elan-sitrep"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="csscompilation">++plone++elan.sitrep/elan-sitrep-compiled.css</value>
+        <value key="last_compilation">2019-09-27 10:25:59</value>
+    </records>
+
+</registry>
