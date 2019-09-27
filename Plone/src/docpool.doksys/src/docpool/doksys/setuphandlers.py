@@ -113,7 +113,7 @@ def create_1day_collection(plonesite):
         },
         {
             u'i': u'creationDate',
-            u'o': u'plone.app.querystring.operation.date.beforeToday',
+            u'o': u'plone.app.querystring.operation.date.largerThanRelativeDate',
             u'v': u'1',
         },
     ]
