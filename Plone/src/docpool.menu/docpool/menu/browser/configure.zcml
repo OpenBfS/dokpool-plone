@@ -11,12 +11,12 @@
       layer="docpool.menu.interfaces.IDocpoolMenuLayer"
       />
 
-  <!-- Publish static files -->
-  <browser:resourceDirectory
-      name="docpool.menu"
+  <plone:static
       directory="static"
+      type="plone"
+      name="docpool.menu"
       />
-      
+
   <browser:viewlet
       name="plone.global_sections"
       manager="plone.app.layout.viewlets.interfaces.IMainNavigation"

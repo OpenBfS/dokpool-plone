@@ -17,7 +17,7 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js"></value>
       <value key="css">
-        <element>++resource++elan.sitrep.stylesheets/sitrep.less</element>
+        <element>++plone++elan.sitrep/sitrep.less</element>
       </value>
   </records>
   
@@ -31,7 +31,8 @@
     <value key="enabled">True</value>
     <value key="depends">docpool</value>
     <value key="jscompilation"></value>
-    <value key="csscompilation">++plone++static/elan-sitrep-compiled.css</value>    
+    <value key="csscompilation">++plone++elan.sitrep/elan-sitrep-compiled.css</value>
+    <value key="last_compilation">2019-09-27 10:25:59</value>
   </records>
   <records interface="Products.CMFPlone.interfaces.ITinyMCESchema" prefix="plone">
     <value key="other_settings">

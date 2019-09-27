@@ -51,6 +51,7 @@
     <value key="depends">plone</value>
     <value key="jscompilation">++theme++docpool.theme/docpool-compiled.js</value>
     <value key="csscompilation">++theme++docpool.theme/docpool-compiled.css</value>
+    <value key="last_compilation">2019-09-27 10:25:59</value>
   </records>
   <records prefix="plone.bundles/docpool-anon"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
@@ -62,6 +63,7 @@
     <value key="enabled">True</value>
     <value key="jscompilation"></value>
     <value key="csscompilation">++theme++docpool.theme/docpool-anon-compiled.css</value>
+    <value key="last_compilation">2019-09-27 10:25:59</value>
   </records>
   <records prefix="plone.bundles/docpool-nonadmin"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
@@ -73,5 +75,7 @@
     <value key="enabled">True</value>
     <value key="jscompilation"></value>
     <value key="csscompilation">++theme++docpool.theme/docpool-nonadmin-compiled.css</value>
+
+    <value key="last_compilation">2019-09-27 10:25:59</value>
   </records>
 </registry>

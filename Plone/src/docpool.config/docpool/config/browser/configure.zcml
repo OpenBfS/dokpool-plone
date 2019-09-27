@@ -11,10 +11,6 @@
       layer="docpool.config.interfaces.IDocpoolConfigLayer"
       />
 
-  <!-- Publish static files -->
-  <browser:resourceDirectory
-      name="docpool.config"
-      directory="static"
-      />
+
 
 </configure>

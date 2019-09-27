@@ -1,4 +1,6 @@
-
+/*
+WHAT? Not used anywhere!
+ */
 function insertTextblock () {
 	 window.opener.$("#foo").html("bar");
 	   var intercom = Intercom.getInstance();

@@ -1,0 +1,64 @@
+/* line 5, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.srscenario th,
+.srscenario td {
+  border: 1px solid !important;
+}
+/* line 7, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.srscenario th ul,
+.srscenario td ul {
+  list-style-position: inside;
+  padding-left: 0;
+}
+/* line 14, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-situationoverview #sidebar {
+  display: none;
+}
+/* line 17, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-situationoverview .col-sm-9 {
+  width: 100%;
+}
+/* line 20, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-situationoverview #viewlet-below-content-body {
+  clear: both;
+}
+/* line 24, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-situationoverview .reportselection label {
+  float: left;
+}
+/* line 25, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-situationoverview .reportselection .reportuid {
+  width: auto;
+  float: left;
+}
+/* line 33, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-situationreport .formControls.publish {
+  border-top: none;
+}
+/* line 39, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.portaltype-srmoduletype #formfield-form-widgets-allowedDocTypes,
+.portaltype-srmoduletypes #formfield-form-widgets-allowedDocTypes,
+.portaltype-srmoduletype #formfield-form-widgets-IELANDocType-contentCategory,
+.portaltype-srmoduletypes #formfield-form-widgets-IELANDocType-contentCategory {
+  display: none;
+}
+/* line 44, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+.image .caption {
+  display: block;
+}
+/* line 48, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+li.ready {
+  color: green;
+}
+/* line 52, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+li.published {
+  color: gold;
+}
+/* line 56, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+li.planned {
+  color: orange;
+}
+/* line 60, http://localhost:8081/Plone/++plone++elan.sitrep/sitrep.less */
+li.missing {
+  color: red;
+}
+
