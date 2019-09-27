@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+from datetime import timedelta
 from plone import api
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
+from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
+from z3c.relationfield import RelationValue
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.event import notify
 from zope.interface import alsoProvides
+from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
 
@@ -25,6 +31,13 @@ def dummy_image(filename=u'image.png'):
     with open(filename, 'rb') as fd:
         data = fd.read()
     return NamedBlobImage(data=data, filename=filename)
+
+
+def dummy_file(filename=u'file.pdf'):
+    filename = os.path.join(os.path.dirname(__file__), filename)
+    with open(filename, 'rb') as fd:
+        data = fd.read()
+    return NamedBlobFile(data=data, filename=filename)
 
 
 class DocpoolSetup(BrowserView):
@@ -49,9 +62,6 @@ class DocpoolSetup(BrowserView):
         installer.install_product('elan.policy')
         installer.install_product('docpool.doksys')
         installer.install_product('elan.journal')
-
-        # TODO: pack bundles
-        # @Steffen?
 
         # create docpool 1
         docpool_bund = api.content.create(
@@ -85,20 +95,51 @@ class DocpoolSetup(BrowserView):
         doctypes = voc(self.context).by_value
         doctypes_ids = [i.id for i in doctypes]
 
-        # TODO: Add DPEvent in bund/contentconfig/scen
         event_id = 'routinemode'
 
+        even_config_folder = docpool_bund['contentconfig']['scen']
+        dpnuclearpowerstation = api.content.create(
+            container=even_config_folder,
+            type='DPNuclearPowerStation',
+            id='kernkraftwerk-1',
+            title=u'Kernkraftwerk 1',
+            coordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            )
+        dpnetwork = api.content.create(
+            container=even_config_folder,
+            type='DPNetwork',
+            id='testnetz',
+            title=u'Testnetz',
+            coordinates=u'POLYGON((12.789515693194565 48.70897536061274,11.9394485546417 48.750643880797945,11.725215156233618 48.447309003359074,12.352809150286648 48.38076862235553,12.803248603348985 48.39080082760333,12.789515693194565 48.70897536061274))',
+            )
+        dpevent = api.content.create(
+            container=even_config_folder,
+            type='DPEvent',
+            id='test-event',
+            title=u'Test Event',
+            description=u'Die Beschreibung',
+            Status='active',
+            AlertingStatus=u'none',
+            AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
+            EventCoordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            EventLocation=RelationValue(get_intid(dpnuclearpowerstation)),
+            SectorizingNetworks=[RelationValue(get_intid(dpnetwork))],
+            EventPhase=None,
+            Exercise=True,
+            TimeOfEvent=datetime.now(),
+            OperationMode='routine',
+            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            )
+
         # TODO:
-        # Add DPNuclearPowerStation in bund/contentconfig/scen
-        # Add DPNetwork in bund/contentconfig/scen
         # Add SRModuleTypes
         # Add lagebericht-konfiguration
         # Add szenario
         # Add phase
         # Add modulkonfiguration
 
-        # add one dpdocument for each type
         with api.env.adopt_user(user=user1):
+            # add one dpdocument for each type
             for doctype_id in doctypes_ids:
                 new = api.content.create(
                     container=folder,
@@ -122,6 +163,50 @@ class DocpoolSetup(BrowserView):
                     api.content.transition(obj=new, transition='publish')
                 except Exception as e:
                     log.info(e)
+
+            # add one full DPDocument
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Eine Bodenprobe',
+                description=u'foo',
+                text=RichTextValue(u'<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
+                docType='groundcontamination',
+                scenarios=[dpevent.id],
+                local_behaviors=['elan', 'doksys'],
+                Area=u'D',
+                DataType=u'ONMON',
+                Dom=u'84 _deposition_ground_beta surface activity_2 h',
+                Duration=u'1d',
+                LegalBase=u'IRMIS',
+                MeasurementCategory=u'Si-31',
+                MeasuringProgram=u'Intensivmessprogramm',
+                NetworkOperator=u'Bremen',
+                OperationMode=u'Routine',
+                Purpose=u'Standard-Info Bundesmessnetze',
+                SampleType=u'Kompost',
+                SampleTypeId=u'B2',
+                SamplingBegin=datetime.now(),
+                SamplingEnd=datetime.now() + timedelta(hours=1),
+                Status=u'geprueft',
+                TrajectoryEndTime=datetime.now() + timedelta(hours=1),
+                TrajectoryStartTime=datetime.now(),
+            )
+            modified(new)
+            api.content.create(
+                container=new,
+                type='Image',
+                title='Ein Bild',
+                image=dummy_image(),
+                )
+            api.content.create(
+                container=new,
+                type='File',
+                title='Eine Datei',
+                file=dummy_file(),
+                )
+            api.content.transition(obj=new, transition='publish')
+
         return self.request.response.redirect(self.context.absolute_url())
 
     def add_user(
@@ -205,3 +290,16 @@ class DocpoolSetup(BrowserView):
             description=description,
         )
         return api.group.get(groupname)
+
+
+def get_intid(obj):
+    """Intid from intid-catalog"""
+    intids = queryUtility(IIntIds)
+    if intids is None:
+        return
+    # check that the object has an intid, otherwise there's nothing to be done
+    try:
+        return intids.getId(obj)
+    except KeyError:  # noqa
+        # The object has not been added to the ZODB yet
+        return
