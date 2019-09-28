@@ -22,6 +22,7 @@ from zope.schema.interfaces import IVocabularyFactory
 
 import logging
 import os
+import random
 
 log = logging.getLogger(__name__)
 
@@ -146,6 +147,7 @@ class DocpoolSetup(BrowserView):
         # Add modulkonfiguration
 
         with api.env.adopt_user(user=user1):
+            sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type
             for doctype_id in doctypes_ids:
                 new = api.content.create(
@@ -154,9 +156,26 @@ class DocpoolSetup(BrowserView):
                     title=u'{}'.format(doctype_id.capitalize()),
                     description=u'foo',
                     docType=doctype_id,
-                    text=RichTextValue(u'<p>Body one</p>', 'text/html', 'text/x-html-safe'),
+                    text=RichTextValue(u'<p>Text</p>', 'text/html', 'text/x-html-safe'),
                     local_behaviors=['elan', 'doksys'],
-                    scenarios=[event_id],
+                    scenarios=[dpevent.id],
+                    SampleTypeId=random.choice(sampletype_ids),
+                    Area=u'D',
+                    DataType=u'ONMON',
+                    Dom=u'84 _deposition_ground_beta surface activity_2 h',
+                    Duration=u'1d',
+                    LegalBase=u'IRMIS',
+                    MeasurementCategory=u'Si-31',
+                    MeasuringProgram=u'Intensivmessprogramm',
+                    NetworkOperator=u'Bremen',
+                    OperationMode=u'Routine',
+                    Purpose=u'Standard-Info Bundesmessnetze',
+                    SampleType=u'Kompost',
+                    SamplingBegin=datetime.now(),
+                    SamplingEnd=datetime.now() + timedelta(hours=1),
+                    Status=u'geprueft',
+                    TrajectoryEndTime=datetime.now() + timedelta(hours=1),
+                    TrajectoryStartTime=datetime.now(),
                 )
                 modified(new)
                 api.content.create(
