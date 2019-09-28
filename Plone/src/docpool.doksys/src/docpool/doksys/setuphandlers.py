@@ -87,7 +87,7 @@ def create_acollection(plonesite):
     ]
     iwas.text = RichTextValue('<p>Hallo<p>', 'text/html', 'text/x-html-safe')
 
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
 
 def create_1day_collection(plonesite):
@@ -121,7 +121,7 @@ def create_1day_collection(plonesite):
         '<p>Dokumente der letzten 24 h<p>', 'text/html', 'text/x-html-safe'
     )
 
-    lday.setLayout('summary_view')
+    lday.setLayout('docpool_collection_view')
 
     print("1day Collection angelegt")
 
@@ -160,7 +160,7 @@ def create_purpose_collections(plonesite):
     iwas.text = RichTextValue(
         '<p>Standard-Info Bundesmessnetze<p>', 'text/html', 'text/x-html-safe'
     )
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     title = 'Standard-Info DWD'
     description = 'Standard-Info DWD'
@@ -190,7 +190,7 @@ def create_purpose_collections(plonesite):
     iwas.text = RichTextValue(
         '<p>Standard-Info DWD<p>', 'text/html', 'text/x-html-safe'
     )
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
     #
 
     print("Purpose Collection angelegt")
@@ -227,7 +227,7 @@ def create_sample_collections(plonesite):
         '<p>Ergebnisse Boden<p>',
         'text/html',
         'text/x-html-safe')
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     title = 'Ergebnisse Futtermittel'
     description = 'Ergebnisse Futtermittel'
@@ -257,7 +257,7 @@ def create_sample_collections(plonesite):
     iwas.text = RichTextValue(
         '<p>Ergebnisse Futtermittel<p>', 'text/html', 'text/x-html-safe'
     )
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     title = 'Ergebnisse Gewaesser'
     description = 'Ergebnisse Gewaesser'
@@ -287,7 +287,7 @@ def create_sample_collections(plonesite):
     iwas.text = RichTextValue(
         '<p>Ergebnisse Gewaesser<p>', 'text/html', 'text/x-html-safe'
     )
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     title = 'Ergebnisse Luft'
     description = 'Ergebnisse Luft'
@@ -318,7 +318,7 @@ def create_sample_collections(plonesite):
         '<p>Ergebnisse Luft<p>',
         'text/html',
         'text/x-html-safe')
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     title = 'Ergebnisse Nahrungsmittel'
     description = 'Ergebnisse Nahrungsmittel'
@@ -348,7 +348,7 @@ def create_sample_collections(plonesite):
     iwas.text = RichTextValue(
         '<p>Ergebnisse Nahrungsmittel<p>', 'text/html', 'text/x-html-safe'
     )
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     title = 'Ergebnisse Stoerfall'
     description = 'Ergebnisse Stoerfall'
@@ -378,7 +378,7 @@ def create_sample_collections(plonesite):
     iwas.text = RichTextValue(
         '<p>Ergebnisse Stoerfall<p>', 'text/html', 'text/x-html-safe'
     )
-    iwas.setLayout('summary_view')
+    iwas.setLayout('docpool_collection_view')
 
     print("Sample Type Collection angelegt")
 
