@@ -4,6 +4,7 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
+from persistent.list import PersistentList
 from plone import api
 from Products.CMFCore.utils import getToolByName
 
@@ -68,6 +69,7 @@ BASICSTRUCTURE = [
         TYPE: 'Folder',
         TITLE: 'Predefined Searches',
         ID: 'searches',
+        'relatedItems': PersistentList(),
         CHILDREN: [
             {TYPE: 'Folder', TITLE: 'Documents of last 24h', ID: 'lastday'}
         ],  # TODO: further folders filled with Doksys Collections
