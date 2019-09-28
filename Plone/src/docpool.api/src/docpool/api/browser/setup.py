@@ -73,6 +73,7 @@ class DocpoolSetup(BrowserView):
             supportedApps=('elan', 'doksys'),
         )
         notify(EditFinishedEvent(docpool_bund))
+        log.info(u'Created docpool bund')
 
         # create docpool 2
         docpool_land = api.content.create(
@@ -84,9 +85,12 @@ class DocpoolSetup(BrowserView):
             supportedApps=('elan', 'doksys'),
         )
         notify(EditFinishedEvent(docpool_land))
+        log.info(u'Created docpool hessen')
 
         user1 = self.add_user(docpool_bund, 'user1', ['group1'])
+        log.info(u'Created user1 and group1 in docpool bund')
         user2 = self.add_user(docpool_land, 'user2', ['group2'])
+        log.info(u'Created user2 and group2 in docpool hessen')
 
         # get the content-folder for a group to test with
         folder = docpool_bund['content']['Groups']['bund_group1']
@@ -105,6 +109,7 @@ class DocpoolSetup(BrowserView):
             title=u'Kernkraftwerk 1',
             coordinates=u'POINT(12.240313700000002 48.59873489999998)',
             )
+        log.info(u'Created dpnuclearpowerstation')
         dpnetwork = api.content.create(
             container=even_config_folder,
             type='DPNetwork',
@@ -112,6 +117,7 @@ class DocpoolSetup(BrowserView):
             title=u'Testnetz',
             coordinates=u'POLYGON((12.789515693194565 48.70897536061274,11.9394485546417 48.750643880797945,11.725215156233618 48.447309003359074,12.352809150286648 48.38076862235553,12.803248603348985 48.39080082760333,12.789515693194565 48.70897536061274))',
             )
+        log.info(u'Created dpnetwork')
         dpevent = api.content.create(
             container=even_config_folder,
             type='DPEvent',
@@ -130,6 +136,7 @@ class DocpoolSetup(BrowserView):
             OperationMode='routine',
             SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
             )
+        log.info(u'Created dpevent')
 
         # TODO:
         # Add SRModuleTypes
@@ -163,6 +170,7 @@ class DocpoolSetup(BrowserView):
                     api.content.transition(obj=new, transition='publish')
                 except Exception as e:
                     log.info(e)
+                log.info(u'Created dpdocument of type {}'.format(doctype_id))
 
             # add one full DPDocument
             new = api.content.create(
@@ -206,6 +214,7 @@ class DocpoolSetup(BrowserView):
                 file=dummy_file(),
                 )
             api.content.transition(obj=new, transition='publish')
+            log.info(u'Created dpdocument Eine Bodenprobe')
 
         return self.request.response.redirect(self.context.absolute_url())
 
