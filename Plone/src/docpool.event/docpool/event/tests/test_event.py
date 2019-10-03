@@ -34,3 +34,24 @@ class TestEvent(unittest.TestCase):
             )
         self.assertTrue(event.restrictedTraverse('@@view')())
         self.assertTrue(event.restrictedTraverse('@@edit')())
+
+    def test_removal_keeps_working_for_arbitrary_dpevents(self):
+        docpool = self.portal['test_docpool']
+        container = docpool['contentconfig']['scen']
+        event = api.content.create(
+            container=container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        try:
+            api.content.delete(event)
+        except Exception as e:
+            self.fail(str(e))
+
+    def test_removal_prevented_for_routinemode_dpevent(self):
+        docpool = self.portal['test_docpool']
+        container = docpool['contentconfig']['scen']
+        event = container['routinemode']
+        with self.assertRaises(RuntimeError):
+            api.content.delete(event)

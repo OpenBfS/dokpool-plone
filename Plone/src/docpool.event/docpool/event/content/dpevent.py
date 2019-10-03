@@ -48,6 +48,7 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 import datetime
 
@@ -639,6 +640,15 @@ def eventChanged(obj, event=None):
                         # print "changed", docobj
                 except Exception as e:
                     log_exc(e)
+
+
+@adapter(IDPEvent, IObjectRemovedEvent)
+def eventRemoved(obj, event=None):
+    """
+    Make sure the routinemode event cannot be removed.
+    """
+    if obj.id == 'routinemode':
+        raise RuntimeError(u'The "routinemode" event cannot be removed.')
 
 
 @adapter(IDPEvent, IActionSucceededEvent)
