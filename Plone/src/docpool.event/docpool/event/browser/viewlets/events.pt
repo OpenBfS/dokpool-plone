@@ -1,4 +1,4 @@
-<tal:block i18n:domain="elan.esd">
+<tal:block i18n:domain="docpool.event">
     <tal:if tal:condition="view/available|nothing">
         <div metal:use-macro="here/@@event.macros/macros/scenario_table"/>
     </tal:if>
