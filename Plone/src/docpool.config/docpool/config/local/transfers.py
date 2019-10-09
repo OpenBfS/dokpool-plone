@@ -8,7 +8,7 @@ from docpool.config.utils import TYPE
 from docpool.transfers.config import TRANSFERS_APP
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import log
 from zExceptions import BadRequest
 from zope.annotation.interfaces import IAnnotations
 
@@ -92,7 +92,7 @@ def createTransferArea(self, fresh):
         ].manage_addWorkflowPolicyConfig()
     except BadRequest as e:
         # print type(e)
-        log_exc(e)
+        log(e)
     config = placeful_wf.getWorkflowPolicyConfig(self.content.Transfers)
     placefulWfName = 'elan-transfer'
     config.setPolicyIn(policy=placefulWfName, update_security=False)

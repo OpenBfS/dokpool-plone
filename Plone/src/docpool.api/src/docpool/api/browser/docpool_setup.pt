@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone.z3cform"
+      metal:use-macro="context/main_template/macros/master">
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+      <h1 class="documentFirstHeading">Create a dopool portal</h1>
+
+      <p>This turns a plain Plone site into a dopool portal with:</p>
+      <ul>
+        <li>Two docpools (bund and hessen)</li>
+        <li>A Test-user in each docpool and their groups: user1/group1 (bund) and user2/group2(hessen)</li>
+        <li>DPDocuments in /bund/content/Groups/bund_group1</li>
+      </ul>
+      <p>Warning: This takes at least 2 minutes to run!</p>
+
+      <form action="docpool_setup" method="post" enctype="multipart/form-data">
+        <button class="context" type="submit" name="submit" value=" Start! " >Start!</button>
+      </form>
+
+    </tal:main-macro>
+</div>
+
+</html>
