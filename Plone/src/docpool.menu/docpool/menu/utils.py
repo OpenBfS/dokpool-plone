@@ -237,21 +237,27 @@ def getFoldersForCurrentUser(
                     gft['item_class'] = "personal"
                     group_result.append(gft)
     res.extend(group_result)
-    member_result = [
-        _folderTree(
-            context,
-            "%s/%s" % (members_folder_path, user_name),
-            queryBuilderClass=queryBuilderClass,
-            strategy=strategy,
-        )
-    ]
-    # A folder for the user has not been found, e.g. in archive
-    if member_result and "show_children" not in member_result[0]:
-        # print "has no user folder"
-        member_result = []
-    else:
-        member_result[0]['item_class'] = "personal"
-    res.extend(member_result)
+
+    # show personal folder unless we're in elan
+    dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
+    show_user_folder = not dp_app_state.isCurrentlyActive('elan')
+    if show_user_folder:
+        member_result = [
+            _folderTree(
+                context,
+                "%s/%s" % (members_folder_path, user_name),
+                queryBuilderClass=queryBuilderClass,
+                strategy=strategy,
+            )
+        ]
+        # A folder for the user has not been found, e.g. in archive
+        if member_result and "show_children" not in member_result[0]:
+            # print "has no user folder"
+            member_result = []
+        else:
+            member_result[0]['item_class'] = "personal"
+        res.extend(member_result)
+
     res.extend(rres)
     res.reverse()
     if group_result:
