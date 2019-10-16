@@ -19,6 +19,7 @@ from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
+from zope.globalrequest import getRequest
 
 import logging
 import os
@@ -88,9 +89,9 @@ class DocpoolSetup(BrowserView):
         notify(EditFinishedEvent(docpool_land))
         log.info(u'Created docpool hessen')
 
-        user1 = self.add_user(docpool_bund, 'user1', ['group1'])
+        user1 = add_user(docpool_bund, 'user1', ['group1'])
         log.info(u'Created user1 and group1 in docpool bund')
-        user2 = self.add_user(docpool_land, 'user2', ['group2'])
+        user2 = add_user(docpool_land, 'user2', ['group2'])
         log.info(u'Created user2 and group2 in docpool hessen')
 
         # get the content-folder for a group to test with
@@ -237,87 +238,107 @@ class DocpoolSetup(BrowserView):
 
         return self.request.response.redirect(self.context.absolute_url())
 
-    def add_user(
-           self,
-           docpool,
-           username,
-           groupnames=None,
-           enabled_apps=['elan', 'doksys'],
-           ):
-        """Create a User and a Group for a docpool for testing
 
-        This is mimiking the code in docpool.users
-        """
-        docpool_title = docpool.Title()
-        prefix = docpool.prefix or docpool.id
-        docpool_uid = IUUID(docpool)
-        groupnames = groupnames if groupnames else []
-        for groupname in groupnames:
-            self.add_group(docpool, groupname)
+def add_user(
+       docpool,
+       username,
+       groupnames=None,
+       enabled_apps=['elan', 'doksys'],
+       ):
+    """Create a User and a Group for a docpool for testing.
 
-        # add the user
-        user_fullname = '{} ({})'.format(username, docpool_title)
-        user = api.user.create(
-            email=u'tester@plone.org',
-            username=username,
-            password=username,
-            roles=('Member',),
-            properties={'fullname': user_fullname},
-        )
-        user.setMemberProperties(
-            {
-                'fullname': user_fullname,
-                'dp': docpool_uid,
-                'apps': enabled_apps,
-            }
-        )
-        # add the user to specified groups
-        for groupname in groupnames:
-            real_groupname = '%s_%s' % (prefix, groupname)
-            group = api.group.get(real_groupname)
-            api.group.add_user(group=group, user=user)
+    This mimicks adding groups in the application in docpool.users by:
+    * adding the docpool-prefix to the groups id and title
+    * allowing all doctypes
+    * assigning the docpool
 
-        api.group.add_user(groupname='{}_Members'.format(prefix), user=user)
-        api.group.add_user(groupname='{}_DoksysUsers'.format(prefix), user=user)
-        api.group.add_user(groupname='{}_ELANUsers'.format(prefix), user=user)
-        return user
+    """
+    docpool_title = docpool.Title()
+    prefix = docpool.prefix or docpool.id
+    docpool_uid = IUUID(docpool)
+    groupnames = groupnames if groupnames else []
+    for groupname in groupnames:
+        add_group(docpool, groupname)
 
-    def add_group(self, docpool, groupname):
-        # get all doctypes to enable them for the new group
-        voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
-        doctypes = voc(docpool).by_value
-        doctypes_ids = [i.id for i in doctypes]
-
-        gtool = getToolByName(docpool, 'portal_groups')
-        docpool_uid = IUUID(docpool)
-        docpool_title = docpool.Title()
-        group_title = '{} ({})'.format(groupname.capitalize(), docpool_title)
-        description = ''
-        prefix = docpool.prefix or docpool.id
-        groupname = '%s_%s' % (prefix, groupname)
-
-        if api.group.get(groupname=groupname) is not None:
-            log.info(u'Skipping. Group {} exists.'.format(groupname))
-            return
-
-        props = {
-            'title': group_title,
-            'description': description,
+    # add the user
+    user_fullname = '{} ({})'.format(username, docpool_title)
+    user = api.user.create(
+        email=u'tester@plone.org',
+        username=username,
+        password=username,
+        roles=('Member',),
+        properties={'fullname': user_fullname},
+    )
+    user.setMemberProperties(
+        {
+            'fullname': user_fullname,
             'dp': docpool_uid,
-            'allowedDocTypes': doctypes_ids,
+            'apps': enabled_apps,
         }
-        # this uses the monkey-patched addGroup from docpool.users
-        # it will create a group-folder inside the docpool
-        gtool.addGroup(
-            id=groupname,
-            roles=(),
-            groups=(),
-            properties=props,
-            REQUEST=self.request,
-            title=group_title,
-            description=description,
-        )
-        return api.group.get(groupname)
+    )
+    # add the user to specified groups
+    for groupname in groupnames:
+        real_groupname = '%s_%s' % (prefix, groupname)
+        group = api.group.get(real_groupname)
+        api.group.add_user(group=group, user=user)
+
+    api.group.add_user(groupname='{}_Members'.format(prefix), user=user)
+    if 'doksys' in enabled_apps:
+        api.group.add_user(groupname='{}_DoksysUsers'.format(prefix), user=user)
+    if 'elan' in enabled_apps:
+        api.group.add_user(groupname='{}_ELANUsers'.format(prefix), user=user)
+    pm = getToolByName(docpool, 'portal_membership')
+    pm.createMemberArea(username)
+    return user
+
+
+def add_group(docpool, groupname):
+    """Add a group in a docpool.
+
+    This mimicks adding groups in the application by:
+    * adding the docpool-prefix to the groups id and title
+    * put all doctypes in memberdata to allow creating all DPDocuments
+    * put docpool-id in memberdata
+    """
+    # get all doctypes to enable them for the new group
+    voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
+    doctypes = voc(docpool).by_value
+    doctypes_ids = [i.id for i in doctypes]
+
+    gtool = getToolByName(docpool, 'portal_groups')
+    docpool_uid = IUUID(docpool)
+    docpool_title = docpool.Title()
+    group_title = '{} ({})'.format(groupname.capitalize(), docpool_title)
+    description = ''
+    prefix = docpool.prefix or docpool.id
+    groupname = '%s_%s' % (prefix, groupname)
+
+    if api.group.get(groupname=groupname) is not None:
+        log.info(u'Skipping. Group {} exists.'.format(groupname))
+        return
+
+    props = {
+        'title': group_title,
+        'description': description,
+        'dp': docpool_uid,
+        'allowedDocTypes': doctypes_ids,
+    }
+    request = getRequest()
+    if request.method != 'POST':
+        # fool addGroup to allow to work even without a real POST
+        request.method = 'POST'
+    # this uses the monkey-patched addGroup from docpool.users
+    # it will create a group-folder inside the docpool
+    gtool.addGroup(
+        id=groupname,
+        roles=(),
+        groups=(),
+        properties=props,
+        REQUEST=request,
+        title=group_title,
+        description=description,
+    )
+    return api.group.get(groupname)
 
 
 def get_intid(obj):
