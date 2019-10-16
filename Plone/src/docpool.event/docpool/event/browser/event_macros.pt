@@ -42,6 +42,14 @@
                                   tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
                                   tal:content="string:${scenario/Title}">Event1</span>
                         </td>
+                        <td>
+                          <a class="pat-plone-modal scenario-info"
+                             href=""
+                             title="Klicken für Informationen zum Ereignis"
+                             tal:attributes="href python:scenario.absolute_url() + '?ajax_load=1'">
+                            Info
+                          </a>
+                        </td>
                     </tal:def>
                 </tr>
             </tal:loop>
