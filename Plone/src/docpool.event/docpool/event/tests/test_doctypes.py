@@ -61,6 +61,7 @@ class TestDocTypes(unittest.TestCase):
                 'protectiveactions',
                 'mediarelease',
                 'insituinformation',
+                'doksysdok',
             ],
         )
         self.assertEqual(global_contentconfig.keys(), ['impressum', 'help'])
@@ -145,6 +146,7 @@ class TestDocTypes(unittest.TestCase):
                 'protectiveactions',
                 'mediarelease',
                 'insituinformation',
+                'doksysdok',
             ],
         )
 
@@ -219,6 +221,7 @@ class TestDocTypes(unittest.TestCase):
                 'protectiveactions',
                 'mediarelease',
                 'insituinformation',
+                'doksysdok',
             ],
         )
 
@@ -268,6 +271,7 @@ class TestDocTypes(unittest.TestCase):
                     'situationreport',
                     'sitrep',
                     'note',
+                    'doksysdok',
                 ]
             ),
         )
