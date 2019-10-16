@@ -4,7 +4,10 @@
            <a href="#" onclick="makePopUp(800, 1000, this.href, 'Overview', 200, 200, 1, 1); return false;" tal:attributes="href string:${context/esd/absolute_url}/overview/@@rpopup?popup_load=1" i18n:translate="">Chronological Overview</a>
        </dt>
        <dt class="portletHeader" tal:repeat="o view/specialObjects">
-           <a href="#" onclick="makePopUp(1200, 800, this.href, 'Overview', 200, 200, 1, 1); return false;" tal:attributes="href string:${o/getURL}?popup_load=1" tal:content="o/Title"></a>
+           <a href="#"
+                    tal:attributes="href string:${o/getURL}?popup_load=1;
+                                    onclick string:makePopUp(1200, 800, this.href, '${o/Title}', 200, 200, 1, 1);;return false;"
+                    tal:content="o/Title"></a>
        </dt>
    </dl>
 </tal:block>
