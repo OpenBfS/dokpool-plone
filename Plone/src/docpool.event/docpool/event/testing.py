@@ -43,6 +43,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'docpool.base:default')
         applyProfile(portal, 'elan.policy:default')
+        applyProfile(portal, 'docpool.doksys:default')
         applyProfile(portal, 'docpool.event:default')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         # Create a docpool
