@@ -49,7 +49,7 @@ from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-
+import plone.api as api
 import datetime
 
 
@@ -499,6 +499,18 @@ class DPEvent(Container, ContentBase):
                 scns.append(self.getId())
             member.setMemberProperties({"scenarios": scns})
 
+    def createDefaultJournals(obj):
+        """
+        Creates two journals inside the event
+        :return: """
+        journals = ['journal1', 'journal2']
+        for journal in journals:
+            new = api.content.create(
+                container=obj,
+                type='Journal',
+                title=journal
+            )
+
     def deleteEventReferences(self):
         """
         """
@@ -536,11 +548,12 @@ class ELANScenario(DPEvent):
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):
     """
-    For new scenarios, add them to each user's personal selection.
+    For new scenarios, add them to each user's personal selection and
+    create the journals.
     """
     # print "scenarioAdded"
     obj.addScenarioForUsers()
-
+    obj.createDefaultJournals()
 
 def addLogEntry(old_changelog, obj):
     print(obj.SectorizingNetworks)
