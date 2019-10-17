@@ -1,4 +1,4 @@
-## Script (Python) "isReceiver.py"
+## Script (Python) "isSender.py"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
