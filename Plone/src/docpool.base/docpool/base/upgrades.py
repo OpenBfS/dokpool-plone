@@ -40,3 +40,8 @@ def update_dbevent_schema(context=None):
             # TODO: Is that correct? Non-exercise == 'test' or 'event'?
             obj.EventType = 'test'
         del obj.Exercise
+
+        # Events need a mode (#2573)
+        if not obj.OperationMode:
+            obj.OperationMode = 'routine'
+        log.info('Updated {}'.format(obj.absolute_url()))

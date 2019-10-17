@@ -130,7 +130,7 @@ class IDPEvent(model.Schema, IContentBase):
     OperationMode = schema.Choice(
         title=_(u'Operation mode'),
         vocabulary=u"docpool.event.vocabularies.Modes",
-        required=False,
+        required=True,
     )
 
     directives.widget(AlertingStatus=RadioFieldWidget)
