@@ -12,7 +12,9 @@ configured in profiles/default/types/*.xml, this is being set as the default
 view of that content type.
 """
 
-
+from docpool.base.appregistry import appIcon
+from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
+from plone import api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -22,6 +24,28 @@ class DocMetaView(BrowserView):
     """
 
     __call__ = ViewPageTemplateFile('doc_meta.pt')
+
+    def meta_infos(self):
+        context = self.context
+        portal_state = api.content.get_view(
+            'plone_portal_state', context, self.request)
+        portal_url = portal_state.portal_url()
+        behavior_names = getActiveAllowedPersonalBehaviorsForDocument(
+            context, self.request)
+        results = []
+        for behavior_name in behavior_names:
+            # skip behaviors without icons?
+            icon = appIcon(behavior_name)
+            if not icon:
+                continue
+            item = {
+                'behavior_name': behavior_name,
+                'icon_url': '{}/{}'.format(portal_url, icon),
+                'behavior': context.doc_extension(behavior_name),
+            }
+            # TODO: Sort?
+            results.append(item)
+        return results
 
 
 class DocActionsView(BrowserView):
