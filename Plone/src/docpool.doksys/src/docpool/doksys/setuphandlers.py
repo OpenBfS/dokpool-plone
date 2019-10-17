@@ -389,7 +389,10 @@ BASICSTRUCTURE = [
         TYPE: 'Folder',
         TITLE: 'Predefined Searches',
         ID: 'searches',
-        'relatedItems': PersistentList(),
+        # TODO: relatedItems broken when creating a doksys docpool.
+        # See https://redmine-koala.bfs.de/issues/3291
+        # and https://redmine-koala.bfs.de/issues/3350
+        # 'relatedItems': PersistentList(),
         CHILDREN: [
             #            {
             #                TYPE: 'Folder',
