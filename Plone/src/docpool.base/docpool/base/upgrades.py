@@ -2,6 +2,7 @@
 from docpool.config.general.base import configureGroups
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
+from Products.CMFPlone.utils import base_hasattr
 
 import logging
 
@@ -34,13 +35,14 @@ def update_dbevent_schema(context=None):
         obj = brain.getObject()
 
         # Set EventType (#2573)
-        if obj.Exercise:
-            obj.EventType = 'exercise'
-        else:
-            obj.EventType = 'event'
-        del obj.Exercise
+        if base_hasattr(obj.aq_base, 'Exercise'):
+            if obj.Exercise:
+                obj.EventType = 'exercise'
+            else:
+                obj.EventType = 'event'
+            del obj.Exercise
 
         # Events need a mode (#2573)
-        if not obj.OperationMode:
+        if not getattr(obj.aq_base, 'OperationMode'):
             obj.OperationMode = 'routine'
         log.info('Updated {}'.format(obj.absolute_url()))
