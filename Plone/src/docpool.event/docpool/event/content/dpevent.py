@@ -70,7 +70,7 @@ class IDPEvent(model.Schema, IContentBase):
         title=_(u'label_dpevent_substitute', default=u'Substitute event'),
         description=_(
             u'description_dpevent_substitute',
-            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',
+            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',  # noqa: E501
         ),
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
@@ -140,6 +140,12 @@ class IDPEvent(model.Schema, IContentBase):
         required=True,
         source="docpool.event.vocabularies.AlertingStatus",
     )
+
+    AlertingNote = schema.Text(
+        title=_(u'label_dpevent_alteringnote', default=u'Alert Note'),
+        description=_(u'description_dpevent_alert_note', default=u'Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.'),  # noqa: E501
+        required=False,
+        )
 
     SectorizingSampleTypes = schema.List(
         title=_(u'Sectorizing sample types'),
