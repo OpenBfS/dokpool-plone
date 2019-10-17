@@ -12,6 +12,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="to_1_4_00"
+      title="Upgrade profile for docpool.base 1.3.29 to 1.4.00"
+      directory="profiles/to_1_4_00"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <genericsetup:upgradeSteps
       source="1.3.28"
       destination="1.4.00"
@@ -19,6 +27,17 @@
     <genericsetup:upgradeStep
         title="Upgrade from 1.3.28 to 1.4.00"
         description="Set new registry-values for css/js path, DPEvent to container, convertGroups"
+        handler="docpool.base.upgrades.to_1_4_00"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1.3.29"
+      destination="1.4.00"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Upgrade from 1.3.29 to 1.4.00"
+        description="DPEvent class to Container"
         handler="docpool.base.upgrades.to_1_4_00"
         />
   </genericsetup:upgradeSteps>
