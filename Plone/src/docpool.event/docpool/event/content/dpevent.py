@@ -65,6 +65,7 @@ class IDPEvent(model.Schema, IContentBase):
     """
     """
 
+    directives.write_permission(Substitute='docpool.event.ManageDPEvents')
     directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
     Substitute = RelationChoice(
         title=_(u'label_dpevent_substitute', default=u'Substitute event'),
@@ -84,11 +85,13 @@ class IDPEvent(model.Schema, IContentBase):
         source='docpool.event.vocabularies.EventTypes',
     )
 
+    directives.write_permission(Status='docpool.event.ManageDPEvents')
     directives.widget(Status=RadioFieldWidget)
     Status = schema.Choice(
         title=_(u'label_dpevent_status', default=u'Status of the event'),
         description=_(u'description_dpevent_status', default=u''),
         required=True,
+        default='active',
         source="docpool.base.vocabularies.Status",
     )
 
@@ -108,6 +111,7 @@ class IDPEvent(model.Schema, IContentBase):
         required=False,
     )
 
+    directives.write_permission(EventLocation='docpool.event.ManageDPEvents')
     directives.widget(
         EventLocation='z3c.form.browser.select.SelectFieldWidget')
     EventLocation = RelationChoice(
@@ -116,11 +120,13 @@ class IDPEvent(model.Schema, IContentBase):
         required=False,
     )
 
+    directives.write_permission(EventCoordinates='docpool.event.ManageDPEvents')
     EventCoordinates = WKT(
         title=_(u"Event coordinates"),
         required=False,
     )
 
+    directives.write_permission(AreaOfInterest='docpool.event.ManageDPEvents')
     AreaOfInterest = WKT(
         title=_(u"Area of interest"),
         required=False,

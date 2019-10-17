@@ -1,17 +1,37 @@
 <?xml version="1.0"?>
 <rolemap>
+  <roles>
+    <role name="EventEditor"/>
+  </roles>
   <permissions>
-    <permission name="Docpool: Add DPEvent" acquire="True">
+    <permission name="Docpool: Manage DPEvent" acquire="True">
       <role name="Manager"/>
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="ContentAdmin"/>
     </permission>
+    <permission name="Docpool: Add DPEvent" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
+      <role name="EventEditor"/>
+    </permission>
     <permission name="Docpool: Add DPEvents" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Add portal content" acquire="False">
+      <role name="Contributor"/>
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="ContentAdmin"/>
+      <role name="EventEditor"/>
     </permission>
   </permissions>
 </rolemap>

@@ -14,6 +14,7 @@
    <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
    <permission-role>DocPoolAdmin</permission-role>
+   <permission-role>EventEditor</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
@@ -29,6 +30,7 @@
    <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
    <permission-role>DocPoolAdmin</permission-role>
+   <permission-role>EventEditor</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
@@ -37,6 +39,7 @@
    <permission-role>ContentReceiver</permission-role>
    <permission-role>Site Administrator</permission-role>
    <permission-role>DocPoolAdmin</permission-role>
+   <permission-role>EventEditor</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published">
@@ -62,6 +65,7 @@
    <permission-role>ContentAdmin</permission-role>
    <permission-role>Site Administrator</permission-role>
    <permission-role>DocPoolAdmin</permission-role>
+   <permission-role>EventEditor</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
@@ -81,6 +85,7 @@
    <guard-role>DocPoolAdmin</guard-role>
    <guard-role>ContentAdmin</guard-role>
    <guard-role>ContentReceiver</guard-role>
+   <guard-role>EventEditor</guard-role>
   </guard>
  </transition>
  <transition transition_id="retract" title="Member retracts submission" new_state="private" trigger="USER" before_script="" after_script="">
@@ -102,7 +107,7 @@
  <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
   <description>Previous transition</description>
   <default>
-   
+
    <expression>transition/getId|nothing</expression>
   </default>
   <guard>
@@ -111,7 +116,7 @@
  <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
   <description>The ID of the user who performed the previous transition</description>
   <default>
-   
+
    <expression>user/getId</expression>
   </default>
   <guard>
@@ -120,7 +125,7 @@
  <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True">
   <description>Comment about the last transition</description>
   <default>
-   
+
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard>
@@ -129,7 +134,7 @@
  <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
-   
+
    <expression>state_change/getHistory</expression>
   </default>
   <guard>
@@ -140,7 +145,7 @@
  <variable variable_id="time" for_catalog="False" for_status="True" update_always="True">
   <description>When the previous transition was performed</description>
   <default>
-   
+
    <expression>state_change/getDateTime</expression>
   </default>
   <guard>

@@ -2,6 +2,7 @@
 from docpool.config.general.base import configureGroups
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
+from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFPlone.utils import base_hasattr
 
 import logging
@@ -30,6 +31,17 @@ def make_dbevent_folderish(context):
 
 
 def update_dbevent_schema(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+
+    # add role EventEditor and and
+    # add permission docpool.event.ManageDPEvents
+    # reload workflow to allow Editing and adding Events.
+    loadMigrationProfile(
+        portal_setup,
+        'profile-docpool.event:default',
+        steps=['rolemap', 'workflow'],
+        )
+
     # Adapt existing events to changes in event schema
     for brain in api.content.find(portal_type='DPEvent'):
         obj = brain.getObject()
@@ -46,3 +58,6 @@ def update_dbevent_schema(context=None):
         if not getattr(obj.aq_base, 'OperationMode'):
             obj.OperationMode = 'routine'
         log.info('Updated {}'.format(obj.absolute_url()))
+
+        # Update indexed permission after EventEditor was added
+        obj.reindexObjectSecurity()
