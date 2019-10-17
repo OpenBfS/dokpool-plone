@@ -505,6 +505,9 @@ class DPEvent(Container, ContentBase):
         :return: """
         journals = ['journal1', 'journal2']
         for journal in journals:
+            # Test if they already exists
+            if obj.get(journal):
+                pass
             new = api.content.create(
                 container=obj,
                 type='Journal',
