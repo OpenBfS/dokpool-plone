@@ -9,7 +9,7 @@
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-
+   <element value="Journal" />
  </property>
  <!-- schema interface -->
  <property name="schema">docpool.event.content.dpevent.IDPEvent</property>
@@ -27,7 +27,6 @@
      <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
      <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
-
 </property>
 
  <!-- View information -->

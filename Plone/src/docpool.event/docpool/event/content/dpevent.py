@@ -28,7 +28,7 @@ from logging import getLogger
 from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
 from plone.autoform import directives
-from plone.dexterity.content import Item
+from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
@@ -162,7 +162,7 @@ class IDPEvent(model.Schema, IContentBase):
 
 
 @implementer(IDPEvent)
-class DPEvent(Item, ContentBase):
+class DPEvent(Container, ContentBase):
     """
     """
 
