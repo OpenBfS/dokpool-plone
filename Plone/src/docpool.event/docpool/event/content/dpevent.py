@@ -40,6 +40,7 @@ from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
 from pygeoif import geometry
+from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -64,57 +65,7 @@ class IDPEvent(model.Schema, IContentBase):
     """
     """
 
-    Status = schema.Choice(
-        title=_(u'label_dpevent_status', default=u'Status of the event'),
-        description=_(u'description_dpevent_status', default=u''),
-        required=True,
-        source="docpool.base.vocabularies.Status",
-    )
-
-    AlertingStatus = schema.Choice(
-        title=_(u'label_dpevent_alerting_status', default=u'Status of Alerting'),
-        description=_(u'description_dpevent_alerting_status', default=u''),
-        required=True,
-        source="docpool.event.vocabularies.AlertingStatus",
-    )
-
-    Exercise = schema.Bool(
-        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
-        description=_(u'description_dpevent_exercise', default=u''),
-        required=False,
-        default=True,
-    )
-
-    TimeOfEvent = schema.Datetime(
-        title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
-        description=_(u'description_dpevent_timeofevent', default=u''),
-        required=True,
-        defaultFactory=initializeTimeOfEvent,
-    )
-
-    SectorizingSampleTypes = schema.List(
-        title=_(u'Sectorizing sample types'),
-        required=False,
-        value_type=schema.Choice(
-            source=u"docpool.doksys.SampleTypeIds"),
-    )
-
-    directives.widget(
-        SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
-    )
-    SectorizingNetworks = RelationList(
-        title=_(u'Sectorizing networks'),
-        required=False,
-        value_type=RelationChoice(
-            source=u'docpool.event.vocabularies.Networks'),
-    )
-
-    OperationMode = schema.Choice(
-        title=_(u'Operation mode'),
-        vocabulary=u"docpool.event.vocabularies.Modes",
-        required=False,
-    )
-
+    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
     Substitute = RelationChoice(
         title=_(u'label_dpevent_substitute', default=u'Substitute event'),
         description=_(
@@ -124,7 +75,28 @@ class IDPEvent(model.Schema, IContentBase):
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
     )
-    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+
+    Exercise = schema.Bool(
+        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
+        description=_(u'description_dpevent_exercise', default=u''),
+        required=False,
+        default=True,
+    )
+
+    directives.widget(Status=RadioFieldWidget)
+    Status = schema.Choice(
+        title=_(u'label_dpevent_status', default=u'Status of the event'),
+        description=_(u'description_dpevent_status', default=u''),
+        required=True,
+        source="docpool.base.vocabularies.Status",
+    )
+
+    TimeOfEvent = schema.Datetime(
+        title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
+        description=_(u'description_dpevent_timeofevent', default=u''),
+        required=True,
+        defaultFactory=initializeTimeOfEvent,
+    )
 
     # directives.widget(EventPhase=AutocompleteFieldWidget)
     directives.widget(
@@ -151,6 +123,38 @@ class IDPEvent(model.Schema, IContentBase):
     AreaOfInterest = WKT(
         title=_(u"Area of interest"),
         required=False,
+    )
+
+    directives.widget(OperationMode=RadioFieldWidget)
+    OperationMode = schema.Choice(
+        title=_(u'Operation mode'),
+        vocabulary=u"docpool.event.vocabularies.Modes",
+        required=False,
+    )
+
+    directives.widget(AlertingStatus=RadioFieldWidget)
+    AlertingStatus = schema.Choice(
+        title=_(u'label_dpevent_alerting_status', default=u'Status of Alerting'),
+        description=_(u'description_dpevent_alerting_status', default=u''),
+        required=True,
+        source="docpool.event.vocabularies.AlertingStatus",
+    )
+
+    SectorizingSampleTypes = schema.List(
+        title=_(u'Sectorizing sample types'),
+        required=False,
+        value_type=schema.Choice(
+            source=u"docpool.doksys.SampleTypeIds"),
+    )
+
+    directives.widget(
+        SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
+    )
+    SectorizingNetworks = RelationList(
+        title=_(u'Sectorizing networks'),
+        required=False,
+        value_type=RelationChoice(
+            source=u'docpool.event.vocabularies.Networks'),
     )
 
     changelog = RichText(
