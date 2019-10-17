@@ -37,8 +37,7 @@ def update_dbevent_schema(context=None):
         if obj.Exercise:
             obj.EventType = 'exercise'
         else:
-            # TODO: Is that correct? Non-exercise == 'test' or 'event'?
-            obj.EventType = 'test'
+            obj.EventType = 'event'
         del obj.Exercise
 
         # Events need a mode (#2573)
