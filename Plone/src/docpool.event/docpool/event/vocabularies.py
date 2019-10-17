@@ -36,6 +36,22 @@ EventVocabularyFactory = EventVocabulary()
 
 
 @implementer(IVocabularyFactory)
+class EventTypesVocabulary(object):
+
+    def __call__(self, context):
+        values = [
+            (u'exercise', _(u'Exercise')),
+            (u'event', _(u'Event')),
+            (u'test', _(u'Test')),
+            ]
+        # value, token, title
+        return SimpleVocabulary([SimpleTerm(i[0], i[0], i[1]) for i in values])
+
+
+EventTypesVocabularyFactory = EventTypesVocabulary()
+
+
+@implementer(IVocabularyFactory)
 class EventRefVocabulary(object):
     """
     """

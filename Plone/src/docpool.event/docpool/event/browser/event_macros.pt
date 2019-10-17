@@ -6,24 +6,24 @@
 
 <div id="scenario_box" metal:define-macro="scenario_table"
      tal:define="possible_scenarios view/scenarios;
-										              selected_scenarios view/selected_scenarios;
-													  readonly request/ajax_load|nothing"
+                 selected_scenarios view/selected_scenarios;
+                 readonly request/ajax_load|nothing"
      tal:condition="possible_scenarios">
     <form name="scenarios" method="post" class="scenario_selection"
           tal:attributes="action string:selectScenarios">
         <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
         <table class="scenario_table">
             <tal:loop tal:repeat="scenario possible_scenarios">
-                <tr tal:define="exercise scenario/Exercise;
-                             inactive python:scenario.Status == 'inactive';
-                             selected python:scenario.getId() in selected_scenarios;
-                             intensive python:scenario.OperationMode == 'intensive';
-                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                             css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '') + (intensive and 'intensive' or '')"
+                <tr tal:define="event_type python:scenario.EventType or '';
+                                inactive python:scenario.Status == 'inactive';
+                                selected python:scenario.getId() in selected_scenarios;
+                                intensive python:scenario.OperationMode == 'intensive';
+                                toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                                css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '') + (intensive and 'intensive' or '')"
                     tal:attributes="class css_class">
                     <tal:def define="mi python:scenario.modInfo();
-			                           date python:mi[0];
-			                           uinfo python:mi[1]">
+                                     date python:mi[0];
+                                     uinfo python:mi[1]">
                         <td class="scenario_desc">
 
                             <input type="checkbox" name="scnrs:list"
@@ -32,13 +32,16 @@
                                                    disabled python:readonly and 'disabled' or None;
                                                    checked python:'checked' if scenario.getId() in selected_scenarios else None;"
                                    onclick="this.form.submit()"
-                            />&nbsp;&nbsp;
+                            />&nbsp;&nbsp;&nbsp;&nbsp;
 
-                            <tal:if condition="exercise">
+                            <tal:if condition="python: event_type in ['exercise', 'test']">
                             <span class="exerciseflag"
-                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
-                                  i18n:translate="">+++Exercise+++</span>
-                            </tal:if> &nbsp;&nbsp;
+                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))">
+                                +++
+                                <span tal:replace="python: event_type.capitalize()" i18n:translate=""></span>
+                                +++
+                            </span>&nbsp;&nbsp;
+                            </tal:if>
 
                             <span class="scentitle"
                                   tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"

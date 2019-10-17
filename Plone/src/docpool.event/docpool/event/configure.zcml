@@ -47,6 +47,10 @@
     name="docpool.event.vocabularies.Events"
     />
   <utility
+    component=".vocabularies.EventTypesVocabularyFactory"
+    name="docpool.event.vocabularies.EventTypes"
+    />
+  <utility
     component=".vocabularies.EventRefVocabularyFactory"
     name="docpool.event.vocabularies.EventRefs"
     />

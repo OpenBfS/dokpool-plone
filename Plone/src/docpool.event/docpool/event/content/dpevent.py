@@ -76,11 +76,12 @@ class IDPEvent(model.Schema, IContentBase):
         source="docpool.event.vocabularies.EventSubstitutes",
     )
 
-    Exercise = schema.Bool(
-        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
-        description=_(u'description_dpevent_exercise', default=u''),
-        required=False,
-        default=True,
+    directives.widget(EventType=RadioFieldWidget)
+    EventType = schema.Choice(
+        title=_(u'label_dpevent_type', default=u'Type of event'),
+        description=_(u'description_dpevent_type', default=u''),
+        required=True,
+        source='docpool.event.vocabularies.EventTypes',
     )
 
     directives.widget(Status=RadioFieldWidget)

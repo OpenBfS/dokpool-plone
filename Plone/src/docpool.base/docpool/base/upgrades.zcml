@@ -38,7 +38,12 @@
     <genericsetup:upgradeStep
         title="Upgrade from 1.3.29 to 1.4.00"
         description="DPEvent class to Container"
-        handler="docpool.base.upgrades.to_1_4_00"
+        handler="docpool.base.upgrades.make_dbevent_folderish"
+        />
+    <genericsetup:upgradeStep
+        title="Upgrade from 1.3.29 to 1.4.0"
+        description="Update dpevent schema"
+        handler="docpool.base.upgrades.update_dbevent_schema"
         />
   </genericsetup:upgradeSteps>
 

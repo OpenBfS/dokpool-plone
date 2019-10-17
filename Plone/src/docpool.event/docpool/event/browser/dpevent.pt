@@ -24,7 +24,7 @@
         <div tal:content="structure widget/render" />
     </div>
 
-    <div tal:define="widget python:view.widgets['Exercise']"
+    <div tal:define="widget python:view.widgets['EventType']"
          class="field">
         <label tal:content="widget/label" />
         <br />
