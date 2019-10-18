@@ -6305,14 +6305,18 @@ table.scenario_table {
   width: 100%;
 }
 /* line 52, http://localhost:8081/Plone/++theme++docpool.theme/static/scenarios.less */
+table.scenario_table .intensive {
+  background-color: #FAA0A0;
+}
+/* line 56, http://localhost:8081/Plone/++theme++docpool.theme/static/scenarios.less */
 table.scenario_table .inactive {
   background-color: #E0EBF3;
 }
-/* line 56, http://localhost:8081/Plone/++theme++docpool.theme/static/scenarios.less */
+/* line 60, http://localhost:8081/Plone/++theme++docpool.theme/static/scenarios.less */
 table.scenario_table .sselected {
   font-weight: bold;
 }
-/* line 60, http://localhost:8081/Plone/++theme++docpool.theme/static/scenarios.less */
+/* line 64, http://localhost:8081/Plone/++theme++docpool.theme/static/scenarios.less */
 form.scenario_selection input {
   padding: 2px;
   margin: 0;
@@ -6446,12 +6450,12 @@ p.version {
 }
 /*
 #portal-globalnav li.personal {
-	float: right; 	
+  float: right;
 }
 
 #portal-globalnav li.personal a {
-	background-color: #003366;
-	color: #DDDDDD;
+  background-color: #003366;
+  color: #DDDDDD;
 }
 
 #portal-globalnav li.transfer a {
