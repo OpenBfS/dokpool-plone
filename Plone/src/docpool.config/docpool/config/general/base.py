@@ -264,7 +264,16 @@ def createGroups(self):
         )
     except BaseException:
         pass
+    configureGroups(self)
     try:
         gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
     except BaseException:
         pass
+
+
+def configureGroups(self):
+    gdata = getToolByName(self, 'portal_groupdata')
+    prop = gdata.propdict().get("allowedDocTypes")
+    if prop is not None:
+        prop["label"] = u"Allowed document types"
+        gdata._p_changed = True
