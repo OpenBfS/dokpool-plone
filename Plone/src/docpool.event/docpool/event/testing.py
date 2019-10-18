@@ -21,6 +21,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import elan.journal
         import docpool.event
         import docpool.config
         import docpool.base
@@ -38,12 +39,14 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=wsapi4plone.core)
         self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.doksys)
+        self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.event)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'docpool.base:default')
         applyProfile(portal, 'elan.policy:default')
         applyProfile(portal, 'docpool.doksys:default')
+        applyProfile(portal, 'elan.journal:default')
         applyProfile(portal, 'docpool.event:default')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         # Create a docpool

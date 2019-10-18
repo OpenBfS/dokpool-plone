@@ -61,12 +61,17 @@ class Renderer(base.Renderer):
                     'ELANDocCollection',
                     'Dashboard',
                     'SituationOverview',
+                    'Journal'
                 ]
             }
         )
+        # In archive we return the archived journals
+        # TODO HACK Unify the isArchiv() method
+        if "archive" in self.context.getPhysicalPath():
+            return [o for o in fc if o.id not in ('recent', 'overview')]
         # Get the active journals for this Scenario
-        scenarios = getScenariosForCurrentUser(self.context)
         journals = []
+        scenarios = getScenariosForCurrentUser(self.context)
         # User could select more than one scenario
         for scenario in scenarios:
             event_brain = api.content.find(portal_type='DPEvent', id=scenario)
