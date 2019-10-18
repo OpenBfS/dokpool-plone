@@ -262,8 +262,17 @@ class DPEvent(Container, ContentBase):
         Status is unchanged.
         """
         alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
-        arc = self._createArchiveFolders()
-        # TODO
+        arc = self._createArchive()
+        # Archive the Journals into esd folder
+        # TODO Does not use any wrapped copy/paste (like _copyDocument)
+        # _copyDocument or similar is needed to get a transferlog
+        # See https://redmine-koala.bfs.de/issues/3100
+        archived_esd_root= arc.esd
+        event_path = '/'.join(self.getPhysicalPath())
+        for journal in api.content.find(portal_type='Journal',
+                                        path=event_path):
+            cb_copy_data = self.manage_copyObjects(journal.getObject().getId())
+            result = archived_esd_root.manage_pasteObjects(cb_copy_data)
         m = self.content
         mpath = "/".join(m.getPhysicalPath())
         arc_m = arc.content
@@ -370,7 +379,8 @@ class DPEvent(Container, ContentBase):
 
     def _getDocumentsForScenario(self, **kwargs):
         """
-        Helper function for catalog queries
+        Collects all DPDocuments for the current scenario
+        :return: list of brains
         """
         #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
         args = {'portal_type': "DPDocument", 'scenarios': self.getId()}
@@ -378,7 +388,7 @@ class DPEvent(Container, ContentBase):
         cat = getToolByName(self, "portal_catalog")
         return cat(args)
 
-    def _createArchiveFolders(self):
+    def _createArchive(self):
         """
         We create an archive object. Into it, we copy the complete ESD hierarchy.
         We also create two folders "Members" and "Groups", which will hold all the
