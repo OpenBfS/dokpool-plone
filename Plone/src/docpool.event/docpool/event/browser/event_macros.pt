@@ -17,8 +17,10 @@
                 <tr tal:define="exercise scenario/Exercise;
                              inactive python:scenario.Status == 'inactive';
                              selected python:scenario.getId() in selected_scenarios;
-                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
-                    tal:attributes="class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '')">
+                             intensive python:scenario.OperationMode == 'intensive';
+                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                             css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '') + (intensive and 'intensive' or '')"
+                    tal:attributes="class css_class">
                     <tal:def define="mi python:scenario.modInfo();
 			                           date python:mi[0];
 			                           uinfo python:mi[1]">
@@ -41,6 +43,14 @@
                             <span class="scentitle"
                                   tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
                                   tal:content="string:${scenario/Title}">Event1</span>
+                        </td>
+                        <td>
+                          <a class="pat-plone-modal scenario-info"
+                             href=""
+                             title="Klicken für Informationen zum Ereignis"
+                             tal:attributes="href python:scenario.absolute_url() + '?ajax_load=1'">
+                            Info
+                          </a>
                         </td>
                     </tal:def>
                 </tr>
