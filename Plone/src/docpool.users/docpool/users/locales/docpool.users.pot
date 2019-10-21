@@ -131,6 +131,10 @@ msgstr ""
 msgid "heading_edit_groupproperties"
 msgstr ""
 
+#: docpool.users/docpool/users/browser/usergroups_groupdetails.pt:116
+msgid "Allowed document types"
+msgstr ""
+
 #. Default: "Group Members"
 #: docpool.users/docpool/users/browser/usergroups_groupmembership.pt:28
 msgid "heading_group_members"
