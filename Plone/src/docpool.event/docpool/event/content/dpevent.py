@@ -561,11 +561,11 @@ def addLogEntry(old_changelog, obj):
         obj.Status,
         obj.OperationMode,
         obj.phaseInfo(),
-        ", ".join(
+        u", ".join(
             obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else ' '
         ),
-        ", ".join(
-            (n.to_object.Title() for n in obj.SectorizingNetworks)
+        u", ".join(
+            (n.to_object.title for n in obj.SectorizingNetworks)
             if obj.SectorizingNetworks is not None
             else ' '
         ),
