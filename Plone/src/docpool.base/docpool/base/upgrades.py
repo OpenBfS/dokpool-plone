@@ -16,13 +16,10 @@ def to_1_4_00(context):
     portal = api.portal.get()
     configureGroups(portal)
     log.info('Configured groups')
-    log.info('Start migrating DPEvent to Container class')
 
 
 def make_dbevent_folderish(context):
     log.info('Start migrating DPEvent to Container class')
-    context.runAllImportStepsFromProfile('profile-docpool.base:to_1_3_29')
-
     brains = api.content.find(portal_type='DPEvent')
     for dpevent in brains:
         dpevent_obj = dpevent.getObject()
