@@ -15,6 +15,7 @@
         <table class="scenario_table">
             <tal:loop tal:repeat="scenario possible_scenarios">
                 <tr tal:define="event_type python:scenario.EventType or '';
+                                exercise python:event_type in ['exercise', 'test'];
                                 inactive python:scenario.Status == 'inactive';
                                 selected python:scenario.getId() in selected_scenarios;
                                 intensive python:scenario.OperationMode == 'intensive';
@@ -34,7 +35,7 @@
                                    onclick="this.form.submit()"
                             />&nbsp;&nbsp;&nbsp;&nbsp;
 
-                            <tal:if condition="python: event_type in ['exercise', 'test']">
+                            <tal:if condition="python: exercise">
                             <span class="exerciseflag"
                                   tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))">
                                 +++
