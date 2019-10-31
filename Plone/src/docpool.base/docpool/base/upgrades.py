@@ -19,18 +19,21 @@ def to_1_4_00(context):
 
 
 def make_dbevent_folderish(context):
+    # Better do a catalog rebuild in some cases upgrade does not work:
+    # https://redmine-koala.bfs.de/issues/2454#note-23
+    # TODO Needs more investigation
+    log.info('Rebuild catalog')
+    catalog = api.portal.get_tool('portal_catalog')
+    catalog.clearFindAndRebuild()
     log.info('Start migrating DPEvent to Container class')
     brains = api.content.find(portal_type='DPEvent')
     log.info('Found DPEvent brains: {}'.format(str(len(brains))))
     for dpevent in brains:
-        try:
-            log.info('Is the brain folderish {}'.format(str(getattr(dpevent, 'is_folderish', None))))
-            log.info('Try to migrate {}'.format(str(dpevent.getPath())))
-            dpevent_obj = dpevent.getObject()
-            migrate_base_class_to_new_class(dpevent_obj, migrate_to_folderish=True)
-            log.info('Migrated {}'.format(str(dpevent_obj)))
-        except:
-            log.error('NOT migrated {}'.format(str(dpevent)))
+        log.info('Is the brain folderish {}'.format(str(getattr(dpevent, 'is_folderish', None))))
+        log.info('Try to migrate {}'.format(str(dpevent.getPath())))
+        dpevent_obj = dpevent.getObject()
+        migrate_base_class_to_new_class(dpevent_obj, migrate_to_folderish=True)
+        log.info('Migrated {}'.format(str(dpevent_obj)))
 
 
 def update_dbevent_schema(context=None):
