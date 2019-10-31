@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+from bs4 import BeautifulSoup
 from docpool.config.general.base import configureGroups
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
+from plone.app.textfield import RichTextValue
 from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFPlone.utils import base_hasattr
 
+import json
 import logging
 
 log = logging.getLogger(__name__)
@@ -64,3 +67,25 @@ def update_dbevent_schema(context=None):
 
         # Update indexed permission after EventEditor was added
         obj.reindexObjectSecurity()
+
+
+def create_json_changelog(context=None):
+    for brain in api.content.find(portal_type='DPEvent'):
+        obj = brain.getObject()
+        result = []
+        if obj.changelog and isinstance(obj.changelog, RichTextValue):
+            soup = BeautifulSoup(obj.changelog.output, 'lxml')
+            head = soup.select('th')
+            for tr in soup.select('tr'):
+                entry = {}
+                for index, td in enumerate(tr.select('td')):
+                    entry[head[index].text.strip()] = td.text.strip()
+                if '(' in entry.get('Date', ''):
+                    date, user = entry['Date'].split(u'(', 1)
+                    entry[u'Date'] = date
+                    entry[u'User'] = user[:-1]
+                if entry:
+                    result.append(entry)
+            log.info(u'Migrated changelog to json for {}'.format(
+                obj.absolute_url()))
+            obj.changelog = json.dumps(result)

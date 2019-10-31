@@ -52,6 +52,7 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 import plone.api as api
 import datetime
+import json
 
 
 logger = getLogger("dpevent")
@@ -170,7 +171,7 @@ class IDPEvent(model.Schema, IContentBase):
             source=u'docpool.event.vocabularies.Networks'),
     )
 
-    changelog = RichText(
+    changelog = schema.Text(
         title=_(u'label_dpevent_changelog', default=u'Changelog'),
         description=_(u''),
         required=False,
@@ -585,74 +586,33 @@ def eventAdded(obj, event=None):
     obj.addScenarioForUsers()
     obj.createDefaultJournals()
 
-def addLogEntry(old_changelog, obj):
-    print(obj.SectorizingNetworks)
+
+def addLogEntry(obj):
     mdate, userInfo = obj.modInfo()
-    text = """
-    <tr>
-    <td>%s<br/>(%s)</td>
-    <td>%s</td>
-    <td>%s</td>
-    <td>%s</td>
-    <td>%s</td>
-    <td>%s</td>
-    </tr>
-    <tr class="last"></tr>
-    """ % (
-        obj.toLocalizedTime(mdate, long_format=1),
-        userInfo,
-        obj.Status,
-        obj.OperationMode,
-        obj.phaseInfo(),
-        u", ".join(
-            obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else ' '
-        ),
-        u", ".join(
-            (n.to_object.title for n in obj.SectorizingNetworks)
-            if obj.SectorizingNetworks is not None
-            else ' '
-        ),
-    )
-    new_changelog = old_changelog.replace(
-        """<tr class="last"></tr>""", safe_unicode(text)
-    )
-    obj.changelog = RichTextValue(new_changelog, 'text/html', 'text/html')
+    changelog = json.loads(obj.changelog or '')
+    entry = {}
+    entry[u'Date'] = obj.toLocalizedTime(mdate, long_format=1)
+    entry[u'User'] = userInfo
+    entry[u'Status'] = obj.Status
+    entry[u'Operation mode'] = obj.OperationMode
+    entry[u'Alerting status'] = obj.AlertingStatus
+    entry[u'Alerting note'] = obj.AlertingNote
+    entry[u'Phase'] = obj.phaseInfo()
+    entry[u'Sectorizing sample types'] = u", ".join(
+        obj.SectorizingSampleTypes
+        if obj.SectorizingSampleTypes is not None else ' ')
+    entry[u'Sectorizing networks'] = u", ".join(
+        (n.to_object.title for n in obj.SectorizingNetworks)
+        if obj.SectorizingNetworks is not None else ' ')
+    changelog.append(entry)
+    obj.changelog = json.dumps(changelog)
 
 
 @adapter(IDPEvent, IObjectModifiedEvent)
 def eventChanged(obj, event=None):
     """
     """
-    # print 'eventChanged'
-    # write changelog
-    old_changelog = """
-    <table>
-    <thead>
-    <tr>
-    <th>%s</th>
-    <th>%s</th>
-    <th>%s</th>
-    <th>%s</th>
-    <th>%s</th>
-    <th>%s</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="last"></tr>
-    </tbody>
-    </table>
-    """ % (
-        _(u"Date"),
-        _(u"Status"),
-        _(u"Operation mode"),
-        _(u"Phase"),
-        _(u"Sectorizing sample types"),
-        _(u"Sectorizing networks"),
-    )
-    if obj.changelog:
-        old_changelog = safe_unicode(obj.changelog.output)
-
-    addLogEntry(old_changelog, obj)
+    addLogEntry(obj)
 
     if obj.Status != 'active':
         obj.deleteEventReferences()

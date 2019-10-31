@@ -148,11 +148,34 @@
         </div>
     </div>
 
-    <div tal:define="widget python:view.widgets['changelog']"
-         class="field" >
-        <h4 tal:content="widget/label" />
-        <div tal:content="structure widget/render" />
-    </div>
+    <h4>Changelog</h4>
+    <table class="listing"
+           tal:define="changelog python:view.changelog();">
+      <thead>
+        <tr>
+          <th i18n:translate="">Date/User</th>
+          <th i18n:translate="">Phase</th>
+          <th i18n:translate="">State</th>
+          <th i18n:translate="">Operation mode</th>
+          <th i18n:translate="">Alerting status</th>
+          <th i18n:translate="">Alerting note</th>
+          <th i18n:translate="">Sectorizing sample types</th>
+          <th i18n:translate="">Sectorizing networks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr tal:repeat="item python:changelog">
+          <td tal:content="python: '{} ({})'.format(item.get('Date', ''), item.get('User', ''))"></td>
+          <td tal:content="python: item.get('Phase', '')"></td>
+          <td tal:content="python: item.get('Status', '')"></td>
+          <td tal:content="python: item.get('Operation mode', '')"></td>
+          <td tal:content="python: item.get('Alerting status', '')"></td>
+          <td tal:content="python: item.get('Alerting note', '')"></td>
+          <td tal:content="python: item.get('Sectorizing sample types', '')"></td>
+          <td tal:content="python: item.get('Sectorizing networks', '')"></td>
+        </tr>
+      </tbody>
+    </table>
 
 </metal:content-core>
 </metal:content-core>

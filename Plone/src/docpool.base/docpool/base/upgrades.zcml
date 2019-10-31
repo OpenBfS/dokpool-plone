@@ -28,6 +28,10 @@
         title="Upgrade dpevent schema"
         handler="docpool.base.upgrades.update_dbevent_schema"
         />
+    <genericsetup:upgradeStep
+        title="Migrate changelog to json"
+        handler="docpool.base.upgrades.create_json_changelog"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>
