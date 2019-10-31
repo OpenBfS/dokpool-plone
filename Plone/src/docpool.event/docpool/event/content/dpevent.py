@@ -25,8 +25,6 @@ from docpool.event import DocpoolMessageFactory as _
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
 from logging import getLogger
-from plone.app.textfield import RichText
-from plone.app.textfield import RichTextValue
 from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
@@ -589,7 +587,7 @@ def eventAdded(obj, event=None):
 
 def addLogEntry(obj):
     mdate, userInfo = obj.modInfo()
-    changelog = json.loads(obj.changelog or '')
+    changelog = json.loads(obj.changelog or '[]')
     entry = {}
     entry[u'Date'] = obj.toLocalizedTime(mdate, long_format=1)
     entry[u'User'] = userInfo
