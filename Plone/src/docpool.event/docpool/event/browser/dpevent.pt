@@ -91,7 +91,8 @@
     <div tal:define="widget python:view.widgets['EventCoordinates'];
                      view python:widget;"
          tal:condition="python:context.EventCoordinates"
-         class="field">
+         class="field"
+         tal:replace="nothing">
         <label tal:content="widget/label" />
         <br />
         <div id="" class=""
@@ -121,7 +122,8 @@
     <div tal:define="widget python:view.widgets['AreaOfInterest'];
                      view python:widget;"
          tal:condition="python:context.AreaOfInterest"
-         class="field">
+         class="field"
+         tal:replace="nothing">
         <label tal:content="widget/label" />
         <br />
         <div id="" class=""
