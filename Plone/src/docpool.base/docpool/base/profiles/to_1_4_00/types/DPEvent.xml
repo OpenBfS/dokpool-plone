@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.event" name="DPEvent">
+ <property name="allowed_content_types">
+   <element value="Journal" />
+ </property>
+</object>
