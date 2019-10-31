@@ -1,30 +1,62 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.event" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<body>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.event"
+      xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    <body>
+        <metal:content-core fill-slot="content-core">
+        <metal:content-core define-macro="content-core">
+        <table style="width:65%;"
+               class="elanlisting"
+               tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+            <thead>
+                <tr>
+                    <th i18n:translate="">Created</th>
+                    <th i18n:translate="">Title/Description</th>
+                    <th i18n:translate="">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="scenario python:context.getDPEvents(sort_on='modified', sort_order='reverse')">
+                    <td style="width:20%;">
+                        <span tal:define="mi python:scenario.modInfo(show_created=True);
+                                          date python:mi[0];
+                                          uinfo python:mi[1];">
+                            <tal:var replace="uinfo"/>
+                            <i>
+                                ,<br />
+                                <tal:var replace="python:toLocalizedTime(date, long_format=1)"/>
+                                (<tal:var i18n:translate="">LT</tal:var>)
+                            </i>
+                        </span>
+                    </td>
+                    <td style="width:40%;"
+                        tal:define="event_type python:scenario.EventType or ''">
+                        <a href="" tal:attributes="href scenario/absolute_url">
+                            <tal:if condition="python: event_type == 'exercise'">
+                                <em i18n:translate="">++++ Exercise ++++</em>
+                                <br>
+                            </tal:if>
+                            <tal:if condition="python: event_type == 'test'">
+                                <em i18n:translate="">++++ Test ++++</em>
+                                <br>
+                            </tal:if>
 
-<metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core">
-<table style="width:65%;" class="elanlisting" tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-<thead>
-<tr><th i18n:translate="">Created</th><th i18n:translate="">Title/Description</th><th i18n:translate="">Status</th></tr>
-</thead>
-<tbody>
-<tr tal:repeat="scenario python:context.getDPEvents(sort_on='modified', sort_order='reverse')">
-<td style="width:20%;"><span tal:define="mi python:scenario.modInfo(show_created=True);
-                      date python:mi[0];
-                      uinfo python:mi[1];">
-         <tal:var replace="uinfo"/><i>,<br /> <tal:var replace="python:toLocalizedTime(date, long_format=1)"/> (<tal:var i18n:translate="">LT</tal:var>)</i>
-</span></td>
-<td style="width:40%;" tal:define="exercise scenario/Exercise"><a href="" tal:attributes="href scenario/absolute_url">
-                <tal:if condition="exercise"><em i18n:translate="">++++ Exercise ++++</em><br>
-                </tal:if><b><tal:var replace="scenario/Title"/></b></a><br>
-<span tal:content="python:scenario.Description().decode('utf-8')" /></td>
-<td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
-</tr>
-</tbody>
-</table>
-
-</metal:content-core>
-</metal:content-core>
-
+                            <b tal:content="scenario/Title">
+                                Title
+                            </b>
+                        </a>
+                        <br>
+                        <span tal:content="python:scenario.Description().decode('utf-8')" />
+                    </td>
+                <td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
+            </tr>
+        </tbody>
+    </table>
+    </metal:content-core>
+    </metal:content-core>
 </body>
 </html>

@@ -37,6 +37,7 @@
 
 
    <permission id="docpool.event.AddDPEvent" title="Docpool: Add DPEvent" />
+   <permission id="docpool.event.ManageDPEvents" title="Docpool: Manage DPEvent" />
 
    <permission id="docpool.event.AddDPEvents" title="Docpool: Add DPEvents" />
    <permission id="docpool.event.AddDPNetwork" title="Docpool: Add DPNetwork" />
@@ -45,6 +46,10 @@
   <utility
     component=".vocabularies.EventVocabularyFactory"
     name="docpool.event.vocabularies.Events"
+    />
+  <utility
+    component=".vocabularies.EventTypesVocabularyFactory"
+    name="docpool.event.vocabularies.EventTypes"
     />
   <utility
     component=".vocabularies.EventRefVocabularyFactory"

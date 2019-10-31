@@ -10,75 +10,83 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 
-    <div tal:define="widget python:view.widgets['Status']"
-         class="field">
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+  <h4>Ereignisinformationen</h4>
 
-    <div tal:define="widget python:view.widgets['AlertingStatus']"
-         class="field">
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+  <table class="listing">
 
-    <div tal:define="widget python:view.widgets['Exercise']"
-         class="field">
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['Substitute']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['TimeOfEvent']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['EventType']">
+      <td tal:content="widget/label"></td>
+      <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['SectorizingSampleTypes']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['Status']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['SectorizingNetworks']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['TimeOfEvent']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['OperationMode']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['EventPhase']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['Substitute']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['EventLocation']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['EventPhase']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['EventCoordinates']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
 
-    <div tal:define="widget python:view.widgets['EventLocation']"
-         class="field" >
-        <label tal:content="widget/label" />
-        <br />
-        <div tal:content="structure widget/render" />
-    </div>
+    <tr tal:define="widget python:view.widgets['AreaOfInterest']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
+
+  </table>
+
+  <h4>Betriebsart und Alarmierung</h4>
+
+  <table class="listing">
+    <tr tal:define="widget python:view.widgets['OperationMode'];
+                    intensive python: context.OperationMode == 'intensive'">
+        <td tal:content="widget/label"></td>
+        <td><strong tal:attributes="class python: 'intensive' if intensive else ''"
+                    tal:content="structure widget/render"></td>
+    </tr>
+
+    <tr tal:define="widget python:view.widgets['AlertingStatus']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
+
+    <tr tal:define="widget python:view.widgets['AlertingNote']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
+
+    <tr tal:define="widget python:view.widgets['SectorizingSampleTypes']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
+
+    <tr tal:define="widget python:view.widgets['SectorizingNetworks']">
+        <td tal:content="widget/label"></td>
+        <td tal:content="structure widget/render"></td>
+    </tr>
+
+  </table>
 
     <div tal:define="widget python:view.widgets['EventCoordinates'];
                      view python:widget;"
@@ -142,8 +150,7 @@
 
     <div tal:define="widget python:view.widgets['changelog']"
          class="field" >
-        <label tal:content="widget/label" />
-        <br />
+        <h4 tal:content="widget/label" />
         <div tal:content="structure widget/render" />
     </div>
 

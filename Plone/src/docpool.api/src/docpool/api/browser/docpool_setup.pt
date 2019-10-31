@@ -8,9 +8,9 @@
 <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main">
 
-      <h1 class="documentFirstHeading">Create a dopool portal</h1>
+      <h1 class="documentFirstHeading">Create a docpool portal</h1>
 
-      <p>This turns a plain Plone site into a dopool portal with:</p>
+      <p>This turns a plain Plone site into a docpool portal with:</p>
       <ul>
         <li>Two docpools (bund and hessen)</li>
         <li>A Test-user in each docpool and their groups: user1/group1 (bund) and user2/group2(hessen)</li>

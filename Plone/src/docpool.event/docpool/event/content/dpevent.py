@@ -28,7 +28,7 @@ from logging import getLogger
 from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
 from plone.autoform import directives
-from plone.dexterity.content import Item
+from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
@@ -40,6 +40,7 @@ from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
 from pygeoif import geometry
+from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -49,7 +50,7 @@ from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-
+import plone.api as api
 import datetime
 
 
@@ -64,25 +65,34 @@ class IDPEvent(model.Schema, IContentBase):
     """
     """
 
+    directives.write_permission(Substitute='docpool.event.ManageDPEvents')
+    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+    Substitute = RelationChoice(
+        title=_(u'label_dpevent_substitute', default=u'Substitute event'),
+        description=_(
+            u'description_dpevent_substitute',
+            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',  # noqa: E501
+        ),
+        required=False,
+        source="docpool.event.vocabularies.EventSubstitutes",
+    )
+
+    directives.widget(EventType=RadioFieldWidget)
+    EventType = schema.Choice(
+        title=_(u'label_dpevent_type', default=u'Type of event'),
+        description=_(u'description_dpevent_type', default=u''),
+        required=True,
+        source='docpool.event.vocabularies.EventTypes',
+    )
+
+    directives.write_permission(Status='docpool.event.ManageDPEvents')
+    directives.widget(Status=RadioFieldWidget)
     Status = schema.Choice(
         title=_(u'label_dpevent_status', default=u'Status of the event'),
         description=_(u'description_dpevent_status', default=u''),
         required=True,
+        default='active',
         source="docpool.base.vocabularies.Status",
-    )
-
-    AlertingStatus = schema.Choice(
-        title=_(u'label_dpevent_alerting_status', default=u'Status of Alerting'),
-        description=_(u'description_dpevent_alerting_status', default=u''),
-        required=True,
-        source="docpool.event.vocabularies.AlertingStatus",
-    )
-
-    Exercise = schema.Bool(
-        title=_(u'label_dpevent_exercise', default=u'Is this an exercise?'),
-        description=_(u'description_dpevent_exercise', default=u''),
-        required=False,
-        default=True,
     )
 
     TimeOfEvent = schema.Datetime(
@@ -91,6 +101,57 @@ class IDPEvent(model.Schema, IContentBase):
         required=True,
         defaultFactory=initializeTimeOfEvent,
     )
+
+    # directives.widget(EventPhase=AutocompleteFieldWidget)
+    directives.widget(
+        EventPhase='z3c.form.browser.select.SelectFieldWidget')
+    EventPhase = RelationChoice(
+        title=_(u"Scenario & Phase"),
+        vocabulary=u"docpool.event.vocabularies.Phases",
+        required=False,
+    )
+
+    directives.write_permission(EventLocation='docpool.event.ManageDPEvents')
+    directives.widget(
+        EventLocation='z3c.form.browser.select.SelectFieldWidget')
+    EventLocation = RelationChoice(
+        title=_(u'Event location'),
+        vocabulary=u"docpool.event.vocabularies.PowerStations",
+        required=False,
+    )
+
+    directives.write_permission(EventCoordinates='docpool.event.ManageDPEvents')
+    EventCoordinates = WKT(
+        title=_(u"Event coordinates"),
+        required=False,
+    )
+
+    directives.write_permission(AreaOfInterest='docpool.event.ManageDPEvents')
+    AreaOfInterest = WKT(
+        title=_(u"Area of interest"),
+        required=False,
+    )
+
+    directives.widget(OperationMode=RadioFieldWidget)
+    OperationMode = schema.Choice(
+        title=_(u'Operation mode'),
+        vocabulary=u"docpool.event.vocabularies.Modes",
+        required=True,
+    )
+
+    directives.widget(AlertingStatus=RadioFieldWidget)
+    AlertingStatus = schema.Choice(
+        title=_(u'label_dpevent_alerting_status', default=u'Status of Alerting'),
+        description=_(u'description_dpevent_alerting_status', default=u''),
+        required=True,
+        source="docpool.event.vocabularies.AlertingStatus",
+    )
+
+    AlertingNote = schema.Text(
+        title=_(u'label_dpevent_alteringnote', default=u'Alert Note'),
+        description=_(u'description_dpevent_alert_note', default=u'Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.'),  # noqa: E501
+        required=False,
+        )
 
     SectorizingSampleTypes = schema.List(
         title=_(u'Sectorizing sample types'),
@@ -109,50 +170,6 @@ class IDPEvent(model.Schema, IContentBase):
             source=u'docpool.event.vocabularies.Networks'),
     )
 
-    OperationMode = schema.Choice(
-        title=_(u'Operation mode'),
-        vocabulary=u"docpool.event.vocabularies.Modes",
-        required=False,
-    )
-
-    Substitute = RelationChoice(
-        title=_(u'label_dpevent_substitute', default=u'Substitute event'),
-        description=_(
-            u'description_dpevent_substitute',
-            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',
-        ),
-        required=False,
-        source="docpool.event.vocabularies.EventSubstitutes",
-    )
-    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
-
-    # directives.widget(EventPhase=AutocompleteFieldWidget)
-    directives.widget(
-        EventPhase='z3c.form.browser.select.SelectFieldWidget')
-    EventPhase = RelationChoice(
-        title=_(u"Scenario & Phase"),
-        vocabulary=u"docpool.event.vocabularies.Phases",
-        required=False,
-    )
-
-    directives.widget(
-        EventLocation='z3c.form.browser.select.SelectFieldWidget')
-    EventLocation = RelationChoice(
-        title=_(u'Event location'),
-        vocabulary=u"docpool.event.vocabularies.PowerStations",
-        required=False,
-    )
-
-    EventCoordinates = WKT(
-        title=_(u"Event coordinates"),
-        required=False,
-    )
-
-    AreaOfInterest = WKT(
-        title=_(u"Area of interest"),
-        required=False,
-    )
-
     changelog = RichText(
         title=_(u'label_dpevent_changelog', default=u'Changelog'),
         description=_(u''),
@@ -162,7 +179,7 @@ class IDPEvent(model.Schema, IContentBase):
 
 
 @implementer(IDPEvent)
-class DPEvent(Item, ContentBase):
+class DPEvent(Container, ContentBase):
     """
     """
 
@@ -262,8 +279,17 @@ class DPEvent(Item, ContentBase):
         Status is unchanged.
         """
         alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
-        arc = self._createArchiveFolders()
-        # TODO
+        arc = self._createArchive()
+        # Archive the Journals into esd folder
+        # TODO Does not use any wrapped copy/paste (like _copyDocument)
+        # _copyDocument or similar is needed to get a transferlog
+        # See https://redmine-koala.bfs.de/issues/3100
+        archived_esd_root= arc.esd
+        event_path = '/'.join(self.getPhysicalPath())
+        for journal in api.content.find(portal_type='Journal',
+                                        path=event_path):
+            cb_copy_data = self.manage_copyObjects(journal.getObject().getId())
+            result = archived_esd_root.manage_pasteObjects(cb_copy_data)
         m = self.content
         mpath = "/".join(m.getPhysicalPath())
         arc_m = arc.content
@@ -370,7 +396,8 @@ class DPEvent(Item, ContentBase):
 
     def _getDocumentsForScenario(self, **kwargs):
         """
-        Helper function for catalog queries
+        Collects all DPDocuments for the current scenario
+        :return: list of brains
         """
         #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
         args = {'portal_type': "DPDocument", 'scenarios': self.getId()}
@@ -378,7 +405,7 @@ class DPEvent(Item, ContentBase):
         cat = getToolByName(self, "portal_catalog")
         return cat(args)
 
-    def _createArchiveFolders(self):
+    def _createArchive(self):
         """
         We create an archive object. Into it, we copy the complete ESD hierarchy.
         We also create two folders "Members" and "Groups", which will hold all the
@@ -499,6 +526,21 @@ class DPEvent(Item, ContentBase):
                 scns.append(self.getId())
             member.setMemberProperties({"scenarios": scns})
 
+    def createDefaultJournals(obj):
+        """
+        Creates two journals inside the event
+        :return: """
+        journals = ['journal1', 'journal2']
+        for journal in journals:
+            # Test if they already exists
+            if obj.get(journal):
+                pass
+            new = api.content.create(
+                container=obj,
+                type='Journal',
+                title=journal
+            )
+
     def deleteEventReferences(self):
         """
         """
@@ -536,11 +578,12 @@ class ELANScenario(DPEvent):
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):
     """
-    For new scenarios, add them to each user's personal selection.
+    For new scenarios, add them to each user's personal selection and
+    create the journals.
     """
     # print "scenarioAdded"
     obj.addScenarioForUsers()
-
+    obj.createDefaultJournals()
 
 def addLogEntry(old_changelog, obj):
     print(obj.SectorizingNetworks)
