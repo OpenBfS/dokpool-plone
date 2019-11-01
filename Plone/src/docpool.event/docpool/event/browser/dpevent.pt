@@ -44,6 +44,7 @@
         <td tal:content="structure widget/render"></td>
     </tr>
 
+  <tal:nogeo tal:replace="nothing">
     <tr tal:define="widget python:view.widgets['EventCoordinates']">
         <td tal:content="widget/label"></td>
         <td tal:content="structure widget/render"></td>
@@ -53,6 +54,7 @@
         <td tal:content="widget/label"></td>
         <td tal:content="structure widget/render"></td>
     </tr>
+  </tal:nogeo>
 
   </table>
 
@@ -88,6 +90,7 @@
 
   </table>
 
+<tal:nogeo tal:replace="nothing">
     <div tal:define="widget python:view.widgets['EventCoordinates'];
                      view python:widget;"
          tal:condition="python:context.EventCoordinates"
@@ -147,6 +150,7 @@
           <metal:map use-macro="context/@@collectivegeo-macros/map-widget" />
         </div>
     </div>
+  </tal:nogeo>
 
     <h4>Changelog</h4>
     <table class="listing"
