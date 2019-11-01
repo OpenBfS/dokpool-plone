@@ -373,3 +373,22 @@ body#visual-portal-wrapper.pat-plone #edit-zone [class*="contenttype-"] {
     overflow: scroll;
 }
 
+td.metadata > img {
+    background-color: #FFFFFF;
+    background-image: url("++theme++docpool.theme/static/bfs-plus-icon.png");
+    background-repeat: no-repeat;
+    padding-left: 24px;
+    margin-top:15px;
+    height: 24px !important;
+}
+
+td.metadata > img.active {
+    background-image: url("++theme++docpool.theme/static/bfs-minus-icon.png");
+}
+
+td.metadata .content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
