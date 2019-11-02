@@ -6450,12 +6450,12 @@ p.version {
 }
 /*
 #portal-globalnav li.personal {
-  float: right;
+	float: right; 	
 }
 
 #portal-globalnav li.personal a {
-  background-color: #003366;
-  color: #DDDDDD;
+	background-color: #003366;
+	color: #DDDDDD;
 }
 
 #portal-globalnav li.transfer a {
@@ -6707,3 +6707,24 @@ body#visual-portal-wrapper.pat-plone #edit-zone [class*="contenttype-"] {
 .template-usergroup-userprefs form {
   overflow: scroll;
 }
+/* line 376, http://localhost:8081/Plone/++theme++docpool.theme/static/custom.less */
+td.metadata > img {
+  background-color: #FFFFFF;
+  background-image: url("../++theme++docpool.theme/static/++theme++docpool.theme/static/bfs-plus-icon.png");
+  background-repeat: no-repeat;
+  padding-left: 24px;
+  margin-top: 15px;
+  height: 24px !important;
+}
+/* line 385, http://localhost:8081/Plone/++theme++docpool.theme/static/custom.less */
+td.metadata > img.active {
+  background-image: url("../++theme++docpool.theme/static/++theme++docpool.theme/static/bfs-minus-icon.png");
+}
+/* line 389, http://localhost:8081/Plone/++theme++docpool.theme/static/custom.less */
+td.metadata .content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
