@@ -229,7 +229,9 @@
 
 <metal:macro define-macro="doc_data" i18n:domain="docpool.base">
     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
-    <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+    <div id="meta_items">
+        <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+    </div>
     <tal:if condition="htmltext" define="htmltext context/text/output|nothing">
         <label i18n:translate="">Content:</label>
         <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext"/>
@@ -333,13 +335,14 @@
   </span>
 </metal:macro>
 
-<metal:macro define-macro="app_icons">
+<!--<metal:macro define-macro="app_icons">
     <span class="app_icons">
     <tal:loop repeat="icon python:context.myExtensionIcons(request)">
         <img src="${context/portal_url}/${icon}" class="app_icon"/>
     </tal:loop>
     </span>
 </metal:macro>
+-->
 <metal:macro define-macro="content_metadata">
     <tal:def define="item_modified context/getMdate;
                  item_created context/CreationDate;
@@ -368,9 +371,11 @@
 </metal:macro>
 
 <metal:macro define-macro="doc_meta_listitem" i18n:domain="docpool.base">
-    <div metal:use-macro="here/@@dp.macros/macros/app_icons"/>
+<!--    <div metal:use-macro="here/@@dp.macros/macros/app_icons"/> -->
     <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
-    <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+    <div id="meta_items">
+        <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+    </div>
     <div metal:use-macro="here/@@dp.macros/macros/has_comments"/>
 
 </metal:macro>

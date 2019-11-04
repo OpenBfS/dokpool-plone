@@ -1,5 +1,10 @@
 <tal:block i18n:domain="docpool.base">
-    <tal:loop repeat="extension python:context.myExtensions(request)">
-        <tal:insert replace="structure python:extension.myView('meta', **options)" />
-    </tal:loop>
+        <tal:loop repeat="item python:view.meta_infos()">
+
+            <img class="collapsible" tal:condition="python:item['icon_url']"
+                 tal:attributes="src python:item['icon_url']" />
+            <div class='content' tal:content="structure python:item['behavior'].myView('meta', **options)" >
+                Text
+            </div>
+        </tal:loop>
 </tal:block>
