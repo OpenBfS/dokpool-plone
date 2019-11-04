@@ -100,6 +100,14 @@ msgstr "Ortszeit"
 msgid "Operation mode"
 msgstr "Betriebsart"
 
+#: docpool.event/docpool/event/content/dpevent.py:144
+msgid "Status of Alerting"
+msgstr "Status der Alarmierung"
+
+#: docpool.event/docpool/event/content/dpevent.py:151
+msgid "Alert note"
+msgstr "Hinweis"
+
 #: docpool.event/docpool/event/content/dpevent.py:604
 msgid "Phase"
 msgstr ""
@@ -218,6 +226,21 @@ msgstr "Ist dies eine Übung?"
 msgid "label_dpevent_status"
 msgstr "Status des Ereignisses"
 
+#. Default: "Type of the event"
+#: docpool.event/docpool/event/content/dpevent.py:81
+msgid "label_dpevent_type"
+msgstr "Art des Ereignisses"
+
+#. Default: "Alert note"
+#: docpool.event/docpool/event/content/dpevent.py:151
+msgid "label_dpevent_alteringnote"
+msgstr "Hinweistext"
+
+#. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be 'initialized' to send it."
+#: docpool.event/docpool/event/content/dpevent.py:152
+msgid "description_dpevent_alert_note"
+msgstr "Inhalt der E-Mail und/oder SMS an die IMIS-Benutzer.  Der letzte Hinweistext wird angezeigt und muss überschrieben werden.Zum Versenden muss ‚Alarmierung‘auf ‘ausgelöst‘ stehen."
+
 #. Default: "Substitute event"
 #: docpool.event/docpool/event/content/dpevent.py:112
 msgid "label_dpevent_substitute"
@@ -227,3 +250,60 @@ msgstr "Ersatzereignis"
 #: docpool.event/docpool/event/content/dpevent.py:88
 msgid "label_dpevent_timeofevent"
 msgstr "Ereigniszeit"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:155
+msgid "Changelog"
+msgstr "Historie"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:160
+msgid "Date/User"
+msgstr "Datum/Benutzer"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:161
+msgid "Phase"
+msgstr "Szenario und Phase"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:162
+msgid "State"
+msgstr "Status des Ereignisses"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:164
+msgid "Alerting status"
+msgstr "Status der Alarmierung"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:165
+msgid "Alerting note"
+msgstr "Hinweistext"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:174
+msgid "active"
+msgstr "aktiv"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:174
+msgid "inactive"
+msgstr "inaktiv"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:174
+msgid "closed"
+msgstr "geschlossen"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:175
+msgid "routine"
+msgstr "Routinebetrieb"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:175
+msgid "intensive"
+msgstr "Intensivbetrieb"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:176
+msgid "none"
+msgstr "keine"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:176
+msgid "initialized"
+msgstr "ausgelöst"
+
+#: docpool.event/docpool/event/browser/dpevent.pt:176
+msgid "alerted"
+msgstr "durchgeführt"
+

@@ -173,8 +173,24 @@ msgstr ""
 msgid "description_dpevent_exercise"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:68
-msgid "description_dpevent_status"
+#. Default: "Status of the event"
+#: docpool.event/docpool/event/content/dpevent.py:67
+msgid "label_dpevent_status"
+msgstr ""
+
+#. Default: "Type of the event"
+#: docpool.event/docpool/event/content/dpevent.py:81
+msgid "label_dpevent_type"
+msgstr ""
+
+#. Default: "Alert note"
+#: docpool.event/docpool/event/content/dpevent.py:151
+msgid "label_dpevent_alteringnote"
+msgstr ""
+
+#. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be 'initialized' to send it."
+#: docpool.event/docpool/event/content/dpevent.py:152
+msgid "description_dpevent_alert_note"
 msgstr ""
 
 #. Default: "Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events."
@@ -227,3 +243,59 @@ msgstr ""
 #: docpool.event/docpool/event/content/dpevent.py:88
 msgid "label_dpevent_timeofevent"
 msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:155
+msgid "Changelog"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:160
+msgid "Date/User"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:161
+msgid "Phase"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:162
+msgid "State"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:164
+msgid "Alerting status"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:165
+msgid "Alerting note"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:174
+msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:174
+msgid "inactive"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:174
+msgid "closed"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:175
+msgid "routine"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:175
+msgid "intensive"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:176
+msgid "none"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:176
+msgid "initialized"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt:176
+msgid ""
+
