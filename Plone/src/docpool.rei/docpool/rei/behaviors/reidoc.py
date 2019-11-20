@@ -40,7 +40,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(MstId='docpool.rei.AccessRei')
     write_permission(MstId='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Messstelle')
+    dexteritytextindexer.searchable('MstId')
 
     ReiLegalBase = schema.Choice(
         title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
