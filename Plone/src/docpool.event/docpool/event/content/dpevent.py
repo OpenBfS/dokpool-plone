@@ -15,6 +15,7 @@ from collective.z3cform.mapwidget import WKT
 from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.utils import portalMessage
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
@@ -34,6 +35,7 @@ from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.i18nl10n import utranslate
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
@@ -647,8 +649,12 @@ def eventChanged(obj, event=None):
 @adapter(IDPEvent, IObjectRemovedEvent)
 def eventRemoved(obj, event=None):
     """
-    Make sure the routinemode event cannot be removed.
+    Make sure the routinemode event cannot be removed unless the whole docpool
+    or the whole Plonesite is being deleted.
     """
+    if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
+            event.object):
+        return
     if obj.id == 'routinemode':
         raise RuntimeError(u'The "routinemode" event cannot be removed.')
 
