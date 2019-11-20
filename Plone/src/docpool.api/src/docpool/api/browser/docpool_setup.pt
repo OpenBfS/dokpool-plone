@@ -12,7 +12,7 @@
 
       <p>This turns a plain Plone site into a docpool portal with:</p>
       <ul>
-        <li>Two docpools (bund and hessen)</li>
+        <li>Two docpools (bund and hessen) with ELAN, Doksys and REI enabled.</li>
         <li>A Test-user in each docpool and their groups: user1/group1 (bund) and user2/group2(hessen)</li>
         <li>DPDocuments in /bund/content/Groups/bund_group1</li>
       </ul>
