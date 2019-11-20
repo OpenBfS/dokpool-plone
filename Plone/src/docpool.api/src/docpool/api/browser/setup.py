@@ -224,17 +224,18 @@ class DocpoolSetup(BrowserView):
             api.content.create(
                 container=new,
                 type='Image',
-                title='Ein Bild',
+                title=u'Ein Bild',
                 image=dummy_image(),
                 )
             api.content.create(
                 container=new,
                 type='File',
-                title='Eine Datei',
+                title=u'Eine Datei',
                 file=dummy_file(),
                 )
             api.content.transition(obj=new, transition='publish')
-            log.info(u'Created dpdocument Eine Bodenprobe')
+            log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
+                new.absolute_url()))
 
         return self.request.response.redirect(self.context.absolute_url())
 
