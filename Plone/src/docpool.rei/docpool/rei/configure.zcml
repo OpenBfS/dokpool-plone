@@ -7,7 +7,6 @@
     i18n_domain="docpool.rei">
 
     <i18n:registerTranslations directory="locales"/>
-    <includeDependencies package="." />
 
     <include package="zope.annotation" />
     <include package="plone.app.relationfield" />
