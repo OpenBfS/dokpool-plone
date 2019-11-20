@@ -2,26 +2,25 @@
     <index name="StartSampling" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
-
     <index name="StopSampling" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
-        <index name="Media" meta_type="FieldIndex">
+    <index name="Media" meta_type="FieldIndex">
         <indexed_attr value="Media"/>
     </index>
-        <index name="Mst" meta_type="FieldIndex">
+    <index name="Mst" meta_type="FieldIndex">
         <indexed_attr value="MstId"/>
     </index>
-        <index name="Authority" meta_type="FieldIndex">
+    <index name="Authority" meta_type="FieldIndex">
         <indexed_attr value="Authority"/>
     </index>
-        <index name="ReiLegalBase" meta_type="FieldIndex">
+    <index name="ReiLegalBase" meta_type="FieldIndex">
         <indexed_attr value="ReiLEgalBAse"/>
     </index>
         <index name="NuclearInstallation" meta_type="FieldIndex">
         <indexed_attr value="NuclearInstallation"/>
     </index>
-        <index name="Period" meta_type="FieldIndex">
+    <index name="Period" meta_type="FieldIndex">
         <indexed_attr value="Period"/>
     </index>
     <index name="PdfVersion" meta_type="ZCTextIndex">
@@ -34,5 +33,4 @@
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
-
 </object>

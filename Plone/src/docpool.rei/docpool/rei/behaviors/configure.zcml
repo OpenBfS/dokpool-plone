@@ -8,13 +8,14 @@
         provides=".reidoc.IREIDoc"
         factory=".reidoc.REIDoc"
         for="docpool.base.interfaces.IDPDocument"
-    />
+        />
+
     <plone:behavior
         title="REI DocType"
         description="Type extension for REI types"
         provides=".reitype.IREIType"
         factory=".reitype.REIType"
         for="docpool.base.interfaces.IDocType"
-    />
+        />
 
 </configure>
