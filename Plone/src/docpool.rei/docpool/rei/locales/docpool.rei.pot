@@ -556,3 +556,43 @@ msgstr ""
 #: ./behaviors/reidoc.py:83
 msgid "label_rei_Year"
 msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:11
+msgid "reject_to_authority"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:12
+msgid "reject_to_bfs"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:13
+msgid "reject_to_npp_operator"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:14
+msgid "retract_for_revision"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:15
+msgid "retract_to_authority"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:16
+msgid "retract_to_bfs"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:17
+msgid "retract_to_npp_operator"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:18
+msgid "submit_authority"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:19
+msgid "submit_bfs"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:20
+msgid "submit_bmu"
+msgstr ""

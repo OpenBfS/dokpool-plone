@@ -536,3 +536,43 @@ msgstr "Probenahmeende"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py:73
 msgid "label_rei_Year"
 msgstr "Jahr"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:11
+msgid "reject_to_authority"
+msgstr "Wollen Sie dieses Dokument wirklich an die Aufsichtsbehörde zurückweisen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:12
+msgid "reject_to_bfs"
+msgstr "Wollen Sie dieses Dokument wirklich ans BfS zurückweisen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:13
+msgid "reject_to_npp_operator"
+msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweisen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:14
+msgid "retract_for_revision"
+msgstr "Wollen Sie dieses Dokument wirklich zur Revision zurückziehen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:15
+msgid "retract_to_authority"
+msgstr "Wollen Sie dieses Dokument wirklich zur Aufsichtsbehörde zurückziehen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:16
+msgid "retract_to_bfs"
+msgstr "Wollen Sie dieses Dokument wirklich zum BfS zurückziehen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:17
+msgid "retract_to_npp_operator"
+msgstr "Wollen Sie dieses Dokument wirklich zum Anlagenbetreiber zurückziehen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:18
+msgid "submit_authority"
+msgstr "Wollen Sie dieses Dokument wirklich an die Aufsichtsbehörde einreichen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:19
+msgid "submit_bfs"
+msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt:20
+msgid "submit_bmu"
+msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
