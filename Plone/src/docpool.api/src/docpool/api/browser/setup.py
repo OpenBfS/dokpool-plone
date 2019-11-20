@@ -64,6 +64,7 @@ class DocpoolSetup(BrowserView):
         installer.install_product('elan.policy')
         installer.install_product('docpool.doksys')
         installer.install_product('elan.journal')
+        installer.install_product('docpool.rei')
 
         # create docpool 1
         docpool_bund = api.content.create(
@@ -72,7 +73,7 @@ class DocpoolSetup(BrowserView):
             id='bund',
             title=u'Bund',
             prefix='bund',
-            supportedApps=('elan', 'doksys'),
+            supportedApps=('elan', 'doksys', 'rei'),
         )
         notify(EditFinishedEvent(docpool_bund))
         log.info(u'Created docpool bund')
@@ -84,7 +85,7 @@ class DocpoolSetup(BrowserView):
             id='hessen',
             title=u'Hessen',
             prefix='hessen',
-            supportedApps=('elan', 'doksys'),
+            supportedApps=('elan', 'doksys', 'rei'),
         )
         notify(EditFinishedEvent(docpool_land))
         log.info(u'Created docpool hessen')
@@ -244,7 +245,7 @@ def add_user(
        docpool,
        username,
        groupnames=None,
-       enabled_apps=['elan', 'doksys'],
+       enabled_apps=['elan', 'doksys', 'rei'],
        ):
     """Create a User and a Group for a docpool for testing.
 
@@ -288,6 +289,8 @@ def add_user(
         api.group.add_user(groupname='{}_DoksysUsers'.format(prefix), user=user)
     if 'elan' in enabled_apps:
         api.group.add_user(groupname='{}_ELANUsers'.format(prefix), user=user)
+    if 'rei' in enabled_apps:
+        api.group.add_user(groupname='{}_REIUsers'.format(prefix), user=user)
     pm = getToolByName(docpool, 'portal_membership')
     pm.createMemberArea(username)
     return user
