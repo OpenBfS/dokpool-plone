@@ -9,6 +9,7 @@ from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
@@ -66,7 +67,7 @@ class DocpoolSetup(BrowserView):
         installer.install_product('elan.journal')
         installer.install_product('docpool.rei')
 
-        # create docpool 1
+        # create docpool 1 (with rei)
         docpool_bund = api.content.create(
             container=self.context,
             type='DocumentPool',
@@ -78,22 +79,78 @@ class DocpoolSetup(BrowserView):
         notify(EditFinishedEvent(docpool_bund))
         log.info(u'Created docpool bund')
 
-        # create docpool 2
+        # create docpool 2 (without rei)
         docpool_land = api.content.create(
             container=self.context,
             type='DocumentPool',
             id='hessen',
             title=u'Hessen',
             prefix='hessen',
-            supportedApps=('elan', 'doksys', 'rei'),
+            supportedApps=('elan', 'doksys'),
         )
         notify(EditFinishedEvent(docpool_land))
         log.info(u'Created docpool hessen')
 
         user1 = add_user(docpool_bund, 'user1', ['group1'])
         log.info(u'Created user1 and group1 in docpool bund')
-        user2 = add_user(docpool_land, 'user2', ['group2'])
+        add_user(docpool_land, 'user2', ['group2'], enabled_apps=['elan', 'doksys'])
         log.info(u'Created user2 and group2 in docpool hessen')
+
+        # Setup REI Users and groups
+        log.info(u'Creating Groups for REI')
+        add_user(docpool_bund, 'aufsicht_he', ['aufsicht_he'], enabled_apps=['rei'])
+        add_user(docpool_bund, 'betreiber_he', ['betreiber_he'], enabled_apps=['rei'])
+
+        add_user(docpool_bund, 'aufsicht_by', ['aufsicht_by'], enabled_apps=['rei'])
+
+        # Add group bund_aufsicht that contains all aufsicht groups
+        bund_aufsicht = add_group(docpool_bund, 'aufsicht')
+        bund_aufsicht.setProperties({'allowedDocTypes': []})
+        portal_groups = api.portal.get_tool('portal_groups')
+        portal_groups.addPrincipalToGroup('bund_aufsicht_he', 'bund_aufsicht')
+        portal_groups.addPrincipalToGroup('bund_aufsicht_by', 'bund_aufsicht')
+
+        add_user(docpool_bund, 'bmu_rei', ['bmu_rei'], enabled_apps=['rei'])
+        add_user(docpool_bund, 'bfs_rei', ['bfs_rei'], enabled_apps=['rei'])
+
+        # Configure REI-group-folders
+        groups_folder = docpool_bund['content']['Groups']
+
+        group = api.group.get('bund_aufsicht_he')
+        group.setProperties({'allowedDocTypes': ['reireport']})
+        group_folder = groups_folder['bund_aufsicht_he']
+        group_folder.allowedDocTypes = ['reireport']
+        group_folder.reindexObject()
+        set_placeful_workflow(group_folder, 'rei_he1')
+
+        group = api.group.get('bund_betreiber_he')
+        group.setProperties({'allowedDocTypes': ['reireport']})
+        group_folder = groups_folder['bund_betreiber_he']
+        group_folder.allowedDocTypes = ['reireport']
+        group_folder.reindexObject()
+        set_placeful_workflow(group_folder, 'rei_he2')
+
+        group = api.group.get('bund_aufsicht_by')
+        group.setProperties({'allowedDocTypes': ['reireport']})
+        group_folder = groups_folder['bund_aufsicht_by']
+        group_folder.allowedDocTypes = ['reireport']
+        group_folder.reindexObject()
+        set_placeful_workflow(group_folder, 'rei_by')
+
+        group = api.group.get('bund_aufsicht')
+        group.setProperties({'allowedDocTypes': []})
+        group_folder = groups_folder['bund_aufsicht']
+        group_folder.reindexObject()
+
+        group = api.group.get('bund_bmu_rei')
+        group.setProperties({'allowedDocTypes': []})
+        group_folder = groups_folder['bund_bmu_rei']
+        group_folder.reindexObject()
+
+        group = api.group.get('bund_bfs_rei')
+        group.setProperties({'allowedDocTypes': []})
+        group_folder = groups_folder['bund_bfs_rei']
+        group_folder.reindexObject()
 
         # get the content-folder for a group to test with
         folder = docpool_bund['content']['Groups']['bund_group1']
@@ -101,8 +158,6 @@ class DocpoolSetup(BrowserView):
         voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
         doctypes = voc(self.context).by_value
         doctypes_ids = [i.id for i in doctypes]
-
-        event_id = 'routinemode'
 
         even_config_folder = docpool_bund['contentconfig']['scen']
         dpnuclearpowerstation = api.content.create(
@@ -284,6 +339,7 @@ def add_user(
         group = api.group.get(real_groupname)
         api.group.add_user(group=group, user=user)
 
+    # Add the user to app-specific default-groups
     api.group.add_user(groupname='{}_Members'.format(prefix), user=user)
     if 'doksys' in enabled_apps:
         api.group.add_user(groupname='{}_DoksysUsers'.format(prefix), user=user)
@@ -356,3 +412,11 @@ def get_intid(obj):
     except KeyError:  # noqa
         # The object has not been added to the ZODB yet
         return
+
+
+def set_placeful_workflow(obj, workflow):
+    if WorkflowPolicyConfig_id not in obj.keys():
+        obj.manage_addProduct['CMFPlacefulWorkflow'].manage_addWorkflowPolicyConfig()
+    wf_policy_config = getattr(obj, WorkflowPolicyConfig_id)
+    wf_policy_config.setPolicyIn(workflow)
+    wf_policy_config.setPolicyBelow(workflow)
