@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-21 00:07+0000\n"
+"POT-Creation-Date: 2019-11-21 09:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,3 +53,1310 @@ msgstr "Do you really want to submit this document to BfS?"
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt:20
 msgid "submit_bmu"
 msgstr "Do you really want to submit this document to BMU?"
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1. Halbjahr"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1. Quartal"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "10002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "10010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "10022 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "10030 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "10042 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1011 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1051 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1062 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1071 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1081 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "11010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "11042 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "11061 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1181 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "12002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "12010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "12020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "12032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "13002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "13010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "13020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "13031 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "13032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "13033 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "14002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "14010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "14020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "14032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "14040 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "14041 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "15002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "15010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "15020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "15032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "15041 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "1551 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "16002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "16010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "16020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "16032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "17001 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "17002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "17003 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "18001 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "18002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "18003 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "19001 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "19002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2. Halbjahr"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2. Quartal"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20000 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20001 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20030 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20040 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20050 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20060 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20070 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20080 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20090 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20100 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20110 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "20120 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "2041 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3. Quartal"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "30000 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "30011 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "30012 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "30021 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3040 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3050 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3060 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3070 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3080 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3090 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3102 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3122 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3132 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3141 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3151 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3161 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3171 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3191 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3201 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3211 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3221 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3231 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3561 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "3571 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "4. Quartal"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "4002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "4020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "4032 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5030 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5050 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5070 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5080 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5090 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5091 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5092 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5100 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5112 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5122 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5141 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5151 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5161 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5171 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "5181 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6040 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6050 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6060 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6101 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6112 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6122 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "6501 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7030 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7040 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7050 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7071 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "7081 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8002 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8031 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8041 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8050 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8061 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8070 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8082 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8083 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8101 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8106 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8111 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8121 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8131 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8201 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8210 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8211 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8221 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8511 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "8521 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9010 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9011 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9020 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9030 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9040 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9051 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9052 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9060 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9070 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9081 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9091 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9111 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9121 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9131 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9141 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9151 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9161 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9162 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9171 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9181 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9192 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9212 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9222 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9231 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9301 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9521 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9531 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "9541 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Abwasser"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "April"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "August"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Baden-Württemberg"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Bayern"
+msgstr ""
+
+#: docpool.rei/docpool/rei/local/rei.py
+msgid "Berichte"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Berlin"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Betreiber"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "BfE"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Brandenburg"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Bremen"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Date"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Dezember"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Februar"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Federal State"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Fortluft"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Fortluft/Abwasser"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Hamburg"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Hessen"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Jahr"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Januar"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Juli"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Juni"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Mai"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml
+msgid "Makes documents support REI functions"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Mecklenburg-Vorpommern"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Media"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Metadata"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "MstId"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "März"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Niedersachsen"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Nordrhein-Westfahlen"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "November"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Nuclear Installation"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Oktober"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Origin"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "PDF Version"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "PDF/A-1b"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml
+msgid "REI DocType"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "REI legal Base"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "REI-E"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "REI-E/REI-I"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "REI-I"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml
+msgid "REIDoc"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Rheinland-Pfalz"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Saarland"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Sachsen"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Sachsen-Anhalt"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Schleswig-Holstein"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "September"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Start of Sampling"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Stop of Sampling"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Thüringen"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml
+msgid "Type extension for REI types"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01A Helmholtz-Zentrum Geesthacht "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01B KKW Krümmel "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01C KKW Brunsbüttel "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01D KKW Brokdorf "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01I Interimslager Krümmel "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01K Standortzwischenlager Krümmel "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01L Standortzwischenlager Brunsbüttel "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U01M Standortzwischenlager Brokdorf "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03A Standortzwischenlager Grohnde "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03B Brennelementefertigungsanl. Lingen "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03C Standortzwischenlager Unterweser "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03E KKW Emsland "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03G KKW Grohnde "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03K Endlager Konrad "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03L KKW Lingen "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03P BGZ - Betrieb Gorleben "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03S KKW Stade "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03U KKW Unterweser "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U03Z Standortzwischenlager Lingen "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U05B BGZ - Brennelement-Zwischenl. Ahaus "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U05F Forschungszentrum Jülich "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U05G AVR-Versuchskernkraftwerk Jülich "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U05K KKW Würgassen "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U05T Thorium-Hochtemp.reakt. Hamm-Uentrop "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U05U Urananreicherungsanlage Gronau "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U06B KKW Biblis und BE-Zwischenlager "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U07M KKW Mülheim-Kärlich "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U07U Uni Mainz "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08H DKFZ Heidelberg "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08K Karlsruher Institut für Technologie - Campus Nord (Einrichtungen am Standort) "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08M Abraumhalde Menz. "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08N EnKK Neckarwestheim "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08O EnKK Obrigheim "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08P EnKK Philippsburg "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U08W KKW Wyhl "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09A KKW Isar 1+2 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09B KKW Isar1 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09C KKW Isar2 "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09D KKW Grafenrheinfeld "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09E KKW Gundremmingen Block B/C "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09F Versuchs-AKW Kahl a.M. "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09G Forschungsreaktor München "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09H Siemens Brennelementewerk Hanau, Standort Karlstein "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09I Siemens AG, Karlstein "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09J Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE) "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U09K Forschungsneutronenquelle Heinz Maier-Leibnitz "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U11B Experimentierreakt. II Berlin "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U12R KKW Rheinsberg "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U13A KKW Lubmin/Greifswald "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U13B Zwischenlager Nord "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U14R Forschungszentrum Rossendorf "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "U15M nicht benutzen, jetzt UELM, Endlager für radioaktive Abfälle Morsleben (ERAM) "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "UCHL KTA Leibstadt mit Beznau und Villigen "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "UELA Endlager für radioaktive Abfälle Asse "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "UELM Endlager für radioaktive Abfälle Morsleben (ERAM) "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "UFRC KKW Cattenom "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "UFRF KKW Fessenheim "
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
+msgid "Unabhängige Messstelle"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Year"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_Authority"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_Media"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_MstId"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_NuclearInstallation"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_Origin"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_PdfVersion"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_ReiLegalBase"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_StartSampling"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_StopSampling"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "description_rei_Year"
+msgstr ""
+
+#: docpool.rei/docpool/rei/configure.zcml
+msgid "docpool.rei"
+msgstr ""
+
+#. Default: "Authority"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_Authority"
+msgstr ""
+
+#. Default: "Media"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_Media"
+msgstr ""
+
+#. Default: "Messstellen-ID"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_MstId"
+msgstr ""
+
+#. Default: "NuclearInstallation"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_NuclearInstallation"
+msgstr ""
+
+#. Default: "Ersteller"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_Origin"
+msgstr ""
+
+#. Default: "Pdf Version"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_PdfVersion"
+msgstr ""
+
+#. Default: "Period"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_Period"
+msgstr ""
+
+#. Default: "ReiLegalBase"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_ReiLegalBase"
+msgstr ""
+
+#. Default: "Start Sampling"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_StartSampling"
+msgstr ""
+
+#. Default: "Stop Sampling"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_StopSampling"
+msgstr ""
+
+#. Default: "Year"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_Year"
+msgstr ""
