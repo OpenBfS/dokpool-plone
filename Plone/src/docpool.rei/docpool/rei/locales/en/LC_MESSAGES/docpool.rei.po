@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-21 09:28+0000\n"
+"POT-Creation-Date: 2019-11-21 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -950,10 +950,6 @@ msgstr ""
 msgid "PDF Version"
 msgstr ""
 
-#: docpool.rei/docpool/rei/vocabularies.py
-msgid "PDF/A-1b"
-msgstr ""
-
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Period"
 msgstr ""
@@ -1291,14 +1287,6 @@ msgid "description_rei_ReiLegalBase"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_StartSampling"
-msgstr ""
-
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_StopSampling"
-msgstr ""
-
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "description_rei_Year"
 msgstr ""
 
@@ -1346,17 +1334,47 @@ msgstr ""
 msgid "label_rei_ReiLegalBase"
 msgstr ""
 
-#. Default: "Start Sampling"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_StartSampling"
-msgstr ""
-
-#. Default: "Stop Sampling"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_StopSampling"
-msgstr ""
-
 #. Default: "Year"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "label_rei_Year"
 msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "reject_to_authority"
+msgstr "Do you really want to send this document back to the authority?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "reject_to_bfs"
+msgstr "Do you really want to send back this document to BfS?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "reject_to_npp_operator"
+msgstr "Do you really want to send this document back to the npp operator?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "retract_for_revision"
+msgstr "Do you really want to retract this document for revision?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "retract_to_authority"
+msgstr "Do you really want to retract this document to the authority?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "retract_to_bfs"
+msgstr "Do you really want to retract this document to BfS?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "retract_to_npp_operator"
+msgstr "Do you really want to retract this document to the npp operator?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "submit_authority"
+msgstr "Do you really want to submit this document to the authority?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "submit_bfs"
+msgstr "Do you really want to submit this document to BfS?"
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "submit_bmu"
+msgstr "Do you really want to submit this document to BMU?"

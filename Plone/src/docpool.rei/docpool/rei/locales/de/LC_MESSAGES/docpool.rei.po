@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-21 09:28+0000\n"
+"POT-Creation-Date: 2019-11-21 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -911,10 +911,6 @@ msgstr "Ersteller"
 msgid "PDF Version"
 msgstr "PDF Version"
 
-#: docpool.rei/docpool/rei/vocabularies.py
-msgid "PDF/A-1b"
-msgstr "PDF/A-1b"
-
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Period"
 msgstr "Zeitraum"
@@ -1252,14 +1248,6 @@ msgid "description_rei_ReiLegalBase"
 msgstr "Gesetzliche Grundlage des Berichts"
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_StartSampling"
-msgstr "Probenahmebeginn"
-
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_StopSampling"
-msgstr "Probenahmeende"
-
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "description_rei_Year"
 msgstr "Berichtsjahr"
 
@@ -1307,57 +1295,47 @@ msgstr "Zeitraum"
 msgid "label_rei_ReiLegalBase"
 msgstr "gesetzliche Grundlage"
 
-#. Default: "Start Sampling"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_StartSampling"
-msgstr "Probenahmebeginn"
-
-#. Default: "Stop Sampling"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_StopSampling"
-msgstr "Probenahmeende"
-
 #. Default: "Year"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "label_rei_Year"
 msgstr "Jahr"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:11
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "reject_to_authority"
 msgstr "Wollen Sie dieses Dokument wirklich an die Aufsichtsbehörde zurückweisen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:12
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "reject_to_bfs"
 msgstr "Wollen Sie dieses Dokument wirklich ans BfS zurückweisen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:13
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "reject_to_npp_operator"
 msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweisen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:14
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_for_revision"
 msgstr "Wollen Sie dieses Dokument wirklich zur Revision zurückziehen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:15
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_to_authority"
 msgstr "Wollen Sie dieses Dokument wirklich zur Aufsichtsbehörde zurückziehen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:16
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_to_bfs"
 msgstr "Wollen Sie dieses Dokument wirklich zum BfS zurückziehen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:17
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_to_npp_operator"
 msgstr "Wollen Sie dieses Dokument wirklich zum Anlagenbetreiber zurückziehen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:18
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "submit_authority"
 msgstr "Wollen Sie dieses Dokument wirklich an die Aufsichtsbehörde einreichen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:19
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "submit_bfs"
 msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt:20
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "submit_bmu"
 msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
