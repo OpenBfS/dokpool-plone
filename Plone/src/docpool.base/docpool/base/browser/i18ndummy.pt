@@ -24,8 +24,8 @@
         <i18n:dummy
                 translate="alert_reject_to_npp_operator_popup"></i18n:dummy>
         <i18n:dummy translate="alert_retract_for_revision_popup"></i18n:dummy>
-        <i18n:dummy translate="alter_retract_to_authority_popup"></i18n:dummy>
-        <i18n:dummy translate="alter_retract_to_bfs_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_retract_to_authority_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_retract_to_bfs_popup"></i18n:dummy>
         <i18n:dummy
                 translate="alert_retract_to_npp_operator_popup"></i18n:dummy>
         <i18n:dummy translate="alert_submit_authority_popup"></i18n:dummy>

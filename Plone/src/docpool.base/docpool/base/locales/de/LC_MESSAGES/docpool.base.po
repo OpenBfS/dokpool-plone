@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2019-11-21 14:15+0000\n"
+"POT-Creation-Date: 2019-11-21 16:38+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -368,6 +368,14 @@ msgid "alert_retract_popup"
 msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_authority_popup"
+msgstr "Wollen Sie dieses Dokument wirklich zur Aufsichtsbehörde zurückziehen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_bfs_popup"
+msgstr "Wollen Sie dieses Dokument wirklich zum BfS zurückziehen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_to_npp_operator_popup"
 msgstr "Wollen Sie dieses Dokument wirklich zum Anlagenbetreiber zurückziehen?"
 
@@ -386,14 +394,6 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "alter_retract_to_authority_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zur Aufsichtsbehörde zurückziehen?"
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "alter_retract_to_bfs_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zum BfS zurückziehen?"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "closed"

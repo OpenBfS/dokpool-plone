@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2019-11-21 14:15+0000\n"
+"POT-Creation-Date: 2019-11-21 16:38+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -368,6 +368,14 @@ msgid "alert_retract_popup"
 msgstr "Do you really want to retract this document?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_to_npp_operator_popup"
 msgstr ""
 
@@ -386,14 +394,6 @@ msgstr ""
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Do you really want to submit this document?"
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "alter_retract_to_authority_popup"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "alter_retract_to_bfs_popup"
-msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "closed"
