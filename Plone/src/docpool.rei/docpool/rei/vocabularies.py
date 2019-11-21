@@ -143,7 +143,16 @@ class PdfVersionVocabulary(object):
     """
 
     def __call__(self, context):
-        items = [VocabItem(u'PDF/A-1b', _(u'PDF/A-1b'), u'PDF/A-1b')]
+        items = [
+            VocabItem(u'PDF/A-1b', u'PDF/A-1b', u'PDF/A-1b'),
+            VocabItem(u'PDF/A-1a', u'PDF/A-1a', u'PDF/A-1a'),
+            VocabItem(u'PDF/A-2a', u'PDF/A-2a', u'PDF/A-2a'),
+            VocabItem(u'PDF/A-2b', u'PDF/A-2b', u'PDF/A-2b'),
+            VocabItem(u'PDF/A-2u', u'PDF/A-2u', u'PDF/A-2u'),
+            VocabItem(u'PDF/A-3a', u'PDF/A-3a', u'PDF/A-3a'),
+            VocabItem(u'PDF/A-3b', u'PDF/A-3b', u'PDF/A-3b'),
+            VocabItem(u'PDF/A-3u', u'PDF/A-3u', u'PDF/A-3u'),
+        ]
 
         return SimpleVocabulary(items)
 

@@ -1,4 +1,7 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:cmf="http://namespaces.zope.org/cmf" i18n_domain="docpool.rei">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="docpool.rei">
 
    <!-- File System Directory Views registration -->
     <cmf:registerDirectory name="docpool_rei_images"/>
