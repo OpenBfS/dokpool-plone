@@ -96,20 +96,21 @@ class DocpoolSetup(BrowserView):
         add_user(docpool_land, 'user2', ['group2'], enabled_apps=['elan', 'doksys'])
         log.info(u'Created user2 and group2 in docpool hessen')
 
-        # Setup REI Users and groups
+        # Setup REI Users and groups for hessen and bayern
         log.info(u'Creating Groups for REI')
         add_user(docpool_bund, 'aufsicht_he', ['aufsicht_he'], enabled_apps=['rei'])
         add_user(docpool_bund, 'betreiber_he', ['betreiber_he'], enabled_apps=['rei'])
-
         add_user(docpool_bund, 'aufsicht_by', ['aufsicht_by'], enabled_apps=['rei'])
 
         # Add group bund_aufsicht that contains all aufsicht groups
+        # this group has no defaul-user. use the aufsicht users to test it.
         bund_aufsicht = add_group(docpool_bund, 'aufsicht')
         bund_aufsicht.setProperties({'allowedDocTypes': []})
         portal_groups = api.portal.get_tool('portal_groups')
         portal_groups.addPrincipalToGroup('bund_aufsicht_he', 'bund_aufsicht')
         portal_groups.addPrincipalToGroup('bund_aufsicht_by', 'bund_aufsicht')
 
+        # Add REI users and groups for bund
         add_user(docpool_bund, 'bmu_rei', ['bmu_rei'], enabled_apps=['rei'])
         add_user(docpool_bund, 'bfs_rei', ['bfs_rei'], enabled_apps=['rei'])
 
@@ -117,10 +118,12 @@ class DocpoolSetup(BrowserView):
         groups_folder = docpool_bund['content']['Groups']
 
         group = api.group.get('bund_aufsicht_he')
+        # This group can only add rei-reports
         group.setProperties({'allowedDocTypes': ['reireport']})
         group_folder = groups_folder['bund_aufsicht_he']
         group_folder.allowedDocTypes = ['reireport']
         group_folder.reindexObject()
+        # The folders for the creators of reireports have a custom workflow
         set_placeful_workflow(group_folder, 'rei_he1')
 
         group = api.group.get('bund_betreiber_he')
@@ -128,6 +131,7 @@ class DocpoolSetup(BrowserView):
         group_folder = groups_folder['bund_betreiber_he']
         group_folder.allowedDocTypes = ['reireport']
         group_folder.reindexObject()
+        # For Hessen Aufsicht and Betreiber can add reports!
         set_placeful_workflow(group_folder, 'rei_he2')
 
         group = api.group.get('bund_aufsicht_by')
@@ -135,8 +139,10 @@ class DocpoolSetup(BrowserView):
         group_folder = groups_folder['bund_aufsicht_by']
         group_folder.allowedDocTypes = ['reireport']
         group_folder.reindexObject()
+        # For Bayern only Aufsicht can add reports!
         set_placeful_workflow(group_folder, 'rei_by')
 
+        # The gloabl groups do not create content.
         group = api.group.get('bund_aufsicht')
         group.setProperties({'allowedDocTypes': []})
         group_folder = groups_folder['bund_aufsicht']

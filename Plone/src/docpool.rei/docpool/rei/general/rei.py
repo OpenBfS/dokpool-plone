@@ -141,7 +141,7 @@ def create_all_private_collection(plonesite):
         {
             u'i': u'review_state',
             u'o': u'plone.app.querystring.operation.selection.any',
-            u'v': ["pending"],
+            u'v': ['pending_bfs', 'pending_bmu', 'pending_authority', 'private'],
         },
     ]
     iwas.text = RichTextValue(
