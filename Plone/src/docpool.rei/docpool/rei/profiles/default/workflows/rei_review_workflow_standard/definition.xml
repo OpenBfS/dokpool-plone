@@ -211,7 +211,7 @@
         </guard>
     </transition>
     <transition transition_id="reject_to_authority"
-                title="Send back to authority" new_state="pending_authority"
+                title="Send back to authority" new_state="private"
                 trigger="USER" before_script="" after_script="" i18n:attribute="title">
         <action url="%(content_url)s/content_status_modify?workflow_action=reject_to_authority"
                 category="workflow" icon="" i18n:translate="">Send back to authority</action>
@@ -245,7 +245,7 @@
         </guard>
     </transition>
     <transition transition_id="retract_to_authority"
-                title="Retract to authority" new_state="pending_authority"
+                title="Retract to authority" new_state="private"
                 trigger="USER" before_script="" after_script="">
         <action url="%(content_url)s/content_status_modify?workflow_action=retract_to_authority"
                 category="workflow" icon="" i18n:translate="">Retract to authority</action>
@@ -274,7 +274,7 @@
         <action url="%(content_url)s/content_status_modify?workflow_action=submit_bfs"
                 category="workflow" icon="" i18n:translate="">Submit to BfS</action>
         <guard>
-            <guard-role>Reviewer</guard-role>
+            <guard-role>Owner</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Site Administrator</guard-role>
         </guard>
