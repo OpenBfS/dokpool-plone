@@ -1,26 +1,53 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      i18n:domain="docpool.base" xml:lang="en"
-      metal:use-macro="context/main_template/macros/master"
+         i18n:domain="docpool.base" xml:lang="en"
+         metal:use-macro="context/main_template/macros/master"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <body>
 
 <metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core">
-<i18n:dummy translate="private"></i18n:dummy>
-<i18n:dummy translate="published"></i18n:dummy>
-<i18n:dummy translate="alert_delete_popup"></i18n:dummy>
-<i18n:dummy translate="alert_reject_popup"></i18n:dummy>
-<i18n:dummy translate="alert_retract_popup"></i18n:dummy>
-<i18n:dummy translate="alert_submit_popup"></i18n:dummy>
-<i18n:dummy translate="alert_publish_popup"></i18n:dummy>
-<i18n:dummy translate="Publish"></i18n:dummy>
-<i18n:dummy translate="Reject"></i18n:dummy>
-<i18n:dummy translate="Retract"></i18n:dummy>
-<i18n:dummy translate="Submit"></i18n:dummy>
-
-</metal:content-core>
+    <metal:content-core define-macro="content-core">
+        <i18n:dummy translate="private"></i18n:dummy>
+        <i18n:dummy translate="published"></i18n:dummy>
+        <i18n:dummy translate="alert_delete_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_reject_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_retract_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_submit_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_publish_popup"></i18n:dummy>
+        <i18n:dummy translate="Publish"></i18n:dummy>
+        <i18n:dummy translate="Reject"></i18n:dummy>
+        <i18n:dummy translate="Retract"></i18n:dummy>
+        <i18n:dummy translate="Submit"></i18n:dummy>
+        <i18n:dummy translate="alert_reject_to_authority_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_reject_to_bfs_popup"></i18n:dummy>
+        <i18n:dummy
+                translate="alert_reject_to_npp_operator_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_retract_for_revision_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_retract_to_authority_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_retract_to_bfs_popup"></i18n:dummy>
+        <i18n:dummy
+                translate="alert_retract_to_npp_operator_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_submit_authority_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_submit_bfs_popup"></i18n:dummy>
+        <i18n:dummy translate="alert_submit_bmu_popup"></i18n:dummy>
+        <i18n:dummy translate="submit_bmu"></i18n:dummy>
+        <i18n:dummy translate="Pending BMU"></i18n:dummy>
+        <i18n:dummy translate="Pending BfS"></i18n:dummy>
+        <i18n:dummy translate="Pending authority"></i18n:dummy>
+        <i18n:dummy translate="Published"></i18n:dummy>
+        <i18n:dummy translate="Retract for Revision"></i18n:dummy>
+        <i18n:dummy translate="Retract to BfS"></i18n:dummy>
+        <i18n:dummy translate="Retract to NPP Operator"></i18n:dummy>
+        <i18n:dummy translate="Retract to authority"></i18n:dummy>
+        <i18n:dummy translate="Revised"></i18n:dummy>
+        <i18n:dummy translate="Send back to BfS"></i18n:dummy>
+        <i18n:dummy translate="Send back to NPP operator"></i18n:dummy>
+        <i18n:dummy translate="Send back to authority"></i18n:dummy>
+        <i18n:dummy translate="Submit to Authority"></i18n:dummy>
+        <i18n:dummy translate="Submit to BMU"></i18n:dummy>
+        <i18n:dummy translate="Submit to BfS"></i18n:dummy>
+    </metal:content-core>
 </metal:content-core>
 </body>
 </html>

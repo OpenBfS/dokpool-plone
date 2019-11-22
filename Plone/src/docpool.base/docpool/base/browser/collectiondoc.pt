@@ -33,7 +33,7 @@
                   title a_title;
                   "
                        i18n:attributes="title">
-                        <br /><i18n:var translate="">Document workflow: </i18n:var><tal:var replace="a_title" i18n:translate=""></tal:var>
+                        <br /><i18n:var translate="">Document workflow: </i18n:var> <tal:var replace="a_title" i18n:translate=""></tal:var>
                     </a>
                 </tal:loop>
                 <br><br>
