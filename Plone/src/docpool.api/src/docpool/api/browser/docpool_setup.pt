@@ -18,6 +18,17 @@
       </ul>
       <p>Warning: This takes at least 2 minutes to run!</p>
 
+      <p>Available Users after this has run:</p>
+      <p>Passwords are always the same as the username!</p>
+      <ul>
+        <li>user1: User in Bund with access to Elan, Doksys and REI</li>
+        <li>user2: User in Hessen with access to Elan and Doksys</li>
+        <li>aufsicht_he: REI User in bund that can add reireports</li>
+        <li>betreiber_he: REI User in bund that can add reireports</li>
+        <li>aufsicht_by: REI User in bund that can add reireports</li>
+        <li>bmu_rei: REI User in bund that can review rereports</li>
+        <li>bfs_rei: REI User in bund that can review rereports</li>
+
       <form action="docpool_setup" method="post" enctype="multipart/form-data">
         <button class="context" type="submit" name="submit" value=" Start! " >Start!</button>
       </form>

@@ -1258,7 +1258,7 @@ msgstr "docpool.rei"
 #. Default: "Authority"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "label_rei_Authority"
-msgstr ""
+msgstr "Aufsichtsbehörde"
 
 #. Default: "Media"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
