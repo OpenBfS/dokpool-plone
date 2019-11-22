@@ -21,42 +21,23 @@ class AuthorityVocabulary(object):
 
     def __call__(self, context):
         items = [
-            VocabItem(
-                u'Schleswig-Holstein', _(
-                    u'Schleswig-Holstein'), u'Schleswig-Holstein'
-            ),
-            VocabItem(u'Hamburg', _(u'Hamburg'), u'Hamburg'),
-            VocabItem(u'Niedersachsen', _(u'Niedersachsen'), u'Niedersachsen'),
-            VocabItem(u'Bremen', _(u'Bremen'), u'Bremen'),
-            VocabItem(
-                u'Nordrhein-Westfalen',
-                _(u'Nordrhein-Westfahlen'),
-                u'Nordrhein-Westfalen',
-            ),
-            VocabItem(u'Hessen', _(u'Hessen'), u'Hessen'),
-            VocabItem(
-                u'Rheinland-Pfalz',
-                _(u'Rheinland-Pfalz'),
-                u'Rheinland-Pfalz'),
-            VocabItem(
-                u'Baden-Württemberg', _(u'Baden-Württemberg'), u'Baden-Württemberg'
-            ),
+            VocabItem(u'Baden-Württemberg', _(u'Baden-Württemberg'), u'Baden-Württemberg'),
             VocabItem(u'Bayern', _(u'Bayern'), u'Bayern'),
-            VocabItem(u'Saarland', _(u'Saarland'), u'Saarland'),
             VocabItem(u'Berlin', _(u'Berlin'), u'Berlin'),
-            VocabItem(u'Brandenburg', _(u'Brandenburg'), u'Brandenburg'),
-            VocabItem(
-                u'Mecklenburg-Vorpommern',
-                _(u'Mecklenburg-Vorpommern'),
-                u'Mecklenburg-Vorpommern',
-            ),
-            VocabItem(u'Sachsen', _(u'Sachsen'), u'Sachsen'),
-            VocabItem(
-                u'Sachsen-Anhalt',
-                _(u'Sachsen-Anhalt'),
-                u'Sachsen-Anhalt'),
-            VocabItem(u'Thüringen', _(u'Thüringen'), u'Thüringen'),
             VocabItem(u'BfE', _(u'BfE'), u'BfE'),
+            VocabItem(u'Brandenburg', _(u'Brandenburg'), u'Brandenburg'),
+            VocabItem(u'Bremen', _(u'Bremen'), u'Bremen'),
+            VocabItem(u'Hamburg', _(u'Hamburg'), u'Hamburg'),
+            VocabItem(u'Hessen', _(u'Hessen'), u'Hessen'),
+            VocabItem(u'Mecklenburg-Vorpommern', _(u'Mecklenburg-Vorpommern'),u'Mecklenburg-Vorpommern',),
+            VocabItem(u'Niedersachsen', _(u'Niedersachsen'), u'Niedersachsen'),
+            VocabItem(u'Nordrhein-Westfalen', _(u'Nordrhein-Westfahlen'),'Nordrhein-Westfalen',),
+            VocabItem(u'Rheinland-Pfalz', _(u'Rheinland-Pfalz'), u'Rheinland-Pfalz'),
+            VocabItem(u'Saarland', _(u'Saarland'), u'Saarland'),
+            VocabItem(u'Sachsen', _(u'Sachsen'), u'Sachsen'),
+            VocabItem(u'Sachsen-Anhalt', _(u'Sachsen-Anhalt'), u'Sachsen-Anhalt'),
+            VocabItem(u'Schleswig-Holstein', _(u'Schleswig-Holstein'), u'Schleswig-Holstein'),
+            VocabItem(u'Thüringen', _(u'Thüringen'), u'Thüringen'),
         ]
 
         return SimpleVocabulary(items)
