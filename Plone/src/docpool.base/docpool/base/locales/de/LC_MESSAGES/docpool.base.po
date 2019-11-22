@@ -280,7 +280,7 @@ msgstr "An BMU einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit to BfS"
-msgstr ""
+msgstr "An BfS einreichen"
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Textpage"
