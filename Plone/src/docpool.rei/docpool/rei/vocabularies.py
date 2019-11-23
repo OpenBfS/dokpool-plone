@@ -21,8 +21,8 @@ class AuthorityVocabulary(object):
 
     def __call__(self, context):
         items = [
+            VocabItem(u'Kein Wert', _(u'Kein Wert'), u'Kein Wert'),
             VocabItem(u'Baden-Württemberg', _(u'Baden-Württemberg'), u'Baden-Württemberg'),
-            VocabItem(u'Bayern', _(u'Bayern'), u'Bayern'),
             VocabItem(u'Berlin', _(u'Berlin'), u'Berlin'),
             VocabItem(u'BfE', _(u'BfE'), u'BfE'),
             VocabItem(u'Brandenburg', _(u'Brandenburg'), u'Brandenburg'),
