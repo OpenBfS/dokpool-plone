@@ -2,12 +2,10 @@
 """Common configuration constants
 """
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_inner
 from collective import dexteritytextindexer
 from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
-from docpool.base.utils import getInheritedValue
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone.autoform import directives
@@ -173,106 +171,77 @@ class REIDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    def _get_rei_Operator(self):
-        return getInheritedValue(self, "Operator")
+    @property
+    def Authority(self):
+        return self.context.Authority
 
-    def _set_rei_Operator(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Operator = value
+    @Authority.setter
+    def Authority(self, value):
+        self.context.Authority = value
 
-    Operator = property(_get_rei_Operator, _set_rei_Operator)
+    @property
+    def MstId(self):
+        return self.context.MstId
 
-    def _get_rei_MstId(self):
-        return getInheritedValue(self, "Messstellen-ID")
+    @MstId.setter
+    def MstId(self, value):
+        self.context.MstId = value
 
-    def _set_rei_MstId(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.MstId = value
+    @property
+    def ReiLegalBase(self):
+        return self.context.ReiLegalBase
 
-    MstId = property(_get_rei_MstId, _set_rei_MstId)
+    @ReiLegalBase.setter
+    def ReiLegalBase(self, value):
+        self.context.ReiLegalBase = value
 
-    def _get_rei_ReiLegalBase(self):
-        return getInheritedValue(self, "ReiLegalBase")
+    @property
+    def Year(self):
+        return self.context.Year
 
-    def _set_rei_ReiLegalBase(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.ReiLegalBase = value
+    @Year.setter
+    def Year(self, value):
+        self.context.Year = value
 
-    ReiLegalBase = property(_get_rei_ReiLegalBase, _set_rei_ReiLegalBase)
+    @property
+    def Period(self):
+        return self.context.Period
 
-    def _get_rei_Year(self):
-        return getInheritedValue(self, "Year")
+    @Period.setter
+    def Period(self, value):
+        self.context.Period = value
 
-    def _set_rei_Year(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Year = value
+    @property
+    def Media(self):
+        return self.context.Media
 
-    Year = property(_get_rei_Year, _set_rei_Year)
+    @Media.setter
+    def Media(self, value):
+        self.context.Media = value
 
-    def _get_rei_Period(self):
-        return getInheritedValue(self, "Period")
+    @property
+    def NuclearInstallation(self):
+        return self.context.NuclearInstallation
 
-    def _set_rei_Period(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Period = value
+    @NuclearInstallation.setter
+    def NuclearInstallation(self, value):
+        self.context.NuclearInstallation = value
 
-    Period = property(_get_rei_Period, _set_rei_Period)
+    @property
+    def PdfVersion(self):
+        return self.context.PdfVersion
 
-    def _get_rei_Media(self):
-        return getInheritedValue(self, "Media")
+    @PdfVersion.setter
+    def PdfVersion(self, value):
+        self.context.PdfVersion = value
 
-    def _set_rei_Media(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Media = value
+    @property
+    def Origin(self):
+        return self.context.Origin
 
-    Media = property(_get_rei_Media, _set_rei_Media)
-
-    def _get_rei_NuclearInstallation(self):
-        return getInheritedValue(self, "NuclearInstallation")
-
-    def _set_rei_NuclearInstallation(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.NuclearInstallation = value
-
-    NuclearInstallation = property(
-        _get_rei_NuclearInstallation, _set_rei_NuclearInstallation
-    )
-
-    def _get_rei_PdfVersion(self):
-        return getInheritedValue(self, "PdfVersion")
-
-    def _set_rei_PdfVersion(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.PdfVersion = value
-
-    PdfVersion = property(_get_rei_PdfVersion, _set_rei_PdfVersion)
-
-    def _get_rei_Origin(self):
-        return getInheritedValue(self, "Origin")
-
-    def _set_rei_Origin(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Origin = value
-
-    Origin = property(_get_rei_Origin, _set_rei_Origin)
+    @Origin.setter
+    def Origin(self, value):
+        self.context.Origin = value
 
     def isClean(self):
         """

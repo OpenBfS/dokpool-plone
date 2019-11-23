@@ -165,6 +165,10 @@ class DocpoolSetup(BrowserView):
         doctypes = voc(self.context).by_value
         doctypes_ids = [i.id for i in doctypes]
 
+        # Do not create reireports. This is only for elan-specific DPDocuments
+        if 'reireport' in doctypes_ids:
+            doctypes_ids.remove('reireport')
+
         even_config_folder = docpool_bund['contentconfig']['scen']
         dpnuclearpowerstation = api.content.create(
             container=even_config_folder,
@@ -370,6 +374,9 @@ def add_group(docpool, groupname):
     voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
     doctypes = voc(docpool).by_value
     doctypes_ids = [i.id for i in doctypes]
+    # Do not create reireports. Can be added after creating the group.
+    if 'reireport' in doctypes_ids:
+        doctypes_ids.remove('reireport')
 
     gtool = getToolByName(docpool, 'portal_groups')
     docpool_uid = IUUID(docpool)
