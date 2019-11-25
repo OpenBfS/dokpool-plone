@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-21 16:38+0000\n"
+"POT-Creation-Date: 2019-11-25 14:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -858,6 +858,10 @@ msgid "Juni"
 msgstr ""
 
 #: docpool.rei/docpool/rei/vocabularies.py
+msgid "Kein Wert"
+msgstr ""
+
+#: docpool.rei/docpool/rei/vocabularies.py
 msgid "Mai"
 msgstr ""
 
@@ -1259,31 +1263,37 @@ msgstr ""
 
 #. Default: "Authority"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Authority"
 msgstr ""
 
 #. Default: "Media"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Media"
 msgstr ""
 
-#. Default: "Messstellen-ID"
+#. Default: "MstId"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_MstId"
 msgstr ""
 
 #. Default: "NuclearInstallation"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_NuclearInstallation"
 msgstr ""
 
-#. Default: "Ersteller"
+#. Default: "Origin"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Origin"
 msgstr ""
 
-#. Default: "Pdf Version"
+#. Default: "PdfVersion"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_PdfVersion"
 msgstr ""
 
@@ -1294,11 +1304,13 @@ msgstr ""
 
 #. Default: "ReiLegalBase"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_ReiLegalBase"
 msgstr ""
 
 #. Default: "Year"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Year"
 msgstr ""
 
