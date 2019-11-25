@@ -303,6 +303,48 @@ class DocpoolSetup(BrowserView):
             log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
                 new.absolute_url()))
 
+        # create REI Bericht
+        folder = docpool_bund['content']['Groups']['bund_betreiber_he']
+        with api.env.adopt_user(username='betreiber_he'):
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Ein Bericht',
+                description=u'foo',
+                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                docType='reibericht',
+                local_behaviors=['rei'],
+                Authority=u'Hessen',
+                MstId=[u'3132 ', u'3141 ', u'3151 ', u'3161 ', u'3171 '],
+                ReiLegalBase=u'REI-E',
+                Origin=[u'Betreiber'],
+                Year=2019,
+                Period=u'1. Quartal',
+                Media=u'Fortluft',
+                NuclearInstallation=u'UCHL KTA Leibstadt mit Beznau und Villigen ',
+                PdfVersion=u'PDF/A-1b',
+            )
+        folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
+        with api.env.adopt_user(username='aufsicht_by'):
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Ein Bericht',
+                description=u'foo',
+                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                docType='reibericht',
+                local_behaviors=['rei'],
+                Authority=u'Mecklenburg-Vorpommern',
+                MstId=[u'20000 '],
+                ReiLegalBase=u'REI-I',
+                Origin=[u'Betreiber'],
+                Year=2019,
+                Period=u'Januar',
+                Media=u'Abwasser',
+                NuclearInstallation=u'U13A KKW Lubmin/Greifswald ',
+                PdfVersion=u'PDF/A-1b',
+            )
+
         return self.request.response.redirect(self.context.absolute_url())
 
 
