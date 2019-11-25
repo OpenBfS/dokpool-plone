@@ -50,7 +50,6 @@ def getURL(self, relative=0, original=False):
         (not original)
         and self.portal_type == 'DPDocument'
         and not request['URL'].find('resolveuid') > -1
-        and not request['URL'].find('/content/') > -1
     ):
         if self.cat_path:
             # This is it: we use the path of the category
