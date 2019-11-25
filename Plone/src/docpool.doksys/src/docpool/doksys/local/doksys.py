@@ -114,6 +114,7 @@ def copyDoksysNavigation(self):
 
     _copyPaste(searches, self, safe=False)
     self.searches.setTitle(_("Standardsuchen"))
+    self.searches.local_behaviors = ['doksys'] 
     self.searches.reindexObject()
     # make sure the run display is first
     # TODO if more complex (e.g. second after 'esd')

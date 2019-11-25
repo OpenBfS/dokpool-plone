@@ -44,6 +44,7 @@ def copyberichte(docpool):
 
     _copyPaste(berichte, docpool, safe=False)
     docpool.berichte.setTitle(_("Berichte"))
+    docpool.berichte.local_behaviors=['rei']
     docpool.berichte.reindexObject()
     # make sure the folder berichte is first
     # TODO if more complex (e.g. second after 'esd')
