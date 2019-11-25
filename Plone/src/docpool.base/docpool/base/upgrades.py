@@ -89,3 +89,8 @@ def create_json_changelog(context=None):
             log.info(u'Migrated changelog to json for {}'.format(
                 obj.absolute_url()))
             obj.changelog = json.dumps(result)
+
+
+def to_1000(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1000')

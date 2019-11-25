@@ -12,6 +12,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="to_1000"
+      title="Upgrade profile for docpool.base"
+      directory="profiles/to_1000"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <genericsetup:upgradeSteps
       source="1.3.28"
       destination="1.4.00"
@@ -31,6 +39,16 @@
     <genericsetup:upgradeStep
         title="Migrate changelog to json"
         handler="docpool.base.upgrades.create_json_changelog"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1.4.00"
+      destination="1000"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Load upgrade-profile"
+        handler="docpool.base.upgrades.to_1000"
         />
   </genericsetup:upgradeSteps>
 
