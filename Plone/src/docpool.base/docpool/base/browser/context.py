@@ -106,8 +106,6 @@ class ApplicationState(BrowserView):
         @return:
         """
         user = api.user.get_current()
-        if user.getUserName() == 'admin':
-            return [app[0] for app in extendingApps()]
         res = user.getProperty("apps") or [BASE_APP]
         # print "appsActivatedByCurrentUser: ", res
         return list(set(res))
