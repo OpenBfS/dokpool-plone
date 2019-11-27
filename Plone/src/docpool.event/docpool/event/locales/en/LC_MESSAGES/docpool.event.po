@@ -36,6 +36,14 @@ msgstr ""
 msgid "Area coordinates"
 msgstr ""
 
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "archive_confirm_msg"
+msgstr "Do you really want to archive this scenario?"
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "purge_confirm_msg"
+msgstr "Do you really want to remove all documents from this scenario?"
+
 #: docpool.event/docpool/event/content/dpevent.py:151
 msgid "Area of interest"
 msgstr ""
