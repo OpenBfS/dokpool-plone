@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2019-02-08 07:11+0000\n"
+"POT-Creation-Date: 2019-11-21 16:38+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Language: en\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:36
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "${count} item(s) cut."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/print.pt:27
+#: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
 msgstr ""
 
@@ -28,11 +28,11 @@ msgstr ""
 msgid "Content Area"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:234
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Content:"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:17
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Copy or cut one or more items to paste."
 msgstr ""
 
@@ -40,11 +40,11 @@ msgstr ""
 msgid "DPDocument"
 msgstr "Document"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:133
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Delete"
 msgstr "Delete"
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:31
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Disallowed to paste item(s)."
 msgstr ""
 
@@ -56,11 +56,11 @@ msgstr ""
 msgid "Docpool Configuration Area"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/configure.zcml:115
+#: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:36
+#: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"
 msgstr ""
 
@@ -68,11 +68,11 @@ msgstr ""
 msgid "DocumentType"
 msgstr "Document Type"
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:17
+#: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Edit the document"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:399
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Edit unknown doc type"
 msgstr ""
 
@@ -80,11 +80,11 @@ msgstr ""
 msgid "Electronic Situation Display"
 msgstr "Document Pool"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:241
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Files:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/folderbase.pt:23
+#: docpool.base/docpool/base/browser/folderbase.pt
 msgid "Filter contents according to application?"
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Folder Base"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py:89
+#: docpool.base/docpool/base/content/doctype.py
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
 msgid "Folder for Document Types"
 msgstr ""
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Groups Area"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:276
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Images:"
 msgstr ""
 
@@ -133,12 +133,16 @@ msgstr ""
 msgid "Info-Folder"
 msgstr "Info-Folder"
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:26
+#: docpool.base/docpool/base/configure.zcml
+msgid "Installs the docpool.base add-on."
+msgstr ""
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Item(s) pasted."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:349
-#: docpool.base/docpool/base/browser/infolinklistitem.pt:21
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "LT"
 msgstr ""
 
@@ -146,51 +150,87 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:53
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:551
+#: docpool.base/docpool/base/content/dpdocument.py
 msgid "No legend image"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:537
+#: docpool.base/docpool/base/content/dpdocument.py
 msgid "No map image"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:23
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "One or more items not moveable."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:31
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "One or more selected items is locked."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:27
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "One or more selected items is no longer available."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:46
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Paste could not find clipboard content."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy:42
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending BMU"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending authority"
+msgstr ""
+
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "Please select one or more items to cut."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:21
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Publish"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:22
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Published"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Reject"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:23
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Retract"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/sharing.py:45
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract for Revision"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract to BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract to NPP Operator"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract to authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Revised"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/sharing.py
 msgid "Search for user or group"
 msgstr ""
 
@@ -198,11 +238,23 @@ msgstr ""
 msgid "Select Applications"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:171
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back to BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back to NPP operator"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back to authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Show document"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:186
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Show folder"
 msgstr ""
 
@@ -214,40 +266,52 @@ msgstr ""
 msgid "Simple pages of text."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:24
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit to Authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit to BMU"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit to BfS"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Textpage"
 msgstr ""
 
-#: docpool.base/docpool/base/content/simplefolder.py:142
+#: docpool.base/docpool/base/content/simplefolder.py
 msgid "The document has been published."
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:126
-#: docpool.base/docpool/base/content/folderbase.py:84
+#: docpool.base/docpool/base/content/dpdocument.py
+#: docpool.base/docpool/base/content/folderbase.py
 msgid "The document state has been changed."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:38
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:365
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "There are comments."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:52
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Title / Description / Text"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:33
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Unauthorized to paste item(s)."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy:49
+#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Unknown error occured. Please check your logs"
 msgstr ""
 
@@ -259,285 +323,328 @@ msgstr ""
 msgid "Users Area"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:329
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Videos:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt:20
+#: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "View the document"
 msgstr ""
 
-#: docpool.base/docpool/base/vocabularies.py:67
+#: docpool.base/docpool/base/vocabularies.py
 msgid "active"
 msgstr "Active"
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:16
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
 msgstr "Do you really want to delete this object?"
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:20
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_publish_popup"
 msgstr "Do you really want to publish this document?"
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:17
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_reject_popup"
 msgstr "Do you really want to reject this document?"
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:18
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_to_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_to_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_to_npp_operator_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_for_revision_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_popup"
 msgstr "Do you really want to retract this document?"
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:19
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_npp_operator_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_bmu_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Do you really want to submit this document?"
 
-#: docpool.base/docpool/base/vocabularies.py:67
+#: docpool.base/docpool/base/vocabularies.py
 msgid "closed"
 msgstr "Closed"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:354
-#: docpool.base/docpool/base/browser/infolinklistitem.pt:25
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "created:"
 msgstr "created:"
 
-#: docpool.base/docpool/base/content/collaborationfolder.py:49
+#: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "description_collaborationfolder_allowedpartnerdoctypes"
 msgstr ""
 
-#: docpool.base/docpool/base/content/contentbase.py:58
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "description_contentbase_created_by"
 msgstr ""
 
-#: docpool.base/docpool/base/content/contentbase.py:76
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "description_contentbase_mdate"
 msgstr ""
 
-#: docpool.base/docpool/base/content/contentbase.py:67
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "description_contentbase_modified_by"
 msgstr ""
 
-#: docpool.base/docpool/base/content/contentbase.py:85
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "description_contentbase_wdate"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py:85
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_alloweddoctypes"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py:55
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_allowuploads"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py:127
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_customviewtemplate"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py:75
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_globalallow"
 msgstr ""
 
 #. Default: "If image exists, it will be used as a visual representation for objects of this type."
-#: docpool.base/docpool/base/content/doctype.py:118
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_imgpattern"
 msgstr ""
 
 #. Default: "Used for automatically creating objects of this type from collections of files and images."
-#: docpool.base/docpool/base/content/doctype.py:100
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_partspattern"
 msgstr ""
 
 #. Default: "If PDF exists, an image will be created from its first page as a visual representation for objects of this type."
-#: docpool.base/docpool/base/content/doctype.py:109
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_pdfpattern"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py:65
+#: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_publishimmediately"
 msgstr ""
 
-#: docpool.base/docpool/base/content/documentpool.py:69
+#: docpool.base/docpool/base/content/documentpool.py
 msgid "description_documentpool_customlogo"
 msgstr ""
 
 #. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
-#: docpool.base/docpool/base/content/documentpool.py:60
+#: docpool.base/docpool/base/content/documentpool.py
 msgid "description_documentpool_prefix"
 msgstr "Will be used to construct user and group names. If left blank, the id of the DocPool will be used."
 
-#: docpool.base/docpool/base/content/documentpool.py:78
+#: docpool.base/docpool/base/content/documentpool.py
 msgid "description_documentpool_supportedapps"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:72
+#: docpool.base/docpool/base/content/dpdocument.py
 msgid "description_dpdocument_doctype"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py:82
+#: docpool.base/docpool/base/content/dpdocument.py
 msgid "description_dpdocument_text"
 msgstr ""
 
 #. Default: "There are currently no items in this folder."
-#: docpool.base/docpool/base/browser/dp_macros.pt:102
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "description_no_items_in_folder"
 msgstr ""
 
 #. Default: "Leave blank to enable all types configured for the group."
-#: docpool.base/docpool/base/content/simplefolder.py:51
+#: docpool.base/docpool/base/content/simplefolder.py
 msgid "description_simplefolder_alloweddoctypes"
 msgstr ""
 
-#: docpool.base/docpool/base/content/text.py:46
+#: docpool.base/docpool/base/content/text.py
 msgid "description_text_text"
 msgstr ""
 
-#: docpool.base/docpool/base/configure.zcml:23
+#: docpool.base/docpool/base/configure.zcml
 msgid "docpool.base"
 msgstr ""
 
-#: docpool.base/docpool/base/vocabularies.py:67
+#: docpool.base/docpool/base/vocabularies.py
 msgid "inactive"
 msgstr "Inactive"
 
 #. Default: "Cancel"
-#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt:86
+#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_cancel"
 msgstr "Cancel"
 
 #. Default: "Document types allowed for the guest group(s)"
-#: docpool.base/docpool/base/content/collaborationfolder.py:48
+#: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "label_collaborationfolder_allowedpartnerdoctypes"
 msgstr "Document types allowed for the guest group(s)"
 
 #. Default: "Created by"
-#: docpool.base/docpool/base/content/contentbase.py:57
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_created_by"
 msgstr "Created by"
 
 #. Default: "Date of last user action"
-#: docpool.base/docpool/base/content/contentbase.py:75
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_mdate"
 msgstr "Date of last user action"
 
 #. Default: "Modified by"
-#: docpool.base/docpool/base/content/contentbase.py:66
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_modified_by"
 msgstr "Modified by"
 
 #. Default: "Date of last workflow action"
-#: docpool.base/docpool/base/content/contentbase.py:84
+#: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_wdate"
 msgstr "Date of last workflow action"
 
 #. Default: "Continue with files & images"
-#: docpool.base/docpool/base/browser/dpdocument_forms.py:34
-#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt:78
+#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_continue"
 msgstr "Continue with files & images"
 
 #. Default: "Types are allowed as part of this type"
-#: docpool.base/docpool/base/content/doctype.py:84
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_alloweddoctypes"
 msgstr "Types that are allowed as part of this type"
 
 #. Default: "Can contain documents and images"
-#: docpool.base/docpool/base/content/doctype.py:54
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_allowuploads"
 msgstr "Can contain documents and images"
 
 #. Default: "Custom View Template"
-#: docpool.base/docpool/base/content/doctype.py:126
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_customviewtemplate"
 msgstr "Custom View Template"
 
 #. Default: "Can be used everywhere (not only as part of another type)"
-#: docpool.base/docpool/base/content/doctype.py:74
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_globalallow"
 msgstr "Can be used everywhere (not only as part of another type)"
 
 #. Default: "Name pattern for representative image"
-#: docpool.base/docpool/base/content/doctype.py:117
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_imgpattern"
 msgstr "Name pattern for representative image"
 
 #. Default: "Name pattern for files and images belonging to this type"
-#: docpool.base/docpool/base/content/doctype.py:99
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_partspattern"
 msgstr "Name pattern for files and images belonging to this type"
 
 #. Default: "Name pattern for representative PDF"
-#: docpool.base/docpool/base/content/doctype.py:108
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_pdfpattern"
 msgstr "Name pattern for representative PDF"
 
 #. Default: "Publish immediately?"
-#: docpool.base/docpool/base/content/doctype.py:64
+#: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_publishimmediately"
 msgstr "Publish immediately?"
 
 #. Default: "Custom Logo"
-#: docpool.base/docpool/base/content/documentpool.py:68
+#: docpool.base/docpool/base/content/documentpool.py
 msgid "label_documentpool_customlogo"
 msgstr "Custom Logo"
 
 #. Default: "Prefix names"
-#: docpool.base/docpool/base/content/documentpool.py:59
+#: docpool.base/docpool/base/content/documentpool.py
 msgid "label_documentpool_prefix"
 msgstr "Prefix names"
 
 #. Default: "Applications supported in this document pool"
-#: docpool.base/docpool/base/content/documentpool.py:77
+#: docpool.base/docpool/base/content/documentpool.py
 msgid "label_documentpool_supportedapps"
 msgstr "Applications supported in this document pool"
 
 #. Default: "Document Type"
-#: docpool.base/docpool/base/content/dpdocument.py:71
+#: docpool.base/docpool/base/content/dpdocument.py
 msgid "label_dpdocument_doctype"
 msgstr "Document Type"
 
 #. Default: "Text"
-#: docpool.base/docpool/base/content/dpdocument.py:81
+#: docpool.base/docpool/base/content/dpdocument.py
 msgid "label_dpdocument_text"
 msgstr "Text"
 
 #. Default: "Save"
-#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt:71
+#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_save"
 msgstr "Save"
 
 #. Default: "Document types allowed in this folder"
-#: docpool.base/docpool/base/content/simplefolder.py:50
+#: docpool.base/docpool/base/content/simplefolder.py
 msgid "label_simplefolder_alloweddoctypes"
 msgstr "Document types allowed in this folder"
 
 #. Default: "Text"
-#: docpool.base/docpool/base/content/text.py:45
+#: docpool.base/docpool/base/content/text.py
 msgid "label_text_text"
 msgstr "Text"
 
-#: docpool.base/docpool/base/browser/dp_macros.pt:348
-#: docpool.base/docpool/base/browser/infolinklistitem.pt:20
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "modified:"
 msgstr "modified:"
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:14
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/i18ndummy.pt:15
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "submit_bmu"
+msgstr ""
+
 #. Default: "Content listing"
-#: docpool.base/docpool/base/browser/dp_macros.pt:42
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "summary_content_listing"
 msgstr "Content listing"
 
 #. Default: "Move item down"
-#: docpool.base/docpool/base/browser/dp_macros.pt:259
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "title_move_item_down"
 msgstr "Move item down"
 
 #. Default: "Move item up"
-#: docpool.base/docpool/base/browser/dp_macros.pt:252
+#: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "title_move_item_up"
 msgstr "Move item up"

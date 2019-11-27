@@ -13,14 +13,14 @@ from Products.CMFPlone.utils import _createObjectByType
 import transaction
 
 
-def install(context, plonesite):
+def install(plonesite):
     """
     """
     fresh = True
     if plonesite.hasObject("rei"):
         fresh = False  # It's a reinstall
     configUsers(plonesite, fresh)
-    createStructure(context, plonesite, fresh)
+    createStructure(plonesite, fresh)
 
 
 def configUsers(plonesite, fresh):
@@ -50,7 +50,7 @@ def configUsers(plonesite, fresh):
         api.user.grant_roles(username='dpadmin', roles=['REIUser'])
 
 
-def createStructure(context, plonesite, fresh):
+def createStructure(plonesite, fresh):
     changeREINavigation(plonesite, fresh)
     s = api.content.get(path='/berichte')
     s.relatedItems = ""
@@ -141,7 +141,7 @@ def create_all_private_collection(plonesite):
         {
             u'i': u'review_state',
             u'o': u'plone.app.querystring.operation.selection.any',
-            u'v': ["pending"],
+            u'v': ['pending_bfs', 'pending_bmu', 'pending_authority', 'private'],
         },
     ]
     iwas.text = RichTextValue(

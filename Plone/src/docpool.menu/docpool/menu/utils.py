@@ -240,9 +240,10 @@ def getFoldersForCurrentUser(
 
     # show personal folder unless we're in elan
     dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
-    show_user_folder = not dp_app_state.isCurrentlyActive('elan')
+    effective_apps = dp_app_state.effectiveAppsHere()
+    hide_user_folder = 'elan' in effective_apps or 'rei' in effective_apps
     member_result = []
-    if show_user_folder:
+    if not hide_user_folder:
         member_result = [
             _folderTree(
                 context,

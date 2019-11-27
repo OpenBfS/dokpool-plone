@@ -4,6 +4,6 @@
                    here nocall:context">
     <tal:def define="reiobj view">
         <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->
-        <p>REI Actions here</p>
+        <p></p>
     </tal:def>
 </tal:block>

@@ -62,7 +62,7 @@ def dpAdded(self):
 
 
 BASICSTRUCTURE = [
-    {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: []}
+    {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: [], 'local_behaviors': ['elan']}
 ]
 
 ARCHIVESTRUCTURE = [

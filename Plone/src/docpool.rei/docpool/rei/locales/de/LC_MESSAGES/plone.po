@@ -1,0 +1,112 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: docpool.rei\n"
+"POT-Creation-Date: 2018-01-30 13:45+0000\n"
+"PO-Revision-Date: 2016-01-15 11:31+0100\n"
+"Last-Translator: Bfs devs\n"
+"Language-Team: devs@devs.de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: de\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Pending BMU"
+msgstr "An BMU eingereicht"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Pending BfS"
+msgstr "An BfS eingereicht"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+msgid "Pending authority"
+msgstr "An die Aufsichtsbehörde eingereicht"
+
+#: docpool.rei/docpool/rei/profiles/default/registry.xml
+msgid "Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Private"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Published"
+msgstr "Veöffentlicht"
+
+#: docpool.rei/docpool/rei/behaviors/configure.zcml
+msgid "REI DocType"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+msgid "REI Review Workflow alternativ"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "REI Review Workflow standard"
+msgstr ""
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Retract for Revision"
+msgstr "Zur Revision zurück ziehen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+msgid "Retract to BfS"
+msgstr "Zum BfS zurück ziehen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+msgid "Retract to NPP Operator"
+msgstr "Zum Betreiber zurück ziehen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Retract to authority"
+msgstr "Zur Aufsichtsbehörde zurück ziehen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Revised"
+msgstr "Revidiert"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Send back to BfS"
+msgstr "Zum BfS zurück schicken"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+msgid "Send back to NPP operator"
+msgstr "Zum Betreiber zurück schicken"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Send back to authority"
+msgstr "Zur Aufsichtsbehörde zurück schicken"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+msgid "Submit to Authority"
+msgstr "An die Aufsichtsbehörde einreichen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Submit to BMU"
+msgstr "An BMU einreichen"
+
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
+#: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
+msgid "Submit to BfS"
+msgstr "An BfS einreichen"

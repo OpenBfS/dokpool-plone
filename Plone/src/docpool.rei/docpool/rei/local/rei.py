@@ -2,55 +2,58 @@
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.rei.config import REI_APP
+from plone import api
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
 
-def dpAdded(self):
+def dpAdded(docpool):
     """
-    @param self:
+    @param docpool: a new docpool
     @return:
 
     """
-    annotations = IAnnotations(self)
+    annotations = IAnnotations(docpool)
     fresh = REI_APP not in annotations[APPLICATIONS_KEY]
     if fresh:
         annotations[APPLICATIONS_KEY].append(REI_APP)
 
     if fresh:
-        # connectTypesAndCategories(self) # TOOD: only when REI doctypes need to be added to ELAN categories
-        # self.rei.correctAllDocTypes() # TODO: if the run display templates contains collections
+        # connectTypesAndCategories(docpool) # TOOD: only when REI doctypes need to be added to ELAN categories
+        # docpool.rei.correctAllDocTypes() # TODO: if the run display templates contains collections
         # with references to global doctypes, which need to be adapted to local
         # doctypes.
-        copyberichte(self)
-        createREIUsers(self)
-        createREIGroups(self)
-    self.reindexAll()
+        copyberichte(docpool)
+        createREIUsers(docpool)
+        createREIGroups(docpool)
+    docpool.reindexAll()
 
     # TODO: further initializations?
 
 
-def copyberichte(self):
+def copyberichte(docpool):
     """
 
-    @param self:
+    @param docpool: a docpool
     @param fresh:
     @return:
     """
-    berichte = self.berichte
+    portal = api.portal.get()
+    berichte = portal['berichte']
     from docpool.base.utils import _copyPaste
 
-    _copyPaste(berichte, self, safe=False)
-    self.berichte.setTitle(_("Berichte"))
-    self.berichte.reindexObject()
+    _copyPaste(berichte, docpool, safe=False)
+    docpool.berichte.setTitle(_("Berichte"))
+    docpool.berichte.local_behaviors=['rei']
+    docpool.berichte.reindexObject()
     # make sure the folder berichte is first
     # TODO if more complex (e.g. second after 'esd')
-    self.moveObject("berichte", 0)
+    docpool.moveObject("berichte", 0)
 
 
-def dpRemoved(self):
+def dpRemoved(docpool):
     """
-    @param self:
+    @param docpool: a docpool
     @return:
     """
     # TODO:
@@ -107,18 +110,18 @@ def createREIGroups(docpool):
     )
 
 
-def createREIUsers(self):
+def createREIUsers(docpool):
     # Set type for user folders
-    mtool = getToolByName(self, "portal_membership")
-    prefix = self.prefix or self.getId()
+    mtool = getToolByName(docpool, "portal_membership")
+    prefix = docpool.prefix or docpool.getId()
     prefix = str(prefix)
-    title = self.Title()
+    title = docpool.Title()
     mtool.addMember(
         '%s_reiadmin' % prefix, 'REI Administrator (%s)' % title, [
             'Member'], []
     )
     reiadmin = mtool.getMemberById('%s_reiadmin' % prefix)
     reiadmin.setMemberProperties(
-        {"fullname": 'REI Administrator (%s)' % title, "dp": self.UID()}
+        {"fullname": 'REI Administrator (%s)' % title, "dp": docpool.UID()}
     )
     reiadmin.setSecurityProfile(password="admin")

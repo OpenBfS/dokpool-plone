@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
-  <import-step id="docpool_rei_various" version="20170325-01"
-               handler="docpool.rei.setuphandlers.setupVarious"
-               title="docpool.rei install functions">
- </import-step>
-</import-steps>
