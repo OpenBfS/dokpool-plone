@@ -6,14 +6,9 @@
     <tal:def define="reiobj python:view">
         <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->
 
-        <label i18n:translate="label_rei_Authority">Authority</label>:
-        <span tal:condition="python:hasattr(reiobj,'Authority')">
-           <tal:var replace="reiobj/Authority"/>
-        </span><br>
-
-        <label i18n:translate="label_rei_MstId">MstId</label>:
-        <span tal:condition="python:hasattr(reiobj,'MstId')">
-           <tal:var replace="python: ', '.join(reiobj.MstId)"/>
+        <label i18n:translate="label_rei_NuclearInstallation">NuclearInstallation</label>:
+        <span tal:condition="python:hasattr(reiobj,'NuclearInstallation')">
+           <tal:var replace="reiobj/NuclearInstallation"/>
         </span><br>
 
         <label i18n:translate="label_rei_ReiLegalBase">ReiLegalBase</label>:
@@ -21,30 +16,44 @@
            <tal:var replace="reiobj/ReiLegalBase"/>
         </span><br>
 
-        <label i18n:translate="label_rei_Origin">Origin</label>:
-        <span tal:condition="python:hasattr(reiobj,'Origin')">
-           <tal:var replace="python: ', '.join(reiobj.Origin)"/>
-        </span><br>
-
-        <label i18n:translate="label_rei_Year">Year</label>:
-        <span tal:condition="python:hasattr(reiobj,'Year')">
-           <tal:var replace="reiobj/Year"/>
-        </span><br>
-
         <label i18n:translate="label_rei_Media">Media</label>:
         <span tal:condition="python:hasattr(reiobj,'Media')">
            <tal:var replace="reiobj/Media"/>
         </span><br>
 
-        <label i18n:translate="label_rei_NuclearInstallation">NuclearInstallation</label>:
-        <span tal:condition="python:hasattr(reiobj,'NuclearInstallation')">
-           <tal:var replace="reiobj/NuclearInstallation"/>
+        <label i18n:translate="label_rei_Period">Period</label>:
+        <span>
+           <tal:var replace="reiobj/Period"/>
+           <tal:var replace="reiobj/Year"/>
         </span><br>
+
+        <label>von - bis</label>:
+          <span tal:content="python: reiobj.sampling_start_localized()" /> -
+          <span tal:content="python: reiobj.sampling_stop_localized()" />
+        <br>
+        <br>
+
+        <label i18n:translate="label_rei_Origin">Origin</label>:
+        <span tal:condition="python:hasattr(reiobj,'Origin')">
+           <tal:var replace="python: ', '.join(reiobj.Origin)"/>
+        </span><br>
+
+        <label i18n:translate="label_rei_MstId">MstId</label>:
+        <span tal:condition="python:hasattr(reiobj,'MstId')">
+           <tal:var replace="python: ', '.join(reiobj.MstId)"/>
+        </span><br>
+
+        <label i18n:translate="label_rei_Authority">Authority</label>:
+        <span tal:condition="python:hasattr(reiobj,'Authority')">
+           <tal:var replace="reiobj/Authority"/>
+        </span><br>
+        <br>
 
         <label i18n:translate="label_rei_PdfVersion">PdfVersion</label>:
         <span tal:condition="python:hasattr(reiobj,'PdfVersion')">
            <tal:var replace="reiobj/PdfVersion"/>
         </span><br>
+        <br>
 
     </tal:def>
 </tal:block>
