@@ -658,6 +658,16 @@ def eventRemoved(obj, event=None):
     if obj.id == 'routinemode':
         raise RuntimeError(u'The "routinemode" event cannot be removed.')
 
+    # Cleanup users after removal of a event (#3311)
+    portal_membership = api.portal.get_tool('portal_membership')
+    event_id = obj.id
+    for member in portal_membership.listMembers():
+        if event_id in member.getProperty('scenarios', []):
+            scenarios = list(member.getProperty('scenarios'))
+            scenarios.remove(event_id)
+            member.setMemberProperties({'scenarios': tuple(scenarios)})
+            logger.debug('Removed event {} from user {}'.format(event_id, member))
+
 
 @adapter(IDPEvent, IActionSucceededEvent)
 def eventPublished(obj, event=None):
