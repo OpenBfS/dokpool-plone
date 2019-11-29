@@ -537,10 +537,10 @@ class DPEvent(Container, ContentBase):
             # Test if they already exists
             if obj.get(journal):
                 pass
-            new = api.content.create(
+            api.content.create(
                 container=obj,
                 type='Journal',
-                title=journal
+                title=journal,
             )
 
     def deleteEventReferences(self):
@@ -605,6 +605,9 @@ def addLogEntry(obj):
     entry[u'Sectorizing networks'] = u", ".join(
         (n.to_object.title for n in obj.SectorizingNetworks)
         if obj.SectorizingNetworks is not None else ' ')
+    # Check if there are changes to prevent duplicate log entries.
+    if changelog and entry == changelog[-1]:
+        return
     changelog.append(entry)
     obj.changelog = json.dumps(changelog)
 
