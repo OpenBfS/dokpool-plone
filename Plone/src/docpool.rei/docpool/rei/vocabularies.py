@@ -2,7 +2,6 @@
 from AccessControl.SecurityInfo import allow_module
 from Products.CMFPlone.utils import safe_unicode
 from datetime import date
-from docpool.rei import DocpoolMessageFactory as _
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -315,7 +314,7 @@ class MstVocabulary(object):
                 (u'30011', u'PTB'),
                 (u'30012', u'Min'),
                 (u'30021', u'BfS-Berlin'),
-        ]
+                ]]
 
         return SimpleVocabulary(items)
 
