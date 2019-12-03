@@ -10,6 +10,10 @@ body#visual-portal-wrapper.pat-plone #edit-zone {
     }
 }
 
+body [class*="contenttype-"]::before,
+body .contenttype-file #crud-edit-File-widgets-view_title::before {
+  content: none;
+}
 
 table#fctable {
 	.actions { 
