@@ -18,4 +18,6 @@
         for="docpool.base.interfaces.IDocType"
         />
 
+    <subscriber handler=".reidoc.set_title" />
+
 </configure>

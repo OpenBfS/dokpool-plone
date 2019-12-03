@@ -6,6 +6,7 @@ from collective import dexteritytextindexer
 from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.interfaces import IDPDocument
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
@@ -15,7 +16,9 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
+from zope.component import adapter
 from zope.interface import provider
+from zope.lifecycleevent import IObjectAddedEvent
 
 
 START_SAMPLING_MAPPING = {
@@ -278,3 +281,54 @@ class REIDoc(FlexibleView):
 
     def sampling_stop_localized(self):
         return api.portal.get_localized_time(self.StopSampling)
+
+
+# IREIDoc sets no marker-interface so we cannot constrain
+# the suscriber on IREIDoc. Instead we use IDPDocument
+@adapter(IDPDocument, IObjectAddedEvent)
+def set_title(obj, event=None):
+    # Only if it is a IREIDoc.
+    try:
+        adapted = IREIDoc(obj)
+    except Exception:
+        return
+    adapted.ReiLegalBase
+    legal_base_mapping = {
+        u'REI-E': u'Emmissionsbericht',
+        u'REI-I': u'Immissionsbericht',
+        u'REI-E/REI-I': u'Emmissionsbericht/Immissionsbericht',
+    }
+    legal_base = legal_base_mapping.get(adapted.ReiLegalBase)
+    period_mapping = {
+        u'1. Quartal': u'des {}s',
+        u'2. Quartal': u'des {}s',
+        u'3. Quartal': u'des {}s',
+        u'4. Quartal': u'des {}s',
+        u'1. Halbjahr': u'des {}es',
+        u'2. Halbjahr': u'des {}es',
+        u'Jahr': u'des {}es',
+        u'Januar': u'von {}',
+        u'Februar': u'von {}',
+        u'März': u'von {}',
+        u'April': u'von {}',
+        u'Mai': u'von {}',
+        u'Juni': u'von {}',
+        u'Juli': u'von {}',
+        u'August': u'von {}',
+        u'September': u'von {}',
+        u'Oktober': u'von {}',
+        u'November': u'von {}',
+        u'Dezember': u'von {}',
+    }
+    period_template = period_mapping.get(adapted.Period)
+    period_prefix = period_template.format(adapted.Period)
+    period = u'{} {}'.format(period_prefix, adapted.Year)
+    installation = adapted.NuclearInstallation
+    new_title = 'REI-{legal_base} {period} der {installation} ({media})'.format(
+        legal_base=legal_base,
+        period=period,
+        installation=installation,
+        media=adapted.Media if adapted.Media else '',
+        )
+    obj.title = new_title
+    obj.reindexObject(idxs=['Title'])
