@@ -6,6 +6,10 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
+import logging
+
+log = logging.getLogger(__name__)
+
 
 def dpAdded(docpool):
     """
@@ -26,6 +30,7 @@ def dpAdded(docpool):
         copyberichte(docpool)
         createREIUsers(docpool)
         createREIGroups(docpool)
+    log.info(u'Rebuilding catalog...')
     docpool.reindexAll()
 
     # TODO: further initializations?

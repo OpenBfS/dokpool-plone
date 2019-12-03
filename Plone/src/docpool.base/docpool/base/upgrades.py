@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
+from docpool.base.content.documentpool import docPoolModified
+from docpool.base.content.documentpool import DocumentPool
 from docpool.config.general.base import configureGroups
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
 from plone.app.textfield import RichTextValue
 from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import get_installer
 
 import json
 import logging
@@ -138,3 +141,29 @@ def update_doksys_collections(context=None):
         api.content.copy(source=searches['yesterday'], target=dp_searches)
         dp_searches.moveObjectsToTop(['today', 'yesterday'])
         log.info(u'Updated doksys-collections for {}'.format(docpool.id))
+
+
+def install_rei(context=None):
+    portal = api.portal.get()
+    installer = get_installer(portal)
+    if not installer.is_product_installed('docpool.rei'):
+        installer.install_product('docpool.rei')
+        log.info(u'docpool.rei installed')
+    bund = portal.get('bund')
+    if not bund or not isinstance(bund, DocumentPool):
+        log.info(u'Aborting. No docpool "bund" exists!')
+        return
+    if 'rei' in bund.supportedApps:
+        log.info(u'REI is already enabled for bund.')
+        return
+
+    log.info(u'Enabling rei for bund...')
+    bund.supportedApps.append('rei')
+    # trigger content-creation
+    docPoolModified(bund)
+    container = bund['config']['dtypes']
+    if 'reireport' in container:
+        log.info(u'DType reireport already exists!')
+    reireport = portal['config']['dtypes']['reireport']
+    api.content.copy(source=reireport, target=container)
+    log.info(u'Copied dtype reireport to bund')
