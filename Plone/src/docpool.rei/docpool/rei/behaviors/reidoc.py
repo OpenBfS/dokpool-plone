@@ -324,11 +324,17 @@ def set_title(obj, event=None):
     period_prefix = period_template.format(adapted.Period)
     period = u'{} {}'.format(period_prefix, adapted.Year)
     installation = adapted.NuclearInstallation
-    new_title = 'REI-{legal_base} {period} der {installation} ({media})'.format(
+    if adapted.Media:
+        media = u'({})'.format(adapted.Media)
+    else:
+        media = u''
+    origin = u'({})'.format(', '.join(adapted.Origin))
+    new_title = u'REI-{legal_base} {period} der kerntechnischen Anlage {installation} {media} {origin}'.format(
         legal_base=legal_base,
         period=period,
         installation=installation,
-        media=adapted.Media if adapted.Media else '',
+        media=media,
+        origin=origin,
         )
     obj.title = new_title
     obj.reindexObject(idxs=['Title'])
