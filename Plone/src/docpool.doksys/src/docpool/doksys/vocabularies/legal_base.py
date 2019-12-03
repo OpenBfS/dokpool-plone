@@ -1,55 +1,29 @@
 # -*- coding: utf-8 -*-
-
 from docpool.doksys import _
-from plone.dexterity.interfaces import IDexterityContent
-from zope.globalrequest import getRequest
+from Products.CMFPlone.utils import safe_encode
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
-class VocabItem(object):
-    def __init__(self, token, value):
-        self.token = token
-        self.value = value
-
-
 @implementer(IVocabularyFactory)
 class LegalBase(object):
-    """
-    """
 
-    def __call__(self, context):
-        # Just an example list of content for our vocabulary,
-        # this can be any static or dynamic data, a catalog result for example.
+    def __call__(self, context=None):
         items = [
-            VocabItem(u'AVV IMIS', _(u'AVV IMIS')),
-            VocabItem(u'EURDEP', _(u'EURDEP')),
-            VocabItem(u'IRMIS', _(u'IRMIS')),
-            VocabItem(u'DENSE', _(u'DENSE')),
-            VocabItem(u'KFÜ', _(u'KFÜ')),
-            VocabItem(u'Land', _(u'Land')),
-            VocabItem(u'SPARSE', _(u'SPARSE')),
-            VocabItem(u'REI-E', _(u'REI-E')),
-            VocabItem(u'REI-I', _(u'REI-I')),
+            (u'AVV IMIS', _(u'AVV IMIS')),
+            (u'EURDEP', _(u'EURDEP')),
+            (u'IRMIS', _(u'IRMIS')),
+            (u'DENSE', _(u'DENSE')),
+            (u'KFÜ', _(u'KFÜ')),
+            (u'Land', _(u'Land')),
+            (u'SPARSE', _(u'SPARSE')),
+            (u'REI-E', _(u'REI-E')),
+            (u'REI-I', _(u'REI-I')),
         ]
-
-        # Fix context if you are using the vocabulary in DataGridField.
-        # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501
-        if not IDexterityContent.providedBy(context):
-            req = getRequest()
-            context = req.PARENTS[0]
-
-        # create a list of SimpleTerm items:
-        terms = []
-        for item in items:
-            terms.append(
-                SimpleTerm(
-                    value=item.token, token=item.token.encode('utf'), title=item.value
-                )
-            )
-        # Create a SimpleVocabulary from the terms list and return it:
+        terms = [SimpleTerm(value, safe_encode(value), title)
+                 for value, title in items]
         return SimpleVocabulary(terms)
 
 
