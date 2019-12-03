@@ -1,20 +1,31 @@
-// On the same site it saves the popup
-var windowObjectReference = null;
-
 var thisY=0;
 var thisX=0;
 
+function getPopup(name) {
+    'use strict';
+    //Get the window
+    let chron_bund=window.open('',name,'');
+    // The closed property is true if the window is closed.
+    if (!chron_bund.closed){
+        return chron_bund
+    }
+}
+
 function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPosition, thisYPosition, thisScrollbar, thisResize) {
-	'use strict';
-	var myProperty = 'toolbar=0,location=0,directories=0,status=0,scrollbars=' + thisScrollbar + ',resizable=' + thisResize + ',width=' + thiswidth + ',height=' + thisheight + ',top=' + thisY + ',left=' + thisX;
-	// Generates a unique window name like "Overview - Hessen" or "Overview - Bund"
-	var path_names = window.location.pathname.split('/');
-	var generic_window_name = thisWindowName + "-" + path_names[path_names.length - 2];
-	// Test if the popup is closed, if not open
-    if(windowObjectReference == null || windowObjectReference.closed) {
-        windowObjectReference = window.open(thisDocument, generic_window_name, myProperty);
+    'use strict';
+    let myProperty = 'toolbar=0,location=0,directories=0,status=0,scrollbars=' + thisScrollbar + ',resizable=' + thisResize + ',width=' + thiswidth + ',height=' + thisheight + ',top=' + thisY + ',left=' + thisX;
+    // Generates a unique window name like "Overview - Hessen" or "Overview - Bund"
+    let path_names = window.location.pathname.split('/');
+    let generic_window_name = thisWindowName + "-" + path_names[path_names.length - 2];
+    let open_popup= getPopup(generic_window_name);
+    if (typeof (open_popup) == 'undefined'){
+        // Popup does not exists, we open it
+        console.log('Open Popup: ' + generic_window_name);
+        window.open(thisDocument, generic_window_name, myProperty);
+
     } else {
-        windowObjectReference.focus();
+        console.log('Focus Popup:' + generic_window_name);
+        open_popup.focus();
     }
 }
 
