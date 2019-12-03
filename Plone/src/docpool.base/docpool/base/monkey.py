@@ -39,7 +39,8 @@ if not hasattr(ConversationView, "original_enabled"):
 
 def getURL(self, relative=0, original=False):
     """
-    Patched so we can provide special URLs for documents in listings such as livesearch.
+    Patched so we can provide special URLs for category documents in listings
+    such as livesearch. The category objects are viewed within a collections (see @@dview)
     Also we make sure that sections don't get an URL, so they are not linked to in the navigation.
     """
     request = aq_get(self, 'REQUEST', None)
@@ -57,7 +58,6 @@ def getURL(self, relative=0, original=False):
                 self.cat_path, self.UID)
         else:
             pass
-            # print "no cat_path"
 
     # This is the normal implementation
     return request.physicalPathToURL(self.getPath(), relative)

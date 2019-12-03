@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
+from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
+from docpool.event.utils import getScenariosForCurrentUser
+from docpool.event.utils import setScenariosForCurrentUser
 from plone import api
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
-
 import unittest
 
 
@@ -393,3 +396,49 @@ class TestDocTypes(unittest.TestCase):
         # only that one was reindexed
         self.assertEqual(len(api.content.find(Description=u'foo')), 1)
         self.assertEqual(len(api.content.find(Description=u'bar')), 1)
+
+    def test_docpool_searchresults(self):
+        docpool = self.portal['test_docpool']
+        # Create a event/Scenario
+
+        container = docpool['contentconfig']['scen']
+        event = api.content.create(
+            container=container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+        )
+        folder = docpool['content']['Groups']['test_docpool_ELANUsers']
+        new = api.content.create(
+            container=folder,
+            type='DPDocument',
+            title=u'Test DPDocument',
+            description=u'willbefound',
+            docType='weatherinformation',
+            text=RichTextValue(u'<p>Text</p>', 'text/html',
+                               'text/x-html-safe'),
+            local_behaviors=['elan', 'doksys'],
+            scenarios=[event.id])
+        api.content.transition(obj=new, transition='publish')
+        modified(new)
+        # Test setting event/scenario
+        setScenariosForCurrentUser(self.portal, scenarios=[event.id])
+        scenarios = getScenariosForCurrentUser(self.portal)
+        self.assertEqual(scenarios, [event.id])
+        # Test search in catalog
+        brains = api.content.find(SearchableText='willbefound')
+        self.assertEqual(brains[0].getObject().description, u'willbefound')
+        # Success in the 'content' folder
+        query_found = {'SearchableText': u'willbefound'.encode('utf8')}
+        # We call the search from the docpool
+        res = docpool.restrictedTraverse('@@search').results(query=query_found,
+                                                             batch=False)
+        self.assertEqual(len(res), 1)
+        # failure in 'config'
+        query_notfound = {'SearchableText': u'Test Event'.encode('utf8')}
+        res_not = docpool.restrictedTraverse('@@search').results(
+            query=query_notfound)
+        self.assertEqual(len(res_not), 0)
+        # Check the catalog_path
+        catalog_path = IELANDocument(new).cat_path()
+        self.assertEqual(catalog_path, 'esd/meteorology/weather-information')

@@ -94,3 +94,14 @@ def create_json_changelog(context=None):
 def to_1000(context=None):
     portal_setup = api.portal.get_tool('portal_setup')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1000')
+
+
+def reindex_catpath(context=None):
+    """Reindex dpdocs with updated index ."""
+    log.info(u'Reindexing DPDocuments.')
+    brains = api.content.find(portal_type='DPDocument')
+    log.info(u'Found {0} DPDocument to reindex'.format(len(brains)))
+    for brain in brains:
+        obj = brain.getObject()
+        obj.reindexObject(idxs=['cat_path'])
+    log.info('Done.')

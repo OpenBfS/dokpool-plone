@@ -175,21 +175,18 @@ class ELANDocument(FlexibleView):
 
     def cat_path(self):
         """
-        Catalog path for the category object. Needed for a patch to the getURL function of brains.
+        Catalog path for the category object. Needed for a patch to the
+        getURL (src/docpool.base/docpool/base/monkey.py) function of brains.
         """
-        # print "cat_path"
         try:
-            dto = self.context.docTypeObj()
-            if dto:
-                # print "DTO"
-                # print dto.Title()
-                cat = IELANDocType(dto).contentCategory
-                if cat:
-                    aup = cat.to_path
-                    # print aup
-                    aup = "/".join(aup.split("/")[4:])
-                    return aup
-                # print "no cat"
+            doctype_obj = self.context.docTypeObj()
+            if doctype_obj:
+                category = IELANDocType(doctype_obj).contentCategory
+                if category:
+                    category_path = category.to_path
+                    # Remove the '/Plone/bund/' context path
+                    # Todo: Improve
+                    return "/".join(category_path.split("/")[3:])
         except BaseException:
             return ""
 

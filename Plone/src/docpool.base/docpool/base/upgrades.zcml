@@ -50,6 +50,11 @@
         title="Load upgrade-profile"
         handler="docpool.base.upgrades.to_1000"
         />
+    <genericsetup:upgradeStep
+        title="Reindex cat_path for dview"
+        handler="docpool.base.upgrades.reindex_catpath"
+    />
+
   </genericsetup:upgradeSteps>
 
 </configure>

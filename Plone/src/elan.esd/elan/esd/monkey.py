@@ -132,30 +132,31 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
 
 
 def searchResults(self, REQUEST=None, **kw):
-    rqurl = ""
-    if hasattr(self.REQUEST, 'URL'):
-        rqurl = self.REQUEST['URL']
-    isArchive = rqurl.find('/archive/') > -1
-    has_st = kw.get('SearchableText', None)
+    has_search_text = kw.get('SearchableText', None)
     has_path = kw.get('path', None)
+    # Internal means not a search by a user within search form
     isInternal = kw.get('object_provides', None)
-    if has_st and isinstance(has_st, type({})):
-        has_st = has_st.get('query', None)
+    if has_search_text and isinstance(has_search_text, type({})):
+        has_search_text = has_search_text.get('query', None)
         isInternal = True
-    if has_st and not isInternal:  # user query, needs to be personalized
+    # user query, needs to be personalized
+    if has_search_text and not isInternal:
         if has_path:
             path = kw['path']
-            # Make sure we only search in one area
+            # Make sure we only search in the content area
             kw['path'] = "%s/content" % path
-        if has_st[-1] != "*":
-            kw['SearchableText'] = has_st + "*"
+        if has_search_text[-1] != "*":
+            kw['SearchableText'] = has_search_text + "*"
         scns = getScenariosForCurrentUser(self)
+        rqurl = ""
+        if hasattr(self.REQUEST, 'URL'):
+            rqurl = self.REQUEST['URL']
+        isArchive = rqurl.find('/archive/') > -1
         if not isArchive:
             if scns:
                 kw['scenarios'] = scns
             else:  # If we don't have a filter
                 kw['scenarios'] = ['dontfindanything']
-    # print kw
     return self.original_searchResults(REQUEST, **kw)
 
 
