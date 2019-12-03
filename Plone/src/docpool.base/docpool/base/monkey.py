@@ -47,10 +47,12 @@ def getURL(self, relative=0, original=False):
     if request is None:
         request = getRequest()
     if (
+        # original set we ignore this special code
         (not original)
+        # only valid for DPDocuments
         and self.portal_type == 'DPDocument'
+        # resolveid does not exist in url
         and not request['URL'].find('resolveuid') > -1
-        and not request['URL'].find('/content/') > -1
     ):
         if self.cat_path:
             # This is it: we use the path of the category
