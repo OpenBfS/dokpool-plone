@@ -6,6 +6,13 @@
   <include package="plone.app.contentmenu" />
 
   <browser:page
+      name="actionhelpers"
+      for="*"
+      class=".actionhelpers.ActionHelpers"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="pdfprint"
       for="..interfaces.IDPDocument"
       class=".printview.PrintView"
