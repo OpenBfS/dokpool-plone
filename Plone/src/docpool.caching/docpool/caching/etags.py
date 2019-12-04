@@ -30,8 +30,8 @@ class DokPoolApps(object):
             scenarios = ";".join(scenarios)
 
         scs = getOpenScenarios(context)
-        all_scenarios = ";".join(s.getObject().__name__
-                                 for s in scs if s.review_state == "published")
+        all_scenarios = ";".join(
+            s.id for s in scs if s.review_state == "published")
 
         user = api.user.get_current()
         filtered = user.getProperty("filter_active") or False
