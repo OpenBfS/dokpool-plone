@@ -14,6 +14,9 @@ from zope.component.hooks import getSite
 from zope.interface import implementer
 
 import transaction
+import logging
+
+log = logging.getLogger(__name__)
 
 
 @implementer(INonInstallable)
@@ -40,9 +43,9 @@ def createStructure(context, plonesite, fresh):
     s = context.restrictedTraverse('searches')
     s.manage_addProperty('text', '', 'string')
     transaction.commit()
-    #    create_acollection(plonesite)
-    #    transaction.commit()
-    create_1day_collection(plonesite)
+    create_today_collection(plonesite)
+    transaction.commit()
+    create_since_yesterday_collection(plonesite)
     transaction.commit()
     create_purpose_collections(plonesite)
     transaction.commit()
@@ -60,21 +63,22 @@ def changedoksysDocTypes(plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
 
-def create_acollection(plonesite):
+def create_today_collection(plonesite):
     container = api.content.get(path='/searches')
-    title = 'irgendwas'
-    description = 'test'
+    title = u'Dokumente von Heute'
+    description = u'Dokumente seit heute 0:00 Uhr'
     _createObjectByType(
-        'Collection', container, id='irgendwas', title=title, description=description
+        'Collection', container, id='today', title=title, description=description
     )
-    iwas = container['irgendwas']
+    today = container['today']
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
-    iwas.sort_reversed = True
+    today.sort_on = u'changed'
+    today.sort_reversed = True
+    today.relatedItems = ""
     #: Query by Type and Review State
-    iwas.query = [
+    today.query = [
         {
             'i': u'portal_type',
             'o': u'plone.app.querystring.operation.selection.any',
@@ -82,31 +86,36 @@ def create_acollection(plonesite):
         },
         {
             u'i': u'creationDate',
-            u'o': u'plone.app.querystring.operation.date.beforeToday',
-            u'v': u'1',
+            u'o': u'plone.app.querystring.operation.date.today',
+        },
+        {
+            u'i': u'OperationMode',
+            u'o': u'plone.app.querystring.operation.selection.any',
+            u'v': [u'Intensiv', u'Routine'],
         },
     ]
-    iwas.text = RichTextValue('<p>Hallo<p>', 'text/html', 'text/x-html-safe')
+    today.text = RichTextValue('', 'text/html', 'text/x-html-safe')
+    today.setLayout('docpool_collection_view')
+    log.info('Collection "Dokumente von Heute" angelegt')
+    return today
 
-    iwas.setLayout('docpool_collection_view')
 
-
-def create_1day_collection(plonesite):
+def create_since_yesterday_collection(plonesite):
     container = api.content.get(path='/searches')
-    title = 'Dokumente der letzten 24 h'
-    description = 'Dokumente der letzten 24 h'
+    title = u'Dokumente seit Gestern'
+    description = u'Dokumente der letzten 24 Stunden'
     _createObjectByType(
-        'Collection', container, id='last24h', title=title, description=description
+        'Collection', container, id='yesterday', title=title, description=description
     )
-    lday = container['last24h']
+    yesterday = container['yesterday']
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    lday.sort_on = u'changed'
-    lday.sort_reversed = True
-    lday.relatedItems = ""
+    yesterday.sort_on = u'changed'
+    yesterday.sort_reversed = True
+    yesterday.relatedItems = ""
     #: Query by Type and Review State
-    lday.query = [
+    yesterday.query = [
         {
             'i': u'portal_type',
             'o': u'plone.app.querystring.operation.selection.any',
@@ -115,17 +124,18 @@ def create_1day_collection(plonesite):
         {
             u'i': u'creationDate',
             u'o': u'plone.app.querystring.operation.date.largerThanRelativeDate',
-            u'v': u'1',
+            u'v': u'-1',
+        },
+        {
+            u'i': u'OperationMode',
+            u'o': u'plone.app.querystring.operation.selection.any',
+            u'v': [u'Intensiv', u'Routine'],
         },
     ]
-    lday.text = RichTextValue(
-        '<p>Dokumente der letzten 24 h<p>', 'text/html', 'text/x-html-safe'
-    )
-
-    lday.setLayout('docpool_collection_view')
-
-    print("1day Collection angelegt")
-
+    yesterday.text = RichTextValue('', 'text/html', 'text/x-html-safe')
+    yesterday.setLayout('docpool_collection_view')
+    log.info('Collection "Dokumente seit Gestern" angelegt')
+    return yesterday
 
 def create_purpose_collections(plonesite):
     container = api.content.get(path='/searches')
