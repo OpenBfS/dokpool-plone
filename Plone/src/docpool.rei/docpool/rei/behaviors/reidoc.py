@@ -8,6 +8,7 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
+from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
@@ -268,3 +269,9 @@ class REIDoc(FlexibleView):
         if month == 1:
             year += 1
         return date(year=year, month=month, day=day)
+
+    def sampling_start_localized(self):
+        return api.portal.get_localized_time(self.StartSampling)
+
+    def sampling_stop_localized(self):
+        return api.portal.get_localized_time(self.StopSampling)
