@@ -1,0 +1,11 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.theme">
+    <records prefix="plone.bundles/plone-legacy"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="resources" purge="false">
+            <element>jquery-marquee</element>
+        </value>
+        <value key="depends">jquery</value>
+        <value key="last_compilation"></value>
+    </records>
+</registry>
