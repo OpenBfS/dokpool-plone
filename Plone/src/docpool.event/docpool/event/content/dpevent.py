@@ -548,10 +548,10 @@ class DPEvent(Container, ContentBase):
             # Test if they already exists
             if obj.get(journal):
                 pass
-            new = api.content.create(
+            api.content.create(
                 container=obj,
                 type='Journal',
-                title=journal
+                title=journal,
             )
 
     def deleteEventReferences(self):
@@ -600,11 +600,11 @@ def eventAdded(obj, event=None):
 
 
 def addLogEntry(obj):
-    mdate, userInfo = obj.modInfo()
     changelog = json.loads(obj.changelog or '[]')
     entry = {}
-    entry[u'Date'] = obj.toLocalizedTime(mdate, long_format=1)
-    entry[u'User'] = userInfo
+    entry[u'Date'] = api.portal.get_localized_time(
+        datetime.datetime.now(), long_format=1)
+    entry[u'User'] = obj._getUserInfoString()
     entry[u'Status'] = obj.Status
     entry[u'Operation mode'] = obj.OperationMode
     entry[u'Alerting status'] = obj.AlertingStatus
@@ -616,6 +616,9 @@ def addLogEntry(obj):
     entry[u'Sectorizing networks'] = u", ".join(
         (n.to_object.title for n in obj.SectorizingNetworks)
         if obj.SectorizingNetworks is not None else ' ')
+    # Check if there are changes to prevent duplicate log entries.
+    if changelog and entry == changelog[-1]:
+        return
     changelog.append(entry)
     obj.changelog = json.dumps(changelog)
 
