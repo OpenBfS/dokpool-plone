@@ -312,7 +312,7 @@ class DocpoolSetup(BrowserView):
                 title=u'Ein Bericht',
                 description=u'foo',
                 text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
-                docType='reibericht',
+                docType='reireport',
                 local_behaviors=['rei'],
                 Authority=u'Hessen',
                 MstId=[u'3132 ', u'3141 ', u'3151 ', u'3161 ', u'3171 '],
@@ -332,7 +332,7 @@ class DocpoolSetup(BrowserView):
                 title=u'Ein Bericht',
                 description=u'foo',
                 text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
-                docType='reibericht',
+                docType='reireport',
                 local_behaviors=['rei'],
                 Authority=u'Mecklenburg-Vorpommern',
                 MstId=[u'20000 '],
@@ -344,7 +344,10 @@ class DocpoolSetup(BrowserView):
                 NuclearInstallation=u'U13A KKW Lubmin/Greifswald ',
                 PdfVersion=u'PDF/A-1b',
             )
-
+        # Workaround for broken indexes (See #3502)
+        log.info(u'Rebuilding catalog')
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.clearFindAndRebuild()
         return self.request.response.redirect(self.context.absolute_url())
 
 
