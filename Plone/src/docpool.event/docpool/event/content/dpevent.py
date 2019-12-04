@@ -265,6 +265,17 @@ class DPEvent(Container, ContentBase):
         Saves all content for this scenario to an archive, deletes the original content,
         and sets the scenario to state "closed".
         """
+        # Cleanup users after archiving of a event (see #3311 after deletion)
+        portal_membership = api.portal.get_tool('portal_membership')
+        event_id = self.id
+        for member in portal_membership.listMembers():
+          if event_id in member.getProperty('scenarios', []):
+            scenarios = list(member.getProperty('scenarios'))
+            scenarios.remove(event_id)
+            member.setMemberProperties({'scenarios': tuple(scenarios)})
+            logger.debug('Removed event {} from user {}'.format(event_id, member))
+
+
         alsoProvides(REQUEST, IDisableCSRFProtection)
         self.snapshot()
         self.purge()
@@ -657,6 +668,16 @@ def eventRemoved(obj, event=None):
         return
     if obj.id == 'routinemode':
         raise RuntimeError(u'The "routinemode" event cannot be removed.')
+
+    # Cleanup users after removal of a event (#3311)
+    portal_membership = api.portal.get_tool('portal_membership')
+    event_id = obj.id
+    for member in portal_membership.listMembers():
+        if event_id in member.getProperty('scenarios', []):
+            scenarios = list(member.getProperty('scenarios'))
+            scenarios.remove(event_id)
+            member.setMemberProperties({'scenarios': tuple(scenarios)})
+            logger.debug('Removed event {} from user {}'.format(event_id, member))
 
 
 @adapter(IDPEvent, IActionSucceededEvent)
