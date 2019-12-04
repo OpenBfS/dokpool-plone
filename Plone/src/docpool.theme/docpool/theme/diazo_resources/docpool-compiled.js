@@ -46,6 +46,11 @@ function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPos
     if (window['popup_' + generic_window_name] && window['popup_' + generic_window_name].closed === false) {
         window['popup_' + generic_window_name].focus();
     }
+    // Popup open and no reload happend
+    if (window['open_' + generic_window_name]){
+        window['popup_' + generic_window_name] = window.open(thisDocument, generic_window_name, myProperty);
+        window['popup_' + generic_window_name].focus();
+    }
 }
 
 function go_to(url) {
