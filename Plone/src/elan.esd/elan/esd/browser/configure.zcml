@@ -10,58 +10,34 @@
                   template="elan_macros.pt"
     />
 
-    <browser:page permission="zope2.View"
-                          name="dview"
-                          for="..content.elandoccollection.IELANDocCollection"
-                          class=".elandoccollection.ELANDocCollectionDocView" />
+    <browser:page
+        permission="zope2.View"
+        name="dview"
+        for="..content.elandoccollection.IELANDocCollection"
+        class=".elandoccollection.ELANDocCollectionDocView" />
 
+    <browser:page
+        permission="zope2.View"
+        name="irix"
+        for="docpool.base.interfaces.IDPDocument"
+        class=".dpdocument.DPDocumentirixView" />
 
-     <browser:page permission="zope2.View"
-                          name="irix"
-                          for="docpool.base.interfaces.IDPDocument"
-                          class=".dpdocument.DPDocumentirixView" />
+    <browser:page
+        permission="zope2.View"
+        name="view"
+        for="..interfaces.IELANDocCollection"
+        class=".elandoccollection.ELANDocCollectionView" />
 
+    <browser:page
+        permission="zope2.View"
+        name="rpopup"
+        for="..interfaces.IELANDocCollection"
+        class=".elandoccollection.ELANDocCollectionrpopupView" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IELANDocCollection" class=".elandoccollection.ELANDocCollectionView" />
-
-
-
-
-
-
-            <browser:page permission="zope2.View" name="rpopup" for="..interfaces.IELANDocCollection" class=".elandoccollection.ELANDocCollectionrpopupView" />
-
-
-
-
-
-
-
-
-
-
-
-
-            <browser:page permission="zope2.View" name="view" for="..interfaces.IELANArchive" class=".elanarchive.ELANArchiveView" />
-
-
-
-
-
-
-
+    <browser:page
+        permission="zope2.View"
+        name="view"
+        for="..interfaces.IELANArchive"
+        class=".elanarchive.ELANArchiveView" />
 
 </configure>
