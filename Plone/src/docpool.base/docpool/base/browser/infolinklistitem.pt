@@ -1,7 +1,9 @@
-<tal:block i18n:domain="docpool.base">
-<tal:def define="dpbrain options/dpbrain;
+<table i18n:domain="docpool.base">
+<tr tal:define="options view/options;
+                 dpbrain options/dpbrain;
+                 isOverview options/isOverview;
                  item_description dpbrain/Description;
-                 item_url dpbrain/getRemoteUrl;
+                 item_url dpbrain/getURL;
                  item_type dpbrain/Type;
                  normalizeString nocall: context/plone_utils/normalizeString;
                  rs dpbrain/review_state;
@@ -12,34 +14,20 @@
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                  pas_member context/@@pas_member;
                  author python:pas_member.info(item_creator);
-                 creator_fullname author/name_or_id">
+                 creator_fullname author/name_or_id;
+                 item_ptype dpbrain/portal_type;
+                 item_type_class python:'contenttype-' + normalizeString(item_ptype);
+                 "
+    class="wrapper">
 
-                    <td valign="top">
-                      <span tal:condition="python:toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1)">
-                         <i18n:txt translate="">modified:</i18n:txt>
-                         <span><tal:var replace="python:str(toLocalizedTime(item_modified, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>,
-                         <span tal:content="structure python:context.getModified_by()" />
-                         <br><br>
-                      </span>
-                      <i18n:txt translate="">created:</i18n:txt>
-                      <span><tal:var replace="python:str(toLocalizedTime(item_created, long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span>,
-                      <span tal:content="structure python:context.created_by" />
-                        <br><br><span tal:condition="python:item_description"
-                              tal:content="structure item_description"> description </span>
-                    </td>
+                <td class="actions">
+                </td>
+                <td class="title">
+                    <div metal:use-macro="here/@@dp.macros/macros/foldercontent"/>
+                </td>
+                <td class="metadata">
+                    <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
+                </td>
 
-
-                   <td valign="top">
-
-                       <b>
-                         <u><a href="" title="" tal:attributes="title python:'show document';
-                                                              href python:item_url">
-                               <span tal:attributes="class string:${item_wf_state_class};"
-                                     tal:content="dpbrain/Title" /></a></u>
-
-                       </b>
-
-
-                    </td>
-</tal:def>
-</tal:block>
+</tr>
+</table>
