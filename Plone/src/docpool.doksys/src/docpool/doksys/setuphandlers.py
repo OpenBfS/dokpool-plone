@@ -85,8 +85,9 @@ def create_today_collection(plonesite):
             'v': [u'DPDocument'],
         },
         {
-            u'i': u'creationDate',
+            u'i': u'created',
             u'o': u'plone.app.querystring.operation.date.today',
+            u'v': u'',
         },
         {
             u'i': u'OperationMode',
