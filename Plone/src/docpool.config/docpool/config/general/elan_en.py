@@ -458,12 +458,11 @@ DTYPES = [
     },
 ]
 
-
 def connectTypesAndCategories(self):
     """
     """
 
-    #        print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
+    # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
     try:
         self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory(
             'notifications'
@@ -500,37 +499,37 @@ def connectTypesAndCategories(self):
     except BaseException:
         pass
     try:
-        self.config.dtypes.cncanprojection.type_extension(ELAN_APP).setCCategory(
-            'cncan-projections'
-        )
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.ifinprojection.type_extension(ELAN_APP).setCCategory(
-            'ifin-projections'
-        )
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory(
-            'npp-projections'
-        )
-    except BaseException:
-        pass
-    try:
         self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
-            'rodos'
+            'rodos-projections'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory(
+            'state-projections'
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory(
-            'other'
+            'other-projections'
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory(
+            'gamma-dose-rate'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory(
+            'gamma-dose-rate'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory(
             'gamma-dose-rate'
         )
     except BaseException:
@@ -573,6 +572,18 @@ def connectTypesAndCategories(self):
     try:
         self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory(
             'situation-reports'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory(
+            'protective-actions'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
+            'protective-actions'
         )
     except BaseException:
         pass

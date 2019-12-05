@@ -525,7 +525,6 @@ DTYPES = [
     },
 ]
 
-
 def connectTypesAndCategories(self):
     """
     """
@@ -567,25 +566,37 @@ def connectTypesAndCategories(self):
     except BaseException:
         pass
     try:
-        self.config.dtypes.nppprojection.type_extension(ELAN_APP).setCCategory(
-            'npp-projections'
+        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
+            'rodos-projections'
         )
     except BaseException:
         pass
     try:
-        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
-            'rodos'
+        self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory(
+            'state-projections'
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory(
-            'other'
+            'other-projections'
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory(
+            'gamma-dose-rate'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory(
+            'gamma-dose-rate'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory(
             'gamma-dose-rate'
         )
     except BaseException:
@@ -628,6 +639,18 @@ def connectTypesAndCategories(self):
     try:
         self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory(
             'situation-reports'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory(
+            'protective-actions'
+        )
+    except BaseException:
+        pass
+    try:
+        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
+            'protective-actions'
         )
     except BaseException:
         pass
