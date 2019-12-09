@@ -312,3 +312,15 @@ msgstr ""
 msgid "Archive"
 msgstr ""
 
+#: docpool.event/docpool/event/vocabularies.py
+msgid "Exercise"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "Event"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "Test"
+msgstr ""
+
