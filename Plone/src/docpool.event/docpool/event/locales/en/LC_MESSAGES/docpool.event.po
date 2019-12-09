@@ -304,6 +304,11 @@ msgstr ""
 msgid "initialized"
 msgstr ""
 
-#: docpool.event/docpool/event/browser/dpevent.pt:176
-msgid ""
+#: docpool.event/docpool/event/browser/viewlets/events.pt:13
+msgid "All Archives"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/viewlets/events.pt:9
+msgid "Archive"
+msgstr ""
 

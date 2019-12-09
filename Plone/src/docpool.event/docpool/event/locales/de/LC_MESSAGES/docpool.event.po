@@ -314,3 +314,10 @@ msgstr "ausgelöst"
 msgid "alerted"
 msgstr "durchgeführt"
 
+#: docpool.event/docpool/event/browser/viewlets/events.pt:13
+msgid "All Archives"
+msgstr "Alle Archive"
+
+#: docpool.event/docpool/event/browser/viewlets/events.pt:9
+msgid "Archive"
+msgstr "Archiv"
