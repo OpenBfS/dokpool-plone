@@ -6,19 +6,19 @@
     <tal:def define="reiobj python:view">
         <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->
 
-        <label i18n:translate="label_rei_NuclearInstallation">NuclearInstallation</label>:
-        <span tal:condition="python:hasattr(reiobj,'NuclearInstallation')">
-           <tal:var replace="reiobj/NuclearInstallation"/>
+        <label i18n:translate="label_rei_NuclearInstallations">NuclearInstallations</label>:
+        <span tal:condition="python:hasattr(reiobj,'NuclearInstallations')">
+           <tal:var replace="reiobj/NuclearInstallations"/>
         </span><br>
 
-        <label i18n:translate="label_rei_ReiLegalBase">ReiLegalBase</label>:
-        <span tal:condition="python:hasattr(reiobj,'ReiLegalBase')">
-           <tal:var replace="reiobj/ReiLegalBase"/>
+        <label i18n:translate="label_rei_ReiLegalBases">ReiLegalBases</label>:
+        <span tal:condition="python:hasattr(reiobj,'ReiLegalBases')">
+           <tal:var replace="reiobj/ReiLegalBases"/>
         </span><br>
 
-        <label i18n:translate="label_rei_Media">Media</label>:
-        <span tal:condition="python:hasattr(reiobj,'Media')">
-           <tal:var replace="reiobj/Media"/>
+        <label i18n:translate="label_rei_Medium">Medium</label>:
+        <span tal:condition="python:hasattr(reiobj,'Medium')">
+           <tal:var replace="reiobj/Medium"/>
         </span><br>
 
         <label i18n:translate="label_rei_Period">Period</label>:
@@ -38,9 +38,9 @@
            <tal:var replace="python: ', '.join(reiobj.Origin)"/>
         </span><br>
 
-        <label i18n:translate="label_rei_MstId">MstId</label>:
-        <span tal:condition="python:hasattr(reiobj,'MstId')">
-           <tal:var replace="python: ', '.join(reiobj.MstId)"/>
+        <label i18n:translate="label_rei_MstIds">MstIds</label>:
+        <span tal:condition="python:hasattr(reiobj,'MstIds')">
+           <tal:var replace="python: ', '.join(reiobj.MstIds)"/>
         </span><br>
 
         <label i18n:translate="label_rei_Authority">Authority</label>:
