@@ -221,14 +221,17 @@ class DocpoolSetup(BrowserView):
         with api.env.adopt_user(user=user1):
             sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type
-            for doctype_id in doctypes_ids:
+            for doctype in doctypes:
                 new = api.content.create(
                     container=folder,
                     type='DPDocument',
-                    title=u'{}'.format(doctype_id.capitalize()),
-                    description=u'foo',
-                    docType=doctype_id,
-                    text=RichTextValue(u'<p>Text</p>', 'text/html', 'text/x-html-safe'),
+                    title=u'Ein {}'.format(doctype.title),
+                    description=u'foo ({})'.format(doctype.id),
+                    docType=doctype.id,
+                    text=RichTextValue(
+                        u'<p>Text für {}</p>'.format(doctype.title),
+                        'text/html',
+                        'text/x-html-safe'),
                     local_behaviors=['elan', 'doksys'],
                     scenarios=[dpevent.id],
                     SampleTypeId=random.choice(sampletype_ids),
@@ -249,19 +252,18 @@ class DocpoolSetup(BrowserView):
                     TrajectoryEndTime=datetime.now() + timedelta(hours=1),
                     TrajectoryStartTime=datetime.now(),
                 )
-                modified(new)
                 api.content.create(
                     container=new,
                     type='Image',
-                    title='{}_image'.format(doctype_id),
+                    title='{}_image'.format(doctype.id),
                     image=dummy_image()
                     )
-
                 try:
                     api.content.transition(obj=new, transition='publish')
                 except Exception as e:
                     log.info(e)
-                log.info(u'Created dpdocument of type {}'.format(doctype_id))
+                modified(new)
+                log.info(u'Created dpdocument of type {}'.format(doctype.id))
 
             # add one full DPDocument
             new = api.content.create(
