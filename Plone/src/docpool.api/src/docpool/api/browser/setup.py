@@ -441,6 +441,20 @@ class DocpoolSetup(BrowserView):
         api.group.add_user(groupname='bund_Senders', user=user1)
         api.group.add_user(groupname='hessen_Receivers', user=user2)
 
+        # Add DPTransferFolder in hessen to receive data from bund
+        dptranfers_folder = docpool_land['content']['Transfers']
+        dptransferfolder = api.content.create(
+            container=dptranfers_folder,
+            type='DPTransferFolder',
+            title=u'von Bund',
+            description=u'foo',
+            sendingESD=docpool_bund.UID(),
+            permLevel="read/write",
+            unknownDtDefault='block',
+            unknownScenDefault='block'
+        )
+        modified(dptransferfolder)
+
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
