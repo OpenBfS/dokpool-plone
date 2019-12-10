@@ -5,20 +5,20 @@
     <index name="StopSampling" meta_type="DateIndex">
         <property name="index_naive_time_as_local">True</property>
     </index>
-    <index name="Media" meta_type="FieldIndex">
-        <indexed_attr value="Media"/>
+    <index name="Medium" meta_type="FieldIndex">
+        <indexed_attr value="Medium"/>
     </index>
     <index name="Mst" meta_type="FieldIndex">
-        <indexed_attr value="MstId"/>
+        <indexed_attr value="MstIds"/>
     </index>
     <index name="Authority" meta_type="FieldIndex">
         <indexed_attr value="Authority"/>
     </index>
-    <index name="ReiLegalBase" meta_type="FieldIndex">
-        <indexed_attr value="ReiLEgalBAse"/>
+    <index name="ReiLegalBases" meta_type="FieldIndex">
+        <indexed_attr value="ReiLEgalBases"/>
     </index>
-        <index name="NuclearInstallation" meta_type="FieldIndex">
-        <indexed_attr value="NuclearInstallation"/>
+        <index name="NuclearInstallations" meta_type="FieldIndex">
+        <indexed_attr value="NuclearInstallations"/>
     </index>
     <index name="Period" meta_type="FieldIndex">
         <indexed_attr value="Period"/>
