@@ -33,10 +33,19 @@ function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPos
 
 function go_to(url) {
 	'use strict';
+	var valid_urls = ['dokpool', 'Plone'];
+	var i = 0;
+	// opener is the reference to the window opened here
 	if (opener != null) {
-		opener.focus(); 	 
-		opener.document.location = url;
+		// Check if we are inside dokpool
+		while (valid_urls[i]) {
+			if (opener.document.location.href && opener.document.location.href.indexOf(valid_urls[i]) > -1) {
+				opener.focus();
+				opener.document.location = url;
+			}
+			i++;
+		}
 	} else {
 		window.location.href = url;
 	}
-  }
+}
