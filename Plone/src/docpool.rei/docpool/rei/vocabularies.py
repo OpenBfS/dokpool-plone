@@ -48,6 +48,7 @@ class ReiLegalBaseVocabulary(object):
         return safe_simplevocabulary_from_values([
             u'REI-E',
             u'REI-I',
+            u'REI-E/REI-I',
         ])
 
 
@@ -76,30 +77,28 @@ class PeriodVocabulary(object):
     """
 
     def __call__(self, context):
-        items = [
-            (u'Q1',u'1. Quartal'),
-            (u'Q2',u'2. Quartal'),
-            (u'Q3',u'3. Quartal'),
-            (u'Q4',u'4. Quartal'),
-            (u'H1',u'1. Halbjahr'),
-            (u'H2',u'2. Halbjahr'),
-            (u'Y',u'Jahr'),
-            (u'M1',u'Januar'),
-            (u'M2',u'Februar'),
-            (u'M3',u'März'),
-            (u'M4',u'April'),
-            (u'M5',u'Mai'),
-            (u'M6',u'Juni'),
-            (u'M7',u'Juli'),
-            (u'M8',u'August'),
-            (u'M9',u'September'),
-            (u'M10',u'Oktober'),
-            (u'M11',u'November'),
-            (u'M12',u'Dezember'),
-        ]
-        terms = [SimpleTerm(code, code, u'{} - {}'.format(code, title))
-                 for code, title in items]
-        return SimpleVocabulary(terms)
+        return safe_simplevocabulary_from_values([
+            u'1. Quartal',
+            u'2. Quartal',
+            u'3. Quartal',
+            u'4. Quartal',
+            u'1. Halbjahr',
+            u'2. Halbjahr',
+            u'Jahr',
+            u'Januar',
+            u'Februar',
+            u'März',
+            u'April',
+            u'Mai',
+            u'Juni',
+            u'Juli',
+            u'August',
+            u'September',
+            u'Oktober',
+            u'November',
+            u'Dezember',
+        ])
+
 
 PeriodVocabularyFactory = PeriodVocabulary()
 
@@ -329,8 +328,8 @@ class OriginVocabulary(object):
 
     def __call__(self, context):
         return safe_simplevocabulary_from_values([
-            u'Genehmigungsinhaber',
-            u'unabhängige Messstelle',
+            u'Betreiber',
+            u'Unabhängige Messstelle',
         ])
 
 

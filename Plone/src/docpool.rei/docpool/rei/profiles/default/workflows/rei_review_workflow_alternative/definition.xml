@@ -11,6 +11,7 @@
         i18n:attributes="title; description">
     <group>bund_bfs_rei</group>
     <group>bund_bmu_rei</group>
+    <group>bund_aufsicht</group>
     <permission>ATContentTypes: Add File</permission>
     <permission>ATContentTypes: Add Image</permission>
     <permission>Access contents information</permission>
@@ -47,10 +48,14 @@
         <permission-map name="Sharing page: Delegate roles" acquired="False">
         </permission-map>
         <permission-map name="View" acquired="False">
-            <permission-role>Reviewer</permission-role>
+            <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
         </permission-map>
+        <group-map name="bund_aufsicht">
+            <group-role>Editor</group-role>
+            <group-role>Reviewer</group-role>
+        </group-map>
     </state>
     <state state_id="pending_bfs" title="Pending BfS" i18n:attributes="title">
         <exit-transition transition_id="reject_to_authority"/>
@@ -64,17 +69,11 @@
         </permission-map>
         <permission-map name="Add portal content" acquired="True">
         </permission-map>
-        <permission-map name="Delete objects" acquired="False">
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-            <permission-role>DocPoolAdmin</permission-role>
+        <permission-map name="Delete objects" acquired="True">
         </permission-map>
-        <permission-map name="Modify portal content" acquired="False">
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-            <permission-role>DocPoolAdmin</permission-role>
+        <permission-map name="Modify portal content" acquired="True">
         </permission-map>
-        <permission-map name="Sharing page: Delegate roles" acquired="False">
+        <permission-map name="Sharing page: Delegate roles" acquired="True">
         </permission-map>
         <permission-map name="View" acquired="False">
             <permission-role>Contributor</permission-role>
@@ -82,10 +81,13 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
         </permission-map>
+        <group-map name="bund_aufsicht">
+            <group-role>Editor</group-role>
+            <group-role>Owner</group-role>
+        </group-map>
         <group-map name="bund_bfs_rei">
             <group-role>Contributor</group-role>
             <group-role>Reviewer</group-role>
-            <group-role>Owner</group-role>
         </group-map>
     </state>
     <state state_id="pending_bmu" title="Pending BMU" i18n:attributes="title">
@@ -113,6 +115,9 @@
             <permission-role>Owner</permission-role>
             <permission-role>Reviewer</permission-role>
         </permission-map>
+        <group-map name="bund_aufsicht">
+            <group-role>Editor</group-role>
+        </group-map>
         <group-map name="bund_bfs_rei">
             <group-role>Contributor</group-role>
             <group-role>Owner</group-role>
@@ -274,8 +279,9 @@
             <guard-role>Site Administrator</guard-role>
         </guard>
     </transition>
-    <transition transition_id="retract_for_revision" title="Retract for Revision"
-                new_state="revised" trigger="USER" before_script="" after_script="">
+    <transition transition_id="retract_for_revision" title=""
+                new_state="revised" trigger="USER" before_script=""
+                after_script="">
         <action url="" category="workflow" icon="" i18n:translate="">Retract for Revision</action>
         <guard>
             <guard-role>Reviewer</guard-role>
@@ -291,7 +297,8 @@
         <action url="%(content_url)s/content_status_modify?workflow_action=retract_to_authority"
                 category="workflow" icon="" i18n:translate="">Retract to authority</action>
         <guard>
-            <guard-role>Reviewer</guard-role>
+            <guard-role>Editor</guard-role>
+            <guard-role>Owner</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Site Administrator</guard-role>
         </guard>

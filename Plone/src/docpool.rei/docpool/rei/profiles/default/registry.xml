@@ -40,8 +40,8 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.Medium">
-        <value key="title" i18n:translate="">Medium</value>
+             prefix="plone.app.querystring.field.Media">
+        <value key="title" i18n:translate="">Media</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
         <value key="sortable">True</value>
@@ -55,8 +55,8 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.MstIds">
-        <value key="title" i18n:translate="">MstIdss</value>
+             prefix="plone.app.querystring.field.MstId">
+        <value key="title" i18n:translate="">MstId</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
         <value key="sortable">True</value>
@@ -85,8 +85,8 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.ReiLegalBases">
-        <value key="title" i18n:translate="">REI legal Bases</value>
+             prefix="plone.app.querystring.field.ReiLegalBase">
+        <value key="title" i18n:translate="">REI legal Base</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
         <value key="sortable">True</value>
@@ -100,8 +100,8 @@
     </records>
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.NuclearInstallations">
-        <value key="title" i18n:translate="">Nuclear Installations</value>
+             prefix="plone.app.querystring.field.NuclearInstallation">
+        <value key="title" i18n:translate="">Nuclear Installation</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
         <value key="sortable">True</value>

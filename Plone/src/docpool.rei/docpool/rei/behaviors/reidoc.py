@@ -19,47 +19,47 @@ from zope.interface import provider
 
 
 START_SAMPLING_MAPPING = {
-    'Q1': '1.1.',
-    'Q2': '1.4.',
-    'Q3': '1.7.',
-    'Q4': '1.10.',
-    'H1': '1.1.',
-    'H2': '1.7.',
-    'Y': '1.1.',
-    'M1': '1.1.',
-    'M2': '1.2.',
-    'M3': '1.3.',
-    'M4': '1.4.',
-    'M5': '1.5.',
-    'M6': '1.6.',
-    'M7': '1.7.',
-    'M8': '1.8.',
-    'M9': '1.9.',
-    'M10': '1.10.',
-    'M11': '1.11.',
-    'M12': '1.12.',
+    '1. Quartal': '1.1.',
+    '2. Quartal': '1.4.',
+    '3. Quartal': '1.7.',
+    '4. Quartal': '1.10.',
+    '1. Halbjahr': '1.1.',
+    '2. Halbjahr': '1.7.',
+    'Jahr': '1.1.',
+    'Januar': '1.1.',
+    'Februar': '1.2.',
+    'März': '1.3.',
+    'April': '1.4.',
+    'Mai': '1.5.',
+    'Juni': '1.6.',
+    'Juli': '1.7.',
+    'August': '1.8.',
+    'September': '1.9.',
+    'Oktober': '1.10.',
+    'November': '1.11.',
+    'Dezember': '1.12.',
 }
 
 STOP_SAMPLING_MAPPING = {
-    'Q1': '1.4.',
-    'Q2': '1.7.',
-    'Q3': '1.10.',
-    'Q4': '1.1.',
-    'H1': '1.7.',
-    'H2': '1.1.',
-    'Y': '1.1.',
-    'M1': '1.2.',
-    'M2': '1.3.',
-    'M3': '1.4.',
-    'M4': '1.5.',
-    'M5': '1.6.',
-    'M6': '1.7.',
-    'M7': '1.8.',
-    'M8': '1.9.',
-    'M9': '1.10.',
-    'M10': '1.11.',
-    'M11': '1.12.',
-    'M12': '1.1.',
+    '1. Quartal': '1.4.',
+    '2. Quartal': '1.7.',
+    '3. Quartal': '1.10.',
+    '4. Quartal': '1.1.',
+    '1. Halbjahr': '1.7.',
+    '2. Halbjahr': '1.1.',
+    'Jahr': '1.1.',
+    'Januar': '1.2.',
+    'Februar': '1.3.',
+    'März': '1.4.',
+    'April': '1.5.',
+    'Mai': '1.6.',
+    'Juni': '1.7.',
+    'Juli': '1.8.',
+    'August': '1.9.',
+    'September': '1.10.',
+    'Oktober': '1.11.',
+    'November': '1.12.',
+    'Dezember': '1.1.',
 }
 
 
@@ -76,27 +76,25 @@ class IREIDoc(IDocumentExtension):
     write_permission(Authority='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Authority')
 
-    MstIds = schema.List(
+    MstId = schema.List(
         title=_(u'label_rei_MstId', default=u'Messstellen-ID'),
         description=_(u'description_rei_MstId', default=u''),
         value_type=schema.Choice(
             source="docpool.rei.vocabularies.MstVocabulary"),
         required=False,
     )
-    read_permission(MstIds='docpool.rei.AccessRei')
-    write_permission(MstIds='docpool.rei.AccessRei')
+    read_permission(MstId='docpool.rei.AccessRei')
+    write_permission(MstId='docpool.rei.AccessRei')
 
-    directives.widget(ReiLegalBases=CheckBoxFieldWidget)
-    ReiLegalBases = schema.List(
-        title=_(u'label_rei_ReiLegalBases', default=u'ReiLegalBases'),
-        description=_(u'description_rei_ReiLegalBases', default=u''),
-        value_type=schema.Choice(
-            source=u"docpool.rei.vocabularies.ReiLegalBaseVocabulary"),
+    ReiLegalBase = schema.Choice(
+        title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
+        description=_(u'description_rei_ReiLegalBase', default=u''),
+        source="docpool.rei.vocabularies.ReiLegalBaseVocabulary",
         required=True,
     )
-    read_permission(ReiLegalBases='docpool.rei.AccessRei')
-    write_permission(ReiLegalBases='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('ReiLegalBases')
+    read_permission(ReiLegalBase='docpool.rei.AccessRei')
+    write_permission(ReiLegalBase='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('ReiLegalBase')
 
     directives.widget(Origin=CheckBoxFieldWidget)
     Origin = schema.List(
@@ -130,28 +128,27 @@ class IREIDoc(IDocumentExtension):
     write_permission(Period='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Period')
 
-    Medium = schema.Choice(
-        title=_(u'label_rei_Medium', default=u'Medium'),
-        description=_(u'description_rei_Medium', default=u''),
+    Media = schema.Choice(
+        title=_(u'label_rei_Media', default=u'Media'),
+        description=_(u'description_rei_Media', default=u''),
         source="docpool.rei.vocabularies.MediaVocabulary",
         required=False,
     )
-    read_permission(Medium='docpool.rei.AccessRei')
-    write_permission(Medium='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Medium')
+    read_permission(Media='docpool.rei.AccessRei')
+    write_permission(Media='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Media')
 
-    NuclearInstallations = schema.List(
+    NuclearInstallation = schema.Choice(
         title=_(
             u'label_rei_NuclearInstallation',
-            default=u'NuclearInstallations'),
+            default=u'NuclearInstallation'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
-        value_type=schema.Choice(
-        source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
+        source="docpool.rei.vocabularies.NuclearInstallationVocabulary",
         required=True,
     )
-    read_permission(NuclearInstallations='docpool.rei.AccessRei')
-    write_permission(NuclearInstallations='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('NuclearInstallations')
+    read_permission(NuclearInstallation='docpool.rei.AccessRei')
+    write_permission(NuclearInstallation='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('NuclearInstallation')
 
     PdfVersion = schema.Choice(
         title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
@@ -184,20 +181,20 @@ class REIDoc(FlexibleView):
         self.context.Authority = value
 
     @property
-    def MstIds(self):
-        return self.context.MstIds
+    def MstId(self):
+        return self.context.MstId
 
-    @MstIds.setter
-    def MstIds(self, value):
-        self.context.MstIds = value
+    @MstId.setter
+    def MstId(self, value):
+        self.context.MstId = value
 
     @property
-    def ReiLegalBases(self):
-        return self.context.ReiLegalBases
+    def ReiLegalBase(self):
+        return self.context.ReiLegalBase
 
-    @ReiLegalBases.setter
-    def ReiLegalBases(self, value):
-        self.context.ReiLegalBases = value
+    @ReiLegalBase.setter
+    def ReiLegalBase(self, value):
+        self.context.ReiLegalBase = value
 
     @property
     def Year(self):
@@ -216,20 +213,20 @@ class REIDoc(FlexibleView):
         self.context.Period = value
 
     @property
-    def Medium(self):
-        return self.context.Medium
+    def Media(self):
+        return self.context.Media
 
-    @Medium.setter
-    def Medium(self, value):
-        self.context.Medium = value
+    @Media.setter
+    def Media(self, value):
+        self.context.Media = value
 
     @property
-    def NuclearInstallations(self):
-        return self.context.NuclearInstallations
+    def NuclearInstallation(self):
+        return self.context.NuclearInstallation
 
-    @NuclearInstallations.setter
-    def NuclearInstallations(self, value):
-        self.context.NuclearInstallations = value
+    @NuclearInstallation.setter
+    def NuclearInstallation(self, value):
+        self.context.NuclearInstallation = value
 
     @property
     def PdfVersion(self):

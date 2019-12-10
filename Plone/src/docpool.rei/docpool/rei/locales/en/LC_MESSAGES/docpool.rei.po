@@ -31,7 +31,7 @@ msgid "Makes documents support REI functions"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Medium"
+msgid "Media"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -39,7 +39,7 @@ msgid "Metadata"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "MstIds"
+msgid "MstId"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -63,7 +63,7 @@ msgid "REI DocType"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "REI legal Bases"
+msgid "REI legal Base"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -91,15 +91,15 @@ msgid "description_rei_Authority"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_Medium"
+msgid "description_rei_Media"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_MstIds"
+msgid "description_rei_MstId"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_NuclearInstallations"
+msgid "description_rei_NuclearInstallation"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -115,7 +115,7 @@ msgid "description_rei_Period"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_ReiLegalBases"
+msgid "description_rei_ReiLegalBase"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -132,22 +132,22 @@ msgstr ""
 msgid "label_rei_Authority"
 msgstr ""
 
-#. Default: "Medium"
+#. Default: "Media"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Media"
 msgstr ""
 
-#. Default: "MstIds"
+#. Default: "MstId"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_MstId"
 msgstr ""
 
-#. Default: "NuclearInstallations"
+#. Default: "NuclearInstallation"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_NuclearInstallations"
+msgid "label_rei_NuclearInstallation"
 msgstr ""
 
 #. Default: "Origin"

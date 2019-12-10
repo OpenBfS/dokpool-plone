@@ -32,7 +32,7 @@ msgid "Makes documents support REI functions"
 msgstr "Sorgt bei Dokumenten für REI Funktionen"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Medium"
+msgid "Media"
 msgstr "Medium"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -40,11 +40,11 @@ msgid "Metadata"
 msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "MstIds"
+msgid "MstId"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Nuclear Installations"
+msgid "Nuclear Installation"
 msgstr "Kerntechnische Anlage"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -64,7 +64,7 @@ msgid "REI DocType"
 msgstr "REI Dokumenttyp"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "REI legal Bases"
+msgid "REI legal Base"
 msgstr "gesetzliche Grundlage"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -133,19 +133,19 @@ msgstr "docpool.rei"
 msgid "label_rei_Authority"
 msgstr "Aufsichtsbehörde"
 
-#. Default: "Medium"
+#. Default: "Media"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Media"
 msgstr "Medium"
 
-#. Default: "MstIds"
+#. Default: "MstId"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_MstIds"
+msgid "label_rei_MstId"
 msgstr ""
 
-#. Default: "NuclearInstallations"
+#. Default: "NuclearInstallation"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_NuclearInstallation"
