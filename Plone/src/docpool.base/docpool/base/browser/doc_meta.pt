@@ -1,10 +1,12 @@
 <tal:block i18n:domain="docpool.base">
-        <tal:loop repeat="item python:view.meta_infos()">
+    <tal:loop repeat="item python:view.meta_infos()">
 
-            <img class="collapsible" tal:condition="python:item['icon_url']"
+        <img class="collapsible" tal:condition="python:item['icon_url']"
                  tal:attributes="src python:item['icon_url']" />
-            <div class='content' tal:content="structure python:item['behavior'].myView('meta', **options)" >
+
+            <div tal:attributes="class python: item['behavior_name'] == 'transfers' and 'transfers_content' or 'content'" tal:content="structure python:item['behavior'].myView('meta', **options)" >
                 Text
             </div>
-        </tal:loop>
+
+    </tal:loop>
 </tal:block>

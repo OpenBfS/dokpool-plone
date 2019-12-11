@@ -48,6 +48,7 @@ class FlexibleView(BrowserView):
 
     def myViewSource(self, vtype):
         """
+        Collects suitable macros/templates from apps, types, docs
         """
         doc = self.context
         dto = doc.docTypeObj()
@@ -72,8 +73,6 @@ class FlexibleView(BrowserView):
             ]
         else:
             names = ["%s_%s" % (dtid, vtype), "doc_%s" % vtype]
-        # for n in names:
-        # print n
         for n in names:
             if safe_hasattr(dto, n):
                 o = aq_base(getattr(dto, n))
@@ -87,7 +86,9 @@ class FlexibleView(BrowserView):
 
     def myView(self, vtype, **options):
         """
+        Renders collected macros into a single template
         """
+        # Get all macros / skin_templates for the context/app/...
         src = self.myViewSource(vtype)
         template = OnTheFlyTemplate()
         template = template.__of__(aq_base(self.context))
@@ -95,6 +96,7 @@ class FlexibleView(BrowserView):
         #        template.id = "flexible"
         # This "view" will run with security restrictions. The code will not be able
         # to access protected attributes and functions.
+        # Todo WTF ? We do this to bypass security stuff?
         # BUT: code included via macros works!
         options = extendOptions(self.context, self.request, options)
         # Debug here
