@@ -6,5 +6,7 @@
   <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
    <property name="available_expr">object/@@actionhelpers/can_change_password</property>
   </object>
+  <object name="add_journal1_entry" meta_type="CMF Action" remove="True" />
+  <object name="add_journal2_entry" meta_type="CMF Action" remove="True" />
  </object>
 </object>
