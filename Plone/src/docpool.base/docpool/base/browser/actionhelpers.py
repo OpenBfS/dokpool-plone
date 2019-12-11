@@ -17,6 +17,6 @@ class ActionHelpers(BrowserView):
         # User with only these roles should not change their password.
         # They are usually shared by multiple people.
         roles = member.getRolesInContext(self.context)
-        read_only = ['Member', 'Authenticated', 'ELANUser']
+        read_only = ['Member', 'Authenticated', 'ELANUser', 'Reader']
         can_change_pwd_roles = [r for r in roles if r not in read_only]
         return bool(can_change_pwd_roles)
