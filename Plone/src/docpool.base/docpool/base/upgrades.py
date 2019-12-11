@@ -105,3 +105,36 @@ def reindex_catpath(context=None):
         obj = brain.getObject()
         obj.reindexObject(idxs=['cat_path'])
     log.info('Done.')
+
+
+def update_doksys_collections(context=None):
+    """Remove existing collections and replace with new ones.
+    See https://redmine-koala.bfs.de/issues/3165
+    """
+    from docpool.doksys.setuphandlers import create_today_collection
+    from docpool.doksys.setuphandlers import create_since_yesterday_collection
+    portal = api.portal.get()
+    if 'searches' not in portal.keys():
+        log.info(u'Missing folder /searches. doksys may not be installed.')
+        return
+    searches = portal['searches']
+    if 'today' in searches or 'yesterday' in searches:
+        log.info(u'Skip updating doksys-collections. Is already up to date.')
+        return
+    api.content.delete(searches['last24h'])
+    create_today_collection(portal)
+    create_since_yesterday_collection(portal)
+    searches.moveObjectsToTop(['today', 'yesterday'])
+    log.info(u'Updated templates for doksys-collections.')
+
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        if 'doksys' not in docpool.supportedApps:
+            log.info(u'Skip docpool %s because it has no doksys.', docpool.id)
+            continue
+        dp_searches = docpool['searches']
+        api.content.delete(dp_searches['last24h'])
+        api.content.copy(source=searches['today'], target=dp_searches)
+        api.content.copy(source=searches['yesterday'], target=dp_searches)
+        dp_searches.moveObjectsToTop(['today', 'yesterday'])
+        log.info(u'Updated doksys-collections for {}'.format(docpool.id))
