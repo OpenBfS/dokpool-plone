@@ -622,7 +622,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             img = doc.pdfImage()
             if img and not refresh:
                 dateiname = '%s.%s' % (img.getId(), "png")
-                return img.data.data, dateiname
+                return img.data, dateiname
 
             pdf = doc.getRepresentativePDF()
             if pdf:
