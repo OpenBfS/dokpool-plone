@@ -6,7 +6,7 @@ from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.interface import implementer
 from zope.interface import Interface
-
+from docpool.event.utils import getOpenScenarios
 
 @implementer(IETagValue)
 @adapter(Interface, Interface)
@@ -29,10 +29,14 @@ class DokPoolApps(object):
             scenarios = context.getUserSelectedScenarios()
             scenarios = ";".join(scenarios)
 
+        scs = getOpenScenarios(context)
+        all_scenarios = ";".join(
+            s.id for s in scs if s.review_state == "published")
+
         user = api.user.get_current()
         filtered = user.getProperty("filter_active") or False
 
-        return apps + "-" + scenarios + "-" + str(filtered)
+        return "-".join([apps, scenarios, str(filtered), all_scenarios])
 
 
 cacheTimes = {
