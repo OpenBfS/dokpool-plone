@@ -40,16 +40,20 @@
                     <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
                 </td>
                 <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
                     <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
-  		       <div class="map">
-                         <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')" />
-		       </div>
+                       <div class="map">
+                           <a href="${context/absolute_url}" i18n:domain="docpool.config" i18n:translate="">
+                                 <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')"/>
+                           </a>
+                       </div>
                     </span>
                     <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
                        <div class="images" tal:define="images python:context.getImages()" tal:condition="images">
                           <div tal:repeat="b images" class="image">
-                             <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
+                             <a href="${context/absolute_url}" i18n:domain="docpool.config" i18n:translate="">
+                                <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
+                             </a>
                           </div>
                        </div>
                     </span>
