@@ -17,8 +17,10 @@ from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.component import adapter
+from zope.component import getUtility
 from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
+from zope.schema.interfaces import IVocabularyFactory
 
 
 START_SAMPLING_MAPPING = {
@@ -282,6 +284,14 @@ class REIDoc(FlexibleView):
     def sampling_stop_localized(self):
         return api.portal.get_localized_time(self.StopSampling)
 
+    def mstids_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.MstVocabulary')()
+        return u', '.join(voc.getTerm(i).title for i in self.MstIds)
+
+    def period_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
+        return '{} {}'.format(voc.getTerm(self.Period).title, self.Year)
+
 
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
@@ -292,48 +302,64 @@ def set_title(obj, event=None):
         adapted = IREIDoc(obj)
     except Exception:
         return
-    adapted.ReiLegalBase
     legal_base_mapping = {
         u'REI-E': u'Emmissionsbericht',
         u'REI-I': u'Immissionsbericht',
-        u'REI-E/REI-I': u'Emmissionsbericht/Immissionsbericht',
     }
-    legal_base = legal_base_mapping.get(adapted.ReiLegalBase)
-    period_mapping = {
-        u'1. Quartal': u'des {}s',
-        u'2. Quartal': u'des {}s',
-        u'3. Quartal': u'des {}s',
-        u'4. Quartal': u'des {}s',
-        u'1. Halbjahr': u'des {}es',
-        u'2. Halbjahr': u'des {}es',
-        u'Jahr': u'des {}es',
-        u'Januar': u'von {}',
-        u'Februar': u'von {}',
-        u'März': u'von {}',
-        u'April': u'von {}',
-        u'Mai': u'von {}',
-        u'Juni': u'von {}',
-        u'Juli': u'von {}',
-        u'August': u'von {}',
-        u'September': u'von {}',
-        u'Oktober': u'von {}',
-        u'November': u'von {}',
-        u'Dezember': u'von {}',
-    }
-    period_template = period_mapping.get(adapted.Period)
-    period_prefix = period_template.format(adapted.Period)
-    period = u'{} {}'.format(period_prefix, adapted.Year)
-    installation = adapted.NuclearInstallation
-    if adapted.Media:
-        media = u'({})'.format(adapted.Media)
+    if len(adapted.ReiLegalBases) > 1:
+        legal = u'Immissions- und Emissionsbericht'
     else:
-        media = u''
+        legal = legal_base_mapping.get(adapted.ReiLegalBases[0])
+
+    period_mapping = {
+        u'Q1': u'des {}s',
+        u'Q2': u'des {}s',
+        u'Q3': u'des {}s',
+        u'Q4': u'des {}s',
+        u'H1': u'des {}es',
+        u'H2': u'des {}es',
+        u'Y': u'des {}es',
+        u'M1': u'{}',
+        u'M2': u'{}',
+        u'M3': u'{}',
+        u'M4': u'{}',
+        u'M5': u'{}',
+        u'M6': u'{}',
+        u'M7': u'{}',
+        u'M8': u'{}',
+        u'M9': u'{}',
+        u'M10': u'{}',
+        u'M11': u'{}',
+        u'M12': u'{}',
+    }
+    period_vocabulary = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
+    period_template = period_mapping.get(adapted.Period)
+    period_prefix = period_template.format(period_vocabulary.getTerm(adapted.Period).title)
+    period = u'{} {}'.format(period_prefix, adapted.Year)
+
+    installations = adapted.NuclearInstallations
+    if len(installations) == 1:
+        installations_prefix = u'für die Kerntechnische Anlage'
+        installations = installations[0]
+    elif len(installations) == 2:
+        installations_prefix = u'für die Kerntechnischen Anlagen'
+        installations = u' und '.join(installations)
+    else:
+        installations_prefix = u'für die Kerntechnischen Anlagen'
+        part1 = u', '.join(installations[:-1])
+        installations = u'{} und {}'.format(part1, installations[-1])
+
+    if adapted.Medium:
+        medium = u'({}) '.format(adapted.Medium)
+    else:
+        medium = u''
     origin = u'({})'.format(', '.join(adapted.Origin))
-    new_title = u'REI-{legal_base} {period} der kerntechnischen Anlage {installation} {media} {origin}'.format(
-        legal_base=legal_base,
+    new_title = u'REI-{legal} {medium}{period} {installations_prefix} {installations} {origin}'.format(
+        legal=legal,
         period=period,
-        installation=installation,
-        media=media,
+        installations_prefix=installations_prefix,
+        installations=installations,
+        medium=medium,
         origin=origin,
         )
     obj.title = new_title

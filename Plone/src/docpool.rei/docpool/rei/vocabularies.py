@@ -13,7 +13,7 @@ class AuthorityVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
             u'Kein Wert',
             u'Baden-Württemberg',
@@ -44,7 +44,7 @@ class ReiLegalBaseVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
             u'REI-E',
             u'REI-I',
@@ -59,7 +59,7 @@ class MediaVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
             u'Fortluft',
             u'Abwasser',
@@ -75,7 +75,7 @@ class PeriodVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         items = [
             (u'Q1',u'1. Quartal'),
             (u'Q2',u'2. Quartal'),
@@ -97,8 +97,7 @@ class PeriodVocabulary(object):
             (u'M11',u'November'),
             (u'M12',u'Dezember'),
         ]
-        terms = [SimpleTerm(code, code, u'{} - {}'.format(code, title))
-                 for code, title in items]
+        terms = [SimpleTerm(code, code, title) for code, title in items]
         return SimpleVocabulary(terms)
 
 PeriodVocabularyFactory = PeriodVocabulary()
@@ -109,7 +108,7 @@ class PdfVersionVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
             u'PDF/A-1b',
             u'PDF/A-1a',
@@ -130,7 +129,7 @@ class MstVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         items = [
             (u'1002', u'SH-LDZ-Kiel'),
             (u'1010', u'SH-MST2-Geesthacht'),
@@ -327,7 +326,7 @@ class OriginVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
             u'Genehmigungsinhaber',
             u'unabhängige Messstelle',
@@ -342,7 +341,7 @@ class YearVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         items = []
         today = date.today()
         year = today.year
@@ -363,7 +362,7 @@ class NuclearInstallationVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
             u'UCHL KTA Leibstadt mit Beznau und Villigen',
             u'UELA Endlager für radioaktive Abfälle Asse',
