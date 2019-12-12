@@ -10,12 +10,14 @@
       <role name="Site Administrator"/>
       <role name="Journal1 Editor" />
       <role name="Journal2 Editor" />
+      <role name="EventEditor"/>
     </permission>
     <permission name="elan.journal: Add JournalEntry" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="Journal1 Editor" />
       <role name="Journal2 Editor" />
+      <role name="EventEditor"/>
     </permission>
   </permissions>
 </rolemap>
