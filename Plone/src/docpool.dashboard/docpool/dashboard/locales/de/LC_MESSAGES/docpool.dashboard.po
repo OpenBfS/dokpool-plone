@@ -31,6 +31,10 @@ msgstr "Dokumenttypen"
 msgid "No current data"
 msgstr "Keine aktuellen Daten"
 
+#: docpool.config/docpool/config/skins/docpool_config_templates/doc_dashboard.pt:28
+msgid "No image available"
+msgstr "Kein Bild verfügbar"
+
 #. Default: "Select the document types you want to show in this dashboard."
 #: docpool.dashboard/docpool/dashboard/content/dashboard.py:45
 msgid "description_dashboard_dbcollections"

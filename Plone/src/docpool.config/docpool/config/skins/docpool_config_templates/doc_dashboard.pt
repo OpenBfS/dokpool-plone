@@ -24,7 +24,7 @@
         <div class="whole" tal:condition="python: fi">
            <tal:insert replace="structure fi"/>
         </div>
-          <div class="whole" tal:condition="python: not fi">
+          <div class="whole" tal:condition="python: not fi" i18n:domain="docpool.dashboard">
                     <span i18n:translate="">No image available</span>
           </div>
       </span>
