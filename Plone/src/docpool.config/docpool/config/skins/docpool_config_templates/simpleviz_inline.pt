@@ -11,7 +11,9 @@
         <span tal:condition="python:len(context.objectValues()) != 0">
         <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
         <div class="map">
+        <a href="${mi/absolute_url}" i18n:domain="docpool.config" i18n:translate="" target="_blank">
            <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi"/>
+        </a>
         </div>
         <div class="legend">
            <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
