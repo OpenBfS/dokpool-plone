@@ -13,11 +13,39 @@ CSS = '++resource++elan.journal/styles.css'
 ADD_PERMISSIONS = (
     dict(
         title='elan.journal: Add Journal',
-        expected=['EventEditor', 'Journal1 Editor', 'Journal2 Editor', 'Manager', 'Site Administrator'],
+        expected=[
+            'EventEditor',
+            'Journal1 Editor',
+            'Journal2 Editor',
+            'Journal3 Editor',
+            'Journal4 Editor',
+            'Journal5 Editor',
+            'Journal6 Editor',
+            'Journal7 Editor',
+            'Journal8 Editor',
+            'Journal9 Editor',
+            'Journal10 Editor',
+            'Manager',
+            'Site Administrator',
+            ],
     ),
     dict(
         title='elan.journal: Add JournalEntry',
-        expected=['EventEditor', 'Journal1 Editor', 'Journal2 Editor', 'Manager', 'Site Administrator'],
+        expected=[
+            'EventEditor',
+            'Journal1 Editor',
+            'Journal2 Editor',
+            'Journal3 Editor',
+            'Journal4 Editor',
+            'Journal5 Editor',
+            'Journal6 Editor',
+            'Journal7 Editor',
+            'Journal8 Editor',
+            'Journal9 Editor',
+            'Journal10 Editor',
+            'Manager',
+            'Site Administrator',
+            ],
     ),
 )
 

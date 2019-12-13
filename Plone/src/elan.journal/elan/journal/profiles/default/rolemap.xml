@@ -3,6 +3,14 @@
   <roles>
     <role name="Journal1 Editor"/>
     <role name="Journal2 Editor"/>
+    <role name="Journal3 Editor"/>
+    <role name="Journal4 Editor"/>
+    <role name="Journal5 Editor"/>
+    <role name="Journal6 Editor"/>
+    <role name="Journal7 Editor"/>
+    <role name="Journal8 Editor"/>
+    <role name="Journal9 Editor"/>
+    <role name="Journal10 Editor"/>
   </roles>
   <permissions>
     <permission name="elan.journal: Add Journal" acquire="True">
@@ -10,6 +18,14 @@
       <role name="Site Administrator"/>
       <role name="Journal1 Editor" />
       <role name="Journal2 Editor" />
+      <role name="Journal3 Editor"/>
+      <role name="Journal4 Editor"/>
+      <role name="Journal5 Editor"/>
+      <role name="Journal6 Editor"/>
+      <role name="Journal7 Editor"/>
+      <role name="Journal8 Editor"/>
+      <role name="Journal9 Editor"/>
+      <role name="Journal10 Editor"/>
       <role name="EventEditor"/>
     </permission>
     <permission name="elan.journal: Add JournalEntry" acquire="True">
@@ -17,6 +33,14 @@
       <role name="Site Administrator"/>
       <role name="Journal1 Editor" />
       <role name="Journal2 Editor" />
+      <role name="Journal3 Editor"/>
+      <role name="Journal4 Editor"/>
+      <role name="Journal5 Editor"/>
+      <role name="Journal6 Editor"/>
+      <role name="Journal7 Editor"/>
+      <role name="Journal8 Editor"/>
+      <role name="Journal9 Editor"/>
+      <role name="Journal10 Editor"/>
       <role name="EventEditor"/>
     </permission>
   </permissions>
