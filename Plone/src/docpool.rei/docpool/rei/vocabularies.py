@@ -263,7 +263,7 @@ class MstVocabulary(object):
             (u'11061', u'BE-KTA-Berlin'),
             (u'12002', u'BB-MIN-Potsdam'),
             (u'12010', u'BB-MST1-Oranienburg'),
-            (u'12020', u'BB-MST2-Fra nkfurtOder'),
+            (u'12020', u'BB-MST2-FrankfurtOder'),
             (u'12032', u'BB-LDZ-FrankfurtOder'),
             (u'13002', u'MV-MIN-Schwerin'),
             (u'13010', u'MV-MST1-Stralsund'),
