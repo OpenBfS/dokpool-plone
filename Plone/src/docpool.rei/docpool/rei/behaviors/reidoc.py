@@ -20,6 +20,7 @@ from zope.component import adapter
 from zope.component import getUtility
 from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
 
 
@@ -90,6 +91,12 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(MstIds='docpool.rei.AccessRei')
     write_permission(MstIds='docpool.rei.AccessRei')
+
+    mstids_initial_value = schema.TextLine(
+        title=_(u'label_rei_mstids_initial_value', default=u'Messstellen'),
+        required=False,
+    )
+    directives.omitted('mstids_initial_value')
 
     directives.widget(ReiLegalBases=CheckBoxFieldWidget)
     ReiLegalBases = schema.List(
@@ -195,6 +202,14 @@ class REIDoc(FlexibleView):
     @MstIds.setter
     def MstIds(self, value):
         self.context.MstIds = value
+
+    @property
+    def mstids_initial_value(self):
+        return self.context.mstids_initial_value
+
+    @mstids_initial_value.setter
+    def mstids_initial_value(self, value):
+        self.context.mstids_initial_value = value
 
     @property
     def ReiLegalBases(self):
@@ -364,3 +379,14 @@ def set_title(obj, event=None):
         )
     obj.title = new_title
     obj.reindexObject(idxs=['Title'])
+
+
+@adapter(IDPDocument, IObjectAddedEvent)
+def save_mstid(obj, event=None):
+    # Only if it is a IREIDoc.
+    try:
+        adapted = IREIDoc(obj)
+    except Exception:
+        return
+    value = adapted.mstids_display()
+    adapted.mstids_initial_value = value
