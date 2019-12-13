@@ -16,6 +16,7 @@ ADD_PERMISSIONS = (
         expected=[
             'EventEditor',
             'Journal1 Editor',
+            'Journal10 Editor',
             'Journal2 Editor',
             'Journal3 Editor',
             'Journal4 Editor',
@@ -24,7 +25,6 @@ ADD_PERMISSIONS = (
             'Journal7 Editor',
             'Journal8 Editor',
             'Journal9 Editor',
-            'Journal10 Editor',
             'Manager',
             'Site Administrator',
             ],
@@ -34,6 +34,7 @@ ADD_PERMISSIONS = (
         expected=[
             'EventEditor',
             'Journal1 Editor',
+            'Journal10 Editor',
             'Journal2 Editor',
             'Journal3 Editor',
             'Journal4 Editor',
@@ -42,7 +43,6 @@ ADD_PERMISSIONS = (
             'Journal7 Editor',
             'Journal8 Editor',
             'Journal9 Editor',
-            'Journal10 Editor',
             'Manager',
             'Site Administrator',
             ],
