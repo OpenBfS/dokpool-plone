@@ -97,7 +97,7 @@ class DPDocumentprintView(FlexibleView):
 
 
 class DPDocumentdocimageView(BrowserView):
-    """Additional View
+    """ Gets the correct image / pdf preview
     """
 
     def __call__(self):
