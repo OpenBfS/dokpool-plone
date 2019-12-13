@@ -38,8 +38,8 @@
         </span><br>
 
         <label i18n:translate="label_rei_MstIds">MstIds</label>:
-        <span tal:condition="python:hasattr(reiobj, 'MstIds')">
-           <tal:var replace="python: reiobj.mstids_display()"/>
+        <span tal:condition="python:hasattr(reiobj, 'mstids_initial_value')">
+           <tal:var replace="python: reiobj.mstids_initial_value"/>
         </span><br>
 
         <label i18n:translate="label_rei_Authority">Authority</label>:

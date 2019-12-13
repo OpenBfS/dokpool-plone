@@ -15,6 +15,7 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.form import EditForm
 from zope import schema
 from zope.component import adapter
 from zope.component import getUtility
@@ -91,6 +92,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(MstIds='docpool.rei.AccessRei')
     write_permission(MstIds='docpool.rei.AccessRei')
+    directives.omitted(EditForm, 'MstIds')
 
     mstids_initial_value = schema.TextLine(
         title=_(u'label_rei_mstids_initial_value', default=u'Messstellen'),
@@ -305,7 +307,7 @@ class REIDoc(FlexibleView):
 
     def period_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
-        return '{} {}'.format(voc.getTerm(self.Period).title, self.Year)
+        return u'{} {}'.format(voc.getTerm(self.Period).title, self.Year)
 
 
 # IREIDoc sets no marker-interface so we cannot constrain
