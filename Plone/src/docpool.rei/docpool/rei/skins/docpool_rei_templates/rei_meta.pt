@@ -33,14 +33,14 @@
         <br>
         <br>
 
-        <label i18n:translate="label_rei_Origin">Origin</label>:
-        <span tal:condition="python:hasattr(reiobj,'Origin')">
-           <tal:var replace="python: ', '.join(reiobj.Origin)"/>
+        <label i18n:translate="label_rei_Origins">Origins</label>:
+        <span tal:condition="python:hasattr(reiobj,'Origins')">
+           <tal:var replace="python: ', '.join(reiobj.Origins)"/>
         </span><br>
 
-        <label i18n:translate="label_rei_MstIds">MstIds</label>:
-        <span tal:condition="python:hasattr(reiobj,'MstIds')">
-           <tal:var replace="python: ', '.join(reiobj.MstIds)"/>
+        <label i18n:translate="label_rei_MStIDs">MStIDs</label>:
+        <span tal:condition="python:hasattr(reiobj,'MStIDs')">
+           <tal:var replace="python: ', '.join(reiobj.MStIDs)"/>
         </span><br>
 
         <label i18n:translate="label_rei_Authority">Authority</label>:
@@ -49,9 +49,9 @@
         </span><br>
         <br>
 
-        <label i18n:translate="label_rei_PdfVersion">PdfVersion</label>:
-        <span tal:condition="python:hasattr(reiobj,'PdfVersion')">
-           <tal:var replace="reiobj/PdfVersion"/>
+        <label i18n:translate="label_rei_PDFVersion">PDFVersion</label>:
+        <span tal:condition="python:hasattr(reiobj,'PDFVersion')">
+           <tal:var replace="reiobj/PDFVersion"/>
         </span><br>
         <br>
 

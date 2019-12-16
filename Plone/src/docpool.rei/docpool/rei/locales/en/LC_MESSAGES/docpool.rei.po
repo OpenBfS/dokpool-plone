@@ -39,7 +39,7 @@ msgid "Metadata"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "MstIds"
+msgid "MStIDs"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -95,7 +95,7 @@ msgid "description_rei_Medium"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_MstIds"
+msgid "description_rei_MStIDs"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -107,7 +107,7 @@ msgid "description_rei_Origin"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_PdfVersion"
+msgid "description_rei_PDFVersion"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -138,10 +138,10 @@ msgstr ""
 msgid "label_rei_Media"
 msgstr ""
 
-#. Default: "MstIds"
+#. Default: "MStIDs"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_MstId"
+msgid "label_rei_MStID"
 msgstr ""
 
 #. Default: "NuclearInstallations"
@@ -156,10 +156,10 @@ msgstr ""
 msgid "label_rei_Origin"
 msgstr ""
 
-#. Default: "PdfVersion"
+#. Default: "PDFVersion"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_PdfVersion"
+msgid "label_rei_PDFVersion"
 msgstr ""
 
 #. Default: "Period"

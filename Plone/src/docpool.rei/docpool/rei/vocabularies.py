@@ -19,7 +19,7 @@ class AuthorityVocabulary(object):
             u'Baden-Württemberg',
             u'Bayern',
             u'Berlin',
-            u'BfE',
+            u'Endlager (Bundesaufsicht)',
             u'Brandenburg',
             u'Bremen',
             u'Hamburg',
@@ -55,7 +55,7 @@ ReiLegalBaseVocabularyFactory = ReiLegalBaseVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class MediaVocabulary(object):
+class MediumVocabulary(object):
     """
     """
 
@@ -63,11 +63,11 @@ class MediaVocabulary(object):
         return safe_simplevocabulary_from_values([
             u'Fortluft',
             u'Abwasser',
-            u'Fortluft/Abwasser',
+            u'Abwasser/Fortluft',
         ])
 
 
-MediaVocabularyFactory = MediaVocabulary()
+MediumVocabularyFactory = MediumVocabulary()
 
 
 @implementer(IVocabularyFactory)
@@ -77,13 +77,13 @@ class PeriodVocabulary(object):
 
     def __call__(self, context):
         items = [
-            (u'Q1',u'1. Quartal'),
-            (u'Q2',u'2. Quartal'),
-            (u'Q3',u'3. Quartal'),
-            (u'Q4',u'4. Quartal'),
+            (u'Y', u'Jahr'),
             (u'H1',u'1. Halbjahr'),
             (u'H2',u'2. Halbjahr'),
-            (u'Y',u'Jahr'),
+            (u'Q1', u'1. Quartal'),
+            (u'Q2', u'2. Quartal'),
+            (u'Q3', u'3. Quartal'),
+            (u'Q4', u'4. Quartal'),
             (u'M1',u'Januar'),
             (u'M2',u'Februar'),
             (u'M3',u'März'),
@@ -105,7 +105,7 @@ PeriodVocabularyFactory = PeriodVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PdfVersionVocabulary(object):
+class PDFVersionVocabulary(object):
     """
     """
 
@@ -122,11 +122,11 @@ class PdfVersionVocabulary(object):
         ])
 
 
-PdfVersionVocabularyFactory = PdfVersionVocabulary()
+PDFVersionVocabularyFactory = PDFVersionVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class MstVocabulary(object):
+class MStIDVocabulary(object):
     """
     """
 
@@ -319,7 +319,7 @@ class MstVocabulary(object):
         return SimpleVocabulary(terms)
 
 
-MstVocabularyFactory = MstVocabulary()
+MStIDVocabularyFactory = MStIDVocabulary()
 
 
 @implementer(IVocabularyFactory)

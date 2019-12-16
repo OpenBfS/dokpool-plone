@@ -40,7 +40,7 @@ msgid "Metadata"
 msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "MstIds"
+msgid "MStIDs"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -96,7 +96,7 @@ msgid "description_rei_Media"
 msgstr "Umweltmedium"
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_MstId"
+msgid "description_rei_MStID"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -139,10 +139,10 @@ msgstr "Aufsichtsbehörde"
 msgid "label_rei_Media"
 msgstr "Medium"
 
-#. Default: "MstIds"
+#. Default: "MStIDs"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_MstIds"
+msgid "label_rei_MStIDs"
 msgstr ""
 
 #. Default: "NuclearInstallations"
@@ -158,12 +158,12 @@ msgstr "Kerntechnische Anlage"
 msgid "label_rei_Origin"
 msgstr "Urheber"
 
-#. Default: "PdfVersion"
+#. Default: "PDFVersion"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 #, fuzzy
-msgid "label_rei_PdfVersion"
-msgstr "Pdf/A Version"
+msgid "label_rei_PDFVersion"
+msgstr "PDF/A Version"
 
 #. Default: "Period"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py

@@ -8,23 +8,26 @@
     <index name="Medium" meta_type="FieldIndex">
         <indexed_attr value="Medium"/>
     </index>
-    <index name="Mst" meta_type="FieldIndex">
-        <indexed_attr value="MstIds"/>
+    <index name="MSt" meta_type="FieldIndex">
+        <indexed_attr value="MStIDs"/>
     </index>
     <index name="Authority" meta_type="FieldIndex">
         <indexed_attr value="Authority"/>
     </index>
     <index name="ReiLegalBases" meta_type="FieldIndex">
-        <indexed_attr value="ReiLEgalBases"/>
+        <indexed_attr value="ReiLegalBases"/>
     </index>
-        <index name="NuclearInstallations" meta_type="FieldIndex">
+    <index name="Origins" meta_type="FieldIndex">
+        <indexed_attr value="Origins"/>
+    </index>
+    <index name="NuclearInstallations" meta_type="FieldIndex">
         <indexed_attr value="NuclearInstallations"/>
     </index>
     <index name="Period" meta_type="FieldIndex">
         <indexed_attr value="Period"/>
     </index>
-    <index name="PdfVersion" meta_type="ZCTextIndex">
-        <indexed_attr value="PdfVersion"/>
+    <index name="PDFVersion" meta_type="ZCTextIndex">
+        <indexed_attr value="PDFVersion"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>

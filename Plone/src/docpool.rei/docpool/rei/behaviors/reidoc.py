@@ -19,13 +19,13 @@ from zope.interface import provider
 
 
 START_SAMPLING_MAPPING = {
+    'Y': '1.1.',
+    'H1': '1.1.',
+    'H2': '1.7.',
     'Q1': '1.1.',
     'Q2': '1.4.',
     'Q3': '1.7.',
     'Q4': '1.10.',
-    'H1': '1.1.',
-    'H2': '1.7.',
-    'Y': '1.1.',
     'M1': '1.1.',
     'M2': '1.2.',
     'M3': '1.3.',
@@ -41,13 +41,13 @@ START_SAMPLING_MAPPING = {
 }
 
 STOP_SAMPLING_MAPPING = {
+    'Y': '1.1.',
+    'H1': '1.7.',
+    'H2': '1.1.',
     'Q1': '1.4.',
     'Q2': '1.7.',
     'Q3': '1.10.',
     'Q4': '1.1.',
-    'H1': '1.7.',
-    'H2': '1.1.',
-    'Y': '1.1.',
     'M1': '1.2.',
     'M2': '1.3.',
     'M3': '1.4.',
@@ -76,11 +76,11 @@ class IREIDoc(IDocumentExtension):
     write_permission(Authority='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Authority')
 
-    MstIds = schema.List(
-        title=_(u'label_rei_MstId', default=u'Messstellen-ID'),
-        description=_(u'description_rei_MstId', default=u''),
+    MStIDs = schema.List(
+        title=_(u'label_rei_MStID', default=u'Messstellen-ID'),
+        description=_(u'description_rei_MStID', default=u''),
         value_type=schema.Choice(
-            source="docpool.rei.vocabularies.MstVocabulary"),
+            source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
     )
     read_permission(MstIds='docpool.rei.AccessRei')
@@ -99,7 +99,7 @@ class IREIDoc(IDocumentExtension):
     dexteritytextindexer.searchable('ReiLegalBases')
 
     directives.widget(Origin=CheckBoxFieldWidget)
-    Origin = schema.List(
+    Origins = schema.List(
         title=_(u'label_rei_Origin', default=u'Ersteller'),
         description=_(u'description_rei_Origin', default=u''),
         value_type=schema.Choice(
@@ -133,7 +133,7 @@ class IREIDoc(IDocumentExtension):
     Medium = schema.Choice(
         title=_(u'label_rei_Medium', default=u'Medium'),
         description=_(u'description_rei_Medium', default=u''),
-        source="docpool.rei.vocabularies.MediaVocabulary",
+        source="docpool.rei.vocabularies.MediumVocabulary",
         required=False,
     )
     read_permission(Medium='docpool.rei.AccessRei')
@@ -142,7 +142,7 @@ class IREIDoc(IDocumentExtension):
 
     NuclearInstallations = schema.List(
         title=_(
-            u'label_rei_NuclearInstallation',
+            u'label_rei_NuclearInstallations',
             default=u'NuclearInstallations'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
         value_type=schema.Choice(
@@ -153,15 +153,15 @@ class IREIDoc(IDocumentExtension):
     write_permission(NuclearInstallations='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('NuclearInstallations')
 
-    PdfVersion = schema.Choice(
-        title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
-        description=_(u'description_rei_PdfVersion', default=u''),
-        source="docpool.rei.vocabularies.PdfVersionVocabulary",
+    PDFVersion = schema.Choice(
+        title=_(u'label_rei_PDFVersion', default=u'PDF Version'),
+        description=_(u'description_rei_PDFVersion', default=u''),
+        source="docpool.rei.vocabularies.PDFVersionVocabulary",
         required=True,
     )
     read_permission(PdfVersion='docpool.rei.AccessRei')
     write_permission(PdfVersion='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('PdfVersion')
+    dexteritytextindexer.searchable('PDFVersion')
 
 
 class REIDoc(FlexibleView):
@@ -184,12 +184,12 @@ class REIDoc(FlexibleView):
         self.context.Authority = value
 
     @property
-    def MstIds(self):
-        return self.context.MstIds
+    def MStIDs(self):
+        return self.context.MStIDs
 
-    @MstIds.setter
-    def MstIds(self, value):
-        self.context.MstIds = value
+    @MStIDs.setter
+    def MStIDs(self, value):
+        self.context.MStIDs = value
 
     @property
     def ReiLegalBases(self):
@@ -232,20 +232,20 @@ class REIDoc(FlexibleView):
         self.context.NuclearInstallations = value
 
     @property
-    def PdfVersion(self):
-        return self.context.PdfVersion
+    def PDFVersion(self):
+        return self.context.PDFVersion
 
-    @PdfVersion.setter
-    def PdfVersion(self, value):
-        self.context.PdfVersion = value
+    @PDFVersion.setter
+    def PDFVersion(self, value):
+        self.context.PDFVersion = value
 
     @property
-    def Origin(self):
-        return self.context.Origin
+    def Origins(self):
+        return self.context.Origins
 
-    @Origin.setter
-    def Origin(self, value):
-        self.context.Origin = value
+    @Origins.setter
+    def Origins(self, value):
+        self.context.Origins = value
 
     def isClean(self):
         """
