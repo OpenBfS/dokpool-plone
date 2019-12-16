@@ -20,10 +20,16 @@
            <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
         </div> 
       </span>
-      <span tal:condition="python:(context.getMapImageObj() == None) or (context.getLegendImageObj() == None)">
-        <div class="whole">
-           <img src="${context/absolute_url}/@@images/image/large" alt="${context/Title}" class="image-inline" title="${context/Title}" /> 
-        </div> 
+        <div class="pdf"  tal:condition="python:myi">
+            <img src="${context/absolute_url}/docimage"/>
+        </div>
+        <span tal:condition="python:(context.getMapImageObj() == None) or (context.getLegendImageObj() == None)">
+        <div class="whole" tal:condition="python: fi">
+           <tal:insert replace="structure fi"/>
+        </div>
+          <div class="whole" tal:condition="python: not fi and not myi" i18n:domain="docpool.dashboard">
+                    <span i18n:translate="">No image available</span>
+          </div>
       </span>
     </div>
 </tal:block>
