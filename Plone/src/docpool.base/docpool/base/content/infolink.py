@@ -13,7 +13,7 @@ __docformat__ = 'plaintext'
 """Definition of the InfoLink content type. See infolink.py for more
 explanation on the statements below.
 """
-from AccessControl import ClassSecurityInfo
+from docpool.base.content.contentbase import ContentBase
 from plone.app.contenttypes.content import ILink
 from plone.app.contenttypes.content import Link
 from plone.dexterity.content import Item
@@ -30,8 +30,6 @@ class IInfoLink(model.Schema, ILink):
 
 
 @implementer(IInfoLink)
-class InfoLink(Item, Link):
+class InfoLink(ContentBase, Link):
     """
     """
-
-    security = ClassSecurityInfo()

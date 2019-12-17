@@ -95,13 +95,12 @@ class FolderBaseView(BrowserView):
     def getFolderContents(self, kwargs):
         """
         """
-        # print "getFolderContents"
+        contentlisting = self.context.restrictedTraverse('@@contentlisting')
         kwargs["object_provides"] = [
             IFolderBase.__identifier__,
             ICollection.__identifier__,
         ]
-        res = [b for b in self.context.getFolderContents(kwargs)]
-        # print res
+        res = [b for b in contentlisting(**kwargs)]
         apps = self.isFilteredBy()
         if apps:
             kwargs['apps_supported'] = apps[0]
@@ -109,8 +108,7 @@ class FolderBaseView(BrowserView):
             IDPDocument.__identifier__,
             IInfoLink.__identifier__,
         ]
-        res.extend([b for b in self.context.getFolderContents(kwargs)])
-        # print res
+        res.extend([b for b in contentlisting(**kwargs)])
         return res
 
     @view.memoize
