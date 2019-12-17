@@ -15,7 +15,7 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from z3c.form.form import EditForm
+from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.component import adapter
 from zope.component import getUtility
@@ -92,7 +92,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(MStIDs='docpool.rei.AccessRei')
     write_permission(MStIDs='docpool.rei.AccessRei')
-    directives.omitted(EditForm, 'MStIDs')
+    directives.omitted(IEditForm, 'MStIDs')
 
     mstids_initial_value = schema.TextLine(
         title=_(u'label_rei_mstids_initial_value', default=u'Messstellen'),
