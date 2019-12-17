@@ -9,18 +9,18 @@
       name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
-   <property name="available_expr">here/isContentAdmin</property>
+   <property name="available_expr">python:here.isAdmin() or here.isContentAdmin() or (member and member.has_role('EventEditor'))</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
-  <object name="edit_scenarios" meta_type="CMF Action" i18n:domain="docpool.event">
+  <object name="add_scenario" meta_type="CMF Action" i18n:domain="docpool.event">
    <property name="title" i18n:translate="">Add New Scenario</property>
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++DPEvent</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
-   <property name="available_expr">here/isContentAdmin</property>
+   <property name="available_expr">python:here.isAdmin() or here.isContentAdmin() or (member and member.has_role('EventEditor'))</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>

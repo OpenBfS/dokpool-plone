@@ -41,7 +41,7 @@ msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "MStIDs"
-msgstr ""
+msgstr "Messstellen IDs"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Nuclear Installations"

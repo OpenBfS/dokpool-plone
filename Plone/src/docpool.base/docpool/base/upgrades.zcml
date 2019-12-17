@@ -53,8 +53,11 @@
     <genericsetup:upgradeStep
         title="Reindex cat_path for dview"
         handler="docpool.base.upgrades.reindex_catpath"
-    />
-
+        />
+    <genericsetup:upgradeStep
+        title="Replace old doksys collections with new ones"
+        handler="docpool.base.upgrades.update_doksys_collections"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>

@@ -90,7 +90,11 @@
 
   </table>
 
-<tal:nogeo tal:replace="nothing">
+<div id="meta_items">
+  <img class="collapsible"
+       alt="Karten Anzeigen" title="Karten Anzeigen"
+       tal:attributes="src string:${portal_url}/link_icon.png">
+  <div class="content">
     <div tal:define="widget python:view.widgets['EventCoordinates'];
                      view python:widget;"
          tal:condition="python:context.EventCoordinates"
@@ -150,7 +154,8 @@
           <metal:map use-macro="context/@@collectivegeo-macros/map-widget" />
         </div>
     </div>
-  </tal:nogeo>
+  </div>
+</div>
 
     <h4 i18n:translate="">Changelog</h4>
     <table class="listing"

@@ -122,7 +122,6 @@ class IDPEvent(model.Schema, IContentBase):
     )
 
     directives.write_permission(EventCoordinates='docpool.event.ManageDPEvents')
-    directives.omitted('EventCoordinates', 'AreaOfInterest')
     EventCoordinates = WKT(
         title=_(u"Event coordinates"),
         required=False,

@@ -59,6 +59,11 @@ class DocpoolSetup(BrowserView):
             return self.index()
 
         alsoProvides(self.request, IDisableCSRFProtection)
+        # disable queued indexing because for unclread resons the
+        # index 'scenarios' is empty
+        queue_indexing = os.environ.get('CATALOG_OPTIMIZATION_DISABLED', None)
+        os.environ['CATALOG_OPTIMIZATION_DISABLED'] = '1'
+
 
         # install addons
         installer = get_installer(self.context, self.request)
@@ -192,6 +197,7 @@ class DocpoolSetup(BrowserView):
             id='test-event',
             title=u'Test Event',
             description=u'Die Beschreibung',
+            EventType=u'exercise',
             Status='active',
             AlertingStatus=u'none',
             AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
@@ -206,6 +212,29 @@ class DocpoolSetup(BrowserView):
             )
         log.info(u'Created dpevent')
 
+        # add event with some content to archive
+        dpevent_to_archive = api.content.create(
+            container=even_config_folder,
+            type='DPEvent',
+            id='archived-event',
+            title=u'Test Event that was archived',
+            description=u'Die Beschreibung',
+            EventType=u'test',
+            Status='inactive',
+            AlertingStatus=u'none',
+            AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
+            EventCoordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            EventLocation=RelationValue(get_intid(dpnuclearpowerstation)),
+            SectorizingNetworks=[RelationValue(get_intid(dpnetwork))],
+            EventPhase=None,
+            Exercise=True,
+            TimeOfEvent=datetime.now(),
+            OperationMode='routine',
+            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            )
+        log.info(u'Created dpevent')
+
+
         # TODO:
         # Add SRModuleTypes
         # Add lagebericht-konfiguration
@@ -216,14 +245,17 @@ class DocpoolSetup(BrowserView):
         with api.env.adopt_user(user=user1):
             sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type
-            for doctype_id in doctypes_ids:
+            for doctype in doctypes:
                 new = api.content.create(
                     container=folder,
                     type='DPDocument',
-                    title=u'{}'.format(doctype_id.capitalize()),
-                    description=u'foo',
-                    docType=doctype_id,
-                    text=RichTextValue(u'<p>Text</p>', 'text/html', 'text/x-html-safe'),
+                    title=u'Ein {}'.format(doctype.title),
+                    description=u'foo ({})'.format(doctype.id),
+                    docType=doctype.id,
+                    text=RichTextValue(
+                        u'<p>Text für {}</p>'.format(doctype.title),
+                        'text/html',
+                        'text/x-html-safe'),
                     local_behaviors=['elan', 'doksys'],
                     scenarios=[dpevent.id],
                     SampleTypeId=random.choice(sampletype_ids),
@@ -244,19 +276,18 @@ class DocpoolSetup(BrowserView):
                     TrajectoryEndTime=datetime.now() + timedelta(hours=1),
                     TrajectoryStartTime=datetime.now(),
                 )
-                modified(new)
                 api.content.create(
                     container=new,
                     type='Image',
-                    title='{}_image'.format(doctype_id),
+                    title='{}_image'.format(doctype.id),
                     image=dummy_image()
                     )
-
                 try:
                     api.content.transition(obj=new, transition='publish')
                 except Exception as e:
                     log.info(e)
-                log.info(u'Created dpdocument of type {}'.format(doctype_id))
+                modified(new)
+                log.info(u'Created dpdocument of type {}'.format(doctype.id))
 
             # add one full DPDocument
             new = api.content.create(
@@ -303,6 +334,37 @@ class DocpoolSetup(BrowserView):
             log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
                 new.absolute_url()))
 
+            # add one full DPDocument to the event to archive
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Eine ELAN Bodenprobe zum archivieren',
+                description=u'foo',
+                text=RichTextValue(u'<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
+                docType='groundcontamination',
+                scenarios=[dpevent_to_archive.id],
+                local_behaviors=['elan'],
+            )
+            modified(new)
+            api.content.create(
+                container=new,
+                type='Image',
+                title=u'Ein Bild',
+                image=dummy_image(),
+                )
+            api.content.create(
+                container=new,
+                type='File',
+                title=u'Eine Datei',
+                file=dummy_file(),
+                )
+            api.content.transition(obj=new, transition='publish')
+            log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
+                new.absolute_url()))
+
+        # archive event
+        dpevent_to_archive.archiveAndClose(self.request)
+
         # create REI Bericht
         folder = docpool_bund['content']['Groups']['bund_betreiber_he']
         with api.env.adopt_user(username='betreiber_he'):
@@ -314,7 +376,6 @@ class DocpoolSetup(BrowserView):
                 text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
-                Revision=1,
                 Year=2019,
                 Period=u'Q1',
                 NuclearInstallations=[u'UCHL KTA Leibstadt mit Beznau und Villigen'],
@@ -322,7 +383,7 @@ class DocpoolSetup(BrowserView):
                 ReiLegalBases=[u'REI-E'],
                 Origins=[u'unabhängige Messstelle'],
                 MStIDs=[u'3132 ', u'3141 ', u'3151 ', u'3161 ', u'3171 '],
-                Authority=u'Hessen',
+                Authority=u'Baden-Württemberg',
                 PDFVersion=u'PDF/A-1b',
             )
         folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
@@ -335,7 +396,6 @@ class DocpoolSetup(BrowserView):
                 text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
-                Revision=1,
                 Year=2019,
                 Period=u'M1',
                 NuclearInstallations=[u'U13A KKW Lubmin/Greifswald'],
@@ -350,6 +410,9 @@ class DocpoolSetup(BrowserView):
         log.info(u'Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
         catalog.clearFindAndRebuild()
+        # FIXME: Why do we need this? Argh!
+        catalog.reindexIndex('scenarios', self.request)
+        os.environ['CATALOG_OPTIMIZATION_DISABLED'] = queue_indexing
         return self.request.response.redirect(self.context.absolute_url())
 
 

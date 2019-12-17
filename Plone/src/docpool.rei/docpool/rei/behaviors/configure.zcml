@@ -18,4 +18,7 @@
         for="docpool.base.interfaces.IDocType"
         />
 
+    <subscriber handler=".reidoc.set_title" />
+    <subscriber handler=".reidoc.save_mstid" />
+
 </configure>

@@ -146,7 +146,8 @@ class IDoksysDoc(IDocumentExtension):
         title=_(u'label_doksys_operation_mode', default=u'Operation Mode'),
         description=_(u'description_doksys_operation_mode', default=u''),
         source="docpool.doksys.OperationMode",
-        required=False,
+        default=u'Routine',
+        required=True,
     )
     read_permission(OperationMode='docpool.doksys.AccessDoksys')
     write_permission(OperationMode='docpool.doksys.AccessDoksys')

@@ -7,24 +7,23 @@
         <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->
 
         <label i18n:translate="label_rei_NuclearInstallations">NuclearInstallations</label>:
-        <span tal:condition="python:hasattr(reiobj,'NuclearInstallations')">
-           <tal:var replace="reiobj/NuclearInstallations"/>
+        <span tal:condition="python:hasattr(reiobj, 'NuclearInstallations')">
+           <tal:var replace="python: ', '.join(reiobj.NuclearInstallations)"/>
         </span><br>
 
         <label i18n:translate="label_rei_ReiLegalBases">ReiLegalBases</label>:
-        <span tal:condition="python:hasattr(reiobj,'ReiLegalBases')">
-           <tal:var replace="reiobj/ReiLegalBases"/>
+        <span tal:condition="python:hasattr(reiobj, 'ReiLegalBases')">
+           <tal:var replace="python: ', '.join(reiobj.ReiLegalBases)"/>
         </span><br>
 
         <label i18n:translate="label_rei_Medium">Medium</label>:
-        <span tal:condition="python:hasattr(reiobj,'Medium')">
+        <span tal:condition="python:hasattr(reiobj, 'Medium')">
            <tal:var replace="reiobj/Medium"/>
         </span><br>
 
         <label i18n:translate="label_rei_Period">Period</label>:
         <span>
-           <tal:var replace="reiobj/Period"/>
-           <tal:var replace="reiobj/Year"/>
+           <tal:var replace="python: reiobj.period_display()"/>
         </span><br>
 
         <label>von - bis</label>:
@@ -44,7 +43,7 @@
         </span><br>
 
         <label i18n:translate="label_rei_Authority">Authority</label>:
-        <span tal:condition="python:hasattr(reiobj,'Authority')">
+        <span tal:condition="python:hasattr(reiobj, 'Authority')">
            <tal:var replace="reiobj/Authority"/>
         </span><br>
         <br>
