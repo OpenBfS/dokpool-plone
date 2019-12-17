@@ -34,8 +34,8 @@
         />
 
     <utility
-        component=".vocabularies.MstVocabularyFactory"
-        name="docpool.rei.vocabularies.MstVocabulary"
+        component=".vocabularies.MStIDVocabularyFactory"
+        name="docpool.rei.vocabularies.MStIDVocabulary"
         />
 
     <utility
@@ -44,8 +44,8 @@
         />
 
     <utility
-        component=".vocabularies.MediaVocabularyFactory"
-        name="docpool.rei.vocabularies.MediaVocabulary"
+        component=".vocabularies.MediumVocabularyFactory"
+        name="docpool.rei.vocabularies.MediumVocabulary"
         />
 
     <utility
@@ -54,8 +54,8 @@
         />
 
     <utility
-        component=".vocabularies.PdfVersionVocabularyFactory"
-        name="docpool.rei.vocabularies.PdfVersionVocabulary"
+        component=".vocabularies.PDFVersionVocabularyFactory"
+        name="docpool.rei.vocabularies.PDFVersionVocabulary"
         />
 
     <utility

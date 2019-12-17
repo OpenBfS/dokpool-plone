@@ -83,8 +83,8 @@ class IREIDoc(IDocumentExtension):
             source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
     )
-    read_permission(MstIds='docpool.rei.AccessRei')
-    write_permission(MstIds='docpool.rei.AccessRei')
+    read_permission(MStIDs='docpool.rei.AccessRei')
+    write_permission(MStIDs='docpool.rei.AccessRei')
 
     directives.widget(ReiLegalBases=CheckBoxFieldWidget)
     ReiLegalBases = schema.List(
@@ -98,7 +98,7 @@ class IREIDoc(IDocumentExtension):
     write_permission(ReiLegalBases='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('ReiLegalBases')
 
-    directives.widget(Origin=CheckBoxFieldWidget)
+    directives.widget(Origins=CheckBoxFieldWidget)
     Origins = schema.List(
         title=_(u'label_rei_Origin', default=u'Ersteller'),
         description=_(u'description_rei_Origin', default=u''),
@@ -106,9 +106,9 @@ class IREIDoc(IDocumentExtension):
             source=u"docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
     )
-    read_permission(Origin='docpool.rei.AccessRei')
-    write_permission(Origin='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Origin')
+    read_permission(Origins='docpool.rei.AccessRei')
+    write_permission(Origins='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Origins')
 
     Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
@@ -159,8 +159,8 @@ class IREIDoc(IDocumentExtension):
         source="docpool.rei.vocabularies.PDFVersionVocabulary",
         required=True,
     )
-    read_permission(PdfVersion='docpool.rei.AccessRei')
-    write_permission(PdfVersion='docpool.rei.AccessRei')
+    read_permission(PDFVersion='docpool.rei.AccessRei')
+    write_permission(PDFVersion='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('PDFVersion')
 
 
