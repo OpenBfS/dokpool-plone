@@ -61,7 +61,7 @@ class DocpoolSetup(BrowserView):
         alsoProvides(self.request, IDisableCSRFProtection)
         # disable queued indexing because for unclread resons the
         # index 'scenarios' is empty
-        queue_indexing = os.environ.get('CATALOG_OPTIMIZATION_DISABLED', 'None')
+        queue_indexing = os.environ.get('CATALOG_OPTIMIZATION_DISABLED', None)
         os.environ['CATALOG_OPTIMIZATION_DISABLED'] = '1'
 
 

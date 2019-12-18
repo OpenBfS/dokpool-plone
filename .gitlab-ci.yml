@@ -13,4 +13,6 @@ before_script:
 #    - pre-commit run --all-files
 test:
   script:
-    - ./bin/test --all
+    - ./bin/test
+# Tests only docpool_setup (without robot)
+    - ./bin/test -t test_demo_setup --all
