@@ -13,4 +13,4 @@ before_script:
 #    - pre-commit run --all-files
 test:
   script:
-    - ./bin/test
+    - ./bin/test --all
