@@ -406,6 +406,19 @@ class DocpoolSetup(BrowserView):
                 NuclearInstallation=u'U13A KKW Lubmin/Greifswald ',
                 PdfVersion=u'PDF/A-1b',
             )
+
+        # Create Pinnwand Collections for Docpools
+        dbconfig_bund = docpool_bund['contentconfig']['dbconfig']
+        groundcontamination = docpool_bund['config']['dtypes']['groundcontamination']
+        pinnwand_bund = api.content.create(
+            container=dbconfig_bund,
+            type='DashboardCollection',
+            id="pinnwand_bund",
+            title=u'Default Bund Pinnwand',
+            description=u'Default Bund Pinnwand',
+            docTypes=groundcontamination.UDI())
+        # Set the create DCollection
+        docpool_bund['esd']['dashboard'].dbCollections = pinnwand_bund.UID()
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
