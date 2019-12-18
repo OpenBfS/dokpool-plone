@@ -302,8 +302,8 @@ class REIDoc(FlexibleView):
         return api.portal.get_localized_time(self.StopSampling)
 
     def mstids_display(self):
-        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.MstVocabulary')()
-        return u', '.join(voc.getTerm(i).title for i in self.MstIds)
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.MStIDVocabulary')()
+        return u', '.join(voc.getTerm(i).title for i in self.MStIDs)
 
     def period_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
@@ -370,14 +370,14 @@ def set_title(obj, event=None):
         medium = u'({}) '.format(adapted.Medium)
     else:
         medium = u''
-    origin = u'({})'.format(', '.join(adapted.Origin))
-    new_title = u'REI-{legal} {medium}{period} {installations_prefix} {installations} {origin}'.format(
+    origins = u'({})'.format(', '.join(adapted.Origins))
+    new_title = u'REI-{legal} {medium}{period} {installations_prefix} {installations} {origins}'.format(
         legal=legal,
         period=period,
         installations_prefix=installations_prefix,
         installations=installations,
         medium=medium,
-        origin=origin,
+        origins=origins,
         )
     obj.title = new_title
     obj.reindexObject(idxs=['Title'])

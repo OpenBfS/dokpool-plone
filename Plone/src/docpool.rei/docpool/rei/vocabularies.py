@@ -75,7 +75,7 @@ class PeriodVocabulary(object):
     """
     """
 
-    def __call__(self, context):
+    def __call__(self, context=None):
         items = [
             (u'Y', u'Jahr'),
             (u'H1', u'1. Halbjahr'),
@@ -110,6 +110,7 @@ class PDFVersionVocabulary(object):
 
     def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
+            u'keine Angabe',
             u'PDF/A-1b',
             u'PDF/A-1a',
             u'PDF/A-2a',
