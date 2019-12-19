@@ -32,7 +32,7 @@ msgid "Makes documents support REI functions"
 msgstr "Sorgt bei Dokumenten für REI Funktionen"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Media"
+msgid "Medium"
 msgstr "Medium"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -40,11 +40,11 @@ msgid "Metadata"
 msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "MstId"
-msgstr ""
+msgid "MStIDs"
+msgstr "Messstellen IDs"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Nuclear Installation"
+msgid "Nuclear Installations"
 msgstr "Kerntechnische Anlage"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -64,7 +64,7 @@ msgid "REI DocType"
 msgstr "REI Dokumenttyp"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "REI legal Base"
+msgid "REI legal Bases"
 msgstr "gesetzliche Grundlage"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -96,7 +96,7 @@ msgid "description_rei_Media"
 msgstr "Umweltmedium"
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_MstId"
+msgid "description_rei_MStID"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -133,19 +133,19 @@ msgstr "docpool.rei"
 msgid "label_rei_Authority"
 msgstr "Aufsichtsbehörde"
 
-#. Default: "Media"
+#. Default: "Medium"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Media"
 msgstr "Medium"
 
-#. Default: "MstId"
+#. Default: "MStIDs"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_MstId"
+msgid "label_rei_MStIDs"
 msgstr ""
 
-#. Default: "NuclearInstallation"
+#. Default: "NuclearInstallations"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_NuclearInstallation"
@@ -158,12 +158,12 @@ msgstr "Kerntechnische Anlage"
 msgid "label_rei_Origin"
 msgstr "Urheber"
 
-#. Default: "PdfVersion"
+#. Default: "PDFVersion"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 #, fuzzy
-msgid "label_rei_PdfVersion"
-msgstr "Pdf/A Version"
+msgid "label_rei_PDFVersion"
+msgstr "PDF/A Version"
 
 #. Default: "Period"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py

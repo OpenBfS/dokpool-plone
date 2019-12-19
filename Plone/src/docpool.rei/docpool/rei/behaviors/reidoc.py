@@ -6,6 +6,7 @@ from collective import dexteritytextindexer
 from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.interfaces import IDPDocument
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
@@ -14,52 +15,58 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.interfaces import IEditForm
 from zope import schema
+from zope.component import adapter
+from zope.component import getUtility
 from zope.interface import provider
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectModifiedEvent
+from zope.schema.interfaces import IVocabularyFactory
 
 
 START_SAMPLING_MAPPING = {
-    '1. Quartal': '1.1.',
-    '2. Quartal': '1.4.',
-    '3. Quartal': '1.7.',
-    '4. Quartal': '1.10.',
-    '1. Halbjahr': '1.1.',
-    '2. Halbjahr': '1.7.',
-    'Jahr': '1.1.',
-    'Januar': '1.1.',
-    'Februar': '1.2.',
-    'März': '1.3.',
-    'April': '1.4.',
-    'Mai': '1.5.',
-    'Juni': '1.6.',
-    'Juli': '1.7.',
-    'August': '1.8.',
-    'September': '1.9.',
-    'Oktober': '1.10.',
-    'November': '1.11.',
-    'Dezember': '1.12.',
+    'Y': '1.1.',
+    'H1': '1.1.',
+    'H2': '1.7.',
+    'Q1': '1.1.',
+    'Q2': '1.4.',
+    'Q3': '1.7.',
+    'Q4': '1.10.',
+    'M1': '1.1.',
+    'M2': '1.2.',
+    'M3': '1.3.',
+    'M4': '1.4.',
+    'M5': '1.5.',
+    'M6': '1.6.',
+    'M7': '1.7.',
+    'M8': '1.8.',
+    'M9': '1.9.',
+    'M10': '1.10.',
+    'M11': '1.11.',
+    'M12': '1.12.',
 }
 
 STOP_SAMPLING_MAPPING = {
-    '1. Quartal': '1.4.',
-    '2. Quartal': '1.7.',
-    '3. Quartal': '1.10.',
-    '4. Quartal': '1.1.',
-    '1. Halbjahr': '1.7.',
-    '2. Halbjahr': '1.1.',
-    'Jahr': '1.1.',
-    'Januar': '1.2.',
-    'Februar': '1.3.',
-    'März': '1.4.',
-    'April': '1.5.',
-    'Mai': '1.6.',
-    'Juni': '1.7.',
-    'Juli': '1.8.',
-    'August': '1.9.',
-    'September': '1.10.',
-    'Oktober': '1.11.',
-    'November': '1.12.',
-    'Dezember': '1.1.',
+    'Y': '1.1.',
+    'H1': '1.7.',
+    'H2': '1.1.',
+    'Q1': '1.4.',
+    'Q2': '1.7.',
+    'Q3': '1.10.',
+    'Q4': '1.1.',
+    'M1': '1.2.',
+    'M2': '1.3.',
+    'M3': '1.4.',
+    'M4': '1.5.',
+    'M5': '1.6.',
+    'M6': '1.7.',
+    'M7': '1.8.',
+    'M8': '1.9.',
+    'M9': '1.10.',
+    'M10': '1.11.',
+    'M11': '1.12.',
+    'M12': '1.1.',
 }
 
 
@@ -76,37 +83,46 @@ class IREIDoc(IDocumentExtension):
     write_permission(Authority='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Authority')
 
-    MstId = schema.List(
-        title=_(u'label_rei_MstId', default=u'Messstellen-ID'),
-        description=_(u'description_rei_MstId', default=u''),
+    MStIDs = schema.List(
+        title=_(u'label_rei_MStID', default=u'Messstellen-ID'),
+        description=_(u'description_rei_MStID', default=u''),
         value_type=schema.Choice(
-            source="docpool.rei.vocabularies.MstVocabulary"),
+            source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
     )
-    read_permission(MstId='docpool.rei.AccessRei')
-    write_permission(MstId='docpool.rei.AccessRei')
+    read_permission(MStIDs='docpool.rei.AccessRei')
+    write_permission(MStIDs='docpool.rei.AccessRei')
+    directives.omitted(IEditForm, 'MStIDs')
 
-    ReiLegalBase = schema.Choice(
-        title=_(u'label_rei_ReiLegalBase', default=u'ReiLegalBase'),
-        description=_(u'description_rei_ReiLegalBase', default=u''),
-        source="docpool.rei.vocabularies.ReiLegalBaseVocabulary",
+    mstids_initial_value = schema.TextLine(
+        title=_(u'label_rei_mstids_initial_value', default=u'Messstellen'),
+        required=False,
+    )
+    directives.omitted('mstids_initial_value')
+
+    directives.widget(ReiLegalBases=CheckBoxFieldWidget)
+    ReiLegalBases = schema.List(
+        title=_(u'label_rei_ReiLegalBases', default=u'ReiLegalBases'),
+        description=_(u'description_rei_ReiLegalBases', default=u''),
+        value_type=schema.Choice(
+            source=u"docpool.rei.vocabularies.ReiLegalBaseVocabulary"),
         required=True,
     )
-    read_permission(ReiLegalBase='docpool.rei.AccessRei')
-    write_permission(ReiLegalBase='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('ReiLegalBase')
+    read_permission(ReiLegalBases='docpool.rei.AccessRei')
+    write_permission(ReiLegalBases='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('ReiLegalBases')
 
-    directives.widget(Origin=CheckBoxFieldWidget)
-    Origin = schema.List(
+    directives.widget(Origins=CheckBoxFieldWidget)
+    Origins = schema.List(
         title=_(u'label_rei_Origin', default=u'Ersteller'),
         description=_(u'description_rei_Origin', default=u''),
         value_type=schema.Choice(
             source=u"docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
     )
-    read_permission(Origin='docpool.rei.AccessRei')
-    write_permission(Origin='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Origin')
+    read_permission(Origins='docpool.rei.AccessRei')
+    write_permission(Origins='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Origins')
 
     Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
@@ -128,37 +144,38 @@ class IREIDoc(IDocumentExtension):
     write_permission(Period='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Period')
 
-    Media = schema.Choice(
-        title=_(u'label_rei_Media', default=u'Media'),
-        description=_(u'description_rei_Media', default=u''),
-        source="docpool.rei.vocabularies.MediaVocabulary",
+    Medium = schema.Choice(
+        title=_(u'label_rei_Medium', default=u'Medium'),
+        description=_(u'description_rei_Medium', default=u''),
+        source="docpool.rei.vocabularies.MediumVocabulary",
         required=False,
     )
-    read_permission(Media='docpool.rei.AccessRei')
-    write_permission(Media='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Media')
+    read_permission(Medium='docpool.rei.AccessRei')
+    write_permission(Medium='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Medium')
 
-    NuclearInstallation = schema.Choice(
+    NuclearInstallations = schema.List(
         title=_(
-            u'label_rei_NuclearInstallation',
-            default=u'NuclearInstallation'),
+            u'label_rei_NuclearInstallations',
+            default=u'NuclearInstallations'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
-        source="docpool.rei.vocabularies.NuclearInstallationVocabulary",
+        value_type=schema.Choice(
+        source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
     )
-    read_permission(NuclearInstallation='docpool.rei.AccessRei')
-    write_permission(NuclearInstallation='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('NuclearInstallation')
+    read_permission(NuclearInstallations='docpool.rei.AccessRei')
+    write_permission(NuclearInstallations='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('NuclearInstallations')
 
-    PdfVersion = schema.Choice(
-        title=_(u'label_rei_PdfVersion', default=u'Pdf Version'),
-        description=_(u'description_rei_PdfVersion', default=u''),
-        source="docpool.rei.vocabularies.PdfVersionVocabulary",
+    PDFVersion = schema.Choice(
+        title=_(u'label_rei_PDFVersion', default=u'PDF Version'),
+        description=_(u'description_rei_PDFVersion', default=u''),
+        source="docpool.rei.vocabularies.PDFVersionVocabulary",
         required=True,
     )
-    read_permission(PdfVersion='docpool.rei.AccessRei')
-    write_permission(PdfVersion='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('PdfVersion')
+    read_permission(PDFVersion='docpool.rei.AccessRei')
+    write_permission(PDFVersion='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('PDFVersion')
 
 
 class REIDoc(FlexibleView):
@@ -181,20 +198,28 @@ class REIDoc(FlexibleView):
         self.context.Authority = value
 
     @property
-    def MstId(self):
-        return self.context.MstId
+    def MStIDs(self):
+        return self.context.MStIDs
 
-    @MstId.setter
-    def MstId(self, value):
-        self.context.MstId = value
+    @MStIDs.setter
+    def MStIDs(self, value):
+        self.context.MStIDs = value
 
     @property
-    def ReiLegalBase(self):
-        return self.context.ReiLegalBase
+    def mstids_initial_value(self):
+        return self.context.mstids_initial_value
 
-    @ReiLegalBase.setter
-    def ReiLegalBase(self, value):
-        self.context.ReiLegalBase = value
+    @mstids_initial_value.setter
+    def mstids_initial_value(self, value):
+        self.context.mstids_initial_value = value
+
+    @property
+    def ReiLegalBases(self):
+        return self.context.ReiLegalBases
+
+    @ReiLegalBases.setter
+    def ReiLegalBases(self, value):
+        self.context.ReiLegalBases = value
 
     @property
     def Year(self):
@@ -213,36 +238,36 @@ class REIDoc(FlexibleView):
         self.context.Period = value
 
     @property
-    def Media(self):
-        return self.context.Media
+    def Medium(self):
+        return self.context.Medium
 
-    @Media.setter
-    def Media(self, value):
-        self.context.Media = value
-
-    @property
-    def NuclearInstallation(self):
-        return self.context.NuclearInstallation
-
-    @NuclearInstallation.setter
-    def NuclearInstallation(self, value):
-        self.context.NuclearInstallation = value
+    @Medium.setter
+    def Medium(self, value):
+        self.context.Medium = value
 
     @property
-    def PdfVersion(self):
-        return self.context.PdfVersion
+    def NuclearInstallations(self):
+        return self.context.NuclearInstallations
 
-    @PdfVersion.setter
-    def PdfVersion(self, value):
-        self.context.PdfVersion = value
+    @NuclearInstallations.setter
+    def NuclearInstallations(self, value):
+        self.context.NuclearInstallations = value
 
     @property
-    def Origin(self):
-        return self.context.Origin
+    def PDFVersion(self):
+        return self.context.PDFVersion
 
-    @Origin.setter
-    def Origin(self, value):
-        self.context.Origin = value
+    @PDFVersion.setter
+    def PDFVersion(self, value):
+        self.context.PDFVersion = value
+
+    @property
+    def Origins(self):
+        return self.context.Origins
+
+    @Origins.setter
+    def Origins(self, value):
+        self.context.Origins = value
 
     def isClean(self):
         """
@@ -275,3 +300,95 @@ class REIDoc(FlexibleView):
 
     def sampling_stop_localized(self):
         return api.portal.get_localized_time(self.StopSampling)
+
+    def mstids_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.MStIDVocabulary')()
+        return u', '.join(voc.getTerm(i).title for i in self.MStIDs)
+
+    def period_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
+        return u'{} {}'.format(voc.getTerm(self.Period).title, self.Year)
+
+
+# IREIDoc sets no marker-interface so we cannot constrain
+# the suscriber on IREIDoc. Instead we use IDPDocument
+@adapter(IDPDocument, IObjectAddedEvent)
+def set_title(obj, event=None):
+    # Only if it is a IREIDoc.
+    try:
+        adapted = IREIDoc(obj)
+    except Exception:
+        return
+    legal_base_mapping = {
+        u'REI-E': u'Emmissionsbericht',
+        u'REI-I': u'Immissionsbericht',
+    }
+    if len(adapted.ReiLegalBases) > 1:
+        legal = u'Immissions- und Emissionsbericht'
+    else:
+        legal = legal_base_mapping.get(adapted.ReiLegalBases[0])
+
+    period_mapping = {
+        u'Y': u'des {}es',
+        u'H1': u'des {}es',
+        u'H2': u'des {}es',
+        u'Q1': u'des {}s',
+        u'Q2': u'des {}s',
+        u'Q3': u'des {}s',
+        u'Q4': u'des {}s',
+        u'M1': u'{}',
+        u'M2': u'{}',
+        u'M3': u'{}',
+        u'M4': u'{}',
+        u'M5': u'{}',
+        u'M6': u'{}',
+        u'M7': u'{}',
+        u'M8': u'{}',
+        u'M9': u'{}',
+        u'M10': u'{}',
+        u'M11': u'{}',
+        u'M12': u'{}',
+    }
+    period_vocabulary = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
+    period_template = period_mapping.get(adapted.Period)
+    period_prefix = period_template.format(period_vocabulary.getTerm(adapted.Period).title)
+    period = u'{} {}'.format(period_prefix, adapted.Year)
+
+    installations = adapted.NuclearInstallations
+    if len(installations) == 1:
+        installations_prefix = u'für die Kerntechnische Anlage'
+        installations = installations[0]
+    elif len(installations) == 2:
+        installations_prefix = u'für die Kerntechnischen Anlagen'
+        installations = u' und '.join(installations)
+    else:
+        installations_prefix = u'für die Kerntechnischen Anlagen'
+        part1 = u', '.join(installations[:-1])
+        installations = u'{} und {}'.format(part1, installations[-1])
+
+    if adapted.Medium:
+        medium = u'({}) '.format(adapted.Medium)
+    else:
+        medium = u''
+    origins = u'({})'.format(', '.join(adapted.Origins))
+    new_title = u'REI-{legal} {medium}{period} {installations_prefix} {installations} {origins}'.format(
+        legal=legal,
+        period=period,
+        installations_prefix=installations_prefix,
+        installations=installations,
+        medium=medium,
+        origins=origins,
+        )
+    obj.title = new_title
+    obj.reindexObject(idxs=['Title'])
+
+
+@adapter(IDPDocument, IObjectAddedEvent)
+def save_mstid(obj, event=None):
+    # Only if it is a IREIDoc.
+    try:
+        adapted = IREIDoc(obj)
+    except Exception:
+        return
+    value = adapted.mstids_display()
+    adapted.mstids_initial_value = value
