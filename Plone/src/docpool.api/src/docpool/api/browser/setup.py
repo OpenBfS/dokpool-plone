@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
+from Products.CMFPlone.utils import get_installer
+from Products.Five.browser import BrowserView
 from datetime import datetime
 from datetime import timedelta
 from plone import api
@@ -8,20 +12,15 @@ from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
-from Products.CMFPlone.utils import get_installer
-from Products.Five.browser import BrowserView
-from z3c.relationfield import RelationValue
+from z3c.relationfield.relation import RelationValue
 from zope.component import getUtility
 from zope.component import queryUtility
 from zope.event import notify
+from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
-from zope.globalrequest import getRequest
-
 import logging
 import os
 import random
@@ -416,9 +415,9 @@ class DocpoolSetup(BrowserView):
             id="pinnwand_bund",
             title=u'Default Bund Pinnwand',
             description=u'Default Bund Pinnwand',
-            docTypes=groundcontamination.UDI())
+            docTypes=[RelationValue(get_intid(groundcontamination))])
         # Set the create DCollection
-        docpool_bund['esd']['dashboard'].dbCollections = pinnwand_bund.UID()
+        docpool_bund['esd']['dashboard'].dbCollections = [RelationValue(get_intid(pinnwand_bund))]
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
