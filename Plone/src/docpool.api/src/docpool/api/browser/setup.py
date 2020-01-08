@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from datetime import timedelta
+
+from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
@@ -361,7 +363,23 @@ class DocpoolSetup(BrowserView):
             api.content.transition(obj=new, transition='publish')
             log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
                 new.absolute_url()))
-
+        # Create journals in bund
+        journal1 = api.content.create(
+            container=docpool_bund['esd'],
+            id='journal1',
+            type='Journal',
+            title=u'Journal1',
+        )
+        _create_journalentries(journal1, 5)
+        modified(journal1)
+        journal2 = api.content.create(
+            container=docpool_bund['esd'],
+            id='journal2',
+            type='Journal',
+            title=u'Journal2',
+        )
+        _create_journalentries(journal2, 15)
+        modified(journal2)
         # archive event
         dpevent_to_archive.archiveAndClose(self.request)
 
