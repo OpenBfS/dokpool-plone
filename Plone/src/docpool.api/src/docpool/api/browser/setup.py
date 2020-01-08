@@ -382,7 +382,7 @@ class DocpoolSetup(BrowserView):
                 Medium=u'Fortluft',
                 ReiLegalBases=[u'REI-E'],
                 Origins=[u'unabhängige Messstelle'],
-                MStIDs=[u'3132 ', u'3141 ', u'3151 ', u'3161 ', u'3171 '],
+                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
                 Authority=u'Baden-Württemberg',
                 PDFVersion=u'PDF/A-1b',
             )
@@ -402,7 +402,7 @@ class DocpoolSetup(BrowserView):
                 Medium=u'Abwasser',
                 ReiLegalBases=[u'REI-I'],
                 Origins=[u'Genehmigungsinhaber'],
-                MStIDs=[u'20000 '],
+                MStIDs=[u'20000'],
                 Authority=u'Mecklenburg-Vorpommern',
                 PDFVersion=u'PDF/A-1b',
             )
