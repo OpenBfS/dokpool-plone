@@ -58,7 +58,6 @@ class Renderer(base.Renderer):
         fc = cs.getFolderContents(
             {
                 'portal_type': [
-                    'ELANDocCollection',
                     'Dashboard',
                     'SituationOverview',
                     'Journal'
