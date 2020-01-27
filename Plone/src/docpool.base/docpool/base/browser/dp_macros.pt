@@ -190,7 +190,7 @@
        title="Show folder"
        i18n:attributes="title"
        tal:attributes="href string:javascript:go_to('${item_url}');
-                               class string:$item_type_class $item_wf_state_class a.contenttype-folder::before "
+                               class string:$item_type_class $item_wf_state_class"
        tal:content="dpbrain/Title">Title
     </a>
     <div class="description" tal:condition="python:item_description"
