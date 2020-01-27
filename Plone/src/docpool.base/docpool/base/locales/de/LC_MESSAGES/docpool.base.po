@@ -634,6 +634,34 @@ msgstr ""
 msgid "submit_bmu"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private - Show document"
+msgstr "privat/Gruppenintern - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_authority - Show document"
+msgstr "An die Aufsichtsbehörde eingereicht - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bfs - Show document"
+msgstr "An BfS eingereicht - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bmu - Show document"
+msgstr "An BMU eingereicht - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "published - Show document"
+msgstr "veröffentlicht - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "revised - Show document"
+msgstr "revidiert - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending - Show document"
+msgstr "zur Redaktion eingereicht - Klicken, um das Dokument anzuzeigen"
+
 #. Default: "Content listing"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "summary_content_listing"

@@ -634,6 +634,34 @@ msgstr ""
 msgid "submit_bmu"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_authority - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bfs - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bmu - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "published - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "revised - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending - Show document"
+msgstr ""
+
 #. Default: "Content listing"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "summary_content_listing"

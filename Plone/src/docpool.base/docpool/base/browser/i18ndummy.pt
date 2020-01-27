@@ -47,6 +47,15 @@
         <i18n:dummy translate="Submit to Authority"></i18n:dummy>
         <i18n:dummy translate="Submit to BMU"></i18n:dummy>
         <i18n:dummy translate="Submit to BfS"></i18n:dummy>
+
+        <i18n:dummy translate="private - Show document"></i18n:dummy>
+        <i18n:dummy translate="pending_authority - Show document"></i18n:dummy>
+        <i18n:dummy translate="pending_bfs - Show document"></i18n:dummy>
+        <i18n:dummy translate="pending_bmu - Show document"></i18n:dummy>
+        <i18n:dummy translate="published - Show document"></i18n:dummy>
+        <i18n:dummy translate="revised - Show document"></i18n:dummy>
+        <i18n:dummy translate="pending - Show document"></i18n:dummy>
+
     </metal:content-core>
 </metal:content-core>
 </body>
