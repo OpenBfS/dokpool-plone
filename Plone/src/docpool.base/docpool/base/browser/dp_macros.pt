@@ -310,6 +310,18 @@
                 <span tal:condition="python:b.Description()"
                       tal:content="python:b.Description()"/>
               </font>
+                  <a tal:attributes="href python: b.absolute_url() + '/delete_confirmation'"
+                     tal:condition="python: edit_allowed"
+                          href="#"
+                          id="btn-delete"
+                          class="btn btn-danger"
+                          title=""
+                          target="_top"
+                          aria-label="Delete"
+                          data-original-title="Delete">
+                      <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+
               <tal:if condition="python:multiple_images and edit_allowed">
                    <tal:block tal:define="quoted_id python: view.quote_plus(b.getId());">
                     <a href=""
