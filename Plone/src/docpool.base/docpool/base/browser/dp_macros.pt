@@ -190,7 +190,7 @@
        title="Show folder"
        i18n:attributes="title"
        tal:attributes="href string:javascript:go_to('${item_url}');
-                               class string:$item_type_class $item_wf_state_class"
+                               class string:$item_type_class $item_wf_state_class a.contenttype-folder::before "
        tal:content="dpbrain/Title">Title
     </a>
     <div class="description" tal:condition="python:item_description"
@@ -252,6 +252,17 @@
                   (<span tal:content="python:d.file.contentType"/>,&nbsp;<span
                         tal:content="python:d.getObjSize(None, d.file.size)"/>)
                 </font>
+                  <a tal:attributes="href python: d.absolute_url() + '/delete_confirmation'"
+                     tal:condition="python: edit_allowed"
+                          href="#"
+                          id="btn-delete"
+                          class="btn btn-danger"
+                          title=""
+                          target="_top"
+                          aria-label="Delete"
+                          data-original-title="Delete">
+                      <span class="glyphicon glyphicon-trash"></span>
+                  </a>
                 <tal:if condition="python:multiple_files and edit_allowed">
                    <tal:block tal:define="quoted_id python: view.quote_plus(d.getId());">
                     <a href=""
@@ -303,6 +314,18 @@
                 <span tal:condition="python:b.Description()"
                       tal:content="python:b.Description()"/>
               </font>
+                  <a tal:attributes="href python: b.absolute_url() + '/delete_confirmation'"
+                     tal:condition="python: edit_allowed"
+                          href="#"
+                          id="btn-delete"
+                          class="btn btn-danger"
+                          title=""
+                          target="_top"
+                          aria-label="Delete"
+                          data-original-title="Delete">
+                      <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+
               <tal:if condition="python:multiple_images and edit_allowed">
                    <tal:block tal:define="quoted_id python: view.quote_plus(b.getId());">
                     <a href=""
