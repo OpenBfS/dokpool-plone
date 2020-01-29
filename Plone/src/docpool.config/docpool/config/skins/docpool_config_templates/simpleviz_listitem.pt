@@ -42,8 +42,8 @@
                 <td class="title">
                     <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
                     <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
-                       <div class="map">
-                           <a href="${context/absolute_url}" i18n:domain="docpool.config" i18n:translate="">
+                       <div class="map" tal:define="big python:context.getImages()[0]" tal:condition="nocall:big">
+                           <a href="${big/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">
                                  <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')"/>
                            </a>
                        </div>
