@@ -34,13 +34,10 @@ class DocMetaView(BrowserView):
             context, self.request)
         results = []
         for behavior_name in behavior_names:
-            # skip behaviors without icons?
             icon = appIcon(behavior_name)
-            if not icon:
-                continue
             item = {
                 'behavior_name': behavior_name,
-                'icon_url': '{}/{}'.format(portal_url, icon),
+                'icon_url': icon and '{}/{}'.format(portal_url, icon) or False,
                 'behavior': context.doc_extension(behavior_name),
             }
             # TODO: Sort?

@@ -99,7 +99,7 @@ class DocpoolSetup(BrowserView):
 
         user1 = add_user(docpool_bund, 'user1', ['group1'])
         log.info(u'Created user1 and group1 in docpool bund')
-        add_user(docpool_land, 'user2', ['group2'], enabled_apps=['elan', 'doksys'])
+        user2 = add_user(docpool_land, 'user2', ['group2'], enabled_apps=['elan', 'doksys'])
         log.info(u'Created user2 and group2 in docpool hessen')
 
         # Setup REI Users and groups for hessen and bayern
@@ -436,6 +436,25 @@ class DocpoolSetup(BrowserView):
             docTypes=[RelationValue(get_intid(groundcontamination))])
         # Set the create DCollection
         docpool_bund['esd']['dashboard'].dbCollections = [RelationValue(get_intid(pinnwand_bund))]
+
+        # Add user to ContentSender & Reveivers
+        api.group.add_user(groupname='bund_Senders', user=user1)
+        api.group.add_user(groupname='hessen_Receivers', user=user2)
+
+        # Add DPTransferFolder in hessen to receive data from bund
+        dptranfers_folder = docpool_land['content']['Transfers']
+        dptransferfolder = api.content.create(
+            container=dptranfers_folder,
+            type='DPTransferFolder',
+            title=u'von Bund',
+            description=u'foo',
+            sendingESD=docpool_bund.UID(),
+            permLevel="read/write",
+            unknownDtDefault='block',
+            unknownScenDefault='block'
+        )
+        modified(dptransferfolder)
+
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
