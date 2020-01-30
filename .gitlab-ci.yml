@@ -14,3 +14,5 @@ before_script:
 test:
   script:
     - ./bin/test
+# Tests only docpool_setup (without robot)
+    - ./bin/test -t test_demo_setup --all
