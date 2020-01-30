@@ -290,7 +290,7 @@ class TestDocTypes(unittest.TestCase):
                     'mediarelease',
                     'lasair_lasat_projection',
                     'mresult_feed',
-                    'mesurement_requirements',
+                    'measurement_requirements',
                     'protectiveactions',
                     'note_measurement_teams',
                     'mresult_food',
