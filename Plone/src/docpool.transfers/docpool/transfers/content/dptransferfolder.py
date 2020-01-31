@@ -14,6 +14,7 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
+from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import execute_under_special_role
@@ -366,6 +367,11 @@ def deleted(obj, event=None):
         if old:
             __session__.delete(old)
             __session__.flush()
+
+        if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
+                event.object):
+            # do not modify content from the site or docpool that will be deleted
+            return
         # Revoke any read access
         obj.revokeReadAccess()
 
