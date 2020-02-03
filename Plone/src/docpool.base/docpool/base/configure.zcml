@@ -143,11 +143,6 @@
     name="docpool.base.vocabularies.UserDocumentPools"
     />
 
-    <subscriber
-      for="docpool.base.events.IDocumentPoolUndeleteable
-           OFS.interfaces.IObjectWillBeRemovedEvent"
-      handler=".events.delete_handler"
-      />
-
+    <subscriber handler=".events.delete_handler" />
 
 </configure>

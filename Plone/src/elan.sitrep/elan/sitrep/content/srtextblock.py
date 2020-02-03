@@ -24,6 +24,7 @@ from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from zope.component import adapter
 from zope.interface import implementer
@@ -118,6 +119,9 @@ def updated(obj, event=None):
 
 @adapter(ISRTextBlock, IObjectRemovedEvent)
 def removed(obj, event):
+    if IPloneSiteRoot.providedBy(event.object):
+        return
+
     log("SRTextBlock removed: %s" % str(obj))
     sr_cat = getToolByName(obj, "sr_catalog")
     op = event.oldParent

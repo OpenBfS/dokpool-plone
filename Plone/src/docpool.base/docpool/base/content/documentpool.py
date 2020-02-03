@@ -30,6 +30,7 @@ from plone.supermodel import model
 from plone.namedfile.field import NamedBlobImage
 from plone.protect.utils import safeWrite
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
@@ -223,6 +224,9 @@ def docPoolModified(obj, event=None):
 def docPoolRemoved(obj, event=None):
     """
     """
+    if IPloneSiteRoot.providedBy(event.object):
+        return
+
     self = obj
     # Trigger my own method
     APP_REGISTRY[BASE_APP]['dpRemovedMethod'](self)

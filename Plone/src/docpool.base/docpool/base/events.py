@@ -1,6 +1,9 @@
 from AccessControl import Unauthorized
+from OFS.interfaces import IObjectWillBeRemovedEvent
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
+from zope.component import adapter
 from zope.component.interfaces import ObjectEvent
 from zope.interface import implementer
 from zope.interface import Interface
@@ -11,10 +14,14 @@ class IDocumentPoolUndeleteable(Interface):
     """
 
 
+@adapter(IDocumentPoolUndeleteable, IObjectWillBeRemovedEvent)
 def delete_handler(object, event):
     """
     Called when an undeleteable object is removed. Only allowed for Managers.
     """
+    if IPloneSiteRoot.providedBy(event.object):
+        return
+
     log("Deleting protected object " + object.getId())
     try:
         if not object.isAdmin():
