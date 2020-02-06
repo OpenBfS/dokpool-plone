@@ -153,7 +153,7 @@ msgstr ""
 #. Default: "Origin"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_Origin"
+msgid "label_rei_Origins"
 msgstr ""
 
 #. Default: "PDFVersion"
@@ -170,7 +170,7 @@ msgstr ""
 #. Default: "ReiLegalBase"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_ReiLegalBase"
+msgid "label_rei_ReiLegalBases"
 msgstr ""
 
 #. Default: "Year"

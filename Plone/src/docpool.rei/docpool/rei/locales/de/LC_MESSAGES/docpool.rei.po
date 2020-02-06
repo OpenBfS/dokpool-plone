@@ -148,20 +148,18 @@ msgstr ""
 #. Default: "NuclearInstallations"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_NuclearInstallation"
+msgid "label_rei_NuclearInstallations"
 msgstr "Kerntechnische Anlage"
 
 #. Default: "Origin"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-#, fuzzy
-msgid "label_rei_Origin"
+msgid "label_rei_Origins"
 msgstr "Urheber"
 
 #. Default: "PDFVersion"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-#, fuzzy
 msgid "label_rei_PDFVersion"
 msgstr "PDF/A Version"
 
@@ -173,8 +171,8 @@ msgstr "Zeitraum"
 #. Default: "ReiLegalBase"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_ReiLegalBase"
-msgstr "gesetzliche Grundlage"
+msgid "label_rei_ReiLegalBases"
+msgstr "Gesetzliche Grundlage"
 
 #. Default: "Year"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
