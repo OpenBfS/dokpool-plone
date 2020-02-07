@@ -4,6 +4,7 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_inner
 from plone import api
+from plone.api.exc import CannotGetPortalError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
@@ -17,6 +18,9 @@ from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 
+import logging
+
+log = logging.getLogger(__name__)
 
 RARELY_USED_TYPES = {
     'Collection',
@@ -258,8 +262,11 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
 
     @param kwargs: Passed to the function
     """
-
-    portal = api.portal.get()
+    try:
+        portal = api.portal.get()
+    except CannotGetPortalError:
+        log.warn('Could not get portal.')
+        return
     sm = getSecurityManager()
 
     try:
