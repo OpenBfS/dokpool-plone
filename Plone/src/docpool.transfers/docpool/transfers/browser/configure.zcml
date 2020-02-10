@@ -1,27 +1,30 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.transfers">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="docpool.transfers">
 
     <include package="plone.app.contentmenu" />
 
-    <browser:page permission="zope2.View"
-                  name="transfers.macros"
-                  for="*"
-                  template="transfers_macros.pt"
-    />
+    <browser:page
+        for="*"
+        name="transfers.macros"
+        template="transfers_macros.pt"
+        permission="zope2.View"
+        />
 
-    <browser:page permission="zope2.View" name="view" for="..interfaces.IDPTransferFolder" class=".dptransferfolder.DPTransferFolderView" />
+    <browser:page
+        name="view"
+        for="..interfaces.IDPTransferFolder"
+        class=".dptransferfolder.DPTransferFolderView"
+        permission="zope2.View"
+        />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <browser:page
+        name="dpdocument_transfer_form"
+        for="*"
+        class=".dpdocument_transfer_form.TransferForm"
+        template="dpdocument_transfer_form.pt"
+        permission="zope2.View"
+        />
 
 </configure>

@@ -9,13 +9,14 @@
             id="doctransferform"
             name="transferform"
             action="#"
-            tal:attributes="action string:${here/absolute_url}/${template/id}"
-            tal:define="request here/REQUEST;
+            tal:attributes="action string:${context/absolute_url}/@@dpdocument_transfer_form"
+            tal:define="request context/REQUEST;
                         errors python:request.get('errors', {});
-                        docid request/id | nothing;
-                        tuple python:context.getTupleForTransfer(docid);
-                        doc python:tuple[0];
-                        dpdoc python:tuple[1]">
+                        item_infos python:view.getTransferInfos();
+                        docid python:item_infos[0];
+                        doc python:item_infos[1];
+                        dpdoc python:item_infos[2];
+                        ">
         <input type="hidden" name="form.submitted" value="1" />
 
            <h3 tal:content="doc/title"></h3>
@@ -23,7 +24,7 @@
            <table summary="Inhalt" class="elanlistingtransferform listing" id="sortable">
             <thead>
                 <tr>
-                    <th class="nosort" i18n:translate="" width="50%">Select</th>
+                    <th class="nosort" i18n:translate="" width="5">Select</th>
                     <th class="nosort" i18n:translate="">Transfer to<br></th>
                     <th class="nosort" i18n:translate=""></th>
                     <th class="nosort" i18n:translate=""></th>
@@ -40,11 +41,11 @@
                </tr>
             </tbody>
         </table>
-    <span style="display:none;" id="redirecturl" tal:content="context/absolute_url"></span>
-    <input type="hidden" name="dpdocid" value="1" tal:attributes="value docid" />
-    <div class="formControls">
-    <input type="submit" title="Absenden des Formulares" class="input-sichern" name="form.button.submit" value="Submit" i18n:attributes="value submitbutton;title submittitle"/>
-    <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value cancelbutton;title canceltitle"/>
+        <span style="display:none;" id="redirecturl" tal:content="context/absolute_url"></span>
+        <input type="hidden" name="dpdocid" value="1" tal:attributes="value docid" />
+        <div class="formControls">
+        <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="submit" i18n:attributes="value submitbutton;title submittitle"/>
+        <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="cancel" name="form.button.cancel" i18n:attributes="value cancelbutton;title canceltitle"/>
         </div>
       </form>
 </tal:def>

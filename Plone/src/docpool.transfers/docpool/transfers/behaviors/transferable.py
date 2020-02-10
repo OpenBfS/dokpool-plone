@@ -25,6 +25,7 @@ from docpool.transfers.db.model import ChannelSends
 from docpool.transfers.db.model import ReceiverLog
 from docpool.transfers.db.model import SenderLog
 from docpool.transfers.db.query import allowed_targets
+from docpool.transfers.utils import is_sender
 from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
@@ -200,7 +201,7 @@ class Transferable(FlexibleView):
         If DocType allows it
         If Object allows it directly
         """
-        if not self.context.isSender():
+        if not is_sender(self.context):
             return False
         if self.transferred or self.context.isArchive():
             return False
