@@ -41,7 +41,7 @@
                   sl python:plone_layout.have_portlets('plone.leftcolumn', view);
                   sr python:plone_layout.have_portlets('plone.rightcolumn', view);
                   body_class python:plone_layout.bodyClass(template, view);"
-    tal:attributes="class string: ${body_class} ajax_load;
+    tal:attributes="class string: ${body_class} ajax_load bfs_popup;
                     dir python:isRTL and 'rtl' or 'ltr'">
 
     <aside id="global_statusmessage">
