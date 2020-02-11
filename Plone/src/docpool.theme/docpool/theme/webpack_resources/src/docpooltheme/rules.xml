@@ -13,10 +13,8 @@
   <!-- Import Barceloneta rules -->
   <xi:include href="++theme++barceloneta/rules.xml" />
 
-  <!-- Import TTW customizations -->
-  <xi:include href="++theme++docpooltheme-custom/rules.xml">
-    <xi:fallback/>
-  </xi:include>
+  <!-- Remove hero element -->
+  <drop css:theme="div.principal" />
 
   <!-- Replace stylesheets and scripts with Webpack bundles -->
   <xi:include href="webpack.xml" />
