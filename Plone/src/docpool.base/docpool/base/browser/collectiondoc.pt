@@ -38,52 +38,8 @@
                 </tal:loop>
                 <br><br>
             </tal:if>
-            <script type='text/javascript'>
 
-function setIframeHeight( iframeId ) 
-{
- var ifDoc, ifRef = document.getElementById( iframeId );
-
- try
- {   
-  ifDoc = ifRef.contentWindow.document.documentElement;  
- }
- catch( e )
- { 
-  try
-  { 
-   ifDoc = ifRef.contentDocument.documentElement;  
-  }
-  catch(ee)
-  {   
-  }  
- }
- 
- if( ifDoc )
- {
-  ifRef.height = 1;  
-  ifRef.height = ifDoc.scrollHeight;
-  
-  /* For width resize, enable below.  */
-  
-  // ifRef.width = 1;
-  // ifRef.width = ifDoc.scrollWidth; 
- }
-}
-
-
-            </script>
-
-
-            <iframe id="inlinedoc" src="" tal:attributes="src string:${doc/absolute_url}/@@inline?popup_load=1"
-                    onload="setIframeHeight( this.id )">
-            </iframe>
-
-            <!--  script type="text/javascript">
-        /*        jq("#insertdoc").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #content-core"); */
-                jq("#doccomments").load("http://localhost:8081/Plone/Members/Groups/Group1/doc94_1354107322 #commenting");
-            </script-->
-
+            <div tal:replace="structure view/doc_inline" />
 
         </tal:def>
 

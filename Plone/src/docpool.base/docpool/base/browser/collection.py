@@ -2,7 +2,7 @@ from docpool.base.utils import extendOptions
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+from plone import api
 
 class CollectionDocView(BrowserView):
     """Default view
@@ -22,6 +22,16 @@ class CollectionDocView(BrowserView):
                 o = result[0].getObject()
                 return o
         return None
+
+    def doc_inline(self):
+        doc = self.doc()
+        if doc:
+            view = api.content.get_view(
+                name='inline',
+                context=doc,
+                request=self.request,
+            )
+            return view()
 
 
 class CollectionlistitemView(BrowserView):
