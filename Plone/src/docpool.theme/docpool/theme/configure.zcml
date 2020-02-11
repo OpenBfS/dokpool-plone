@@ -17,7 +17,7 @@
       />
 
   <plone:static
-    directory="diazo_resources"
+    directory="webpack_resources/theme/docpooltheme"
     type="theme"
     name="docpool.theme"
     />

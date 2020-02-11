@@ -32,3 +32,5 @@ Plone/\.pydevproject
 .settings
 Plone/etc/zodbpack.conf
 .plone.versioncheck.tracked.json
+# node modules webpack theme
+Plone/src/docpool.theme/docpool/theme/webpack_resources/node_modules
