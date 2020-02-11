@@ -78,17 +78,25 @@ if (jQuery('body.userrole-anonymous').length === 0) {
     import(/* webpackChunkName: "docpool" */ 'docpool');
 }
 
+// Imports the js/less for Openlayers
 if ((jQuery('body.portaltype-dpevent').length === 1)
     || (jQuery('body.template-dpevent').length === 1)){
     import("./OpenLayer");
 }
 
+// Imports the js/less for popups
 if ((jQuery('body.template-rpopup').length === 1)){
     import("./Popup");
 }
-//#portaltype-dpevents
-//#portaltype-dpevent
-// Imports the js and less for anon users
+
+// Imports the less for docpool-nonadmin bundle
+// Replaces expression: python:not object.isAdmin() and not object.isContentAdmin()
+if (jQuery('body.userrole-member').length === 1) {
+    import("./nonadmin.less")
+}
+
+// Imports the js and less for docpool-anon bundle
+// Replaces expression: python: member is None
 if (jQuery('body.userrole-anonymous').length === 1) {
     import(/* webpackChunkName: "anonymous" */ './anonymous');
 }
