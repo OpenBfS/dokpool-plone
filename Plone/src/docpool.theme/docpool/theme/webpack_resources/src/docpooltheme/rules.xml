@@ -23,9 +23,12 @@
     <xi:include href="webpack.xml" />
   </rules>
 
-      <rules css:if-content="body.bfs_popup">
+      <rules css:if-content="#portal-column-content.bfs_popup">
 
         <theme href="popup.html" />
+
+        <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
+        <copy attributes="*" css:content="body" css:theme="body" />
 
         <replace css:theme="#portal-column-content" css:content="#portal-column-content" />
 

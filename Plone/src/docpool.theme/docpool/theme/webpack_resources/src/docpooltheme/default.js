@@ -85,7 +85,7 @@ if ((jQuery('body.portaltype-dpevent').length === 1)
 }
 
 // Imports the js/less for popups
-if ((jQuery('body.template-rpopup').length === 1)){
+if ((jQuery('#portal-column-content.bfs_popup').length === 1)){
     import("./Popup");
 }
 
@@ -100,6 +100,7 @@ if (jQuery('body.userrole-member').length === 1) {
 if (jQuery('body.userrole-anonymous').length === 1) {
     import(/* webpackChunkName: "anonymous" */ './anonymous');
 }
+
 /* Expose jQuery when needed */
 window.jQuery = jQuery;
 window.$ = jQuery;

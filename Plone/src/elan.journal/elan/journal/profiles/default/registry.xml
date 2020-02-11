@@ -1,0 +1,9 @@
+ <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="elan.journal">
+    <records prefix="plone.resources/elan.journal"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++plone++elan.journal/styles.less</element>
+      </value>
+    </records>
+ </registry>
