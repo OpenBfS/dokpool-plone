@@ -23,7 +23,7 @@
     <xi:include href="webpack.xml" />
   </rules>
 
-      <rules css:if-content="body.template-rpopup">
+      <rules css:if-content="body.bfs_popup">
 
         <theme href="popup.html" />
 
