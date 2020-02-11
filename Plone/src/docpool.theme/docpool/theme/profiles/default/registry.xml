@@ -36,48 +36,6 @@
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/notify.min.js</value>
   </records>
-  <records prefix="plone.resources/domReady"
-            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js">++theme++docpool.theme/static/domReady.js</value>
-  </records>
-  <records prefix="plone.bundles/docpool"
-            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-    <value key="resources">
-      <element>docpool</element>
-    </value>
-    <value key="expression"></value>
-    <value key="compile">True</value>
-    <value key="enabled">True</value>
-    <value key="depends">plone</value>
-    <value key="jscompilation">++theme++docpool.theme/docpool-compiled.js</value>
-    <value key="csscompilation">++theme++docpool.theme/docpool-compiled.css</value>
-    <value key="last_compilation">2019-09-27 10:25:59</value>
-  </records>
-  <records prefix="plone.bundles/docpool-anon"
-            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-    <value key="resources">
-      <element>docpool-anon</element>
-    </value>
-    <value key="expression">python: member is None</value>
-    <value key="compile">True</value>
-    <value key="enabled">True</value>
-    <value key="jscompilation"></value>
-    <value key="csscompilation">++theme++docpool.theme/docpool-anon-compiled.css</value>
-    <value key="last_compilation">2019-09-27 10:25:59</value>
-  </records>
-  <records prefix="plone.bundles/docpool-nonadmin"
-            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-    <value key="resources">
-      <element>docpool-nonadmin</element>
-    </value>
-    <value key="expression">python:not object.isAdmin() and not object.isContentAdmin()</value>
-    <value key="compile">True</value>
-    <value key="enabled">True</value>
-    <value key="jscompilation"></value>
-    <value key="csscompilation">++theme++docpool.theme/docpool-nonadmin-compiled.css</value>
-
-    <value key="last_compilation">2019-09-27 10:25:59</value>
-  </records>
   <records prefix="plone.bundles/plone-legacy"
          interface='Products.CMFPlone.interfaces.IBundleRegistry'>
   <value key="resources" purge="false">
