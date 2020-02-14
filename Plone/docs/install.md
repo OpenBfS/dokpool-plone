@@ -145,3 +145,23 @@ maybe make more changes to make the original changes compatible with the release
     git push
 
 create pull-request
+
+
+### Theme Entwicklung
+
+#### Veraussetzungen
+
+##### Install nvm - node - npm
+
+
+https://github.com/nvm-sh/nvm#installing-and-updating
+
+
+Neue Seite mit name "dokpool" erstellen.
+"/@@docpool_setup" aufrufen, das neue theme wird automatisch aktiviert.
+
+Das Webpack bundling ist zu erkennen an diesen JS files:
+
+Die statischen bundle files liegen in "Plone/resources/theme".
+Entwicklung:
+In "Plone/resources/" "yarn install". Die statischen files löschen "rm -Rf .plone theme". Ein "yarn watch" holt alle resourcen und aktiviert hotreloading. Mit "yarn build" können neue statischen bundle files erstellt werden.
