@@ -9,6 +9,8 @@ from plone.app.textfield import RichTextValue
 from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
+from plone.app.theming.utils import applyTheme
+from plone.app.theming.utils import getTheme
 
 import json
 import logging
@@ -167,3 +169,15 @@ def install_rei(context=None):
     reireport = portal['config']['dtypes']['reireport']
     api.content.copy(source=reireport, target=container)
     log.info(u'Copied dtype reireport to bund')
+
+
+def to_1001(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    log.info('Importing 1001 upgrades')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1001')
+
+
+def change_theme(context=None):
+    log.info('Enabling the new webpack theme')
+    webpack_theme = getTheme("docpooltheme")
+    applyTheme(webpack_theme)
