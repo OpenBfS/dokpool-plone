@@ -73,32 +73,18 @@ STOP_SAMPLING_MAPPING = {
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
 
-    Authority = schema.Choice(
-        title=_(u'label_rei_Authority', default=u'Authority'),
-        description=_(u'description_rei_Authority', default=u''),
-        source="docpool.rei.vocabularies.AuthorityVocabulary",
+    NuclearInstallations = schema.List(
+        title=_(
+            u'label_rei_NuclearInstallations',
+            default=u'NuclearInstallations'),
+        description=_(u'description_rei_NuclearInstallation', default=u''),
+        value_type=schema.Choice(
+        source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
     )
-    read_permission(Authority='docpool.rei.AccessRei')
-    write_permission(Authority='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Authority')
-
-    MStIDs = schema.List(
-        title=_(u'label_rei_MStID', default=u'Messstellen-ID'),
-        description=_(u'description_rei_MStID', default=u''),
-        value_type=schema.Choice(
-            source="docpool.rei.vocabularies.MStIDVocabulary"),
-        required=False,
-    )
-    read_permission(MStIDs='docpool.rei.AccessRei')
-    write_permission(MStIDs='docpool.rei.AccessRei')
-    directives.omitted(IEditForm, 'MStIDs')
-
-    mstids_initial_value = schema.TextLine(
-        title=_(u'label_rei_mstids_initial_value', default=u'Messstellen'),
-        required=False,
-    )
-    directives.omitted('mstids_initial_value')
+    read_permission(NuclearInstallations='docpool.rei.AccessRei')
+    write_permission(NuclearInstallations='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('NuclearInstallations')
 
     directives.widget(ReiLegalBases=CheckBoxFieldWidget)
     ReiLegalBases = schema.List(
@@ -112,17 +98,15 @@ class IREIDoc(IDocumentExtension):
     write_permission(ReiLegalBases='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('ReiLegalBases')
 
-    directives.widget(Origins=CheckBoxFieldWidget)
-    Origins = schema.List(
-        title=_(u'label_rei_Origin', default=u'Ersteller'),
-        description=_(u'description_rei_Origin', default=u''),
-        value_type=schema.Choice(
-            source=u"docpool.rei.vocabularies.OriginVocabulary"),
-        required=True,
+    Medium = schema.Choice(
+        title=_(u'label_rei_Medium', default=u'Medium'),
+        description=_(u'description_rei_Medium', default=u''),
+        source="docpool.rei.vocabularies.MediumVocabulary",
+        required=False,
     )
-    read_permission(Origins='docpool.rei.AccessRei')
-    write_permission(Origins='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Origins')
+    read_permission(Medium='docpool.rei.AccessRei')
+    write_permission(Medium='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Medium')
 
     Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
@@ -144,37 +128,54 @@ class IREIDoc(IDocumentExtension):
     write_permission(Period='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Period')
 
-    Medium = schema.Choice(
-        title=_(u'label_rei_Medium', default=u'Medium'),
-        description=_(u'description_rei_Medium', default=u''),
-        source="docpool.rei.vocabularies.MediumVocabulary",
-        required=False,
-    )
-    read_permission(Medium='docpool.rei.AccessRei')
-    write_permission(Medium='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Medium')
-
-    NuclearInstallations = schema.List(
-        title=_(
-            u'label_rei_NuclearInstallations',
-            default=u'NuclearInstallations'),
-        description=_(u'description_rei_NuclearInstallation', default=u''),
+    directives.widget(Origins=CheckBoxFieldWidget)
+    Origins = schema.List(
+        title=_(u'label_rei_Origin', default=u'Berichtende Stelle'),
+        description=_(u'description_rei_Origin', default=u''),
         value_type=schema.Choice(
-        source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
+            source=u"docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
     )
-    read_permission(NuclearInstallations='docpool.rei.AccessRei')
-    write_permission(NuclearInstallations='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('NuclearInstallations')
+    read_permission(Origins='docpool.rei.AccessRei')
+    write_permission(Origins='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Origins')
+
+
+    MStIDs = schema.List(
+        title=_(u'label_rei_MStID', default=u'Bericht enthält Daten folgender Messstellen'),
+        description=_(u'description_rei_MStID', default=u''),
+        value_type=schema.Choice(
+            source="docpool.rei.vocabularies.MStIDVocabulary"),
+        required=False,
+    )
+    read_permission(MStIDs='docpool.rei.AccessRei')
+    write_permission(MStIDs='docpool.rei.AccessRei')
+    directives.omitted(IEditForm, 'MStIDs')
+
+    mstids_initial_value = schema.TextLine(
+        title=_(u'label_rei_mstids_initial_value', default=u'Bericht enthält Daten folgender Messstellen'),
+        required=False,
+    )
+    directives.omitted('mstids_initial_value')
+
+    Authority = schema.Choice(
+        title=_(u'label_rei_Authority', default=u'Authority'),
+        description=_(u'description_rei_Authority', default=u''),
+        source="docpool.rei.vocabularies.AuthorityVocabulary",
+        required=True,
+    )
+    read_permission(Authority='docpool.rei.AccessRei')
+    write_permission(Authority='docpool.rei.AccessRei')
+    dexteritytextindexer.searchable('Authority')
 
     PDFVersion = schema.Choice(
         title=_(u'label_rei_PDFVersion', default=u'PDF Version'),
         description=_(u'description_rei_PDFVersion', default=u''),
         source="docpool.rei.vocabularies.PDFVersionVocabulary",
         required=True,
+        default='keine Angabe',
     )
-    read_permission(PDFVersion='docpool.rei.AccessRei')
-    write_permission(PDFVersion='docpool.rei.AccessRei')
+    directives.omitted(IEditForm, 'PDFVersion')
     dexteritytextindexer.searchable('PDFVersion')
 
 
