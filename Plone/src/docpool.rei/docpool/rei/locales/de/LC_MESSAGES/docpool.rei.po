@@ -41,7 +41,7 @@ msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "MStIDs"
-msgstr "Messstellen IDs"
+msgstr "Bericht enthält Daten folgender Messstellen"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Nuclear Installations"
@@ -49,7 +49,7 @@ msgstr "Kerntechnische Anlage"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Origin"
-msgstr "Ersteller"
+msgstr "Berichtende Stelle"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "PDF Version"
@@ -143,7 +143,7 @@ msgstr "Medium"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_MStIDs"
-msgstr ""
+msgstr "Bericht enthält Daten folgender Messstellen"
 
 #. Default: "NuclearInstallations"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -155,7 +155,7 @@ msgstr "Kerntechnische Anlage"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Origins"
-msgstr "Urheber"
+msgstr "Berichtende Stelle"
 
 #. Default: "PDFVersion"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
