@@ -157,7 +157,6 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(MStIDs='docpool.rei.AccessRei')
     write_permission(MStIDs='docpool.rei.AccessRei')
-    directives.omitted(IEditForm, 'MStIDs')
 
     mstids_initial_value = schema.TextLine(
         title=_(u'label_rei_mstids_initial_value', default=u'Bericht enthält Daten folgender Messstellen'),
