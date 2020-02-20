@@ -391,11 +391,20 @@ def set_title(obj, event=None):
 
 
 @adapter(IDPDocument, IObjectAddedEvent)
-def save_mstid(obj, event=None):
-    # Only if it is a IREIDoc.
+def save_mstid_added(obj, event=None):
+    return save_mstid(obj)
+
+
+@adapter(IDPDocument, IObjectModifiedEvent)
+def save_mstid_modified(obj, event=None):
+    return save_mstid(obj)
+
+
+def save_mstid(obj):
     try:
         adapted = IREIDoc(obj)
     except Exception:
         return
     value = adapted.mstids_display()
-    adapted.mstids_initial_value = value
+    if getattr(adapted, 'mstids_initial_value', None) != value:
+        adapted.mstids_initial_value = value

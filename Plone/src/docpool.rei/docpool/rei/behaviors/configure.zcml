@@ -19,6 +19,7 @@
         />
 
     <subscriber handler=".reidoc.set_title" />
-    <subscriber handler=".reidoc.save_mstid" />
+    <subscriber handler=".reidoc.save_mstid_added" />
+    <subscriber handler=".reidoc.save_mstid_modified" />
 
 </configure>
