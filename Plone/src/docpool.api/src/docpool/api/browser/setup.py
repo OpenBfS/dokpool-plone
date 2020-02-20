@@ -419,7 +419,7 @@ class DocpoolSetup(BrowserView):
                 Medium=u'Abwasser',
                 ReiLegalBases=[u'REI-I'],
                 Origins=[u'Genehmigungsinhaber'],
-                MStIDs=[u'20000'],
+                MStIDs=[u'09121'],
                 Authority=u'Mecklenburg-Vorpommern',
                 PDFVersion=u'PDF/A-1b',
             )
