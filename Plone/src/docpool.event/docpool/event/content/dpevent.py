@@ -41,6 +41,7 @@ from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
 from pygeoif import geometry
 from z3c.form.browser.radio import RadioFieldWidget
+from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -169,6 +170,19 @@ class IDPEvent(model.Schema, IContentBase):
         required=False,
         value_type=RelationChoice(
             source=u'docpool.event.vocabularies.Networks'),
+    )
+
+    directives.omitted(IEditForm, 'Journals')
+    Journals = schema.List(
+        title=_(u'Journals'),
+        required=False,
+        default=[
+            u'Einsatztagebuch BfS',
+            u'Einsatztagebuch RLZ',
+            u'Einsatztagebuch SSK',
+            u'Einsatztagebuch Messdienste',
+            ],
+        value_type=schema.TextLine(),
     )
 
     changelog = schema.Text(
@@ -538,20 +552,28 @@ class DPEvent(Container, ContentBase):
                 scns.append(self.getId())
             member.setMemberProperties({"scenarios": scns})
 
-    def createDefaultJournals(obj):
+    def createDefaultJournals(self):
         """
-        Creates two journals inside the event
+        Creates journals inside the event
         :return: """
-        journals = ['journal1', 'journal2']
-        for journal in journals:
-            # Test if they already exists
-            if obj.get(journal):
+        if not self.Journals:
+            return
+        for index, title in enumerate(self.Journals, start=1):
+            title = title.strip()
+            # Skip empty lines
+            if not title:
+                continue
+            journal_id = 'journal{}'.format(str(index))
+            # Skip if it already exists
+            if self.get(journal_id):
                 pass
             api.content.create(
-                container=obj,
+                container=self,
                 type='Journal',
-                title=journal,
-            )
+                title=title,
+                id=journal_id,
+                )
+
 
     def deleteEventReferences(self):
         """

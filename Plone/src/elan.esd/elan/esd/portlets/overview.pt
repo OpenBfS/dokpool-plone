@@ -1,13 +1,37 @@
-<tal:block i18n:domain="elan.esd">
-   <dl class="portlet" id="overviewportlet" tal:define="DateTime python:modules['DateTime'].DateTime">
-       <dt class="portletHeader">
-           <a href="#" onclick="makePopUp(800, 1000, this.href, 'Overview', 200, 200, 1, 1); return false;" tal:attributes="href string:${context/esd/absolute_url}/overview/@@rpopup?popup_load=1" i18n:translate="">Chronological Overview</a>
-       </dt>
-       <dt class="portletHeader" tal:repeat="o view/specialObjects">
-           <a href="#"
-                    tal:attributes="href string:${o/getURL}?popup_load=1;
-                                    onclick string:makePopUp(1200, 800, this.href, '${o/Title}', 200, 200, 1, 1);;return false;"
-                    tal:content="o/Title"></a>
-       </dt>
-   </dl>
+<tal:block i18n:domain="elan.esd"
+           tal:define="portal_state context/@@plone_portal_state;
+                       member portal_state/member;">
+    <dl class="portlet"
+        id="overviewportlet">
+        <dt class="portletHeader">
+            <a href="#"
+               onclick="makePopUp(800, 1000, this.href, 'Overview', 200, 200, 1, 1); return false;"
+               tal:attributes="href string:${context/esd/absolute_url}/overview/@@rpopup?popup_load=1"
+               i18n:translate="">
+               Chronological Overview
+            </a>
+        </dt>
+        <dt class="portletHeader"
+            tal:repeat="brain python:view.specialObjects()">
+            <tal:item tal:define="is_journal python: brain.portal_type == 'Journal'">
+                <a href="#"
+                   tal:attributes="href string:${brain/getURL}?popup_load=1;
+                                   onclick string:makePopUp(1200, 800, this.href, '${brain/Title}', 200, 200, 1, 1);;return false;"
+                   tal:content="python: brain.Title">
+                </a>
+                <tal:journal condition="is_journal">
+                    <a class="add_journal_entry"
+                       href=""
+                       i18n:attributes="title"
+                       title="Add journal entry"
+                       tal:define="required_role python:'{} Editor'.format(brain.id.capitalize());
+                                   can_add python: context.isAdmin() or context.isContentAdmin() or (member and member.has_role(required_role))"
+                       tal:condition="python: can_add"
+                       tal:attributes="href python: brain.getURL() + '/update';">
+                       +
+                    </a>
+                </tal:journal>
+            </tal:item>
+        </dt>
+    </dl>
 </tal:block>

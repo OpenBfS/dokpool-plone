@@ -6126,22 +6126,22 @@ body#visual-portal-wrapper.pat-plone .outer-wrapper [class*="contenttype-"]:befo
 body#visual-portal-wrapper.pat-plone #edit-zone [class*="contenttype-"]:before {
   content: none;
 }
-/* line 12, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
+/* line 13, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
 body [class*="contenttype-"]::before,
 body .contenttype-file #crud-edit-File-widgets-view_title::before {
   content: none;
 }
-/* line 19, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
+/* line 20, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
 table#fctable .actions input[type=checkbox],
 table#fctable .actions a.action {
   display: block;
   margin-bottom: 8px;
 }
-/* line 23, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
+/* line 24, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
 .app_icon {
   display: inline;
 }
-/* line 27, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
+/* line 28, http://localhost:8080/dokpool/++theme++docpool.theme/static/contents.docpool.less */
 .app_icons {
   display: block;
 }
@@ -6188,6 +6188,23 @@ table#fctable .actions a.action {
 .portletNavigationTree .personal.navTreeItemInPath ul.navTreeLevel1,
 .portletNavigationTree .personal.navTreeCurrentNode ul.navTreeLevel1 {
   display: inline;
+}
+/* line 43, http://localhost:8080/dokpool/++theme++docpool.theme/static/portlets.docpool.less */
+.portletHeader .add_journal_entry {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  float: right;
+  display: inline-block;
+  padding: 2px 4px;
+  line-height: 15px;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/* line 54, http://localhost:8080/dokpool/++theme++docpool.theme/static/portlets.docpool.less */
+.portletHeader .add_journal_entry:hover {
+  text-decoration: none;
+  background-color: #ddd;
+  color: #000 !important;
 }
 /* line 2, http://localhost:8080/dokpool/++theme++docpool.theme/static/tables.docpool.less */
 table.responsive .title,
@@ -6533,12 +6550,12 @@ p.version {
 }
 /*
 #portal-globalnav li.personal {
-	float: right; 	
+  float: right;
 }
 
 #portal-globalnav li.personal a {
-	background-color: #003366;
-	color: #DDDDDD;
+  background-color: #003366;
+  color: #DDDDDD;
 }
 
 #portal-globalnav li.transfer a {
