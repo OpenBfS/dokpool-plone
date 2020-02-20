@@ -41,13 +41,13 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
-msgid "Publish"
-msgstr "Veröffentlichen"
+msgid "Publish BMU"
+msgstr "freigeben"
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
-msgid "Published"
-msgstr "Veöffentlicht"
+msgid "Published BMU"
+msgstr "freigegeben"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "REI DocType"
