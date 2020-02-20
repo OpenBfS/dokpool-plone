@@ -10,6 +10,7 @@ from docpool.base.interfaces import IDPDocument
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
+from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
@@ -70,24 +71,19 @@ STOP_SAMPLING_MAPPING = {
     'M12': '1.1.',
 }
 
-def required(value):
-    if not value:
-        raise RequiredMissing()
-    return True
-
 
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
 
+    directives.widget(NuclearInstallations=SelectFieldWidget)
     NuclearInstallations = schema.List(
         title=_(
             u'label_rei_NuclearInstallations',
             default=u'NuclearInstallations'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
         value_type=schema.Choice(
-        source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
+            source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
-        constraint=required,
     )
     read_permission(NuclearInstallations='docpool.rei.AccessRei')
     write_permission(NuclearInstallations='docpool.rei.AccessRei')
@@ -147,7 +143,7 @@ class IREIDoc(IDocumentExtension):
     write_permission(Origins='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Origins')
 
-
+    directives.widget(MStIDs=SelectFieldWidget)
     MStIDs = schema.List(
         title=_(u'label_rei_MStID', default=u'Bericht enthält Daten folgender Messstellen'),
         description=_(u'description_rei_MStID', default=u''),
