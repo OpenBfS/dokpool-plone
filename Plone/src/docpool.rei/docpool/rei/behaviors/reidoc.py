@@ -181,7 +181,7 @@ class IREIDoc(IDocumentExtension):
         required=True,
         default='keine Angabe',
     )
-    directives.omitted(IEditForm, 'PDFVersion')
+    directives.omitted('PDFVersion')
     dexteritytextindexer.searchable('PDFVersion')
 
 
