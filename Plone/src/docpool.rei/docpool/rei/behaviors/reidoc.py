@@ -23,6 +23,7 @@ from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.interfaces import RequiredMissing
 
 
 START_SAMPLING_MAPPING = {
@@ -69,6 +70,11 @@ STOP_SAMPLING_MAPPING = {
     'M12': '1.1.',
 }
 
+def required(value):
+    if not value:
+        raise RequiredMissing()
+    return True
+
 
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
@@ -81,6 +87,7 @@ class IREIDoc(IDocumentExtension):
         value_type=schema.Choice(
         source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
+        constraint=required,
     )
     read_permission(NuclearInstallations='docpool.rei.AccessRei')
     write_permission(NuclearInstallations='docpool.rei.AccessRei')
