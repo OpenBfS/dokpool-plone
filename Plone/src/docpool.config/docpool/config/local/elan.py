@@ -11,6 +11,7 @@ from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from docpool.elan.config import ELAN_APP
+from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
@@ -277,6 +278,16 @@ def createELANGroups(self):
         '%s_dpadmin' % prefix, '%s_SituationReportAdmins' % prefix)
     gtool.addPrincipalToGroup(
         '%s_elanadmin' % prefix, '%s_SituationReportAdmins' % prefix)
+
+    # Add 10 groups that can manage event journals
+    for index in range(1, 11):
+        props = {
+            'allowedDocTypes': [],
+            'title': 'Journal {} Editors ({})'.format(index, title),
+            'description': 'Users who can edit journal{} in {}.'.format(index, title),
+            'dp': self.UID(),
+        }
+        gtool.addGroup("{}_Journal{}_Editors".format(prefix, index), properties=props)
 
 
 def copyCurrentSituation(self, fresh):
