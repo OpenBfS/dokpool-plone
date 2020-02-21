@@ -63,7 +63,7 @@ from six.moves import map
 
 def default_text():
     request = getRequest()
-    if request and 'reireport' in request.get('form.widgets.docType'):
+    if request and 'reireport' in request.get('form.widgets.docType', []):
         return RichTextValue(u'REI-Bericht', 'text/html', 'text/x-html-safe')
 
 
