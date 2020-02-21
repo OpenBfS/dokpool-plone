@@ -217,7 +217,7 @@ msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweise
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_for_revision"
-msgstr "Wollen Sie dieses Dokument wirklich zur Revision zurückziehen?"
+msgstr "Wollen Sie dieses Dokument wirklich in revidierte Berichte verschieben?"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_to_authority"

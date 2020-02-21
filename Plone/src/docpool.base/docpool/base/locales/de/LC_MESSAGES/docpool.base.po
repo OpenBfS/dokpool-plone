@@ -212,7 +212,7 @@ msgstr "Zurückziehen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Retract for Revision"
-msgstr "Zur Revision zurück ziehen"
+msgstr "In revidierte Berichte verschieben"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Retract to BfS"
@@ -361,7 +361,7 @@ msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweise
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_for_revision_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zur Revision zurückziehen?"
+msgstr "Wollen Sie dieses Dokument wirklich in revidierte Berichte verschieben?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_popup"
