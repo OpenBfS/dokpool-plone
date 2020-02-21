@@ -16,6 +16,8 @@
     <permission name="elan.journal: Add Journal" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
       <role name="Journal1 Editor" />
       <role name="Journal2 Editor" />
       <role name="Journal3 Editor"/>
@@ -31,6 +33,8 @@
     <permission name="elan.journal: Add JournalEntry" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
       <role name="Journal1 Editor" />
       <role name="Journal2 Editor" />
       <role name="Journal3 Editor"/>
