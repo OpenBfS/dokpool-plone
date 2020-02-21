@@ -44,7 +44,6 @@ class CollectionDocView(BrowserView):
         wf_tool = api.portal.get_tool('portal_workflow')
         workflow = wf_tool.getWorkflowsFor(doc)[0]
         rei_wfs = ['rei_review_workflow_alternative', 'rei_review_workflow_standard']
-        import pdb; pdb.set_trace()
         if workflow.id in rei_wfs:
             return True
         return False
