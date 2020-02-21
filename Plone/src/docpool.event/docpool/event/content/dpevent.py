@@ -558,6 +558,7 @@ class DPEvent(Container, ContentBase):
         :return: """
         if not self.Journals:
             return
+        prefix = self.myDocumentPool().getId()
         for index, title in enumerate(self.Journals, start=1):
             title = title.strip()
             # Skip empty lines
@@ -567,11 +568,17 @@ class DPEvent(Container, ContentBase):
             # Skip if it already exists
             if self.get(journal_id):
                 pass
-            api.content.create(
+            journal = api.content.create(
                 container=self,
                 type='Journal',
                 title=title,
                 id=journal_id,
+                )
+            # Grant local roles to Journal Editors
+            api.group.grant_roles(
+                groupname='{}_Journal{}_Editors'.format(prefix, index),
+                roles=['Journal{} Editor'.format(index)],
+                obj=journal,
                 )
 
 
