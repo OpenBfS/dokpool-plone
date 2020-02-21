@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-25 15:04+0000\n"
+"POT-Creation-Date: 2020-02-21 15:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgid "Date"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Federal State"
+msgid "MStIDs"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -42,11 +42,7 @@ msgid "Metadata"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "MStIDs"
-msgstr ""
-
-#: docpool.rei/docpool/rei/profiles/default/registry.xml
-msgid "Nuclear Installation"
+msgid "Nuclear Installations"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -59,6 +55,14 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Publish BMU"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Published BMU"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -89,16 +93,20 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_publish_popup"
+msgstr ""
+
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "description_rei_Authority"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_Medium"
+msgid "description_rei_MStID"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "description_rei_MStID"
+msgid "description_rei_Medium"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -135,16 +143,20 @@ msgstr ""
 msgid "label_rei_Authority"
 msgstr ""
 
+#. Default: "Bericht enthält Daten folgender Messstellen"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_MStID"
+msgstr ""
+
+#. Default: "MStIDs"
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+msgid "label_rei_MStIDs"
+msgstr ""
+
 #. Default: "Medium"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Medium"
-msgstr ""
-
-#. Default: "MStIDs"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_MStID"
 msgstr ""
 
 #. Default: "NuclearInstallations"
@@ -153,10 +165,14 @@ msgstr ""
 msgid "label_rei_NuclearInstallations"
 msgstr ""
 
-#. Default: "Origin"
+#. Default: "Berichtende Stelle"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Origin"
+msgstr ""
+
+#. Default: "Origins"
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+msgid "label_rei_Origins"
 msgstr ""
 
 #. Default: "PDFVersion"
@@ -167,19 +183,24 @@ msgstr ""
 
 #. Default: "Period"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
+#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Period"
 msgstr ""
 
-#. Default: "ReiLegalBase"
+#. Default: "ReiLegalBases"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-msgid "label_rei_ReiLegalBase"
+msgid "label_rei_ReiLegalBases"
 msgstr ""
 
 #. Default: "Year"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Year"
+msgstr ""
+
+#. Default: "Bericht enthält Daten folgender Messstellen"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "label_rei_mstids_initial_value"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
