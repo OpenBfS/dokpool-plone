@@ -6,14 +6,12 @@
   <permissions>
     <permission name="Docpool: Manage DPEvent" acquire="True">
       <role name="Manager"/>
-      <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="ContentAdmin"/>
     </permission>
     <permission name="Docpool: Add DPEvent" acquire="True">
       <role name="Manager"/>
-      <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="ContentAdmin"/>
@@ -28,7 +26,6 @@
       <role name="Contributor"/>
       <role name="Manager"/>
       <role name="Owner"/>
-      <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="ContentAdmin"/>
       <role name="EventEditor"/>
