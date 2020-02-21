@@ -14,6 +14,8 @@ ADD_PERMISSIONS = (
     dict(
         title='elan.journal: Add Journal',
         expected=[
+            'ContentAdmin',
+            'DocPoolAdmin',
             'EventEditor',
             'Journal1 Editor',
             'Journal10 Editor',
@@ -32,6 +34,8 @@ ADD_PERMISSIONS = (
     dict(
         title='elan.journal: Add JournalEntry',
         expected=[
+            'ContentAdmin',
+            'DocPoolAdmin',
             'EventEditor',
             'Journal1 Editor',
             'Journal10 Editor',
