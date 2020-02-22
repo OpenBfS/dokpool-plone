@@ -16,7 +16,7 @@ const PLONE = new PlonePlugin({
   portalUrl: 'http://localhost:8080/' + SITENAME,
   publicPath: PUBLICPATH,
   sourcePath: PATHS.src,
-  momentLocales: ['fi'],
+  momentLocales: ['de'],
   debug: false
 });
 
