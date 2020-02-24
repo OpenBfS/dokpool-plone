@@ -9,26 +9,11 @@
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-
-<!--
-             <element value="SRCollection" />
-
-
-             <element value="DashboardCollection" />
--->
-
-             <element value="ELANDocCollection" />
-
-
-             <element value="ELANSection" />
-
-
-             <element value="Document" />
-
-
-             <element value="TemplatedDocument" />
-
-
+   <element value="ELANDocCollection" />
+   <element value="ELANSection" />
+   <element value="Document" />
+   <element value="TemplatedDocument" />
+   <element value="Journal" />
  </property>
  <!-- schema interface -->
  <property name="schema">elan.esd.content.elancurrentsituation.IELANCurrentSituation</property>

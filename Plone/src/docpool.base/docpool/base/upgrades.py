@@ -6,11 +6,14 @@ from docpool.config.general.base import configureGroups
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
 from plone.app.textfield import RichTextValue
-from plone.app.upgrade.utils import loadMigrationProfile
-from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import get_installer
 from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
+from plone.app.upgrade.utils import loadMigrationProfile
+from plone.dexterity.interfaces import IDexterityFTI
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import get_installer
+from zope.component import queryUtility
 
 import json
 import logging
@@ -181,3 +184,88 @@ def change_theme(context=None):
     log.info('Enabling the new webpack theme')
     webpack_theme = getTheme("docpooltheme")
     applyTheme(webpack_theme)
+
+
+def to_1002(context=None):
+    log.info('Importing 1002 upgrades')
+    portal_setup = api.portal.get_tool('portal_setup')
+
+    # allow journal in ESD to fix archiving events
+    fti = queryUtility(IDexterityFTI, name='ELANCurrentSituation')
+    if 'Journal' not in fti.allowed_content_types:
+        allowed = list(fti.allowed_content_types)
+        allowed.append('Journal')
+        fti.manage_changeProperties(allowed_content_types=tuple(allowed))
+        log.info('Allowed Journal in ELANCurrentSituation')
+
+
+    # remove Roles JournalXX Editor
+    portal = api.portal.get()
+    roles = list(portal.__ac_roles__)
+    for index in range(1, 11):
+        role = 'Journal{} Editor'.format(index)
+        try:
+            roles.remove(role)
+            log.info('Removed obsolete role {}'.format(role))
+        except:
+            pass
+    portal.__ac_roles__ = tuple(roles)
+
+    # Set workflow for journals and add roles
+    loadMigrationProfile(
+        portal_setup,
+        'profile-elan.journal:default',
+        steps=['rolemap', 'workflow'],
+        )
+    # TODO: THIS IS NOT ENOUGH YET!
+    log.info('Set workflow for Journals and added roles JournalEditor and JournalReader')
+
+    # Add Journal groups for all docpools where elan is active
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        prefix = docpool.prefix or docpool.getId()
+        title = docpool.Title()
+        if 'elan' not in docpool.allSupportedApps():
+            log.info(u'Skipping docpool {} because elan is not enabled'.format(title))
+            continue
+        gtool = getToolByName(docpool, 'portal_groups')
+        for index in range(1, 6):
+            props = {
+                'allowedDocTypes': [],
+                'title': 'Journal {} Editors ({})'.format(index, title),
+                'description': 'Users who can edit journal{} in {}.'.format(index, title),
+                'dp': docpool.UID(),
+            }
+            gtool.addGroup("{}_Journal{}_Editors".format(prefix, index), properties=props)
+
+        for index in range(1, 6):
+            props = {
+                'allowedDocTypes': [],
+                'title': 'Journal {} Reader ({})'.format(index, title),
+                'description': 'Users who can view journal{} in {}.'.format(index, title),
+                'dp': docpool.UID(),
+            }
+            gtool.addGroup("{}_Journal{}_Readers".format(prefix, index), properties=props)
+        log.info(u'Added Journal groups for docpool {}'.format(title))
+
+    # set local roles for all journals in all events
+    for brain in api.content.find(portal_type='Journal'):
+        journal = brain.getObject()
+        docpool = journal.myDocumentPool()
+        prefix = docpool.prefix or docpool.getId()
+        index = journal.id.split('journal')[-1]
+        # Grant local role to Journal Editor Groups
+        api.group.grant_roles(
+            groupname='{}_Journal{}_Editors'.format(prefix, index),
+            roles=['JournalEditor'],
+            obj=journal,
+            )
+        # Grant local role to Journal Reader Groups
+        api.group.grant_roles(
+            groupname='{}_Journal{}_Readers'.format(prefix, index),
+            roles=['JournalReader'],
+            obj=journal,
+            )
+        # reindex security for journals
+        journal.reindexObjectSecurity()
+        log.info(u'Added local roles for Journal {}'.format(journal.title))

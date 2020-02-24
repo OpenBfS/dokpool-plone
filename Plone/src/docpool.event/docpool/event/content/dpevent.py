@@ -558,7 +558,8 @@ class DPEvent(Container, ContentBase):
         :return: """
         if not self.Journals:
             return
-        prefix = self.myDocumentPool().getId()
+        docpool = self.myDocumentPool()
+        prefix = docpool.prefix or docpool.getId()
         for index, title in enumerate(self.Journals, start=1):
             title = title.strip()
             # Skip empty lines
@@ -577,13 +578,13 @@ class DPEvent(Container, ContentBase):
             # Grant local role to Journal Editor Groups
             api.group.grant_roles(
                 groupname='{}_Journal{}_Editors'.format(prefix, index),
-                roles=['JournalEditor'.format(index)],
+                roles=['JournalEditor'],
                 obj=journal,
                 )
             # Grant local role to Journal Reader Groups
             api.group.grant_roles(
                 groupname='{}_Journal{}_Readers'.format(prefix, index),
-                roles=['JournalReader'.format(index)],
+                roles=['JournalReader'],
                 obj=journal,
                 )
 
