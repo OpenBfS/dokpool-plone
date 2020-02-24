@@ -134,11 +134,9 @@
     <tal:if condition="dpbrainobj/canBeDeleted">
         <a href=""
            class="link-overlay action pat-plone-modal"
-           data-pat-plone-modal="width: 80%;"
+           data-pat-plone-modal='{"actionOptions": {"reloadWindowOnClose": false, "redirectOnResponse":true, "timeout":10000}, "width": "80%", "buttons": ".formControls > button"}'
            title="Delete"
-           tal:define="alert_msg python:context.translate('alert_delete_popup', default='Do you really want to delete this object?', domain='docpool.base', escape_for_js=True)"
-           tal:attributes="onclick1 string:return confirm('${title_or_id}: ${alert_msg}');
-                               href python:'%s/delete_confirmation' % dpbrainobj.absolute_url()"
+           tal:attributes="href python:'%s/delete_confirmation' % dpbrainobj.absolute_url()"
            i18n:attributes="title"
         ><img src="" tal:attributes="src string:${context/portal_url}/delete_icon.gif"/> </a>
     </tal:if>
