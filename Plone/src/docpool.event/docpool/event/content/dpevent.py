@@ -574,10 +574,16 @@ class DPEvent(Container, ContentBase):
                 title=title,
                 id=journal_id,
                 )
-            # Grant local roles to Journal Editors
+            # Grant local role to Journal Editor Groups
             api.group.grant_roles(
                 groupname='{}_Journal{}_Editors'.format(prefix, index),
-                roles=['Journal{} Editor'.format(index)],
+                roles=['JournalEditor'.format(index)],
+                obj=journal,
+                )
+            # Grant local role to Journal Reader Groups
+            api.group.grant_roles(
+                groupname='{}_Journal{}_Readers'.format(prefix, index),
+                roles=['JournalReader'.format(index)],
                 obj=journal,
                 )
 

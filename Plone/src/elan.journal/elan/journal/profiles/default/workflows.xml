@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+<!-- Workflow allocation -->
+ <object name="dp_journal_workflow" meta_type="Workflow"/>
+ <bindings>
+   <type type_id="Journal">
+    <bound-workflow workflow_id="dp_journal_workflow" />
+   </type>
+ </bindings>
+</object>
