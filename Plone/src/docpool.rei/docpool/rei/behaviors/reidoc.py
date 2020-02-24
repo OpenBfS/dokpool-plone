@@ -10,6 +10,7 @@ from docpool.base.interfaces import IDPDocument
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
+from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
@@ -23,6 +24,7 @@ from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.interfaces import RequiredMissing
 
 
 START_SAMPLING_MAPPING = {
@@ -73,13 +75,14 @@ STOP_SAMPLING_MAPPING = {
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
 
+    directives.widget(NuclearInstallations=SelectFieldWidget)
     NuclearInstallations = schema.List(
         title=_(
             u'label_rei_NuclearInstallations',
             default=u'NuclearInstallations'),
         description=_(u'description_rei_NuclearInstallation', default=u''),
         value_type=schema.Choice(
-        source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
+            source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
     )
     read_permission(NuclearInstallations='docpool.rei.AccessRei')
@@ -140,7 +143,7 @@ class IREIDoc(IDocumentExtension):
     write_permission(Origins='docpool.rei.AccessRei')
     dexteritytextindexer.searchable('Origins')
 
-
+    directives.widget(MStIDs=SelectFieldWidget)
     MStIDs = schema.List(
         title=_(u'label_rei_MStID', default=u'Bericht enthält Daten folgender Messstellen'),
         description=_(u'description_rei_MStID', default=u''),
@@ -150,7 +153,6 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(MStIDs='docpool.rei.AccessRei')
     write_permission(MStIDs='docpool.rei.AccessRei')
-    directives.omitted(IEditForm, 'MStIDs')
 
     mstids_initial_value = schema.TextLine(
         title=_(u'label_rei_mstids_initial_value', default=u'Bericht enthält Daten folgender Messstellen'),
@@ -175,7 +177,7 @@ class IREIDoc(IDocumentExtension):
         required=True,
         default='keine Angabe',
     )
-    directives.omitted(IEditForm, 'PDFVersion')
+    directives.omitted('PDFVersion')
     dexteritytextindexer.searchable('PDFVersion')
 
 
@@ -385,11 +387,20 @@ def set_title(obj, event=None):
 
 
 @adapter(IDPDocument, IObjectAddedEvent)
-def save_mstid(obj, event=None):
-    # Only if it is a IREIDoc.
+def save_mstid_added(obj, event=None):
+    return save_mstid(obj)
+
+
+@adapter(IDPDocument, IObjectModifiedEvent)
+def save_mstid_modified(obj, event=None):
+    return save_mstid(obj)
+
+
+def save_mstid(obj):
     try:
         adapted = IREIDoc(obj)
     except Exception:
         return
     value = adapted.mstids_display()
-    adapted.mstids_initial_value = value
+    if getattr(adapted, 'mstids_initial_value', None) != value:
+        adapted.mstids_initial_value = value

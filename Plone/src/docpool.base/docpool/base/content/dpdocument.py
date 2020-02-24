@@ -51,11 +51,24 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
+from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.interface import implementer
+from plone.app.textfield import RichTextValue
 
 import re
 from six.moves import map
+
+
+
+def default_text():
+    """This is a evil hack to work around https://redmine-koala.bfs.de/issues/3701 task 3d.
+    Rei-Reports do not want the text field which is required in the schema.
+    By setting a default value for these the field can be hidden from the editor with css.
+    """
+    request = getRequest()
+    if request and 'reireport' in request.get('form.widgets.docType', []):
+        return RichTextValue(u'REI-Bericht', 'text/html', 'text/x-html-safe')
 
 
 class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
@@ -73,6 +86,7 @@ class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
     text = RichText(
         title=_(u'label_dpdocument_text', default=u'Text'),
         description=_(u'description_dpdocument_text', default=u''),
+        defaultFactory=default_text,
         required=True,
     )
 
