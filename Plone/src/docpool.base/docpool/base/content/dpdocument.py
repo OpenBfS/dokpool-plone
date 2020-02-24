@@ -62,6 +62,10 @@ from six.moves import map
 
 
 def default_text():
+    """This is a evil hack to work around https://redmine-koala.bfs.de/issues/3701 task 3d.
+    Rei-Reports do not want the text field which is required in the schema.
+    By setting a default value for these the field can be hidden from the editor with css.
+    """
     request = getRequest()
     if request and 'reireport' in request.get('form.widgets.docType', []):
         return RichTextValue(u'REI-Bericht', 'text/html', 'text/x-html-safe')
