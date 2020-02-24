@@ -1,0 +1,98 @@
+#journal-header img {
+    height: auto;
+    max-width: 100%;
+}
+.portaltype-journal article .field input[type="text"] {
+    width: 100%;
+    font-size: 2em;
+    font-weight: bold;
+}
+.portaltype-journal form {
+    padding-bottom: 1em;
+}
+.portaltype-journal textarea {
+    height: 100px;
+}
+.portaltype-journal #content header {
+    margin-bottom: 1em;
+}
+#spinner {
+    background: url('++plone++elan.journal/spinner.gif') no-repeat center right;
+    float: right;
+    padding-right: 20px;
+}
+.journalentry-helpers {
+    float: right;
+}
+.journalentry-helpers a {
+    border-bottom: none !important;
+}
+#journal-entries article {
+    border-top: 1px solid #ccc;
+    clear: both;
+    margin-bottom: 1em;
+    padding: 1em 0 0 0;
+    position: relative;
+}
+.template-journalentry.portaltype-journal #journal_entries article {
+    border-top: none;
+}
+.journalentry-byline time {
+    background: #f1f1f1;
+    padding: 1em 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 90px;
+}
+.journalentry-text img {
+    max-width: 100%;
+    height: auto;
+}
+.journalentry-date {
+    color: #666;
+    display: block;
+    margin-bottom: 0.2em;
+}
+.journalentry-time {
+    color: #c9c9c9;
+    display: block;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+.journalentry-title, .journalentry-text, .journalentry-byline p {
+    margin-left: 110px;
+}
+.template-journalentry.portaltype-journal .journalentry-text {
+    margin-left: auto;
+}
+.journalentry-byline {
+    color: #666;
+}
+.journalentry-text p:last-child {
+    margin-bottom: 0 !important;
+}
+/* Responsive */
+@media all and (max-width: 680px) {
+    .journalentry-title, .journalentry-text, .journalentry-byline p {
+        margin-left: 0;
+    }
+    .journalentry-byline p, .journalentry-date, .journalentry-time {
+        display: inline;
+        font-size: 90%;
+    }
+    .journalentry-byline time {
+        background: transparent;
+        padding: 0.5em 0;
+        width: auto;
+        position: relative;
+        text-align: left;
+    }
+    .journalentry-time {
+        color: #666;
+        font-weight: normal;
+    }
+    #journalentry-updates article {
+        padding-top: 0.3em;
+    }
+}

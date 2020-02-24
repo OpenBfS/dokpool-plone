@@ -1,0 +1,16 @@
+/*!
+ * Date picker for pickadate.js v3.5.6
+ * http://amsul.github.io/pickadate.js/date.htm
+ */
+
+/*!
+ * Time picker for pickadate.js v3.5.6
+ * http://amsul.github.io/pickadate.js/time.htm
+ */
+
+/*!
+ * pickadate.js v3.5.6, 2015/04/20
+ * By Amsul, http://amsul.ca
+ * Hosted on http://amsul.github.io/pickadate.js
+ * Licensed under MIT
+ */

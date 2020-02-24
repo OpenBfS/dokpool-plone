@@ -1,0 +1,51 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.theme">
+    <records prefix="plone.bundles/plone-legacy"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="resources" remove="True">
+            <element>jquery-marquee</element>
+        </value>
+        <value key="resources" remove="True">
+            <element>resource-elan-journal-styles-css</element>
+        </value>
+
+    </records>
+
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/docpool"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/docpool-anon"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/docpool-config"
+            remove="true">
+    </records>
+
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/docpool-dashboard"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/docpool-menu"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/docpool-nonadmin"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IBundleRegistry"
+            prefix="plone.bundles/elan-sitrep"
+            remove="true">
+    </records>
+
+</registry>

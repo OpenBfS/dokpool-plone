@@ -1,8 +1,8 @@
 ﻿require(['jquery',
          'intercom',
          'notify',
+         'jquery-marquee',
          'docpool-functions',
-         'domReady!'
          ], function($) {
 	'use strict';
 
@@ -32,6 +32,16 @@
 		$('h1.documentFirstHeading').text(title + ' (' + value + ')'); 
 	}
 
+    $(document).ready ( function () {
+        $('.marquee').marquee({
+                pauseOnHover:true,
+                duration: 10000,
+                //gap in pixels between the tickers
+                gap: 50,
+            }
+        );
+    });
+
 });
 
 $(document).on("click", '.collapsible', function(event) {
@@ -42,14 +52,4 @@ $(document).on("click", '.collapsible', function(event) {
     } else {
         content.style.maxHeight = content.scrollHeight + "px";
     }
-});
-
-$(document).ready ( function () {
-        $('.marquee').marquee({
-        pauseOnHover:true,
-        duration: 10000,
-        //gap in pixels between the tickers
-        gap: 50,
-        }
-    );
 });

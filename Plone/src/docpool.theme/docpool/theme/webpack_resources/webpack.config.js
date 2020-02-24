@@ -1,0 +1,67 @@
+const path = require('path');
+const merge = require('webpack-merge');
+
+const PlonePlugin = require('plonetheme-webpack-plugin');
+
+const SITENAME = process.env.SITENAME || 'dokpool';
+const THEMENAME = process.env.THEMENAME || 'docpooltheme';
+const PUBLICPATH = process.env.PUBLICPATH || '/' + SITENAME + '/++theme++' + THEMENAME + '/';
+
+const PATHS = {
+  src: path.join(__dirname, 'src', THEMENAME),
+  build: path.join(__dirname, 'theme', THEMENAME)
+};
+
+const PLONE = new PlonePlugin({
+  portalUrl: 'http://localhost:8080/' + SITENAME,
+  publicPath: PUBLICPATH,
+  sourcePath: PATHS.src,
+  momentLocales: ['de'],
+  debug: false
+});
+
+const common = {
+  entry: {
+   'default': path.join(PATHS.src, 'default'),
+  },
+  output: {
+    path: PATHS.build
+  },
+  resolve: {
+    extensions: ['.js', '.json'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            }
+          }
+        ],
+        include: PATHS.src
+      }
+    ]
+  }
+};
+
+switch(path.basename(process.argv[1])) {
+  case 'webpack':
+    module.exports = merge(PLONE.production, common);
+    break;
+
+  case 'webpack-dev-server':
+    module.exports = merge(PLONE.development, common, {
+      entry: [
+        path.join(PATHS.src, 'default')
+      ]
+    });
+    break;
+}
+
+if (PLONE.config.debug) {
+  console.log(module.exports);
+}

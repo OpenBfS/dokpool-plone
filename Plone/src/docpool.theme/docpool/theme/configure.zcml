@@ -16,6 +16,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <!-- The main webpack theme -->
+  <plone:static
+    directory="webpack_resources/theme/docpooltheme"
+    type="theme"
+    name="docpooltheme"
+    />
+
+  <!-- Only hosts the less files -->
   <plone:static
     directory="diazo_resources"
     type="theme"

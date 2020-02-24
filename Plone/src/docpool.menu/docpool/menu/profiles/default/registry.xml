@@ -14,18 +14,4 @@
       <value key="deps">jquery</value>
       <value key="export"></value>
   </records>
-  <records prefix="plone.bundles/docpool-menu"
-            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-    <value key="resources">
-      <element>docpool-menu</element>
-    </value>
-    <value key="expression"></value>
-    <value key="compile">True</value>
-    <value key="enabled">True</value>
-    <value key="depends">plone</value>
-    <value key="jscompilation">++plone++docpool.menu/docpool-menu-compiled.js</value>
-    <value key="csscompilation">++plone++docpool.menu/docpool-menu-compiled.css</value>
-    <value key="last_compilation">2019-09-27 10:25:59</value>
-  </records>
-
 </registry>
