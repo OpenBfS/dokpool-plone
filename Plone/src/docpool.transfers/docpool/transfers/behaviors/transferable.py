@@ -491,6 +491,9 @@ class Transferable(FlexibleView):
     def deleteTransferDataInDB(self):
         """
         """
+        if not hasattr(self, 'UID'):
+            log('Failed to deleteTransferData as obj has no UID')
+            return False
         received = (
             __session__.query(ReceiverLog)
             .filter(ReceiverLog.document_uid == self.UID())
@@ -523,8 +526,8 @@ def deleteTransferData(obj, event=None):
     """
     try:
         tObj = ITransferable(obj)  # Try behaviour
-        log('deleteTransferData %s from %s' %
+        log('Try to deleteTransferData %s from %s' %
             (obj.Title(), obj.absolute_url()))
-        tObj.deleteTransferDataInDB()
+        return tObj.deleteTransferDataInDB()
     except BaseException:
-        pass
+        return False
