@@ -1,6 +1,7 @@
 <tal:block i18n:domain="elan.esd"
            tal:define="portal_state context/@@plone_portal_state;
-                       member portal_state/member;">
+                       member portal_state/member;
+                       checkPermission nocall: context/portal_membership/checkPermission;">
     <dl class="portlet"
         id="overviewportlet">
         <dt class="portletHeader">
@@ -24,7 +25,7 @@
                        href=""
                        i18n:attributes="title"
                        title="Add journal entry"
-                       tal:define="can_add python: context.isAdmin() or context.isContentAdmin() or (member and 'JournalEditor' in str(member.getRolesInContext(brain.getObject())))"
+                       tal:define="can_add python: checkPermission('elan.journal: Add JournalEntry', brain.getObject())"
                        tal:condition="python: can_add"
                        tal:attributes="href python: brain.getURL() + '/update';">
                        +
