@@ -12,9 +12,10 @@ def _create_journalentries(context, count):
     doing this so fast that we ended with the same timestamp on different
     updates."""
     adapter = IJournalEntryContainer(context)
-    for i in range(1, count + 1):
+    for index in range(1, count + 1):
         sleep(0.05)
-        adapter.add(JournalEntry(str(i), str(i)))
+        adapter.add(
+            JournalEntry('', u'<p>This is demo journal entry {}</p>'.format(index)))
 
     # wait and update Journal modification time to invalidate the cache
     sleep(1)
