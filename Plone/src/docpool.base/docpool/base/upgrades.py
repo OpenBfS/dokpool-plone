@@ -217,6 +217,8 @@ def to_1002(context=None):
         'profile-elan.journal:default',
         steps=['rolemap', 'workflow'],
         )
+    wtool = api.portal.get_tool('portal_workflow')
+    wtool.updateRoleMappings()
     # TODO: THIS IS NOT ENOUGH YET!
     log.info('Set workflow for Journals and added roles JournalEditor and JournalReader')
 
