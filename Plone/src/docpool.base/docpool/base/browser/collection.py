@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
+from docpool.base.utils import extendOptions
+from plone import api
+from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-<<<<<<< HEAD
-from plone import api
-=======
-from docpool.base.utils import extendOptions
-from plone import api
 from zope.i18n import translate
 
->>>>>>> Add i18n base / rei switch and translations
 
 class CollectionDocView(BrowserView):
     """Default view
