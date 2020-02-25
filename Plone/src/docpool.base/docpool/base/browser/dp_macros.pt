@@ -168,6 +168,7 @@
 
 <metal:macro define-macro="doccontent"
     tal:define="auth_token context/@@authenticator/token">
+    <b tal:content="context/actionhelpers/is_rei_workflow"></b>
     <a href=""
        title=""
        i18n:attributes="title"
