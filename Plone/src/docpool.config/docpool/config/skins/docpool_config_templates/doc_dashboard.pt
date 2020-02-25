@@ -2,9 +2,10 @@
            define="view nocall:options/view;
                    context nocall:options/context;
                    here nocall:context;
+                   auth_token context/@@authenticator/token;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <div class="metadata"><a href="" title="" tal:attributes="title string:${context/Title}';
-                                    href string:javascript:go_to('${context/absolute_url}');">
+                                    href string:javascript:go_to('${context/absolute_url}?_authenticator=${auth_token}');">
 <span class="title">${context/Title}</span> - <i18n:txt translate="">modified:</i18n:txt> <span class="time"><tal:var replace="python:str(toLocalizedTime(context.getMdate(), long_format=1))"/> <tal:var i18n:translate="">LT</tal:var></span></a>
 
 </div>

@@ -14,9 +14,10 @@
                         doc python:doc and doc.getObject() or None;">
                     <h4 class="collection">${colltitle}</h4>
                     <div tal:condition="nocall:doc"
+                             tal:define="auth_token context/@@authenticator/token"
                              tal:attributes="id string:item_${doc/UID};">
                         <script type="text/javascript">
-                            <tal:var replace = "structure string:jQuery('#item_${doc/UID}').load('${doc/absolute_url}/@@dashboard?uid=${doc/UID}&ajax_load=1');"/>
+                            <tal:var replace = "structure string:jQuery('#item_${doc/UID}').load('${doc/absolute_url}/@@dashboard?uid=${doc/UID}&ajax_load=1&_authenticator=${auth_token}');"/>
                         </script>
                         <tal:insert replace="structure python:doc.restrictedTraverse('@@view').myView('dashboard')">
                            The dashboard info/image
