@@ -53,6 +53,10 @@ msgstr "Änderungen angewandt."
 msgid "Chronological Overview"
 msgstr "Chronologie"
 
+#: elan.esd/elan/esd/portlets/overview.pt:27
+msgid "Add journal entry"
+msgstr "Tagebucheintrag hinzufügen"
+
 #: elan.esd/elan/esd/portlets/collection.py:74
 msgid "Collection"
 msgstr "ELAN Collection"
