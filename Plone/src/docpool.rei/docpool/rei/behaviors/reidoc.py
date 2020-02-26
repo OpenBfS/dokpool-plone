@@ -323,7 +323,7 @@ def set_title(obj, event=None):
     except Exception:
         return
     legal_base_mapping = {
-        u'REI-E': u'Emmissionsbericht',
+        u'REI-E': u'Emissionsbericht',
         u'REI-I': u'Immissionsbericht',
     }
     if len(adapted.ReiLegalBases) > 1:
