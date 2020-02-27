@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from docpool.base.utils import extendOptions
 from plone import api
-from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -37,17 +36,14 @@ class CollectionDocView(BrowserView):
             )
             return view()
 
-    def is_rei_workflow(self, doc):
-        wf_tool = api.portal.get_tool('portal_workflow')
-        workflow = wf_tool.getWorkflowsFor(doc)[0]
-        rei_wfs = ['rei_review_workflow_alternative', 'rei_review_workflow_standard']
-        if workflow.id in rei_wfs:
-            return True
-        return False
-
     def translate_wf_action(self, doc, wf_action):
         translation_domain = 'docpool.base'
-        if self.is_rei_workflow(doc):
+        actionhelpers = api.content.get_view(
+            name='actionhelpers',
+            context=doc,
+            request=self.request,
+        )
+        if actionhelpers.is_rei_workflow(doc):
             translation_domain = 'docpool.rei'
         wf_state = wf_action['title']
         return translate(wf_state, domain=translation_domain, context=self.request)
