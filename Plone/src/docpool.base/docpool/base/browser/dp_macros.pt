@@ -167,16 +167,23 @@
 </div>
 
 <metal:macro define-macro="doccontent"
-    tal:define="auth_token context/@@authenticator/token">
-    <b tal:content="context/actionhelpers/is_rei_workflow"></b>
-    <a href=""
-       title=""
-       i18n:attributes="title"
-       tal:attributes="title python:dpbrain.review_state + ' - Show document';
-                       href string:javascript:go_to('${item_url}&_authenticator=${auth_token}');
-                       class string:$item_type_class $item_wf_state_class"
-       tal:content="dpbrain/Title">Title
-    </a>
+    tal:define="auth_token context/@@authenticator/token;
+                portal context/plone_portal_state/portal;
+                actionhelpers portal/actionhelpers">
+
+    <tal:def tal:define="dpbrain_title python: actionhelpers.is_rei_workflow(dpbrain) and
+                         context.translate(dpbrain.review_state + ' - Show document',domain='docpool.rei') or
+
+                         context.translate(dpbrain.review_state + ' - Show document',domain='docpool.base')">
+        <a href=""
+           title=""
+           i18n:attributes="title"
+           tal:attributes="title dpbrain_title;
+                           href string:javascript:go_to('${item_url}&_authenticator=${auth_token}');
+                           class string:$item_type_class $item_wf_state_class"
+           tal:content="dpbrain/Title">Title
+        </a>
+    </tal:def>
     <div class="description" tal:condition="python:item_description"
          tal:content="structure string:$item_description"> description
     </div>
