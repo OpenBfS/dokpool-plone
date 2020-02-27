@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-02-21 15:15+0000\n"
+"POT-Creation-Date: 2020-02-27 15:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,6 +202,10 @@ msgstr "Jahr"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "label_rei_mstids_initial_value"
 msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "published - Show document"
+msgstr "Freigeben - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "reject_to_authority"

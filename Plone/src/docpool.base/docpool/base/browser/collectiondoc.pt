@@ -23,7 +23,9 @@
                                                           myfolder_url python:doc.myFolderBase().absolute_url()">
 
             <tal:defi tal:define="a_id action/id;
-                                  alert_msg python: view.is_rei_workflow(doc) and
+                                  portal context/plone_portal_state/portal;
+                                  actionhelpers portal/actionhelpers;
+                                  alert_msg python: actionhelpers.is_rei_workflow(doc) and
                                           context.translate('alert_' + a_id + '_popup',
                                           default='Do you really want to publish this document?',
                                           domain='docpool.base',
