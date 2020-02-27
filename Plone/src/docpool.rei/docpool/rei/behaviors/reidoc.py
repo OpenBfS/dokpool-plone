@@ -25,7 +25,7 @@ from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.interfaces import RequiredMissing
-
+import re
 
 START_SAMPLING_MAPPING = {
     'Y': '1.1.',
@@ -368,7 +368,6 @@ def set_title(obj, event=None):
         installations_prefix = u'für die Kerntechnischen Anlagen'
         part1 = u', '.join(installations[:-1])
         installations = u'{} und {}'.format(part1, installations[-1])
-
     if adapted.Medium:
         medium = u'({}) '.format(adapted.Medium)
     else:
@@ -378,7 +377,7 @@ def set_title(obj, event=None):
         legal=legal,
         period=period,
         installations_prefix=installations_prefix,
-        installations=installations,
+        installations=re.sub(r"U[A-Z0-9]{3}", "", installations),
         medium=medium,
         origins=origins,
         )
