@@ -166,7 +166,7 @@
             <group-role>Contributor</group-role>
             <group-role>Owner</group-role>
         </group-map>
-        <group-map name="bund_bfs_rei">
+        <group-map name="bund_bmu_rei">
             <group-role>Reviewer</group-role>
         </group-map>
     </state>
