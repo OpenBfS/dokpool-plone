@@ -85,7 +85,8 @@ if ((jQuery('body.portaltype-dpevent').length === 1)
 }
 
 // Imports the js/less for popups
-if ((jQuery('#portal-column-content.bfs_popup').length === 1)){
+if ((jQuery('#portal-column-content.bfs_popup').length === 1)
+    || (jQuery('body.viewpermission-elan-journal-add-journalentry').length === 1)){
     import("./Popup");
 }
 
