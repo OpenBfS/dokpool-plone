@@ -301,6 +301,7 @@
             <guard-role>Owner</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Site Administrator</guard-role>
+            <guard-group>bund_bfs_rei</guard-group>
         </guard>
     </transition>
     <transition transition_id="retract_to_bfs" title="Retract to BfS"
