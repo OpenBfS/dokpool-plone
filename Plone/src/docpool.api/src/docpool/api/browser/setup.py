@@ -260,8 +260,8 @@ class DocpoolSetup(BrowserView):
 
         with api.env.adopt_user(user=user1):
             sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
-            # add one dpdocument for each type
-            for doctype in doctypes:
+            # add one dpdocument for each type (except reireport)
+            for doctype in doctypes_ids:
                 new = api.content.create(
                     container=folder,
                     type='DPDocument',
@@ -381,6 +381,11 @@ class DocpoolSetup(BrowserView):
         # archive event
         dpevent_to_archive.archiveAndClose(self.request)
 
+        # configure reireport (disable transfer)
+        reireport_dtype = docpool_bund['config']['dtypes']['reireport']
+        from docpool.transfers.behaviors.transferstype import ITransfersType
+        ITransfersType(reireport_dtype).allowTransfer = False
+
         # create REI Bericht
         folder = docpool_bund['content']['Groups']['bund_betreiber_he']
         with api.env.adopt_user(username='betreiber_he'):
@@ -478,13 +483,6 @@ class DocpoolSetup(BrowserView):
         # transfer a elan/doksys document from bund to hessen
         doc_to_transfer = docpool_bund['content']['Groups']['bund_group1']['eine-bodenprobe']
         adapted = ITransferable(doc_to_transfer)
-        allowed = adapted.allowedTargets()
-        target = allowed[0]
-        adapted.transferToTargets(targets=[target])
-
-        # transfer a rei document to hessen
-        rei_to_transfer = docpool_bund['content']['Groups']['bund_group1']['ein-rei_bericht']
-        adapted = ITransferable(rei_to_transfer)
         allowed = adapted.allowedTargets()
         target = allowed[0]
         adapted.transferToTargets(targets=[target])
