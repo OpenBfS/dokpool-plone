@@ -175,9 +175,9 @@ class DocpoolSetup(BrowserView):
         if 'reireport' in doctypes_ids:
             doctypes_ids.remove('reireport')
 
-        even_config_folder = docpool_bund['contentconfig']['scen']
+        event_config_folder = docpool_bund['contentconfig']['scen']
         dpnuclearpowerstation = api.content.create(
-            container=even_config_folder,
+            container=event_config_folder,
             type='DPNuclearPowerStation',
             id='kernkraftwerk-1',
             title=u'Kernkraftwerk 1',
@@ -185,7 +185,7 @@ class DocpoolSetup(BrowserView):
             )
         log.info(u'Created dpnuclearpowerstation')
         dpnetwork = api.content.create(
-            container=even_config_folder,
+            container=event_config_folder,
             type='DPNetwork',
             id='testnetz',
             title=u'Testnetz',
@@ -193,7 +193,7 @@ class DocpoolSetup(BrowserView):
             )
         log.info(u'Created dpnetwork')
         dpevent = api.content.create(
-            container=even_config_folder,
+            container=event_config_folder,
             type='DPEvent',
             id='test-event',
             title=u'Test Event',
@@ -223,7 +223,7 @@ class DocpoolSetup(BrowserView):
 
         # add event with some content to archive
         dpevent_to_archive = api.content.create(
-            container=even_config_folder,
+            container=event_config_folder,
             type='DPEvent',
             id='archived-event',
             title=u'Test Event that was archived',
@@ -453,6 +453,41 @@ class DocpoolSetup(BrowserView):
             unknownScenDefault='block'
         )
         modified(dptransferfolder)
+
+        # Create the same event in hessen as in bund to be able to transfer
+        hessen_event = api.content.create(
+            container=docpool_land['contentconfig']['scen'],
+            type='DPEvent',
+            id='test-event',
+            title=u'Test Event',
+            description=u'Die Beschreibung',
+            EventType=u'exercise',
+            Status='active',
+            AlertingStatus=u'none',
+            AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
+            EventCoordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            EventPhase=None,
+            Exercise=True,
+            TimeOfEvent=datetime.now(),
+            OperationMode='routine',
+            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            )
+        log.info(u'Created test-event for hessen')
+
+        from docpool.transfers.behaviors.transferable import ITransferable
+        # transfer a elan/doksys document from bund to hessen
+        doc_to_transfer = docpool_bund['content']['Groups']['bund_group1']['eine-bodenprobe']
+        adapted = ITransferable(doc_to_transfer)
+        allowed = adapted.allowedTargets()
+        target = allowed[0]
+        adapted.transferToTargets(targets=[target])
+
+        # transfer a rei document to hessen
+        rei_to_transfer = docpool_bund['content']['Groups']['bund_group1']['ein-rei_bericht']
+        adapted = ITransferable(rei_to_transfer)
+        allowed = adapted.allowedTargets()
+        target = allowed[0]
+        adapted.transferToTargets(targets=[target])
 
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
