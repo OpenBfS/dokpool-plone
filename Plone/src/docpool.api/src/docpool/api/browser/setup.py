@@ -169,11 +169,6 @@ class DocpoolSetup(BrowserView):
 
         voc = getUtility(IVocabularyFactory, name='docpool.base.vocabularies.DocType')
         doctypes = voc(self.context).by_value
-        doctypes_ids = [i.id for i in doctypes]
-
-        # Do not create reireports. This is only for elan-specific DPDocuments
-        if 'reireport' in doctypes_ids:
-            doctypes_ids.remove('reireport')
 
         event_config_folder = docpool_bund['contentconfig']['scen']
         dpnuclearpowerstation = api.content.create(
@@ -261,7 +256,10 @@ class DocpoolSetup(BrowserView):
         with api.env.adopt_user(user=user1):
             sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type (except reireport)
-            for doctype in doctypes_ids:
+            for doctype in doctypes:
+                if doctype.id == 'reireport':
+                    # Do not create reireports here
+                    continue
                 new = api.content.create(
                     container=folder,
                     type='DPDocument',
