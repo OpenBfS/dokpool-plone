@@ -84,6 +84,7 @@ class IREIDoc(IDocumentExtension):
         value_type=schema.Choice(
             source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
+        missing_value=[],
     )
     read_permission(NuclearInstallations='docpool.rei.AccessRei')
     write_permission(NuclearInstallations='docpool.rei.AccessRei')
@@ -96,6 +97,7 @@ class IREIDoc(IDocumentExtension):
         value_type=schema.Choice(
             source=u"docpool.rei.vocabularies.ReiLegalBaseVocabulary"),
         required=True,
+        missing_value=[],
     )
     read_permission(ReiLegalBases='docpool.rei.AccessRei')
     write_permission(ReiLegalBases='docpool.rei.AccessRei')
@@ -138,6 +140,7 @@ class IREIDoc(IDocumentExtension):
         value_type=schema.Choice(
             source=u"docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
+        missing_value=[],
     )
     read_permission(Origins='docpool.rei.AccessRei')
     write_permission(Origins='docpool.rei.AccessRei')
