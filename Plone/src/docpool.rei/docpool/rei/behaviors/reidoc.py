@@ -153,6 +153,7 @@ class IREIDoc(IDocumentExtension):
         value_type=schema.Choice(
             source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
+        missing_value=[],
     )
     read_permission(MStIDs='docpool.rei.AccessRei')
     write_permission(MStIDs='docpool.rei.AccessRei')
