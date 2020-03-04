@@ -27,7 +27,7 @@
         </span><br>
 
         <label>von - bis</label>:
-          <span tal:content="python: reiobj.sampling_start_localized()" /> 00:01 Uhr - 
+          <span tal:content="python: reiobj.sampling_start_localized()" /> 00:01 Uhr -
           <span tal:content="python: reiobj.sampling_stop_localized()" /> 00:00 Uhr
         <br>
         <br>
@@ -53,6 +53,8 @@
            <tal:var replace="reiobj/PDFVersion"/>
         </span><br>
         <br>
+
+        <div tal:replace="structure context/@@review_history" />
 
     </tal:def>
 </tal:block>

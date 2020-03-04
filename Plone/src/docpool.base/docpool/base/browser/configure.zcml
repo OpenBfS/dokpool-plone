@@ -190,4 +190,12 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      for="*"
+      name="review_history"
+      class=".review_history.ReviewHistoryView"
+      template="templates/review_history.pt"
+      permission="zope2.View"
+      />
+
 </configure>
