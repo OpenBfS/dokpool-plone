@@ -15,12 +15,10 @@
             <th i18n:translate="listingheader_action">Action</th>
             <th i18n:translate="listingheader_performed_by">Performed by</th>
             <th i18n:translate="listingheader_date_and_time">Date and Time</th>
-            <th i18n:translate="listingheader_comment">Comment</th>
           </tr>
 
           <metal:block tal:repeat="item history">
-            <tr tal:define="rhComments item/comments|nothing;
-                            state item/review_state|nothing"
+            <tr tal:define="state item/review_state|nothing"
                 tal:condition="item/action">
               <td>
                 <span i18n:translate="" tal:content="item/transition_title">action</span>
@@ -29,7 +27,7 @@
               <td tal:define="actorid python:item.get('actorid');
                               actor python:item.get('actor');
                               fullname actor/fullname|nothing;
-                              username actor/username|nothing">
+                              username actor/username|nothing;">
                 <span tal:replace="python:fullname or username or actorid" />
               </td>
 
@@ -38,16 +36,6 @@
                 <span tal:condition="item/effective_date|nothing">
                   (<span i18n:translate="label_publishing_effective" tal:omit-tag="">effective</span>:
                   <span tal:replace="python: plone_view.toLocalizedTime(item['effective_date'],long_format=True)"></span>)
-                </span>
-              </td>
-
-              <td>
-                <span tal:condition="rhComments">
-                  <span tal:replace="rhComments"> some comments </span>
-                </span>
-
-                <span tal:condition="not: rhComments" i18n:translate="no_comments">
-                  No comments.
                 </span>
               </td>
             </tr>
