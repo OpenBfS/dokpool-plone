@@ -16,9 +16,11 @@
                 <span tal:condition="doc/canBeEdited">
                    <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
                 </span>
+<!-- not necessary ?
                 <span tal:condition="not:doc/canBeEdited">
                    <a href="" tal:attributes="href string:${doc/absolute_url}/view" class="docref" i18n:translate="">View the document</a>
                 </span>
+-->
                 <tal:loop repeat="action actions" define="actions doc/workflowActions;
                                                           myfolder_url python:doc.myFolderBase().absolute_url()">
 
