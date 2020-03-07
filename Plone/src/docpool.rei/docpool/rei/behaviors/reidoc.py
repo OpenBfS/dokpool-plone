@@ -181,7 +181,7 @@ class IREIDoc(IDocumentExtension):
         required=True,
         default='keine Angabe',
     )
-    directives.omitted('PDFVersion')
+    directives.mode(PDFVersion='hidden')
     dexteritytextindexer.searchable('PDFVersion')
 
 
