@@ -141,4 +141,34 @@
    <property name="visible">True</property>
   </object>
  </object>
+ <object name="object" meta_type="CMF Action Category">
+  <property name="title" i18n:translate="">Object actions</property>
+  <object name="folderContents" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Contents</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentFolderUrl}/folder_contents</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">
+      python:here.portal_type != 'DPDocument'
+   </property>
+   <property name="permissions">
+    <element value="List folder contents"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="local_roles" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Sharing</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${object_url}/@@sharing</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">
+      python:here.isAdmin() or here.isContentAdmin()
+   </property>
+   <property name="permissions">
+    <element value="Sharing page: Delegate roles"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
 </object>
