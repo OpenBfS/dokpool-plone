@@ -112,7 +112,6 @@
     </permission>
     <permission name="CMFPlacefulWorkflow: Manage workflow policies" acquire="True">
       <role name="Manager"/>
-      <role name="Owner"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>

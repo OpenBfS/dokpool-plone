@@ -94,8 +94,8 @@ def create_all_collection(plonesite):
     iwas = container['all']
 
     # Set the Collection criteria.
-    #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    #: Sort on the Modification date
+    iwas.sort_on = u'modified'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type
@@ -104,7 +104,12 @@ def create_all_collection(plonesite):
             'i': u'dp_type',
             'o': u'plone.app.querystring.operation.selection.is',
             'v': [u'reireport'],
-        }
+        },
+        {
+            u'i': u'review_state',
+            u'o': u'plone.app.querystring.operation.selection.any',
+            u'v': ['published', 'pending_bmu', 'pending_bfs', 'pending_authority', 'private'],
+        },
     ]
     iwas.text = RichTextValue(
         '<p>Alle Reiberichte<p>',
@@ -127,8 +132,8 @@ def create_all_private_collection(plonesite):
     iwas = container['allprivate']
 
     # Set the Collection criteria.
-    #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    #: Sort on the Modification date
+    iwas.sort_on = u'modified'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
