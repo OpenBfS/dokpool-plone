@@ -205,7 +205,7 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "published - Show document"
-msgstr "Freigeben - Klicken, um das Dokument anzuzeigen"
+msgstr "Freigegeben - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "reject_to_authority"
