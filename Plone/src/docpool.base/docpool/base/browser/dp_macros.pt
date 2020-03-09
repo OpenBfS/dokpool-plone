@@ -66,19 +66,18 @@
                                        id string:item_${dpbrain/UID};">
 
                             <metal:block define-slot="entry">
-                                <tal:if condition="nocall:item_obj">
+                                <tal:if condition="nocall:item_obj"
+                                        tal:define="auth_token context/@@authenticator/token">
                                     <!-- Image is in Products.CMFPlone/skins/plone_images -->
                                     <td class="loading_indicator" colspan="3">
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&ajax_load=1&_authenticator=${auth_token} .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>
 
-                                    <!--tal:insertview
-                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
                                 </tal:if>
                             </metal:block>
                         </tr>
@@ -167,12 +166,13 @@
     </div>
 </div>
 
-<metal:macro define-macro="doccontent">
+<metal:macro define-macro="doccontent"
+    tal:define="auth_token context/@@authenticator/token">
     <a href=""
        title=""
        i18n:attributes="title"
        tal:attributes="title python:dpbrain.review_state + ' - Show document';
-                       href string:javascript:go_to('${item_url}');
+                       href string:javascript:go_to('${item_url}&_authenticator=${auth_token}');
                        class string:$item_type_class $item_wf_state_class"
        tal:content="dpbrain/Title">Title
     </a>
@@ -182,12 +182,13 @@
     <div class="fulltext" tal:content="structure dpbrainobj/text/output|nothing"/>
 
 </metal:macro>
-<metal:macro define-macro="foldercontent">
+<metal:macro define-macro="foldercontent"
+        tal:define="auth_token context/@@authenticator/token">
     <img src="" tal:attributes="src string:${context/portal_url}/folder.png"/>
     <a href=""
        title="Show folder"
        i18n:attributes="title"
-       tal:attributes="href string:javascript:go_to('${item_url}');
+       tal:attributes="href string:javascript:go_to('${item_url}&_authenticator=${auth_token}');
                                class string:$item_type_class $item_wf_state_class a.contenttype-folder::before "
        tal:content="dpbrain/Title">Title
     </a>
@@ -386,9 +387,10 @@
 </metal:macro>
 
 <metal:macro define-macro="has_comments" i18n:domain="docpool.base">
-          <span tal:condition="context/hasComments">
+          <span tal:condition="context/hasComments"
+                tal:define="auth_token context/@@authenticator/token">
               <b><u><a href="" title="" tal:attributes="title python:'show document';
-                                                  href string:javascript:go_to('${item_url}');">
+                                                  href string:javascript:go_to('${item_url}&_authenticator=${auth_token}');">
                    <i18n:txt translate="">There are comments.</i18n:txt>
               </a></u></b>
           </span>
@@ -472,28 +474,19 @@
                                         id string:item_${dpbrain/UID};">
 
                             <metal:block define-slot="entry">
-                                <tal:if condition="nocall:item_obj">
+                                <tal:if condition="nocall:item_obj"
+                                         tal:define="auth_token context/@@authenticator/token">
                                     <!-- Image is in Products.CMFPlone/skins/plone_images -->
                                     <td class="loading_indicator" colspan="3">
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&ajax_load=1&_authenticator=${auth_token} .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>
-
-                                    <!--tal:insertview
-                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
                                 </tal:if>
                             </metal:block>
-
-                            <!--metal:block define-slot="entry">
-                                <tal:if condition="nocall:item_obj">
-                                    <tal:insertview
-                                            replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
-                                </tal:if>
-                            </metal:block-->
                         </tr>
                     </tal:items>
                     </tbody>
