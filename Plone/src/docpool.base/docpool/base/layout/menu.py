@@ -2,7 +2,7 @@
 """
 from plone import api
 from plone.app.contentmenu.menu import FactoriesMenu
-
+from plone.app.contentmenu.menu import WorkflowMenu
 
 class DPFactoriesMenu(FactoriesMenu):
     """ Overrides display menu
@@ -26,3 +26,19 @@ class DPFactoriesMenu(FactoriesMenu):
             return obj.customMenu(menu_items)
         else:
             return menu_items
+
+class DPWorkflowMenu(WorkflowMenu):
+    """ Overrides display menu
+    """
+
+    def getMenuItems(self, context, request):
+
+        results = super(DPWorkflowMenu, self).getMenuItems(context, request)
+        if len(results) > 0:
+
+            # Remove status history menu item ('Advanced...')
+
+            results = [r for r in results
+                if not r['action'].endswith(('/content_status_history','/placeful_workflow_configuration'))]
+
+        return results
