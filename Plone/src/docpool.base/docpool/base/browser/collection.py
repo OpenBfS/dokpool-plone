@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
 from docpool.base.utils import extendOptions
+from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone import api
+from zope.i18n import translate
+
 
 class CollectionDocView(BrowserView):
     """Default view
@@ -32,6 +35,18 @@ class CollectionDocView(BrowserView):
                 request=self.request,
             )
             return view()
+
+    def translate_wf_action(self, doc, wf_action):
+        translation_domain = 'docpool.base'
+        actionhelpers = api.content.get_view(
+            name='actionhelpers',
+            context=doc,
+            request=self.request,
+        )
+        if actionhelpers.is_rei_workflow(doc):
+            translation_domain = 'docpool.rei'
+        wf_state = wf_action['title']
+        return translate(wf_state, domain=translation_domain, context=self.request)
 
 
 class CollectionlistitemView(BrowserView):
