@@ -27,15 +27,15 @@
             <tal:defi tal:define="a_id action/id;
                                   portal context/plone_portal_state/portal;
                                   actionhelpers portal/actionhelpers;
-                                  alert_msg python: actionhelpers.is_rei_workflow(doc) and
-                                          context.translate('alert_' + a_id + '_popup',
-                                          default='Do you really want to publish this document?',
-                                          domain='docpool.base',
-                                          escape_for_js=True) or
-
+                                  alert_msg python: (actionhelpers.is_rei_workflow(doc) and
                                           context.translate('alert_' + a_id + '_popup',
                                           default='Do you really want to publish this document?',
                                           domain='docpool.rei',
+                                          escape_for_js=True)) or
+
+                                          context.translate('alert_' + a_id + '_popup',
+                                          default='Do you really want to publish this document?',
+                                          domain='docpool.base',
                                           escape_for_js=True)">
 
                     <a class="wf_action action" href=""
