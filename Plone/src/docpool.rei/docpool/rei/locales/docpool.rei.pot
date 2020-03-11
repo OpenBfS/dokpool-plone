@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-02-27 15:02+0000\n"
+"POT-Creation-Date: 2020-03-11 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,7 +94,63 @@ msgid "Year"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_delete_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "alert_publish_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_reject_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_reject_to_authority_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_reject_to_bfs_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_reject_to_npp_operator_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_retract_for_revision_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_retract_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_retract_to_authority_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_retract_to_bfs_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_retract_to_npp_operator_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_submit_authority_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_submit_bfs_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_submit_bmu_popup"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "alert_submit_popup"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
