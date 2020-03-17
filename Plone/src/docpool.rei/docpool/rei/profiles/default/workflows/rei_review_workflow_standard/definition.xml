@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <dc-workflow
         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-        workflow_id="rei_review_workflow_alternative"
-        title="REI Review Workflow alternativ"
+        workflow_id="rei_review_workflow_standard"
+        title="REI Review Workflow standard"
         description=""
         i18n:domain="plone"
         state_variable="review_state"
@@ -58,6 +58,7 @@
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_aufsicht">
             <group-role>Editor</group-role>
@@ -106,6 +107,7 @@
             <permission-role>DocPoolAdmin</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_aufsicht">
             <group-role>Editor</group-role>
@@ -204,6 +206,7 @@
             <permission-role>REIUser</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_bfs_rei">
             <group-role>Contributor</group-role>
@@ -230,6 +233,7 @@
         </permission-map>
         <permission-map name="Delete objects" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
+            <permission-role>Manager</permission-role>
         </permission-map>
         <permission-map name="Modify portal content" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
@@ -245,6 +249,7 @@
             <permission-role>REIUser</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_bfs_rei">
             <group-role>Contributor</group-role>
