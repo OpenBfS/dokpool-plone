@@ -18,5 +18,6 @@
     />
 
   	<subscriber handler=".transferable.deleteTransferData" />
+  	<subscriber handler=".transferable.automaticTransfer" />
 
 </configure>

@@ -32,6 +32,7 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from sqlalchemy import and_
@@ -41,7 +42,6 @@ from zope import schema
 from zope.component import adapter
 from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-
 
 @provider(IFormFieldProvider)
 class ITransferable(model.Schema):
@@ -529,5 +529,27 @@ def deleteTransferData(obj, event=None):
         log('Try to deleteTransferData %s from %s' %
             (obj.Title(), obj.absolute_url()))
         return tObj.deleteTransferDataInDB()
+    except BaseException:
+        return False
+
+
+@adapter(IDPDocument, IActionSucceededEvent)
+def automaticTransfer(obj, event=None):
+    """
+    """
+    # TODO: Warum wird dieser Handler mehrfach gerufen? -> vermutlich je
+    # einmal für Original und transferriertes Dokument
+    # TODO: Warum passieren dabei komische Sachen mit dem App-Menü? (Mehrfache
+    # Einträge, kaputte Links -> hängt wohl nicht mit Transfer zusammen; evtl.
+    # noch was?)
+    import pdb; pdb.set_trace() 
+    if event.action != 'publish':
+        return
+
+    try:
+        tObj = ITransferable(obj)  # Try behaviour
+        log('Try automaticTransfer of %s from %s' %
+            (obj.Title(), obj.absolute_url()))
+        return tObj.transferToAll()
     except BaseException:
         return False
