@@ -316,6 +316,10 @@ class REIDoc(FlexibleView):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
         return u'{} {}'.format(voc.getTerm(self.Period).title, self.Year)
 
+    def nuclear_installations_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.NuclearInstallationVocabulary')()
+        return u', '.join(voc.getTerm(i).title for i in self.NuclearInstallations)
+
 
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
