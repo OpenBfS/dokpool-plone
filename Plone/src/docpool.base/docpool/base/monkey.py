@@ -52,7 +52,9 @@ def getURL(self, relative=0, original=False):
         # only valid for DPDocuments
         and self.portal_type == 'DPDocument'
         # resolveid does not exist in url
-        and not request['URL'].find('resolveuid') > -1
+        and not request['URL'].find('resolveuid') > -1 
+        and not request['URL'].find('Transfers') > -1 
+        or 'overview' in str(request.get('myfolder_url',"/"))
     ):
         if self.cat_path:
             # This is it: we use the path of the category
@@ -63,7 +65,6 @@ def getURL(self, relative=0, original=False):
 
     # This is the normal implementation
     return request.physicalPathToURL(self.getPath(), relative)
-
 
 if not hasattr(AbstractCatalogBrain, "original_getURL"):
     AbstractCatalogBrain.original_getURL = AbstractCatalogBrain.getURL
