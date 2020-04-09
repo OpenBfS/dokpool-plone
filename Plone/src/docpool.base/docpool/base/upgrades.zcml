@@ -96,4 +96,14 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1002"
+      destination="1003"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Adapt REIDoc to changes in NuclearInstallationVocabulary"
+        handler="docpool.base.upgrades.to_1003"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

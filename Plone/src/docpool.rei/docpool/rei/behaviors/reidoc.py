@@ -316,6 +316,10 @@ class REIDoc(FlexibleView):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
         return u'{} {}'.format(voc.getTerm(self.Period).title, self.Year)
 
+    def nuclear_installations_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.NuclearInstallationVocabulary')()
+        return u', '.join(voc.getTerm(i).title for i in self.NuclearInstallations)
+
 
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
@@ -361,7 +365,8 @@ def set_title(obj, event=None):
     period_prefix = period_template.format(period_vocabulary.getTerm(adapted.Period).title)
     period = u'{} {}'.format(period_prefix, adapted.Year)
 
-    installations = adapted.NuclearInstallations
+    installations=re.split(r", U[A-Z0-9]{3}",adapted.nuclear_installations_display())
+    installations[0]=installations[0][5:]
     if len(installations) == 1:
         installations_prefix = u'für die Kerntechnische Anlage'
         installations = installations[0]
@@ -381,7 +386,7 @@ def set_title(obj, event=None):
         legal=legal,
         period=period,
         installations_prefix=installations_prefix,
-        installations=re.sub(r"U[A-Z0-9]{3}", "", installations),
+        installations=installations,
         medium=medium,
         origins=origins,
         )
