@@ -135,7 +135,7 @@ class IREIDoc(IDocumentExtension):
 
     directives.widget(Origins=CheckBoxFieldWidget)
     Origins = schema.List(
-        title=_(u'label_rei_Origin', default=u'Berichtende Stelle'),
+        title=_(u'label_rei_Origins', default=u'Origins'),
         description=_(u'description_rei_Origin', default=u''),
         value_type=schema.Choice(
             source=u"docpool.rei.vocabularies.OriginVocabulary"),

@@ -219,14 +219,9 @@ msgstr ""
 msgid "label_rei_NuclearInstallations"
 msgstr "Kerntechnische Anlage"
 
-#. Default: "Berichtende Stelle"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_Origin"
-msgstr ""
-
 #. Default: "Origins"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-#, fuzzy
 msgid "label_rei_Origins"
 msgstr "Berichtende Stelle"
 
@@ -245,7 +240,6 @@ msgstr "Zeitraum"
 #. Default: "ReiLegalBases"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-#, fuzzy
 msgid "label_rei_ReiLegalBases"
 msgstr "Gesetzliche Grundlage"
 
