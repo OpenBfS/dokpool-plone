@@ -340,8 +340,7 @@ class TestDocTypes(unittest.TestCase):
                 'ReviewFolder',
                 'CollaborationFolder',
                 'PrivateFolder',
-                'SRFolder',
-            ],
+            ]
         )
 
         # but not for the current user...
@@ -386,7 +385,6 @@ class TestDocTypes(unittest.TestCase):
                 'ReviewFolder',
                 'CollaborationFolder',
                 'PrivateFolder',
-                'SRFolder',
             ],
         )
 
