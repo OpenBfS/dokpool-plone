@@ -174,7 +174,7 @@
       </thead>
       <tbody>
         <tr tal:repeat="item python:changelog">
-          <td tal:content="python: '{} ({})'.format(item.get('Date', ''), item.get('User', ''))"></td>
+          <td tal:content="python: u'{} ({})'.format(item.get('Date', ''), item.get('User', ''))"></td>
           <td tal:content="python: item.get('Phase', '')"></td>
           <td i18n:translate="" tal:content="python: item.get('Status', '')"></td>
           <td i18n:translate="" tal:content="python: item.get('Operation mode', '')"></td>
