@@ -1,4 +1,7 @@
 Plone/bin
+Plone/include
+Plone/lib
+Plone/local
 Plone/downloads
 Plone/blobs
 Plone/eggs
