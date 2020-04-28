@@ -28,6 +28,7 @@ from zope import schema
 from zope.interface import alsoProvides
 from zope.interface import implementer
 
+from plone import api
 
 class ISimpleFolder(model.Schema, IFolderBase):
     """
@@ -62,6 +63,13 @@ class SimpleFolder(Container, FolderBase):
         filter = False
         if self.allowedDocTypes:
             filter = True
+        # Get active app
+        app = ''
+        user = api.user.get_current()
+        if user:
+            active_app = user.getProperty('apps')
+            if active_app:
+                app = active_app[0]
         res = []
         for menu_item in menu_items:
             if menu_item.get('id') == 'DPDocument':
@@ -69,6 +77,13 @@ class SimpleFolder(Container, FolderBase):
                     if (
                         not dt.getObject().globalAllow
                     ):  # only generally allowed doctypes
+                        continue
+                    # Get behavior of menu_item
+                    from docpool.localbehavior.localbehavior import \
+                        ILocalBehaviorSupport
+                    item_behavior =ILocalBehaviorSupport(dt.getObject()).local_behaviors
+
+                    if not app in item_behavior:
                         continue
                     if not filter or dt.id in self.allowedDocTypes:
                         res.append(
