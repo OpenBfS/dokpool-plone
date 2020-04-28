@@ -539,9 +539,6 @@ def automaticTransfer(obj, event=None):
     """
     # TODO: Warum wird dieser Handler mehrfach gerufen? -> vermutlich je
     # einmal für Original und transferriertes Dokument
-    # TODO: Warum passieren dabei komische Sachen mit dem App-Menü? (Mehrfache
-    # Einträge, kaputte Links -> hängt wohl nicht mit Transfer zusammen; evtl.
-    # noch was?)
     import pdb; pdb.set_trace() 
     if event.action != 'publish':
         return
