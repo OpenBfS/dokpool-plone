@@ -39,9 +39,14 @@ from sqlalchemy import and_
 from sqlalchemy.sql.expression import desc
 from sqlalchemy.sql.expression import or_
 from zope import schema
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+
+
+ANNOTATIONS_KEY = __name__
+
 
 @provider(IFormFieldProvider)
 class ITransferable(model.Schema):
@@ -537,16 +542,25 @@ def deleteTransferData(obj, event=None):
 def automaticTransfer(obj, event=None):
     """
     """
-    # TODO: Warum wird dieser Handler mehrfach gerufen? -> vermutlich je
-    # einmal für Original und transferriertes Dokument
-    import pdb; pdb.set_trace() 
     if event.action != 'publish':
         return
 
     try:
         tObj = ITransferable(obj)  # Try behaviour
+    except BaseException:
+        return False
+
+    annotations = IAnnotations(tObj.request).setdefault(ANNOTATIONS_KEY, {})
+    KEY = 'automatic_transfer_going_on'
+    if annotations.get(KEY, False):
+        return
+
+    annotations[KEY] = True
+    try:
         log('Try automaticTransfer of %s from %s' %
             (obj.Title(), obj.absolute_url()))
         return tObj.transferToAll()
     except BaseException:
         return False
+    finally:
+        del annotations[KEY]
