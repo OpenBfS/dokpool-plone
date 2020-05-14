@@ -217,6 +217,13 @@ class Transferable(FlexibleView):
             return True
         return False
 
+    @property
+    def automaticallyTransferable(self):
+        dto = self.context.docTypeObj()
+        if not dto:
+            return False
+        return dto.type_extension(TRANSFERS_APP).allowAutomaticTransfer
+
     def allowedTargets(self):
         """
         Other ESD must have allowed communication with my ESD,
@@ -549,6 +556,9 @@ def automaticTransfer(obj, event=None):
         tObj = ITransferable(obj)  # Try behaviour
     except BaseException:
         return False
+
+    if not tObj.automaticallyTransferable:
+        return
 
     annotations = IAnnotations(tObj.request).setdefault(ANNOTATIONS_KEY, {})
     KEY = 'automatic_transfer_going_on'

@@ -33,6 +33,17 @@ class ITransfersType(model.Schema):
         default=True,
     )
 
+    allowAutomaticTransfer = schema.Bool(
+        title=_(
+            u'label_doctype_allowautomatictransfer',
+            default=u'Are documents of this type transfered automatically?',
+        ),
+        description=_(
+            u'description_doctype_allowautomatictransfer', default=u''),
+        required=False,
+        default=False,
+    )
+
 
 class TransfersType(object):
     """
@@ -49,3 +60,12 @@ class TransfersType(object):
         context.allowTransfer = value
 
     allowTransfer = property(_get_allowTransfer, _set_allowTransfer)
+
+    @property
+    def allowAutomaticTransfer(self):
+        return getattr(self.context, "allowAutomaticTransfer", False)
+
+    @allowAutomaticTransfer.setter
+    def allowAutomaticTransfer(self, value):
+        context = aq_inner(self.context)
+        context.allowAutomaticTransfer = value
