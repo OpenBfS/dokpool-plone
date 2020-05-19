@@ -131,6 +131,10 @@ msgid "canceltitle"
 msgstr "Verlassen des Formulars"
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "description_doctype_allowautomatictransfer"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "description_doctype_allowtransfer"
 msgstr ""
 
@@ -171,6 +175,11 @@ msgstr ""
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "don't accept"
 msgstr "nicht annehmen"
+
+#. Default: "Are documents of this type transfered automatically?"
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "label_doctype_allowautomatictransfer"
+msgstr "Werden Dokumente dieses Typs automatisch übermittelt?"
 
 #. Default: "Can documents of this type be sent to other ESDs?"
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
