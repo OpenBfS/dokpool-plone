@@ -52,14 +52,14 @@ class TransfersType(object):
     def __init__(self, context):
         self.context = context
 
-    def _get_allowTransfer(self):
+    @property
+    def allowTransfer(self):
         return getattr(self.context, "allowTransfer", True)
 
-    def _set_allowTransfer(self, value):
+    @allowTransfer.setter
+    def allowTransfer(self, value):
         context = aq_inner(self.context)
         context.allowTransfer = value
-
-    allowTransfer = property(_get_allowTransfer, _set_allowTransfer)
 
     @property
     def allowAutomaticTransfer(self):
