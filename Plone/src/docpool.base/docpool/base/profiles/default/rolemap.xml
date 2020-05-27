@@ -192,6 +192,7 @@
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
     </permission>
     <permission name="Docpool: Add InfoLink" acquire="True">
       <role name="Manager"/>
