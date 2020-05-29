@@ -336,6 +336,7 @@
             <guard-role>Owner</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Site Administrator</guard-role>
+            <guard-expression>python:len(here.objectValues())>0</guard-expression>
         </guard>
     </transition>
     <transition transition_id="submit_bmu" title="Submit to BMU"
