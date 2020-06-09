@@ -140,6 +140,16 @@
    </property>
    <property name="visible">True</property>
   </object>
+  <object name="transfer" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">transfer</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
+   <property name="available_expr">python:context.isIndividual()</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
  </object>
  <object name="object" meta_type="CMF Action Category">
   <property name="title" i18n:translate="">Object actions</property>
