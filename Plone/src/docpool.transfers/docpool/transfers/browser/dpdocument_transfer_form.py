@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from plone import api
 from Products.CMFPlone import MessageFactory
 from Products.CMFPlone.utils import log, log_exc
 from docpool.transfers.config import TRANSFERS_APP
@@ -11,7 +12,7 @@ class TransferForm(BrowserView):
 
     def __call__(self, dpdocid=None, targets=None):
         request = self.request
-        if not request.get('sumbit'):
+        if not request.get('submit'):
             return self.index()
 
         if not dpdocid or not targets:
@@ -26,12 +27,16 @@ class TransferForm(BrowserView):
         api.portal.show_message('{} Items transfered!'.format(len(dpdocid)), request)
         request.response.redirect(self.context.absolute_url())
 
-
     def getTransferInfos(self):
-        dpdocid = self.request.get('id')
-        doc = self.context._getOb(dpdocid)
-        return dpdocid, doc, doc.doc_extension(TRANSFERS_APP)
-
+        infos = []
+        paths = self.request.get('paths', [])
+        for path in paths:
+            obj = api.content.get(path=path)
+            if not obj:
+                continue
+            if obj.transferable() and obj.allowedTargets():
+                infos.append((obj.id, obj, obj.doc_extension(TRANSFERS_APP)))
+        return infos
 
     def transfer_documents(self, dpdocid, targetIds):
 

@@ -12,16 +12,17 @@
             tal:attributes="action string:${context/absolute_url}/@@dpdocument_transfer_form"
             tal:define="request context/REQUEST;
                         errors python:request.get('errors', {});
-                        item_infos python:view.getTransferInfos();
-                        docid python:item_infos[0];
-                        doc python:item_infos[1];
-                        dpdoc python:item_infos[2];
+                        infos python:view.getTransferInfos();
                         ">
         <input type="hidden" name="form.submitted" value="1" />
 
            <h3 tal:content="doc/title"></h3>
 
-           <table summary="Inhalt" class="elanlistingtransferform listing" id="sortable">
+          <tal:block repeat="item_info infos">
+           <table summary="Inhalt" class="elanlistingtransferform listing" id="sortable"
+                  tal:define="docid python:item_infos[0];
+                              doc python:item_infos[1];
+                              dpdoc python:item_infos[2];">
             <thead>
                 <tr>
                     <th class="nosort" i18n:translate="" width="5">Select</th>
@@ -41,6 +42,8 @@
                </tr>
             </tbody>
         </table>
+      </tal:block>
+
         <span style="display:none;" id="redirecturl" tal:content="context/absolute_url"></span>
         <input type="hidden" name="dpdocid" value="1" tal:attributes="value docid" />
         <div class="formControls">
