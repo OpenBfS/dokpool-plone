@@ -96,9 +96,9 @@
            <tal:var replace="doksysobj/Duration"/>
         </span><br>
 
-        Type:
-        <span tal:condition="python:hasattr(doksysobj,'Type')">
-           <tal:var replace="doksysobj/Type"/>
+        InfoType:
+        <span tal:condition="python:hasattr(doksysobj,'InfoType')">
+           <tal:var replace="doksysobj/InfoType"/>
         </span><br>
 
         Area:
