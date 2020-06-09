@@ -53,13 +53,9 @@ class FolderBaseView(BrowserView):
     def dp_buttons(self, items):
         """
         Determine the available buttons by calling the original method from the
-        folder_contents view. We only accept cut & paste, though.
+        folder_contents view.
         """
-        res = []
-        for b in self.buttons(items):
-            if b['id'] in ['cut', 'paste']:
-                res.append(b)
-        return res
+        return self.buttons(items)
 
     def buttons(self, items):
         buttons = []
@@ -81,8 +77,7 @@ class FolderBaseView(BrowserView):
 
         for button in button_actions:
             # Make proper classes for our buttons
-            if button['id'] != 'paste' or context.cb_dataValid():
-                buttons.append(self.setbuttonclass(button))
+            buttons.append(self.setbuttonclass(button))
         return buttons
 
     def setbuttonclass(self, button):
