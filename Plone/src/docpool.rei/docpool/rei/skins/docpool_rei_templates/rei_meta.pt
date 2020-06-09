@@ -54,7 +54,7 @@
         </span><br>
         <br>
 
-        <div tal:replace="structure context/@@review_history" />
+        <div tal:replace="structure python:reiobj.review_history()" />
 
     </tal:def>
 </tal:block>

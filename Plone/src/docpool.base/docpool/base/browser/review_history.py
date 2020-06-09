@@ -5,6 +5,7 @@ from plone import api
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.utils import log
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -71,7 +72,7 @@ class ReviewHistoryView(BrowserView):
             review_history.reverse()
 
         except WorkflowException:
-            log('plone.app.layout.viewlets.content: '
+            log('docpool.base.browser.review_history: '
                 '%s has no associated workflow' % context.absolute_url(),
                 severity=logging.DEBUG)
 

@@ -7,6 +7,7 @@ from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.interfaces import IDPDocument
+from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
@@ -320,6 +321,13 @@ class REIDoc(FlexibleView):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.NuclearInstallationVocabulary')()
         return u', '.join(voc.getTerm(i).title for i in self.NuclearInstallations)
 
+    def review_history(self):
+        # Show WF-History for all users with view-permission.
+        # Workaround check for "Review portal content" or "Request review"
+        def show_review_history():
+            history = self.context.restrictedTraverse('@@review_history')
+            return history()
+        return execute_under_special_role(self, 'Reviewer', show_review_history)
 
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
