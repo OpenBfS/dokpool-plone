@@ -6088,42 +6088,42 @@ msgstr ""
 #. Default: "Description of Measurement"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_Dom"
-msgstr ""
+msgstr "Beschreibung der Messung"
 
 #. Default: "Area"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_area"
-msgstr ""
+msgstr "Geographischer Bereich"
 
 #. Default: "Data Type"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_data_type"
-msgstr ""
+msgstr "Datenbasis"
 
 #. Default: "Duration"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_duration"
-msgstr ""
+msgstr "Dauer"
 
 #. Default: "InfoType"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_infotype"
-msgstr ""
+msgstr "Zusatzinformation"
 
 #. Default: "Legal Base"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_legal_base"
-msgstr ""
+msgstr "Rechtl. Basis"
 
 #. Default: "Measurement Category"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_measurement_category"
-msgstr ""
+msgstr "Messgröße"
 
 #. Default: "Measuring Program"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_measuring_program"
-msgstr ""
+msgstr "Messprogramm"
 
 #. Default: "Network Operator"
 #: docpool/doksys/behaviors/doksysdoc.py
@@ -6133,37 +6133,37 @@ msgstr "Netzbetreiber"
 #. Default: "Operation Mode"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_operation_mode"
-msgstr ""
+msgstr "Betriebsart"
 
 #. Default: "Purpose"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_purpose"
-msgstr ""
+msgstr "Zweck"
 
 #. Default: "Sample Type"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_sample_type"
-msgstr ""
+msgstr "Umweltbereich"
 
 #. Default: "Sample Type Id"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_sample_type_id"
-msgstr ""
+msgstr "Umweltbereichs-ID"
 
 #. Default: "Sampling Begin"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_sampling_begin"
-msgstr "Probenahmebeginn"
+msgstr "Probeentnahme Beginn"
 
 #. Default: "Sampling End"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_sampling_end"
-msgstr ""
+msgstr "Probeentnahme Ende"
 
 #. Default: "Status"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_status"
-msgstr ""
+msgstr "Status"
 
 #. Default: "Trajectory End Location"
 #: docpool/doksys/behaviors/doksysdoc.py
