@@ -21,7 +21,7 @@
     <index name="NetworkOperator" meta_type="KeywordIndex">
         <indexed_attr value="NetworkOperator"/>
     </index>
-    <index name="Dom" meta_type="FieldIndex">
+    <index name="Dom" meta_type="KeywordIndex">
         <indexed_attr value="Dom"/>
     </index>
     <index name="LegalBase" meta_type="FieldIndex">

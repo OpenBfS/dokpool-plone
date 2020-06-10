@@ -3,4 +3,7 @@
   <index name="NetworkOperator" meta_type="KeywordIndex">
     <indexed_attr value="NetworkOperator"/>
   </index>
+  <index name="Dom" meta_type="KeywordIndex">
+    <indexed_attr value="Dom"/>
+  </index>
 </object>

@@ -13,7 +13,7 @@
 
         <span i18n:translate="label_doksys_Dom">Dom</span>:
         <span tal:condition="python:hasattr(doksysobj,'Dom')">
-           <tal:var replace="doksysobj/Dom"/>
+           <tal:var replace="python:', '.join(doksysobj.Dom)"/>
         </span><br>
 
         <span i18n:translate="label_doksys_legal_base">Legal Base</span>:

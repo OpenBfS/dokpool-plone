@@ -37,11 +37,15 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(NetworkOperator='docpool.doksys.AccessDoksys')
     write_permission(NetworkOperator='docpool.doksys.AccessDoksys')
 
-    Dom = schema.Choice(
+    widget(Dom=SelectFieldWidget)
+    Dom = schema.List(
         title=_(u'label_doksys_Dom', default=u'Description of Measurement'),
         description=_(u'description_doksys_Dom', default=u''),
-        source="docpool.doksys.Dom",
+        value_type=schema.Choice(
+            source="docpool.doksys.Dom",
+        ),
         required=False,
+        missing_value=[],
     )
     read_permission(Dom='docpool.doksys.AccessDoksys')
     write_permission(Dom='docpool.doksys.AccessDoksys')

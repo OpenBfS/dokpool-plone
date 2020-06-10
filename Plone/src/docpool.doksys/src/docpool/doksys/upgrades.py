@@ -5,8 +5,14 @@ import transaction
 
 
 def to_1001(context):
+    indexes = attributes = [
+        'NetworkOperator',
+        'Dom',
+    ]
     catalog = api.portal.get_tool(name='portal_catalog')
-    catalog.delIndex('NetworkOperator')
+
+    for idx in indexes:
+        catalog.delIndex(idx)
 
     loadMigrationProfile(
         context,
@@ -16,10 +22,11 @@ def to_1001(context):
     for count, brain in enumerate(api.content.find(Type='DPDocument')):
         obj = brain.getObject()
 
-        if type(obj.NetworkOperator) != list:
-            obj.NetworkOperator = [obj.NetworkOperator]
+        for attr in attributes:
+            if type(getattr(obj, attr)) != list:
+                setattr(obj, attr, [getattr(obj, attr)])
 
-        obj.reindexObject(idxs=['NetworkOperator'])
+        obj.reindexObject(idxs=indexes)
 
         if not (count + 1) % 100:
             transaction.commit()
