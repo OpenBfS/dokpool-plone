@@ -18,7 +18,7 @@
  </object>
 
   <!--<column value="my_meta_column"/>-->
-    <index name="NetworkOperator" meta_type="FieldIndex">
+    <index name="NetworkOperator" meta_type="KeywordIndex">
         <indexed_attr value="NetworkOperator"/>
     </index>
     <index name="Dom" meta_type="FieldIndex">

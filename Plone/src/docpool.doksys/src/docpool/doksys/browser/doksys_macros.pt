@@ -8,7 +8,7 @@
     <metal:macro define-macro="doksys_meta" i18n:domain="docpool.doksys">
         <span i18n:translate="label_doksys_network_operator">Network Operator</span>:
         <span tal:condition="python:hasattr(doksysobj,'NetworkOperator')">
-           <tal:var replace="doksysobj/NetworkOperator"/>
+           <tal:var replace="python:', '.join(doksysobj.NetworkOperator)"/>
         </span><br>
 
         <span i18n:translate="label_doksys_Dom">Dom</span>:

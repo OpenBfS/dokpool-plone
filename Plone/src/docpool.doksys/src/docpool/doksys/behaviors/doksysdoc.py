@@ -8,12 +8,13 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.doksys import DocpoolMessageFactory as _
 from docpool.doksys.config import DOKSYS_APP
+from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform.directives import read_permission
+from plone.autoform.directives import widget
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from zope import schema
 from zope.interface import provider
-
 
 # from docpool.doksys.vocabularies import SampleType
 
@@ -23,11 +24,15 @@ class IDoksysDoc(IDocumentExtension):
     # dexteritytextindexer.searchable('NetworkOperator')  if a field is
     # supposed to be fulltext searchable
 
-    NetworkOperator = schema.Choice(
+    widget(NetworkOperator=SelectFieldWidget)
+    NetworkOperator = schema.List(
         title=_(u'label_doksys_network_operator', default=u'Network Operator'),
         description=_(u'description_doksys_network_operator', default=u''),
-        source="docpool.doksys.NetworkOperators",
+        value_type=schema.Choice(
+            source="docpool.doksys.NetworkOperators",
+        ),
         required=False,
+        missing_value=[],
     )
     read_permission(NetworkOperator='docpool.doksys.AccessDoksys')
     write_permission(NetworkOperator='docpool.doksys.AccessDoksys')
