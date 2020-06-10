@@ -12,41 +12,35 @@ class TransferForm(BrowserView):
 
 
     def __call__(self, dpdocids=None, targets=None):
+        # import pdb; pdb.set_trace()
         request = self.request
-        if not request.get('form.button.submit'):
+        self.dpdocids = dpdocids
+        self.targets = targets
+        if not request.form.get('form.button.submit', None):
             return self.index()
 
         if not dpdocids or not targets:
             api.portal.show_message('Not items or targets selected!', request)
             return self.index()
 
-        message = self.transfer_documents(dpdocids, targets)
-        if message:
-            api.portal.show_message(message, request)
-            return self.index()
-
-        api.portal.show_message('{} Items transfered!'.format(len(dpdocids)), request)
-        request.response.redirect(self.context.absolute_url())
-
-    def getTransferInfos(self):
-        infos = []
-        paths = self.request.get('paths', [])
-        for path in paths:
-            obj = api.content.get(path=path)
-            if not obj:
-                continue
-            try:
-                adapted = ITransferable(obj)
-            except TypeError:
-                continue
-            if adapted.transferable() and adapted.allowedTargets():
-                infos.append((obj.id, obj, adapted))
-        return infos
+        if dpdocids and targets:
+            message = self.transfer_documents()
+            if message:
+                api.portal.show_message(message, request)
+                return self.index()
+            else:
+                api.portal.show_message('{} Items transfered!'.format(len(dpdocids)), request)
+                request.response.redirect(self.context.absolute_url())
+        return self.index()
 
     def transfer_infos(self):
         targets = []
         items = []
+        # the folder_listing passes paths
         paths = self.request.get('paths', [])
+        if not paths and self.dpdocids:
+            # handle individual transfer
+            paths = self.dpdocids
         for path in paths:
             obj = api.content.get(path=path)
             if not obj:
@@ -58,12 +52,13 @@ class TransferForm(BrowserView):
             if adapted.transferable() and adapted.allowedTargets():
                 targets.extend(adapted.allowedTargets())
                 items.append(obj)
+
         return {'items': items, 'targets': set(targets)}
 
-    def transfer_documents(self, dpdocids, targetIds):
-        for dpdocid in dpdocids:
+    def transfer_documents(self):
+        for dpdocid in self.dpdocids:
             doc = self.context._getOb(dpdocid)
             dpdoc = doc.doc_extension(TRANSFERS_APP)
-            dpdoc.manage_transfer(targetIds)
-            log("Transfer %s to ChannelIDs: %s" % (doc.title, targetIds))
+            dpdoc.manage_transfer(self.targets)
+            log("Transfer %s to ChannelIDs: %s" % (doc.title, self.targets))
         return
