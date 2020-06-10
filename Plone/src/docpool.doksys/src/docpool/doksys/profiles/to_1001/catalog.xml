@@ -6,4 +6,7 @@
   <index name="Dom" meta_type="KeywordIndex">
     <indexed_attr value="Dom"/>
   </index>
+  <index name="LegalBase" meta_type="KeywordIndex">
+    <indexed_attr value="LegalBase"/>
+  </index>
 </object>

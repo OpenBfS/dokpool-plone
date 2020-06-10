@@ -8,6 +8,7 @@ def to_1001(context):
     indexes = attributes = [
         'NetworkOperator',
         'Dom',
+        'LegalBase',
     ]
     catalog = api.portal.get_tool(name='portal_catalog')
 

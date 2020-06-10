@@ -13,6 +13,7 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import widget
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
 
@@ -50,11 +51,15 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(Dom='docpool.doksys.AccessDoksys')
     write_permission(Dom='docpool.doksys.AccessDoksys')
 
-    LegalBase = schema.Choice(
+    widget(LegalBase=CheckBoxFieldWidget)
+    LegalBase = schema.List(
         title=_(u'label_doksys_legal_base', default=u'Legal Base'),
         description=_(u'description_doksys_legal_base', default=u''),
-        source="docpool.doksys.LegalBase",
+        value_type=schema.Choice(
+            source="docpool.doksys.LegalBase",
+        ),
         required=False,
+        missing_value=[],
     )
     read_permission(LegalBase='docpool.doksys.AccessDoksys')
     write_permission(LegalBase='docpool.doksys.AccessDoksys')

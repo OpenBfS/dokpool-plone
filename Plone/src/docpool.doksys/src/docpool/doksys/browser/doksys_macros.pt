@@ -18,7 +18,7 @@
 
         <span i18n:translate="label_doksys_legal_base">Legal Base</span>:
         <span tal:condition="python:hasattr(doksysobj,'LegalBase')">
-           <tal:var replace="doksysobj/LegalBase"/>
+           <tal:var replace="python:', '.join(doksysobj.LegalBase)"/>
         </span><br>
 
         <span i18n:translate="label_doksys_measuring_program">Measuring Program</span>:
