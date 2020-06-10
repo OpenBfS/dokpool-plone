@@ -132,6 +132,10 @@
         title="Reload workflows without AT permissions"
         handler="docpool.base.upgrades.to_1005"
         />
+    <genericsetup:upgradeStep
+        title="Add folder_buttons for bulk-actions in listings"
+        handler="docpool.base.upgrades.reload_actions"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>

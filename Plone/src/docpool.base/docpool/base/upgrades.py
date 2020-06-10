@@ -325,3 +325,13 @@ def to_1005(context=None):
         portal_setup, 'profile-elan.esd:default', steps=['workflow'])
     loadMigrationProfile(
         portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])
+
+
+def reload_actions(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    # add transfer action to folder_buttons
+    loadMigrationProfile(
+        portal_setup,
+        'profile-docpool.base:default',
+        steps=['actions'],
+        )
