@@ -18,10 +18,9 @@
                         ">
         <input type="hidden" name="form.submitted" value="1" />
 
-          <p>Tranfer items:
-            <ul>
-              <li tal:repeat="item items" tal:content="python: item.title">
-            </li>
+          <h2 i18n:translate="">Transfer</h2>
+          <ul>
+            <li tal:repeat="item items" tal:content="python: item.title" />
           </ul>
 
            <table summary="Inhalt" class="elanlistingtransferform listing" id="sortable">
