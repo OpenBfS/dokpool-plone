@@ -197,13 +197,17 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(SampleType='docpool.doksys.AccessDoksys')
     write_permission(SampleType='docpool.doksys.AccessDoksys')
 
-    MeasurementCategory = schema.Choice(
+    widget(MeasurementCategory=SelectFieldWidget)
+    MeasurementCategory = schema.List(
         title=_(
             u'label_doksys_measurement_category',
             default=u'Measurement Category'),
         description=_(u'description_doksys_measurement_category', default=u''),
-        source="docpool.doksys.MeasurementCategory",
+        value_type=schema.Choice(
+            source="docpool.doksys.MeasurementCategory",
+        ),
         required=False,
+        missing_value=[],
     )
     read_permission(MeasurementCategory='docpool.doksys.AccessDoksys')
     write_permission(MeasurementCategory='docpool.doksys.AccessDoksys')

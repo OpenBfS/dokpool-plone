@@ -10,6 +10,7 @@ def to_1001(context):
         'Dom',
         'LegalBase',
         'DataType',
+        'MeasurementCategory',
     ]
     catalog = api.portal.get_tool(name='portal_catalog')
 

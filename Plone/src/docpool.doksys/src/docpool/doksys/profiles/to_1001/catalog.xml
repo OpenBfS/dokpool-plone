@@ -12,4 +12,7 @@
   <index name="DataType" meta_type="KeywordIndex">
     <indexed_attr value="DataType"/>
   </index>
+  <index name="MeasurementCategory" meta_type="KeywordIndex">
+    <indexed_attr value="MeasurementCategory"/>
+  </index>
 </object>

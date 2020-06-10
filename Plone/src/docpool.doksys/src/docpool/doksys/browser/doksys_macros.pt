@@ -88,7 +88,7 @@
 
         <span i18n:translate="label_doksys_measurement_category">Measurement Category</span>:
         <span tal:condition="python:hasattr(doksysobj,'MeasurementCategory')">
-           <tal:var replace="doksysobj/MeasurementCategory"/>
+           <tal:var replace="python:', '.join(doksysobj.MeasurementCategory)"/>
         </span><br>
 
         <span i18n:translate="label_doksys_duration">Duration</span>:

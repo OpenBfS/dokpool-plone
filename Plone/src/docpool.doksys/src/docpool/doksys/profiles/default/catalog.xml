@@ -68,7 +68,7 @@
     <index name="SampleType" meta_type="FieldIndex">
         <indexed_attr value="SampleType"/>
     </index>
-    <index name="MeasurementCategory" meta_type="FieldIndex">
+    <index name="MeasurementCategory" meta_type="KeywordIndex">
         <indexed_attr value="MeasurementCategory"/>
     </index>
     <index name="Duration" meta_type="FieldIndex">
