@@ -9,4 +9,7 @@
   <index name="LegalBase" meta_type="KeywordIndex">
     <indexed_attr value="LegalBase"/>
   </index>
+  <index name="DataType" meta_type="KeywordIndex">
+    <indexed_attr value="DataType"/>
+  </index>
 </object>

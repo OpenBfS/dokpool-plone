@@ -9,6 +9,7 @@ def to_1001(context):
         'NetworkOperator',
         'Dom',
         'LegalBase',
+        'DataType',
     ]
     catalog = api.portal.get_tool(name='portal_catalog')
 

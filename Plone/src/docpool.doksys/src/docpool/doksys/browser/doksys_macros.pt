@@ -73,7 +73,7 @@
 
         <span i18n:translate="label_doksys_data_type">Data Type</span>:
         <span tal:condition="python:hasattr(doksysobj,'DataType')">
-           <tal:var replace="doksysobj/DataType"/>
+           <tal:var replace="python:', '.join(doksysobj.DataType)"/>
         </span><br>
 
         <span i18n:translate="label_doksys_sample_type_id">Sample Type Id</span>:

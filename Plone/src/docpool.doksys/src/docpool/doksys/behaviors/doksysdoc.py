@@ -166,11 +166,15 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(OperationMode='docpool.doksys.AccessDoksys')
     write_permission(OperationMode='docpool.doksys.AccessDoksys')
 
-    DataType = schema.Choice(
+    widget(DataType=CheckBoxFieldWidget)
+    DataType = schema.List(
         title=_(u'label_doksys_data_type', default=u'Data Type'),
         description=_(u'description_doksys_data_type', default=u''),
-        source="docpool.doksys.DataType",
+        value_type=schema.Choice(
+            source="docpool.doksys.DataType",
+        ),
         required=False,
+        missing_value=[],
     )
     read_permission(DataType='docpool.doksys.AccessDoksys')
     write_permission(DataType='docpool.doksys.AccessDoksys')

@@ -57,7 +57,7 @@
     <index name="OperationMode" meta_type="FieldIndex">
         <indexed_attr value="OperationMode"/>
     </index>
-    <index name="DataType" meta_type="FieldIndex">
+    <index name="DataType" meta_type="KeywordIndex">
         <indexed_attr value="DataType"/>
     </index>
     <index name="SampleTypeId" meta_type="ZCTextIndex">
