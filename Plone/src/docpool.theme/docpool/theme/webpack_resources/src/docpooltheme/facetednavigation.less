@@ -1,0 +1,67 @@
+@import (css) "++view++@{jqueryui}"; // is a view at Plone root
+@import (css) "++resource++jquery-ui-themes/sunburst/jqueryui.css";
+
+@import (css) "@{faceted-navigation-view}";
+@import (css) "@{faceted-widgets-alphabets-view}";
+@import (css) "@{faceted-widgets-autocomplete-view}";
+@import (css) "@{faceted-widgets-checkbox-view}";
+@import (css) "@{faceted-widgets-criteria-view}";
+@import (css) "@{faceted-widgets-date-view}";
+@import (css) "@{faceted-widgets-daterange-view}";
+@import (css) "@{faceted-widgets-debug-view}";
+@import (css) "@{faceted-widgets-etag-view}";
+@import (css) "@{faceted-widgets-path-view}";
+@import (css) "@{faceted-widgets-portlet-view}";
+@import (css) "@{faceted-widgets-radio-view}";
+@import (css) "@{faceted-widgets-range-view}";
+@import (css) "@{faceted-widgets-resultsfilter-view}";
+@import (css) "@{faceted-widgets-resultsperpage-view}";
+@import (css) "@{faceted-widgets-select-view}";
+@import (css) "@{faceted-widgets-sorting-view}";
+@import (css) "@{faceted-widgets-tagscloud-view}";
+@import (css) "@{faceted-widgets-tal-view}";
+@import (css) "@{faceted-widgets-text-view}";
+
+#faceted-form .faceted-radio-widget ul li {
+  display: inline-block;
+  padding: 2px;
+}
+
+#faceted-form {
+  #center-content-area {
+    //margin: 0;
+  }
+
+  .faceted-column {
+    border: none;
+  }
+
+  .faceted-results {
+    border: none;
+    padding-top: 1em;
+  }
+
+  fieldset {
+    border: none;
+    padding: 1ex 0 0 0;
+    margin: 0 3em 2ex 0;
+    white-space: nowrap;
+  }
+
+  .faceted-tagscloud-widget fieldset {
+    white-space: normal;
+  }
+
+  .faceted-tagscloud-widget fieldset ul {
+    text-align: center;
+  }
+
+  .widget-fieldset ul {
+    padding-left: 0;
+  }
+
+  .faceted-text-widget input {
+    max-width: 50%;
+    display: inline-block;
+  }
+}
