@@ -25,7 +25,7 @@ def to_1001(context):
         obj = brain.getObject()
 
         for attr in attributes:
-            if type(getattr(obj, attr)) != list:
+            if type(getattr(obj, attr, [])) != list:
                 setattr(obj, attr, [getattr(obj, attr)])
 
         obj.reindexObject(idxs=indexes)
