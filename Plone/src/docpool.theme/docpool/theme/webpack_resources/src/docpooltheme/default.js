@@ -67,6 +67,38 @@ function go_to(url) {
     }
 }
 
+/* facetednavigation */
+if (jQuery('body.template-facetednavigation_view').length === 1) {
+    import(/* webpackChunkName: "faceted-navigation-expand" */ 'faceted-navigation-expand');
+    import(/* webpackChunkName: "faceted-navigation-independent" */ 'faceted-navigation-independent');
+    import(/* webpackChunkName: "faceted-widgets-alphabets-view" */ 'faceted-widgets-alphabets-view');
+    import(/* webpackChunkName: "faceted-widgets-autocomplete-view" */ 'faceted-widgets-autocomplete-view');
+    import(/* webpackChunkName: "faceted-widgets-checkbox-view" */ 'faceted-widgets-checkbox-view');
+    import(/* webpackChunkName: "faceted-widgets-criteria-view" */ 'faceted-widgets-criteria-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-date-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-daterange-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-debug-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-etag-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-multiselect-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-path-tree');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-path-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-portlet-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-radio-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-range-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-resultsfilter-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-resultsperpage-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-select-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-sorting-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-tagscloud-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-tal-view');
+    import(/* webpackChunkName: "docpool-functions" */ 'faceted-widgets-text-view');
+    import(/* webpackChunkName: "faceted-view" */ 'faceted-navigation-view').then(() => {
+    jQuery(($) => setTimeout(() => {debugger;
+        Faceted.Load(evt, '');
+    }, 0));
+  });
+}
+
 // More on magic comments
 // https://webpack.js.org/api/module-methods/#magic-comments
 // Imports the js for logged-in users
