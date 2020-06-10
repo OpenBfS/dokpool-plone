@@ -346,7 +346,7 @@ class Transferable(FlexibleView):
                 # 4) Add log entries to sender log.
                 userid, fullname, primary_group = getUserInfo(self.context)
                 document_uid = self.context.UID()
-                document_title = self.context.Title()
+                document_title = self.context.title
                 timestamp = datetime.now()
                 user = userid
                 scenario_ids = ""
@@ -382,7 +382,7 @@ class Transferable(FlexibleView):
                 my_copy.reindexObject()
                 # 7) Add entry to receiver log.
                 document_uid = my_copy.UID()
-                document_title = my_copy.Title()
+                document_title = my_copy.title
                 timestamp = datetime.now()
                 scenario_ids = ""
                 if elanobj is not None:
@@ -492,7 +492,7 @@ def deleteTransferData(obj, event=None):
     try:
         tObj = ITransferable(obj)  # Try behaviour
         log('Try to deleteTransferData %s from %s' %
-            (obj.Title(), obj.absolute_url()))
+            (obj.title, obj.absolute_url()))
         return tObj.deleteTransferDataInDB()
     except BaseException:
         return False
