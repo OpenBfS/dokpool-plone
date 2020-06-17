@@ -38,19 +38,6 @@
    <element value="TempFolder"/>
   </property>
   <property name="metaTypesNotToList" type="lines">
-   <element value="ATBooleanCriterion"/>
-   <element value="ATCurrentAuthorCriterion"/>
-   <element value="ATDateCriteria"/>
-   <element value="ATDateRangeCriterion"/>
-   <element value="ATListCriterion"/>
-   <element value="ATPathCriterion"/>
-   <element value="ATPortalTypeCriterion"/>
-   <element value="ATReferenceCriterion"/>
-   <element value="ATRelativePathCriterion"/>
-   <element value="ATSelectionCriterion"/>
-   <element value="ATSimpleIntCriterion"/>
-   <element value="ATSimpleStringCriterion"/>
-   <element value="ATSortCriterion"/>
    <element value="Collection"/>
    <element value="Discussion Item"/>
    <element value="Document"/>
@@ -111,19 +98,6 @@
   </property>
   <property name="exposeDCMetaTags" type="boolean">True</property>
   <property name="types_not_searched" type="lines">
-   <element value="ATBooleanCriterion"/>
-   <element value="ATCurrentAuthorCriterion"/>
-   <element value="ATDateCriteria"/>
-   <element value="ATDateRangeCriterion"/>
-   <element value="ATListCriterion"/>
-   <element value="ATPathCriterion"/>
-   <element value="ATPortalTypeCriterion"/>
-   <element value="ATReferenceCriterion"/>
-   <element value="ATRelativePathCriterion"/>
-   <element value="ATSelectionCriterion"/>
-   <element value="ATSimpleIntCriterion"/>
-   <element value="ATSimpleStringCriterion"/>
-   <element value="ATSortCriterion"/>
    <element value="Collection"/>
    <element value="Discussion Item"/>
    <element value="Event"/>

@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="elan_archive_workflow" title="ELAN Archive Workflow" description="" state_variable="review_state" initial_state="private" manager_bypass="False">
- <permission>ATContentTypes: Add File</permission>
- <permission>ATContentTypes: Add Image</permission>
  <permission>Access contents information</permission>
  <permission>Add portal content</permission>
  <permission>Delete objects</permission>
@@ -13,10 +11,6 @@
   <exit-transition transition_id="auto_publish"/>
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="submit"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
@@ -47,10 +41,6 @@
  <state state_id="pending" title="Pending review">
   <description>Waiting to be reviewed, not editable by the owner.</description>
   <exit-transition transition_id="publish"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
@@ -79,10 +69,6 @@
   <description>Visible to everyone, not editable by the owner.</description>
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="reject"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
