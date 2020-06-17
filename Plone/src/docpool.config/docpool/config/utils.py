@@ -96,10 +96,6 @@ def setAttributes(obj, objdef):
                 elif attr == 'local_behaviors':
                     lbs = ILocalBehaviorSupport(obj)
                     lbs._set_local_behaviors(objdef[attr])
-                elif obj.getPortalTypeName() in ['TemplatedDocument']:
-                    # Archetypes based
-                    setter = getattr(obj, attr)
-                    setter(objdef[attr])
                 else:
                     # Dexterity based
                     setattr(obj, attr, objdef[attr])

@@ -65,7 +65,6 @@
    <element value="News Item"/>
    <element value="Plone Site"/>
    <element value="TempFolder"/>
-   <element value="TemplatedDocument"/>
    <element value="dbadmin"/>
   </property>
   <property name="enable_wf_state_filtering" type="boolean">False</property>
@@ -131,7 +130,6 @@
    <element value="News Item"/>
    <element value="Plone Site"/>
    <element value="TempFolder"/>
-   <element value="TemplatedDocument"/>
   </property>
   <property name="search_review_state_for_anon"
      type="boolean">False</property>

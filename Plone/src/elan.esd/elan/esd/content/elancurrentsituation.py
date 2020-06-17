@@ -99,10 +99,3 @@ class ELANCurrentSituation(Container):
         args = {'portal_type': 'SRCollection'}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getTemplatedDocuments(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'TemplatedDocument'}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
