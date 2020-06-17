@@ -22,7 +22,6 @@ from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.layout.globals.interfaces import IViewView
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
-from Products.Archetypes.utils import contentDispositionHeader
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import alsoProvides
@@ -124,10 +123,8 @@ class DPDocumentdocimageView(BrowserView):
         # Get doc image but without legend
         data, filename = self.context.getMyImage(refresh=refresh, full=False)
 
-        header_value = contentDispositionHeader(
-            'inline', filename=filename, charset='latin-1'
-        )
-        response.setHeader('Content-disposition', header_value)
+        response.setHeader('Content-disposition',
+                           'inline; filename=%s' % filename)
         response.setHeader('Content-Length', len(data))
         return data
 
