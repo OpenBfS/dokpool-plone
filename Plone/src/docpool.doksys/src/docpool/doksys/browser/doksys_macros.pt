@@ -41,22 +41,22 @@
            <tal:var replace="doksysobj/Purpose"/>
         </span><br>
 
-        <span i18n:translate="label_doksys_trajectory_start_location">Start Location</span>:
+        <span i18n:translate="label_doksys_trajectory_start_location">Trajectory Start Location</span>:
         <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartLocation')">
            <tal:var replace="doksysobj/TrajectoryStartLocation"/>
         </span><br>
 
-        <span i18n:translate="label_doksys_trajectory_end_location">End Location</span>:
+        <span i18n:translate="label_doksys_trajectory_end_location">Trajectory End Location</span>:
         <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndLocation')">
            <tal:var replace="doksysobj/TrajectoryEndLocation"/>
         </span><br>
 
-        <span i18n:translate="label_doksys_trajectory_start_time">Start Time</span>:
+        <span i18n:translate="label_doksys_trajectory_start_time">Trajectory Start Time</span>:
         <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartTime')">
            <tal:var replace="doksysobj/TrajectoryStartTime"/>
         </span><br>
 
-        <span i18n:translate="label_doksys_trajectory_end_time">End Time</span>:
+        <span i18n:translate="label_doksys_trajectory_end_time">Trajectory End Time</span>:
         <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndTime')">
            <tal:var replace="doksysobj/TrajectoryEndTime"/>
         </span><br>

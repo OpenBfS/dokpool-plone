@@ -6168,22 +6168,22 @@ msgstr "Status"
 #. Default: "Trajectory End Location"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_trajectory_end_location"
-msgstr ""
+msgstr "Trajektorien Ankunftsort"
 
 #. Default: "Trajectory End Time"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_trajectory_end_time"
-msgstr ""
+msgstr "Trajektorien Ankunftszeit"
 
 #. Default: "Trajectory Start Location"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_trajectory_start_location"
-msgstr ""
+msgstr "Trajektorien Startort"
 
 #. Default: "Trajectory Start Time"
 #: docpool/doksys/behaviors/doksysdoc.py
 msgid "label_doksys_trajectory_start_time"
-msgstr ""
+msgstr "Trajektorien Startzeit"
 
 #: docpool/doksys/vocabularies/sample_type.py
 msgid "mineralische Ausgangsstoffe fuer Baustoffe"
