@@ -1,17 +1,26 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <index name="NetworkOperator" remove="true" />
   <index name="NetworkOperator" meta_type="KeywordIndex">
     <indexed_attr value="NetworkOperator"/>
   </index>
+
+  <index name="Dom" remove="true" />
   <index name="Dom" meta_type="KeywordIndex">
     <indexed_attr value="Dom"/>
   </index>
+
+  <index name="LegalBase" remove="true" />
   <index name="LegalBase" meta_type="KeywordIndex">
     <indexed_attr value="LegalBase"/>
   </index>
+
+  <index name="DataType" remove="true" />
   <index name="DataType" meta_type="KeywordIndex">
     <indexed_attr value="DataType"/>
   </index>
+
+  <index name="MeasurementCategory" remove="true" />
   <index name="MeasurementCategory" meta_type="KeywordIndex">
     <indexed_attr value="MeasurementCategory"/>
   </index>

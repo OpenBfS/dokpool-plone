@@ -12,10 +12,6 @@ def to_1001(context):
         'DataType',
         'MeasurementCategory',
     ]
-    catalog = api.portal.get_tool(name='portal_catalog')
-
-    for idx in indexes:
-        catalog.delIndex(idx)
 
     loadMigrationProfile(
         context,
