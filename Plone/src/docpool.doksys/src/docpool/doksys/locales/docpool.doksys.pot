@@ -42,14 +42,6 @@ msgid "2h"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "9"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "91"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
 msgid "A"
 msgstr ""
 
@@ -3764,14 +3756,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "P-33"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "PARK"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "PARK Modellbereiche"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py

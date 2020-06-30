@@ -12,8 +12,6 @@ class SampleTypeIds(object):
 
     def __call__(self, context=None):
         items = [
-            (u'9', _(u'9')),
-            (u'91', _(u'91')),
             (u'A', _(u'A')),
             (u'A1', _(u'A1')),
             (u'A11', _(u'A11')),

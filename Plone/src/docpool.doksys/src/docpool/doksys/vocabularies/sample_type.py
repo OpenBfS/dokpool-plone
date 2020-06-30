@@ -12,8 +12,6 @@ class SampleType(object):
 
     def __call__(self, context=None):
         items = [
-            (u'PARK', _(u'PARK')),
-            (u'PARK Modellbereiche', _(u'PARK Modellbereiche')),
             (u'Abwasser, Reststoffe  und Abfaelle', _(u'Abwasser, Reststoffe  und Abfaelle')),
             (u'Klaeranlage', _(u'Klaeranlage')),
             (u'Abwasser aus Klaeranlagenablauf', _(u'Abwasser aus Klaeranlagenablauf')),
