@@ -179,11 +179,15 @@ class IDoksysDoc(IDocumentExtension):
     read_permission(DataType='docpool.doksys.AccessDoksys')
     write_permission(DataType='docpool.doksys.AccessDoksys')
 
-    SampleType = schema.Choice(
+    widget(SampleType=SelectFieldWidget)
+    SampleType = schema.List(
         title=_(u'label_doksys_sample_type', default=u'Sample Type'),
         description=_(u'description_doksys_sample_type', default=u''),
-        source="docpool.doksys.SampleType",
+        value_type=schema.Choice(
+            source="docpool.doksys.SampleType",
+        ),
         required=False,
+        missing_value=[],
     )
     read_permission(SampleType='docpool.doksys.AccessDoksys')
     write_permission(SampleType='docpool.doksys.AccessDoksys')
@@ -417,7 +421,7 @@ class DoksysDoc(FlexibleView):
 
     def sample_type_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.doksys.SampleType')()
-        return voc.getTerm(self.SampleType).title
+        return u', '.join(voc.getTerm(i).title for i in self.SampleType)
 
     def _get_MeasurementCategory(self):
         return self.context.MeasurementCategory

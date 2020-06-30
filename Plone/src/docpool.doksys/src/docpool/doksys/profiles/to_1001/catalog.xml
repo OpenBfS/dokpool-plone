@@ -27,6 +27,11 @@
     <extra name="lexicon_id" value="plone_lexicon"/>
   </index>
 
+  <index name="SampleType" remove="true" />
+  <index name="SampleType" meta_type="KeywordIndex">
+    <indexed_attr value="SampleType"/>
+  </index>
+
   <index name="MeasurementCategory" remove="true" />
   <index name="MeasurementCategory" meta_type="KeywordIndex">
     <indexed_attr value="MeasurementCategory"/>

@@ -10,9 +10,10 @@ def to_1001(context):
         'Dom',
         'LegalBase',
         'DataType',
+        'SampleType',
         'MeasurementCategory',
     ]
-    indexes = attributes + ['SampleType', 'SampleTypeId']
+    indexes = attributes + ['SampleTypeId']
 
     loadMigrationProfile(
         context,
@@ -27,7 +28,7 @@ def to_1001(context):
                 setattr(obj, attr, [getattr(obj, attr)])
 
         if hasattr(obj, 'SampleTypeId'):
-            obj.SampleType = obj.SampleTypeId
+            obj.SampleType = [obj.SampleTypeId]
             del obj.SampleTypeId
 
         obj.reindexObject(idxs=indexes)
