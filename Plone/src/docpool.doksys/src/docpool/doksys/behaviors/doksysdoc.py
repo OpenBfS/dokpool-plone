@@ -437,6 +437,17 @@ class DoksysDoc(FlexibleView):
 
     Duration = property(_get_Duration, _set_Duration)
 
+    def _get_InfoType(self):
+        return self.context.InfoType
+
+    def _set_InfoType(self, value):
+        if not value:
+            return
+        context = aq_inner(self.context)
+        context.InfoType = value
+
+    InfoType = property(_get_InfoType, _set_InfoType)
+
     def _get_Type(self):
         return self.context.Type
 
