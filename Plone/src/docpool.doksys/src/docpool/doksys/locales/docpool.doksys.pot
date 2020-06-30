@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-10 06:29+0000\n"
+"POT-Creation-Date: 2020-06-30 22:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6070,103 +6070,123 @@ msgstr ""
 msgid "geprueft"
 msgstr ""
 
-#. Default: "Description of Measurement"
+#. Default: "Dom"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_Dom"
 msgstr ""
 
 #. Default: "Area"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_area"
 msgstr ""
 
 #. Default: "Data Type"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_data_type"
 msgstr ""
 
 #. Default: "Duration"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_duration"
 msgstr ""
 
 #. Default: "InfoType"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_infotype"
 msgstr ""
 
 #. Default: "Legal Base"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_legal_base"
 msgstr ""
 
 #. Default: "Measurement Category"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_measurement_category"
 msgstr ""
 
 #. Default: "Measuring Program"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_measuring_program"
 msgstr ""
 
 #. Default: "Network Operator"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_network_operator"
 msgstr ""
 
 #. Default: "Operation Mode"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_operation_mode"
 msgstr ""
 
 #. Default: "Purpose"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_purpose"
 msgstr ""
 
 #. Default: "Sample Type"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sample_type"
 msgstr ""
 
 #. Default: "Sample Type Id"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sample_type_id"
 msgstr ""
 
 #. Default: "Sampling Begin"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sampling_begin"
 msgstr ""
 
 #. Default: "Sampling End"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sampling_end"
 msgstr ""
 
 #. Default: "Status"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_status"
 msgstr ""
 
 #. Default: "Trajectory End Location"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_end_location"
 msgstr ""
 
 #. Default: "Trajectory End Time"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_end_time"
 msgstr ""
 
 #. Default: "Trajectory Start Location"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_start_location"
 msgstr ""
 
 #. Default: "Trajectory Start Time"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
+#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_start_time"
 msgstr ""
 

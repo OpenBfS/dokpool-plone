@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-10 06:29+0000\n"
+"POT-Creation-Date: 2020-06-30 22:24+0000\n"
 "PO-Revision-Date: 2018-08-06 10:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <pbieringer@bfs.de>\n"
@@ -6069,103 +6069,124 @@ msgstr "docpool.doksys (Deinstallation)"
 msgid "geprueft"
 msgstr ""
 
-#. Default: "Description of Measurement"
+#. Default: "Dom"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+#, fuzzy
 msgid "label_doksys_Dom"
 msgstr "Beschreibung der Messung"
 
 #. Default: "Area"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_area"
 msgstr "Geographischer Bereich"
 
 #. Default: "Data Type"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_data_type"
 msgstr "Datenbasis"
 
 #. Default: "Duration"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_duration"
 msgstr "Dauer"
 
 #. Default: "InfoType"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_infotype"
 msgstr "Zusatzinformation"
 
 #. Default: "Legal Base"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_legal_base"
 msgstr "Rechtl. Basis"
 
 #. Default: "Measurement Category"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_measurement_category"
 msgstr "Messgröße"
 
 #. Default: "Measuring Program"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_measuring_program"
 msgstr "Messprogramm"
 
 #. Default: "Network Operator"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_network_operator"
 msgstr "Netzbetreiber"
 
 #. Default: "Operation Mode"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_operation_mode"
 msgstr "Betriebsart"
 
 #. Default: "Purpose"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_purpose"
 msgstr "Zweck"
 
 #. Default: "Sample Type"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sample_type"
 msgstr "Umweltbereich"
 
 #. Default: "Sample Type Id"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sample_type_id"
 msgstr "Umweltbereichs-ID"
 
 #. Default: "Sampling Begin"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sampling_begin"
 msgstr "Probeentnahme Beginn"
 
 #. Default: "Sampling End"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_sampling_end"
 msgstr "Probeentnahme Ende"
 
 #. Default: "Status"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_status"
 msgstr "Status"
 
 #. Default: "Trajectory End Location"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_end_location"
 msgstr "Trajektorien Ankunftsort"
 
 #. Default: "Trajectory End Time"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_end_time"
 msgstr "Trajektorien Ankunftszeit"
 
 #. Default: "Trajectory Start Location"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_start_location"
 msgstr "Trajektorien Startort"
 
 #. Default: "Trajectory Start Time"
 #: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
 msgid "label_doksys_trajectory_start_time"
 msgstr "Trajektorien Startzeit"
 
