@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-30 22:24+0000\n"
+"POT-Creation-Date: 2020-07-01 00:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,108 +41,8 @@ msgstr ""
 msgid "2h"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A23"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A24"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A41"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A42"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A51"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A52"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A53"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A54"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A55"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "A56"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/legal_base.py
 msgid "AVV IMIS"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Abwasser aus Klaeranlagenablauf"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Abwasser, Reststoffe  und Abfaelle"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -167,14 +67,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Ac-228"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Ackerboeden"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Aerosole"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -313,14 +205,6 @@ msgstr ""
 msgid "Area"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Arzneimittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Arzneimittelprodukte"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "As-69"
 msgstr ""
@@ -421,70 +305,6 @@ msgstr ""
 msgid "Au-201"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Ausgangsstoffe fuer Arzneimittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B33"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B34"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B35"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "B36"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "BMU"
 msgstr ""
@@ -545,14 +365,6 @@ msgstr ""
 msgid "Baden-Wuerttemberg"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bauschutt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Baustoffe"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "Bayern"
 msgstr ""
@@ -563,38 +375,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Be-7"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bedarfsgegenstaende mit Koerperkontakt/ Spielwaren/ Kleidung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bedarfsgegenstaende mit Lebensmittelkontakt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bedarfsgegenstaende und Kosmetische Mittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bedarfsgegenstaende zur Reinigung und Pflege"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bedarfsgegenstaende zur Verpackung von Tabakerz. und kosmet. Mitteln"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Beerenobst (ausser Wald-/Wildbeeren) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Beerenobst, geschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Beerenobst, ungeschuetzter Anbau (ausser Wald-/Wildbeeren)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
@@ -685,26 +465,6 @@ msgstr ""
 msgid "Bi-214"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bilanzierungsmessung Aerosole"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bilanzierungsmessung Luft/Edelgase"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bilanzierungsmessung Luft/Iod"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bilanzierungsmessung andere gasfoermige Komponenten (ausser Iod und Edelgase)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bio-Indikatoren, Tabak und Arzneimittel"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Bk-245"
 msgstr ""
@@ -723,74 +483,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Bk-250"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Blaetter"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Blattgemuese, geschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Blattgemuese, ungeschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Blattgemuese, ungeschuetzter Anbau - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden in-situ (flaechenbezogene Aktivitaet)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden in-situ (flaechenbezogene Aktivitaet); Boden unversiegelt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden in-situ (flaechenbezogene Aktivitaet); Boden versiegelt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden in-situ (nuklidspez. Dosisleistung),Boden unversiegelt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden in-situ (nuklidspez. Dosisleistung),Boden versiegelt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden in-situ (nuklidspezifische Dosisleistung)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Boden/-Oberflaeche - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bodenauflage"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bodenoberflaeche (unversiegelt, in-situ, flaechenbezogene Aktivitaet) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bodenoberflaeche (versiegelt, in-situ, flaechenbezogene Aktivitaet) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Bodenschaetze"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -839,10 +531,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "Bremen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Brote und Gebaecke"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
@@ -1193,10 +881,6 @@ msgstr ""
 msgid "Data Type"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Deponieoberflaeche"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
 msgid "Dom"
 msgstr ""
@@ -1341,88 +1025,8 @@ msgstr ""
 msgid "Eu-158"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "F-18"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F41"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F51"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F52"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F5Z"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F6"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F61"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F62"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F63"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F7"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "F71"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -1441,60 +1045,8 @@ msgstr ""
 msgid "Fe-60"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fertiggerichte, Trockensubstanz (einschl. Suppen)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fertiggerichte, verzehrsfertig (einschl. Suppen)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Feste Rueckstaende aus Rauchgaswaesche"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "FhG"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Filterstaub, Filterasche"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fisch und Meeresfruechte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fischerzeugnisse"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fischprodukte, Frischprod. auch tiefgefr."
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fischprodukte, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fleischprodukte u. Wurstwaren, ohne Wild, Frischprod. auch tiefgefr."
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fleischprodukte u. Wurstwaren, ohne Wild, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fliessgewaesser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fluessige Rueckstaende aus Rauchgaswaesche"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -1517,10 +1069,6 @@ msgstr ""
 msgid "Fm-257"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Folien"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Fr-219"
 msgstr ""
@@ -1539,46 +1087,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Fr-223"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Freizeitflaechenboeden"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Frischgemuese (einschl. Kartoffeln und Pilze)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fruchtgemuese, geschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fruchtgemuese, ungeschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Fruchtgemuese, ungeschuetzter Anbau - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Futtergetreide"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Futtergetreide (einschl. Maiskoerner)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Futterkartoffeln und Futterrueben"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Futtermittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -1645,86 +1153,6 @@ msgstr ""
 msgid "G-Gamma-kuenstl."
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G23"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G33"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G41"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G51"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G52"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "G53"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "GZ"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "GZ1"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Ga-65"
 msgstr ""
@@ -1787,22 +1215,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Gamma-ODL-min"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gamma-Ortsdosis"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gamma-Ortsdosisleistung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gartenabfaelle"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gartenboeden"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -1873,104 +1285,8 @@ msgstr ""
 msgid "Ge-78"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gefluegelfleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gefluegelfleisch - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gemueseprodukte einschl. Kartoffeln, Frischprodukte auch tiefgefroren"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gemueseprodukte einschl. Kartoffeln, Trockenprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gemueseprodukte einschl. Kartoffeln, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gesamtnahrung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gesamtnahrung, Fertiggerichte und Getraenke"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getraenke, Trockensubstanz, nicht alkoholisch (einschl. Tee und Kaffee)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getraenke, alkoholisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getraenke, trinkfertig, nicht alkoholisch (einschl. Tee und Kaffee)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getreide"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getreidekoerner (Weizen, Roggen, Gerste, Hafer, Mais, Triticale) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getreidekoerner (Weizen-,Roggen-, Gersten-, Hafer-, Mais-, Triticalenkoerner)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Getreideprodukte ausser Brot"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gewaesser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gras"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gras (REI)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gruenfutter (einschl. Weide- und Wiesenbewuchs)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gruenfutterpflanzen (ausser Weide- u. Wiesenbewuchs)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Gruenfutterpflanzen (ausser Weide- und Wiesenbewuchs) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Grundwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Grundwasser (nicht zur Trinkwassergewinnung)"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "H-3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Haarwildfleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Hackfruechte"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
@@ -1979,14 +1295,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "Hessen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Heu"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Heu, Stroh, Cobs, Trockenmehle"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -2121,26 +1429,6 @@ msgstr ""
 msgid "Ho-167"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Hofmilch (Kuh-)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Honig"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Huehnereier"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Humanmilch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "I-120"
 msgstr ""
@@ -2255,58 +1543,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "I-135O"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I14"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I15"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I19"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "I32"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/legal_base.py
@@ -2485,62 +1721,6 @@ msgstr ""
 msgid "KFÜ"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kaese aus Kuhmilch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kaese aus Milch anderer Tiere"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kalbfleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kalbfleisch - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kartoffeln"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kartoffeln - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kernobst"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kernobst - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kesselasche, Schlacke"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Klaeranlage"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Klaerschlamm"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kompost"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kompostierungsanlage"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kosmetische Mittel und Stoffe zu deren Herstellung"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Kr-74"
 msgstr ""
@@ -2589,130 +1769,6 @@ msgstr ""
 msgid "Kr-89"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kraftfuttermischungen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kulturpilze"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kulturpilzprodukte, Frischprodukte auch tiefgefroren"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kulturpilzprodukte, Trockenprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Kulturpilzprodukte, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L41"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L42"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L43"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L44"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L45"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L46"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L51"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L52"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L53"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L54"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L6"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L61"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L62"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "L63"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "La-131"
 msgstr ""
@@ -2751,14 +1807,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "La-143"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Lammfleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Lammfleisch - Stoerfall"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/legal_base.py
@@ -2825,84 +1873,12 @@ msgstr ""
 msgid "Lu-179"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft und Niederschlag"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/Aerosole"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/Aerosole - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/Edelgase"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/Gammastrahlung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/Neutronenstrahlung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/aeussere Strahlung (Gamma-OD) -Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/aeussere Strahlung (Gamma-ODL) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/gasfoermige Komponenten (einschl. Iod)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/gasfoermiges Iod"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luft/gasfoermiges Iod - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Luftfilter"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "M"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/area.py
 msgid "ME"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "MRI"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Mais"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Mais (ganze Pflanze)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Maisprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Maniok und Tapioka"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -2925,26 +1901,6 @@ msgstr ""
 msgid "Mecklenburg-Vorpommern"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Meer"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Meeresfruechte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Meeresfruechteprodukte, Frischprod. auch tiefgefr."
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Meeresfruechteprodukte, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Meerwasser"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
 msgid "Messergebnisse"
 msgstr ""
@@ -2953,40 +1909,8 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Meteo-Umweltbereich"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Mg-28"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Milch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Milch anderer Tiere (Schaf, Ziege, Stute)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Milchprodukte ausser Kaese, Frischprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Milchprodukte ausser Kaese, Trockenprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Milchprodukte ausser Kaese, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Mischfuttermittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Mischfuttermittelrohstoffe"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -3033,392 +1957,8 @@ msgstr ""
 msgid "Mo-99"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Moose, Farne, Flechten u. Heidekraut"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Muelldeponie"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "N-13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N14"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N15"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N23"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N24"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N25"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N26"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N27"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N28"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N29"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N2A"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N2B"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N2C"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N2Y"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N2Z"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N3Z"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N41"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N42"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N43"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N44"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N45"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N46"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N4Z"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N51"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N52"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N53"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N54"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N55"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N56"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N5Z"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N6"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N61"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N62"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N63"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N64"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N65"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N7"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N71"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N72"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N73"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N74"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N75"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N76"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N8"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N81"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N82"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N83"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N84"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N85"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N86"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N87"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N91"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N92"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N93"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N94"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N95"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N96"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N97"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N98"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N99"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9A"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9B"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9C"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9D"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9E"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9F"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9G"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9H"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9I"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9J"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9K"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9L"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9M"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9N"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9O"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9P"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9Q"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "N9R"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "NZ"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "NZ1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "NZ2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "NZZ"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -3427,18 +1967,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Na-24"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Nadeln"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Nahrungsmittel (einschl. Trinkwasser)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Nahrungsmittelprodukte"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -3565,14 +2093,6 @@ msgstr ""
 msgid "Neutronen-ODL"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Neutronen-Ortsdosis"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Neutronen-Ortsdosisleistung"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Ni-56"
 msgstr ""
@@ -3602,16 +2122,7 @@ msgid "Niedersachsen"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
 msgid "Niederschlag"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Niederschlag (Aktivitaetskonzentration)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Niederschlagsmenge"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
@@ -3668,38 +2179,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "O-15"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Oberflaechenwasser (Fliessgewaesser) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Oberflaechenwasser (Viehtraenke) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Oberflaechenwasser (stehende Gewaesser) - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Oberirdische Gewaesser - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Obst"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Obstprodukte, Frischprodukte auch tiefgefroren"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Obstprodukte, Trockenprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Obstprodukte, haltbar gemacht"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
@@ -3872,14 +2351,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Pd-109"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Pflanzen/Bewuchs - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Pflanzliche Indikatoren"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -4274,28 +2745,8 @@ msgstr ""
 msgid "Regen"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Reingas"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Reinwasser aus Mischrohwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Reinwasser aus geschuetzten Rohwasservorkommen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Reinwasser aus ungeschuetzten Rohwasservorkommen"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Rest-Beta"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Reststoffe aus der Trinkwasseraufbereitung"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -4350,14 +2801,6 @@ msgstr ""
 msgid "Rheinland-Pfalz"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rindfleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rindfleisch - Stoerfall"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Rn-218"
 msgstr ""
@@ -4376,30 +2819,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Rn-Gesamt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rohgas"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rohwasser zur Trinkwassergewinnung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rohwasser, geschuetzt, aus Grund- und Tiefenwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rohwasser, geschuetzt, aus Grund- und Tiefenwasser (ungueltig)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rohwasser, ungeschuetzt, aus Oberflaechenwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Rohwasser, ungeschuetzt, aus Oberflaechenwasser (ungueltig)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/operation_mode.py
@@ -4430,140 +2849,8 @@ msgstr ""
 msgid "Ru-97"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "S-35"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S14"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S23"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S41"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S42"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "S43"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SF1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SF2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SF3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SF4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SF5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SG1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SG2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SG3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SG4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SG5"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SG6"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SO1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SO2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SO3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SO4"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "SO5"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/legal_base.py
@@ -4580,14 +2867,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "Sachsen-Anhalt"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Saeuglings- und Kleinkindernahrung"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sammelmilch (Kuh-)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
@@ -4718,44 +2997,12 @@ msgstr ""
 msgid "Sc-49"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schalenobst (Nuesse)"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schalenobst (Nuesse) - Stoerfall"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "Schleswig-Holstein"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Schnee"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schrote"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schwebstoff in Fliessgewaessern"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schwebstoffe im Meerwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schwebstoffe in stehenden Gewaessern"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schweinefleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Schweinefleisch - Stoerfall"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -4794,32 +3041,12 @@ msgstr ""
 msgid "Se-83"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sediment in Fliessgewaessern"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sedimente im Meerwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sedimente in stehenden Gewaessern"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Seefisch"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Si-31"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Si-32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sicker- und Grundwasser"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -4922,84 +3149,8 @@ msgstr ""
 msgid "Sonstige"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Futtermittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Getreidearten"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Mediengruppen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Nahrungsmittel"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Obstarten"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Obstarten - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Waesser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstige Wildpilze"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstiges Fleisch"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstiges Gemuese, geschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sonstiges Gemuese, ungeschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Spezielle Reststoffe und Abfaelle"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/measuring_program.py
 msgid "Spontanproben Bund"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sprossgemuese, geschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sprossgemuese, ungeschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Sprossgemuese, ungeschuetzter Anbau - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Spurenmessung Luft"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Spurenmessung Luft - Aerosole"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Spurenmessung Luft - Edelgase"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Spurenmessung Luft - gasfoermige Komponenten (einschl. Iod)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -5068,26 +3219,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
 msgid "Status"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Stehende Gewaesser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Steinobst"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Steinobst - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Stroh, Cobs, Trockenmehle"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Suesswasserfisch"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -5168,14 +3299,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "Ta-186"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Tabak"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Tabakblaetter"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -5498,10 +3621,6 @@ msgstr ""
 msgid "Tm-175"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Trinkwasser"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
 msgid "Type"
 msgstr ""
@@ -5558,10 +3677,6 @@ msgstr ""
 msgid "Ueberblick"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Umweltbereiche fuer Stoerfall"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/configure.zcml
 msgid "Uninstalls the docpool.doksys add-on."
 msgstr ""
@@ -5576,10 +3691,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
 msgid "V-49"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Verbrennungsanlage"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -5614,92 +3725,8 @@ msgstr ""
 msgid "W-188"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wald-/Wildbeeren"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Waldboeden"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wasser aus Kanalisation, Klaeranlagenzulauf, Regenrueckhaltebecken"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wasser in Fliessgewaessern"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wasser in stehenden Gewaessern"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wasser zur Viehtraenke"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wasserpflanzen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wasserpflanzen, Trockenprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Weide- u. Wiesenbewuchs"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Weide- und Wiesenbewuchs - Stoerfall"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Weide-/ Acker-/ Wald-/ Freizeitflaechen-/ oedland- und Gartenboeden"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Weideboeden"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wildfleischprodukte u. -wurstwaren, Frischprod. auch tiefgefr."
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wildfleischprodukte u. -wurstwaren, haltbar gemacht"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wildpilze"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wildpilzprodukte, Frischprodukte auch tiefgefroren"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wildpilzprodukte, Trockenprodukte"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wildpilzprodukte, haltbar gemacht"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/area.py
 msgid "World"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wurzelgemuese, geschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wurzelgemuese, ungeschuetzter Anbau"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Wurzelgemuese, ungeschuetzter Anbau - Stoerfall"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -5834,80 +3861,8 @@ msgstr ""
 msgid "Yb-178"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z1"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z11"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z12"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z13"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z14"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z2"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z21"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z22"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z3"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z31"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z32"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z33"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z34"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type_id.py
-msgid "Z35"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "ZdB-Testnetz"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Zigaretten, Zigarren"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Zisternenwasser"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "Zisternenwasser (ungueltig)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
@@ -5962,16 +3917,8 @@ msgstr ""
 msgid "Zr-97"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "andere gasfoermige Komponenten (ausser Iod u. Edelgase)"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "auslaend. Messnetze"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "bearbeitete Trinkmilch (Kuh-)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
@@ -6024,10 +3971,6 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
 msgid "description_doksys_sample_type"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
-msgid "description_doksys_sample_type_id"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
@@ -6142,12 +4085,6 @@ msgstr ""
 msgid "label_doksys_sample_type"
 msgstr ""
 
-#. Default: "Sample Type Id"
-#: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
-#: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
-msgid "label_doksys_sample_type_id"
-msgstr ""
-
 #. Default: "Sampling Begin"
 #: docpool.doksys/src/docpool/doksys/behaviors/doksysdoc.py
 #: docpool.doksys/src/docpool/doksys/browser/doksys_macros.pt
@@ -6190,16 +4127,8 @@ msgstr ""
 msgid "label_doksys_trajectory_start_time"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "mineralische Ausgangsstoffe fuer Baustoffe"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
 msgid "nass"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "nasse Niederschlaege (Deposition)"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
@@ -6210,50 +4139,18 @@ msgstr ""
 msgid "nicht geprueft"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "oedlandboeden, Brachen"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "organische Ausgangsstoffe fuer Baustoffe"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "organische Duengemittel (aus landwirtschaftlichen Abfaellen)"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
 msgid "rueckwaerts"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "sonstige spezielle Reststoffe und Abfaelle"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
 msgid "trocken"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "trockene Niederschlaege (Deposition)"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "vTI"
 msgstr ""
 
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "verarbeitete mineralische Baustoffe"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "verarbeitete organische Baustoffe"
-msgstr ""
-
 #: docpool.doksys/src/docpool/doksys/vocabularies/infotype.py
 msgid "vorwaerts"
-msgstr ""
-
-#: docpool.doksys/src/docpool/doksys/vocabularies/sample_type.py
-msgid "weitere Nahrungsmittel"
 msgstr ""
