@@ -5,13 +5,14 @@ import transaction
 
 
 def to_1001(context):
-    indexes = attributes = [
+    attributes = [
         'NetworkOperator',
         'Dom',
         'LegalBase',
         'DataType',
         'MeasurementCategory',
     ]
+    indexes = attributes + ['SampleType', 'SampleTypeId']
 
     loadMigrationProfile(
         context,
@@ -24,6 +25,10 @@ def to_1001(context):
         for attr in attributes:
             if type(getattr(obj, attr, [])) != list:
                 setattr(obj, attr, [getattr(obj, attr)])
+
+        if hasattr(obj, 'SampleTypeId'):
+            obj.SampleType = obj.SampleTypeId
+            del obj.SampleTypeId
 
         obj.reindexObject(idxs=indexes)
 

@@ -119,7 +119,7 @@ def data_type_indexer(obj):
 @indexer(IDPDocument)
 def sample_type_id_indexer(obj):
     try:
-        return obj.doc_extension(DOKSYS_APP).SampleTypeId
+        return obj.doc_extension(DOKSYS_APP).SampleType
     except BaseException:
         pass
 

@@ -15,9 +15,9 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
+from zope.component import getUtility
 from zope.interface import provider
-
-# from docpool.doksys.vocabularies import SampleType
+from zope.schema.interfaces import IVocabularyFactory
 
 
 @provider(IFormFieldProvider)
@@ -178,15 +178,6 @@ class IDoksysDoc(IDocumentExtension):
     )
     read_permission(DataType='docpool.doksys.AccessDoksys')
     write_permission(DataType='docpool.doksys.AccessDoksys')
-
-    SampleTypeId = schema.Choice(
-        title=_(u'label_doksys_sample_type_id', default=u'Sample Type Id'),
-        description=_(u'description_doksys_sample_type_id', default=u''),
-        source="docpool.doksys.SampleTypeIds",
-        required=False,
-    )
-    read_permission(SampleTypeId='docpool.doksys.AccessDoksys')
-    write_permission(SampleTypeId='docpool.doksys.AccessDoksys')
 
     SampleType = schema.Choice(
         title=_(u'label_doksys_sample_type', default=u'Sample Type'),
@@ -413,17 +404,6 @@ class DoksysDoc(FlexibleView):
 
     DataType = property(_get_DataType, _set_DataType)
 
-    def _get_SampleTypeId(self):
-        return self.context.SampleTypeId
-
-    def _set_SampleTypeId(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.SampleTypeId = value
-
-    SampleTypeId = property(_get_SampleTypeId, _set_SampleTypeId)
-
     def _get_SampleType(self):
         return self.context.SampleType
 
@@ -434,6 +414,10 @@ class DoksysDoc(FlexibleView):
         context.SampleType = value
 
     SampleType = property(_get_SampleType, _set_SampleType)
+
+    def sample_type_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.doksys.SampleType')()
+        return voc.getTerm(self.SampleType).title
 
     def _get_MeasurementCategory(self):
         return self.context.MeasurementCategory

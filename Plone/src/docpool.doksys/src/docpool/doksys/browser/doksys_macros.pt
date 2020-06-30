@@ -76,14 +76,9 @@
            <tal:var replace="python:', '.join(doksysobj.DataType)"/>
         </span><br>
 
-        <span i18n:translate="label_doksys_sample_type_id">Sample Type Id</span>:
-        <span tal:condition="python:hasattr(doksysobj,'SampleTypeId')">
-           <tal:var replace="doksysobj/SampleTypeId"/>
-        </span><br>
-
         <span i18n:translate="label_doksys_sample_type">Sample Type</span>:
         <span tal:condition="python:hasattr(doksysobj,'SampleType')">
-           <tal:var replace="doksysobj/SampleType"/>
+           <tal:var replace="doksysobj/sample_type_display"/>
         </span><br>
 
         <span i18n:translate="label_doksys_measurement_category">Measurement Category</span>:

@@ -20,6 +20,13 @@
     <indexed_attr value="DataType"/>
   </index>
 
+  <index name="SampleTypeId" remove="true" />
+  <index name="SampleTypeId" meta_type="ZCTextIndex">
+    <indexed_attr value="SampleType"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+
   <index name="MeasurementCategory" remove="true" />
   <index name="MeasurementCategory" meta_type="KeywordIndex">
     <indexed_attr value="MeasurementCategory"/>
