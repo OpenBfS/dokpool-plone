@@ -212,4 +212,22 @@ erstellt und eingecheckt werden:
 Haben sich CSS/LESS/JS Dateien von Plone oder in unseren bestehenden 
 Resources (z.B in: `Plone/src/docpool.theme/docpool/theme/diazo_resources/static`) 
 geändert,  muss das `.plone` Verzeichins in `webpack_resources` gelöscht werden. Beim 
-nächsten `npm run build/watch` werden diese Dateien dann neu von Plone geladen.  
+nächsten `npm run build/watch` werden diese Dateien dann neu von Plone geladen. 
+
+#### Bundle-Files rebase / update
+
+Oft entstehen durch ein rebase conflicts an den bundle files. Kurze Anleitung wie damit umzugehen ist:
+
+1. git checkout develop
+2. git pull
+3. git checkout own_local_branch
+4. git rebase develop
+
+Wenn es bei den bundle files ein conflict gibt:
+
+git add src/docpool.theme/docpool/theme/webpack_resources/theme/
+git rebase --continue
+
+ggf. wiederholen.
+
+Nach dem rebase die bundle files nochmal neu erstellen, siehe "Neu Bundle-files erstellen"
