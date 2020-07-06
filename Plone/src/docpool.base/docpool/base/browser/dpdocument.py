@@ -158,6 +158,11 @@ class FileUploadView(BaseFileUploadView):
             return
         filename = filedata.filename
         content_type = mimetypes.guess_type(filename)[0] or ""
+        # Workaround for docx and xlsx files
+        if content_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+          content_type = "application/msword"
+        if content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+          content_type = "application/vnd.ms-excel"
         # Determine if the default file/image types are DX or AT based
         ctr = api.portal.get_tool('content_type_registry')
         type_ = ctr.findTypeName(filename.lower(), '', '') or 'File'
