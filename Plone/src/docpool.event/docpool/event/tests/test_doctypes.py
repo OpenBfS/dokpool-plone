@@ -77,7 +77,7 @@ class TestDocTypes(unittest.TestCase):
                 'doksysdok',
             ],
         )
-        self.assertEqual(global_contentconfig.keys(), ['impressum', 'help'])
+        self.assertEqual(global_contentconfig.keys(), ['impressum'])
         self.assertEqual(
             global_esd.keys(),
             [
@@ -182,7 +182,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'help', 'dbconfig', 'irix']
         )
 
         notify(EditFinishedEvent(docpool))
@@ -269,7 +269,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'help', 'dbconfig', 'irix']
         )
 
     def test_doctypes_change_event(self):
