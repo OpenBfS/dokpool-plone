@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_get
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
+from Products.GenericSetup.context import SnapshotImportContext
+from Products.GenericSetup.interfaces import IBody
 from datetime import datetime
 from datetime import timedelta
-
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from plone.app.textfield import RichTextValue
@@ -17,6 +20,7 @@ from plone.uuid.interfaces import IUUID
 from z3c.relationfield.relation import RelationValue
 from zope.component import getUtility
 from zope.component import queryUtility
+from zope.component._api import queryMultiAdapter
 from zope.event import notify
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
@@ -491,6 +495,16 @@ class DocpoolSetup(BrowserView):
         target = allowed[0]
         adapted.transferToTargets(targets=[target])
 
+        # Configure EEA faceted navigation
+        search = api.content.create(
+            container=docpool_bund, type="Folder", id="suche", title=u"Rei Suche",
+        )
+        _configure_faceted_view(
+            obj=search,
+            config_file_name="rei_search.xml",
+            layout_id="eea_results_listing",
+        )
+
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
@@ -628,3 +642,24 @@ def set_placeful_workflow(obj, workflow):
     wf_policy_config = getattr(obj, WorkflowPolicyConfig_id)
     wf_policy_config.setPolicyIn(workflow)
     wf_policy_config.setPolicyBelow(workflow)
+
+
+def _configure_faceted_view(obj, config_file_name, layout_id):
+    log.info(
+        "Loading configuration {} for faceted view on {}".format(
+            config_file_name, "/".join(obj.getPhysicalPath())
+        )
+    )
+    subtyper = api.content.get_view("faceted_subtyper", obj, aq_get(obj, "REQUEST"))
+    if not subtyper.is_faceted:
+        subtyper.enable()
+        import_file_path = os.path.join(
+            os.path.dirname(__file__), "../profiles/default/", config_file_name
+        )
+        with open(import_file_path) as import_file:
+            xml = import_file.read()
+            environ = SnapshotImportContext(obj, "utf-8")
+            importer = queryMultiAdapter((obj, environ), IBody)
+            importer.body = xml
+        IFacetedLayout(obj).update_layout(layout_id)
+        # noLongerProvides(obj, IHidePloneRightColumn)
