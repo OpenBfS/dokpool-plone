@@ -39,3 +39,5 @@ Plone/etc/zodbpack.conf
 Plone/src/docpool.theme/docpool/theme/webpack_resources/node_modules
 Plone/src/docpool.theme/docpool/theme/webpack_resources/.plone
 .python-version
+# direnv config
+Plone/.envrc
