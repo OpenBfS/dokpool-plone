@@ -47,6 +47,8 @@
     <include package=".vocabularies" />
 
             <permission id="docpool.doksys.AccessDoksys" title="Docpool: Access Doksys Content"/>
+            <permission id="docpool.doksys.AccessDoksysDOM" title="Docpool: Access Doksys DOM" />
+
     <include package=".behaviors"/>
     <include file="skins.zcml"/>
 
