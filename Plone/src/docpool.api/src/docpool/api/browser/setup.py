@@ -498,12 +498,14 @@ class DocpoolSetup(BrowserView):
         # Configure EEA faceted navigation
         search = api.content.create(
             container=docpool_bund, type="Folder", id="suche", title=u"Rei Suche",
+            local_behaviors=['rei'],
         )
         _configure_faceted_view(
             obj=search,
             config_file_name="rei_search.xml",
             layout_id="eea_results_listing",
         )
+        modified(search)
 
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
