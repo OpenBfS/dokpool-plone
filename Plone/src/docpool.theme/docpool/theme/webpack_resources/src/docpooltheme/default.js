@@ -85,7 +85,7 @@ if (
     };
     Promise.all([
       import(
-        /* webpackChunkName: "facetedavigation" */ "./facetednavigation"
+        /* webpackChunkName: "facetednavigation" */ "./facetednavigation"
       )
     ]).then(args => {
       jQuery(document).ready(function(evt) {
@@ -107,7 +107,7 @@ if (jQuery("body.template-configure_faceted-html").length) {
         };
         Promise.all([
             import(
-                /* webpackChunkName: "facetedavigation-edit" */ "./facetednavigation-edit"
+                /* webpackChunkName: "facetednavigation-edit" */ "./facetednavigation-edit"
                 )
         ]).then(args => {
             window.FacetedEdit.Load(faceted_evt, faceted_path);

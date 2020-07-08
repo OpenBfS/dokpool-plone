@@ -18,6 +18,7 @@ import "imports-loader?jQuery=jquery!faceted-widgets-date-view";
 import "imports-loader?jQuery=jquery!faceted-widgets-daterange-view";
 import "imports-loader?jQuery=jquery!faceted-widgets-debug-view";
 import "imports-loader?jQuery=jquery!faceted-widgets-etag-view";
+import "imports-loader?jQuery=jquery!faceted-widgets-multiselect-view";
 import "imports-loader?jQuery=jquery!faceted-widgets-path-tree";
 import "imports-loader?jQuery=jquery!faceted-widgets-path-view";
 import "imports-loader?jQuery=jquery!faceted-widgets-portlet-view";
