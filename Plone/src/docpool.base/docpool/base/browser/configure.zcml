@@ -196,7 +196,7 @@
       for="*"
       name="dpdocument_transition_form"
       class=".dpdocument_transition_form.WorkflowActionView"
-      template="dpdocument_transition_form.pt"
+      template="templates/dpdocument_transition_form.pt"
       permission="zope2.View"
       />
 
