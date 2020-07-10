@@ -10,9 +10,7 @@ from docpool.transfers.behaviors.transferable import ITransferable
 
 class TransferForm(BrowserView):
 
-
     def __call__(self, dpdocids=None, targets=None):
-        # import pdb; pdb.set_trace()
         request = self.request
         self.dpdocids = dpdocids
         self.targets = targets

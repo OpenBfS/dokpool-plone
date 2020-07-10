@@ -11,8 +11,7 @@
 <metal:content-core fill-slot="main">
 <metal:content-core define-macro="main">
 
-<tal:def tal:define="request context/REQUEST;
-                     errors python:view.errors;
+<tal:def tal:define="errors python:view.errors;
                      transitions python:view.transitions;
                      items python: view.items;
                      can_transition python: items and transitions;
@@ -32,22 +31,17 @@
           tal:condition="python: can_transition"
           tal:attributes="action string:${context/absolute_url}/@@dpdocument_transition_form">
 
-        <input type="hidden"
-              name="form.submitted" value="1" />
-
         <h2 i18n:translate="">Transition</h2>
 
-        <p>Items without the selected transition are not changed.</p>
-
-        <table summary="Inhalt" class="elanlistingtranssitionform listing" id="sortable">
+        <table class="listing">
           <thead>
               <tr>
                   <th class="nosort" i18n:translate="">Title<br></th>
                   <th class="nosort" i18n:translate="">Available transitions</th>
               </tr>
           </thead>
-          <tbody tal:repeat="item python:items">
-             <tr class="notDraggable odd">
+          <tbody>
+             <tr tal:repeat="item python:items">
                  <td valign="top" tal:content="python: item['title']">Test1</td>
                  <td valign="top" tal:content="python: ', '.join(item['transitions'])"></td>
              </tr>
@@ -90,7 +84,7 @@
     </tal:block>
 
     <div class="formControls">
-      <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Submit" i18n:attributes="value; title"/>
+      <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"/>
       <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
     </div>
 
