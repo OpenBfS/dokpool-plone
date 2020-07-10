@@ -15,11 +15,7 @@ from zope.interface import implementer
 
 class WorkflowActionView(BrowserView):
 
-    template = ViewPageTemplateFile('dpdocument_transition_form.pt')
-
-    required_obj_permission = 'Modify portal content'
-    success_msg = _('Successfully modified items')
-    failure_msg = _('Failed to modify items')
+    template = ViewPageTemplateFile('templates/dpdocument_transition_form.pt')
 
     def __call__(self):
         form = self.request.form
@@ -94,4 +90,4 @@ class WorkflowActionView(BrowserView):
             except Exception:
                 self.errors.append(
                     _('Could not transition: ${title}',
-                      mapping={'title': self.objectTitle(obj)}))
+                      mapping={'title': obj.title}))
