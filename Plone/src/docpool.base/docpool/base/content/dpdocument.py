@@ -207,7 +207,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                             },
                             'submenu': None,
                             'description': '',
-                            'title': dt.Title,
+                            'title': safe_unicode(dt.Title),
                             'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
                             % (self.absolute_url(), dt.id),
                             'selected': False,
