@@ -9,7 +9,7 @@
 
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core">
-        <div metal:use-macro="here/@@dp.macros/macros/doccollection"/>
+    <div metal:use-macro="here/@@dp.macros/macros/listing"/>
 </metal:block>
 </metal:content-core>
 

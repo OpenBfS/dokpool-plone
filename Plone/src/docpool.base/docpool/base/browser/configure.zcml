@@ -136,7 +136,7 @@
       name="docpool_collection_view"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       template="docpool_collection_view.pt"
-      class="plone.app.contenttypes.browser.collection.CollectionView"
+      class=".collection.CollectionView"
       menu="plone_displayviews"
       title="Docpool view"
       permission="zope2.View"

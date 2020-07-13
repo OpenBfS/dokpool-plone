@@ -1,10 +1,31 @@
 # -*- coding: utf-8 -*-
+from docpool.base.browser.folderbase import FolderBaseView
 from docpool.base.utils import extendOptions
 from plone import api
+from plone.app.contenttypes.browser.collection import CollectionView as BaseView
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.i18n import translate
+
+
+class CollectionView(BaseView):
+
+    def __init__(self, context, request):
+        # set batch size in request to fool the macro 'listing' from dp_macros.pt
+        super(CollectionView, self).__init__(context, request)
+        self.request.set('b_size', self.b_size)
+
+    def getFolderContents(self, kwargs):
+        # since we use the same template as for folders we need to get cintent differently
+        return self.results()
+
+    def dp_buttons(self, items):
+        """
+        Use the same method as for folder.
+        """
+        folderbaseview = FolderBaseView(self.context, self.request)
+        return folderbaseview.dp_buttons(items)
 
 
 class CollectionDocView(BrowserView):
