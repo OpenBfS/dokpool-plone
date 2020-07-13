@@ -40,8 +40,6 @@
             <tr>
               <th class="nosort" i18n:translate="" width="5">Select</th>
               <th class="nosort" i18n:translate="">Transfer to<br></th>
-              <th class="nosort" i18n:translate=""></th>
-              <th class="nosort" i18n:translate=""></th>
             </tr>
           </thead>
           <tbody>
@@ -50,8 +48,6 @@
                     <input type="checkbox" checked="checked" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">
                  </td>
                  <td valign="top" tal:content="target/esd_to_title">Test1</td>
-                 <td valign="top"></td>
-                 <td></td>
              </tr>
           </tbody>
         </table>
