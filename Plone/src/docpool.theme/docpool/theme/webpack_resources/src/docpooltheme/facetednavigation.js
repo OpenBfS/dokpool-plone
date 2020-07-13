@@ -1,7 +1,7 @@
 import "ajaxfileupload";
+import "++view++collective.js.jqueryui.custom.min.js";
 
 import "imports-loader?jQuery=jquery!bbq";
-import "imports-loader?jQuery=jquery!jqueryui";
 import "imports-loader?jQuery=jquery!jstree";
 import "imports-loader?jQuery=jquery!select2uislider";
 import "imports-loader?jQuery=jquery!tagcloud";

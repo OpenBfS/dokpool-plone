@@ -1,4 +1,4 @@
-import "imports-loader?jQuery=jquery!jqueryui";
+import "++view++collective.js.jqueryui.custom.min.js";
 import "imports-loader?jQuery=jquery!ajaxfileupload";
 import "expose-loader?FacetedEdit!exports-loader?FacetedEdit!faceted-navigation-edit";
 
