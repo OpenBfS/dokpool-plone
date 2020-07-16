@@ -64,7 +64,7 @@ msgstr ""
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
 msgid "Retract for Revision"
-msgstr "In revidierte Berichte verschieben"
+msgstr "In ersetzte Berichte verschieben"
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 msgid "Retract to BfS"
