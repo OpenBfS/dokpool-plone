@@ -7,6 +7,7 @@ from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.interfaces import IDPDocument
+from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
@@ -135,7 +136,7 @@ class IREIDoc(IDocumentExtension):
 
     directives.widget(Origins=CheckBoxFieldWidget)
     Origins = schema.List(
-        title=_(u'label_rei_Origin', default=u'Berichtende Stelle'),
+        title=_(u'label_rei_Origins', default=u'Origins'),
         description=_(u'description_rei_Origin', default=u''),
         value_type=schema.Choice(
             source=u"docpool.rei.vocabularies.OriginVocabulary"),
@@ -316,6 +317,17 @@ class REIDoc(FlexibleView):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
         return u'{} {}'.format(voc.getTerm(self.Period).title, self.Year)
 
+    def nuclear_installations_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.NuclearInstallationVocabulary')()
+        return u', '.join(voc.getTerm(i).title for i in self.NuclearInstallations)
+
+    def review_history(self):
+        # Show WF-History for all users with view-permission.
+        # Workaround check for "Review portal content" or "Request review"
+        def show_review_history():
+            history = self.context.restrictedTraverse('@@review_history')
+            return history()
+        return execute_under_special_role(self, 'Reviewer', show_review_history)
 
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
@@ -361,7 +373,8 @@ def set_title(obj, event=None):
     period_prefix = period_template.format(period_vocabulary.getTerm(adapted.Period).title)
     period = u'{} {}'.format(period_prefix, adapted.Year)
 
-    installations = adapted.NuclearInstallations
+    installations=re.split(r", U[A-Z0-9]{3}",adapted.nuclear_installations_display())
+    installations[0]=installations[0][5:]
     if len(installations) == 1:
         installations_prefix = u'für die Kerntechnische Anlage'
         installations = installations[0]
@@ -381,7 +394,7 @@ def set_title(obj, event=None):
         legal=legal,
         period=period,
         installations_prefix=installations_prefix,
-        installations=re.sub(r"U[A-Z0-9]{3}", "", installations),
+        installations=installations,
         medium=medium,
         origins=origins,
         )

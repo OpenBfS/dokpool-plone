@@ -271,3 +271,24 @@ def to_1002(context=None):
         # reindex security for journals
         journal.reindexObjectSecurity()
         log.info(u'Added local roles for Journal {}'.format(journal.title))
+
+
+def to_1003(context=None):
+    log.info('Running 1003 upgrades')
+    # adapt reidoc to changes in NuclearInstallationVocabulary
+    from docpool.rei.behaviors.reidoc import IREIDoc
+    for brain in api.content.find(portal_type='DPDocument'):
+        obj = brain.getObject()
+        try:
+            wrapped = IREIDoc(obj)
+        except TypeError:
+            log.info(u'{} is no reidoc'.format(obj.absolute_url()))
+            continue
+        new = []
+        old = getattr(wrapped, 'NuclearInstallations', [])
+        for value in old:
+            new.append(str(value[:4]))
+        if new:
+            wrapped.NuclearInstallations = new
+            log.info(u'Set NuclearInstallations for {} to {}'.format(
+                obj.absolute_url(), new))

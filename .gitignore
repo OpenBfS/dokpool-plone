@@ -1,4 +1,7 @@
 Plone/bin
+Plone/include
+Plone/lib
+Plone/local
 Plone/downloads
 Plone/blobs
 Plone/eggs
@@ -35,3 +38,6 @@ Plone/etc/zodbpack.conf
 # node modules webpack theme
 Plone/src/docpool.theme/docpool/theme/webpack_resources/node_modules
 Plone/src/docpool.theme/docpool/theme/webpack_resources/.plone
+.python-version
+# direnv config
+Plone/.envrc

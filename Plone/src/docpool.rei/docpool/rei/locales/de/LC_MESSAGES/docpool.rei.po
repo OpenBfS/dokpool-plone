@@ -117,7 +117,7 @@ msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweise
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "alert_retract_for_revision_popup"
-msgstr "Wollen Sie dieses Dokument wirklich in revidierte Berichte verschieben?"
+msgstr "Wollen Sie dieses Dokument wirklich in ersetzte Berichte verschieben?"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "alert_retract_popup"
@@ -219,14 +219,9 @@ msgstr ""
 msgid "label_rei_NuclearInstallations"
 msgstr "Kerntechnische Anlage"
 
-#. Default: "Berichtende Stelle"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_Origin"
-msgstr ""
-
 #. Default: "Origins"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-#, fuzzy
 msgid "label_rei_Origins"
 msgstr "Berichtende Stelle"
 
@@ -245,7 +240,6 @@ msgstr "Zeitraum"
 #. Default: "ReiLegalBases"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
-#, fuzzy
 msgid "label_rei_ReiLegalBases"
 msgstr "Gesetzliche Grundlage"
 
@@ -277,7 +271,7 @@ msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweise
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_for_revision"
-msgstr "Wollen Sie dieses Dokument wirklich in revidierte Berichte verschieben?"
+msgstr "Wollen Sie dieses Dokument wirklich in ersetzte Berichte verschieben?"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "retract_to_authority"

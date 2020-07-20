@@ -192,6 +192,7 @@
       <role name="Reviewer"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
     </permission>
     <permission name="Docpool: Add InfoLink" acquire="True">
       <role name="Manager"/>
@@ -282,6 +283,10 @@
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Plone Site Setup: Users and Groups" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
     </permission>
     <permission name="Portlets: Manage own portlets" acquire="True">
       <role name="Manager"/>

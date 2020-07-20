@@ -8,7 +8,7 @@
 
         <label i18n:translate="label_rei_NuclearInstallations">NuclearInstallations</label>:
         <span tal:condition="python:hasattr(reiobj, 'NuclearInstallations')">
-           <tal:var replace="python: ', '.join(reiobj.NuclearInstallations)"/>
+           <tal:var replace="python: reiobj.nuclear_installations_display()"/>
         </span><br>
 
         <label i18n:translate="label_rei_ReiLegalBases">ReiLegalBases</label>:
@@ -54,7 +54,7 @@
         </span><br>
         <br>
 
-        <div tal:replace="structure context/@@review_history" />
+        <div tal:replace="structure python:reiobj.review_history()" />
 
     </tal:def>
 </tal:block>

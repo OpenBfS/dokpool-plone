@@ -145,6 +145,7 @@
 <div tal:omit-tag="" metal:define-macro="fileimagelist">
     <div class="file" tal:define="files context/getFiles" tal:condition="files"
          tal:repeat="d files">
+        <span tal:condition="python:context.dp_type() != 'rodosrun_elan' or (context.dp_type() == 'rodosrun_elan' and 'rodos' in d.Title())">
         <a href=""
            target="_blank"
            title=""
@@ -154,6 +155,7 @@
         </a>
         (<span tal:content="python:view.ctype_short(d)"/>,&nbsp;<span
             tal:content="python:d.getObjSize(None, d.file.size)"/>)
+        </span>
     </div>
     <div class="images" tal:define="images context/getImages" tal:condition="images">
         <div tal:repeat="b images" class="image">
@@ -303,7 +305,7 @@
               <span tal:condition="python:b.getId() != 'icpdf.gif'">
               <td width="120" valign="top">
               <span tal:content="structure python:b.title_or_id()">images</span>&nbsp;&nbsp;<br><br>
-              <a href="" tal:attributes="href python:b.absolute_url()" target="_blank">
+              <a href="" tal:attributes="href python:b.absolute_url(); title python:b.title_or_id()" target="_blank">
                  <img tal:condition="multiple_images"
                       tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview'" border="0"
                       width="80%" height="auto"/>

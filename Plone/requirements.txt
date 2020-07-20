@@ -1,8 +1,4 @@
-# Basics
-# !! keep in sync with https://dist.plone.org/release/<used_plone_version>/versions.cfg !!
-setuptools==39.1.0
-zc.buildout==2.11.4
-pre-commit==1.18.0
-importlib-metadata==1.4.0
-importlib-resources==1.0.2
-six==1.10.0
+-c constraints.txt
+
+pre-commit
+zc.buildout

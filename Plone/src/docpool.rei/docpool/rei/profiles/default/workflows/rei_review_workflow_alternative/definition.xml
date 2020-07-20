@@ -62,6 +62,7 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_aufsicht">
             <group-role>Editor</group-role>
@@ -106,6 +107,7 @@
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_aufsicht">
             <group-role>Editor</group-role>
@@ -154,6 +156,7 @@
             <permission-role>DocPoolAdmin</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_aufsicht">
             <group-role>Editor</group-role>
@@ -230,6 +233,7 @@
             <permission-role>Owner</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="False">
         </permission-map>
@@ -252,6 +256,7 @@
             <permission-role>REIUser</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_bfs_rei">
             <group-role>Contributor</group-role>
@@ -278,6 +283,7 @@
         </permission-map>
         <permission-map name="Delete objects" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
+            <permission-role>Manager</permission-role>
         </permission-map>
         <permission-map name="Modify portal content" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
@@ -293,6 +299,7 @@
             <permission-role>REIUser</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <group-map name="bund_bfs_rei">
             <group-role>Contributor</group-role>
@@ -401,6 +408,7 @@
             <guard-role>Owner</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Site Administrator</guard-role>
+            <guard-expression>python:len(here.objectValues())>0</guard-expression>
         </guard>
     </transition>
     <transition transition_id="submit_bfs" title="Submit to BfS"

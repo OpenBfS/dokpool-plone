@@ -159,7 +159,7 @@ class IDPEvent(model.Schema, IContentBase):
         title=_(u'Sectorizing sample types'),
         required=False,
         value_type=schema.Choice(
-            source=u"docpool.doksys.SampleTypeIds"),
+            source=u"docpool.doksys.SampleType"),
     )
 
     directives.widget(

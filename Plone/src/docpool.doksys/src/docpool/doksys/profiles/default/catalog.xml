@@ -18,13 +18,13 @@
  </object>
 
   <!--<column value="my_meta_column"/>-->
-    <index name="NetworkOperator" meta_type="FieldIndex">
+    <index name="NetworkOperator" meta_type="KeywordIndex">
         <indexed_attr value="NetworkOperator"/>
     </index>
-    <index name="Dom" meta_type="FieldIndex">
+    <index name="Dom" meta_type="KeywordIndex">
         <indexed_attr value="Dom"/>
     </index>
-    <index name="LegalBase" meta_type="FieldIndex">
+    <index name="LegalBase" meta_type="KeywordIndex">
         <indexed_attr value="LegalBase"/>
     </index>
     <index name="MeasuringProgram" meta_type="FieldIndex">
@@ -57,18 +57,18 @@
     <index name="OperationMode" meta_type="FieldIndex">
         <indexed_attr value="OperationMode"/>
     </index>
-    <index name="DataType" meta_type="FieldIndex">
+    <index name="DataType" meta_type="KeywordIndex">
         <indexed_attr value="DataType"/>
     </index>
     <index name="SampleTypeId" meta_type="ZCTextIndex">
-        <indexed_attr value="SampleTypeId"/>
+        <indexed_attr value="SampleType"/>
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
-    <index name="SampleType" meta_type="FieldIndex">
+    <index name="SampleType" meta_type="KeywordIndex">
         <indexed_attr value="SampleType"/>
     </index>
-    <index name="MeasurementCategory" meta_type="FieldIndex">
+    <index name="MeasurementCategory" meta_type="KeywordIndex">
         <indexed_attr value="MeasurementCategory"/>
     </index>
     <index name="Duration" meta_type="FieldIndex">
