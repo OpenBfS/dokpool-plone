@@ -136,9 +136,19 @@
       name="docpool_collection_view"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       template="docpool_collection_view.pt"
-      class=".collection.CollectionView"
+      class="plone.app.contenttypes.browser.collection.CollectionView"
       menu="plone_displayviews"
       title="Docpool view"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="docpool_collection_view_with_actions"
+      for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
+      template="docpool_collection_view_with_actions.pt"
+      class=".collection.CollectionView"
+      menu="plone_displayviews"
+      title="Docpool view with bulk actions"
       permission="zope2.View"
       />
 

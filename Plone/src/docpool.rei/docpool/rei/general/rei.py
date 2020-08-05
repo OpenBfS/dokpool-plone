@@ -154,7 +154,7 @@ def create_all_private_collection(plonesite):
         'text/html',
         'text/x-html-safe')
 
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout('docpool_collection_view_with_actions')
 
     print("Collection Alle eingereicht angelegt")
 
