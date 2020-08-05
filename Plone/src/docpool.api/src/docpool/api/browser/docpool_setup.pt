@@ -16,6 +16,7 @@
         <li>A Test-user in each docpool and their groups: user1/group1 (bund) and user2/group2(hessen)</li>
         <li>DPDocuments in /bund/content/Groups/bund_group1</li>
         <li>Two journals (with entries) in /bund/esd</li>
+        <li>A eea search for Rei in /bund/suche</li>
       </ul>
       <p>Warning: This takes at least 2 minutes to run!</p>
 
