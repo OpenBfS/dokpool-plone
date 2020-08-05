@@ -19,6 +19,24 @@
    <property name="maxitems">0</property>
    <property name="sortreversed">False</property>
   </criterion>
+  <criterion name="c4">
+   <property name="widget">checkbox</property>
+   <property name="title">ReiLegalBases</property>
+   <property name="index">ReiLegalBases</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+      name="vocabulary">docpool.rei.vocabularies.ReiLegalBaseVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
   <criterion name="c0">
    <property name="widget">resultsperpage</property>
    <property name="title">Results per page</property>
