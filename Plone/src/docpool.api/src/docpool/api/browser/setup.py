@@ -505,6 +505,9 @@ class DocpoolSetup(BrowserView):
             config_file_name="rei_search.xml",
             layout_id="eea_results_listing",
         )
+        # Why we need to set to empty?
+        # Todo: https://redmine-koala.bfs.de/issues/3951
+        search.relatedItems = ''
         modified(search)
 
         # Workaround for broken indexes (See #3502)
