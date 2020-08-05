@@ -254,7 +254,7 @@ class DocpoolSetup(BrowserView):
         # Add modulkonfiguration
 
         with api.env.adopt_user(user=user1):
-            sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
+            sampletype_ids = [u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type (except reireport)
             for doctype in doctypes:
                 if doctype.id == 'reireport':
