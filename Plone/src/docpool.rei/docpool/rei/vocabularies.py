@@ -1,13 +1,34 @@
 # - * - coding: utf - 8 -*-
 from AccessControl.SecurityInfo import allow_module
 from datetime import date
-from plone.app.vocabularies.terms import safe_simpleterm_from_value
+from docpool.base.utils import simplevoc_from_dict
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+AUTHORITYS = {
+    u'None' : u'Kein Wert',
+    u'DE-BW': u'Baden-Württemberg',
+    u'DE-BY': u'Bayern',
+    u'DE-BE': u'Berlin',
+    u'DE-EL': u'Endlager (Bundesaufsicht)',
+    u'DE-BB': u'Brandenburg',
+    u'DE-HB': u'Bremen',
+    u'DE-HH': u'Hamburg',
+    u'DE-HE': u'Hessen',
+    u'DE-MV': u'Mecklenburg-Vorpommern',
+    u'DE-NI': u'Niedersachsen',
+    u'DE-NW': u'Nordrhein-Westfalen',
+    u'DE-RP': u'Rheinland-Pfalz',
+    u'DE-SL': u'Saarland',
+    u'DE-SN': u'Sachsen',
+    u'DE-ST': u'Sachsen-Anhalt',
+    u'DE-SH': u'Schleswig-Holstein',
+    u'DE-TH': u'Thüringen',
+}
+AUTHORITYS_VOCABULARY = simplevoc_from_dict(AUTHORITYS)
 
 @implementer(IVocabularyFactory)
 class AuthorityVocabulary(object):
@@ -15,27 +36,7 @@ class AuthorityVocabulary(object):
     """
 
     def __call__(self, context=None):
-        items = [
-            SimpleTerm(value=None, title=u'Kein Wert'),
-            safe_simpleterm_from_value(u'Baden-Württemberg'),
-            safe_simpleterm_from_value(u'Bayern'),
-            safe_simpleterm_from_value(u'Berlin'),
-            safe_simpleterm_from_value(u'Endlager (Bundesaufsicht)'),
-            safe_simpleterm_from_value(u'Brandenburg'),
-            safe_simpleterm_from_value(u'Bremen'),
-            safe_simpleterm_from_value(u'Hamburg'),
-            safe_simpleterm_from_value(u'Hessen'),
-            safe_simpleterm_from_value(u'Mecklenburg-Vorpommern'),
-            safe_simpleterm_from_value(u'Niedersachsen'),
-            safe_simpleterm_from_value(u'Nordrhein-Westfalen'),
-            safe_simpleterm_from_value(u'Rheinland-Pfalz'),
-            safe_simpleterm_from_value(u'Saarland'),
-            safe_simpleterm_from_value(u'Sachsen'),
-            safe_simpleterm_from_value(u'Sachsen-Anhalt'),
-            safe_simpleterm_from_value(u'Schleswig-Holstein'),
-            safe_simpleterm_from_value(u'Thüringen'),
-        ]
-        return SimpleVocabulary(items)
+        return AUTHORITYS_VOCABULARY
 
 
 AuthorityVocabularyFactory = AuthorityVocabulary()
