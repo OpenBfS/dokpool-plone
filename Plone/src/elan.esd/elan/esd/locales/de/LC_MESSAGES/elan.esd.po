@@ -207,14 +207,6 @@ msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 msgid "box_recent_no_items"
 msgstr "Noch keine Änderungen"
 
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "description_doctype_allowtransfer"
-msgstr ""
-
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "description_doctype_contentcategory"
-msgstr ""
-
 #: elan.esd/elan/esd/behaviors/elandocument.py
 msgid "description_dpdocument_scenarios"
 msgstr ""
@@ -279,16 +271,6 @@ msgstr ""
 #: elan.esd/elan/esd/monkey.py
 msgid "failed_passwords_msg"
 msgstr "Nicht erforderlich."
-
-#. Default: "Can documents of this type be sent to other ESDs?"
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "label_doctype_allowtransfer"
-msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
-
-#. Default: "Choose category for this type "
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "label_doctype_contentcategory"
-msgstr "Kategorie für diesen Typ"
 
 #. Default: "Belongs to scenarios"
 #: elan.esd/elan/esd/behaviors/elandocument.py

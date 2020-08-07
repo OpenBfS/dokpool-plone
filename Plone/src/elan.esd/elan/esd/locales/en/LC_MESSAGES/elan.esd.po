@@ -207,14 +207,6 @@ msgstr "Do you really want to archive this scenario?"
 msgid "box_recent_no_items"
 msgstr ""
 
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "description_doctype_allowtransfer"
-msgstr ""
-
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "description_doctype_contentcategory"
-msgstr ""
-
 #: elan.esd/elan/esd/behaviors/elandocument.py
 msgid "description_dpdocument_scenarios"
 msgstr ""
@@ -278,16 +270,6 @@ msgstr ""
 #. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
 #: elan.esd/elan/esd/monkey.py
 msgid "failed_passwords_msg"
-msgstr ""
-
-#. Default: "Can documents of this type be sent to other ESDs?"
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "label_doctype_allowtransfer"
-msgstr ""
-
-#. Default: "Choose category for this type "
-#: elan.esd/elan/esd/behaviors/elandoctype.py
-msgid "label_doctype_contentcategory"
 msgstr ""
 
 #. Default: "Belongs to scenarios"
