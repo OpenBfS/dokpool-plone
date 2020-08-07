@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import get_installer
 from bs4 import BeautifulSoup
-from docpool.base.content.documentpool import docPoolModified
 from docpool.base.content.documentpool import DocumentPool
+from docpool.base.content.documentpool import docPoolModified
 from docpool.config.general.base import configureGroups
+from docpool.rei.vocabularies import AUTHORITYS
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
 from plone.app.textfield import RichTextValue
@@ -10,9 +14,6 @@ from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.dexterity.interfaces import IDexterityFTI
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import get_installer
 from zope.component import queryUtility
 
 import json
@@ -292,3 +293,20 @@ def to_1003(context=None):
             wrapped.NuclearInstallations = new
             log.info(u'Set NuclearInstallations for {} to {}'.format(
                 obj.absolute_url(), new))
+
+
+def to_1004(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    log.info('Importing 1004 upgrades')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1004')
+    rei_reports = api.content.find(portal_type='DPDocument', dp_type='reireport')
+    for rei_report in rei_reports:
+        rei_report = rei_report.getObject()
+        if rei_report.Authority in AUTHORITYS.values():
+            for iso_id, authority in AUTHORITYS.items():
+                if authority == rei_report.Authority:
+                    rei_report.Authority = iso_id
+                    rei_report.reindexObject()
+                    log.info("Authority {0} updated with {1}".format(rei_report, iso_id))
+        else:
+            log.error("Broken data")
