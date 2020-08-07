@@ -15,10 +15,23 @@ explanation on the statements below.
 """
 from Acquisition import aq_inner
 from docpool.transfers import DocpoolMessageFactory as _
+from docpool.transfers.db.query import allowed_targets
+from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
+from zope.schema.interfaces import IContextSourceBinder
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
+
+
+@provider(IContextSourceBinder)
+def possible_targets_vocabulary_factory(dto):
+    targets = allowed_targets(dto)
+    return SimpleVocabulary([
+        SimpleTerm(t.id, t.id, unicode(t)) for t in targets])
 
 
 @provider(IFormFieldProvider)
@@ -33,15 +46,19 @@ class ITransfersType(model.Schema):
         default=True,
     )
 
-    allowAutomaticTransfer = schema.Bool(
+    widget(automaticTransferTargets=CheckBoxFieldWidget)
+    automaticTransferTargets = schema.List(
         title=_(
-            u'label_doctype_allowautomatictransfer',
-            default=u'Are documents of this type transfered automatically?',
+            u'label_doctype_automatictransfertargets',
+            default=u'Where are documents of this type transfered automatically?',
         ),
         description=_(
-            u'description_doctype_allowautomatictransfer', default=u''),
+            u'description_doctype_automatictransfertargets', default=u''),
         required=False,
-        default=False,
+        value_type=schema.Choice(
+            title=_(u'Transfer target'),
+            source=possible_targets_vocabulary_factory,
+        ),
     )
 
 
@@ -62,10 +79,15 @@ class TransfersType(object):
         context.allowTransfer = value
 
     @property
-    def allowAutomaticTransfer(self):
-        return getattr(self.context, "allowAutomaticTransfer", False)
+    def automaticTransferTargets(self):
+        value = getattr(self.context, "automaticTransferTargets", [])
+        allowed = set(target.id for target in allowed_targets(self.context))
+        return [id for id in value if id in allowed]
 
-    @allowAutomaticTransfer.setter
-    def allowAutomaticTransfer(self, value):
+    @automaticTransferTargets.setter
+    def automaticTransferTargets(self, value):
         context = aq_inner(self.context)
-        context.allowAutomaticTransfer = value
+        allowed = set(target.id for target in allowed_targets(context))
+        unaffected = [id for id in context.automaticTransferTargets
+                      if id not in allowed]
+        context.automaticTransferTargets = unaffected + value

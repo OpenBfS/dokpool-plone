@@ -214,12 +214,10 @@ class Transferable(FlexibleView):
             return True
         return False
 
-    @property
-    def automaticallyTransferable(self):
+    def automaticTransferTargets(self):
         dto = self.context.docTypeObj()
-        if not dto:
-            return False
-        return dto.type_extension(TRANSFERS_APP).allowAutomaticTransfer
+        return [t for t in self.allowedTargets()
+                if t.id in dto.automaticTransferTargets]
 
     def allowedTargets(self):
         return allowed_targets(self.context)
@@ -513,9 +511,6 @@ def automaticTransfer(obj, event=None):
     except BaseException:
         return False
 
-    if not tObj.automaticallyTransferable:
-        return
-
     annotations = IAnnotations(tObj.request).setdefault(ANNOTATIONS_KEY, {})
     KEY = 'automatic_transfer_going_on'
     if annotations.get(KEY, False):
@@ -525,7 +520,7 @@ def automaticTransfer(obj, event=None):
     try:
         log('Try automaticTransfer of %s from %s' %
             (obj.Title(), obj.absolute_url()))
-        return tObj.transferToAll()
+        return tObj.transferToTargets(tObj.automaticTransferTargets())
     except BaseException:
         return False
     finally:
