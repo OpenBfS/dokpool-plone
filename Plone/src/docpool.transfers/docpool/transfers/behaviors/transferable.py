@@ -214,11 +214,6 @@ class Transferable(FlexibleView):
             return True
         return False
 
-    def automaticTransferTargets(self):
-        dto = self.context.docTypeObj()
-        return [t for t in self.allowedTargets()
-                if t.id in dto.automaticTransferTargets]
-
     def allowedTargets(self):
         return allowed_targets(self.context)
 
@@ -227,7 +222,9 @@ class Transferable(FlexibleView):
     def transferToAll(self):
         """
         """
-        targets = self.allowedTargets()
+        dto = self.context.docTypeObj()
+        targets = [t for t in self.allowedTargets()
+                   if t.id in dto.automaticTransferTargets]
         self.transferToTargets(targets)
         return self.context.restrictedTraverse('@@view')()
 
@@ -520,7 +517,7 @@ def automaticTransfer(obj, event=None):
     try:
         log('Try automaticTransfer of %s from %s' %
             (obj.Title(), obj.absolute_url()))
-        return tObj.transferToTargets(tObj.automaticTransferTargets())
+        return tObj.transferToAll()
     except BaseException:
         return False
     finally:
