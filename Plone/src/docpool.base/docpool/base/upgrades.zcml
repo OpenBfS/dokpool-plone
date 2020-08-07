@@ -119,7 +119,7 @@
       destination="1004"
       profile="docpool.base:default">
     <genericsetup:upgradeStep
-        title="Update all AUTHORITYS vocabs with iso abbreviation"
+        title="Update all AUTHORITIES vocabs with iso abbreviation"
         handler="docpool.base.upgrades.to_1004"
         />
   </genericsetup:upgradeSteps>

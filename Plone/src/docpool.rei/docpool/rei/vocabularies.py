@@ -8,7 +8,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
-AUTHORITYS = {
+AUTHORITIES = {
     u'None' : u'Kein Wert',
     u'DE-BW': u'Baden-Württemberg',
     u'DE-BY': u'Bayern',
@@ -28,7 +28,7 @@ AUTHORITYS = {
     u'DE-SH': u'Schleswig-Holstein',
     u'DE-TH': u'Thüringen',
 }
-AUTHORITYS_VOCABULARY = simplevoc_from_dict(AUTHORITYS)
+AUTHORITIES_VOCABULARY = simplevoc_from_dict(AUTHORITIES)
 
 @implementer(IVocabularyFactory)
 class AuthorityVocabulary(object):
@@ -36,7 +36,7 @@ class AuthorityVocabulary(object):
     """
 
     def __call__(self, context=None):
-        return AUTHORITYS_VOCABULARY
+        return AUTHORITIES_VOCABULARY
 
 
 AuthorityVocabularyFactory = AuthorityVocabulary()

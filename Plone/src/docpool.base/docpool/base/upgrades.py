@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
 from docpool.config.general.base import configureGroups
-from docpool.rei.vocabularies import AUTHORITYS
+from docpool.rei.vocabularies import AUTHORITIES
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
 from plone.app.textfield import RichTextValue
@@ -302,8 +302,8 @@ def to_1004(context=None):
     rei_reports = api.content.find(portal_type='DPDocument', dp_type='reireport')
     for rei_report in rei_reports:
         rei_report = rei_report.getObject()
-        if rei_report.Authority in AUTHORITYS.values():
-            for iso_id, authority in AUTHORITYS.items():
+        if rei_report.Authority in AUTHORITIES.values():
+            for iso_id, authority in AUTHORITIES.items():
                 if authority == rei_report.Authority:
                     rei_report.Authority = iso_id
                     rei_report.reindexObject()
