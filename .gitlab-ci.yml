@@ -13,6 +13,11 @@ before_script:
 #    - pre-commit run --all-files
 test:
   script:
-    - ./bin/test
+# Stage test
+    - ./bin/coverage erase
+    - ./bin/coverage run -p --source=src bin/test || exit 1
+    - ./bin/coverage combine
+    - ./bin/coverage html
+    - ./bin/coverage report
 # Tests only docpool_setup (without robot)
     - ./bin/test -t test_demo_setup --all
