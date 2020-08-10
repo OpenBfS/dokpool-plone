@@ -13,6 +13,12 @@ before_script:
 #    - pre-commit run --all-files
 test:
   script:
-    - ./bin/test
+    - ./bin/coverage erase
+    - ./bin/coverage run ./bin/test || exit 1
 # Tests only docpool_setup (without robot)
-    - ./bin/test -t test_demo_setup --all
+    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
+# Combines the previous two runs as parallel run is set
+    - ./bin/coverage combine
+    - ./bin/coverage html
+    - ./bin/coverage report
+  coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
