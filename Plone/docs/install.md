@@ -8,7 +8,6 @@ $ cd dokpool-plone/Plone
 $ pip installl -r requirements.txt
 $ sudo apt install libpq-dev
 $ sudo apt install postgresql
-$ sudo apt-get install libsqlite3-dev
 $ bin/buildout -c local-develop.cfg
 ```
 
