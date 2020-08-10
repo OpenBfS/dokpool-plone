@@ -7,6 +7,7 @@ $ mkvirtualenv dokpool-plone
 $ cd dokpool-plone/Plone
 $ pip installl -r requirements.txt
 $ sudo apt install libpq-dev
+$ sudo apt-get install libsqlite3-dev
 $ sudo apt install postgresql
 $ bin/buildout -c local-develop.cfg
 ```
