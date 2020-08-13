@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-21 16:38+0000\n"
+"POT-Creation-Date: 2020-08-14 07:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Copy or cut one or more items to paste."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/review_history.py
+msgid "Create"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
@@ -143,7 +147,6 @@ msgid "Item(s) pasted."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "LT"
 msgstr ""
 
@@ -235,10 +238,6 @@ msgstr ""
 msgid "Search for user or group"
 msgstr ""
 
-#: docpool.base/docpool/base/profiles/default/actions.xml
-msgid "Select Applications"
-msgstr ""
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Send back to BfS"
 msgstr ""
@@ -249,10 +248,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Send back to authority"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/dp_macros.pt
-msgid "Show document"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
@@ -328,10 +323,6 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt
-msgid "View the document"
-msgstr ""
-
 #: docpool.base/docpool/base/vocabularies.py
 msgid "active"
 msgstr ""
@@ -401,7 +392,6 @@ msgid "closed"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "created:"
 msgstr ""
 
@@ -501,6 +491,11 @@ msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "inactive"
+msgstr ""
+
+#. Default: "Anonymous User"
+#: docpool.base/docpool/base/browser/review_history.py
+msgid "label_anonymous_user"
 msgstr ""
 
 #. Default: "Cancel"
@@ -619,8 +614,23 @@ msgid "label_text_text"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "modified:"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_authority - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bfs - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bmu - Show document"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -628,7 +638,19 @@ msgid "private"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "published - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "revised - Show document"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
