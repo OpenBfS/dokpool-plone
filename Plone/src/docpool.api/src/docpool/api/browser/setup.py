@@ -503,7 +503,7 @@ class DocpoolSetup(BrowserView):
         _configure_faceted_view(
             obj=search,
             config_file_name="rei_search.xml",
-            layout_id="eea_results_listing",
+            layout_id="tabular_view",
         )
         # Why we need to set to empty?
         # Todo: https://redmine-koala.bfs.de/issues/3951
