@@ -96,6 +96,14 @@ class DPDocumentprintView(FlexibleView):
     __call__ = ViewPageTemplateFile('dpdocumentprint.pt')
 
 
+@implementer(IViewView)
+class DPDocumentcommentingView(BrowserView):
+    """Additional View
+    """
+
+    __call__ = ViewPageTemplateFile('dpdocumentcommenting.pt')
+
+
 class DPDocumentdocimageView(BrowserView):
     """ Gets the correct image / pdf preview
     """

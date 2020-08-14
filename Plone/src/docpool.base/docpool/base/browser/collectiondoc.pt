@@ -55,6 +55,10 @@
 
             <div tal:replace="structure view/doc_inline" />
 
+            <div><a tal:attributes="href string:${doc/absolute_url}/commenting"
+                    target="_blank"
+                    i18n:translate="">View and edit comments</a></div>
+
         </tal:def>
 
     </metal:content-core>
