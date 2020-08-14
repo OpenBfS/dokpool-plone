@@ -91,6 +91,14 @@
       />
 
   <browser:page
+      name="commenting"
+      for="..interfaces.IDPDocument"
+      class=".dpdocument.DPDocumentcommentingView"
+      layer="plone.app.discussion.interfaces.IDiscussionLayer"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="docimage"
       for="..interfaces.IDPDocument"
       class=".dpdocument.DPDocumentdocimageView"

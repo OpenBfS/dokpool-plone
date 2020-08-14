@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2020-08-14 07:48+0000\n"
+"POT-Creation-Date: 2020-08-14 07:51+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -321,6 +321,10 @@ msgstr "Nutzerbereich"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Videos:"
 msgstr "Videos:"
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt
+msgid "View and edit comments"
+msgstr "Kommentare einsehen und bearbeiten"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "active"
