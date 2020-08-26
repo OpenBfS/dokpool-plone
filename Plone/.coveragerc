@@ -1,0 +1,11 @@
+[report]
+include =
+    src/*
+omit =
+    */test*
+    */upgrades.py
+[html]
+directory = parts/test/htmlreport
+title = Bfs dokpool Project
+[run]
+parallel=True
