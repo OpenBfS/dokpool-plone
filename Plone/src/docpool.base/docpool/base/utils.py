@@ -3,16 +3,16 @@ from AccessControl.SecurityManagement import newSecurityManager
 from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.log import log_exc
-from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import parent
-from Products.CMFPlone.utils import safe_unicode
 from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.i18n.normalizer.de import Normalizer
 from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.log import log_exc
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import parent
+from Products.CMFPlone.utils import safe_unicode
 from unicodedata import normalize
 from zc.relation.interfaces import ICatalog
 from zope.component import getMultiAdapter
@@ -23,8 +23,11 @@ from zope.intid.interfaces import IIntIds
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.security import checkPermission
+
 import logging
 import re
+import six
+
 
 log = logging.getLogger(__name__)
 
@@ -418,7 +421,7 @@ def safe_value(text, delim=u'_'):
         word = normalize('NFKD', word).encode('ascii', 'ignore')
         if word:
             result.append(word)
-    return unicode(delim.join(result)).lower()
+    return six.text_type(delim.join(result)).lower()
 
 def simplevoc_from_dict(values):
     return SimpleVocabulary(

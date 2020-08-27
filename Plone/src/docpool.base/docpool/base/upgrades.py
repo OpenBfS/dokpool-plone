@@ -300,8 +300,10 @@ def to_1004(context=None):
     log.info('Importing 1004 upgrades')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1004')
     rei_reports = api.content.find(portal_type='DPDocument', dp_type='reireport')
-    for rei_report in rei_reports:
-        rei_report = rei_report.getObject()
+    for brain in rei_reports:
+        rei_report = brain.getObject()
+        if not hasattr(rei_report, 'Authority'):
+            log.error("Broken rei_report: {0}".format(str(rei_report)))
         if rei_report.Authority in AUTHORITIES.values():
             for iso_id, authority in AUTHORITIES.items():
                 if authority == rei_report.Authority:
