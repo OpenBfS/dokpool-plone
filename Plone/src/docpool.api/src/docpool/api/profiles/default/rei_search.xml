@@ -1,9 +1,45 @@
 <?xml version="1.0"?>
 <object name="suche" meta_type="Dexterity Container">
  <criteria>
+  <criterion name="c4">
+   <property name="widget">checkbox</property>
+   <property name="title">ReiLegalBases</property>
+   <property name="index">ReiLegalBases</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+      name="vocabulary">docpool.rei.vocabularies.ReiLegalBaseVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
+  <criterion name="c8">
+   <property name="widget">checkbox</property>
+   <property name="title">Medium</property>
+   <property name="index">Medium</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+      name="vocabulary">docpool.rei.vocabularies.MediumVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
   <criterion name="c1">
    <property name="widget">checkbox</property>
-   <property name="title">Authority</property>
+   <property name="title">Netzbetreiber/Aufsichtsbehörde</property>
    <property name="index">Authority</property>
    <property name="operator">or</property>
    <property name="operator_visible">False</property>
@@ -19,14 +55,50 @@
    <property name="maxitems">0</property>
    <property name="sortreversed">False</property>
   </criterion>
-  <criterion name="c4">
+  <criterion name="c5">
    <property name="widget">checkbox</property>
-   <property name="title">ReiLegalBases</property>
-   <property name="index">ReiLegalBases</property>
+   <property name="title">Anlage</property>
+   <property name="index">NuclearInstallations</property>
    <property name="operator">or</property>
    <property name="operator_visible">False</property>
    <property
-      name="vocabulary">docpool.rei.vocabularies.ReiLegalBaseVocabulary</property>
+      name="vocabulary">docpool.rei.vocabularies.NuclearInstallationVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
+  <criterion name="c6">
+   <property name="widget">checkbox</property>
+   <property name="title">Quartal</property>
+   <property name="index">Period</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+      name="vocabulary">docpool.rei.vocabularies.PeriodVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
+  <criterion name="c7">
+   <property name="widget">checkbox</property>
+   <property name="title">Berichtende Stelle</property>
+   <property name="index">Origins</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+      name="vocabulary">docpool.rei.vocabularies.OriginVocabulary</property>
    <property name="catalog">portal_catalog</property>
    <property name="position">left</property>
    <property name="section">default</property>
