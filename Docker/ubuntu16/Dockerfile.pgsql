@@ -19,7 +19,7 @@ RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 # Install postgres 12 + postgis 3
 #
 RUN apt-get install -y postgresql-12-postgis-3 postgis \
-    postgresql-plpython-12
+    postgresql-plpython3-12
 
 #
 # Use user postgres to run the next commands
