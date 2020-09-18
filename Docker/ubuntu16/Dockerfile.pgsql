@@ -16,10 +16,10 @@ RUN apt-get update && apt-get install -y apt-utils tzdata locales
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 #
-# Install postgres 10 + postgis 2.4
+# Install postgres 12 + postgis 3
 #
-RUN apt-get install -y postgresql-10-postgis-2.4 postgis \
-    postgresql-plpython-10
+RUN apt-get install -y postgresql-12-postgis-3 postgis \
+    postgresql-plpython-12
 
 #
 # Use user postgres to run the next commands
@@ -38,9 +38,9 @@ RUN /etc/init.d/postgresql start &&\
 # database are possible.
 #
 RUN echo "host all  all    0.0.0.0/0  md5" \
-    >> /etc/postgresql/10/main/pg_hba.conf
+    >> /etc/postgresql/12/main/pg_hba.conf
 
-RUN echo "listen_addresses='*'" >> /etc/postgresql/10/main/postgresql.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/12/main/postgresql.conf
 
 #
 # Expose the PostgreSQL port
@@ -55,13 +55,13 @@ EXPOSE 5432
 # It's because of the -w
 #
 # ADD pgsql elan_pgsql/
-RUN /usr/lib/postgresql/10/bin/pg_ctl start -wD /etc/postgresql/10/main/ && \
+RUN /usr/lib/postgresql/12/bin/pg_ctl start -wD /etc/postgresql/12/main/ && \
     createdb -E UTF-8 -O zodbuser zodb && \
     createdb -E UTF-8 -O elan elan 
 
 #
 # Start Postgres-Server
 #
-CMD ["/usr/lib/postgresql/10/bin/postgres", "-D", \
-     "/var/lib/postgresql/10/main", "-c", \
-     "config_file=/etc/postgresql/10/main/postgresql.conf"]
+CMD ["/usr/lib/postgresql/12/bin/postgres", "-D", \
+     "/var/lib/postgresql/12/main", "-c", \
+     "config_file=/etc/postgresql/12/main/postgresql.conf"]
