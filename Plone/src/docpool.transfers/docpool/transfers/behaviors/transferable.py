@@ -223,8 +223,9 @@ class Transferable(FlexibleView):
         """
         """
         dto = self.context.docTypeObj()
+        dto_transfers = dto.type_extension(TRANSFERS_APP)
         targets = [t for t in self.allowedTargets()
-                   if t.id in dto.automaticTransferTargets]
+                   if t.id in dto_transfers.automaticTransferTargets]
         self.transferToTargets(targets)
         return self.context.restrictedTraverse('@@view')()
 
