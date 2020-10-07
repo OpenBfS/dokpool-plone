@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-12-21 09:37+0000\n"
+"POT-Creation-Date: 2020-10-07 12:08+0000\n"
 "PO-Revision-Date: 2018-11-16 10:37+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -16,15 +16,19 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: elan.esd/elan/esd/portlets/collection.py:127
+#: elan.esd/elan/esd/portlets/collection.py
 msgid "Add Collection Portlet"
 msgstr "Portlet für Collection zufügen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:28
+#: elan.esd/elan/esd/portlets/overview.pt
+msgid "Add journal entry"
+msgstr "Tagebucheintrag hinzufügen"
+
+#: elan.esd/elan/esd/browser/elan_macros.pt
 msgid "All"
 msgstr "Alle"
 
-#: elan.esd/elan/esd/browser/elandoccollectionrpopup.pt:31
+#: elan.esd/elan/esd/browser/elandoccollectionrpopup.pt
 #: elan.esd/elan/esd/profiles/default/types/ELANArchive.xml
 msgid "Archive"
 msgstr "Archiv"
@@ -33,7 +37,7 @@ msgstr "Archiv"
 msgid "Archives"
 msgstr "Archive"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:22
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "Archiving"
 msgstr "Archivieren"
 
@@ -41,27 +45,23 @@ msgstr "Archivieren"
 msgid "Area for general information"
 msgstr "Bereich für allgemeine Informationen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:54
+#: elan.esd/elan/esd/browser/elan_macros.pt
 msgid "Belongs to scenario:"
 msgstr "Zu Ereignis:"
 
-#: elan.esd/elan/esd/monkey.py:75
+#: elan.esd/elan/esd/monkey.py
 msgid "Changes applied."
 msgstr "Änderungen angewandt."
 
-#: elan.esd/elan/esd/portlets/overview.pt:5
+#: elan.esd/elan/esd/portlets/overview.pt
 msgid "Chronological Overview"
 msgstr "Chronologie"
 
-#: elan.esd/elan/esd/portlets/overview.pt:27
-msgid "Add journal entry"
-msgstr "Tagebucheintrag hinzufügen"
-
-#: elan.esd/elan/esd/portlets/collection.py:74
+#: elan.esd/elan/esd/portlets/collection.py
 msgid "Collection"
 msgstr "ELAN Collection"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:58
+#: elan.esd/elan/esd/browser/elan_macros.pt
 msgid "Content from:"
 msgstr "Kategorie:"
 
@@ -69,7 +69,7 @@ msgstr "Kategorie:"
 msgid "Create Archive Folder"
 msgstr "Archivordner anlegen"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:36
+#: elan.esd/elan/esd/browser/elan_macros.pt
 msgid "Current filter:"
 msgstr "Aktueller Filter:"
 
@@ -85,7 +85,7 @@ msgstr "Daten"
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
-#: elan.esd/elan/esd/content/elandoccollection.py:69
+#: elan.esd/elan/esd/content/elandoccollection.py
 msgid "Document Types"
 msgstr "Dokumenttypen"
 
@@ -105,7 +105,7 @@ msgstr "Abschnitt"
 msgid "ELANCurrentSituation"
 msgstr "Aktuelle Lage"
 
-#: elan.esd/elan/esd/portlets/collection.py:136
+#: elan.esd/elan/esd/portlets/collection.py
 msgid "Edit Collection Portlet"
 msgstr "Portlet für Collection bearbeiten"
 
@@ -113,19 +113,19 @@ msgstr "Portlet für Collection bearbeiten"
 msgid "Edit Ticker"
 msgstr "Ticker bearbeiten"
 
-#: elan.esd/elan/esd/browser/elandoccollectiondoc.pt:16
+#: elan.esd/elan/esd/browser/elandoccollectiondoc.pt
 msgid "Edit the document"
 msgstr "Das Dokument bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:42
+#: elan.esd/elan/esd/browser/elan_macros.pt
 msgid "Edit unknown scenario"
 msgstr "Unbekanntes Ereignis bearbeiten"
 
-#: elan.esd/elan/esd/browser/elan_macros.pt:22
+#: elan.esd/elan/esd/browser/elan_macros.pt
 msgid "Filter"
 msgstr "Filter"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:21
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "Home"
 msgstr "Home"
 
@@ -137,7 +137,7 @@ msgstr "IRIX Konfiguration"
 msgid "IRIX base configuration"
 msgstr "IRIX Basis Konfiguration"
 
-#: elan.esd/elan/esd/portlets/collection.pt:9
+#: elan.esd/elan/esd/portlets/collection.pt
 msgid "Latest from"
 msgstr "Neuste aus"
 
@@ -149,19 +149,19 @@ msgstr "Ort"
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: elan.esd/elan/esd/portlets/overview.py:42
+#: elan.esd/elan/esd/portlets/overview.py
 msgid "Overview"
 msgstr "Übersicht"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:23
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "Purge"
 msgstr "Inhalte des Ereignisses löschen"
 
-#: elan.esd/elan/esd/portlets/recent.py:44
+#: elan.esd/elan/esd/portlets/recent.py
 msgid "Recent"
 msgstr "Letzte Änderungen"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:24
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "Snapshot"
 msgstr "Kopie des aktuellen Standes"
 
@@ -173,212 +173,212 @@ msgstr "Der Ortsbezug eines Inhalts"
 msgid "The time and date an item was last modified by a user"
 msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
 
-#: elan.esd/elan/esd/portlets/collection.py:128
+#: elan.esd/elan/esd/portlets/collection.py
 msgid "This portlet displays recently modified content from a collection."
 msgstr "Dieses Portlet zeigt die neusten Inhalte einer Collection an."
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:16
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "alert_delete_popup"
 msgstr "Wollen Sie dieses Objekt wirklich löschen?"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:20
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "alert_publish_popup"
 msgstr "Wollen Sie das Dokument veröffentlichen?"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:17
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "alert_reject_popup"
 msgstr "Wollen Sie dieses Dokument wirklich zurückweisen?"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:18
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "alert_retract_popup"
 msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:19
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:25
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "archive_confirm_msg"
 msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
 #. Default: "No items changed yet."
-#: elan.esd/elan/esd/portlets/collection.pt:41
-#: elan.esd/elan/esd/portlets/recent.pt:49
+#: elan.esd/elan/esd/portlets/collection.pt
+#: elan.esd/elan/esd/portlets/recent.pt
 msgid "box_recent_no_items"
 msgstr "Noch keine Änderungen"
 
-#: elan.esd/elan/esd/behaviors/elandoctype.py:47
+#: elan.esd/elan/esd/behaviors/elandoctype.py
 msgid "description_doctype_allowtransfer"
 msgstr ""
 
-#: elan.esd/elan/esd/behaviors/elandoctype.py:33
+#: elan.esd/elan/esd/behaviors/elandoctype.py
 msgid "description_doctype_contentcategory"
 msgstr ""
 
-#: elan.esd/elan/esd/behaviors/elandocument.py:31
+#: elan.esd/elan/esd/behaviors/elandocument.py
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py:65
+#: elan.esd/elan/esd/content/elandoccollection.py
 msgid "description_elandoccollection_doctypes"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py:55
+#: elan.esd/elan/esd/portlets/collection.py
 msgid "description_elandocument_doctype"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:63
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_contactemail"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:54
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_contactname"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:90
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_organisationcountry"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:108
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_organisationemail"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:81
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_organisationid"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:72
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_organisationname"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:45
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_organisationreporting"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:99
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_organisationweb"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:126
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_sourcedescription"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:117
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_sourcetext"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py:135
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "description_irixconfig_typemapping"
 msgstr ""
 
-#: elan.esd/elan/esd/configure.zcml:23
+#: elan.esd/elan/esd/configure.zcml
 msgid "elan.esd"
 msgstr ""
 
 #. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py:112
+#: elan.esd/elan/esd/monkey.py
 msgid "failed_passwords_msg"
 msgstr "Nicht erforderlich."
 
 #. Default: "Can documents of this type be sent to other ESDs?"
-#: elan.esd/elan/esd/behaviors/elandoctype.py:46
+#: elan.esd/elan/esd/behaviors/elandoctype.py
 msgid "label_doctype_allowtransfer"
 msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
 
 #. Default: "Choose category for this type "
-#: elan.esd/elan/esd/behaviors/elandoctype.py:32
+#: elan.esd/elan/esd/behaviors/elandoctype.py
 msgid "label_doctype_contentcategory"
 msgstr "Kategorie für diesen Typ"
 
 #. Default: "Belongs to scenarios"
-#: elan.esd/elan/esd/behaviors/elandocument.py:30
+#: elan.esd/elan/esd/behaviors/elandocument.py
 msgid "label_dpdocument_scenarios"
 msgstr "Gehört zu folgenden Ereignissen"
 
 #. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py:64
+#: elan.esd/elan/esd/content/elandoccollection.py
 msgid "label_elandoccollection_doctypes"
 msgstr "Dokumenttypen"
 
 #. Default: "Document Type"
-#: elan.esd/elan/esd/portlets/collection.py:54
+#: elan.esd/elan/esd/portlets/collection.py
 msgid "label_elandocument_doctype"
 msgstr "Dokumenttyp"
 
 #. Default: "Email of contact"
-#: elan.esd/elan/esd/content/irixconfig.py:62
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_contactemail"
 msgstr "Kontakt E-Mail"
 
 #. Default: "Name of contact"
-#: elan.esd/elan/esd/content/irixconfig.py:53
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_contactname"
 msgstr "Kontakt Name"
 
 #. Default: "Country code"
-#: elan.esd/elan/esd/content/irixconfig.py:89
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_organisationcountry"
 msgstr "Ländercode"
 
 #. Default: "Email address"
-#: elan.esd/elan/esd/content/irixconfig.py:107
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_organisationemail"
 msgstr "E-Mail der Organisation"
 
 #. Default: "ID of organisation"
-#: elan.esd/elan/esd/content/irixconfig.py:80
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_organisationid"
 msgstr "Kennung der Organisation"
 
 #. Default: "Name of organisation"
-#: elan.esd/elan/esd/content/irixconfig.py:71
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_organisationname"
 msgstr "Name der Organisation"
 
 #. Default: "Reporting State / Organisation"
-#: elan.esd/elan/esd/content/irixconfig.py:44
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_organisationreporting"
 msgstr "Berichtender Staat / Organisation"
 
 #. Default: "Web address"
-#: elan.esd/elan/esd/content/irixconfig.py:98
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_organisationweb"
 msgstr "Web Adresse"
 
 #. Default: "Information source description"
-#: elan.esd/elan/esd/content/irixconfig.py:125
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_sourcedescription"
 msgstr "Beschreibung der Informationsquelle"
 
 #. Default: "Information source text"
-#: elan.esd/elan/esd/content/irixconfig.py:116
+#: elan.esd/elan/esd/content/irixconfig.py
 msgid "label_irixconfig_sourcetext"
 msgstr "Text Informationsquelle"
 
 #. Default: " ELAN types 2 IRIX type mapping"
-#: elan.esd/elan/esd/content/irixconfig.py:134
+#: elan.esd/elan/esd/content/irixconfig.py
 #, fuzzy
 msgid "label_irixconfig_typemapping"
 msgstr "Abbildung ELAN Typen auf IRIX Typen"
 
 #. Default: "Recently Modified"
-#: elan.esd/elan/esd/portlets/recent.pt:7
+#: elan.esd/elan/esd/portlets/recent.pt
 msgid "label_recent"
 msgstr "Aktuelle Einträge"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:14
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "private"
 msgstr "privat"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:15
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "published"
 msgstr "Veröffentlicht"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt:26
+#: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "purge_confirm_msg"
 msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
 
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py:103
+#: elan.esd/elan/esd/monkey.py
 msgid "reset_passwords_msg"
 msgstr "Nicht erforderlich"
