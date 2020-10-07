@@ -19,13 +19,12 @@ from docpool.transfers.config import TRANSFERS_APP
 from docpool.transfers.content.transfers import determineChannels
 from docpool.transfers.content.transfers import determineTransferFolderObject
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
-from docpool.transfers.db.model import Channel
 from docpool.transfers.db.model import ChannelPermissions
 from docpool.transfers.db.model import ChannelReceives
 from docpool.transfers.db.model import ChannelSends
-from docpool.transfers.db.model import DocTypePermission
 from docpool.transfers.db.model import ReceiverLog
 from docpool.transfers.db.model import SenderLog
+from docpool.transfers.db.query import allowed_targets
 from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
@@ -35,9 +34,7 @@ from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
-from sqlalchemy import and_
 from sqlalchemy.sql.expression import desc
-from sqlalchemy.sql.expression import or_
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -225,48 +222,7 @@ class Transferable(FlexibleView):
         return dto.type_extension(TRANSFERS_APP).allowAutomaticTransfer
 
     def allowedTargets(self):
-        """
-        Other ESD must have allowed communication with my ESD,
-        my DocType is known and must be accepted
-            or the DocType is not defined in the other ESD (will be checked later)
-        and my current version must not have been transferred.
-        """
-        esd_uid = self.context.myDocumentPool().UID()
-        # print esd_uid
-        dto = self.context.docTypeObj()
-        dt_id = dto and dto.id or '---'
-        # print dt_id
-        m = self.context.getMdate()
-        # print m
-        q = (
-            __session__.query(Channel)
-            .outerjoin(Channel.permissions)
-            .outerjoin(Channel.sends)
-            .filter(
-                and_(
-                    Channel.esd_from_uid == esd_uid,
-                    or_(
-                        and_(
-                            DocTypePermission.doc_type == dt_id,
-                            DocTypePermission.perm != 'block',
-                        ),
-                        ~Channel.permissions.any(
-                            DocTypePermission.doc_type == dt_id),
-                    ),
-                    ~Channel.sends.any(
-                        and_(
-                            SenderLog.document_uid == self.context.UID(),
-                            SenderLog.timestamp > m,
-                        )
-                    ),
-                )
-            )
-            .order_by('esd_from_title')
-        )
-        # print q.statement
-        targets = q.all()
-        # print len(targets)
-        return targets
+        return allowed_targets(self.context)
 
     security.declareProtected("Docpool: Send Content", "transferToAll")
 
