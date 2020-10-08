@@ -86,7 +86,10 @@ if (
     Promise.all([
       import(
         /* webpackChunkName: "facetednavigation" */ "./facetednavigation"
-      )
+      ),
+            import(
+                /* webpackChunkName: "faceted-dashboard" */ "./faceted-dashboard"
+                )
     ]).then(args => {
       jQuery(document).ready(function(evt) {
         window.Faceted.Load(faceted_evt, faceted_path);
@@ -108,7 +111,10 @@ if (jQuery("body.template-configure_faceted-html").length) {
         Promise.all([
             import(
                 /* webpackChunkName: "facetednavigation-edit" */ "./facetednavigation-edit"
-                )
+                ),
+            import(
+                /* webpackChunkName: "faceted-dashboard" */ "./faceted-dashboard-edit"
+                ),
         ]).then(args => {
             window.FacetedEdit.Load(faceted_evt, faceted_path);
         });

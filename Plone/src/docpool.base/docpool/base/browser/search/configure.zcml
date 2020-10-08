@@ -1,0 +1,77 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:faceted="http://namespaces.zope.org/faceted"
+        i18n_domain="dynajet.base">
+
+  <include package="eea.facetednavigation" file="meta.zcml" />
+
+  <adapter
+          for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+          factory=".columns.Netzbetreiber"
+          provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+          name="Netzbetreiber" />
+
+  <!-- Remove all not needed Column and use our own -->
+  <include package="z3c.unconfigure" file="meta.zcml"/>
+  <unconfigure package="collective.eeafaceted.z3ctable">
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory=".columns.AwakeObjectMethodColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="getText" />
+
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory=".columns.MemberIdColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="Creator" />
+
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory=".columns.TitleColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="Title" />
+
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory=".columns.CreationDateColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="CreationDate" />
+
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory=".columns.ModificationDateColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="ModificationDate" />
+
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory=".columns.I18nColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="review_state" />
+
+    <adapter
+       for="zope.interface.Interface
+            zope.publisher.interfaces.browser.IBrowserRequest
+            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+       factory="collective.eeafaceted.z3ctable.columns.CheckBoxColumn"
+       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+       name="select_row" />
+
+  </unconfigure>
+
+</configure>

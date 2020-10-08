@@ -31,6 +31,7 @@ import logging
 import os
 import random
 
+from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 log = logging.getLogger(__name__)
 
 
@@ -494,17 +495,15 @@ class DocpoolSetup(BrowserView):
         allowed = adapted.allowedTargets()
         target = allowed[0]
         adapted.transferToTargets(targets=[target])
-
+        import_file_path = os.path.join(
+            os.path.dirname(__file__), "../profiles/default/rei_search.xml"
+        )
         # Configure EEA faceted navigation
         search = api.content.create(
             container=docpool_bund, type="Folder", id="suche", title=u"Rei Suche",
             local_behaviors=['rei'],
         )
-        _configure_faceted_view(
-            obj=search,
-            config_file_name="rei_search.xml",
-            layout_id="tabular_view",
-        )
+        enableFacetedDashboardFor(search, xmlpath=import_file_path, show_left_column=False)
         # Why we need to set to empty?
         # Todo: https://redmine-koala.bfs.de/issues/3951
         search.relatedItems = ''
