@@ -20,7 +20,7 @@ def allowed_targets(context):
     have_doctype = isinstance(context, DocType)
     dto = context if have_doctype else context.docTypeObj()
     dt_id = dto.id if dto else '---'
-    filter = (
+    filter_list = (
         Channel.esd_from_uid == esd_uid,
         or_(
             and_(
@@ -32,7 +32,7 @@ def allowed_targets(context):
         ),
     )
     if not have_doctype:
-        filter += (
+        filter_list += (
             ~Channel.sends.any(
                 and_(
                     SenderLog.document_uid == context.UID(),
@@ -44,7 +44,7 @@ def allowed_targets(context):
         __session__.query(Channel)
         .outerjoin(Channel.permissions)
         .outerjoin(Channel.sends)
-        .filter(and_(*filter))
+        .filter(and_(*filter_list))
         .order_by('esd_from_title')
     )
     targets = q.all()
