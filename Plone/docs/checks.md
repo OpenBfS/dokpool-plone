@@ -1,4 +1,64 @@
-# Checklisten
+# Erweiterte Checklisten
+
+Entwurf für Checklisten für Merge-Requests und Tickets
+
+## Tickets
+
+Die folgenden Vorlagen können in Redmine hineinkopiert werden.
+
+
+### Bug
+
+```
+h2. Zusammenfassung
+
+Work in progress - wird noch ausformuliert.
+
+Beispiel: Als Benutzer xyz kann in der Anwendung xzy kein xzy angelegt werden.
+
+h3. Umgebung, in der der Fehler aufgefallen und reproduzierbar ist
+
+[URL]
+[Code branch/revision]
+
+h3. Schritte zur Reproduktion
+
+h3. Erwartetes Ergebnis
+
+h3. Aktuelles Ergebnis
+
+h3. Technische Hinweise (optional)
+
+h3. Stacktrace (optional)
+
+h3. Screenshots (optional)
+
+h3. Weitere Information und Links
+```
+
+
+### Feature
+
+```
+h2. Zusammenfassung
+
+Als Redakteur, ...
+
+Will ich ...
+
+Um ...
+
+h3. Abnahmekriterien
+
+Es ist erledigt wenn ...
+
+h3. Weitere Information und Links
+
+h3. Technische Hinweise (optional)
+
+```
+
+## Merge Requests
 
 * [ ] **Upgrade-Steps**: Wurde daran gedacht, für all solche Änderungen am Code, die sich auf bestehende Daten auswirken, Migrationscode in Form von Upgrade-Steps für Plone zu schreiben?
 * [ ] **Changelog**: Wurde die Änderung aussagekräftig und mit Ticketnummer im Changelog erwähnt?
