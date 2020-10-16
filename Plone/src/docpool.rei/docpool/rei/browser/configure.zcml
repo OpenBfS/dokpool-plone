@@ -1,0 +1,23 @@
+ <configure
+        xmlns="http://namespaces.zope.org/zope"
+        i18n_domain="dynajet.rei">
+
+  <include package="eea.facetednavigation" file="meta.zcml" />
+
+  <adapter
+          for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+          factory=".columns.ReiLegalBases"
+          provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+          name="ReiLegalBases" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Authority"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Authority" />
+
+ </configure>

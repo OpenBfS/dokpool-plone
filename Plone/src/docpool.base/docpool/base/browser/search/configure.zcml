@@ -5,17 +5,22 @@
 
   <include package="eea.facetednavigation" file="meta.zcml" />
 
-  <adapter
-          for="zope.interface.Interface
+  <!-- Remove all not needed Columns from collective.eeafaceted.dashboard -->
+  <include package="z3c.unconfigure" file="meta.zcml"/>
+
+
+  <unconfigure package="collective.documentgenerator.browser">
+
+  <unconfigure package="collective.eeafaceted.z3ctable">
+
+    <adapter
+            for="zope.interface.Interface
             zope.publisher.interfaces.browser.IBrowserRequest
             collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
-          factory=".columns.Netzbetreiber"
-          provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
-          name="Netzbetreiber" />
+            factory=".columns.TitleColumn"
+            provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+            name="Title" />
 
-  <!-- Remove all not needed Column and use our own -->
-  <include package="z3c.unconfigure" file="meta.zcml"/>
-  <unconfigure package="collective.eeafaceted.z3ctable">
     <adapter
        for="zope.interface.Interface
             zope.publisher.interfaces.browser.IBrowserRequest
@@ -32,13 +37,7 @@
        provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
        name="Creator" />
 
-    <adapter
-       for="zope.interface.Interface
-            zope.publisher.interfaces.browser.IBrowserRequest
-            collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
-       factory=".columns.TitleColumn"
-       provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
-       name="Title" />
+
 
     <adapter
        for="zope.interface.Interface
