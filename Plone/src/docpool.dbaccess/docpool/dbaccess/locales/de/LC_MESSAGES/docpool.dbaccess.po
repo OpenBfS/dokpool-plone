@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-16 12:41+0000\n"
+"POT-Creation-Date: 2020-10-16 12:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,10 +35,6 @@ msgstr "Zurück"
 #: docpool.dbaccess/docpool/dbaccess/browser/struct_macros.pt
 msgid "Created by ${user} on ${date}, last modified by ${user2} on ${date2}"
 msgstr "Angelegt von ${user} am ${date}, zuletzt bearbeitet von ${user2} am ${date2}"
-
-#: docpool.dbaccess/docpool/dbaccess/profiles/default/types/dbadmin.xml
-msgid "DB Admin Interface"
-msgstr "DB Admin GUI"
 
 #: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/struct_delete.cpy
 msgid "Data was deleted."
