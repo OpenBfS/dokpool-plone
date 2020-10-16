@@ -15,7 +15,6 @@ Please add a link to the ticket #1234 here...
 ## Ticket Update
 
 - [ ] Link to merge request in ticket added
-- [ ] Ticket progress updated (80% for testing)
 - [ ] Ticket assigned to reviewer
 
 ## Update Merge Request
@@ -28,5 +27,3 @@ Please add a link to the ticket #1234 here...
 ## Quality Checks
 
 - [ ] Added ticket to check or update documentation if required
-- [ ] Added ticket to check or update mockup if required
-- [ ] Added ticket to check or update user story if required
