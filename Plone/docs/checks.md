@@ -4,26 +4,59 @@ Entwurf für Checklisten für Merge-Requests und Tickets
 
 ## Tickets
 
-## Zusammenfassung
+Die folgenden Vorlagen können in Redmine hineinkopiert werden.
 
-## Umgebung, in der der Fehler aufgefallen und reproduzierbar ist
+
+### Bug
+
+```
+h2. Zusammenfassung
+
+Work in progress - wird noch ausformuliert.
+
+Beispiel: Als Benutzer xyz kann in der Anwendung xzy kein xzy angelegt werden.
+
+h3. Umgebung, in der der Fehler aufgefallen und reproduzierbar ist
+
 [URL]
 [Code branch/revision]
 
-## Schritte zur Reproduktion
+h3. Schritte zur Reproduktion
 
-## Erwartetes Ergebnis
+h3. Erwartetes Ergebnis
 
-## Aktuelles Ergebnis
+h3. Aktuelles Ergebnis
 
-## Technische Hinweise (optional)
+h3. Technische Hinweise (optional)
 
-## Stacktrace (optional)
+h3. Stacktrace (optional)
 
-## Screenshots (optional)
+h3. Screenshots (optional)
 
-## Weitere Information und Links
+h3. Weitere Information und Links
+```
 
+
+### Feature
+
+```
+h2. Zusammenfassung
+
+Als Redakteur, ...
+
+Will ich ...
+
+Um ...
+
+h3. Abnahmekriterien
+
+Es ist erledigt wenn ...
+
+h3. Weitere Information und Links
+
+h3. Technische Hinweise (optional)
+
+```
 
 ## Merge Requests
 
