@@ -1,29 +1,36 @@
-# Checklist for Merge Requests
+# Checkliste für Merge-Requests
 
-## Link to Ticket
+## Link zum Ticket
 
-Please add a link to the ticket #1234 here...
+Bitte hier einen Link zum Ticket #1234 einfügen.
 
-## Code Cleanup
+## Im Code
 
-- [ ] Rebase branch if required
-- [ ] Updated [changelog](https://git.starzel.de/bfs/dokpool/-/blob/develop/Plone/docs/conventions.md) entry
-- [ ] Added or updated upgrade step if required
-- [ ] Added or updated tests if required
-- [ ] Added or updated translations if required
+- [ ] [Changelog](https://git.starzel.de/bfs/dokpool/-/blob/develop/Plone/docs/conventions.md)-Eintrag hinzugefügt
+- [ ] ggf. Upgrade-Step hinzugefügt oder aktualisiert
+- [ ] ggf. Tests hinzugefügt oder aktualisiert
+- [ ] ggf. Übersetzungen hinzugefügt oder aktualisiert
 
-## Ticket Update
+## Tests
 
-- [ ] Link to merge request in ticket added
-- [ ] Ticket assigned to reviewer
+- [ ] ggf. manuelle Tests mit der Produktivdatenbank
 
-## Update Merge Request
+## Am Ticket
 
-- [ ] Branch name includes ticket number (ticket_xxxx_short_title)
-- [ ] Link to ticket in merge request added
-- [ ] Assigned to reviewer
-- [ ] Added merge request for another branch if required
+- [ ] Link zum Merge-Request hinzugefügt
+- [ ] einem Reviewer zugewiesen
 
-## Quality Checks
+## Am Merge-Request
 
-- [ ] Added ticket to check or update documentation if required
+- [ ] Branch-Name enthält die Ticketnummer (ticket_xxxx_kurztitel)
+- [ ] ggf. Branch-Rebase durchgeführt
+- [ ] Link zum Ticket hinzugefügt
+- [ ] einem Reviewer zugewiesen
+
+## Im Projekt
+
+- [ ] ggf. Dokumentation hinzugefügt oder aktualisiert
+
+## Weiterführend
+
+- weitere [Checks](https://git.starzel.de/bfs/dokpool/-/blob/develop/Plone/docs/checks.md) für den Reviewer
