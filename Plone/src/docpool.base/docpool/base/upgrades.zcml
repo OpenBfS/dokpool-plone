@@ -123,4 +123,15 @@
         handler="docpool.base.upgrades.to_1004"
         />
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1004"
+      destination="1005"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Reload workflows without AT permissions"
+        handler="docpool.base.upgrades.to_1005"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
