@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-07 12:08+0000\n"
+"POT-Creation-Date: 2020-10-26 22:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,6 +104,10 @@ msgstr "Übertragungsfehler: "
 msgid "Transfer executed"
 msgstr "Übertragung abgeschlossen"
 
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "Transfer target"
+msgstr "Übertragungsziel"
+
 #: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
 msgid "Transfer to<br>"
 msgstr "Übertragung nach<br>"
@@ -131,11 +135,11 @@ msgid "canceltitle"
 msgstr "Verlassen des Formulars"
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
-msgid "description_doctype_allowautomatictransfer"
+msgid "description_doctype_allowtransfer"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
-msgid "description_doctype_allowtransfer"
+msgid "description_doctype_automatictransfertargets"
 msgstr ""
 
 #. Default: "Only used for archived documents."
@@ -176,15 +180,15 @@ msgstr ""
 msgid "don't accept"
 msgstr "nicht annehmen"
 
-#. Default: "Are documents of this type transfered automatically?"
-#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
-msgid "label_doctype_allowautomatictransfer"
-msgstr "Werden Dokumente dieses Typs automatisch übermittelt?"
-
 #. Default: "Can documents of this type be sent to other ESDs?"
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "label_doctype_allowtransfer"
 msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
+
+#. Default: "Where are documents of this type transfered automatically?"
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "label_doctype_automatictransfertargets"
+msgstr "Wohin werden Dokumente dieses Typs automatisch übermittelt?"
 
 #. Default: "Transfer log"
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
