@@ -19,6 +19,7 @@ from docpool.transfers.db.query import allowed_targets
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from Products.CMFPlone.utils import safe_unicode
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -31,7 +32,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 def possible_targets_vocabulary_factory(dto):
     targets = allowed_targets(dto)
     return SimpleVocabulary([
-        SimpleTerm(t.id, t.id, unicode(t)) for t in targets])
+        SimpleTerm(t.id, t.id, safe_unicode(t)) for t in targets])
 
 
 @provider(IFormFieldProvider)
@@ -80,14 +81,16 @@ class TransfersType(object):
 
     @property
     def automaticTransferTargets(self):
-        value = getattr(self.context, "automaticTransferTargets", [])
-        allowed = set(target.id for target in allowed_targets(self.context))
-        return [id for id in value if id in allowed]
+        value = set(getattr(self.context, 'automaticTransferTargets', ()))
+        allowed = {target.id: target for target in allowed_targets(self.context)}
+        return sorted(
+            value.intersection(allowed),
+            key=lambda tid: safe_unicode(allowed[tid])
+        )
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
         context = aq_inner(self.context)
-        allowed = set(target.id for target in allowed_targets(context))
-        unaffected = [id for id in context.automaticTransferTargets
-                      if id not in allowed]
-        context.automaticTransferTargets = unaffected + value
+        allowed = (target.id for target in allowed_targets(context))
+        unaffected = (context.automaticTransferTargets or set()).difference(allowed)
+        context.automaticTransferTargets = tuple(unaffected.union(value))
