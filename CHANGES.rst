@@ -14,5 +14,7 @@ Changed:
 
 Fixed:
 
+- Umlaute Fehler in AUTHORITYS vocabulary #3953
+  [slindner]
 
 Removed:

@@ -400,7 +400,7 @@ class DocpoolSetup(BrowserView):
                 ReiLegalBases=[u'REI-E'],
                 Origins=[u'unabhängige Messstelle'],
                 MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
-                Authority=u'Baden-Württemberg',
+                Authority=u'DE-BW',
                 PDFVersion=u'PDF/A-1b',
             )
         folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
@@ -420,7 +420,7 @@ class DocpoolSetup(BrowserView):
                 ReiLegalBases=[u'REI-I'],
                 Origins=[u'Genehmigungsinhaber'],
                 MStIDs=[u'09121'],
-                Authority=u'Mecklenburg-Vorpommern',
+                Authority=u'DE-MV',
                 PDFVersion=u'PDF/A-1b',
             )
 

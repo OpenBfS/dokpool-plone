@@ -99,7 +99,7 @@ class TestDocTypes(unittest.TestCase):
 
         from docpool.base.appregistry import selectableApps
 
-        self.assertEqual([i[0] for i in selectableApps()], ['doksys', 'elan'])
+        self.assertEqual([i[0] for i in selectableApps()], ['doksys', 'elan', 'rei'])
         docpool = self.portal['test_docpool']
 
         self.assertEqual(

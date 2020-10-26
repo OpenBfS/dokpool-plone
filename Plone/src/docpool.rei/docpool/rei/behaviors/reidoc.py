@@ -10,6 +10,7 @@ from docpool.base.interfaces import IDPDocument
 from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
+from docpool.rei.vocabularies import AuthorityVocabulary
 from plone import api
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
@@ -328,6 +329,10 @@ class REIDoc(FlexibleView):
             history = self.context.restrictedTraverse('@@review_history')
             return history()
         return execute_under_special_role(self, 'Reviewer', show_review_history)
+
+    def authority_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.AuthorityVocabulary')()
+        return voc.getTerm(self.Authority).title
 
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
