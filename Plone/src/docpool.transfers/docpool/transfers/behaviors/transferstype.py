@@ -82,6 +82,9 @@ class TransfersType(object):
     @property
     def automaticTransferTargets(self):
         value = set(getattr(self.context, 'automaticTransferTargets', ()))
+        if not value:
+            # avoid unnecessary interaction with the zope.sqlalchemy datamanager
+            return []
         allowed = {target.id: target for target in allowed_targets(self.context)}
         return sorted(
             value.intersection(allowed),
