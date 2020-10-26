@@ -331,6 +331,7 @@ class REIDoc(FlexibleView):
         return execute_under_special_role(self, 'Reviewer', show_review_history)
 
     def authority_display(self):
+        import pdb; pdb.set_trace()
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.AuthorityVocabulary')()
         return voc.getTerm(self.Authority).title
 

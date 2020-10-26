@@ -20,4 +20,29 @@
              provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
              name="Authority" />
 
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.NuclearInstallation"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="NuclearInstallation" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Period"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Period" />
+
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Origin"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Origin" />
+
  </configure>
