@@ -7,13 +7,14 @@ class ReiLegalBases(BaseColumn):
 
     header = ('header_Title_ReiLegalBases')
     sort_index = 'sortable_title'
-    weight = 0
+    weight = 1000
 
     def renderCell(self, item):
         obj = self._getObject(item)
         if not obj:
             return
-        return ', '.join(obj.ReiLegalBases)
+        dview_link = '{0}/@@dview?d={1}'.format(self.context.absolute_url(), obj.UID())
+        return '<a href={0}>{1}</a>'.format(dview_link, ', '.join(obj.ReiLegalBases))
 
 class Authority(BaseColumn):
     """ """
@@ -38,7 +39,7 @@ class NuclearInstallation(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        return obj.NuclearInstallation
+        return ', '.join(obj.NuclearInstallations)
 
 
 class Period(BaseColumn):
@@ -64,5 +65,4 @@ class Origin(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        import pdb; pdb.set_trace()
-        return obj.Origins
+        return ', '.join(obj.Origins)
