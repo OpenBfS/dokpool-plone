@@ -498,7 +498,7 @@ def deleteTransferData(obj, event=None):
 
 
 @adapter(IDPDocument, IActionSucceededEvent)
-def automaticTransfer(obj, event=None):
+def automatic_transfer_on_publish(obj, event=None):
     """
     """
     if event.action != 'publish':
