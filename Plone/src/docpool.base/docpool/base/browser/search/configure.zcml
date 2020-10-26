@@ -1,6 +1,5 @@
 <configure
         xmlns="http://namespaces.zope.org/zope"
-        xmlns:faceted="http://namespaces.zope.org/faceted"
         i18n_domain="dynajet.base">
 
   <include package="eea.facetednavigation" file="meta.zcml" />
@@ -8,8 +7,7 @@
   <!-- Remove all not needed Columns from collective.eeafaceted.dashboard -->
   <include package="z3c.unconfigure" file="meta.zcml"/>
 
-
-  <unconfigure package="collective.documentgenerator.browser">
+  <include package="collective.eeafaceted.z3ctable" />
 
   <unconfigure package="collective.eeafaceted.z3ctable">
 
