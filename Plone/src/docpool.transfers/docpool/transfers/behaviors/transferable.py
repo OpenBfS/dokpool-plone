@@ -501,9 +501,11 @@ def deleteTransferData(obj, event=None):
 def automatic_transfer_on_publish(obj, event=None):
     """
     """
-    if event.action != 'publish':
-        return
+    if event and event.action == 'publish':
+        return automatic_transfer(obj)
 
+
+def automatic_transfer(obj):
     try:
         tObj = ITransferable(obj)  # Try behaviour
     except BaseException:
