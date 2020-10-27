@@ -94,6 +94,8 @@ class TransfersType(object):
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
         context = aq_inner(self.context)
-        allowed = (target.id for target in allowed_targets(context))
-        unaffected = (context.automaticTransferTargets or set()).difference(allowed)
+        unaffected = set(getattr(context, 'automaticTransferTargets', ()))
+        if unaffected:
+            allowed = (target.id for target in allowed_targets(context))
+            unaffected.difference_update(allowed)
         context.automaticTransferTargets = tuple(unaffected.union(value))
