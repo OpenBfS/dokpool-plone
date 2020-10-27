@@ -58,22 +58,8 @@ import transaction
 import six
 
 
-try:
-    pass
-except ImportError:
-    # No multilingual support
-    pass
-
-
 metadata = __metadata__
 session = __session__
-
-
-# Kompatibilitaet fuer SQLAlchemy > 0.6
-try:
-    pass
-except ImportError:
-    pass
 
 
 std_encoding = 'latin-1'
