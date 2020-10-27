@@ -1,5 +1,6 @@
 <configure
         xmlns="http://namespaces.zope.org/zope"
+        xmlns:zcml="http://namespaces.zope.org/zcml"
         i18n_domain="dynajet.base">
 
   <include package="eea.facetednavigation" file="meta.zcml" />
@@ -68,6 +69,24 @@
        factory="collective.eeafaceted.z3ctable.columns.CheckBoxColumn"
        provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
        name="select_row" />
+
+   <adapter
+     zcml:condition="installed imio.prettylink"
+     for="zope.interface.Interface
+          zope.publisher.interfaces.browser.IBrowserRequest
+          collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+     factory="collective.eeafaceted.z3ctable.columns.PrettyLinkColumn"
+     provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+     name="pretty_link" />
+
+  <adapter
+     zcml:condition="installed imio.actionspanel"
+     for="zope.interface.Interface
+          zope.publisher.interfaces.browser.IBrowserRequest
+          collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+     factory="collective.eeafaceted.z3ctable.columns.ActionsColumn"
+     provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+     name="actions" />
 
   </unconfigure>
 
