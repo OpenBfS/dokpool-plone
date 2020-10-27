@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-03-11 13:55+0000\n"
+"POT-Creation-Date: 2020-10-27 10:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,6 +193,26 @@ msgstr ""
 msgid "docpool.rei"
 msgstr ""
 
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Authority"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_NuclearInstallation"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Origin"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_ReiLegalBases"
+msgstr ""
+
 #. Default: "Authority"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
@@ -221,12 +241,8 @@ msgstr ""
 msgid "label_rei_NuclearInstallations"
 msgstr ""
 
-#. Default: "Berichtende Stelle"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_Origin"
-msgstr ""
-
 #. Default: "Origins"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Origins"
 msgstr ""
