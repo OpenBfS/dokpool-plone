@@ -20,7 +20,7 @@ from elixir import Unicode
 from elixir import UnicodeText
 from formalchemy.validators import regex
 from sqlalchemy.orm import mapper
-from sqlalchemy.orm import relation
+from sqlalchemy.orm import relationship
 from zope.interface import provider
 
 import logging
@@ -583,12 +583,12 @@ IRIXReport.mapper = mapper(
             OrganisationContactAddress.table.c.Identifications_id,
         ],
         'oca_id': [OrganisationContactAddress.table.c.id],
-        'Identification': relation(
+        'Identification': relationship(
             Identification,
             primaryjoin=Report.table.c.id == Identification.table.c.Report_id,
             foreign_keys=[Identification.table.c.Report_id],
         ),  # primaryjoin=Person.table.c.nutzername == VPProperty.table.c.nutzer, foreign_keys=[VPProperty.table.c.nutzer] , , backref='portalnutzer'
-        'EventInformation': relation(
+        'EventInformation': relationship(
             EventInformation,
             primaryjoin=Report.table.c.id == EventInformation.table.c.Report_id,
             foreign_keys=[EventInformation.table.c.Report_id],
