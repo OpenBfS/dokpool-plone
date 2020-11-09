@@ -18,7 +18,6 @@ from datetime import datetime
 from docpool.dbaccess.content.errors import ObjectDuplicateException
 from docpool.dbaccess.dbinit import __metadata__
 from docpool.dbaccess.dbinit import __session__
-from docpool.dbaccess.interfaces import IAuditing
 from docpool.dbaccess.interfaces import IDataSecurity
 from docpool.dbaccess.interfaces import Idbadmin
 from docpool.dbaccess.interfaces import IProtectedEntityClass
@@ -533,8 +532,6 @@ class dbadmin(object):
             if not d:  # Keine Aenderungen!
                 # print "no diff"
                 return
-            if IAuditing.providedBy(obj):
-                obj.wasUpdated(self)
             defs = self.edit_def
         else:
             log("objektAnlegen")
@@ -581,10 +578,6 @@ class dbadmin(object):
                     # print d
                     notify(ObjectChangedEvent(obj, self, d, context))
             else:
-                if IAuditing.implementedBy(klass):
-                    # print "wasCreated"
-                    fsobj.model.wasCreated(self)
-                    __session__.flush()
                 if not isMinor:
                     notify(ObjectAddedEvent(fsobj.model, self, data, context))
         else:

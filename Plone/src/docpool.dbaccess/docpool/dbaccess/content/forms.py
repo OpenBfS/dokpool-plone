@@ -5,8 +5,6 @@ __docformat__ = 'plaintext'
 from AccessControl import Unauthorized
 from docpool.dbaccess import DocpoolMessageFactory as _
 from docpool.dbaccess.dbinit import __session__
-from docpool.dbaccess.interfaces import IAuditing
-from docpool.dbaccess.utils import stringFromDatetime
 from formalchemy import CheckBoxFieldRenderer
 from formalchemy import config
 from formalchemy import FieldRenderer
@@ -354,7 +352,6 @@ class EditView(object):
                 self.epilog = defs.get('epilog', None)
                 self.allowMinor = False
                 self.form = defs['form']
-                self.audit = None
 
         else:
             # print "edit"
@@ -377,22 +374,6 @@ class EditView(object):
                 not self.readonly) and defs.get(
                 'allowMinor', False)
             # print self.allowMinor
-            if IAuditing.providedBy(
-                self.sd
-            ):  # Automatische Änderungprotokollierung aktiv
-                self.audit = {
-                    'en': self.sd.erzeugungsnutzer or '---',
-                    'ed': self.sd.erzeugungsdatum
-                    and stringFromDatetime(self.sd.erzeugungsdatum, True)
-                    or '---',
-                    'aen': self.sd.aenderungsnutzer or '---',
-                    'aed': self.sd.aenderungsdatum
-                    and stringFromDatetime(self.sd.aenderungsdatum, True)
-                    or '---',
-                }
-            else:
-                self.audit = None
-            # print self.audit
 
         self.defaults = defs.get('defaults', None)
         self.can_access = self.security.can_access()
