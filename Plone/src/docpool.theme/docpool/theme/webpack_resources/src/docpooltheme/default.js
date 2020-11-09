@@ -93,6 +93,12 @@ if (
     ]).then(args => {
       jQuery(document).ready(function(evt) {
         window.Faceted.Load(faceted_evt, faceted_path);
+        // We use patterns inside the result of eea. So wait for it to be populated.
+         if (typeof Faceted !== 'undefined') {
+             $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function () {
+                 registry.scan($('#content-core'));
+             });
+         }
       });
     });
   })();
