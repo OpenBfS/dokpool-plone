@@ -11,6 +11,7 @@ class MainTemplate(OrigMainTemplate):
 
     @property
     def template(self):
+        self.request.RESPONSE.setHeader('X-UA-Compatible', 'IE=edge,chrome=1')
         try:
             if (
                 self.request.form.get('popup_load')
