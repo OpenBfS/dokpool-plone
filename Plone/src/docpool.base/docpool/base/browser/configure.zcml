@@ -34,20 +34,6 @@
       />
 
   <browser:page
-      name="helphtml"
-      for="..interfaces.IDocumentPool"
-      class=".documentpool.HelpHelper"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="help"
-      for="..interfaces.IDocumentPool"
-      class=".documentpool.HelpView"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="view"
       for="..interfaces.IFolderBase"
       template="folderbase.pt"

@@ -1,0 +1,23 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:registerProfile
+    description="Upgrade profile for docpool.config from 1000 to 1001."
+    directory="profiles/to_1001"
+    name="to_1001"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    title="Upgrade docpool.config to 1001"
+    />
+
+  <genericsetup:upgradeSteps
+      source="1000"
+      destination="1001"
+      profile="docpool.config:default">
+    <genericsetup:upgradeStep
+        title="Move help page."
+        handler=".upgrades.to_1001"
+        />
+  </genericsetup:upgradeSteps>
+
+</configure>

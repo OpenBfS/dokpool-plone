@@ -99,6 +99,7 @@ ADMINSTRUCTURE = [
             },
             {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
             {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
+            {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
             {
                 TYPE: 'DashboardsConfig',
                 TITLE: u'Dokumentsammlungen Pinnwand',
