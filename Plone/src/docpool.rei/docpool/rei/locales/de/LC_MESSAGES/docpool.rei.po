@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-27 10:18+0000\n"
+"POT-Creation-Date: 2020-11-25 09:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,7 +193,15 @@ msgstr "docpool.rei"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_Authority"
-msgstr "Netzbetreiber"
+msgstr "Netzbetreiber/Aufsichtsbehörde"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Medium"
+msgstr "Medium"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Metadata"
+msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_NuclearInstallation"
@@ -209,7 +217,11 @@ msgstr "Berichtszeitraum"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_ReiLegalBases"
-msgstr "REI-I/-E(A/F)"
+msgstr "REI-I/E"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_ReiReport"
+msgstr "REI-Bericht"
 
 #. Default: "Authority"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
