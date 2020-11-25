@@ -87,6 +87,7 @@ class NuclearInstallation(BaseColumn):
         installations = u', '.join(voc.getTerm(i).title for i in obj.NuclearInstallations)
         return populate_a_tag(obj, installations)
 
+
 class Period(BaseColumn):
 
     header = _('header_Title_Period')
@@ -99,7 +100,9 @@ class Period(BaseColumn):
             return
         period_vocabulary = getUtility(IVocabularyFactory,
                                        'docpool.rei.vocabularies.PeriodVocabulary')()
-        return populate_a_tag(obj, period_vocabulary.getTerm(obj.Period).title)
+        period = safe_unicode(period_vocabulary.getTerm(obj.Period).title)
+        year = str(obj.Year)
+        return populate_a_tag(obj, period + " " + year)
 
 
 class Origin(BaseColumn):
