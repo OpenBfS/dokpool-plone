@@ -2,7 +2,8 @@
         xmlns="http://namespaces.zope.org/zope"
         xmlns:browser="http://namespaces.zope.org/browser"
         xmlns:plone="http://namespaces.plone.org/plone"
-        i18n_domain="dynajet.rei">
+        xmlns:zcml="http://namespaces.zope.org/zcml"
+        i18n_domain="docpool.rei">
 
   <include package="eea.facetednavigation" file="meta.zcml" />
 
@@ -10,6 +11,22 @@
            directory="static"
            type="theme"
            name="docpoolrei" />
+
+  <browser:view
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        name="faceted-table-view"
+        class="docpool.rei.browser.views.DokpoolDashboardFacetedTableView"
+        layer="docpool.rei.interfaces.IReiMarker"
+        permission="zope2.View"
+    />
+
+  <adapter
+          for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+          factory=".columns.ReiReport"
+          provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+          name="ReiReport" />
 
   <adapter
           for="zope.interface.Interface
@@ -50,6 +67,14 @@
              factory=".columns.Origin"
              provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
              name="Origin" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Medium"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Medium" />
 
      <adapter
              for="zope.interface.Interface
