@@ -3,7 +3,7 @@
  <criteria>
   <criterion name="c4">
    <property name="widget">checkbox</property>
-   <property name="title">ReiLegalBases</property>
+   <property name="title">Gesetzliche Grundlage</property>
    <property name="index">ReiLegalBases</property>
    <property name="operator">or</property>
    <property name="operator_visible">False</property>
@@ -57,7 +57,7 @@
   </criterion>
   <criterion name="c5">
    <property name="widget">checkbox</property>
-   <property name="title">Anlage</property>
+   <property name="title">Kerntechnische Anlage</property>
    <property name="index">NuclearInstallations</property>
    <property name="operator">or</property>
    <property name="operator_visible">False</property>
