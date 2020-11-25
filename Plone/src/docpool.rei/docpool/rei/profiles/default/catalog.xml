@@ -36,4 +36,7 @@
         <extra name="index_type" value="Okapi BM25 Rank"/>
         <extra name="lexicon_id" value="plone_lexicon"/>
     </index>
+    <index name="report_year" meta_type="FieldIndex">
+        <indexed_attr value="report_year"/>
+    </index>
 </object>

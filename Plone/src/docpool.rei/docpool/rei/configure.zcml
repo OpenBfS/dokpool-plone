@@ -74,4 +74,8 @@
         name="docpool.rei.vocabularies.NuclearInstallationVocabulary"
         />
 
+   <adapter
+        factory=".indexers.report_year"
+        name="report_year"/>
+
 </configure>

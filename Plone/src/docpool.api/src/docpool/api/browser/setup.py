@@ -406,7 +406,7 @@ class DocpoolSetup(BrowserView):
                 text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
-                Year=2019,
+                Year=2017,
                 Period=u'Q1',
                 NuclearInstallations=['UCHL'],
                 Medium=u'Fortluft',
