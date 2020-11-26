@@ -7,6 +7,6 @@ from plone.indexer import indexer
 @indexer(IDPDocument)
 def report_year(obj):
     try:
-        return obj.doc_extension(REI_APP).Year
-    except BaseException:
+        return str(obj.doc_extension(REI_APP).Year)
+    except TypeError:
         pass
