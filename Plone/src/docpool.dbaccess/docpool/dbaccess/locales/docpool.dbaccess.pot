@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-16 12:42+0000\n"
+"POT-Creation-Date: 2020-11-09 14:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,9 +34,8 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: docpool.dbaccess/docpool/dbaccess/browser/dbadmin_macros.pt
-#: docpool.dbaccess/docpool/dbaccess/browser/struct_macros.pt
-msgid "Created by ${user} on ${date}, last modified by ${user2} on ${date2}"
+#: docpool.dbaccess/docpool/dbaccess/profiles/default/types/dbadmin.xml
+msgid "DB Admin Interface"
 msgstr ""
 
 #: docpool.dbaccess/docpool/dbaccess/skins/docpool_dbaccess_templates/struct_delete.cpy

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-07-03 13:52+0000\n"
+"POT-Creation-Date: 2020-11-24 18:11+0000\n"
 "PO-Revision-Date: 2014-09-30 15:31+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "IRIX Report"
 msgstr ""
 
-#: elan.irix/elan/irix/db/forms.py:36
+#: elan.irix/elan/irix/db/forms.py
 msgid "IRIX Reports"
 msgstr ""
 
@@ -27,28 +27,28 @@ msgstr ""
 msgid "Represents a single IRIX report whose data is stored in a relational database."
 msgstr ""
 
-#: elan.irix/elan/irix/db/forms.py:30
+#: elan.irix/elan/irix/db/forms.py
 msgid "Timestamp"
 msgstr ""
 
-#: elan.irix/elan/irix/db/forms.py:29
+#: elan.irix/elan/irix/db/forms.py
 msgid "Title"
 msgstr ""
 
 #. Default: "Database key"
-#: elan.irix/elan/irix/content/irixreport.py:58
+#: elan.irix/elan/irix/content/irixreport.py
 msgid "description_irixreport_dbkey"
 msgstr ""
 
-#: elan.irix/elan/irix/configure.zcml:23
+#: elan.irix/elan/irix/configure.zcml
 msgid "elan.irix"
 msgstr ""
 
-#: elan.irix/elan/irix/portlets/irix_navigation.py:42
+#: elan.irix/elan/irix/portlets/irix_navigation.py
 msgid "irix_navigation"
 msgstr ""
 
 #. Default: "Primary key in relational database"
-#: elan.irix/elan/irix/content/irixreport.py:57
+#: elan.irix/elan/irix/content/irixreport.py
 msgid "label_irixreport_dbkey"
 msgstr ""
