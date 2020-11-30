@@ -38,19 +38,6 @@
    <element value="TempFolder"/>
   </property>
   <property name="metaTypesNotToList" type="lines">
-   <element value="ATBooleanCriterion"/>
-   <element value="ATCurrentAuthorCriterion"/>
-   <element value="ATDateCriteria"/>
-   <element value="ATDateRangeCriterion"/>
-   <element value="ATListCriterion"/>
-   <element value="ATPathCriterion"/>
-   <element value="ATPortalTypeCriterion"/>
-   <element value="ATReferenceCriterion"/>
-   <element value="ATRelativePathCriterion"/>
-   <element value="ATSelectionCriterion"/>
-   <element value="ATSimpleIntCriterion"/>
-   <element value="ATSimpleStringCriterion"/>
-   <element value="ATSortCriterion"/>
    <element value="Collection"/>
    <element value="Discussion Item"/>
    <element value="Document"/>
@@ -65,7 +52,6 @@
    <element value="News Item"/>
    <element value="Plone Site"/>
    <element value="TempFolder"/>
-   <element value="TemplatedDocument"/>
    <element value="dbadmin"/>
   </property>
   <property name="enable_wf_state_filtering" type="boolean">False</property>
@@ -112,26 +98,12 @@
   </property>
   <property name="exposeDCMetaTags" type="boolean">True</property>
   <property name="types_not_searched" type="lines">
-   <element value="ATBooleanCriterion"/>
-   <element value="ATCurrentAuthorCriterion"/>
-   <element value="ATDateCriteria"/>
-   <element value="ATDateRangeCriterion"/>
-   <element value="ATListCriterion"/>
-   <element value="ATPathCriterion"/>
-   <element value="ATPortalTypeCriterion"/>
-   <element value="ATReferenceCriterion"/>
-   <element value="ATRelativePathCriterion"/>
-   <element value="ATSelectionCriterion"/>
-   <element value="ATSimpleIntCriterion"/>
-   <element value="ATSimpleStringCriterion"/>
-   <element value="ATSortCriterion"/>
    <element value="Collection"/>
    <element value="Discussion Item"/>
    <element value="Event"/>
    <element value="News Item"/>
    <element value="Plone Site"/>
    <element value="TempFolder"/>
-   <element value="TemplatedDocument"/>
   </property>
   <property name="search_review_state_for_anon"
      type="boolean">False</property>

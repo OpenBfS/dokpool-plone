@@ -12,7 +12,6 @@
    <element value="ELANDocCollection" />
    <element value="ELANSection" />
    <element value="Document" />
-   <element value="TemplatedDocument" />
    <element value="Journal" />
  </property>
  <!-- schema interface -->

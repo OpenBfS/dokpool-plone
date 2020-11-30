@@ -31,7 +31,6 @@ from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
-from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.i18nl10n import utranslate
@@ -241,17 +240,6 @@ class DPEvent(Container, ContentBase):
         if self.EventPhase:
             return self.EventPhase.to_object.getPhaseTitle()
         return ""
-
-    def getStates(self):
-        """
-        """
-        return DisplayList(
-            [
-                ('active', _('active')),
-                ('inactive', _('inactive')),
-                ('closed', _('closed')),
-            ]
-        )
 
     def dp_type(self):
         """

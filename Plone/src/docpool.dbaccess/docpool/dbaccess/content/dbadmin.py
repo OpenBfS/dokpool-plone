@@ -27,7 +27,6 @@ from docpool.dbaccess.utils import stringFromDatetime
 from events import ObjectAddedEvent
 from events import ObjectChangedEvent
 from events import ObjectDeletedEvent
-from Products.Archetypes.utils import contentDispositionHeader
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import safe_unicode
@@ -912,12 +911,9 @@ class dbadmin(object):
 
             if REQUEST is not None and not justData:
                 RESPONSE = REQUEST.RESPONSE
-                header_value = contentDispositionHeader(
-                    'attachment',
-                    filename='%s_%s.csv' % (typ, DateTime().millis()),
-                    charset='latin-1',
-                )
-                RESPONSE.setHeader("Content-disposition", header_value)
+                filename = '%s_%s.csv' % (typ, DateTime().millis())
+                RESPONSE.setHeader("Content-disposition",
+                                   'attachment; filename=%s' % filename)
 
                 RESPONSE.setHeader("Content-Type", 'text/csv')
                 if groesse:

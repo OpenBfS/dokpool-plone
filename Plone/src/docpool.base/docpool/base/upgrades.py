@@ -312,3 +312,16 @@ def to_1004(context=None):
                     log.info("Authority {0} updated with {1}".format(rei_report, iso_id))
         else:
             log.error("Broken data")
+
+
+def to_1005(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    log.info('Upgrading to 1005: reload workflows')
+    loadMigrationProfile(
+        portal_setup, 'profile-docpool.base:default', steps=['workflow'])
+    loadMigrationProfile(
+        portal_setup, 'profile-docpool.rei:default', steps=['workflow'])
+    loadMigrationProfile(
+        portal_setup, 'profile-elan.esd:default', steps=['workflow'])
+    loadMigrationProfile(
+        portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])

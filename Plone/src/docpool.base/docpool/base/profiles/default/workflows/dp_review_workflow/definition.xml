@@ -4,8 +4,6 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Add portal content</permission>
- <permission>ATContentTypes: Add File</permission>
- <permission>ATContentTypes: Add Image</permission>
  <permission>Delete objects</permission>
  <permission>Sharing page: Delegate roles</permission>
  <state state_id="pending" title="Pending review">
@@ -13,10 +11,6 @@
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="retract"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
@@ -44,14 +38,6 @@
   <description>Can only be seen and edited by the owner.</description>
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="submit"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
@@ -84,10 +70,6 @@
  </state>
  <state state_id="published" title="Published">
   <description>Visible to everyone, editable by the owner.</description>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>

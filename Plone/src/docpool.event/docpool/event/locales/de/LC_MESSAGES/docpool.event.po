@@ -172,14 +172,6 @@ msgstr "Titel/Beschreibung"
 msgid "Uninstalls the docpool.event add-on."
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py:217
-msgid "active"
-msgstr "aktiv"
-
-#: docpool.event/docpool/event/content/dpevent.py:219
-msgid "closed"
-msgstr "geschlossen"
-
 #: docpool.event/docpool/event/content/dpevent.py:75
 msgid "description_dpevent_alerting_status"
 msgstr ""
@@ -208,10 +200,6 @@ msgstr ""
 #: docpool.event/docpool/event/configure.zcml:33
 msgid "docpool.event (uninstall)"
 msgstr ""
-
-#: docpool.event/docpool/event/content/dpevent.py:218
-msgid "inactive"
-msgstr "inaktiv"
 
 #. Default: "Status of Alerting"
 #: docpool.event/docpool/event/content/dpevent.py:74
