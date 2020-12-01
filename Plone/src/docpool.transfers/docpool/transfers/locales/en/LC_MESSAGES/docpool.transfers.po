@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-07 12:08+0000\n"
+"POT-Creation-Date: 2020-10-26 22:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,6 +104,10 @@ msgstr ""
 msgid "Transfer executed"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "Transfer target"
+msgstr ""
+
 #: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
 msgid "Transfer to<br>"
 msgstr ""
@@ -132,6 +136,10 @@ msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "description_doctype_allowtransfer"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "description_doctype_automatictransfertargets"
 msgstr ""
 
 #. Default: "Only used for archived documents."
@@ -175,6 +183,11 @@ msgstr ""
 #. Default: "Can documents of this type be sent to other ESDs?"
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "label_doctype_allowtransfer"
+msgstr ""
+
+#. Default: "Where are documents of this type transfered automatically?"
+#: docpool.transfers/docpool/transfers/behaviors/transferstype.py
+msgid "label_doctype_automatictransfertargets"
 msgstr ""
 
 #. Default: "Transfer log"
