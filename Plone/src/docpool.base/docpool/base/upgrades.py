@@ -325,3 +325,17 @@ def to_1005(context=None):
         portal_setup, 'profile-elan.esd:default', steps=['workflow'])
     loadMigrationProfile(
         portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])
+    log.info('Upgrading to 1005: adding report year index')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1005')
+
+def index_report_year(context=None):
+    log.info(u'Reindexing rei reports.')
+    brains = api.content.find(portal_type='DPDocument', dp_type='reireport')
+    log.info(u'Found {0} rei reports to reindex'.format(len(brains)))
+    for brain in brains:
+        obj = brain.getObject()
+        obj.reindexObject(idxs=['report_year'])
+    log.info('Done.')
+
+
+
