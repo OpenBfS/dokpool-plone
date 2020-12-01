@@ -56,6 +56,14 @@ class DocpoolSetup(BrowserView):
     """
 
     def __call__(self):
+        portal = api.portal.get()
+        if portal.id != 'dokpool':
+            api.portal.show_message(
+                'The instance needs to be called "dokpool", not "{}"!'.format(portal.id),
+                self.request,
+                type='error')
+            return self.index()
+
         if not self.request.form.get('submit', None):
             return self.index()
 
