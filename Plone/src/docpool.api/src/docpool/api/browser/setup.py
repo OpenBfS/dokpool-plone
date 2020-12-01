@@ -57,7 +57,7 @@ class DocpoolSetup(BrowserView):
 
     def __call__(self):
         portal = api.portal.get()
-        if portal.id != 'dokpool':
+        if portal.id != 'dokpool' and not api.env.test_mode():
             api.portal.show_message(
                 'The instance needs to be called "dokpool", not "{}"!'.format(portal.id),
                 self.request,
