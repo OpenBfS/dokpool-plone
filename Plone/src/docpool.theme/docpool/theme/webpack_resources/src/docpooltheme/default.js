@@ -73,35 +73,42 @@ if (
     "body.template-facetednavigation_view,body.template-configure_faceted-html"
   ).length
 ) {
-  (function() {
-    "use strict";
-    let faceted_evt = null,
-      faceted_path = null;
-    window.Faceted = {
-      Load: function(evt, path) {
-        faceted_evt = evt;
-        faceted_path = path;
-      }
-    };
-    Promise.all([
-      import(
-        /* webpackChunkName: "facetednavigation" */ "./facetednavigation"
-      ),
+    (function () {
+        "use strict";
+        let faceted_evt = null,
+            faceted_path = null;
+        window.Faceted = {
+            Load: function (evt, path) {
+                faceted_evt = evt;
+                faceted_path = path;
+            }
+        };
+        Promise.all([
+            import(
+                /* webpackChunkName: "facetednavigation" */ "./facetednavigation"
+                ),
             import(
                 /* webpackChunkName: "faceted-dashboard" */ "./faceted-dashboard"
                 )
-    ]).then(args => {
-      jQuery(document).ready(function(evt) {
-        window.Faceted.Load(faceted_evt, faceted_path);
-        // We use patterns inside the result of eea. So wait for it to be populated.
-         if (typeof Faceted !== 'undefined') {
-             $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function () {
-                 registry.scan($('#content-core'));
-             });
-         }
-      });
-    });
-  })();
+        ]).then(args => {
+            jQuery(document).ready(function (evt) {
+                window.Faceted.Load(faceted_evt, faceted_path);
+                // We use patterns inside the result of eea. So wait for it to be populated.
+                if (typeof Faceted !== 'undefined') {
+                    $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function () {
+                        // Async import the contentloader and do a mockup registry scan
+                        Promise.all([
+                            import(
+                                /* webpackChunkName: "pat-contentloader-bfs" */ "./pattern/pat-contentloader-bfs"
+                                )
+                        ]).then(args => {
+                            registry.scan($('#content-core'));
+                        });
+                    });
+                }
+            });
+        });
+    })();
 }
 if (jQuery("body.template-configure_faceted-html").length) {
     (function () {

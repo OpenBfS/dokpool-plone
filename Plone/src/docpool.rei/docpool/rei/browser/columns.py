@@ -126,4 +126,4 @@ class Metadata(BaseColumn):
 
     def renderCell(self, item):
         obj_url = item.original_getURL()
-        return u'<a href="#" class="pat-contentloader" data-pat-contentloader="url:{0}/@@meta;target:#clexample1target"><img src="{1}/++theme++docpoolrei/arrow_down_open.png" title="Arrow up" /></a><div id="clexample1target"></div>'.format(obj_url, self.table.portal_url)
+        return u'<a href="#" class="pat-contentloader-bfs rei-eea-search open" data-pat-contentloader-bfs="url:{0}/@@meta?ajax=true;target:#target_{1}"><div title="Arrow up" >Open</div></a><div id="target_{2}"></div>'.format(obj_url, item.UID, item.UID)
