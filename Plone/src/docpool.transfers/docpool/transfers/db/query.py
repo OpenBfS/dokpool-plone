@@ -1,7 +1,6 @@
 from docpool.base.content.doctype import DocType
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers.db.model import Channel
-from docpool.transfers.db.model import ChannelPermissions
 from docpool.transfers.db.model import DocTypePermission
 from docpool.transfers.db.model import SenderLog
 from sqlalchemy import and_
