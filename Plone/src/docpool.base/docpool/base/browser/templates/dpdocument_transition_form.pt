@@ -36,8 +36,8 @@
         <table class="listing">
           <thead>
               <tr>
-                  <th class="nosort" i18n:translate="">Title<br></th>
-                  <th class="nosort" i18n:translate="">Available transitions</th>
+                  <th class="nosort" i18n:translate="">Title</th>
+                  <th class="nosort" i18n:translate="" i18n:domain="docpool.base">Available transitions</th>
               </tr>
           </thead>
           <tbody>

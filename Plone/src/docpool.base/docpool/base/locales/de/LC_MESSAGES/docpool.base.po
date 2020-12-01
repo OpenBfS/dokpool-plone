@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2020-08-14 07:51+0000\n"
+"POT-Creation-Date: 2020-12-01 11:21+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -24,6 +24,10 @@ msgstr "${count} Objekte ausgeschnitten."
 msgid "Archive"
 msgstr "Archiv"
 
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "Available transitions"
+msgstr "Verfügbare Statuswechsel"
+
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
 msgid "Content Area"
 msgstr "Bereich für Inhalte"
@@ -35,6 +39,10 @@ msgstr "Inhalt:"
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Copy or cut one or more items to paste."
 msgstr "Ein oder mehr Objekte kopieren oder ausschneiden, um sie einzufügen."
+
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "Could not transition: ${title}"
+msgstr "Konnte Statuswchsel nicht durchführen: ${title}"
 
 #: docpool.base/docpool/base/browser/review_history.py
 msgid "Create"

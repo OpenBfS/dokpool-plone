@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-08-14 07:51+0000\n"
+"POT-Creation-Date: 2020-12-01 11:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,10 @@ msgstr ""
 msgid "Archive"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "Available transitions"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
 msgid "Content Area"
 msgstr ""
@@ -35,6 +39,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Copy or cut one or more items to paste."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "Could not transition: ${title}"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/review_history.py
