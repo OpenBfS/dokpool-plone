@@ -111,7 +111,7 @@
  </object>
  <object name="folder_buttons" meta_type="CMF Action Category">
   <property name="title"></property>
-  <object name="delete" meta_type="CMF Action" i18n:domain="plone">
+  <object name="delete" meta_type="CMF Action" i18n:domain="plone" remove="True">
    <property name="permissions">
     <element value="View management screens"/>
    </property>
@@ -140,7 +140,7 @@
    </property>
    <property name="visible">True</property>
   </object>
-  <object name="transfer" meta_type="CMF Action" i18n:domain="plone">
+  <object name="transfer" meta_type="CMF Action" i18n:domain="docpool.transfers">
    <property name="title" i18n:translate="">Transfer</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
