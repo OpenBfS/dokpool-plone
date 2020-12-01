@@ -8,6 +8,8 @@ Added:
 
 - Added Changelog
   [slindner]
+- Facetednavigation für Rei-Reports #3968
+  [slindner]
 
 Changed:
 
