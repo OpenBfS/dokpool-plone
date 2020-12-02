@@ -23,4 +23,3 @@
 
    
 </div>
-    <tal:var replace="structure context/logoutjs|nothing" />
