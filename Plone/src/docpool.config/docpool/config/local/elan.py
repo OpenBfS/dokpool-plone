@@ -77,6 +77,10 @@ ARCHIVESTRUCTURE = [
     CONTENT_AREA,
 ]
 
+SPECIAL_PAGES = [
+    {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
+]
+
 ADMINSTRUCTURE = [
     {
         TYPE: 'ELANContentConfig',
@@ -100,7 +104,6 @@ ADMINSTRUCTURE = [
             },
             {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
             {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
-            {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
             {
                 TYPE: 'DashboardsConfig',
                 TITLE: u'Dokumentsammlungen Pinnwand',
@@ -145,7 +148,7 @@ ADMINSTRUCTURE = [
             },
         ],
     }
-]
+] + SPECIAL_PAGES
 
 
 def createBasicPortalStructure(plonesite, fresh):
@@ -197,6 +200,9 @@ def setELANLocalRoles(self):
     contentadmin = "{0}_ContentAdministrators"
     set_local_roles(self, self, "{0}_SituationReportAdmins", ["SituationReportAdmin"])
     set_local_roles(self, self.contentconfig, contentadmin, ["ContentAdmin"])
+    for pagedef in SPECIAL_PAGES:
+        name = pagedef[ID]
+        set_local_roles(self, self[name], contentadmin, ["ContentAdmin"])
     set_local_roles(self, self.archive, contentadmin, ["DocPoolAdmin"])
     set_local_roles(self, self.content.Groups, contentadmin, ["Site Administrator"])
     set_local_roles(self, self.esd, contentadmin, ["ContentAdmin"])
