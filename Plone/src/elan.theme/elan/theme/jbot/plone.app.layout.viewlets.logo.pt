@@ -32,4 +32,3 @@
     </select>
     </tal:esdselect>
 </div>
-    <tal:var replace="structure context/logoutjs|nothing" />
