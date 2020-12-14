@@ -17,6 +17,7 @@
         for="docpool.base.interfaces.IDocType"
     />
 
-  	<subscriber handler=".transferable.deleteTransferData" />
+    <subscriber handler=".transferable.deleteTransferData" />
+    <subscriber handler=".transferable.automatic_transfer_on_publish" />
 
 </configure>
