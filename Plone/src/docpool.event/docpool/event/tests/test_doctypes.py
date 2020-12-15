@@ -23,6 +23,7 @@ class TestDocTypes(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_default_content(self):
@@ -475,13 +476,15 @@ class TestDocTypes(unittest.TestCase):
         # Success in the 'content' folder
         query_found = {'SearchableText': u'willbefound'.encode('utf8')}
         # We call the search from the docpool
-        res = docpool.restrictedTraverse('@@search').results(query=query_found,
-                                                             batch=False)
+        # Because of the registration of plone.restapi.controlpanels.SearchControlpanel
+        # a lookup by name will not find the default search-form. Duh!
+        from Products.CMFPlone.browser.search import Search
+        search_view = Search(docpool, self.request)
+        res = search_view.results(query=query_found, batch=False)
         self.assertEqual(len(res), 1)
         # failure in 'config'
         query_notfound = {'SearchableText': u'Test Event'.encode('utf8')}
-        res_not = docpool.restrictedTraverse('@@search').results(
-            query=query_notfound)
+        res_not = search_view.results(query=query_notfound)
         self.assertEqual(len(res_not), 0)
         # Check the catalog_path
         catalog_path = IELANDocument(new).cat_path()
