@@ -17,11 +17,11 @@ function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPos
     var generic_window_name = thisWindowName + "-" + path_names.split('/')[1];
     window['popup_' + generic_window_name] = null;
     // Add to open_popups
-    let open_popups = JSON.parse(localStorage.getItem("open_popups"));
+    let open_popups = localStorage.getItem("open_popups");
     if (open_popups === null) {
          open_popups = [ generic_window_name ];
     } else {
-        open_popups.push(generic_window_name);
+        JSON.parse(open_popups).push(generic_window_name);
     }
     localStorage.setItem("open_popups", JSON.stringify(open_popups));
     // No popup exists
@@ -76,16 +76,18 @@ function go_to(url) {
 
 // Todo Needs a place to stay (own file)
 function close_popups() {
-    let open_popups = JSON.parse(localStorage.getItem("open_popups"));
-    open_popups.forEach(function(item) {
-        let popup = window.open('',item,'');
-        if (popup) {
-            popup.close();
-        }
-    });
-    localStorage.removeItem('open_popups');
+    let open_popups = localStorage.getItem("open_popups");
+    if (open_popups !== null) {
+        open_popups.forEach(function (item) {
+            let popup = window.open('', item, '');
+            if (popup) {
+                popup.close();
+            }
+        });
+        localStorage.removeItem('open_popups');
+    }
     var portal_root = $("body").data('portal-url');
-    window.location.href= portal_root + '/logout';
+    window.location.href = portal_root + '/logout';
 }
 
 // More on magic comments
