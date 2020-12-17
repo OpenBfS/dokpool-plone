@@ -118,3 +118,8 @@ def _addAllowedTypes(folder, types):
     existing.extend(types)
     new_types = list(set(existing))
     _setAllowedTypes(folder, new_types)
+
+
+def set_local_roles(self, obj, userid, roles):
+    prefix = self.prefix or self.getId()
+    obj.manage_setLocalRoles(userid.format(prefix), roles)

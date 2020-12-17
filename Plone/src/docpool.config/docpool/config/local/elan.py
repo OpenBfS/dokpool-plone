@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from ..utils import set_local_roles
 from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.utils import RARELY_USED_TYPES
@@ -76,6 +77,10 @@ ARCHIVESTRUCTURE = [
     CONTENT_AREA,
 ]
 
+SPECIAL_PAGES = [
+    {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
+]
+
 ADMINSTRUCTURE = [
     {
         TYPE: 'ELANContentConfig',
@@ -99,7 +104,6 @@ ADMINSTRUCTURE = [
             },
             {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
             {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
-            {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
             {
                 TYPE: 'DashboardsConfig',
                 TITLE: u'Dokumentsammlungen Pinnwand',
@@ -144,7 +148,7 @@ ADMINSTRUCTURE = [
             },
         ],
     }
-]
+] + SPECIAL_PAGES
 
 
 def createBasicPortalStructure(plonesite, fresh):
@@ -193,27 +197,17 @@ def setELANLocalRoles(self):
     Receivers: Owner, Editor
     Senders: Contributor
     """
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    self.manage_setLocalRoles(
-        "%s_SituationReportAdmins" % prefix, ["SituationReportAdmin"]
-    )
-    self.contentconfig.manage_setLocalRoles(
-        "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
-    )
-    self.archive.manage_setLocalRoles(
-        "%s_ContentAdministrators" % prefix, ["DocPoolAdmin"]
-    )
-    self.content.Groups.manage_setLocalRoles(
-        "%s_ContentAdministrators" % prefix, ["Site Administrator"]
-    )
-    self.esd.manage_setLocalRoles(
-        "%s_ContentAdministrators" %
-        prefix, ["ContentAdmin"])
-    self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
-    self.config.manage_setLocalRoles(
-        "%s_ContentAdministrators" %
-        prefix, ["Owner"])
+    contentadmin = "{0}_ContentAdministrators"
+    set_local_roles(self, self, "{0}_SituationReportAdmins", ["SituationReportAdmin"])
+    set_local_roles(self, self.contentconfig, contentadmin, ["ContentAdmin"])
+    for pagedef in SPECIAL_PAGES:
+        name = pagedef[ID]
+        set_local_roles(self, self[name], contentadmin, ["ContentAdmin"])
+    set_local_roles(self, self.archive, contentadmin, ["DocPoolAdmin"])
+    set_local_roles(self, self.content.Groups, contentadmin, ["Site Administrator"])
+    set_local_roles(self, self.esd, contentadmin, ["ContentAdmin"])
+    set_local_roles(self, self, "{0}_ELANUsers", ["ELANUser"])
+    set_local_roles(self, self.config, contentadmin, ["Owner"])
 
 
 def createELANGroups(self):

@@ -22,3 +22,6 @@ Fixed:
   [slindner]
 
 Removed:
+
+- elan.irix im Zuge von #3954
+  [tlotze]

@@ -104,7 +104,8 @@ class TestDocTypes(unittest.TestCase):
         docpool = self.portal['test_docpool']
 
         self.assertEqual(
-            docpool.keys(), ['esd', 'content', 'config', 'archive', 'contentconfig']
+            docpool.keys(),
+            ['esd', 'content', 'config', 'archive', 'contentconfig', 'help']
         )
 
         esd = docpool['esd']
@@ -183,7 +184,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'help', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
         )
 
         notify(EditFinishedEvent(docpool))
@@ -191,7 +192,8 @@ class TestDocTypes(unittest.TestCase):
         # since only elan is active that doe not create new content
 
         self.assertEqual(
-            docpool.keys(), ['esd', 'content', 'config', 'archive', 'contentconfig']
+            docpool.keys(),
+            ['esd', 'content', 'config', 'archive', 'contentconfig', 'help']
         )
 
         esd = docpool['esd']
@@ -270,7 +272,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'help', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
         )
 
     def test_doctypes_change_event(self):
