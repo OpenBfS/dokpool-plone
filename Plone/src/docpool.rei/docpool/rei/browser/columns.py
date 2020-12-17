@@ -16,7 +16,7 @@ class ReiReport(BaseColumn):
     """  """
 
     header = _('header_Title_ReiReport')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 10
 
     def renderCell(self, item):
@@ -76,7 +76,7 @@ class Authority(BaseColumn):
 class NuclearInstallation(BaseColumn):
 
     header = _('header_Title_NuclearInstallation')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 40
 
     def renderCell(self, item):
@@ -91,7 +91,7 @@ class NuclearInstallation(BaseColumn):
 class Period(BaseColumn):
 
     header = _('header_Title_Period')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 50
 
     def renderCell(self, item):
@@ -120,7 +120,7 @@ class Origin(BaseColumn):
 
 class Metadata(BaseColumn):
 
-    sort_index = None
+    sort_index = -1
     header = _('header_Title_Metadata')
     weight = 70
 
