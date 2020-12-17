@@ -48,7 +48,8 @@ setup(
         'xhtml2pdf',
         'Products.CMFPlacefulWorkflow',
         'eea.facetednavigation',
-        'collective.eeafaceted.dashboard',
+        'collective.eeafaceted.z3ctable',
+        'z3c.unconfigure',
         'Products.ATContentTypes',  # needed for some tests until we upgrade to 5.2
     ],
     entry_points="""

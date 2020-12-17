@@ -31,7 +31,6 @@ import logging
 import os
 import random
 
-from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 log = logging.getLogger(__name__)
 
 
@@ -503,7 +502,7 @@ class DocpoolSetup(BrowserView):
             container=docpool_bund, type="Folder", id="suche", title=u"Rei Suche",
             local_behaviors=['rei'],
         )
-        enableFacetedDashboardFor(search, xmlpath=import_file_path, show_left_column=False)
+        _configure_faceted_view(search, import_file_path, 'faceted-table-items')
         # Why we need to set to empty?
         # Todo: https://redmine-koala.bfs.de/issues/3951
         search.relatedItems = ''

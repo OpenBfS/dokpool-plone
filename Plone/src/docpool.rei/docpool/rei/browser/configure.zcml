@@ -12,14 +12,6 @@
            type="theme"
            name="docpoolrei" />
 
-  <browser:view
-        for="plone.dexterity.interfaces.IDexterityContainer"
-        name="faceted-table-view"
-        class="docpool.rei.browser.views.DokpoolDashboardFacetedTableView"
-        layer="docpool.rei.interfaces.IReiMarker"
-        permission="zope2.View"
-    />
-
   <adapter
           for="zope.interface.Interface
                zope.publisher.interfaces.browser.IBrowserRequest
