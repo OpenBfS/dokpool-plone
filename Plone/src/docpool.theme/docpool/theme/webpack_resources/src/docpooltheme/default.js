@@ -5,6 +5,7 @@ import './default.less';
 import './theme.less';
 
 import jQuery from 'jquery';
+import registry from 'pat-registry';
 
 // Todo Needs a place to stay (own file)
 function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPosition, thisYPosition, thisScrollbar, thisResize) {
@@ -95,7 +96,7 @@ if (
                 /* webpackChunkName: "facetednavigation" */ "./facetednavigation"
                 ),
             import(
-                /* webpackChunkName: "faceted-dashboard" */ "./faceted-dashboard"
+                /* webpackChunkName: "faceted-z3ctable" */ "./faceted-z3ctable"
                 )
         ]).then(args => {
             jQuery(document).ready(function (evt) {
@@ -133,7 +134,7 @@ if (jQuery("body.template-configure_faceted-html").length) {
                 /* webpackChunkName: "facetednavigation-edit" */ "./facetednavigation-edit"
                 ),
             import(
-                /* webpackChunkName: "faceted-dashboard" */ "./faceted-dashboard-edit"
+                /* webpackChunkName: "faceted-z3ctable" */ "./faceted-z3ctable-edit"
                 ),
         ]).then(args => {
             window.FacetedEdit.Load(faceted_evt, faceted_path);
