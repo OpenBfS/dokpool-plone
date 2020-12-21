@@ -21,10 +21,18 @@ class ActionHelpers(BrowserView):
 
         # User with only these roles should not change their password.
         # They are usually shared by multiple people.
-        roles = member.getRolesInContext(self.context)
-        read_only = ['Member', 'Authenticated', 'ELANUser', 'Reader']
-        can_change_pwd_roles = [r for r in roles if r not in read_only]
-        return bool(can_change_pwd_roles)
+        # FIXME: THIS DOES NOT WORK ! - also users which can add portal content in their group do only have these groups
+        # roles = member.getRolesInContext(self.context)
+        # read_only = ['Member', 'Authenticated', 'ELANUser', 'Reader']
+        # can_change_pwd_roles = [r for r in roles if r not in read_only]
+        # return bool(can_change_pwd_roles)
+
+        # read only ELAN-Users
+        # usually shared by multiple people
+        if (member.getId()[-2:] =='-u') or (member.getId()[-5:] == '-info'):
+            return False
+
+        return True
 
     def is_rei_workflow(self, doc=None):
         """
