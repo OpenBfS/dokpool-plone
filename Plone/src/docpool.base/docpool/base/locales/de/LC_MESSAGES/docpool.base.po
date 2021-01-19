@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2021-01-19 14:15+0000\n"
+"POT-Creation-Date: 2021-01-19 15:20+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -640,6 +640,11 @@ msgstr "Dokumenttypen, welche in diesem Ordner zulässig sind"
 #: docpool.base/docpool/base/content/text.py
 msgid "label_text_text"
 msgstr "Text"
+
+#. Default: "Toggle all"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "label_toggle"
+msgstr "Alle umschalten"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "modified:"

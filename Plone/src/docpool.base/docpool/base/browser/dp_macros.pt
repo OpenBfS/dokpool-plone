@@ -51,7 +51,7 @@
                         <metal:header_slot metal:define-slot="listingheader">
                             <th class="nosort actions">
                               <input type="checkbox" name="checkAllAuto" id="checkAllAuto"
-                                     title="Toggle all"/>
+                                     title="Toggle all" i18n:attributes="title label_toggle" />
                                 <script type="text/javascript">
                                   $('#checkAllAuto').click(function() {
                                       $("td.actions input[type='checkbox']").click();
