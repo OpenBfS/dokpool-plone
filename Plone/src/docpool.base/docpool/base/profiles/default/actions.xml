@@ -32,7 +32,7 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/impressum</property>
-   <property name="link_target"></property>
+   <property name="link_target">_blank</property>
    <property name="icon_expr"></property>
    <property name="available_expr"></property>
    <property name="permissions">
@@ -45,7 +45,7 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${context/dp_url}/help</property>
-   <property name="link_target"></property>
+   <property name="link_target">_blank</property>
    <property name="icon_expr"></property>
    <property name="available_expr"></property>
    <property name="permissions">
