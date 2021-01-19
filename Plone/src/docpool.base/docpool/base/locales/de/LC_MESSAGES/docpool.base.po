@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2020-12-01 11:21+0000\n"
+"POT-Creation-Date: 2021-01-19 14:15+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -20,13 +20,17 @@ msgstr ""
 msgid "${count} item(s) cut."
 msgstr "${count} Objekte ausgeschnitten."
 
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "${transitioned} Items transitioned!"
+msgstr "${transitioned} Einträge geändert!"
+
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
 msgstr "Archiv"
 
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "Available transitions"
-msgstr "Verfügbare Statuswechsel"
+msgstr "verfügbare Statusänderungen"
 
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
 msgid "Content Area"
@@ -71,6 +75,10 @@ msgstr "Dokpool Konfiguration"
 #: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
 msgstr "Dokpool Ansicht"
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool view with bulk actions"
+msgstr "Docpool Ansicht mit Mehrfach-Aktionen"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"
@@ -164,6 +172,10 @@ msgstr "Info-Link"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
 msgstr "Metadaten"
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "No items or transitions!"
+msgstr "Keine Einträge ausgewählt / keine Statusänderungen verfügbar."
 
 #: docpool.base/docpool/base/content/dpdocument.py
 msgid "No legend image"
@@ -499,6 +511,11 @@ msgstr ""
 #: docpool.base/docpool/base/configure.zcml
 msgid "docpool.base"
 msgstr "docpool.base"
+
+#. Default: "Select the transition to be used for modifying the items state."
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "help_change_status_action"
+msgstr "Wählen sie den Statuswechsel, der benutzt werden soll, um den Status der Einträge zu ändern. Einträge, für die dieser Statuswechsel nicht gültig ist, bleiben unverändert."
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "inactive"

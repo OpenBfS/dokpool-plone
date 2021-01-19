@@ -43,6 +43,7 @@
                        class="listing responsive"
                        summary="Content listing"
                        tal:condition="batch"
+                       i18n:domain="docpool.base"
                        i18n:attributes="summary summary_content_listing;"
                        tal:define="isOverview python:0">
                     <thead>

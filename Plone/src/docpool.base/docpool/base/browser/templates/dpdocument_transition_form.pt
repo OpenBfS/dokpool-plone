@@ -16,8 +16,9 @@
                      items python: view.items;
                      can_transition python: items and transitions;
                      ">
-    <div tal:condition="python: not can_transition">
-      <h2 i18n:translate="">Not items or transitions!</h2>
+    <div tal:condition="python: not can_transition"
+         i18n:domain="docpool.base">
+      <h2 i18n:translate="">No items or transitions!</h2>
     </div>
 
     <div tal:condition="python: errors">
@@ -43,7 +44,7 @@
           <tbody>
              <tr tal:repeat="item python:items">
                  <td valign="top" tal:content="python: item['title']">Test1</td>
-                 <td valign="top" tal:content="python: ', '.join(item['transitions'])"></td>
+                 <td valign="top" tal:content="structure python: '<br/>'.join(item['transitions'])"></td>
              </tr>
           </tbody>
         </table>
@@ -51,7 +52,7 @@
 
     <div class="form-group">
       <label i18n:translate="label_change_status">Change State</label>
-      <p class="help-block" i18n:translate="help_change_status_action">Select the transition to be used for modifying the items state.</p>
+      <p class="help-block" i18n:domain="docpool.base" i18n:translate="help_change_status_action">Select the transition to be used for modifying the items state.</p>
       <select class="form-control" name="transition">
         <option value="publish"
                 tal:repeat="transition python: transitions"
@@ -60,23 +61,6 @@
             Publish
         </option>
       </select>
-    </div>
-
-    <div class="form-group">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="recurse" value="yes" />
-          <span i18n:translate="label_include_contained_objects">Include contained items</span>
-        </label>
-        <p class="help-block" i18n:translate="help_include_contained_objects">
-        If checked, this will attempt to modify the status of all content in any selected folders and their subfolders.
-        </p>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label i18n:translate="label_comments">Comments</label>
-      <textarea class="form-control" rows="2" name="comments"></textarea>
     </div>
 
     <tal:block tal:repeat="item items">

@@ -5,7 +5,7 @@ from DateTime import DateTime
 from plone import api
 from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZODB.POSException import ConflictError
@@ -64,7 +64,8 @@ class WorkflowActionView(BrowserView):
         if self.errors:
             return self.template()
         else:
-            api.portal.show_message('{} Items transitioned!'.format(transitioned), self.request)
+            msg = _('${transitioned} Items transitioned!', mapping={'transitioned': transitioned})
+            api.portal.show_message(msg, self.request)
             return self.request.response.redirect(self.context.absolute_url())
 
     def transition(self, obj, bypass_recurse=False):

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2020-12-01 11:21+0000\n"
+"POT-Creation-Date: 2021-01-19 14:15+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -18,6 +18,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "${count} item(s) cut."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "${transitioned} Items transitioned!"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/print.pt
@@ -70,6 +74,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool view with bulk actions"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
@@ -163,6 +171,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "No items or transitions!"
 msgstr ""
 
 #: docpool.base/docpool/base/content/dpdocument.py
@@ -498,6 +510,11 @@ msgstr ""
 
 #: docpool.base/docpool/base/configure.zcml
 msgid "docpool.base"
+msgstr ""
+
+#. Default: "Select the transition to be used for modifying the items state."
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "help_change_status_action"
 msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
