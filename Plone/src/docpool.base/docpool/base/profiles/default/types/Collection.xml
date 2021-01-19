@@ -3,6 +3,7 @@
  <property name="default_view">docpool_collection_view</property>
  <property name="view_methods" purge="False">
   <element value="docpool_collection_view"/>
+  <element value="docpool_collection_view_with_actions"/>
  </property>
  <property name="behaviors" purge="False">
      <element value="eea.facetednavigation.subtypes.interfaces.IPossibleFacetedNavigable" />
