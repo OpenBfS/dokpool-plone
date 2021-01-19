@@ -345,3 +345,8 @@ def to_1006(context=None):
             api.content.delete(docpool['contentconfig']['irix'])
         except KeyError:
             pass
+
+
+def to_1007(context=None):
+    log.info('Upgrading to 1007: translate actions')
+    loadMigrationProfile(context, 'profile-docpool.base:to_1007')

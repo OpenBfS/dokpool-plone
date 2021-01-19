@@ -36,6 +36,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="to_1007"
+      title="Upgrade profile for docpool.base"
+      directory="profiles/to_1007"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <genericsetup:upgradeSteps
       source="1.3.28"
       destination="1.4.00"
@@ -141,6 +149,16 @@
     <genericsetup:upgradeStep
         title="Delete IRIXConfig"
       handler="docpool.base.upgrades.to_1006"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1006"
+      destination="1007"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Translate actions"
+        handler="docpool.base.upgrades.to_1007"
         />
   </genericsetup:upgradeSteps>
 
