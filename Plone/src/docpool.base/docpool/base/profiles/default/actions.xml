@@ -27,8 +27,8 @@
   <object name="contact" meta_type="CMF Action" i18n:domain="plone">
    <property name="visible">False</property>
   </object>
-  <object name="impressum" meta_type="CMF Action" i18n:domain="docpool.policy">
-   <property name="title" i18n:translate="">Impressum</property>
+  <object name="impressum" meta_type="CMF Action" i18n:domain="docpool.base">
+   <property name="title" i18n:translate="">Imprint</property>
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/impressum</property>
@@ -40,7 +40,7 @@
    </property>
    <property name="visible">True</property>
   </object>
-  <object name="help" meta_type="CMF Action" i18n:domain="docpool.policy">
+  <object name="help" meta_type="CMF Action" i18n:domain="docpool.base">
    <property name="title" i18n:translate="">Help</property>
    <property name="description" i18n:translate=""></property>
    <property
