@@ -133,8 +133,8 @@
         handler="docpool.base.upgrades.to_1005"
         />
     <genericsetup:upgradeStep
-        title="Add folder_buttons for bulk-actions in listings"
-        handler="docpool.base.upgrades.reload_actions"
+        title="Enable bulk-actions in listings"
+        handler="docpool.base.upgrades.enable_bulk_actions"
         />
   </genericsetup:upgradeSteps>
 

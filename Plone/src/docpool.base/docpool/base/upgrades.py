@@ -327,7 +327,7 @@ def to_1005(context=None):
         portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])
 
 
-def reload_actions(context=None):
+def enable_bulk_actions(context=None):
     portal_setup = api.portal.get_tool('portal_setup')
     # add transfer action to folder_buttons
     loadMigrationProfile(
@@ -335,3 +335,11 @@ def reload_actions(context=None):
         'profile-docpool.base:default',
         steps=['actions'],
         )
+    # enable docpool_collection_view_with_actions for collections
+    fti = queryUtility(IDexterityFTI, name='Collection')
+    view = 'docpool_collection_view_with_actions'
+    if view not in fti.view_methods:
+        view_methods = list(fti.view_methods)
+        view_methods.append(view)
+        fti.manage_changeProperties(view_methods=tuple(view_methods))
+        log.info('Allowed docpool_collection_view_with_actions for Collections')
