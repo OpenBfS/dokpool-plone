@@ -125,18 +125,22 @@ class FolderBaseView(BrowserView):
 
 
 class FolderDeleteForm(form.Form):
+    """Delete multiple items by path
+    Modernized version of folder_delete.cpy (of Plone 4).
+    Called from a folder listing with actions using a folder_button with string:@@folder_delete:method
+    Partly stolen from plone.app.content.browser.actions.DeleteConfirmationForm
+    """
 
     fields = field.Fields()
     template = ViewPageTemplateFile('templates/delete_confirmation.pt')
     enableCSRFProtection = True
 
     def view_url(self):
-        ''' Facade to the homonymous plone_context_state method
-        '''
         context_state = api.content.get_view('plone_context_state', self.context, self.request)
         return context_state.view_url()
 
     def more_info(self):
+        """Render linkintegrity-info for all items that are to be deleted."""
         paths = self.request.get('paths', [])
         objects = [api.content.get(path=str(path)) for path in paths]
         adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
@@ -148,7 +152,8 @@ class FolderDeleteForm(form.Form):
     def handle_delete(self, action):
         paths = self.request.get('paths', [])
         objects = [api.content.get(path=str(path)) for path in paths]
-        api.content.delete(objects=objects)
+        # linkintegrity was already checked and maybe ignored!
+        api.content.delete(objects=objects, check_linkintegrity=False)
         api.portal.show_message(u'Items deleted', self.request)
         target = self.view_url()
         return self.request.response.redirect(target)
