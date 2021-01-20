@@ -42,6 +42,13 @@
       />
 
   <browser:page
+      name="folder_delete"
+      for="*"
+      class=".folderbase.FolderDeleteForm"
+      permission="zope2.DeleteObjects"
+      />
+
+  <browser:page
       name="upload"
       for="..interfaces.IDPDocument"
       class=".dpdocument.FileUploadView"

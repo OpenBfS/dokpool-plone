@@ -14,6 +14,7 @@ view of that content type.
 
 
 from Acquisition import aq_inner
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
@@ -25,6 +26,9 @@ from plone.memoize import view
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form import button
+from z3c.form import field
+from z3c.form import form
 from zope.interface import implementer
 
 
@@ -118,3 +122,46 @@ class FolderBaseView(BrowserView):
             res = user.getProperty("apps") or []
         # print "filter_active ", res
         return res
+
+
+class FolderDeleteForm(form.Form):
+
+    fields = field.Fields()
+    template = ViewPageTemplateFile('templates/delete_confirmation.pt')
+    enableCSRFProtection = True
+
+    def view_url(self):
+        ''' Facade to the homonymous plone_context_state method
+        '''
+        context_state = api.content.get_view('plone_context_state', self.context, self.request)
+        return context_state.view_url()
+
+    def more_info(self):
+        paths = self.request.get('paths', [])
+        objects = [api.content.get(path=str(path)) for path in paths]
+        adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
+        if adapter:
+            return adapter(objects)
+        return ""
+
+    @button.buttonAndHandler(_('Delete'), name='Delete')
+    def handle_delete(self, action):
+        paths = self.request.get('paths', [])
+        objects = [api.content.get(path=str(path)) for path in paths]
+        api.content.delete(objects=objects)
+        api.portal.show_message(u'Items deleted', self.request)
+        target = self.view_url()
+        return self.request.response.redirect(target)
+
+    @button.buttonAndHandler(
+        _('label_cancel', default='Cancel'), name='Cancel')
+    def handle_cancel(self, action):
+        target = self.view_url()
+        return self.request.response.redirect(target)
+
+    def updateActions(self):
+        super(FolderDeleteForm, self).updateActions()
+        if self.actions and 'Delete' in self.actions:
+            self.actions['Delete'].addClass('btn-danger')
+        if self.actions and 'Cancel' in self.actions:
+            self.actions['Cancel'].addClass('btn-secondary')
