@@ -11,6 +11,8 @@ Added:
 
 Changed:
 
+- Ersetzen eines CPY zurch Browserview #4078
+  [slindner]
 
 Fixed:
 
