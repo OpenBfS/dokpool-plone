@@ -6,7 +6,7 @@ Bitte hier einen Link zum Ticket #1234 einfügen.
 
 ## Im Code
 
-- [ ] [Changelog](https://git.starzel.de/bfs/dokpool/-/blob/develop/Plone/docs/conventions.md)-Eintrag hinzugefügt
+- [ ] [Changelog](https://git.starzel.de/bfs/dokpool/-/blob/develop/Plone/docs/conventions.md)-Eintrag hinzugefügt & betroffene App vermerkt?
 - [ ] ggf. Upgrade-Step hinzugefügt oder aktualisiert
 - [ ] ggf. Tests hinzugefügt oder aktualisiert
 - [ ] ggf. Übersetzungen hinzugefügt oder aktualisiert
