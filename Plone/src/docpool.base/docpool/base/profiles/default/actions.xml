@@ -149,7 +149,7 @@
    <property name="title" i18n:translate="">Transfer</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
-   <property name="available_expr">python:context.isIndividual()</property>
+   <property name="available_expr">python:not context.isIndividual()</property>
    <property name="permissions">
     <element value="View"/>
    </property>

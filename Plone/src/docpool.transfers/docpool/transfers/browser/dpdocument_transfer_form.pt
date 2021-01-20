@@ -17,7 +17,7 @@
                      ">
 
       <div tal:condition="python: not can_transfer">
-        <h2 i18n:translate="">Not items or targets to transfer to!</h2>
+        <h2 i18n:translate="">No items or targets to transfer to!</h2>
       </div>
 
       <form method="post"
