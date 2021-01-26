@@ -14,8 +14,6 @@
 
   <include file="skins.zcml" />
 
-  <include file="upgrades.zcml"/>
-
   <plone:static
       directory="static"
       type="plone"

@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
 from docpool.config.general.base import configureGroups
+from docpool.config.utils import set_local_roles
 from docpool.rei.vocabularies import AUTHORITIES
 from plone import api
 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
@@ -350,3 +351,24 @@ def to_1006(context=None):
 def to_1007(context=None):
     log.info('Upgrading to 1007: translate actions')
     loadMigrationProfile(context, 'profile-docpool.base:to_1007')
+
+    portal = api.portal.get()
+    if 'help' not in portal['contentconfig']:
+        return
+
+    help = portal['contentconfig']['help']
+
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        try:
+            api.content.move(docpool['contentconfig']['help'], docpool)
+        except KeyError:
+            api.content.copy(help, docpool)
+        set_local_roles(
+            docpool,
+            docpool['help'],
+            '{0}_ContentAdministrators',
+            ['ContentAdmin']
+        )
+
+    api.content.delete(help)

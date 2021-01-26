@@ -157,7 +157,7 @@
       destination="1007"
       profile="docpool.base:default">
     <genericsetup:upgradeStep
-        title="Translate actions"
+        title="Move help pages, translate actions"
         handler="docpool.base.upgrades.to_1007"
         />
   </genericsetup:upgradeSteps>
