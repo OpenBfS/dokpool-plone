@@ -9,17 +9,42 @@ Added:
 - Added Changelog
   [slindner]
 
+
 Changed:
+
+- Close all popups on logout #3512
+  [slindner]
+
+- Do not display content of text files #4038
+  [pbauer]
 
 
 Fixed:
 
-- Umlaute Fehler in AUTHORITYS vocabulary #3953
+- Fix Unicode Errors in AUTHORITYS vocabulary and use ISO values #3953
   [slindner]
-- Schließen aller Popups beim logout #3512
+
+- Fix compatability mode in Internet Explorer #3991
   [slindner]
+
+- Fix editing help page and move it to each docpool #2439
+  [tlotze]
+
+- Add hotfix to fix canchangepassword #4085
+  Deployed on master as hotfix.
+  [kprobst]
+
 
 Removed:
 
-- elan.irix im Zuge von #3954
+
+Technical:
+
+- Remove the concept and implementation of auditing #3954
+  [tlotze]
+
+- Remove elan.irix #3954
+  [tlotze]
+
+- Remove archetypes dependencies #3225
   [tlotze]
