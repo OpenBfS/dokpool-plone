@@ -157,8 +157,16 @@
       destination="1007"
       profile="docpool.base:default">
     <genericsetup:upgradeStep
-        title="Move help pages, translate actions"
+        title="Allow Text inside DokumentPool, translate actions"
         handler="docpool.base.upgrades.to_1007"
+        />
+    <genericsetup:upgradeStep
+        title="Move help pages"
+        handler="docpool.base.upgrades.to_1007_move_help_pages"
+        />
+    <genericsetup:upgradeStep
+        title="Delete local impressum pages"
+        handler="docpool.base.upgrades.to_1007_delete_local_impressum_pages"
         />
   </genericsetup:upgradeSteps>
 

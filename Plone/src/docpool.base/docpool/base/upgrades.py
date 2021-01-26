@@ -349,8 +349,12 @@ def to_1006(context=None):
 
 
 def to_1007(context=None):
-    log.info('Upgrading to 1007: translate actions')
+    log.info('Upgrading to 1007: allow Text inside DokumentPool, translate actions')
     loadMigrationProfile(context, 'profile-docpool.base:to_1007')
+
+
+def to_1007_move_help_pages(context=None):
+    log.info('Upgrading to 1007: move help pages')
 
     portal = api.portal.get()
     if 'help' not in portal['contentconfig']:
@@ -372,3 +376,14 @@ def to_1007(context=None):
         )
 
     api.content.delete(help)
+
+
+def to_1007_delete_local_impressum_pages(context=None):
+    log.info('Upgrading to 1007: delete local impressum pages')
+
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        try:
+            api.content.delete(docpool['contentconfig']['impressum'])
+        except KeyError:
+            pass
