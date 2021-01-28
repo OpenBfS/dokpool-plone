@@ -70,3 +70,8 @@ Added:
 
 * Please write useful commit messages!
 * Always ends with ticket number if there is one.
+
+
+## Generic setup upgrades
+
+* All future upgrades should go in docpool.base.
