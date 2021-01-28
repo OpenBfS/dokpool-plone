@@ -4,7 +4,7 @@
  <object name="site_actions" meta_type="CMF Action Category">
   <object name="impressum" meta_type="CMF Action" i18n:domain="docpool.base">
    <property name="title" i18n:translate="">Imprint</property>
-   <property name="url_expr">string:${context/portal_url}/contentconfig/impressum?popup_load=1</property>
+   <property name="url_expr">string:${context/portal_url}/impressum?popup_load=1</property>
    <property name="link_target">_blank</property>
   </object>
   <object name="help" meta_type="CMF Action" i18n:domain="docpool.base">

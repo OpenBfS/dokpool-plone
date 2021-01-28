@@ -387,3 +387,7 @@ def to_1007_delete_local_impressum_pages(context=None):
             api.content.delete(docpool['contentconfig']['impressum'])
         except KeyError:
             pass
+
+    portal = api.portal.get()
+    if 'impressum' in portal['contentconfig']:
+        api.content.move(portal['contentconfig']['impressum'], portal)
