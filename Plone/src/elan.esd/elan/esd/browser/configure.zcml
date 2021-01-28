@@ -18,12 +18,6 @@
 
     <browser:page
         permission="zope2.View"
-        name="irix"
-        for="docpool.base.interfaces.IDPDocument"
-        class=".dpdocument.DPDocumentirixView" />
-
-    <browser:page
-        permission="zope2.View"
         name="view"
         for="..interfaces.IELANDocCollection"
         class=".elandoccollection.ELANDocCollectionView" />
