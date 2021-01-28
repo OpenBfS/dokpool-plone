@@ -35,6 +35,10 @@ Fixed:
 - Fix editing help page and move it to each docpool #2439
   [tlotze]
 
+- Only use global imprint, fix actions and views for help and imprint, move
+  these texts out of contentconfig folders #4067
+  [tlotze]
+
 - Add hotfix to fix canchangepassword #4085
   Deployed on master as hotfix.
   [kprobst]
