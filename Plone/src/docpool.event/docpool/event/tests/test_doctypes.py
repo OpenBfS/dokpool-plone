@@ -183,7 +183,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig']
         )
 
         notify(EditFinishedEvent(docpool))
@@ -271,7 +271,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig']
         )
 
     def test_doctypes_change_event(self):

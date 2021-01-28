@@ -88,7 +88,6 @@
       <element>File</element>
       <element>Folder</element>
       <element>InfoDocument</element>
-      <element>IRIXConfig</element>
       <element>Image</element>
       <element>InfoFolder</element>
       <element>InfoLink</element>
