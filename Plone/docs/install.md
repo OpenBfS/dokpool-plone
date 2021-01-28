@@ -40,14 +40,43 @@ DB restore:
 $ pg_restore -d zodb dokpool_20190920-1210.backup
 ```
 
-Start with Postgres DB und Relstorage
+Do the same for elan db:
+
+```
+Create elan DB
+$ dropdb elan
+$ dropuser elan
+
+User und DB anlegen:
+$ createuser --createdb elan
+$ createdb elan -U elan
+
+DB restore:
+$ pg_restore -d elan produktiv_elan_20201009.backup
+```
+
+Create an admin user since we don't know the production admin's credentials:
+
+```
+$ ./bin/instance_relstorage adduser rescue rescue
+```
+
+Instance should start up with Postgres DB und Relstorage:
+
 ```
 $ bin/instance_relstorage fg
 ```
 
 ## Convert production backup database to filestorage
 
-Diesen Code als convert_to_zodb.conf im var Verzeichnis speichern und die Pfade anpassen:
+Alten Blob-Cache löschen:
+
+```
+$ rm -rf blobs/*
+$ rm blobs/.layout
+```
+
+Diesen Code als var/convert_to_datafs.conf speichern:
 
 ```
 <relstorage source>
@@ -59,10 +88,10 @@ Diesen Code als convert_to_zodb.conf im var Verzeichnis speichern und die Pfade 
 </relstorage>
 
 <blobstorage destination>
-  blob-dir /Users/pbauer/workspace/dokpool-plone/Plone/var/blobstorage
+  blob-dir ./var/blobstorage
   # FileStorage database
   <filestorage>
-    path /Users/pbauer/workspace/dokpool-plone/Plone/var/filestorage/Data.fs
+    path ./var/filestorage/Data.fs
   </filestorage>
 </blobstorage>
 ```
@@ -71,7 +100,7 @@ Die Postgres DB kann danach mit diesem Befehl in eine Data.fs mit blobstorage
 umgewandelt werden:
 
 ```
-$ bin/zodbconvert var/convert_to_zodb.conf
+$ bin/zodbconvert var/convert_to_datafs.conf
 ```
 
 # Development
