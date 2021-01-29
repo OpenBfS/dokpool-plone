@@ -43,7 +43,7 @@ Technical:
 - Remove the concept and implementation of auditing #3954
   [tlotze]
 
-- Remove elan.irix #3954
+- Remove elan.irix and all other IRIX-related code #3954
   [tlotze]
 
 - Remove archetypes dependencies #3225
