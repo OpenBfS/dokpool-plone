@@ -1,4 +1,3 @@
-from __future__ import print_function
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import extendingApps
 from zope.component import getMultiAdapter
@@ -24,7 +23,6 @@ def LocalBehaviorsVocabularyFactory(context):
     dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
     if 'config' in path:
         isType = True
-        print(path)
         if path.index('config') == 2:  # global config
             apps = dp_app_state.appsPermittedForCurrentUser()
         else:
