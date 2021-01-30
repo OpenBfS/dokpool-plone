@@ -93,6 +93,11 @@ class TransfersType(object):
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
+        try:
+            self.context.myDocumentPool()
+        except AttributeError:
+            return
+
         context = aq_inner(self.context)
         unaffected = set(getattr(context, 'automaticTransferTargets', ()))
         if unaffected:
