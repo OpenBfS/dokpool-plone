@@ -3,6 +3,7 @@
 """
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
+from contextlib import contextmanager
 from datetime import datetime
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
@@ -39,6 +40,7 @@ from sqlalchemy.sql.expression import desc
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
@@ -46,6 +48,26 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 logger = getLogger(__name__)
 
 ANNOTATIONS_KEY = __name__
+
+
+@contextmanager
+def transferring():
+    """Keeps record of a tranfer going on while the code block executes.
+
+    The resource returned is a boolean telling whether a transfer was already going on
+    when entering the code block.
+
+    """
+    annotations = IAnnotations(getRequest()).setdefault(ANNOTATIONS_KEY, {})
+    KEY = 'transferring'
+    if annotations.get(KEY, False):
+        yield True
+    else:
+        annotations[KEY] = True
+        try:
+            yield False
+        finally:
+            del annotations[KEY]
 
 
 @provider(IFormFieldProvider)
@@ -246,7 +268,8 @@ class Transferable(FlexibleView):
         Performs the transfer for a list of Channel ids.
         """
         channels = determineChannels(target_ids)
-        self.transferToTargets(channels)
+        with transferring():
+            self.transferToTargets(channels)
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -534,21 +557,17 @@ def automatic_transfer(obj):
     except BaseException:
         return
 
-    annotations = IAnnotations(tObj.request).setdefault(ANNOTATIONS_KEY, {})
-    KEY = 'automatic_transfer_going_on'
-    if annotations.get(KEY, False):
-        return
+    with transferring() as already_transferring:
+        if already_transferring:
+            return
 
-    logger.info(
-        'Automatic transfer of "{}" from {}'.format(
-            obj.Title(),
-            '/'.join(obj.getPhysicalPath()),
+        logger.info(
+            'Automatic transfer of "{}" from {}'.format(
+                obj.Title(),
+                '/'.join(obj.getPhysicalPath()),
+            )
         )
-    )
-    annotations[KEY] = True
-    try:
-        return tObj.transferToAll()
-    except BaseException:
-        pass
-    finally:
-        del annotations[KEY]
+        try:
+            return tObj.transferToAll()
+        except BaseException:
+            pass
