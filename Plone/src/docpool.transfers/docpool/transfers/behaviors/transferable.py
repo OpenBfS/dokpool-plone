@@ -523,6 +523,12 @@ def automatic_transfer_on_publish(obj, event=None):
 
 
 def automatic_transfer(obj):
+    if obj.isArchive():
+        # In the process of archiving an event, its associated documents are copied and
+        # afterwards applied a workflow transition in order to restore their original
+        # workflow state. Objects published for this reason should not be transferred.
+        return
+
     try:
         tObj = ITransferable(obj)  # Try behaviour
     except BaseException:
