@@ -226,7 +226,8 @@ class Transferable(FlexibleView):
         dto_transfers = dto.type_extension(TRANSFERS_APP)
         targets = [t for t in self.allowedTargets()
                    if t.id in dto_transfers.automaticTransferTargets]
-        self.transferToTargets(targets)
+        if targets:
+            self.transferToTargets(targets)
 
     security.declareProtected("Docpool: Send Content", "manage_transfer")
 
