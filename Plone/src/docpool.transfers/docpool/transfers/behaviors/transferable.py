@@ -25,6 +25,7 @@ from docpool.transfers.db.model import ChannelSends
 from docpool.transfers.db.model import ReceiverLog
 from docpool.transfers.db.model import SenderLog
 from docpool.transfers.db.query import allowed_targets
+from logging import getLogger
 from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
@@ -41,6 +42,8 @@ from zope.component import adapter
 from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
+
+logger = getLogger(__name__)
 
 ANNOTATIONS_KEY = __name__
 
@@ -226,8 +229,15 @@ class Transferable(FlexibleView):
         dto_transfers = dto.type_extension(TRANSFERS_APP)
         targets = [t for t in self.allowedTargets()
                    if t.id in dto_transfers.automaticTransferTargets]
+
+        source_path = '/'.join(self.context.getPhysicalPath())
         if targets:
+            logger.info(
+                'Transfer {} to up to {} targets.'.format(source_path, len(targets))
+            )
             self.transferToTargets(targets)
+        else:
+            logger.info('No transfer targets found for {}.'.format(source_path))
 
     security.declareProtected("Docpool: Send Content", "manage_transfer")
 
@@ -325,6 +335,13 @@ class Transferable(FlexibleView):
                                 type='error',
                             )
                             continue
+
+                logger.info(
+                    'Transfer {} to {}.'.format(
+                        '/'.join(self.context.getPhysicalPath()),
+                        target.esd_to_title,
+                    )
+                )
 
                 # 2) Put a copy of me in each of them, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
@@ -516,10 +533,14 @@ def automatic_transfer(obj):
     if annotations.get(KEY, False):
         return
 
+    logger.info(
+        'Automatic transfer of "{}" from {}'.format(
+            obj.Title(),
+            '/'.join(obj.getPhysicalPath()),
+        )
+    )
     annotations[KEY] = True
     try:
-        log('Try automaticTransfer of %s from %s' %
-            (obj.Title(), obj.absolute_url()))
         return tObj.transferToAll()
     except BaseException:
         pass
