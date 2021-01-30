@@ -325,3 +325,23 @@ def to_1005(context=None):
         portal_setup, 'profile-elan.esd:default', steps=['workflow'])
     loadMigrationProfile(
         portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])
+
+
+def to_1006(context=None):
+    log.info('Upgrading to 1006: delete IRIXConfig')
+
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(
+        portal_setup, 'profile-docpool.caching:default', steps=['plone.app.registry'])
+    loadMigrationProfile(
+        portal_setup,
+        'profile-elan.esd:default',
+        steps=['content_type_registry', 'workflow']
+    )
+
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        try:
+            api.content.delete(docpool['contentconfig']['irix'])
+        except KeyError:
+            pass
