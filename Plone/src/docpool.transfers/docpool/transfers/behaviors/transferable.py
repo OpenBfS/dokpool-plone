@@ -227,7 +227,6 @@ class Transferable(FlexibleView):
         targets = [t for t in self.allowedTargets()
                    if t.id in dto_transfers.automaticTransferTargets]
         self.transferToTargets(targets)
-        return self.context.restrictedTraverse('@@view')()
 
     security.declareProtected("Docpool: Send Content", "manage_transfer")
 
@@ -502,14 +501,14 @@ def automatic_transfer_on_publish(obj, event=None):
     """
     """
     if event and event.action == 'publish':
-        return automatic_transfer(obj)
+        automatic_transfer(obj)
 
 
 def automatic_transfer(obj):
     try:
         tObj = ITransferable(obj)  # Try behaviour
     except BaseException:
-        return False
+        return
 
     annotations = IAnnotations(tObj.request).setdefault(ANNOTATIONS_KEY, {})
     KEY = 'automatic_transfer_going_on'
@@ -522,6 +521,6 @@ def automatic_transfer(obj):
             (obj.Title(), obj.absolute_url()))
         return tObj.transferToAll()
     except BaseException:
-        return False
+        pass
     finally:
         del annotations[KEY]
