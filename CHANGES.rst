@@ -9,6 +9,8 @@ Added:
 - Added Changelog
   [slindner]
 
+- Add automatic transfer of published documents to other docpools. #2601
+  [tlotze]
 
 Changed:
 
