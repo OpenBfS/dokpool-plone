@@ -1,5 +1,1 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.base" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<body>
-
-</body>
-</html>
+<tal:replace content="structure provider:plone.belowcontent" />

@@ -99,7 +99,12 @@ class DPDocumentprintView(FlexibleView):
 
 @implementer(IViewView)
 class DPDocumentcommentingView(BrowserView):
-    """Additional View
+    """Comments form
+
+    Separate view rendered in the context of the document, so it can be
+    included inside an iframe when the document is displayed by a dview
+    whose context in turn is not the document but, e.g., a collection.
+
     """
 
     __call__ = ViewPageTemplateFile('dpdocumentcommenting.pt')
