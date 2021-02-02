@@ -31,6 +31,7 @@ from zope.interface import implementer
 import json
 import mimetypes
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
+import uuid
 
 
 class DPDocumentView(FlexibleView):
@@ -203,8 +204,7 @@ class AddForm(add.DefaultAddForm):
         if 'reireport' in self.request.get('form.widgets.docType', []):
             title = self.widgets['IDublinCore.title']
             if not title.value:
-                import uuid
-                title.value = uuid.uuid4().hex
+                title.value = str(uuid.uuid4())
             title.mode = 'hidden'
 
 class AddView(add.DefaultAddView):
