@@ -9,6 +9,9 @@ Added:
 - Added Changelog
   [slindner]
 
+- Add custom add-form for DPDocument to hide title-field for reireport #4039
+  [pbauer]
+
 
 Changed:
 
