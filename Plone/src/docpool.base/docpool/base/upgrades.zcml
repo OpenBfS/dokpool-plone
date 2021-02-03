@@ -134,4 +134,14 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1005"
+      destination="1006"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Delete IRIXConfig"
+      handler="docpool.base.upgrades.to_1006"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
