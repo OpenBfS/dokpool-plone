@@ -15,7 +15,12 @@ def allowed_targets(context):
     and, if context is a document,
         my current version must not have been transferred.
     """
-    esd_uid = context.myDocumentPool().UID()
+    try:
+        esd = context.myDocumentPool()
+    except AttributeError:
+        return []
+
+    esd_uid = esd.UID()
     have_doctype = isinstance(context, DocType)
     dto = context if have_doctype else context.docTypeObj()
     dt_id = dto.id if dto else '---'

@@ -12,6 +12,8 @@ Added:
 - Add custom add-form for DPDocument to hide title-field for reireport #4039
   [pbauer]
 
+- Add automatic transfer of published documents to other docpools. #2601
+  [tlotze]
 
 Changed:
 
