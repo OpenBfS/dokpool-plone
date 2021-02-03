@@ -20,6 +20,7 @@ from plone import api
 from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.layout.globals.interfaces import IViewView
+from plone.dexterity.browser import add
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from Products.Five.browser import BrowserView
@@ -30,6 +31,7 @@ from zope.interface import implementer
 import json
 import mimetypes
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
+import uuid
 
 
 class DPDocumentView(FlexibleView):
@@ -192,3 +194,18 @@ class FileUploadView(BaseFileUploadView):
             }
         )
         return result
+
+
+class AddForm(add.DefaultAddForm):
+    portal_type = 'DPDocument'
+
+    def updateWidgets(self):
+        super(AddForm, self).updateWidgets()
+        if 'reireport' in self.request.get('form.widgets.docType', []):
+            title = self.widgets['IDublinCore.title']
+            if not title.value:
+                title.value = str(uuid.uuid4())
+            title.mode = 'hidden'
+
+class AddView(add.DefaultAddView):
+    form = AddForm
