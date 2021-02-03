@@ -1,6 +1,7 @@
 <tal:insert replace="structure python:view.myView('inline')" />
 
 <iframe
+  class="dpdocument-dview-commenting"
   tal:condition="here/@@conversation_view/enabled"
   tal:attributes="src string:${here/absolute_url}/commenting"
   width="100%"
