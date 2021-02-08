@@ -228,6 +228,9 @@ erstellt und eingecheckt werden:
 
     $ bin/instance fg
     $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
+    # Wir löschen den Cache der aus dem Plone gezogenen Ressourcen,
+    # damit unsere letzten Änderungen sichtbar werden.
+    $ rm -Rf .plone
     # Wir löschen die alten bundle Dateien, so behalten wir keine unnötigen Dateien
     $ rm -Rf theme
     # Wir lassen das theme Verzeichnis mit allen bundle Dateien neu erstellen.
