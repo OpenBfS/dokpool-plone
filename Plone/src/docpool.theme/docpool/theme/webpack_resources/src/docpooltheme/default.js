@@ -67,6 +67,7 @@ function close_popups() {
             if (popup) {
                 popup.close();
             }
+            delete window['popup_' + item];
         });
         localStorage.removeItem('open_popups');
     }
