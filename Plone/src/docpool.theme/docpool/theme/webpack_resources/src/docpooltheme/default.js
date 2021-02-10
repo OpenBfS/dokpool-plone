@@ -17,12 +17,12 @@ function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPos
     var generic_window_name = thisWindowName + "-" + path_names.split('/')[1];
     window['popup_' + generic_window_name] = null;
     // Add to open_popups
-    let open_popups = localStorage.getItem("open_popups");
+    // XXX open_popups should really be a set of unique names
+    let open_popups = JSON.parse(localStorage.getItem("open_popups"));
     if (open_popups === null) {
-         open_popups = [ generic_window_name ];
-    } else {
-        JSON.parse(open_popups).push(generic_window_name);
+        open_popups = [];
     }
+    open_popups.push(generic_window_name);
     localStorage.setItem("open_popups", JSON.stringify(open_popups));
     // No popup exists
     if (window['open_' + generic_window_name] === false || window['open_' + generic_window_name] === undefined) {
@@ -76,7 +76,7 @@ function go_to(url) {
 
 // Todo Needs a place to stay (own file)
 function close_popups() {
-    let open_popups = localStorage.getItem("open_popups");
+    let open_popups = JSON.parse(localStorage.getItem("open_popups"));
     if (open_popups !== null) {
         open_popups.forEach(function (item) {
             let popup = window.open('', item, '');
