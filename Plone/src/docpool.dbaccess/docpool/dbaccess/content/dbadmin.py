@@ -18,7 +18,6 @@ from datetime import datetime
 from docpool.dbaccess.content.errors import ObjectDuplicateException
 from docpool.dbaccess.dbinit import __metadata__
 from docpool.dbaccess.dbinit import __session__
-from docpool.dbaccess.interfaces import IAuditing
 from docpool.dbaccess.interfaces import IDataSecurity
 from docpool.dbaccess.interfaces import Idbadmin
 from docpool.dbaccess.interfaces import IProtectedEntityClass
@@ -28,7 +27,6 @@ from docpool.dbaccess.utils import stringFromDatetime
 from events import ObjectAddedEvent
 from events import ObjectChangedEvent
 from events import ObjectDeletedEvent
-from Products.Archetypes.utils import contentDispositionHeader
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import safe_unicode
@@ -58,22 +56,8 @@ import transaction
 import six
 
 
-try:
-    pass
-except ImportError:
-    # No multilingual support
-    pass
-
-
 metadata = __metadata__
 session = __session__
-
-
-# Kompatibilitaet fuer SQLAlchemy > 0.6
-try:
-    pass
-except ImportError:
-    pass
 
 
 std_encoding = 'latin-1'
@@ -547,8 +531,6 @@ class dbadmin(object):
             if not d:  # Keine Aenderungen!
                 # print "no diff"
                 return
-            if IAuditing.providedBy(obj):
-                obj.wasUpdated(self)
             defs = self.edit_def
         else:
             log("objektAnlegen")
@@ -595,10 +577,6 @@ class dbadmin(object):
                     # print d
                     notify(ObjectChangedEvent(obj, self, d, context))
             else:
-                if IAuditing.implementedBy(klass):
-                    # print "wasCreated"
-                    fsobj.model.wasCreated(self)
-                    __session__.flush()
                 if not isMinor:
                     notify(ObjectAddedEvent(fsobj.model, self, data, context))
         else:
@@ -933,12 +911,9 @@ class dbadmin(object):
 
             if REQUEST is not None and not justData:
                 RESPONSE = REQUEST.RESPONSE
-                header_value = contentDispositionHeader(
-                    'attachment',
-                    filename='%s_%s.csv' % (typ, DateTime().millis()),
-                    charset='latin-1',
-                )
-                RESPONSE.setHeader("Content-disposition", header_value)
+                filename = '%s_%s.csv' % (typ, DateTime().millis())
+                RESPONSE.setHeader("Content-disposition",
+                                   'attachment; filename=%s' % filename)
 
                 RESPONSE.setHeader("Content-Type", 'text/csv')
                 if groesse:

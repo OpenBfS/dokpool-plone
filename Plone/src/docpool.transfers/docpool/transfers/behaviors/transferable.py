@@ -3,6 +3,7 @@
 """
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
+from contextlib import contextmanager
 from datetime import datetime
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
@@ -19,28 +20,54 @@ from docpool.transfers.config import TRANSFERS_APP
 from docpool.transfers.content.transfers import determineChannels
 from docpool.transfers.content.transfers import determineTransferFolderObject
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
-from docpool.transfers.db.model import Channel
 from docpool.transfers.db.model import ChannelPermissions
 from docpool.transfers.db.model import ChannelReceives
 from docpool.transfers.db.model import ChannelSends
-from docpool.transfers.db.model import DocTypePermission
 from docpool.transfers.db.model import ReceiverLog
 from docpool.transfers.db.model import SenderLog
+from docpool.transfers.db.query import allowed_targets
+from logging import getLogger
 from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
-from sqlalchemy import and_
 from sqlalchemy.sql.expression import desc
-from sqlalchemy.sql.expression import or_
 from zope import schema
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+
+
+logger = getLogger(__name__)
+
+ANNOTATIONS_KEY = __name__
+
+
+@contextmanager
+def transferring():
+    """Keeps record of a tranfer going on while the code block executes.
+
+    The resource returned is a boolean telling whether a transfer was already going on
+    when entering the code block.
+
+    """
+    annotations = IAnnotations(getRequest()).setdefault(ANNOTATIONS_KEY, {})
+    KEY = 'transferring'
+    if annotations.get(KEY, False):
+        yield True
+    else:
+        annotations[KEY] = True
+        try:
+            yield False
+        finally:
+            del annotations[KEY]
 
 
 @provider(IFormFieldProvider)
@@ -213,57 +240,26 @@ class Transferable(FlexibleView):
         return False
 
     def allowedTargets(self):
-        """
-        Other ESD must have allowed communication with my ESD,
-        my DocType is known and must be accepted
-            or the DocType is not defined in the other ESD (will be checked later)
-        and my current version must not have been transferred.
-        """
-        esd_uid = self.context.myDocumentPool().UID()
-        # print esd_uid
-        dto = self.context.docTypeObj()
-        dt_id = dto and dto.id or '---'
-        # print dt_id
-        m = self.context.getMdate()
-        # print m
-        q = (
-            __session__.query(Channel)
-            .outerjoin(Channel.permissions)
-            .outerjoin(Channel.sends)
-            .filter(
-                and_(
-                    Channel.esd_from_uid == esd_uid,
-                    or_(
-                        and_(
-                            DocTypePermission.doc_type == dt_id,
-                            DocTypePermission.perm != 'block',
-                        ),
-                        ~Channel.permissions.any(
-                            DocTypePermission.doc_type == dt_id),
-                    ),
-                    ~Channel.sends.any(
-                        and_(
-                            SenderLog.document_uid == self.context.UID(),
-                            SenderLog.timestamp > m,
-                        )
-                    ),
-                )
-            )
-            .order_by('esd_from_title')
-        )
-        # print q.statement
-        targets = q.all()
-        # print len(targets)
-        return targets
+        return allowed_targets(self.context)
 
     security.declareProtected("Docpool: Send Content", "transferToAll")
 
     def transferToAll(self):
         """
         """
-        targets = self.allowedTargets()
-        self.transferToTargets(targets)
-        return self.context.restrictedTraverse('@@view')()
+        dto = self.context.docTypeObj()
+        dto_transfers = dto.type_extension(TRANSFERS_APP)
+        targets = [t for t in self.allowedTargets()
+                   if t.id in dto_transfers.automaticTransferTargets]
+
+        source_path = '/'.join(self.context.getPhysicalPath())
+        if targets:
+            logger.info(
+                'Transfer {} to up to {} targets.'.format(source_path, len(targets))
+            )
+            self.transferToTargets(targets)
+        else:
+            logger.info('No transfer targets found for {}.'.format(source_path))
 
     security.declareProtected("Docpool: Send Content", "manage_transfer")
 
@@ -272,7 +268,8 @@ class Transferable(FlexibleView):
         Performs the transfer for a list of Channel ids.
         """
         channels = determineChannels(target_ids)
-        self.transferToTargets(channels)
+        with transferring():
+            self.transferToTargets(channels)
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -361,6 +358,13 @@ class Transferable(FlexibleView):
                                 type='error',
                             )
                             continue
+
+                logger.info(
+                    'Transfer {} to {}.'.format(
+                        '/'.join(self.context.getPhysicalPath()),
+                        target.esd_to_title,
+                    )
+                )
 
                 # 2) Put a copy of me in each of them, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
@@ -531,3 +535,39 @@ def deleteTransferData(obj, event=None):
         return tObj.deleteTransferDataInDB()
     except BaseException:
         return False
+
+
+@adapter(IDPDocument, IActionSucceededEvent)
+def automatic_transfer_on_publish(obj, event=None):
+    """
+    """
+    if event and event.action == 'publish':
+        automatic_transfer(obj)
+
+
+def automatic_transfer(obj):
+    if obj.isArchive():
+        # In the process of archiving an event, its associated documents are copied and
+        # afterwards applied a workflow transition in order to restore their original
+        # workflow state. Objects published for this reason should not be transferred.
+        return
+
+    try:
+        tObj = ITransferable(obj)  # Try behaviour
+    except BaseException:
+        return
+
+    with transferring() as already_transferring:
+        if already_transferring:
+            return
+
+        logger.info(
+            'Automatic transfer of "{}" from {}'.format(
+                obj.Title(),
+                '/'.join(obj.getPhysicalPath()),
+            )
+        )
+        try:
+            return tObj.transferToAll()
+        except BaseException:
+            pass

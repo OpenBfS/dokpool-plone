@@ -50,10 +50,6 @@ msgstr "Abonnieren Sie einen stets aktuellen RSS Feed"
 msgid "alphabetically"
 msgstr "Alphabetisch"
 
-#: archetypes.querywidget/archetypes/querywidget/templates/date_range_widget.pt:22
-msgid "and"
-msgstr "und"
-
 msgid "Groups"
 msgstr "Gruppen"
 

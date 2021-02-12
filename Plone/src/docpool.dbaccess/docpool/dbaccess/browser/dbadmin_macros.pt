@@ -174,7 +174,6 @@
 		             prolog view/prolog;
 		             epilog view/epilog;
 		             allowMinor view/allowMinor;
-		             audit view/audit;
 		             dubletten request/dubletten|nothing;"
 			class="dbadmin">
 			<tal:dubletten condition="dubletten">
@@ -198,7 +197,6 @@
 	               </div>
 	               </div>
 				</tal:if>
-                <p class="audit" tal:condition="audit" i18n:translate="">Created by <tal:var replace="audit/en" i18n:name="user"/> on <tal:var replace="audit/ed" i18n:name="date"/>, last modified by <tal:var replace="audit/aen" i18n:name="user2"/> on <tal:var replace="audit/aed" i18n:name="date2"/></p>
 				<metal:slot define-slot="buttons-slot" />
 			</form>
             <p class="epilog" tal:condition="epilog" tal:content="epilog"></p>

@@ -5,9 +5,8 @@ import './default.less';
 import './theme.less';
 
 import jQuery from 'jquery';
-import registry from 'pat-registry';
 
-// Todo Needs a place to stay
+// Todo Needs a place to stay (own file)
 function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPosition, thisYPosition, thisScrollbar, thisResize) {
     'use strict';
     var myProperty = 'toolbar=0,location=0,directories=0,status=0,scrollbars=' + thisScrollbar + ',resizable=' + thisResize + ',width=' + thiswidth + ',height=' + thisheight + ',top=' + 0 + ',left=' + 0;
@@ -17,6 +16,14 @@ function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPos
     // Generates a unique window name like "Overview - Hessen" or "Overview - Bund"
     var generic_window_name = thisWindowName + "-" + path_names.split('/')[1];
     window['popup_' + generic_window_name] = null;
+    // Add to open_popups
+    let open_popups = localStorage.getItem("open_popups");
+    if (open_popups === null) {
+         open_popups = [ generic_window_name ];
+    } else {
+        JSON.parse(open_popups).push(generic_window_name);
+    }
+    localStorage.setItem("open_popups", JSON.stringify(open_popups));
     // No popup exists
     if (window['open_' + generic_window_name] === false || window['open_' + generic_window_name] === undefined) {
         window['popup_' + generic_window_name] = window.open(thisDocument, generic_window_name, myProperty);
@@ -32,14 +39,14 @@ function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPos
     if (window['popup_' + generic_window_name] && window['popup_' + generic_window_name].closed === false) {
         window['popup_' + generic_window_name].focus();
     }
-    // Popup open and no reload happend
+    // Popup open and no reload happening
     if (window['open_' + generic_window_name]){
         window['popup_' + generic_window_name] = window.open(thisDocument, generic_window_name, myProperty);
         window['popup_' + generic_window_name].focus();
     }
 }
 
-// Todo Needs a place to stay
+// Todo Needs a place to stay (own file)
 function go_to(url) {
     'use strict';
     var valid_urls = ['dokpool', 'Plone'];
@@ -65,6 +72,22 @@ function go_to(url) {
     } else {
         window.location.href = url;
     }
+}
+
+// Todo Needs a place to stay (own file)
+function close_popups() {
+    let open_popups = localStorage.getItem("open_popups");
+    if (open_popups !== null) {
+        open_popups.forEach(function (item) {
+            let popup = window.open('', item, '');
+            if (popup) {
+                popup.close();
+            }
+        });
+        localStorage.removeItem('open_popups');
+    }
+    var portal_root = $("body").data('portal-url');
+    window.location.href = portal_root + '/logout';
 }
 
 // More on magic comments
@@ -107,6 +130,7 @@ window.jQuery = jQuery;
 window.$ = jQuery;
 window.makePopUp = makePopUp;
 window.go_to = go_to;
+window.close_overview = close_popups;
 
 import requirejs from 'exports-loader?requirejs!script-loader!requirejs/require.js';
 requirejs.config({});  // the real configuration is loaded in webpack.xml

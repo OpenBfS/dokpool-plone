@@ -60,13 +60,6 @@ class ELANContentConfig(Container):
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
-    def getIRIXConfigs(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'IRIXConfig'}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
     def getTexts(self, **kwargs):
         """
         """

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from ..utils import set_local_roles
 from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
@@ -72,6 +73,10 @@ ARCHIVESTRUCTURE = [
     CONTENT_AREA,
 ]
 
+SPECIAL_PAGES = [
+    {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
+]
+
 ADMINSTRUCTURE = [
     {
         TYPE: 'ELANContentConfig',
@@ -95,53 +100,16 @@ ADMINSTRUCTURE = [
             },
             {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
             {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
+            {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
             {
                 TYPE: 'DashboardsConfig',
                 TITLE: u'Dashboard Configuration',
                 ID: 'dbconfig',
                 CHILDREN: [],
             },
-            {
-                TYPE: 'IRIXConfig',
-                TITLE: u'IRIX Configuration',
-                ID: 'irix',
-                'organisationReporting': 'www.yourorganisation.org',
-                'contactName': 'Your Contact Name',
-                'contactEmail': 'contact@yourorganisation.org',
-                'organisationName': 'Your Organisation',
-                'organisationId': 'www.yourorganisation.org',
-                'organisationCountry': 'DE',
-                'organisationWeb': 'http://www.yourorganisation.org',
-                'organisationEmail': 'info@yourorganisation.org',
-                'sourceText': 'ELAN-E Electronic Situation Display',
-                'sourceDescription': 'http://elan.yourorganisation.org',
-                'typeMapping': (
-                    'Event Information:Event information',
-                    'Notification:Event information',
-                    'Situation Report:Event information',
-                    'NPP Information:Plant status',
-                    'Weather Information:Meteorology',
-                    'Gamma Dose Rate:Measurements',
-                    'Air Activity:Measurements',
-                    'Ground Contamination:Measurements',
-                    'Measurement Result Food:Measurements',
-                    'Measurement Result Feed:Measurements',
-                    'Measurement Result Water:Measurements',
-                    'Protective Actions:Protective actions',
-                    'Instructions to the Public:Public information',
-                    'Media Release:Public information - Press release',
-                    'NPP Projection:Model result',
-                    'IFIN Projection:Model result',
-                    'RODOS Projection:Model result',
-                    'Other Projection:Model result',
-                    'CNCAN Projection:Model result',
-                    'Trajectory:Model result - Plume trajectory',
-                ),
-                CHILDREN: [],
-            },
         ],
     }
-]
+] + SPECIAL_PAGES
 
 
 def createBasicPortalStructure(plonesite, fresh):
@@ -190,27 +158,17 @@ def setELANLocalRoles(self):
     Receivers: Owner, Editor
     Senders: Contributor
     """
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    self.manage_setLocalRoles(
-        "%s_SituationReportAdmins" % prefix, ["SituationReportAdmin"]
-    )
-    self.contentconfig.manage_setLocalRoles(
-        "%s_ContentAdministrators" % prefix, ["ContentAdmin"]
-    )
-    self.archive.manage_setLocalRoles(
-        "%s_ContentAdministrators" % prefix, ["DocPoolAdmin"]
-    )
-    self.content.Groups.manage_setLocalRoles(
-        "%s_ContentAdministrators" % prefix, ["Site Administrator"]
-    )
-    self.esd.manage_setLocalRoles(
-        "%s_ContentAdministrators" %
-        prefix, ["ContentAdmin"])
-    self.manage_setLocalRoles("%s_ELANUsers" % prefix, ["ELANUser"])
-    self.config.manage_setLocalRoles(
-        "%s_ContentAdministrators" %
-        prefix, ["Owner"])
+    contentadmin = "{0}_ContentAdministrators"
+    set_local_roles(self, self, "{0}_SituationReportAdmins", ["SituationReportAdmin"])
+    set_local_roles(self, self.contentconfig, contentadmin, ["ContentAdmin"])
+    for pagedef in SPECIAL_PAGES:
+        name = pagedef[ID]
+        set_local_roles(self, self[name], contentadmin, ["ContentAdmin"])
+    set_local_roles(self, self.archive, contentadmin, ["DocPoolAdmin"])
+    set_local_roles(self, self.content.Groups, contentadmin, ["Site Administrator"])
+    set_local_roles(self, self.esd, contentadmin, ["ContentAdmin"])
+    set_local_roles(self, self, "{0}_ELANUsers", ["ELANUser"])
+    set_local_roles(self, self.config, contentadmin, ["Owner"])
 
 
 def createELANGroups(self):

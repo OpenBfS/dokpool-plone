@@ -28,6 +28,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="to_1004"
+      title="Upgrade profile for docpool.base"
+      directory="profiles/to_1004"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <genericsetup:upgradeSteps
       source="1.3.28"
       destination="1.4.00"
@@ -103,6 +111,36 @@
     <genericsetup:upgradeStep
         title="Adapt REIDoc to changes in NuclearInstallationVocabulary"
         handler="docpool.base.upgrades.to_1003"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1003"
+      destination="1004"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Update all AUTHORITIES vocabs with iso abbreviation"
+        handler="docpool.base.upgrades.to_1004"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1004"
+      destination="1005"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Reload workflows without AT permissions"
+        handler="docpool.base.upgrades.to_1005"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1005"
+      destination="1006"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Delete IRIXConfig"
+      handler="docpool.base.upgrades.to_1006"
         />
   </genericsetup:upgradeSteps>
 

@@ -56,6 +56,14 @@ class DocpoolSetup(BrowserView):
     """
 
     def __call__(self):
+        portal = api.portal.get()
+        if portal.id != 'dokpool' and not api.env.test_mode():
+            api.portal.show_message(
+                'The instance needs to be called "dokpool", not "{}"!'.format(portal.id),
+                self.request,
+                type='error')
+            return self.index()
+
         if not self.request.form.get('submit', None):
             return self.index()
 
@@ -254,7 +262,7 @@ class DocpoolSetup(BrowserView):
         # Add modulkonfiguration
 
         with api.env.adopt_user(user=user1):
-            sampletype_ids = [u'9', u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
+            sampletype_ids = [u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type (except reireport)
             for doctype in doctypes:
                 if doctype.id == 'reireport':
@@ -400,7 +408,7 @@ class DocpoolSetup(BrowserView):
                 ReiLegalBases=[u'REI-E'],
                 Origins=[u'unabhängige Messstelle'],
                 MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
-                Authority=u'Baden-Württemberg',
+                Authority=u'de_bw',
                 PDFVersion=u'PDF/A-1b',
             )
         folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
@@ -420,7 +428,7 @@ class DocpoolSetup(BrowserView):
                 ReiLegalBases=[u'REI-I'],
                 Origins=[u'Genehmigungsinhaber'],
                 MStIDs=[u'09121'],
-                Authority=u'Mecklenburg-Vorpommern',
+                Authority=u'de_mv',
                 PDFVersion=u'PDF/A-1b',
             )
 
