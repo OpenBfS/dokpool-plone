@@ -1,7 +1,25 @@
 Changelog
 =========
 
-1.7.0 (unreleased)
+1.7.1 (unreleased)
+------------------
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+
+Removed:
+
+
+Technical:
+
+
+1.7.0 (12.02.2021)
 ------------------
 
 Added:
