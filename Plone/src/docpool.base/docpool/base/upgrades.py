@@ -325,8 +325,7 @@ def to_1005(context=None):
         portal_setup, 'profile-elan.esd:default', steps=['workflow'])
     loadMigrationProfile(
         portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])
-    log.info('Upgrading to 1005: adding report year index')
-    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1005')
+
 
 def index_report_year(context=None):
     log.info(u'Reindexing rei reports.')
@@ -338,4 +337,24 @@ def index_report_year(context=None):
     log.info('Done.')
 
 
+def to_1006(context=None):
+    log.info('Upgrading to 1006: delete IRIXConfig')
 
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(
+        portal_setup, 'profile-docpool.caching:default', steps=['plone.app.registry'])
+    loadMigrationProfile(
+        portal_setup,
+        'profile-elan.esd:default',
+        steps=['content_type_registry', 'workflow']
+    )
+
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        try:
+            api.content.delete(docpool['contentconfig']['irix'])
+        except KeyError:
+            pass
+
+    log.info('Upgrading to 1006: adding report year index')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1006')

@@ -193,4 +193,19 @@
       permission="zope2.View"
       />
 
+  <adapter
+      for="Products.CMFCore.interfaces.IFolderish
+           *
+           plone.dexterity.interfaces.IDexterityFTI"
+      provides="zope.publisher.interfaces.browser.IBrowserPage"
+      factory=".dpdocument.AddView"
+      name="DPDocument"
+      />
+  <class class=".dpdocument.AddView">
+      <require
+          permission="cmf.AddPortalContent"
+          interface="zope.publisher.interfaces.browser.IBrowserPage"
+          />
+  </class>
+
 </configure>

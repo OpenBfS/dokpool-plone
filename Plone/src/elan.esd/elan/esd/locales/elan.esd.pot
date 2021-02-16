@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-07 12:08+0000\n"
+"POT-Creation-Date: 2021-01-28 22:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,14 +130,6 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: elan.esd/elan/esd/profiles/default/types/IRIXConfig.xml
-msgid "IRIX Configuration"
-msgstr ""
-
-#: elan.esd/elan/esd/profiles/default/types/IRIXConfig.xml
-msgid "IRIX base configuration"
-msgstr ""
-
 #: elan.esd/elan/esd/portlets/collection.pt
 msgid "Latest from"
 msgstr ""
@@ -220,50 +212,6 @@ msgstr ""
 msgid "description_elandocument_doctype"
 msgstr ""
 
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_contactemail"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_contactname"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_organisationcountry"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_organisationemail"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_organisationid"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_organisationname"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_organisationreporting"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_organisationweb"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_sourcedescription"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_sourcetext"
-msgstr ""
-
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "description_irixconfig_typemapping"
-msgstr ""
-
 #: elan.esd/elan/esd/configure.zcml
 msgid "elan.esd"
 msgstr ""
@@ -286,61 +234,6 @@ msgstr ""
 #. Default: "Document Type"
 #: elan.esd/elan/esd/portlets/collection.py
 msgid "label_elandocument_doctype"
-msgstr ""
-
-#. Default: "Email of contact"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_contactemail"
-msgstr ""
-
-#. Default: "Name of contact"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_contactname"
-msgstr ""
-
-#. Default: "Country code"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_organisationcountry"
-msgstr ""
-
-#. Default: "Email address"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_organisationemail"
-msgstr ""
-
-#. Default: "ID of organisation"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_organisationid"
-msgstr ""
-
-#. Default: "Name of organisation"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_organisationname"
-msgstr ""
-
-#. Default: "Reporting State / Organisation"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_organisationreporting"
-msgstr ""
-
-#. Default: "Web address"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_organisationweb"
-msgstr ""
-
-#. Default: "Information source description"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_sourcedescription"
-msgstr ""
-
-#. Default: "Information source text"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_sourcetext"
-msgstr ""
-
-#. Default: " ELAN types 2 IRIX type mapping"
-#: elan.esd/elan/esd/content/irixconfig.py
-msgid "label_irixconfig_typemapping"
 msgstr ""
 
 #. Default: "Recently Modified"

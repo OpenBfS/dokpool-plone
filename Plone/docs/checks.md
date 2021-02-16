@@ -60,7 +60,7 @@ h3. Technische Hinweise (optional)
 
 ## Merge Requests
 
-* [ ] **Upgrade-Steps**: Wurde daran gedacht, für all solche Änderungen am Code, die sich auf bestehende Daten auswirken, Migrationscode in Form von Upgrade-Steps für Plone zu schreiben?
+* [ ] **Upgrade-Steps**: Wurde daran gedacht, für all solche Änderungen am Code, die sich auf bestehende Daten auswirken, Migrationscode in Form von Upgrade-Steps für Plone zu schreiben? Befinden sich die Upgrade-Steps in docpool.base?
 * [ ] **Changelog**: Wurde die Änderung aussagekräftig und mit Ticketnummer im Changelog erwähnt?
 * [ ] **Lesbarkeit**: Wurden Coding-Konventionen erfüllt, und ist der Code möglichst selbsterklärend formuliert?
 * [ ] **Docstrings**: Haben alle Code-Einheiten, deren Name oder Inhalt nicht zur Erklärung ausreicht, Dokumentation in Docstrings?

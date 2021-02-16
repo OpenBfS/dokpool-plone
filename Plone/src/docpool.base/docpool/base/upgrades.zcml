@@ -140,10 +140,24 @@
         title="Reload workflows without AT permissions"
         handler="docpool.base.upgrades.to_1005"
         />
-      <genericsetup:upgradeStep
-              title="Add report_year index for eea_search"
-              handler="docpool.base.upgrades.index_report_year"
-      />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1005"
+      destination="1006"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+      title="Delete IRIXConfig"
+      handler="docpool.base.upgrades.to_1006"
+    />
+    <genericsetup:upgradeStep
+      title="Add report_year index to catalog"
+      handler="docpool.base.upgrades.to_1006"
+    />
+    <genericsetup:upgradeStep
+      title="Index report_year for eea_search"
+      handler="docpool.base.upgrades.index_report_year"
+    />
   </genericsetup:upgradeSteps>
 
 </configure>
