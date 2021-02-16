@@ -37,9 +37,9 @@
       />
 
   <genericsetup:registerProfile
-      name="to_1005"
+      name="to_1006"
       title="Upgrade profile for docpool.base"
-      directory="profiles/to_1005"
+      directory="profiles/to_1006"
       description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
@@ -148,10 +148,6 @@
       profile="docpool.base:default">
     <genericsetup:upgradeStep
       title="Delete IRIXConfig"
-      handler="docpool.base.upgrades.to_1006"
-    />
-    <genericsetup:upgradeStep
-      title="Add report_year index to catalog"
       handler="docpool.base.upgrades.to_1006"
     />
     <genericsetup:upgradeStep
