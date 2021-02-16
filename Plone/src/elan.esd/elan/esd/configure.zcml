@@ -44,10 +44,6 @@
    <permission id="elan.esd.AddELANArchives" title="Docpool: Add ELANArchives" />
 
 
-   <permission id="elan.esd.AddIRIXConfig" title="Docpool: Add IRIXConfig" />
-
-
-
   <utility
     component=".vocabularies.CategoriesVocabularyFactory"
     name="elan.esd.vocabularies.Categories" />

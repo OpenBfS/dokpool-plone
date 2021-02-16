@@ -343,3 +343,23 @@ def enable_bulk_actions(context=None):
         view_methods.append(view)
         fti.manage_changeProperties(view_methods=tuple(view_methods))
         log.info('Allowed docpool_collection_view_with_actions for Collections')
+
+
+def to_1006(context=None):
+    log.info('Upgrading to 1006: delete IRIXConfig')
+
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(
+        portal_setup, 'profile-docpool.caching:default', steps=['plone.app.registry'])
+    loadMigrationProfile(
+        portal_setup,
+        'profile-elan.esd:default',
+        steps=['content_type_registry', 'workflow']
+    )
+
+    for brain in api.content.find(portal_type='DocumentPool'):
+        docpool = brain.getObject()
+        try:
+            api.content.delete(docpool['contentconfig']['irix'])
+        except KeyError:
+            pass

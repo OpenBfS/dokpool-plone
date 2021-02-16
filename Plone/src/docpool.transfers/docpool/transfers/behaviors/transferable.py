@@ -3,6 +3,7 @@
 """
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
+from contextlib import contextmanager
 from datetime import datetime
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
@@ -26,6 +27,7 @@ from docpool.transfers.db.model import ReceiverLog
 from docpool.transfers.db.model import SenderLog
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
+from logging import getLogger
 from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
@@ -39,11 +41,34 @@ from sqlalchemy.sql.expression import desc
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import provider
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
+logger = getLogger(__name__)
+
 ANNOTATIONS_KEY = __name__
+
+
+@contextmanager
+def transferring():
+    """Keeps record of a tranfer going on while the code block executes.
+
+    The resource returned is a boolean telling whether a transfer was already going on
+    when entering the code block.
+
+    """
+    annotations = IAnnotations(getRequest()).setdefault(ANNOTATIONS_KEY, {})
+    KEY = 'transferring'
+    if annotations.get(KEY, False):
+        yield True
+    else:
+        annotations[KEY] = True
+        try:
+            yield False
+        finally:
+            del annotations[KEY]
 
 
 @provider(IFormFieldProvider)
@@ -227,8 +252,15 @@ class Transferable(FlexibleView):
         dto_transfers = dto.type_extension(TRANSFERS_APP)
         targets = [t for t in self.allowedTargets()
                    if t.id in dto_transfers.automaticTransferTargets]
-        self.transferToTargets(targets)
-        return self.context.restrictedTraverse('@@view')()
+
+        source_path = '/'.join(self.context.getPhysicalPath())
+        if targets:
+            logger.info(
+                'Transfer {} to up to {} targets.'.format(source_path, len(targets))
+            )
+            self.transferToTargets(targets)
+        else:
+            logger.info('No transfer targets found for {}.'.format(source_path))
 
     security.declareProtected("Docpool: Send Content", "manage_transfer")
 
@@ -237,7 +269,8 @@ class Transferable(FlexibleView):
         Performs the transfer for a list of Channel ids.
         """
         channels = determineChannels(target_ids)
-        self.transferToTargets(channels)
+        with transferring():
+            self.transferToTargets(channels)
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -326,6 +359,13 @@ class Transferable(FlexibleView):
                                 type='error',
                             )
                             continue
+
+                logger.info(
+                    'Transfer {} to {}.'.format(
+                        '/'.join(self.context.getPhysicalPath()),
+                        target.esd_to_title,
+                    )
+                )
 
                 # 2) Put a copy of me in each of them, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
@@ -503,26 +543,32 @@ def automatic_transfer_on_publish(obj, event=None):
     """
     """
     if event and event.action == 'publish':
-        return automatic_transfer(obj)
+        automatic_transfer(obj)
 
 
 def automatic_transfer(obj):
+    if obj.isArchive():
+        # In the process of archiving an event, its associated documents are copied and
+        # afterwards applied a workflow transition in order to restore their original
+        # workflow state. Objects published for this reason should not be transferred.
+        return
+
     try:
         tObj = ITransferable(obj)  # Try behaviour
     except BaseException:
-        return False
-
-    annotations = IAnnotations(tObj.request).setdefault(ANNOTATIONS_KEY, {})
-    KEY = 'automatic_transfer_going_on'
-    if annotations.get(KEY, False):
         return
 
-    annotations[KEY] = True
-    try:
-        log('Try automaticTransfer of %s from %s' %
-            (obj.Title(), obj.absolute_url()))
-        return tObj.transferToAll()
-    except BaseException:
-        return False
-    finally:
-        del annotations[KEY]
+    with transferring() as already_transferring:
+        if already_transferring:
+            return
+
+        logger.info(
+            'Automatic transfer of "{}" from {}'.format(
+                obj.Title(),
+                '/'.join(obj.getPhysicalPath()),
+            )
+        )
+        try:
+            return tObj.transferToAll()
+        except BaseException:
+            pass

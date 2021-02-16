@@ -132,6 +132,22 @@
         title="Reload workflows without AT permissions"
         handler="docpool.base.upgrades.to_1005"
         />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1005"
+      destination="1006"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Delete IRIXConfig"
+      handler="docpool.base.upgrades.to_1006"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="1006"
+      destination="1007"
+      profile="docpool.base:default">
     <genericsetup:upgradeStep
         title="Enable bulk-actions in listings"
         handler="docpool.base.upgrades.enable_bulk_actions"
