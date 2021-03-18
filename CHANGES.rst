@@ -9,6 +9,8 @@ Added:
 
 Changed:
 
+- Switched to new CI runner & docker #4158
+  [slindner]
 
 Fixed:
 
