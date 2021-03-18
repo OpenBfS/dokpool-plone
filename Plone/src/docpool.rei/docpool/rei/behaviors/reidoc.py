@@ -381,13 +381,10 @@ def set_title(obj, event=None):
     installations=re.split(r", U[A-Z0-9]{3}",adapted.nuclear_installations_display())
     installations[0]=installations[0][5:]
     if len(installations) == 1:
-        installations_prefix = u'für die Kerntechnische Anlage'
         installations = installations[0]
     elif len(installations) == 2:
-        installations_prefix = u'für die Kerntechnischen Anlagen'
         installations = u' und '.join(installations)
     else:
-        installations_prefix = u'für die Kerntechnischen Anlagen'
         part1 = u', '.join(installations[:-1])
         installations = u'{} und {}'.format(part1, installations[-1])
     if adapted.Medium:
@@ -395,10 +392,9 @@ def set_title(obj, event=None):
     else:
         medium = u''
     origins = u'({})'.format(', '.join(adapted.Origins))
-    new_title = u'REI-{legal} {medium}{period} {installations_prefix} {installations} {origins}'.format(
+    new_title = u'REI-{legal} {medium}{period} {installations} {origins}'.format(
         legal=legal,
         period=period,
-        installations_prefix=installations_prefix,
         installations=installations,
         medium=medium,
         origins=origins,
