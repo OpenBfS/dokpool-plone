@@ -12,6 +12,9 @@ Changed:
 - Switched to new CI runner & docker #4158
   [slindner]
 
+- Simplify generated title for REI-reports. #4224
+  [kprobst]
+
 Fixed:
 
 
