@@ -2,4 +2,3 @@
 
 pre-commit
 zc.buildout
-setuptools-scm
