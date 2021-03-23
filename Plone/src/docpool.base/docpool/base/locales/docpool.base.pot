@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-08-14 07:51+0000\n"
+"POT-Creation-Date: 2021-01-19 13:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,8 +130,18 @@ msgstr ""
 msgid "Groups Area"
 msgstr ""
 
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Help"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Images:"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Imprint"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/InfoFolder.xml

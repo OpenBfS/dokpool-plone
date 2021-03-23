@@ -14,21 +14,3 @@
  * Hosted on http://amsul.github.io/pickadate.js
  * Licensed under MIT
  */
-
-//! author : lluchs : https://github.com/lluchs
-
-//! author: Menelion Elensúle: https://github.com/Oire
-
-//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
-
-//! license : MIT
-
-//! locale : german (de)
-
-//! moment.js
-
-//! moment.js locale configuration
-
-//! momentjs.com
-
-//! version : 2.10.6

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2020-08-14 07:51+0000\n"
+"POT-Creation-Date: 2021-01-19 13:24+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -129,9 +129,19 @@ msgstr "Gruppenordner"
 msgid "Groups Area"
 msgstr "Gruppenbereich"
 
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Help"
+msgstr "Hilfe"
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Images:"
 msgstr "Bilder:"
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Imprint"
+msgstr "Impressum"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoFolder.xml
 msgid "Info-Folder"
