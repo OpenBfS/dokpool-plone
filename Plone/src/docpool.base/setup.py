@@ -3,10 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '1.7.1.dev0'
-
-setup(
-    name='docpool.base',
+version = '1.8.0.d8.0.d8.0.d8.0.d8.0.d8.0.d8.0.d8.0.d',
     version=version,
     description="",
     long_description="""\
