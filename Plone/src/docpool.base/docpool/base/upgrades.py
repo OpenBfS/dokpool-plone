@@ -328,14 +328,7 @@ def to_1005(context=None):
         portal_setup, 'profile-elan.sitrep:default', steps=['workflow'])
 
 
-def index_report_year(context=None):
-    log.info(u'Reindexing rei reports.')
-    brains = api.content.find(portal_type='DPDocument', dp_type='reireport')
-    log.info(u'Found {0} rei reports to reindex'.format(len(brains)))
-    for brain in brains:
-        obj = brain.getObject()
-        obj.reindexObject(idxs=['report_year'])
-    log.info('Done.')
+
 
 
 def to_1006(context=None):
@@ -402,5 +395,18 @@ def to_1007_delete_local_impressum_pages(context=None):
     if 'impressum' in portal['contentconfig']:
         api.content.move(portal['contentconfig']['impressum'], portal)
 
-    log.info('Upgrading to 1006: adding report year index')
-    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1006')
+
+def to_1008(context=None):
+
+    log.info('Upgrading to 1008: adding report year index')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1008')
+
+
+def index_report_year(context=None):
+    log.info(u'Reindexing rei reports.')
+    brains = api.content.find(portal_type='DPDocument', dp_type='reireport')
+    log.info(u'Found {0} rei reports to reindex'.format(len(brains)))
+    for brain in brains:
+        obj = brain.getObject()
+        obj.reindexObject(idxs=['report_year'])
+    log.info('Done.')
