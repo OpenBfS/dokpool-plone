@@ -6,6 +6,8 @@ Changelog
 
 Added:
 
+- Prepare review docker image #4243
+  [slindner]
 
 Changed:
 
