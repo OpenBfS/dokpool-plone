@@ -6,7 +6,7 @@
  <property name="description" i18n:translate="">Simple pages of text.</property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>
- <property name="global_allow">False</property>
+ <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
 
@@ -49,6 +49,5 @@
  <action title="Edit" action_id="edit" category="object" condition_expr="" url_expr="string:${object_url}/edit" visible="True">
   <permission value="Modify portal content" />
  </action>
-
 
 </object>

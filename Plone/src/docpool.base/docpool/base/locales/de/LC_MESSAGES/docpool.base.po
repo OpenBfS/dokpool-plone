@@ -145,9 +145,19 @@ msgstr "Gruppenordner"
 msgid "Groups Area"
 msgstr "Gruppenbereich"
 
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Help"
+msgstr "Hilfe"
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Images:"
 msgstr "Bilder:"
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Imprint"
+msgstr "Impressum"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoFolder.xml
 msgid "Info-Folder"
