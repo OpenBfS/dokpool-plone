@@ -17,7 +17,8 @@
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                              show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                              pas_member context/@@pas_member;
-                             buttons python:view.dp_buttons(batch)">
+                             buttons python:view.dp_buttons(batch);
+                             container_type python: context.portal_type;">
         <tal:listing>
 
             <form name="folderContentsForm"
@@ -81,7 +82,7 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>
@@ -465,7 +466,8 @@
                              show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                              navigation_root_url context/@@plone_portal_state/navigation_root_url;
                              pas_member context/@@pas_member;
-                             buttons python:[]">
+                             buttons python:[];
+                             container_type python: context.portal_type;">
             <tal:listing condition="batch">
 
                 <table id="sortable"
@@ -498,7 +500,7 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>
