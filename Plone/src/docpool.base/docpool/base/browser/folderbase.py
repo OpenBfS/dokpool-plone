@@ -23,6 +23,7 @@ from plone import api
 from plone.app.content.browser.interfaces import IFolderContentsView
 from plone.app.contenttypes.interfaces import ICollection
 from plone.memoize import view
+from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -127,7 +128,7 @@ class FolderBaseView(BrowserView):
 class FolderDeleteForm(form.Form):
     """Delete multiple items by path
     Modernized version of folder_delete.cpy (of Plone 4).
-    Called from a folder listing with actions using a folder_button with string:@@folder_delete:method
+    Called from a folder or collection with actions using a folder_button with string:@@folder_delete:method
     Partly stolen from plone.app.content.browser.actions.DeleteConfirmationForm
     """
 
@@ -143,6 +144,7 @@ class FolderDeleteForm(form.Form):
         """Render linkintegrity-info for all items that are to be deleted."""
         paths = self.request.get('paths', [])
         objects = [api.content.get(path=str(path)) for path in paths]
+        objects = [i for i in objects if self.check_delete_permission(i)]
         adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
         if adapter:
             return adapter(objects)
@@ -152,6 +154,7 @@ class FolderDeleteForm(form.Form):
     def handle_delete(self, action):
         paths = self.request.get('paths', [])
         objects = [api.content.get(path=str(path)) for path in paths]
+        objects = [i for i in objects if self.check_delete_permission(i)]
         # linkintegrity was already checked and maybe ignored!
         api.content.delete(objects=objects, check_linkintegrity=False)
         api.portal.show_message(u'Items deleted', self.request)
@@ -170,3 +173,6 @@ class FolderDeleteForm(form.Form):
             self.actions['Delete'].addClass('btn-danger')
         if self.actions and 'Cancel' in self.actions:
             self.actions['Cancel'].addClass('btn-secondary')
+
+    def check_delete_permission(self, obj):
+        return api.user.has_permission('Delete objects', obj=obj)
