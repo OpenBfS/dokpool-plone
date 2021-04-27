@@ -19,6 +19,8 @@ Changed:
 
 Fixed:
 
+- Fix adding events without journals. #4267
+  [pbauer]
 
 Removed:
 
