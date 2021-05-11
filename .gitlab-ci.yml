@@ -24,8 +24,10 @@ cache:
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
 stages:
-  - test
-  - report
+  # Todo Enable if  build works
+  #  - test
+  - build
+  - deploy
 
 before_script:
   # Git for 3rd party source packages
@@ -62,19 +64,6 @@ before_script:
   # Update Python virtual environment to latest version
   - pip install -U virtualenv
 
-  # Create project virtual environment
-  - cd /opt/bfs/dokpool/Plone
-  #- /usr/bin/virtualenv --version
-  #- /usr/bin/virtualenv --clear -p python2.7 venv
-  #- source venv/bin/activate
-
-  # Buildout configuration
-  - cp config-template.cfg.tmpl config.cfg
-  - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
-  - ./bin/buildout bootstrap
-  - pip install -r requirements.txt
-  - ./bin/buildout -N -t 3 -c test_ci_server.cfg
-
 # Not ready - replace with pre-commit
 #code-analysis:
 #  tags:
@@ -85,25 +74,87 @@ before_script:
 #  script:
 #    - bin/code-analysis
 
-unittests:
+build:
   tags:
-    - docker
-  stage: test
-  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
-  # success_with_warnings: True
+    - shell
+  stage: build
   script:
-    - ./bin/coverage erase
-    - ./bin/coverage run ./bin/test || exit 1
-    ## Tests only docpool_setup (without robot)
-    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
-    ## Combines the previous two runs as parallel run is set
-    - ./bin/coverage combine
-    - ./bin/coverage html
-    - ./bin/coverage report
-  coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
-  artifacts:
-    paths:
-      - parts/test/htmlreport
+    # build docker
+    - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
+    - docker build -t bfs/dokpool -f ./Docker/ubuntu16/Dockerfile.standalone .
+    - docker tag bfs/dokpool:latest git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
+    - docker push git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
+  only:
+  - review
+
+deploy_dev:
+  tags:
+    - shell
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - docker pull git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
+    # Stop if it is running
+    - docker stop dokpool-review || true
+    - docker rm dokpool-review || true
+    # Start instance and build demo data
+    - docker run --detach --publish 8081:8081 --name dokpool-review git.starzel.de:5050/bfs/dokpool:review
+    # Create the vanilla plone site
+    - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=dokpool&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8081/@@plone-addsite
+    # Log in to the server.  This only needs to be done once.
+    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True' --delete-after http://127.0.0.1:8081/dokpool/login
+    - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8081/dokpool/docpool_setup
+  environment:
+    name: dev
+    url: https://review-one-bfs.starzel.de/
+  only:
+  - review
+
+undeploy_dev:
+  tags:
+    - shell
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - echo "Remove review app from dev.loc"
+    - docker stop dokpool-review || true
+    - docker rm dokpool-review || true
+  when: manual
+  environment:
+    name: dev
+    action: stop
+
+#unittests:
+#  tags:
+#    - docker
+#  stage: test
+#  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
+#  # success_with_warnings: True
+#  script:
+#    # build
+#    - cd /opt/bfs/dokpool/Plone
+#    # Buildout configuration
+#    - cp config-template.cfg.tmpl config.cfg
+#    - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
+#    - ./bin/buildout bootstrap
+#    - pip install -r requirements.txt
+#    - ./bin/buildout -N -t 3 -c test_ci_server.cfg
+#    # Run tests
+#    - ./bin/coverage erase
+#    - ./bin/coverage run ./bin/test || exit 1
+#    ## Tests only docpool_setup (without robot)
+#    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
+#    ## Combines the previous two runs as parallel run is set
+#    - ./bin/coverage combine
+#    - ./bin/coverage html
+#    - ./bin/coverage report
+#  coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
+#  artifacts:
+#    paths:
+#      - parts/test/htmlreport
+
 # No robot tests yet
 #robot:
 #  tags:
