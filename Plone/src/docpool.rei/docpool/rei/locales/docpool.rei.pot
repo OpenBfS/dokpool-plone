@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-03-11 13:55+0000\n"
+"POT-Creation-Date: 2021-05-11 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,10 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "REI legal Bases"
+msgstr ""
+
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "REI-E reports need to specify a medium."
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -221,12 +225,8 @@ msgstr ""
 msgid "label_rei_NuclearInstallations"
 msgstr ""
 
-#. Default: "Berichtende Stelle"
-#: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_Origin"
-msgstr ""
-
 #. Default: "Origins"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Origins"
 msgstr ""
@@ -257,6 +257,11 @@ msgstr ""
 #. Default: "Bericht enthält Daten folgender Messstellen"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "label_rei_mstids_initial_value"
+msgstr ""
+
+#. Default: "REI-E reports need to specify a medium xxx"
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "no_medium_for_rei_e_report"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
