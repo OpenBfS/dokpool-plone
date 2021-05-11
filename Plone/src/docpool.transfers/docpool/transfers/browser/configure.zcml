@@ -16,7 +16,7 @@
         name="view"
         for="..interfaces.IDPTransferFolder"
         class=".dptransferfolder.DPTransferFolderView"
-        permission="zope2.View"
+        permission="docpool.transfers.SendContent"
         />
 
     <browser:page
@@ -24,7 +24,7 @@
         for="*"
         class=".dpdocument_transfer_form.TransferForm"
         template="dpdocument_transfer_form.pt"
-        permission="zope2.View"
+        permission="docpool.transfers.SendContent"
         />
 
 </configure>

@@ -149,7 +149,7 @@
    <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
    <property name="available_expr">python:not context.isIndividual()</property>
    <property name="permissions">
-    <element value="View"/>
+    <element value="Docpool: Send Content"/>
    </property>
    <property name="visible">True</property>
   </object>
