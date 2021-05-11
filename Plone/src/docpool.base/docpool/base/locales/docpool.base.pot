@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-19 15:20+0000\n"
+"POT-Creation-Date: 2021-05-11 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,6 +58,7 @@ msgid "DPDocument"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Delete"
 msgstr ""
 
@@ -147,7 +148,7 @@ msgid "Groups Area"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Help"
 msgstr ""
 
@@ -156,7 +157,7 @@ msgid "Images:"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Imprint"
 msgstr ""
 
@@ -172,6 +173,10 @@ msgstr ""
 msgid "Item(s) pasted."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Items deleted."
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "LT"
 msgstr ""
@@ -184,8 +189,16 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items deleted."
+msgstr ""
+
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "No items or transitions!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items to delete."
 msgstr ""
 
 #: docpool.base/docpool/base/content/dpdocument.py
@@ -538,6 +551,7 @@ msgid "label_anonymous_user"
 msgstr ""
 
 #. Default: "Cancel"
+#: docpool.base/docpool/base/browser/folderbase.py
 #: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_cancel"
 msgstr ""

@@ -145,6 +145,9 @@ class FolderDeleteForm(form.Form):
         paths = self.request.get('paths', [])
         objects = [api.content.get(path=str(path)) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
+        if not objects:
+            api.portal.show_message(_(u'No items to delete.'), self.request)
+            return self.request.response.redirect(self.view_url())
         adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
         if adapter:
             return adapter(objects)
@@ -155,9 +158,12 @@ class FolderDeleteForm(form.Form):
         paths = self.request.get('paths', [])
         objects = [api.content.get(path=str(path)) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
-        # linkintegrity was already checked and maybe ignored!
-        api.content.delete(objects=objects, check_linkintegrity=False)
-        api.portal.show_message(u'Items deleted', self.request)
+        if objects:
+            # linkintegrity was already checked and maybe ignored!
+            api.content.delete(objects=objects, check_linkintegrity=False)
+            api.portal.show_message(_(u'Items deleted.'), self.request)
+        else:
+            api.portal.show_message(_(u'No items deleted.'), self.request)
         target = self.view_url()
         return self.request.response.redirect(target)
 
