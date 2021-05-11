@@ -2,15 +2,18 @@
 """A BrowserView to replace the Controller Python Script "folder_publish"
 """
 from DateTime import DateTime
+from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
-from docpool.base import DocpoolMessageFactory as _
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZODB.POSException import ConflictError
 from zope.i18n import translate
+from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
+
+PMF = MessageFactory('plone')
 
 
 class WorkflowActionView(BrowserView):
@@ -50,6 +53,11 @@ class WorkflowActionView(BrowserView):
                     self.transitions.append(tdata)
             if item['transitions']:
                 self.items.append(item)
+
+        if form.get('form.button.cancel'):
+            msg = PMF(u'Changes canceled.')
+            api.portal.show_message(msg, self.request)
+            return self.request.response.redirect(self.context.absolute_url())
 
         if not form.get('form.button.submit'):
             return self.template()
