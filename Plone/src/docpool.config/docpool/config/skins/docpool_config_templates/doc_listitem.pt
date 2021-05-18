@@ -9,11 +9,12 @@
                  eurl dpbrain/getURL;
                  item_id dpbrain/id|dpbrain/getId;
                  item_title dpbrain/Title|dpbrain/title_or_id;
-                 title_or_id python:item_title or item_id;                 
+                 title_or_id python:item_title or item_id;
                  buttons options/buttons|nothing;
                  dpbrainobj dpbrain/getObject;
                  isOverview options/isOverview;
                  isCollection options/isCollection;
+                 container_type options/container_type | nothing;
                  individual context/isIndividual;
                  myfolder_url nocall:options/myfolder_url;
                  item_description dpbrain/Description;
@@ -30,23 +31,25 @@
                  normalizeString nocall: context/plone_utils/normalizeString;
                  item_type_class python:'contenttype-' + normalizeString(item_ptype);
                  rs dpbrain/review_state;
-                 item_wf_state_class python:'state-' + normalizeString(rs);              
+                 item_wf_state_class python:'state-' + normalizeString(rs);
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
                 <td class="actions" tal:condition="python:not isOverview and not isCollection">
-                    <div metal:use-macro="here/@@dp.macros/macros/cb"/> 
-                    <div metal:use-macro="here/@@dp.macros/macros/delete"/> 
-                    <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
-                    <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
+                    <div metal:use-macro="here/@@dp.macros/macros/cb"/>
+                    <tal:show_actions condition="python:container_type != 'Collection'">
+                        <div metal:use-macro="here/@@dp.macros/macros/delete"/>
+                        <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+                        <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
+                    </tal:show_actions>
 
                 </td>
                 <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/> 
+                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
                     <div metal:use-macro="here/@@dp.macros/macros/fileimagelist"/>
                 </td>
                 <td class="metadata">
                     <div metal:use-macro="here/@@dp.macros/macros/doc_meta_listitem"/>
                 </td>
-    </tal:def> 
+    </tal:def>
 </tr>
 </table>

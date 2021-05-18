@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-26 22:25+0000\n"
+"POT-Creation-Date: 2021-01-20 14:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,10 @@ msgstr ""
 msgid "Makes documents transferable between pools"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
+msgid "No items or targets to transfer to!"
+msgstr ""
+
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
 msgid "No transfer to"
 msgstr ""
@@ -71,8 +75,12 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 msgid "Select"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
+msgid "The following items will be transfered:"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/db/forms.py
@@ -83,6 +91,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 #: docpool.transfers/docpool/transfers/browser/transfers_macros.pt
 msgid "Transfer"
 msgstr ""
@@ -99,19 +108,11 @@ msgstr ""
 msgid "Transfer Folder: filter not active!"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/transferDPDocument.cpy
-msgid "Transfer error: "
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/transferDPDocument.cpy
-msgid "Transfer executed"
-msgstr ""
-
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "Transfer target"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 msgid "Transfer to<br>"
 msgstr ""
 
@@ -125,16 +126,6 @@ msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/configure.zcml
 msgid "Type extension for transferable types"
-msgstr ""
-
-#. Default: "Cancel"
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
-msgid "cancelbutton"
-msgstr ""
-
-#. Default: "Verlassen des Formulars"
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
-msgid "canceltitle"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
@@ -240,16 +231,6 @@ msgstr ""
 
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "read/write"
-msgstr ""
-
-#. Default: "Submit"
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
-msgid "submitbutton"
-msgstr ""
-
-#. Default: "Absenden des Formulares"
-#: docpool.transfers/docpool/transfers/skins/docpool_transfers_templates/dpdocument_transfer_form.cpt
-msgid "submittitle"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/vocabularies.py

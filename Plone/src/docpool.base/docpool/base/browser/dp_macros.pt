@@ -17,7 +17,8 @@
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                              show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                              pas_member context/@@pas_member;
-                             buttons python:view.dp_buttons(batch)">
+                             buttons python:view.dp_buttons(batch);
+                             container_type python: context.portal_type;">
         <tal:listing>
 
             <form name="folderContentsForm"
@@ -43,12 +44,21 @@
                        class="listing responsive"
                        summary="Content listing"
                        tal:condition="batch"
+                       i18n:domain="docpool.base"
                        i18n:attributes="summary summary_content_listing;"
                        tal:define="isOverview python:0">
                     <thead>
                     <tr>
                         <metal:header_slot metal:define-slot="listingheader">
-                            <th class="nosort actions"></th>
+                            <th class="nosort actions">
+                              <input type="checkbox" name="checkAllAuto" id="checkAllAuto"
+                                     title="Toggle all" i18n:attributes="title label_toggle" />
+                                <script type="text/javascript">
+                                  $('#checkAllAuto').click(function() {
+                                      $("td.actions input[type='checkbox']").click();
+                                  })
+                                </script>
+                            </th>
                             <th class="nosort title" i18n:translate="">Title / Description / Text</th>
                             <th class="nosort metadata" i18n:translate="">Metadata</th>
                         </metal:header_slot>
@@ -72,7 +82,7 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>
@@ -456,7 +466,8 @@
                              show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                              navigation_root_url context/@@plone_portal_state/navigation_root_url;
                              pas_member context/@@pas_member;
-                             buttons python:[]">
+                             buttons python:[];
+                             container_type python: context.portal_type;">
             <tal:listing condition="batch">
 
                 <table id="sortable"
@@ -489,7 +500,7 @@
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
-                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
+                                        jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
                                     </script>

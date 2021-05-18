@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2021-01-19 13:24+0000\n"
+"POT-Creation-Date: 2021-05-11 14:55+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -20,8 +20,16 @@ msgstr ""
 msgid "${count} item(s) cut."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "${transitioned} Items transitioned!"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "Available transitions"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
@@ -36,6 +44,10 @@ msgstr ""
 msgid "Copy or cut one or more items to paste."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "Could not transition: ${title}"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/review_history.py
 msgid "Create"
 msgstr ""
@@ -45,6 +57,7 @@ msgid "DPDocument"
 msgstr "Document"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Delete"
 msgstr "Delete"
 
@@ -62,6 +75,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool view with bulk actions"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
@@ -130,7 +147,7 @@ msgid "Groups Area"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Help"
 msgstr ""
 
@@ -139,7 +156,7 @@ msgid "Images:"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Imprint"
 msgstr ""
 
@@ -155,6 +172,10 @@ msgstr ""
 msgid "Item(s) pasted."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Items deleted."
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "LT"
 msgstr ""
@@ -165,6 +186,18 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items deleted."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "No items or transitions!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items to delete."
 msgstr ""
 
 #: docpool.base/docpool/base/content/dpdocument.py
@@ -502,6 +535,11 @@ msgstr ""
 msgid "docpool.base"
 msgstr ""
 
+#. Default: "Select the transition to be used for modifying the items state."
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "help_change_status_action"
+msgstr ""
+
 #: docpool.base/docpool/base/vocabularies.py
 msgid "inactive"
 msgstr "Inactive"
@@ -512,6 +550,7 @@ msgid "label_anonymous_user"
 msgstr ""
 
 #. Default: "Cancel"
+#: docpool.base/docpool/base/browser/folderbase.py
 #: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_cancel"
 msgstr "Cancel"
@@ -625,6 +664,11 @@ msgstr "Document types allowed in this folder"
 #: docpool.base/docpool/base/content/text.py
 msgid "label_text_text"
 msgstr "Text"
+
+#. Default: "Toggle all"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "label_toggle"
+msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "modified:"

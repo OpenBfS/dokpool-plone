@@ -170,4 +170,14 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1007"
+      destination="1008"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Enable bulk-actions in listings"
+        handler="docpool.base.upgrades.enable_bulk_actions"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

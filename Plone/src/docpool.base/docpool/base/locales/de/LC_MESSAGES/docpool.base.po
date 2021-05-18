@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2021-01-19 13:24+0000\n"
+"POT-Creation-Date: 2021-05-11 14:55+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -20,9 +20,17 @@ msgstr ""
 msgid "${count} item(s) cut."
 msgstr "${count} Objekte ausgeschnitten."
 
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "${transitioned} Items transitioned!"
+msgstr "${transitioned} Einträge geändert!"
+
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
 msgstr "Archiv"
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "Available transitions"
+msgstr "verfügbare Statusänderungen"
 
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
 msgid "Content Area"
@@ -36,6 +44,10 @@ msgstr "Inhalt:"
 msgid "Copy or cut one or more items to paste."
 msgstr "Ein oder mehr Objekte kopieren oder ausschneiden, um sie einzufügen."
 
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "Could not transition: ${title}"
+msgstr "Konnte Statuswchsel nicht durchführen: ${title}"
+
 #: docpool.base/docpool/base/browser/review_history.py
 msgid "Create"
 msgstr ""
@@ -45,6 +57,7 @@ msgid "DPDocument"
 msgstr "Dokument"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Delete"
 msgstr "Löschen"
 
@@ -63,6 +76,10 @@ msgstr "Dokpool Konfiguration"
 #: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
 msgstr "Dokpool Ansicht"
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool view with bulk actions"
+msgstr "Docpool Ansicht mit Mehrfach-Aktionen"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"
@@ -130,7 +147,7 @@ msgid "Groups Area"
 msgstr "Gruppenbereich"
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Help"
 msgstr "Hilfe"
 
@@ -139,7 +156,7 @@ msgid "Images:"
 msgstr "Bilder:"
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -155,6 +172,10 @@ msgstr ""
 msgid "Item(s) pasted."
 msgstr "Objekt(e) eingefügt."
 
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Items deleted."
+msgstr "Inhalte gelöscht."
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "LT"
 msgstr "Ortszeit"
@@ -166,6 +187,18 @@ msgstr "Info-Link"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
 msgstr "Metadaten"
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items deleted."
+msgstr "Keine Inhalte gelöscht."
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "No items or transitions!"
+msgstr "Keine Einträge ausgewählt / keine Statusänderungen verfügbar."
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items to delete."
+msgstr "Keine zu löschenden Inhalte."
 
 #: docpool.base/docpool/base/content/dpdocument.py
 msgid "No legend image"
@@ -502,6 +535,11 @@ msgstr ""
 msgid "docpool.base"
 msgstr "docpool.base"
 
+#. Default: "Select the transition to be used for modifying the items state."
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "help_change_status_action"
+msgstr "Wählen sie den Statuswechsel, der benutzt werden soll, um den Status der Einträge zu ändern. Einträge, für die dieser Statuswechsel nicht gültig ist, bleiben unverändert."
+
 #: docpool.base/docpool/base/vocabularies.py
 msgid "inactive"
 msgstr "Inaktiv"
@@ -512,6 +550,7 @@ msgid "label_anonymous_user"
 msgstr ""
 
 #. Default: "Cancel"
+#: docpool.base/docpool/base/browser/folderbase.py
 #: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_cancel"
 msgstr "Abbrechen"
@@ -625,6 +664,11 @@ msgstr "Dokumenttypen, welche in diesem Ordner zulässig sind"
 #: docpool.base/docpool/base/content/text.py
 msgid "label_text_text"
 msgstr "Text"
+
+#. Default: "Toggle all"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "label_toggle"
+msgstr "Alle umschalten"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "modified:"

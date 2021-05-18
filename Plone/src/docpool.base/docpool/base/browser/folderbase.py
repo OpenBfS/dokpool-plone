@@ -14,6 +14,7 @@ view of that content type.
 
 
 from Acquisition import aq_inner
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
@@ -22,9 +23,13 @@ from plone import api
 from plone.app.content.browser.interfaces import IFolderContentsView
 from plone.app.contenttypes.interfaces import ICollection
 from plone.memoize import view
+from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form import button
+from z3c.form import field
+from z3c.form import form
 from zope.interface import implementer
 
 
@@ -53,13 +58,9 @@ class FolderBaseView(BrowserView):
     def dp_buttons(self, items):
         """
         Determine the available buttons by calling the original method from the
-        folder_contents view. We only accept cut & paste, though.
+        folder_contents view.
         """
-        res = []
-        for b in self.buttons(items):
-            if b['id'] in ['cut', 'paste']:
-                res.append(b)
-        return res
+        return self.buttons(items)
 
     def buttons(self, items):
         buttons = []
@@ -81,8 +82,7 @@ class FolderBaseView(BrowserView):
 
         for button in button_actions:
             # Make proper classes for our buttons
-            if button['id'] != 'paste' or context.cb_dataValid():
-                buttons.append(self.setbuttonclass(button))
+            buttons.append(self.setbuttonclass(button))
         return buttons
 
     def setbuttonclass(self, button):
@@ -123,3 +123,62 @@ class FolderBaseView(BrowserView):
             res = user.getProperty("apps") or []
         # print "filter_active ", res
         return res
+
+
+class FolderDeleteForm(form.Form):
+    """Delete multiple items by path
+    Modernized version of folder_delete.cpy (of Plone 4).
+    Called from a folder or collection with actions using a folder_button with string:@@folder_delete:method
+    Partly stolen from plone.app.content.browser.actions.DeleteConfirmationForm
+    """
+
+    fields = field.Fields()
+    template = ViewPageTemplateFile('templates/delete_confirmation.pt')
+    enableCSRFProtection = True
+
+    def view_url(self):
+        context_state = api.content.get_view('plone_context_state', self.context, self.request)
+        return context_state.view_url()
+
+    def more_info(self):
+        """Render linkintegrity-info for all items that are to be deleted."""
+        paths = self.request.get('paths', [])
+        objects = [api.content.get(path=str(path)) for path in paths]
+        objects = [i for i in objects if self.check_delete_permission(i)]
+        if not objects:
+            api.portal.show_message(_(u'No items to delete.'), self.request)
+            return self.request.response.redirect(self.view_url())
+        adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
+        if adapter:
+            return adapter(objects)
+        return ""
+
+    @button.buttonAndHandler(_('Delete'), name='Delete')
+    def handle_delete(self, action):
+        paths = self.request.get('paths', [])
+        objects = [api.content.get(path=str(path)) for path in paths]
+        objects = [i for i in objects if self.check_delete_permission(i)]
+        if objects:
+            # linkintegrity was already checked and maybe ignored!
+            api.content.delete(objects=objects, check_linkintegrity=False)
+            api.portal.show_message(_(u'Items deleted.'), self.request)
+        else:
+            api.portal.show_message(_(u'No items deleted.'), self.request)
+        target = self.view_url()
+        return self.request.response.redirect(target)
+
+    @button.buttonAndHandler(
+        _('label_cancel', default='Cancel'), name='Cancel')
+    def handle_cancel(self, action):
+        target = self.view_url()
+        return self.request.response.redirect(target)
+
+    def updateActions(self):
+        super(FolderDeleteForm, self).updateActions()
+        if self.actions and 'Delete' in self.actions:
+            self.actions['Delete'].addClass('btn-danger')
+        if self.actions and 'Cancel' in self.actions:
+            self.actions['Cancel'].addClass('btn-secondary')
+
+    def check_delete_permission(self, obj):
+        return api.user.has_permission('Delete objects', obj=obj)

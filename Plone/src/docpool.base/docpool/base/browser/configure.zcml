@@ -42,6 +42,13 @@
       />
 
   <browser:page
+      name="folder_delete"
+      for="*"
+      class=".folderbase.FolderDeleteForm"
+      permission="zope2.DeleteObjects"
+      />
+
+  <browser:page
       name="upload"
       for="..interfaces.IDPDocument"
       class=".dpdocument.FileUploadView"
@@ -143,6 +150,16 @@
       />
 
   <browser:page
+      name="docpool_collection_view_with_actions"
+      for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
+      template="docpool_collection_view_with_actions.pt"
+      class=".collection.CollectionView"
+      menu="plone_displayviews"
+      title="Docpool view with bulk actions"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="listitem"
       for="..interfaces.IInfoLink"
       class=".infolink.InfoLinklistitemView"
@@ -189,6 +206,14 @@
       name="review_history"
       class=".review_history.ReviewHistoryView"
       template="templates/review_history.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="*"
+      name="dpdocument_transition_form"
+      class=".dpdocument_transition_form.WorkflowActionView"
+      template="templates/dpdocument_transition_form.pt"
       permission="zope2.View"
       />
 

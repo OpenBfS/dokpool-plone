@@ -24,6 +24,7 @@ from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import safe_unicode
 from zExceptions import BadRequest
 from zope import schema
 from zope.interface import implementer
@@ -106,7 +107,7 @@ class CollaborationFolder(Container, SimpleFolder):
                                     },
                                     'submenu': None,
                                     'description': '',
-                                    'title': dt.Title,
+                                    'title': safe_unicode(dt.Title),
                                     'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
                                     % (self.absolute_url(), dt.id),
                                     'selected': False,
