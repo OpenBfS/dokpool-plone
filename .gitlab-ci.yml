@@ -24,8 +24,7 @@ cache:
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
 stages:
-  # Todo Enable if  build works
-  #  - test
+  - test
   - build
   - deploy
 
