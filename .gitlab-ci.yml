@@ -24,8 +24,7 @@ cache:
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
 stages:
-  # Todo Enable if  build works
-  #  - test
+  - test
   - build
   - deploy
 
@@ -126,34 +125,34 @@ undeploy_dev:
     name: dev
     action: stop
 
-#unittests:
-#  tags:
-#    - docker
-#  stage: test
-#  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
-#  # success_with_warnings: True
-#  script:
-#    # build
-#    - cd /opt/bfs/dokpool/Plone
-#    # Buildout configuration
-#    - cp config-template.cfg.tmpl config.cfg
-#    - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
-#    - ./bin/buildout bootstrap
-#    - pip install -r requirements.txt
-#    - ./bin/buildout -N -t 3 -c test_ci_server.cfg
-#    # Run tests
-#    - ./bin/coverage erase
-#    - ./bin/coverage run ./bin/test || exit 1
-#    ## Tests only docpool_setup (without robot)
-#    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
-#    ## Combines the previous two runs as parallel run is set
-#    - ./bin/coverage combine
-#    - ./bin/coverage html
-#    - ./bin/coverage report
-#  coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
-#  artifacts:
-#    paths:
-#      - parts/test/htmlreport
+unittests:
+  tags:
+    - docker
+  stage: test
+  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
+  # success_with_warnings: True
+  script:
+    # build
+    - cd /opt/bfs/dokpool/Plone
+    # Buildout configuration
+    - cp config-template.cfg.tmpl config.cfg
+    - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
+    - ./bin/buildout bootstrap
+    - pip install -r requirements.txt
+    - ./bin/buildout -N -t 3 -c test_ci_server.cfg
+    # Run tests
+    - ./bin/coverage erase
+    - ./bin/coverage run ./bin/test || exit 1
+    ## Tests only docpool_setup (without robot)
+    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
+    ## Combines the previous two runs as parallel run is set
+    - ./bin/coverage combine
+    - ./bin/coverage html
+    - ./bin/coverage report
+  coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
+  artifacts:
+    paths:
+      - parts/test/htmlreport
 
 # No robot tests yet
 #robot:
