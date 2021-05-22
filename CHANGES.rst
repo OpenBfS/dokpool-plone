@@ -1,8 +1,31 @@
 Changelog
 =========
 
-1.7.1 (unreleased)
-------------------
+1.7.2
+-----
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+- Add Plone hotfix 20210518
+  [tlotze]
+  Deployed on master as hotfix
+  [kprobst]
+
+
+Removed:
+
+
+Technical:
+
+
+1.7.1
+-----
 
 Added:
 
