@@ -11,7 +11,7 @@ class DPEventView(DefaultView):
     def changelog(self):
         """Changelog as a list of dicts
         """
-        changelog = json.loads(self.context.changelog)
+        changelog = json.loads(self.context.changelog or '[]')
         changelog = self.harmonize_dicts(changelog)
         return changelog
 

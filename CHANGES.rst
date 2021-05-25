@@ -9,6 +9,17 @@ Added:
 - Prepare review docker image #4243
   [slindner]
 
+- Bulk actions (transfer, transition and delete) for items in Folders and Collections. #2693 and #3460
+  [pbauer]
+
+  - New view for collections "Docpool view with bulk actions"
+  - New view dpdocument_transition_form for bulk transitions
+  - New view folder_delete for bulk content delete
+  - New toggle-all checkbox for listings with actions
+  - Add debug logger to myView
+  - Remove/replace python scripts and cpt's transferDPDocument.cpy, migrateELANTransfers.py, isSender.py, getTupleForTransfer.py, dpdocument_transfer_form.cpt
+  - Pass portal_type of real context to macros and hide some actions in collections (see also #2693)
+
 Changed:
 
 - Switched to new CI runner & docker #4158
@@ -19,6 +30,8 @@ Changed:
 
 Fixed:
 
+- Fix adding events without journals. #4267
+  [pbauer]
 
 Removed:
 

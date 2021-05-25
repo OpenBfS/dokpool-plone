@@ -110,9 +110,14 @@
  <object name="folder_buttons" meta_type="CMF Action Category">
   <property name="title"></property>
   <object name="delete" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Delete</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:@@folder_delete:method</property>
+   <property name="available_expr"></property>
    <property name="permissions">
-    <element value="View management screens"/>
+    <element value="Delete objects"/>
    </property>
+   <property name="visible">True</property>
   </object>
   <object name="change_state" meta_type="CMF Action" i18n:domain="plone">
     <property name="visible">False</property>
@@ -135,6 +140,26 @@
    <property name="available_expr">folder/cb_dataValid</property>
    <property name="permissions">
     <element value="Add portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="transfer" meta_type="CMF Action" i18n:domain="docpool.transfers">
+   <property name="title" i18n:translate="">Transfer</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
+   <property name="available_expr">python:not context.isIndividual() and checkPermission("Docpool: Send Content", object)</property>
+   <property name="permissions">
+    <element value="Docpool: Send Content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="transition" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Transition</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:@@dpdocument_transition_form:method</property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="View"/>
    </property>
    <property name="visible">True</property>
   </object>

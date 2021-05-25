@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from docpool.base.utils import extendOptions
+from logging import getLogger
 from plone.app.contenttypes.interfaces import IFile
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_hasattr
@@ -10,6 +11,8 @@ from zope.component import getMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 
 import Acquisition
+
+logger = getLogger(__name__)
 
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
@@ -76,6 +79,7 @@ class FlexibleView(BrowserView):
         for n in names:
             if safe_hasattr(dto, n):
                 o = aq_base(getattr(dto, n))
+                logger.debug(u'Rendering template {} ({}) for {} ({})'.format('/'.join(o._filepath.split('/')[-2:]), vtype, doc, dtid))
                 if IFile.providedBy(o):
                     f = o.file.open()
                     data = f.read()

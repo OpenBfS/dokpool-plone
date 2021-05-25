@@ -1,0 +1,69 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.transfers"
+      xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+<tal:def tal:define="transfer_infos python:view.transfer_infos();
+                     items python:transfer_infos['items'];
+                     targets python:transfer_infos['targets'];
+                     can_transfer python: items and targets;
+                     ">
+
+      <div tal:condition="python: not can_transfer">
+        <h2 i18n:translate="">No items or targets to transfer to!</h2>
+      </div>
+
+      <form method="post"
+            id="doctransferform"
+            name="transferform"
+            action="#"
+            tal:condition="python: can_transfer"
+            tal:attributes="action string:${context/absolute_url}/@@dpdocument_transfer_form">
+
+        <input type="hidden" name="form.submitted" value="1" />
+
+        <h2 i18n:translate="">Transfer</h2>
+        <p i18n:translate="">The following items will be transfered:</p>
+        <ul>
+          <li tal:repeat="item items" tal:content="python: item.title" />
+        </ul>
+
+        <table class="listing">
+          <thead>
+            <tr>
+              <th class="nosort" i18n:translate="" width="5">Select</th>
+              <th class="nosort" i18n:translate="">Transfer to<br></th>
+            </tr>
+          </thead>
+          <tbody>
+             <tr tal:repeat="target targets">
+                 <td>
+                    <input type="checkbox" checked="checked" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">
+                 </td>
+                 <td valign="top" tal:content="target/esd_to_title">Test1</td>
+             </tr>
+          </tbody>
+        </table>
+
+        <tal:block tal:repeat="item items">
+          <input type="hidden" name="dpdocids:list" value="1" tal:attributes="value python:item.id" />
+        </tal:block>
+
+        <div class="formControls" i18n:domain="plone">
+          <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply;title"/>
+          <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
+        </div>
+      </form>
+</tal:def>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

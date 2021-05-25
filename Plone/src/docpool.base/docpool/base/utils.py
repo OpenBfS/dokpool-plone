@@ -397,6 +397,7 @@ def extendOptions(context, request, options):
     options['myfolder_url'] = request.get('myfolder_url', "/")
     options['isOverview'] = int(request.get('isOverview', 0))
     options['isCollection'] = int(request.get('isCollection', 0))
+    options['container_type'] = request.get('container_type')
     options['buttons'] = eval(request.get('buttons', "[]"))
     # print options
     return options
