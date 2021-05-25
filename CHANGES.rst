@@ -1,6 +1,30 @@
 Changelog
 =========
 
+1.7.3
+-----
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+- Bump last weeks hotfix 20210518 to version 1.2
+  [tlotze]
+  Deployed on master as hotfix
+  [kprobst]
+
+
+Removed:
+
+
+Technical:
+
+
+
 1.7.2
 -----
 
