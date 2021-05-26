@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <object name="suche" meta_type="Dexterity Container">
  <criteria>
+  <criterion name="c9">
+   <property name="widget">criteria</property>
+   <property name="title">Aktuelle Suche</property>
+   <property name="hidecriteriaenabled">True</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+  </criterion>
   <criterion name="c4">
    <property name="widget">checkbox</property>
    <property name="title">Gesetzliche Grundlage</property>
