@@ -115,7 +115,9 @@ require([
       }
 
       if(!$content){
-        $content = $(that.options.content).clone();
+        console.log("New code")
+        var $content_raw = $(that.options.content).clone();
+        $content = $('<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3"><h4>' + $content_raw.text() + '</h4></td> <td>&nbsp</td> <td>&nbsp</td></tr>');  // jQuery starts to search at the first child element.
       }
       $target = $target.closest('tr');
       if ($content.length) {

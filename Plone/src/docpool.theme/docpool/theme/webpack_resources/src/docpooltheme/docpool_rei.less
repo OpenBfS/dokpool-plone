@@ -7,22 +7,48 @@
   }
 }
 
-a.rei-eea-search.open div {
-  background-image: url("++theme++docpoolrei/arrow_down_open.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 20px;
-  width: 20px;
-  text-indent: -99999em;
-  margin-left: 25px;
+a.rei-eea-search {
+  &.metadata {
+    &.open div {
+      background-image: url("++theme++docpoolrei/file-text-line.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+      text-indent: -99999em;
+      float:right;
+    }
+
+    &.close div {
+      background-image: url("++theme++docpoolrei/file-text-fill.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+      text-indent: -99999em;
+      float:right;
+    }
   }
 
-a.rei-eea-search.close div {
-  background-image: url("++theme++docpoolrei/arrow_down.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 20px;
-  width: 20px;
-  text-indent: -99999em;
-  margin-left: 25px;
+  &.metatitle {
+    &.open div {
+      background-image: url("++theme++docpoolrei/arrow-down.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+      text-indent: -99999em;
+      float:left;
+    }
+
+    &.close div {
+      background-image: url("++theme++docpoolrei/arrow-up.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+      text-indent: -99999em;
+      float:left;
+    }
+  }
 }
