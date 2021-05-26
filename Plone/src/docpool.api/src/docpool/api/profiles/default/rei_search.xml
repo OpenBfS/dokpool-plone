@@ -37,6 +37,42 @@
    <property name="maxitems">0</property>
    <property name="sortreversed">False</property>
   </criterion>
+  <criterion name="c6">
+   <property name="widget">checkbox</property>
+   <property name="title">Berichtszeitraum</property>
+   <property name="index">Period</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+           name="vocabulary">docpool.rei.vocabularies.PeriodVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
+  <criterion name="c10">
+   <property name="widget">checkbox</property>
+   <property name="title">Jahr</property>
+   <property name="index">report_year</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">False</property>
+   <property
+           name="vocabulary">docpool.rei.vocabularies.YearVocabulary</property>
+   <property name="catalog">portal_catalog</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
+  </criterion>
   <criterion name="c1">
    <property name="widget">checkbox</property>
    <property name="title">Netzbetreiber/Aufsichtsbehörde</property>
@@ -73,24 +109,6 @@
    <property name="maxitems">5</property>
    <property name="sortreversed">False</property>
   </criterion>
-  <criterion name="c6">
-   <property name="widget">checkbox</property>
-   <property name="title">Quartal</property>
-   <property name="index">Period</property>
-   <property name="operator">or</property>
-   <property name="operator_visible">False</property>
-   <property
-      name="vocabulary">docpool.rei.vocabularies.PeriodVocabulary</property>
-   <property name="catalog">portal_catalog</property>
-   <property name="position">left</property>
-   <property name="section">default</property>
-   <property name="hidden">False</property>
-   <property name="count">False</property>
-   <property name="sortcountable">False</property>
-   <property name="hidezerocount">False</property>
-   <property name="maxitems">0</property>
-   <property name="sortreversed">False</property>
-  </criterion>
   <criterion name="c7">
    <property name="widget">checkbox</property>
    <property name="title">Berichtende Stelle</property>
@@ -109,24 +127,7 @@
    <property name="maxitems">0</property>
    <property name="sortreversed">False</property>
   </criterion>
-  <criterion name="c10">
-   <property name="widget">checkbox</property>
-   <property name="title">Jahr</property>
-   <property name="index">report_year</property>
-   <property name="operator">or</property>
-   <property name="operator_visible">False</property>
-   <property
-      name="vocabulary">docpool.rei.vocabularies.YearVocabulary</property>
-   <property name="catalog">portal_catalog</property>
-   <property name="position">left</property>
-   <property name="section">default</property>
-   <property name="hidden">False</property>
-   <property name="count">False</property>
-   <property name="sortcountable">False</property>
-   <property name="hidezerocount">False</property>
-   <property name="maxitems">0</property>
-   <property name="sortreversed">False</property>
-  </criterion>
+
   <criterion name="c0">
    <property name="widget">resultsperpage</property>
    <property name="title">Results per page</property>

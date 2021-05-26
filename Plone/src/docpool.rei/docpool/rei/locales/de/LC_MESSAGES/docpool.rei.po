@@ -205,7 +205,7 @@ msgstr "Metadaten"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_NuclearInstallation"
-msgstr "Anlage"
+msgstr "Kerntechnische Anlage"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_Origin"
