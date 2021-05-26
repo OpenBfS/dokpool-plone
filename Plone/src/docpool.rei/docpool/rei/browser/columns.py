@@ -29,7 +29,7 @@ class ReiReport(BaseColumn):
         if files:
             title = files[0].title
             url = files[0].absolute_url()
-            pdf_link = u'<a title="{0}" href={1}>PDF ansehen</a><br>'.format(safe_unicode(title), url)
+            pdf_link = u'<a title="{0}" href={1} target="_blank">PDF ansehen</a><br>'.format(safe_unicode(title), url)
         return pdf_link + u'<a title="{0}" href={1}>zum Dokument</a>'.format(safe_unicode(obj.Title()), obj.absolute_url())
 
 
@@ -76,7 +76,7 @@ class Authority(BaseColumn):
 class NuclearInstallation(BaseColumn):
 
     header = _('header_Title_NuclearInstallation')
-    sort_index = -1
+    sort_index = 'sortable_title'
     weight = 40
 
     def renderCell(self, item):
@@ -120,8 +120,8 @@ class Origin(BaseColumn):
 
 class Metadata(BaseColumn):
 
-    sort_index = -1
     header = _('header_Title_Metadata')
+    sort_index = -1
     weight = 70
 
     def renderCell(self, item):
