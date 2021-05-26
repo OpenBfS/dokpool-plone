@@ -415,6 +415,25 @@ class DocpoolSetup(BrowserView):
                 Authority=u'de_bw',
                 PDFVersion=u'PDF/A-1b',
             )
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Ein Bericht',
+                description=u'foo',
+                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                docType='reireport',
+                local_behaviors=['rei'],
+                Year=2020,
+                Period=u'Q1',
+                NuclearInstallations=['U07U'],
+                Medium=u'Abwasser/Fortluft',
+                ReiLegalBases=[u'REI-E'],
+                Origins=[u'unabhängige Messstelle'],
+                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
+                Authority=u'de_bw',
+                PDFVersion=u'PDF/A-1b',
+            )
+
         folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
         with api.env.adopt_user(username='aufsicht_by'):
             new = api.content.create(
@@ -433,6 +452,24 @@ class DocpoolSetup(BrowserView):
                 Origins=[u'Genehmigungsinhaber'],
                 MStIDs=[u'09121'],
                 Authority=u'de_mv',
+                PDFVersion=u'PDF/A-1b',
+            )
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Ein Bericht',
+                description=u'foo',
+                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                docType='reireport',
+                local_behaviors=['rei'],
+                Year=2021,
+                Period=u'M1',
+                NuclearInstallations=['U07U'],
+                Medium=u'Abwasser/Fortluft',
+                ReiLegalBases=[u'REI-E'],
+                Origins=[u'unabhängige Messstelle'],
+                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
+                Authority=u'de_bw',
                 PDFVersion=u'PDF/A-1b',
             )
 
