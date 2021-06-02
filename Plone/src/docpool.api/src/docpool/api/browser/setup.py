@@ -473,6 +473,24 @@ class DocpoolSetup(BrowserView):
                 PDFVersion=u'PDF/A-1b',
             )
 
+        new = api.content.create(
+            container=folder,
+            type='DPDocument',
+            title=u'Ein Bericht des Berichts',
+            description=u'foo',
+            text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+            docType='reireport',
+            local_behaviors=['rei'],
+            Year=2009,
+            Period=u'M1',
+            NuclearInstallations=['U08K'],
+            Medium=u'Abwasser/Fortluft',
+            ReiLegalBases=[u'REI-E'],
+            Origins=[u'k.A.'],
+            MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
+            Authority=u'de_bw',
+            PDFVersion=u'PDF/A-1b',
+        )
         # Create Pinnwand Collections for Docpools
         dbconfig_bund = docpool_bund['contentconfig']['dbconfig']
         groundcontamination = docpool_bund['config']['dtypes']['groundcontamination']
