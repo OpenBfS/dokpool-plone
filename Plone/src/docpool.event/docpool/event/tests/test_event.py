@@ -18,6 +18,12 @@ class TestEvent(unittest.TestCase):
         docpool = self.portal['test_docpool']
         self.container = docpool['contentconfig']['scen']
 
+    def _get_user_scenarios(self):
+        pm = api.portal.get_tool('portal_membership')
+        test_user = pm.getMemberById(TEST_USER_ID)
+        scenarios = test_user.getProperty('scenarios', [])
+        return scenarios
+
     def test_types_available(self):
         portal_types = api.portal.get_tool('portal_types')
         self.assertTrue(IDexterityFTI.providedBy(portal_types['DPEvent']))
@@ -34,6 +40,42 @@ class TestEvent(unittest.TestCase):
             )
         self.assertTrue(event.restrictedTraverse('@@view')())
         self.assertTrue(event.restrictedTraverse('@@edit')())
+
+    def test_added_event_is_active_for_users(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        self.assertIn('test_event', scenarios)
+
+    def test_archived_event_is_not_active_for_users(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        assert 'test_event' in scenarios
+        event.archiveAndClose(self.layer['request'])
+        scenarios = self._get_user_scenarios()
+        self.assertNotIn('test_event', scenarios)
+
+    def test_removed_event_is_not_active_for_users(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        assert 'test_event' in scenarios
+        api.content.delete(event)
+        scenarios = self._get_user_scenarios()
+        self.assertNotIn('test_event', scenarios)
 
     def test_removal_keeps_working_for_arbitrary_dpevents(self):
         event = api.content.create(
