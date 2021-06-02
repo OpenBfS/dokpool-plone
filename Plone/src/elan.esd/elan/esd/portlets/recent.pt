@@ -36,7 +36,7 @@
 
              </a>
              <time class="portletItemDetails"
-                       tal:content="python: str(obj.getMdate)[:-3]"
+                       tal:content="python: str(obj.getMdate)[:-10]"
                        >May 5</time>
           </li>
         </tal:items>
