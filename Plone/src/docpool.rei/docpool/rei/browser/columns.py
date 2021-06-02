@@ -46,6 +46,7 @@ class ReiLegalBases(BaseColumn):
             return
         return populate_a_tag(obj, ', '.join(obj.ReiLegalBases))
 
+
 class Medium(BaseColumn):
 
     header = _('header_Title_Medium')
@@ -58,12 +59,30 @@ class Medium(BaseColumn):
             return
         return populate_a_tag(obj, obj.Medium)
 
+
+class Period(BaseColumn):
+
+    header = _('header_Title_Period')
+    sort_index = -1
+    weight = 40
+
+    def renderCell(self, item):
+        obj = self._getObject(item)
+        if not obj:
+            return
+        period_vocabulary = getUtility(IVocabularyFactory,
+                                       'docpool.rei.vocabularies.PeriodVocabulary')()
+        period = safe_unicode(period_vocabulary.getTerm(obj.Period).title)
+        year = str(obj.Year)
+        return populate_a_tag(obj, period + " " + year)
+
+
 class Authority(BaseColumn):
     """ """
 
     header = _('header_Title_Authority')
     sort_index = 'sortable_title'
-    weight = 30
+    weight = 50
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -77,7 +96,7 @@ class NuclearInstallation(BaseColumn):
 
     header = _('header_Title_NuclearInstallation')
     sort_index = 'sortable_title'
-    weight = 40
+    weight = 60
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -88,28 +107,11 @@ class NuclearInstallation(BaseColumn):
         return populate_a_tag(obj, installations)
 
 
-class Period(BaseColumn):
-
-    header = _('header_Title_Period')
-    sort_index = -1
-    weight = 50
-
-    def renderCell(self, item):
-        obj = self._getObject(item)
-        if not obj:
-            return
-        period_vocabulary = getUtility(IVocabularyFactory,
-                                       'docpool.rei.vocabularies.PeriodVocabulary')()
-        period = safe_unicode(period_vocabulary.getTerm(obj.Period).title)
-        year = str(obj.Year)
-        return populate_a_tag(obj, period + " " + year)
-
-
 class Origin(BaseColumn):
 
     header = _('header_Title_Origin')
     sort_index = 'sortable_title'
-    weight = 60
+    weight = 70
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -122,7 +124,7 @@ class Metadata(BaseColumn):
 
     header = _('header_Title_Metadata')
     sort_index = -1
-    weight = 70
+    weight = 80
 
     def renderCell(self, item):
         obj = self._getObject(item)
