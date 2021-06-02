@@ -267,6 +267,7 @@ class OriginVocabulary(object):
         return safe_simplevocabulary_from_values([
             u'Genehmigungsinhaber',
             u'unabhängige Messstelle',
+            u'k.A.',
         ])
 
 
