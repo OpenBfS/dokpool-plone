@@ -35,6 +35,18 @@
             <img src="#"
                  tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:translate="refresh_results">Refresh search results.</span>
           </a>
+            <span id="z3ctabel-toggles">
+                <a href="#"
+                    id="z3ctable-toggle-metatitle">
+                    <img src="#"
+                         tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:translate="">Open all metatitle</span>
+                </a>
+                <a href="#"
+                   id="z3ctable-toggle-metainfos">
+                    <img src="#"
+                         tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:translate="">Open all metainfos</span>
+                </a>
+            </span>
         </div>
 
         <div style="clear: both;"></div>

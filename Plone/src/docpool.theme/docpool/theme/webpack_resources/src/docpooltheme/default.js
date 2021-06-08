@@ -96,6 +96,16 @@ if (
                         ]).then(args => {
                             registry.scan($('#content-core'));
                         });
+                        // Open all metatitle
+                        $('#z3ctable-toggle-metatitle').on('click', function (e) {
+                            e.preventDefault();
+                            $("#faceted_table .metatitle").click();
+                        });
+                        // Open all metainfos
+                        $('#z3ctable-toggle-metainfos').on('click', function (e) {
+                            e.preventDefault();
+                            $("#faceted_table .metadata").click();
+                        });
                     });
                 }
             });
