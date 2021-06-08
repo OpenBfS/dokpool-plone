@@ -258,11 +258,13 @@ class REIDoc(FlexibleView):
 
     @property
     def Medium(self):
-        return self.context.Medium
+        if 'REI-E' in self.context.ReiLegalBases:
+            return self.context.Medium
 
     @Medium.setter
     def Medium(self, value):
-        self.context.Medium = value
+        if 'REI-E' in self.context.ReiLegalBases:
+            self.context.Medium = value
 
     @property
     def NuclearInstallations(self):
