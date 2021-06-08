@@ -192,7 +192,7 @@ class IREIDoc(IDocumentExtension):
     def validate_medium(data):
         if data.ReiLegalBases and 'REI-E' in data.ReiLegalBases:
             if not data.Medium:
-                msg = _(u'REI-E reports need to specify a medium.')
+                msg = _(u'For REI-E reports you need to specify a medium.')
                 raise Invalid(msg)
 
 
