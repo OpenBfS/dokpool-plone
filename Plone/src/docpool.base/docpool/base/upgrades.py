@@ -409,3 +409,14 @@ def to_1007_delete_local_impressum_pages(context=None):
     portal = api.portal.get()
     if 'impressum' in portal['contentconfig']:
         api.content.move(portal['contentconfig']['impressum'], portal)
+
+
+def to_1008_fix_unicode_indexes(context=None):
+    # Rebuild indexes with unicode values that fail in py2. See #4084
+    catalog = api.portal.get_tool('portal_catalog')
+    log.info('Rebuild index Origins ...')
+    catalog.manage_clearIndex(ids=['Origins'])
+    catalog.manage_reindexIndex(ids=['Origins'])
+    log.info('Rebuild index category ...')
+    catalog.manage_clearIndex(ids=['category'])
+    catalog.manage_reindexIndex(ids=['category'])
