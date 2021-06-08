@@ -37,14 +37,14 @@
           </a>
             <span id="z3ctabel-toggles">
                 <a href="#"
-                    id="z3ctable-toggle-metatitle">
+                    class="z3ctable-toggle-metatitle">
                     <img src="#"
-                         tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:translate="">Open all metatitle</span>
+                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/arrow-down.svg" /><span i18n:translate="">Open/close all metatitle</span>
                 </a>
                 <a href="#"
-                   id="z3ctable-toggle-metainfos">
+                   class="z3ctable-toggle-metadata">
                     <img src="#"
-                         tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:translate="">Open all metainfos</span>
+                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/file-text-line.svg" /><span i18n:translate="">Open/close all metadata</span>
                 </a>
             </span>
         </div>
