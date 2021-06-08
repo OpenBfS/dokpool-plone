@@ -45,14 +45,25 @@ require([
       var that = this;
       that.$el.addClass('loading-content');
       that.$el.toggleClass('close');
+      // State :)
+      var $metadata = false;
+      var $metatitle = false;
+      // Is the other meta column open? If close it
+      let other_column = that.$el.parent().find('a').not('.loading-content')
+      if(other_column != that.$el) {
+        if(other_column.hasClass('close')){
+          other_column.removeClass('close')
+        }
+      }
       var $already_open = that.$el.closest('tr').next('tr');
       if ($already_open.hasClass('target_open')){
-        $already_open.remove();
-      }
-      else {
-        if(that.options.url){
+          $already_open.remove();
+      } else {
+        if (that.options.url) {
+          // Load Metadata
           that.loadRemote();
-        }else{
+        } else {
+          // Load Metatitle
           that.loadLocal();
         }
       }
