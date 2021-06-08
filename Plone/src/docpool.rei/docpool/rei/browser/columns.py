@@ -131,6 +131,6 @@ class Metadata(BaseColumn):
         if not obj:
             return
         obj_url = item.original_getURL()
-        title_html = u'<a href="#" class="pat-contentloader-bfs rei-eea-search metatitle open" data-pat-contentloader-bfs="content:#row_{0} .rei_title;target:#target_{0}"><div title="Arrow up" >Open</div></a><h4 class="rei_title" style="display:none">{1}</h4>'.format(item.UID, safe_unicode(obj.Title()))
-        metadata_html = u'<a href="#" class="pat-contentloader-bfs rei-eea-search metadata open" data-pat-contentloader-bfs="url:{0}/@@meta?ajax=true;target:#target_{1}"><div title="Arrow up" >Open</div></a><div id="target_{2}"></div>'.format(obj_url, item.UID, item.UID)
+        title_html = u'<a href="#" class="pat-contentloader-bfs rei-eea-search metatitle" data-pat-contentloader-bfs="content:#row_{0} .rei_title;target:#target_{0}"><div title="Arrow up" >Open</div></a><h4 class="rei_title" style="display:none">{1}</h4>'.format(item.UID, safe_unicode(obj.Title()))
+        metadata_html = u'<a href="#" class="pat-contentloader-bfs rei-eea-search metadata" data-pat-contentloader-bfs="url:{0}/@@meta?ajax=true;target:#target_{1}"><div title="Arrow up" >Open</div></a><div id="target_{2}"></div>'.format(obj_url, item.UID, item.UID)
         return title_html + metadata_html
