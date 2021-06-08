@@ -231,7 +231,7 @@ msgstr ""
 msgid "label_rei_Origins"
 msgstr ""
 
-#. Default: "PDFVersion"
+#. Default: "PDF Version"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_PDFVersion"
