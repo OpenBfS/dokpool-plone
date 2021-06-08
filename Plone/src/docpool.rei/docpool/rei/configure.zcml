@@ -73,4 +73,8 @@
         name="docpool.rei.vocabularies.NuclearInstallationVocabulary"
         />
 
+    <adapter
+        factory=".indexer.Origins"
+        name="Origins" />
+
 </configure>
