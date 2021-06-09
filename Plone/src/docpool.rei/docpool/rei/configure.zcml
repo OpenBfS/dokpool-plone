@@ -78,4 +78,8 @@
         factory=".indexers.report_year"
         name="report_year"/>
 
+    <adapter
+        factory=".indexer.Origins"
+        name="Origins" />
+
 </configure>
