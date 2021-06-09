@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"POT-Creation-Date: 2021-06-09 11:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,23 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.theme\n"
 
-#: docpool.theme/docpool/theme/configure.zcml:17
+#: docpool.theme/docpool/theme/configure.zcml
 msgid "DocPool Theme"
 msgstr ""
 
-#: docpool.theme/docpool/theme/configure.zcml:17
+#: docpool.theme/docpool/theme/configure.zcml
 msgid "Extension profile for DocPool Theme"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Open/close all metadata"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Open/close all metatitle"
+msgstr ""
+
+#. Default: "Refresh search results."
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "refresh_results"
 msgstr ""
