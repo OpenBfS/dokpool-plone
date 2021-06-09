@@ -412,6 +412,7 @@ def to_1007_delete_local_impressum_pages(context=None):
 
 
 def to_1008(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
     log.info('Upgrading to 1008: adding report year index')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1008')
 

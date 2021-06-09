@@ -183,6 +183,10 @@
       destination="1008"
       profile="docpool.base:default">
     <genericsetup:upgradeStep
+        title="Add report year index"
+        handler="docpool.base.upgrades.to_1008"
+    />
+    <genericsetup:upgradeStep
         title="Enable bulk-actions in listings"
         handler="docpool.base.upgrades.enable_bulk_actions"
         />
