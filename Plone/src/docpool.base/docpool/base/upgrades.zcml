@@ -186,6 +186,14 @@
         title="Enable bulk-actions in listings"
         handler="docpool.base.upgrades.enable_bulk_actions"
         />
+    <genericsetup:upgradeStep
+        title="Rebuild indexes with unicode values"
+        handler="docpool.base.upgrades.to_1008_fix_unicode_indexes"
+    />
+    <genericsetup:upgradeStep
+        title="Reindexing rei reports."
+        handler="docpool.base.upgrades.to_1008_index_report_year"
+    />
   </genericsetup:upgradeSteps>
 
 </configure>

@@ -415,7 +415,7 @@ def to_1008(context=None):
     log.info('Upgrading to 1008: adding report year index')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1008')
 
-def index_report_year(context=None):
+def to_1008_index_report_year(context=None):
     log.info(u'Reindexing rei reports.')
     brains = api.content.find(portal_type='DPDocument', dp_type='reireport')
     log.info(u'Found {0} rei reports to reindex'.format(len(brains)))
@@ -433,3 +433,4 @@ def to_1008_fix_unicode_indexes(context=None):
     log.info('Rebuild index category ...')
     catalog.manage_clearIndex(ids=['category'])
     catalog.manage_reindexIndex(ids=['category'])
+    log.info('Done.')
