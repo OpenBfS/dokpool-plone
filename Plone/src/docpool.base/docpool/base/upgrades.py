@@ -416,6 +416,7 @@ def to_1008(context=None):
     log.info('Upgrading to 1008: adding report year index')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1008')
 
+
 def to_1008_index_report_year(context=None):
     log.info(u'Reindexing rei reports.')
     brains = api.content.find(portal_type='DPDocument', dp_type='reireport')
@@ -424,6 +425,7 @@ def to_1008_index_report_year(context=None):
         obj = brain.getObject()
         obj.reindexObject(idxs=['report_year'])
     log.info('Done.')
+
 
 def to_1008_fix_unicode_indexes(context=None):
     # Rebuild indexes with unicode values that fail in py2. See #4084
@@ -435,3 +437,11 @@ def to_1008_fix_unicode_indexes(context=None):
     catalog.manage_clearIndex(ids=['category'])
     catalog.manage_reindexIndex(ids=['category'])
     log.info('Done.')
+
+
+def to_1008_install_z3ctable(context=None):
+    portal = api.portal.get()
+    installer = get_installer(portal)
+    if not installer.is_product_installed('collective.eeafaceted.z3ctable'):
+        installer.install_product('collective.eeafaceted.z3ctable')
+        log.info(u'collective.eeafaceted.z3ctable installed')
