@@ -102,7 +102,7 @@ if (
                             $("#faceted_table .metatitle").click();
                         });
                         // Open all metainfos
-                        $('#z3ctabel-toggles .z3ctable-toggle-metainfo').on('click', function (e) {
+                        $('#z3ctabel-toggles .z3ctable-toggle-metadata').on('click', function (e) {
                             e.preventDefault();
                             $("#faceted_table .metadata").click();
                         });
