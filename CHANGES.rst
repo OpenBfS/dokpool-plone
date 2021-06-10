@@ -1,6 +1,28 @@
 Changelog
 =========
 
+1.7.4
+-----
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+- Update Products.PloneHotfix20210518 and allow text/html to be displayed inline
+[pbauer]
+
+
+Removed:
+
+
+Technical:
+
+
+
 1.7.3
 -----
 
