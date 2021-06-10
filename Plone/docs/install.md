@@ -1,4 +1,4 @@
-# Development install 
+# Development install
 
 # Install & Setup
 
@@ -7,6 +7,7 @@ $ mkvirtualenv dokpool-plone
 $ cd dokpool-plone/Plone
 $ pip installl -r requirements.txt
 $ sudo apt install libpq-dev
+$ sudo apt-get install libsqlite3-dev
 $ sudo apt install postgresql
 $ bin/buildout -c local-develop.cfg
 ```
@@ -21,7 +22,7 @@ Create a new vanilla Plone-Site (without any addons activated). Access http://lo
 
 ## With a production backup database
 
-On Debian you maybe need "sudo -u postgres" in front of all commands. 
+On Debian you maybe need "sudo -u postgres" in front of all commands.
 
 ```
 DB und user löschen (z.B. beim Einspielen von prod backup - siehe unten):
@@ -37,16 +38,45 @@ $ alter user zodbuser with encrypted password 'zodbuser';
 
 DB restore:
 $ pg_restore -d zodb dokpool_20190920-1210.backup
-```                   
+```
 
-Start with Postgres DB und Relstorage
+Do the same for elan db:
+
+```
+Create elan DB
+$ dropdb elan
+$ dropuser elan
+
+User und DB anlegen:
+$ createuser --createdb elan
+$ createdb elan -U elan
+
+DB restore:
+$ pg_restore -d elan produktiv_elan_20201009.backup
+```
+
+Create an admin user since we don't know the production admin's credentials:
+
+```
+$ ./bin/instance_relstorage adduser rescue rescue
+```
+
+Instance should start up with Postgres DB und Relstorage:
+
 ```
 $ bin/instance_relstorage fg
 ```
 
 ## Convert production backup database to filestorage
 
-Diesen Code als convert_to_zodb.conf im var Verzeichnis speichern und die Pfade anpassen:
+Alten Blob-Cache löschen:
+
+```
+$ rm -rf blobs/*
+$ rm blobs/.layout
+```
+
+Diesen Code als var/convert_to_datafs.conf speichern:
 
 ```
 <relstorage source>
@@ -58,19 +88,19 @@ Diesen Code als convert_to_zodb.conf im var Verzeichnis speichern und die Pfade 
 </relstorage>
 
 <blobstorage destination>
-  blob-dir /Users/pbauer/workspace/dokpool-plone/Plone/var/blobstorage
+  blob-dir ./var/blobstorage
   # FileStorage database
   <filestorage>
-    path /Users/pbauer/workspace/dokpool-plone/Plone/var/filestorage/Data.fs
+    path ./var/filestorage/Data.fs
   </filestorage>
 </blobstorage>
 ```
 
-Die Postgres DB kann danach mit diesem Befehl in eine Data.fs mit blobstorage 
+Die Postgres DB kann danach mit diesem Befehl in eine Data.fs mit blobstorage
 umgewandelt werden:
 
 ```
-$ bin/zodbconvert var/convert_to_zodb.conf
+$ bin/zodbconvert var/convert_to_datafs.conf
 ```
 
 # Development
@@ -96,20 +126,20 @@ A feature-branch, cut from develop which will be merged back to develop as soon 
 Example:
 
 .. code-block:: bash
-    
+
     # Update develop
     $ git checkout develop
     $ git pull origin develop
     # Create new branch
-    $ git checkout -b ticket_123_fix_was 
+    $ git checkout -b ticket_123_fix_was
     # Do changes and commit if needed
     $ git commit -a -m 'Fix something (#123)'
     # Push the branch to gitlab
-    $ git push origin ticket_123_fix_was 
+    $ git push origin ticket_123_fix_was
     # Gitlab reports back with a merge request url
     # Visit the url and create a new merge request
     # Wait for a successful CI run and assign to reviewer
-    
+
 dual-use branches
 -----------------
 
@@ -150,7 +180,7 @@ create pull-request
 
 #### Install nvm - node - npm
 
-Zur Installation von npm/node wird NVM empfohlen: [Installationsanleitung](https://github.com/nvm-sh/nvm#installing-and-updating)   
+Zur Installation von npm/node wird NVM empfohlen: [Installationsanleitung](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 Dieses Webpack Theme ist getestet mit diesen Versionen, die stable Version von Node sollte funktionieren:
 
@@ -165,21 +195,21 @@ Yarn (eine Alternative zu npm) funktioniert nicht mit diesem Webpack Theme.
 
 #### Installation in Plone
 
-Das Webpack Theme ist nur in einer Plone Seite aktiv die "dokpool" heißt. Die URL muss 
-also so aussehen: "http://localhost:8080/dokpool/"  
+Das Webpack Theme ist nur in einer Plone Seite aktiv die "dokpool" heißt. Die URL muss
+also so aussehen: "http://localhost:8080/dokpool/"
 Beim Aufruf von "/@@docpool_setup" wird das neue Theme wird automatisch aktiviert.
 
 #### Entwicklung mit Webpack
 
-Das Theme befindet sich in `Plone/src/docpool.theme/docpool/theme/webpack_resources`, 
+Das Theme befindet sich in `Plone/src/docpool.theme/docpool/theme/webpack_resources`,
 erst müssen die dort die Javascript Abhängigkeiten installiert werden:
 
 .. code-block:: bash
 
     $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
     $ npm install
-    
-Jetzt kann hot-reloading verwendet werden, bedeutet bei Änderungen im 
+
+Jetzt kann hot-reloading verwendet werden, bedeutet bei Änderungen im
 `webpack_resources` Verzeichnis wird automatisch die Seite neu geladen.
 Die Plone Instanz muss dazu laufen:
 
@@ -188,31 +218,34 @@ Die Plone Instanz muss dazu laufen:
     $ bin/instance fg
     $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
     $ npm run watch
- 
+
 #### Neue Bundle-Files erstellen
 
-Damit aktualisierte CSS/JS Dateien direkt von Plone ausgeliefert werden, müssen diese 
-erstellt und eingecheckt werden: 
+Damit aktualisierte CSS/JS Dateien direkt von Plone ausgeliefert werden, müssen diese
+erstellt und eingecheckt werden:
 
 .. code-block:: bash
 
     $ bin/instance fg
     $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
-    # Wir löschen die alten bundle Dateien, so behalten wir keine unnötigen Dateien 
+    # Wir löschen den Cache der aus dem Plone gezogenen Ressourcen,
+    # damit unsere letzten Änderungen sichtbar werden.
+    $ rm -Rf .plone
+    # Wir löschen die alten bundle Dateien, so behalten wir keine unnötigen Dateien
     $ rm -Rf theme
     # Wir lassen das theme Verzeichnis mit allen bundle Dateien neu erstellen.
     $ npm run build
-    # Wir commiten die Source Dateien extra, damit ist der Merge-Request besser zu lesen 
+    # Wir commiten die Source Dateien extra, damit ist der Merge-Request besser zu lesen
     $ git add src/
     $ git commit -m "Update xyz styling"
     $ Jetzt commiten wir die Webpack bundle Dateien
     $ git add theme/
     $ git commit -m "Update bundle files"
-    
-Haben sich CSS/LESS/JS Dateien von Plone oder in unseren bestehenden 
-Resources (z.B in: `Plone/src/docpool.theme/docpool/theme/diazo_resources/static`) 
-geändert,  muss das `.plone` Verzeichins in `webpack_resources` gelöscht werden. Beim 
-nächsten `npm run build/watch` werden diese Dateien dann neu von Plone geladen. 
+
+Haben sich CSS/LESS/JS Dateien von Plone oder in unseren bestehenden
+Resources (z.B in: `Plone/src/docpool.theme/docpool/theme/diazo_resources/static`)
+geändert,  muss das `.plone` Verzeichins in `webpack_resources` gelöscht werden. Beim
+nächsten `npm run build/watch` werden diese Dateien dann neu von Plone geladen.
 
 #### Bundle-Files rebase / update
 

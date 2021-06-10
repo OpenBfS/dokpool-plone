@@ -77,7 +77,7 @@ class TestDocTypes(unittest.TestCase):
                 'doksysdok',
             ],
         )
-        self.assertEqual(global_contentconfig.keys(), ['impressum', 'help'])
+        self.assertEqual(global_contentconfig.keys(), ['impressum'])
         self.assertEqual(
             global_esd.keys(),
             [
@@ -99,11 +99,12 @@ class TestDocTypes(unittest.TestCase):
 
         from docpool.base.appregistry import selectableApps
 
-        self.assertEqual([i[0] for i in selectableApps()], ['doksys', 'elan'])
+        self.assertEqual([i[0] for i in selectableApps()], ['doksys', 'elan', 'rei'])
         docpool = self.portal['test_docpool']
 
         self.assertEqual(
-            docpool.keys(), ['esd', 'content', 'config', 'archive', 'contentconfig']
+            docpool.keys(),
+            ['esd', 'content', 'config', 'archive', 'contentconfig', 'help']
         )
 
         esd = docpool['esd']
@@ -182,7 +183,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'dbconfig']
         )
 
         notify(EditFinishedEvent(docpool))
@@ -190,7 +191,8 @@ class TestDocTypes(unittest.TestCase):
         # since only elan is active that doe not create new content
 
         self.assertEqual(
-            docpool.keys(), ['esd', 'content', 'config', 'archive', 'contentconfig']
+            docpool.keys(),
+            ['esd', 'content', 'config', 'archive', 'contentconfig', 'help']
         )
 
         esd = docpool['esd']
@@ -269,7 +271,7 @@ class TestDocTypes(unittest.TestCase):
 
         contentconfig = docpool['contentconfig']
         self.assertEqual(
-            contentconfig.keys(), ['scen', 'ticker', 'impressum', 'dbconfig', 'irix']
+            contentconfig.keys(), ['scen', 'ticker', 'dbconfig']
         )
 
     def test_doctypes_change_event(self):

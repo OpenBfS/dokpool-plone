@@ -20,7 +20,7 @@ def to_1001(context):
         'profile-docpool.doksys:to_1001',
     )
 
-    for count, brain in enumerate(api.content.find(Type='DPDocument')):
+    for count, brain in enumerate(api.content.find(portal_type='DPDocument')):
         obj = brain.getObject()
 
         for attr in attributes:

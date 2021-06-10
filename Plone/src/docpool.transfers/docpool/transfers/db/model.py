@@ -20,8 +20,8 @@ from elixir import using_options
 from sqlalchemy import join
 from sqlalchemy.orm import column_property
 from sqlalchemy.orm import mapper
+from sqlalchemy.orm import relationship
 from zope.interface import provider
-from sqlalchemy.orm import relation
 
 import logging
 
@@ -132,7 +132,7 @@ ChannelPermissions.mapper = mapper(
     ChannelPermissions,
     j,
     properties={
-        'channel': relation(Channel),
+        'channel': relationship(Channel),
         'channel_id': [Channel.table.c.id, DocTypePermission.table.c.channel_id],
         'id': [DocTypePermission.table.c.id],
     },
@@ -145,7 +145,7 @@ ChannelSends.mapper = mapper(
     ChannelSends,
     k,
     properties={
-        'channel': relation(Channel),
+        'channel': relationship(Channel),
         'channel_id': [Channel.table.c.id, SenderLog.table.c.channel_id],
         'id': [SenderLog.table.c.id],
         'ctimestamp': column_property(Channel.table.c.timestamp),
@@ -162,7 +162,7 @@ ChannelReceives.mapper = mapper(
     ChannelReceives,
     l,
     properties={
-        'channel': relation(Channel),
+        'channel': relationship(Channel),
         'channel_id': [Channel.table.c.id, ReceiverLog.table.c.channel_id],
         'id': [ReceiverLog.table.c.id],
         'ctimestamp': column_property(Channel.table.c.timestamp),

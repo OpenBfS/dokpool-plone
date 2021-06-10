@@ -34,20 +34,6 @@
       />
 
   <browser:page
-      name="helphtml"
-      for="..interfaces.IDocumentPool"
-      class=".documentpool.HelpHelper"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="help"
-      for="..interfaces.IDocumentPool"
-      class=".documentpool.HelpView"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="view"
       for="..interfaces.IFolderBase"
       template="folderbase.pt"
@@ -87,6 +73,14 @@
       name="print"
       for="..interfaces.IDPDocument"
       class=".dpdocument.DPDocumentprintView"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="commenting"
+      for="..interfaces.IDPDocument"
+      class=".dpdocument.DPDocumentcommentingView"
+      layer="plone.app.discussion.interfaces.IDiscussionLayer"
       permission="zope2.View"
       />
 
@@ -197,5 +191,20 @@
       template="templates/review_history.pt"
       permission="zope2.View"
       />
+
+  <adapter
+      for="Products.CMFCore.interfaces.IFolderish
+           *
+           plone.dexterity.interfaces.IDexterityFTI"
+      provides="zope.publisher.interfaces.browser.IBrowserPage"
+      factory=".dpdocument.AddView"
+      name="DPDocument"
+      />
+  <class class=".dpdocument.AddView">
+      <require
+          permission="cmf.AddPortalContent"
+          interface="zope.publisher.interfaces.browser.IBrowserPage"
+          />
+  </class>
 
 </configure>

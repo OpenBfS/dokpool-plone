@@ -2,6 +2,12 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
+  <!--
+      Spreading upgrades across packages is deprecated practice. We'll keep
+      the below upgrade around since it had already made it into a release,
+      but all future upgrades should go into docpool.base.
+    -->
+
   <genericsetup:registerProfile
     description="Upgrade profile for docpool.doksys from 1000 to 1001."
     directory="profiles/to_1001"

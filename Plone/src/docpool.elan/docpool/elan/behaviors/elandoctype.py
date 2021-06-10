@@ -3,11 +3,9 @@ from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
 from docpool.base.utils import back_references
 from docpool.base.utils import queryForObject
-from docpool.base.utils import queryForObjects
 from elan.esd import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from Products.Archetypes.utils import DisplayList
 from Products.CMFPlone.utils import safe_hasattr
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
@@ -79,20 +77,6 @@ class ELANDocType(object):
                 ]
             )
         )
-
-    def getCategories(self):
-        """
-        """
-        mpath = "/"
-        if safe_hasattr(self.context, "dpSearchPath"):
-            mpath = self.context.dpSearchPath()
-        ecs = queryForObjects(
-            self.context,
-            path=mpath,
-            portal_type="ELANDocCollection",
-            sort_on="sortable_title",
-        )
-        return DisplayList([(ec.UID, ec.Title) for ec in ecs])
 
     def getDefaultCategory(self):
         """

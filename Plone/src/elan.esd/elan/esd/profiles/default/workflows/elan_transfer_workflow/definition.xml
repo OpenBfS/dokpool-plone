@@ -4,22 +4,12 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Add portal content</permission>
- <permission>ATContentTypes: Add File</permission>
- <permission>ATContentTypes: Add Image</permission>
  <permission>Delete objects</permission>
  <permission>Sharing page: Delegate roles</permission>
  <state state_id="private" title="Private">
   <description>Can only be seen and edited by the owner.</description>
   <exit-transition transition_id="auto_publish"/>
   <exit-transition transition_id="publish"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
@@ -54,10 +44,6 @@
   <description>Visible to everyone, not editable by the owner.</description>
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="reject"/>
-  <permission-map name="ATContentTypes: Add File" acquired="False">
-  </permission-map>
-  <permission-map name="ATContentTypes: Add Image" acquired="False">
-  </permission-map>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>

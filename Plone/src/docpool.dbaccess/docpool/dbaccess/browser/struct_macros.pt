@@ -56,7 +56,6 @@
 		             prolog view/prolog;
 		             epilog view/epilog;
 		             allowMinor view/allowMinor;
-		             audit view/audit;
 		             subentities view/subentities;
 		             breadcrumbs view/breadcrumbs;
 		             fkdefault view/fkdefault;"
@@ -77,7 +76,6 @@
 	               </div>
 	               </div>
 				</tal:if>
-                <p class="audit" tal:condition="audit" i18n:translate="">Created by <tal:var replace="audit/en" i18n:name="user"/> on <tal:var replace="audit/ed" i18n:name="date"/>, last modified by <tal:var replace="audit/aen" i18n:name="user2"/> on <tal:var replace="audit/aed" i18n:name="date2"/></p>
 				<metal:slot define-slot="buttons-slot" />
 			</form>
 			<tal:if condition="not:create">

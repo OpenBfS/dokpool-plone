@@ -10,6 +10,7 @@ from docpool.base.interfaces import IDPDocument
 from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
+from docpool.rei.vocabularies import AuthorityVocabulary
 from plone import api
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
@@ -329,6 +330,10 @@ class REIDoc(FlexibleView):
             return history()
         return execute_under_special_role(self, 'Reviewer', show_review_history)
 
+    def authority_display(self):
+        voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.AuthorityVocabulary')()
+        return voc.getTerm(self.Authority).title
+
 # IREIDoc sets no marker-interface so we cannot constrain
 # the suscriber on IREIDoc. Instead we use IDPDocument
 @adapter(IDPDocument, IObjectAddedEvent)
@@ -376,13 +381,10 @@ def set_title(obj, event=None):
     installations=re.split(r", U[A-Z0-9]{3}",adapted.nuclear_installations_display())
     installations[0]=installations[0][5:]
     if len(installations) == 1:
-        installations_prefix = u'für die Kerntechnische Anlage'
         installations = installations[0]
     elif len(installations) == 2:
-        installations_prefix = u'für die Kerntechnischen Anlagen'
         installations = u' und '.join(installations)
     else:
-        installations_prefix = u'für die Kerntechnischen Anlagen'
         part1 = u', '.join(installations[:-1])
         installations = u'{} und {}'.format(part1, installations[-1])
     if adapted.Medium:
@@ -390,10 +392,9 @@ def set_title(obj, event=None):
     else:
         medium = u''
     origins = u'({})'.format(', '.join(adapted.Origins))
-    new_title = u'REI-{legal} {medium}{period} {installations_prefix} {installations} {origins}'.format(
+    new_title = u'REI-{legal} {medium}{period} {installations} {origins}'.format(
         legal=legal,
         period=period,
-        installations_prefix=installations_prefix,
         installations=installations,
         medium=medium,
         origins=origins,

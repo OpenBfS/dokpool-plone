@@ -96,10 +96,6 @@ def setAttributes(obj, objdef):
                 elif attr == 'local_behaviors':
                     lbs = ILocalBehaviorSupport(obj)
                     lbs._set_local_behaviors(objdef[attr])
-                elif obj.getPortalTypeName() in ['TemplatedDocument']:
-                    # Archetypes based
-                    setter = getattr(obj, attr)
-                    setter(objdef[attr])
                 else:
                     # Dexterity based
                     setattr(obj, attr, objdef[attr])
@@ -122,3 +118,8 @@ def _addAllowedTypes(folder, types):
     existing.extend(types)
     new_types = list(set(existing))
     _setAllowedTypes(folder, new_types)
+
+
+def set_local_roles(self, obj, userid, roles):
+    prefix = self.prefix or self.getId()
+    obj.manage_setLocalRoles(userid.format(prefix), roles)

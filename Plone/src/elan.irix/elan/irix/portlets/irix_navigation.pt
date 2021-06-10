@@ -1,7 +1,0 @@
-<tal:block i18n:domain="elan.irix">
-<div id="irix_tree" tal:define="os view/objectstructure">
-<ul class="folder">
-	<tal:var replace="structure os" />
-</ul>
-</div>
-</tal:block>

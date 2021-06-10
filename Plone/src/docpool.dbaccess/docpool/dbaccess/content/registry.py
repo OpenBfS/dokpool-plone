@@ -11,13 +11,8 @@ from formalchemy import Grid
 from formalchemy import types
 from Products.CMFPlone.log import log_exc
 from sqlalchemy.orm import class_mapper
+from sqlalchemy.orm import RelationshipProperty
 
-
-# Kompatibilitaet fuer SQLAlchemy > 0.6
-try:
-    from sqlalchemy.orm import RelationProperty
-except ImportError:
-    from sqlalchemy.orm.properties import RelationProperty
 
 _ecreg = {}  # Laufzeit Registry
 
@@ -37,7 +32,7 @@ def getAllEntityFields(klass):
                 fields.remove(f.name)
         for r in cm._props.keys():
             if isinstance(
-                    cm._props[r], RelationProperty):  # Relationen zufuegen
+                    cm._props[r], RelationshipProperty):  # Relationen zufuegen
                 fields.append(r)
         return fields
     else:

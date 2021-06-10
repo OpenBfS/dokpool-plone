@@ -235,14 +235,6 @@ dl.portlet ul.navTreeLevel2 li a {
     font: bold 1.25em "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
 }
 
-#archetypes-fieldname-title input {
-    font-family: "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
-}
-
-#archetypes-fieldname-description textarea#description {
-    font-family: "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
-}
-
 #portal-footer {
     border-top: 0.0625em solid #EC870E;
     clear: both;

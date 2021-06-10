@@ -7,5 +7,4 @@ from elan.esd.content.elancurrentsituation import IELANCurrentSituation
 from elan.esd.content.elansection import IELANSection
 from elan.esd.content.elancontentconfig import IELANContentConfig
 from elan.esd.content.elanarchives import IELANArchives
-from elan.esd.content.irixconfig import IIRIXConfig
 from elan.esd import DocpoolMessageFactory as _

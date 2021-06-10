@@ -114,7 +114,6 @@ BASICSTRUCTURE = [
         ID: 'contentconfig',
         CHILDREN: [
             {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
-            {TYPE: 'Text', TITLE: u'Help', ID: 'help', CHILDREN: []},
         ],
     },
 ]

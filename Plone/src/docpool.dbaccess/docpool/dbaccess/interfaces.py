@@ -16,25 +16,6 @@ class IProtectedEntityClass(Interface):
     """
 
 
-class IAuditing(Interface):
-    """
-    Implemented by all entities which support automatic logging of changes.
-    All methods need a Plone context object
-    """
-
-    def wasCreated(context):
-        """
-        """
-
-    def wasUpdated(context):
-        """
-        """
-
-    def wasDeleted(context):
-        """
-        """
-
-
 class IDataSecurity(Interface):
     """
     Definiert Methoden zur Berechtigungspruefung

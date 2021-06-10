@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2019-11-21 16:38+0000\n"
+"POT-Creation-Date: 2021-01-19 13:24+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -35,6 +35,10 @@ msgstr "Inhalt:"
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Copy or cut one or more items to paste."
 msgstr "Ein oder mehr Objekte kopieren oder ausschneiden, um sie einzufügen."
+
+#: docpool.base/docpool/base/browser/review_history.py
+msgid "Create"
+msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
 msgid "DPDocument"
@@ -125,9 +129,19 @@ msgstr "Gruppenordner"
 msgid "Groups Area"
 msgstr "Gruppenbereich"
 
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Help"
+msgstr "Hilfe"
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Images:"
 msgstr "Bilder:"
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+#: docpool.base/docpool/base/profiles/to_1006/actions.xml
+msgid "Imprint"
+msgstr "Impressum"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoFolder.xml
 msgid "Info-Folder"
@@ -142,7 +156,6 @@ msgid "Item(s) pasted."
 msgstr "Objekt(e) eingefügt."
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "LT"
 msgstr "Ortszeit"
 
@@ -234,10 +247,6 @@ msgstr "Revidiert"
 msgid "Search for user or group"
 msgstr "Nach Nutzern oder Gruppen suchen"
 
-#: docpool.base/docpool/base/profiles/default/actions.xml
-msgid "Select Applications"
-msgstr "Anwendungen wählen"
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Send back to BfS"
 msgstr "Zum BfS zurück schicken"
@@ -249,10 +258,6 @@ msgstr "Zum Betreiber zurück schicken"
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Send back to authority"
 msgstr "Zur Aufsichtsbehörde zurück schicken"
-
-#: docpool.base/docpool/base/browser/dp_macros.pt
-msgid "Show document"
-msgstr "Dokument anzeigen"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Show folder"
@@ -328,8 +333,8 @@ msgid "Videos:"
 msgstr "Videos:"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
-msgid "View the document"
-msgstr "Das Dokument ansehen"
+msgid "View and edit comments"
+msgstr "Kommentare einsehen und bearbeiten"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "active"
@@ -400,7 +405,6 @@ msgid "closed"
 msgstr "Geschlossen"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "created:"
 msgstr "erzeugt:"
 
@@ -501,6 +505,11 @@ msgstr "docpool.base"
 #: docpool.base/docpool/base/vocabularies.py
 msgid "inactive"
 msgstr "Inaktiv"
+
+#. Default: "Anonymous User"
+#: docpool.base/docpool/base/browser/review_history.py
+msgid "label_anonymous_user"
+msgstr ""
 
 #. Default: "Cancel"
 #: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
@@ -618,25 +627,12 @@ msgid "label_text_text"
 msgstr "Text"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.base/docpool/base/browser/infolinklistitem.pt
 msgid "modified:"
 msgstr "geändert:"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "private"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "published"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "submit_bmu"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "private - Show document"
-msgstr "privat/Gruppenintern - Klicken, um das Dokument anzuzeigen"
+msgid "pending - Show document"
+msgstr "zur Redaktion eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_authority - Show document"
@@ -651,6 +647,18 @@ msgid "pending_bmu - Show document"
 msgstr "An BMU eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private - Show document"
+msgstr "privat/Gruppenintern - Klicken, um das Dokument anzuzeigen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "published"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published - Show document"
 msgstr "veröffentlicht - Klicken, um das Dokument anzuzeigen"
 
@@ -659,8 +667,8 @@ msgid "revised - Show document"
 msgstr "revidiert - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "pending - Show document"
-msgstr "zur Redaktion eingereicht - Klicken, um das Dokument anzuzeigen"
+msgid "submit_bmu"
+msgstr ""
 
 #. Default: "Content listing"
 #: docpool.base/docpool/base/browser/dp_macros.pt
