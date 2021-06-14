@@ -34,13 +34,7 @@ def getScenariosForCurrentUser(self):
     """
     mtool = getToolByName(self, "portal_membership")
     user = mtool.getAuthenticatedMember()
-    sc = user.getProperty("scenarios", None)
-    if not sc:
-        # intented implementation: use the latest active scenario
-        # a_s = getActiveScenarios(self)
-        # sc = len(a_s) > 0 and [ a_s[0].Title ] or []
-        # temporarily: no filter
-        return []
+    sc = user.getProperty("scenarios", [])
     return list(sc)
 
 
