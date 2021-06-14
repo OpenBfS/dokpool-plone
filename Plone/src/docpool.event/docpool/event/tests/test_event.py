@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
-from plone.dexterity.interfaces import IDexterityFTI
+from docpool.event.utils import get_scenarios_for_user
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
 
 import unittest
 
@@ -21,7 +22,7 @@ class TestEvent(unittest.TestCase):
     def _get_user_scenarios(self):
         pm = api.portal.get_tool('portal_membership')
         test_user = pm.getMemberById(TEST_USER_ID)
-        scenarios = test_user.getProperty('scenarios', [])
+        scenarios = get_scenarios_for_user(self.portal, test_user)
         return scenarios
 
     def test_types_available(self):

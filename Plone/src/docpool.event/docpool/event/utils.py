@@ -34,8 +34,13 @@ def getScenariosForCurrentUser(self):
     """
     mtool = getToolByName(self, "portal_membership")
     user = mtool.getAuthenticatedMember()
-    sc = user.getProperty("scenarios", [])
+    sc = get_scenarios_for_user(self, user)
     return list(sc)
+
+
+def get_scenarios_for_user(self, user):
+    scenarios = user.getProperty("scenarios", [])
+    return scenarios
 
 
 def setScenariosForCurrentUser(self, scenarios):
