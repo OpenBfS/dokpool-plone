@@ -264,3 +264,21 @@ git rebase --continue
 ggf. wiederholen.
 
 Nach dem rebase die bundle files nochmal neu erstellen, siehe "Neu Bundle-files erstellen"
+
+### Review App
+
+Durch ein Push auf den "review" branch kann eine komplette Installation zum Review angstossen werden.
+
+.. code-block:: bash
+
+    # Delete existing review branch (lokal & remote)
+    $ git branch -d review
+    $ git push origin --delete review
+    # In den Branch wechseln der zum Review bereit gestellt werden soll. Z.B:
+    $ git checkout ticket-2634-facetednavigation-webpack
+    # Diesen Branch in review kopieren:
+    $ git checkout -b review
+    $ git push origin review
+
+In Gitlab den MR richtig benamen: "Draft: Review App von ticket-2634-facetednavigation-webpack"
+Das Label "review" setzen.
