@@ -60,8 +60,15 @@ def get_scenarios_for_user(self, user):
 def setScenariosForCurrentUser(self, scenarios):
     """
     """
+    global_scenarios = get_global_scenario_selection()
     user = api.user.get_current()
-    user.setMemberProperties({"scenarios": scenarios})
+    user.setMemberProperties(
+        {
+            "scenarios": [
+                scen for scen in scenarios if global_scenarios.get(scen) != 'removed'
+            ]
+        }
+    )
 
 
 def get_global_scenario_selection():
