@@ -24,13 +24,13 @@ msgstr "Erweiterungsprofil für das DocPool Theme"
 
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
 msgid "Open/close all metadata"
-msgstr "Öffne/Schließe alle Metadaten"
+msgstr "Alle Metadaten auf- bzw. zuklappen"
 
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
 msgid "Open/close all metatitle"
-msgstr "Öffne/Schließe alle Metatitel"
+msgstr "Alle Titel auf- bzw. zuklappen"
 
 #. Default: "Refresh search results."
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
 msgid "refresh_results"
-msgstr "Aktualisiere Suchresultate."
+msgstr "Tabelle aktualisieren"

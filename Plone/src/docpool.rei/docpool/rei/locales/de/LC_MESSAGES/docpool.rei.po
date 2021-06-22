@@ -201,7 +201,7 @@ msgstr "Medium"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_Metadata"
-msgstr "Metadaten"
+msgstr "Titel, Metadaten"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_NuclearInstallation"
