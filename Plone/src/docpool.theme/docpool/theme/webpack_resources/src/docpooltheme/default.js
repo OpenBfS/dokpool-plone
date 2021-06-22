@@ -6,6 +6,7 @@ import './theme.less';
 
 import jQuery from 'jquery';
 import registry from 'pat-registry';
+import { sortUnorderedList } from './utils';
 
 // Todo Needs a place to stay (own file)
 function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPosition, thisYPosition, thisScrollbar, thisResize) {
@@ -106,6 +107,8 @@ if (
                             e.preventDefault();
                             $("#faceted_table .metadata").click();
                         });
+
+                        sortUnorderedList("#c10_widget ul", true);
                     });
                 }
             });
