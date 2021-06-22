@@ -554,7 +554,7 @@ class DocpoolSetup(BrowserView):
         )
         # Configure EEA faceted navigation
         search = api.content.create(
-            container=docpool_bund, type="Folder", id="suche", title=u"Rei Suche",
+            container=docpool_bund, type="Folder", id="rei-suche", title=u"Rei Suche",
             local_behaviors=['rei'],
         )
         _configure_faceted_view(search, import_file_path, 'faceted-table-items')
