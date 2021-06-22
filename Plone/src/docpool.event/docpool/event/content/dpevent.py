@@ -23,6 +23,7 @@ from docpool.config.local.transfers import TRANSFER_AREA
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ploneId
 from docpool.event import DocpoolMessageFactory as _
+from docpool.event.utils import get_global_scenario_selection
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
 from logging import getLogger
@@ -266,16 +267,8 @@ class DPEvent(Container, ContentBase):
         Saves all content for this scenario to an archive, deletes the original content,
         and sets the scenario to state "closed".
         """
-        # Cleanup users after archiving of a event (see #3311 after deletion)
-        portal_membership = api.portal.get_tool('portal_membership')
-        event_id = self.id
-        for member in portal_membership.listMembers():
-          if event_id in member.getProperty('scenarios', []):
-            scenarios = list(member.getProperty('scenarios'))
-            scenarios.remove(event_id)
-            member.setMemberProperties({'scenarios': tuple(scenarios)})
-            logger.debug('Removed event {} from user {}'.format(event_id, member))
-
+        global_scenarios = get_global_scenario_selection()
+        global_scenarios[self.getId()] = 'closed'
 
         alsoProvides(REQUEST, IDisableCSRFProtection)
         self.snapshot()
@@ -527,18 +520,9 @@ class DPEvent(Container, ContentBase):
             source_obj.scenarios = scns
             source_obj.reindexObject()
 
-    def addScenarioForUsers(self):
-        """
-        Add this scenario to each users selection of scenarios.
-        """
-        pm = getToolByName(self, 'portal_membership')
-        # TODO: nur für die eigenen Nutzer
-        for memberId in pm.listMemberIds():
-            member = pm.getMemberById(memberId)
-            scns = list(member.getProperty("scenarios"))
-            if self.getId() not in scns:
-                scns.append(self.getId())
-            member.setMemberProperties({"scenarios": scns})
+    def selectGlobally(self):
+        global_scenarios = get_global_scenario_selection()
+        global_scenarios[self.getId()] = 'selected'
 
     def createDefaultJournals(self):
         """
@@ -618,7 +602,7 @@ def eventAdded(obj, event=None):
     create the journals.
     """
     # print "scenarioAdded"
-    obj.addScenarioForUsers()
+    obj.selectGlobally()
     obj.createDefaultJournals()
 
 
@@ -695,15 +679,8 @@ def eventRemoved(obj, event=None):
     if obj.id == 'routinemode':
         raise RuntimeError(u'The "routinemode" event cannot be removed.')
 
-    # Cleanup users after removal of a event (#3311)
-    portal_membership = api.portal.get_tool('portal_membership')
-    event_id = obj.id
-    for member in portal_membership.listMembers():
-        if event_id in member.getProperty('scenarios', []):
-            scenarios = list(member.getProperty('scenarios'))
-            scenarios.remove(event_id)
-            member.setMemberProperties({'scenarios': tuple(scenarios)})
-            logger.debug('Removed event {} from user {}'.format(event_id, member))
+    global_scenarios = get_global_scenario_selection()
+    global_scenarios[obj.getId()] = 'removed'
 
 
 @adapter(IDPEvent, IActionSucceededEvent)

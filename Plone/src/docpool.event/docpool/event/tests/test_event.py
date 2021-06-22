@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
-from plone.dexterity.interfaces import IDexterityFTI
+from docpool.event.utils import get_scenarios_for_user
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
 
 import unittest
 
@@ -15,6 +16,14 @@ class TestEvent(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        docpool = self.portal['test_docpool']
+        self.container = docpool['contentconfig']['scen']
+
+    def _get_user_scenarios(self):
+        pm = api.portal.get_tool('portal_membership')
+        test_user = pm.getMemberById(TEST_USER_ID)
+        scenarios = get_scenarios_for_user(self.portal, test_user)
+        return scenarios
 
     def test_types_available(self):
         portal_types = api.portal.get_tool('portal_types')
@@ -24,10 +33,8 @@ class TestEvent(unittest.TestCase):
         self.assertTrue(IDexterityFTI.providedBy(portal_types['DPNuclearPowerStation']))
 
     def test_add_event(self):
-        docpool = self.portal['test_docpool']
-        container = docpool['contentconfig']['scen']
         event = api.content.create(
-            container=container,
+            container=self.container,
             type='DPEvent',
             id='test_event',
             title=u'Test Event',
@@ -35,11 +42,45 @@ class TestEvent(unittest.TestCase):
         self.assertTrue(event.restrictedTraverse('@@view')())
         self.assertTrue(event.restrictedTraverse('@@edit')())
 
-    def test_removal_keeps_working_for_arbitrary_dpevents(self):
-        docpool = self.portal['test_docpool']
-        container = docpool['contentconfig']['scen']
+    def test_added_event_is_active_for_users(self):
         event = api.content.create(
-            container=container,
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        self.assertIn('test_event', scenarios)
+
+    def test_archived_event_is_not_active_for_users(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        assert 'test_event' in scenarios
+        event.archiveAndClose(self.layer['request'])
+        scenarios = self._get_user_scenarios()
+        self.assertNotIn('test_event', scenarios)
+
+    def test_removed_event_is_not_active_for_users(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        assert 'test_event' in scenarios
+        api.content.delete(event)
+        scenarios = self._get_user_scenarios()
+        self.assertNotIn('test_event', scenarios)
+
+    def test_removal_keeps_working_for_arbitrary_dpevents(self):
+        event = api.content.create(
+            container=self.container,
             type='DPEvent',
             id='test_event',
             title=u'Test Event',
@@ -50,17 +91,13 @@ class TestEvent(unittest.TestCase):
             self.fail(str(e))
 
     def test_removal_prevented_for_routinemode_dpevent(self):
-        docpool = self.portal['test_docpool']
-        container = docpool['contentconfig']['scen']
-        event = container['routinemode']
+        event = self.container['routinemode']
         with self.assertRaises(RuntimeError):
             api.content.delete(event)
 
     def test_journals_for_event(self):
-        docpool = self.portal['test_docpool']
-        container = docpool['contentconfig']['scen']
         event = api.content.create(
-            container=container,
+            container=self.container,
             type='DPEvent',
             id='test_event',
             title=u'Test Event',
@@ -113,4 +150,3 @@ class TestEvent(unittest.TestCase):
         self.assertEqual(
             event.journal1._Modify_portal_content_Permission,
             ('Manager', 'Owner', 'ContentAdmin', 'Site Administrator', 'DocPoolAdmin', 'EventEditor', 'JournalEditor'))
-

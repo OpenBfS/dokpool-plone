@@ -33,6 +33,9 @@ Fixed:
 - Fix adding events without journals. #4267
   [pbauer]
 
+- Reimplement scenario selection; more efficient and robust adding, closing and removing. #4324
+  [tlotze]
+
 Removed:
 
 
