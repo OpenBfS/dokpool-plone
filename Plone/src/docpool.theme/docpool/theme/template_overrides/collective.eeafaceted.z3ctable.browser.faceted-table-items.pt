@@ -33,18 +33,18 @@
 
           <a href="#" onclick="event.preventDefault(); Faceted.URLHandler.hash_changed();">
             <img src="#"
-                 tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:translate="refresh_results">Refresh search results.</span>
+                 tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:domain="docpool.theme" i18n:translate="refresh_results">Refresh search results.</span>
           </a>
             <span id="z3ctabel-toggles">
                 <a href="#"
                     class="z3ctable-toggle-metatitle">
                     <img src="#"
-                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/arrow-down.svg" /><span i18n:translate="">Open/close all metatitle</span>
+                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/arrow-down.svg" /><span i18n:domain="docpool.theme" i18n:translate="">Open/close all metatitle</span>
                 </a>
                 <a href="#"
                    class="z3ctable-toggle-metadata">
                     <img src="#"
-                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/file-text-line.svg" /><span i18n:translate="">Open/close all metadata</span>
+                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/file-text-line.svg" /><span i18n:domain="docpool.theme" i18n:translate="">Open/close all metadata</span>
                 </a>
             </span>
         </div>
