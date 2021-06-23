@@ -2,7 +2,7 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:i18n="http://namespaces.zope.org/i18n"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-  i18n_domain="kbo.webapp">
+  i18n_domain="docpool.base">
 
   <genericsetup:registerProfile
       name="to_1_4_00"
