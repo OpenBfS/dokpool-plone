@@ -141,9 +141,9 @@ $ export PATH
 **Create the Needed Databases and Database Users:**
 ```sh  
 #Create database zodb (user zodbuser, password zodb)
-$ sudo -u postgres createdb -0 zodbuser zodb 
+$ sudo -u postgres createdb -O zodbuser zodb 
 #Create database elan (user elan, password elan)
-$ sudo -u postgres createdb -0 elan elan
+$ sudo -u postgres createdb -O elan elan
 ```
 
 #### Build:

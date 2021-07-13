@@ -1,8 +1,77 @@
 Changelog
 =========
 
-1.7.1 (unreleased)
-------------------
+1.7.4
+-----
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+- Update Products.PloneHotfix20210518 and allow text/html to be displayed inline
+[pbauer]
+
+
+Removed:
+
+
+Technical:
+
+
+
+1.7.3
+-----
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+- Bump last weeks hotfix 20210518 to version 1.2
+  [tlotze]
+  Deployed on master as hotfix
+  [kprobst]
+
+
+Removed:
+
+
+Technical:
+
+
+
+1.7.2
+-----
+
+Added:
+
+
+Changed:
+
+
+Fixed:
+
+- Add Plone hotfix 20210518
+  [tlotze]
+  Deployed on master as hotfix
+  [kprobst]
+
+
+Removed:
+
+
+Technical:
+
+
+1.7.1
+-----
 
 Added:
 
