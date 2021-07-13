@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-09 11:43+0000\n"
+"POT-Creation-Date: 2021-07-13 10:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,14 @@ msgstr ""
 msgid "Extension profile for DocPool Theme"
 msgstr "Erweiterungsprofil für das DocPool Theme"
 
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Hide filters"
+msgstr "Ausblenden Filter"
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Metadata"
+msgstr "Metadaten"
+
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
 msgid "Open/close all metadata"
 msgstr "Alle Metadaten auf- bzw. zuklappen"
@@ -29,6 +37,22 @@ msgstr "Alle Metadaten auf- bzw. zuklappen"
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
 msgid "Open/close all metatitle"
 msgstr "Alle Titel auf- bzw. zuklappen"
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Remove all"
+msgstr "Alle entfernen"
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Remove all filters"
+msgstr "Alle Filter entfernen"
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Show filters"
+msgstr "Filter anzeigen"
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Title"
+msgstr ""
 
 #. Default: "Refresh search results."
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
