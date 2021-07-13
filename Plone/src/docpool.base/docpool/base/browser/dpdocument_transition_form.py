@@ -3,6 +3,7 @@
 """
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
+from operator import itemgetter
 from plone import api
 from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
@@ -19,6 +20,24 @@ PMF = MessageFactory('plone')
 class WorkflowActionView(BrowserView):
 
     template = ViewPageTemplateFile('templates/dpdocument_transition_form.pt')
+
+    TRANSITION_SORTKEYS = {
+        'publish': 0,
+        'submit': 1,
+        'submit_authority': 1,
+        'submit_bfs': 1,
+        'submit_bmu': 1,
+        'auto_publish': 2,
+        'reject': 2,
+        'reject_to_authority': 2,
+        'reject_to_bfs': 2,
+        'reject_to_npp_operator': 2,
+        'retract': 2,
+        'retract_for_revision': 2,
+        'retract_to_authority': 2,
+        'retract_to_bfs': 2,
+        'retract_to_npp_operator': 2,
+    }
 
     def __call__(self):
         form = self.request.form
@@ -53,6 +72,10 @@ class WorkflowActionView(BrowserView):
                     self.transitions.append(tdata)
             if item['transitions']:
                 self.items.append(item)
+
+        for tinfo in self.transitions:
+            tinfo['sort_key'] = self.TRANSITION_SORTKEYS.get(tinfo['id'], 3)
+        self.transitions = sorted(self.transitions, key=itemgetter('sort_key'))
 
         if form.get('form.button.cancel'):
             msg = PMF(u'Changes canceled.')
