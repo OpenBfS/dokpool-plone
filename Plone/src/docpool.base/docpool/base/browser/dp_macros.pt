@@ -51,12 +51,32 @@
                     <tr>
                         <metal:header_slot metal:define-slot="listingheader">
                             <th class="nosort actions">
-                              <input type="checkbox" name="checkAllAuto" id="checkAllAuto"
+                              <input type="checkbox" name="checkall" id="checkall"
                                      title="Toggle all" i18n:attributes="title label_toggle" />
                                 <script type="text/javascript">
-                                  $('#checkAllAuto').click(function() {
-                                      $("td.actions input[type='checkbox']").click();
-                                  })
+                                   // Check or Uncheck All checkboxes
+                                   $("#checkall").change(function(){
+                                     var checked = $(this).is(':checked');
+                                     if(checked){
+                                       $("td.actions input[type='checkbox']").each(function(){
+                                         $(this).prop("checked",true);
+                                       });
+                                     }else{
+                                       $("td.actions input[type='checkbox']").each(function(){
+                                         $(this).prop("checked",false);
+                                       });
+                                     }
+                                   });
+
+                                  // Changing state of CheckAll checkbox
+                                  $("#fctable").on("click", "td.actions input[name='paths:list']", function(){
+                                    if($("td.actions input[type='checkbox']").length == $("td.actions input[type='checkbox']:checked").length) {
+                                      $("#checkall").prop("checked", true);
+                                    } else {
+                                      $("#checkall").prop("checked", false);
+                                    }
+
+                                  });
                                 </script>
                             </th>
                             <th class="nosort title" i18n:translate="">Title / Description / Text</th>
