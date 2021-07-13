@@ -36,7 +36,7 @@
                  tal:attributes="src string:${context/portal_url}/++resource++collective.eeafaceted.z3ctable/refresh.gif" /><span i18n:domain="docpool.theme" i18n:translate="refresh_results">Refresh search results.</span>
           </a>
             <span id="z3ctabel-toggles">
-                <a href="#" title="Title"
+                <a href="#" title="Metatitel"
                         i18n:attributes="title"
                    class="z3ctable-toggle-metatitle">
                     <img src="#"
@@ -44,7 +44,7 @@
                         <span i18n:domain="docpool.theme"
                                 i18n:translate="">Open/close all metatitle</span>
                 </a>
-                <a href="#" title="Metadata"
+                <a href="#" title="Metadaten"
                         i18n:attributes="title"
                    class="z3ctable-toggle-metadata">
                     <img src="#"
