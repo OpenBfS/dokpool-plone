@@ -259,10 +259,6 @@ msgstr ""
 
 #. Default: "Origins"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-msgid "label_rei_Origin"
-msgstr ""
-
-#. Default: "Origins"
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_Origins"
 msgstr ""
