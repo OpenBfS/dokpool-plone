@@ -48,7 +48,7 @@
         </span><br>
         <br>
 
-        <label i18n:translate="label_rei_PDFVersion">PDFVersion</label>:
+        <label i18n:translate="label_rei_PDFVersion">PDF Version</label>:
         <span tal:condition="python:hasattr(reiobj,'PDFVersion')">
            <tal:var replace="reiobj/PDFVersion"/>
         </span><br>

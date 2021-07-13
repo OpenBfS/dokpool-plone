@@ -22,6 +22,8 @@ from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.component import adapter
 from zope.component import getUtility
+from zope.interface import Invalid
+from zope.interface import invariant
 from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
@@ -186,6 +188,14 @@ class IREIDoc(IDocumentExtension):
     directives.mode(PDFVersion='hidden')
     dexteritytextindexer.searchable('PDFVersion')
 
+    @invariant
+    def validate_medium(data):
+        if data.ReiLegalBases and 'REI-E' in data.ReiLegalBases:
+            if not data.Medium:
+                msg = _(u'For REI-E reports you need to specify a medium.')
+                raise Invalid(msg)
+
+
 
 class REIDoc(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
@@ -248,11 +258,13 @@ class REIDoc(FlexibleView):
 
     @property
     def Medium(self):
-        return self.context.Medium
+        if 'REI-E' in self.context.ReiLegalBases:
+            return self.context.Medium
 
     @Medium.setter
     def Medium(self, value):
-        self.context.Medium = value
+        if 'REI-E' in self.context.ReiLegalBases:
+            self.context.Medium = value
 
     @property
     def NuclearInstallations(self):
@@ -387,7 +399,7 @@ def set_title(obj, event=None):
     else:
         part1 = u', '.join(installations[:-1])
         installations = u'{} und {}'.format(part1, installations[-1])
-    if adapted.Medium:
+    if 'REI-E' in adapted.ReiLegalBases and adapted.Medium:
         medium = u'({}) '.format(adapted.Medium)
     else:
         medium = u''

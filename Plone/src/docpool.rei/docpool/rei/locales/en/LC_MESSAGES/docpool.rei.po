@@ -22,6 +22,10 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "For REI-E reports you need to specify a medium."
+msgstr ""
+
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "MStIDs"
 msgstr ""
@@ -256,7 +260,7 @@ msgstr ""
 msgid "label_rei_Origins"
 msgstr ""
 
-#. Default: "PDFVersion"
+#. Default: "PDF Version"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_PDFVersion"

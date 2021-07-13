@@ -23,6 +23,10 @@ msgstr "Berichte"
 msgid "Date"
 msgstr "Datum"
 
+#: docpool.rei/docpool/rei/behaviors/reidoc.py
+msgid "For REI-E reports you need to specify a medium."
+msgstr "Bei REI-Emissionsberichten muss ein Medium angegeben werden."
+
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "MStIDs"
 msgstr "Bericht enthält Daten folgender Messstellen"
@@ -257,7 +261,7 @@ msgstr "Kerntechnische Anlage"
 msgid "label_rei_Origins"
 msgstr "Berichtende Stelle"
 
-#. Default: "PDFVersion"
+#. Default: "PDF Version"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 #: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
 msgid "label_rei_PDFVersion"
