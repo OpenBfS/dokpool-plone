@@ -20,12 +20,11 @@ def allowed_targets(context):
     except AttributeError:
         return []
 
-    esd_uid = esd.UID()
     have_doctype = isinstance(context, DocType)
     dto = context if have_doctype else context.docTypeObj()
     dt_id = dto.id if dto else '---'
     filter_list = (
-        Channel.esd_from_uid == esd_uid,
+        Channel.esd_from_uid == esd.UID(),
         or_(
             and_(
                 DocTypePermission.doc_type == dt_id,
