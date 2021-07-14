@@ -20,8 +20,7 @@ def allowed_targets(context):
     except AttributeError:
         return []
 
-    have_doctype = isinstance(context, DocType)
-    dto = context if have_doctype else context.docTypeObj()
+    dto = context if isinstance(context, DocType) else context.docTypeObj()
     dt_id = dto.id if dto else '---'
     filter_list = (
         Channel.esd_from_uid == esd.UID(),
@@ -34,7 +33,7 @@ def allowed_targets(context):
                 DocTypePermission.doc_type == dt_id),
         ),
     )
-    if not have_doctype:
+    if isinstance(context, DPDocument):
         filter_list += (
             ~Channel.sends.any(
                 and_(
