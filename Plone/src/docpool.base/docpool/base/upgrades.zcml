@@ -178,6 +178,10 @@
         title="Enable bulk-actions in listings"
         handler="docpool.base.upgrades.enable_bulk_actions"
         />
+    <genericsetup:upgradeStep
+        title="Remove remnants of irix"
+        handler="docpool.base.upgrades.to_1008_remove_irix"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>

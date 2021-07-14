@@ -409,3 +409,10 @@ def to_1007_delete_local_impressum_pages(context=None):
     portal = api.portal.get()
     if 'impressum' in portal['contentconfig']:
         api.content.move(portal['contentconfig']['impressum'], portal)
+
+
+def to_1008_remove_irix(context=None):
+    for brain in api.content.find(portal_type='IRIXConfig'):
+        log.info(u'Deleting {}'.format(brain.getPath()))
+        obj = brain.getObject()
+        api.content.delete(obj)
