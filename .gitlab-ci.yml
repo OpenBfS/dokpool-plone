@@ -93,6 +93,8 @@ deploy_dev:
   variables:
     GIT_STRATEGY: none
   script:
+    # Remove all unused images
+    - docker system prune -a -f
     - docker pull git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
     # Stop if it is running
     - docker stop dokpool-review || true
