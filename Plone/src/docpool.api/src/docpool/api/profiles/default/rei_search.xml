@@ -35,7 +35,6 @@
    <property name="operator_visible">False</property>
    <property
       name="vocabulary">docpool.rei.vocabularies.MediumVocabulary</property>
-   <property name="catalog">portal_catalog</property>
    <property name="position">left</property>
    <property name="section">default</property>
    <property name="hidden">False</property>
