@@ -58,9 +58,12 @@ class Medium(BaseColumn):
         if not obj:
             return
         # Todo Vocab should be updated and fixed via upgrade step
-        if obj.Medium is None:
+        try:
+            if obj.Medium is None:
+                return ''
+            return populate_a_tag(obj, obj.Medium)
+        except AttributeError:
             return ''
-        return populate_a_tag(obj, obj.Medium)
 
 
 class Period(BaseColumn):
