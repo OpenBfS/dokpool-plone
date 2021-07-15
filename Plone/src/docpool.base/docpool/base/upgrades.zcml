@@ -191,6 +191,10 @@
         handler="docpool.base.upgrades.enable_bulk_actions"
         />
     <genericsetup:upgradeStep
+        title="Remove remnants of irix"
+        handler="docpool.base.upgrades.to_1008_remove_irix"
+        />
+    <genericsetup:upgradeStep
         title="Install collective.eeafaceted.z3ctable addon"
         handler="docpool.base.upgrades.to_1008_install_z3ctable"
         />

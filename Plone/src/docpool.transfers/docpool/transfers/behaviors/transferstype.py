@@ -29,8 +29,8 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @provider(IContextSourceBinder)
-def possible_targets_vocabulary_factory(dto):
-    targets = allowed_targets(dto)
+def possible_targets_vocabulary_factory(context):
+    targets = allowed_targets(context)
     return SimpleVocabulary([
         SimpleTerm(t.id, t.id, safe_unicode(t)) for t in targets])
 

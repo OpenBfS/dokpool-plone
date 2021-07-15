@@ -411,6 +411,13 @@ def to_1007_delete_local_impressum_pages(context=None):
         api.content.move(portal['contentconfig']['impressum'], portal)
 
 
+def to_1008_remove_irix(context=None):
+    for brain in api.content.find(portal_type='IRIXConfig'):
+        log.info(u'Deleting {}'.format(brain.getPath()))
+        obj = brain.getObject()
+        api.content.delete(obj)
+
+
 def to_1008(context=None):
     portal_setup = api.portal.get_tool('portal_setup')
     log.info('Upgrading to 1008: adding report year index')
