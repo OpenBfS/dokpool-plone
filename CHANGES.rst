@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.8.0
+-----
+
+Fixed:
+
+- Fehler beim Anlegen neuer DocTypes #4266
+  [tlotze]
+
+
 1.7.4
 -----
 

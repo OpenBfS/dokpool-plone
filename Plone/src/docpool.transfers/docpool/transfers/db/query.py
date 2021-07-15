@@ -1,4 +1,5 @@
 from docpool.base.content.doctype import DocType
+from docpool.base.content.dpdocument import DPDocument
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers.db.model import Channel
 from docpool.transfers.db.model import DocTypePermission
@@ -12,6 +13,7 @@ def allowed_targets(context):
     Other ESD must have allowed communication with my ESD,
     my DocType is known and must be accepted
         or the DocType is not defined in the other ESD (will be checked later)
+        or we don't even have a DocType (because, e.g., we're about to create one)
     and, if context is a document,
         my current version must not have been transferred.
     """
@@ -20,12 +22,19 @@ def allowed_targets(context):
     except AttributeError:
         return []
 
-    esd_uid = esd.UID()
-    have_doctype = isinstance(context, DocType)
-    dto = context if have_doctype else context.docTypeObj()
+    if isinstance(context, DocType):
+        dto = context
+    else:
+        try:
+            dto_ = context.docTypeObj
+        except AttributeError:
+            dto = None
+        else:
+            dto = dto_()
     dt_id = dto.id if dto else '---'
+
     filter_list = (
-        Channel.esd_from_uid == esd_uid,
+        Channel.esd_from_uid == esd.UID(),
         or_(
             and_(
                 DocTypePermission.doc_type == dt_id,
@@ -35,7 +44,7 @@ def allowed_targets(context):
                 DocTypePermission.doc_type == dt_id),
         ),
     )
-    if not have_doctype:
+    if isinstance(context, DPDocument):
         filter_list += (
             ~Channel.sends.any(
                 and_(
