@@ -57,6 +57,9 @@ class Medium(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
+        # Todo Vocab should be updated and fixed via upgrade step
+        if obj.Medium is None:
+            return ''
         return populate_a_tag(obj, obj.Medium)
 
 
