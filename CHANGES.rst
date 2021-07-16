@@ -1,102 +1,89 @@
 Changelog
 =========
 
-1.8.0
------
-
-Fixed:
-
-- Fehler beim Anlegen neuer DocTypes #4266
-  [tlotze]
-
-
-1.7.4
------
+1.8.0 (unreleased)
+------------------
 
 Added:
+
+- Added faceted navigation functionality in REI: facetednavigation-webpack #2634
+  [slindner]
+
+- Added bulk actions: bulk transfer #2693, bulk actions in collections #3460
+  [pbauer]
 
 
 Changed:
 
+- Added Collection to allowed content types for Simplefolder #4342
+  [pbauer]
+
+- Require medium for REI-E reports #4269
+  [pbauer]
+
+- Removed milliseconds in portlet recent in ELAN
+  [kprobst]
+
 
 Fixed:
 
-- Update Products.PloneHotfix20210518 and allow text/html to be displayed inline
-[pbauer]
+- Fixed unicode indexes in REI #4084
+  [pbauer]
 
+- Fixed creating events without journals in ELAN #4267
+  [pbauer]
 
-Removed:
+- Bug in creating new DocTypes #4266
+  [tlotze]
+
+- Fixed sorting in REI AuthorityVocabulary #4336
+  [pbauer]
+
+- Deactivate checkboxes when de/selecting events #4078
+  [tlotze]
 
 
 Technical:
 
+- Fix zcml: Drop obsolete explicit zcml-slugs. Only use those with i18n-override #4349
+  [pbauer]
 
 
-1.7.3
------
+1.7.4 (10.06.2021)
+------------------
 
-Added:
+Fixed:
+
+- Update Products.PloneHotfix20210518 and allow text/html to be displayed inline
+  [pbauer]
 
 
-Changed:
-
+1.7.3 (25.05.2021)
+------------------
 
 Fixed:
 
 - Bump last weeks hotfix 20210518 to version 1.2
   [tlotze]
-  Deployed on master as hotfix
+
+- Deployed on master as hotfix
   [kprobst]
 
 
-Removed:
-
-
-Technical:
-
-
-
-1.7.2
------
-
-Added:
-
-
-Changed:
-
+1.7.2 (22.05.2021)
+------------------
 
 Fixed:
 
 - Add Plone hotfix 20210518
   [tlotze]
-  Deployed on master as hotfix
+
+- Deployed on master as hotfix
   [kprobst]
 
 
-Removed:
-
-
-Technical:
-
-
-1.7.1
------
-
-Added:
-
-- Prepare review docker image #4243
-  [slindner]
-
-- Bulk actions (transfer, transition and delete) for items in Folders and Collections. #2693 and #3460
-  [pbauer]
-
-  - New view for collections "Docpool view with bulk actions"
-  - New view dpdocument_transition_form for bulk transitions
-  - New view folder_delete for bulk content delete
-  - New toggle-all checkbox for listings with actions
-  - Add debug logger to myView
-  - Remove/replace python scripts and cpt's transferDPDocument.cpy, migrateELANTransfers.py, isSender.py, getTupleForTransfer.py, dpdocument_transfer_form.cpt
-  - Pass portal_type of real context to macros and hide some actions in collections (see also #2693)
+1.7.1 (23.03.2021)
+------------------
 
 Changed:
 
@@ -105,19 +92,6 @@ Changed:
 
 - Simplify generated title for REI-reports. #4224
   [kprobst]
-
-Fixed:
-
-- Fix adding events without journals. #4267
-  [pbauer]
-
-- Reimplement scenario selection; more efficient and robust adding, closing and removing. #4324
-  [tlotze]
-
-Removed:
-
-
-Technical:
 
 
 1.7.0 (12.02.2021)
@@ -133,6 +107,7 @@ Added:
 
 - Add automatic transfer of published documents to other docpools. #2601
   [tlotze]
+
 
 Changed:
 
@@ -161,9 +136,6 @@ Fixed:
 - Add hotfix to fix canchangepassword #4085
   Deployed on master as hotfix.
   [kprobst]
-
-
-Removed:
 
 
 Technical:

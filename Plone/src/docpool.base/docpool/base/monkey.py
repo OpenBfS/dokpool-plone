@@ -2,10 +2,15 @@
 from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone.app.discussion.browser.conversation import ConversationView
+from Products.CMFCore.MemberDataTool import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
 
+import logging
 import ssl
+
+
+log = logging.getLogger(__name__)
 
 
 # from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
@@ -52,8 +57,8 @@ def getURL(self, relative=0, original=False):
         # only valid for DPDocuments
         and self.portal_type == 'DPDocument'
         # resolveid does not exist in url
-        and not request['URL'].find('resolveuid') > -1 
-        and not request['URL'].find('Transfers') > -1 
+        and not request['URL'].find('resolveuid') > -1
+        and not request['URL'].find('Transfers') > -1
         or 'overview' in str(request.get('myfolder_url',"/"))
     ):
         if self.cat_path:
@@ -72,3 +77,22 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
 
 
 ssl._create_default_https_context = ssl._create_unverified_context
+
+
+def setProperties(self, properties=None, **kw):
+    request = aq_get(self, 'REQUEST', None)
+    if request is None:
+        request = getRequest()
+
+    if request.get('HTTP_X_REQUESTED_WITH', '') == 'XMLHttpRequest':
+        mapping = kw if properties is None else properties
+        for key in ('login_time', 'last_login_time'):
+            if key in mapping.keys():
+                value = mapping.pop(key)
+                log.info('Not setting property {0}: {1}'.format(key, value))
+
+    self._orig_setProperties(properties, **kw)
+
+
+MemberData._orig_setProperties = MemberData.setProperties
+MemberData.setProperties = setProperties

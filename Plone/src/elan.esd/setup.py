@@ -38,12 +38,11 @@ setup(
         'collective.dexteritytextindexer',
         'plone.app.contenttypes',
         'plone.app.relationfield',
-        '',
     ],
     extras_require=dict(test=['loremipsum']),
     entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
-         target = plone
+      target = plone
       """,
 )

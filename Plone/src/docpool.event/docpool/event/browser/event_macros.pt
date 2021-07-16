@@ -5,12 +5,12 @@
 <body>
 
 <div id="scenario_box" metal:define-macro="scenario_table"
-     tal:define="possible_scenarios view/scenarios;
-                 selected_scenarios view/selected_scenarios;
-                 readonly request/ajax_load|nothing"
+     tal:define="possible_scenarios view/scenarios;"
      tal:condition="possible_scenarios">
     <form name="scenarios" method="post" class="scenario_selection"
-          tal:attributes="action string:selectScenarios">
+          tal:define="selected_scenarios view/selected_scenarios;
+                      readonly request/ajax_load|nothing"
+         tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
         <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
         <table class="scenario_table">
             <tal:loop tal:repeat="scenario possible_scenarios">
@@ -32,7 +32,8 @@
                                                    title    scenario/Title;
                                                    disabled python:readonly and 'disabled' or None;
                                                    checked python:'checked' if scenario.getId() in selected_scenarios else None;"
-                                   onclick="this.form.submit()"
+                                   onclick="this.form.submit();
+                                            $('.scenario_table input').prop('disabled', true)"
                             />&nbsp;&nbsp;&nbsp;&nbsp;
 
                             <tal:if condition="python: exercise">
@@ -49,10 +50,10 @@
                                   tal:content="string:${scenario/Title}">Event1</span>
                         </td>
                         <td>
-                          <a class="scenario-info"
+                          <a class="pat-plone-modal scenario-info"
                              href=""
                              title="Klicken für Informationen zum Ereignis"
-                             tal:attributes="href python:scenario.absolute_url()">
+                             tal:attributes="href python:scenario.absolute_url() + '?ajax_load=1'">
                             Info
                           </a>
                         </td>

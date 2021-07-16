@@ -38,7 +38,6 @@ setup(
         'collective.dexteritytextindexer',
         'plone.app.contenttypes',
         'plone.app.relationfield',
-        '',
     ],
     entry_points="""
       # -*- Entry points: -*-

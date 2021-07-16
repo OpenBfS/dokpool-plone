@@ -1,0 +1,79 @@
+ <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:plone="http://namespaces.plone.org/plone"
+        xmlns:zcml="http://namespaces.zope.org/zcml"
+        i18n_domain="docpool.rei">
+
+  <include package="eea.facetednavigation" file="meta.zcml" />
+
+  <plone:static
+           directory="static"
+           type="theme"
+           name="docpoolrei" />
+
+  <adapter
+          for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+          factory=".columns.ReiReport"
+          provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+          name="ReiReport" />
+
+  <adapter
+          for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+          factory=".columns.ReiLegalBases"
+          provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+          name="ReiLegalBases" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Authority"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Authority" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.NuclearInstallation"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="NuclearInstallation" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Period"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Period" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Origin"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Origin" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Medium"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Medium" />
+
+     <adapter
+             for="zope.interface.Interface
+               zope.publisher.interfaces.browser.IBrowserRequest
+               collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+             factory=".columns.Metadata"
+             provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+             name="Metadata" />
+
+ </configure>
