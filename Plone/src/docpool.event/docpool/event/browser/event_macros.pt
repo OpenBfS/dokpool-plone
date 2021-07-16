@@ -32,7 +32,8 @@
                                                    title    scenario/Title;
                                                    disabled python:readonly and 'disabled' or None;
                                                    checked python:'checked' if scenario.getId() in selected_scenarios else None;"
-                                   onclick="this.form.submit()"
+                                   onclick="this.form.submit();
+                                            $('.scenario_table input').prop('disabled', true)"
                             />&nbsp;&nbsp;&nbsp;&nbsp;
 
                             <tal:if condition="python: exercise">
