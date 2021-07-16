@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"POT-Creation-Date: 2021-07-13 10:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,10 +14,47 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.theme/docpool/theme/configure.zcml:17
+#: docpool.theme/docpool/theme/configure.zcml
 msgid "DocPool Theme"
 msgstr ""
 
-#: docpool.theme/docpool/theme/configure.zcml:17
+#: docpool.theme/docpool/theme/configure.zcml
 msgid "Extension profile for DocPool Theme"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Hide filters"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Metadata"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Open/close all metadata"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Open/close all metatitle"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Remove all"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Remove all filters"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Show filters"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Title"
+msgstr ""
+
+#. Default: "Refresh search results."
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "refresh_results"
 msgstr ""

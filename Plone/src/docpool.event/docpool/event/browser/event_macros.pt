@@ -49,10 +49,10 @@
                                   tal:content="string:${scenario/Title}">Event1</span>
                         </td>
                         <td>
-                          <a class="scenario-info"
+                          <a class="pat-plone-modal scenario-info"
                              href=""
                              title="Klicken für Informationen zum Ereignis"
-                             tal:attributes="href python:scenario.absolute_url()">
+                             tal:attributes="href python:scenario.absolute_url() + '?ajax_load=1'">
                             Info
                           </a>
                         </td>

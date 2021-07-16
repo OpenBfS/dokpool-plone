@@ -127,6 +127,8 @@ Added:
 
 - Added Changelog
   [slindner]
+- Facetednavigation für Rei-Reports #3968
+  [slindner]
 
 - Add custom add-form for DPDocument to hide title-field for reireport #4039
   [pbauer]

@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from plone.indexer import indexer
+from Products.CMFPlone.utils import safe_encode
+
+import six
 
 
 @indexer(IDPDocument)
@@ -14,10 +18,13 @@ def scenarios_indexer(obj):
 
 @indexer(IDPDocument)
 def category_indexer(obj):
-    try:
-        return obj.doc_extension(ELAN_APP).category()
-    except BaseException:
-        pass
+    elandoc = IELANDocument(obj, None)
+    if not elandoc:
+        return
+    categories = elandoc.category()
+    if six.PY2:
+        categories = [safe_encode(i) for i in categories]
+    return categories
 
 
 @indexer(IDPDocument)

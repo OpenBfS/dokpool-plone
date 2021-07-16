@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_get
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
+from Products.GenericSetup.context import SnapshotImportContext
+from Products.GenericSetup.interfaces import IBody
 from datetime import datetime
 from datetime import timedelta
-
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from plone.app.textfield import RichTextValue
@@ -17,6 +20,7 @@ from plone.uuid.interfaces import IUUID
 from z3c.relationfield.relation import RelationValue
 from zope.component import getUtility
 from zope.component import queryUtility
+from zope.component._api import queryMultiAdapter
 from zope.event import notify
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
@@ -401,7 +405,7 @@ class DocpoolSetup(BrowserView):
                 text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
-                Year=2019,
+                Year=2017,
                 Period=u'Q1',
                 NuclearInstallations=['UCHL'],
                 Medium=u'Fortluft',
@@ -411,6 +415,25 @@ class DocpoolSetup(BrowserView):
                 Authority=u'de_bw',
                 PDFVersion=u'PDF/A-1b',
             )
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Ein Bericht',
+                description=u'foo',
+                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                docType='reireport',
+                local_behaviors=['rei'],
+                Year=2020,
+                Period=u'Q1',
+                NuclearInstallations=['U07U'],
+                Medium=u'Abwasser/Fortluft',
+                ReiLegalBases=[u'REI-E'],
+                Origins=[u'unabhängige Messstelle'],
+                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
+                Authority=u'de_bw',
+                PDFVersion=u'PDF/A-1b',
+            )
+
         folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
         with api.env.adopt_user(username='aufsicht_by'):
             new = api.content.create(
@@ -431,7 +454,43 @@ class DocpoolSetup(BrowserView):
                 Authority=u'de_mv',
                 PDFVersion=u'PDF/A-1b',
             )
+            new = api.content.create(
+                container=folder,
+                type='DPDocument',
+                title=u'Ein Bericht',
+                description=u'foo',
+                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                docType='reireport',
+                local_behaviors=['rei'],
+                Year=2021,
+                Period=u'M1',
+                NuclearInstallations=['U07U'],
+                Medium=u'Abwasser/Fortluft',
+                ReiLegalBases=[u'REI-E'],
+                Origins=[u'unabhängige Messstelle'],
+                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
+                Authority=u'de_bw',
+                PDFVersion=u'PDF/A-1b',
+            )
 
+        new = api.content.create(
+            container=folder,
+            type='DPDocument',
+            title=u'Ein Bericht des Berichts',
+            description=u'foo',
+            text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+            docType='reireport',
+            local_behaviors=['rei'],
+            Year=2009,
+            Period=u'M1',
+            NuclearInstallations=['U08K'],
+            Medium=u'Abwasser/Fortluft',
+            ReiLegalBases=[u'REI-E'],
+            Origins=[u'k.A.'],
+            MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
+            Authority=u'de_bw',
+            PDFVersion=u'PDF/A-1b',
+        )
         # Create Pinnwand Collections for Docpools
         dbconfig_bund = docpool_bund['contentconfig']['dbconfig']
         groundcontamination = docpool_bund['config']['dtypes']['groundcontamination']
@@ -490,6 +549,19 @@ class DocpoolSetup(BrowserView):
         allowed = adapted.allowedTargets()
         target = allowed[0]
         adapted.transferToTargets(targets=[target])
+        import_file_path = os.path.join(
+            os.path.dirname(__file__), "../profiles/default/rei_search.xml"
+        )
+        # Configure EEA faceted navigation
+        search = api.content.create(
+            container=docpool_bund, type="Folder", id="rei-suche", title=u"Rei Suche",
+            local_behaviors=['rei'],
+        )
+        _configure_faceted_view(search, import_file_path, 'faceted-table-items')
+        # Why we need to set to empty?
+        # Todo: https://redmine-koala.bfs.de/issues/3951
+        search.relatedItems = ''
+        modified(search)
 
         # Workaround for broken indexes (See #3502)
         log.info(u'Rebuilding catalog')
@@ -628,3 +700,24 @@ def set_placeful_workflow(obj, workflow):
     wf_policy_config = getattr(obj, WorkflowPolicyConfig_id)
     wf_policy_config.setPolicyIn(workflow)
     wf_policy_config.setPolicyBelow(workflow)
+
+
+def _configure_faceted_view(obj, config_file_name, layout_id):
+    log.info(
+        "Loading configuration {} for faceted view on {}".format(
+            config_file_name, "/".join(obj.getPhysicalPath())
+        )
+    )
+    subtyper = api.content.get_view("faceted_subtyper", obj, aq_get(obj, "REQUEST"))
+    if not subtyper.is_faceted:
+        subtyper.enable()
+        import_file_path = os.path.join(
+            os.path.dirname(__file__), "../profiles/default/", config_file_name
+        )
+        with open(import_file_path) as import_file:
+            xml = import_file.read()
+            environ = SnapshotImportContext(obj, "utf-8")
+            importer = queryMultiAdapter((obj, environ), IBody)
+            importer.body = xml
+        IFacetedLayout(obj).update_layout(layout_id)
+        # noLongerProvides(obj, IHidePloneRightColumn)

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-08 13:58+0000\n"
+"POT-Creation-Date: 2021-06-22 09:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "PDF Version"
-msgstr "PDF Version"
+msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Period"
@@ -194,6 +194,38 @@ msgstr "Berichtsjahr"
 #: docpool.rei/docpool/rei/configure.zcml
 msgid "docpool.rei"
 msgstr "docpool.rei"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Authority"
+msgstr "Netzbetreiber/Aufsichtsbehörde"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Medium"
+msgstr "Medium"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Metadata"
+msgstr "Titel, Metadaten"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_NuclearInstallation"
+msgstr "Kerntechnische Anlage"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Origin"
+msgstr "Berichtende Stelle"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Period"
+msgstr "Berichtszeitraum"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_ReiLegalBases"
+msgstr "REI-I/E"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_ReiReport"
+msgstr "REI-Bericht"
 
 #. Default: "Authority"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py

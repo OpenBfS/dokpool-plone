@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-08 13:58+0000\n"
+"POT-Creation-Date: 2021-06-22 09:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,6 +195,38 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/configure.zcml
 msgid "docpool.rei"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Authority"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Medium"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Metadata"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_NuclearInstallation"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Origin"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_ReiLegalBases"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid "header_Title_ReiReport"
 msgstr ""
 
 #. Default: "Authority"

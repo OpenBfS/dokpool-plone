@@ -4,6 +4,7 @@
     i18n_domain="docpool.base">
 
   <include package="plone.app.contentmenu" />
+  <include package=".search"/>
 
   <browser:page
       name="actionhelpers"
