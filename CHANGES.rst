@@ -9,6 +9,9 @@ Fixed:
 - Fehler beim Anlegen neuer DocTypes #4266
   [tlotze]
 
+- Fehlverhalten bei Ereignisauswahl #4078
+  [tlotze]
+
 
 1.7.4
 -----
