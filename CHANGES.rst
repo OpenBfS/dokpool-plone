@@ -144,6 +144,8 @@ Changed:
 - Do not display content of text files #4038
   [pbauer]
 
+- Ersetzen eines CPY zurch Browserview #4078
+  [slindner]
 
 Fixed:
 
