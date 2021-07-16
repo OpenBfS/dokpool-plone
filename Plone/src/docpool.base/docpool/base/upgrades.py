@@ -414,5 +414,11 @@ def to_1007_delete_local_impressum_pages(context=None):
 def to_1008_remove_irix(context=None):
     for brain in api.content.find(portal_type='IRIXConfig'):
         log.info(u'Deleting {}'.format(brain.getPath()))
-        obj = brain.getObject()
+        try:
+            obj = brain.getObject()
+        except Exception:
+            log.info('Could not resolve {}'.format(brain.getPath()))
+            continue
         api.content.delete(obj)
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:ticket_3954_remove_irix')

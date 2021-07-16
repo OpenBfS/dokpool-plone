@@ -44,6 +44,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="ticket_3954_remove_irix"
+      title="Upgrade profile for docpool.base"
+      directory="profiles/ticket_3954_remove_irix"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <genericsetup:upgradeSteps
       source="1.3.28"
       destination="1.4.00"
