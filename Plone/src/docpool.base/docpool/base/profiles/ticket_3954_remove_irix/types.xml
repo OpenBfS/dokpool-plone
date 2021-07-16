@@ -1,0 +1,3 @@
+<object name="portal_types" meta_type="Plone Types Tool">
+  <object name="IRIXConfig" meta_type="Dexterity FTI" remove="True" />
+</object>
