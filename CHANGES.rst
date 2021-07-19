@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.8.1 (unreleases)
+------------------
+
+Fixed:
+
+- Fix logic for deselecting scenarios #4324
+  [tlotze, pbauer]
+
+
 1.8.0 (19.07.2021)
 ------------------
 
