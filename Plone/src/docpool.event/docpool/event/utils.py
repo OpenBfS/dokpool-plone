@@ -46,6 +46,7 @@ def getScenariosForCurrentUser(self):
 
 def get_scenarios_for_user(self, user):
     selections_prop = user.getProperty("scenarios", [])
+    global_scenarios = get_global_scenario_selection()
 
     selections = {}
     for line in selections_prop:
@@ -55,11 +56,11 @@ def get_scenarios_for_user(self, user):
             selections[scen] = selected
         else:
             # Avoid upgrade step for now. We used to store a list of selected scenarios.
-            selections = dict.fromkeys(selections_prop, True)
+            selections = dict.fromkeys(list(global_scenarios), False)
+            selections.update(dict.fromkeys(selections_prop, True))
             break
 
     scenarios = []
-    global_scenarios = get_global_scenario_selection()
     for scen, state in global_scenarios.items():
         selected = selections.get(scen)
         if ((state == 'selected' or selected == 'selected')
