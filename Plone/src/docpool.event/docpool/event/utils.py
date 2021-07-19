@@ -83,7 +83,7 @@ def set_scenarios_for_user(self, user, scenarios):
         {
             "scenarios": [
                 '{}:{}'.format(scen, 'selected' if scen in scenarios else 'deselected')
-                for scen in scenarios + global_scenarios.keys()
+                for scen in set(scenarios) | set(global_scenarios)
                 if global_scenarios.get(scen) != 'removed'
             ]
         }
