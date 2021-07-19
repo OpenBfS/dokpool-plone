@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.8.0 (unreleased)
+1.8.0 (19.07.2021)
 ------------------
 
 Added:
@@ -33,7 +33,7 @@ Fixed:
 - Fixed creating events without journals in ELAN #4267
   [pbauer]
 
-- Bug in creating new DocTypes #4266
+- Fixed bug in creating new DocTypes #4266
   [tlotze]
 
 - Fixed sorting in REI AuthorityVocabulary #4336
