@@ -45,27 +45,45 @@ def getScenariosForCurrentUser(self):
 
 
 def get_scenarios_for_user(self, user):
-    scenarios = set(user.getProperty("scenarios", []))
+    selections_prop = user.getProperty("scenarios", [])
+
+    selections = {}
+    for line in selections_prop:
+        line = line.strip()
+        if line.endswith((':selected', ':deselected')):
+            scen, selected = line.rsplit(':', 1)
+            selections[scen] = selected
+        else:
+            # Avoid upgrade step for now. We used to store a list of selected scenarios.
+            selections = dict.fromkeys(selections_prop, True)
+            break
+
+    scenarios = []
     global_scenarios = get_global_scenario_selection()
     for scen, state in global_scenarios.items():
-        if state == 'selected':
-            scenarios.add(scen)
-        elif state in ('closed', 'removed'):
-            scenarios.discard(scen)
-        else:
-            assert False, '{0} is not a valid scenario selection state'.format(state)
-    return list(scenarios)
+        selected = selections.get(scen)
+        if ((state == 'selected' or selected == 'selected')
+            and not (state in ('closed', 'removed') or selected == 'deselected')
+        ):
+            scenarios.append(scen)
+    return scenarios
 
 
 def setScenariosForCurrentUser(self, scenarios):
     """
     """
-    global_scenarios = get_global_scenario_selection()
     user = api.user.get_current()
+    set_scenarios_for_user(self, user, scenarios)
+
+
+def set_scenarios_for_user(self, user, scenarios):
+    global_scenarios = get_global_scenario_selection()
     user.setMemberProperties(
         {
             "scenarios": [
-                scen for scen in scenarios if global_scenarios.get(scen) != 'removed'
+                '{}:{}'.format(scen, 'selected' if scen in scenarios else 'deselected')
+                for scen, state in global_scenarios.items()
+                if state != 'removed'
             ]
         }
     )
