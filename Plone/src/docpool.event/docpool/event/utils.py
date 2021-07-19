@@ -60,7 +60,7 @@ def get_scenarios_for_user(self, user):
             selections.update(dict.fromkeys(selections_prop, True))
             break
 
-    scenarios = []
+    scenarios = [scen for scen, selected in selections.items() if selected]
     for scen, state in global_scenarios.items():
         selected = selections.get(scen)
         if ((state == 'selected' or selected == 'selected')
