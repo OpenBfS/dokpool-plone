@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.event.utils import get_scenarios_for_user
+from docpool.event.utils import set_scenarios_for_user
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -24,6 +25,11 @@ class TestEvent(unittest.TestCase):
         test_user = pm.getMemberById(TEST_USER_ID)
         scenarios = get_scenarios_for_user(self.portal, test_user)
         return scenarios
+
+    def _set_user_scenarios(self, scenarios):
+        pm = api.portal.get_tool('portal_membership')
+        test_user = pm.getMemberById(TEST_USER_ID)
+        scenarios = set_scenarios_for_user(self.portal, test_user, scenarios)
 
     def test_types_available(self):
         portal_types = api.portal.get_tool('portal_types')
@@ -75,6 +81,19 @@ class TestEvent(unittest.TestCase):
         scenarios = self._get_user_scenarios()
         assert 'test_event' in scenarios
         api.content.delete(event)
+        scenarios = self._get_user_scenarios()
+        self.assertNotIn('test_event', scenarios)
+
+    def test_added_event_can_be_deactivated_by_user(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        scenarios = self._get_user_scenarios()
+        assert 'test_event' in scenarios
+        self._set_user_scenarios([])
         scenarios = self._get_user_scenarios()
         self.assertNotIn('test_event', scenarios)
 
