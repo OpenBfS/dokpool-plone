@@ -37,7 +37,7 @@ class ReiLegalBases(BaseColumn):
     """  """
 
     header = _('header_Title_ReiLegalBases')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 20
 
     def renderCell(self, item):
@@ -50,7 +50,7 @@ class ReiLegalBases(BaseColumn):
 class Medium(BaseColumn):
 
     header = _('header_Title_Medium')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 30
 
     def renderCell(self, item):
@@ -87,7 +87,7 @@ class Authority(BaseColumn):
     """ """
 
     header = _('header_Title_Authority')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 50
 
     def renderCell(self, item):
@@ -101,7 +101,7 @@ class Authority(BaseColumn):
 class NuclearInstallation(BaseColumn):
 
     header = _('header_Title_NuclearInstallation')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 60
 
     def renderCell(self, item):
@@ -116,7 +116,7 @@ class NuclearInstallation(BaseColumn):
 class Origin(BaseColumn):
 
     header = _('header_Title_Origin')
-    sort_index = 'sortable_title'
+    sort_index = -1
     weight = 70
 
     def renderCell(self, item):
