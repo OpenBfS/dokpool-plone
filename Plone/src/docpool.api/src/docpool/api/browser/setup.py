@@ -486,7 +486,7 @@ class DocpoolSetup(BrowserView):
             NuclearInstallations=['U08K'],
             Medium=u'Abwasser/Fortluft',
             ReiLegalBases=[u'REI-E'],
-            Origins=[u'k.A.'],
+            Origins=[u'unabhängige Messstelle'],
             MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
             Authority=u'de_bw',
             PDFVersion=u'PDF/A-1b',
