@@ -67,6 +67,8 @@ def get_scenarios_for_user(self, user):
             and not (state in ('closed', 'removed') or selected == 'deselected')
         ):
             scenarios.append(scen)
+    # remove duplicates (events that are selected globally and by user)
+    scenarios = list(set(scenarios))
     return scenarios
 
 
