@@ -10,7 +10,7 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 AUTHORITIES = OrderedDict([
-    (u'None', u'Kein Wert'),
+    (u'', u'Select a value ...'),
     (u'de_bw', u'Baden-Württemberg'),
     (u'de_by', u'Bayern'),
     (u'de_be', u'Berlin'),

@@ -168,6 +168,7 @@ class IREIDoc(IDocumentExtension):
     )
     directives.omitted('mstids_initial_value')
 
+    directives.widget(Authority=SelectFieldWidget)
     Authority = schema.Choice(
         title=_(u'label_rei_Authority', default=u'Authority'),
         description=_(u'description_rei_Authority', default=u''),
