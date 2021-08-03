@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2021-05-11 14:55+0000\n"
+"POT-Creation-Date: 2021-08-03 12:06+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -194,7 +194,7 @@ msgstr "Keine Inhalte gelöscht."
 
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "No items or transitions!"
-msgstr "Keine Einträge ausgewählt / keine Statusänderungen verfügbar."
+msgstr "keine Einträge ausgewählt / keine Berechtigungen / kein Anhang"
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "No items to delete."
@@ -357,6 +357,14 @@ msgstr "Fehlende Berechtigungen für das Einfügen."
 msgid "Unknown error occured. Please check your logs"
 msgstr "Unbekannter Fehler. Bitte prüfen Sie das Log."
 
+#: docpool.base/docpool/base/upgrades.zcml
+msgid "Upgrade profile for docpool.base"
+msgstr ""
+
+#: docpool.base/docpool/base/upgrades.zcml
+msgid "Upgrade profile for docpool.base 1.3.28 to 1.4.00"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
 msgstr "Nutzerordner"
@@ -436,6 +444,10 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_transition"
+msgstr "Wollen Sie die gewählte Statusänderung wirklich duchführen?"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "closed"
