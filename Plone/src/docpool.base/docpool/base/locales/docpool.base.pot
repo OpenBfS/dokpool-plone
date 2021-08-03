@@ -282,6 +282,10 @@ msgid "Search for user or group"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Select a value ..."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Send back to BfS"
 msgstr ""
 
