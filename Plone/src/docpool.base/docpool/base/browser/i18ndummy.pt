@@ -56,6 +56,7 @@
         <i18n:dummy translate="revised - Show document"></i18n:dummy>
         <i18n:dummy translate="pending - Show document"></i18n:dummy>
         <i18n:dummy translate="Select a value ..."></i18n:dummy>
+        <i18n:dummy translate="alert_transition"></i18n:dummy>
 
     </metal:content-core>
 </metal:content-core>

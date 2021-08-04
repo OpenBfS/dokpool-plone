@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2021-05-11 14:55+0000\n"
+"POT-Creation-Date: 2021-08-03 12:06+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -357,6 +357,14 @@ msgstr ""
 msgid "Unknown error occured. Please check your logs"
 msgstr ""
 
+#: docpool.base/docpool/base/upgrades.zcml
+msgid "Upgrade profile for docpool.base"
+msgstr ""
+
+#: docpool.base/docpool/base/upgrades.zcml
+msgid "Upgrade profile for docpool.base 1.3.28 to 1.4.00"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
 msgstr ""
@@ -436,6 +444,10 @@ msgstr ""
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Do you really want to submit this document?"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_transition"
+msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "closed"
