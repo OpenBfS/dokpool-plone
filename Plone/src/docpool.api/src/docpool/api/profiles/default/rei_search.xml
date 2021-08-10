@@ -78,7 +78,7 @@
    <property name="sortcountable">False</property>
    <property name="hidezerocount">False</property>
    <property name="maxitems">3</property>
-   <property name="sortreversed">False</property>
+   <property name="sortreversed">True</property>
   </criterion>
   <criterion name="c1">
    <property name="widget">checkbox</property>
