@@ -9,6 +9,8 @@ Fixed:
 - Fix logic for deselecting scenarios #4324
   [tlotze, pbauer]
 
+- Fix year filter - facetednavigation #4394
+  [slindner]
 
 1.8.0 (19.07.2021)
 ------------------
