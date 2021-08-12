@@ -1,8 +1,20 @@
 Changelog
 =========
 
-1.8.1 (unreleases)
+1.8.1 (unreleased)
 ------------------
+
+Added:
+
+- Add js alert to confirm bulk transitions #4396
+  [pbauer]
+
+
+Changed:
+
+- Use dview if the parent is a collection #4392
+  [pbauer]
+
 
 Fixed:
 
@@ -11,6 +23,16 @@ Fixed:
 
 - Fix year filter - facetednavigation #4394
   [slindner]
+
+- Remove unallowed value from OriginVocabulary #4388
+  [pbauer]
+
+- Disable broken sorting in faceted navigation results table #4395
+  [pbauer]
+
+- Fix no_value option in AutoritiesVocabulary #4418
+  [pbauer]
+
 
 1.8.0 (19.07.2021)
 ------------------
