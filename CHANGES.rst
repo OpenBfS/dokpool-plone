@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.8.1 (unreleased)
+1.8.2 (12.08.2021)
 ------------------
 
 Added:
@@ -18,9 +18,6 @@ Changed:
 
 Fixed:
 
-- Fix logic for deselecting scenarios #4324
-  [tlotze, pbauer]
-
 - Fix year filter - facetednavigation #4394
   [slindner]
 
@@ -32,6 +29,15 @@ Fixed:
 
 - Fix no_value option in AutoritiesVocabulary #4418
   [pbauer]
+
+
+1.8.1 (19.07.2021)
+------------------
+
+Fixed:
+
+- Fix logic for deselecting scenarios #4324
+  [tlotze, pbauer]
 
 
 1.8.0 (19.07.2021)
