@@ -46,6 +46,8 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
+from zope.component import getUtility
+from zope.interface import Interface
 from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
@@ -589,6 +591,10 @@ class DPEvent(Container, ContentBase):
         if not wkt:
             return
         return geometry.from_wkt(wkt)
+
+    def event_type_title(self):
+        vocab = getUtility(Interface, name='docpool.event.vocabularies.EventTypes')
+        return vocab(self).getTerm(self.EventType).title
 
 
 class ELANScenario(DPEvent):

@@ -40,7 +40,7 @@
                             <span class="exerciseflag"
                                   tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description().decode('utf-8'), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))">
                                 +++
-                                <span tal:replace="python: event_type.capitalize()" i18n:translate=""></span>
+                                <span tal:replace="python:scenario.event_type_title() or ''" i18n:translate=""></span>
                                 +++
                             </span>&nbsp;&nbsp;
                             </tal:if>
