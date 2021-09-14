@@ -105,6 +105,17 @@ $ bin/zodbconvert var/convert_to_datafs.conf
 
 # Development
 
+## Repositories
+
+The primary code repository is hosted by Starzel: https://git.starzel.de/bfs/dokpool
+
+A secondary repository at https://redmine-koala.bfs.de/scm/git/dokpool is
+exclusively meant as a means to allow production deployment from inside the
+BfS infrastructure. The primary repository is configured to push-mirror its
+content to the BfS one (that is, by a gitlab configuration rather than, e.g.,
+a cron job). This is a one-way road, so there's no guarantee about anything
+pushed directly to the secondary repository by accident.
+
 ## Branches
 
 ### master
