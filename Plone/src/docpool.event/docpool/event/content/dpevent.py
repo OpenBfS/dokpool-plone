@@ -613,6 +613,7 @@ def addLogEntry(obj):
         datetime.datetime.now(), long_format=1)
     entry[u'User'] = obj._getUserInfoString()
     entry[u'Status'] = obj.Status
+    entry[u'EventType'] = obj.EventType
     entry[u'Operation mode'] = obj.OperationMode
     entry[u'Alerting status'] = obj.AlertingStatus
     entry[u'Alerting note'] = obj.AlertingNote
