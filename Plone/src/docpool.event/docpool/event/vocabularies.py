@@ -40,8 +40,8 @@ class EventTypesVocabulary(object):
 
     def __call__(self, context):
         values = [
+            (u'Emergency', _(u'Emergency')),
             (u'Exercise', _(u'Exercise')),
-            (u'Event', _(u'Event')),
             (u'Test', _(u'Test')),
             ]
         # value, token, title

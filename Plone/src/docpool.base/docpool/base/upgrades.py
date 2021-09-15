@@ -464,5 +464,9 @@ def to_1009_capitalise_event_types(context=None):
     log.info(u'Capitalising event types.')
     events = [b.getObject() for b in api.content.find(portal_type='DPEvent')]
     for event in events:
-        if event.EventType:
-            event.EventType = event.EventType.capitalize()
+        event.EventType = {
+            None: None,
+            'exercise': 'Exercise',
+            'event': 'Emergency',
+            'test': 'Test',
+        }[event.EventType]

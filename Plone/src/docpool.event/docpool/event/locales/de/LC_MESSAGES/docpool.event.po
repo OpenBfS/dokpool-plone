@@ -94,7 +94,7 @@ msgid "Edit Scenarios"
 msgstr "Ereignisse bearbeiten"
 
 #: docpool.event/docpool/event/vocabularies.py
-msgid "Event"
+msgid "Emergency"
 msgstr ""
 
 #: docpool.event/docpool/event/content/dpevent.py
