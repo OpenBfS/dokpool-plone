@@ -187,7 +187,7 @@ class IDPEvent(model.Schema, IContentBase):
 
     changelog = schema.Text(
         title=_(u'label_dpevent_changelog', default=u'Changelog'),
-        description=_(u''),
+        description=_(u'Changelog'),
         required=False,
         readonly=True,
     )
