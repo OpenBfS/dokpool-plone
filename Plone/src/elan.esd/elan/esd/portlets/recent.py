@@ -8,6 +8,7 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
+from Products.CMFPlone.utils import safe_unicode
 
 import string
 
@@ -81,6 +82,7 @@ class Renderer(base.Renderer):
     def cat_convert(self, clist, over, rec):
         cats = ''
         for c in clist:
+            c = safe_unicode(c)
             if c not in [over, rec] and c.encode('utf') not in [over, rec]:
                 cats = cats + c + ', '
         cats = '(' + cats + ')'
