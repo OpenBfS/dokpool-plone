@@ -95,7 +95,7 @@ msgstr "Ereignisse bearbeiten"
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Emergency"
-msgstr ""
+msgstr "Notfall"
 
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "Event coordinates"
@@ -107,7 +107,7 @@ msgstr "Ereignisort"
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Exercise"
-msgstr ""
+msgstr "Übung"
 
 #: docpool.event/docpool/event/browser/event_macros.pt
 msgid "Filter"
@@ -148,7 +148,7 @@ msgstr "Inhalte des Ereignisses löschen"
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine"
-msgstr ""
+msgstr "Kleine Lage"
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine mode"
