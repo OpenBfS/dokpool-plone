@@ -463,10 +463,12 @@ def to_1008_install_z3ctable(context=None):
 def to_1009_capitalise_event_types(context=None):
     log.info(u'Capitalising event types.')
     events = [b.getObject() for b in api.content.find(portal_type='DPEvent')]
+
+    TYPE_MAP = {
+        None: None,
+        'exercise': 'Exercise',
+        'event': 'Emergency',
+        'test': 'Test',
+    }
     for event in events:
-        event.EventType = {
-            None: None,
-            'exercise': 'Exercise',
-            'event': 'Emergency',
-            'test': 'Test',
-        }[event.EventType]
+        event.EventType = TYPE_MAP[event.EventType]

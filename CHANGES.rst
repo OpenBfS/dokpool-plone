@@ -55,6 +55,15 @@ Added:
 - Expand EventType history #4463
   [slindner]
 
+1.9 (unreleased)
+----------------
+
+Fixed:
+
+- Update event types: IRIX-conformant tokens, rename Event to Emergency, add
+  Routine, add translations. #3430
+  [tlotze]
+
 
 1.8.2 (12.08.2021)
 ------------------
