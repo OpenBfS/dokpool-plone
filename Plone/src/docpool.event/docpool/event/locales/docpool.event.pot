@@ -148,6 +148,10 @@ msgid "Purge"
 msgstr ""
 
 #: docpool.event/docpool/event/vocabularies.py
+msgid "Routine"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
 msgid "Routine mode"
 msgstr ""
 

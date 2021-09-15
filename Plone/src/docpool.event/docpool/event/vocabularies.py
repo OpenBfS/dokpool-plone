@@ -41,6 +41,7 @@ class EventTypesVocabulary(object):
     def __call__(self, context):
         values = [
             (u'Emergency', _(u'Emergency')),
+            (u'Routine', _(u'Routine')),
             (u'Exercise', _(u'Exercise')),
             (u'Test', _(u'Test')),
             ]
