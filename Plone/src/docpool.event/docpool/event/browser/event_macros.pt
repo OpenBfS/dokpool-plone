@@ -15,7 +15,7 @@
         <table class="scenario_table">
             <tal:loop tal:repeat="scenario possible_scenarios">
                 <tr tal:define="event_type python:scenario.EventType or '';
-                                exercise python:event_type in ['exercise', 'test'];
+                                exercise python:event_type in ['Exercise', 'Test'];
                                 inactive python:scenario.Status == 'inactive';
                                 selected python:scenario.getId() in selected_scenarios;
                                 intensive python:scenario.OperationMode == 'intensive';

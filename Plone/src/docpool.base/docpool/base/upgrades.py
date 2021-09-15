@@ -458,3 +458,11 @@ def to_1008_install_z3ctable(context=None):
     if not installer.is_product_installed('collective.eeafaceted.z3ctable'):
         installer.install_product('collective.eeafaceted.z3ctable')
         log.info(u'collective.eeafaceted.z3ctable installed')
+
+
+def to_1009_capitalise_event_types(context=None):
+    log.info(u'Capitalising event types.')
+    events = [b.getObject() for b in api.content.find(portal_type='DPEvent')]
+    for event in events:
+        if event.EventType:
+            event.EventType = event.EventType.capitalize()

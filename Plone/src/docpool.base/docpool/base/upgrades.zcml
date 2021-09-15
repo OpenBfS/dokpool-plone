@@ -216,4 +216,14 @@
     />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1008"
+      destination="1009"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Capitalise event types"
+        handler="docpool.base.upgrades.to_1009_capitalise_event_types"
+    />
+  </genericsetup:upgradeSteps>
+
 </configure>
