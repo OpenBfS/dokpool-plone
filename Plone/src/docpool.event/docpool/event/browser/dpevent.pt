@@ -65,7 +65,7 @@
                     intensive python: context.OperationMode == 'intensive'">
         <td tal:content="widget/label"></td>
         <td><strong tal:attributes="class python: 'intensive' if intensive else ''"
-                    tal:content="structure widget/render"></td>
+                    tal:content="structure widget/render" /></td>
     </tr>
 
     <tr tal:define="widget python:view.widgets['AlertingStatus']">
