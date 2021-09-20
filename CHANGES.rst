@@ -47,6 +47,14 @@ Technical:
   [slindner, tlotze, kprobst]
     - Configured 4 additional instances, changed varnish timeouts #4475 [slindner, tlotze, kprobst]
 
+1.9 (unreleased)
+------------------
+
+Added:
+
+- Expand EventType history #4463
+  [slindner]
+
 
 1.8.2 (12.08.2021)
 ------------------
