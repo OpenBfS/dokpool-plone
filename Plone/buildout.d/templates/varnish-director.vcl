@@ -15,21 +15,29 @@ backend b1 {
     .host = "${hosts:instance1}";
     .port = "${ports:instance1}";
     .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
     }
 backend b2 {
     .host = "${hosts:instance2}";
     .port = "${ports:instance2}";
     .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
     }
 backend b3 {
     .host = "${hosts:instance3}";
     .port = "${ports:instance3}";
     .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
     }
 backend b4 {
     .host = "${hosts:instance4}";
     .port = "${ports:instance4}";
     .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
      }
 
 # Only allow PURGE from localhost
