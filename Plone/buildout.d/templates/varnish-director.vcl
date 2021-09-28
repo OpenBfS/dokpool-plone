@@ -14,28 +14,28 @@ import std;
 backend b1 {
     .host = "${hosts:instance1}";
     .port = "${ports:instance1}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
     }
 backend b2 {
     .host = "${hosts:instance2}";
     .port = "${ports:instance2}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
     }
 backend b3 {
     .host = "${hosts:instance3}";
     .port = "${ports:instance3}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
     }
 backend b4 {
     .host = "${hosts:instance4}";
     .port = "${ports:instance4}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
@@ -43,7 +43,7 @@ backend b4 {
 backend b5 {
     .host = "${hosts:instance5}";
     .port = "${ports:instance5}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
@@ -51,7 +51,7 @@ backend b5 {
 backend b6 {
     .host = "${hosts:instance6}";
     .port = "${ports:instance6}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
@@ -60,7 +60,7 @@ backend b6 {
 backend b7 {
     .host = "${hosts:instance7}";
     .port = "${ports:instance7}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
@@ -68,7 +68,7 @@ backend b7 {
 backend b8 {
     .host = "${hosts:instance8}";
     .port = "${ports:instance8}";
-    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
