@@ -40,6 +40,39 @@ backend b4 {
     .first_byte_timeout = 300s;
      }
 
+backend b5 {
+    .host = "${hosts:instance5}";
+    .port = "${ports:instance5}";
+    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
+     }
+
+backend b6 {
+    .host = "${hosts:instance6}";
+    .port = "${ports:instance6}";
+    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
+     }
+
+
+backend b7 {
+    .host = "${hosts:instance7}";
+    .port = "${ports:instance7}";
+    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
+     }
+
+backend b8 {
+    .host = "${hosts:instance8}";
+    .port = "${ports:instance8}";
+    .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
+     }
+
 # Only allow PURGE from localhost
 acl purge {
     "${hosts:allow-purge}";
