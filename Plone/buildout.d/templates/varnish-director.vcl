@@ -39,7 +39,6 @@ backend b4 {
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
-
 backend b5 {
     .host = "${hosts:instance5}";
     .port = "${ports:instance5}";
@@ -47,7 +46,6 @@ backend b5 {
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
-
 backend b6 {
     .host = "${hosts:instance6}";
     .port = "${ports:instance6}";
@@ -55,8 +53,6 @@ backend b6 {
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
-
-
 backend b7 {
     .host = "${hosts:instance7}";
     .port = "${ports:instance7}";
@@ -64,7 +60,6 @@ backend b7 {
     .connect_timeout = 6s;
     .first_byte_timeout = 300s;
      }
-
 backend b8 {
     .host = "${hosts:instance8}";
     .port = "${ports:instance8}";
