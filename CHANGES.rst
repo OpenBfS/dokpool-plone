@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.8.3 (29.09.2021)
+------------------
+
+Technical:
+
+- Configured 4 additional instances, changed varnish timeouts #4475
+  [slindner, tlotze, kprobst]
+
+
 1.8.2 (12.08.2021)
 ------------------
 
