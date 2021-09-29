@@ -11,7 +11,15 @@ import directors;
 #
 # See https://github.com/plone/plone.app.caching/blob/master/plone/app/caching/proxy-configs/varnish/templates/varnish.vcl.in
 
-backend b { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } }
+
+backend b1 { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b2 { .host = "${hosts:instance2}"; .port = "${ports:instance2}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b3 { .host = "${hosts:instance3}"; .port = "${ports:instance3}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b4 { .host = "${hosts:instance4}"; .port = "${ports:instance4}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b5 { .host = "${hosts:instance5}"; .port = "${ports:instance5}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b6 { .host = "${hosts:instance6}"; .port = "${ports:instance6}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b7 { .host = "${hosts:instance7}"; .port = "${ports:instance7}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b8 { .host = "${hosts:instance8}"; .port = "${ports:instance8}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
 
 # Only allow PURGE from localhost
 acl purge {
