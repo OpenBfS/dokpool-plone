@@ -4,23 +4,31 @@ import directors;
 # This is an example of a split view caching setup without another proxy
 # like Apache in front of Varnish to rewrite urls into the VHM style.
 
-backend b1 { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } }
-backend b2 { .host = "${hosts:instance2}"; .port = "${ports:instance2}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } }
-backend b3 { .host = "${hosts:instance3}"; .port = "${ports:instance3}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } }
-backend b4 { .host = "${hosts:instance4}"; .port = "${ports:instance4}"; .probe = { .url = "/"; .interval = 6s; .timeout = 6s; .window = 6; .threshold = 6; } }
+backend b1 { .host = "${hosts:instance1}"; .port = "${ports:instance1}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b2 { .host = "${hosts:instance2}"; .port = "${ports:instance2}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b3 { .host = "${hosts:instance3}"; .port = "${ports:instance3}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b4 { .host = "${hosts:instance4}"; .port = "${ports:instance4}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b5 { .host = "${hosts:instance4}"; .port = "${ports:instance5}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b6 { .host = "${hosts:instance4}"; .port = "${ports:instance6}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b7 { .host = "${hosts:instance4}"; .port = "${ports:instance7}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
+backend b8 { .host = "${hosts:instance4}"; .port = "${ports:instance8}"; .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; } }
 
 # Only allow PURGE from localhost
 acl purge {
     "${hosts:allow-purge}";
 }
 
-# Round-robin load balancing between four instances
+# Round-robin load balancing between eight instances
 sub vcl_init {
     new cluster1 = directors.round_robin();
     cluster1.add_backend(b1);
     cluster1.add_backend(b2);
     cluster1.add_backend(b3);
     cluster1.add_backend(b4);
+    cluster1.add_backend(b5);
+    cluster1.add_backend(b6);
+    cluster1.add_backend(b7);
+    cluster1.add_backend(b8);
 }
 
 
