@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-09-15 07:47+0000\n"
+"POT-Creation-Date: 2021-10-03 14:19+0000\n"
 "PO-Revision-Date: 2018-12-21 10:44+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
@@ -196,6 +196,10 @@ msgstr "Es gibt keine Dokumente zu diesem Ereignis."
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
 
+#: docpool.event/docpool/event/browser/dpevent.pt
+msgid "Type of event"
+msgstr "Art des Ereignisses"
+
 #: docpool.event/docpool/event/configure.zcml
 msgid "Uninstalls the docpool.event add-on."
 msgstr ""
@@ -225,7 +229,7 @@ msgstr ""
 
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "description_dpevent_type"
-msgstr ""
+msgstr "Art des Ereignisses"
 
 #: docpool.event/docpool/event/configure.zcml
 msgid "docpool.event"
@@ -268,7 +272,6 @@ msgstr "Ereigniszeit"
 
 #. Default: "Type of event"
 #: docpool.event/docpool/event/content/dpevent.py
-#, fuzzy
 msgid "label_dpevent_type"
 msgstr "Art des Ereignisses"
 
