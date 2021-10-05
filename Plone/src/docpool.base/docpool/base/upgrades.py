@@ -471,4 +471,4 @@ def to_1009_capitalise_event_types(context=None):
         'test': 'Test',
     }
     for event in events:
-        event.EventType = TYPE_MAP[event.EventType]
+        event.EventType = TYPE_MAP.get(event.EventType)
