@@ -70,7 +70,7 @@ To build **Dokpool** on a current Linux Distribution you simply have to clone th
 - Python2.7 
 - Libraries: 
 ```sh
-$ apt-get install git python libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales
+$ apt-get install git python libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales pipenv
 ```
 
 #### Additional requirements for varnish
@@ -83,15 +83,12 @@ $ apt-get install libncurses-dev python-docutils autoconf automake libjemalloc-d
 ```sh
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
-# you can do all the following steps in a virtual python environement
-$ virtualenv ./venv/dokpool
-$ source ./venv/dokpool/bin/activate
-# go on wether you have a virtual python env or not
-$ export ELANENGINE=sqlite:////tmp/elan5db
-$ pip install --upgrade pip docutils sphinx
-$ pip install -r requirements.txt
-$ buildout bootstrap
-$ ./bin/buildout -vc buildout.cfg
+# you can do all the following steps in a virtual python environment
+$ pipenv install setuptools==42.0.2
+$ pipenv install
+# go on whether you have a virtual python env or not
+$ pipenv shell
+$ buildout -vc buildout.cfg
 ```
 
 #### Rebuild:
@@ -150,14 +147,12 @@ $ sudo -u postgres createdb -O elan elan
 ```sh
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
-# you can do all the following steps in a virtual python environement
-$ virtualenv ./venv/dokpool
-$ source ./venv/dokpool/bin/activate
-# go on wether you have a virtual python env or not
-$ pip install --upgrade pip docutils sphinx
-$ pip install -r requirements.txt
-$ buildout bootstrap
-$ ./bin/buildout -vc relstorage.cfg
+# you can do all the following steps in a virtual python environment
+$ pipenv install setuptools==42.0.2
+$ pipenv install
+# go on whether you have a virtual python env or not
+$ pipenv shell
+$ buildout -vc relstorage.cfg
 ```
 
 #### Rebuild:
