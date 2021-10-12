@@ -59,19 +59,12 @@ before_script:
 
   # Check Python version
   - python -V
+  - whereis python
 
-  # Update Python virtual environment to latest version
-  - pip install -U virtualenv
-
-# Not ready - replace with pre-commit
-#code-analysis:
-#  tags:
-#    - docker
-#  stage: test
-#  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
-#  # success_with_warnings: True
-#  script:
-#    - bin/code-analysis
+  # Install pipenv
+  - pip install pipenv
+  - PATH=$PATH:/home/zope/.local/bin
+  - pipenv --version
 
 build:
   tags:
@@ -139,54 +132,21 @@ unittests:
     # Buildout configuration
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
-    - ./bin/buildout bootstrap
-    - pip install -r requirements.txt
-    - ./bin/buildout -N -t 3 -c test_ci_server.cfg
+    # Pin setuptools
+    - pipenv install setuptools==42.0.2
+    - pipenv install
+    # Pin setuptools
+    - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
-    - ./bin/coverage erase
-    - ./bin/coverage run ./bin/test || exit 1
+    - pipenv run ./bin/coverage erase
+    - pipenv run ./bin/coverage run ./bin/test || exit 1
     ## Tests only docpool_setup (without robot)
-    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
+    - pipenv run ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
     ## Combines the previous two runs as parallel run is set
-    - ./bin/coverage combine
-    - ./bin/coverage html
-    - ./bin/coverage report
+    - pipenv run ./bin/coverage combine
+    - pipenv run ./bin/coverage html
+    - pipenv run ./bin/coverage report
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:
       - parts/test/htmlreport
-
-# No robot tests yet
-#robot:
-#  tags:
-#    - docker
-#  stage: test
-#  script:
-#    - export DISPLAY=:99.0
-#    - xvfb-run bin/test --all
-
-# Old config
-#before_script:
-#  - cd Plone
-#  - mkdir -p buildout-cache/eggs
-#  - mkdir -p buildout-cache/downloads
-#  - /usr/bin/virtualenv .
-#  - cp config-template.cfg.tmpl config.cfg
-#  - ./bin/pip install -r requirements.txt
-#  - ./bin/buildout bootstrap
-#  - ./bin/buildout -N -t 3 -c test_ci_server.cfg
-##check:
-##  script:
-##    - pre-commit install
-##    - pre-commit run --all-files
-#test:
-#  script:
-#    - ./bin/coverage erase
-#    - ./bin/coverage run ./bin/test || exit 1
-## Tests only docpool_setup (without robot)
-#    - ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
-## Combines the previous two runs as parallel run is set
-#    - ./bin/coverage combine
-#    - ./bin/coverage html
-#    - ./bin/coverage report
-#  coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
