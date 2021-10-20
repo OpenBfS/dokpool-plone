@@ -3,13 +3,11 @@
 # Install & Setup
 
 ```
-$ mkvirtualenv dokpool-plone
+$ sudo apt install libsqlite3-dev libpq-dev postgresql pipenv
 $ cd dokpool-plone/Plone
-$ pip installl -r requirements.txt
-$ sudo apt install libpq-dev
-$ sudo apt-get install libsqlite3-dev
-$ sudo apt install postgresql
-$ bin/buildout -c local-develop.cfg
+$ pipenv install
+$ pipenv shell
+$ buildout -c local-develop.cfg
 ```
 
 ## Start with filestorage and demo content
