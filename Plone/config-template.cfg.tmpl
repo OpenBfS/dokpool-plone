@@ -8,6 +8,10 @@ parts =
     instance3
     instance4
     instance_debug
+    instance5
+    instance6
+    instance7
+    instance8
     supervisor
     productdistros
     dokpool_logrotate
@@ -64,8 +68,8 @@ output = ${buildout:directory}/etc/varnish.vcl
 rel-storage =
     type postgresql
     dsn ${database:dsn}
-    blob-dir ./blobs
-    shared-blob-dir true
+    blob-dir ${buildout:directory}/var/blobcache
+    shared-blob-dir false
 environment-vars =    
     zope_i18n_compile_mo_files true
     PTS_LANGUAGES de
