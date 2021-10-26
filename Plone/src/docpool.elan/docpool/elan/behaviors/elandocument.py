@@ -14,6 +14,7 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_encode
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -161,7 +162,7 @@ class ELANDocument(FlexibleView):
         rec = docp.esd.recent.title_or_id()
         cats = ''
         for c in self.category():
-            if c not in [over, rec] and c.encode('utf') not in [over, rec]:
+            if c not in [over, rec] and safe_encode(c) not in [over, rec]:
                 cats = cats + c + ', '
         cats = '(' + cats + ')'
         cats = string.replace(cats, ', )', ')')
@@ -170,7 +171,6 @@ class ELANDocument(FlexibleView):
     def category(self):
         """
         """
-
         return self.typeAndCat()[1]
 
     def cat_path(self):
