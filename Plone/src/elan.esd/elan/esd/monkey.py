@@ -3,24 +3,17 @@ from docpool.base.browser.dpdocument import DPDocumentinlineView
 from docpool.base.browser.dpdocument import DPDocumentlistitemView
 from docpool.base.browser.dpdocument import DPDocumentprintView
 from docpool.base.browser.dpdocument import DPDocumentView
-from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import deleteMemberFolders
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
-from elan.esd.testdata import createGroupsAndUsers
-from elan.esd.testdata import createTestDocuments
-from elan.esd.testdata import deleteTestData
 from plone.protect import CheckAuthenticator
-from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.CatalogTool import CatalogTool
 from Products.CMFPlone.utils import aq_inner
 from zExceptions import Forbidden
-from zope.interface import alsoProvides
 
-import datetime
 import logging
 
 
@@ -164,50 +157,6 @@ if not hasattr(CatalogTool, "original_searchResults"):
     CatalogTool.original_searchResults = CatalogTool.searchResults
     CatalogTool.searchResults = searchResults
     CatalogTool.__call__ = searchResults
-
-
-def createTestData(self, count=100, prune=False):
-    """
-    Creates 2 groups, 2 users, 2 scenarios and 'count' random documents.
-    If 'prune' is True, then all existing (test)data will be deleted
-    before it is created afresh.
-    """
-    request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)
-
-    if prune:
-        deleteTestData(self)
-    createGroupsAndUsers(self)
-    try:
-        self.contentconfig.scen.invokeFactory(
-            id="scenario1",
-            type_name="DPEvent",
-            title="Scenario 1",
-            description="This is scenario 1",
-            Status="active",
-            TimeOfEvent=datetime.datetime.today(),
-        )
-    except BaseException:
-        pass
-    try:
-        self.contentconfig.scen.invokeFactory(
-            id="scenario2",
-            type_name="DPEvent",
-            title="Scenario 2",
-            description="This is scenario 2",
-            Status="active",
-            exercise=True,
-            TimeOfEvent=datetime.datetime.today(),
-        )
-    except BaseException:
-        pass
-    createTestDocuments(self, count)
-    self.reindexAll()
-    return self.restrictedTraverse('@@view')()
-
-
-if not hasattr(DocumentPool, "createTestData"):
-    DocumentPool.createTestData = createTestData
 
 
 def getUserSelectedScenarios(self):

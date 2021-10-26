@@ -39,7 +39,6 @@ setup(
         'plone.app.contenttypes',
         'plone.app.relationfield',
     ],
-    extras_require=dict(test=['loremipsum']),
     entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
