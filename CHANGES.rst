@@ -10,6 +10,12 @@ Technical:
   [tlotze]
 
 
+Fixed:
+
+- Prevent KeyError when no DPEvent for a scenario can be found (#4504)
+  [pbauer, slindner]
+
+
 1.8.3 (29.09.2021)
 ------------------
 
