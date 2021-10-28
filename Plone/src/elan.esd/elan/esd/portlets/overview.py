@@ -75,7 +75,7 @@ class Renderer(base.Renderer):
         for scenario in scenarios:
             event_brain = api.content.find(portal_type='DPEvent', id=scenario)
             if not event_brain:
-                pass
+                continue
             event_path = '/'.join(event_brain[0].getObject().getPhysicalPath())
             for journal in api.content.find(portal_type='Journal', path=event_path):
                 journals.append(journal)
