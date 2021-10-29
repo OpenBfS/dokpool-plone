@@ -8,6 +8,19 @@ Changed:
 
 -  Replace workflow transition icons #4337
    [slindner]
+1.9 (unreleased)
+----------------
+
+Technical:
+
+- Remove remnants of old testdata infrastructure to simplify buildout #4405
+  [tlotze]
+
+
+Fixed:
+
+- Prevent KeyError when no DPEvent for a scenario can be found (#4504)
+  [pbauer, slindner]
 
 
 1.8.3 (29.09.2021)
