@@ -160,13 +160,9 @@ class ELANDocument(FlexibleView):
         docp = docp.aq_parent
         over = docp.esd.overview.title_or_id()
         rec = docp.esd.recent.title_or_id()
-        cats = u''
-        for c in self.category():
-            c = safe_unicode(c)
-            if c not in [over, rec]:
-                cats = cats + c + u', '
-        cats = u'(' + cats + u')'
-        cats = cats.replace(u', )', u')')
+        cats = [safe_unicode(i) for i in self.category()]
+        cats = [i for i in cats if i not in [over, rec]]
+        cats = u'({0})'.format(u', '.join(cats))
         return cats
 
     def category(self):
