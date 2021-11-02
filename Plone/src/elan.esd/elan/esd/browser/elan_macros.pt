@@ -4,17 +4,15 @@
       i18n:domain="elan.esd">
 <body>
 
-<div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected view/selected_categories">
+<div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected_categories python:view.selected_categories()">
     <form name="categories" method="post" class="category_selection"
           tal:attributes="action string:selectCategories">
         <!-- label for="scnrs" i18n:translate="">Show content only for:</label-->
         <div class="multiselection">
             <select multiple="multiple" id="cat_select" name="cats" size="5">
-                <tal:loop tal:repeat="category view/available_categories">
-                    <option tal:attributes="value    category/Title;
-			                                                    selected python:'selected' if category.Title in selected else None;"
-
-                            tal:content="category/Title">Category
+                <tal:loop tal:repeat="category python:view.available_categories()">
+                    <option tal:attributes="selected python:'selected' if category in selected_categories else None;"
+                            tal:content="python: category">Category
                     </option>
                 </tal:loop>
             </select>
@@ -33,7 +31,7 @@
                i18n:attributes="value"/>
     </form>
     <div class="cat_info">
-        <span><i18n:text translate="">Current filter:</i18n:text> <tal:var replace="python:', '.join(selected)"/></span>
+        <span><i18n:text translate="">Current filter:</i18n:text> <tal:var replace="python:', '.join(selected_categories)"/></span>
     </div>
 </div>
 
@@ -52,12 +50,12 @@
 
     <span tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
         <label i18n:translate="">Belongs to scenario:</label>
-        <span tal:content="python:', '.join(scns)"/> 
-    </span> 
+        <span tal:content="python:', '.join(scns)"/>
+    </span>
     <div style="margin-top:3px;" tal:condition="cat" tal:define="cat elanobj/category">
         <label i18n:translate="">Content from:</label>
-        <span tal:content="string:${item_type}" /> 
-        <span tal:content="python:elanobj.cat_convert()" /> 
+        <span tal:content="string:${item_type}" />
+        <span tal:content="python:elanobj.cat_convert()" />
     </div>
 </metal:macro>
 
