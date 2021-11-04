@@ -80,6 +80,10 @@ sub vcl_init {
     cluster1.add_backend(b2);
     cluster1.add_backend(b3);
     cluster1.add_backend(b4);
+    cluster1.add_backend(b5);
+    cluster1.add_backend(b6);
+    cluster1.add_backend(b7);
+    cluster1.add_backend(b8);
 }
 
 sub vcl_hit {

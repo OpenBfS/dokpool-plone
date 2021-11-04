@@ -14,6 +14,7 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -24,10 +25,16 @@ import string
 
 @provider(IContextAwareDefaultFactory)
 def initializeScenarios(context):
-    if hasattr(context, "getUserSelectedScenarios"):
-        return context.getUserSelectedScenarios()
-    else:
+    if not hasattr(context, "getUserSelectedScenarios"):
         return []
+
+    catalog = getToolByName(context, "portal_catalog")
+    scenarios = catalog(
+        path=context.dpSearchPath(),
+        portal_type='DPEvent',
+        getId=context.getUserSelectedScenarios(),
+        Status='active')
+    return [scen.id for scen in scenarios]
 
 
 @provider(IFormFieldProvider)
@@ -159,18 +166,14 @@ class ELANDocument(FlexibleView):
         docp = docp.aq_parent
         over = docp.esd.overview.title_or_id()
         rec = docp.esd.recent.title_or_id()
-        cats = ''
-        for c in self.category():
-            if c not in [over, rec] and c.encode('utf') not in [over, rec]:
-                cats = cats + c + ', '
-        cats = '(' + cats + ')'
-        cats = string.replace(cats, ', )', ')')
+        cats = [safe_unicode(i) for i in self.category()]
+        cats = [i for i in cats if i not in [over, rec]]
+        cats = u'({0})'.format(u', '.join(cats))
         return cats
 
     def category(self):
         """
         """
-
         return self.typeAndCat()[1]
 
     def cat_path(self):
