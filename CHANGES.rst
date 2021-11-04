@@ -1,12 +1,15 @@
 Changelog
 =========
 
-1.9 (unreleased)
-----------------
+1.8.4 (unreleased)
+------------------
 
 Technical:
 
 - Remove remnants of old testdata infrastructure to simplify buildout #4405
+  [tlotze]
+
+- Update Version of plone.session (#4539)
   [tlotze]
 
 
@@ -17,6 +20,12 @@ Fixed:
 
 - Prevent KeyError when no DPEvent for a scenario can be found (#4504)
   [pbauer, slindner]
+
+- Fix deleteTransferDataInDB (#4117)
+  [pbauer]
+
+- Fix UnicodeDecodeError when filtering in @@rpopup (#4507)
+  [pbauer]
 
 
 1.8.3 (29.09.2021)
