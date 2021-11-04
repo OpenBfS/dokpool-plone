@@ -25,10 +25,16 @@ import string
 
 @provider(IContextAwareDefaultFactory)
 def initializeScenarios(context):
-    if hasattr(context, "getUserSelectedScenarios"):
-        return context.getUserSelectedScenarios()
-    else:
+    if not hasattr(context, "getUserSelectedScenarios"):
         return []
+
+    catalog = getToolByName(context, "portal_catalog")
+    scenarios = catalog(
+        path=context.dpSearchPath(),
+        portal_type='DPEvent',
+        getId=context.getUserSelectedScenarios(),
+        Status='active')
+    return [scen.id for scen in scenarios]
 
 
 @provider(IFormFieldProvider)

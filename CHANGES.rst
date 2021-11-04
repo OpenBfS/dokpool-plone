@@ -12,6 +12,9 @@ Technical:
 
 Fixed:
 
+- Fix initialising scenarios when adding a document w.r.t. inactive ones (#4527)
+  [tlotze]
+
 - Prevent KeyError when no DPEvent for a scenario can be found (#4504)
   [pbauer, slindner]
 
