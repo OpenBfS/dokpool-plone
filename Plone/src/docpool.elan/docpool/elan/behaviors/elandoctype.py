@@ -69,7 +69,7 @@ class ELANDocType(object):
         return list(
             set(
                 [
-                    coll.title
+                    coll.Title()
                     for coll in colls
                     if coll
                     and not coll.isArchive()

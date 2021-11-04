@@ -79,18 +79,6 @@ class Renderer(base.Renderer):
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True
 
-    def cat_convert(self, clist, over, rec):
-        cats = ''
-        for c in clist:
-            c = safe_unicode(c)
-            if c not in [over, rec] and c.encode('utf') not in [over, rec]:
-                cats = cats + c + ', '
-        cats = '(' + cats + ')'
-        cats = string.replace(cats, ', )', ')')
-        return cats
-
-    #        return codecs.decode(codecs.decode(z,'hex'),'ascii')
-
     @memoize
     def _data(self):
         try:

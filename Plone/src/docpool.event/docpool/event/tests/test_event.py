@@ -97,6 +97,17 @@ class TestEvent(unittest.TestCase):
         scenarios = self._get_user_scenarios()
         self.assertNotIn('test_event', scenarios)
 
+    def test_added_and_activated_event_is_listed_only_once(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        self._set_user_scenarios(['test_event'])
+        scenarios = self._get_user_scenarios()
+        self.assertEqual(1, scenarios.count('test_event'))
+
     def test_removal_keeps_working_for_arbitrary_dpevents(self):
         event = api.content.create(
             container=self.container,
