@@ -11,16 +11,31 @@ Changed:
 1.9 (unreleased)
 ----------------
 
+1.8.4 (04.11.2021)
+------------------
+
 Technical:
 
 - Remove remnants of old testdata infrastructure to simplify buildout #4405
   [tlotze]
 
+- Update Version of plone.session (#4539)
+  [tlotze]
+
 
 Fixed:
 
+- Fix initialising scenarios when adding a document w.r.t. inactive ones (#4527)
+  [tlotze]
+
 - Prevent KeyError when no DPEvent for a scenario can be found (#4504)
   [pbauer, slindner]
+
+- Fix deleteTransferDataInDB (#4117)
+  [pbauer]
+
+- Fix UnicodeDecodeError when filtering in @@rpopup (#4507)
+  [pbauer]
 
 
 1.8.3 (29.09.2021)
@@ -30,6 +45,7 @@ Technical:
 
 - Configured 4 additional instances, changed varnish timeouts #4475
   [slindner, tlotze, kprobst]
+    - Configured 4 additional instances, changed varnish timeouts #4475 [slindner, tlotze, kprobst]
 
 
 1.8.2 (12.08.2021)

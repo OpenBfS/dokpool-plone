@@ -496,18 +496,19 @@ class Transferable(FlexibleView):
     def deleteTransferDataInDB(self):
         """
         """
-        if not hasattr(self, 'UID'):
+        if not hasattr(self.context, 'UID'):
             log('Failed to deleteTransferData as obj has no UID')
             return False
+        uid = self.context.UID()
         received = (
             __session__.query(ReceiverLog)
-            .filter(ReceiverLog.document_uid == self.UID())
+            .filter(ReceiverLog.document_uid == uid)
             .order_by(desc(ReceiverLog.timestamp))
             .all()
         )
         send = (
             __session__.query(SenderLog)
-            .filter(SenderLog.document_uid == self.UID())
+            .filter(SenderLog.document_uid == uid)
             .order_by(desc(SenderLog.timestamp))
             .all()
         )
