@@ -10,6 +10,17 @@ Changed:
    [slindner]
 1.9 (unreleased)
 ----------------
+Added:
+
+- Expand EventType history #4463
+  [slindner]
+
+Fixed:
+
+- Update event types: IRIX-conformant tokens, rename Event to Emergency, add
+  Routine, add translations. #3430
+  [tlotze]
+
 
 1.8.4 (04.11.2021)
 ------------------
@@ -46,23 +57,6 @@ Technical:
 - Configured 4 additional instances, changed varnish timeouts #4475
   [slindner, tlotze, kprobst]
     - Configured 4 additional instances, changed varnish timeouts #4475 [slindner, tlotze, kprobst]
-
-1.9 (unreleased)
-------------------
-
-Added:
-
-- Expand EventType history #4463
-  [slindner]
-
-1.9 (unreleased)
-----------------
-
-Fixed:
-
-- Update event types: IRIX-conformant tokens, rename Event to Emergency, add
-  Routine, add translations. #3430
-  [tlotze]
 
 
 1.8.2 (12.08.2021)
