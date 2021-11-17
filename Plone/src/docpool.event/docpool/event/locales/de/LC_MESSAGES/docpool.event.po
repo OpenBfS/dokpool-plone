@@ -271,3 +271,14 @@ msgstr "Ereigniszeit"
 #, fuzzy
 msgid "label_dpevent_type"
 msgstr "Art des Ereignisses"
+
+#. Default: "Confirm purge"
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "purge_confirm_msg"
+msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
+
+#. Default: "Confirm archive"
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "archive_confirm_msg"
+msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
+
