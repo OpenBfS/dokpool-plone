@@ -30,11 +30,11 @@ msgstr "Neues Ereignis anlegen"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "Alerting note"
-msgstr ""
+msgstr "Hinweistext"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "Alerting status"
-msgstr ""
+msgstr "Status der Alarmierung"
 
 #: docpool.event/docpool/event/browser/viewlets/events.pt
 msgid "All Archives"
@@ -59,7 +59,7 @@ msgstr "Kartenausschnitt"
 #: docpool.event/docpool/event/browser/dpevent.pt
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "Changelog"
-msgstr ""
+msgstr "Ereignis-Historie"
 
 #: docpool.event/docpool/event/content/dpnuclearpowerstation.py
 msgid "Coordinates"
@@ -87,7 +87,7 @@ msgstr "Kernkraftwerk"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "Date/User"
-msgstr ""
+msgstr "Datum/Uhrzeit (durchgeführt von)"
 
 #: docpool.event/docpool/event/profiles/default/actions.xml
 msgid "Edit Scenarios"
@@ -136,7 +136,7 @@ msgstr "Betriebsart"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "Phase"
-msgstr ""
+msgstr "Szenario & Phase"
 
 #: docpool.event/docpool/event/browser/event_macros.pt
 msgid "Please select at least one scenario!"
@@ -182,7 +182,7 @@ msgstr "Kopie der Inhalte erzeugt"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "State"
-msgstr ""
+msgstr "Status des Ereignisses"
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Status"
@@ -210,9 +210,8 @@ msgstr ""
 
 #. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
 #: docpool.event/docpool/event/content/dpevent.py
-#, fuzzy
 msgid "description_dpevent_alert_note"
-msgstr "Inhalt der E-Mail und/oder SMS an die IMIS-Benutzer.  Der letzte Hinweistext wird angezeigt und muss überschrieben werden.Zum Versenden muss ‚Alarmierung‘auf ‘ausgelöst‘ stehen."
+msgstr "Inhalt der E-Mail und/oder SMS an die IMIS-Benutzer.  Der letzte Hinweistext wird angezeigt und muss überschrieben werden. Zum Versenden muss ‚Alarmierung‘ auf ‘ausgelöst‘ stehen."
 
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "description_dpevent_alerting_status"
@@ -250,7 +249,6 @@ msgstr "Status der Alarmierung"
 
 #. Default: "Alert Note"
 #: docpool.event/docpool/event/content/dpevent.py
-#, fuzzy
 msgid "label_dpevent_alteringnote"
 msgstr "Hinweistext"
 
@@ -289,3 +287,34 @@ msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
 msgid "archive_confirm_msg"
 msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
+#: docpool.event/docpool/event/vocabularies.py
+msgid "routine"
+msgstr "Routinebetrieb"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "intensive"
+msgstr "Intensivbetrieb"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "none"
+msgstr "keine"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "initialized"
+msgstr "ausgelöst"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "alerted"
+msgstr "durchgeführt"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "active"
+msgstr "Aktiv"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "inactive"
+msgstr "Inaktiv"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "closed"
+msgstr "Geschlossen"
