@@ -12,19 +12,16 @@ from zope.component import getMultiAdapter
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def __init__(self, context):
-        super(DexterityLocalBehaviorAssignable, self).__init__(context)
         self.context = context
 
     def enumerateBehaviors(self):
-        # print "enumerate"
         request = self.context.REQUEST
-        editedLocalBehaviours = []
-        try:
-            editedLocalBehaviours = request.get(
-                "form.widgets.ILocalBehaviorSupport.local_behaviors", []
-            )
-        except BaseException:
-            pass
+        if isinstance(request, str):
+            # Shortcut when Request is '<Special Object Used to Force Acquisition>'
+            yield
+        editedLocalBehaviours = request.get(
+            "form.widgets.ILocalBehaviorSupport.local_behaviors", []
+        )
         editedLocalBehaviours = list(set(editedLocalBehaviours))
         # print "edited", editedLocalBehaviours
 
