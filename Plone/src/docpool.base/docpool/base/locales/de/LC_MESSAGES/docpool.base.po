@@ -536,7 +536,7 @@ msgstr ""
 #. Default: "There are currently no items in this folder."
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "description_no_items_in_folder"
-msgstr " "
+msgstr "In diesem Ordner befinden sich derzeit keine Einträge."
 
 #. Default: "Leave blank to enable all types configured for the group."
 #: docpool.base/docpool/base/content/simplefolder.py
