@@ -8,6 +8,12 @@ Changed:
 
 -  Replace workflow transition icons #4337
    [slindner]
+
+Fixed:
+
+- Missing translations in Chronologie #3708
+  [slindner]
+ 
 1.9 (unreleased)
 ----------------
 
