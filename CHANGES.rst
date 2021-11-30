@@ -8,6 +8,10 @@ Changed:
 
 -  Replace workflow transition icons #4337
    [slindner]
+
+- Remove not needed js file #4174
+  [slindner]
+
 1.9 (unreleased)
 ----------------
 Added:
