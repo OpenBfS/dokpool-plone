@@ -18,7 +18,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         request = self.context.REQUEST
         if isinstance(request, str):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
-            yield
+            raise StopIteration
         editedLocalBehaviours = request.get(
             "form.widgets.ILocalBehaviorSupport.local_behaviors", []
         )
