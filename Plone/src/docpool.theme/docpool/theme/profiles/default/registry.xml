@@ -24,10 +24,6 @@
       <value key="js">++theme++docpool.theme/static/jquery.marquee.js</value>
       <value key="deps">jquery</value>
   </records>
-  <records prefix="plone.resources/docpool-functions"
-            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js">++theme++docpool.theme/static/functions.js</value>
-  </records>
   <records prefix="plone.resources/intercom"
             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++theme++docpool.theme/static/intercom.min.js</value>
