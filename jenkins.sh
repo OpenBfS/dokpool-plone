@@ -21,9 +21,8 @@ if [ -d "Plone" ]; then
         python -V
         echo "from:"
         which python
-        pipenv install
         printf '[buildout]\nextends =\n    buildout.cfg\n[ports]\ninstance_dev = 18082\n' >> buildout_jenkins.cfg
-        pipenv run buildout -v -c buildout_jenkins.cfg
+        ./pipenv-install.sh
 fi
 
 cd $WORKSPACE
