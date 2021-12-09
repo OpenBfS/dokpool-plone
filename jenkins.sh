@@ -3,12 +3,12 @@ echo ${JOB_NAME##*/}
 export VIRTUAL_ENV="$WORKSPACE/venv/${JOB_NAME##*/}"
 
 # delete old virtualenv
-if [ -d "$WORKSPACE/venv/${JOB_NAME##*/}" ]; then
-        rm -R $WORKSPACE/venv/${JOB_NAME##*/}
+if [ -d "$VIRTUAL_ENV" ]; then
+        rm -R $VIRTUAL_ENV
 fi
 # create new virtualenv
-if [ ! -d "$WORKSPACE/venv/${JOB_NAME##*/}" ]; then
-        virtualenv -p $PythonBinPath $WORKSPACE/venv/${JOB_NAME##*/}
+if [ ! -d "$VIRTUAL_ENV" ]; then
+        virtualenv -p $PythonBinPath $VIRTUAL_ENV
 fi
 echo "Using Python Version:"
 python -V
