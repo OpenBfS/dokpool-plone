@@ -1,5 +1,7 @@
 echo ${JOB_NAME##*/}
 
+export VIRTUAL_ENV="$WORKSPACE/venv/${JOB_NAME##*/}"
+
 # delete old virtualenv
 if [ -d "$WORKSPACE/venv/${JOB_NAME##*/}" ]; then
         rm -R $WORKSPACE/venv/${JOB_NAME##*/}
@@ -13,24 +15,16 @@ python -V
 echo "from:"
 which python
 
-source $WORKSPACE/venv/${JOB_NAME##*/}/bin/activate
 if [ -d "Plone" ]; then
         cd Plone
         echo "Using Python Version:"
         python -V
         echo "from:"
         which python
-        pip install --upgrade pip docutils
-        if [ -f "requirements.txt" ]; then
-                pip install -r requirements.txt
-        fi
-        buildout bootstrap
+        pipenv install
         printf '[buildout]\nextends =\n    buildout.cfg\n[ports]\ninstance_dev = 18082\n' >> buildout_jenkins.cfg
-        if [ -f "bin/buildout" ]; then
-                ./bin/buildout -v -c buildout_jenkins.cfg
-        fi
+        pipenv run buildout -v -c buildout_jenkins.cfg
 fi
-deactivate
 
 cd $WORKSPACE
 
