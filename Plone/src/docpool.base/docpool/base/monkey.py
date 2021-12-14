@@ -2,12 +2,13 @@
 from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone.app.discussion.browser.conversation import ConversationView
-from Products.CMFCore.MemberDataTool import MemberData
+from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
 
 import logging
 import ssl
+import traceback
 
 
 log = logging.getLogger(__name__)
@@ -96,3 +97,17 @@ def setProperties(self, properties=None, **kw):
 
 MemberData._orig_setProperties = MemberData.setProperties
 MemberData.setProperties = setProperties
+
+
+def setMemberProperties(self, mapping, **kw):
+    log.info(
+        'Setting member properties:\n{0}\n{1}'.format(
+            str(list(mapping)),
+            '\n'.join(item.splitlines()[0] for item in traceback.format_stack())
+        )
+    )
+    self._orig_setMemberProperties(mapping, **kw)
+
+
+MemberData._orig_setMemberProperties = MemberData.setMemberProperties
+MemberData.setMemberProperties = setMemberProperties
