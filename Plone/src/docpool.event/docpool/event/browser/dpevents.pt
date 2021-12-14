@@ -36,11 +36,11 @@
                     <td style="width:40%;"
                         tal:define="event_type python:scenario.EventType or ''">
                         <a href="" tal:attributes="href scenario/absolute_url">
-                            <tal:if condition="python: event_type == 'exercise'">
+                            <tal:if condition="python: event_type == 'Exercise'">
                                 <em i18n:translate="">++++ Exercise ++++</em>
                                 <br>
                             </tal:if>
-                            <tal:if condition="python: event_type == 'test'">
+                            <tal:if condition="python: event_type == 'Test'">
                                 <em i18n:translate="">++++ Test ++++</em>
                                 <br>
                             </tal:if>

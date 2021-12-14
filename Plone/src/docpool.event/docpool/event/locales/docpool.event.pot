@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-09-15 07:47+0000\n"
+"POT-Creation-Date: 2021-10-03 14:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgid "Edit Scenarios"
 msgstr ""
 
 #: docpool.event/docpool/event/vocabularies.py
-msgid "Event"
+msgid "Emergency"
 msgstr ""
 
 #: docpool.event/docpool/event/content/dpevent.py
@@ -148,6 +148,10 @@ msgid "Purge"
 msgstr ""
 
 #: docpool.event/docpool/event/vocabularies.py
+msgid "Routine"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
 msgid "Routine mode"
 msgstr ""
 
@@ -195,6 +199,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt
+msgid "Type of event"
 msgstr ""
 
 #: docpool.event/docpool/event/configure.zcml

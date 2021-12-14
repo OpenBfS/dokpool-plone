@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-09-15 07:47+0000\n"
+"POT-Creation-Date: 2021-10-03 14:19+0000\n"
 "PO-Revision-Date: 2018-12-21 10:42+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
@@ -94,7 +94,7 @@ msgid "Edit Scenarios"
 msgstr "Edit Events"
 
 #: docpool.event/docpool/event/vocabularies.py
-msgid "Event"
+msgid "Emergency"
 msgstr ""
 
 #: docpool.event/docpool/event/content/dpevent.py
@@ -147,6 +147,10 @@ msgid "Purge"
 msgstr ""
 
 #: docpool.event/docpool/event/vocabularies.py
+msgid "Routine"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
 msgid "Routine mode"
 msgstr ""
 
@@ -194,6 +198,10 @@ msgstr "There are no more documents for this event."
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/dpevent.pt
+msgid "Type of event"
 msgstr ""
 
 #: docpool.event/docpool/event/configure.zcml
@@ -267,4 +275,36 @@ msgstr ""
 #. Default: "Type of event"
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "label_dpevent_type"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "routine"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "intensive"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "none"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "initialized"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "alerted"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "inactive"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "closed"
 msgstr ""
