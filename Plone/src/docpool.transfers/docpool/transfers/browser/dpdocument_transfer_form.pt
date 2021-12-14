@@ -45,7 +45,7 @@
           <tbody>
              <tr tal:repeat="target targets">
                  <td>
-                    <input type="checkbox" checked="checked" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">
+                    <input type="checkbox" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">
                  </td>
                  <td valign="top" tal:content="target/esd_to_title">Test1</td>
              </tr>
