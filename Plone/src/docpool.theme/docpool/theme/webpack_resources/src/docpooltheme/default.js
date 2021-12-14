@@ -191,7 +191,6 @@ function close_popups() {
 // Imports the js for logged-in users
 if (jQuery('body.userrole-anonymous').length === 0) {
     import(/* webpackChunkName: "logged-in" */ './logged-in');
-    import(/* webpackChunkName: "docpool-functions" */ 'docpool-functions');
     import(/* webpackChunkName: "docpool-menu" */ 'docpool-menu');
     import(/* webpackChunkName: "jquery-marquee" */ 'jquery-marquee');
     import(/* webpackChunkName: "docpool" */ 'docpool');

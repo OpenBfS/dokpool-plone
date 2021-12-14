@@ -60,6 +60,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="to_1009"
+      title="Upgrade profile for docpool.base"
+      directory="profiles/to_1009"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+     />
+
   <genericsetup:upgradeSteps
       source="1.3.28"
       destination="1.4.00"
@@ -164,7 +172,7 @@
       profile="docpool.base:default">
     <genericsetup:upgradeStep
         title="Delete IRIXConfig"
-      handler="docpool.base.upgrades.to_1006"
+        handler="docpool.base.upgrades.to_1006"
         />
   </genericsetup:upgradeSteps>
 
@@ -193,7 +201,7 @@
     <genericsetup:upgradeStep
         title="Add report year index"
         handler="docpool.base.upgrades.to_1008"
-    />
+        />
     <genericsetup:upgradeStep
         title="Enable bulk-actions in listings"
         handler="docpool.base.upgrades.enable_bulk_actions"
@@ -209,11 +217,11 @@
     <genericsetup:upgradeStep
         title="Rebuild indexes with unicode values"
         handler="docpool.base.upgrades.to_1008_fix_unicode_indexes"
-    />
+        />
     <genericsetup:upgradeStep
         title="Reindexing rei reports."
         handler="docpool.base.upgrades.to_1008_index_report_year"
-    />
+        />
   </genericsetup:upgradeSteps>
 
   <genericsetup:upgradeSteps
@@ -223,7 +231,11 @@
     <genericsetup:upgradeStep
         title="Capitalise event types"
         handler="docpool.base.upgrades.to_1009_capitalise_event_types"
-    />
+        />
+    <genericsetup:upgradeStep
+        title="Remove not needed docpool function resource"
+        handler="docpool.base.upgrades.to_1009"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>

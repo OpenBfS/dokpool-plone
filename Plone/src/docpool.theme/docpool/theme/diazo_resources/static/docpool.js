@@ -2,7 +2,6 @@
          'intercom',
          'notify',
          'jquery-marquee',
-         'docpool-functions',
          ], function($) {
 	'use strict';
 

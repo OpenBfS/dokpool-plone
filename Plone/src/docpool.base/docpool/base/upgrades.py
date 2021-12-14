@@ -472,3 +472,7 @@ def to_1009_capitalise_event_types(context=None):
     }
     for event in events:
         event.EventType = TYPE_MAP.get(event.EventType)
+
+def to_1009(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1009')
