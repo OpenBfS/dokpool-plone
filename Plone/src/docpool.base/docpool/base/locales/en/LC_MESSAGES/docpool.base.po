@@ -196,6 +196,10 @@ msgstr ""
 msgid "No items or transitions!"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "back to"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "No items to delete."
 msgstr ""

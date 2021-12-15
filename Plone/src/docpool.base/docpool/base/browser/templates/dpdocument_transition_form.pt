@@ -19,6 +19,7 @@
     <div tal:condition="python: not can_transition"
          i18n:domain="docpool.base">
       <h2 i18n:translate="">No items or transitions!</h2>
+      <span>--> <a href="" tal:attributes="href python:context.absolute_url()"><span i18n:translate="">back to</span> <span tal:content="python:context.title_or_id()" /></a></span>
     </div>
 
     <div tal:condition="python: errors">

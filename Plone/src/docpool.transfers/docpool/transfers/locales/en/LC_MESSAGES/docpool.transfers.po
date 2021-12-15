@@ -58,6 +58,10 @@ msgstr ""
 msgid "No items or targets to transfer to!"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
+msgid "back to"
+msgstr ""
+
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
 msgid "No transfer to"
 msgstr ""

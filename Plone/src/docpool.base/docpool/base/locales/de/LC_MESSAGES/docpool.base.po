@@ -196,6 +196,10 @@ msgstr "Keine Inhalte gelöscht."
 msgid "No items or transitions!"
 msgstr "keine Einträge ausgewählt / keine Berechtigungen / kein Anhang"
 
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "back to"
+msgstr "zurück zu"
+
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "No items to delete."
 msgstr "Keine zu löschenden Inhalte."
