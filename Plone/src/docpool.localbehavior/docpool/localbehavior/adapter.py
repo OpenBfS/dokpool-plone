@@ -7,13 +7,15 @@ from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import adapter
 from zope.component import getMultiAdapter
 
+import six
+
 
 @adapter(ILocalBehaviorSupporting)
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def enumerateBehaviors(self):
         request = self.context.REQUEST
-        if isinstance(request, str):
+        if isinstance(request, six.string_types):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
             raise StopIteration
         editedLocalBehaviours = request.get(
