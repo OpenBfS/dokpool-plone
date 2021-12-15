@@ -21,28 +21,25 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         editedLocalBehaviours = request.get(
             "form.widgets.ILocalBehaviorSupport.local_behaviors", []
         )
-        editedLocalBehaviours = list(set(editedLocalBehaviours))
+        editedLocalBehaviours = set(editedLocalBehaviours)
 
         # Here we save the behaviors saved previously in the context in the request,
         # because we will need to check this list later
         # and it might be changed during a "save"
-        if not request.get("savedLocalBehaviors", []):
+        savedBehaviors = request.get("savedLocalBehaviors", [])
+        if not savedBehaviors:
             savedBehaviors = getattr(self.context, 'local_behaviors', [])[:]
-            request.set("savedLocalBehaviors", list(set(savedBehaviors)))
+            request.set("savedLocalBehaviors", savedBehaviors)
+        editedLocalBehaviours.update(savedBehaviors)
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter(
                 (self.context, request), name=u'dp_app_state'
             )
-            self.available_apps = dp_app_state.appsEffectiveForObject(request)
+            available_apps = dp_app_state.appsEffectiveForObject(request)
         else:
-            self.available_apps = list(
-                set(getattr(self.context, 'local_behaviors', [])[:])
-            )
-
-        editedLocalBehaviours.extend(self.available_apps)
-        editedLocalBehaviours.extend(request.get("savedLocalBehaviors", []))
-        editedLocalBehaviours = list(set(editedLocalBehaviours))
+            available_apps = getattr(self.context, 'local_behaviors', [])
+        editedLocalBehaviours.update(available_apps)
 
         for behavior in SCHEMA_CACHE.behavior_registrations(
                 self.context.portal_type):
@@ -55,7 +52,7 @@ def isSupported(available_apps, behavior_interface):
         if available_apps:
             return set(
                 BEHAVIOR_REGISTRY.get(behavior_interface.__identifier__)
-            ).intersection(set(available_apps))
+            ).intersection(available_apps)
         else:
             return False
     else:
