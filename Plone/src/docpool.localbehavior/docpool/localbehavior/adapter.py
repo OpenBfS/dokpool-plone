@@ -11,9 +11,6 @@ from zope.component import getMultiAdapter
 @adapter(ILocalBehaviorSupporting)
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
-    def __init__(self, context):
-        self.context = context
-
     def enumerateBehaviors(self):
         request = self.context.REQUEST
         if isinstance(request, str):
