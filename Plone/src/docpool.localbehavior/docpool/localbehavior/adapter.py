@@ -18,10 +18,10 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         if isinstance(request, six.string_types):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
             raise StopIteration
-        editedLocalBehaviours = request.get(
+        editedLocalBehaviors = request.get(
             "form.widgets.ILocalBehaviorSupport.local_behaviors", []
         )
-        editedLocalBehaviours = set(editedLocalBehaviours)
+        editedLocalBehaviors = set(editedLocalBehaviors)
 
         # Here we save the behaviors saved previously in the context in the request,
         # because we will need to check this list later
@@ -30,7 +30,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         if not savedBehaviors:
             savedBehaviors = getattr(self.context, 'local_behaviors', [])[:]
             request.set("savedLocalBehaviors", savedBehaviors)
-        editedLocalBehaviours.update(savedBehaviors)
+        editedLocalBehaviors.update(savedBehaviors)
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter(
@@ -39,11 +39,11 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
             available_apps = dp_app_state.appsEffectiveForObject(request)
         else:
             available_apps = getattr(self.context, 'local_behaviors', [])
-        editedLocalBehaviours.update(available_apps)
+        editedLocalBehaviors.update(available_apps)
 
         for behavior in SCHEMA_CACHE.behavior_registrations(
                 self.context.portal_type):
-            if isSupported(editedLocalBehaviours, behavior.interface):
+            if isSupported(editedLocalBehaviors, behavior.interface):
                 yield behavior
 
 
