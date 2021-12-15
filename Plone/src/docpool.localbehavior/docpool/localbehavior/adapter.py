@@ -18,19 +18,19 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         if isinstance(request, six.string_types):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
             raise StopIteration
-        editedLocalBehaviors = request.get(
+        edited_behaviors = request.get(
             "form.widgets.ILocalBehaviorSupport.local_behaviors", []
         )
-        editedLocalBehaviors = set(editedLocalBehaviors)
+        edited_behaviors = set(edited_behaviors)
 
         # Here we save the behaviors saved previously in the context in the request,
         # because we will need to check this list later
         # and it might be changed during a "save"
-        savedBehaviors = request.get("savedLocalBehaviors", [])
-        if not savedBehaviors:
-            savedBehaviors = getattr(self.context, 'local_behaviors', [])[:]
-            request.set("savedLocalBehaviors", savedBehaviors)
-        editedLocalBehaviors.update(savedBehaviors)
+        saved_behaviors = request.get("savedLocalBehaviors", [])
+        if not saved_behaviors:
+            saved_behaviors = getattr(self.context, 'local_behaviors', [])[:]
+            request.set("savedLocalBehaviors", saved_behaviors)
+        edited_behaviors.update(saved_behaviors)
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter(
@@ -39,11 +39,11 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
             available_apps = dp_app_state.appsEffectiveForObject(request)
         else:
             available_apps = getattr(self.context, 'local_behaviors', [])
-        editedLocalBehaviors.update(available_apps)
+        edited_behaviors.update(available_apps)
 
         for behavior in SCHEMA_CACHE.behavior_registrations(
                 self.context.portal_type):
-            if isSupported(editedLocalBehaviors, behavior.interface):
+            if isSupported(edited_behaviors, behavior.interface):
                 yield behavior
 
 
