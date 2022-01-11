@@ -10,4 +10,9 @@
             prefix="plone.resources/docpool-anon"
             remove="true">
     </records>
+     <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/docpool-nonadmin"
+            remove="true">
+    </records>
 </registry>
