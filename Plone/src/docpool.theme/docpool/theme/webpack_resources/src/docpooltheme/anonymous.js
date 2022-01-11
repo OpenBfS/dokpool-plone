@@ -1,1 +1,0 @@
-import './anonymous.less';

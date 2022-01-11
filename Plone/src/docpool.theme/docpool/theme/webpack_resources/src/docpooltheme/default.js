@@ -212,13 +212,13 @@ if ((jQuery('#portal-column-content.bfs_popup').length === 1)
 // Imports the less for docpool-nonadmin bundle
 // Replaces expression: python:not object.isAdmin() and not object.isContentAdmin()
 if (jQuery('body.userrole-member').length === 1) {
-    import("./nonadmin.less")
+    import("./nonadmin.less");
 }
 
-// Imports the js and less for docpool-anon bundle
+// Imports the less for removed docpool-anon bundle
 // Replaces expression: python: member is None
 if (jQuery('body.userrole-anonymous').length === 1) {
-    import(/* webpackChunkName: "anonymous" */ './anonymous');
+    import("./anonymous.less");
 }
 
 /* Expose jQuery when needed */
