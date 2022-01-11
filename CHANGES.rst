@@ -6,14 +6,15 @@ Changelog
 
 Changed:
 
--  Replace workflow transition icons #4337
-   [slindner]
+- Replace workflow transition icons #4337
+  [slindner]
 
 - Remove not needed js file #4174
   [slindner]
 
-1.9 (unreleased)
-----------------
+- Update to Plone 5.1.7 #4614
+  [pbauer, slindner]
+
 Added:
 
 - Expand EventType history #4463
