@@ -193,8 +193,7 @@ function close_popups() {
 if (jQuery('body.userrole-anonymous').length === 0) {
     import(/* webpackChunkName: "logged-in" */ './logged-in');
     import(/* webpackChunkName: "docpool-menu" */ 'docpool-menu');
-    import(/* webpackChunkName: "jquery-marquee" */ 'jquery-marquee');
-    import(/* webpackChunkName: "docpool" */ 'docpool');
+    import(/* webpackChunkName: "docpool" */ './docpool');
 }
 
 // Imports the js/less for Openlayers
