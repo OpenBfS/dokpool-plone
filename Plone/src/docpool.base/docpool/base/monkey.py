@@ -81,6 +81,16 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def setMemberProperties(self, mapping, **kw):
+    # We're never interested in login times as sessions are created by SSO anyway.
+    # Login times used to be the main cause by far for writing member properties, which
+    # are suspected to be a DB hotspot causing ConflictErrors, see #4325.
+    for key in ('login_time', 'last_login_time'):
+        mapping.pop(key, None)
+    if not mapping:
+        return
+
+    # XXX 4325: temporarily keep watching the member property setter to confirm that
+    # removal of login time logging actually prevents most DB ConflictErrors.
     log.info(
         'Setting member properties:\n{0}\n{1}'.format(
             str(list(mapping)),

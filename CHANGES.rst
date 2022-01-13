@@ -12,6 +12,10 @@ Changed:
 - Remove not needed js file #4174
   [slindner]
 
+- Don't log login times to member properties to avoid DB hotspot. #4325
+  [tlotze]
+
+
 1.9 (unreleased)
 ----------------
 Added:
