@@ -80,25 +80,6 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-def setProperties(self, properties=None, **kw):
-    request = aq_get(self, 'REQUEST', None)
-    if request is None:
-        request = getRequest()
-
-    if request.get('HTTP_X_REQUESTED_WITH', '') == 'XMLHttpRequest':
-        mapping = kw if properties is None else properties
-        for key in ('login_time', 'last_login_time'):
-            if key in mapping.keys():
-                value = mapping.pop(key)
-                log.info('Not setting property {0}: {1}'.format(key, value))
-
-    self._orig_setProperties(properties, **kw)
-
-
-MemberData._orig_setProperties = MemberData.setProperties
-MemberData.setProperties = setProperties
-
-
 def setMemberProperties(self, mapping, **kw):
     log.info(
         'Setting member properties:\n{0}\n{1}'.format(
