@@ -91,9 +91,13 @@ def setMemberProperties(self, mapping, **kw):
 
     # XXX 4325: temporarily keep watching the member property setter to confirm that
     # removal of login time logging actually prevents most DB ConflictErrors.
+    request = aq_get(self, 'REQUEST', None)
+    if request is None:
+        request = getRequest()
     log.info(
-        'Setting member properties:\n{0}\n{1}'.format(
+        'Setting member properties:\n{0} at {1}\n{2}'.format(
             str(list(mapping)),
+            request['URL'],
             '\n'.join(item.splitlines()[0] for item in traceback.format_stack())
         )
     )
