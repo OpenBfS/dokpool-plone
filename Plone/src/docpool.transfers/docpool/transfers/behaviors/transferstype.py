@@ -51,7 +51,7 @@ class ITransfersType(model.Schema):
     automaticTransferTargets = schema.List(
         title=_(
             u'label_doctype_automatictransfertargets',
-            default=u'Where are documents of this type transfered automatically?',
+            default=u'Where are documents of this type transferred automatically?',
         ),
         description=_(
             u'description_doctype_automatictransfertargets', default=u''),

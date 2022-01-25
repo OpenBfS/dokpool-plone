@@ -31,7 +31,7 @@
         <input type="hidden" name="form.submitted" value="1" />
 
         <h2 i18n:translate="">Transfer</h2>
-        <p i18n:translate="">The following items will be transfered:</p>
+        <p i18n:translate="">The following items will be transferred:</p>
         <ul>
           <li tal:repeat="item items" tal:content="python: item.title" />
         </ul>

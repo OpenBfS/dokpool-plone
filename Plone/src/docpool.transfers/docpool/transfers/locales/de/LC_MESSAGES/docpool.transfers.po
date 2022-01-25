@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-20 14:09+0000\n"
+"POT-Creation-Date: 2022-01-25 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.py
+msgid "${transferred} Items transferred!"
+msgstr "${transferred} Inhalte wurden übertragen!"
 
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
 msgid ". Doc type not accepted."
@@ -54,13 +58,13 @@ msgstr "Berechtigungen bearbeiten"
 msgid "Makes documents transferable between pools"
 msgstr "Macht Dokumente übertragbar zwischen Dokpools"
 
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.py
+msgid "No items or targets selected!"
+msgstr "Keine Inhalte oder Ziele ausgewählt!"
+
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 msgid "No items or targets to transfer to!"
 msgstr "Keine Einträge ausgewählt / keine Ziele verfügbar."
-
-#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
-msgid "back to"
-msgstr "zurück zu"
 
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
 msgid "No transfer to"
@@ -81,7 +85,7 @@ msgid "Select"
 msgstr "Auswählen"
 
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
-msgid "The following items will be transfered:"
+msgid "The following items will be transferred:"
 msgstr "Folgende Inhalte werden übertragen:"
 
 #: docpool.transfers/docpool/transfers/db/forms.py
@@ -122,12 +126,16 @@ msgid "Transferable"
 msgstr "Übertragbar"
 
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
-msgid "Transferred to"
-msgstr "Übertragen an"
+msgid "Transferred to ${target_title}"
+msgstr "Übertragen an ${target_title}"
 
 #: docpool.transfers/docpool/transfers/behaviors/configure.zcml
 msgid "Type extension for transferable types"
 msgstr "Typ Erweiterung für übertragbare Typen"
+
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
+msgid "back to"
+msgstr "zurück zu"
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "description_doctype_allowtransfer"
@@ -180,7 +188,7 @@ msgstr "nicht annehmen"
 msgid "label_doctype_allowtransfer"
 msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
 
-#. Default: "Where are documents of this type transfered automatically?"
+#. Default: "Where are documents of this type transferred automatically?"
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "label_doctype_automatictransfertargets"
 msgstr "Wohin werden Dokumente dieses Typs automatisch übermittelt?"

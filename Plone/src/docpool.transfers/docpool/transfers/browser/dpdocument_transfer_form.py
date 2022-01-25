@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 from plone import api
-from Products.CMFPlone import MessageFactory
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
 from docpool.transfers.config import TRANSFERS_APP
 from Products.Five.browser import BrowserView
 from docpool.transfers import DocpoolMessageFactory as _
@@ -18,7 +17,7 @@ class TransferForm(BrowserView):
             return self.index()
 
         if not dpdocids or not targets:
-            api.portal.show_message('Not items or targets selected!', request)
+            api.portal.show_message(_('No items or targets selected!'), request)
             return self.index()
 
         if dpdocids and targets:
@@ -27,7 +26,8 @@ class TransferForm(BrowserView):
                 api.portal.show_message(message, request)
                 return self.index()
             else:
-                api.portal.show_message('{} Items transfered!'.format(len(dpdocids)), request)
+                msg = _('${transferred} Items transferred!', mapping={'transferred': len(dpdocids)})
+                api.portal.show_message(msg, request)
                 request.response.redirect(self.context.absolute_url())
         return self.index()
 

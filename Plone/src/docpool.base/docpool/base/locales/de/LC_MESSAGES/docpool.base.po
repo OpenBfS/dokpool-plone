@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2021-08-03 12:06+0000\n"
+"POT-Creation-Date: 2022-01-25 14:03+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -195,10 +195,6 @@ msgstr "Keine Inhalte gelöscht."
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "No items or transitions!"
 msgstr "keine Einträge ausgewählt / keine Berechtigungen / kein Anhang"
-
-#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
-msgid "back to"
-msgstr "zurück zu"
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "No items to delete."
@@ -452,6 +448,10 @@ msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_transition"
 msgstr "Wollen Sie die gewählte Statusänderung wirklich duchführen?"
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "back to"
+msgstr "zurück zu"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "closed"

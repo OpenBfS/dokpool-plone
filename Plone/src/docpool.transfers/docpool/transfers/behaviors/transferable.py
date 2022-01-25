@@ -6,7 +6,6 @@ from Acquisition import aq_inner
 from contextlib import contextmanager
 from datetime import datetime
 from DateTime import DateTime
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import _copyPaste
@@ -439,11 +438,8 @@ class Transferable(FlexibleView):
                     scenario_ids=scenario_ids,
                     channel=target,
                 )
-                portalMessage(
-                    self.context,
-                    _(u"Transferred to") + " " + target.esd_to_title,
-                    type='info',
-                )
+                msg = _('Transferred to ${target_title}', mapping={'target_title': target.esd_to_title})
+                api.portal.show_message(msg, self.request)
 
         execute_under_special_role(self.context, "Manager", doIt)
 
