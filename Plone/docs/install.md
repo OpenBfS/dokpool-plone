@@ -49,7 +49,10 @@ $ dropuser elan
 
 User und DB anlegen:
 $ createuser --createdb elan
-$ createdb elan -U elan
+# On Mac OS ($ createdb elan -U elan)
+$ createdb elan -O elan
+$ sudo -u postgres psql
+$ alter user elan with encrypted password 'elan';
 
 DB restore:
 $ pg_restore -d elan produktiv_elan_20201009.backup
