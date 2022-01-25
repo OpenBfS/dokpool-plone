@@ -88,13 +88,18 @@ class StatusVocabulary(object):
     """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [
-                SimpleTerm('active', title=_('active')),
-                SimpleTerm('inactive', title=_('inactive')),
-                SimpleTerm('closed', title=_('closed')),
-            ]
-        )
+        terms = [
+            SimpleTerm('active', title=_('active')),
+            SimpleTerm('inactive', title=_('inactive')),
+            SimpleTerm('closed', title=_('closed')),
+        ]
+        if context.portal_type == "DPEvent" and context.Status != "closed":
+            # Edit-views and views of non-closed events
+            terms.pop(-1)
+        elif context.portal_type == "DPEvents":
+            # Add-views are always on DPEvents
+            terms.pop(-1)
+        return SimpleVocabulary(terms)
 
 
 StatusVocabularyFactory = StatusVocabulary()
