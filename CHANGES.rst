@@ -6,8 +6,8 @@ Changelog
 
 Changed:
 
--  Replace workflow transition icons #4337
-   [slindner]
+- Replace workflow transition icons #4337
+  [slindner]
 
 - Remove not needed js file #4174
   [slindner]
@@ -17,6 +17,9 @@ Changed:
 Added:
 
 - Expand EventType history #4463
+  [slindner]
+
+- Browsertest for marquee ticker #3681 
   [slindner]
 
 Fixed:
