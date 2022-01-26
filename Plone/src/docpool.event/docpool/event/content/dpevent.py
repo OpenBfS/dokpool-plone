@@ -96,7 +96,7 @@ class IDPEvent(model.Schema, IContentBase):
         description=_(u'description_dpevent_status', default=u''),
         required=True,
         default='active',
-        source="docpool.base.vocabularies.Status",
+        source="docpool.event.vocabularies.Status",
     )
 
     TimeOfEvent = schema.Datetime(
