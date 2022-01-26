@@ -12,11 +12,15 @@ Changed:
 - Remove not needed js file #4174
   [slindner]
 
+- Hide event status 'closed' in forms unless event is already closed. #4634
+  [pbauer, tlotze]
+
 Fixed:
 
 - Missing translations in Chronologie #3708
   [slindner]
- 
+
+
 1.9 (unreleased)
 ----------------
 Added:
