@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-20 14:09+0000\n"
+"POT-Creation-Date: 2022-01-25 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.transfers\n"
+
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.py
+msgid "${transferred} Items transferred!"
+msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
 msgid ". Doc type not accepted."
@@ -57,6 +61,10 @@ msgstr ""
 msgid "Makes documents transferable between pools"
 msgstr ""
 
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.py
+msgid "No items or targets selected!"
+msgstr ""
+
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 msgid "No items or targets to transfer to!"
 msgstr ""
@@ -80,7 +88,7 @@ msgid "Select"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
-msgid "The following items will be transfered:"
+msgid "The following items will be transferred:"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/db/forms.py
@@ -121,11 +129,15 @@ msgid "Transferable"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
-msgid "Transferred to"
+msgid "Transferred to ${target_title}"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/configure.zcml
 msgid "Type extension for transferable types"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
+msgid "back to"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
@@ -179,7 +191,7 @@ msgstr ""
 msgid "label_doctype_allowtransfer"
 msgstr ""
 
-#. Default: "Where are documents of this type transfered automatically?"
+#. Default: "Where are documents of this type transferred automatically?"
 #: docpool.transfers/docpool/transfers/behaviors/transferstype.py
 msgid "label_doctype_automatictransfertargets"
 msgstr ""

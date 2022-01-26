@@ -17,13 +17,12 @@
 
     <metal:macro define-macro="transfers_actions" i18n:domain="docpool.transfers">
          <tal:if condition="python: not context.isArchive() and transfersobj.transferable() and transfersobj.allowedTargets()">
-          <a class="transfer action pat-plone-modal" tal:condition="python: not context.isIndividual()"
+          <a class="transfer action" tal:condition="python: not context.isIndividual()"
               href=""
               title="Transfer"
               tal:attributes="href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % ('/'.join(context.absolute_url().split('/')[:-1]), context.absolute_url_path())"
-              i18n:attributes="title"
-              data-pat-plone-modal='{"actionOptions": {"reloadWindowOnClose": true, "redirectOnResponse":false, "timeout":10000}, "buttons": ".formControls > button", "content": "#content-core"}'>
-              <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
+              i18n:attributes="title">
+              <img src="" tal:attributes="src string:${context/portal_url}/transfer.png"/>
           </a>
         </tal:if>
     </metal:macro>

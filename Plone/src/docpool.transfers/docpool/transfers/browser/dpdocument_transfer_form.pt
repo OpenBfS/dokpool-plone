@@ -18,6 +18,7 @@
 
       <div tal:condition="python: not can_transfer">
         <h2 i18n:translate="">No items or targets to transfer to!</h2>
+        <span>--> <a href="" tal:attributes="href python:context.absolute_url()"><span i18n:translate="">back to</span> <span tal:content="python:context.title_or_id()" /></a></span>
       </div>
 
       <form method="post"
@@ -30,7 +31,7 @@
         <input type="hidden" name="form.submitted" value="1" />
 
         <h2 i18n:translate="">Transfer</h2>
-        <p i18n:translate="">The following items will be transfered:</p>
+        <p i18n:translate="">The following items will be transferred:</p>
         <ul>
           <li tal:repeat="item items" tal:content="python: item.title" />
         </ul>
@@ -45,7 +46,7 @@
           <tbody>
              <tr tal:repeat="target targets">
                  <td>
-                    <input type="checkbox" checked="checked" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">
+                    <input type="checkbox" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="value target/id;">
                  </td>
                  <td valign="top" tal:content="target/esd_to_title">Test1</td>
              </tr>
