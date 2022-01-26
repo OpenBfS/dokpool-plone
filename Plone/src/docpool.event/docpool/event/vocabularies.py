@@ -106,14 +106,11 @@ class StatusVocabulary(object):
         terms = [
             SimpleTerm('active', title=_('active')),
             SimpleTerm('inactive', title=_('inactive')),
-            SimpleTerm('closed', title=_('closed')),
         ]
-        if context.portal_type == "DPEvent" and context.Status != "closed":
-            # Edit-views and views of non-closed events
-            terms.pop(-1)
-        elif context.portal_type == "DPEvents":
-            # Add-views are always on DPEvents
-            terms.pop(-1)
+        # When editing closed events, add the "closed" state. When editing events in
+        # other states or adding events (context isn't DPEvent), don't (re: #4634).
+        if context.portal_type == "DPEvent" and context.Status == "closed":
+            terms.append(SimpleTerm('closed', title=_('closed')))
         return SimpleVocabulary(terms)
 
 
