@@ -14,11 +14,11 @@ pathlib2==2.3.5
 pre-commit==1.20.0
 PyYAML==5.3
 scandir==1.10.0
-setuptools==39.1.0
+setuptools==42.0.2
 six==1.14.0
 toml==0.10.0
 typing==3.7.4.1
 virtualenv==20.0.7
-zc.buildout==2.11.4
+zc.buildout==2.13.3
 zipp==1.2.0
 setuptools-scm==5.0.2

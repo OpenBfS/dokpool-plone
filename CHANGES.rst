@@ -19,6 +19,9 @@ Fixed:
  
 1.9 (unreleased)
 ----------------
+- Update to Plone 5.1.7 #4614
+  [pbauer, slindner]
+
 Added:
 
 - Expand EventType history #4463
