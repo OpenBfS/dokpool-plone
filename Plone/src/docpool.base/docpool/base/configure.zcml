@@ -115,10 +115,6 @@
     name="docpool.base.vocabularies.ExtendingApps"
     />
   <utility
-    component=".vocabularies.StatusVocabularyFactory"
-    name="docpool.base.vocabularies.Status"
-    />
-  <utility
     component=".vocabularies.DTOptionsVocabularyFactory"
     name="docpool.base.vocabularies.DTOptions"
     />

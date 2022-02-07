@@ -83,24 +83,6 @@ SelectableAppsVocabularyFactory = SelectableAppsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class StatusVocabulary(object):
-    """
-    """
-
-    def __call__(self, context):
-        return SimpleVocabulary(
-            [
-                SimpleTerm('active', title=_('active')),
-                SimpleTerm('inactive', title=_('inactive')),
-                SimpleTerm('closed', title=_('closed')),
-            ]
-        )
-
-
-StatusVocabularyFactory = StatusVocabulary()
-
-
-@implementer(IVocabularyFactory)
 class DTOptionsVocabulary(object):
     """
     """

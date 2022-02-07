@@ -98,6 +98,26 @@ EventSubstituteVocabularyFactory = EventSubstituteVocabulary()
 
 
 @implementer(IVocabularyFactory)
+class StatusVocabulary(object):
+    """
+    """
+
+    def __call__(self, context):
+        terms = [
+            SimpleTerm('active', title=_('active')),
+            SimpleTerm('inactive', title=_('inactive')),
+        ]
+        # When editing closed events, add the "closed" state. When editing events in
+        # other states or adding events (context isn't DPEvent), don't (re: #4634).
+        if context.portal_type == "DPEvent" and context.Status == "closed":
+            terms.append(SimpleTerm('closed', title=_('closed')))
+        return SimpleVocabulary(terms)
+
+
+StatusVocabularyFactory = StatusVocabulary()
+
+
+@implementer(IVocabularyFactory)
 class PhasesVocabulary(object):
 
     def __call__(self, context):

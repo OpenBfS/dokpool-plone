@@ -62,6 +62,10 @@
     name="docpool.event.vocabularies.EventSubstitutes"
     />
   <utility
+    component=".vocabularies.StatusVocabularyFactory"
+    name="docpool.event.vocabularies.Status"
+    />
+  <utility
     component=".vocabularies.PhasesVocabularyFactory"
     name="docpool.event.vocabularies.Phases"
     />
