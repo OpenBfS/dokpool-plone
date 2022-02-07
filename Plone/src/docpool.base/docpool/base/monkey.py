@@ -80,29 +80,24 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-def setProperties(self, properties=None, **kw):
+def setMemberProperties(self, mapping, **kw):
+    # We're never interested in login times as sessions are created by SSO anyway.
+    # Login times used to be the main cause by far for writing member properties, which
+    # are suspected to be a DB hotspot causing ConflictErrors, see #4325.
+    for key in ('login_time', 'last_login_time'):
+        mapping.pop(key, None)
+    if not mapping:
+        return
+
+    # XXX 4325: temporarily keep watching the member property setter to confirm that
+    # removal of login time logging actually prevents most DB ConflictErrors.
     request = aq_get(self, 'REQUEST', None)
     if request is None:
         request = getRequest()
-
-    if request.get('HTTP_X_REQUESTED_WITH', '') == 'XMLHttpRequest':
-        mapping = kw if properties is None else properties
-        for key in ('login_time', 'last_login_time'):
-            if key in mapping.keys():
-                value = mapping.pop(key)
-                log.info('Not setting property {0}: {1}'.format(key, value))
-
-    self._orig_setProperties(properties, **kw)
-
-
-MemberData._orig_setProperties = MemberData.setProperties
-MemberData.setProperties = setProperties
-
-
-def setMemberProperties(self, mapping, **kw):
     log.info(
-        'Setting member properties:\n{0}\n{1}'.format(
+        'Setting member properties:\n{0} at {1}\n{2}'.format(
             str(list(mapping)),
+            request['URL'],
             '\n'.join(item.splitlines()[0] for item in traceback.format_stack())
         )
     )

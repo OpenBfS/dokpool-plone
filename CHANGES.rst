@@ -17,6 +17,10 @@ Fixed:
 - Missing translations in Chronologie #3708
   [slindner]
  
+- Don't log login times to member properties to avoid DB hotspot. #4325
+  [tlotze]
+
+
 1.9 (unreleased)
 ----------------
 - Update to Plone 5.1.7 #4614
