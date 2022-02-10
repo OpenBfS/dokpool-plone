@@ -106,10 +106,10 @@ class StatusVocabulary(object):
             SimpleTerm('active', title=_('active')),
             SimpleTerm('inactive', title=_('inactive')),
         ]
-        # When editing closed events, add the "closed" state. When editing events in
+        # When editing closed events, only show the "closed" state. When editing events in
         # other states or adding events (context isn't DPEvent), don't (re: #4634).
         if context.portal_type == "DPEvent" and context.Status == "closed":
-            terms.append(SimpleTerm('closed', title=_('closed')))
+            terms = [SimpleTerm('closed', title=_('closed'))]
         return SimpleVocabulary(terms)
 
 

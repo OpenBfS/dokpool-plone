@@ -269,48 +269,36 @@ class DPEvent(Container, ContentBase):
         Saves all content for this scenario to an archive, deletes the original content,
         and sets the scenario to state "closed".
         """
+        alsoProvides(REQUEST, IDisableCSRFProtection)
         global_scenarios = get_global_scenario_selection()
         global_scenarios[self.getId()] = 'closed'
+        archive = self._createArchive()
+        contentarea = self.content
+        contentarea_path = "/".join(contentarea.getPhysicalPath())
 
-        alsoProvides(REQUEST, IDisableCSRFProtection)
-        self.snapshot()
+        archive_contentarea = archive.content
+        mdocs = self._getDocumentsForScenario(path=contentarea_path)
+        for doc in mdocs:
+            target_folder = self._ensureTargetFolder(doc, archive_contentarea)
+            self._copyDocument(target_folder, doc)
+
         self.purge()
         self.Status = 'closed'
-        self.reindexObject()
-        portalMessage(self, _("Scenario archived"), "info")
-        return self.restrictedTraverse("view")()
+        # Move DPEvent into archive and redirect to it
+        archived_event = api.content.move(self, target=archive)
+        archived_event.reindexObject()
+        api.portal.show_message(_("Scenario archived"), REQUEST)
+        return REQUEST.response.redirect(archived_event.absolute_url())
 
     security.declareProtected("Modify portal content", "snapshot")
 
-    def snapshot(self, REQUEST=None):
+    def snapshot(self, old, new):
         """
         Saves all content for this scenario to a new archive, but does not delete any files.
         Status is unchanged.
         """
-        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
-        arc = self._createArchive()
-        # Archive the Journals into esd folder
-        # TODO Does not use any wrapped copy/paste (like _copyDocument)
-        # _copyDocument or similar is needed to get a transferlog
-        # See https://redmine-koala.bfs.de/issues/3100
-        archived_esd_root= arc.esd
-        event_path = '/'.join(self.getPhysicalPath())
-        for journal in api.content.find(portal_type='Journal',
-                                        path=event_path):
-            cb_copy_data = self.manage_copyObjects(journal.getObject().getId())
-            result = archived_esd_root.manage_pasteObjects(cb_copy_data)
-        m = self.content
-        mpath = "/".join(m.getPhysicalPath())
-        arc_m = arc.content
         # We now query the catalog for all documents belonging to this scenario within
         # the personal and group folders
-        mdocs = self._getDocumentsForScenario(path=mpath)
-        for doc in mdocs:
-            target_folder = self._ensureTargetFolder(doc, arc_m)
-            self._copyDocument(target_folder, doc)
-        if REQUEST:
-            portalMessage(self, _("Snapshot created"), "info")
-            return self.restrictedTraverse("view")()
 
     def _ensureTargetFolder(self, doc, aroot):
         """
