@@ -107,7 +107,9 @@ class DPDocumentcommentingView(BrowserView):
 
     """
 
-    __call__ = ViewPageTemplateFile('dpdocumentcommenting.pt')
+    def __call__(self):
+        self.request.form.setdefault('popup_load', '1')
+        return ViewPageTemplateFile('dpdocumentcommenting.pt')(self)
 
 
 class DPDocumentdocimageView(BrowserView):
