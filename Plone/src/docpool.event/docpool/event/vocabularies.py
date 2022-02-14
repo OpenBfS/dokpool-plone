@@ -96,7 +96,6 @@ class EventSubstituteVocabulary(object):
 
 EventSubstituteVocabularyFactory = EventSubstituteVocabulary()
 
-
 @implementer(IVocabularyFactory)
 class StatusVocabulary(object):
     """
@@ -155,6 +154,78 @@ class ModesVocabulary(object):
 
 
 ModesVocabularyFactory = ModesVocabulary()
+
+
+@implementer(IVocabularyFactory)
+class SampleType(object):
+
+    def __call__(self, context=None):
+        items = [
+            (u'A', u'Abwasser, Reststoffe und Abfälle'),
+            (u'A1', u'Kläranlage'),
+            (u'A2', u'Verbrennungsanlage'),
+            (u'A3', u'Mülldeponie'),
+            (u'A4', u'Kompostierungsanlage'),
+            (u'A5', u'Spezielle Reststoffe und Abfälle'),
+            (u'B', u'Boden'),
+            (u'B2', u'Boden in-situ (nuklidspezifische Dosisleistung)'),
+            (u'B3', u'Weide-/ Acker-/ Wald-/ Freizeitflächen-/ Ödland- und Gartenböden'),
+            (u'F', u'Futtermittel'),
+            (u'F1', u'Grünfutter (einschl. Weide- und Wiesenbewuchs)'),
+            (u'F2', u'Mais'),
+            (u'F3', u'Futtergetreide'),
+            (u'F4', u'Hackfrüchte'),
+            (u'F5', u'Heu, Stroh, Cobs, Trockenmehle'),
+            (u'F6', u'Mischfuttermittelrohstoffe'),
+            (u'F7', u'Mischfuttermittel'),
+            (u'G', u'Gewässer'),
+            (u'G1', u'Fließgewässer'),
+            (u'G2', u'Stehende Gewässer'),
+            (u'G3', u'Meer'),
+            (u'G4', u'Grundwasser'),
+            (u'G5', u'Rohwasser zur Trinkwassergewinnung'),
+            (u'GZ', u'Sonstige Wässer'),
+            (u'I', u'Bio-Indikatoren, Tabak und Arzneimittel'),
+            (u'I1', u'Pflanzliche Indikatoren'),
+            (u'I2', u'Tabak'),
+            (u'I3', u'Arzneimittel'),
+            (u'L', u'Luft und Niederschlag'),
+            (u'L1', u'Luft/Gammastrahlung'),
+            (u'L2', u'Luft/Neutronenstrahlung'),
+            (u'L3', u'Luft/Aerosole'),
+            (u'L4', u'Luft/gasförmige Komponenten (einschl. Iod)'),
+            (u'L5', u'Niederschlag'),
+            (u'L6', u'Spurenmessung Luft'),
+            (u'M', u'Meteo-Umweltbereich'),
+            (u'N', u'Nahrungsmittel (einschl. Trinkwasser)'),
+            (u'N1', u'Milch'),
+            (u'N2', u'Frischgemüse (einschl. Kartoffeln und Pilze)'),
+            (u'N3', u'Getreide'),
+            (u'N4', u'Obst'),
+            (u'N5', u'Fleisch'),
+            (u'N6', u'Fisch und Meeresfrüchte'),
+            (u'N7', u'Trinkwasser'),
+            (u'N8', u'Gesamtnahrung, Fertiggerichte und Getränke'),
+            (u'N9', u'Nahrungsmittelprodukte'),
+            (u'NZ', u'Sonstige Nahrungsmittel'),
+            (u'S', u'Umweltbereiche für Störfall'),
+            (u'S1', u'Luft - Störfall'),
+            (u'S2', u'Boden/-Oberfläche - Störfall'),
+            (u'S3', u'Pflanzen/Bewuchs - Störfall'),
+            (u'S4', u'Oberirdische Gewässer - Störfall'),
+            (u'Z', u'Sonstige Mediengruppen'),
+            (u'Z1', u'Baustoffe'),
+            (u'Z2', u'Bodenschätze'),
+            (u'Z3', u'Bedarfsgegenstände und Kosmetische Mittel'),
+        ]
+        terms = [SimpleTerm(value,
+                            safe_encode(value),
+                            u'{} {}'.format(value, title))
+                 for value, title in items]
+        return SimpleVocabulary(terms)
+
+
+SampleTypeVocabularyFactory = SampleType()
 
 
 @implementer(IVocabularyFactory)

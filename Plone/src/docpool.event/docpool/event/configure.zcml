@@ -74,6 +74,10 @@
     name="docpool.event.vocabularies.Modes"
     />
   <utility
+    component=".vocabularies.SampleTypeVocabularyFactory"
+    name="docpool.event.vocabularies.SampleType"
+    />
+  <utility
     component=".vocabularies.NetworksVocabularyFactory"
     name="docpool.event.vocabularies.Networks"
     />
