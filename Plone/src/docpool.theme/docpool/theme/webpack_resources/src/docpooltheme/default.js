@@ -220,6 +220,11 @@ if (jQuery('body.userrole-anonymous').length === 1) {
     import("./anonymous.less");
 }
 
+// Imports the intercom.js
+// Cant restrict to a selector as srmodulematerial.pt is a special view
+import "expose-loader?Intercom!exports-loader?Intercom!./intercom.min";
+import notify from 'notify';
+
 /* Expose jQuery when needed */
 window.jQuery = jQuery;
 window.$ = jQuery;
