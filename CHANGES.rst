@@ -14,6 +14,13 @@ Added:
 
 - Exclude dp_school from popup filter #4040
   [slindner]
+- Hide event status 'closed' in forms unless event is already closed. #4634
+  [pbauer, tlotze]
+
+- Remove old diazo resources dir and not needed js files #3681
+  [slindner]
+
+Fixed:
 
 - Expand EventType history #4463
   [slindner]
