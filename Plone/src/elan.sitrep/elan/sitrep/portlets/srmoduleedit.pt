@@ -1,7 +1,7 @@
 <tal:block i18n:domain="elan.sitrep">
-        <a i18n:translate="" onclick="" class="submit-widget button-field context"
+        <button i18n:translate="" onclick="" class="submit-widget button-field context"
          tal:attributes="onclick python:'window.open(\'%s/@@material?popup_load=1\',\'ModuleMaterial\')' % context.absolute_url();">
-            Open building blocks window</a>
+            Open building blocks window</button>
 
             <script type="text/javascript">
                 if (typeof Intercom === 'function') {
