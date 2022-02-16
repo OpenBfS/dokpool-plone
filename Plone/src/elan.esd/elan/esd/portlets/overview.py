@@ -54,8 +54,11 @@ class Renderer(base.Renderer):
     def specialObjects(self):
         """
         """
+        return [o for o in self._specialObjects() if o.id not in ('recent', 'overview')]
+
+    def _specialObjects(self):
         cs = self.context.myELANCurrentSituation()
-        fc = cs.getFolderContents(
+        for obj in cs.getFolderContents(
             {
                 'portal_type': [
                     'Dashboard',
@@ -63,13 +66,15 @@ class Renderer(base.Renderer):
                     'Journal'
                 ]
             }
-        )
+        ):
+            yield obj
+
         # In archive we return the archived journals
         # TODO HACK Unify the isArchiv() method
         if "archive" in self.context.getPhysicalPath():
-            return [o for o in fc if o.id not in ('recent', 'overview')]
+            return
+
         # Get the active journals for this scenario and document pool
-        journals = []
         scenarios = getScenariosForCurrentUser(self.context)
         dp = self.context.myDocumentPool()
         # User could select more than one scenario
@@ -83,11 +88,7 @@ class Renderer(base.Renderer):
                 continue
             event_path = '/'.join(event_brain[0].getObject().getPhysicalPath())
             for journal in api.content.find(portal_type='Journal', path=event_path):
-                journals.append(journal)
-        if journals:
-            # fc is a LazyMap
-            fc = list(fc) + journals
-        return [o for o in fc if o.id not in ('recent', 'overview')]
+                yield journal
 
 
 class AddForm(base.NullAddForm):
