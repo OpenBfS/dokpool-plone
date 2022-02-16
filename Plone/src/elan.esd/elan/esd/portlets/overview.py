@@ -68,12 +68,17 @@ class Renderer(base.Renderer):
         # TODO HACK Unify the isArchiv() method
         if "archive" in self.context.getPhysicalPath():
             return [o for o in fc if o.id not in ('recent', 'overview')]
-        # Get the active journals for this Scenario
+        # Get the active journals for this scenario and document pool
         journals = []
         scenarios = getScenariosForCurrentUser(self.context)
+        dp = self.context.myDocumentPool()
         # User could select more than one scenario
         for scenario in scenarios:
-            event_brain = api.content.find(portal_type='DPEvent', id=scenario)
+            event_brain = api.content.find(
+                portal_type='DPEvent',
+                context=dp,
+                id=scenario,
+            )
             if not event_brain:
                 continue
             event_path = '/'.join(event_brain[0].getObject().getPhysicalPath())
