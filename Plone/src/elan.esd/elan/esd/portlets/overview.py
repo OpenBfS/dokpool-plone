@@ -84,11 +84,12 @@ class Renderer(base.Renderer):
                 context=dp,
                 id=scenario,
             )
-            if not event_brain:
-                continue
-            event_path = '/'.join(event_brain[0].getObject().getPhysicalPath())
-            for journal in api.content.find(portal_type='Journal', path=event_path):
-                yield journal
+            if event_brain:
+                for journal in api.content.find(
+                        portal_type='Journal',
+                        path=event_brain[0].getPath(),
+                    ):
+                    yield journal
 
 
 class AddForm(base.NullAddForm):
