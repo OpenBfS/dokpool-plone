@@ -5,7 +5,8 @@ var thisX=0;
 
 function go_to(url) {
 	'use strict';
-	var valid_urls = ['dokpool', 'Plone'];
+	// See https://redmine-koala.bfs.de/issues/4040#note-11
+	var valid_urls = ['dokpool', 'Plone', 'dp_school'];
 	var i = 0;
 	var from_popup = false;
 	// opener is the reference to

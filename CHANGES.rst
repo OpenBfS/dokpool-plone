@@ -37,6 +37,10 @@ Added:
 - Browsertest for marquee ticker #3681 
   [slindner]
 
+- Exclude dp_school from popup filter #4040
+  [slindner]
+
+
 Fixed:
 
 - Update event types: IRIX-conformant tokens, rename Event to Emergency, add
