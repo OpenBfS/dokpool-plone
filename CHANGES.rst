@@ -40,6 +40,8 @@ Added:
 - Exclude dp_school from popup filter #4040
   [slindner]
 
+- Adds Makefile for bundle update #4653
+  [slindner]
 
 Fixed:
 
