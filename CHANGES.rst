@@ -15,6 +15,9 @@ Changed:
 - Hide event status 'closed' in forms unless event is already closed. #4634
   [pbauer, tlotze]
 
+- Hide plone.belowcontenttitle.documentbyline #4695
+  [kprobst]
+
 Fixed:
 
 - Missing translations in Chronologie #3708
