@@ -4,12 +4,32 @@ Changelog
 1.9.0 (unreleased)
 ------------------
 
-Changed:
+- Update to Plone 5.1.7 #4614
+  [pbauer, slindner]
 
-- Replace workflow transition icons #4337
+Added:
+
+- Browsertest for marquee ticker #3681
   [slindner]
 
+- Exclude dp_school from popup filter #4040
+  [slindner]
+
+- Expand EventType history #4463
+  [slindner]
+
+- Adds Makefile for bundle update #4653
+  [slindner]
+
+Changed:
+
+- Adapted vocabularies for event SectorizingSampleTypes and SectorizingNetworks #3533
+  [kprobst]
+
 - Remove not needed js file #4174
+  [slindner]
+
+- Replace workflow transition icons #4337
   [slindner]
 
 - Hide event status 'closed' in forms unless event is already closed. #4634
@@ -20,36 +40,14 @@ Changed:
 
 Fixed:
 
+- Update event types: IRIX-conformant tokens, rename Event to Emergency, add
+  Routine, add translations. #3430
+  [tlotze]
+
 - Missing translations in Chronologie #3708
   [slindner]
  
 - Don't log login times to member properties to avoid DB hotspot. #4325
-  [tlotze]
-
-
-1.9 (unreleased)
-----------------
-- Update to Plone 5.1.7 #4614
-  [pbauer, slindner]
-
-Added:
-
-- Expand EventType history #4463
-  [slindner]
-
-- Browsertest for marquee ticker #3681 
-  [slindner]
-
-- Exclude dp_school from popup filter #4040
-  [slindner]
-
-- Adds Makefile for bundle update #4653
-  [slindner]
-
-Fixed:
-
-- Update event types: IRIX-conformant tokens, rename Event to Emergency, add
-  Routine, add translations. #3430
   [tlotze]
 
 
