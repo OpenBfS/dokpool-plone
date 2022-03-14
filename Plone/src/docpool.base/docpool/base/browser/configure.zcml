@@ -46,7 +46,7 @@
       name="folder_delete"
       for="*"
       class=".folderbase.FolderDeleteForm"
-      permission="zope2.DeleteObjects"
+      permission="zope2.View"
       />
 
   <browser:page

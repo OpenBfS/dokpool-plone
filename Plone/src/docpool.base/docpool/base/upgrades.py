@@ -476,3 +476,14 @@ def to_1009_capitalise_event_types(context=None):
 def to_1009(context=None):
     portal_setup = api.portal.get_tool('portal_setup')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1009')
+
+
+def to_1009_update_dp_folder_workflow(context=None):
+    log.info('Upgrading to 1009: Reload dp_folder_workflow')
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:default', steps=['workflow', 'actions'])
+    log.info('Reindexing permissions on content with dp_folder_workflow...')
+    for brain in api.content.find(portal_type=["SimpleFolder", "SRFolder"]):
+        obj = brain.getObject()
+        obj.reindexObjectSecurity()
+    log.info('Reindexed permissions on content with dp_folder_workflow')

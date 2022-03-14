@@ -236,6 +236,10 @@
         title="Remove not needed docpool function resource"
         handler="docpool.base.upgrades.to_1009"
         />
+    <genericsetup:upgradeStep
+        title="Update dp_folder_workflow and reindex permission"
+        handler="docpool.base.upgrades.to_1009_update_dp_folder_workflow"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>
