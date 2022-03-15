@@ -2,6 +2,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
+from Products.CMFPlone.utils import safe_unicode
 from bs4 import BeautifulSoup
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
@@ -487,3 +488,48 @@ def to_1009_update_dp_folder_workflow(context=None):
         obj = brain.getObject()
         obj.reindexObjectSecurity()
     log.info('Reindexed permissions on content with dp_folder_workflow')
+
+
+def to_1009_archive_closed_events(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    # Add DPEvent to allowed allowed_content_types of ELANArchive
+    loadMigrationProfile(portal_setup, 'profile-elan.esd:default', steps=['typeinfo'])
+
+    # move closed events to theit respective ELANArchive
+    for brain in api.content.find(portal_type="DPEvent"):
+        obj = brain.getObject()
+        if obj.Status != 'closed':
+            continue
+        if obj.__parent__.portal_type == "ELANArchive":
+            continue
+
+        current_docpool = None
+        for item in obj.aq_chain:
+            if item.portal_type == "DocumentPool":
+                current_docpool = item
+                break
+        if not current_docpool:
+            raise RuntimeError(u"No docpool found for {}".format(obj.absolute_url()))
+
+        # Find the right ELANArchive
+        archive = None
+        archives = api.content.find(context=current_docpool, portal_type="ELANArchive")
+        for brain in archives:
+            if safe_unicode(brain.Title).startswith(obj.title) and safe_unicode(brain.Description) == obj.description:
+                archive = brain.getObject()
+                break
+
+        if not archive:
+            for brain in archives:
+                if safe_unicode(brain.Description) == obj.description:
+                    archive = brain.getObject()
+                    break
+
+        if not archive:
+            log.error(u"No ELANArchive found for {}".format(obj.absolute_url()))
+            continue
+
+        old_url = obj.absolute_url()
+        archived_event = api.content.move(obj, target=archive)
+        archived_event.reindexObject()
+        log.info(u"Moved Event {} ({}) to {} as {}".format(obj.title, old_url, archive.title, archived_event.absolute_url()))
