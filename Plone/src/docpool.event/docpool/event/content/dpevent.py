@@ -263,7 +263,6 @@ class DPEvent(Container, ContentBase):
         return utranslate("docpool.event", "archive_confirm_msg", context=self)
 
     security.declareProtected("Modify portal content", "archiveAndClose")
-
     def archiveAndClose(self, REQUEST):
         """
         Saves all content for this scenario to an archive, deletes the original content,
