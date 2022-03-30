@@ -471,7 +471,7 @@ def to_1009_capitalise_event_types(context=None):
         'test': 'Test',
     }
     for event in events:
-        event.EventType = TYPE_MAP.get(event.EventType)
+        event.EventType = TYPE_MAP.get(event.EventType, event.EventType)
 
 def to_1009(context=None):
     portal_setup = api.portal.get_tool('portal_setup')
