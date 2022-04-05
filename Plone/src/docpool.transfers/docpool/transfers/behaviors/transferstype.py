@@ -81,7 +81,7 @@ class TransfersType(object):
 
     @property
     def automaticTransferTargets(self):
-        value = set(getattr(self.context, 'automaticTransferTargets', ()))
+        value = set(getattr(self.context, 'automaticTransferTargets', ()) or ())
         if not value:
             # avoid unnecessary interaction with the zope.sqlalchemy datamanager
             return []
@@ -99,7 +99,7 @@ class TransfersType(object):
             return
 
         context = aq_inner(self.context)
-        unaffected = set(getattr(context, 'automaticTransferTargets', ()))
+        unaffected = set(getattr(context, 'automaticTransferTargets', ()) or ())
         if unaffected:
             allowed = (target.id for target in allowed_targets(context))
             unaffected.difference_update(allowed)

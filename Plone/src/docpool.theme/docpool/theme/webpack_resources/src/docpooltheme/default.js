@@ -193,8 +193,7 @@ function close_popups() {
 if (jQuery('body.userrole-anonymous').length === 0) {
     import(/* webpackChunkName: "logged-in" */ './logged-in');
     import(/* webpackChunkName: "docpool-menu" */ 'docpool-menu');
-    import(/* webpackChunkName: "jquery-marquee" */ 'jquery-marquee');
-    import(/* webpackChunkName: "docpool" */ 'docpool');
+    import(/* webpackChunkName: "docpool" */ './docpool');
 }
 
 // Imports the js/less for Openlayers
@@ -206,20 +205,25 @@ if ((jQuery('body.portaltype-dpevent').length === 1)
 // Imports the js/less for popups
 if ((jQuery('#portal-column-content.bfs_popup').length === 1)
     || (jQuery('body.viewpermission-elan-journal-add-journalentry').length === 1)){
-    import("./Popup");
+    import("./popup.less");
 }
 
-// Imports the less for docpool-nonadmin bundle
+// Imports the less for docpool-nonadmin bundle / simplify.less
 // Replaces expression: python:not object.isAdmin() and not object.isContentAdmin()
 if (jQuery('body.userrole-member').length === 1) {
-    import("./nonadmin.less")
+    import("./nonadmin.less");
 }
 
-// Imports the js and less for docpool-anon bundle
+// Imports the less for removed docpool-anon bundle
 // Replaces expression: python: member is None
 if (jQuery('body.userrole-anonymous').length === 1) {
-    import(/* webpackChunkName: "anonymous" */ './anonymous');
+    import("./anonymous.less");
 }
+
+// Imports the intercom.js
+// Cant restrict to a selector as srmodulematerial.pt is a special view
+import "expose-loader?Intercom!exports-loader?Intercom!./intercom.min";
+import notify from 'notifyjs-browser';
 
 /* Expose jQuery when needed */
 window.jQuery = jQuery;

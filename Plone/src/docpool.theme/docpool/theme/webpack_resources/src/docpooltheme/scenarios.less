@@ -1,0 +1,67 @@
+#scenario_box {
+	margin-right: 0;
+	padding: 0.5em;
+    position: relative;
+    width: 50%;
+    float: left;
+    top: -0.5em;
+}
+
+#scenario_box .uinfo {
+	display: none;
+}
+
+@media (min-width: @plone-screen-sm-min) { #scenario_box {width: 30%}}
+@media (min-width: @plone-screen-md-min) {
+	#scenario_box {width: 40%}
+	#scenario_box .uinfo {
+		display: inline;
+	}
+}
+@media (min-width: @plone-screen-lg-min) { #scenario_box {width: 50%}}
+
+.template-rpopup #scenario_box {
+    top: 0;
+    margin-bottom: 0.1em;
+    width: 80%;
+}
+
+.template-rpopup td.form {
+    display: none;
+}
+
+#scenario_box td.form {
+    width:12em;
+}
+
+#scenario_box p {
+    color: red;
+    margin-bottom: 1em;
+}
+
+table.scenario_table td {
+	padding: 0.1em;
+}
+
+table.scenario_table {
+    background-color: #A0D4FA;
+    clear: none;
+    width: 100%;
+}
+
+table.scenario_table .intensive {
+    background-color: #FAA0A0;
+}
+
+table.scenario_table .inactive {
+    background-color: #E0EBF3;
+}
+
+table.scenario_table .sselected {
+    font-weight: bold;
+}
+
+form.scenario_selection input {
+	padding: 2px;
+	margin: 0;
+}

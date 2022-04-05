@@ -233,7 +233,7 @@
         handler="docpool.base.upgrades.to_1009_capitalise_event_types"
         />
     <genericsetup:upgradeStep
-        title="Remove not needed docpool function resource"
+        title="Remove not needed docpool js/less resources"
         handler="docpool.base.upgrades.to_1009"
         />
   </genericsetup:upgradeSteps>

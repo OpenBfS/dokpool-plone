@@ -1,1 +1,0 @@
-import './Popup.less';

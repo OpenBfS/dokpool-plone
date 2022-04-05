@@ -5,4 +5,34 @@
             prefix="plone.resources/docpool-functions"
             remove="true">
     </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/docpool-anon"
+            remove="true">
+    </records>
+     <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/docpool-nonadmin"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/docpool"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/jquery-marquee"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/intercom"
+            remove="true">
+    </records>
+    <records
+            interface="Products.CMFPlone.interfaces.IResourceRegistry"
+            prefix="plone.resources/notify"
+            remove="true">
+    </records>
 </registry>
