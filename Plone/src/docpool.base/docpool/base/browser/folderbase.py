@@ -80,6 +80,19 @@ class FolderBaseView(BrowserView):
             else:
                 return []
 
+        show_delete_action = False
+        delete_action = [i for i in button_actions if i['id'] == 'delete']
+        delete_action = delete_action[0] if delete_action else None
+        if delete_action:
+            for item in items:
+                obj = item.getObject()
+                if api.user.has_permission('Delete objects', obj=obj):
+                    show_delete_action = True
+                    # shortcut
+                    break
+        if not show_delete_action:
+            button_actions.remove(delete_action)
+
         for button in button_actions:
             # Make proper classes for our buttons
             buttons.append(self.setbuttonclass(button))

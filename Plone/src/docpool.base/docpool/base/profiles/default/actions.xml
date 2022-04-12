@@ -115,7 +115,7 @@
    <property name="url_expr">string:@@folder_delete:method</property>
    <property name="available_expr"></property>
    <property name="permissions">
-    <element value="Delete objects"/>
+    <element value="View"/>
    </property>
    <property name="visible">True</property>
   </object>
