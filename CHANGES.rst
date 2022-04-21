@@ -28,6 +28,13 @@ Fixed:
 - Adds Makefile for bundle update #4653
   [slindner]
 
+- Don't log login times to member properties to avoid DB hotspot. #4325
+  [tlotze]
+
+- Limit displayed journals to current document pool. #4515
+  [tlotze]
+
+
 Changed:
 
 - Adapted vocabularies for event SectorizingSampleTypes and SectorizingNetworks #3533
@@ -37,6 +44,7 @@ Changed:
   [slindner]
 
 - Replace workflow transition icons #4337
+- Browsertest for marquee ticker #3681
   [slindner]
 
 - Hide event status 'closed' in forms unless event is already closed. #4634
