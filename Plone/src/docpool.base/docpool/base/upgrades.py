@@ -496,6 +496,48 @@ def to_1009_archive_closed_events(context=None):
     loadMigrationProfile(portal_setup, 'profile-elan.esd:default', steps=['typeinfo'])
 
     # move closed events to theit respective ELANArchive
+    EVENT_MAPPING = {
+        "bund": {
+            "japan-strong-earthquake": "japan-strong-earthquake_05-04-2022-21-41",
+            "uebung-core-2021": "uebung-core-2021_31-12-2021-12-17",
+            "schlungsereignis-02-12.2021": "schlungsereignis-02-12-2021_31-12-2021-12-08",
+            "voruebungen-zur-core21": "voruebungen-zur-core21",
+            "stoerfall-im-kernkraftwerk-nowhere-belgien-region-krewinkel-afst": "stoerfall-im-kernkraftwerk-nowhere-belgien-region",
+            "imis-uebung-2021": "imis-uebung-2021_12-10-2021-09-13",
+            "moduluebung-21-05.2021": "moduluebung-21-05-2021_22-05-2021-13-05",
+            "unfall-im-kernkraftwerk-emsland": "unfall-im-kernkraftwerk-emsland_26-01-2021-08-38",
+            "site-area-emergency-olkiluoto-2-finnland": "site-area-emergency-olkiluoto-2-finnland_12-12",
+            "08-12-20-techniktest-virtuelles-lagezentrum": "08-12-20-techniktest-virtuelles-lagezentrum_12-12",
+            "moduluebungen-ab-oktober-2020": "moduluebungen-ab-oktober-2020_12-12-2020-18-40",
+            "moduluebungen-zur-lagebilderstellung-ab-juli-2020": "imis-uebung-berlin-brandenburg-2020-10",
+            "nachweis-von-sehr-geringen-spuren-von-kuenstlichen-radionukliden-in-schweden-und-finnland-23-06.20": "sehr-geringe-spuren-von-kuenstlichen-radionukliden",
+            "test-zur-lagebild-erstellung-maerz-april-2020": "test-zur-lagebild-erstellung-maerz-april-2020_14",
+            "waldbraende-bei-tschernobyl-04-04-2020": "waldbraende-bei-tschernobyl-04-04-2020_21-06-2020",
+            "testlauf-rlz-bfs-am-18-3.20": "testlauf-rlz-bfs-am-18-3-20_25-03-2020-13-01",
+            "uebung-forschungsreaktor-garching": "uebung-forschungsreaktor-garching_06-02-2020-09-15",
+            "gnu-stylos": "gnu-stylos_28-11-2019-15-50",
+            "testintensivbetrieb-imis3-201910": "testintensivbetrieb-imis3-201910_15-10-2019-16-40",
+        },
+        "baden-wuerttemberg": {
+            "gnu-stylos": "gnu-stylos_13-01-2020-17-08",
+        },
+        "berlin": {
+            "japan-strong-earthquake": "japan-strong-earthquake_08-04-2022-14-47",
+            "imis-uebung-2021": "imis-uebung-2021_24-02-2022-16-04",
+            "imis-uebung-berlin-brandenburg-202010": "imis-uebung-berlin-brandenburg-202010_27-11-2020",
+        },
+        "brandenburg": {
+            "exercise-imis-uebung-2021": "exercise-imis-uebung-2021_17-12-2021-11-47",
+            "imis-uebung-berlin-brandenburg-202010": "imis-uebung-berlin-brandenburg-202010_27-11-2020",
+        },
+        "schleswig-holstein": {
+            "test-odl": None,  # ???
+        },
+        "thueringen": {
+            "informationen-zur-radiologischen-lage-in-der-ukraine": "informationen-zur-radiologischen-lage-in-der"
+        }
+    }
+
     for brain in api.content.find(portal_type="DPEvent"):
         obj = brain.getObject()
         if obj.Status != 'closed':
@@ -511,25 +553,23 @@ def to_1009_archive_closed_events(context=None):
         if not current_docpool:
             raise RuntimeError(u"No docpool found for {}".format(obj.absolute_url()))
 
-        # Find the right ELANArchive
+        # Find the right ELANArchive using a manual mapping
         archive = None
         archives = api.content.find(context=current_docpool, portal_type="ELANArchive")
-        for brain in archives:
-            if safe_unicode(brain.Title).startswith(obj.title) and safe_unicode(brain.Description) == obj.description:
-                archive = brain.getObject()
-                break
-
-        if not archive:
+        mapping = EVENT_MAPPING.get(current_docpool.id, {})
+        archive_id = mapping.get(obj.id)
+        if archive_id and archive_id in [brain.id for brain in archives]:
             for brain in archives:
-                if safe_unicode(brain.Description) == obj.description:
+                if brain.id == archive_id:
                     archive = brain.getObject()
                     break
 
         if not archive:
-            log.error(u"No ELANArchive found for {}".format(obj.absolute_url()))
+            log.warning(u"No ELANArchive found for {}".format(obj.absolute_url()))
             continue
 
         old_url = obj.absolute_url()
         archived_event = api.content.move(obj, target=archive)
         archived_event.reindexObject()
         log.info(u"Moved Event {} ({}) to {} as {}".format(obj.title, old_url, archive.title, archived_event.absolute_url()))
+    log.info(u"Archived all closed Events")
