@@ -53,6 +53,9 @@ Changed:
 - Hide plone.belowcontenttitle.documentbyline #4695
   [kprobst]
 
+- Add blob cache size to production buildout #4739
+  [slindner]
+
 Fixed:
 
 - Update event types: IRIX-conformant tokens, rename Event to Emergency, add
