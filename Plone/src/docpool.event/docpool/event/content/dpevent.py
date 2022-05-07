@@ -289,16 +289,6 @@ class DPEvent(Container, ContentBase):
         api.portal.show_message(_("Scenario archived"), REQUEST)
         return REQUEST.response.redirect(archived_event.absolute_url())
 
-    security.declareProtected("Modify portal content", "snapshot")
-
-    def snapshot(self, old, new):
-        """
-        Saves all content for this scenario to a new archive, but does not delete any files.
-        Status is unchanged.
-        """
-        # We now query the catalog for all documents belonging to this scenario within
-        # the personal and group folders
-
     def _ensureTargetFolder(self, doc, aroot):
         """
         Make sure that a personal or group folder with proper permissions
