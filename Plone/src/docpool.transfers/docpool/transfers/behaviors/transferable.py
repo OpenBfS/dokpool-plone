@@ -172,10 +172,7 @@ class Transferable(FlexibleView):
         try:
             return self._transferEvents()
         except SQLAlchemyError:
-            msg = (
-                'Es ist ein Datenbank-Fehler aufgetreten. '
-                'Bitte laden Sie die Seite neu.'
-            )
+            msg = 'Es ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.'
             IStatusMessage(self.request).add(msg, 'error')
             return ()
 
