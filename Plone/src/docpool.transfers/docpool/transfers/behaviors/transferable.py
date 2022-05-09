@@ -177,7 +177,7 @@ class Transferable(FlexibleView):
             return ()
 
     def _transferEvents(self):
-        """
+        """Query metadata of past transfers ("transfer events") of the context object.
         """
         if self.context.isArchive():
             logRaw = self.context.transferLog
