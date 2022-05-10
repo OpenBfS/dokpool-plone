@@ -34,6 +34,8 @@ Fixed:
 - Limit displayed journals to current document pool. #4515
   [tlotze]
 
+- Fix footer display after Plone update. #4702
+  [slindner]
 
 Changed:
 
