@@ -15,8 +15,11 @@
     <!-- Remove hero element -->
     <drop css:theme="div.principal" />
 
-    <!-- Replace stylesheets and scripts with Webpack bundles -->
+    <!-- Footer cleanup as we dont use the doormate & portlets - see #4702-->
+    <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" method="raw" />
+    <drop css:content="#portal-siteactions"/>
 
+    <!-- Replace stylesheets and scripts with Webpack bundles -->
     <xi:include href="webpack.xml" />
 
   </rules>
