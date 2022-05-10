@@ -206,6 +206,7 @@ class MStIDVocabulary(object):
             (u'08511', u'BW-KTA-Neckarwestheim_SZL'),
             (u'08521', u'BW-KTA-Philippsburg_SZL'),
             (u'09030', u'Landesmessstelle Bayern - LMst 3 Augsburg'),
+            (u'09051', u'Nicht mehr verwendet'),
             (u'09052', u'Mirion Technologies (AWST) GmbH'),
             (u'09081', u'Landesgewerbeanstalt Bayern'),
             (u'09082', u'Bayerisches Geologisches Landesamt'),
