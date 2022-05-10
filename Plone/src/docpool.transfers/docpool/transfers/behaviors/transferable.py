@@ -36,6 +36,8 @@ from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
+from Products.statusmessages.interfaces import IStatusMessage
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql.expression import desc
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
@@ -167,7 +169,15 @@ class Transferable(FlexibleView):
         return self.context.transferLog
 
     def transferEvents(self):
-        """
+        try:
+            return self._transferEvents()
+        except SQLAlchemyError:
+            msg = 'Es ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.'
+            IStatusMessage(self.request).add(msg, 'error')
+            return ()
+
+    def _transferEvents(self):
+        """Query metadata of past transfers ("transfer events") of the context object.
         """
         if self.context.isArchive():
             logRaw = self.context.transferLog

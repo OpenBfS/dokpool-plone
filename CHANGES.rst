@@ -36,6 +36,8 @@ Fixed:
 
 - Fix footer display after Plone update. #4702
   [slindner]
+- Catch SQLAlchemy error when querying transfers. #4758
+  [tlotze]
 
 Changed:
 
@@ -63,7 +65,7 @@ Fixed:
 
 - Missing translations in Chronologie #3708
   [slindner]
- 
+
 - Don't log login times to member properties to avoid DB hotspot. #4325
   [tlotze]
 
