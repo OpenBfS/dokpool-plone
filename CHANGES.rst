@@ -4,70 +4,92 @@ Changelog
 1.9.0 (unreleased)
 ------------------
 
+Added:
+
 - Update to Plone 5.1.7 #4614
   [pbauer, slindner]
 
-Added:
+- Allow dp_school as valid main url. #4040
+  [slindner]
+
+- Add Makefile for bundle update. #4653
+  [slindner]
+
+- Add collective.impersonate. #4598
+  [pbauer]
 
 - Browsertest for marquee ticker #3681
   [slindner]
 
-- Exclude dp_school from popup filter #4040
-  [slindner]
-- Hide event status 'closed' in forms unless event is already closed. #4634
-  [pbauer, tlotze]
-
-- Remove old diazo resources dir and not needed js files #3681
-  [slindner]
-
-Fixed:
-
-- Expand EventType history #4463
-  [slindner]
-
-- Adds Makefile for bundle update #4653
-  [slindner]
-
-- Don't log login times to member properties to avoid DB hotspot. #4325
-  [tlotze]
-
-- Limit displayed journals to current document pool. #4515
-  [tlotze]
-
-- Fix footer display after Plone update. #4702
-  [slindner]
-- Catch SQLAlchemy error when querying transfers. #4758
-  [tlotze]
 
 Changed:
 
-- Adapted vocabularies for event SectorizingSampleTypes and SectorizingNetworks #3533
+- Adapt vocabularies for event SectorizingSampleTypes and SectorizingNetworks #3533
   [kprobst]
 
 - Remove not needed js file #4174
   [slindner]
 
-- Replace workflow transition icons #4337
-- Browsertest for marquee ticker #3681
+- Replace workflow transition icons. #4337
   [slindner]
 
 - Hide event status 'closed' in forms unless event is already closed. #4634
   [pbauer, tlotze]
 
-- Hide plone.belowcontenttitle.documentbyline #4695
+- Hide plone.belowcontenttitle.documentbyline. #4695
   [kprobst]
 
-Fixed:
-
-- Update event types: IRIX-conformant tokens, rename Event to Emergency, add
-  Routine, add translations. #3430
-  [tlotze]
-
-- Missing translations in Chronologie #3708
+- Expand EventType history. #4463
   [slindner]
 
 - Don't log login times to member properties to avoid DB hotspot. #4325
   [tlotze]
+
+- Update event types: IRIX-conform tokens, rename Event to Emergency, add Routine, add translations. #3430
+  [tlotze]
+
+- Remove old diazo resources dir and not needed js files #3681
+  [slindner]
+
+- Prevent deleting folders with published content by updating dp_folder_workflow. #4560
+  [pbauer]
+
+- Include commenting inside dview (when viewing documents in the context of a
+  collection) #3957
+  [tlotze]
+
+- Update REI vocabularies. #4518
+  [kprobst]
+
+- Catch SQLAlchemy error when querying transfers. #4758
+  [tlotze]
+
+- Refactor archiving of Events: Move event and journals into archive. #4374
+  [pbauer]
+
+
+Fixed:
+
+- Fix missing translations in Chronologie #3708
+  [slindner]
+
+- Limit displayed journals to current document pool. #4515
+  [tlotze]
+
+- Fix errors when getting local behaviors. #3811
+  [pbauer]
+
+- Fix modal config for dpdocument_transfer_form. #4570
+  [pbauer]
+
+- Fix footer display after Plone update. #4702
+  [slindner]
+
+- Prevent adding journalentries to closed and archived journals. #4374
+  [pbauer]
+
+- Fix for folder view when there is one item more than the batch size. #4374
+  [pbauer]
 
 
 1.8.4 (04.11.2021)
@@ -261,10 +283,6 @@ Changed:
 
 - Do not display content of text files #4038
   [pbauer]
-
-- Include commenting inside dview (when viewing documents in the context of a
-  collection) #3957
-  [tlotze]
 
 
 Fixed:
