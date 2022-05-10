@@ -25,8 +25,7 @@
                        href=""
                        i18n:attributes="title"
                        title="Add journal entry"
-                       tal:define="can_add python: checkPermission('elan.journal: Add JournalEntry', brain.getObject())"
-                       tal:condition="python: can_add and not here.isArchive()"
+                       tal:condition="python: brain.getObject().can_add_journalentries()"
                        tal:attributes="href python: brain.getURL() + '/update';">
                        +
                     </a>

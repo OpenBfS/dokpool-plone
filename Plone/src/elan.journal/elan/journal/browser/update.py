@@ -38,7 +38,7 @@ class Update(View):
         return enabled and self.start == 0
 
     def __call__(self):
-        if self.context.isArchive():
+        if not self.context.can_add_journalentries():
             return self.request.response.redirect(self.context.absolute_url())
         self.start = int(self.request.get('b_start', 0))
         if self.start != 0:
