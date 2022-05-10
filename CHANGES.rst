@@ -262,6 +262,10 @@ Changed:
 - Do not display content of text files #4038
   [pbauer]
 
+- Include commenting inside dview (when viewing documents in the context of a
+  collection) #3957
+  [tlotze]
+
 
 Fixed:
 
