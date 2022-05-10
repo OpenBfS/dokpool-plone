@@ -15,24 +15,27 @@
     <!-- Remove hero element -->
     <drop css:theme="div.principal" />
 
-    <!-- Replace stylesheets and scripts with Webpack bundles -->
+    <!-- Footer cleanup as we dont use the doormate & portlets - see #4702-->
+    <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" method="raw" />
+    <drop css:content="#portal-siteactions"/>
 
+    <!-- Replace stylesheets and scripts with Webpack bundles -->
     <xi:include href="webpack.xml" />
 
   </rules>
 
-      <rules css:if-content="#portal-column-content.bfs_popup">
+  <rules css:if-content="#portal-column-content.bfs_popup">
 
-        <theme href="popup.html" />
+    <theme href="popup.html" />
 
-        <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
-        <copy attributes="*" css:content="body" css:theme="body" />
+    <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
+    <copy attributes="*" css:content="body" css:theme="body" />
 
-        <replace css:theme="#portal-column-content" css:content="#portal-column-content" />
+    <replace css:theme="#portal-column-content" css:content="#portal-column-content" />
 
-        <xi:include href="webpack.xml" />
+    <xi:include href="webpack.xml" />
 
-      </rules>
+  </rules>
 
     <!-- Re-define variables from Barceloneta rules.xml root
          Needs to be at the end: #4614 and
