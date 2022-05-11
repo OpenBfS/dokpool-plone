@@ -240,6 +240,10 @@
         title="Update dp_folder_workflow and reindex permission"
         handler="docpool.base.upgrades.to_1009_update_dp_folder_workflow"
         />
+    <genericsetup:upgradeStep
+        title="Move closed events into their ELANArchive"
+        handler="docpool.base.upgrades.to_1009_archive_closed_events"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>

@@ -2,6 +2,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
+from Products.CMFPlone.utils import safe_unicode
 from bs4 import BeautifulSoup
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
@@ -487,3 +488,140 @@ def to_1009_update_dp_folder_workflow(context=None):
         obj = brain.getObject()
         obj.reindexObjectSecurity()
     log.info('Reindexed permissions on content with dp_folder_workflow')
+
+
+def to_1009_archive_closed_events(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    # Add DPEvent to allowed allowed_content_types of ELANArchive
+    loadMigrationProfile(portal_setup, 'profile-elan.esd:default', steps=['typeinfo'])
+
+    # move closed events to theit respective ELANArchive
+    EVENT_MAPPING = {
+        "bund": {
+            "japan-strong-earthquake": "japan-strong-earthquake_05-04-2022-21-41",
+            "uebung-core-2021": "uebung-core-2021_31-12-2021-12-17",
+            "schlungsereignis-02-12.2021": "schlungsereignis-02-12-2021_31-12-2021-12-08",
+            "voruebungen-zur-core21": "voruebungen-zur-core21",
+            "stoerfall-im-kernkraftwerk-nowhere-belgien-region-krewinkel-afst": "stoerfall-im-kernkraftwerk-nowhere-belgien-region",
+            "imis-uebung-2021": "imis-uebung-2021_12-10-2021-09-13",
+            "moduluebung-21-05.2021": "moduluebung-21-05-2021_22-05-2021-13-05",
+            "unfall-im-kernkraftwerk-emsland": "unfall-im-kernkraftwerk-emsland_26-01-2021-08-38",
+            "site-area-emergency-olkiluoto-2-finnland": "site-area-emergency-olkiluoto-2-finnland_12-12",
+            "08-12-20-techniktest-virtuelles-lagezentrum": "08-12-20-techniktest-virtuelles-lagezentrum_12-12",
+            "moduluebungen-ab-oktober-2020": "moduluebungen-ab-oktober-2020_12-12-2020-18-40",
+            "moduluebungen-zur-lagebilderstellung-ab-juli-2020": "imis-uebung-berlin-brandenburg-2020-10",
+            "nachweis-von-sehr-geringen-spuren-von-kuenstlichen-radionukliden-in-schweden-und-finnland-23-06.20": "sehr-geringe-spuren-von-kuenstlichen-radionukliden",
+            "test-zur-lagebild-erstellung-maerz-april-2020": "test-zur-lagebild-erstellung-maerz-april-2020_14",
+            "waldbraende-bei-tschernobyl-04-04-2020": "waldbraende-bei-tschernobyl-04-04-2020_21-06-2020",
+            "testlauf-rlz-bfs-am-18-3.20": "testlauf-rlz-bfs-am-18-3-20_25-03-2020-13-01",
+            "uebung-forschungsreaktor-garching": "uebung-forschungsreaktor-garching_06-02-2020-09-15",
+            "gnu-stylos": "gnu-stylos_28-11-2019-15-50",
+            "testintensivbetrieb-imis3-201910": "testintensivbetrieb-imis3-201910_15-10-2019-16-40",
+        },
+        "baden-wuerttemberg": {
+            "gnu-stylos": "gnu-stylos_13-01-2020-17-08",
+        },
+        "berlin": {
+            "japan-strong-earthquake": "japan-strong-earthquake_08-04-2022-14-47",
+            "imis-uebung-2021": "imis-uebung-2021_24-02-2022-16-04",
+            "imis-uebung-berlin-brandenburg-202010": "imis-uebung-berlin-brandenburg-202010_27-11-2020",
+        },
+        "brandenburg": {
+            "exercise-imis-uebung-2021": "exercise-imis-uebung-2021_17-12-2021-11-47",
+            "imis-uebung-berlin-brandenburg-202010": "imis-uebung-berlin-brandenburg-202010_27-11-2020",
+        },
+        "schleswig-holstein": {
+            "test-odl": None,  # ???
+        },
+        "thueringen": {
+            "informationen-zur-radiologischen-lage-in-der-ukraine": "informationen-zur-radiologischen-lage-in-der"
+        }
+    }
+
+    for brain in api.content.find(portal_type="DPEvent"):
+        obj = brain.getObject()
+        if obj.Status != 'closed':
+            continue
+        if obj.__parent__.portal_type == "ELANArchive":
+            continue
+
+        current_docpool = None
+        for item in obj.aq_chain:
+            if item.portal_type == "DocumentPool":
+                current_docpool = item
+                break
+        if not current_docpool:
+            raise RuntimeError(u"No docpool found for {}".format(obj.absolute_url()))
+
+        # Find the right ELANArchive using a manual mapping
+        archive = None
+        archives = api.content.find(context=current_docpool, portal_type="ELANArchive")
+        mapping = EVENT_MAPPING.get(current_docpool.id, {})
+        archive_id = mapping.get(obj.id)
+        if archive_id and archive_id in [brain.id for brain in archives]:
+            for brain in archives:
+                if brain.id == archive_id:
+                    archive = brain.getObject()
+                    break
+
+        if not archive:
+            log.warning(u"No ELANArchive found for {}".format(obj.absolute_url()))
+            continue
+
+        old_url = obj.absolute_url()
+        archived_event = api.content.move(obj, target=archive)
+        archived_event.reindexObject()
+        log.info(u"Moved Event {} ({}) to {} as {}".format(obj.title, old_url, archive.title, archived_event.absolute_url()))
+
+        # remove old archived/copied journals. they are now inside the event
+        esd = api.content.find(context=archive, portal_type="ELANCurrentSituation", sort_on="path")
+        # there can only be one esd
+        assert(len(esd)==1)
+        esd = esd[0].getObject()
+
+        new_journal_brains = api.content.find(context=archived_event, portal_type="Journal", sort_on="path")
+        old_journal_brains = api.content.find(context=esd, portal_type="Journal", sort_on="path")
+        if old_journal_brains and len(old_journal_brains) == len(new_journal_brains):
+            for brain in old_journal_brains:
+                api.content.delete(brain.getObject())
+        elif len(old_journal_brains) > len(new_journal_brains):
+            log.info("Inconsitent number of journals in esd %s", esd.absolute_url())
+            log.info("Old archived journals: %s", len(old_journal_brains))
+            log.info("New archived journals: %s", len(new_journal_brains))
+            # We keep the old ones and move them to archived_event
+            for brain in new_journal_brains:
+                api.content.delete(brain.getObject())
+            for brain in old_journal_brains:
+                api.content.move(brain.getObject(), target=archived_event)
+
+        elif len(old_journal_brains) < len(new_journal_brains):
+            log.info("Inconsitent number of journals in esd %s", esd.absolute_url())
+            log.info("Old archived journals: %s", len(old_journal_brains))
+            log.info("New archived journals: %s", len(new_journal_brains))
+            # We keep the new ones and delete the old ones
+            for brain in old_journal_brains:
+                api.content.delete(brain.getObject())
+
+    # check for consistency
+    for brain in api.content.find(portal_type="DPEvent", sort_on="path"):
+        obj = brain.getObject()
+        parent = obj.__parent__
+        if obj.Status == "closed" and parent.portal_type != "ELANArchive":
+            log.warning(u"Archived %s Event in wrong container: %r", obj.absolute_url(), parent)
+
+        if obj.Status != "closed" and parent.portal_type != "DPEvents":
+            log.warning(u"Unarchived Event %s in wrong container: %r", obj.absolute_url(), parent)
+
+    for brain in api.content.find(portal_type="Journal", sort_on="path"):
+        obj = brain.getObject()
+        parent = obj.__parent__
+        if parent.portal_type != "DPEvent":
+            log.warning(u"Journal %s in wrong container: %r", obj.absolute_url(), parent)
+
+    for brain in api.content.find(portal_type="ELANArchive", sort_on="path"):
+        obj = brain.getObject()
+        events = api.content.find(context=obj, portal_type="DPEvent")
+        if len(events) != 1:
+            log.warning(u"%s DPEvent in Archive %s", len(events), obj.absolute_url())
+
+    log.info(u"Archived all closed Events")

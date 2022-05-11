@@ -58,6 +58,21 @@ class TestEvent(unittest.TestCase):
         scenarios = self._get_user_scenarios()
         self.assertIn('test_event', scenarios)
 
+    def test_archived_event_is_moved(self):
+        event = api.content.create(
+            container=self.container,
+            type='DPEvent',
+            id='test_event',
+            title=u'Test Event',
+            )
+        self.assertIn(event.id, self.container)
+        event.archiveAndClose(self.layer['request'])
+        self.assertNotIn(event.id, self.container)
+        archived_event = api.content.get(UID=event.UID())
+        self.assertEqual(archived_event.__parent__.portal_type, 'ELANArchive')
+        self.assertEqual(archived_event.Status, 'closed')
+        self.assertEqual(archived_event.keys(), ['journal1', 'journal2', 'journal3', 'journal4'])
+
     def test_archived_event_is_not_active_for_users(self):
         event = api.content.create(
             container=self.container,

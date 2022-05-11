@@ -81,6 +81,8 @@ class AddJournalEntryView(BaseJournalEntryView):
     """Add an entry to the Journal."""
 
     def __call__(self):
+        if not self.context.can_add_journalentries():
+            return self.request.response.redirect(self.context.absolute_url())
         return self.render()
 
     def render(self):

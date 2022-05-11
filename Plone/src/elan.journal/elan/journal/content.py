@@ -63,3 +63,13 @@ class Journal(Container):
             )
         updates.reverse()  # show journal-entries in reverse order
         return updates
+
+    def can_add_journalentries(self):
+        # Allow adding journal entries if event is active, not archived and user has permission
+        obj = self.__parent__
+        assert(obj.portal_type == "DPEvent")
+        if getattr(obj.aq_base, "Status", None) not in ["active"]:
+            return False
+        if obj.isArchive():
+            return False
+        return api.user.has_permission('elan.journal: Add JournalEntry', obj=obj)
