@@ -10,6 +10,10 @@
     <metal:content-core define-macro="content-core">
         <i18n:dummy translate="private"></i18n:dummy>
         <i18n:dummy translate="published"></i18n:dummy>
+        <i18n:dummy translate="Private"></i18n:dummy>
+        <i18n:dummy translate="Published BMU"></i18n:dummy>
+        <i18n:dummy translate="Pending review"></i18n:dummy>
+
         <i18n:dummy translate="alert_delete_popup"></i18n:dummy>
         <i18n:dummy translate="alert_reject_popup"></i18n:dummy>
         <i18n:dummy translate="alert_retract_popup"></i18n:dummy>

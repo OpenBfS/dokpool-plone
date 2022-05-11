@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-22 09:58+0000\n"
+"POT-Creation-Date: 2022-05-11 12:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,8 +54,24 @@ msgstr ""
 msgid "PDF Version"
 msgstr ""
 
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Pending BMU"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Pending BfS"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Pending authority"
+msgstr ""
+
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Period"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Private"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
@@ -76,6 +92,10 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "REIDoc"
+msgstr ""
+
+#: docpool.rei/docpool/rei/browser/i18ndummy.pt
+msgid "Revised"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-05-11 12:14+0000\n"
+"POT-Creation-Date: 2022-05-11 12:49+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -236,9 +236,17 @@ msgstr "An BfS eingereicht"
 msgid "Pending authority"
 msgstr "An die Aufsichtsbehörde eingereicht"
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending review"
+msgstr "Eingereicht"
+
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
 msgid "Please select one or more items to cut."
 msgstr "Bitte wählen Sie ein oder mehr Objekte zum Ausschneiden."
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Private"
+msgstr "Privat"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Publish"
@@ -246,7 +254,11 @@ msgstr "Veröffentlichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Published"
-msgstr "Veöffentlicht"
+msgstr "Veröffentlicht"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Published BMU"
+msgstr "Freigegeben"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Reject"
