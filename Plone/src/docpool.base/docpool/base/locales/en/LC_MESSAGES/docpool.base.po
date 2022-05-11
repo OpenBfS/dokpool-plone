@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-01-25 14:03+0000\n"
+"POT-Creation-Date: 2022-05-11 12:14+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -377,14 +377,6 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt
-msgid "View and edit comments"
-msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "active"
-msgstr "Active"
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
 msgstr "Do you really want to delete this object?"
@@ -452,10 +444,6 @@ msgstr ""
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "back to"
 msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "closed"
-msgstr "Closed"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "created:"
@@ -559,10 +547,6 @@ msgstr ""
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "help_change_status_action"
 msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "inactive"
-msgstr "Inactive"
 
 #. Default: "Anonymous User"
 #: docpool.base/docpool/base/browser/review_history.py

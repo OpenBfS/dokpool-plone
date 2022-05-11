@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-01-25 14:03+0000\n"
+"POT-Creation-Date: 2022-05-11 12:14+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -377,14 +377,6 @@ msgstr "Nutzerbereich"
 msgid "Videos:"
 msgstr "Videos:"
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt
-msgid "View and edit comments"
-msgstr "Kommentare einsehen und bearbeiten"
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "active"
-msgstr "Aktiv"
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
 msgstr "Wollen Sie dieses Dokument wirklich löschen?"
@@ -452,10 +444,6 @@ msgstr "Wollen Sie die gewählte Statusänderung wirklich duchführen?"
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "back to"
 msgstr "zurück zu"
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "closed"
-msgstr "Geschlossen"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "created:"
@@ -559,10 +547,6 @@ msgstr "docpool.base"
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "help_change_status_action"
 msgstr "Wählen sie den Statuswechsel, der benutzt werden soll, um den Status der Einträge zu ändern. Einträge, für die dieser Statuswechsel nicht gültig ist, bleiben unverändert."
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "inactive"
-msgstr "Inaktiv"
 
 #. Default: "Anonymous User"
 #: docpool.base/docpool/base/browser/review_history.py

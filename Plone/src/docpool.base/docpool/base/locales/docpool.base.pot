@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-01-25 14:03+0000\n"
+"POT-Creation-Date: 2022-05-11 12:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -378,14 +378,6 @@ msgstr ""
 msgid "Videos:"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/collectiondoc.pt
-msgid "View and edit comments"
-msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "active"
-msgstr ""
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
 msgstr ""
@@ -452,10 +444,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "back to"
-msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "closed"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
@@ -559,10 +547,6 @@ msgstr ""
 #. Default: "Select the transition to be used for modifying the items state."
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "help_change_status_action"
-msgstr ""
-
-#: docpool.base/docpool/base/vocabularies.py
-msgid "inactive"
 msgstr ""
 
 #. Default: "Anonymous User"
