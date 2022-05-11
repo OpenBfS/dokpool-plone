@@ -73,7 +73,7 @@ msgstr "Zeitraum"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "Private"
-msgstr "Privat"
+msgstr "Privat/gruppenintern"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "Publish BMU"
