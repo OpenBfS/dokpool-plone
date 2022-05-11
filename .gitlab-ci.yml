@@ -53,7 +53,7 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
 
   # LDAP client dependencies
-  - sudo apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
+  - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
 
   # Check Python version
   - python -V
