@@ -82,7 +82,7 @@ class CollectionDocView(BrowserView):
 
     def wf_state(self, doc):
         translation_domain = self._translation_domain(doc)
-        state = api.content.get_state(self.context, 'unknown')
+        state = api.content.get_state(doc, 'unknown')
         if state == 'unknown':
             title = 'Unknown'
         else:
