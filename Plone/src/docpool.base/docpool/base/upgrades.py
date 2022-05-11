@@ -572,4 +572,56 @@ def to_1009_archive_closed_events(context=None):
         archived_event = api.content.move(obj, target=archive)
         archived_event.reindexObject()
         log.info(u"Moved Event {} ({}) to {} as {}".format(obj.title, old_url, archive.title, archived_event.absolute_url()))
+
+        # remove old archived/copied journals. they are now inside the event
+        esd = api.content.find(context=archive, portal_type="ELANCurrentSituation", sort_on="path")
+        # there can only be one esd
+        assert(len(esd)==1)
+        esd = esd[0].getObject()
+
+        new_journal_brains = api.content.find(context=archived_event, portal_type="Journal", sort_on="path")
+        old_journal_brains = api.content.find(context=esd, portal_type="Journal", sort_on="path")
+        if old_journal_brains and len(old_journal_brains) == len(new_journal_brains):
+            for brain in old_journal_brains:
+                api.content.delete(brain.getObject())
+        elif len(old_journal_brains) > len(new_journal_brains):
+            log.info("Inconsitent number of journals in esd %s", esd.absolute_url())
+            log.info("Old archived journals: %s", len(old_journal_brains))
+            log.info("New archived journals: %s", len(new_journal_brains))
+            # We keep the old ones and move them to archived_event
+            for brain in new_journal_brains:
+                api.content.delete(brain.getObject())
+            for brain in old_journal_brains:
+                api.content.move(brain.getObject(), target=archived_event)
+
+        elif len(old_journal_brains) < len(new_journal_brains):
+            log.info("Inconsitent number of journals in esd %s", esd.absolute_url())
+            log.info("Old archived journals: %s", len(old_journal_brains))
+            log.info("New archived journals: %s", len(new_journal_brains))
+            # We keep the new ones and delete the old ones
+            for brain in old_journal_brains:
+                api.content.delete(brain.getObject())
+
+    # check for consistency
+    for brain in api.content.find(portal_type="DPEvent", sort_on="path"):
+        obj = brain.getObject()
+        parent = obj.__parent__
+        if obj.Status == "closed" and parent.portal_type != "ELANArchive":
+            log.warning(u"Archived %s Event in wrong container: %r", obj.absolute_url(), parent)
+
+        if obj.Status != "closed" and parent.portal_type != "DPEvents":
+            log.warning(u"Unarchived Event %s in wrong container: %r", obj.absolute_url(), parent)
+
+    for brain in api.content.find(portal_type="Journal", sort_on="path"):
+        obj = brain.getObject()
+        parent = obj.__parent__
+        if parent.portal_type != "DPEvent":
+            log.warning(u"Journal %s in wrong container: %r", obj.absolute_url(), parent)
+
+    for brain in api.content.find(portal_type="ELANArchive", sort_on="path"):
+        obj = brain.getObject()
+        events = api.content.find(context=obj, portal_type="DPEvent")
+        if len(events) != 1:
+            log.warning(u"%s DPEvent in Archive %s", len(events), obj.absolute_url())
+
     log.info(u"Archived all closed Events")
