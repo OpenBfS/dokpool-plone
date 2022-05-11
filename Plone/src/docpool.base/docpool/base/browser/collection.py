@@ -87,7 +87,9 @@ class CollectionDocView(BrowserView):
             title = 'Unknown'
         else:
             wf_tool = api.portal.get_tool('portal_workflow')
-            title = wf_tool.getTitleForStateOnType(state, doc.portal_type)
+            workflow = wf_tool.getWorkflowsFor(doc)[0]
+            state_def = getattr(workflow.states, state, None)
+            title = state_def.title if state_def is not None else state
         title = translate(title, domain=translation_domain, context=self.request)
         return dict(id=state, title=title)
 
