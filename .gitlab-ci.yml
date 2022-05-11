@@ -1,7 +1,5 @@
-# This file is a template, and might need editing before it works on your project.
-# Official language image. Look for the different tagged releases at:
-# https://hub.docker.com/r/library/plone/tags/
-image: git.starzel.de:5050/bfs/dokpool:latest
+# Official Python Image
+image: python:2.7.18-buster
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
@@ -54,16 +52,13 @@ before_script:
   - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
 
-  # LDAP client dependencies
-  # - sudo apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
-
   # Check Python version
   - python -V
+  - python3 -V
   - whereis python
 
   # Install pipenv
   - pip install pipenv
-  - PATH=$PATH:/home/zope/.local/bin
   - pipenv --version
 
 build:
@@ -127,15 +122,14 @@ unittests:
   # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
   # success_with_warnings: True
   script:
-    # build
-    - cd /opt/bfs/dokpool/Plone
     # Buildout configuration
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
-    # Pin setuptools
-    - pipenv install setuptools==42.0.2
+    # build
+    - mkdir .venv
     - pipenv install
     # Pin setuptools
+    - pipenv install setuptools==42.0.2
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
     - pipenv run ./bin/coverage erase
