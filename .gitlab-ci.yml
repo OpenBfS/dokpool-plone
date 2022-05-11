@@ -52,7 +52,7 @@ before_script:
   - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
 
-  - apt update && apt upgrade
+  - apt update
   # LDAP client dependencies
   - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
 
