@@ -82,6 +82,10 @@ msgid "Docpool view with bulk actions"
 msgstr "Docpool Ansicht mit Mehrfach-Aktionen"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
+msgid "Document state"
+msgstr "Dokumentenstatus"
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"
 msgstr "Dokument Workflow:"
 

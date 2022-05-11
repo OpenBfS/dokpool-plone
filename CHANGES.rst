@@ -67,6 +67,9 @@ Changed:
 - Refactor archiving of Events: Move event and journals into archive. #4374
   [pbauer]
 
+- Show document workflow state in dview. #4270
+  [tlotze]
+
 
 Fixed:
 

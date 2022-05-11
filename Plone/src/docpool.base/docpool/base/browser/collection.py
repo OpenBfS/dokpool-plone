@@ -65,17 +65,31 @@ class CollectionDocView(BrowserView):
             )
             return view()
 
-    def translate_wf_action(self, doc, wf_action):
-        translation_domain = 'docpool.base'
+    def _translation_domain(self, doc):
         actionhelpers = api.content.get_view(
             name='actionhelpers',
             context=doc,
             request=self.request,
         )
         if actionhelpers.is_rei_workflow(doc):
-            translation_domain = 'docpool.rei'
+            return 'docpool.rei'
+        return 'docpool.base'
+
+    def translate_wf_action(self, doc, wf_action):
+        translation_domain = self._translation_domain(doc)
         wf_state = wf_action['title']
         return translate(wf_state, domain=translation_domain, context=self.request)
+
+    def wf_state(self, doc):
+        translation_domain = self._translation_domain(doc)
+        state = api.content.get_state(self.context, 'unknown')
+        if state == 'unknown':
+            title = 'Unknown'
+        else:
+            wf_tool = api.portal.get_tool('portal_workflow')
+            title = wf_tool.getTitleForStateOnType(state, doc.portal_type)
+        title = translate(title, domain=translation_domain, context=self.request)
+        return dict(id=state, title=title)
 
 
 class CollectionlistitemView(BrowserView):
