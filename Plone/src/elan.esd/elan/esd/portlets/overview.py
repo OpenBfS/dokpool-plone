@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_chain
+from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
@@ -63,15 +65,18 @@ class Renderer(base.Renderer):
                 'portal_type': [
                     'Dashboard',
                     'SituationOverview',
-                    'Journal'
                 ]
             }
         ):
             yield obj
 
-        # In archive we return the archived journals
-        # TODO HACK Unify the isArchiv() method
-        if "archive" in self.context.getPhysicalPath():
+        # In archive we only return the archived journals
+        if self.context.isArchive():
+            for item in aq_chain(aq_inner(self.context)):
+                if getattr(item, "portal_type", None) == "ELANArchive":
+                    for journal in api.content.find(context=item, portal_type="Journal"):
+                        yield journal
+                    return
             return
 
         # Get the active journals for this scenario and document pool
