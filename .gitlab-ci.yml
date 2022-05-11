@@ -123,6 +123,7 @@ unittests:
   # success_with_warnings: True
   script:
     # Buildout configuration
+    - cd Plone
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
