@@ -21,6 +21,11 @@
                    <a href="" tal:attributes="href string:${doc/absolute_url}/view" class="docref" i18n:translate="">View the document</a>
                 </span>
 -->
+                <br />
+                <span tal:define="state python:view.wf_state(doc)">
+                  <i18n:var translate="">Document state</i18n:var>:
+                  <span class="state-${state/id}">${state/title}</span>
+                </span>
                 <tal:loop repeat="action actions" define="actions doc/workflowActions;
                                                           myfolder_url python:doc.myFolderBase().absolute_url()">
 
