@@ -32,12 +32,7 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'plone.app.dexterity [relations]',
-        'collective.autopermission',
-        'plone.namedfile [blobs]',
         'collective.dexteritytextindexer',
-        'plone.app.contenttypes',
-        'plone.app.relationfield',
         'docpool.base',
         'docpool.transfers',
     ],

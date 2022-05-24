@@ -10,7 +10,6 @@
 
     <include package="zope.annotation" />
     <include package="plone.app.relationfield" />
-    <include package="collective.autopermission" />
     <include package="Products.CMFCore" file="permissions.zcml" />
 
     <include package=".behaviors" />

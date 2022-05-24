@@ -6,7 +6,6 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="docpool.config">
 
-  <includeDependencies package="." />
 
   <i18n:registerTranslations directory="locales" />
 

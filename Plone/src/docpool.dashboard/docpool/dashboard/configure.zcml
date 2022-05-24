@@ -6,7 +6,6 @@
            i18n_domain="docpool.dashboard">
 
     <i18n:registerTranslations directory="locales"/>
-    <includeDependencies package="."/>
     <include package="zope.annotation"/>
 
     <!-- Include the sub-packages that use their own configure.zcml files. -->
@@ -21,7 +20,6 @@
     />
 
     <include package="plone.app.relationfield"/>
-    <include package="collective.autopermission"/>
     <include package="Products.CMFCore" file="permissions.zcml"
              xmlns:zcml="http://namespaces.zope.org/zcml"/>
 

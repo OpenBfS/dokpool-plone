@@ -30,26 +30,15 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'Products.CMFPlacefulWorkflow',
-        'plone.app.dexterity [relations]',
-        'collective.autopermission',
-        'plone.namedfile [blobs]',
         'collective.dexteritytextindexer',
-        'plone.app.contenttypes',
-        'plone.app.relationfield',
-        'plone.api',
-        'plone.formwidget.querystring',
         'collective.monkeypatcher',
-        'Products.CMFPlacefulWorkflow',
         'docpool.users',
         'docpool.localbehavior',
         'PyPDF2',
         'xhtml2pdf',
-        'Products.CMFPlacefulWorkflow',
         'eea.facetednavigation',
         'collective.eeafaceted.z3ctable',
         'z3c.unconfigure',
-        'Products.ATContentTypes',  # needed for some tests until we upgrade to 5.2
     ],
     entry_points="""
       # -*- Entry points: -*-

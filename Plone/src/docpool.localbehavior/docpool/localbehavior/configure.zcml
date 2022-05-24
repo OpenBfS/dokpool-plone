@@ -8,7 +8,6 @@
     i18n_domain="docpool.localbehavior">
 
   <!-- Include configuration for dependencies listed in setup.py -->
-  <includeDependencies package="." />
 
   <i18n:registerTranslations directory="locales" />
 

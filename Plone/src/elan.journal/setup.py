@@ -30,23 +30,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
     install_requires=[
-        'plone.api',
-        'plone.app.dexterity',
-        'plone.app.layout',
-        'plone.app.textfield',
-        'plone.batching',
-        'plone.dexterity',
-        'plone.memoize',
-        'plone.namedfile [blobs]',
-        'Products.CMFPlone >=4.3',
-        'Products.GenericSetup',
         'setuptools',
-        'zope.annotation',
-        'zope.component',
-        'zope.container',
-        'zope.i18nmessageid',
-        'zope.interface',
-        'zope.lifecycleevent',
     ],
     entry_points="""
       # -*- Entry points: -*-
