@@ -12,7 +12,7 @@
   <class class=".documentpool.DocumentPool">
       <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
       <implements interface="plone.app.content.interfaces.INameFromTitle" />
-      <implements interface="zope.location.interfaces.IPossibleSite" />
+      <implements interface="zope.component.interfaces.IPossibleSite" />
   </class>
 
   <adapter

@@ -1,5 +1,5 @@
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from AccessControl.class_init import InitializeClass
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName

@@ -10,7 +10,6 @@
         file="permissions.zcml"
         />
 
-    <include package="collective.autopermission" />
     <permission
         id="wsapi.authenticated"
         title="WSAPI authenticated"

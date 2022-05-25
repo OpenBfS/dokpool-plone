@@ -4,7 +4,7 @@
   <class class=".elanarchive.ELANArchive">
       <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
       <implements interface="plone.app.content.interfaces.INameFromTitle" />
-      <implements interface="zope.location.interfaces.IPossibleSite" />
+      <implements interface="zope.component.interfaces.IPossibleSite" />
   </class>
   <class class=".elansection.ELANSection">
       <implements interface="Products.CMFPlone.interfaces.breadcrumbs.IHideFromBreadcrumbs" />
