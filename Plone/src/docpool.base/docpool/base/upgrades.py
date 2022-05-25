@@ -10,7 +10,6 @@ from docpool.config.general.base import configureGroups
 from docpool.config.utils import set_local_roles
 from docpool.rei.vocabularies import AUTHORITIES
 from plone import api
-from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
 from plone.app.textfield import RichTextValue
 from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
@@ -43,6 +42,7 @@ def make_dbevent_folderish(context):
         for obj in dpevents.contentValues():
             if obj.portal_type == 'DPEvent':
                 log.info('Try to migrate {}'.format(obj.absolute_url()))
+                from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
                 migrate_base_class_to_new_class(obj, migrate_to_folderish=True)
                 log.info('Migrated {}'.format(str(obj)))
 

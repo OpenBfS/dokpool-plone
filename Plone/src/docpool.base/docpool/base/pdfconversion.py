@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from cStringIO import StringIO
 from OFS.Image import Image as OFSImage
 from PIL import Image
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 from PyPDF2 import PdfFileReader
 from PyPDF2.utils import PdfReadError
+from six import StringIO
 from zope.annotation.interfaces import IAnnotations
 
 import logging

@@ -10,7 +10,7 @@ from docpool.dbaccess.utils import unicode_csv_reader
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import safe_unicode
-from StringIO import StringIO
+from six import StringIO
 from zope.event import notify
 
 import transaction

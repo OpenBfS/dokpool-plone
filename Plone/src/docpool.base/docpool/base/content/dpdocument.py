@@ -44,7 +44,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from StringIO import StringIO
+from six import StringIO
 from zExceptions import BadRequest
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
