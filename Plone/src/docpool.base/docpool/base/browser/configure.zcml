@@ -134,6 +134,13 @@
       />
 
   <browser:page
+      name="context_helpers"
+      for="*"
+      class=".helpers.ContextHelpers"
+      permission="zope.Public"
+      />
+
+  <browser:page
       name="dview"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       class=".collection.CollectionDocView"

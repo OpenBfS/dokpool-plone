@@ -53,10 +53,10 @@ class SitemapQueryBuilder(NavtreeQueryBuilder):
         portal_properties = getToolByName(context, 'portal_properties')
         navtree_properties = getattr(portal_properties, 'navtree_properties')
         sitemapDepth = navtree_properties.getProperty('sitemapDepth', 4)
-        if context.isArchive() and not context.getId() == "archive":
+        if context.restrictedTraverse("@@context_helpers").is_archive() and not context.getId() == "archive":
             sitemapDepth += 3
         self.query['path'] = {
-            'query': context.isArchive()
+            'query': context.restrictedTraverse("@@context_helpers").is_archive()
             and not context.getId() == "archive"
             and "/".join(context.myELANArchive().getPhysicalPath())
             or portal_url.getPortalPath(),

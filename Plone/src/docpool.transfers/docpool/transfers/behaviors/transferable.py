@@ -179,7 +179,7 @@ class Transferable(FlexibleView):
     def _transferEvents(self):
         """Query metadata of past transfers ("transfer events") of the context object.
         """
-        if self.context.isArchive():
+        if self.context.restrictedTraverse("@@context_helpers").is_archive():
             logRaw = self.context.transferLog
             logRaw = logRaw and logRaw.replace(
                 "datetime.datetime", "datetime") or ""
@@ -237,7 +237,7 @@ class Transferable(FlexibleView):
         """
         if not is_sender(self.context):
             return False
-        if self.transferred or self.context.isArchive():
+        if self.transferred or self.context.restrictedTraverse("@@context_helpers").is_archive():
             return False
         wftool = getToolByName(self.context, 'portal_workflow')
         if wftool.getInfoFor(self.context, 'review_state') != 'published':
@@ -554,7 +554,7 @@ def automatic_transfer_on_publish(obj, event=None):
 
 
 def automatic_transfer(obj):
-    if obj.isArchive():
+    if obj.restrictedTraverse("@@context_helpers").is_archive():
         # In the process of archiving an event, its associated documents are copied and
         # afterwards applied a workflow transition in order to restore their original
         # workflow state. Objects published for this reason should not be transferred.

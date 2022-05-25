@@ -197,7 +197,7 @@ def updateCreated(obj, event=None):
     request = obj.REQUEST
     if request.get('creating', False):
         # print "#" * 20, "creating"
-        if not obj.isArchive():
+        if not obj.restrictedTraverse("@@context_helpers").is_archive():
             obj.update_created()
         obj.createActions()
 
@@ -207,7 +207,7 @@ def updateCreated(obj, event=None):
 # Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
 def updateModified(obj, event=None):
-    if not obj.isArchive():
+    if not obj.restrictedTraverse("@@context_helpers").is_archive():
         obj.update_modified()
 
 
@@ -224,5 +224,5 @@ def markCreateEvent(obj, event):
 # Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
 def updateWorkflow(obj, event=None):
-    if not obj.isArchive():
+    if not obj.restrictedTraverse("@@context_helpers").is_archive():
         obj.update_workflow()

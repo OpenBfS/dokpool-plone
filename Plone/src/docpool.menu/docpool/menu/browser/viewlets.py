@@ -142,7 +142,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             apds.extend(tabs)
             tabs = apds
 
-        if not self.context.isArchive():
+        if not self.context.restrictedTraverse("@@context_helpers").is_archive():
             ffu = getFoldersForCurrentUser(self.context)
             if ffu:
                 for f in ffu:

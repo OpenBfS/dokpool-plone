@@ -222,7 +222,7 @@ class ELANDocCollection(Item, Collection):
         if implicit_filter:
             # Not in the archive:
             value = list(value[:])  # Otherwise we change the stored query!
-            if not self.isArchive():
+            if not self.restrictedTraverse("@@context_helpers").is_archive():
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
                 uss = self.getUserSelectedScenarios()

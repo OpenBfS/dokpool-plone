@@ -30,7 +30,7 @@ def enabled(self):
 
     context = aq_inner(self.context)
     if IDPDocument.providedBy(context):
-        if not context.isArchive():
+        if not context.restrictedTraverse("@@context_helpers").is_archive():
             return True
         else:
             return False

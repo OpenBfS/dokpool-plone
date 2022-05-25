@@ -37,7 +37,7 @@ def setCategoriesForCurrentUser(self, cats):
 
 
 def getRelativePath(obj):
-    if obj.isArchive():
+    if obj.restrictedTraverse("@@context_helpers").is_archive():
         portal_path_length = len(obj.myELANArchive().getPhysicalPath())
         content_path = obj.getPhysicalPath()
         return "/".join(content_path[portal_path_length:])

@@ -751,6 +751,6 @@ class DPDocument(Container, Document, Extendable, ContentBase):
 def updateContainerModified(obj, event=None):
     """
     """
-    if not obj.isArchive():
+    if not obj.restrictedTraverse("@@context_helpers").is_archive():
         obj.update_modified()
         obj.reindexObject()  # New fulltext maybe needed

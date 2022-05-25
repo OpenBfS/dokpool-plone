@@ -71,7 +71,7 @@ class Renderer(base.Renderer):
             yield obj
 
         # In archive we only return the archived journals
-        if self.context.isArchive():
+        if self.context.restrictedTraverse("@@context_helpers").is_archive():
             for item in aq_chain(aq_inner(self.context)):
                 if getattr(item, "portal_type", None) == "ELANArchive":
                     for journal in api.content.find(context=item, portal_type="Journal"):

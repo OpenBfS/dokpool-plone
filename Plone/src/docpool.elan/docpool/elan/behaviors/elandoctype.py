@@ -72,7 +72,7 @@ class ELANDocType(object):
                     coll.Title()
                     for coll in colls
                     if coll
-                    and not coll.isArchive()
+                    and not coll.restrictedTraverse("@@context_helpers").is_archive()
                     and coll.getPortalTypeName() == 'ELANDocCollection'
                 ]
             )

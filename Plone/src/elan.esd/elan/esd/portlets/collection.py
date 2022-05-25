@@ -74,7 +74,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return (not self.context.isArchive()) and self.collection is not None
+        return (not self.context.restrictedTraverse("@@context_helpers").is_archive()) and self.collection is not None
 
     def recent_items(self):
         return self._data()

@@ -327,7 +327,7 @@ def created(obj, event=None):
     # For all document types shared between the two ESDs
     # set the default to "publish"
     log("TransferFolder created: %s" % str(obj))
-    if not obj.isArchive():
+    if not obj.restrictedTraverse("@@context_helpers").is_archive():
         setupChannel(obj, delete=True)
 
         # Also, if the permissions include read access,
@@ -344,7 +344,7 @@ def updated(obj, event=None):
     # the read permissions for the sending ESD accordingly.
     log("TransferFolder updated: %s" % str(obj))
 
-    if not obj.isArchive():
+    if not obj.restrictedTraverse("@@context_helpers").is_archive():
         setupChannel(obj, delete=False)
 
         if obj.permLevel == 'read/write':
@@ -357,7 +357,7 @@ def updated(obj, event=None):
 def deleted(obj, event=None):
     # Delete all channel settings from the database.
     log("TransferFolder deleted: %s" % str(obj))
-    if not obj.isArchive():
+    if not obj.restrictedTraverse("@@context_helpers").is_archive():
         esd_from_uid = obj.sendingESD
         tf_uid = obj.UID()
         old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)

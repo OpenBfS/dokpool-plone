@@ -60,7 +60,7 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         return (
-            (not self.context.isArchive())
+            (not self.context.restrictedTraverse("@@context_helpers").is_archive())
             and self.collection is not None
             and self.context.isCurrentSituation()
             and not self.isEditMode()

@@ -24,7 +24,7 @@ class TickerViewlet(ELANViewlet):
     @property
     def available(self):
         return (
-            (not self.context.isArchive())
+            (not self.context.restrictedTraverse("@@context_helpers").is_archive())
             and self.context.isSituationDisplay()
             and self.isSupported()
         )

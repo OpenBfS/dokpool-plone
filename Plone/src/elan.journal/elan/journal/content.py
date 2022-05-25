@@ -70,6 +70,6 @@ class Journal(Container):
         assert(obj.portal_type == "DPEvent")
         if getattr(obj.aq_base, "Status", None) not in ["active"]:
             return False
-        if obj.isArchive():
+        if obj.restrictedTraverse("@@context_helpers").is_archive():
             return False
         return api.user.has_permission('elan.journal: Add JournalEntry', obj=obj)
