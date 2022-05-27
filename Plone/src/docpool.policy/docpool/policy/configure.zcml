@@ -13,6 +13,7 @@
       directory="profiles/default"
       description="Turn a Plone site into a Docpool site. (Includes DocPool Theme, docpool.base, docpool.transfers, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dbaccess and docpool.users)"
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
       />
 
   <i18n:registerTranslations directory="locales"/>

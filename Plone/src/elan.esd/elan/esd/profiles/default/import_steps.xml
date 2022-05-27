@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
-  <import-step id="elan_esd_various" version="20120822-01"
-               handler="elan.esd.setuphandlers.setupVarious"
-               title="elan.esd index rebuilding">
- </import-step>
-</import-steps>

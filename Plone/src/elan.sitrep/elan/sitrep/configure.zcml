@@ -20,7 +20,13 @@
     <!-- Register the installation GenericSetup extension profile -->
 
 
-    <genericsetup:registerProfile name="default" title="elan.sitrep" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
+    <genericsetup:registerProfile
+        name="default"
+        title="elan.sitrep"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.post_install"
+        />
 
 
    <include file="skins.zcml" />

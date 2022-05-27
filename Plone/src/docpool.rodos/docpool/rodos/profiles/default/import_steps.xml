@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
-  <import-step id="docpool_rodos_various" version="20170325-01"
-               handler="docpool.rodos.setuphandlers.setupVarious"
-               title="docpool.rodos install functions">
- </import-step>
-</import-steps>

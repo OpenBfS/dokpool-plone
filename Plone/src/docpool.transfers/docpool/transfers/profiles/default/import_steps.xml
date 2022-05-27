@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
-  <import-step id="docpool_transfers_various" version="20120822-01"
-               handler="docpool.transfers.setuphandlers.setupVarious"
-               title="docpool.transfers Install">
- </import-step>
-</import-steps>

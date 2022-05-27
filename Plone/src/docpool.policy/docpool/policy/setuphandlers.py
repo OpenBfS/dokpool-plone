@@ -1,26 +1,12 @@
-# -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-
+from plone import api
 
 PAS_TITLE = 'Trusted Proxy Auth'
 
 
-def setupVarious(context):
-
-    # Ordinarily, GenericSetup handlers check for the existence of XML files.
-    # Here, we are not parsing an XML file, but we use this text file as a
-    # flag to check that we actually meant for this import step to be run.
-    # The file is found in profiles/default.
-
-    if context.readDataFile('docpool.policy_various.txt') is None:
-        return
-    portal = context.getSite()
-    wtool = getToolByName(portal, 'portal_workflow')
+def post_install(setup):
+    wtool = api.portal.get_tool("portal_workflow")
     wtool.updateRoleMappings()
-    cat = getToolByName(context.getSite(), "portal_catalog")
-    #    cat.refreshCatalog(clear=True,pghandler=ZLogHandler(100))
-    #    This would destroy the scenarios index
-    setupTrustedProxyAuthPlugin(portal)
+    setupTrustedProxyAuthPlugin()
 
 
 def _addPlugin(pas, pluginid='trusted_proxy_auth'):
@@ -55,6 +41,6 @@ def _addPlugin(pas, pluginid='trusted_proxy_auth'):
         )
 
 
-def setupTrustedProxyAuthPlugin(site):
-    pas = site.acl_users
+def setupTrustedProxyAuthPlugin():
+    pas = api.portal.get_tool("acl_users")
     _addPlugin(pas)

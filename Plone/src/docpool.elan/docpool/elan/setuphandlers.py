@@ -1,16 +1,8 @@
 # -*- coding: utf-8 -*-
+from plone import api
 
 
-def setupVarious(context):
-
-    # Ordinarily, GenericSetup handlers check for the existence of XML files.
-    # Here, we are not parsing an XML file, but we use this text file as a
-    # flag to check that we actually meant for this import step to be run.
-    # The file is found in profiles/default.
-
-    if context.readDataFile('docpool.elan_various.txt') is None:
-        return
+def post_install(context):
     # Add additional setup code here
     from docpool.config.general.elan import install
-
-    install(context.getSite())
+    install(api.portal.get())

@@ -13,17 +13,17 @@
     <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />
 
     <!-- Register the installation GenericSetup extension profile -->
-
-
-    <genericsetup:registerProfile name="default" title="docpool.example" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
-
+    <genericsetup:registerProfile
+        name="default"
+        title="docpool.example"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
    <include file="skins.zcml" />
-
 
     <!-- TODO -->
    <permission id="docpool.example.AccessExample" title="Docpool: Access Example Content" />
    <include package=".behaviors" />
-
 
 </configure>

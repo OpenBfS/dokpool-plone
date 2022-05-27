@@ -13,10 +13,13 @@
     <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />
 
     <!-- Register the installation GenericSetup extension profile -->
-
-
-    <genericsetup:registerProfile name="default" title="docpool.rodos" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
-
+    <genericsetup:registerProfile
+        name="default"
+        title="docpool.rodos"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.post_install"
+        />
 
    <include file="skins.zcml" />
 
