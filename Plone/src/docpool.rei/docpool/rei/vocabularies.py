@@ -1,35 +1,12 @@
 # - * - coding: utf - 8 -*-
 from AccessControl.SecurityInfo import allow_module
-from collections import OrderedDict
 from datetime import date
-from docpool.base.utils import simplevoc_from_dict
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
-AUTHORITIES = OrderedDict([
-    (u'', u'Select a value ...'),
-    (u'de_bw', u'Baden-Württemberg'),
-    (u'de_by', u'Bayern'),
-    (u'de_be', u'Berlin'),
-    (u'de_bb', u'Brandenburg'),
-    (u'de_hb', u'Bremen'),
-    (u'de_el', u'Endlager (Bundesaufsicht)'),
-    (u'de_hh', u'Hamburg'),
-    (u'de_he', u'Hessen'),
-    (u'de_mv', u'Mecklenburg-Vorpommern'),
-    (u'de_ni', u'Niedersachsen'),
-    (u'de_nw', u'Nordrhein-Westfalen'),
-    (u'de_rp', u'Rheinland-Pfalz'),
-    (u'de_sl', u'Saarland'),
-    (u'de_sn', u'Sachsen'),
-    (u'de_st', u'Sachsen-Anhalt'),
-    (u'de_sh', u'Schleswig-Holstein'),
-    (u'de_th', u'Thüringen'),
-])
-AUTHORITIES_VOCABULARY = simplevoc_from_dict(AUTHORITIES)
 
 @implementer(IVocabularyFactory)
 class AuthorityVocabulary(object):
@@ -37,7 +14,29 @@ class AuthorityVocabulary(object):
     """
 
     def __call__(self, context=None):
-        return AUTHORITIES_VOCABULARY
+        items = [
+            (u'', u'Select a value ...'),
+            (u'de_bw', u'Baden-Württemberg'),
+            (u'de_by', u'Bayern'),
+            (u'de_be', u'Berlin'),
+            (u'de_bb', u'Brandenburg'),
+            (u'de_hb', u'Bremen'),
+            (u'de_el', u'Endlager (Bundesaufsicht)'),
+            (u'de_hh', u'Hamburg'),
+            (u'de_he', u'Hessen'),
+            (u'de_mv', u'Mecklenburg-Vorpommern'),
+            (u'de_ni', u'Niedersachsen'),
+            (u'de_nw', u'Nordrhein-Westfalen'),
+            (u'de_rp', u'Rheinland-Pfalz'),
+            (u'de_sl', u'Saarland'),
+            (u'de_sn', u'Sachsen'),
+            (u'de_st', u'Sachsen-Anhalt'),
+            (u'de_sh', u'Schleswig-Holstein'),
+            (u'de_th', u'Thüringen'),
+        ]
+        terms = [SimpleTerm(code, code, title) for code, title in items]
+        return SimpleVocabulary(terms)
+
 
 
 AuthorityVocabularyFactory = AuthorityVocabulary()

@@ -8,7 +8,7 @@ from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
 from docpool.config.general.base import configureGroups
 from docpool.config.utils import set_local_roles
-from docpool.rei.vocabularies import AUTHORITIES
+from docpool.rei.vocabularies import AuthorityVocabularyFactory
 from plone import api
 from plone.app.textfield import RichTextValue
 from plone.app.theming.utils import applyTheme
@@ -302,12 +302,13 @@ def to_1004(context=None):
     log.info('Importing 1004 upgrades')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1004')
     rei_reports = api.content.find(portal_type='DPDocument', dp_type='reireport')
+    authorities = AuthorityVocabularyFactory()
     for brain in rei_reports:
         rei_report = brain.getObject()
         if not hasattr(rei_report, 'Authority'):
             log.error("Broken rei_report: {0}".format(str(rei_report)))
-        if rei_report.Authority in AUTHORITIES.values():
-            for iso_id, authority in AUTHORITIES.items():
+        if rei_report.Authority in [i.value for i in authorities._terms]:
+            for iso_id, authority in [(i.value, i.title) for i in authorities._terms]:
                 if authority == rei_report.Authority:
                     rei_report.Authority = iso_id
                     rei_report.reindexObject()

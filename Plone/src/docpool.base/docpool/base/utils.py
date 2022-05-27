@@ -409,22 +409,3 @@ def getInheritedValue(behaviour_obj, key):
         return getattr(parentObject, key)
     else:
         return getattr(behaviour_obj.context, key)
-
-
-def safe_value(text, delim=u'_'):
-    """Generates an slightly worse ASCII-only slug."""
-    if text is None:
-        return
-    norm = Normalizer()
-    text = safe_unicode(norm.normalize(safe_unicode(text)))
-    result = []
-    for word in _punct_re.split(text.lower()):
-        word = normalize('NFKD', word).encode('ascii', 'ignore')
-        if word:
-            result.append(word)
-    return six.text_type(delim.join(result)).lower()
-
-def simplevoc_from_dict(values):
-    return SimpleVocabulary(
-        [SimpleTerm(value=safe_value(i), title=_(values[i])) for i in values],
-    )
