@@ -199,11 +199,6 @@ class DPTransferFolder(Container, FolderBase):
         else:
             return 0
 
-    def pkfields(self):
-        """
-        Dummy method to indicate that this is a resource with dbadmin functions.
-        """
-
     def grantReadAccess(self):
         """
         """

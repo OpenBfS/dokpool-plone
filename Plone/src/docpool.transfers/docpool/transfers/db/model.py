@@ -6,7 +6,6 @@ from datetime import datetime
 from docpool.dbaccess.dbinit import __metadata__
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers import DocpoolMessageFactory as _
-from docpool.transfers.db.security import IDocpoolProtectedEntityClass
 from elixir import DateTime
 from elixir import Entity
 from elixir import EntityBase
@@ -21,7 +20,6 @@ from sqlalchemy import join
 from sqlalchemy.orm import column_property
 from sqlalchemy.orm import mapper
 from sqlalchemy.orm import relationship
-from zope.interface import provider
 
 import logging
 
@@ -37,7 +35,6 @@ if DEBUG:
 logger = logging.getLogger("docpool.transfers")
 
 
-@provider(IDocpoolProtectedEntityClass)
 class Channel(Entity):
     """
     """
@@ -62,7 +59,6 @@ class Channel(Entity):
         )
 
 
-@provider(IDocpoolProtectedEntityClass)
 class DocTypePermission(Entity):
     """
     """
@@ -76,7 +72,6 @@ class DocTypePermission(Entity):
         return "%s: %s" % (self.doc_type, _(self.perm))
 
 
-@provider(IDocpoolProtectedEntityClass)
 class SenderLog(Entity):
     """
     """
@@ -90,7 +85,6 @@ class SenderLog(Entity):
     channel = ManyToOne('Channel')
 
 
-@provider(IDocpoolProtectedEntityClass)
 class ReceiverLog(Entity):
     """
     """
@@ -104,19 +98,16 @@ class ReceiverLog(Entity):
     channel = ManyToOne('Channel')
 
 
-@provider(IDocpoolProtectedEntityClass)
 class ChannelPermissions(EntityBase):
     pass
 
 
-@provider(IDocpoolProtectedEntityClass)
 class ChannelSends(EntityBase):
 
     def __repr__(self):
         return "%s: --> %s" % (self.etimestamp, self.esd_to_title)
 
 
-@provider(IDocpoolProtectedEntityClass)
 class ChannelReceives(EntityBase):
     pass
 
