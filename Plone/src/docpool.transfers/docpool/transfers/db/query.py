@@ -3,7 +3,6 @@ from docpool.base.content.dpdocument import DPDocument
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers.db.model import Channel
 from docpool.transfers.db.model import DocTypePermission
-from docpool.transfers.db.model import SenderLog
 from sqlalchemy import and_
 from sqlalchemy import or_
 
@@ -44,21 +43,21 @@ def allowed_targets(context):
                 DocTypePermission.doc_type == dt_id),
         ),
     )
-    if isinstance(context, DPDocument):
-        filter_list += (
-            ~Channel.sends.any(
-                and_(
-                    SenderLog.document_uid == context.UID(),
-                    SenderLog.timestamp > context.getMdate(),
-                )
-            ),
-        )
     q = (
         __session__.query(Channel)
         .outerjoin(Channel.permissions)
-        .outerjoin(Channel.sends)
         .filter(and_(*filter_list))
         .order_by('esd_from_title')
     )
     targets = q.all()
+
+    if isinstance(context, DPDocument):
+        mdate = context.getMdate()
+        sent_to_since_last_modified = set(
+            entry['transferfolder_uid']
+            for entry in context.sender_log
+            if entry['timestamp'] > mdate
+        )
+        targets = [t for t in targets if t.tf_uid not in sent_to_since_last_modified]
+
     return targets

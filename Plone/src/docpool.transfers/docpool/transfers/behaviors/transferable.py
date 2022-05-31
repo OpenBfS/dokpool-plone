@@ -10,7 +10,6 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
-from docpool.base.utils import getUserInfo
 from docpool.base.utils import portalMessage
 from docpool.dbaccess.dbinit import __session__
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
@@ -20,10 +19,6 @@ from docpool.transfers.content.transfers import determineChannels
 from docpool.transfers.content.transfers import determineTransferFolderObject
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
 from docpool.transfers.db.model import ChannelPermissions
-from docpool.transfers.db.model import ChannelReceives
-from docpool.transfers.db.model import ChannelSends
-from docpool.transfers.db.model import ReceiverLog
-from docpool.transfers.db.model import SenderLog
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
 from logging import getLogger
@@ -35,10 +30,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log
 from Products.statusmessages.interfaces import IStatusMessage
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.sql.expression import desc
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -150,6 +143,24 @@ class Transferable(FlexibleView):
 
     transferLog = property(_get_transferLog, _set_transferLog)
 
+    @property
+    def sender_log(self):
+        return getattr(self.context, 'transfer_sender_log', ())
+
+    @sender_log.setter
+    def sender_log(self, value):
+        context = aq_inner(self.context)
+        context.transfer_sender_log = value
+
+    @property
+    def receiver_log(self):
+        return getattr(self.context, 'transfer_receiver_log', ())
+
+    @receiver_log.setter
+    def receiver_log(self, value):
+        context = aq_inner(self.context)
+        context.transfer_receiver_log = value
+
     def isClean(self):
         """
         Is this document free for further action like publishing or transfer.
@@ -186,41 +197,19 @@ class Transferable(FlexibleView):
 
         else:
             if self.transferred:
-                # We need the receiving side
-                events = (
-                    __session__.query(ChannelReceives)
-                    .filter(ChannelReceives.document_uid == self.context.UID())
-                    .order_by(desc(ChannelReceives.etimestamp))
-                    .all()
-                )
-                return [
-                    {
-                        "type": "receive",
-                        "by": event.user,
-                        "esd": event.esd_from_title,
-                        "timeraw": event.etimestamp,
-                        "time": self.context.toLocalizedTime(
-                            DateTime(event.etimestamp), long_format=1
-                        ),
-                    }
-                    for event in events
-                ]
+                type_ = 'receive'
+                events = reversed(self.context.receiver_log)
             else:
-                # We need the sending side
-                events = (
-                    __session__.query(ChannelSends)
-                    .filter(ChannelSends.document_uid == self.context.UID())
-                    .order_by(desc(ChannelSends.etimestamp))
-                    .all()
-                )
+                type_ = 'send'
+                events = reversed(self.context.sender_log)
                 return [
                     {
-                        "type": "send",
-                        "by": event.user,
-                        "esd": event.esd_to_title,
-                        "timeraw": event.etimestamp,
+                        "type": type_,
+                        "by": event['user'],
+                        "esd": event['esd_title'],
+                        "timeraw": event['timestamp'],
                         "time": self.context.toLocalizedTime(
-                            DateTime(event.etimestamp), long_format=1
+                            DateTime(event['timestamp']), long_format=1
                         ),
                     }
                     for event in events
@@ -310,6 +299,9 @@ class Transferable(FlexibleView):
             HAS_ELAN = False
 
         def doIt():
+            timestamp = datetime.now()
+            userinfo_string = self.context._getUserInfoString(plain=True)
+
             # 1) Determine all transfer folder objects.
             for target in targets:
                 transfer_folder = determineTransferFolderObject(
@@ -387,29 +379,24 @@ class Transferable(FlexibleView):
                     my_copy).local_behaviors = list(set(behaviors))
 
                 # 3) Add transfer information to the copies.
-                my_copy.transferred = datetime.now()
-                my_copy.transferred_by = self.context._getUserInfoString(
-                    plain=True)
+                my_copy.transferred = timestamp
+                my_copy.transferred_by = userinfo_string
 
                 # 4) Add log entries to sender log.
-                userid, fullname, primary_group = getUserInfo(self.context)
-                document_uid = self.context.UID()
-                document_title = self.context.title
-                timestamp = datetime.now()
-                user = userid
                 scenario_ids = ""
                 if HAS_ELAN and elanobj is not None:
                     scenario_ids = (
                         elanobj.scenarios and ", ".join(
                             elanobj.scenarios) or ""
                     )
-                l = SenderLog(
-                    document_uid=document_uid,
-                    document_title=document_title,
-                    timestamp=timestamp,
-                    user=self.context._getUserInfoString(plain=True),
-                    scenario_ids=scenario_ids,
-                    channel=target,
+                self.sender_log += (
+                    dict(
+                        timestamp=timestamp,
+                        user=userinfo_string,
+                        scenario_ids=scenario_ids,
+                        esd_title=target.esd_to_title,
+                        transferfolder_uid=transfer_folder.UID(),
+                    ),
                 )
                 # 5) If my document type is unknown in the target ESD,
                 #    copy it to the target setting it to private state.
@@ -429,9 +416,6 @@ class Transferable(FlexibleView):
                 ITransferable(my_copy).ensureState()
                 my_copy.reindexObject()
                 # 7) Add entry to receiver log.
-                document_uid = my_copy.UID()
-                document_title = my_copy.title
-                timestamp = datetime.now()
                 scenario_ids = ""
                 if elanobj is not None:
                     scenario_ids = (
@@ -439,13 +423,13 @@ class Transferable(FlexibleView):
                         and ", ".join(IELANDocument(my_copy).scenarios)
                         or ""
                     )
-                r = ReceiverLog(
-                    document_uid=document_uid,
-                    document_title=document_title,
-                    timestamp=timestamp,
-                    user=self.context._getUserInfoString(plain=True),
-                    scenario_ids=scenario_ids,
-                    channel=target,
+                self.receiver_log += (
+                    dict(
+                        timestamp=timestamp,
+                        user=userinfo_string,
+                        scenario_ids=scenario_ids,
+                        esd_title=target.esd_from_title,
+                    ),
                 )
                 msg = _('Transferred to ${target_title}', mapping={'target_title': target.esd_to_title})
                 api.portal.show_message(msg, self.request)

@@ -17,7 +17,6 @@ from elixir import String
 from elixir import Unicode
 from elixir import using_options
 from sqlalchemy import join
-from sqlalchemy.orm import column_property
 from sqlalchemy.orm import mapper
 from sqlalchemy.orm import relationship
 
@@ -48,8 +47,6 @@ class Channel(Entity):
     esd_to_title = Field(Unicode(100))
     timestamp = Field(DateTime(), default=datetime.now)
     permissions = OneToMany('DocTypePermission', inverse='channel')
-    sends = OneToMany('SenderLog', inverse='channel')
-    receives = OneToMany('ReceiverLog', inverse='channel')
 
     def __repr__(self):
         return "%s --> %s (%s)" % (
@@ -72,43 +69,7 @@ class DocTypePermission(Entity):
         return "%s: %s" % (self.doc_type, _(self.perm))
 
 
-class SenderLog(Entity):
-    """
-    """
-
-    using_options(tablename='senderlogs')
-    document_uid = Field(String(50))
-    document_title = Field(Unicode(250))
-    timestamp = Field(DateTime())
-    user = Field(String(100))
-    scenario_ids = Field(String(150))
-    channel = ManyToOne('Channel')
-
-
-class ReceiverLog(Entity):
-    """
-    """
-
-    using_options(tablename='receiverlogs')
-    document_uid = Field(String(50))
-    document_title = Field(Unicode(250))
-    timestamp = Field(DateTime())
-    user = Field(String(100))
-    scenario_ids = Field(String(150))
-    channel = ManyToOne('Channel')
-
-
 class ChannelPermissions(EntityBase):
-    pass
-
-
-class ChannelSends(EntityBase):
-
-    def __repr__(self):
-        return "%s: --> %s" % (self.etimestamp, self.esd_to_title)
-
-
-class ChannelReceives(EntityBase):
     pass
 
 
@@ -126,37 +87,5 @@ ChannelPermissions.mapper = mapper(
         'channel': relationship(Channel),
         'channel_id': [Channel.table.c.id, DocTypePermission.table.c.channel_id],
         'id': [DocTypePermission.table.c.id],
-    },
-)
-
-k = join(
-    Channel.table, SenderLog.table, Channel.table.c.id == SenderLog.table.c.channel_id
-)
-ChannelSends.mapper = mapper(
-    ChannelSends,
-    k,
-    properties={
-        'channel': relationship(Channel),
-        'channel_id': [Channel.table.c.id, SenderLog.table.c.channel_id],
-        'id': [SenderLog.table.c.id],
-        'ctimestamp': column_property(Channel.table.c.timestamp),
-        'etimestamp': column_property(SenderLog.table.c.timestamp),
-    },
-)
-
-l = join(
-    Channel.table,
-    ReceiverLog.table,
-    Channel.table.c.id == ReceiverLog.table.c.channel_id,
-)
-ChannelReceives.mapper = mapper(
-    ChannelReceives,
-    l,
-    properties={
-        'channel': relationship(Channel),
-        'channel_id': [Channel.table.c.id, ReceiverLog.table.c.channel_id],
-        'id': [ReceiverLog.table.c.id],
-        'ctimestamp': column_property(Channel.table.c.timestamp),
-        'etimestamp': column_property(ReceiverLog.table.c.timestamp),
     },
 )
