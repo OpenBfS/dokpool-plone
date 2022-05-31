@@ -44,7 +44,6 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import provider
-from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
 logger = getLogger(__name__)
@@ -498,51 +497,6 @@ class Transferable(FlexibleView):
                             api.content.transition(self.context, 'retract')
                         except BaseException:
                             pass
-
-    def deleteTransferDataInDB(self):
-        """
-        """
-        if not hasattr(self.context, 'UID'):
-            log('Failed to deleteTransferData as obj has no UID')
-            return False
-        uid = self.context.UID()
-        received = (
-            __session__.query(ReceiverLog)
-            .filter(ReceiverLog.document_uid == uid)
-            .order_by(desc(ReceiverLog.timestamp))
-            .all()
-        )
-        send = (
-            __session__.query(SenderLog)
-            .filter(SenderLog.document_uid == uid)
-            .order_by(desc(SenderLog.timestamp))
-            .all()
-        )
-        if received:
-            log(received)
-            for r in received:
-                __session__.delete(r)
-        if send:
-            log(send)
-            for s in send:
-                __session__.delete(s)
-        if received or send:
-            log('received or send')
-            __session__.flush()
-
-
-@adapter(IDPDocument, IObjectRemovedEvent)
-def deleteTransferData(obj, event=None):
-    """
-    # TODO: Check ob nur beim Loeschen ausgefuehrt wird oder auch beim move!?
-    """
-    try:
-        tObj = ITransferable(obj)  # Try behaviour
-        log('Try to deleteTransferData %s from %s' %
-            (obj.title, obj.absolute_url()))
-        return tObj.deleteTransferDataInDB()
-    except BaseException:
-        return False
 
 
 @adapter(IDPDocument, IActionSucceededEvent)
