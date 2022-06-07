@@ -4,6 +4,10 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
+Fixed:
+
+- Fix Icon path #4808
+  [slindner]
 
 1.9.0 (13.05.22)
 ------------------
