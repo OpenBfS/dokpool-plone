@@ -40,15 +40,14 @@
 </property>
 
  <!-- View information -->
- <property name="default_view">folder_tabular_view</property>
+ <property name="default_view">tabular_view</property>
  <property name="default_view_fallback">False</property>
  <property name="view_methods">
   <element value="view" />
-  <element value="base_view" />
 
-  <element value="folder_summary_view" />
-  <element value="folder_tabular_view" />
-  <element value="folder_listing" />
+  <element value="summary_view" />
+  <element value="tabular_view" />
+  <element value="listing_view" />
 
  </property>
  <alias from="(Default)" to="(dynamic view)" />

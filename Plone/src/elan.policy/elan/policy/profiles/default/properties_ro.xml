@@ -3,8 +3,7 @@
  <property name="title">Electronic Situation Report for the Emergency Management</property>
  <property name="description">ELAN-E</property>
  <property name="selectable_views" type="lines">
-  <element value="folder_listing"/>
-  <element value="news_listing"/>
+  <element value="listing_view"/>
  </property>
  <property name="email_from_address" type="string">kprobst@bfs.de</property>
  <property name="email_from_name" type="string">ELAN-E BfS</property>

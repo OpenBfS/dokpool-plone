@@ -3,8 +3,7 @@
  <property name="title">DokPool</property>
  <property name="description">Dokumente für den Notfallschutz</property>
  <property name="selectable_views" type="lines">
-  <element value="folder_listing"/>
-  <element value="news_listing"/>
+  <element value="listing_view"/>
  </property>
  <property name="email_from_address" type="string">kprobst@bfs.de</property>
  <property name="email_from_name" type="string">DokPool BfS</property>
