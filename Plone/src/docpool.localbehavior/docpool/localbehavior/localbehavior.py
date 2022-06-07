@@ -9,11 +9,12 @@ from zope.component import getMultiAdapter
 from zope.interface import provider
 from zope.interface import Interface
 from zope.schema.interfaces import IContextAwareDefaultFactory
+from zope.globalrequest import getRequest
 
 
 @provider(IContextAwareDefaultFactory)
 def initializeLocalBehaviors(context):
-    dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, getRequest()), name=u'dp_app_state')
     return dp_app_state.effectiveAppsHere()
 
 
