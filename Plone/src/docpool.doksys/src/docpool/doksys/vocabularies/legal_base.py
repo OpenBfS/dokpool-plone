@@ -22,7 +22,7 @@ class LegalBase(object):
             (u'REI-E', _(u'REI-E')),
             (u'REI-I', _(u'REI-I')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

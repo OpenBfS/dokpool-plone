@@ -274,9 +274,7 @@ class SampleType(object):
             (u'Z34', u'Bedarfsgegenstände zur Reinigung und Pflege'),
             (u'Z35', u'Kosmetische Mittel und Stoffe zu deren Herstellung'),
         ]
-        terms = [SimpleTerm(value,
-                            safe_encode(value),
-                            u'{} {}'.format(value, title))
+        terms = [SimpleTerm(value, value, u'{} {}'.format(value, title))
                  for value, title in items]
         return SimpleVocabulary(terms)
 

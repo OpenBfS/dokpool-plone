@@ -19,7 +19,7 @@ class Duration(object):
             (u'1h', _(u'1h')),
             (u'10Min', _(u'10Min')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

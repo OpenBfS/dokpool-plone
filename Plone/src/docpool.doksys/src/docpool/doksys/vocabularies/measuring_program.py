@@ -17,7 +17,7 @@ class MeasuringProgram(object):
             (u'REI', _(u'REI')),
             (u'Spontanproben Bund', _(u'Spontanproben Bund')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

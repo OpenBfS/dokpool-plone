@@ -254,7 +254,7 @@ class ELANDocCollection(Item, Collection):
                         {
                             'i': 'category',
                             'o': 'plone.app.querystring.operation.selection.is',
-                            'v': [safe_encode(i) for i in usc],
+                            'v': usc,
                         }
                     )
 

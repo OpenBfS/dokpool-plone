@@ -19,7 +19,7 @@ class OperationMode(object):
             (u'Routine', _(u'Routine')),
             (u'Intensiv', _(u'Intensiv')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

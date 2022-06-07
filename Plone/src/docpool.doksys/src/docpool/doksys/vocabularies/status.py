@@ -17,7 +17,7 @@ class Status(object):
             (u'geprueft', _(u'geprueft')),
             (u'nicht geprueft', _(u'nicht geprueft')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

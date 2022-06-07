@@ -16,7 +16,7 @@ class Purpose(object):
             (u'Standard-Info DWD', _(u'Standard-Info DWD')),
         ]
 
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

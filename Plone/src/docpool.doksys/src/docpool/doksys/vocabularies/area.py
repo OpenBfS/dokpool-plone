@@ -17,7 +17,7 @@ class Area(object):
             (u'ME', _(u'ME')),
             (u'World', _(u'World')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

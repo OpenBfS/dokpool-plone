@@ -50,7 +50,7 @@ class NetworkOperators(object):
             (u'auslaend. Messnetze', _(u'auslaend. Messnetze')),
             (u'BfS (ODL)', _(u'BfS (ODL)')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

@@ -22,7 +22,7 @@ class InfoType(object):
             (u'Ueberblick', _(u'Ueberblick')),
             (u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

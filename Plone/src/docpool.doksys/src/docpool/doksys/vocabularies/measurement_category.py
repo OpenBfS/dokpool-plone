@@ -901,7 +901,7 @@ class MeasurementCategory(object):
             (u'Nullmessung', _(u'Nullmessung')),
             (u'Temperatur', _(u'Temperatur')),
         ]
-        terms = [SimpleTerm(value, safe_encode(value), title)
+        terms = [SimpleTerm(value, value, title)
                  for value, title in items]
         return SimpleVocabulary(terms)
 

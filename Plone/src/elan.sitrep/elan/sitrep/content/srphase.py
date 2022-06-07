@@ -51,8 +51,8 @@ class SRPhase(Container):
         """
         """
         return u"%s: %s" % (
-            self.mySRScenario().Title().decode('utf-8'),
-            self.Title().decode('utf-8'),
+            self.mySRScenario().Title(),
+            self.Title(),
         )
 
     def availableModuleConfigs(self):

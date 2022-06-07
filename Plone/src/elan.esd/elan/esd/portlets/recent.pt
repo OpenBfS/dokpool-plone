@@ -12,14 +12,12 @@
       <ul>
         <tal:items tal:define="plone_layout context/@@plone_layout;
                            plone_view context/@@plone;
-                           getIcon nocall:plone_layout/getIcon;
                            normalizeString nocall:plone_view/normalizeString;
                            toLocalizedTime nocall:plone_view/toLocalizedTime;"
                tal:repeat="obj view/recent_items">
 
           <li class="portletItem"
             tal:define="oddrow repeat/obj/odd;
-                        item_icon python:getIcon(obj);
                         item_wf_state obj/review_state;
                         item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                         item_class python:'contenttype-' + normalizeString(obj.portal_type);
@@ -28,7 +26,6 @@
             <a href=""
                 tal:attributes="href python:obj_url.startswith('http') and obj_url or '%s/esd/%s' % (obj.dp_url(), obj.getURL());
                                 class string:$item_wf_state_class tile $item_class">
-<!--                 <img tal:replace="structure item_icon/html_tag" /> -->
                  <tal:title content="obj/pretty_title_or_id">
                      Title
                  </tal:title>
