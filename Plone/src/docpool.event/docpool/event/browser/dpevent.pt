@@ -90,72 +90,21 @@
 
   </table>
 
-<div id="meta_items">
-  <img class="collapsible"
-       alt="Karten Anzeigen" title="Karten Anzeigen"
-       tal:attributes="src string:${portal_url}/link_icon.png">
-  <div class="content">
-    <div tal:define="widget python:view.widgets['EventCoordinates'];
-                     view python:widget;"
-         tal:condition="python:context.EventCoordinates"
-         class="field">
-        <label tal:content="widget/label" />
-        <br />
-        <div id="" class=""
-             tal:attributes="id view/id;
-                              class view/klass;
-                              style view/style;
-                              title view/title;
-                              lang view/lang;
-                              onclick view/onclick;
-                              ondblclick view/ondblclick;
-                              onmousedown view/onmousedown;
-                              onmouseup view/onmouseup;
-                              onmouseover view/onmouseover;
-                              onmousemove view/onmousemove;
-                              onmouseout view/onmouseout;
-                              onkeypress view/onkeypress;
-                              onkeydown view/onkeydown;
-                              onkeyup view/onkeyup;
-                              ">
-        </div>
-        <div tal:define="cgmap view/cgmap">
-          <metal:use use-macro="context/@@collectivegeo-macros/openlayers"/>
-          <metal:map use-macro="context/@@collectivegeo-macros/map-widget" />
-        </div>
-    </div>
+  <div id="meta_items">
+      <div tal:define="widget python:view.widgets['EventCoordinates'];"
+          tal:condition="python:context.EventCoordinates"
+          class="field">
+          <label tal:content="widget/label" />
+          <div tal:content="structure widget/render"/>
+      </div>
 
-    <div tal:define="widget python:view.widgets['AreaOfInterest'];
-                     view python:widget;"
-         tal:condition="python:context.AreaOfInterest"
-         class="field">
-        <label tal:content="widget/label" />
-        <br />
-        <div id="" class=""
-             tal:attributes="id view/id;
-                              class view/klass;
-                              style view/style;
-                              title view/title;
-                              lang view/lang;
-                              onclick view/onclick;
-                              ondblclick view/ondblclick;
-                              onmousedown view/onmousedown;
-                              onmouseup view/onmouseup;
-                              onmouseover view/onmouseover;
-                              onmousemove view/onmousemove;
-                              onmouseout view/onmouseout;
-                              onkeypress view/onkeypress;
-                              onkeydown view/onkeydown;
-                              onkeyup view/onkeyup;
-                              ">
-        </div>
-        <div tal:define="cgmap view/cgmap">
-          <metal:use use-macro="context/@@collectivegeo-macros/openlayers"/>
-          <metal:map use-macro="context/@@collectivegeo-macros/map-widget" />
-        </div>
-    </div>
+      <div tal:define="widget python:view.widgets['AreaOfInterest'];"
+          tal:condition="python:context.AreaOfInterest"
+          class="field">
+          <label tal:content="widget/label" />
+          <div tal:content="structure widget/render"/>
+      </div>
   </div>
-</div>
 
     <h4 i18n:translate="">Changelog</h4>
     <table class="listing"

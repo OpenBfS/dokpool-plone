@@ -11,7 +11,6 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
-from collective.z3cform.mapwidget import WKT
 from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -50,6 +49,7 @@ from zope.component import getUtility
 from zope.interface import Interface
 from zope.interface import alsoProvides
 from zope.interface import implementer
+from zope.interface import Invalid
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
@@ -63,6 +63,29 @@ logger = getLogger("dpevent")
 
 def initializeTimeOfEvent():
     return datetime.datetime.today()
+
+
+def is_coordinate(value):
+    if value:
+        try:
+            wkt = geometry.from_wkt(value)
+        except Exception:
+            raise Invalid(u'Value is no a valid WKT.')
+        if not wkt.geom_type == "Point":
+            raise Invalid(u'Value is not a Point.')
+    return True
+
+
+def is_polygon(value):
+    if value:
+        try:
+            wkt = geometry.from_wkt(value)
+        except Exception:
+            raise Invalid(u'Value is not a valid WKT.')
+        if not wkt.geom_type == "Polygon":
+            raise Invalid(u'Value is not a Polygon.')
+        raise Invalid(u'Vaueis not a valid coordinate.')
+    return True
 
 
 class IDPEvent(model.Schema, IContentBase):
@@ -125,15 +148,19 @@ class IDPEvent(model.Schema, IContentBase):
     )
 
     directives.write_permission(EventCoordinates='docpool.event.ManageDPEvents')
-    EventCoordinates = WKT(
+    EventCoordinates = schema.Text(
         title=_(u"Event coordinates"),
+        description=_(u"Example: POINT(12.293121814727781 48.60338936478996)"),
         required=False,
+        constraint=is_coordinate,
     )
 
     directives.write_permission(AreaOfInterest='docpool.event.ManageDPEvents')
-    AreaOfInterest = WKT(
+    AreaOfInterest = schema.Text(
         title=_(u"Area of interest"),
+        description=_(u"Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"),
         required=False,
+        constraint=is_polygon,
     )
 
     directives.widget(OperationMode=RadioFieldWidget)

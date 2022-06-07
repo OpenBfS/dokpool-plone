@@ -56,14 +56,4 @@
     <value>docpool.event.vocabularies.Events</value>
   </record>
 
-  <records interface="collective.geo.settings.interfaces.IGeoSettings">
-    <value key="longitude">13.381618500953568</value>
-    <value key="latitude">52.51651276281005</value>
-    <value key="zoom">15</value>
-    <value key="default_layers">
-      <element>osm</element>
-    </value>
-    <value key="googleapi">AIzaSyDF056GW1Pdm2qXRD1W5z5n5Fbvl-fEitA</value>
-  </records>
-
 </registry>
