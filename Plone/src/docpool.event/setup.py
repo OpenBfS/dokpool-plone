@@ -33,7 +33,6 @@ setup(
         # -*- Extra requirements: -*-
         'setuptools',
         'collective.dexteritytextindexer',
-#        'collective.z3cform.mapwidget',
         'pygeoif',
     ],
     entry_points="""
