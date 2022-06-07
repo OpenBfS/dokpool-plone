@@ -7,6 +7,7 @@ Bitte hier einen Link zum Ticket #1234 einfügen.
 ## Im Code
 
 - [ ] [Changelog](https://git.starzel.de/bfs/dokpool/-/blob/develop/Plone/docs/conventions.md)-Eintrag hinzugefügt & betroffene App vermerkt?
+- [ ] Änderung auch im Python3 Branch nötig?
 - [ ] ggf. Upgrade-Step hinzugefügt oder aktualisiert
 - [ ] ggf. Tests hinzugefügt oder aktualisiert
 - [ ] ggf. Übersetzungen hinzugefügt oder aktualisiert
