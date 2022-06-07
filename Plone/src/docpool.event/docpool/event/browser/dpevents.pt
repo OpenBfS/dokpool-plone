@@ -50,7 +50,7 @@
                             </b>
                         </a>
                         <br>
-                        <span tal:content="python:scenario.Description().decode('utf-8')" />
+                        <span tal:content="python:scenario.Description()" />
                     </td>
                 <td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
             </tr>
