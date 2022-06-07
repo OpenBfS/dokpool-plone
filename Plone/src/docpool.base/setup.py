@@ -30,7 +30,6 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'collective.dexteritytextindexer',
         'collective.monkeypatcher',
         'docpool.users',
         'docpool.localbehavior',

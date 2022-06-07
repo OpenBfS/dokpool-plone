@@ -14,7 +14,7 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from collective import dexteritytextindexer
+from plone.app.dexterity.textindexer.directives import searchable
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -28,7 +28,7 @@ class IText(model.Schema, IContentBase):
     """
     """
 
-    dexteritytextindexer.searchable('text')
+    searchable('text')
     text = RichText(
         title=_(u'label_text_text', default=u'Text'),
         description=_(u'description_text_text', default=u''),

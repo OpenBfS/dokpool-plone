@@ -32,7 +32,6 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'collective.dexteritytextindexer',
     ],
     entry_points="""
       # -*- Entry points: -*-

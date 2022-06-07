@@ -32,7 +32,6 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'collective.dexteritytextindexer',
         'wildcard.media',
     ],
     entry_points="""

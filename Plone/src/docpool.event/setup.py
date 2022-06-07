@@ -32,7 +32,6 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'collective.dexteritytextindexer',
         'pygeoif',
     ],
     entry_points="""

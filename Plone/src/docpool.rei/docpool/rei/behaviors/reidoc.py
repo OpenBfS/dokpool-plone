@@ -2,7 +2,7 @@
 """Common configuration constants
 """
 from AccessControl import ClassSecurityInfo
-from collective import dexteritytextindexer
+from plone.app.dexterity.textindexer.directives import searchable
 from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
@@ -92,7 +92,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(NuclearInstallations='docpool.rei.AccessRei')
     write_permission(NuclearInstallations='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('NuclearInstallations')
+    searchable('NuclearInstallations')
 
     directives.widget(ReiLegalBases=CheckBoxFieldWidget)
     ReiLegalBases = schema.List(
@@ -105,7 +105,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(ReiLegalBases='docpool.rei.AccessRei')
     write_permission(ReiLegalBases='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('ReiLegalBases')
+    searchable('ReiLegalBases')
 
     Medium = schema.Choice(
         title=_(u'label_rei_Medium', default=u'Medium'),
@@ -115,7 +115,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(Medium='docpool.rei.AccessRei')
     write_permission(Medium='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Medium')
+    searchable('Medium')
 
     Year = schema.Choice(
         title=_(u'label_rei_Year', default=u'Year'),
@@ -125,7 +125,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(Year='docpool.rei.AccessRei')
     write_permission(Year='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Year')
+    searchable('Year')
 
     Period = schema.Choice(
         title=_(u'label_rei_Period', default=u'Period'),
@@ -135,7 +135,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(Period='docpool.rei.AccessRei')
     write_permission(Period='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Period')
+    searchable('Period')
 
     directives.widget(Origins=CheckBoxFieldWidget)
     Origins = schema.List(
@@ -148,7 +148,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(Origins='docpool.rei.AccessRei')
     write_permission(Origins='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Origins')
+    searchable('Origins')
 
     directives.widget(MStIDs=SelectFieldWidget)
     MStIDs = schema.List(
@@ -177,7 +177,7 @@ class IREIDoc(IDocumentExtension):
     )
     read_permission(Authority='docpool.rei.AccessRei')
     write_permission(Authority='docpool.rei.AccessRei')
-    dexteritytextindexer.searchable('Authority')
+    searchable('Authority')
 
     PDFVersion = schema.Choice(
         title=_(u'label_rei_PDFVersion', default=u'PDF Version'),
@@ -187,7 +187,7 @@ class IREIDoc(IDocumentExtension):
         default='keine Angabe',
     )
     directives.mode(PDFVersion='hidden')
-    dexteritytextindexer.searchable('PDFVersion')
+    searchable('PDFVersion')
 
     @invariant
     def validate_medium(data):

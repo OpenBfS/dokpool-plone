@@ -32,7 +32,6 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         'setuptools',
-        'collective.dexteritytextindexer',
         'docpool.base',
     ],
     entry_points="""

@@ -16,7 +16,7 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
-from collective import dexteritytextindexer
+from plone.app.dexterity.textindexer.directives import searchable
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -82,7 +82,7 @@ class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
         source="docpool.base.vocabularies.DocumentTypes",
     )
 
-    dexteritytextindexer.searchable('text')
+    searchable('text')
     text = RichText(
         title=_(u'label_dpdocument_text', default=u'Text'),
         description=_(u'description_dpdocument_text', default=u''),
