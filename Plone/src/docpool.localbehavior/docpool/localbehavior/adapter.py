@@ -1,3 +1,4 @@
+from Acquisition import aq_get
 from docpool.base.appregistry import BEHAVIOR_REGISTRY
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.interfaces import IExtension
@@ -14,8 +15,8 @@ import six
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def enumerateBehaviors(self):
-        request = self.context.REQUEST
-        if isinstance(request, six.string_types):
+        request = aq_get(self.context, "REQUEST", None)
+        if not request or isinstance(request, six.string_types):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
             return
         edited_behaviors = request.get(
