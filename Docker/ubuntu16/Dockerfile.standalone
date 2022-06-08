@@ -26,8 +26,8 @@ RUN adduser --system --disabled-password --shell /bin/bash --group --home /home/
 RUN mkdir -p /opt/bfs/dokpool
 ADD . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
-RUN cd /opt/bfs/dokpool/Plone && pip2 install --upgrade pip && pip install -r requirements.txt
-RUN buildout bootstrap && ./bin/buildout -Nvc buildout_docker_so.cfg
+RUN cd /opt/bfs/dokpool/Plone && pip2 install --upgrade pipenv && pipenv install setuptools==44.0.0 && pipenv install --python=$(whereis python2 | awk '{print $2}')
+RUN pipenv run buildout -Nvc buildout_docker_so.cfg
 
 RUN chown -R zope.zope /opt/bfs
 USER zope

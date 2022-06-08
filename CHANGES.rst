@@ -121,6 +121,10 @@ Fixed:
 - Fix UnicodeDecodeError when filtering in @@rpopup (#4507)
   [pbauer]
 
+Changed:
+
+- Switch to pipenv for bootstrap #3956
+  [tlotze, slindner]
 
 1.8.3 (29.09.2021)
 ------------------
