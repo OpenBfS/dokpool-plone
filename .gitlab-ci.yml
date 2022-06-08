@@ -134,7 +134,7 @@ unittests:
     - mkdir .venv
     - pipenv install
     # Pin setuptools
-    - pipenv install setuptools==42.0.2
+    - pipenv install setuptools==62.0.0
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
     - pipenv run ./bin/coverage erase
