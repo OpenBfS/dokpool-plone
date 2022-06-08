@@ -1,5 +1,5 @@
 # Official Python Image
-image: python:2.7.18-buster
+image: python:3.10.5-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
@@ -134,7 +134,7 @@ unittests:
     - mkdir .venv
     - pipenv install
     # Pin setuptools
-    - pipenv install setuptools==42.0.2
+    - pipenv install setuptools==62.0.0
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
     - pipenv run ./bin/coverage erase
