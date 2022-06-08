@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from plone import api
 from Products.CMFPlone.utils import log
 from docpool.transfers.config import TRANSFERS_APP
@@ -12,7 +11,6 @@ class TransferForm(BrowserView):
     def __call__(self, dpdocids=None, targets=None):
         request = self.request
         self.dpdocids = dpdocids
-        self.targets = targets
         if not request.form.get('form.button.submit', None):
             return self.index()
 
@@ -20,15 +18,15 @@ class TransferForm(BrowserView):
             api.portal.show_message(_('No items or targets selected!'), request)
             return self.index()
 
-        if dpdocids and targets:
-            message = self.transfer_documents()
-            if message:
-                api.portal.show_message(message, request)
-                return self.index()
-            else:
-                msg = _('${transferred} Items transferred!', mapping={'transferred': len(dpdocids)})
-                api.portal.show_message(msg, request)
-                request.response.redirect(self.context.absolute_url())
+        for dpdocid in dpdocids:
+            doc = self.context._getOb(dpdocid)
+            dpdoc = doc.doc_extension(TRANSFERS_APP)
+            dpdoc.manage_transfer(targets)
+            log(f'Transfer "{doc.title}" to ChannelIDs {targets}')
+
+        msg = _('${transferred} Items transferred!', mapping={'transferred': len(dpdocids)})
+        api.portal.show_message(msg, request)
+        request.response.redirect(self.context.absolute_url())
         return self.index()
 
     def transfer_infos(self):
@@ -47,16 +45,8 @@ class TransferForm(BrowserView):
                 adapted = ITransferable(obj)
             except TypeError:
                 continue
-            if adapted.transferable() and adapted.allowedTargets():
-                targets.extend(adapted.allowedTargets())
+            if adapted.transferable() and (allowed := adapted.allowedTargets()):
+                targets.extend(allowed)
                 items.append(obj)
 
         return {'items': items, 'targets': set(targets)}
-
-    def transfer_documents(self):
-        for dpdocid in self.dpdocids:
-            doc = self.context._getOb(dpdocid)
-            dpdoc = doc.doc_extension(TRANSFERS_APP)
-            dpdoc.manage_transfer(self.targets)
-            log("Transfer %s to ChannelIDs: %s" % (doc.title, self.targets))
-        return
