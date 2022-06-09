@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-01-25 13:55+0000\n"
+"POT-Creation-Date: 2022-06-10 12:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,10 +46,6 @@ msgstr "Dok. Typ (kurz)"
 msgid "Doc. type short"
 msgstr "Dok. Typ (kurz)"
 
-#: docpool.transfers/docpool/transfers/browser/dptransferfolder.py
-msgid "Document Type"
-msgstr "Dokumenttyp"
-
 #: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt
 msgid "Edit Permissions"
 msgstr "Berechtigungen bearbeiten"
@@ -70,7 +66,6 @@ msgstr "Keine Einträge ausgewählt / keine Ziele verfügbar."
 msgid "No transfer to"
 msgstr "Keine Übertragung zu"
 
-#: docpool.transfers/docpool/transfers/browser/dptransferfolder.py
 #: docpool.transfers/docpool/transfers/db/forms.py
 msgid "Permission"
 msgstr "Berechtigung"

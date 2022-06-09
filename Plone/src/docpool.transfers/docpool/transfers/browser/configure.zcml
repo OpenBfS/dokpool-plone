@@ -15,7 +15,7 @@
     <browser:page
         name="view"
         for="..interfaces.IDPTransferFolder"
-        class=".dptransferfolder.DPTransferFolderView"
+        template="dptransferfolder.pt"
         permission="docpool.transfers.SendContent"
         />
 
