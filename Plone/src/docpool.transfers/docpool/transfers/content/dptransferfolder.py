@@ -14,11 +14,13 @@ __docformat__ = 'plaintext'
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
+from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
+from docpool.base.utils import queryForObjects
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.db.model import Channel
@@ -300,7 +302,6 @@ def setupChannel(obj, delete=False):
             {"portal_type": "DocumentPool", "UID": esd_from_uid}
         )
         from_esd = from_esd[0]
-        dts = obj.getMatchingDocumentTypes(ids_only=True)
         c = Channel(
             esd_from_uid=esd_from_uid,
             esd_from_title=from_esd.Title,
@@ -308,8 +309,6 @@ def setupChannel(obj, delete=False):
             title=obj.Title(),
             esd_to_title=esd.Title(),
         )
-        for dt in dts:
-            p = DocTypePermission(doc_type=dt, perm="publish", channel=c)
         __session__.flush()
     else:
         c = old
@@ -323,6 +322,7 @@ def created(obj, event=None):
     # set the default to "publish"
     log("TransferFolder created: %s" % str(obj))
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
+        obj.ensureMatchingDocumentTypesInDatabase()
         setupChannel(obj, delete=True)
 
         # Also, if the permissions include read access,
@@ -370,6 +370,34 @@ def deleted(obj, event=None):
             return
         # Revoke any read access
         obj.revokeReadAccess()
+
+
+def transfer_folders_for(obj):
+    try:
+        esd = obj.myDocumentPool()
+    except AttributeError:
+        return []
+
+    brains = queryForObjects(
+        esd,
+        path=esd.dpSearchPath(),
+        object_provides=IDPTransferFolder._identifier__
+    )
+    return [brain.getObject() for brain in brains]
+
+
+@adapter(IDocType, IObjectAddedEvent)
+def doctype_added(obj, event=None):
+    for tf in transfer_folders_for(obj):
+        tf.ensureMatchingDocumentTypesInDatabase()
+
+
+@adapter(IDocType, IObjectRemovedEvent)
+def doctype_will_be_removed(obj, event=None):
+    if event is None:
+        return
+    for tf in transfer_folders_for(event.oldParent):
+        tf.ensureMatchingDocumentTypesInDatabase()
 
 
 class ELANTransferFolder(DPTransferFolder):

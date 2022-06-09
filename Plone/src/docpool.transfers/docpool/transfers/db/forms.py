@@ -89,10 +89,6 @@ def cpListe(context=None):
         DTRenderer.dts = {}
         for dt in dts:
             DTRenderer.dts[safe_unicode(dt[0])] = dt[1]
-
-        # Here me make sure that all current matching document types are in the
-        # database.
-        obj.ensureMatchingDocumentTypesInDatabase()
     else:
         DTRenderer.dts = {}
     g = Grid(ChannelPermissions, session=__session__)
