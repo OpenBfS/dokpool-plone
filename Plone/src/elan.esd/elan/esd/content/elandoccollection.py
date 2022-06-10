@@ -271,7 +271,6 @@ class ELANDocCollection(Item, Collection):
             # This ensures that in case of archives we only get results from the correct subset.
             # m = self.content
 
-            # mpath = getRelativePath(m)
             mpath = "content"
             # Just one path allowed in the path criterion. Must be the part
             # after the portal root, e.g. '/Members'

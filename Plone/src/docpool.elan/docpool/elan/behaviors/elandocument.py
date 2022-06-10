@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
@@ -19,8 +18,6 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
-
-import string
 
 
 @provider(IContextAwareDefaultFactory)

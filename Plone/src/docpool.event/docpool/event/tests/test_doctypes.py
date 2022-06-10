@@ -367,9 +367,8 @@ class TestDocTypes(unittest.TestCase):
         login(self.portal, 'foo')
 
         # now this user can add dpdocument using all doctypes
-        self.assertEqual(
-            set([i.id for i in getAllowedDocumentTypes(folder)]), set(doctypes_ids)
-        )
+        allowed = getAllowedDocumentTypes(folder)
+        self.assertEqual(set([i.id for i in allowed]), set(doctypes_ids))
         from docpool.base.utils import getAllowedDocumentTypesForGroup
 
         self.assertEqual(
@@ -476,7 +475,7 @@ class TestDocTypes(unittest.TestCase):
         brains = api.content.find(SearchableText='willbefound')
         self.assertEqual(brains[0].getObject().description, u'willbefound')
         # Success in the 'content' folder
-        query_found = {'SearchableText': u'willbefound'.encode('utf8')}
+        query_found = {'SearchableText': u'willbefound'}
         # We call the search from the docpool
         # Because of the registration of plone.restapi.controlpanels.SearchControlpanel
         # a lookup by name will not find the default search-form. Duh!
@@ -485,7 +484,7 @@ class TestDocTypes(unittest.TestCase):
         res = search_view.results(query=query_found, batch=False)
         self.assertEqual(len(res), 1)
         # failure in 'config'
-        query_notfound = {'SearchableText': u'Test Event'.encode('utf8')}
+        query_notfound = {'SearchableText': u'Test Event'}
         res_not = search_view.results(query=query_notfound)
         self.assertEqual(len(res_not), 0)
         # Check the catalog_path

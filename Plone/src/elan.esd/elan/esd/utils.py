@@ -34,26 +34,3 @@ def setCategoriesForCurrentUser(self, cats):
         cats = [cats]
     user = api.user.get_current()
     user.setMemberProperties({"categories": cats})
-
-
-def getRelativePath(obj):
-    if obj.restrictedTraverse("@@context_helpers").is_archive():
-        portal_path_length = len(obj.myELANArchive().getPhysicalPath())
-        content_path = obj.getPhysicalPath()
-        return "/".join(content_path[portal_path_length:])
-    else:
-        # print obj
-        # print obj.portal_url()
-        # print obj.portal_url.getRelativeUrl(obj)
-        return obj.portal_url.getRelativeUrl(obj)
-
-
-def isElanEsdInstalled(self):
-    """
-    """
-    qi = getToolByName(self, 'portal_quickinstaller')
-    prods = qi.listInstallableProducts(skipInstalled=False)
-    for prod in prods:
-        if (prod['id'] == 'elan.esd') and (prod['status'] == 'installed'):
-            return 1
-    return 0

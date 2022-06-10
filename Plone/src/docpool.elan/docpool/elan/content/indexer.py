@@ -22,8 +22,6 @@ def category_indexer(obj):
     if not elandoc:
         return
     categories = elandoc.category()
-    if six.PY2:
-        categories = [safe_encode(i) for i in categories]
     return categories
 
 
