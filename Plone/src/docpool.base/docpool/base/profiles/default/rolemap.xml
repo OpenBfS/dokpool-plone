@@ -16,10 +16,6 @@
     <role name="Site Administrator"/>
   </roles>
   <permissions>
-    <permission name="Access arbitrary user session data" acquire="True">
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
     <permission name="Access contents information" acquire="True">
       <role name="Contributor"/>
       <role name="Editor"/>
@@ -32,10 +28,6 @@
     <permission name="Access inactive portal content" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Access session data" acquire="True">
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
