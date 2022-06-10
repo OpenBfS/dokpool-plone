@@ -7,7 +7,7 @@ from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from docpool.elan.config import ELAN_APP
 from plone import api
-from plone.app.textfield.value import RichTextValue
+from plone.app.textfield import RichTextValue
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from Products.Five.utilities.marker import mark
@@ -73,6 +73,8 @@ def createBasicPortalStructure(plonesite, fresh):
     """
     """
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
+    # RichText needs to be set here to prevent test-isolation issues!
+    plonesite.esd['front-page'].text = RichTextValue('', 'text/html', 'text/x-html-safe')
 
 
 def fillBasicPortalStructure(plonesite, fresh):
@@ -91,8 +93,6 @@ def setFrontpage(self):
     self.esd.setDefaultPage("front-page")
 
 
-FRONTPAGE = RichTextValue(u"", 'text/plain', 'text/html')
-
 BASICSTRUCTURE = [
     {
         TYPE: 'ELANCurrentSituation',
@@ -103,7 +103,8 @@ BASICSTRUCTURE = [
                 TYPE: 'Document',
                 TITLE: u'Elektronische Lagedarstellung',
                 ID: 'front-page',
-                'text': FRONTPAGE,
+                # RichText needs to be set in a method to prevent test-isolation issues!
+                # 'text': RichTextValue('', 'text/html', 'text/x-html-safe'),
                 CHILDREN: [],
             }
         ],
