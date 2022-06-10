@@ -17,6 +17,7 @@
       name="docpool.menu"
       />
 
+  <!--
   <browser:viewlet
       name="plone.global_sections"
       manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
@@ -37,6 +38,6 @@
       for="* *"
       factory=".menu.DropDownMenuStrategy"
       provides="plone.app.layout.navigation.interfaces.INavtreeStrategy" />
-      
+  -->
 
 </configure>

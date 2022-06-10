@@ -29,7 +29,6 @@ setup(
         'setuptools',
         # -*- Extra requirements: -*-
         'z3c.jbot',
-        'quintagroup.dropdownmenu',
     ],
     entry_points="""
       # -*- Entry points: -*-
