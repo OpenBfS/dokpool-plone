@@ -5,20 +5,13 @@ __docformat__ = 'plaintext'
 from datetime import datetime
 from docpool.dbaccess.dbinit import __metadata__
 from docpool.dbaccess.dbinit import __session__
-from docpool.transfers import DocpoolMessageFactory as _
 from elixir import DateTime
 from elixir import Entity
-from elixir import EntityBase
 from elixir import Field
-from elixir import ManyToOne
-from elixir import OneToMany
 from elixir import setup_all
 from elixir import String
 from elixir import Unicode
 from elixir import using_options
-from sqlalchemy import join
-from sqlalchemy.orm import mapper
-from sqlalchemy.orm import relationship
 
 import logging
 
@@ -46,7 +39,6 @@ class Channel(Entity):
     tf_uid = Field(String(50))
     esd_to_title = Field(Unicode(100))
     timestamp = Field(DateTime(), default=datetime.now)
-    permissions = OneToMany('DocTypePermission', inverse='channel')
 
     def __repr__(self):
         return "%s --> %s (%s)" % (
@@ -56,36 +48,4 @@ class Channel(Entity):
         )
 
 
-class DocTypePermission(Entity):
-    """
-    """
-
-    using_options(tablename='dtpermissions')
-    doc_type = Field(String(80))
-    perm = Field(String(20))
-    channel = ManyToOne('Channel', ondelete='cascade', required=True)
-
-    def __repr__(self):
-        return "%s: %s" % (self.doc_type, _(self.perm))
-
-
-class ChannelPermissions(EntityBase):
-    pass
-
-
 setup_all(create_tables=True)
-
-j = join(
-    Channel.table,
-    DocTypePermission.table,
-    Channel.table.c.id == DocTypePermission.table.c.channel_id,
-)
-ChannelPermissions.mapper = mapper(
-    ChannelPermissions,
-    j,
-    properties={
-        'channel': relationship(Channel),
-        'channel_id': [Channel.table.c.id, DocTypePermission.table.c.channel_id],
-        'id': [DocTypePermission.table.c.id],
-    },
-)

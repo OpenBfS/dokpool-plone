@@ -2,9 +2,8 @@ from docpool.base.content.doctype import DocType
 from docpool.base.content.dpdocument import DPDocument
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers.db.model import Channel
-from docpool.transfers.db.model import DocTypePermission
+from plone import api
 from sqlalchemy import and_
-from sqlalchemy import or_
 
 
 def allowed_targets(context):
@@ -34,22 +33,20 @@ def allowed_targets(context):
 
     filter_list = (
         Channel.esd_from_uid == esd.UID(),
-        or_(
-            and_(
-                DocTypePermission.doc_type == dt_id,
-                DocTypePermission.perm != 'block',
-            ),
-            ~Channel.permissions.any(
-                DocTypePermission.doc_type == dt_id),
-        ),
     )
     q = (
         __session__.query(Channel)
-        .outerjoin(Channel.permissions)
         .filter(and_(*filter_list))
         .order_by('esd_from_title')
     )
     targets = q.all()
+
+    tf = lambda t: api.content.get(UID=t.tf_uid)
+    targets = [
+        t
+        for t in targets
+        if not (perm := tf(t).doctypePermissions.get(dt_id, False)) or perm != 'block'
+    ]
 
     if isinstance(context, DPDocument):
         mdate = context.getMdate()

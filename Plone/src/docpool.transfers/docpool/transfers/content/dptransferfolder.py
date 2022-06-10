@@ -24,8 +24,8 @@ from docpool.base.utils import queryForObjects
 from docpool.dbaccess.dbinit import __session__
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.db.model import Channel
-from docpool.transfers.db.model import DocTypePermission
 from logging import getLogger
+from persistent.mapping import PersistentMapping
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
@@ -67,6 +67,18 @@ class IDPTransferFolder(model.Schema, IFolderBase):
         source="docpool.transfers.vocabularies.Permissions",
     )
 
+    doctypePermissions = schema.Dict(
+        title=_(
+            u'label_dptransferfolder_doctypepermissions',
+            default=u'Permissions by document type',
+        ),
+        value_type=schema.Choice(
+            required=True,
+            source='docpool.transfers.vocabularies.DTPermOptions',
+        ),
+        key_type=schema.TextLine(),
+    )
+
     unknownDtDefault = schema.Choice(
         title=_(
             u'label_dptransferfolder_unknowndtdefault',
@@ -101,6 +113,10 @@ class DPTransferFolder(Container, FolderBase):
 
     security = ClassSecurityInfo()
 
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
+        self.doctypePermissions = PersistentMapping()
+
     def migrate(self):
         f = parent(self)
         if hasattr(self, '_setPortalTypeName'):
@@ -116,19 +132,8 @@ class DPTransferFolder(Container, FolderBase):
         """
         Do I specifically accept this doc type?
         """
-        channel_id = self.channelId()
-        perm = (
-            __session__.query(DocTypePermission)
-            .filter_by(channel_id=channel_id, doc_type=dt_id)
-            .all()
-        )
-        if perm:
-            if perm[0].perm != 'block':
-                return True
-            else:
-                return False
-        else:
-            return False
+        perm = self.doctypePermissions.get(dt_id, False)
+        return perm and perm != 'block'
 
     def getMatchingDocumentTypes(self, ids_only=True):
         """
@@ -147,26 +152,6 @@ class DPTransferFolder(Container, FolderBase):
 
         return execute_under_special_role(self, "Manager", doIt)
 
-    def ensureMatchingDocumentTypesInDatabase(self):
-        """
-        """
-        # print "ensureMatching"
-        channel_id = self.channelId()
-        dts = self.getMatchingDocumentTypes(ids_only=True)
-        # print dts
-        # first delete
-        permissions = self.permissions()
-        dbdts = [perm.doc_type for perm in permissions]
-        for perm in permissions:
-            if perm.doc_type not in dts:
-                __session__.delete(perm)
-        for dt in dts:
-            if dt not in dbdts:
-                p = DocTypePermission(
-                    doc_type=dt, perm="publish", channel_id=channel_id
-                )
-        __session__.flush()
-
     def getSendingESD(self):
         """
         """
@@ -177,18 +162,6 @@ class DPTransferFolder(Container, FolderBase):
         """
         """
         created(self, event=None)
-
-    def permissions(self):
-        """
-        """
-        channel_id = self.channelId()
-        permissions = (
-            __session__.query(DocTypePermission)
-            .filter_by(channel_id=channel_id)
-            .order_by(DocTypePermission.doc_type)
-            .all()
-        )
-        return permissions
 
     def channelId(self):
         """
@@ -322,7 +295,8 @@ def created(obj, event=None):
     # set the default to "publish"
     log("TransferFolder created: %s" % str(obj))
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
-        obj.ensureMatchingDocumentTypesInDatabase()
+        dts = obj.getMatchingDocumentTypes(ids_only=True)
+        obj.doctypePermissions.update(dict.fromkeys(dts, 'publish'))
         setupChannel(obj, delete=True)
 
         # Also, if the permissions include read access,
@@ -356,10 +330,6 @@ def deleted(obj, event=None):
         esd_from_uid = obj.sendingESD
         tf_uid = obj.UID()
         old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
-        permissions = obj.permissions()
-        for perm in permissions:
-            __session__.delete(perm)
-        __session__.flush()
         if old:
             __session__.delete(old)
             __session__.flush()
@@ -388,16 +358,18 @@ def transfer_folders_for(obj):
 
 @adapter(IDocType, IObjectAddedEvent)
 def doctype_added(obj, event=None):
+    dt_id = obj.getId()
     for tf in transfer_folders_for(obj):
-        tf.ensureMatchingDocumentTypesInDatabase()
+        tf.doctypePermissions.setdefault(dt_id, 'publish')
 
 
 @adapter(IDocType, IObjectRemovedEvent)
 def doctype_will_be_removed(obj, event=None):
     if event is None:
         return
+    dt_id = obj.getId()
     for tf in transfer_folders_for(event.oldParent):
-        tf.ensureMatchingDocumentTypesInDatabase()
+        tf.doctypePermissions.pop(dt_id, None)
 
 
 class ELANTransferFolder(DPTransferFolder):

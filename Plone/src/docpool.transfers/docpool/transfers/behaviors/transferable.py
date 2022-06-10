@@ -11,14 +11,12 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
-from docpool.dbaccess.dbinit import __session__
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.config import TRANSFERS_APP
 from docpool.transfers.content.transfers import determineChannels
 from docpool.transfers.content.transfers import determineTransferFolderObject
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
-from docpool.transfers.db.model import ChannelPermissions
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
 from logging import getLogger
@@ -452,16 +450,7 @@ class Transferable(FlexibleView):
             tstate = api.content.get_state(obj=dtObj)
             if tstate == 'published':  # we do this for valid types only
                 # determine the applicable permission
-                perm = (
-                    __session__.query(ChannelPermissions)
-                    .filter(
-                        ChannelPermissions.tf_uid == tf.UID(),
-                        ChannelPermissions.doc_type == dtObj.getId(),
-                    )
-                    .all()
-                )
-                if perm:
-                    perm = perm[0].perm
+                perm = tf.doctypePermissions.get(dtObj.getId())
                 dstate = api.content.get_state(self.context)
                 if dstate == 'private' and perm == 'publish':
                     api.content.transition(self.context, 'publish')

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-06-10 12:17+0000\n"
+"POT-Creation-Date: 2022-06-10 12:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,6 +201,11 @@ msgstr ""
 #. Default: "Transferred by"
 #: docpool.transfers/docpool/transfers/behaviors/transferable.py
 msgid "label_dpdocument_transferred_by"
+msgstr ""
+
+#. Default: "Permissions by document type"
+#: docpool.transfers/docpool/transfers/content/dptransferfolder.py
+msgid "label_dptransferfolder_doctypepermissions"
 msgstr ""
 
 #. Default: "Permission level"
