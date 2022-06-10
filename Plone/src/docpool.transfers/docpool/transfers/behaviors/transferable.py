@@ -14,8 +14,6 @@ from docpool.base.utils import portalMessage
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.config import TRANSFERS_APP
-from docpool.transfers.content.transfers import determineChannels
-from docpool.transfers.content.transfers import determineTransferFolderObject
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
@@ -247,6 +245,7 @@ class Transferable(FlexibleView):
         dto_transfers = dto.type_extension(TRANSFERS_APP)
         targets = [t for t in self.allowedTargets()
                    if t.id in dto_transfers.automaticTransferTargets]
+        targets = [channel.tf_uid for channel in targets]
 
         source_path = '/'.join(self.context.getPhysicalPath())
         if targets:
@@ -256,16 +255,6 @@ class Transferable(FlexibleView):
             self.transferToTargets(targets)
         else:
             logger.info('No transfer targets found for {}.'.format(source_path))
-
-    security.declareProtected("Docpool: Send Content", "manage_transfer")
-
-    def manage_transfer(self, target_ids=[]):
-        """
-        Performs the transfer for a list of Channel ids.
-        """
-        channels = determineChannels(target_ids)
-        with transferring():
-            self.transferToTargets(channels)
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -302,8 +291,8 @@ class Transferable(FlexibleView):
 
             # 1) Determine all transfer folder objects.
             for target in targets:
-                transfer_folder = determineTransferFolderObject(
-                    self.context, target)
+                transfer_folder = api.content.get(UID=target)
+                esd_to_title = transfer_folder.myDocumentPool().Title()
                 # Check permissions:
                 # a) Is my DocType accepted, are unknown DocTypes accepted?
                 udt_ok = transfer_folder.unknownDtDefault != 'block'
@@ -315,7 +304,7 @@ class Transferable(FlexibleView):
                             self.context,
                             _(u"No transfer to")
                             + " "
-                            + target.esd_to_title
+                            + esd_to_title
                             + _(". Doc type not accepted."),
                             type='error',
                         )
@@ -341,7 +330,7 @@ class Transferable(FlexibleView):
                                     self.context,
                                     _(u"No transfer to")
                                     + " "
-                                    + target.esd_to_title
+                                    + esd_to_title
                                     + _(". Unknown scenario not accepted."),
                                     type='error',
                                 )
@@ -352,7 +341,7 @@ class Transferable(FlexibleView):
                                 self.context,
                                 _(u"No transfer to")
                                 + " "
-                                + target.esd_to_title
+                                + esd_to_title
                                 + _(". Document has no scenario."),
                                 type='error',
                             )
@@ -361,7 +350,7 @@ class Transferable(FlexibleView):
                 logger.info(
                     'Transfer {} to {}.'.format(
                         '/'.join(self.context.getPhysicalPath()),
-                        target.esd_to_title,
+                        esd_to_title,
                     )
                 )
 
@@ -392,7 +381,7 @@ class Transferable(FlexibleView):
                         timestamp=timestamp,
                         user=userinfo_string,
                         scenario_ids=scenario_ids,
-                        esd_title=target.esd_to_title,
+                        esd_title=esd_to_title,
                         transferfolder_uid=transfer_folder.UID(),
                     ),
                 )
@@ -426,10 +415,10 @@ class Transferable(FlexibleView):
                         timestamp=timestamp,
                         user=userinfo_string,
                         scenario_ids=scenario_ids,
-                        esd_title=target.esd_from_title,
+                        esd_title=target.getSendingESD().Title(),
                     ),
                 )
-                msg = _('Transferred to ${target_title}', mapping={'target_title': target.esd_to_title})
+                msg = _('Transferred to ${target_title}', mapping={'target_title': esd_to_title})
                 api.portal.show_message(msg, self.request)
 
         execute_under_special_role(self.context, "Manager", doIt)

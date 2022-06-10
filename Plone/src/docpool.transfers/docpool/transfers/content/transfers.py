@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 from docpool.base.utils import _copyPaste
-from docpool.base.utils import queryForObject
-from docpool.dbaccess.dbinit import __session__
-from docpool.transfers.db.model import Channel
 from Products.CMFCore.utils import getToolByName
 
 
@@ -11,17 +8,6 @@ try:
     from docpool.elan.config import ELAN_APP
 except BaseException:
     HAS_ELAN = False
-
-
-def determineChannels(transfer_ids):
-    channels = __session__.query(Channel).filter(
-        Channel.id.in_(transfer_ids)).all()
-    return channels
-
-
-def determineTransferFolderObject(self, channel):
-    uid = channel.tf_uid
-    return queryForObject(self, UID=uid)
 
 
 def ensureDocTypeInTarget(original, copy):

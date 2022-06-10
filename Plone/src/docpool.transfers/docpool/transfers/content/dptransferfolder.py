@@ -163,17 +163,6 @@ class DPTransferFolder(Container, FolderBase):
         """
         created(self, event=None)
 
-    def channelId(self):
-        """
-        """
-        esd_from_uid = self.sendingESD
-        tf_uid = self.UID()
-        channel = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
-        if channel:
-            return channel.id
-        else:
-            return 0
-
     def grantReadAccess(self):
         """
         """

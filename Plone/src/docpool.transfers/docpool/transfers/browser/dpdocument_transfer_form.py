@@ -21,8 +21,8 @@ class TransferForm(BrowserView):
         for dpdocid in dpdocids:
             doc = self.context._getOb(dpdocid)
             dpdoc = doc.doc_extension(TRANSFERS_APP)
-            dpdoc.manage_transfer(targets)
-            log(f'Transfer "{doc.title}" to ChannelIDs {targets}')
+            dpdoc.transferToTargets(targets)
+            log(f'Transfer "{doc.title}" to transfer folders {targets}')
 
         msg = _('${transferred} Items transferred!', mapping={'transferred': len(dpdocids)})
         api.portal.show_message(msg, request)
@@ -49,4 +49,10 @@ class TransferForm(BrowserView):
                 targets.extend(allowed)
                 items.append(obj)
 
-        return {'items': items, 'targets': set(targets)}
+        return dict(
+            items=items,
+            targets=[
+                dict(id=channel.tf_uid, esd_to_title=channel.esd_to_title)
+                for channel in set(targets)
+            ]
+        )
