@@ -7,7 +7,10 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import setRoles
+from plone.app.testing import login
 from plone.app.testing import TEST_USER_ID
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.dexterity.events import EditFinishedEvent
 from plone.testing import z2
 from zope.event import notify
@@ -28,18 +31,36 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.elan
         import docpool.theme
         import docpool.menu
-        import wsapi4plone.core
+        import docpool.users
+        import docpool.localbehavior
         import elan.policy
+        import eea.facetednavigation
+        import Products.CMFFormController
+        import plone.app.caching
+        import docpool.dashboard
         import docpool.doksys
+        import docpool.caching
+        import elan.esd
+        import docpool.transfers
+        import elan.sitrep
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.menu)
-        self.loadZCML(package=wsapi4plone.core)
+        self.loadZCML(package=docpool.users)
+        self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.doksys)
+        self.loadZCML(package=docpool.dashboard)
+        self.loadZCML(package=docpool.caching)
+        self.loadZCML(package=elan.esd)
+        self.loadZCML(package=docpool.transfers)
+        self.loadZCML(package=elan.sitrep)
+        self.loadZCML(package=eea.facetednavigation)
+        self.loadZCML(package=Products.CMFFormController)
+        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=docpool.event)
 
     def setUpPloneSite(self, portal):

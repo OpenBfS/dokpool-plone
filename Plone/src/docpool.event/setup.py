@@ -33,6 +33,7 @@ setup(
         # -*- Extra requirements: -*-
         'setuptools',
         'pygeoif',
+        'Products.CMFFormController',
     ],
     entry_points="""
       # -*- Entry points: -*-

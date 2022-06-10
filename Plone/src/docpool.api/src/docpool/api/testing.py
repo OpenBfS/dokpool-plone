@@ -19,10 +19,8 @@ class DocpoolApiLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        import wsapi4elan.core
         import plone.restapi
         self.loadZCML(package=plone.restapi)
-        self.loadZCML(package=wsapi4elan.core)
         self.loadZCML(package=docpool.api)
 
     def setUpPloneSite(self, portal):
@@ -36,13 +34,24 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        import wsapi4elan.core
         import plone.restapi
         import docpool.rei
         import elan.policy
         import docpool.transfers
+        import docpool.caching
+        import plone.app.caching
+        import docpool.theme
+        import docpool.base
+        import docpool.dashboard
+        import docpool.users
+        import docpool.localbehavior
+        import docpool.elan
+        import eea.facetednavigation
+        import Products.CMFFormController
+        import elan.esd
+        import elan.sitrep
+
         self.loadZCML(package=plone.restapi)
-        self.loadZCML(package=wsapi4elan.core)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=docpool.api)
         self.loadZCML(package=docpool.menu)
@@ -50,6 +59,19 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.event)
         self.loadZCML(package=elan.policy)
+        self.loadZCML(package=docpool.caching)
+        self.loadZCML(package=plone.app.caching)
+        self.loadZCML(package=docpool.theme)
+        self.loadZCML(package=docpool.base)
+        self.loadZCML(package=docpool.dashboard)
+        self.loadZCML(package=docpool.users)
+        self.loadZCML(package=docpool.localbehavior)
+        self.loadZCML(package=docpool.elan)
+        self.loadZCML(package=eea.facetednavigation)
+        self.loadZCML(package=Products.CMFFormController)
+        self.loadZCML(package=elan.esd)
+        self.loadZCML(package=elan.sitrep)
+
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.rei)
 

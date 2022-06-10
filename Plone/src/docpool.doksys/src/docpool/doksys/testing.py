@@ -23,13 +23,20 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         import docpool.event
         import docpool.elan
         import docpool.transfers
-        import wsapi4plone.core
+        import docpool.transfers
+        import docpool.users
+        import docpool.localbehavior
+        import eea.facetednavigation
+        import Products.CMFFormController
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.event)
         # required since we need to be able to add DBTranfers
         self.loadZCML(package=docpool.transfers)
-        self.loadZCML(package=wsapi4plone.core)
+        self.loadZCML(package=docpool.users)
+        self.loadZCML(package=docpool.localbehavior)
+        self.loadZCML(package=eea.facetednavigation)
+        self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=docpool.doksys)
 
     def setUpPloneSite(self, portal):

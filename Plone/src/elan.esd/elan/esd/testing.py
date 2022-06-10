@@ -30,8 +30,16 @@ class ElanESDLayer(PloneSandboxLayer):
         import docpool.elan
         import docpool.theme
         import docpool.menu
-        import wsapi4plone.core
         import elan.policy
+        import docpool.users
+        import docpool.localbehavior
+        import eea.facetednavigation
+        import Products.CMFFormController
+        import plone.app.caching
+        import docpool.dashboard
+        import docpool.caching
+        import docpool.transfers
+        import elan.sitrep
         import elan.esd
         import docpool.doksys
         self.loadZCML(package=docpool.base)
@@ -40,8 +48,16 @@ class ElanESDLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.menu)
-        self.loadZCML(package=wsapi4plone.core)
         self.loadZCML(package=elan.policy)
+        self.loadZCML(package=docpool.users)
+        self.loadZCML(package=docpool.localbehavior)
+        self.loadZCML(package=eea.facetednavigation)
+        self.loadZCML(package=Products.CMFFormController)
+        self.loadZCML(package=plone.app.caching)
+        self.loadZCML(package=docpool.dashboard)
+        self.loadZCML(package=docpool.caching)
+        self.loadZCML(package=docpool.transfers)
+        self.loadZCML(package=elan.sitrep)
         self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=docpool.event)

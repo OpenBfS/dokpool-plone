@@ -4,6 +4,7 @@ from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.base.utils import get_installer
 
 import unittest
 
@@ -16,11 +17,11 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer = get_installer(self.portal)
 
     def test_product_installed(self):
         """Test if docpool.doksys is installed."""
-        self.assertTrue(self.installer.isProductInstalled('docpool.doksys'))
+        self.assertTrue(self.installer.is_product_installed('docpool.doksys'))
 
     def test_browserlayer(self):
         """Test that IDocpoolDoksysLayer is registered."""
@@ -36,15 +37,15 @@ class TestUninstall(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer = get_installer(self.portal)
         roles_before = api.user.get_roles(TEST_USER_ID)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer.uninstallProducts(['docpool.doksys'])
+        self.installer.uninstall_product('docpool.doksys')
         setRoles(self.portal, TEST_USER_ID, roles_before)
 
     def test_product_uninstalled(self):
         """Test if docpool.doksys is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled('docpool.doksys'))
+        self.assertFalse(self.installer.is_product_installed('docpool.doksys'))
 
     def test_browserlayer_removed(self):
         """Test that IDocpoolDoksysLayer is removed."""

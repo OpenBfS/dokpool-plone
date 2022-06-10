@@ -8,6 +8,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.z3cform.interfaces import IPloneFormLayer
+from plone.base.utils import get_installer
 from zope.interface.declarations import alsoProvides
 import unittest
 
@@ -20,11 +21,11 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer = get_installer(self.portal)
 
     def test_product_installed(self):
         """Test if docpool.api is installed."""
-        self.assertTrue(self.installer.isProductInstalled('docpool.api'))
+        self.assertTrue(self.installer.is_product_installed('docpool.api'))
 
     def test_browserlayer(self):
         """Test that IDocpoolApiLayer is registered."""
@@ -40,15 +41,15 @@ class TestUninstall(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer = get_installer(self.portal)
         roles_before = api.user.get_roles(TEST_USER_ID)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer.uninstallProducts(['docpool.api'])
+        self.installer.uninstall_product('docpool.api')
         setRoles(self.portal, TEST_USER_ID, roles_before)
 
     def test_product_uninstalled(self):
         """Test if docpool.api is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled('docpool.api'))
+        self.assertFalse(self.installer.is_product_installed('docpool.api'))
 
     def test_browserlayer_removed(self):
         """Test that IDocpoolApiLayer is removed."""

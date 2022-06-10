@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from docpool.rei.testing import DOCPOOL_REI_FUNCTIONAL_FULL_TESTING  # noqa
 from docpool.rei.testing import DOCPOOL_REI_INTEGRATION_TESTING  # noqa
-from plone import api
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 import unittest
@@ -16,7 +14,6 @@ class TestVocabularies(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_authority_vocabulary(self):
         factory = getUtility(

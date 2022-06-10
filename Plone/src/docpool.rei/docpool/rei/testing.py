@@ -20,9 +20,15 @@ class DocpoolReiLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import wsapi4elan.core
-        self.loadZCML(package=wsapi4elan.core)
+        import Products.CMFFormController
+        import docpool.users
+        import docpool.localbehavior
+        import eea.facetednavigation
         self.loadZCML(package=docpool.base)
+        self.loadZCML(package=Products.CMFFormController)
+        self.loadZCML(package=docpool.users)
+        self.loadZCML(package=docpool.localbehavior)
+        self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=docpool.rei)
 
     def setUpPloneSite(self, portal):
@@ -37,11 +43,9 @@ class DocpoolReiCleanLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import wsapi4elan.core
         import docpool.rei
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.rei)
-        self.loadZCML(package=wsapi4elan.core)
 
 
     def setUpPloneSite(self, portal):

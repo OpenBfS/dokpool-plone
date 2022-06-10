@@ -45,6 +45,7 @@ setup(
         'setuptools',
         'z3c.jbot',
         'docpool.event',
+        'Products.CMFFormController',
     ],
     extras_require={
         'test': [
