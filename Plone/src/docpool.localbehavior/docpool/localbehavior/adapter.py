@@ -52,7 +52,7 @@ def isSupported(available_apps, behavior_interface):
     if behavior_interface.extends(IExtension):
         if available_apps:
             return set(
-                BEHAVIOR_REGISTRY.get(behavior_interface.__identifier__)
+                BEHAVIOR_REGISTRY.get(behavior_interface.__identifier__, [])
             ).intersection(available_apps)
         else:
             return False
