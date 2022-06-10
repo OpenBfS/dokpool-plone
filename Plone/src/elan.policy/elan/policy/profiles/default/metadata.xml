@@ -8,7 +8,6 @@
         <dependency>profile-docpool.base:default</dependency>
         <dependency>profile-docpool.dashboard:default</dependency>
         <dependency>profile-docpool.users:default</dependency>
-        <dependency>profile-docpool.dbaccess:default</dependency>
         <dependency>profile-docpool.config:default</dependency>
         <dependency>profile-docpool.caching:default</dependency>
         <dependency>profile-docpool.elan:default</dependency>

@@ -127,16 +127,16 @@ class Transferable(FlexibleView):
 
     transferred = property(_get_transferred, _set_transferred)
 
-    def _get_transferLog(self):
+    @property
+    def transferLog(self):
         return self.context.transferLog
 
-    def _set_transferLog(self, value):
+    @transferLog.setter
+    def transferLog(self, value):
         if not value:
             return
         context = aq_inner(self.context)
         context.transferLog = value
-
-    transferLog = property(_get_transferLog, _set_transferLog)
 
     @property
     def sender_log(self):
@@ -177,7 +177,7 @@ class Transferable(FlexibleView):
         """Query metadata of past transfers ("transfer events") of the context object.
         """
         if self.context.restrictedTraverse("@@context_helpers").is_archive():
-            logRaw = self.context.transferLog
+            logRaw = self.transferLog
             logRaw = logRaw and logRaw.replace(
                 "datetime.datetime", "datetime") or ""
             return eval(logRaw)
@@ -185,10 +185,10 @@ class Transferable(FlexibleView):
         else:
             if self.transferred:
                 type_ = 'receive'
-                events = reversed(self.context.receiver_log)
+                events = reversed(self.receiver_log)
             else:
                 type_ = 'send'
-                events = reversed(self.context.sender_log)
+                events = reversed(self.sender_log)
                 return [
                     {
                         "type": type_,
@@ -407,7 +407,7 @@ class Transferable(FlexibleView):
                         timestamp=timestamp,
                         user=userinfo_string,
                         scenario_ids=scenario_ids,
-                        esd_title=target.getSendingESD().Title(),
+                        esd_title=transfer_folder.getSendingESD().Title(),
                     ),
                 )
                 msg = _('Transferred to ${target_title}', mapping={'target_title': esd_to_title})

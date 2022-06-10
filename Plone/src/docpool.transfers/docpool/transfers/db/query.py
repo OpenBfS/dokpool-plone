@@ -1,6 +1,6 @@
 from docpool.base.content.doctype import DocType
 from docpool.base.content.dpdocument import DPDocument
-from docpool.transfers.dptransferfolder import IDPTransferFolder
+from docpool.transfers.content.dptransferfolder import IDPTransferFolder
 from plone import api
 
 
@@ -13,6 +13,10 @@ def allowed_targets(context):
     and, if context is a document,
         my current version must not have been transferred.
     """
+    from docpool.transfers.behaviors.transferable import ITransferable
+    adapted = ITransferable(context, None)
+    if not adapted:
+        return []
     try:
         esd = context.myDocumentPool()
     except AttributeError:
@@ -42,7 +46,7 @@ def allowed_targets(context):
         mdate = context.getMdate()
         sent_to_since_last_modified = set(
             entry['transferfolder_uid']
-            for entry in context.sender_log
+            for entry in adapted.sender_log
             if entry['timestamp'] > mdate
         )
         targets = [t for t in targets if t not in sent_to_since_last_modified]

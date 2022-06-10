@@ -38,7 +38,6 @@ setup(
         'docpool.config',
         'docpool.video',
         'docpool.caching',
-        'docpool.dbaccess',
     ],
     entry_points="""
       # -*- Entry points: -*-
