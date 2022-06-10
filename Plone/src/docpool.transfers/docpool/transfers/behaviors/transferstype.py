@@ -16,10 +16,10 @@ explanation on the statements below.
 from Acquisition import aq_inner
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.db.query import allowed_targets
+from plone import api
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from Products.CMFPlone.utils import safe_unicode
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -31,8 +31,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 @provider(IContextSourceBinder)
 def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
+    target_title = lambda target: api.content.get(UID=target).from_to_title()
     return SimpleVocabulary([
-        SimpleTerm(t.tf_uid, t.tf_uid, safe_unicode(t)) for t in targets])
+        SimpleTerm(t.tf_uid, t.tf_uid, target_title(t.tf_uid)) for t in targets])
 
 
 @provider(IFormFieldProvider)
@@ -88,7 +89,7 @@ class TransfersType(object):
         allowed = {target.tf_uid: target for target in allowed_targets(self.context)}
         return sorted(
             value.intersection(allowed),
-            key=lambda tid: safe_unicode(allowed[tid])
+            key=lambda target: api.content.get(UID=target).from_to_title()
         )
 
     @automaticTransferTargets.setter

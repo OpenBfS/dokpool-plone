@@ -40,12 +40,5 @@ class Channel(Entity):
     esd_to_title = Field(Unicode(100))
     timestamp = Field(DateTime(), default=datetime.now)
 
-    def __repr__(self):
-        return "%s --> %s (%s)" % (
-            self.esd_from_title and self.esd_from_title.encode('utf-8'),
-            self.esd_to_title and self.esd_to_title.encode('utf-8'),
-            self.title and self.title.encode('utf-8'),
-        )
-
 
 setup_all(create_tables=True)

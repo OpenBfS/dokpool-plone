@@ -117,6 +117,12 @@ class DPTransferFolder(Container, FolderBase):
         super().__init__(*args, **kw)
         self.doctypePermissions = PersistentMapping()
 
+    # TODO should be indexed
+    def from_to_title(self):
+        from_title = self.getSendingESD().Title()
+        to_title = self.myDocumentPool().Title()
+        return f'{from_title} --> {to_title} ({self.title})'
+
     def migrate(self):
         f = parent(self)
         if hasattr(self, '_setPortalTypeName'):
