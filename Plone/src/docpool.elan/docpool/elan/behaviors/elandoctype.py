@@ -3,7 +3,7 @@ from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
 from docpool.base.utils import back_references
 from docpool.base.utils import queryForObject
-from elan.esd import DocpoolMessageFactory as _
+from docpool.elan import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFPlone.utils import safe_hasattr

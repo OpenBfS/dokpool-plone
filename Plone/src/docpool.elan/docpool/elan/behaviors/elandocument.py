@@ -7,7 +7,7 @@ from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
 from docpool.elan.behaviors.elandoctype import IELANDocType
 from docpool.elan.config import ELAN_APP
-from elan.esd import DocpoolMessageFactory as _
+from docpool.elan import DocpoolMessageFactory as _
 from plone import api
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
