@@ -49,10 +49,11 @@ class TransferForm(BrowserView):
                 targets.extend(allowed)
                 items.append(obj)
 
+        to_title = lambda target: api.content.get(UID=target).myDocumentPool().Title()
         return dict(
             items=items,
             targets=[
-                dict(id=channel.tf_uid, esd_to_title=channel.esd_to_title)
+                dict(id=channel.tf_uid, esd_to_title=to_title(channel.tf_uid))
                 for channel in set(targets)
             ]
         )
