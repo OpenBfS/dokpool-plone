@@ -26,9 +26,11 @@ class ViewletTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
 
+        docpool = self.portal['test_docpool']
+        self.container = docpool['contentconfig']['scen']['routinemode']
         with api.env.adopt_roles(['Manager']):
             self.journal = api.content.create(
-                self.portal, 'Journal', 'journal')
+                self.container, 'Journal', 'journal')
 
     def _get_viewlet_manager(self):
         context = self.journal
@@ -51,9 +53,7 @@ class ViewletTestCase(unittest.TestCase):
         manager.update()
         self.assertEqual(len(manager.viewlets), 2)
         viewlets = [v.__name__ for v in manager.viewlets]
-        self.assertListEqual(
-            viewlets, [
-                u'plone.path_bar', u'elan.journal.header'])
+        self.assertListEqual(viewlets, [u'docpool.path_bar', u'elan.journal.header'])
 
     def test_viewlet_is_available(self):
         from plone.namedfile.file import NamedBlobImage
@@ -73,7 +73,7 @@ class ViewletTestCase(unittest.TestCase):
 
         # journalentry view
         self.request.path = ['1462277979.55']
-        self.request['URL'] = 'http://nohost/plone/journal/journalentry/1462277979.55'
+        self.request['URL'] = 'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/journalentry/1462277979.55'
         view = api.content.get_view('journalentry', self.journal, self.request)
         self.request['PARENTS'][0] = view
         self.assertFalse(viewlet.available())

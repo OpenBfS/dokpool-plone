@@ -21,9 +21,11 @@ class ViewTestCase(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         alsoProvides(self.request, IBrowserLayer)
+        docpool = self.portal['test_docpool']
+        self.container = docpool['contentconfig']['scen']['routinemode']
         with api.env.adopt_roles(['Manager']):
             self.journal = api.content.create(
-                self.portal, 'Journal', 'journal')
+                self.container, 'Journal', 'journal')
 
 
 class DefaultViewTestCase(ViewTestCase):
@@ -56,7 +58,7 @@ class DefaultViewTestCase(ViewTestCase):
         _create_journalentries(self.journal, 1)
         timestamp = self.journal.get_journalentries()[0]['timestamp']
         rendered = self.view()
-        link = 'http://nohost/plone/journal/journalentry/{0}'.format(timestamp)
+        link = 'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/journalentry/{0}'.format(timestamp)
         self.assertIn('<a href="{0}">'.format(link), rendered)
 
 
