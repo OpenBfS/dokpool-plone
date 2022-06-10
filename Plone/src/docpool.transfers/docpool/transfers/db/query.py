@@ -1,9 +1,7 @@
 from docpool.base.content.doctype import DocType
 from docpool.base.content.dpdocument import DPDocument
-from docpool.dbaccess.dbinit import __session__
-from docpool.transfers.db.model import Channel
+from docpool.transfers.dptransferfolder import IDPTransferFolder
 from plone import api
-from sqlalchemy import and_
 
 
 def allowed_targets(context):
@@ -31,21 +29,13 @@ def allowed_targets(context):
             dto = dto_()
     dt_id = dto.id if dto else '---'
 
-    filter_list = (
-        Channel.esd_from_uid == esd.UID(),
-    )
-    q = (
-        __session__.query(Channel)
-        .filter(and_(*filter_list))
-        .order_by('esd_from_title')
-    )
-    targets = q.all()
+    brains = api.content.find(object_provides=IDPTransferFolder, sendingESD=esd.UID())
 
-    tf = lambda t: api.content.get(UID=t.tf_uid)
+    dt_perm = lambda brain: brain.getObject().doctypePermissions.get(dt_id, False)
     targets = [
-        t
-        for t in targets
-        if not (perm := tf(t).doctypePermissions.get(dt_id, False)) or perm != 'block'
+        brain.UID
+        for brain in brains
+        if not (perm := dt_perm(brain)) or perm != 'block'
     ]
 
     if isinstance(context, DPDocument):
@@ -55,6 +45,6 @@ def allowed_targets(context):
             for entry in context.sender_log
             if entry['timestamp'] > mdate
         )
-        targets = [t for t in targets if t.tf_uid not in sent_to_since_last_modified]
+        targets = [t for t in targets if t not in sent_to_since_last_modified]
 
     return targets

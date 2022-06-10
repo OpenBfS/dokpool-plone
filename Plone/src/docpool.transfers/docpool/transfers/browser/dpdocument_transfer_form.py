@@ -53,7 +53,7 @@ class TransferForm(BrowserView):
         return dict(
             items=items,
             targets=[
-                dict(id=channel.tf_uid, esd_to_title=to_title(channel.tf_uid))
-                for channel in set(targets)
+                dict(id=target, esd_to_title=to_title(target))
+                for target in set(targets)
             ]
         )

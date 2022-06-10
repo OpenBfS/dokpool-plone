@@ -33,7 +33,7 @@ def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
     target_title = lambda target: api.content.get(UID=target).from_to_title()
     return SimpleVocabulary([
-        SimpleTerm(t.tf_uid, t.tf_uid, target_title(t.tf_uid)) for t in targets])
+        SimpleTerm(t, t, target_title(t)) for t in targets])
 
 
 @provider(IFormFieldProvider)
@@ -86,7 +86,7 @@ class TransfersType(object):
         if not value:
             # avoid unnecessary interaction with the zope.sqlalchemy datamanager
             return []
-        allowed = {target.tf_uid: target for target in allowed_targets(self.context)}
+        allowed = {target for target in allowed_targets(self.context)}
         return sorted(
             value.intersection(allowed),
             key=lambda target: api.content.get(UID=target).from_to_title()
@@ -102,6 +102,6 @@ class TransfersType(object):
         context = aq_inner(self.context)
         unaffected = set(getattr(context, 'automaticTransferTargets', ()) or ())
         if unaffected:
-            allowed = (target.tf_uid for target in allowed_targets(context))
+            allowed = (target for target in allowed_targets(context))
             unaffected.difference_update(allowed)
         context.automaticTransferTargets = tuple(unaffected.union(value))

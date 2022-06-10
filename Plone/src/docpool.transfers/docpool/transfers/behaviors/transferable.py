@@ -246,7 +246,7 @@ class Transferable(FlexibleView):
         # Intersect allowed and automatic transfer targets while keeping the order of
         # allowed targets and computing the automatic ones only once.
         automatic = set(dto_transfers.automaticTransferTargets)
-        targets = [t.tf_uid for t in self.allowedTargets() if t.tf_uid in automatic]
+        targets = [t for t in self.allowedTargets() if t in automatic]
 
         source_path = '/'.join(self.context.getPhysicalPath())
         if targets:

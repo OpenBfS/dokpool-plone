@@ -547,7 +547,7 @@ class DocpoolSetup(BrowserView):
         doc_to_transfer = docpool_bund['content']['Groups']['bund_group1']['eine-bodenprobe']
         adapted = ITransferable(doc_to_transfer)
         allowed = adapted.allowedTargets()
-        target = allowed[0].tf_uid
+        target = allowed[0]
         adapted.transferToTargets(targets=[target])
         import_file_path = os.path.join(
             os.path.dirname(__file__), "../profiles/default/rei_search.xml"
