@@ -325,7 +325,7 @@ class REIDoc(FlexibleView):
 
     def mstids_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.MStIDVocabulary')()
-        return u', '.join(voc.getTerm(i).title for i in self.MStIDs)
+        return u', '.join(voc.getTerm(i).title for i in getattr(self, "MStIDs", []))
 
     def period_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
