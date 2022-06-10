@@ -25,14 +25,8 @@
       directory="profiles/default"
       description="Installs the docpool.config add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
       />
-
-  <genericsetup:importStep
-      name="docpool.config-postInstall"
-      title="docpool.config post_install import step"
-      description="Post install import step from docpool.config"
-      handler=".setuphandlers.post_install">
-  </genericsetup:importStep>
 
   <genericsetup:registerProfile
       name="uninstall"
@@ -40,13 +34,7 @@
       directory="profiles/uninstall"
       description="Uninstalls the docpool.config add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
       />
-
-  <genericsetup:importStep
-      name="docpool.config-uninstall"
-      title="docpool.config uninstall import step"
-      description="Import step run during ininstalling docpool.config"
-      handler=".setuphandlers.uninstall">
-  </genericsetup:importStep>
 
 </configure>
