@@ -5,7 +5,6 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from docpool.elan.config import ELAN_APP
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from Products.CMFCore.utils import getToolByName
@@ -632,6 +631,8 @@ DTYPES = [
 def connectTypesAndCategories(self):
     """
     """
+    from docpool.elan.config import ELAN_APP
+
 
     # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
     try:
