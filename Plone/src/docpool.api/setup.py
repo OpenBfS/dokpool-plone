@@ -44,7 +44,6 @@ setup(
         # -*- Extra requirements: -*-
         'setuptools',
         'z3c.jbot',
-        'wsapi4elan.core',
         'plone.restapi',
     ],
     extras_require={
