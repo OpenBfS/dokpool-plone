@@ -21,15 +21,12 @@ from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
-from docpool.dbaccess.dbinit import __session__
 from docpool.transfers import DocpoolMessageFactory as _
-from docpool.transfers.db.model import Channel
 from logging import getLogger
 from persistent.mapping import PersistentMapping
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import parent
@@ -256,43 +253,14 @@ class DPTransferFolder(Container, FolderBase):
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
-def setupChannel(obj, delete=False):
-    esd_from_uid = obj.sendingESD
-    tf_uid = obj.UID()
-    old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
-    if old and delete:
-        __session__.delete(old)
-
-    if not old or delete:
-        esd = obj.myDocumentPool()
-        cat = getToolByName(obj, 'portal_catalog')
-        from_esd = cat.unrestrictedSearchResults(
-            {"portal_type": "DocumentPool", "UID": esd_from_uid}
-        )
-        from_esd = from_esd[0]
-        c = Channel(
-            esd_from_uid=esd_from_uid,
-            esd_from_title=from_esd.Title,
-            tf_uid=tf_uid,
-            title=obj.Title(),
-            esd_to_title=esd.Title(),
-        )
-        __session__.flush()
-    else:
-        c = old
-    return c
-
-
 @adapter(IDPTransferFolder, IObjectAddedEvent)
 def created(obj, event=None):
-    # Initialize all channel settings in the database.
     # For all document types shared between the two ESDs
     # set the default to "publish"
     log("TransferFolder created: %s" % str(obj))
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
         dts = obj.getMatchingDocumentTypes(ids_only=True)
         obj.doctypePermissions.update(dict.fromkeys(dts, 'publish'))
-        setupChannel(obj, delete=True)
 
         # Also, if the permissions include read access,
         # set the local Reader role for the members of
@@ -309,8 +277,6 @@ def updated(obj, event=None):
     log("TransferFolder updated: %s" % str(obj))
 
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
-        setupChannel(obj, delete=False)
-
         if obj.permLevel == 'read/write':
             obj.grantReadAccess()
         else:
@@ -319,16 +285,8 @@ def updated(obj, event=None):
 
 @adapter(IDPTransferFolder, IObjectRemovedEvent)
 def deleted(obj, event=None):
-    # Delete all channel settings from the database.
     log("TransferFolder deleted: %s" % str(obj))
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
-        esd_from_uid = obj.sendingESD
-        tf_uid = obj.UID()
-        old = Channel.get_by(esd_from_uid=esd_from_uid, tf_uid=tf_uid)
-        if old:
-            __session__.delete(old)
-            __session__.flush()
-
         if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
                 event.object):
             # do not modify content from the site or docpool that will be deleted

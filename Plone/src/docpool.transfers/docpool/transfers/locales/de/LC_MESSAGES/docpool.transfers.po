@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-06-10 12:18+0000\n"
+"POT-Creation-Date: 2022-06-10 16:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,18 +34,6 @@ msgstr ". Unbekanntes Ereignis nicht akzeptiert."
 msgid "Area for Transfer Folders"
 msgstr "Bereich für Transferordner"
 
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Channels"
-msgstr "Kanäle"
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Doc. type (short)"
-msgstr "Dok. Typ (kurz)"
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Doc. type short"
-msgstr "Dok. Typ (kurz)"
-
 #: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt
 msgid "Edit Permissions"
 msgstr "Berechtigungen bearbeiten"
@@ -66,11 +54,6 @@ msgstr "Keine Einträge ausgewählt / keine Ziele verfügbar."
 msgid "No transfer to"
 msgstr "Keine Übertragung zu"
 
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Permission"
-msgstr "Berechtigung"
-
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/profiles/default/types/DPTransferFolder.xml
 msgid "Permissions"
 msgstr "Berechtigungen"
@@ -82,14 +65,6 @@ msgstr "Auswählen"
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 msgid "The following items will be transferred:"
 msgstr "Folgende Inhalte werden übertragen:"
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Timestamp"
-msgstr "Zeitstempel"
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Title"
-msgstr "Titel"
 
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 #: docpool.transfers/docpool/transfers/browser/transfers_macros.pt
@@ -173,7 +148,6 @@ msgstr ""
 msgid "docpool.transfers"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "don't accept"
 msgstr "nicht annehmen"
@@ -228,12 +202,10 @@ msgstr "Default für unbekannte Dokumenttypen"
 msgid "label_dptransferfolder_unknownscendefault"
 msgstr "Default für unbekannte Ereignisse"
 
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "needs confirmation"
 msgstr "benötigt Bestätigung"
 
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "publish immediately"
 msgstr "Sofort veröffentlichen"

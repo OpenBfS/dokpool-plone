@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-06-10 12:18+0000\n"
+"POT-Creation-Date: 2022-06-10 16:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,18 +37,6 @@ msgstr ""
 msgid "Area for Transfer Folders"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Channels"
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Doc. type (short)"
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Doc. type short"
-msgstr ""
-
 #: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt
 msgid "Edit Permissions"
 msgstr ""
@@ -69,11 +57,6 @@ msgstr ""
 msgid "No transfer to"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Permission"
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/profiles/default/types/DPTransferFolder.xml
 msgid "Permissions"
 msgstr ""
@@ -84,14 +67,6 @@ msgstr ""
 
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
 msgid "The following items will be transferred:"
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Timestamp"
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/db/forms.py
-msgid "Title"
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt
@@ -176,7 +151,6 @@ msgstr ""
 msgid "docpool.transfers"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "don't accept"
 msgstr ""
@@ -231,12 +205,10 @@ msgstr ""
 msgid "label_dptransferfolder_unknownscendefault"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "needs confirmation"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/db/forms.py
 #: docpool.transfers/docpool/transfers/vocabularies.py
 msgid "publish immediately"
 msgstr ""
