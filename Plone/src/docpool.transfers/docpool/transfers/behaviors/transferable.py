@@ -243,9 +243,10 @@ class Transferable(FlexibleView):
         """
         dto = self.context.docTypeObj()
         dto_transfers = dto.type_extension(TRANSFERS_APP)
-        targets = [t for t in self.allowedTargets()
-                   if t.id in dto_transfers.automaticTransferTargets]
-        targets = [channel.tf_uid for channel in targets]
+        # Intersect allowed and automatic transfer targets while keeping the order of
+        # allowed targets and computing the automatic ones only once.
+        automatic = set(dto_transfers.automaticTransferTargets)
+        targets = [t.tf_uid for t in self.allowedTargets() if t.tf_uid in automatic]
 
         source_path = '/'.join(self.context.getPhysicalPath())
         if targets:
