@@ -160,7 +160,7 @@ class ELANDocument(FlexibleView):
     def cat_convert(self):
         """
         """
-        docp = self.aq_parent
+        docp = self.context
         while docp.id != 'content':
             docp = docp.aq_parent
         docp = docp.aq_parent
