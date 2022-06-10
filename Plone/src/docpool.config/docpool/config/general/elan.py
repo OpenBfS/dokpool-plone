@@ -73,6 +73,8 @@ def createBasicPortalStructure(plonesite, fresh):
     """
     """
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
+    # RichText needs to be set here to prevent test-isolation issues!
+    plonesite.esd['front-page'].text = RichTextValue(u'', 'text/html', 'text/x-html-safe')
 
 
 def fillBasicPortalStructure(plonesite, fresh):
@@ -91,8 +93,6 @@ def setFrontpage(self):
     self.esd.setDefaultPage("front-page")
 
 
-FRONTPAGE = RichTextValue(u"", 'text/plain', 'text/html')
-
 BASICSTRUCTURE = [
     {
         TYPE: 'ELANCurrentSituation',
@@ -103,7 +103,8 @@ BASICSTRUCTURE = [
                 TYPE: 'Document',
                 TITLE: u'Elektronische Lagedarstellung',
                 ID: 'front-page',
-                'text': FRONTPAGE,
+                # RichText needs to be set in a method to prevent test-isolation issues!
+                # 'text': RichTextValue('', 'text/html', 'text/x-html-safe'),
                 CHILDREN: [],
             }
         ],
