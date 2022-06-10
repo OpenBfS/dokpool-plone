@@ -262,6 +262,13 @@ def configureFiltering(self):
 def createGroups(self):
     gdata = getToolByName(self, 'portal_groupdata')
     try:
+        self.possibleDocTypes
+    except AttributeError:
+        # The current skin is not initialized during setup of test-layers in Plone 6
+        # Trigger setup the current skin
+        self.setupCurrentSkin(self.REQUEST)
+    try:
+        # possibleDocTypes: FSPythonScript that is called to provide options
         gdata.manage_addProperty(
             "allowedDocTypes", "possibleDocTypes", "multiple selection"
         )
@@ -269,6 +276,7 @@ def createGroups(self):
         pass
     configureGroups(self)
     try:
+        # possibleDocumentPools: FSPythonScript that is called to provide options
         gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
     except BaseException:
         pass
