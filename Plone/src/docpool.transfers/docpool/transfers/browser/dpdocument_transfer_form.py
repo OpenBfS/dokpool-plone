@@ -1,21 +1,20 @@
-from plone import api
-from Products.CMFPlone.utils import log
-from docpool.transfers.config import TRANSFERS_APP
-from Products.Five.browser import BrowserView
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.behaviors.transferable import ITransferable
+from docpool.transfers.config import TRANSFERS_APP
+from plone import api
+from Products.CMFPlone.utils import log
+from Products.Five.browser import BrowserView
 
 
 class TransferForm(BrowserView):
-
     def __call__(self, dpdocids=None, targets=None):
         request = self.request
         self.dpdocids = dpdocids
-        if not request.form.get('form.button.submit', None):
+        if not request.form.get("form.button.submit", None):
             return self.index()
 
         if not dpdocids or not targets:
-            api.portal.show_message(_('No items or targets selected!'), request)
+            api.portal.show_message(_("No items or targets selected!"), request)
             return self.index()
 
         for dpdocid in dpdocids:
@@ -24,7 +23,9 @@ class TransferForm(BrowserView):
             dpdoc.transferToTargets(targets)
             log(f'Transfer "{doc.title}" to transfer folders {targets}')
 
-        msg = _('${transferred} Items transferred!', mapping={'transferred': len(dpdocids)})
+        msg = _(
+            "${transferred} Items transferred!", mapping={"transferred": len(dpdocids)}
+        )
         api.portal.show_message(msg, request)
         request.response.redirect(self.context.absolute_url())
         return self.index()
@@ -33,7 +34,7 @@ class TransferForm(BrowserView):
         targets = []
         items = []
         # the folder_listing passes paths
-        paths = self.request.get('paths', [])
+        paths = self.request.get("paths", [])
         if not paths and self.dpdocids:
             # handle individual transfer
             paths = self.dpdocids
@@ -55,5 +56,5 @@ class TransferForm(BrowserView):
             targets=[
                 dict(id=target, esd_to_title=to_title(target))
                 for target in set(targets)
-            ]
+            ],
         )

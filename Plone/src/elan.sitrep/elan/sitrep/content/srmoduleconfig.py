@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRModuleConfig content type. See srmoduleconfig.py for more
 explanation on the statements below.
@@ -20,40 +20,38 @@ from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.component import adapter
 from zope.interface import implementer
 
 
 class ISRModuleConfig(model.Schema):
-    """
-    """
+    """ """
 
     modType = schema.Choice(
-        title=_('label_srmoduleconfig_modtype', default='Module Type'),
-        description=_('description_srmoduleconfig_modtype', default=''),
+        title=_("label_srmoduleconfig_modtype", default="Module Type"),
+        description=_("description_srmoduleconfig_modtype", default=""),
         required=True,
         source="elan.sitrep.vocabularies.ModuleTypes",
     )
 
     docSelection = RelationChoice(
         title=_(
-            'label_srmoduleconfig_docselection',
-            default='Collection for relevant documents',
+            "label_srmoduleconfig_docselection",
+            default="Collection for relevant documents",
         ),
         description=_(
-            'description_srmoduleconfig_docselection',
-            default='This collection defines a pre-selection of possible documents to reference within this module.',
+            "description_srmoduleconfig_docselection",
+            default="This collection defines a pre-selection of possible documents to reference within this module.",
         ),
         required=False,
         source="elan.sitrep.vocabularies.Collections",
     )
 
     textBlocks = RelationList(
-        title=_('label_srmoduleconfig_textblocks', default='Text Blocks'),
-        description=_('description_srmoduleconfig_textblocks', default=''),
+        title=_("label_srmoduleconfig_textblocks", default="Text Blocks"),
+        description=_("description_srmoduleconfig_textblocks", default=""),
         required=False,
         value_type=RelationChoice(
             title=_("Text Blocks"), source="elan.sitrep.vocabularies.TextBlocks"
@@ -62,29 +60,26 @@ class ISRModuleConfig(model.Schema):
 
     defaultTextBlocks = RelationList(
         title=_(
-            'label_srmoduletype_defaulttextblocks',
-            default='Default Text (when freshly created)',
+            "label_srmoduletype_defaulttextblocks",
+            default="Default Text (when freshly created)",
         ),
-        description=_(
-            'description_srmoduletype_defaulttextblocks',
-            default=''),
+        description=_("description_srmoduletype_defaulttextblocks", default=""),
         required=False,
         value_type=RelationChoice(
             title=_("Default Text"), source="elan.sitrep.vocabularies.TextBlocks"
         ),
     )
 
-    directives.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(docSelection="z3c.form.browser.select.SelectFieldWidget")
+    directives.widget(textBlocks="z3c.form.browser.select.CollectionSelectFieldWidget")
     directives.widget(
-        textBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
-    directives.widget(
-        defaultTextBlocks='z3c.form.browser.select.CollectionSelectFieldWidget')
+        defaultTextBlocks="z3c.form.browser.select.CollectionSelectFieldWidget"
+    )
 
 
 @implementer(ISRModuleConfig)
 class SRModuleConfig(Item):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -111,8 +106,7 @@ class SRModuleConfig(Item):
             return []
 
     def currentTextBlocks(self):
-        """
-        """
+        """ """
         return [tb.to_object for tb in (self.textBlocks or [])]
 
 

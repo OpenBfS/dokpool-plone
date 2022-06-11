@@ -12,11 +12,11 @@ def post_install(context):
     for index_name, index_type, extra in cat.enumerateIndexes():
         try:
             if index_name not in cat.indexes():
-                if index_type == 'ZCTextIndex':
+                if index_type == "ZCTextIndex":
                     extra = args(
                         doc_attr=index_name,
-                        lexicon_id='pg_lexicon',
-                        index_type='Okapi BM25 Rank',
+                        lexicon_id="pg_lexicon",
+                        index_type="Okapi BM25 Rank",
                     )
                     cat.addIndex(index_name, index_type, extra=extra)
                 else:

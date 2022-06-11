@@ -1,13 +1,15 @@
+import docpool.rei
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
-from plone.app.testing import FunctionalTesting
-from plone.app.testing import IntegrationTesting
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.app.testing import applyProfile
+from plone.app.testing import (
+    SITE_OWNER_NAME,
+    SITE_OWNER_PASSWORD,
+    FunctionalTesting,
+    IntegrationTesting,
+    PloneSandboxLayer,
+    applyProfile,
+)
 from plone.testing import z2
-import docpool.rei
 
 
 class DocpoolReiLayer(PloneSandboxLayer):
@@ -19,10 +21,11 @@ class DocpoolReiLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import Products.CMFFormController
-        import docpool.users
         import docpool.localbehavior
+        import docpool.users
         import eea.facetednavigation
+        import Products.CMFFormController
+
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=docpool.users)
@@ -31,7 +34,8 @@ class DocpoolReiLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.rei)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'docpool.rei:default')
+        applyProfile(portal, "docpool.rei:default")
+
 
 class DocpoolReiCleanLayer(PloneSandboxLayer):
 
@@ -43,32 +47,35 @@ class DocpoolReiCleanLayer(PloneSandboxLayer):
         # layer.
         import docpool.base
         import docpool.rei
+
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.rei)
 
-
     def setUpPloneSite(self, portal):
-        portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ['Manager'], [])
+        portal.acl_users.userFolderAddUser(
+            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
+        )
+
 
 DOCPOOL_REI_FIXTURE = DocpoolReiLayer()
 DOCPOOL_REI_CLEAN_FIXTURE = DocpoolReiCleanLayer()
 
 
 DOCPOOL_REI_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(DOCPOOL_REI_FIXTURE,), name='DocpoolReiLayer:IntegrationTesting'
+    bases=(DOCPOOL_REI_FIXTURE,), name="DocpoolReiLayer:IntegrationTesting"
 )
 
 DOCPOOL_REI_FUNCTIONAL_FULL_TESTING = FunctionalTesting(
     bases=(DOCPOOL_REI_CLEAN_FIXTURE,),
-    name='DocpoolReiLayer:FunctionalFullTesting',
+    name="DocpoolReiLayer:FunctionalFullTesting",
 )
 
 DOCPOOL_REI_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_REI_FIXTURE,), name='DocpoolReiLayer:FunctionalTesting'
+    bases=(DOCPOOL_REI_FIXTURE,), name="DocpoolReiLayer:FunctionalTesting"
 )
 
 
 DOCPOOL_REI_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(DOCPOOL_REI_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
-    name='DocpoolReiLayer:AcceptanceTesting',
+    name="DocpoolReiLayer:AcceptanceTesting",
 )

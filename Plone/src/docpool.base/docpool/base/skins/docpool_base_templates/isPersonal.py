@@ -8,4 +8,4 @@
 ##title=
 ##
 
-return "content" in context.getPhysicalPath() and context.getId() != 'content'
+return "content" in context.getPhysicalPath() and context.getId() != "content"

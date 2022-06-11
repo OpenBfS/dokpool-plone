@@ -2,5 +2,4 @@
 
 from zope.i18nmessageid import MessageFactory
 
-
-_ = MessageFactory('docpool.menu')
+_ = MessageFactory("docpool.menu")

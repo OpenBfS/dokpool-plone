@@ -6,11 +6,10 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 
-
-TYPE = 'type'
-TITLE = 'title'
-ID = 'id'
-CHILDREN = 'children'
+TYPE = "type"
+TITLE = "title"
+ID = "id"
+CHILDREN = "children"
 specialAttributes = (TYPE, TITLE, ID, CHILDREN)
 
 
@@ -77,10 +76,12 @@ def setAttributes(obj, objdef):
                     rel = RelationValue(to_id)
                     values.append(rel)
                 if not values:
-                    print("No values {} configured for object {} ".format(
-                        objdef[attr],
-                        objdef,
-                    ))
+                    print(
+                        "No values {} configured for object {} ".format(
+                            objdef[attr],
+                            objdef,
+                        )
+                    )
 
                 specialMethod = getattr(obj, method)
                 if callable(specialMethod):
@@ -88,9 +89,9 @@ def setAttributes(obj, objdef):
                 else:
                     setattr(obj, method, values)
             else:
-                if attr == 'setExcludeFromNav':
+                if attr == "setExcludeFromNav":
                     IExcludeFromNavigation(obj).exclude_from_nav = True
-                elif attr == 'local_behaviors':
+                elif attr == "local_behaviors":
                     lbs = ILocalBehaviorSupport(obj)
                     lbs._set_local_behaviors(objdef[attr])
                 else:
@@ -99,13 +100,12 @@ def setAttributes(obj, objdef):
 
 
 def ploneId(context, title):
-    PLONE_UTILS = getToolByName(context, 'plone_utils')
+    PLONE_UTILS = getToolByName(context, "plone_utils")
     return PLONE_UTILS.normalizeString(title)
 
 
 def _setAllowedTypes(folder, types):
-    """
-    """
+    """ """
     folder.setConstrainTypesMode(1)  # only explicitly allowed types
     folder.setLocallyAllowedTypes(types)
 

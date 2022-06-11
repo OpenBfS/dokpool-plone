@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the ContentArea content type. See contentarea.py for more
 explanation on the statements below.
@@ -19,25 +19,21 @@ from zope.interface import implementer
 
 
 class IContentArea(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(IContentArea)
 class ContentArea(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     def myContentArea(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -45,20 +41,17 @@ class ContentArea(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getGroupss(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'Groups'}
+        """ """
+        args = {"portal_type": "Groups"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getUserss(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'Users'}
+        """ """
+        args = {"portal_type": "Users"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

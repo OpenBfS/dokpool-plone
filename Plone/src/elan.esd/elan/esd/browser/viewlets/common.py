@@ -4,7 +4,6 @@ from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 
-
 allow_module("elan.esd.browser")
 allow_module("elan.esd.browser.viewlets")
 allow_module("elan.esd.browser.viewlets.common")
@@ -13,13 +12,13 @@ allow_module("elan.esd.browser.viewlets.common")
 class ELANViewlet(ViewletBase):
     def isSupported(self):
         dp_app_state = getMultiAdapter(
-            (self.context, self.request), name='dp_app_state'
+            (self.context, self.request), name="dp_app_state"
         )
         return dp_app_state.isCurrentlyActive(ELAN_APP)
 
 
 class TickerViewlet(ELANViewlet):
-    index = ViewPageTemplateFile('ticker.pt')
+    index = ViewPageTemplateFile("ticker.pt")
 
     @property
     def available(self):

@@ -5,19 +5,19 @@ For Plone 5 we need to install plone.app.contenttypes.
 from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
-from plone.app.testing import applyProfile
-from plone.app.testing import FunctionalTesting
-from plone.app.testing import IntegrationTesting
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import setRoles
-from plone.app.testing import login
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
-
-from plone.testing import z2
+from plone.app.testing import (
+    SITE_OWNER_NAME,
+    SITE_OWNER_PASSWORD,
+    TEST_USER_ID,
+    FunctionalTesting,
+    IntegrationTesting,
+    PloneSandboxLayer,
+    applyProfile,
+    login,
+    setRoles,
+)
 from plone.dexterity.events import EditFinishedEvent
+from plone.testing import z2
 from zope.event import notify
 
 
@@ -27,24 +27,25 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import docpool.base
-        import elan.journal
-        import docpool.event
-        import docpool.config
-        import docpool.elan
-        import docpool.theme
-        import docpool.menu
-        import elan.policy
-        import docpool.users
-        import docpool.localbehavior
-        import eea.facetednavigation
-        import Products.CMFFormController
-        import plone.app.caching
-        import docpool.dashboard
         import docpool.caching
-        import docpool.transfers
-        import elan.sitrep
-        import elan.esd
+        import docpool.config
+        import docpool.dashboard
         import docpool.doksys
+        import docpool.elan
+        import docpool.event
+        import docpool.localbehavior
+        import docpool.menu
+        import docpool.theme
+        import docpool.transfers
+        import docpool.users
+        import eea.facetednavigation
+        import elan.esd
+        import elan.journal
+        import elan.policy
+        import elan.sitrep
+        import plone.app.caching
+        import Products.CMFFormController
+
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.elan)
@@ -64,23 +65,23 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=docpool.event)
-        self.loadZCML('testing.zcml', package=elan.journal)
+        self.loadZCML("testing.zcml", package=elan.journal)
 
     def setUpPloneSite(self, portal):
         # required because the templates in elan.journal use skin-scripts from docpool.base
-        applyProfile(portal, 'docpool.base:default')
-        applyProfile(portal, 'elan.policy:default')
-        applyProfile(portal, 'elan.journal:default')
-        applyProfile(portal, 'elan.esd:default')
-        applyProfile(portal, 'docpool.doksys:default')
-        applyProfile(portal, 'docpool.event:default')
-        setRoles(portal, TEST_USER_ID, ['Manager'])
+        applyProfile(portal, "docpool.base:default")
+        applyProfile(portal, "elan.policy:default")
+        applyProfile(portal, "elan.journal:default")
+        applyProfile(portal, "elan.esd:default")
+        applyProfile(portal, "docpool.doksys:default")
+        applyProfile(portal, "docpool.event:default")
+        setRoles(portal, TEST_USER_ID, ["Manager"])
         docpool = api.content.create(
             container=portal,
-            type='DocumentPool',
-            id='test_docpool',
-            title='Test Dokpool',
-            supportedApps=('elan',),
+            type="DocumentPool",
+            id="test_docpool",
+            title="Test Dokpool",
+            supportedApps=("elan",),
         )
         notify(EditFinishedEvent(docpool))
 
@@ -88,13 +89,12 @@ class Fixture(PloneSandboxLayer):
 FIXTURE = Fixture()
 
 INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name='elan.journal:Integration'
+    bases=(FIXTURE,), name="elan.journal:Integration"
 )
 
-FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,), name='elan.journal:Functional')
+FUNCTIONAL_TESTING = FunctionalTesting(bases=(FIXTURE,), name="elan.journal:Functional")
 
 ROBOT_TESTING = FunctionalTesting(
     bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
-    name='elan.journal:Robot',
+    name="elan.journal:Robot",
 )

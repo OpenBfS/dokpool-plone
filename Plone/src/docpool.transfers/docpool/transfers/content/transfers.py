@@ -1,7 +1,6 @@
 from docpool.base.utils import _copyPaste
 from Products.CMFCore.utils import getToolByName
 
-
 HAS_ELAN = True
 try:
     from docpool.elan.config import ELAN_APP
@@ -19,10 +18,10 @@ def ensureDocTypeInTarget(original, copy):
     new_dt = config._getOb(id)
     if HAS_ELAN:
         new_dt.doc_extension(ELAN_APP).setCCategory(
-            'recent'
+            "recent"
         )  # Set intermediate category
-    wftool = getToolByName(original, 'portal_workflow')
-    wftool.doActionFor(new_dt, 'retract')
+    wftool = getToolByName(original, "portal_workflow")
+    wftool.doActionFor(new_dt, "retract")
     new_dt.reindexObject()
     new_dt.reindexObjectSecurity()
     config.reindexObject()

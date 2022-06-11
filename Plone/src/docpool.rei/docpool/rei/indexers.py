@@ -9,4 +9,4 @@ def report_year(obj):
         return str(obj.doc_extension(REI_APP).Year)
     except TypeError:
         pass
-    return ''
+    return ""

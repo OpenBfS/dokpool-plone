@@ -1,7 +1,8 @@
+from time import time
+
 from DateTime import DateTime
 from elan.journal.browser.base import BaseView
 from plone.memoize import ram
-from time import time
 from zope.publisher.browser import BrowserView
 
 

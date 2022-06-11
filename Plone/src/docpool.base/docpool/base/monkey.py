@@ -1,14 +1,12 @@
-from Acquisition import aq_get
-from Acquisition import aq_inner
-from plone.app.discussion.browser.conversation import ConversationView
-from Products.PlonePAS.tools.memberdata import MemberData
-from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
-from zope.globalrequest import getRequest
-
 import logging
 import ssl
 import traceback
 
+from Acquisition import aq_get, aq_inner
+from plone.app.discussion.browser.conversation import ConversationView
+from Products.PlonePAS.tools.memberdata import MemberData
+from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
+from zope.globalrequest import getRequest
 
 log = logging.getLogger(__name__)
 
@@ -48,28 +46,28 @@ def getURL(self, relative=0, original=False):
     such as livesearch. The category objects are viewed within a collections (see @@dview)
     Also we make sure that sections don't get an URL, so they are not linked to in the navigation.
     """
-    request = aq_get(self, 'REQUEST', None)
+    request = aq_get(self, "REQUEST", None)
     if request is None:
         request = getRequest()
     if (
         # original set we ignore this special code
         (not original)
         # only valid for DPDocuments
-        and self.portal_type == 'DPDocument'
+        and self.portal_type == "DPDocument"
         # resolveid does not exist in url
-        and not request['URL'].find('resolveuid') > -1
-        and not request['URL'].find('Transfers') > -1
-        or 'overview' in str(request.get('myfolder_url',"/"))
+        and not request["URL"].find("resolveuid") > -1
+        and not request["URL"].find("Transfers") > -1
+        or "overview" in str(request.get("myfolder_url", "/"))
     ):
         if self.cat_path:
             # This is it: we use the path of the category
-            return "{}/@@dview?d={}&disable_border=1".format(
-                self.cat_path, self.UID)
+            return f"{self.cat_path}/@@dview?d={self.UID}&disable_border=1"
         else:
             pass
 
     # This is the normal implementation
     return request.physicalPathToURL(self.getPath(), relative)
+
 
 if not hasattr(AbstractCatalogBrain, "original_getURL"):
     AbstractCatalogBrain.original_getURL = AbstractCatalogBrain.getURL
@@ -83,21 +81,21 @@ def setMemberProperties(self, mapping, **kw):
     # We're never interested in login times as sessions are created by SSO anyway.
     # Login times used to be the main cause by far for writing member properties, which
     # are suspected to be a DB hotspot causing ConflictErrors, see #4325.
-    for key in ('login_time', 'last_login_time'):
+    for key in ("login_time", "last_login_time"):
         mapping.pop(key, None)
     if not mapping:
         return
 
     # XXX 4325: temporarily keep watching the member property setter to confirm that
     # removal of login time logging actually prevents most DB ConflictErrors.
-    request = aq_get(self, 'REQUEST', None)
+    request = aq_get(self, "REQUEST", None)
     if request is None:
         request = getRequest()
     log.info(
-        'Setting member properties:\n{} at {}\n{}'.format(
+        "Setting member properties:\n{} at {}\n{}".format(
             str(list(mapping)),
-            request['URL'],
-            '\n'.join(item.splitlines()[0] for item in traceback.format_stack())
+            request["URL"],
+            "\n".join(item.splitlines()[0] for item in traceback.format_stack()),
         )
     )
     self._orig_setMemberProperties(mapping, **kw)

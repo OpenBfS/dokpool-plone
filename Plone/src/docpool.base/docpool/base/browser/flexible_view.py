@@ -1,25 +1,23 @@
+from logging import getLogger
+
+import Acquisition
 from Acquisition import aq_base
 from docpool.base.utils import extendOptions
-from logging import getLogger
 from plone.app.contenttypes.interfaces import IFile
-from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import safe_hasattr
+from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 from Products.Five.browser import BrowserView
 from Products.PageTemplates.PageTemplate import PageTemplate
 from zope.component import getMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
-
-import Acquisition
 
 logger = getLogger(__name__)
 
 
 class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
     def __call__(self, request, *args, **kwargs):
-        if 'args' not in kwargs:
-            kwargs['args'] = args
-        return self.pt_render(
-            extra_context={'options': kwargs, 'request': request})
+        if "args" not in kwargs:
+            kwargs["args"] = args
+        return self.pt_render(extra_context={"options": kwargs, "request": request})
 
 
 class FlexibleView(BrowserView):
@@ -36,13 +34,11 @@ class FlexibleView(BrowserView):
     #        self.extensions = self.context.myExtensions(request)
 
     def currentApplication(self):
-        """
-        """
+        """ """
         app_defined_by_behaviour = getattr(self, "appname", None)
         if app_defined_by_behaviour:
             return app_defined_by_behaviour
-        dp_app_state = getMultiAdapter(
-            (self, self.request), name='dp_app_state')
+        dp_app_state = getMultiAdapter((self, self.request), name="dp_app_state")
         active_apps = dp_app_state.appsActivatedByCurrentUser()
         if len(active_apps) > 0:
             return active_apps[0]
@@ -68,17 +64,21 @@ class FlexibleView(BrowserView):
 
         if app:
             names = [
-                "{}_{}_{}".format(app, dtid, vtype),
-                "{}_{}".format(app, vtype),
-                "{}_{}".format(dtid, vtype),
+                f"{app}_{dtid}_{vtype}",
+                f"{app}_{vtype}",
+                f"{dtid}_{vtype}",
                 "doc_%s" % vtype,
             ]
         else:
-            names = ["{}_{}".format(dtid, vtype), "doc_%s" % vtype]
+            names = [f"{dtid}_{vtype}", "doc_%s" % vtype]
         for n in names:
             if safe_hasattr(dto, n):
                 o = aq_base(getattr(dto, n))
-                logger.debug('Rendering template {} ({}) for {} ({})'.format('/'.join(o._filepath.split('/')[-2:]), vtype, doc, dtid))
+                logger.debug(
+                    "Rendering template {} ({}) for {} ({})".format(
+                        "/".join(o._filepath.split("/")[-2:]), vtype, doc, dtid
+                    )
+                )
                 if IFile.providedBy(o):
                     f = o.file.open()
                     data = f.read()

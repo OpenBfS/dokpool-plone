@@ -1,17 +1,19 @@
 from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
-from plone.app.testing import applyProfile
-from plone.app.testing import FunctionalTesting
-from plone.app.testing import IntegrationTesting
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import (
+    SITE_OWNER_NAME,
+    SITE_OWNER_PASSWORD,
+    TEST_USER_ID,
+    FunctionalTesting,
+    IntegrationTesting,
+    PloneSandboxLayer,
+    applyProfile,
+    setRoles,
+)
 from plone.dexterity.events import EditFinishedEvent
 from plone.testing import z2
 from zope.event import notify
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
 
 
 class ElanESDLayer(PloneSandboxLayer):
@@ -23,24 +25,25 @@ class ElanESDLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import elan.journal
-        import docpool.event
-        import docpool.config
-        import docpool.elan
-        import docpool.theme
-        import docpool.menu
-        import elan.policy
-        import docpool.users
-        import docpool.localbehavior
-        import eea.facetednavigation
-        import Products.CMFFormController
-        import plone.app.caching
-        import docpool.dashboard
         import docpool.caching
-        import docpool.transfers
-        import elan.sitrep
-        import elan.esd
+        import docpool.config
+        import docpool.dashboard
         import docpool.doksys
+        import docpool.elan
+        import docpool.event
+        import docpool.localbehavior
+        import docpool.menu
+        import docpool.theme
+        import docpool.transfers
+        import docpool.users
+        import eea.facetednavigation
+        import elan.esd
+        import elan.journal
+        import elan.policy
+        import elan.sitrep
+        import plone.app.caching
+        import Products.CMFFormController
+
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.elan)
@@ -62,27 +65,28 @@ class ElanESDLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.event)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'docpool.base:default')
-        applyProfile(portal, 'elan.policy:default')
-        applyProfile(portal, 'elan.journal:default')
-        applyProfile(portal, 'elan.esd:default')
-        applyProfile(portal, 'docpool.doksys:default')
-        applyProfile(portal, 'docpool.event:default')
-        setRoles(portal, TEST_USER_ID, ['Manager'])
+        applyProfile(portal, "docpool.base:default")
+        applyProfile(portal, "elan.policy:default")
+        applyProfile(portal, "elan.journal:default")
+        applyProfile(portal, "elan.esd:default")
+        applyProfile(portal, "docpool.doksys:default")
+        applyProfile(portal, "docpool.event:default")
+        setRoles(portal, TEST_USER_ID, ["Manager"])
         # Create a docpool
         # Do it here because it takes a long time and creating a docpool
         # in each test or test-setup will lead to very long tests.
         # TODO: Move this to a different layer to allow shorter tests
         docpool = api.content.create(
             container=portal,
-            type='DocumentPool',
-            id='test_docpool',
-            title='Test Dokpool',
-            supportedApps=('elan',),
+            type="DocumentPool",
+            id="test_docpool",
+            title="Test Dokpool",
+            supportedApps=("elan",),
         )
         notify(EditFinishedEvent(docpool))
         portal.acl_users.userFolderAddUser(
-            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ['Manager'], [])
+            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
+        )
 
 
 ELAN_ESD_FIXTURE = ElanESDLayer()
@@ -90,13 +94,13 @@ ELAN_ESD_FIXTURE = ElanESDLayer()
 
 ELAN_ESD_INTEGRATION_TESTING = IntegrationTesting(
     bases=(ELAN_ESD_FIXTURE,),
-    name='ElanESDLayer:IntegrationTesting',
+    name="ElanESDLayer:IntegrationTesting",
 )
 
 
 ELAN_ESD_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(ELAN_ESD_FIXTURE,),
-    name='ElanESDLayer:FunctionalTesting',
+    name="ElanESDLayer:FunctionalTesting",
 )
 
 
@@ -106,5 +110,5 @@ ELAN_ESD_ACCEPTANCE_TESTING = FunctionalTesting(
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='ElanESDLayer:AcceptanceTesting',
+    name="ElanESDLayer:AcceptanceTesting",
 )

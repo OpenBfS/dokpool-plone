@@ -4,57 +4,50 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
+import datetime
+import json
+from logging import getLogger
+
+import plone.api as api
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from DateTime import DateTime
-from docpool.base.content.contentbase import ContentBase
-from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.utils import portalMessage
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
-from docpool.config.utils import createPloneObjects
-from docpool.config.utils import ploneId
+from docpool.config.utils import createPloneObjects, ploneId
 from docpool.event import DocpoolMessageFactory as _
 from docpool.event.utils import get_global_scenario_selection
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
-from logging import getLogger
 from plone.autoform import directives
-from plone.dexterity.content import Container
 from plone.base.i18nl10n import utranslate
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.base.utils import safe_text
+from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import log_exc
-from Products.CMFPlone.utils import parent
+from Products.CMFPlone.utils import log, log_exc, parent
 from pygeoif import geometry
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.form.interfaces import IEditForm
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
-from zope.component import adapter
-from zope.component import getUtility
-from zope.interface import Interface
-from zope.interface import alsoProvides
-from zope.interface import implementer
-from zope.interface import Invalid
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectModifiedEvent
-from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-import plone.api as api
-import datetime
-import json
-
+from zope.component import adapter, getUtility
+from zope.interface import Interface, Invalid, alsoProvides, implementer
+from zope.lifecycleevent.interfaces import (
+    IObjectAddedEvent,
+    IObjectModifiedEvent,
+    IObjectRemovedEvent,
+)
 
 logger = getLogger("dpevent")
 
@@ -68,9 +61,9 @@ def is_coordinate(value):
         try:
             wkt = geometry.from_wkt(value)
         except Exception:
-            raise Invalid('Value is no a valid WKT.')
+            raise Invalid("Value is no a valid WKT.")
         if not wkt.geom_type == "Point":
-            raise Invalid('Value is not a Point.')
+            raise Invalid("Value is not a Point.")
     return True
 
 
@@ -79,24 +72,23 @@ def is_polygon(value):
         try:
             wkt = geometry.from_wkt(value)
         except Exception:
-            raise Invalid('Value is not a valid WKT.')
+            raise Invalid("Value is not a valid WKT.")
         if not wkt.geom_type == "Polygon":
-            raise Invalid('Value is not a Polygon.')
-        raise Invalid('Vaueis not a valid coordinate.')
+            raise Invalid("Value is not a Polygon.")
+        raise Invalid("Vaueis not a valid coordinate.")
     return True
 
 
 class IDPEvent(model.Schema, IContentBase):
-    """
-    """
+    """ """
 
-    directives.write_permission(Substitute='docpool.event.ManageDPEvents')
-    directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
+    directives.write_permission(Substitute="docpool.event.ManageDPEvents")
+    directives.widget(Substitute="z3c.form.browser.select.SelectFieldWidget")
     Substitute = RelationChoice(
-        title=_('label_dpevent_substitute', default='Substitute event'),
+        title=_("label_dpevent_substitute", default="Substitute event"),
         description=_(
-            'description_dpevent_substitute',
-            default='Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',  # noqa: E501
+            "description_dpevent_substitute",
+            default="Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.",  # noqa: E501
         ),
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
@@ -104,48 +96,46 @@ class IDPEvent(model.Schema, IContentBase):
 
     directives.widget(EventType=RadioFieldWidget)
     EventType = schema.Choice(
-        title=_('label_dpevent_type', default='Type of event'),
-        description=_('description_dpevent_type', default=''),
+        title=_("label_dpevent_type", default="Type of event"),
+        description=_("description_dpevent_type", default=""),
         required=True,
-        source='docpool.event.vocabularies.EventTypes',
+        source="docpool.event.vocabularies.EventTypes",
     )
 
-    directives.write_permission(Status='docpool.event.ManageDPEvents')
+    directives.write_permission(Status="docpool.event.ManageDPEvents")
     directives.widget(Status=RadioFieldWidget)
     Status = schema.Choice(
-        title=_('label_dpevent_status', default='Status of the event'),
-        description=_('description_dpevent_status', default=''),
+        title=_("label_dpevent_status", default="Status of the event"),
+        description=_("description_dpevent_status", default=""),
         required=True,
-        default='active',
+        default="active",
         source="docpool.event.vocabularies.Status",
     )
 
     TimeOfEvent = schema.Datetime(
-        title=_('label_dpevent_timeofevent', default='Time of event'),
-        description=_('description_dpevent_timeofevent', default=''),
+        title=_("label_dpevent_timeofevent", default="Time of event"),
+        description=_("description_dpevent_timeofevent", default=""),
         required=True,
         defaultFactory=initializeTimeOfEvent,
     )
 
     # directives.widget(EventPhase=AutocompleteFieldWidget)
-    directives.widget(
-        EventPhase='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(EventPhase="z3c.form.browser.select.SelectFieldWidget")
     EventPhase = RelationChoice(
         title=_("Scenario & Phase"),
         vocabulary="docpool.event.vocabularies.Phases",
         required=False,
     )
 
-    directives.write_permission(EventLocation='docpool.event.ManageDPEvents')
-    directives.widget(
-        EventLocation='z3c.form.browser.select.SelectFieldWidget')
+    directives.write_permission(EventLocation="docpool.event.ManageDPEvents")
+    directives.widget(EventLocation="z3c.form.browser.select.SelectFieldWidget")
     EventLocation = RelationChoice(
-        title=_('Event location'),
+        title=_("Event location"),
         vocabulary="docpool.event.vocabularies.PowerStations",
         required=False,
     )
 
-    directives.write_permission(EventCoordinates='docpool.event.ManageDPEvents')
+    directives.write_permission(EventCoordinates="docpool.event.ManageDPEvents")
     EventCoordinates = schema.Text(
         title=_("Event coordinates"),
         description=_("Example: POINT(12.293121814727781 48.60338936478996)"),
@@ -153,68 +143,71 @@ class IDPEvent(model.Schema, IContentBase):
         constraint=is_coordinate,
     )
 
-    directives.write_permission(AreaOfInterest='docpool.event.ManageDPEvents')
+    directives.write_permission(AreaOfInterest="docpool.event.ManageDPEvents")
     AreaOfInterest = schema.Text(
         title=_("Area of interest"),
-        description=_("Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"),
+        description=_(
+            "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
+        ),
         required=False,
         constraint=is_polygon,
     )
 
     directives.widget(OperationMode=RadioFieldWidget)
     OperationMode = schema.Choice(
-        title=_('Operation mode'),
+        title=_("Operation mode"),
         vocabulary="docpool.event.vocabularies.Modes",
         required=True,
     )
 
     directives.widget(AlertingStatus=RadioFieldWidget)
     AlertingStatus = schema.Choice(
-        title=_('label_dpevent_alerting_status', default='Status of Alerting'),
-        description=_('description_dpevent_alerting_status', default=''),
+        title=_("label_dpevent_alerting_status", default="Status of Alerting"),
+        description=_("description_dpevent_alerting_status", default=""),
         required=True,
         source="docpool.event.vocabularies.AlertingStatus",
     )
 
     AlertingNote = schema.Text(
-        title=_('label_dpevent_alteringnote', default='Alert Note'),
-        description=_('description_dpevent_alert_note', default='Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.'),  # noqa: E501
+        title=_("label_dpevent_alteringnote", default="Alert Note"),
+        description=_(
+            "description_dpevent_alert_note",
+            default='Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.',
+        ),  # noqa: E501
         required=False,
-        )
+    )
 
     SectorizingSampleTypes = schema.List(
-        title=_('Sectorizing sample types'),
+        title=_("Sectorizing sample types"),
         required=False,
-        value_type=schema.Choice(
-            source="docpool.event.vocabularies.SampleType"),
+        value_type=schema.Choice(source="docpool.event.vocabularies.SampleType"),
     )
 
     directives.widget(
-        SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
+        SectorizingNetworks="z3c.form.browser.select.CollectionSelectFieldWidget"
     )
     SectorizingNetworks = RelationList(
-        title=_('Sectorizing networks'),
+        title=_("Sectorizing networks"),
         required=False,
-        value_type=RelationChoice(
-            source='docpool.event.vocabularies.Networks'),
+        value_type=RelationChoice(source="docpool.event.vocabularies.Networks"),
     )
 
-    directives.omitted(IEditForm, 'Journals')
+    directives.omitted(IEditForm, "Journals")
     Journals = schema.List(
-        title=_('Journals'),
+        title=_("Journals"),
         required=False,
         default=[
-            'Einsatztagebuch BfS',
-            'Einsatztagebuch RLZ',
-            'Einsatztagebuch SSK',
-            'Einsatztagebuch Messdienste',
-            ],
+            "Einsatztagebuch BfS",
+            "Einsatztagebuch RLZ",
+            "Einsatztagebuch SSK",
+            "Einsatztagebuch Messdienste",
+        ],
         value_type=schema.TextLine(),
     )
 
     changelog = schema.Text(
-        title=_('label_dpevent_changelog', default='Changelog'),
-        description=_('Changelog'),
+        title=_("label_dpevent_changelog", default="Changelog"),
+        description=_("Changelog"),
         required=False,
         readonly=True,
     )
@@ -222,8 +215,7 @@ class IDPEvent(model.Schema, IContentBase):
 
 @implementer(IDPEvent)
 class DPEvent(Container, ContentBase):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -238,7 +230,7 @@ class DPEvent(Container, ContentBase):
         request = self.REQUEST
         alsoProvides(request, IDisableCSRFProtection)
         f = parent(self)
-        if hasattr(self, '_setPortalTypeName'):
+        if hasattr(self, "_setPortalTypeName"):
             self._setPortalTypeName("DPEvent")
         myid = self.getId()
         del f[myid]
@@ -288,6 +280,7 @@ class DPEvent(Container, ContentBase):
         return utranslate("docpool.event", "archive_confirm_msg", context=self)
 
     security.declareProtected("Modify portal content", "archiveAndClose")
+
     def archiveAndClose(self, REQUEST):
         """
         Saves all content for this scenario to an archive, deletes the original content,
@@ -295,7 +288,7 @@ class DPEvent(Container, ContentBase):
         """
         alsoProvides(REQUEST, IDisableCSRFProtection)
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.getId()] = 'closed'
+        global_scenarios[self.getId()] = "closed"
         archive = self._createArchive()
         contentarea = self.content
         contentarea_path = "/".join(contentarea.getPhysicalPath())
@@ -307,7 +300,7 @@ class DPEvent(Container, ContentBase):
             self._copyDocument(target_folder, doc)
 
         self.purge()
-        self.Status = 'closed'
+        self.Status = "closed"
         # Move DPEvent into archive and redirect to it
         archived_event = api.content.move(self, target=archive)
         archived_event.reindexObject()
@@ -359,7 +352,7 @@ class DPEvent(Container, ContentBase):
         af.setTitle(mf.Title())
         if not isTransfer:
             mtool = getToolByName(self, "portal_membership")
-            mtool.setLocalRoles(af, [fname], 'Owner')
+            mtool.setLocalRoles(af, [fname], "Owner")
         af.reindexObject()
         af.reindexObjectSecurity()
         return af
@@ -380,23 +373,23 @@ class DPEvent(Container, ContentBase):
         result = target_folder_obj.manage_pasteObjects(cb_copy_data)
         # Now do some repairs
         if len(result) == 1:
-            new_id = result[0]['new_id']
+            new_id = result[0]["new_id"]
             copied_obj = target_folder_obj._getOb(new_id)
             mdate = source_obj.modified()
             copied_obj.scenarios = []
             wf_state = source_brain.review_state
-            wftool = getToolByName(self, 'portal_workflow')
+            wftool = getToolByName(self, "portal_workflow")
             # print wf_state, wftool.getInfoFor(copied_obj, 'review_state')
             if (
                 wf_state == "published"
-                and wftool.getInfoFor(copied_obj, 'review_state') != 'published'
+                and wftool.getInfoFor(copied_obj, "review_state") != "published"
             ):
-                wftool.doActionFor(copied_obj, 'publish')
+                wftool.doActionFor(copied_obj, "publish")
             if (
                 wf_state == "pending"
-                and wftool.getInfoFor(copied_obj, 'review_state') == 'private'
+                and wftool.getInfoFor(copied_obj, "review_state") == "private"
             ):
-                wftool.doActionFor(copied_obj, 'submit')
+                wftool.doActionFor(copied_obj, "submit")
             copied_obj.setModificationDate(mdate)
             events = source_obj.doc_extension(TRANSFERS_APP).transferEvents()
             copied_obj.transferLog = str(events)
@@ -411,7 +404,7 @@ class DPEvent(Container, ContentBase):
         :return: list of brains
         """
         #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
-        args = {'portal_type': "DPDocument", 'scenarios': self.getId()}
+        args = {"portal_type": "DPDocument", "scenarios": self.getId()}
         args.update(kwargs)
         cat = getToolByName(self, "portal_catalog")
         return cat(args)
@@ -425,8 +418,8 @@ class DPEvent(Container, ContentBase):
         a = self.archive  # Acquire root for archives
         e = self.esd  # Acquire esd root
         now = safe_text(self.toLocalizedTime(DateTime(), long_format=1))
-        id = ploneId(self, "{}_{}".format(self.getId(), now))
-        title = "{} {}".format(safe_text(self.Title()), now)
+        id = ploneId(self, f"{self.getId()}_{now}")
+        title = f"{safe_text(self.Title())} {now}"
         # create the archive root
         a.invokeFactory(id=id, type_name="ELANArchive", title=title)
         arc = a._getOb(id)  # get new empty archive
@@ -441,7 +434,7 @@ class DPEvent(Container, ContentBase):
         objs = [
             o.getId
             for o in e.getFolderContents(
-                {'portal_type': ['ELANSection', 'ELANDocCollection']}
+                {"portal_type": ["ELANSection", "ELANDocCollection"]}
             )
         ]
         # print objs
@@ -492,8 +485,8 @@ class DPEvent(Container, ContentBase):
         """
         Delete utility
         """
-        from docpool.elan.config import ELAN_APP
         from docpool.elan.behaviors.elandocument import IELANDocument
+        from docpool.elan.config import ELAN_APP
 
         source_obj = source_brain.getObject()
         # determine parent folder for copy
@@ -503,16 +496,14 @@ class DPEvent(Container, ContentBase):
         except BaseException:
             # Object could have lost its ELAN behavior but that means we can
             # potentially delete it
-            scns = ['dummy']
+            scns = ["dummy"]
         if len(scns) == 1:  # only the one scenario --> potential delete
             # Check for other applications than ELAN
             apps = ILocalBehaviorSupport(source_obj).local_behaviors
-            if apps and len(
-                    apps) > 1:  # There are others --> only remove ELAN behavior
+            if apps and len(apps) > 1:  # There are others --> only remove ELAN behavior
                 try:
                     apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(
-                        source_obj).local_behaviors = list(set(apps))
+                    ILocalBehaviorSupport(source_obj).local_behaviors = list(set(apps))
                 except Exception as e:
                     log_exc(e)
             else:  # we delete
@@ -526,12 +517,12 @@ class DPEvent(Container, ContentBase):
 
     def selectGlobally(self):
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.getId()] = 'selected'
+        global_scenarios[self.getId()] = "selected"
 
     def createDefaultJournals(self):
         """
         Creates journals inside the event
-        :return: """
+        :return:"""
         if not self.Journals:
             return
         docpool = self.myDocumentPool()
@@ -541,33 +532,31 @@ class DPEvent(Container, ContentBase):
             # Skip empty lines
             if not title:
                 continue
-            journal_id = f'journal{str(index)}'
+            journal_id = f"journal{str(index)}"
             # Skip if it already exists
             if self.get(journal_id):
                 pass
             journal = api.content.create(
                 container=self,
-                type='Journal',
+                type="Journal",
                 title=title,
                 id=journal_id,
-                )
+            )
             # Grant local role to Journal Editor Groups
             api.group.grant_roles(
-                groupname=f'{prefix}_Journal{index}_Editors',
-                roles=['JournalEditor'],
+                groupname=f"{prefix}_Journal{index}_Editors",
+                roles=["JournalEditor"],
                 obj=journal,
-                )
+            )
             # Grant local role to Journal Reader Groups
             api.group.grant_roles(
-                groupname=f'{prefix}_Journal{index}_Readers',
-                roles=['JournalReader'],
+                groupname=f"{prefix}_Journal{index}_Readers",
+                roles=["JournalReader"],
                 obj=journal,
-                )
-
+            )
 
     def deleteEventReferences(self):
-        """
-        """
+        """ """
         self.Substitute = None
         self.reindexObject()
 
@@ -576,26 +565,26 @@ class DPEvent(Container, ContentBase):
         Can this scenario be assigned to documents?
         Is it published? Is it active?
         """
-        wftool = getToolByName(self, 'portal_workflow')
+        wftool = getToolByName(self, "portal_workflow")
         return (
-            wftool.getInfoFor(self, 'review_state') == 'published'
-            and self.Status == 'active'
+            wftool.getInfoFor(self, "review_state") == "published"
+            and self.Status == "active"
         )
 
-    def bounds(self, fieldname='AreaOfInterest'):
+    def bounds(self, fieldname="AreaOfInterest"):
         coordinates = self.coordinates(fieldname)
         if not coordinates:
             return
         return coordinates.bounds
 
-    def coordinates(self, fieldname='EventCoordinates'):
+    def coordinates(self, fieldname="EventCoordinates"):
         wkt = getattr(self, fieldname, None)
         if not wkt:
             return
         return geometry.from_wkt(wkt)
 
     def event_type_title(self):
-        vocab = getUtility(Interface, name='docpool.event.vocabularies.EventTypes')
+        vocab = getUtility(Interface, name="docpool.event.vocabularies.EventTypes")
         return vocab(self).getTerm(self.EventType).title
 
 
@@ -615,23 +604,26 @@ def eventAdded(obj, event=None):
 
 
 def addLogEntry(obj):
-    changelog = json.loads(obj.changelog or '[]')
+    changelog = json.loads(obj.changelog or "[]")
     entry = {}
-    entry['Date'] = api.portal.get_localized_time(
-        datetime.datetime.now(), long_format=1)
-    entry['User'] = obj._getUserInfoString()
-    entry['Status'] = obj.Status
-    entry['EventType'] = obj.EventType
-    entry['Operation mode'] = obj.OperationMode
-    entry['Alerting status'] = obj.AlertingStatus
-    entry['Alerting note'] = obj.AlertingNote
-    entry['Phase'] = obj.phaseInfo()
-    entry['Sectorizing sample types'] = ", ".join(
-        obj.SectorizingSampleTypes
-        if obj.SectorizingSampleTypes is not None else ' ')
-    entry['Sectorizing networks'] = ", ".join(
+    entry["Date"] = api.portal.get_localized_time(
+        datetime.datetime.now(), long_format=1
+    )
+    entry["User"] = obj._getUserInfoString()
+    entry["Status"] = obj.Status
+    entry["EventType"] = obj.EventType
+    entry["Operation mode"] = obj.OperationMode
+    entry["Alerting status"] = obj.AlertingStatus
+    entry["Alerting note"] = obj.AlertingNote
+    entry["Phase"] = obj.phaseInfo()
+    entry["Sectorizing sample types"] = ", ".join(
+        obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
+    )
+    entry["Sectorizing networks"] = ", ".join(
         (n.to_object.title for n in obj.SectorizingNetworks)
-        if obj.SectorizingNetworks is not None else ' ')
+        if obj.SectorizingNetworks is not None
+        else " "
+    )
     # Check if there are changes to prevent duplicate log entries.
     if changelog and entry == changelog[-1]:
         return
@@ -641,11 +633,10 @@ def addLogEntry(obj):
 
 @adapter(IDPEvent, IObjectModifiedEvent)
 def eventChanged(obj, event=None):
-    """
-    """
+    """ """
     addLogEntry(obj)
 
-    if obj.Status != 'active':
+    if obj.Status != "active":
         obj.deleteEventReferences()
         # print obj.Substitute
         if obj.Substitute:
@@ -658,7 +649,7 @@ def eventChanged(obj, event=None):
             mpath = "/".join(m.getPhysicalPath())
             # We now query the catalog for all documents belonging to this scenario within
             # the personal and group folders
-            args = {'portal_type': 'DPDocument', 'path': mpath}
+            args = {"portal_type": "DPDocument", "path": mpath}
             cat = getToolByName(obj, "portal_catalog")
             mdocs = cat(args)
             for doc in mdocs:
@@ -683,22 +674,23 @@ def eventRemoved(obj, event=None):
     or the whole Plonesite is being deleted.
     """
     if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
-            event.object):
+        event.object
+    ):
         return
-    if obj.id == 'routinemode':
+    if obj.id == "routinemode":
         raise RuntimeError('The "routinemode" event cannot be removed.')
 
     global_scenarios = get_global_scenario_selection()
-    global_scenarios[obj.getId()] = 'removed'
+    global_scenarios[obj.getId()] = "removed"
 
 
 @adapter(IDPEvent, IActionSucceededEvent)
 def eventPublished(obj, event=None):
-    if event.__dict__['action'] == 'publish':
+    if event.__dict__["action"] == "publish":
         # Update all objects for this scenario
         m = obj.content
         mpath = "/".join(m.getPhysicalPath())
-        args = {'portal_type': 'DPDocument', 'path': mpath}
+        args = {"portal_type": "DPDocument", "path": mpath}
         cat = getToolByName(obj, "portal_catalog")
         mdocs = cat(args)
         for doc in mdocs:

@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SRScenarioView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('srscenario.pt')
+    __call__ = ViewPageTemplateFile("srscenario.pt")

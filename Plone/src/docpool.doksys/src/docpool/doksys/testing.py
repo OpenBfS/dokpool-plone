@@ -1,12 +1,13 @@
+import docpool.doksys
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
-from plone.app.testing import applyProfile
-from plone.app.testing import FunctionalTesting
-from plone.app.testing import IntegrationTesting
-from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import (
+    FunctionalTesting,
+    IntegrationTesting,
+    PloneSandboxLayer,
+    applyProfile,
+)
 from plone.testing import z2
-
-import docpool.doksys
 
 
 class DocpoolDoksysLayer(PloneSandboxLayer):
@@ -19,14 +20,14 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         # layer.
         import docpool.base
         import docpool.config
-        import docpool.event
         import docpool.elan
-        import docpool.transfers
+        import docpool.event
+        import docpool.localbehavior
         import docpool.transfers
         import docpool.users
-        import docpool.localbehavior
         import eea.facetednavigation
         import Products.CMFFormController
+
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.event)
@@ -39,27 +40,24 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.doksys)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'docpool.doksys:default')
-        applyProfile(portal, 'docpool.transfers:default')
+        applyProfile(portal, "docpool.doksys:default")
+        applyProfile(portal, "docpool.transfers:default")
 
 
 DOCPOOL_DOKSYS_FIXTURE = DocpoolDoksysLayer()
 
 
 DOCPOOL_DOKSYS_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(DOCPOOL_DOKSYS_FIXTURE,), name='DocpoolDoksysLayer:IntegrationTesting'
+    bases=(DOCPOOL_DOKSYS_FIXTURE,), name="DocpoolDoksysLayer:IntegrationTesting"
 )
 
 
 DOCPOOL_DOKSYS_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_DOKSYS_FIXTURE,), name='DocpoolDoksysLayer:FunctionalTesting'
+    bases=(DOCPOOL_DOKSYS_FIXTURE,), name="DocpoolDoksysLayer:FunctionalTesting"
 )
 
 
 DOCPOOL_DOKSYS_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(
-        DOCPOOL_DOKSYS_FIXTURE,
-        REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE),
-    name='DocpoolDoksysLayer:AcceptanceTesting',
+    bases=(DOCPOOL_DOKSYS_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
+    name="DocpoolDoksysLayer:AcceptanceTesting",
 )

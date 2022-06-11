@@ -7,10 +7,9 @@
 ##parameters=
 ##title=Checks if a user has rights on transfer folders
 ##
-from __future__ import print_function
 from Products.CMFCore.utils import getToolByName
 
-cat = getToolByName(context, 'portal_catalog', None)
+cat = getToolByName(context, "portal_catalog", None)
 
 transfers = cat(portal_type="ELANScenarios", sort_on="sortable_title")
 for transfer in transfers:

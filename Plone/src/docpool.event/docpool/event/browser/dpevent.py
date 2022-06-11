@@ -1,16 +1,14 @@
-from plone.dexterity.browser.view import DefaultView
-
 import json
+
+from plone.dexterity.browser.view import DefaultView
 
 
 class DPEventView(DefaultView):
-    """View for Events
-    """
+    """View for Events"""
 
     def changelog(self):
-        """Changelog as a list of dicts
-        """
-        changelog = json.loads(self.context.changelog or '[]')
+        """Changelog as a list of dicts"""
+        changelog = json.loads(self.context.changelog or "[]")
         changelog = self.harmonize_dicts(changelog)
         return changelog
 

@@ -6,58 +6,54 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the DPTransferFolder content type. See dptransferfolder.py for more
 explanation on the statements below.
 """
+from logging import getLogger
+
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
-from docpool.base.content.folderbase import FolderBase
-from docpool.base.content.folderbase import IFolderBase
-from docpool.base.utils import execute_under_special_role
-from docpool.base.utils import queryForObject
-from docpool.base.utils import queryForObjects
+from docpool.base.content.folderbase import FolderBase, IFolderBase
+from docpool.base.utils import (
+    execute_under_special_role,
+    queryForObject,
+    queryForObjects,
+)
 from docpool.transfers import DocpoolMessageFactory as _
-from logging import getLogger
 from persistent.mapping import PersistentMapping
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
-from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import parent
+from Products.CMFPlone.utils import log, parent
 from zope import schema
 from zope.component import adapter
 from zope.interface import implementer
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectRemovedEvent
 
 logger = getLogger("dptransferfolder")
 
 
 class IDPTransferFolder(model.Schema, IFolderBase):
-    """
-    """
+    """ """
 
     sendingESD = schema.Choice(
         title=_(
-            'label_dptransferfolder_sendingesd',
-            default='The organisation sending content via this transfer folder',
+            "label_dptransferfolder_sendingesd",
+            default="The organisation sending content via this transfer folder",
         ),
-        description=_('description_dptransferfolder_sendingesd', default=''),
+        description=_("description_dptransferfolder_sendingesd", default=""),
         required=True,
         source="docpool.base.vocabularies.DocumentPools",
     )
 
     permLevel = schema.Choice(
-        title=_(
-            'label_dptransferfolder_permlevel',
-            default='Permission level'),
-        description=_('description_dptransferfolder_permlevel', default=''),
+        title=_("label_dptransferfolder_permlevel", default="Permission level"),
+        description=_("description_dptransferfolder_permlevel", default=""),
         required=True,
         default="read/write",
         source="docpool.transfers.vocabularies.Permissions",
@@ -65,24 +61,22 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
     doctypePermissions = schema.Dict(
         title=_(
-            'label_dptransferfolder_doctypepermissions',
-            default='Permissions by document type',
+            "label_dptransferfolder_doctypepermissions",
+            default="Permissions by document type",
         ),
         value_type=schema.Choice(
             required=True,
-            source='docpool.transfers.vocabularies.DTPermOptions',
+            source="docpool.transfers.vocabularies.DTPermOptions",
         ),
         key_type=schema.TextLine(),
     )
 
     unknownDtDefault = schema.Choice(
         title=_(
-            'label_dptransferfolder_unknowndtdefault',
-            default='Default for unknown document types',
+            "label_dptransferfolder_unknowndtdefault",
+            default="Default for unknown document types",
         ),
-        description=_(
-            'description_dptransferfolder_unknowndtdefault',
-            default=''),
+        description=_("description_dptransferfolder_unknowndtdefault", default=""),
         required=True,
         default="block",
         source="docpool.transfers.vocabularies.UnknownOptions",
@@ -90,12 +84,10 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
     unknownScenDefault = schema.Choice(
         title=_(
-            'label_dptransferfolder_unknownscendefault',
-            default='Default for unknown scenarios',
+            "label_dptransferfolder_unknownscendefault",
+            default="Default for unknown scenarios",
         ),
-        description=_(
-            'description_dptransferfolder_unknownscendefault',
-            default=''),
+        description=_("description_dptransferfolder_unknownscendefault", default=""),
         required=True,
         default="block",
         source="docpool.transfers.vocabularies.UnknownOptions",
@@ -104,8 +96,7 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
 @implementer(IDPTransferFolder)
 class DPTransferFolder(Container, FolderBase):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -117,11 +108,11 @@ class DPTransferFolder(Container, FolderBase):
     def from_to_title(self):
         from_title = self.getSendingESD().Title()
         to_title = self.myDocumentPool().Title()
-        return f'{from_title} --> {to_title} ({self.title})'
+        return f"{from_title} --> {to_title} ({self.title})"
 
     def migrate(self):
         f = parent(self)
-        if hasattr(self, '_setPortalTypeName'):
+        if hasattr(self, "_setPortalTypeName"):
             self._setPortalTypeName("DPTransfers")
         myid = self.getId()
         del f[myid]
@@ -135,11 +126,10 @@ class DPTransferFolder(Container, FolderBase):
         Do I specifically accept this doc type?
         """
         perm = self.doctypePermissions.get(dt_id, False)
-        return perm and perm != 'block'
+        return perm and perm != "block"
 
     def getMatchingDocumentTypes(self, ids_only=True):
-        """
-        """
+        """ """
 
         def doIt():
             esd = self.getSendingESD()
@@ -155,19 +145,16 @@ class DPTransferFolder(Container, FolderBase):
         return execute_under_special_role(self, "Manager", doIt)
 
     def getSendingESD(self):
-        """
-        """
+        """ """
         esd_uid = self.sendingESD
         return queryForObject(self, UID=esd_uid)
 
     def resetSettings(self):
-        """
-        """
+        """ """
         created(self, event=None)
 
     def grantReadAccess(self):
-        """
-        """
+        """ """
 
         def grantRead():
             esd = self.getSendingESD()
@@ -180,8 +167,7 @@ class DPTransferFolder(Container, FolderBase):
         execute_under_special_role(self, "Manager", grantRead)
 
     def revokeReadAccess(self):
-        """
-        """
+        """ """
 
         def revokeRead():
             esd = self.getSendingESD()
@@ -198,13 +184,11 @@ class DPTransferFolder(Container, FolderBase):
         return "archive" in self.getPhysicalPath()
 
     def myDPTransferFolder(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -212,42 +196,36 @@ class DPTransferFolder(Container, FolderBase):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getDPDocuments(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'DPDocument'}
+        """ """
+        args = {"portal_type": "DPDocument"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getFiles(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'File'}
+        """ """
+        args = {"portal_type": "File"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'Image'}
+        """ """
+        args = {"portal_type": "Image"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModules(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRModule'}
+        """ """
+        args = {"portal_type": "SRModule"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSituationReports(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SituationReport'}
+        """ """
+        args = {"portal_type": "SituationReport"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
@@ -259,12 +237,12 @@ def created(obj, event=None):
     log("TransferFolder created: %s" % str(obj))
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
         dts = obj.getMatchingDocumentTypes(ids_only=True)
-        obj.doctypePermissions.update(dict.fromkeys(dts, 'publish'))
+        obj.doctypePermissions.update(dict.fromkeys(dts, "publish"))
 
         # Also, if the permissions include read access,
         # set the local Reader role for the members of
         # the sending ESD
-        if obj.permLevel == 'read/write':
+        if obj.permLevel == "read/write":
             obj.grantReadAccess()
 
 
@@ -276,7 +254,7 @@ def updated(obj, event=None):
     log("TransferFolder updated: %s" % str(obj))
 
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
-        if obj.permLevel == 'read/write':
+        if obj.permLevel == "read/write":
             obj.grantReadAccess()
         else:
             obj.revokeReadAccess()
@@ -287,7 +265,8 @@ def deleted(obj, event=None):
     log("TransferFolder deleted: %s" % str(obj))
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
         if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
-                event.object):
+            event.object
+        ):
             # do not modify content from the site or docpool that will be deleted
             return
         # Revoke any read access
@@ -301,9 +280,7 @@ def transfer_folders_for(obj):
         return []
 
     brains = queryForObjects(
-        esd,
-        path=esd.dpSearchPath(),
-        object_provides=IDPTransferFolder._identifier__
+        esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder._identifier__
     )
     return [brain.getObject() for brain in brains]
 
@@ -312,7 +289,7 @@ def transfer_folders_for(obj):
 def doctype_added(obj, event=None):
     dt_id = obj.getId()
     for tf in transfer_folders_for(obj):
-        tf.doctypePermissions.setdefault(dt_id, 'publish')
+        tf.doctypePermissions.setdefault(dt_id, "publish")
 
 
 @adapter(IDocType, IObjectRemovedEvent)

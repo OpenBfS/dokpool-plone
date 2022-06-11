@@ -1,13 +1,12 @@
+from docpool.event.utils import setScenariosForCurrentUser
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from docpool.event.utils import setScenariosForCurrentUser
 
 
 class DPEventsView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('dpevents.pt')
+    __call__ = ViewPageTemplateFile("dpevents.pt")
 
 
 class EventSelectAction(BrowserView):

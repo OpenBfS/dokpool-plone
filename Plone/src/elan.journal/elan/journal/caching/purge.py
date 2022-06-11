@@ -15,5 +15,5 @@ class LiveBlogPurgePaths(ContentPurgePaths):
         paths = super().getRelativePaths()
         # Also adds recent-updates view to the list of urls to be purged
         url = self.context.absolute_url()
-        paths.append(f'{url}/recent-updates')
+        paths.append(f"{url}/recent-updates")
         return paths

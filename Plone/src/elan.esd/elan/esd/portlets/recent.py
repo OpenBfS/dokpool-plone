@@ -1,5 +1,4 @@
-from AccessControl.SecurityInfo import allow_class
-from AccessControl.SecurityInfo import allow_module
+from AccessControl.SecurityInfo import allow_class, allow_module
 from Acquisition import aq_inner
 from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
@@ -7,7 +6,6 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
-
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
@@ -24,7 +22,6 @@ class IRecentPortlet(IPortletDataProvider):
 
 @implementer(IRecentPortlet)
 class Assignment(base.Assignment):
-
     @property
     def title(self):
         return _("Recent")
@@ -40,7 +37,7 @@ class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
 
-    render = ViewPageTemplateFile('recent.pt')
+    render = ViewPageTemplateFile("recent.pt")
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
@@ -69,8 +66,7 @@ class Renderer(base.Renderer):
         return self.collection.absolute_url()
 
     def isEditMode(self):
-        """
-            """
+        """ """
         path = self.request.get("PATH_INFO", "")
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True

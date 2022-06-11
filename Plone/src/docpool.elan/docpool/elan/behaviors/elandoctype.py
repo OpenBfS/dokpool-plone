@@ -1,7 +1,6 @@
 from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
-from docpool.base.utils import back_references
-from docpool.base.utils import queryForObject
+from docpool.base.utils import back_references, queryForObject
 from docpool.elan import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
@@ -16,8 +15,7 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 @provider(IContextAwareDefaultFactory)
 def getDefaultCategory(context):
-    """
-    """
+    """ """
     if hasattr(context, "getDefaultCategory"):
         return context.getDefaultCategory()
     else:
@@ -28,14 +26,14 @@ def getDefaultCategory(context):
 class IELANDocType(IDocTypeExtension):
     contentCategory = RelationChoice(
         title=_(
-            'label_doctype_contentcategory', default='Choose category for this type '
+            "label_doctype_contentcategory", default="Choose category for this type "
         ),
-        description=_('description_doctype_contentcategory', default=''),
+        description=_("description_doctype_contentcategory", default=""),
         required=False,
         defaultFactory=getDefaultCategory,
         source="elan.esd.vocabularies.Category",
     )
-    directives.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(contentCategory="z3c.form.browser.select.SelectFieldWidget")
 
 
 class ELANDocType:
@@ -67,17 +65,16 @@ class ELANDocType:
         colls = back_references(self.context, "docTypes")
         return list(
             {
-                    coll.Title()
-                    for coll in colls
-                    if coll
-                    and not coll.restrictedTraverse("@@context_helpers").is_archive()
-                    and coll.getPortalTypeName() == 'ELANDocCollection'
+                coll.Title()
+                for coll in colls
+                if coll
+                and not coll.restrictedTraverse("@@context_helpers").is_archive()
+                and coll.getPortalTypeName() == "ELANDocCollection"
             }
         )
 
     def getDefaultCategory(self):
-        """
-        """
+        """ """
         #         colls = self.getBackReferences(relationship='doctypes')
         colls = self.context.back_references("docTypes")
         res = None
@@ -90,8 +87,7 @@ class ELANDocType:
         return res
 
     def setCCategory(self, id):
-        """
-        """
+        """ """
         mpath = "/"
         if safe_hasattr(self.context, "dpSearchPath"):
             mpath = self.context.dpSearchPath()

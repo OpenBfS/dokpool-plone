@@ -1,3 +1,3 @@
 from zope.i18nmessageid import MessageFactory
 
-DocpoolMessageFactory = MessageFactory('docpool.caching')
+DocpoolMessageFactory = MessageFactory("docpool.caching")

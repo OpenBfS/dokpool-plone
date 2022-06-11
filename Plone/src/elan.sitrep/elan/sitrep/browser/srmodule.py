@@ -18,30 +18,27 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SRModuleView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('srmodule.pt')
+    __call__ = ViewPageTemplateFile("srmodule.pt")
 
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)
 
 
 class SRModulematerialView(BrowserView):
-    """Additional View
-    """
+    """Additional View"""
 
-    __call__ = ViewPageTemplateFile('srmodulematerial.pt')
+    __call__ = ViewPageTemplateFile("srmodulematerial.pt")
 
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)
 
 
 class SRModuleinfoView(BrowserView):
-    """Additional View
-    """
+    """Additional View"""
 
-    __call__ = ViewPageTemplateFile('srmoduleinfo.pt')
+    __call__ = ViewPageTemplateFile("srmoduleinfo.pt")
 
     def elanobject(self):
         return self.context.doc_extension(ELAN_APP)

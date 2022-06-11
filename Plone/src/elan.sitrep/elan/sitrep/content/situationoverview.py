@@ -6,16 +6,15 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SituationOverview content type. See situationoverview.py for more
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
-from docpool.base.utils import queryForObject
-from docpool.base.utils import queryForObjects
+from docpool.base.utils import queryForObject, queryForObjects
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.sitrep import DocpoolMessageFactory as _
@@ -27,22 +26,19 @@ from zope.interface import implementer
 
 
 class ISituationOverview(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISituationOverview)
 class SituationOverview(Item):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     APP = ELAN_APP
 
     def modTypes(self):
-        """
-        """
+        """ """
         return ModuleTypesVocabularyFactory(self, raw=True)
 
     def availableSituationReports(self):
@@ -56,13 +52,13 @@ class SituationOverview(Item):
         reports = queryForObjects(
             self,
             path=path,
-            portal_type='SituationReport',
-            sort_on='changed',
-            sort_order='reverse',
-            review_state='published',
+            portal_type="SituationReport",
+            sort_on="changed",
+            sort_order="reverse",
+            review_state="published",
             changed={
-                'query': (DateTime() - 14).asdatetime().replace(tzinfo=None),
-                'range': 'min',
+                "query": (DateTime() - 14).asdatetime().replace(tzinfo=None),
+                "range": "min",
             },
             scenarios=uss,
         )
@@ -83,10 +79,7 @@ class SituationOverview(Item):
                     "%s %s"
                     % (
                         safe_text(report.Title()),
-                        self.toLocalizedTime(
-                            DateTime(
-                                report.changed()),
-                            long_format=1),
+                        self.toLocalizedTime(DateTime(report.changed()), long_format=1),
                     ),
                 )
             )
@@ -107,8 +100,7 @@ class SituationOverview(Item):
         return _availableModules(self, reportUID)
 
     def modinfo(self, moduid=None):
-        """
-        """
+        """ """
         if moduid:
             module = queryForObject(self, UID=moduid)
             if module:
@@ -128,13 +120,13 @@ def _availableModules(self, reportUID=None):
             self,
             path=path,
             dp_type=mt[0],
-            portal_type='SRModule',
-            sort_on='changed',
-            sort_order='reverse',
-            review_state='published',
+            portal_type="SRModule",
+            sort_on="changed",
+            sort_order="reverse",
+            review_state="published",
             changed={
-                'query': (DateTime() - 14).asdatetime().replace(tzinfo=None),
-                'range': 'min',
+                "query": (DateTime() - 14).asdatetime().replace(tzinfo=None),
+                "range": "min",
             },
             scenarios=uss,
         )
@@ -160,11 +152,11 @@ def _availableModules(self, reportUID=None):
             self,
             path=path,
             dp_type=mt[0],
-            portal_type='SRModule',
-            sort_on='changed',
-            sort_order='reverse',
-            review_state='private',
-            changed={'query': latest, 'range': 'min'},
+            portal_type="SRModule",
+            sort_on="changed",
+            sort_order="reverse",
+            review_state="private",
+            changed={"query": latest, "range": "min"},
             scenarios=uss,
         )
         if current:

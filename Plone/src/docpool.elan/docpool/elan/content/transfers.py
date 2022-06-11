@@ -10,11 +10,11 @@ def ensureScenariosInTarget(original, copy):
     scen_source = original.myDocumentPool().contentconfig.scen
     scen = copy.myDocumentPool().contentconfig.scen
     new_scenarios = []
-    wftool = getToolByName(original, 'portal_workflow')
+    wftool = getToolByName(original, "portal_workflow")
     for scenario in my_scenarios:
         if scen.hasObject(scenario):
             s = scen._getOb(scenario)
-            if wftool.getInfoFor(s, 'review_state') == 'private':
+            if wftool.getInfoFor(s, "review_state") == "private":
                 sscen = s.Substitute and s.Substitute.to_object or None
                 if sscen and sscen.canBeAssigned():
                     substitute = sscen.getId()
@@ -27,8 +27,8 @@ def ensureScenariosInTarget(original, copy):
             s = scen_source._getOb(scenario)
             id = _copyPaste(s, scen)
             new_scen = scen._getOb(id)
-            wftool = getToolByName(original, 'portal_workflow')
-            wftool.doActionFor(new_scen, 'retract')
+            wftool = getToolByName(original, "portal_workflow")
+            wftool.doActionFor(new_scen, "retract")
             new_scenarios.append(id)
     try:
         copy.doc_extension(ELAN_APP).scenarios = new_scenarios

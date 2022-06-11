@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class ELANArchiveView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('elanarchive.pt')
+    __call__ = ViewPageTemplateFile("elanarchive.pt")

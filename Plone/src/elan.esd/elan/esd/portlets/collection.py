@@ -9,7 +9,6 @@ from z3c.form import field
 from zope import schema
 from zope.interface import implementer
 
-
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
 # have an edit form, since there are no editable options.
@@ -17,8 +16,8 @@ from zope.interface import implementer
 
 class ICollectionPortlet(IPortletDataProvider):
     collection = schema.Choice(
-        title=_('label_elandocument_doctype', default='Document Type'),
-        description=_('description_elandocument_doctype', default=''),
+        title=_("label_elandocument_doctype", default="Document Type"),
+        description=_("description_elandocument_doctype", default=""),
         required=True,
         source="elan.esd.vocabularies.Category",
     )
@@ -30,7 +29,6 @@ class ICollectionPortlet(IPortletDataProvider):
 
 @implementer(ICollectionPortlet)
 class Assignment(base.Assignment):
-
     def __init__(self, collection=None):
         self.collection = collection
 
@@ -49,7 +47,7 @@ class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
 
-    render = ViewPageTemplateFile('collection.pt')
+    render = ViewPageTemplateFile("collection.pt")
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
@@ -57,7 +55,7 @@ class Renderer(base.Renderer):
         self.collection_id = self.data.collection
         esd = getDocumentPoolSite(self.context)
         path = "/".join(esd.getPhysicalPath()) + "/esd"
-        cat = getToolByName(esd, 'portal_catalog', None)
+        cat = getToolByName(esd, "portal_catalog", None)
         items = cat(
             {
                 "portal_type": "ELANDocCollection",
@@ -72,7 +70,9 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return (not self.context.restrictedTraverse("@@context_helpers").is_archive()) and self.collection is not None
+        return (
+            not self.context.restrictedTraverse("@@context_helpers").is_archive()
+        ) and self.collection is not None
 
     def recent_items(self):
         return self._data()
@@ -101,7 +101,7 @@ class AddForm(base.AddForm):
     )
 
     def create(self, data):
-        return Assignment(collection=data.get('collection', None))
+        return Assignment(collection=data.get("collection", None))
 
 
 class EditForm(base.EditForm):

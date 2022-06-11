@@ -1,24 +1,17 @@
 from docpool.base.config import BASE_APP
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
-from docpool.config.utils import CHILDREN
-from docpool.config.utils import createPloneObjects
-from docpool.config.utils import ID
-from docpool.config.utils import TITLE
-from docpool.config.utils import TYPE
+from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import base_hasattr, log_exc
 from zope.annotation.interfaces import IAnnotations
-
 
 # General Docpool structures
 
 
 def dpAdded(self):
-    """
-    """
+    """ """
     annotations = IAnnotations(self)
     fresh = BASE_APP not in annotations[APPLICATIONS_KEY]
     if fresh:
@@ -34,20 +27,19 @@ def dpAdded(self):
 
 
 CONTENT_AREA = {
-    TYPE: 'ContentArea',
-    TITLE: 'Content Area',
-    ID: 'content',
+    TYPE: "ContentArea",
+    TITLE: "Content Area",
+    ID: "content",
     "setExcludeFromNav": True,
     CHILDREN: [
-        {TYPE: 'Users', TITLE: 'Members', ID: 'Members', CHILDREN: []},
-        {TYPE: 'Groups', TITLE: 'Groups', ID: 'Groups', CHILDREN: []},
+        {TYPE: "Users", TITLE: "Members", ID: "Members", CHILDREN: []},
+        {TYPE: "Groups", TITLE: "Groups", ID: "Groups", CHILDREN: []},
     ],
 }
 
 
 def createContentArea(self, fresh):
-    """
-    """
+    """ """
     createPloneObjects(self, [CONTENT_AREA], fresh)
 
 
@@ -58,12 +50,11 @@ def createUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_dpadmin' % prefix, 'DocPool Administrator (%s)' % title, [
-            'Member'], []
+        "%s_dpadmin" % prefix, "DocPool Administrator (%s)" % title, ["Member"], []
     )
-    dpadmin = mtool.getMemberById('%s_dpadmin' % prefix)
+    dpadmin = mtool.getMemberById("%s_dpadmin" % prefix)
     dpadmin.setMemberProperties(
-        {"fullname": 'DocPool Administrator (%s)' % title, "dp": self.UID()}
+        {"fullname": "DocPool Administrator (%s)" % title, "dp": self.UID()}
     )
     dpadmin.setSecurityProfile(password="admin")
 
@@ -79,9 +70,7 @@ def setLocalRoles(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     self.manage_setLocalRoles("%s_Members" % prefix, ["Reader"])
-    self.manage_setLocalRoles(
-        "%s_Administrators" %
-        prefix, ["Site Administrator"])
+    self.manage_setLocalRoles("%s_Administrators" % prefix, ["Site Administrator"])
 
 
 def createGroups(self):
@@ -95,27 +84,23 @@ def createGroups(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    gtool = getToolByName(self, 'portal_groups')
+    gtool = getToolByName(self, "portal_groups")
     props = {
-        'allowedDocTypes': [],
-        'title': 'Members (%s)' % title,
-        'description': 'Users of the DocPool.',
-        'dp': self.UID(),
+        "allowedDocTypes": [],
+        "title": "Members (%s)" % title,
+        "description": "Users of the DocPool.",
+        "dp": self.UID(),
     }
     gtool.addGroup("%s_Members" % prefix, properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_Members' % prefix)
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_Members" % prefix)
     props = {
-        'allowedDocTypes': [],
-        'title': 'Administrators (%s)' % title,
-        'description': 'Responsible for the administration of the DocPool.',
-        'dp': self.UID(),
+        "allowedDocTypes": [],
+        "title": "Administrators (%s)" % title,
+        "description": "Responsible for the administration of the DocPool.",
+        "dp": self.UID(),
     }
     gtool.addGroup("%s_Administrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup(
-        '%s_dpadmin' %
-        prefix,
-        '%s_Administrators' %
-        prefix)
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_Administrators" % prefix)
 
 
 def navSettings(self):
@@ -124,8 +109,7 @@ def navSettings(self):
 
 
 def copyDocTypes(self):
-    """
-    """
+    """ """
     if base_hasattr(self, "config"):
         return
     config = self.config
@@ -145,11 +129,10 @@ def dpRemoved(self):
 
 
 def deleteGroups(self):
-    """
-    """
-    prefix = (hasattr(self, 'prefix') and self.prefix) or self.getId()
+    """ """
+    prefix = (hasattr(self, "prefix") and self.prefix) or self.getId()
     prefix = str(prefix)
-    gtool = getToolByName(self, 'portal_groups')
+    gtool = getToolByName(self, "portal_groups")
     # list existing groups and then delete them
     gids = gtool.getGroupIds()
     for gid in gids:
@@ -160,11 +143,10 @@ def deleteGroups(self):
 
 
 def deleteUsers(self):
-    """
-    """
-    prefix = (hasattr(self, 'prefix') and self.prefix) or self.getId()
+    """ """
+    prefix = (hasattr(self, "prefix") and self.prefix) or self.getId()
     prefix = str(prefix)
-    mtool = getToolByName(self, 'portal_membership', None)
+    mtool = getToolByName(self, "portal_membership", None)
     # list all users for this ESD and delete them
     uids = mtool.listMemberIds()
     for uid in uids:

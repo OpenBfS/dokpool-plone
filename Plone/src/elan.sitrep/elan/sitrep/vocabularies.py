@@ -3,8 +3,7 @@ from docpool.base.utils import getDocumentPoolSite
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 def title_default(brain):
@@ -24,7 +23,7 @@ def _createVocab(
 ):
     esd = getDocumentPoolSite(context)
     path = "/".join(esd.getPhysicalPath()) + path
-    cat = getToolByName(esd, 'portal_catalog', None)
+    cat = getToolByName(esd, "portal_catalog", None)
 
     if cat is None:
         if not raw:
@@ -71,8 +70,7 @@ def phase_title(brain):
 
 @implementer(IVocabularyFactory)
 class PhasesVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context
@@ -91,8 +89,7 @@ PhasesVocabularyFactory = PhasesVocabulary()
 
 @implementer(IVocabularyFactory)
 class CurrentReportsVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context
@@ -101,7 +98,7 @@ class CurrentReportsVocabulary:
             raw,
             "SituationReport",
             "/content",
-            add_query={'review_state': 'private'},
+            add_query={"review_state": "private"},
         )
 
 
@@ -114,8 +111,7 @@ def module_title(brain):
 
 @implementer(IVocabularyFactory)
 class CurrentModulesVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         return _createVocab(
@@ -124,7 +120,7 @@ class CurrentModulesVocabulary:
             "SRModule",
             "/content",
             sort_on="changed",
-            add_query={'sort_order': 'reverse', 'review_state': 'published'},
+            add_query={"sort_order": "reverse", "review_state": "published"},
             title_method=module_title,
             filter_method=moduleFilter,
         )
@@ -145,8 +141,7 @@ CurrentModulesVocabularyFactory = CurrentModulesVocabulary()
 
 @implementer(IVocabularyFactory)
 class PastReportsVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context
@@ -155,7 +150,7 @@ class PastReportsVocabulary:
             raw,
             "SituationReport",
             "/content",
-            add_query={'review_state': 'published'},
+            add_query={"review_state": "published"},
         )
 
 
@@ -164,8 +159,7 @@ PastReportsVocabularyFactory = PastReportsVocabulary()
 
 @implementer(IVocabularyFactory)
 class ModuleTypesVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context
@@ -179,8 +173,7 @@ ModuleTypesVocabularyFactory = ModuleTypesVocabulary()
 
 @implementer(IVocabularyFactory)
 class CollectionsVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context
@@ -192,8 +185,7 @@ CollectionsVocabularyFactory = CollectionsVocabulary()
 
 @implementer(IVocabularyFactory)
 class TextBlocksVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context

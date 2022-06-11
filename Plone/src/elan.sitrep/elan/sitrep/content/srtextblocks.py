@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRTextBlocks content type. See srtextblocks.py for more
 explanation on the statements below.
@@ -20,27 +20,23 @@ from zope.interface import implementer
 
 
 class ISRTextBlocks(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISRTextBlocks)
 class SRTextBlocks(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     APP = ELAN_APP
 
     def mySRTextBlocks(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -48,20 +44,17 @@ class SRTextBlocks(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getSRTextBlocks(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRTextBlock'}
+        """ """
+        args = {"portal_type": "SRTextBlock"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRTextBlockss(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRTextBlocks'}
+        """ """
+        args = {"portal_type": "SRTextBlocks"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

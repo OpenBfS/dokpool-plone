@@ -1,10 +1,9 @@
+import transaction
 from docpool.base.content.documentpool import APPLICATIONS_KEY
-from docpool.rodos.config import RODOS_APP
 from docpool.rodos import DocpoolMessageFactory as _
+from docpool.rodos.config import RODOS_APP
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
-
-import transaction
 
 
 def dpAdded(self):
@@ -72,27 +71,27 @@ def createRodosGroups(docpool):
     prefix = docpool.prefix or docpool.getId()
     prefix = str(prefix)
     title = docpool.Title()
-    gtool = getToolByName(docpool, 'portal_groups')
+    gtool = getToolByName(docpool, "portal_groups")
     # Group for Rodos application rights
     props = {
-        'allowedDocTypes': [],
-        'title': 'Rodos Users (%s)' % title,
-        'description': 'Users with access to Rodos functions.',
-        'dp': docpool.UID(),
+        "allowedDocTypes": [],
+        "title": "Rodos Users (%s)" % title,
+        "description": "Users with access to Rodos functions.",
+        "dp": docpool.UID(),
     }
     gtool.addGroup("%s_RodosUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_RodosUsers' % prefix)
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_RodosUsers" % prefix)
 
     # Group for Rodos content administration - if needed, otherwise ignore...
     props = {
-        'allowedDocTypes': [],
-        'title': 'Rodos Content Administrators (%s)' % title,
-        'description': 'Responsible for the definition of structure and types.',
-        'dp': docpool.UID(),
+        "allowedDocTypes": [],
+        "title": "Rodos Content Administrators (%s)" % title,
+        "description": "Responsible for the definition of structure and types.",
+        "dp": docpool.UID(),
     }
     gtool.addGroup("%s_RodosContentAdministrators" % prefix, properties=props)
     gtool.addPrincipalToGroup(
-        '%s_dpadmin' % prefix, '%s_RodosContentAdministrators' % prefix
+        "%s_dpadmin" % prefix, "%s_RodosContentAdministrators" % prefix
     )
 
     # Set Rodos role as a local role for the new group

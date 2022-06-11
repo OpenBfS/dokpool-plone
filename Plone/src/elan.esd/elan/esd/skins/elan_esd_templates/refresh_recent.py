@@ -10,6 +10,6 @@
 from elan.esd.portlets.recent import Renderer
 
 rp = Renderer(context, context.REQUEST, None, None, None)
-context.REQUEST.RESPONSE.setHeader('Cache-Control', 'no-cache')
+context.REQUEST.RESPONSE.setHeader("Cache-Control", "no-cache")
 
 return rp.render()

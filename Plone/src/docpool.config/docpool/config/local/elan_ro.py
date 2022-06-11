@@ -1,29 +1,24 @@
-from ..utils import set_local_roles
 from datetime import datetime
+
+import transaction
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
 from docpool.config.general.elan import connectTypesAndCategories
 from docpool.config.local.base import CONTENT_AREA
-from docpool.config.utils import CHILDREN
-from docpool.config.utils import createPloneObjects
-from docpool.config.utils import ID
-from docpool.config.utils import TITLE
-from docpool.config.utils import TYPE
+from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
 from docpool.elan.config import ELAN_APP
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 from zope.annotation.interfaces import IAnnotations
 
-import transaction
-
+from ..utils import set_local_roles
 
 # ELAN specific structures
 
 
 def dpAdded(self):
-    """
-    """
+    """ """
     annotations = IAnnotations(self)
     fresh = ELAN_APP not in annotations[APPLICATIONS_KEY]
     if fresh:
@@ -40,16 +35,16 @@ def dpAdded(self):
         transaction.commit()
         connectTypesAndCategories(self)
 
-        placeful_wf = getToolByName(self, 'portal_placeful_workflow')
+        placeful_wf = getToolByName(self, "portal_placeful_workflow")
         try:
             self.archive.manage_addProduct[
-                'CMFPlacefulWorkflow'
+                "CMFPlacefulWorkflow"
             ].manage_addWorkflowPolicyConfig()
         except BadRequest as e:
             # print type(e)
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self.archive)
-        placefulWfName = 'elan-archive'
+        placefulWfName = "elan-archive"
         config.setPolicyIn(policy=placefulWfName, update_security=False)
         config.setPolicyBelow(policy=placefulWfName, update_security=False)
         createELANUsers(self)
@@ -59,50 +54,56 @@ def dpAdded(self):
 
 
 BASICSTRUCTURE = [
-    {TYPE: 'ELANArchives', TITLE: 'Archive', ID: 'archive', CHILDREN: [], 'local_behaviors': ['elan']}
+    {
+        TYPE: "ELANArchives",
+        TITLE: "Archive",
+        ID: "archive",
+        CHILDREN: [],
+        "local_behaviors": ["elan"],
+    }
 ]
 
 ARCHIVESTRUCTURE = [
     {
-        TYPE: 'ELANCurrentSituation',
-        TITLE: 'Electronic Situation Display',
-        ID: 'esd',
+        TYPE: "ELANCurrentSituation",
+        TITLE: "Electronic Situation Display",
+        ID: "esd",
         CHILDREN: [],
     },
     CONTENT_AREA,
 ]
 
 SPECIAL_PAGES = [
-    {TYPE: 'Text', TITLE: 'Hilfe', ID: 'help', CHILDREN: []},
+    {TYPE: "Text", TITLE: "Hilfe", ID: "help", CHILDREN: []},
 ]
 
 ADMINSTRUCTURE = [
     {
-        TYPE: 'ELANContentConfig',
-        TITLE: 'Content Configuration',
-        ID: 'contentconfig',
+        TYPE: "ELANContentConfig",
+        TITLE: "Content Configuration",
+        ID: "contentconfig",
         CHILDREN: [
             {
-                TYPE: 'DPEvents',
-                TITLE: 'Scenarios',
-                ID: 'scen',
+                TYPE: "DPEvents",
+                TITLE: "Scenarios",
+                ID: "scen",
                 CHILDREN: [
                     {
-                        TYPE: 'DPEvent',
-                        TITLE: 'Routine mode',
-                        ID: 'routinemode',
+                        TYPE: "DPEvent",
+                        TITLE: "Routine mode",
+                        ID: "routinemode",
                         "Status": "active",
                         "TimeOfEvent": datetime.now(),
                         CHILDREN: [],
                     }
                 ],
             },
-            {TYPE: 'Text', TITLE: 'Ticker', ID: 'ticker', CHILDREN: []},
-            {TYPE: 'Text', TITLE: 'Hilfe', ID: 'help', CHILDREN: []},
+            {TYPE: "Text", TITLE: "Ticker", ID: "ticker", CHILDREN: []},
+            {TYPE: "Text", TITLE: "Hilfe", ID: "help", CHILDREN: []},
             {
-                TYPE: 'DashboardsConfig',
-                TITLE: 'Dashboard Configuration',
-                ID: 'dbconfig',
+                TYPE: "DashboardsConfig",
+                TITLE: "Dashboard Configuration",
+                ID: "dbconfig",
                 CHILDREN: [],
             },
         ],
@@ -111,14 +112,12 @@ ADMINSTRUCTURE = [
 
 
 def createBasicPortalStructure(plonesite, fresh):
-    """
-    """
+    """ """
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
 
 
 def createContentConfig(plonesite, fresh):
-    """
-    """
+    """ """
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
 
 
@@ -129,21 +128,19 @@ def createELANUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_elanadmin' % prefix, 'ELAN Administrator (%s)' % title, [
-            'Member'], []
+        "%s_elanadmin" % prefix, "ELAN Administrator (%s)" % title, ["Member"], []
     )
-    elanadmin = mtool.getMemberById('%s_elanadmin' % prefix)
+    elanadmin = mtool.getMemberById("%s_elanadmin" % prefix)
     elanadmin.setMemberProperties(
-        {"fullname": 'ELAN Administrator (%s)' % title, "dp": self.UID()}
+        {"fullname": "ELAN Administrator (%s)" % title, "dp": self.UID()}
     )
     elanadmin.setSecurityProfile(password="admin")
     mtool.addMember(
-        '%s_contentadmin' % prefix, 'Content Admin (%s)' % title, [
-            'Member'], []
+        "%s_contentadmin" % prefix, "Content Admin (%s)" % title, ["Member"], []
     )
-    contentadmin = mtool.getMemberById('%s_contentadmin' % prefix)
+    contentadmin = mtool.getMemberById("%s_contentadmin" % prefix)
     contentadmin.setMemberProperties(
-        {"fullname": 'Content Admin (%s)' % title, "dp": self.UID()}
+        {"fullname": "Content Admin (%s)" % title, "dp": self.UID()}
     )
     contentadmin.setSecurityProfile(password="admin")
 
@@ -180,63 +177,53 @@ def createELANGroups(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    gtool = getToolByName(self, 'portal_groups')
-    gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_Members' % prefix)
-    gtool.addPrincipalToGroup(
-        '%s_contentadmin' %
-        prefix,
-        '%s_Members' %
-        prefix)
-    gtool.addPrincipalToGroup(
-        '%s_elanadmin' %
-        prefix,
-        '%s_Administrators' %
-        prefix)
+    gtool = getToolByName(self, "portal_groups")
+    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_Members" % prefix)
+    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_Members" % prefix)
+    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_Administrators" % prefix)
     # Content administrator group
     props = {
-        'allowedDocTypes': [],
-        'title': 'Content Administrators (%s)' % title,
-        'description': 'Responsible for the definition of scenarios, ticker texts and additional content.',
-        'dp': self.UID(),
+        "allowedDocTypes": [],
+        "title": "Content Administrators (%s)" % title,
+        "description": "Responsible for the definition of scenarios, ticker texts and additional content.",
+        "dp": self.UID(),
     }
     gtool.addGroup("%s_ContentAdministrators" % prefix, properties=props)
     gtool.addPrincipalToGroup(
-        '%s_contentadmin' % prefix, '%s_ContentAdministrators' % prefix
+        "%s_contentadmin" % prefix, "%s_ContentAdministrators" % prefix
     )
     # Group for ELAN application rights
     props = {
-        'allowedDocTypes': [],
-        'title': 'ELAN Users (%s)' % title,
-        'description': 'Users with access to ELAN functions.',
-        'dp': self.UID(),
+        "allowedDocTypes": [],
+        "title": "ELAN Users (%s)" % title,
+        "description": "Users with access to ELAN functions.",
+        "dp": self.UID(),
     }
     gtool.addGroup("%s_ELANUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup('%s_elanadmin' % prefix, '%s_ELANUsers' % prefix)
-    gtool.addPrincipalToGroup(
-        '%s_contentadmin' %
-        prefix,
-        '%s_ELANUsers' %
-        prefix)
-    gtool.addPrincipalToGroup('%s_dpadmin' % prefix, '%s_ELANUsers' % prefix)
+    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_ELANUsers" % prefix)
+    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_ELANUsers" % prefix)
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_ELANUsers" % prefix)
     # Group for Situation Report users
     props = {
-        'allowedDocTypes': [],
-        'title': 'Situation Report Admins/Lagebild (%s)' % title,
-        'description': 'Users who can manage situation reports.',
-        'dp': self.UID(),
+        "allowedDocTypes": [],
+        "title": "Situation Report Admins/Lagebild (%s)" % title,
+        "description": "Users who can manage situation reports.",
+        "dp": self.UID(),
     }
     gtool.addGroup("%s_SituationReportAdmins" % prefix, properties=props)
     gtool.addPrincipalToGroup(
-        '%s_contentadmin' % prefix, '%s_SituationReportAdmins' % prefix)
+        "%s_contentadmin" % prefix, "%s_SituationReportAdmins" % prefix
+    )
     gtool.addPrincipalToGroup(
-        '%s_dpadmin' % prefix, '%s_SituationReportAdmins' % prefix)
+        "%s_dpadmin" % prefix, "%s_SituationReportAdmins" % prefix
+    )
     gtool.addPrincipalToGroup(
-        '%s_elanadmin' % prefix, '%s_SituationReportAdmins' % prefix)
+        "%s_elanadmin" % prefix, "%s_SituationReportAdmins" % prefix
+    )
 
 
 def copyCurrentSituation(self, fresh):
-    """
-    """
+    """ """
     if not fresh:
         return
     esd = self.esd

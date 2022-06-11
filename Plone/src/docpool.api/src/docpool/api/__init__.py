@@ -1,5 +1,4 @@
 """Init and utils."""
 from zope.i18nmessageid import MessageFactory
 
-
-_ = MessageFactory('docpool.api')
+_ = MessageFactory("docpool.api")

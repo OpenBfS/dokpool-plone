@@ -18,10 +18,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class InfoLinklistitemView(BrowserView):
-    """Additional View
-    """
+    """Additional View"""
 
-    __call__ = ViewPageTemplateFile('infolinklistitem.pt')
+    __call__ = ViewPageTemplateFile("infolinklistitem.pt")
 
     def options(self):
         return extendOptions(self.context, self.request, {})

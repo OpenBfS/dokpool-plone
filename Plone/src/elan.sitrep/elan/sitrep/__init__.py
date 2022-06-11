@@ -1,3 +1,3 @@
 from zope.i18nmessageid import MessageFactory
 
-DocpoolMessageFactory = MessageFactory('elan.sitrep')
+DocpoolMessageFactory = MessageFactory("elan.sitrep")

@@ -1,7 +1,6 @@
-from zope.interface import Interface, Attribute
 from docpool.users import DocpoolMessageFactory as _
+from zope.interface import Attribute, Interface
 
 
 class IDocPoolUsersLayer(Interface):
-    """Request marker installed via browserlayer.xml.
-    """
+    """Request marker installed via browserlayer.xml."""

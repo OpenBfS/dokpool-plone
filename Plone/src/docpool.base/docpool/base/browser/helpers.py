@@ -1,5 +1,5 @@
-from Products.Five import BrowserView
 from pkg_resources import get_distribution
+from Products.Five import BrowserView
 
 
 class ContextHelpers(BrowserView):

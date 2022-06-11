@@ -1,17 +1,14 @@
 from AccessControl import Unauthorized
 from OFS.interfaces import IObjectWillBeRemovedEvent
 from plone.base.interfaces.siteroot import IPloneSiteRoot
-from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import log, log_exc
 from zope.component import adapter
+from zope.interface import Interface, implementer
 from zope.interface.interfaces import ObjectEvent
-from zope.interface import implementer
-from zope.interface import Interface
 
 
 class IDocumentPoolUndeleteable(Interface):
-    """Marker interface for objects which should not be deleted.
-    """
+    """Marker interface for objects which should not be deleted."""
 
 
 @adapter(IDocumentPoolUndeleteable, IObjectWillBeRemovedEvent)
@@ -31,8 +28,7 @@ def delete_handler(object, event):
 
 
 class IDocumentPoolInitializedEvent(Interface):
-    """
-    """
+    """ """
 
 
 @implementer(IDocumentPoolInitializedEvent)
@@ -41,8 +37,7 @@ class DocumentPoolInitializedEvent(ObjectEvent):
 
 
 class IDocumentPoolRemovedEvent(Interface):
-    """
-    """
+    """ """
 
 
 @implementer(IDocumentPoolRemovedEvent)

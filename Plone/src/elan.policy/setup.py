@@ -1,11 +1,9 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
-
-version = '1.1'
+version = "1.1"
 
 setup(
-    name='elan.policy',
+    name="elan.policy",
     version=version,
     description="",
     long_description="",
@@ -16,29 +14,29 @@ setup(
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords='',
-    author='Condat AG',
-    author_email='hr@condat.de',
-    url='http://xservice.condat.de/vportal/elan-e',
-    license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['elan'],
+    keywords="",
+    author="Condat AG",
+    author_email="hr@condat.de",
+    url="http://xservice.condat.de/vportal/elan-e",
+    license="GPL",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["elan"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
+        "setuptools",
         # -*- Extra requirements: -*-
-        'Products.CMFPlacefulWorkflow',
-        'plone.app.caching',
-        'plone.app.upgrade',
-        'docpool.theme',
-        'docpool.base',
-        'docpool.users',
-        'docpool.config',
-        'docpool.dashboard',
-        'docpool.video',
-        'docpool.caching',
-        'docpool.elan',
+        "Products.CMFPlacefulWorkflow",
+        "plone.app.caching",
+        "plone.app.upgrade",
+        "docpool.theme",
+        "docpool.base",
+        "docpool.users",
+        "docpool.config",
+        "docpool.dashboard",
+        "docpool.video",
+        "docpool.caching",
+        "docpool.elan",
     ],
     entry_points="""
       # -*- Entry points: -*-

@@ -1,13 +1,11 @@
-from setuptools import find_packages
-from setuptools import setup
-
 import os
 
+from setuptools import find_packages, setup
 
-version = '1.0'
+version = "1.0"
 
 setup(
-    name='docpool.localbehavior',
+    name="docpool.localbehavior",
     version=version,
     description="Local behavior support for Dexterity",
     long_description=open("README.txt").read()
@@ -16,17 +14,17 @@ setup(
     # Get more strings from
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=["Programming Language :: Python"],
-    keywords='',
-    author='',
-    author_email='',
-    url='',
-    license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['docpool'],
+    keywords="",
+    author="",
+    author_email="",
+    url="",
+    license="GPL",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["docpool"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
+        "setuptools",
         # -*- Extra requirements: -*-
     ],
     entry_points="""

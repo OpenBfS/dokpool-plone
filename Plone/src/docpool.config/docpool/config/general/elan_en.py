@@ -1,9 +1,6 @@
+import transaction
 from docpool.base.events import IDocumentPoolUndeleteable
-from docpool.config.utils import CHILDREN
-from docpool.config.utils import createPloneObjects
-from docpool.config.utils import ID
-from docpool.config.utils import TITLE
-from docpool.config.utils import TYPE
+from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
 from docpool.elan.config import ELAN_APP
 from plone import api
 from plone.app.textfield.value import RichTextValue
@@ -11,12 +8,9 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from Products.Five.utilities.marker import mark
 
-import transaction
-
 
 def install(self):
-    """
-    """
+    """ """
     fresh = True
     if self.hasObject("esd"):
         fresh = False  # It's a reinstall
@@ -28,29 +22,28 @@ def install(self):
 
 
 def configUsers(self, fresh):
-    """
-    """
+    """ """
     if fresh:
         mtool = getToolByName(self, "portal_membership")
         mtool.addMember(
-            'elanadmin',
-            'ELAN Administrator (global)',
-            ['Site Administrator', 'Member'],
+            "elanadmin",
+            "ELAN Administrator (global)",
+            ["Site Administrator", "Member"],
             [],
         )
-        elanadmin = mtool.getMemberById('elanadmin')
-        elanadmin.setMemberProperties({"fullname": 'ELAN Administrator'})
+        elanadmin = mtool.getMemberById("elanadmin")
+        elanadmin.setMemberProperties({"fullname": "ELAN Administrator"})
         elanadmin.setSecurityProfile(password="admin")
         mtool.addMember(
-            'elanmanager', 'ELAN Manager (global)', ['Manager', 'Member'], []
+            "elanmanager", "ELAN Manager (global)", ["Manager", "Member"], []
         )
-        elanmanager = mtool.getMemberById('elanmanager')
-        elanmanager.setMemberProperties({"fullname": 'ELAN Manager'})
+        elanmanager = mtool.getMemberById("elanmanager")
+        elanmanager.setMemberProperties({"fullname": "ELAN Manager"})
         elanmanager.setSecurityProfile(password="admin")
-        api.user.grant_roles(username='elanmanager', roles=['ELANUser'])
-        api.user.grant_roles(username='elanadmin', roles=['ELANUser'])
-        api.user.grant_roles(username='dpmanager', roles=['ELANUser'])
-        api.user.grant_roles(username='dpadmin', roles=['ELANUser'])
+        api.user.grant_roles(username="elanmanager", roles=["ELANUser"])
+        api.user.grant_roles(username="elanadmin", roles=["ELANUser"])
+        api.user.grant_roles(username="dpmanager", roles=["ELANUser"])
+        api.user.grant_roles(username="dpadmin", roles=["ELANUser"])
 
 
 def createStructure(self, fresh):
@@ -63,249 +56,242 @@ def createStructure(self, fresh):
 
 
 def createDocTypes(plonesite, fresh):
-    """
-    """
+    """ """
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
 
 def createBasicPortalStructure(plonesite, fresh):
-    """
-    """
+    """ """
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
 
 
 def fillBasicPortalStructure(plonesite, fresh):
-    """
-    """
+    """ """
     createPloneObjects(plonesite, BASICSTRUCTURE2, fresh)
     # Now mark certain objects as undeleteable
-    mark(plonesite.esd['front-page'], IDocumentPoolUndeleteable)
+    mark(plonesite.esd["front-page"], IDocumentPoolUndeleteable)
     mark(plonesite.esd.overview, IDocumentPoolUndeleteable)
     mark(plonesite.esd.recent, IDocumentPoolUndeleteable)
 
 
 def setFrontpage(self):
-    """
-    """
+    """ """
     self.esd.setDefaultPage("front-page")
 
 
-FRONTPAGE = RichTextValue("", 'text/plain', 'text/html')
+FRONTPAGE = RichTextValue("", "text/plain", "text/html")
 
 BASICSTRUCTURE = [
     {
-        TYPE: 'ELANCurrentSituation',
-        TITLE: 'Current Situation Template',
-        ID: 'esd',
+        TYPE: "ELANCurrentSituation",
+        TITLE: "Current Situation Template",
+        ID: "esd",
         CHILDREN: [
             {
-                TYPE: 'Document',
-                TITLE: 'Electronic Situation Display',
-                ID: 'front-page',
-                'text': FRONTPAGE,
+                TYPE: "Document",
+                TITLE: "Electronic Situation Display",
+                ID: "front-page",
+                "text": FRONTPAGE,
                 CHILDREN: [],
             }
         ],
     },
     {
-        TYPE: 'ELANContentConfig',
-        TITLE: 'Content Configuration',
-        ID: 'contentconfig',
+        TYPE: "ELANContentConfig",
+        TITLE: "Content Configuration",
+        ID: "contentconfig",
         CHILDREN: [
-            {TYPE: 'Text', TITLE: 'Impressum', ID: 'impressum', CHILDREN: []},
+            {TYPE: "Text", TITLE: "Impressum", ID: "impressum", CHILDREN: []},
         ],
     },
 ]
-DOCTYPES = (
-    'ref_setDocTypesUpdateCollection'
-)  # indicates that docTypes is referencing objects, which need to be queried by their id
+DOCTYPES = "ref_setDocTypesUpdateCollection"  # indicates that docTypes is referencing objects, which need to be queried by their id
 
 ESDCOLLECTIONS = [
     {
-        TYPE: 'ELANSection',
-        TITLE: 'INCIDENT',
-        ID: 'incident',
+        TYPE: "ELANSection",
+        TITLE: "INCIDENT",
+        ID: "incident",
         CHILDREN: [
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'NOTIFICATIONS',
-                ID: 'notifications',
+                TYPE: "ELANDocCollection",
+                TITLE: "NOTIFICATIONS",
+                ID: "notifications",
                 CHILDREN: [],
-                DOCTYPES: ['notification', 'note'],
+                DOCTYPES: ["notification", "note"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'EVENT / NPP INFORMATION',
-                ID: 'event-npp-information',
+                TYPE: "ELANDocCollection",
+                TITLE: "EVENT / NPP INFORMATION",
+                ID: "event-npp-information",
                 CHILDREN: [],
-                DOCTYPES: ['eventinformation', 'nppinformation'],
+                DOCTYPES: ["eventinformation", "nppinformation"],
             },
         ],
     },
     {
-        TYPE: 'ELANSection',
-        TITLE: 'METEOROLOGY',
-        ID: 'meteorology',
+        TYPE: "ELANSection",
+        TITLE: "METEOROLOGY",
+        ID: "meteorology",
         CHILDREN: [
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'WEATHER INFORMATION',
-                ID: 'weather-information',
+                TYPE: "ELANDocCollection",
+                TITLE: "WEATHER INFORMATION",
+                ID: "weather-information",
                 CHILDREN: [],
-                DOCTYPES: ['weatherinformation'],
+                DOCTYPES: ["weatherinformation"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'TRAJECTORIES',
-                ID: 'trajectories',
+                TYPE: "ELANDocCollection",
+                TITLE: "TRAJECTORIES",
+                ID: "trajectories",
                 CHILDREN: [],
-                DOCTYPES: ['trajectory'],
+                DOCTYPES: ["trajectory"],
             },
         ],
     },
     {
-        TYPE: 'ELANSection',
-        TITLE: 'DOSE PROJECTIONS',
-        ID: 'dose-projections',
+        TYPE: "ELANSection",
+        TITLE: "DOSE PROJECTIONS",
+        ID: "dose-projections",
         CHILDREN: [
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'NPP PROJECTIONS',
-                ID: 'npp-projections',
+                TYPE: "ELANDocCollection",
+                TITLE: "NPP PROJECTIONS",
+                ID: "npp-projections",
                 CHILDREN: [],
-                DOCTYPES: ['nppprojection'],
+                DOCTYPES: ["nppprojection"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'RODOS',
-                ID: 'rodos',
+                TYPE: "ELANDocCollection",
+                TITLE: "RODOS",
+                ID: "rodos",
                 CHILDREN: [],
-                DOCTYPES: ['rodosprojection'],
+                DOCTYPES: ["rodosprojection"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'OTHER',
-                ID: 'other',
+                TYPE: "ELANDocCollection",
+                TITLE: "OTHER",
+                ID: "other",
                 CHILDREN: [],
-                DOCTYPES: ['otherprojection'],
+                DOCTYPES: ["otherprojection"],
             },
         ],
     },
     {
-        TYPE: 'ELANSection',
-        TITLE: 'MEASUREMENT RESULTS',
-        ID: 'measurement-results',
+        TYPE: "ELANSection",
+        TITLE: "MEASUREMENT RESULTS",
+        ID: "measurement-results",
         CHILDREN: [
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'GAMMA DOSE RATE',
-                ID: 'gamma-dose-rate',
+                TYPE: "ELANDocCollection",
+                TITLE: "GAMMA DOSE RATE",
+                ID: "gamma-dose-rate",
                 CHILDREN: [],
-                DOCTYPES: ['gammadoserate'],
+                DOCTYPES: ["gammadoserate"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'AIR ACTIVITY',
-                ID: 'air-activity',
+                TYPE: "ELANDocCollection",
+                TITLE: "AIR ACTIVITY",
+                ID: "air-activity",
                 CHILDREN: [],
-                DOCTYPES: ['airactivity'],
+                DOCTYPES: ["airactivity"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'GROUND CONTAMINATION',
-                ID: 'ground-contamination',
+                TYPE: "ELANDocCollection",
+                TITLE: "GROUND CONTAMINATION",
+                ID: "ground-contamination",
                 CHILDREN: [],
-                DOCTYPES: ['groundcontamination'],
+                DOCTYPES: ["groundcontamination"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'FOOD AND FEED',
-                ID: 'food-and-feed',
+                TYPE: "ELANDocCollection",
+                TITLE: "FOOD AND FEED",
+                ID: "food-and-feed",
                 CHILDREN: [],
-                DOCTYPES: ['mresult_feed', 'mresult_food'],
+                DOCTYPES: ["mresult_feed", "mresult_food"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'WATER',
-                ID: 'water',
+                TYPE: "ELANDocCollection",
+                TITLE: "WATER",
+                ID: "water",
                 CHILDREN: [],
-                DOCTYPES: ['mresult_water'],
+                DOCTYPES: ["mresult_water"],
             },
         ],
     },
     {
-        TYPE: 'ELANSection',
-        TITLE: 'CURRENT SITUATION',
-        ID: 'current-situation',
+        TYPE: "ELANSection",
+        TITLE: "CURRENT SITUATION",
+        ID: "current-situation",
         CHILDREN: [
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'SITUATION REPORTS',
-                ID: 'situation-reports',
+                TYPE: "ELANDocCollection",
+                TITLE: "SITUATION REPORTS",
+                ID: "situation-reports",
                 CHILDREN: [],
-                DOCTYPES: ['situationreport', 'sitrep'],
+                DOCTYPES: ["situationreport", "sitrep"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'PROTECTIVE ACTIONS',
-                ID: 'protective-actions',
+                TYPE: "ELANDocCollection",
+                TITLE: "PROTECTIVE ACTIONS",
+                ID: "protective-actions",
                 CHILDREN: [],
-                DOCTYPES: ['instructions', 'protectiveactions'],
+                DOCTYPES: ["instructions", "protectiveactions"],
             },
         ],
     },
     {
-        TYPE: 'ELANSection',
-        TITLE: 'INFORMATION OF THE PUBLIC',
-        ID: 'information-of-the-public',
+        TYPE: "ELANSection",
+        TITLE: "INFORMATION OF THE PUBLIC",
+        ID: "information-of-the-public",
         CHILDREN: [
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'MEDIA RELEASES',
-                ID: 'media-releases',
+                TYPE: "ELANDocCollection",
+                TITLE: "MEDIA RELEASES",
+                ID: "media-releases",
                 CHILDREN: [],
-                DOCTYPES: ['mediarelease'],
+                DOCTYPES: ["mediarelease"],
             },
             {
-                TYPE: 'ELANDocCollection',
-                TITLE: 'INSTRUCTIONS TO THE PUBLIC',
-                ID: 'instructions-to-the-public',
+                TYPE: "ELANDocCollection",
+                TITLE: "INSTRUCTIONS TO THE PUBLIC",
+                ID: "instructions-to-the-public",
                 CHILDREN: [],
-                DOCTYPES: ['instructions'],
+                DOCTYPES: ["instructions"],
             },
         ],
     },
     {
-        TYPE: 'ELANDocCollection',
-        TITLE: 'Overview',
-        ID: 'overview',
+        TYPE: "ELANDocCollection",
+        TITLE: "Overview",
+        ID: "overview",
         "setExcludeFromNav": True,
         DOCTYPES: [],
         CHILDREN: [],
     },
     {
-        TYPE: 'ELANDocCollection',
-        TITLE: 'All documents',
-        ID: 'recent',
+        TYPE: "ELANDocCollection",
+        TITLE: "All documents",
+        ID: "recent",
         "setExcludeFromNav": True,
         DOCTYPES: [],
         CHILDREN: [],
     },
-    {TYPE: 'Dashboard', TITLE: 'Dashboard',
-        ID: 'dashboard', "setExcludeFromNav": True},
+    {TYPE: "Dashboard", TITLE: "Dashboard", ID: "dashboard", "setExcludeFromNav": True},
     {
-        TYPE: 'SituationOverview',
-        TITLE: 'Situation overview',
-        ID: 'situationoverview',
+        TYPE: "SituationOverview",
+        TITLE: "Situation overview",
+        ID: "situationoverview",
         "setExcludeFromNav": True,
     },
 ]
 
 BASICSTRUCTURE2 = [
     {
-        TYPE: 'ELANCurrentSituation',
-        TITLE: 'Current Situation Template',
-        ID: 'esd',
+        TYPE: "ELANCurrentSituation",
+        TITLE: "Current Situation Template",
+        ID: "esd",
         CHILDREN: ESDCOLLECTIONS,
     }
 ]
@@ -315,291 +301,289 @@ BASICSTRUCTURE2 = [
 
 DTYPES = [
     {
-        TYPE: 'DocType',
-        TITLE: 'Notification',
-        ID: 'notification',
+        TYPE: "DocType",
+        TITLE: "Notification",
+        ID: "notification",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Note',
-        ID: 'note',
+        TYPE: "DocType",
+        TITLE: "Note",
+        ID: "note",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Event Information',
-        ID: 'eventinformation',
+        TYPE: "DocType",
+        TITLE: "Event Information",
+        ID: "eventinformation",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'NPP Information',
-        ID: 'nppinformation',
+        TYPE: "DocType",
+        TITLE: "NPP Information",
+        ID: "nppinformation",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Weather Information',
-        ID: 'weatherinformation',
+        TYPE: "DocType",
+        TITLE: "Weather Information",
+        ID: "weatherinformation",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Trajectory',
-        ID: 'trajectory',
+        TYPE: "DocType",
+        TITLE: "Trajectory",
+        ID: "trajectory",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'NPP Projection',
-        ID: 'nppprojection',
+        TYPE: "DocType",
+        TITLE: "NPP Projection",
+        ID: "nppprojection",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'RODOS Projection',
-        ID: 'rodosprojection',
+        TYPE: "DocType",
+        TITLE: "RODOS Projection",
+        ID: "rodosprojection",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Other Projection',
-        ID: 'otherprojection',
+        TYPE: "DocType",
+        TITLE: "Other Projection",
+        ID: "otherprojection",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Gamma Dose Rate',
-        ID: 'gammadoserate',
+        TYPE: "DocType",
+        TITLE: "Gamma Dose Rate",
+        ID: "gammadoserate",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Air Activity',
-        ID: 'airactivity',
+        TYPE: "DocType",
+        TITLE: "Air Activity",
+        ID: "airactivity",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Ground Contamination',
-        ID: 'groundcontamination',
+        TYPE: "DocType",
+        TITLE: "Ground Contamination",
+        ID: "groundcontamination",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Measurement Result Feed',
-        ID: 'mresult_feed',
+        TYPE: "DocType",
+        TITLE: "Measurement Result Feed",
+        ID: "mresult_feed",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Measurement Result Food',
-        ID: 'mresult_food',
+        TYPE: "DocType",
+        TITLE: "Measurement Result Food",
+        ID: "mresult_food",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Measurement Result Water',
-        ID: 'mresult_water',
+        TYPE: "DocType",
+        TITLE: "Measurement Result Water",
+        ID: "mresult_water",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Situation Description',
-        ID: 'situationreport',
+        TYPE: "DocType",
+        TITLE: "Situation Description",
+        ID: "situationreport",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Situation Report',
-        ID: 'sitrep',
+        TYPE: "DocType",
+        TITLE: "Situation Report",
+        ID: "sitrep",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Instructions to the Public',
-        ID: 'instructions',
+        TYPE: "DocType",
+        TITLE: "Instructions to the Public",
+        ID: "instructions",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Protective Actions',
-        ID: 'protectiveactions',
+        TYPE: "DocType",
+        TITLE: "Protective Actions",
+        ID: "protectiveactions",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
     {
-        TYPE: 'DocType',
-        TITLE: 'Media Release',
-        ID: 'mediarelease',
+        TYPE: "DocType",
+        TITLE: "Media Release",
+        ID: "mediarelease",
         CHILDREN: [],
-        'local_behaviors': ['elan'],
+        "local_behaviors": ["elan"],
     },
 ]
 
+
 def connectTypesAndCategories(self):
-    """
-    """
+    """ """
 
     # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
     try:
         self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory(
-            'notifications'
+            "notifications"
         )
     except Exception as e:
         log_exc(e)
     try:
-        self.config.dtypes.note.type_extension(
-            ELAN_APP).setCCategory('notifications')
+        self.config.dtypes.note.type_extension(ELAN_APP).setCCategory("notifications")
     except BaseException:
         pass
     try:
         self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory(
-            'event-npp-information'
+            "event-npp-information"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory(
-            'event-npp-information'
+            "event-npp-information"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory(
-            'weather-information'
+            "weather-information"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.trajectory.type_extension(ELAN_APP).setCCategory(
-            'trajectories'
+            "trajectories"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
-            'rodos-projections'
+            "rodos-projections"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory(
-            'state-projections'
+            "state-projections"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory(
-            'other-projections'
+            "other-projections"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory(
-            'gamma-dose-rate'
+            "gamma-dose-rate"
         )
     except BaseException:
         pass
     try:
-        self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory(
-            'gamma-dose-rate'
-        )
+        self.config.dtypes.gammadoserate_timeseries.type_extension(
+            ELAN_APP
+        ).setCCategory("gamma-dose-rate")
     except BaseException:
         pass
     try:
         self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory(
-            'gamma-dose-rate'
+            "gamma-dose-rate"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory(
-            'air-activity'
+            "air-activity"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.groundcontamination.type_extension(ELAN_APP).setCCategory(
-            'ground-contamination'
+            "ground-contamination"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.mresult_feed.type_extension(ELAN_APP).setCCategory(
-            'food-and-feed'
+            "food-and-feed"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.mresult_food.type_extension(ELAN_APP).setCCategory(
-            'food-and-feed'
+            "food-and-feed"
         )
     except BaseException:
         pass
     try:
-        self.config.dtypes.mresult_water.type_extension(
-            ELAN_APP).setCCategory('water')
+        self.config.dtypes.mresult_water.type_extension(ELAN_APP).setCCategory("water")
     except BaseException:
         pass
     try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory(
-            'situation-reports'
+            "situation-reports"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory(
-            'situation-reports'
+            "situation-reports"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory(
-            'protective-actions'
+            "protective-actions"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
-            'protective-actions'
+            "protective-actions"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory(
-            'protective-actions'
+            "protective-actions"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory(
-            'media-releases'
+            "media-releases"
         )
     except BaseException:
         pass
     try:
         self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
-            'instructions-to-the-public'
+            "instructions-to-the-public"
         )
     except BaseException:
         pass

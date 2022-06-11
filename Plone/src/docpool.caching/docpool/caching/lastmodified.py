@@ -8,8 +8,7 @@ from zope.interface import implementer
 @implementer(ILastModified)
 @adapter(IContentBase)
 class ContentBaseLastModified:
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -58,7 +57,7 @@ class DocumentLastModified(ContentBaseLastModified):
             t = ITransferable(self.context)
             tEvents = t.transferEvents()
             if len(tEvents) > 0:
-                transferred = tEvents[0]['timeraw']
+                transferred = tEvents[0]["timeraw"]
         except Exception as e:
             # log_exc(e)
             pass

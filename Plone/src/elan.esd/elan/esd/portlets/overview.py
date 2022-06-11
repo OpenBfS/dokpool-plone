@@ -1,12 +1,11 @@
-from Acquisition import aq_chain
-from Acquisition import aq_inner
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+import plone.api as api
+from Acquisition import aq_chain, aq_inner
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
-import plone.api as api
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
@@ -23,7 +22,6 @@ class IOverviewPortlet(IPortletDataProvider):
 
 @implementer(IOverviewPortlet)
 class Assignment(base.Assignment):
-
     @property
     def title(self):
         return _("Overview")
@@ -39,31 +37,29 @@ class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
 
-    render = ViewPageTemplateFile('overview.pt')
+    render = ViewPageTemplateFile("overview.pt")
 
     @property
     def available(self):
         return self.context.isCurrentSituation() and not self.isEditMode()
 
     def isEditMode(self):
-        """
-        """
+        """ """
         path = self.request.get("PATH_INFO", "")
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True
 
     def specialObjects(self):
-        """
-        """
-        return [o for o in self._specialObjects() if o.id not in ('recent', 'overview')]
+        """ """
+        return [o for o in self._specialObjects() if o.id not in ("recent", "overview")]
 
     def _specialObjects(self):
         cs = self.context.myELANCurrentSituation()
         yield from cs.getFolderContents(
             {
-                'portal_type': [
-                    'Dashboard',
-                    'SituationOverview',
+                "portal_type": [
+                    "Dashboard",
+                    "SituationOverview",
                 ]
             }
         )
@@ -82,15 +78,15 @@ class Renderer(base.Renderer):
         # User could select more than one scenario
         for scenario in scenarios:
             event_brain = api.content.find(
-                portal_type='DPEvent',
+                portal_type="DPEvent",
                 context=dp,
                 id=scenario,
             )
             if event_brain:
                 yield from api.content.find(
-                        portal_type='Journal',
-                        path=event_brain[0].getPath(),
-                    )
+                    portal_type="Journal",
+                    path=event_brain[0].getPath(),
+                )
 
 
 class AddForm(base.NullAddForm):

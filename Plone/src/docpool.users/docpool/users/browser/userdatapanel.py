@@ -5,4 +5,4 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class UserDataConfiglet(UDC):
     """Control panel version of the userdata panel"""
 
-    template = ViewPageTemplateFile('account-configlet.pt')
+    template = ViewPageTemplateFile("account-configlet.pt")

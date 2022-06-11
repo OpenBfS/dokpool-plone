@@ -6,68 +6,62 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the CollaborationFolder content type. See collaborationfolder.py for more
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.content.simplefolder import ISimpleFolder
-from docpool.base.content.simplefolder import SimpleFolder
+from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from plone.api import user
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import log_exc
+from Products.CMFPlone.utils import log, log_exc
 from zExceptions import BadRequest
 from zope import schema
 from zope.interface import implementer
 
 
 class ICollaborationFolder(model.Schema, ISimpleFolder):
-    """
-    """
+    """ """
 
     allowedPartnerDocTypes = schema.List(
         title=_(
-            'label_collaborationfolder_allowedpartnerdoctypes',
-            default='Document types allowed for the guest group(s)',
+            "label_collaborationfolder_allowedpartnerdoctypes",
+            default="Document types allowed for the guest group(s)",
         ),
         description=_(
-            'description_collaborationfolder_allowedpartnerdoctypes', default=''
+            "description_collaborationfolder_allowedpartnerdoctypes", default=""
         ),
         required=True,
-        value_type=schema.Choice(
-            source="docpool.base.vocabularies.GroupDocType"),
+        value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
     )
 
 
 @implementer(ICollaborationFolder)
 class CollaborationFolder(Container, SimpleFolder):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     def createActions(self):
-        """
-        """
+        """ """
         log("Creating Collaboration Folder")
 
-        placeful_wf = getToolByName(self, 'portal_placeful_workflow')
+        placeful_wf = getToolByName(self, "portal_placeful_workflow")
         try:
             self.manage_addProduct[
-                'CMFPlacefulWorkflow'
+                "CMFPlacefulWorkflow"
             ].manage_addWorkflowPolicyConfig()
         except BadRequest as e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
-        placefulWfName = 'dp-collaboration-folder'
+        placefulWfName = "dp-collaboration-folder"
         config.setPolicyIn(policy=placefulWfName, update_security=False)
         config.setPolicyBelow(policy=placefulWfName, update_security=False)
         self.reindexObject()
@@ -75,8 +69,7 @@ class CollaborationFolder(Container, SimpleFolder):
         self.reindexObjectSecurity()
 
     def customMenu(self, menu_items):
-        """
-        """
+        """ """
         # print user.get_roles(obj=self)
         if "Reviewer" not in user.get_roles(obj=self):
             return SimpleFolder.customMenu(self, menu_items)
@@ -89,7 +82,7 @@ class CollaborationFolder(Container, SimpleFolder):
                 filter = True
             res = []
             for menu_item in menu_items:
-                if menu_item.get('id') == 'DPDocument':
+                if menu_item.get("id") == "DPDocument":
                     for dt in dts:
                         # print dt.id
                         if (
@@ -99,19 +92,19 @@ class CollaborationFolder(Container, SimpleFolder):
                         if not filter or dt.id in self.allowedPartnerDocTypes:
                             res.append(
                                 {
-                                    'extra': {
-                                        'separator': None,
-                                        'id': dt.id,
-                                        'class': 'contenttype-%s' % dt.id,
+                                    "extra": {
+                                        "separator": None,
+                                        "id": dt.id,
+                                        "class": "contenttype-%s" % dt.id,
                                     },
-                                    'submenu': None,
-                                    'description': '',
-                                    'title': safe_text(dt.Title),
-                                    'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
+                                    "submenu": None,
+                                    "description": "",
+                                    "title": safe_text(dt.Title),
+                                    "action": "%s/++add++DPDocument?form.widgets.docType:list=%s"
                                     % (self.absolute_url(), dt.id),
-                                    'selected': False,
-                                    'id': dt.id,
-                                    'icon': None,
+                                    "selected": False,
+                                    "id": dt.id,
+                                    "icon": None,
                                 }
                             )
                 else:
@@ -119,13 +112,11 @@ class CollaborationFolder(Container, SimpleFolder):
             return res
 
     def myCollaborationFolder(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -133,13 +124,11 @@ class CollaborationFolder(Container, SimpleFolder):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getDPDocuments(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'DPDocument'}
+        """ """
+        args = {"portal_type": "DPDocument"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

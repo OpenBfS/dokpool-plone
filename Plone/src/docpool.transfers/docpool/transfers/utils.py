@@ -3,8 +3,7 @@ from plone import api
 
 
 def getTupleForTransfer(self, id):
-    """
-    """
+    """ """
     doc = self._getOb(id)
     return doc, doc.doc_extension(TRANSFERS_APP)
 
@@ -15,6 +14,6 @@ def is_sender(obj):
         return True
     groups = api.user.get_current().getGroups()
     for group in groups:
-        if 'Senders' in group:
+        if "Senders" in group:
             return True
     return False

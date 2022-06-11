@@ -9,7 +9,7 @@
 ##
 from Products.CMFCore.utils import getToolByName
 
-cat = getToolByName(context, 'portal_catalog', None)
+cat = getToolByName(context, "portal_catalog", None)
 
 
 transfers = cat(portal_type="DPEvent", sort_on="sortable_title")

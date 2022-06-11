@@ -8,8 +8,8 @@
 ##title=Redirect to Referrer with message
 
 request = context.REQUEST
-referer = request.get('HTTP_REFERER', '')
-query_pos = referer.find('?')
+referer = request.get("HTTP_REFERER", "")
+query_pos = referer.find("?")
 if query_pos != -1:
     target_url = referer  # [:referer.find('?')]
 else:

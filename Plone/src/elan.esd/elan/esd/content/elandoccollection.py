@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the ELANDocCollection content type. See elandoccollection.py for more
 explanation on the statements below.
@@ -17,43 +17,35 @@ from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
 from elan.esd.utils import getCategoriesForCurrentUser
-from plone.app.contenttypes.content import Collection
-from plone.app.contenttypes.content import ICollection
+from plone.app.contenttypes.content import Collection, ICollection
 from plone.autoform import directives
 from plone.dexterity.content import Item
-from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
+from plone.supermodel import model
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.event import updateRelations
 from z3c.relationfield.relation import RelationValue
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
-from zope.component import adapter
-from zope.component import getUtility
-from zope.interface import alsoProvides
-from zope.interface import implementer
+from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.component import adapter, getUtility
+from zope.interface import alsoProvides, implementer
 from zope.intid.interfaces import IIntIds
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
 
 
 class IELANDocCollection(model.Schema, ICollection):
-    """
-    """
+    """ """
 
     docTypes = RelationList(
-        title=_(
-            'label_elandoccollection_doctypes',
-            default='Document Types'),
-        description=_('description_elandoccollection_doctypes', default=''),
+        title=_("label_elandoccollection_doctypes", default="Document Types"),
+        description=_("description_elandoccollection_doctypes", default=""),
         required=False,
         value_type=RelationChoice(
             title=_("Document Types"), source="docpool.base.vocabularies.DocType"
         ),
     )
 
-    directives.widget(docTypes='z3c.form.browser.select.CollectionSelectFieldWidget')
+    directives.widget(docTypes="z3c.form.browser.select.CollectionSelectFieldWidget")
 
 
 #    directives.widget(docTypes=AutocompleteMultiFieldWidget)
@@ -61,21 +53,19 @@ class IELANDocCollection(model.Schema, ICollection):
 
 @implementer(IELANDocCollection)
 class ELANDocCollection(Item, Collection):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     def testSearch(self):
-        """
-        """
+        """ """
         kw = {
-            'portal_type': {'query': ['DPDocument']},
-            'sort_on': 'mdate',
-            'dp_type': {'query': ['eventinformation', 'nppinformation']},
-            'scenarios': {'query': ['scenario2', 'scenario1']},
-            'sort_order': 'reverse',
-            'path': {'query': '/Plone/Members'},
+            "portal_type": {"query": ["DPDocument"]},
+            "sort_on": "mdate",
+            "dp_type": {"query": ["eventinformation", "nppinformation"]},
+            "scenarios": {"query": ["scenario2", "scenario1"]},
+            "sort_order": "reverse",
+            "path": {"query": "/Plone/Members"},
         }
         res = self.portal_catalog(**kw)
         # print len(res)
@@ -83,21 +73,18 @@ class ELANDocCollection(Item, Collection):
             print(r.Title)
 
     def getUserSelectedScenarios(self):
-        """
-        """
+        """ """
         uss = getScenariosForCurrentUser(self)
         # print usc
         return uss
 
     def getUserSelectedCategories(self):
-        """
-        """
+        """ """
         usc = getCategoriesForCurrentUser(self)
         # print usc
         return usc
 
-    def results(self, batch=True, b_start=0,
-                b_size=10, sort_on=None, brains=False):
+    def results(self, batch=True, b_start=0, b_size=10, sort_on=None, brains=False):
         """Get results override, implicit = True"""
         if sort_on is None:
             sort_on = self.sort_on
@@ -148,9 +135,9 @@ class ELANDocCollection(Item, Collection):
         # We always search for ELAN content
         params = [
             {
-                'i': 'portal_type',
-                'o': 'plone.app.querystring.operation.selection.is',
-                'v': ['DPDocument', 'SituationReport', 'SRModule'],
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["DPDocument", "SituationReport", "SRModule"],
             }
         ]
         # We usually also have document types configured
@@ -159,21 +146,21 @@ class ELANDocCollection(Item, Collection):
         if types:
             params.append(
                 {
-                    'i': 'dp_type',
-                    'o': 'plone.app.querystring.operation.selection.is',
-                    'v': [t.to_object.getId() for t in types if t.to_object],
+                    "i": "dp_type",
+                    "o": "plone.app.querystring.operation.selection.is",
+                    "v": [t.to_object.getId() for t in types if t.to_object],
                 }
             )  # getId() vorher
 
         self.query = params
-        self.sort_on = 'changed'
+        self.sort_on = "changed"
         self.sort_reversed = True
 
     def isOverview(self):
         """
         Is this an overview collection?
         """
-        return self.getId().find('overview') > -1
+        return self.getId().find("overview") > -1
 
     def dp_type(self):
         """
@@ -187,25 +174,24 @@ class ELANDocCollection(Item, Collection):
             #    print "inactive"
             return "inactive"
 
-    security.declareProtected(View, 'synContentValues')
+    security.declareProtected(View, "synContentValues")
 
     def synContentValues(self):
-        """Getter for syndycation support
-        """
-        syn_tool = getToolByName(self, 'portal_syndication')
+        """Getter for syndycation support"""
+        syn_tool = getToolByName(self, "portal_syndication")
         limit = int(syn_tool.getMaxItems(self))
         return self.getQuery(batch=False, brains=True, limit=limit)[:limit]
 
     def getQuery(self, **kwargs):
         """Get the query dict from the request or from the object"""
-        from zope.site.hooks import getSite
         from plone.app.querystring.querybuilder import QueryBuilder
+        from zope.site.hooks import getSite
 
         # print "modified get"
         request = self.REQUEST
         alsoProvides(request, IDisableCSRFProtection)
-        raw = kwargs.get('raw', None)
-        implicit_filter = kwargs.get('implicit', False)
+        raw = kwargs.get("raw", None)
+        implicit_filter = kwargs.get("implicit", False)
         value = self.query  # .raw
         if not value:
             self.setDocTypesUpdateCollection()  # Not yet initialized
@@ -228,17 +214,17 @@ class ELANDocCollection(Item, Collection):
                     # for the scenario(s)
                     value.append(
                         {
-                            'i': 'scenarios',
-                            'o': 'plone.app.querystring.operation.selection.is',
-                            'v': uss,
+                            "i": "scenarios",
+                            "o": "plone.app.querystring.operation.selection.is",
+                            "v": uss,
                         }
                     )
                 else:  # If nothing selected, don't show results!
                     value.append(
                         {
-                            'i': 'scenarios',
-                            'o': 'plone.app.querystring.operation.selection.is',
-                            'v': ["dontfindanything"],
+                            "i": "scenarios",
+                            "o": "plone.app.querystring.operation.selection.is",
+                            "v": ["dontfindanything"],
                         }
                     )
                     # print value
@@ -249,18 +235,18 @@ class ELANDocCollection(Item, Collection):
                 if usc:
                     value.append(
                         {
-                            'i': 'category',
-                            'o': 'plone.app.querystring.operation.selection.is',
-                            'v': usc,
+                            "i": "category",
+                            "o": "plone.app.querystring.operation.selection.is",
+                            "v": usc,
                         }
                     )
 
             # Third implicit filter: only results with ELAN support are wanted.
             value.append(
                 {
-                    'i': 'apps_supported',
-                    'o': 'plone.app.querystring.operation.selection.is',
-                    'v': [ELAN_APP],
+                    "i": "apps_supported",
+                    "o": "plone.app.querystring.operation.selection.is",
+                    "v": [ELAN_APP],
                 }
             )
 
@@ -273,25 +259,25 @@ class ELANDocCollection(Item, Collection):
             # after the portal root, e.g. '/Members'
             value.append(
                 {
-                    'i': 'path',
-                    'o': 'plone.app.querystring.operation.string.path',
-                    'v': "/%s" % mpath,
+                    "i": "path",
+                    "o": "plone.app.querystring.operation.string.path",
+                    "v": "/%s" % mpath,
                 }
             )
 
-        sort_on = kwargs.get('sort_on', self.sort_on)
-        sort_order = 'reverse' if self.sort_reversed else 'ascending'
-        limit = kwargs.get('limit', self.limit)
+        sort_on = kwargs.get("sort_on", self.sort_on)
+        sort_order = "reverse" if self.sort_reversed else "ascending"
+        limit = kwargs.get("limit", self.limit)
         # print value
         res = querybuilder(
             query=value,
-            batch=kwargs.get('batch', False),
-            b_start=kwargs.get('b_start', 0),
-            b_size=kwargs.get('b_size', 30),
+            batch=kwargs.get("batch", False),
+            b_start=kwargs.get("b_start", 0),
+            b_size=kwargs.get("b_size", 30),
             sort_on=sort_on,
             sort_order=sort_order,
             limit=limit,
-            brains=kwargs.get('brains', False),
+            brains=kwargs.get("brains", False),
         )
         # print len(res)
         return res
@@ -299,8 +285,7 @@ class ELANDocCollection(Item, Collection):
 
 @adapter(IELANDocCollection, IObjectModifiedEvent)
 def update_docTypes(obj, event=None):
-    """
-    """
+    """ """
     if obj:
         # print "update_docTypes", obj.docTypes
         obj.setDocTypesUpdateCollection()
@@ -309,7 +294,7 @@ def update_docTypes(obj, event=None):
 
 @adapter(IELANDocCollection, IObjectAddedEvent)
 def enableSyndication(obj, event=None):
-    syn_tool = getToolByName(obj, 'portal_syndication', None)
+    syn_tool = getToolByName(obj, "portal_syndication", None)
     if syn_tool is not None:
         if syn_tool.isSiteSyndicationAllowed() and not syn_tool.isSyndicationAllowed(
             obj

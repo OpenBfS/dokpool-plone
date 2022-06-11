@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRScenario content type. See srscenario.py for more
 explanation on the statements below.
@@ -25,14 +25,12 @@ from zope.interface import implementer
 
 
 class ISRScenario(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISRScenario)
 class SRScenario(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -51,8 +49,7 @@ class SRScenario(Container):
         return [self.UID()]
 
     def modTypes(self):
-        """
-        """
+        """ """
         return ModuleTypesVocabularyFactory(self, raw=True)
 
     def modTypeIds(self):
@@ -60,18 +57,15 @@ class SRScenario(Container):
         return [mt[0] for mt in mtypes]
 
     def getSRScenarios(self):
-        """
-        """
+        """ """
         return [self]
 
     def mySRScenario(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -79,14 +73,12 @@ class SRScenario(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getSRPhases(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRPhase'}
+        """ """
+        args = {"portal_type": "SRPhase"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 

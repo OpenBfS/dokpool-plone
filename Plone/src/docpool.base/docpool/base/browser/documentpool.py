@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DocumentPoolView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('documentpool.pt')
+    __call__ = ViewPageTemplateFile("documentpool.pt")

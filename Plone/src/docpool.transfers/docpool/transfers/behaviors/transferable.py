@@ -1,26 +1,24 @@
 """Common configuration constants
 """
-from AccessControl import ClassSecurityInfo
-from Acquisition import aq_inner
 from contextlib import contextmanager
 from datetime import datetime
+from logging import getLogger
+
+from AccessControl import ClassSecurityInfo
+from Acquisition import aq_inner
 from DateTime import DateTime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IDPDocument
-from docpool.base.utils import _copyPaste
-from docpool.base.utils import execute_under_special_role
-from docpool.base.utils import portalMessage
+from docpool.base.utils import _copyPaste, execute_under_special_role, portalMessage
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.config import TRANSFERS_APP
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
-from logging import getLogger
 from plone import api
 from plone.autoform import directives
-from plone.autoform.directives import read_permission
-from plone.autoform.directives import write_permission
+from plone.autoform.directives import read_permission, write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
@@ -31,7 +29,6 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import provider
-
 
 logger = getLogger(__name__)
 
@@ -47,7 +44,7 @@ def transferring():
 
     """
     annotations = IAnnotations(getRequest()).setdefault(ANNOTATIONS_KEY, {})
-    KEY = 'transferring'
+    KEY = "transferring"
     if annotations.get(KEY, False):
         yield True
     else:
@@ -61,36 +58,34 @@ def transferring():
 @provider(IFormFieldProvider)
 class ITransferable(model.Schema):
     transferred_by = schema.TextLine(
-        title=_('label_dpdocument_transferred_by', default='Transferred by'),
-        description=_('description_dpdocument_transferred_by', default=''),
+        title=_("label_dpdocument_transferred_by", default="Transferred by"),
+        description=_("description_dpdocument_transferred_by", default=""),
         required=False,
     )
-    directives.omitted('transferred_by')
-    read_permission(transferred_by='docpool.transfers.AccessTransfers')
-    write_permission(transferred_by='docpool.transfers.AccessTransfers')
+    directives.omitted("transferred_by")
+    read_permission(transferred_by="docpool.transfers.AccessTransfers")
+    write_permission(transferred_by="docpool.transfers.AccessTransfers")
 
     transferred = schema.Datetime(
-        title=_(
-            'label_dpdocument_transferred',
-            default='Date of last transfer'),
-        description=_('description_dpdocument_transferred', default=''),
+        title=_("label_dpdocument_transferred", default="Date of last transfer"),
+        description=_("description_dpdocument_transferred", default=""),
         required=False,
     )
-    directives.omitted('transferred')
-    read_permission(transferred='docpool.transfers.AccessTransfers')
-    write_permission(transferred='docpool.transfers.AccessTransfers')
+    directives.omitted("transferred")
+    read_permission(transferred="docpool.transfers.AccessTransfers")
+    write_permission(transferred="docpool.transfers.AccessTransfers")
 
     transferLog = schema.Text(
-        title=_('label_dpdocument_transferlog', default='Transfer log'),
+        title=_("label_dpdocument_transferlog", default="Transfer log"),
         description=_(
-            'description_dpdocument_transferlog',
-            default='Only used for archived documents.',
+            "description_dpdocument_transferlog",
+            default="Only used for archived documents.",
         ),
         required=False,
     )
-    directives.omitted('transferLog')
-    read_permission(transferLog='docpool.transfers.AccessTransfers')
-    write_permission(transferLog='docpool.transfers.AccessTransfers')
+    directives.omitted("transferLog")
+    read_permission(transferLog="docpool.transfers.AccessTransfers")
+    write_permission(transferLog="docpool.transfers.AccessTransfers")
 
 
 class Transferable(FlexibleView):
@@ -116,7 +111,7 @@ class Transferable(FlexibleView):
     transferred_by = property(_get_transferred_by, _set_transferred_by)
 
     def _get_transferred(self):
-        return getattr(self.context, 'transferred', None)
+        return getattr(self.context, "transferred", None)
 
     def _set_transferred(self, value):
         if not value:
@@ -139,7 +134,7 @@ class Transferable(FlexibleView):
 
     @property
     def sender_log(self):
-        return getattr(self.context, 'transfer_sender_log', ())
+        return getattr(self.context, "transfer_sender_log", ())
 
     @sender_log.setter
     def sender_log(self, value):
@@ -148,7 +143,7 @@ class Transferable(FlexibleView):
 
     @property
     def receiver_log(self):
-        return getattr(self.context, 'transfer_receiver_log', ())
+        return getattr(self.context, "transfer_receiver_log", ())
 
     @receiver_log.setter
     def receiver_log(self, value):
@@ -163,39 +158,35 @@ class Transferable(FlexibleView):
         return True
 
     def changed(self):
-        """
-        """
+        """ """
         return self.context.transferred or self.context.getMdate()
 
     def checkTransferLog(self):
-        """
-        """
+        """ """
         return self.context.transferLog
 
     def transferEvents(self):
-        """Query metadata of past transfers ("transfer events") of the context object.
-        """
+        """Query metadata of past transfers ("transfer events") of the context object."""
         if self.context.restrictedTraverse("@@context_helpers").is_archive():
             logRaw = self.transferLog
-            logRaw = logRaw and logRaw.replace(
-                "datetime.datetime", "datetime") or ""
+            logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime") or ""
             return eval(logRaw)
 
         else:
             if self.transferred:
-                type_ = 'receive'
+                type_ = "receive"
                 events = reversed(self.receiver_log)
             else:
-                type_ = 'send'
+                type_ = "send"
                 events = reversed(self.sender_log)
                 return [
                     {
                         "type": type_,
-                        "by": event['user'],
-                        "esd": event['esd_title'],
-                        "timeraw": event['timestamp'],
+                        "by": event["user"],
+                        "esd": event["esd_title"],
+                        "timeraw": event["timestamp"],
                         "time": self.context.toLocalizedTime(
-                            DateTime(event['timestamp']), long_format=1
+                            DateTime(event["timestamp"]), long_format=1
                         ),
                     }
                     for event in events
@@ -211,10 +202,13 @@ class Transferable(FlexibleView):
         """
         if not is_sender(self.context):
             return False
-        if self.transferred or self.context.restrictedTraverse("@@context_helpers").is_archive():
+        if (
+            self.transferred
+            or self.context.restrictedTraverse("@@context_helpers").is_archive()
+        ):
             return False
-        wftool = getToolByName(self.context, 'portal_workflow')
-        if wftool.getInfoFor(self.context, 'review_state') != 'published':
+        wftool = getToolByName(self.context, "portal_workflow")
+        if wftool.getInfoFor(self.context, "review_state") != "published":
             return False
         if not self.context.allSubobjectsPublished():
             return False
@@ -229,8 +223,7 @@ class Transferable(FlexibleView):
     security.declareProtected("Docpool: Send Content", "transferToAll")
 
     def transferToAll(self):
-        """
-        """
+        """ """
         dto = self.context.docTypeObj()
         dto_transfers = dto.type_extension(TRANSFERS_APP)
         # Intersect allowed and automatic transfer targets while keeping the order of
@@ -238,14 +231,12 @@ class Transferable(FlexibleView):
         automatic = set(dto_transfers.automaticTransferTargets)
         targets = [t for t in self.allowedTargets() if t in automatic]
 
-        source_path = '/'.join(self.context.getPhysicalPath())
+        source_path = "/".join(self.context.getPhysicalPath())
         if targets:
-            logger.info(
-                f'Transfer {source_path} to up to {len(targets)} targets.'
-            )
+            logger.info(f"Transfer {source_path} to up to {len(targets)} targets.")
             self.transferToTargets(targets)
         else:
-            logger.info(f'No transfer targets found for {source_path}.')
+            logger.info(f"No transfer targets found for {source_path}.")
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -286,7 +277,7 @@ class Transferable(FlexibleView):
                 esd_to_title = transfer_folder.myDocumentPool().Title()
                 # Check permissions:
                 # a) Is my DocType accepted, are unknown DocTypes accepted?
-                udt_ok = transfer_folder.unknownDtDefault != 'block'
+                udt_ok = transfer_folder.unknownDtDefault != "block"
                 if not udt_ok:
                     # check my precise DocType
                     dto = self.context.docTypeObj()
@@ -297,12 +288,12 @@ class Transferable(FlexibleView):
                             + " "
                             + esd_to_title
                             + _(". Doc type not accepted."),
-                            type='error',
+                            type="error",
                         )
                         # Message
                         continue
                 # b) Is my Scenario known, are unknown Scenarios accepted?
-                scen_ok = transfer_folder.unknownScenDefault != 'block'
+                scen_ok = transfer_folder.unknownScenDefault != "block"
                 elanobj = None
                 if not scen_ok and HAS_ELAN:
                     # check my precise Scenario
@@ -323,7 +314,7 @@ class Transferable(FlexibleView):
                                     + " "
                                     + esd_to_title
                                     + _(". Unknown scenario not accepted."),
-                                    type='error',
+                                    type="error",
                                 )
                                 continue
                         else:
@@ -334,13 +325,13 @@ class Transferable(FlexibleView):
                                 + " "
                                 + esd_to_title
                                 + _(". Document has no scenario."),
-                                type='error',
+                                type="error",
                             )
                             continue
 
                 logger.info(
-                    'Transfer {} to {}.'.format(
-                        '/'.join(self.context.getPhysicalPath()),
+                    "Transfer {} to {}.".format(
+                        "/".join(self.context.getPhysicalPath()),
                         esd_to_title,
                     )
                 )
@@ -348,13 +339,10 @@ class Transferable(FlexibleView):
                 # 2) Put a copy of me in each of them, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
-                behaviors = set(
-                    ILocalBehaviorSupport(
-                        self.context).local_behaviors)
+                behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
                 if HAS_ELAN and elanobj is not None:
                     behaviors.add(ELAN_APP)  # FIXME: ELAN dependency
-                ILocalBehaviorSupport(
-                    my_copy).local_behaviors = list(set(behaviors))
+                ILocalBehaviorSupport(my_copy).local_behaviors = list(set(behaviors))
 
                 # 3) Add transfer information to the copies.
                 my_copy.transferred = timestamp
@@ -364,8 +352,7 @@ class Transferable(FlexibleView):
                 scenario_ids = ""
                 if HAS_ELAN and elanobj is not None:
                     scenario_ids = (
-                        elanobj.scenarios and ", ".join(
-                            elanobj.scenarios) or ""
+                        elanobj.scenarios and ", ".join(elanobj.scenarios) or ""
                     )
                 self.sender_log += (
                     dict(
@@ -409,7 +396,10 @@ class Transferable(FlexibleView):
                         esd_title=transfer_folder.getSendingESD().Title(),
                     ),
                 )
-                msg = _('Transferred to ${target_title}', mapping={'target_title': esd_to_title})
+                msg = _(
+                    "Transferred to ${target_title}",
+                    mapping={"target_title": esd_to_title},
+                )
                 api.portal.show_message(msg, self.request)
 
         execute_under_special_role(self.context, "Manager", doIt)
@@ -428,14 +418,14 @@ class Transferable(FlexibleView):
             tf = self.context.myDPTransferFolder()
             dtObj = self.context.docTypeObj()
             tstate = api.content.get_state(obj=dtObj)
-            if tstate == 'published':  # we do this for valid types only
+            if tstate == "published":  # we do this for valid types only
                 # determine the applicable permission
                 perm = tf.doctypePermissions.get(dtObj.getId())
                 dstate = api.content.get_state(self.context)
-                if dstate == 'private' and perm == 'publish':
-                    api.content.transition(self.context, 'publish')
-                if dstate == 'published' and perm == 'confirm':
-                    api.content.transition(self.context, 'retract')
+                if dstate == "private" and perm == "publish":
+                    api.content.transition(self.context, "publish")
+                if dstate == "published" and perm == "confirm":
+                    api.content.transition(self.context, "retract")
             if HAS_ELAN:
                 elanobj = None
                 try:
@@ -447,16 +437,15 @@ class Transferable(FlexibleView):
                     if uscn:
                         # Documents with unknown scenarios must be private
                         try:
-                            api.content.transition(self.context, 'retract')
+                            api.content.transition(self.context, "retract")
                         except BaseException:
                             pass
 
 
 @adapter(IDPDocument, IActionSucceededEvent)
 def automatic_transfer_on_publish(obj, event=None):
-    """
-    """
-    if event and event.action == 'publish':
+    """ """
+    if event and event.action == "publish":
         automatic_transfer(obj)
 
 
@@ -479,7 +468,7 @@ def automatic_transfer(obj):
         logger.info(
             'Automatic transfer of "{}" from {}'.format(
                 obj.Title(),
-                '/'.join(obj.getPhysicalPath()),
+                "/".join(obj.getPhysicalPath()),
             )
         )
         try:

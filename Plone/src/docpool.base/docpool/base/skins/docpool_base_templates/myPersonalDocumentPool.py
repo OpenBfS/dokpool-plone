@@ -7,8 +7,8 @@
 ##parameters=
 ##title=
 ##
-from Products.CMFCore.utils import getToolByName
 from plone import api
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 
 user = api.user.get_current()
@@ -17,7 +17,7 @@ parts = username.split("_")
 esd_prefix = parts[0]
 
 
-cat = getToolByName(context, 'portal_catalog', None)
+cat = getToolByName(context, "portal_catalog", None)
 esds = cat(portal_type="DocumentPool", sort_on="sortable_title")
 log(esds)
 if esds:

@@ -1,3 +1,6 @@
+import unittest
+
+import elan.theme
 from Products.Five import fiveconfigure
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import PloneSite
@@ -5,10 +8,6 @@ from Products.PloneTestCase.layer import PloneSite
 # from zope.testing import doctestunit
 # from zope.component import testing
 from Testing import ZopeTestCase as ztc
-
-import elan.theme
-import unittest
-
 
 ptc.setupPloneSite()
 
@@ -47,5 +46,5 @@ def test_suite():
     )
 
 
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
+if __name__ == "__main__":
+    unittest.main(defaultTest="test_suite")

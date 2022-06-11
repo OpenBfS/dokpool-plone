@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the DocTypeExtension content type. See doctypeextension.py for more
 explanation on the statements below.
@@ -19,13 +19,11 @@ from zope.interface import implementer
 
 
 class IDocTypeExtension(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(IDocTypeExtension)
 class DocTypeExtension(Item):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()

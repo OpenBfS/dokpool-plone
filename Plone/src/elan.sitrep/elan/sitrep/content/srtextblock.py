@@ -6,18 +6,17 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRTextBlock content type. See srtextblock.py for more
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from plone.app.dexterity.textindexer.directives import searchable
-from docpool.base.content.contentbase import ContentBase
-from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.utils import back_references
 from elan.sitrep import DocpoolMessageFactory as _
+from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.textfield import RichText
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Item
@@ -31,21 +30,19 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
 class ISRTextBlock(model.Schema, IContentBase):
-    """
-    """
+    """ """
 
-    searchable('text')
+    searchable("text")
     text = RichText(
-        title=_('label_srtextblock_text', default='Text'),
-        description=_('description_srtextblock_text', default=''),
+        title=_("label_srtextblock_text", default="Text"),
+        description=_("description_srtextblock_text", default=""),
         required=False,
     )
 
 
 @implementer(ISRTextBlock)
 class SRTextBlock(Item, ContentBase):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 

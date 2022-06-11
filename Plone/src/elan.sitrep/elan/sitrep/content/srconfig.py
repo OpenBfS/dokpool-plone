@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRConfig content type. See srconfig.py for more
 explanation on the statements below.
@@ -20,27 +20,23 @@ from zope.interface import implementer
 
 
 class ISRConfig(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISRConfig)
 class SRConfig(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     APP = ELAN_APP
 
     def mySRConfig(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -48,27 +44,23 @@ class SRConfig(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getSRCollectionss(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRCollections'}
+        """ """
+        args = {"portal_type": "SRCollections"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRScenarios(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRScenario'}
+        """ """
+        args = {"portal_type": "SRScenario"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRTextBlockss(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRTextBlocks'}
+        """ """
+        args = {"portal_type": "SRTextBlocks"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

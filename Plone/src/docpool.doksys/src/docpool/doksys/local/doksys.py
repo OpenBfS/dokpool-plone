@@ -36,33 +36,25 @@ def dpRemoved(self):
 
 def createDoksysGroups(self):
     """
-        Create Group for doksys application access
-        @param self:
-        @return:
-        """
+    Create Group for doksys application access
+    @param self:
+    @return:
+    """
 
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    gtool = getToolByName(self, 'portal_groups')
+    gtool = getToolByName(self, "portal_groups")
     # Group for Doksys application rights
     props = {
-        'allowedDocTypes': [],
-        'title': 'Doksys Users (%s)' % title,
-        'description': 'Users with access to Doksys functions.',
-        'dp': self.UID(),
+        "allowedDocTypes": [],
+        "title": "Doksys Users (%s)" % title,
+        "description": "Users with access to Doksys functions.",
+        "dp": self.UID(),
     }
     gtool.addGroup("%s_DoksysUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup(
-        '%s_doksysadmin' %
-        prefix,
-        '%s_DoksysUsers' %
-        prefix)
-    gtool.addPrincipalToGroup(
-        '%s_doksysadmin' %
-        prefix,
-        '%s_Administrators' %
-        prefix)
+    gtool.addPrincipalToGroup("%s_doksysadmin" % prefix, "%s_DoksysUsers" % prefix)
+    gtool.addPrincipalToGroup("%s_doksysadmin" % prefix, "%s_Administrators" % prefix)
 
     # Set Doksys role as a local role for the new group
     self.manage_setLocalRoles("%s_DoksysUsers" % prefix, ["DoksysUser"])
@@ -75,12 +67,11 @@ def createDoksysUsers(self):
     prefix = str(prefix)
     title = self.Title()
     mtool.addMember(
-        '%s_doksysadmin' % prefix, 'DokSys Administrator (%s)' % title, [
-            'Member'], []
+        "%s_doksysadmin" % prefix, "DokSys Administrator (%s)" % title, ["Member"], []
     )
-    doksysadmin = mtool.getMemberById('%s_doksysadmin' % prefix)
+    doksysadmin = mtool.getMemberById("%s_doksysadmin" % prefix)
     doksysadmin.setMemberProperties(
-        {"fullname": 'DokSys Administrator (%s)' % title, "dp": self.UID()}
+        {"fullname": "DokSys Administrator (%s)" % title, "dp": self.UID()}
     )
     doksysadmin.setSecurityProfile(password="admin")
 
@@ -113,7 +104,7 @@ def copyDoksysNavigation(self):
 
     _copyPaste(searches, self, safe=False)
     self.searches.setTitle(_("Standardsuchen"))
-    self.searches.local_behaviors = ['doksys'] 
+    self.searches.local_behaviors = ["doksys"]
     self.searches.reindexObject()
     # make sure the run display is first
     # TODO if more complex (e.g. second after 'esd')

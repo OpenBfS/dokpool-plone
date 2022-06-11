@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the ELANArchives content type. See elanarchives.py for more
 explanation on the statements below.
@@ -20,14 +20,12 @@ from zope.interface import implementer
 
 
 class IELANArchives(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(IELANArchives)
 class ELANArchives(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -40,13 +38,11 @@ class ELANArchives(Container):
         return 0
 
     def myELANArchives(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -54,13 +50,11 @@ class ELANArchives(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getELANArchives(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'ELANArchive'}
+        """ """
+        args = {"portal_type": "ELANArchive"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

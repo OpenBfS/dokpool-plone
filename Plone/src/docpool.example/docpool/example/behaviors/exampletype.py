@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """
 """
@@ -22,17 +22,14 @@ from zope.interface import provider
 @provider(IFormFieldProvider)
 class IExampleType(IDocTypeExtension):
     example_type_attribute = schema.TextLine(
-        title=_(
-            'label_example_type_attribute',
-            default='Example Type Attribute'),
-        description=_('description_example_type_attribute', default=''),
+        title=_("label_example_type_attribute", default="Example Type Attribute"),
+        description=_("description_example_type_attribute", default=""),
         required=False,
     )
 
 
 class ExampleType:
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

@@ -6,15 +6,14 @@ from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.component import getMultiAdapter
-from zope.interface import provider
-from zope.interface import Interface
-from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.globalrequest import getRequest
+from zope.interface import Interface, provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
 
 
 @provider(IContextAwareDefaultFactory)
 def initializeLocalBehaviors(context):
-    dp_app_state = getMultiAdapter((context, getRequest()), name='dp_app_state')
+    dp_app_state = getMultiAdapter((context, getRequest()), name="dp_app_state")
     return dp_app_state.effectiveAppsHere()
 
 
@@ -23,17 +22,15 @@ class ILocalBehaviorSupport(model.Schema):
 
     directives.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(
-        title='Behaviors',
+        title="Behaviors",
         description=_(
-            'description_local_behaviors',
-            default='Select applications supported for this content,'
-                    ' changes will be applied after saving',
+            "description_local_behaviors",
+            default="Select applications supported for this content,"
+            " changes will be applied after saving",
         ),
         required=False,
         defaultFactory=initializeLocalBehaviors,
-        value_type=schema.Choice(
-            title='Applications',
-            vocabulary="LocalBehaviors"),
+        value_type=schema.Choice(title="Applications", vocabulary="LocalBehaviors"),
     )
 
 

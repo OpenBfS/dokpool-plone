@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the ELANArchive content type. See elanarchive.py for more
 explanation on the statements below.
@@ -20,14 +20,12 @@ from zope.interface import implementer
 
 
 class IELANArchive(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(IELANArchive)
 class ELANArchive(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -40,13 +38,11 @@ class ELANArchive(Container):
         return 1
 
     def myELANArchive(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -54,20 +50,17 @@ class ELANArchive(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getContentAreas(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'ContentArea'}
+        """ """
+        args = {"portal_type": "ContentArea"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getELANCurrentSituations(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'ELANCurrentSituation'}
+        """ """
+        args = {"portal_type": "ELANCurrentSituation"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

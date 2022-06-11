@@ -17,7 +17,7 @@ class CollectionView(BaseView):
     def __init__(self, context, request):
         super().__init__(context, request)
         # set batch size in request to fool the macro 'listing' from dp_macros.pt
-        self.request.set('b_size', self.b_size)
+        self.request.set("b_size", self.b_size)
 
     def getFolderContents(self, kwargs):
         """Since we use a template intended for folders we need to get content
@@ -26,20 +26,18 @@ class CollectionView(BaseView):
         return self.results()
 
     def dp_buttons(self, items):
-        """Get buttons from FolderBaseView but drop copy, cut and paste.
-        """
+        """Get buttons from FolderBaseView but drop copy, cut and paste."""
         folderbaseview = FolderBaseView(self.context, self.request)
         folder_buttons = folderbaseview.dp_buttons(items)
-        drop = ['copy', 'paste', 'cut']
-        collection_buttons = [i for i in folder_buttons if i['id'] not in drop]
+        drop = ["copy", "paste", "cut"]
+        collection_buttons = [i for i in folder_buttons if i["id"] not in drop]
         return collection_buttons
 
 
 class CollectionDocView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('collectiondoc.pt')
+    __call__ = ViewPageTemplateFile("collectiondoc.pt")
 
     def doc(self):
         """
@@ -47,8 +45,8 @@ class CollectionDocView(BrowserView):
         """
         uid = self.request.get("d", None)
         if uid:
-            catalog = getToolByName(self, 'portal_catalog')
-            result = catalog({'UID': uid})
+            catalog = getToolByName(self, "portal_catalog")
+            result = catalog({"UID": uid})
             if len(result) == 1:
                 o = result[0].getObject()
                 return o
@@ -58,7 +56,7 @@ class CollectionDocView(BrowserView):
         doc = self.doc()
         if doc:
             view = api.content.get_view(
-                name='inline',
+                name="inline",
                 context=doc,
                 request=self.request,
             )
@@ -66,26 +64,26 @@ class CollectionDocView(BrowserView):
 
     def _translation_domain(self, doc):
         actionhelpers = api.content.get_view(
-            name='actionhelpers',
+            name="actionhelpers",
             context=doc,
             request=self.request,
         )
         if actionhelpers.is_rei_workflow(doc):
-            return 'docpool.rei'
-        return 'docpool.base'
+            return "docpool.rei"
+        return "docpool.base"
 
     def translate_wf_action(self, doc, wf_action):
         translation_domain = self._translation_domain(doc)
-        wf_state = wf_action['title']
+        wf_state = wf_action["title"]
         return translate(wf_state, domain=translation_domain, context=self.request)
 
     def wf_state(self, doc):
         translation_domain = self._translation_domain(doc)
-        state = api.content.get_state(doc, 'unknown')
-        if state == 'unknown':
-            title = 'Unknown'
+        state = api.content.get_state(doc, "unknown")
+        if state == "unknown":
+            title = "Unknown"
         else:
-            wf_tool = api.portal.get_tool('portal_workflow')
+            wf_tool = api.portal.get_tool("portal_workflow")
             workflow = wf_tool.getWorkflowsFor(doc)[0]
             state_def = getattr(workflow.states, state, None)
             title = state_def.title if state_def is not None else state
@@ -94,10 +92,9 @@ class CollectionDocView(BrowserView):
 
 
 class CollectionlistitemView(BrowserView):
-    """Additional View
-    """
+    """Additional View"""
 
-    __call__ = ViewPageTemplateFile('collectionlistitem.pt')
+    __call__ = ViewPageTemplateFile("collectionlistitem.pt")
 
     def options(self):
         return extendOptions(self.context, self.request, {})

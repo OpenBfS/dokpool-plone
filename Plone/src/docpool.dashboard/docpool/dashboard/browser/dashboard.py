@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DashboardView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('dashboard.pt')
+    __call__ = ViewPageTemplateFile("dashboard.pt")

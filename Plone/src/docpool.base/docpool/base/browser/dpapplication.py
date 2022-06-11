@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DPApplicationView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('dpapplication.pt')
+    __call__ = ViewPageTemplateFile("dpapplication.pt")

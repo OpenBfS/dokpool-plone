@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRCollections content type. See srcollections.py for more
 explanation on the statements below.
@@ -20,27 +20,23 @@ from zope.interface import implementer
 
 
 class ISRCollections(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISRCollections)
 class SRCollections(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     APP = ELAN_APP
 
     def mySRCollections(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -48,20 +44,17 @@ class SRCollections(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getSRCollections(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRCollection'}
+        """ """
+        args = {"portal_type": "SRCollection"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRCollectionss(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRCollections'}
+        """ """
+        args = {"portal_type": "SRCollections"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

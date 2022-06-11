@@ -1,12 +1,11 @@
-from elan.journal.adapters import IJournalEntryContainer
-from elan.journal.adapters import JournalEntry
+import unittest
+
+from elan.journal.adapters import IJournalEntryContainer, JournalEntry
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
 from plone import api
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.interface import alsoProvides
-
-import unittest
 
 
 class BaseJournalEntryViewTestCase(unittest.TestCase):
@@ -14,22 +13,21 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
-        docpool = self.portal['test_docpool']
-        self.container = docpool['contentconfig']['scen']['routinemode']
-        with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.container, 'Journal', 'journal')
+        docpool = self.portal["test_docpool"]
+        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        with api.env.adopt_roles(["Manager"]):
+            self.journal = api.content.create(self.container, "Journal", "journal")
         self.view = api.content.get_view(
-            'base-journalentry', self.journal, self.request
+            "base-journalentry", self.journal, self.request
         )
         adapter = IJournalEntryContainer(self.journal)
-        adapter.add(JournalEntry('', 'Check me!'))
+        adapter.add(JournalEntry("", "Check me!"))
 
     def test_validate_journalentry_id(self):
-        self.request.form['id'] = '0'
+        self.request.form["id"] = "0"
         valid = self.view._validate_journalentry_id()
         self.assertTrue(valid)
 
@@ -38,25 +36,25 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'No entry selected.'
+        expected = "No entry selected."
         self.assertEqual(msg[0].message, expected)
 
     def test_validate_journalentry_invalid_id(self):
-        self.request.form['id'] = 'invalid'
+        self.request.form["id"] = "invalid"
         valid = self.view._validate_journalentry_id()
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'Journalentry id is not an integer.'
+        expected = "Journalentry id is not an integer."
         self.assertEqual(msg[0].message, expected)
 
     def test_validate_journalentry_id_greater_than_lenght(self):
-        self.request.form['id'] = '2'
+        self.request.form["id"] = "2"
         valid = self.view._validate_journalentry_id()
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'Journalentry id does not exist.'
+        expected = "Journalentry id does not exist."
         self.assertEqual(msg[0].message, expected)
 
 
@@ -65,41 +63,40 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
-        docpool = self.portal['test_docpool']
-        self.container = docpool['contentconfig']['scen']['routinemode']
-        with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.container, 'Journal', 'journal')
+        docpool = self.portal["test_docpool"]
+        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        with api.env.adopt_roles(["Manager"]):
+            self.journal = api.content.create(self.container, "Journal", "journal")
 
     def test_add_journalentry_no_parameters(self):
-        self.journal.unrestrictedTraverse('add-journalentry')()
+        self.journal.unrestrictedTraverse("add-journalentry")()
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'Required text input is missing.'
+        expected = "Required text input is missing."
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
-            self.request.RESPONSE.getHeader('location'),
-            'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update',
+            self.request.RESPONSE.getHeader("location"),
+            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
         )
 
     def test_add_journalentry(self):
-        self.request.form['title'] = ''
-        self.request.form['text'] = 'Extra! Extra! Read All About It!'
-        self.journal.unrestrictedTraverse('add-journalentry')()
+        self.request.form["title"] = ""
+        self.request.form["text"] = "Extra! Extra! Read All About It!"
+        self.journal.unrestrictedTraverse("add-journalentry")()
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'Item published.'
+        expected = "Item published."
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
-            self.request.RESPONSE.getHeader('location'),
-            'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update',
+            self.request.RESPONSE.getHeader("location"),
+            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
         )
 
 
@@ -108,36 +105,35 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
-        docpool = self.portal['test_docpool']
-        self.container = docpool['contentconfig']['scen']['routinemode']
-        with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.container, 'Journal', 'journal')
+        docpool = self.portal["test_docpool"]
+        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        with api.env.adopt_roles(["Manager"]):
+            self.journal = api.content.create(self.container, "Journal", "journal")
         adapter = IJournalEntryContainer(self.journal)
-        adapter.add(JournalEntry('', 'Edit me!'))
+        adapter.add(JournalEntry("", "Edit me!"))
 
     def test_edit_journalentry(self):
-        self.request.form['id'] = '0'
-        self.request.form['text'] = 'Edited!'
-        self.request.form['form.buttons.save'] = 'Save'
-        self.journal.unrestrictedTraverse('edit-journalentry')()
+        self.request.form["id"] = "0"
+        self.request.form["text"] = "Edited!"
+        self.request.form["form.buttons.save"] = "Save"
+        self.journal.unrestrictedTraverse("edit-journalentry")()
         # journal was updated
-        self.assertNotEqual(self.journal._last_journalentry_edition, '0.0')
+        self.assertNotEqual(self.journal._last_journalentry_edition, "0.0")
         # journalentry was modified
         adapter = IJournalEntryContainer(self.journal)
-        self.assertEqual(adapter[0].text, 'Edited!')
+        self.assertEqual(adapter[0].text, "Edited!")
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'Item saved.'
+        expected = "Item saved."
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
-            self.request.RESPONSE.getHeader('location'),
-            'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update',
+            self.request.RESPONSE.getHeader("location"),
+            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
         )
 
 
@@ -146,32 +142,31 @@ class DeleteJournalEntryViewTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
-        docpool = self.portal['test_docpool']
-        self.container = docpool['contentconfig']['scen']['routinemode']
-        with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.container, 'Journal', 'journal')
+        docpool = self.portal["test_docpool"]
+        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        with api.env.adopt_roles(["Manager"]):
+            self.journal = api.content.create(self.container, "Journal", "journal")
         adapter = IJournalEntryContainer(self.journal)
-        adapter.add(JournalEntry('', 'Delete me!'))
+        adapter.add(JournalEntry("", "Delete me!"))
 
     def test_delete_journalentry(self):
-        self.request.form['id'] = '0'
-        self.journal.unrestrictedTraverse('delete-journalentry')()
+        self.request.form["id"] = "0"
+        self.journal.unrestrictedTraverse("delete-journalentry")()
         # journal was updated
-        self.assertNotEqual(self.journal._last_journalentry_deletion, '0.0')
+        self.assertNotEqual(self.journal._last_journalentry_deletion, "0.0")
         # journalentry was deleted
         adapter = IJournalEntryContainer(self.journal)
         self.assertIsNone(adapter[0])
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = 'Item deleted.'
+        expected = "Item deleted."
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
-            self.request.RESPONSE.getHeader('location'),
-            'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update',
+            self.request.RESPONSE.getHeader("location"),
+            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
         )

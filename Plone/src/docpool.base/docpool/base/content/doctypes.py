@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the DocTypes content type. See doctypes.py for more
 explanation on the statements below.
@@ -19,25 +19,21 @@ from zope.interface import implementer
 
 
 class IDocTypes(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(IDocTypes)
 class DocTypes(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     def myDocTypes(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -45,20 +41,17 @@ class DocTypes(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getDocTypes(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'DocType'}
+        """ """
+        args = {"portal_type": "DocType"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getSRModuleTypes(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRModuleType'}
+        """ """
+        args = {"portal_type": "SRModuleType"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

@@ -1,6 +1,6 @@
 from plone import api
 
-PAS_TITLE = 'Trusted Proxy Auth'
+PAS_TITLE = "Trusted Proxy Auth"
 
 
 def post_install(setup):
@@ -9,7 +9,7 @@ def post_install(setup):
     setupTrustedProxyAuthPlugin()
 
 
-def _addPlugin(pas, pluginid='trusted_proxy_auth'):
+def _addPlugin(pas, pluginid="trusted_proxy_auth"):
     try:
         from pas.plugins.trustedproxyauth.plugin import TrustedProxyAuthPlugin
         from ZODB.PersistentList import PersistentList
@@ -17,10 +17,10 @@ def _addPlugin(pas, pluginid='trusted_proxy_auth'):
         return PAS_TITLE + " product not installed"
     installed = pas.objectIds()
     if pluginid in installed:
-        return PAS_TITLE + ' already installed.'
+        return PAS_TITLE + " already installed."
     plugin = TrustedProxyAuthPlugin(pluginid, title=PAS_TITLE)
-    plugin.trusted_proxies = PersistentList(['127.0.0.1'])
-    plugin.login_header = 'HTTP_X_REMOTE_USER'
+    plugin.trusted_proxies = PersistentList(["127.0.0.1"])
+    plugin.login_header = "HTTP_X_REMOTE_USER"
     plugin.lowercase_logins = False
     plugin.lowercase_domain = False
     plugin.strip_nt_domain = True
@@ -32,7 +32,7 @@ def _addPlugin(pas, pluginid='trusted_proxy_auth'):
     pas._setObject(pluginid, plugin)
     plugin = pas[plugin.getId()]  # get plugin acquisition wrapped!
     for info in pas.plugins.listPluginTypeInfo():
-        interface = info['interface']
+        interface = info["interface"]
         if not interface.providedBy(plugin):
             continue
         pas.plugins.activatePlugin(interface, plugin.getId())

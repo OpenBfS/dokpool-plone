@@ -1,11 +1,9 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
-
-version = '0.1.156'
+version = "0.1.156"
 
 setup(
-    name='elan.esd',
+    name="elan.esd",
     version=version,
     description="",
     long_description="""\
@@ -19,18 +17,18 @@ setup(
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords='',
-    author='Condat AG',
-    author_email='hr@condat.de',
-    url='http://www.condat.de',
-    license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['elan'],
+    keywords="",
+    author="Condat AG",
+    author_email="hr@condat.de",
+    url="http://www.condat.de",
+    license="GPL",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["elan"],
     include_package_data=True,
     zip_safe=True,
     install_requires=[
         # -*- Extra requirements: -*-
-        'setuptools',
+        "setuptools",
     ],
     entry_points="""
       # -*- Entry points: -*-

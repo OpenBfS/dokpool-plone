@@ -1,14 +1,16 @@
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
-from docpool.base.utils import getDocumentPoolSite
-from docpool.base.utils import getGroupsForCurrentUser
-from docpool.base.utils import queryForObjects
+from docpool.base.utils import (
+    getDocumentPoolSite,
+    getGroupsForCurrentUser,
+    queryForObjects,
+)
 from docpool.transfers.config import TRANSFERS_APP
 from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-from Products.CMFPlone.utils import safe_hasattr
 from Products.CMFPlone.i18nl10n import utranslate
+from Products.CMFPlone.utils import safe_hasattr
 from zope.component import getMultiAdapter
 from zope.component.hooks import getSite
 
@@ -27,13 +29,13 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
     dps = [
         dp.getObject()
         for dp in queryForObjects(
-            context, path="/".join(portal.getPhysicalPath()), portal_type='DocumentPool'
+            context, path="/".join(portal.getPhysicalPath()), portal_type="DocumentPool"
         )
     ]
 
     # dps = _folderTree(context, "%s" % ("/".join(portal.getPhysicalPath())), {'portal_type': ('PloneSite', 'DocumentPool')})['children']
     request = context.REQUEST
-    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
     active_apps = dp_app_state.appsActivatedByCurrentUser()
     current_app = None
     if len(active_apps) > 0:
@@ -44,34 +46,35 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
     root_title = (
         current_dp is None
         and utranslate("docpool.menu", "Docpools", context=context)
-        or "{}: {}".format(current_dp.title, current_app)
+        or f"{current_dp.title}: {current_app}"
     )
     apps_root = [
         {
-            'id': 'apps',
-            'Title': root_title,
-            'Description': '',
-            'getURL': '',
-            'show_children': True,
-            'children': None,
-            'currentItem': False,
-            'currentParent': True,
-            'item_class': 'applications',
-            'normalized_review_state': 'visible',
+            "id": "apps",
+            "Title": root_title,
+            "Description": "",
+            "getURL": "",
+            "show_children": True,
+            "children": None,
+            "currentItem": False,
+            "currentParent": True,
+            "item_class": "applications",
+            "normalized_review_state": "visible",
         }
     ]
     pools = []
     for dp in dps:
         dp_app_state = getMultiAdapter(
-            (dp, request), name='dp_app_state'
+            (dp, request), name="dp_app_state"
         )  # need to get fresh adapter for each pool
         app_names = dp_app_state.appsAvailableToCurrentUser()
         app_names.insert(0, BASE_APP)
         for app_name in app_names:
-            if app_name == 'base':
+            if app_name == "base":
                 if context.isAdmin():
                     app_title = utranslate(
-                        "docpool.menu", "Docpool Base", context=context)
+                        "docpool.menu", "Docpool Base", context=context
+                    )
                 else:
                     continue
             else:
@@ -80,42 +83,41 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
             if dp.getId() in context.absolute_url():
                 pools.append(
                     {
-                        'id': dp.getId() + "-" + app_name,
-                        'Title': dp.title + ": " + app_title,
-                        'Description': '',
-                        'getURL': "%s/setActiveApp?app=%s"
+                        "id": dp.getId() + "-" + app_name,
+                        "Title": dp.title + ": " + app_title,
+                        "Description": "",
+                        "getURL": "%s/setActiveApp?app=%s"
                         % (context.absolute_url(), app_name),
-                        'show_children': False,
-                        'children': [],
-                        'currentItem': False,
-                        'currentParent': False,
-                        'item_class': app_title,
-                        'normalized_review_state': 'visible',
+                        "show_children": False,
+                        "children": [],
+                        "currentItem": False,
+                        "currentParent": False,
+                        "item_class": app_title,
+                        "normalized_review_state": "visible",
                     }
                 )
             else:
                 pools.append(
                     {
-                        'id': dp.getId() + "-" + app_name,
-                        'Title': dp.title + ": " + app_title,
-                        'Description': '',
-                        'getURL': "%s/setActiveApp?app=%s"
+                        "id": dp.getId() + "-" + app_name,
+                        "Title": dp.title + ": " + app_title,
+                        "Description": "",
+                        "getURL": "%s/setActiveApp?app=%s"
                         % (dp.absolute_url(), app_name),
-                        'show_children': False,
-                        'children': [],
-                        'currentItem': False,
-                        'currentParent': False,
-                        'item_class': app_title,
-                        'normalized_review_state': 'visible',
+                        "show_children": False,
+                        "children": [],
+                        "currentItem": False,
+                        "currentParent": False,
+                        "item_class": app_title,
+                        "normalized_review_state": "visible",
                     }
                 )
 
-    apps_root[0]['children'] = pools
+    apps_root[0]["children"] = pools
     return apps_root
 
 
-def getFoldersForCurrentUser(
-        context, user=None, queryBuilderClass=None, strategy=None):
+def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strategy=None):
     """
     Additional navigation-items for user-folder and group-folders.
 
@@ -179,10 +181,10 @@ def getFoldersForCurrentUser(
             return None
         user = api.user.get_current()
     res = []
-    if getattr(context, 'myDocumentPool', None) is None:
+    if getattr(context, "myDocumentPool", None) is None:
         return res
     docpool = getDocumentPoolSite(context)
-    content_folder = docpool.get('content')
+    content_folder = docpool.get("content")
     if not content_folder:
         return res
     rres = []
@@ -192,15 +194,15 @@ def getFoldersForCurrentUser(
 
     user_is_receiver = False
     roles = api.user.get_roles(user=user, obj=context)
-    if 'Manager' in roles or 'Site Administrator' in roles:
+    if "Manager" in roles or "Site Administrator" in roles:
         user_is_receiver = True
-    elif any([('Receivers'in group['id']) for group in groups]):
+    elif any([("Receivers" in group["id"]) for group in groups]):
         user_is_receiver = True
     if user_is_receiver:
         # add the transfers folder if it exists.
-        transfers = content_folder.get('Transfers')
+        transfers = content_folder.get("Transfers")
         if transfers:
-            path = '/'.join(transfers.getPhysicalPath())
+            path = "/".join(transfers.getPhysicalPath())
             rres = [
                 _folderTree(
                     context,
@@ -209,45 +211,45 @@ def getFoldersForCurrentUser(
                     strategy=strategy,
                 )
             ]
-            rres[0]['item_class'] = 'personal transfer'
+            rres[0]["item_class"] = "personal transfer"
 
     # strangely, member folders for users with '-' in their username
     # are created with double dashes
     user_name = user.getUserName().replace("-", "--")
-    members_folder = content_folder['Members']
-    groups_folder = content_folder['Groups']
-    members_folder_path = '/'.join(members_folder.getPhysicalPath())
-    groups_folder_path = '/'.join(groups_folder.getPhysicalPath())
+    members_folder = content_folder["Members"]
+    groups_folder = content_folder["Groups"]
+    members_folder_path = "/".join(members_folder.getPhysicalPath())
+    groups_folder_path = "/".join(groups_folder.getPhysicalPath())
 
     has_group = False
     group_result = []
     for group in groups:
-        if group['etypes']:
+        if group["etypes"]:
             # Group is ELAN group which can produce documents
             has_group = True
-            if groups_folder.get(group['id']):
+            if groups_folder.get(group["id"]):
                 gft = _folderTree(
                     context,
-                    "{}/{}".format(groups_folder_path, group['id']),
+                    "{}/{}".format(groups_folder_path, group["id"]),
                     queryBuilderClass=queryBuilderClass,
                     strategy=strategy,
                 )
                 # print gft
                 if "show_children" in gft:
-                    gft['item_class'] = "personal"
+                    gft["item_class"] = "personal"
                     group_result.append(gft)
     res.extend(group_result)
 
     # show personal folder unless we're in elan
-    dp_app_state = getMultiAdapter((context, context.REQUEST), name='dp_app_state')
+    dp_app_state = getMultiAdapter((context, context.REQUEST), name="dp_app_state")
     effective_apps = dp_app_state.effectiveAppsHere()
-    hide_user_folder = 'elan' in effective_apps or 'rei' in effective_apps
+    hide_user_folder = "elan" in effective_apps or "rei" in effective_apps
     member_result = []
     if not hide_user_folder:
         member_result = [
             _folderTree(
                 context,
-                "{}/{}".format(members_folder_path, user_name),
+                f"{members_folder_path}/{user_name}",
                 queryBuilderClass=queryBuilderClass,
                 strategy=strategy,
             )
@@ -257,7 +259,7 @@ def getFoldersForCurrentUser(
             # print "has no user folder"
             member_result = []
         else:
-            member_result[0]['item_class'] = "personal"
+            member_result[0]["item_class"] = "personal"
         res.extend(member_result)
 
     res.extend(rres)
@@ -272,8 +274,7 @@ def getFoldersForCurrentUser(
     return rres
 
 
-def _folderTree(context, path, filter={},
-                queryBuilderClass=None, strategy=None):
+def _folderTree(context, path, filter={}, queryBuilderClass=None, strategy=None):
     """Return tree of tabs based on content structure"""
 
     from docpool.menu.browser.menu import DropDownMenuQueryBuilder
@@ -282,29 +283,20 @@ def _folderTree(context, path, filter={},
         queryBuilder = DropDownMenuQueryBuilder(context)
         query = queryBuilder()
         query.update(filter)
-        query['path'] = {
-            'query': path,
-            'depth': 1,
-            'navtree': 1,
-            'navtree_start': 2}
+        query["path"] = {"query": path, "depth": 1, "navtree": 1, "navtree_start": 2}
     else:
         queryBuilder = queryBuilderClass(context)
         query = queryBuilder()
-        query['path'] = {
-            'query': path,
-            'depth': 1,
-            'navtree': 1,
-            'navtree_start': 2}
+        query["path"] = {"query": path, "depth": 1, "navtree": 1, "navtree_start": 2}
     if not strategy:
         strategy = getMultiAdapter((context, None), INavtreeStrategy)
     strategy.rootPath = path
-    return buildFolderTree(context, obj=context,
-                           query=query, strategy=strategy)
+    return buildFolderTree(context, obj=context, query=query, strategy=strategy)
 
 
 def adaptQuery(query, context):
     request = context.REQUEST
-    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
     active_apps = dp_app_state.appsActivatedByCurrentUser()
     active_apps.extend([BASE_APP, TRANSFERS_APP])
-    query['apps_supported'] = active_apps
+    query["apps_supported"] = active_apps

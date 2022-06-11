@@ -17,8 +17,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class DPDocumentdashboardView(FlexibleView):
-    """Additional View
-    """
+    """Additional View"""
 
     __allow_access_to_unprotected_subobjects__ = 1
-    __call__ = ViewPageTemplateFile('dpdocumentdashboard.pt')
+    __call__ = ViewPageTemplateFile("dpdocumentdashboard.pt")

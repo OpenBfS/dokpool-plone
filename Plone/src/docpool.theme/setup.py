@@ -1,13 +1,11 @@
-from setuptools import find_packages
-from setuptools import setup
-
 import os
 
+from setuptools import find_packages, setup
 
-version = '1.0'
+version = "1.0"
 
 setup(
-    name='docpool.theme',
+    name="docpool.theme",
     version=version,
     description="DocPool Theme",
     long_description=open("README.txt").read()
@@ -20,20 +18,20 @@ setup(
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords='',
-    author='',
-    author_email='',
-    url='',
-    license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['docpool'],
+    keywords="",
+    author="",
+    author_email="",
+    url="",
+    license="GPL",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["docpool"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
-        'z3c.jbot',
+        "setuptools",
+        "z3c.jbot",
         # -*- Extra requirements: -*-
-        'docpool.menu',
+        "docpool.menu",
     ],
     entry_points="""
       # -*- Entry points: -*-

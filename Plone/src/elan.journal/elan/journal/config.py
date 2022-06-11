@@ -1,4 +1,4 @@
-PROJECTNAME = 'elan.journal'
+PROJECTNAME = "elan.journal"
 
 # batch options for @@update view
 BATCH_SIZE = 20  # how many journal-entries per page

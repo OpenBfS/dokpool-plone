@@ -15,6 +15,6 @@ class BaseView:
     @view.memoize
     def show_byline(self):
         """Return True if user is allowed to view 'about' information."""
-        site_props = api.portal.get_tool('portal_properties').site_properties
-        allow_view = site_props.getProperty('allowAnonymousViewAbout', True)
+        site_props = api.portal.get_tool("portal_properties").site_properties
+        allow_view = site_props.getProperty("allowAnonymousViewAbout", True)
         return not self.is_anonymous or allow_view

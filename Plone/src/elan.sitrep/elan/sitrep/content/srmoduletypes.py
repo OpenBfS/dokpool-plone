@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRModuleTypes content type. See srmoduletypes.py for more
 explanation on the statements below.
@@ -20,27 +20,23 @@ from zope.interface import implementer
 
 
 class ISRModuleTypes(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISRModuleTypes)
 class SRModuleTypes(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     APP = ELAN_APP
 
     def mySRModuleTypes(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -48,13 +44,11 @@ class SRModuleTypes(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getSRModuleTypes(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRModuleType'}
+        """ """
+        args = {"portal_type": "SRModuleType"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

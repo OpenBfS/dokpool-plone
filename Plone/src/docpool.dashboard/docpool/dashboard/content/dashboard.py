@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the Dashboard content type. See dashboard.py for more
 explanation on the statements below.
@@ -17,20 +17,18 @@ from docpool.dashboard import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import implementer
 
 
 class IDashboard(model.Schema):
-    """
-    """
+    """ """
 
     dbCollections = RelationList(
-        title=_('label_dashboard_dbcollections', default='Document Types'),
+        title=_("label_dashboard_dbcollections", default="Document Types"),
         description=_(
-            'description_dashboard_dbcollections',
-            default='Select the document types you want to show in this dashboard.',
+            "description_dashboard_dbcollections",
+            default="Select the document types you want to show in this dashboard.",
         ),
         required=False,
         value_type=RelationChoice(
@@ -40,13 +38,13 @@ class IDashboard(model.Schema):
     )
 
     directives.widget(
-        dbCollections='z3c.form.browser.select.CollectionSelectFieldWidget')
+        dbCollections="z3c.form.browser.select.CollectionSelectFieldWidget"
+    )
 
 
 @implementer(IDashboard)
 class Dashboard(Item):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 

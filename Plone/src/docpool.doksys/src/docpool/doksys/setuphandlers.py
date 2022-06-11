@@ -1,8 +1,7 @@
-from docpool.config.utils import CHILDREN
-from docpool.config.utils import createPloneObjects
-from docpool.config.utils import ID
-from docpool.config.utils import TITLE
-from docpool.config.utils import TYPE
+import logging
+
+import transaction
+from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
 from persistent.list import PersistentList
 from plone import api
 from plone.app.textfield.value import RichTextValue
@@ -11,9 +10,6 @@ from Products.CMFPlone.utils import _createObjectByType
 from zope.component.hooks import getSite
 from zope.interface import implementer
 
-import transaction
-import logging
-
 log = logging.getLogger(__name__)
 
 
@@ -21,7 +17,7 @@ log = logging.getLogger(__name__)
 class HiddenProfiles:
     def getNonInstallableProfiles(self):
         """Hide uninstall profile from site-creation and quickinstaller."""
-        return ['docpool.doksys:uninstall']
+        return ["docpool.doksys:uninstall"]
 
 
 def post_install(context):
@@ -38,8 +34,8 @@ def uninstall(context):
 
 def createStructure(context, plonesite, fresh):
     changedoksysNavigation(plonesite, fresh)
-    s = context.restrictedTraverse('searches')
-    s.manage_addProperty('text', '', 'string')
+    s = context.restrictedTraverse("searches")
+    s.manage_addProperty("text", "", "string")
     transaction.commit()
     create_today_collection(plonesite)
     transaction.commit()
@@ -62,342 +58,337 @@ def changedoksysDocTypes(plonesite, fresh):
 
 
 def create_today_collection(plonesite):
-    container = api.content.get(path='/searches')
-    title = 'Dokumente von Heute'
-    description = 'Dokumente seit heute 0:00 Uhr'
+    container = api.content.get(path="/searches")
+    title = "Dokumente von Heute"
+    description = "Dokumente seit heute 0:00 Uhr"
     _createObjectByType(
-        'Collection', container, id='today', title=title, description=description
+        "Collection", container, id="today", title=title, description=description
     )
-    today = container['today']
+    today = container["today"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    today.sort_on = 'changed'
+    today.sort_on = "changed"
     today.sort_reversed = True
     today.relatedItems = ""
     #: Query by Type and Review State
     today.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'created',
-            'o': 'plone.app.querystring.operation.date.today',
-            'v': '',
+            "i": "created",
+            "o": "plone.app.querystring.operation.date.today",
+            "v": "",
         },
         {
-            'i': 'OperationMode',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['Intensiv', 'Routine'],
+            "i": "OperationMode",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["Intensiv", "Routine"],
         },
     ]
-    today.text = RichTextValue('', 'text/html', 'text/x-html-safe')
-    today.setLayout('docpool_collection_view')
+    today.text = RichTextValue("", "text/html", "text/x-html-safe")
+    today.setLayout("docpool_collection_view")
     log.info('Collection "Dokumente von Heute" angelegt')
     return today
 
 
 def create_since_yesterday_collection(plonesite):
-    container = api.content.get(path='/searches')
-    title = 'Dokumente seit Gestern'
-    description = 'Dokumente der letzten 24 Stunden'
+    container = api.content.get(path="/searches")
+    title = "Dokumente seit Gestern"
+    description = "Dokumente der letzten 24 Stunden"
     _createObjectByType(
-        'Collection', container, id='yesterday', title=title, description=description
+        "Collection", container, id="yesterday", title=title, description=description
     )
-    yesterday = container['yesterday']
+    yesterday = container["yesterday"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    yesterday.sort_on = 'changed'
+    yesterday.sort_on = "changed"
     yesterday.sort_reversed = True
     yesterday.relatedItems = ""
     #: Query by Type and Review State
     yesterday.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'creationDate',
-            'o': 'plone.app.querystring.operation.date.largerThanRelativeDate',
-            'v': '-1',
+            "i": "creationDate",
+            "o": "plone.app.querystring.operation.date.largerThanRelativeDate",
+            "v": "-1",
         },
         {
-            'i': 'OperationMode',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['Intensiv', 'Routine'],
+            "i": "OperationMode",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["Intensiv", "Routine"],
         },
     ]
-    yesterday.text = RichTextValue('', 'text/html', 'text/x-html-safe')
-    yesterday.setLayout('docpool_collection_view')
+    yesterday.text = RichTextValue("", "text/html", "text/x-html-safe")
+    yesterday.setLayout("docpool_collection_view")
     log.info('Collection "Dokumente seit Gestern" angelegt')
     return yesterday
 
+
 def create_purpose_collections(plonesite):
-    container = api.content.get(path='/searches')
-    title = 'Standard-Info Bundesmessnetze'
-    description = 'Standard-Info Bundesmessnetze'
+    container = api.content.get(path="/searches")
+    title = "Standard-Info Bundesmessnetze"
+    description = "Standard-Info Bundesmessnetze"
     _createObjectByType(
-        'Collection',
+        "Collection",
         container,
-        id='bundesmessnetze',
+        id="bundesmessnetze",
         title=title,
         description=description,
     )
-    iwas = container['bundesmessnetze']
+    iwas = container["bundesmessnetze"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'Purpose',
-            'o': 'plone.app.querystring.operation.string.is',
-            'v': 'Standard-Info Bundesmessnetze',
+            "i": "Purpose",
+            "o": "plone.app.querystring.operation.string.is",
+            "v": "Standard-Info Bundesmessnetze",
         },
     ]
     iwas.text = RichTextValue(
-        '<p>Standard-Info Bundesmessnetze<p>', 'text/html', 'text/x-html-safe'
+        "<p>Standard-Info Bundesmessnetze<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout("docpool_collection_view")
 
-    title = 'Standard-Info DWD'
-    description = 'Standard-Info DWD'
+    title = "Standard-Info DWD"
+    description = "Standard-Info DWD"
     _createObjectByType(
-        'Collection', container, id='dwd', title=title, description=description
+        "Collection", container, id="dwd", title=title, description=description
     )
-    iwas = container['dwd']
+    iwas = container["dwd"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'Purpose',
-            'o': 'plone.app.querystring.operation.string.is',
-            'v': 'Standard-Info Bundesmessnetze',
+            "i": "Purpose",
+            "o": "plone.app.querystring.operation.string.is",
+            "v": "Standard-Info Bundesmessnetze",
         },
     ]
     iwas.text = RichTextValue(
-        '<p>Standard-Info DWD<p>', 'text/html', 'text/x-html-safe'
+        "<p>Standard-Info DWD<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout("docpool_collection_view")
     #
 
     print("Purpose Collection angelegt")
 
 
 def create_sample_collections(plonesite):
-    container = api.content.get(path='/searches')
-    title = 'Ergebnisse Boden'
-    description = 'Ergebnisse Boden'
+    container = api.content.get(path="/searches")
+    title = "Ergebnisse Boden"
+    description = "Ergebnisse Boden"
     _createObjectByType(
-        'Collection', container, id='boden', title=title, description=description
+        "Collection", container, id="boden", title=title, description=description
     )
-    iwas = container['boden']
+    iwas = container["boden"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'SampleTypeId',
-            'o': 'plone.app.querystring.operation.string.contains',
-            'v': 'B*',
+            "i": "SampleTypeId",
+            "o": "plone.app.querystring.operation.string.contains",
+            "v": "B*",
         },
     ]
-    iwas.text = RichTextValue(
-        '<p>Ergebnisse Boden<p>',
-        'text/html',
-        'text/x-html-safe')
-    iwas.setLayout('docpool_collection_view')
+    iwas.text = RichTextValue("<p>Ergebnisse Boden<p>", "text/html", "text/x-html-safe")
+    iwas.setLayout("docpool_collection_view")
 
-    title = 'Ergebnisse Futtermittel'
-    description = 'Ergebnisse Futtermittel'
+    title = "Ergebnisse Futtermittel"
+    description = "Ergebnisse Futtermittel"
     _createObjectByType(
-        'Collection', container, id='futter', title=title, description=description
+        "Collection", container, id="futter", title=title, description=description
     )
-    iwas = container['futter']
+    iwas = container["futter"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'SampleTypeId',
-            'o': 'plone.app.querystring.operation.string.contains',
-            'v': 'F*',
+            "i": "SampleTypeId",
+            "o": "plone.app.querystring.operation.string.contains",
+            "v": "F*",
         },
     ]
     iwas.text = RichTextValue(
-        '<p>Ergebnisse Futtermittel<p>', 'text/html', 'text/x-html-safe'
+        "<p>Ergebnisse Futtermittel<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout("docpool_collection_view")
 
-    title = 'Ergebnisse Gewaesser'
-    description = 'Ergebnisse Gewaesser'
+    title = "Ergebnisse Gewaesser"
+    description = "Ergebnisse Gewaesser"
     _createObjectByType(
-        'Collection', container, id='wasser', title=title, description=description
+        "Collection", container, id="wasser", title=title, description=description
     )
-    iwas = container['wasser']
+    iwas = container["wasser"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'SampleTypeId',
-            'o': 'plone.app.querystring.operation.string.contains',
-            'v': 'G*',
+            "i": "SampleTypeId",
+            "o": "plone.app.querystring.operation.string.contains",
+            "v": "G*",
         },
     ]
     iwas.text = RichTextValue(
-        '<p>Ergebnisse Gewaesser<p>', 'text/html', 'text/x-html-safe'
+        "<p>Ergebnisse Gewaesser<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout("docpool_collection_view")
 
-    title = 'Ergebnisse Luft'
-    description = 'Ergebnisse Luft'
+    title = "Ergebnisse Luft"
+    description = "Ergebnisse Luft"
     _createObjectByType(
-        'Collection', container, id='luft', title=title, description=description
+        "Collection", container, id="luft", title=title, description=description
     )
-    iwas = container['luft']
+    iwas = container["luft"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'SampleTypeId',
-            'o': 'plone.app.querystring.operation.string.contains',
-            'v': 'L*',
+            "i": "SampleTypeId",
+            "o": "plone.app.querystring.operation.string.contains",
+            "v": "L*",
         },
     ]
-    iwas.text = RichTextValue(
-        '<p>Ergebnisse Luft<p>',
-        'text/html',
-        'text/x-html-safe')
-    iwas.setLayout('docpool_collection_view')
+    iwas.text = RichTextValue("<p>Ergebnisse Luft<p>", "text/html", "text/x-html-safe")
+    iwas.setLayout("docpool_collection_view")
 
-    title = 'Ergebnisse Nahrungsmittel'
-    description = 'Ergebnisse Nahrungsmittel'
+    title = "Ergebnisse Nahrungsmittel"
+    description = "Ergebnisse Nahrungsmittel"
     _createObjectByType(
-        'Collection', container, id='nahrung', title=title, description=description
+        "Collection", container, id="nahrung", title=title, description=description
     )
-    iwas = container['nahrung']
+    iwas = container["nahrung"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'SampleTypeId',
-            'o': 'plone.app.querystring.operation.string.contains',
-            'v': 'N*',
+            "i": "SampleTypeId",
+            "o": "plone.app.querystring.operation.string.contains",
+            "v": "N*",
         },
     ]
     iwas.text = RichTextValue(
-        '<p>Ergebnisse Nahrungsmittel<p>', 'text/html', 'text/x-html-safe'
+        "<p>Ergebnisse Nahrungsmittel<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout("docpool_collection_view")
 
-    title = 'Ergebnisse Stoerfall'
-    description = 'Ergebnisse Stoerfall'
+    title = "Ergebnisse Stoerfall"
+    description = "Ergebnisse Stoerfall"
     _createObjectByType(
-        'Collection', container, id='stoer', title=title, description=description
+        "Collection", container, id="stoer", title=title, description=description
     )
-    iwas = container['stoer']
+    iwas = container["stoer"]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = 'effective'
+    iwas.sort_on = "effective"
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.any',
-            'v': ['DPDocument'],
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": ["DPDocument"],
         },
         {
-            'i': 'SampleTypeId',
-            'o': 'plone.app.querystring.operation.string.contains',
-            'v': 'S*',
+            "i": "SampleTypeId",
+            "o": "plone.app.querystring.operation.string.contains",
+            "v": "S*",
         },
     ]
     iwas.text = RichTextValue(
-        '<p>Ergebnisse Stoerfall<p>', 'text/html', 'text/x-html-safe'
+        "<p>Ergebnisse Stoerfall<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout('docpool_collection_view')
+    iwas.setLayout("docpool_collection_view")
 
     print("Sample Type Collection angelegt")
 
 
 BASICSTRUCTURE = [
     {
-        TYPE: 'Folder',
-        TITLE: 'Predefined Searches',
-        ID: 'searches',
+        TYPE: "Folder",
+        TITLE: "Predefined Searches",
+        ID: "searches",
         # TODO: relatedItems broken when creating a doksys docpool.
         # See https://redmine-koala.bfs.de/issues/3291
         # and https://redmine-koala.bfs.de/issues/3350
@@ -431,11 +422,11 @@ BASICSTRUCTURE = [
 
 DTYPES = [
     {
-        TYPE: 'DocType',
-        TITLE: 'DoksysDokument',
-        ID: 'doksysdok',
+        TYPE: "DocType",
+        TITLE: "DoksysDokument",
+        ID: "doksysdok",
         CHILDREN: [],
-        'local_behaviors': ['doksys'],
+        "local_behaviors": ["doksys"],
     },
     #         {TYPE: 'DocType', TITLE: u'Meldung', ID: 'notification',
     #           CHILDREN: [], 'local_behaviors': ['elan']},
@@ -509,5 +500,4 @@ DTYPES = [
     #           CHILDREN: [], 'local_behaviors': ['elan']},
     #         {TYPE: 'DocType', TITLE: u'RODOS Lauf', ID: 'rodosrun_elan',
     #           CHILDREN: [], 'local_behaviors': ['elan']}
-
 ]

@@ -1,13 +1,15 @@
+import docpool.api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
-from plone.app.testing import FunctionalTesting
-from plone.app.testing import IntegrationTesting
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.app.testing import applyProfile
+from plone.app.testing import (
+    SITE_OWNER_NAME,
+    SITE_OWNER_PASSWORD,
+    FunctionalTesting,
+    IntegrationTesting,
+    PloneSandboxLayer,
+    applyProfile,
+)
 from plone.testing import z2
-import docpool.api
 
 
 class DocpoolApiLayer(PloneSandboxLayer):
@@ -19,11 +21,13 @@ class DocpoolApiLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import plone.restapi
+
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.api)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'docpool.api:default')
+        applyProfile(portal, "docpool.api:default")
+
 
 class DocpoolApiCleanLayer(PloneSandboxLayer):
 
@@ -33,22 +37,22 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        import plone.restapi
-        import docpool.rei
-        import elan.policy
-        import docpool.transfers
-        import docpool.caching
-        import plone.app.caching
-        import docpool.theme
         import docpool.base
+        import docpool.caching
         import docpool.dashboard
-        import docpool.users
-        import docpool.localbehavior
         import docpool.elan
+        import docpool.localbehavior
+        import docpool.rei
+        import docpool.theme
+        import docpool.transfers
+        import docpool.users
         import eea.facetednavigation
-        import Products.CMFFormController
         import elan.esd
+        import elan.policy
         import elan.sitrep
+        import plone.app.caching
+        import plone.restapi
+        import Products.CMFFormController
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.transfers)
@@ -75,27 +79,30 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.rei)
 
     def setUpPloneSite(self, portal):
-        portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ['Manager'], [])
+        portal.acl_users.userFolderAddUser(
+            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
+        )
+
 
 DOCPOOL_API_FIXTURE = DocpoolApiLayer()
 DOCPOOL_API_CLEAN_FIXTURE = DocpoolApiCleanLayer()
 
 
 DOCPOOL_API_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(DOCPOOL_API_FIXTURE,), name='DocpoolApiLayer:IntegrationTesting'
+    bases=(DOCPOOL_API_FIXTURE,), name="DocpoolApiLayer:IntegrationTesting"
 )
 
 DOCPOOL_API_FUNCTIONAL_FULL_TESTING = FunctionalTesting(
     bases=(DOCPOOL_API_CLEAN_FIXTURE,),
-    name='DocpoolApiLayer:FunctionalFullTesting',
+    name="DocpoolApiLayer:FunctionalFullTesting",
 )
 
 DOCPOOL_API_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_API_FIXTURE,), name='DocpoolApiLayer:FunctionalTesting'
+    bases=(DOCPOOL_API_FIXTURE,), name="DocpoolApiLayer:FunctionalTesting"
 )
 
 
 DOCPOOL_API_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(DOCPOOL_API_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
-    name='DocpoolApiLayer:AcceptanceTesting',
+    name="DocpoolApiLayer:AcceptanceTesting",
 )

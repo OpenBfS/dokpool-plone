@@ -5,12 +5,11 @@ from zope.schema.interfaces import IVocabularyFactory
 
 @implementer(IVocabularyFactory)
 class DataType:
-
     def __call__(self, context=None):
         values = [
-            'ONMON',
-            'LADA',
-            'EURDEP',
+            "ONMON",
+            "LADA",
+            "EURDEP",
         ]
         return safe_simplevocabulary_from_values(values)
 

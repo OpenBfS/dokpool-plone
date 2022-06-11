@@ -1,16 +1,16 @@
+from io import StringIO
+from urllib.parse import unquote
+
 from DateTime import DateTime
 from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
-from io import StringIO
-from urllib.parse import unquote
 from xhtml2pdf import pisa
 
 
 class PrintView(BrowserView):
     def _generatePDF(self, raw=False):
-        """
-        """
+        """ """
 
         def fetch_resources(uri, rel):
             """
@@ -22,28 +22,28 @@ class PrintView(BrowserView):
             portal = urltool.getPortalObject()
             base = portal.absolute_url()
             if uri.startswith(base):
-                response = subrequest(unquote(uri[len(base) + 1:]))
+                response = subrequest(unquote(uri[len(base) + 1 :]))
                 if response.status != 200:
                     return None
                 try:
                     # stupid pisa doesn't let me send charset.
-                    ctype, encoding = response.getHeader('content-type').split(
-                        'charset='
+                    ctype, encoding = response.getHeader("content-type").split(
+                        "charset="
                     )
-                    ctype = ctype.split(';')[0]
+                    ctype = ctype.split(";")[0]
                     # pisa only likes ascii css
                     data = (
                         response.getBody()
                         .decode(encoding)
-                        .encode('ascii', errors='ignore')
+                        .encode("ascii", errors="ignore")
                     )
 
                 except ValueError:
-                    ctype = response.getHeader('content-type').split(';')[0]
+                    ctype = response.getHeader("content-type").split(";")[0]
                     data = response.getBody()
 
                 data = data.encode("base64").replace("\n", "")
-                data_uri = f'data:{ctype};base64,{data}'
+                data_uri = f"data:{ctype};base64,{data}"
                 return data_uri
             return uri
 
@@ -53,7 +53,7 @@ class PrintView(BrowserView):
         # open output file for writing (truncated binary)
         # resultFile = os.tmpfile() #open(outputFilename, "w+b")
         resultFile = StringIO()
-        html = self.context.restrictedTraverse('@@print')()
+        html = self.context.restrictedTraverse("@@print")()
 
         # convert HTML to PDF
         pisaStatus = pisa.CreatePDF(
@@ -71,8 +71,7 @@ class PrintView(BrowserView):
         # close output file
         resultFile.close()  # close output file
         now = DateTime()
-        nice_filename = '{}_{}'.format(
-            self.context.getId(), now.strftime('%Y%m%d'))
+        nice_filename = "{}_{}".format(self.context.getId(), now.strftime("%Y%m%d"))
 
         if not raw:
             self.request.response.setHeader(
@@ -81,7 +80,7 @@ class PrintView(BrowserView):
             self.request.response.setHeader("Content-Type", "application/pdf")
             self.request.response.setHeader("Content-Length", len(pdfcontent))
             self.request.response.setHeader(
-                'Last-Modified', DateTime.rfc822(DateTime())
+                "Last-Modified", DateTime.rfc822(DateTime())
             )
             self.request.response.setHeader("Cache-Control", "no-store")
             self.request.response.setHeader("Pragma", "no-cache")

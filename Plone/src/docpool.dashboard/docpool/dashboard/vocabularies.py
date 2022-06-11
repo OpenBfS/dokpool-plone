@@ -3,20 +3,18 @@ from docpool.base.utils import getDocumentPoolSite
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
 class DashboardCollectionsVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context, raw=False):
         # print context
         esd = getDocumentPoolSite(context)
         path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, 'portal_catalog', None)
+        cat = getToolByName(esd, "portal_catalog", None)
         if cat is None:
             if not raw:
                 return SimpleVocabulary([])

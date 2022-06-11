@@ -13,35 +13,33 @@ class GroupDetailsControlPanel(GDCP):
     def __call__(self):
         context = aq_inner(self.context)
 
-        self.gtool = getToolByName(context, 'portal_groups')
-        self.gdtool = getToolByName(context, 'portal_groupdata')
-        self.regtool = getToolByName(context, 'portal_registration')
-        self.groupname = getattr(self.request, 'groupname', None)
-        self.grouproles = self.request.set('grouproles', [])
+        self.gtool = getToolByName(context, "portal_groups")
+        self.gdtool = getToolByName(context, "portal_groupdata")
+        self.regtool = getToolByName(context, "portal_registration")
+        self.groupname = getattr(self.request, "groupname", None)
+        self.grouproles = self.request.set("grouproles", [])
         self.group = self.gtool.getGroupById(self.groupname)
         self.grouptitle = self.groupname
         if self.group is not None:
             self.grouptitle = self.group.getGroupTitleOrName()
 
-        self.request.set(
-            'grouproles',
-            self.group.getRoles() if self.group else [])
+        self.request.set("grouproles", self.group.getRoles() if self.group else [])
 
-        submitted = self.request.form.get('form.submitted', False)
+        submitted = self.request.form.get("form.submitted", False)
         if submitted:
             CheckAuthenticator(self.request)
 
-            msg = _('No changes made.')
+            msg = _("No changes made.")
             self.group = None
 
-            title = self.request.form.get('title', None)
-            description = self.request.form.get('description', None)
-            addname = self.request.form.get('addname', None)
+            title = self.request.form.get("title", None)
+            description = self.request.form.get("description", None)
+            addname = self.request.form.get("addname", None)
 
             if addname:
                 if not self.regtool.isMemberIdAllowed(addname):
-                    msg = _('The group name you entered is not valid.')
-                    IStatusMessage(self.request).add(msg, 'error')
+                    msg = _("The group name you entered is not valid.")
+                    IStatusMessage(self.request).add(msg, "error")
                     return self.index()
 
                 #######
@@ -54,22 +52,19 @@ class GroupDetailsControlPanel(GDCP):
                     prefix = str(prefix)
                     dp_title = dp.Title()
 
-                    addname = "{}_{}".format(prefix, addname)
-                    title = "{} ({})".format(title, dp_title)
+                    addname = f"{prefix}_{addname}"
+                    title = f"{title} ({dp_title})"
                     isDP = True
                 else:
                     isDP = False
 
                 if isDP:
                     # Add reference to DocumentPool here
-                    props = {
-                        'title': title,
-                        'description': description,
-                        'dp': dp.UID()}
+                    props = {"title": title, "description": description, "dp": dp.UID()}
                     # Put it in the request for later processing (see below)
                     self.request.set("dp", dp.UID())
                 else:
-                    props = {'title': title, 'description': description}
+                    props = {"title": title, "description": description}
 
                 #######
 
@@ -84,18 +79,15 @@ class GroupDetailsControlPanel(GDCP):
                 )
                 if not success:
                     msg = _(
-                        'Could not add group ${name}, perhaps a user or group with '
-                        'this name already exists.',
-                        mapping={'name': addname},
+                        "Could not add group ${name}, perhaps a user or group with "
+                        "this name already exists.",
+                        mapping={"name": addname},
                     )
-                    IStatusMessage(self.request).add(msg, 'error')
+                    IStatusMessage(self.request).add(msg, "error")
                     return self.index()
 
                 self.group = self.gtool.getGroupById(addname)
-                msg = _(
-                    'Group ${name} has been added.',
-                    mapping={
-                        'name': addname})
+                msg = _("Group ${name} has been added.", mapping={"name": addname})
 
             elif self.groupname:
                 self.gtool.editGroup(
@@ -107,17 +99,17 @@ class GroupDetailsControlPanel(GDCP):
                     REQUEST=context.REQUEST,
                 )
                 self.group = self.gtool.getGroupById(self.groupname)
-                msg = _('Changes saved.')
+                msg = _("Changes saved.")
 
             else:
-                msg = _('Group name required.')
+                msg = _("Group name required.")
 
             processed = {}
             for id, property in self.gdtool.propertyItems():
                 # BfS: Here we take the "dp" from the request (set above)
                 processed[id] = self.request.get(id, None)
                 try:
-                    processed['dp'] = context.UID()
+                    processed["dp"] = context.UID()
                 except BaseException:
                     pass
 
@@ -126,15 +118,13 @@ class GroupDetailsControlPanel(GDCP):
                 # exist
                 self.group.setGroupProperties(processed)
 
-            IStatusMessage(
-                self.request).add(
-                msg, type=self.group and 'info' or 'error')
+            IStatusMessage(self.request).add(msg, type=self.group and "info" or "error")
             if self.group and not self.groupname:
-                target_url = '{}/{}'.format(
+                target_url = "{}/{}".format(
                     self.context.absolute_url(),
-                    '@@usergroup-groupprefs',
+                    "@@usergroup-groupprefs",
                 )
                 self.request.response.redirect(target_url)
-                return ''
+                return ""
 
         return self.index()

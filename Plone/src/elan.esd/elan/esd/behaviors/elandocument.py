@@ -22,19 +22,16 @@ def initializeScenarios(context):
 
 @provider(IFormFieldProvider)
 class IELANDocument(ITransferable):
-    """
-    """
+    """ """
 
     scenarios = schema.List(
-        title=_(
-            'label_dpdocument_scenarios',
-            default='Belongs to scenarios'),
-        description=_('description_dpdocument_scenarios', default=''),
+        title=_("label_dpdocument_scenarios", default="Belongs to scenarios"),
+        description=_("description_dpdocument_scenarios", default=""),
         required=True,
         defaultFactory=initializeScenarios,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
     )
-    read_permission(scenarios='docpool.elan.AccessELAN')
+    read_permission(scenarios="docpool.elan.AccessELAN")
     directives.widget(scenarios=CheckBoxFieldWidget)
 
 

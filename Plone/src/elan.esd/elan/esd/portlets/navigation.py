@@ -1,6 +1,5 @@
 from Acquisition import aq_inner
-from docpool.menu.utils import adaptQuery
-from docpool.menu.utils import getFoldersForCurrentUser
+from docpool.menu.utils import adaptQuery, getFoldersForCurrentUser
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
@@ -13,8 +12,7 @@ from zope.component import getMultiAdapter
 
 class Renderer(navigation.Renderer):
     def __init__(self, context, request, view, manager, data):
-        navigation.Renderer.__init__(
-            self, context, request, view, manager, data)
+        navigation.Renderer.__init__(self, context, request, view, manager, data)
 
     @memoize
     def getNavTree(self, _marker=[]):
@@ -28,7 +26,7 @@ class Renderer(navigation.Renderer):
             # print "Personal", context
             #            pfs = getFoldersForCurrentUser(context, queryBuilderClass=SitemapQueryBuilder, strategy=strategy)
             pfs = getFoldersForCurrentUser(context)
-            return {'children': pfs}
+            return {"children": pfs}
 
         # Otherwise build the normal navigation
         ft = buildFolderTree(
@@ -44,22 +42,24 @@ class Renderer(navigation.Renderer):
 
 
 class SitemapQueryBuilder(NavtreeQueryBuilder):
-    """Build tree for ELAN Sitemap considering archive structures
-    """
+    """Build tree for ELAN Sitemap considering archive structures"""
 
     def __init__(self, context):
         NavtreeQueryBuilder.__init__(self, context)
-        portal_url = getToolByName(context, 'portal_url')
-        portal_properties = getToolByName(context, 'portal_properties')
-        navtree_properties = getattr(portal_properties, 'navtree_properties')
-        sitemapDepth = navtree_properties.getProperty('sitemapDepth', 4)
-        if context.restrictedTraverse("@@context_helpers").is_archive() and not context.getId() == "archive":
+        portal_url = getToolByName(context, "portal_url")
+        portal_properties = getToolByName(context, "portal_properties")
+        navtree_properties = getattr(portal_properties, "navtree_properties")
+        sitemapDepth = navtree_properties.getProperty("sitemapDepth", 4)
+        if (
+            context.restrictedTraverse("@@context_helpers").is_archive()
+            and not context.getId() == "archive"
+        ):
             sitemapDepth += 3
-        self.query['path'] = {
-            'query': context.restrictedTraverse("@@context_helpers").is_archive()
+        self.query["path"] = {
+            "query": context.restrictedTraverse("@@context_helpers").is_archive()
             and not context.getId() == "archive"
             and "/".join(context.myELANArchive().getPhysicalPath())
             or portal_url.getPortalPath(),
-            'depth': sitemapDepth,
+            "depth": sitemapDepth,
         }
         adaptQuery(self.query, context)

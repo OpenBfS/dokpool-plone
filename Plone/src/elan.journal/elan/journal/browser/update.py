@@ -1,7 +1,6 @@
 from elan.journal import _
 from elan.journal.browser.view import View
-from elan.journal.config import BATCH_SIZE
-from elan.journal.config import ORPHAN
+from elan.journal.config import BATCH_SIZE, ORPHAN
 from plone import api
 from plone.batching import Batch
 from zope.i18n import translate
@@ -18,14 +17,14 @@ class Update(View):
         return Batch(self.updates(), BATCH_SIZE, self.start, orphan=ORPHAN)
 
     def can_edit_objects(self):
-        return checkPermission('cmf.ModifyPortalContent', self.context)
+        return checkPermission("cmf.ModifyPortalContent", self.context)
 
     def can_delete_objects(self):
-        return checkPermission('zope2.DeleteObjects', self.context)
+        return checkPermission("zope2.DeleteObjects", self.context)
 
     def delete_confirmation(self):
-        msg = _('Do you really want to delete this item?')
-        msg = translate(msg, 'elan.journal', context=self.request)
+        msg = _("Do you really want to delete this item?")
+        msg = translate(msg, "elan.journal", context=self.request)
         return f"return confirm('{msg}')"
 
     @property
@@ -39,10 +38,10 @@ class Update(View):
     def __call__(self):
         if not self.context.can_add_journalentries():
             return self.request.response.redirect(self.context.absolute_url())
-        self.start = int(self.request.get('b_start', 0))
+        self.start = int(self.request.get("b_start", 0))
         if self.start != 0:
             msg = _(
-                'You must be on the first page of the batch to add journal entries.'
+                "You must be on the first page of the batch to add journal entries."
             )
-            api.portal.show_message(msg, self.request, type='info')
+            api.portal.show_message(msg, self.request, type="info")
         return self.index()

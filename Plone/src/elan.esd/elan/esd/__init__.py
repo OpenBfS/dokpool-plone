@@ -3,7 +3,7 @@ from elan.esd import monkey  # noqa: F401
 from plone import api
 from zope.i18nmessageid import MessageFactory
 
-DocpoolMessageFactory = MessageFactory('elan.esd')
+DocpoolMessageFactory = MessageFactory("elan.esd")
 allow_module("Products.CMFQuickInstallerTool.QuickInstallerTool")
 allow_module("elan.esd")
 allow_module("elan.esd.utils")

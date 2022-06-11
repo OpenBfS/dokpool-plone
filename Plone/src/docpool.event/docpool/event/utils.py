@@ -5,8 +5,7 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
-
-ANN_KEY_SCENARIO_SELECTION = 'SCENARIO_SELECTION'
+ANN_KEY_SCENARIO_SELECTION = "SCENARIO_SELECTION"
 
 
 def getActiveScenarios(self):
@@ -14,7 +13,7 @@ def getActiveScenarios(self):
     esd = getDocumentPoolSite(self)
     res = cat(
         path="/".join(esd.getPhysicalPath()) + "/contentconfig",
-        portal_type='DPEvent',
+        portal_type="DPEvent",
         dp_type="active",
         sort_on="modified",
         sort_order="reverse",
@@ -27,7 +26,7 @@ def getOpenScenarios(self):
     esd = getDocumentPoolSite(self)
     res = cat(
         path="/".join(esd.getPhysicalPath()) + "/contentconfig",
-        portal_type='DPEvent',
+        portal_type="DPEvent",
         dp_type=["active", "inactive"],
         sort_on="created",
         sort_order="reverse",
@@ -36,8 +35,7 @@ def getOpenScenarios(self):
 
 
 def getScenariosForCurrentUser(self):
-    """
-    """
+    """ """
     mtool = getToolByName(self, "portal_membership")
     user = mtool.getAuthenticatedMember()
     sc = get_scenarios_for_user(self, user)
@@ -51,8 +49,8 @@ def get_scenarios_for_user(self, user):
     selections = {}
     for line in selections_prop:
         line = line.strip()
-        if line.endswith((':selected', ':deselected')):
-            scen, selected = line.rsplit(':', 1)
+        if line.endswith((":selected", ":deselected")):
+            scen, selected = line.rsplit(":", 1)
             selections[scen] = selected
         else:
             # Avoid upgrade step for now. We used to store a list of selected scenarios.
@@ -60,11 +58,13 @@ def get_scenarios_for_user(self, user):
             selections.update(dict.fromkeys(selections_prop, True))
             break
 
-    scenarios = [scen for scen, selected in selections.items() if selected == 'selected']
+    scenarios = [
+        scen for scen, selected in selections.items() if selected == "selected"
+    ]
     for scen, state in global_scenarios.items():
         selected = selections.get(scen)
-        if ((state == 'selected' or selected == 'selected')
-            and not (state in ('closed', 'removed') or selected == 'deselected')
+        if (state == "selected" or selected == "selected") and not (
+            state in ("closed", "removed") or selected == "deselected"
         ):
             scenarios.append(scen)
     # remove duplicates (events that are selected globally and by user)
@@ -73,8 +73,7 @@ def get_scenarios_for_user(self, user):
 
 
 def setScenariosForCurrentUser(self, scenarios):
-    """
-    """
+    """ """
     user = api.user.get_current()
     set_scenarios_for_user(self, user, scenarios)
 
@@ -84,9 +83,9 @@ def set_scenarios_for_user(self, user, scenarios):
     user.setMemberProperties(
         {
             "scenarios": [
-                '{}:{}'.format(scen, 'selected' if scen in scenarios else 'deselected')
+                "{}:{}".format(scen, "selected" if scen in scenarios else "deselected")
                 for scen in set(scenarios) | set(global_scenarios)
-                if global_scenarios.get(scen) != 'removed'
+                if global_scenarios.get(scen) != "removed"
             ]
         }
     )

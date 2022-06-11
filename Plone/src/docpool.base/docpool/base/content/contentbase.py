@@ -6,86 +6,77 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the ContentBase content type. See contentbase.py for more
 explanation on the statements below.
 """
+import datetime
+
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base
-from Acquisition import aq_inner
-from Acquisition import aq_parent
+from Acquisition import aq_base, aq_inner, aq_parent
 from docpool.base import DocpoolMessageFactory as _
 from plone import api
+from plone.autoform import directives
 from plone.base.utils import safe_text
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
-from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
 from zope.component import adapter
-from zope.interface import implementer
-from zope.interface import provider
+from zope.interface import implementer, provider
 from zope.lifecycleevent import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectCopiedEvent
-from zope.lifecycleevent.interfaces import IObjectCreatedEvent
+from zope.lifecycleevent.interfaces import IObjectCopiedEvent, IObjectCreatedEvent
 from zope.schema.interfaces import IContextAwareDefaultFactory
-
-import datetime
 
 
 @provider(IContextAwareDefaultFactory)
 def initializeMdate(context):
     return (
-        context.created().asdatetime().replace(tzinfo=None)
-        or datetime.datetime.now()
+        context.created().asdatetime().replace(tzinfo=None) or datetime.datetime.now()
     )
 
 
 class IContentBase(model.Schema):
-    """
-    """
+    """ """
 
     created_by = schema.TextLine(
-        title=_('label_contentbase_created_by', default='Created by'),
-        description=_('description_contentbase_created_by', default=''),
+        title=_("label_contentbase_created_by", default="Created by"),
+        description=_("description_contentbase_created_by", default=""),
         required=False,
     )
-    directives.omitted('created_by')
+    directives.omitted("created_by")
 
     modified_by = schema.TextLine(
-        title=_('label_contentbase_modified_by', default='Modified by'),
-        description=_('description_contentbase_modified_by', default=''),
+        title=_("label_contentbase_modified_by", default="Modified by"),
+        description=_("description_contentbase_modified_by", default=""),
         required=False,
     )
-    directives.omitted('modified_by')
+    directives.omitted("modified_by")
 
     mdate = schema.Datetime(
-        title=_('label_contentbase_mdate',
-                default='Date of last user action'),
-        description=_('description_contentbase_mdate', default=''),
+        title=_("label_contentbase_mdate", default="Date of last user action"),
+        description=_("description_contentbase_mdate", default=""),
         required=False,
         defaultFactory=initializeMdate,
     )
-    directives.omitted('mdate')
+    directives.omitted("mdate")
 
     wdate = schema.Datetime(
-        title=_('label_contentbase_wdate',
-                default='Date of last workflow action'),
-        description=_('description_contentbase_wdate', default=''),
+        title=_("label_contentbase_wdate", default="Date of last workflow action"),
+        description=_("description_contentbase_wdate", default=""),
         required=False,
     )
-    directives.omitted('wdate')
+    directives.omitted("wdate")
 
 
 @implementer(IContentBase)
 class ContentBase(Item):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -103,30 +94,25 @@ class ContentBase(Item):
         return res
 
     def getWdate(self):
-        """
-        """
+        """ """
         return self.wdate
 
     def update_created(self):
-        """
-        """
+        """ """
         self.created_by = self._getUserInfoString()
 
     def getMdate(self):
-        """
-        """
+        """ """
         return (
             base_hasattr(self, "mdate") and self.mdate
         ) or self.created().asdatetime().replace(tzinfo=None)
 
     def changed(self):
-        """
-        """
+        """ """
         return self.getMdate()
 
     def update_modified(self):
-        """
-        """
+        """ """
         # print "update_modified"
         self.modified_by = self._getUserInfoString()
         self.mdate = datetime.datetime.now()
@@ -137,8 +123,7 @@ class ContentBase(Item):
         self.reindexObject()
 
     def modInfo(self, show_created=False):
-        """
-        """
+        """ """
         cdate = self.CreationDate()
         mdate = self.mdate
         cby = self.created_by
@@ -158,8 +143,7 @@ class ContentBase(Item):
         )
 
     def myGroup(self):
-        """
-        """
+        """ """
         pp = self.getPhysicalPath()
         if "Groups" in pp:
             i = pp.index("Groups")
@@ -176,7 +160,7 @@ class ContentBase(Item):
         """
         For dynamic placeful workflow settings
         """
-        wtool = getToolByName(self, 'portal_workflow')
+        wtool = getToolByName(self, "portal_workflow")
         # wtool.updateRoleMappings(context)    # passing context is not possible :(
         #
         # Since WorkflowTool.updateRoleMappings()  from the line above supports
@@ -185,7 +169,7 @@ class ContentBase(Item):
         wfs = {}
         for id in wtool.objectIds():
             wf = wtool.getWorkflowById(id)
-            if hasattr(aq_base(wf), 'updateRoleMappingsFor'):
+            if hasattr(aq_base(wf), "updateRoleMappingsFor"):
                 wfs[id] = wf
         context = aq_parent(aq_inner(self))
         wtool._recursiveUpdateRoleMappings(context, wfs)
@@ -194,7 +178,7 @@ class ContentBase(Item):
 @adapter(IContentBase, IObjectAddedEvent)
 def updateCreated(obj, event=None):
     request = obj.REQUEST
-    if request.get('creating', False):
+    if request.get("creating", False):
         # print "#" * 20, "creating"
         if not obj.restrictedTraverse("@@context_helpers").is_archive():
             obj.update_created()

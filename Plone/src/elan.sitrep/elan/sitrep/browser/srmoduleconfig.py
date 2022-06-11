@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SRModuleConfigView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('srmoduleconfig.pt')
+    __call__ = ViewPageTemplateFile("srmoduleconfig.pt")

@@ -14,6 +14,7 @@ def allowed_targets(context):
         my current version must not have been transferred.
     """
     from docpool.transfers.behaviors.transferable import ITransferable
+
     adapted = ITransferable(context, None)
     if not adapted:
         return []
@@ -31,23 +32,21 @@ def allowed_targets(context):
             dto = None
         else:
             dto = dto_()
-    dt_id = dto.id if dto else '---'
+    dt_id = dto.id if dto else "---"
 
     brains = api.content.find(object_provides=IDPTransferFolder, sendingESD=esd.UID())
 
     dt_perm = lambda brain: brain.getObject().doctypePermissions.get(dt_id, False)
     targets = [
-        brain.UID
-        for brain in brains
-        if not (perm := dt_perm(brain)) or perm != 'block'
+        brain.UID for brain in brains if not (perm := dt_perm(brain)) or perm != "block"
     ]
 
     if isinstance(context, DPDocument):
         mdate = context.getMdate()
         sent_to_since_last_modified = {
-            entry['transferfolder_uid']
+            entry["transferfolder_uid"]
             for entry in adapted.sender_log
-            if entry['timestamp'] > mdate
+            if entry["timestamp"] > mdate
         }
         targets = [t for t in targets if t not in sent_to_since_last_modified]
 

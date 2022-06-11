@@ -13,16 +13,15 @@ from zope.interface import Interface
 
 
 class IEnhancedPersonalPreferences(model.Schema):
-    """ Use all the fields from the default user data schema, and add various
+    """Use all the fields from the default user data schema, and add various
     extra fields.
     """
 
     apps = schema.List(
-        title=_('label_user_apps', default='Applications'),
-        description=_('description_user_apps', default=''),
+        title=_("label_user_apps", default="Applications"),
+        description=_("description_user_apps", default=""),
         required=False,
-        value_type=schema.Choice(
-            source="docpool.base.vocabularies.AvailableApps"),
+        value_type=schema.Choice(source="docpool.base.vocabularies.AvailableApps"),
     )
     directives.widget(apps=CheckBoxFieldWidget)
 
@@ -31,24 +30,23 @@ class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedPersonalPreferences
 
     def get_apps(self):
-        return self.context.getProperty('apps', [])
+        return self.context.getProperty("apps", [])
 
     def set_apps(self, value):
-        return self.context.setMemberProperties({'apps': value})
+        return self.context.setMemberProperties({"apps": value})
 
     dp = property(get_apps, set_apps)
 
 
 @adapter(Interface, IDocPoolUsersLayer, PersonalPreferencesPanel)
 class PersonalPreferencesPanelExtender(extensible.FormExtender):
-
     def update(self):
         fields = field.Fields(IEnhancedPersonalPreferences)
         self.add(fields)
         # remove not needed fields
-        self.remove('wysiwyg_editor')
-        self.remove('language')
-        self.remove('timezone')
+        self.remove("wysiwyg_editor")
+        self.remove("language")
+        self.remove("timezone")
 
 
 # little monkey patch

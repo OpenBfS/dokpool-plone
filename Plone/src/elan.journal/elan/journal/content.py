@@ -3,8 +3,7 @@ from elan.journal.interfaces import IJournal
 from plone import api
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
-from zope.interface import implementer
+from zope.interface import alsoProvides, implementer
 
 
 @implementer(IJournal)
@@ -17,8 +16,8 @@ class Journal(Container):
     are used to detect if a hard refresh of the views is needed.
     """
 
-    _last_journalentry_edition = '0.0'
-    _last_journalentry_deletion = '0.0'
+    _last_journalentry_edition = "0.0"
+    _last_journalentry_deletion = "0.0"
 
     def get_journalentries(self):
         """Return the list of journal-entries in the Journal in reverse order."""
@@ -47,8 +46,7 @@ class Journal(Container):
                     datetime=api.portal.get_localized_time(
                         update.created, True
                     ),  # 28/08/2014 10h58
-                    date=api.portal.get_localized_time(
-                        update.created),  # 28/08/2014
+                    date=api.portal.get_localized_time(update.created),  # 28/08/2014
                     time=api.portal.get_localized_time(
                         update.created, time_only=True
                     ),  # 10h58
@@ -66,9 +64,9 @@ class Journal(Container):
     def can_add_journalentries(self):
         # Allow adding journal entries if event is active, not archived and user has permission
         obj = self.__parent__
-        assert(obj.portal_type == "DPEvent")
+        assert obj.portal_type == "DPEvent"
         if getattr(obj.aq_base, "Status", None) not in ["active"]:
             return False
         if obj.restrictedTraverse("@@context_helpers").is_archive():
             return False
-        return api.user.has_permission('elan.journal: Add JournalEntry', obj=obj)
+        return api.user.has_permission("elan.journal: Add JournalEntry", obj=obj)

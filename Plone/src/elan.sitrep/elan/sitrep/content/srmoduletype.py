@@ -6,15 +6,14 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRModuleType content type. See srmoduletype.py for more
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.doctype import DocType
-from docpool.base.content.doctype import IDocType
+from docpool.base.content.doctype import DocType, IDocType
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.dexterity.content import Container
@@ -24,38 +23,36 @@ from zope.interface import implementer
 
 
 class ISRModuleType(model.Schema, IDocType):
-    """
-    """
+    """ """
 
     docSelection = RelationChoice(
         title=_(
-            'label_srmoduletype_docselection',
-            default='Collection for relevant documents',
+            "label_srmoduletype_docselection",
+            default="Collection for relevant documents",
         ),
         description=_(
-            'description_srmoduletype_docselection',
-            default='This collection defines a pre-selection of possible documents to reference within this module.',
+            "description_srmoduletype_docselection",
+            default="This collection defines a pre-selection of possible documents to reference within this module.",
         ),
         required=False,
         source="elan.sitrep.vocabularies.Collections",
     )
 
-    directives.widget(docSelection='z3c.form.browser.select.SelectFieldWidget')
+    directives.widget(docSelection="z3c.form.browser.select.SelectFieldWidget")
 
-    directives.mode(allowUploads='hidden')
-    directives.mode(publishImmediately='hidden')
-    directives.mode(globalAllow='hidden')
+    directives.mode(allowUploads="hidden")
+    directives.mode(publishImmediately="hidden")
+    directives.mode(globalAllow="hidden")
     #    form.mode(allowedDocTypes='hidden') # does not work --> done in CSS
-    directives.mode(partsPattern='hidden')
-    directives.mode(pdfPattern='hidden')
-    directives.mode(imgPattern='hidden')
-    directives.mode(customViewTemplate='hidden')
+    directives.mode(partsPattern="hidden")
+    directives.mode(pdfPattern="hidden")
+    directives.mode(imgPattern="hidden")
+    directives.mode(customViewTemplate="hidden")
 
 
 @implementer(ISRModuleType)
 class SRModuleType(Container, DocType):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -70,13 +67,11 @@ class SRModuleType(Container, DocType):
             return []
 
     def mySRModuleType(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -84,20 +79,17 @@ class SRModuleType(Container, DocType):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getFiles(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'File'}
+        """ """
+        args = {"portal_type": "File"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
     def getImages(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'Image'}
+        """ """
+        args = {"portal_type": "Image"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]

@@ -8,8 +8,8 @@
 ##title=Checks if a user has content administration rights
 ##
 try:
-    from plone import api
     from docpool.base.utils import getGroupsForCurrentUser
+    from plone import api
 
     roles = api.user.get_roles(obj=context)
     if roles and "Reader" in roles:

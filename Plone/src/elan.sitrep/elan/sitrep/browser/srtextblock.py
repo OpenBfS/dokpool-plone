@@ -17,7 +17,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SRTextBlockView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
-    __call__ = ViewPageTemplateFile('srtextblock.pt')
+    __call__ = ViewPageTemplateFile("srtextblock.pt")

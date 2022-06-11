@@ -8,7 +8,7 @@ def getAvailableCategories(self):
     esd = getDocumentPoolSite(self)
     res0 = cat(
         path="/".join(esd.getPhysicalPath()) + "/esd",
-        portal_type='ELANDocCollection',
+        portal_type="ELANDocCollection",
         dp_type=["active"],
         sort_on="sortable_title",
     )
@@ -28,8 +28,7 @@ def getCategoriesForCurrentUser(self):
 
 
 def setCategoriesForCurrentUser(self, cats):
-    """
-    """
+    """ """
     if isinstance(cats, str):
         cats = [cats]
     user = api.user.get_current()

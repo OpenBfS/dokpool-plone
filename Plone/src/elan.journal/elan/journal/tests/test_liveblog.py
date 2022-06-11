@@ -1,12 +1,11 @@
+import unittest
+
 from elan.journal.interfaces import IJournal
 from elan.journal.testing import INTEGRATION_TESTING
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
-from zope.component import createObject
-from zope.component import queryUtility
-
-import unittest
+from zope.component import createObject, queryUtility
 
 
 class ContentTypeTestCase(unittest.TestCase):
@@ -14,25 +13,24 @@ class ContentTypeTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        with api.env.adopt_roles(['Manager']):
-            self.journal = api.content.create(
-                self.portal, 'Journal', 'journal')
+        self.portal = self.layer["portal"]
+        with api.env.adopt_roles(["Manager"]):
+            self.journal = api.content.create(self.portal, "Journal", "journal")
 
     def test_adding(self):
         self.assertTrue(IJournal.providedBy(self.journal))
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='Journal')
+        fti = queryUtility(IDexterityFTI, name="Journal")
         self.assertIsNotNone(fti)
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='Journal')
+        fti = queryUtility(IDexterityFTI, name="Journal")
         schema = fti.lookupSchema()
         self.assertEqual(IJournal, schema)
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='Journal')
+        fti = queryUtility(IDexterityFTI, name="Journal")
         factory = fti.factory
         new_object = createObject(factory)
         self.assertTrue(IJournal.providedBy(new_object))
@@ -44,7 +42,7 @@ class ContentTypeTestCase(unittest.TestCase):
 
     def test_content_types_constrains(self):
         allowed_types = [t.getId() for t in self.journal.allowedContentTypes()]
-        self.assertListEqual(allowed_types, ['Image'])
+        self.assertListEqual(allowed_types, ["Image"])
 
     def test_get_journalentries(self):
         self.assertEqual(len(self.journal.get_journalentries()), 0)

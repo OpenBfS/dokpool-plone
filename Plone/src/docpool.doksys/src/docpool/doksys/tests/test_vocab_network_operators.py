@@ -1,12 +1,10 @@
+import unittest
+
 from docpool.doksys import _
 from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_ID, setRoles
 from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.interfaces import IVocabularyTokenized
-
-import unittest
+from zope.schema.interfaces import IVocabularyFactory, IVocabularyTokenized
 
 
 class NetworkOperatorsIntegrationTest(unittest.TestCase):
@@ -15,16 +13,16 @@ class NetworkOperatorsIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
     def test_vocab_network_operators(self):
-        vocab_name = 'docpool.doksys.NetworkOperators'
+        vocab_name = "docpool.doksys.NetworkOperators"
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))
 
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
         self.assertEqual(
-            vocabulary.getTerm('Schleswig-Holstein').title, _('Schleswig-Holstein')
+            vocabulary.getTerm("Schleswig-Holstein").title, _("Schleswig-Holstein")
         )

@@ -19,14 +19,14 @@ def registerApp(
     @return:
     """
     APP_REGISTRY[name] = {
-        'title': title,
-        'implicit': implicit,
-        'icon': icon,
-        'logo': logo,
-        'typeBehavior': typeBehavior,
-        'documentBehavior': documentBehavior,
-        'dpAddedMethod': dpAddedMethod,
-        'dpRemovedMethod': dpRemovedMethod,
+        "title": title,
+        "implicit": implicit,
+        "icon": icon,
+        "logo": logo,
+        "typeBehavior": typeBehavior,
+        "documentBehavior": documentBehavior,
+        "dpAddedMethod": dpAddedMethod,
+        "dpRemovedMethod": dpRemovedMethod,
     }
     if typeBehavior:
         BEHAVIOR_REGISTRY[typeBehavior.__identifier__] = (
@@ -44,11 +44,11 @@ def registerApp(
 
 
 def appName(name):
-    return APP_REGISTRY[name]['title']
+    return APP_REGISTRY[name]["title"]
 
 
 def appIcon(name):
-    return APP_REGISTRY[name]['icon']
+    return APP_REGISTRY[name]["icon"]
 
 
 def extensionFor(obj, name):
@@ -61,18 +61,18 @@ def extensionFor(obj, name):
     from docpool.base.interfaces import IDPDocument
 
     if IDPDocument.providedBy(obj):
-        return APP_REGISTRY[name]['documentBehavior']
+        return APP_REGISTRY[name]["documentBehavior"]
     else:
-        return APP_REGISTRY[name]['typeBehavior']
+        return APP_REGISTRY[name]["typeBehavior"]
 
 
 def extensionNameFor(obj, name):
     from docpool.base.interfaces import IDPDocument
 
     if IDPDocument.providedBy(obj):
-        return APP_REGISTRY[name]['documentBehavior'].__identifier__
+        return APP_REGISTRY[name]["documentBehavior"].__identifier__
     else:
-        return APP_REGISTRY[name]['typeBehavior'].__identifier__
+        return APP_REGISTRY[name]["typeBehavior"].__identifier__
 
 
 def activeApps():
@@ -82,7 +82,7 @@ def activeApps():
     """
     apps = sorted(APP_REGISTRY.keys())
     return [
-        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        (appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname])
         for appname in apps
     ]
 
@@ -94,9 +94,9 @@ def extendingApps():
     """
     apps = sorted(APP_REGISTRY.keys())
     return [
-        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        (appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname])
         for appname in apps
-        if APP_REGISTRY[appname].get('documentBehavior', None)
+        if APP_REGISTRY[appname].get("documentBehavior", None)
     ]
 
 
@@ -107,9 +107,9 @@ def implicitApps():
     """
     apps = sorted(APP_REGISTRY.keys())
     return [
-        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        (appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname])
         for appname in apps
-        if APP_REGISTRY[appname]['implicit']
+        if APP_REGISTRY[appname]["implicit"]
     ]
 
 
@@ -120,8 +120,8 @@ def selectableApps():
     """
     apps = sorted(APP_REGISTRY.keys())
     return [
-        (appname, APP_REGISTRY[appname]['title'], APP_REGISTRY[appname])
+        (appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname])
         for appname in apps
-        if APP_REGISTRY[appname].get('documentBehavior', None)
-        and not APP_REGISTRY[appname]['implicit']
+        if APP_REGISTRY[appname].get("documentBehavior", None)
+        and not APP_REGISTRY[appname]["implicit"]
     ]

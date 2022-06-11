@@ -4,7 +4,6 @@ from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
 
-
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
 # have an edit form, since there are no editable options.
@@ -20,7 +19,6 @@ class ISRModuleEditPortlet(IPortletDataProvider):
 
 @implementer(ISRModuleEditPortlet)
 class Assignment(base.Assignment):
-
     @property
     def title(self):
         return _("SRModuleEdit")
@@ -36,15 +34,14 @@ class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
 
-    render = ViewPageTemplateFile('srmoduleedit.pt')
+    render = ViewPageTemplateFile("srmoduleedit.pt")
 
     @property
     def available(self):
         return self.isEditMode()
 
     def isEditMode(self):
-        """
-        """
+        """ """
         path = self.request.get("PATH_INFO", "")
 
         if path.endswith("/edit") or path.endswith("/@@edit"):

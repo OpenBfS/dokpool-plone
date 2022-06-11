@@ -1,11 +1,9 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
-
-version = '1.0.23'
+version = "1.0.23"
 
 setup(
-    name='elan.sitrep',
+    name="elan.sitrep",
     version=version,
     description="",
     long_description="""\
@@ -19,20 +17,20 @@ setup(
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords='',
-    author='Condat AG',
-    author_email='hr@condat.de',
-    url='http://www.condat.de',
-    license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['elan'],
+    keywords="",
+    author="Condat AG",
+    author_email="hr@condat.de",
+    url="http://www.condat.de",
+    license="GPL",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["elan"],
     include_package_data=True,
     zip_safe=True,
     install_requires=[
         # -*- Extra requirements: -*-
-        'setuptools',
-        'elan.esd',
-        'beautifulsoup4',
+        "setuptools",
+        "elan.esd",
+        "beautifulsoup4",
     ],
     entry_points="""
       # -*- Entry points: -*-

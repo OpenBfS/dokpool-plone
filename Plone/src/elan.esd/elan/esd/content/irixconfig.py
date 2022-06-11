@@ -9,5 +9,4 @@ class IIRIXConfig(model.Schema):
 
 @implementer(IIRIXConfig)
 class IRIXConfig(Item):
-    """
-    """
+    """ """

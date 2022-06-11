@@ -26,33 +26,28 @@ from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from z3c.form import button
-from z3c.form import field
-from z3c.form import form
+from z3c.form import button, field, form
 from zope.interface import implementer
 
 
 class FolderBaselistitemView(BrowserView):
-    """Additional View
-    """
+    """Additional View"""
 
-    __call__ = ViewPageTemplateFile('folderbaselistitem.pt')
+    __call__ = ViewPageTemplateFile("folderbaselistitem.pt")
 
     def options(self):
         return extendOptions(self.context, self.request, {})
 
 
 class FolderBaserpopupView(BrowserView):
-    """Additional View
-    """
+    """Additional View"""
 
-    __call__ = ViewPageTemplateFile('folderbaserpopup.pt')
+    __call__ = ViewPageTemplateFile("folderbaserpopup.pt")
 
 
 @implementer(IFolderContentsView)
 class FolderBaseView(BrowserView):
-    """Default view
-    """
+    """Default view"""
 
     def dp_buttons(self, items):
         """
@@ -64,9 +59,9 @@ class FolderBaseView(BrowserView):
     def buttons(self, items):
         buttons = []
         context = aq_inner(self.context)
-        portal_actions = getToolByName(context, 'portal_actions')
+        portal_actions = getToolByName(context, "portal_actions")
         button_actions = portal_actions.listActionInfos(
-            object=context, categories=('folder_buttons',)
+            object=context, categories=("folder_buttons",)
         )
 
         # Do not show buttons if there is no data, unless there is data to be
@@ -74,18 +69,18 @@ class FolderBaseView(BrowserView):
         if not len(items):
             if self.context.cb_dataValid():
                 for button in button_actions:
-                    if button['id'] == 'paste':
+                    if button["id"] == "paste":
                         return [self.setbuttonclass(button)]
             else:
                 return []
 
         show_delete_action = False
-        delete_action = [i for i in button_actions if i['id'] == 'delete']
+        delete_action = [i for i in button_actions if i["id"] == "delete"]
         delete_action = delete_action[0] if delete_action else None
         if delete_action:
             for item in items:
                 obj = item.getObject()
-                if api.user.has_permission('Delete objects', obj=obj):
+                if api.user.has_permission("Delete objects", obj=obj):
                     show_delete_action = True
                     # shortcut
                     break
@@ -98,16 +93,15 @@ class FolderBaseView(BrowserView):
         return buttons
 
     def setbuttonclass(self, button):
-        if button['id'] == 'paste':
-            button['cssclass'] = 'standalone'
+        if button["id"] == "paste":
+            button["cssclass"] = "standalone"
         else:
-            button['cssclass'] = 'context'
+            button["cssclass"] = "context"
         return button
 
     def getFolderContents(self, kwargs):
-        """
-        """
-        contentlisting = self.context.restrictedTraverse('@@contentlisting')
+        """ """
+        contentlisting = self.context.restrictedTraverse("@@contentlisting")
         kwargs["object_provides"] = [
             IFolderBase.__identifier__,
             ICollection.__identifier__,
@@ -115,7 +109,7 @@ class FolderBaseView(BrowserView):
         res = [b for b in contentlisting(**kwargs)]
         apps = self.isFilteredBy()
         if apps:
-            kwargs['apps_supported'] = apps[0]
+            kwargs["apps_supported"] = apps[0]
         kwargs["object_provides"] = [
             IDPDocument.__identifier__,
             IInfoLink.__identifier__,
@@ -145,52 +139,55 @@ class FolderDeleteForm(form.Form):
     """
 
     fields = field.Fields()
-    template = ViewPageTemplateFile('templates/delete_confirmation.pt')
+    template = ViewPageTemplateFile("templates/delete_confirmation.pt")
     enableCSRFProtection = True
 
     def view_url(self):
-        context_state = api.content.get_view('plone_context_state', self.context, self.request)
+        context_state = api.content.get_view(
+            "plone_context_state", self.context, self.request
+        )
         return context_state.view_url()
 
     def more_info(self):
         """Render linkintegrity-info for all items that are to be deleted."""
-        paths = self.request.get('paths', [])
+        paths = self.request.get("paths", [])
         objects = [api.content.get(path=str(path)) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if not objects:
-            api.portal.show_message(_('No items to delete.'), self.request)
+            api.portal.show_message(_("No items to delete."), self.request)
             return self.request.response.redirect(self.view_url())
-        adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
+        adapter = api.content.get_view(
+            "delete_confirmation_info", self.context, self.request
+        )
         if adapter:
             return adapter(objects)
         return ""
 
-    @button.buttonAndHandler(_('Delete'), name='Delete')
+    @button.buttonAndHandler(_("Delete"), name="Delete")
     def handle_delete(self, action):
-        paths = self.request.get('paths', [])
+        paths = self.request.get("paths", [])
         objects = [api.content.get(path=str(path)) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if objects:
             # linkintegrity was already checked and maybe ignored!
             api.content.delete(objects=objects, check_linkintegrity=False)
-            api.portal.show_message(_('Items deleted.'), self.request)
+            api.portal.show_message(_("Items deleted."), self.request)
         else:
-            api.portal.show_message(_('No items deleted.'), self.request)
+            api.portal.show_message(_("No items deleted."), self.request)
         target = self.view_url()
         return self.request.response.redirect(target)
 
-    @button.buttonAndHandler(
-        _('label_cancel', default='Cancel'), name='Cancel')
+    @button.buttonAndHandler(_("label_cancel", default="Cancel"), name="Cancel")
     def handle_cancel(self, action):
         target = self.view_url()
         return self.request.response.redirect(target)
 
     def updateActions(self):
         super().updateActions()
-        if self.actions and 'Delete' in self.actions:
-            self.actions['Delete'].addClass('btn-danger')
-        if self.actions and 'Cancel' in self.actions:
-            self.actions['Cancel'].addClass('btn-secondary')
+        if self.actions and "Delete" in self.actions:
+            self.actions["Delete"].addClass("btn-danger")
+        if self.actions and "Cancel" in self.actions:
+            self.actions["Cancel"].addClass("btn-secondary")
 
     def check_delete_permission(self, obj):
-        return api.user.has_permission('Delete objects', obj=obj)
+        return api.user.has_permission("Delete objects", obj=obj)

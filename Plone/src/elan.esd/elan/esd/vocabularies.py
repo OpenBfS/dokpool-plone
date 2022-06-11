@@ -3,20 +3,18 @@ from docpool.base.utils import getDocumentPoolSite
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
 class CategoryVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # print context
         esd = getDocumentPoolSite(context)
         path = "/".join(esd.getPhysicalPath()) + "/esd"
-        cat = getToolByName(esd, 'portal_catalog', None)
+        cat = getToolByName(esd, "portal_catalog", None)
         if cat is None:
             return SimpleVocabulary([])
 
@@ -33,14 +31,13 @@ CategoryVocabularyFactory = CategoryVocabulary()
 
 @implementer(IVocabularyFactory)
 class CategoriesVocabulary:
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # print context
         esd = getDocumentPoolSite(context)
         path = "/".join(esd.getPhysicalPath()) + "/esd"
-        cat = getToolByName(esd, 'portal_catalog', None)
+        cat = getToolByName(esd, "portal_catalog", None)
         if cat is None:
             return SimpleVocabulary([])
 

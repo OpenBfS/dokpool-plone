@@ -1,6 +1,8 @@
+import logging
+import re
+
 from AccessControl import getSecurityManager
-from AccessControl.SecurityManagement import newSecurityManager
-from AccessControl.SecurityManagement import setSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
@@ -9,35 +11,29 @@ from plone.api.exc import CannotGetPortalError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
-from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import parent
+from Products.CMFPlone.utils import base_hasattr, parent
 from zc.relation.interfaces import ICatalog
-from zope.component import getMultiAdapter
-from zope.component import getUtility
+from zope.component import getMultiAdapter, getUtility
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 
-import logging
-import re
-
-
 log = logging.getLogger(__name__)
 
 RARELY_USED_TYPES = {
-    'Collection',
-    'InfoFolder',
-    'ReviewFolder',
-    'CollaborationFolder',
-    'PrivateFolder',
+    "Collection",
+    "InfoFolder",
+    "ReviewFolder",
+    "CollaborationFolder",
+    "PrivateFolder",
 }
 
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.:+]+')
 
+
 def queryForObject(self, **kwa):
-    """
-    """
+    """ """
     cat = getToolByName(self, "portal_catalog")
     # print kwa
     res = cat(kwa)
@@ -48,8 +44,7 @@ def queryForObject(self, **kwa):
 
 
 def queryForObjects(self, **kwa):
-    """
-    """
+    """ """
     cat = getToolByName(self, "portal_catalog")
     # print kwa
     res = cat(kwa)
@@ -69,8 +64,8 @@ def getAllowedDocumentTypes(self):
     # groups
     if grps:
         for grp in grps:
-            if not isGF or grp['id'] in self.getPhysicalPath():
-                et = grp['etypes']
+            if not isGF or grp["id"] in self.getPhysicalPath():
+                et = grp["etypes"]
                 if et:
                     dts.extend(et)
     tids = list(set(dts))
@@ -79,7 +74,7 @@ def getAllowedDocumentTypes(self):
     # print tids
     res = cat(
         path="/".join(esd.getPhysicalPath()) + "/config",
-        portal_type='DocType',
+        portal_type="DocType",
         id=tids,
         sort_on="sortable_title",
     )
@@ -87,13 +82,12 @@ def getAllowedDocumentTypes(self):
 
 
 def getAllowedDocumentTypesForGroup(self):
-    """
-    """
+    """ """
     isGF = self.isGroupFolder()
     dts = []
     if isGF:
         grp = self.getGroupOfFolder()
-        dts.extend(grp.getProperty('allowedDocTypes', []))
+        dts.extend(grp.getProperty("allowedDocTypes", []))
     else:
         return getAllowedDocumentTypes(self)
     tids = list(set(dts))
@@ -101,7 +95,7 @@ def getAllowedDocumentTypesForGroup(self):
     esd = getDocumentPoolSite(self)
     res = cat(
         path="/".join(esd.getPhysicalPath()) + "/config",
-        portal_type='DocType',
+        portal_type="DocType",
         id=tids,
         sort_on="sortable_title",
     )
@@ -109,8 +103,7 @@ def getAllowedDocumentTypesForGroup(self):
 
 
 def getGroupsForCurrentUser(self, user=None):
-    """
-    """
+    """ """
     g = self.content.Groups
     #    gpath = "/".join(g.getPhysicalPath())
     gordner = g.getFolderContents()
@@ -121,18 +114,17 @@ def getGroupsForCurrentUser(self, user=None):
     for g in gordner:
         try:
             grp = gtool.getGroupById(g.id)
-            etypes = grp.getProperty('allowedDocTypes', [])
+            etypes = grp.getProperty("allowedDocTypes", [])
             if etypes:
-                title = grp.getProperty('title', '')
-                res.append({'id': g.id, 'title': title, 'etypes': etypes})
+                title = grp.getProperty("title", "")
+                res.append({"id": g.id, "title": title, "etypes": etypes})
         except Exception as e:
             log_exc(e)
     return res
 
 
 def deleteMemberFolders(self, member_ids):
-    """
-    """
+    """ """
     for mid in member_ids:
         try:
             members = self.content.Members
@@ -171,13 +163,13 @@ def getUserInfo(self, username=None):
     return userid, fullname, primary_group
 
 
-def portalMessage(self, msg, type='info'):
+def portalMessage(self, msg, type="info"):
     ptool = getToolByName(self, "plone_utils")
     ptool.addPortalMessage(msg, type)
 
 
 def back_references(source_object, attribute_name):
-    """ Return back references from source object on specified attribute_name """
+    """Return back references from source object on specified attribute_name"""
     try:
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
@@ -192,7 +184,7 @@ def back_references(source_object, attribute_name):
             # print rel
             obj = intids.queryObject(rel.from_id)
             # print 'treffer ',  obj
-            if obj is not None and checkPermission('zope2.View', obj):
+            if obj is not None and checkPermission("zope2.View", obj):
                 result.append(obj)
         return result
     except Exception as e:
@@ -213,15 +205,11 @@ def _cutPaste(source_obj, target_folder_obj, unique=False):
     if unique:
         if target_folder_obj.hasObject(source_obj.getId()):
             return
-    result = api.content.move(
-        source=source_obj,
-        target=target_folder_obj,
-        safe_id=True)
+    result = api.content.move(source=source_obj, target=target_folder_obj, safe_id=True)
 
 
 def getDocumentPoolSite(context):
-    """
-    """
+    """ """
     # print context
     if getattr(context, "myDocumentPool", None) is not None:
         return context.myDocumentPool()
@@ -230,7 +218,7 @@ def getDocumentPoolSite(context):
 
 
 def possibleDocumentPools(context):
-    cat = getToolByName(context, 'portal_catalog')
+    cat = getToolByName(context, "portal_catalog")
     dps = cat.unrestrictedSearchResults(
         {"portal_type": "DocumentPool", "sort_on": "sortable_title"}
     )
@@ -238,17 +226,15 @@ def possibleDocumentPools(context):
 
 
 class UnrestrictedUser(BaseUnrestrictedUser):
-    """Unrestricted user that still has an id.
-    """
+    """Unrestricted user that still has an id."""
 
     def getId(self):
-        """Return the ID of the user.
-        """
+        """Return the ID of the user."""
         return self.getUserName()
 
 
 def execute_under_special_role(context, role, function, *args, **kwargs):
-    """ Execute code under special role priviledges.
+    """Execute code under special role priviledges.
 
     Example how to call::
 
@@ -269,7 +255,7 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
     try:
         portal = api.portal.get()
     except CannotGetPortalError:
-        log.warn('Could not get portal.')
+        log.warn("Could not get portal.")
         return
     sm = getSecurityManager()
 
@@ -279,7 +265,7 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
             # Clone the current access control user and assign a new role for him/her
             # Note that the username (getId()) is left in exception tracebacks in error_log
             # so it is important thing to store
-            tmp_user = UnrestrictedUser(sm.getUser().getId(), '', [role], '')
+            tmp_user = UnrestrictedUser(sm.getUser().getId(), "", [role], "")
 
             # Act as user of the portal
             tmp_user = tmp_user.__of__(portal.acl_users)
@@ -296,13 +282,13 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
         setSecurityManager(sm)
 
 
-def checkLocalRole(context, role='Manager'):
+def checkLocalRole(context, role="Manager"):
     if api.user.is_anonymous():
         return False
     else:
         roles = api.user.get_roles(obj=context)
         # print "checking", roles
-        if role in roles or 'Manager' in roles:
+        if role in roles or "Manager" in roles:
             return True
         else:
             return False
@@ -320,14 +306,13 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     @return:
     """
     try:
-        dp_app_state = getMultiAdapter((doc, request), name='dp_app_state')
+        dp_app_state = getMultiAdapter((doc, request), name="dp_app_state")
         if doc.isPersonal():  # no personal filtering in the content area
             permitted_apps = dp_app_state.appsEffectiveForObject(
                 request, filtered=False
             )
         else:  # but in all other areas
-            permitted_apps = dp_app_state.appsEffectiveForObject(
-                request, filtered=True)
+            permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=True)
         permitted_apps.sort()
         # print "getActiveAllowed ", permitted_apps
         return permitted_apps
@@ -380,19 +365,19 @@ def activateAppFilter(self, activate=False):
 
 def extendOptions(context, request, options):
     brain = None
-    cat = getToolByName(context, 'portal_catalog')
+    cat = getToolByName(context, "portal_catalog")
     brains = cat(UID=context.UID())
     brain = None
     if len(brains) > 0:
         brain = brains[0]
     # print brain
-    options['dpbrain'] = brain
-    options['dpdoc'] = context
-    options['myfolder_url'] = request.get('myfolder_url', "/")
-    options['isOverview'] = int(request.get('isOverview', 0))
-    options['isCollection'] = int(request.get('isCollection', 0))
-    options['container_type'] = request.get('container_type')
-    options['buttons'] = eval(request.get('buttons', "[]"))
+    options["dpbrain"] = brain
+    options["dpdoc"] = context
+    options["myfolder_url"] = request.get("myfolder_url", "/")
+    options["isOverview"] = int(request.get("isOverview", 0))
+    options["isCollection"] = int(request.get("isCollection", 0))
+    options["container_type"] = request.get("container_type")
+    options["buttons"] = eval(request.get("buttons", "[]"))
     # print options
     return options
 

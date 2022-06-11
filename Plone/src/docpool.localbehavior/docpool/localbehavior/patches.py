@@ -1,15 +1,16 @@
+import logging
+
 from docpool.base.appregistry import extensionFor
 from docpool.localbehavior.adapter import isSupported
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import getMultiAdapter
-from zope.interface.declarations import getObjectSpecification
-from zope.interface.declarations import implementedBy
-from zope.interface.declarations import Implements
-
-import logging
-
+from zope.interface.declarations import (
+    Implements,
+    getObjectSpecification,
+    implementedBy,
+)
 
 log = logging.getLogger("docpool.localbehavior")
 
@@ -17,7 +18,7 @@ log = logging.getLogger("docpool.localbehavior")
 def patch_fti_localbehavior():
     from plone.dexterity.content import FTIAwareSpecification
 
-    if getattr(FTIAwareSpecification, '__localbehavior_patched', False):
+    if getattr(FTIAwareSpecification, "__localbehavior_patched", False):
         return
 
     from plone.behavior.interfaces import IBehaviorAssignable
@@ -29,10 +30,10 @@ def patch_fti_localbehavior():
         if inst is None:
             return getObjectSpecification(cls)
 
-        direct_spec = getattr(inst, '__provides__', None)
+        direct_spec = getattr(inst, "__provides__", None)
 
         # avoid recursion - fall back on default
-        if getattr(self, '__recursion__', False):
+        if getattr(self, "__recursion__", False):
             return direct_spec
 
         spec = direct_spec
@@ -43,7 +44,7 @@ def patch_fti_localbehavior():
             spec = implementedBy(cls)
 
         # Find the data we need to know if our cache needs to be invalidated
-        portal_type = getattr(inst, 'portal_type', None)
+        portal_type = getattr(inst, "portal_type", None)
 
         # If the instance has no portal type, then we're done.
         if portal_type is None:
@@ -51,7 +52,7 @@ def patch_fti_localbehavior():
 
         # Find the cached value. This calculation is expensive and called
         # hundreds of times during each request, so we require a fast cache
-        cache = getattr(inst, '_v__providedBy__', None)
+        cache = getattr(inst, "_v__providedBy__", None)
 
         # See if we have a current cache. Reasons to do this include:
         #
@@ -83,11 +84,10 @@ def patch_fti_localbehavior():
                 for behavior_registration in assignable.enumerateBehaviors():
                     if behavior_registration.marker:
                         # print behavior_registration.marker
-                        dynamically_provided.append(
-                            behavior_registration.marker)
+                        dynamically_provided.append(behavior_registration.marker)
 
             # DOCPOOL: this is the new part!
-            for name in getattr(inst, 'local_behaviors', []) or []:
+            for name in getattr(inst, "local_behaviors", []) or []:
                 # print "getting local behavior ", name
                 dynamically_provided.append(extensionFor(inst, name))
         #                behavior = extensionFor(inst, name)
@@ -143,15 +143,12 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
 
     # DOCPOOL modification! We only want to see behaviors that are allowed
     # here.
-    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
     available_apps = dp_app_state.appsPermittedForObject(context.REQUEST)
     activated_apps = dp_app_state.appsActivatedByCurrentUser()
-    effective_apps = list(
-        set(available_apps).intersection(
-            set(activated_apps)))
+    effective_apps = list(set(available_apps).intersection(set(activated_apps)))
 
-    for schema_interface in SCHEMA_CACHE.behavior_schema_interfaces(
-            portal_type):
+    for schema_interface in SCHEMA_CACHE.behavior_schema_interfaces(portal_type):
         if isSupported(effective_apps, schema_interface):
             form_schema = IFormFieldProvider(schema_interface, None)
             if form_schema is not None:

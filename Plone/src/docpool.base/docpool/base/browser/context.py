@@ -1,5 +1,4 @@
-from docpool.base.appregistry import extendingApps
-from docpool.base.appregistry import implicitApps
+from docpool.base.appregistry import extendingApps, implicitApps
 from docpool.base.config import BASE_APP
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone import api
@@ -28,10 +27,10 @@ class ApplicationState(BrowserView):
         if hasattr(self.context, "docTypeObj"):
             dto = self.context.docTypeObj()
         else:
-            dtFromRequest = request.get('form.widgets.docType', [''])
+            dtFromRequest = request.get("form.widgets.docType", [""])
             if isinstance(dtFromRequest, str):
                 dtFromRequest = [dtFromRequest]
-            dt = request.get('docType', dtFromRequest[0])
+            dt = request.get("docType", dtFromRequest[0])
             if dt:
                 try:
                     dto = self.context.config.dtypes[dt]
@@ -43,8 +42,7 @@ class ApplicationState(BrowserView):
             try:
                 supportedByType = ILocalBehaviorSupport(dto).local_behaviors
                 # print "supportedByType ", supportedByType
-                available_apps = list(
-                    set(available_apps).intersection(supportedByType))
+                available_apps = list(set(available_apps).intersection(supportedByType))
             # Type may not support local behavior (e.g. SR module types)
             except BaseException:
                 pass
@@ -85,7 +83,7 @@ class ApplicationState(BrowserView):
         The list is determined by inspecting the local behaviours for the object and adding all implictly active apps.
         :return:
         """
-        res = getattr(self.context, 'local_behaviors', [])[:]
+        res = getattr(self.context, "local_behaviors", [])[:]
         res.extend([app[0] for app in implicitApps()])
         return list(set(res))
 

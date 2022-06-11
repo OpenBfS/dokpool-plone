@@ -9,4 +9,4 @@ class SharingView(OSV):
         Reduce the available roles for sharing
         """
         pairs = OSV.roles(self)
-        return [p for p in pairs if p['id'] == 'Reader']
+        return [p for p in pairs if p["id"] == "Reader"]

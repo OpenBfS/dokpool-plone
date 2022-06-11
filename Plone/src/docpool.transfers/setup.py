@@ -1,11 +1,9 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
-
-version = '0.0.4'
+version = "0.0.4"
 
 setup(
-    name='docpool.transfers',
+    name="docpool.transfers",
     version=version,
     description="",
     long_description="""\
@@ -19,19 +17,19 @@ setup(
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords='',
-    author='Condat AG',
-    author_email='hr@condat.de',
-    url='http://www.condat.de',
-    license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['docpool'],
+    keywords="",
+    author="Condat AG",
+    author_email="hr@condat.de",
+    url="http://www.condat.de",
+    license="GPL",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["docpool"],
     include_package_data=True,
     zip_safe=True,
     install_requires=[
         # -*- Extra requirements: -*-
-        'setuptools',
-        'docpool.base',
+        "setuptools",
+        "docpool.base",
     ],
     entry_points="""
       # -*- Entry points: -*-

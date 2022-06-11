@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the SRPhase content type. See srphase.py for more
 explanation on the statements below.
@@ -23,14 +23,12 @@ from zope.interface import implementer
 
 
 class ISRPhase(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(ISRPhase)
 class SRPhase(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
@@ -47,8 +45,7 @@ class SRPhase(Container):
         return [self.UID()]
 
     def getPhaseTitle(self):
-        """
-        """
+        """ """
         return "{}: {}".format(
             self.mySRScenario().Title(),
             self.Title(),
@@ -65,13 +62,11 @@ class SRPhase(Container):
         return res
 
     def mySRPhase(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -79,14 +74,12 @@ class SRPhase(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getSRModuleConfigs(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'SRModuleConfig'}
+        """ """
+        args = {"portal_type": "SRModuleConfig"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 

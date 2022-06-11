@@ -8,4 +8,4 @@
 ##title=
 ##
 
-return "Members" in context.getPhysicalPath() and context.getId() != 'Members'
+return "Members" in context.getPhysicalPath() and context.getId() != "Members"

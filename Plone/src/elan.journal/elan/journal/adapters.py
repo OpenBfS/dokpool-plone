@@ -2,19 +2,17 @@
 
 """
 from datetime import datetime
+from time import time
+
 from elan.journal.interfaces import IJournal
 from persistent import Persistent
 from persistent.list import PersistentList
 from plone import api
-from time import time
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
-from zope.container.contained import ObjectAddedEvent
-from zope.container.contained import ObjectRemovedEvent
+from zope.container.contained import ObjectAddedEvent, ObjectRemovedEvent
 from zope.event import notify
-from zope.interface import Attribute
-from zope.interface import implementer
-from zope.interface import Interface
+from zope.interface import Attribute, Interface, implementer
 
 
 class IJournalEntryContainer(Interface):
@@ -25,19 +23,19 @@ class IJournalEntry(Interface):
 
     """An entry to a Journal."""
 
-    creator = Attribute('Id of user creating the journalentry.')
-    created = Attribute('Date and time when this journalentry was created.')
-    modified = Attribute('Date and time when this journalentry was modified.')
-    timestamp = Attribute('Timestamp of the journalentry.')
-    title = Attribute('Title of the jounalentry.')
-    text = Attribute('Text of the journalentry.')
+    creator = Attribute("Id of user creating the journalentry.")
+    created = Attribute("Date and time when this journalentry was created.")
+    modified = Attribute("Date and time when this journalentry was modified.")
+    timestamp = Attribute("Timestamp of the journalentry.")
+    title = Attribute("Title of the jounalentry.")
+    text = Attribute("Text of the journalentry.")
 
 
 @implementer(IJournalEntryContainer)
 @adapter(IJournal)
 class JournalEntryContainer(Persistent):
 
-    ANNO_KEY = 'journal.journalentries'
+    ANNO_KEY = "journal.journalentries"
 
     def __init__(self, context):
         self.context = context
@@ -77,8 +75,7 @@ class JournalEntryContainer(Persistent):
         notify(event)
 
     def delete(self, id):
-        event = ObjectRemovedEvent(
-            self[id], oldParent=self.context, oldName=id)
+        event = ObjectRemovedEvent(self[id], oldParent=self.context, oldName=id)
         self.remove(id)
         notify(event)
 

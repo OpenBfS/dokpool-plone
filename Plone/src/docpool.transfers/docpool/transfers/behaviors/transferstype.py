@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the TransfersType content type. See transferstype.py for more
 explanation on the statements below.
@@ -23,26 +23,24 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
 from zope.schema.interfaces import IContextSourceBinder
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 @provider(IContextSourceBinder)
 def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
     target_title = lambda target: api.content.get(UID=target).from_to_title()
-    return SimpleVocabulary([
-        SimpleTerm(t, t, target_title(t)) for t in targets])
+    return SimpleVocabulary([SimpleTerm(t, t, target_title(t)) for t in targets])
 
 
 @provider(IFormFieldProvider)
 class ITransfersType(model.Schema):
     allowTransfer = schema.Bool(
         title=_(
-            'label_doctype_allowtransfer',
-            default='Can documents of this type be sent to other ESDs?',
+            "label_doctype_allowtransfer",
+            default="Can documents of this type be sent to other ESDs?",
         ),
-        description=_('description_doctype_allowtransfer', default=''),
+        description=_("description_doctype_allowtransfer", default=""),
         required=False,
         default=True,
     )
@@ -50,22 +48,20 @@ class ITransfersType(model.Schema):
     widget(automaticTransferTargets=CheckBoxFieldWidget)
     automaticTransferTargets = schema.List(
         title=_(
-            'label_doctype_automatictransfertargets',
-            default='Where are documents of this type transferred automatically?',
+            "label_doctype_automatictransfertargets",
+            default="Where are documents of this type transferred automatically?",
         ),
-        description=_(
-            'description_doctype_automatictransfertargets', default=''),
+        description=_("description_doctype_automatictransfertargets", default=""),
         required=False,
         value_type=schema.Choice(
-            title=_('Transfer target'),
+            title=_("Transfer target"),
             source=possible_targets_vocabulary_factory,
         ),
     )
 
 
 class TransfersType:
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -81,14 +77,14 @@ class TransfersType:
 
     @property
     def automaticTransferTargets(self):
-        value = set(getattr(self.context, 'automaticTransferTargets', ()) or ())
+        value = set(getattr(self.context, "automaticTransferTargets", ()) or ())
         if not value:
             # avoid unnecessary interaction with the zope.sqlalchemy datamanager
             return []
         allowed = {target for target in allowed_targets(self.context)}
         return sorted(
             value.intersection(allowed),
-            key=lambda target: api.content.get(UID=target).from_to_title()
+            key=lambda target: api.content.get(UID=target).from_to_title(),
         )
 
     @automaticTransferTargets.setter
@@ -99,7 +95,7 @@ class TransfersType:
             return
 
         context = aq_inner(self.context)
-        unaffected = set(getattr(context, 'automaticTransferTargets', ()) or ())
+        unaffected = set(getattr(context, "automaticTransferTargets", ()) or ())
         if unaffected:
             allowed = (target for target in allowed_targets(context))
             unaffected.difference_update(allowed)

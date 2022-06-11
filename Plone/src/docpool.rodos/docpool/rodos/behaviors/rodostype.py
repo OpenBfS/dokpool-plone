@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """
 """
@@ -22,8 +22,7 @@ class IRodosType(IDocTypeExtension):
 
 
 class RodosType:
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

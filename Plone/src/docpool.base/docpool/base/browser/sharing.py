@@ -14,7 +14,7 @@ class SharingView(OSV):
         Reduce the available roles for sharing
         """
         pairs = OSV.roles(self)
-        return [p for p in pairs if p['id'] == 'Reader']
+        return [p for p in pairs if p["id"] == "Reader"]
 
     def _principal_search_results(
         self,
@@ -47,21 +47,20 @@ class SharingView(OSV):
         translated_message = translate(
             _("Search for user or group"), context=self.request
         )
-        search_term = safe_text(self.request.form.get('search_term', None))
+        search_term = safe_text(self.request.form.get("search_term", None))
         if not search_term or search_term == translated_message:
             return []
 
         existing_principals = {
-                p['id']
-                for p in self.existing_role_settings()
-                if p['type'] == principal_type
+            p["id"]
+            for p in self.existing_role_settings()
+            if p["type"] == principal_type
         }
-        empty_roles = {r['id']: False for r in self.roles()}
+        empty_roles = {r["id"]: False for r in self.roles()}
         info = []
 
         # BfS: we need the Plone Site here, because we want to see ALL groups
-        hunter = getMultiAdapter(
-            (aq_parent(context), self.request), name='pas_search')
+        hunter = getMultiAdapter((aq_parent(context), self.request), name="pas_search")
 
         for principal_info in search_for_principal(hunter, search_term):
             principal_id = principal_info[id_key]
@@ -73,9 +72,9 @@ class SharingView(OSV):
 
                 for r in principal.getRoles():
                     if r in roles:
-                        roles[r] = 'global'
+                        roles[r] = "global"
                 login = principal.getUserName()
-                if principal_type == 'group':
+                if principal_type == "group":
                     login = None
                 info.append(
                     dict(

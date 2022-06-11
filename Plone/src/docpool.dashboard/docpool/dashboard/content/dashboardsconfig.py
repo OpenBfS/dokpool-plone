@@ -6,8 +6,8 @@
 #            http://www.condat.de
 #
 
-__author__ = ''
-__docformat__ = 'plaintext'
+__author__ = ""
+__docformat__ = "plaintext"
 
 """Definition of the DashboardsConfig content type. See dashboardsconfig.py for more
 explanation on the statements below.
@@ -19,25 +19,21 @@ from zope.interface import implementer
 
 
 class IDashboardsConfig(model.Schema):
-    """
-    """
+    """ """
 
 
 @implementer(IDashboardsConfig)
 class DashboardsConfig(Container):
-    """
-    """
+    """ """
 
     security = ClassSecurityInfo()
 
     def myDashboardsConfig(self):
-        """
-        """
+        """ """
         return self
 
     def getFirstChild(self):
-        """
-        """
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -45,13 +41,11 @@ class DashboardsConfig(Container):
             return None
 
     def getAllContentObjects(self):
-        """
-        """
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
 
     def getDashboardCollections(self, **kwargs):
-        """
-        """
-        args = {'portal_type': 'DashboardCollection'}
+        """ """
+        args = {"portal_type": "DashboardCollection"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
