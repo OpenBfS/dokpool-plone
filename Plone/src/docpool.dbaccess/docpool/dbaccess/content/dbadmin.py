@@ -52,7 +52,6 @@ import os
 import sys
 import tempfile
 import transaction
-import six
 
 
 metadata = __metadata__

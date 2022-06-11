@@ -24,12 +24,12 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from urllib.parse import quote_plus
 from zope.interface import alsoProvides
 from zope.interface import implementer
 
 import json
 import mimetypes
-import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 import uuid
 
 
@@ -48,7 +48,7 @@ class DPDocumentView(FlexibleView):
     def quote_plus(self, string):
         """
         """
-        return six.moves.urllib.parse.quote_plus(string)
+        return quote_plus(string)
 
     def getFolderContents(self, kwargs):
         """

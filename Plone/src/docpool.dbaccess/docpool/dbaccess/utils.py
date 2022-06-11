@@ -4,7 +4,6 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 
 import time
-import six
 
 
 def getTool():

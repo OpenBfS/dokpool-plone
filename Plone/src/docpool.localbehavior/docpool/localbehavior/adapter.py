@@ -8,8 +8,6 @@ from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import adapter
 from zope.component import getMultiAdapter
 
-import six
-
 
 @adapter(ILocalBehaviorSupporting)
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):

@@ -34,7 +34,8 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
-from six.moves.urllib.parse import unquote
+from urllib.parse import unquote
+from urllib.parse import urljoin
 from z3c.form.interfaces import IAddForm
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
@@ -43,7 +44,6 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 
 import requests
-import six.moves.urllib.parse
 
 
 class ISRModule(model.Schema, IDPDocument):
@@ -427,7 +427,7 @@ def join(base, url):
     Join relative URL
     """
     if not (url.startswith("/") or "://" in url):
-        return six.moves.urllib.parse.urljoin(base, url)
+        return urljoin(base, url)
     else:
         # Already absolute
         return url

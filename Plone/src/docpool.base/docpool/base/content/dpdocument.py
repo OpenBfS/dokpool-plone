@@ -27,6 +27,7 @@ from docpool.base.pdfconversion import pdfobj
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
 from docpool.base.utils import queryForObject
+from io import StringIO
 from PIL import Image
 from plone import api
 from plone import namedfile
@@ -42,7 +43,6 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from six import StringIO
 from zExceptions import BadRequest
 from zope import schema
 from zope.annotation.interfaces import IAnnotations

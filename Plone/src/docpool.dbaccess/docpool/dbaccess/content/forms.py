@@ -20,7 +20,6 @@ from ZTUtils import make_query
 
 # from elixir import *
 import os
-import six
 
 
 config.date_format = '%d.%m.%Y'

@@ -5,10 +5,10 @@ from docpool.dbaccess.dbinit import __metadata__
 from docpool.dbaccess.dbinit import __session__
 from docpool.dbaccess.utils import dtFromString
 from docpool.dbaccess.utils import unicode_csv_reader
+from io import StringIO
 from plone.base.utils import safe_text
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from six import StringIO
 from zope.event import notify
 
 import transaction
