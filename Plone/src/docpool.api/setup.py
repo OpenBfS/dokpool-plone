@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Installer for the docpool.api package."""
 
 from setuptools import find_packages

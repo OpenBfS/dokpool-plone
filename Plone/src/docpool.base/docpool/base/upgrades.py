@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
@@ -35,15 +34,15 @@ def make_dbevent_folderish(context):
     # work around issue where the catalog already thinks dpevent is folderish
     # by getting the parents and accessing dp from there.
     brains = api.content.find(portal_type='DPEvents')
-    log.info('Found DPEvent brains: {}'.format(str(len(brains))))
+    log.info(f'Found DPEvent brains: {str(len(brains))}')
     for brain in brains:
         dpevents = brain.getObject()
         for obj in dpevents.contentValues():
             if obj.portal_type == 'DPEvent':
-                log.info('Try to migrate {}'.format(obj.absolute_url()))
+                log.info(f'Try to migrate {obj.absolute_url()}')
                 from plone.app.contenttypes.migration.dxmigration import migrate_base_class_to_new_class
                 migrate_base_class_to_new_class(obj, migrate_to_folderish=True)
-                log.info('Migrated {}'.format(str(obj)))
+                log.info(f'Migrated {str(obj)}')
 
 
 def update_dbevent_schema(context=None):
@@ -73,7 +72,7 @@ def update_dbevent_schema(context=None):
         # Events need a mode (#2573)
         if not getattr(obj.aq_base, 'OperationMode'):
             obj.OperationMode = 'routine'
-        log.info('Updated {}'.format(obj.absolute_url()))
+        log.info(f'Updated {obj.absolute_url()}')
 
         # Update indexed permission after EventEditor was added
         obj.reindexObjectSecurity()
@@ -91,12 +90,12 @@ def create_json_changelog(context=None):
                 for index, td in enumerate(tr.select('td')):
                     entry[head[index].text.strip()] = td.text.strip()
                 if '(' in entry.get('Date', ''):
-                    date, user = entry['Date'].split(u'(', 1)
-                    entry[u'Date'] = date
-                    entry[u'User'] = user[:-1]
+                    date, user = entry['Date'].split('(', 1)
+                    entry['Date'] = date
+                    entry['User'] = user[:-1]
                 if entry:
                     result.append(entry)
-            log.info(u'Migrated changelog to json for {}'.format(
+            log.info('Migrated changelog to json for {}'.format(
                 obj.absolute_url()))
             obj.changelog = json.dumps(result)
 
@@ -108,9 +107,9 @@ def to_1000(context=None):
 
 def reindex_catpath(context=None):
     """Reindex dpdocs with updated index ."""
-    log.info(u'Reindexing DPDocuments.')
+    log.info('Reindexing DPDocuments.')
     brains = api.content.find(portal_type='DPDocument')
-    log.info(u'Found {0} DPDocument to reindex'.format(len(brains)))
+    log.info(f'Found {len(brains)} DPDocument to reindex')
     for brain in brains:
         obj = brain.getObject()
         obj.reindexObject(idxs=['cat_path'])
@@ -125,29 +124,29 @@ def update_doksys_collections(context=None):
     from docpool.doksys.setuphandlers import create_since_yesterday_collection
     portal = api.portal.get()
     if 'searches' not in portal.keys():
-        log.info(u'Missing folder /searches. doksys may not be installed.')
+        log.info('Missing folder /searches. doksys may not be installed.')
         return
     searches = portal['searches']
     if 'today' in searches or 'yesterday' in searches:
-        log.info(u'Skip updating doksys-collections. Is already up to date.')
+        log.info('Skip updating doksys-collections. Is already up to date.')
         return
     api.content.delete(searches['last24h'])
     create_today_collection(portal)
     create_since_yesterday_collection(portal)
     searches.moveObjectsToTop(['today', 'yesterday'])
-    log.info(u'Updated templates for doksys-collections.')
+    log.info('Updated templates for doksys-collections.')
 
     for brain in api.content.find(portal_type='DocumentPool'):
         docpool = brain.getObject()
         if 'doksys' not in docpool.supportedApps:
-            log.info(u'Skip docpool %s because it has no doksys.', docpool.id)
+            log.info('Skip docpool %s because it has no doksys.', docpool.id)
             continue
         dp_searches = docpool['searches']
         api.content.delete(dp_searches['last24h'])
         api.content.copy(source=searches['today'], target=dp_searches)
         api.content.copy(source=searches['yesterday'], target=dp_searches)
         dp_searches.moveObjectsToTop(['today', 'yesterday'])
-        log.info(u'Updated doksys-collections for {}'.format(docpool.id))
+        log.info(f'Updated doksys-collections for {docpool.id}')
 
 
 def install_rei(context=None):
@@ -155,25 +154,25 @@ def install_rei(context=None):
     installer = get_installer(portal)
     if not installer.is_product_installed('docpool.rei'):
         installer.install_product('docpool.rei')
-        log.info(u'docpool.rei installed')
+        log.info('docpool.rei installed')
     bund = portal.get('bund')
     if not bund or not isinstance(bund, DocumentPool):
-        log.info(u'Aborting. No docpool "bund" exists!')
+        log.info('Aborting. No docpool "bund" exists!')
         return
     if 'rei' in bund.supportedApps:
-        log.info(u'REI is already enabled for bund.')
+        log.info('REI is already enabled for bund.')
         return
 
-    log.info(u'Enabling rei for bund...')
+    log.info('Enabling rei for bund...')
     bund.supportedApps.append('rei')
     # trigger content-creation
     docPoolModified(bund)
     container = bund['config']['dtypes']
     if 'reireport' in container:
-        log.info(u'DType reireport already exists!')
+        log.info('DType reireport already exists!')
     reireport = portal['config']['dtypes']['reireport']
     api.content.copy(source=reireport, target=container)
-    log.info(u'Copied dtype reireport to bund')
+    log.info('Copied dtype reireport to bund')
 
 
 def to_1001(context=None):
@@ -205,10 +204,10 @@ def to_1002(context=None):
     portal = api.portal.get()
     roles = list(portal.__ac_roles__)
     for index in range(1, 11):
-        role = 'Journal{} Editor'.format(index)
+        role = f'Journal{index} Editor'
         try:
             roles.remove(role)
-            log.info('Removed obsolete role {}'.format(role))
+            log.info(f'Removed obsolete role {role}')
         except:
             pass
     portal.__ac_roles__ = tuple(roles)
@@ -230,27 +229,27 @@ def to_1002(context=None):
         prefix = docpool.prefix or docpool.getId()
         title = docpool.Title()
         if 'elan' not in docpool.allSupportedApps():
-            log.info(u'Skipping docpool {} because elan is not enabled'.format(title))
+            log.info(f'Skipping docpool {title} because elan is not enabled')
             continue
         gtool = getToolByName(docpool, 'portal_groups')
         for index in range(1, 6):
             props = {
                 'allowedDocTypes': [],
-                'title': 'Journal {} Editors ({})'.format(index, title),
-                'description': 'Users who can edit journal{} in {}.'.format(index, title),
+                'title': f'Journal {index} Editors ({title})',
+                'description': f'Users who can edit journal{index} in {title}.',
                 'dp': docpool.UID(),
             }
-            gtool.addGroup("{}_Journal{}_Editors".format(prefix, index), properties=props)
+            gtool.addGroup(f"{prefix}_Journal{index}_Editors", properties=props)
 
         for index in range(1, 6):
             props = {
                 'allowedDocTypes': [],
-                'title': 'Journal {} Reader ({})'.format(index, title),
-                'description': 'Users who can view journal{} in {}.'.format(index, title),
+                'title': f'Journal {index} Reader ({title})',
+                'description': f'Users who can view journal{index} in {title}.',
                 'dp': docpool.UID(),
             }
-            gtool.addGroup("{}_Journal{}_Readers".format(prefix, index), properties=props)
-        log.info(u'Added Journal groups for docpool {}'.format(title))
+            gtool.addGroup(f"{prefix}_Journal{index}_Readers", properties=props)
+        log.info(f'Added Journal groups for docpool {title}')
 
     # set local roles for all journals in all events
     for brain in api.content.find(portal_type='Journal'):
@@ -260,19 +259,19 @@ def to_1002(context=None):
         index = journal.id.split('journal')[-1]
         # Grant local role to Journal Editor Groups
         api.group.grant_roles(
-            groupname='{}_Journal{}_Editors'.format(prefix, index),
+            groupname=f'{prefix}_Journal{index}_Editors',
             roles=['JournalEditor'],
             obj=journal,
             )
         # Grant local role to Journal Reader Groups
         api.group.grant_roles(
-            groupname='{}_Journal{}_Readers'.format(prefix, index),
+            groupname=f'{prefix}_Journal{index}_Readers',
             roles=['JournalReader'],
             obj=journal,
             )
         # reindex security for journals
         journal.reindexObjectSecurity()
-        log.info(u'Added local roles for Journal {}'.format(journal.title))
+        log.info(f'Added local roles for Journal {journal.title}')
 
 
 def to_1003(context=None):
@@ -284,7 +283,7 @@ def to_1003(context=None):
         try:
             wrapped = IREIDoc(obj)
         except TypeError:
-            log.info(u'{} is no reidoc'.format(obj.absolute_url()))
+            log.info(f'{obj.absolute_url()} is no reidoc')
             continue
         new = []
         old = getattr(wrapped, 'NuclearInstallations', [])
@@ -292,7 +291,7 @@ def to_1003(context=None):
             new.append(str(value[:4]))
         if new:
             wrapped.NuclearInstallations = new
-            log.info(u'Set NuclearInstallations for {} to {}'.format(
+            log.info('Set NuclearInstallations for {} to {}'.format(
                 obj.absolute_url(), new))
 
 
@@ -305,13 +304,13 @@ def to_1004(context=None):
     for brain in rei_reports:
         rei_report = brain.getObject()
         if not hasattr(rei_report, 'Authority'):
-            log.error("Broken rei_report: {0}".format(str(rei_report)))
+            log.error(f"Broken rei_report: {str(rei_report)}")
         if rei_report.Authority in [i.value for i in authorities._terms]:
             for iso_id, authority in [(i.value, i.title) for i in authorities._terms]:
                 if authority == rei_report.Authority:
                     rei_report.Authority = iso_id
                     rei_report.reindexObject()
-                    log.info("Authority {0} updated with {1}".format(rei_report, iso_id))
+                    log.info(f"Authority {rei_report} updated with {iso_id}")
         else:
             log.error("Broken data")
 
@@ -414,11 +413,11 @@ def to_1007_delete_local_impressum_pages(context=None):
 
 def to_1008_remove_irix(context=None):
     for brain in api.content.find(portal_type='IRIXConfig'):
-        log.info(u'Deleting {}'.format(brain.getPath()))
+        log.info(f'Deleting {brain.getPath()}')
         try:
             obj = brain.getObject()
         except Exception:
-            log.info('Could not resolve {}'.format(brain.getPath()))
+            log.info(f'Could not resolve {brain.getPath()}')
             continue
         api.content.delete(obj)
     portal_setup = api.portal.get_tool('portal_setup')
@@ -432,9 +431,9 @@ def to_1008(context=None):
 
 
 def to_1008_index_report_year(context=None):
-    log.info(u'Reindexing rei reports.')
+    log.info('Reindexing rei reports.')
     brains = api.content.find(portal_type='DPDocument', dp_type='reireport')
-    log.info(u'Found {0} rei reports to reindex'.format(len(brains)))
+    log.info(f'Found {len(brains)} rei reports to reindex')
     for brain in brains:
         obj = brain.getObject()
         obj.reindexObject(idxs=['report_year'])
@@ -458,11 +457,11 @@ def to_1008_install_z3ctable(context=None):
     installer = get_installer(portal)
     if not installer.is_product_installed('collective.eeafaceted.z3ctable'):
         installer.install_product('collective.eeafaceted.z3ctable')
-        log.info(u'collective.eeafaceted.z3ctable installed')
+        log.info('collective.eeafaceted.z3ctable installed')
 
 
 def to_1009_capitalise_event_types(context=None):
-    log.info(u'Capitalising event types.')
+    log.info('Capitalising event types.')
     events = [b.getObject() for b in api.content.find(portal_type='DPEvent')]
 
     TYPE_MAP = {
@@ -551,7 +550,7 @@ def to_1009_archive_closed_events(context=None):
                 current_docpool = item
                 break
         if not current_docpool:
-            raise RuntimeError(u"No docpool found for {}".format(obj.absolute_url()))
+            raise RuntimeError(f"No docpool found for {obj.absolute_url()}")
 
         # Find the right ELANArchive using a manual mapping
         archive = None
@@ -565,13 +564,13 @@ def to_1009_archive_closed_events(context=None):
                     break
 
         if not archive:
-            log.warning(u"No ELANArchive found for {}".format(obj.absolute_url()))
+            log.warning(f"No ELANArchive found for {obj.absolute_url()}")
             continue
 
         old_url = obj.absolute_url()
         archived_event = api.content.move(obj, target=archive)
         archived_event.reindexObject()
-        log.info(u"Moved Event {} ({}) to {} as {}".format(obj.title, old_url, archive.title, archived_event.absolute_url()))
+        log.info(f"Moved Event {obj.title} ({old_url}) to {archive.title} as {archived_event.absolute_url()}")
 
         # remove old archived/copied journals. they are now inside the event
         esd = api.content.find(context=archive, portal_type="ELANCurrentSituation", sort_on="path")
@@ -607,21 +606,21 @@ def to_1009_archive_closed_events(context=None):
         obj = brain.getObject()
         parent = obj.__parent__
         if obj.Status == "closed" and parent.portal_type != "ELANArchive":
-            log.warning(u"Archived %s Event in wrong container: %r", obj.absolute_url(), parent)
+            log.warning("Archived %s Event in wrong container: %r", obj.absolute_url(), parent)
 
         if obj.Status != "closed" and parent.portal_type != "DPEvents":
-            log.warning(u"Unarchived Event %s in wrong container: %r", obj.absolute_url(), parent)
+            log.warning("Unarchived Event %s in wrong container: %r", obj.absolute_url(), parent)
 
     for brain in api.content.find(portal_type="Journal", sort_on="path"):
         obj = brain.getObject()
         parent = obj.__parent__
         if parent.portal_type != "DPEvent":
-            log.warning(u"Journal %s in wrong container: %r", obj.absolute_url(), parent)
+            log.warning("Journal %s in wrong container: %r", obj.absolute_url(), parent)
 
     for brain in api.content.find(portal_type="ELANArchive", sort_on="path"):
         obj = brain.getObject()
         events = api.content.find(context=obj, portal_type="DPEvent")
         if len(events) != 1:
-            log.warning(u"%s DPEvent in Archive %s", len(events), obj.absolute_url())
+            log.warning("%s DPEvent in Archive %s", len(events), obj.absolute_url())
 
-    log.info(u"Archived all closed Events")
+    log.info("Archived all closed Events")

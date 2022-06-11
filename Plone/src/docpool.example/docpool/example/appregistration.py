@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.base.appregistry import registerApp
 from docpool.example.behaviors.exampledoc import IExampleDoc
 from docpool.example.behaviors.exampletype import IExampleType

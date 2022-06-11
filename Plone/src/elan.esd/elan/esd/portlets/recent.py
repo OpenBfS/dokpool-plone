@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from Acquisition import aq_inner
@@ -28,7 +27,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"Recent")
+        return _("Recent")
 
 
 # The renderer is like a view (in fact, like a content provider/viewlet). The

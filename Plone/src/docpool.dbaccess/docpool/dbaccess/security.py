@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.dbaccess.interfaces import IDataSecurity
 from docpool.dbaccess.interfaces import IProtectedEntityClass
 from Products.PluggableAuthService.interfaces.authservice import IBasicUser
@@ -8,7 +7,7 @@ from zope.interface import implementer
 
 @implementer(IDataSecurity)
 @adapter(IProtectedEntityClass, IBasicUser)
-class DefaultSecurity(object):
+class DefaultSecurity:
     """
     """
     # adapts(ISubscriptionSupport)

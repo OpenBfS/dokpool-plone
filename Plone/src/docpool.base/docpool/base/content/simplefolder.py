@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: simplefolder.py
 #
@@ -37,12 +36,12 @@ class ISimpleFolder(model.Schema, IFolderBase):
 
     allowedDocTypes = schema.List(
         title=_(
-            u'label_simplefolder_alloweddoctypes',
-            default=u'Document types allowed in this folder',
+            'label_simplefolder_alloweddoctypes',
+            default='Document types allowed in this folder',
         ),
         description=_(
-            u'description_simplefolder_alloweddoctypes',
-            default=u'Leave blank to enable all types configured for the group.',
+            'description_simplefolder_alloweddoctypes',
+            default='Leave blank to enable all types configured for the group.',
         ),
         required=False,
         value_type=schema.Choice(

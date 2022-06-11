@@ -45,20 +45,18 @@ class SharingView(OSV):
         context = self.context
 
         translated_message = translate(
-            _(u"Search for user or group"), context=self.request
+            _("Search for user or group"), context=self.request
         )
         search_term = safe_text(self.request.form.get('search_term', None))
         if not search_term or search_term == translated_message:
             return []
 
-        existing_principals = set(
-            [
+        existing_principals = {
                 p['id']
                 for p in self.existing_role_settings()
                 if p['type'] == principal_type
-            ]
-        )
-        empty_roles = dict([(r['id'], False) for r in self.roles()])
+        }
+        empty_roles = {r['id']: False for r in self.roles()}
         info = []
 
         # BfS: we need the Plone Site here, because we want to see ALL groups

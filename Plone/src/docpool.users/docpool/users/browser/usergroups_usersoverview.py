@@ -47,7 +47,7 @@ class UsersOverviewControlPanel(UOCP):
                         utils.setMemberProperties(
                             member, REQUEST=context.REQUEST, email=user.email
                         )
-                        utils.addPortalMessage(_(u'Changes applied.'))
+                        utils.addPortalMessage(_('Changes applied.'))
 
                 # If reset password has been checked email user a new password
                 pw = None
@@ -83,10 +83,10 @@ class UsersOverviewControlPanel(UOCP):
 
             if users_with_reset_passwords:
                 reset_passwords_message = _(
-                    u"reset_passwords_msg",
-                    default=u"The following users have been sent an e-mail with link to reset their password: ${user_ids}",
-                    mapping={u"user_ids": ', '.join(
+                    "reset_passwords_msg",
+                    default="The following users have been sent an e-mail with link to reset their password: ${user_ids}",
+                    mapping={"user_ids": ', '.join(
                         users_with_reset_passwords)},
                 )
                 utils.addPortalMessage(reset_passwords_message)
-            utils.addPortalMessage(_(u'Changes applied.'))
+            utils.addPortalMessage(_('Changes applied.'))

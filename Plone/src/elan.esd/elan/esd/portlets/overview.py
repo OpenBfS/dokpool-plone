@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_chain
 from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -27,7 +26,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"Overview")
+        return _("Overview")
 
 
 # The renderer is like a view (in fact, like a content provider/viewlet). The
@@ -60,22 +59,20 @@ class Renderer(base.Renderer):
 
     def _specialObjects(self):
         cs = self.context.myELANCurrentSituation()
-        for obj in cs.getFolderContents(
+        yield from cs.getFolderContents(
             {
                 'portal_type': [
                     'Dashboard',
                     'SituationOverview',
                 ]
             }
-        ):
-            yield obj
+        )
 
         # In archive we only return the archived journals
         if self.context.restrictedTraverse("@@context_helpers").is_archive():
             for item in aq_chain(aq_inner(self.context)):
                 if getattr(item, "portal_type", None) == "ELANArchive":
-                    for journal in api.content.find(context=item, portal_type="Journal"):
-                        yield journal
+                    yield from api.content.find(context=item, portal_type="Journal")
                     return
             return
 
@@ -90,11 +87,10 @@ class Renderer(base.Renderer):
                 id=scenario,
             )
             if event_brain:
-                for journal in api.content.find(
+                yield from api.content.find(
                         portal_type='Journal',
                         path=event_brain[0].getPath(),
-                    ):
-                    yield journal
+                    )
 
 
 class AddForm(base.NullAddForm):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Common configuration constants
 """
 from AccessControl import ClassSecurityInfo
@@ -62,8 +61,8 @@ def transferring():
 @provider(IFormFieldProvider)
 class ITransferable(model.Schema):
     transferred_by = schema.TextLine(
-        title=_(u'label_dpdocument_transferred_by', default=u'Transferred by'),
-        description=_(u'description_dpdocument_transferred_by', default=u''),
+        title=_('label_dpdocument_transferred_by', default='Transferred by'),
+        description=_('description_dpdocument_transferred_by', default=''),
         required=False,
     )
     directives.omitted('transferred_by')
@@ -72,9 +71,9 @@ class ITransferable(model.Schema):
 
     transferred = schema.Datetime(
         title=_(
-            u'label_dpdocument_transferred',
-            default=u'Date of last transfer'),
-        description=_(u'description_dpdocument_transferred', default=u''),
+            'label_dpdocument_transferred',
+            default='Date of last transfer'),
+        description=_('description_dpdocument_transferred', default=''),
         required=False,
     )
     directives.omitted('transferred')
@@ -82,10 +81,10 @@ class ITransferable(model.Schema):
     write_permission(transferred='docpool.transfers.AccessTransfers')
 
     transferLog = schema.Text(
-        title=_(u'label_dpdocument_transferlog', default=u'Transfer log'),
+        title=_('label_dpdocument_transferlog', default='Transfer log'),
         description=_(
-            u'description_dpdocument_transferlog',
-            default=u'Only used for archived documents.',
+            'description_dpdocument_transferlog',
+            default='Only used for archived documents.',
         ),
         required=False,
     )
@@ -242,11 +241,11 @@ class Transferable(FlexibleView):
         source_path = '/'.join(self.context.getPhysicalPath())
         if targets:
             logger.info(
-                'Transfer {} to up to {} targets.'.format(source_path, len(targets))
+                f'Transfer {source_path} to up to {len(targets)} targets.'
             )
             self.transferToTargets(targets)
         else:
-            logger.info('No transfer targets found for {}.'.format(source_path))
+            logger.info(f'No transfer targets found for {source_path}.')
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -294,7 +293,7 @@ class Transferable(FlexibleView):
                     if not transfer_folder.acceptsDT(dto.getId()):
                         portalMessage(
                             self.context,
-                            _(u"No transfer to")
+                            _("No transfer to")
                             + " "
                             + esd_to_title
                             + _(". Doc type not accepted."),
@@ -320,7 +319,7 @@ class Transferable(FlexibleView):
                                 # Message
                                 portalMessage(
                                     self.context,
-                                    _(u"No transfer to")
+                                    _("No transfer to")
                                     + " "
                                     + esd_to_title
                                     + _(". Unknown scenario not accepted."),
@@ -331,7 +330,7 @@ class Transferable(FlexibleView):
                             # Message
                             portalMessage(
                                 self.context,
-                                _(u"No transfer to")
+                                _("No transfer to")
                                 + " "
                                 + esd_to_title
                                 + _(". Document has no scenario."),

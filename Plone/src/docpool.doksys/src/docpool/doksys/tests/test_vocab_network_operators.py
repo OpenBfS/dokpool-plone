@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.doksys import _
 from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
 from plone.app.testing import setRoles
@@ -27,5 +26,5 @@ class NetworkOperatorsIntegrationTest(unittest.TestCase):
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
         self.assertEqual(
-            vocabulary.getTerm('Schleswig-Holstein').title, _(u'Schleswig-Holstein')
+            vocabulary.getTerm('Schleswig-Holstein').title, _('Schleswig-Holstein')
         )

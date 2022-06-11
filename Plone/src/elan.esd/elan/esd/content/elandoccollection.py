@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: elandoccollection.py
 #
@@ -7,7 +6,6 @@
 #            http://www.condat.de
 #
 
-from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -46,9 +44,9 @@ class IELANDocCollection(model.Schema, ICollection):
 
     docTypes = RelationList(
         title=_(
-            u'label_elandoccollection_doctypes',
-            default=u'Document Types'),
-        description=_(u'description_elandoccollection_doctypes', default=u''),
+            'label_elandoccollection_doctypes',
+            default='Document Types'),
+        description=_('description_elandoccollection_doctypes', default=''),
         required=False,
         value_type=RelationChoice(
             title=_("Document Types"), source="docpool.base.vocabularies.DocType"

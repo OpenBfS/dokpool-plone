@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from Products.Five.browser import BrowserView
 from docpool.base.content.dpdocument import IDPDocument
 from plone import api
@@ -12,7 +11,7 @@ class ActionHelpers(BrowserView):
 
     def can_change_password(self):
         portal_state = getMultiAdapter(
-            (self.context, self.request), name=u'plone_portal_state')
+            (self.context, self.request), name='plone_portal_state')
 
         member = portal_state.member()
         # IMIS-Users uses SSO and cannot change their password

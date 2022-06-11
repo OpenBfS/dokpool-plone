@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Common configuration constants
 """
 from AccessControl import ClassSecurityInfo
@@ -82,9 +81,9 @@ class IREIDoc(IDocumentExtension):
     directives.widget(NuclearInstallations=SelectFieldWidget)
     NuclearInstallations = schema.List(
         title=_(
-            u'label_rei_NuclearInstallations',
-            default=u'NuclearInstallations'),
-        description=_(u'description_rei_NuclearInstallation', default=u''),
+            'label_rei_NuclearInstallations',
+            default='NuclearInstallations'),
+        description=_('description_rei_NuclearInstallation', default=''),
         value_type=schema.Choice(
             source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
@@ -96,10 +95,10 @@ class IREIDoc(IDocumentExtension):
 
     directives.widget(ReiLegalBases=CheckBoxFieldWidget)
     ReiLegalBases = schema.List(
-        title=_(u'label_rei_ReiLegalBases', default=u'ReiLegalBases'),
-        description=_(u'description_rei_ReiLegalBases', default=u''),
+        title=_('label_rei_ReiLegalBases', default='ReiLegalBases'),
+        description=_('description_rei_ReiLegalBases', default=''),
         value_type=schema.Choice(
-            source=u"docpool.rei.vocabularies.ReiLegalBaseVocabulary"),
+            source="docpool.rei.vocabularies.ReiLegalBaseVocabulary"),
         required=True,
         missing_value=[],
     )
@@ -108,8 +107,8 @@ class IREIDoc(IDocumentExtension):
     searchable('ReiLegalBases')
 
     Medium = schema.Choice(
-        title=_(u'label_rei_Medium', default=u'Medium'),
-        description=_(u'description_rei_Medium', default=u''),
+        title=_('label_rei_Medium', default='Medium'),
+        description=_('description_rei_Medium', default=''),
         source="docpool.rei.vocabularies.MediumVocabulary",
         required=False,
     )
@@ -118,8 +117,8 @@ class IREIDoc(IDocumentExtension):
     searchable('Medium')
 
     Year = schema.Choice(
-        title=_(u'label_rei_Year', default=u'Year'),
-        description=_(u'description_rei_Year', default=u''),
+        title=_('label_rei_Year', default='Year'),
+        description=_('description_rei_Year', default=''),
         source="docpool.rei.vocabularies.YearVocabulary",
         required=True,
     )
@@ -128,8 +127,8 @@ class IREIDoc(IDocumentExtension):
     searchable('Year')
 
     Period = schema.Choice(
-        title=_(u'label_rei_Period', default=u'Period'),
-        description=_(u'description_rei_Period', default=u''),
+        title=_('label_rei_Period', default='Period'),
+        description=_('description_rei_Period', default=''),
         source="docpool.rei.vocabularies.PeriodVocabulary",
         required=True,
     )
@@ -139,10 +138,10 @@ class IREIDoc(IDocumentExtension):
 
     directives.widget(Origins=CheckBoxFieldWidget)
     Origins = schema.List(
-        title=_(u'label_rei_Origins', default=u'Origins'),
-        description=_(u'description_rei_Origin', default=u''),
+        title=_('label_rei_Origins', default='Origins'),
+        description=_('description_rei_Origin', default=''),
         value_type=schema.Choice(
-            source=u"docpool.rei.vocabularies.OriginVocabulary"),
+            source="docpool.rei.vocabularies.OriginVocabulary"),
         required=True,
         missing_value=[],
     )
@@ -152,8 +151,8 @@ class IREIDoc(IDocumentExtension):
 
     directives.widget(MStIDs=SelectFieldWidget)
     MStIDs = schema.List(
-        title=_(u'label_rei_MStID', default=u'Bericht enthält Daten folgender Messstellen'),
-        description=_(u'description_rei_MStID', default=u''),
+        title=_('label_rei_MStID', default='Bericht enthält Daten folgender Messstellen'),
+        description=_('description_rei_MStID', default=''),
         value_type=schema.Choice(
             source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
@@ -163,15 +162,15 @@ class IREIDoc(IDocumentExtension):
     write_permission(MStIDs='docpool.rei.AccessRei')
 
     mstids_initial_value = schema.TextLine(
-        title=_(u'label_rei_mstids_initial_value', default=u'Bericht enthält Daten folgender Messstellen'),
+        title=_('label_rei_mstids_initial_value', default='Bericht enthält Daten folgender Messstellen'),
         required=False,
     )
     directives.omitted('mstids_initial_value')
 
     directives.widget(Authority=SelectFieldWidget)
     Authority = schema.Choice(
-        title=_(u'label_rei_Authority', default=u'Authority'),
-        description=_(u'description_rei_Authority', default=u''),
+        title=_('label_rei_Authority', default='Authority'),
+        description=_('description_rei_Authority', default=''),
         source="docpool.rei.vocabularies.AuthorityVocabulary",
         required=True,
     )
@@ -180,8 +179,8 @@ class IREIDoc(IDocumentExtension):
     searchable('Authority')
 
     PDFVersion = schema.Choice(
-        title=_(u'label_rei_PDFVersion', default=u'PDF Version'),
-        description=_(u'description_rei_PDFVersion', default=u''),
+        title=_('label_rei_PDFVersion', default='PDF Version'),
+        description=_('description_rei_PDFVersion', default=''),
         source="docpool.rei.vocabularies.PDFVersionVocabulary",
         required=True,
         default='keine Angabe',
@@ -193,7 +192,7 @@ class IREIDoc(IDocumentExtension):
     def validate_medium(data):
         if data.ReiLegalBases and 'REI-E' in data.ReiLegalBases:
             if not data.Medium:
-                msg = _(u'For REI-E reports you need to specify a medium.')
+                msg = _('For REI-E reports you need to specify a medium.')
                 raise Invalid(msg)
 
 
@@ -325,15 +324,15 @@ class REIDoc(FlexibleView):
 
     def mstids_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.MStIDVocabulary')()
-        return u', '.join(voc.getTerm(i).title for i in getattr(self, "MStIDs", []))
+        return ', '.join(voc.getTerm(i).title for i in getattr(self, "MStIDs", []))
 
     def period_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
-        return u'{} {}'.format(voc.getTerm(self.Period).title, self.Year)
+        return f'{voc.getTerm(self.Period).title} {self.Year}'
 
     def nuclear_installations_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.NuclearInstallationVocabulary')()
-        return u', '.join(voc.getTerm(i).title for i in self.NuclearInstallations)
+        return ', '.join(voc.getTerm(i).title for i in self.NuclearInstallations)
 
     def review_history(self):
         # Show WF-History for all users with view-permission.
@@ -357,55 +356,55 @@ def set_title(obj, event=None):
     except Exception:
         return
     legal_base_mapping = {
-        u'REI-E': u'Emissionsbericht',
-        u'REI-I': u'Immissionsbericht',
+        'REI-E': 'Emissionsbericht',
+        'REI-I': 'Immissionsbericht',
     }
     if len(adapted.ReiLegalBases) > 1:
-        legal = u'Immissions- und Emissionsbericht'
+        legal = 'Immissions- und Emissionsbericht'
     else:
         legal = legal_base_mapping.get(adapted.ReiLegalBases[0])
 
     period_mapping = {
-        u'Y': u'des {}es',
-        u'H1': u'des {}es',
-        u'H2': u'des {}es',
-        u'Q1': u'des {}s',
-        u'Q2': u'des {}s',
-        u'Q3': u'des {}s',
-        u'Q4': u'des {}s',
-        u'M1': u'{}',
-        u'M2': u'{}',
-        u'M3': u'{}',
-        u'M4': u'{}',
-        u'M5': u'{}',
-        u'M6': u'{}',
-        u'M7': u'{}',
-        u'M8': u'{}',
-        u'M9': u'{}',
-        u'M10': u'{}',
-        u'M11': u'{}',
-        u'M12': u'{}',
+        'Y': 'des {}es',
+        'H1': 'des {}es',
+        'H2': 'des {}es',
+        'Q1': 'des {}s',
+        'Q2': 'des {}s',
+        'Q3': 'des {}s',
+        'Q4': 'des {}s',
+        'M1': '{}',
+        'M2': '{}',
+        'M3': '{}',
+        'M4': '{}',
+        'M5': '{}',
+        'M6': '{}',
+        'M7': '{}',
+        'M8': '{}',
+        'M9': '{}',
+        'M10': '{}',
+        'M11': '{}',
+        'M12': '{}',
     }
     period_vocabulary = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.PeriodVocabulary')()
     period_template = period_mapping.get(adapted.Period)
     period_prefix = period_template.format(period_vocabulary.getTerm(adapted.Period).title)
-    period = u'{} {}'.format(period_prefix, adapted.Year)
+    period = f'{period_prefix} {adapted.Year}'
 
     installations=re.split(r", U[A-Z0-9]{3}",adapted.nuclear_installations_display())
     installations[0]=installations[0][5:]
     if len(installations) == 1:
         installations = installations[0]
     elif len(installations) == 2:
-        installations = u' und '.join(installations)
+        installations = ' und '.join(installations)
     else:
-        part1 = u', '.join(installations[:-1])
-        installations = u'{} und {}'.format(part1, installations[-1])
+        part1 = ', '.join(installations[:-1])
+        installations = f'{part1} und {installations[-1]}'
     if 'REI-E' in adapted.ReiLegalBases and adapted.Medium:
-        medium = u'({}) '.format(adapted.Medium)
+        medium = f'({adapted.Medium}) '
     else:
-        medium = u''
-    origins = u'({})'.format(', '.join(adapted.Origins))
-    new_title = u'REI-{legal} {medium}{period} {installations} {origins}'.format(
+        medium = ''
+    origins = '({})'.format(', '.join(adapted.Origins))
+    new_title = 'REI-{legal} {medium}{period} {installations} {origins}'.format(
         legal=legal,
         period=period,
         installations=installations,

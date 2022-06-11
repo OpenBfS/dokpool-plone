@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from datetime import datetime
 from datetime import timedelta
@@ -30,7 +29,7 @@ class ViewTestCase(unittest.TestCase):
 
 class DefaultViewTestCase(ViewTestCase):
     def setUp(self):
-        super(DefaultViewTestCase, self).setUp()
+        super().setUp()
         self.view = api.content.get_view('view', self.journal, self.request)
 
     def test_has_updates(self):
@@ -58,8 +57,8 @@ class DefaultViewTestCase(ViewTestCase):
         _create_journalentries(self.journal, 1)
         timestamp = self.journal.get_journalentries()[0]['timestamp']
         rendered = self.view()
-        link = 'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/journalentry/{0}'.format(timestamp)
-        self.assertIn('<a href="{0}">'.format(link), rendered)
+        link = f'http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/journalentry/{timestamp}'
+        self.assertIn(f'<a href="{link}">', rendered)
 
 
 class JournalEntryViewTestCase(ViewTestCase):
@@ -88,12 +87,12 @@ class JournalEntryViewTestCase(ViewTestCase):
             rendered)
         self.assertIn('<span property="rnews:datePublished">', rendered)
         self.assertNotIn('<span property="rnews:dateModified">', rendered)
-        self.assertIn('data-timestamp="{0}"'.format(timestamp), rendered)
+        self.assertIn(f'data-timestamp="{timestamp}"', rendered)
 
 
 class UpdateViewTestCase(ViewTestCase):
     def setUp(self):
-        super(UpdateViewTestCase, self).setUp()
+        super().setUp()
         self.view = api.content.get_view('update', self.journal, self.request)
 
     def test_view_listed_in_actions(self):
@@ -114,7 +113,7 @@ class UpdateViewTestCase(ViewTestCase):
 
 class RecentUpdatesViewTestCase(ViewTestCase):
     def setUp(self):
-        super(RecentUpdatesViewTestCase, self).setUp()
+        super().setUp()
         self.view = api.content.get_view(
             'recent-updates', self.journal, self.request)
 

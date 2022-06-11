@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from elan.esd.testing import ELAN_ESD_INTEGRATION_TESTING  # noqa: E501
 from plone.base.utils import get_installer

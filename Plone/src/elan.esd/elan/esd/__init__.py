@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import allow_module
 from elan.esd import monkey  # noqa: F401
 from plone import api

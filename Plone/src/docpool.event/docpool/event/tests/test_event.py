@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.event.utils import get_scenarios_for_user
 from docpool.event.utils import set_scenarios_for_user
@@ -43,7 +42,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         self.assertTrue(event.restrictedTraverse('@@view')())
         self.assertTrue(event.restrictedTraverse('@@edit')())
@@ -53,7 +52,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         scenarios = self._get_user_scenarios()
         self.assertIn('test_event', scenarios)
@@ -63,7 +62,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         self.assertIn(event.id, self.container)
         event.archiveAndClose(self.layer['request'])
@@ -78,7 +77,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         scenarios = self._get_user_scenarios()
         assert 'test_event' in scenarios
@@ -91,7 +90,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         scenarios = self._get_user_scenarios()
         assert 'test_event' in scenarios
@@ -104,7 +103,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         scenarios = self._get_user_scenarios()
         assert 'test_event' in scenarios
@@ -117,7 +116,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         self._set_user_scenarios(['test_event'])
         scenarios = self._get_user_scenarios()
@@ -128,7 +127,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         try:
             api.content.delete(event)
@@ -145,7 +144,7 @@ class TestEvent(unittest.TestCase):
             container=self.container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
             )
         # check that 4 journals were added
         self.assertEqual(
@@ -153,7 +152,7 @@ class TestEvent(unittest.TestCase):
             ['journal1', 'journal2', 'journal3', 'journal4'])
         self.assertEqual(
             [i.title for i in event.contentValues()],
-            [u'Einsatztagebuch BfS', u'Einsatztagebuch RLZ', u'Einsatztagebuch SSK', u'Einsatztagebuch Messdienste'])
+            ['Einsatztagebuch BfS', 'Einsatztagebuch RLZ', 'Einsatztagebuch SSK', 'Einsatztagebuch Messdienste'])
 
         # check the local roles for each journal
         self.assertEqual(

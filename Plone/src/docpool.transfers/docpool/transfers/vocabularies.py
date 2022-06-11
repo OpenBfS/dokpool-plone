@@ -7,7 +7,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class PermissionsVocabulary(object):
+class PermissionsVocabulary:
     """
     """
 
@@ -25,7 +25,7 @@ PermissionsVocabularyFactory = PermissionsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class UnknownOptionsVocabulary(object):
+class UnknownOptionsVocabulary:
     """
     """
 
@@ -42,7 +42,7 @@ UnknownOptionsVocabularyFactory = UnknownOptionsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class DTPermOptionsVocabulary(object):
+class DTPermOptionsVocabulary:
     """
     """
 

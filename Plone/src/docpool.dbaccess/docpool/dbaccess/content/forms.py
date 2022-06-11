@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 __author__ = 'Condat AG'
 __docformat__ = 'plaintext'
 
@@ -40,7 +39,7 @@ listbutton_defs = {
 # Alternative: class_mapper(klass).primary_key, liefert Column-Objekte
 
 
-class BatchBase(object):
+class BatchBase:
     """Default view
     """
 
@@ -111,9 +110,9 @@ class BatchBase(object):
             self.request.form, {
                 'sort_on': column, 'sort_order': so})
         if template_id:
-            return "%s/%s?%s" % (self.context.absolute_url(), template_id, qry)
+            return "{}/{}?{}".format(self.context.absolute_url(), template_id, qry)
         else:
-            return "%s?%s" % (self.context.absolute_url(), qry)
+            return "{}?{}".format(self.context.absolute_url(), qry)
 
     #    @memoize
     def getSortOrder(self):
@@ -138,7 +137,7 @@ class BatchBase(object):
             self.request.form, {'sort_on': sort_on, 'sort_order': sort_order}
         )
         # if template_id:
-        return "%s?%s" % (self.__name__, qry)
+        return "{}?{}".format(self.__name__, qry)
 
     def getGridHTML(self):
         """
@@ -237,11 +236,11 @@ class ListView(BatchBase):
         b = []
         if self.security.can_delete_all():
             b.append(
-                ('delete', _(u'Delete'), 'return ' +
+                ('delete', _('Delete'), 'return ' +
                  _('sicherheitsabfrage') + '();')
             )
         if self.has_create and self.security.can_create():
-            b.append(('create', _(u'New'), ''))
+            b.append(('create', _('New'), ''))
         return listbutton_defs.get(self.typ, b)
 
     #    @memoize
@@ -283,7 +282,7 @@ class ListView(BatchBase):
         collection = self.tool.list_def(
             self.typ)['form'].bind(
             self.getBatchObj())
-        for field in six.itervalues(collection.render_fields):
+        for field in collection.render_fields.values():
             if field.key not in ['editlink', 'check']:
                 res.append(field.key)
         return res
@@ -308,11 +307,11 @@ class SEListView(ListView):
     def getListButtons(self):
         b = []
         if self.has_create and self.security.can_create():
-            b.append(('create', _(u'New'), ''))
+            b.append(('create', _('New'), ''))
         return listbutton_defs.get(self.typ, b)
 
 
-class EditView(object):
+class EditView:
     def __init__(self, tool, request, create, context):
         # print "EditView"
         self.context = context
@@ -394,7 +393,7 @@ class EditView(object):
             'HTTP_REFERER',
             None)
         if h and h.find('typ=') == -1:
-            h = "%s?typ=%s" % (h, self.typ)
+            h = "{}?typ={}".format(h, self.typ)
         return h
 
     def checkAccess(self):
@@ -414,12 +413,12 @@ class EditView(object):
     def getEditButtons(self):
         b = []
         if not self.readonly:
-            b.append(('save', _(u'Save'), ''))
+            b.append(('save', _('Save'), ''))
         if self.can_delete:
             b.append(
                 (
                     'delete',
-                    _(u'Delete'),
+                    _('Delete'),
                     'return ' + _('einfachesicherheitsabfrage') + '();',
                 )
             )
@@ -534,10 +533,10 @@ class StructuredEditView(EditView):
         pp = self.parentPath()
         ap = self.context.absolute_url()
         if len(pp) > 0:
-            h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (
+            h = "{}/struct_edit?typ={}&pk={}&bc={}".format(
                 ap, self.typ, self.pk, str(pp))
         else:
-            h = "%s/struct_edit?typ=%s&pk=%s" % (ap, self.typ, self.pk)
+            h = "{}/struct_edit?typ={}&pk={}".format(ap, self.typ, self.pk)
         return h
 
     def herkunft(self):
@@ -547,10 +546,10 @@ class StructuredEditView(EditView):
         ap = self.context.absolute_url()
         if len(pp) > 0:
             last = pp.pop()
-            h = "%s/struct_edit?typ=%s&pk=%s&bc=%s" % (
+            h = "{}/struct_edit?typ={}&pk={}&bc={}".format(
                 ap, last[0], last[1], str(pp))
         else:
-            h = "%s/struct_edit?typ=%s&pk=%s" % (ap, self.typ, self.pk)
+            h = "{}/struct_edit?typ={}&pk={}".format(ap, self.typ, self.pk)
         return h
 
 
@@ -613,7 +612,7 @@ class DateTimeAsTextRenderer(FieldRenderer):
 
             v3 = v1[1][:5]
 
-            value = "%s %s" % (".".join(v2), v3)
+            value = "{} {}".format(".".join(v2), v3)
         return value
 
     def _serialized_value(self):
@@ -629,7 +628,7 @@ class DateTimeAsTextRenderer(FieldRenderer):
                     v2 = v1[0].split('.')
                     v2.reverse()
                     v3 = "00:00"
-                value = "%s %s" % ('-'.join(v2), v3)
+                value = "{} {}".format('-'.join(v2), v3)
                 return value
         else:
             return ''
@@ -682,7 +681,7 @@ class DateRangeRenderer(FieldRenderer):
         else:
             bis = ''
         # print "%s-->%s" % (von, bis)
-        return "%s-->%s" % (von, bis)
+        return "{}-->{}".format(von, bis)
 
     def render(self, **kwargs):
         from formalchemy import helpers as h
@@ -697,7 +696,7 @@ class DateRangeRenderer(FieldRenderer):
             bis = v[1]
         kw1 = {'class': 'datefrom'}
         kw2 = {'class': 'dateuntil'}
-        return "%s %s" % (
+        return "{} {}".format(
             h.text_field("%s__von" % self.name, value=von, **kw1),
             h.text_field("%s__bis" % self.name, value=bis, **kw2),
         )

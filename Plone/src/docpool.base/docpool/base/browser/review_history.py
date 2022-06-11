@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from plone import api
@@ -55,7 +54,7 @@ class ReviewHistoryView(BrowserView):
             else:
                 review_history = list(review_history)
 
-            anon = _(u'label_anonymous_user', default=u'Anonymous User')
+            anon = _('label_anonymous_user', default='Anonymous User')
 
             for r in review_history:
                 r['type'] = 'workflow'

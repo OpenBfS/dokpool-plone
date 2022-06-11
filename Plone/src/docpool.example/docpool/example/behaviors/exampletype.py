@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: exampletype.py
 #
@@ -24,14 +23,14 @@ from zope.interface import provider
 class IExampleType(IDocTypeExtension):
     example_type_attribute = schema.TextLine(
         title=_(
-            u'label_example_type_attribute',
-            default=u'Example Type Attribute'),
-        description=_(u'description_example_type_attribute', default=u''),
+            'label_example_type_attribute',
+            default='Example Type Attribute'),
+        description=_('description_example_type_attribute', default=''),
         required=False,
     )
 
 
-class ExampleType(object):
+class ExampleType:
     """
     """
 

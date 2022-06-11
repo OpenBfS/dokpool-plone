@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from docpool.rei.testing import DOCPOOL_REI_INTEGRATION_TESTING  # noqa
 from zope.component import getUtility

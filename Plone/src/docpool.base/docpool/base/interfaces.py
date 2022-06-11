@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 from docpool.base.content.infofolder import IInfoFolder
 from docpool.base.content.infodocument import IInfoDocument

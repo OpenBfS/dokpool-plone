@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from ..utils import set_local_roles
 from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
@@ -64,7 +63,7 @@ def dpAdded(self):
 
 
 BASICSTRUCTURE = [
-    {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: [], 'local_behaviors': ['elan']}
+    {TYPE: 'ELANArchives', TITLE: 'Archive', ID: 'archive', CHILDREN: [], 'local_behaviors': ['elan']}
 ]
 
 ARCHIVESTRUCTURE = [
@@ -78,7 +77,7 @@ ARCHIVESTRUCTURE = [
 ]
 
 SPECIAL_PAGES = [
-    {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
+    {TYPE: 'Text', TITLE: 'Hilfe', ID: 'help', CHILDREN: []},
 ]
 
 ADMINSTRUCTURE = [
@@ -89,12 +88,12 @@ ADMINSTRUCTURE = [
         CHILDREN: [
             {
                 TYPE: 'DPEvents',
-                TITLE: u'Ereignisse',
+                TITLE: 'Ereignisse',
                 ID: 'scen',
                 CHILDREN: [
                     {
                         TYPE: 'DPEvent',
-                        TITLE: u'Normalfall',
+                        TITLE: 'Normalfall',
                         ID: 'routinemode',
                         "Status": "active",
                         "TimeOfEvent": datetime.now(),
@@ -102,10 +101,10 @@ ADMINSTRUCTURE = [
                     }
                 ],
             },
-            {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
+            {TYPE: 'Text', TITLE: 'Ticker', ID: 'ticker', CHILDREN: []},
             {
                 TYPE: 'DashboardsConfig',
-                TITLE: u'Dokumentsammlungen Pinnwand',
+                TITLE: 'Dokumentsammlungen Pinnwand',
                 ID: 'dbconfig',
                 CHILDREN: [],
             },
@@ -241,20 +240,20 @@ def createELANGroups(self):
     for index in range(1, 6):
         props = {
             'allowedDocTypes': [],
-            'title': 'Journal {} Editors ({})'.format(index, title),
-            'description': 'Users who can edit journal{} in {}.'.format(index, title),
+            'title': f'Journal {index} Editors ({title})',
+            'description': f'Users who can edit journal{index} in {title}.',
             'dp': self.UID(),
         }
-        gtool.addGroup("{}_Journal{}_Editors".format(prefix, index), properties=props)
+        gtool.addGroup(f"{prefix}_Journal{index}_Editors", properties=props)
 
     for index in range(1, 6):
         props = {
             'allowedDocTypes': [],
-            'title': 'Journal {} Reader ({})'.format(index, title),
-            'description': 'Users who can view journal{} in {}.'.format(index, title),
+            'title': f'Journal {index} Reader ({title})',
+            'description': f'Users who can view journal{index} in {title}.',
             'dp': self.UID(),
         }
-        gtool.addGroup("{}_Journal{}_Readers".format(prefix, index), properties=props)
+        gtool.addGroup(f"{prefix}_Journal{index}_Readers", properties=props)
 
 
 def copyCurrentSituation(self, fresh):

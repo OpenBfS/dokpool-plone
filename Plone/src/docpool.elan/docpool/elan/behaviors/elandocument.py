@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
@@ -41,9 +40,9 @@ class IELANDocument(IDocumentExtension):
 
     scenarios = schema.List(
         title=_(
-            u'label_dpdocument_scenarios',
-            default=u'Belongs to scenarios'),
-        description=_(u'description_dpdocument_scenarios', default=u''),
+            'label_dpdocument_scenarios',
+            default='Belongs to scenarios'),
+        description=_('description_dpdocument_scenarios', default=''),
         required=True,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
         defaultFactory=initializeScenarios,
@@ -120,7 +119,7 @@ class ELANDocument(FlexibleView):
         res = [
             scen.getId()
             for scen in scens
-            if api.content.get_state(scen) == u'published'
+            if api.content.get_state(scen) == 'published'
         ]
         return res
 
@@ -165,7 +164,7 @@ class ELANDocument(FlexibleView):
         rec = docp.esd.recent.title_or_id()
         cats = [safe_text(i) for i in self.category()]
         cats = [i for i in cats if i not in [over, rec]]
-        cats = u'({0})'.format(u', '.join(cats))
+        cats = '({})'.format(', '.join(cats))
         return cats
 
     def category(self):

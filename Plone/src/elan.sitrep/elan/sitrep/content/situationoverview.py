@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: situationoverview.py
 #
@@ -142,7 +141,7 @@ def _availableModules(self, reportUID=None):
         modres = [
             (
                 m.UID,
-                u"%s %s"
+                "%s %s"
                 % (
                     safe_text(m.Title),
                     self.toLocalizedTime(DateTime(m.changed), long_format=1),

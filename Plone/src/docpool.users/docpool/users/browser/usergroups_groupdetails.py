@@ -31,7 +31,7 @@ class GroupDetailsControlPanel(GDCP):
         if submitted:
             CheckAuthenticator(self.request)
 
-            msg = _(u'No changes made.')
+            msg = _('No changes made.')
             self.group = None
 
             title = self.request.form.get('title', None)
@@ -40,7 +40,7 @@ class GroupDetailsControlPanel(GDCP):
 
             if addname:
                 if not self.regtool.isMemberIdAllowed(addname):
-                    msg = _(u'The group name you entered is not valid.')
+                    msg = _('The group name you entered is not valid.')
                     IStatusMessage(self.request).add(msg, 'error')
                     return self.index()
 
@@ -54,8 +54,8 @@ class GroupDetailsControlPanel(GDCP):
                     prefix = str(prefix)
                     dp_title = dp.Title()
 
-                    addname = "%s_%s" % (prefix, addname)
-                    title = "%s (%s)" % (title, dp_title)
+                    addname = "{}_{}".format(prefix, addname)
+                    title = "{} ({})".format(title, dp_title)
                     isDP = True
                 else:
                     isDP = False
@@ -84,18 +84,18 @@ class GroupDetailsControlPanel(GDCP):
                 )
                 if not success:
                     msg = _(
-                        u'Could not add group ${name}, perhaps a user or group with '
-                        u'this name already exists.',
-                        mapping={u'name': addname},
+                        'Could not add group ${name}, perhaps a user or group with '
+                        'this name already exists.',
+                        mapping={'name': addname},
                     )
                     IStatusMessage(self.request).add(msg, 'error')
                     return self.index()
 
                 self.group = self.gtool.getGroupById(addname)
                 msg = _(
-                    u'Group ${name} has been added.',
+                    'Group ${name} has been added.',
                     mapping={
-                        u'name': addname})
+                        'name': addname})
 
             elif self.groupname:
                 self.gtool.editGroup(
@@ -107,10 +107,10 @@ class GroupDetailsControlPanel(GDCP):
                     REQUEST=context.REQUEST,
                 )
                 self.group = self.gtool.getGroupById(self.groupname)
-                msg = _(u'Changes saved.')
+                msg = _('Changes saved.')
 
             else:
-                msg = _(u'Group name required.')
+                msg = _('Group name required.')
 
             processed = {}
             for id, property in self.gdtool.propertyItems():
@@ -130,7 +130,7 @@ class GroupDetailsControlPanel(GDCP):
                 self.request).add(
                 msg, type=self.group and 'info' or 'error')
             if self.group and not self.groupname:
-                target_url = '%s/%s' % (
+                target_url = '{}/{}'.format(
                     self.context.absolute_url(),
                     '@@usergroup-groupprefs',
                 )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 from docpool.dashboard.content.dashboardcollection import IDashboardCollection
 from docpool.dashboard.content.dashboardsconfig import IDashboardsConfig

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.events import IDocumentPoolUndeleteable
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
@@ -91,7 +90,7 @@ def setFrontpage(self):
     self.esd.setDefaultPage("front-page")
 
 
-FRONTPAGE = RichTextValue(u"", 'text/plain', 'text/html')
+FRONTPAGE = RichTextValue("", 'text/plain', 'text/html')
 
 BASICSTRUCTURE = [
     {
@@ -101,7 +100,7 @@ BASICSTRUCTURE = [
         CHILDREN: [
             {
                 TYPE: 'Document',
-                TITLE: u'Electronic Situation Display',
+                TITLE: 'Electronic Situation Display',
                 ID: 'front-page',
                 'text': FRONTPAGE,
                 CHILDREN: [],
@@ -113,7 +112,7 @@ BASICSTRUCTURE = [
         TITLE: 'Content Configuration',
         ID: 'contentconfig',
         CHILDREN: [
-            {TYPE: 'Text', TITLE: u'Impressum', ID: 'impressum', CHILDREN: []},
+            {TYPE: 'Text', TITLE: 'Impressum', ID: 'impressum', CHILDREN: []},
         ],
     },
 ]
@@ -124,19 +123,19 @@ DOCTYPES = (
 ESDCOLLECTIONS = [
     {
         TYPE: 'ELANSection',
-        TITLE: u'INCIDENT',
+        TITLE: 'INCIDENT',
         ID: 'incident',
         CHILDREN: [
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'NOTIFICATIONS',
+                TITLE: 'NOTIFICATIONS',
                 ID: 'notifications',
                 CHILDREN: [],
                 DOCTYPES: ['notification', 'note'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'EVENT / NPP INFORMATION',
+                TITLE: 'EVENT / NPP INFORMATION',
                 ID: 'event-npp-information',
                 CHILDREN: [],
                 DOCTYPES: ['eventinformation', 'nppinformation'],
@@ -145,19 +144,19 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: 'ELANSection',
-        TITLE: u'METEOROLOGY',
+        TITLE: 'METEOROLOGY',
         ID: 'meteorology',
         CHILDREN: [
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'WEATHER INFORMATION',
+                TITLE: 'WEATHER INFORMATION',
                 ID: 'weather-information',
                 CHILDREN: [],
                 DOCTYPES: ['weatherinformation'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'TRAJECTORIES',
+                TITLE: 'TRAJECTORIES',
                 ID: 'trajectories',
                 CHILDREN: [],
                 DOCTYPES: ['trajectory'],
@@ -166,40 +165,40 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: 'ELANSection',
-        TITLE: u'DOSE PROJECTIONS',
+        TITLE: 'DOSE PROJECTIONS',
         ID: 'dose-projections',
         CHILDREN: [
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'CNCAN PROJECTIONS',
+                TITLE: 'CNCAN PROJECTIONS',
                 ID: 'cncan-projections',
                 CHILDREN: [],
                 DOCTYPES: ['cncanprojection'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'IFIN PROJECTIONS',
+                TITLE: 'IFIN PROJECTIONS',
                 ID: 'ifin-projections',
                 CHILDREN: [],
                 DOCTYPES: ['ifinprojection'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'NPP PROJECTIONS',
+                TITLE: 'NPP PROJECTIONS',
                 ID: 'npp-projections',
                 CHILDREN: [],
                 DOCTYPES: ['nppprojection'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'RODOS',
+                TITLE: 'RODOS',
                 ID: 'rodos',
                 CHILDREN: [],
                 DOCTYPES: ['rodosprojection'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'OTHER',
+                TITLE: 'OTHER',
                 ID: 'other',
                 CHILDREN: [],
                 DOCTYPES: ['otherprojection'],
@@ -208,40 +207,40 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: 'ELANSection',
-        TITLE: u'MEASUREMENT RESULTS',
+        TITLE: 'MEASUREMENT RESULTS',
         ID: 'measurement-results',
         CHILDREN: [
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'GAMMA DOSE RATE',
+                TITLE: 'GAMMA DOSE RATE',
                 ID: 'gamma-dose-rate',
                 CHILDREN: [],
                 DOCTYPES: ['gammadoserate'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'AIR ACTIVITY',
+                TITLE: 'AIR ACTIVITY',
                 ID: 'air-activity',
                 CHILDREN: [],
                 DOCTYPES: ['airactivity'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'GROUND CONTAMINATION',
+                TITLE: 'GROUND CONTAMINATION',
                 ID: 'ground-contamination',
                 CHILDREN: [],
                 DOCTYPES: ['groundcontamination'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'FOOD AND FEED',
+                TITLE: 'FOOD AND FEED',
                 ID: 'food-and-feed',
                 CHILDREN: [],
                 DOCTYPES: ['mresult_feed', 'mresult_food'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'WATER',
+                TITLE: 'WATER',
                 ID: 'water',
                 CHILDREN: [],
                 DOCTYPES: ['mresult_water'],
@@ -250,19 +249,19 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: 'ELANSection',
-        TITLE: u'CURRENT SITUATION',
+        TITLE: 'CURRENT SITUATION',
         ID: 'current-situation',
         CHILDREN: [
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'SITUATION REPORTS',
+                TITLE: 'SITUATION REPORTS',
                 ID: 'situation-reports',
                 CHILDREN: [],
                 DOCTYPES: ['nppinformation', 'situationreport', 'sitrep'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'PROTECTIVE ACTIONS',
+                TITLE: 'PROTECTIVE ACTIONS',
                 ID: 'protective-actions',
                 CHILDREN: [],
                 DOCTYPES: ['instructions', 'protectiveactions'],
@@ -271,19 +270,19 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: 'ELANSection',
-        TITLE: u'INFORMATION OF THE PUBLIC',
+        TITLE: 'INFORMATION OF THE PUBLIC',
         ID: 'information-of-the-public',
         CHILDREN: [
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'MEDIA RELEASES',
+                TITLE: 'MEDIA RELEASES',
                 ID: 'media-releases',
                 CHILDREN: [],
                 DOCTYPES: ['mediarelease'],
             },
             {
                 TYPE: 'ELANDocCollection',
-                TITLE: u'INSTRUCTIONS TO THE PUBLIC',
+                TITLE: 'INSTRUCTIONS TO THE PUBLIC',
                 ID: 'instructions-to-the-public',
                 CHILDREN: [],
                 DOCTYPES: ['instructions'],
@@ -331,154 +330,154 @@ BASICSTRUCTURE2 = [
 DTYPES = [
     {
         TYPE: 'DocType',
-        TITLE: u'Notification',
+        TITLE: 'Notification',
         ID: 'notification',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Note',
+        TITLE: 'Note',
         ID: 'note',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Event Information',
+        TITLE: 'Event Information',
         ID: 'eventinformation',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'NPP Information',
+        TITLE: 'NPP Information',
         ID: 'nppinformation',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Weather Information',
+        TITLE: 'Weather Information',
         ID: 'weatherinformation',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Trajectory',
+        TITLE: 'Trajectory',
         ID: 'trajectory',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'CNCAN Projection',
+        TITLE: 'CNCAN Projection',
         ID: 'cncanprojection',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'IFIN Projection',
+        TITLE: 'IFIN Projection',
         ID: 'ifinprojection',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'NPP Projection',
+        TITLE: 'NPP Projection',
         ID: 'nppprojection',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'RODOS Projection',
+        TITLE: 'RODOS Projection',
         ID: 'rodosprojection',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Other Projection',
+        TITLE: 'Other Projection',
         ID: 'otherprojection',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Gamma Dose Rate',
+        TITLE: 'Gamma Dose Rate',
         ID: 'gammadoserate',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Air Activity',
+        TITLE: 'Air Activity',
         ID: 'airactivity',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Ground Contamination',
+        TITLE: 'Ground Contamination',
         ID: 'groundcontamination',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Measurement Result Feed',
+        TITLE: 'Measurement Result Feed',
         ID: 'mresult_feed',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Measurement Result Food',
+        TITLE: 'Measurement Result Food',
         ID: 'mresult_food',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Measurement Result Water',
+        TITLE: 'Measurement Result Water',
         ID: 'mresult_water',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Situation Description',
+        TITLE: 'Situation Description',
         ID: 'situationreport',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Situation Report',
+        TITLE: 'Situation Report',
         ID: 'sitrep',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Instructions to the Public',
+        TITLE: 'Instructions to the Public',
         ID: 'instructions',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Protective Actions',
+        TITLE: 'Protective Actions',
         ID: 'protectiveactions',
         CHILDREN: [],
         'local_behaviors': ['elan'],
     },
     {
         TYPE: 'DocType',
-        TITLE: u'Media Release',
+        TITLE: 'Media Release',
         ID: 'mediarelease',
         CHILDREN: [],
         'local_behaviors': ['elan'],

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: dpdocument.py
 #
@@ -207,7 +206,7 @@ class AddForm(add.DefaultAddForm):
     portal_type = 'DPDocument'
 
     def updateWidgets(self):
-        super(AddForm, self).updateWidgets()
+        super().updateWidgets()
         if 'reireport' in self.request.get('form.widgets.docType', []):
             title = self.widgets['IDublinCore.title']
             if not title.value:

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.interfaces import IJournal
 from plone import api

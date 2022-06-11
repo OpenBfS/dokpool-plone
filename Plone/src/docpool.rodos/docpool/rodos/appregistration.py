@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.base.appregistry import registerApp
 from docpool.rodos.behaviors.rodosdoc import IRodosDoc
 from docpool.rodos.behaviors.rodostype import IRodosType
@@ -15,7 +13,7 @@ from docpool.rodos.local.rodos import dpRemoved
 # to be executed when docpools are created
 registerApp(
     RODOS_APP,
-    u"RODOS",
+    "RODOS",
     IRodosType,
     IRodosDoc,
     dpAdded,

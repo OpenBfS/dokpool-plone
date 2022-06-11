@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 from elan.journal import _
 from elan.journal.adapters import IJournalEntryContainer
@@ -25,7 +24,7 @@ class JournalEntryView(BrowserView, BaseView):
         # do not allow accessing the view without a timestamp
         if len(request.path) == 0:
             request.RESPONSE.setStatus(400)
-        super(JournalEntryView, self).__init__(context, request)
+        super().__init__(context, request)
 
     def __call__(self):
         # return an empty page on Bad Request
@@ -58,19 +57,19 @@ class BaseJournalEntryView(BrowserView):
         """Validate the journalentry id for the request."""
         id = self.request.form.get('id', None)
         if id is None:
-            msg = _(u'No entry selected.')
+            msg = _('No entry selected.')
             api.portal.show_message(msg, self.request, type='error')
             return False
         else:
             try:
                 id = int(id)
             except ValueError:
-                msg = _(u'Journalentry id is not an integer.')
+                msg = _('Journalentry id is not an integer.')
                 api.portal.show_message(msg, self.request, type='error')
                 return False
             adapter = IJournalEntryContainer(self.context)
             if id >= len(adapter):
-                msg = _(u'Journalentry id does not exist.')
+                msg = _('Journalentry id does not exist.')
                 api.portal.show_message(msg, self.request, type='error')
                 return False
         return True
@@ -90,7 +89,7 @@ class AddJournalEntryView(BaseJournalEntryView):
         text = self.request.form.get('text', None)
 
         if text is None:  # something went wrong
-            msg = _(u'Required text input is missing.')
+            msg = _('Required text input is missing.')
             self._redirect_with_status_message(msg, type='error')
             return
 
@@ -100,7 +99,7 @@ class AddJournalEntryView(BaseJournalEntryView):
         #      we're already firing an event on the adapter
         # notify the Journal has a new entry
         notify(ObjectModifiedEvent(self.context))
-        msg = _(u'Item published.')
+        msg = _('Item published.')
         self._redirect_with_status_message(msg)
 
 
@@ -133,7 +132,7 @@ class EditJournalEntryView(BaseJournalEntryView):
             text = self.request.form.get('text', None)
 
             if text is None:  # something went wrong
-                msg = _(u'Required text input is missing.')
+                msg = _('Required text input is missing.')
                 self._redirect_with_status_message(msg, type='error')
                 return
 
@@ -145,11 +144,11 @@ class EditJournalEntryView(BaseJournalEntryView):
             notify(ObjectModifiedEvent(self.context))
             # schedule a hard refresh
             self.context._last_journalentry_edition = str(time())
-            msg = _(u'Item saved.')
+            msg = _('Item saved.')
             self._redirect_with_status_message(msg)
 
     def cancel(self):
-        msg = _(u'Edit cancelled.')
+        msg = _('Edit cancelled.')
         self._redirect_with_status_message(msg)
 
     @property
@@ -179,5 +178,5 @@ class DeleteJournalEntryView(BaseJournalEntryView):
         notify(ObjectModifiedEvent(self.context))
         # schedule a hard refresh
         self.context._last_journalentry_deletion = str(time())
-        msg = _(u'Item deleted.')
+        msg = _('Item deleted.')
         self._redirect_with_status_message(msg)

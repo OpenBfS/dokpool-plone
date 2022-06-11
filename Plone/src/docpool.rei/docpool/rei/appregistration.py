@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.base.appregistry import registerApp
 from docpool.rei.behaviors.reidoc import IREIDoc
 from docpool.rei.behaviors.reitype import IREIType
@@ -15,7 +13,7 @@ from docpool.rei.local.rei import dpRemoved
 # to be executed when docpools are created
 registerApp(
     REI_APP,
-    u"REI",
+    "REI",
     IREIType,
     IREIDoc,
     dpAdded,

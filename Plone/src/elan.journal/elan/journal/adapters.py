@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Adapt a Journal with a container of journal-entries.
 
 """

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 from elan.journal.browser.base import BaseView
 from elan.journal.logger import logger
@@ -21,16 +20,16 @@ class RecentUpdates(BrowserView, BaseView):
         """
         if self.context._last_journalentry_edition > str(time() - 60):
             logger.debug(
-                u'A journal entry was deleted withing the last minute. '
-                u'Setting status code 205.'
+                'A journal entry was deleted withing the last minute. '
+                'Setting status code 205.'
             )
             self.request.RESPONSE.setStatus(205)
             return True
 
         if self.context._last_journalentry_deletion > str(time() - 60):
             logger.debug(
-                u'A journal entry was edited withing the last minute. '
-                u'Setting status code 205.'
+                'A journal entry was edited withing the last minute. '
+                'Setting status code 205.'
             )
             self.request.RESPONSE.setStatus(205)
             return True
@@ -51,22 +50,22 @@ class RecentUpdates(BrowserView, BaseView):
                 mod_since = mod_since.strftime('%Y-%m-%d %H:%M:%S')
             except (TypeError, ValueError):
                 mod_since = None
-                logger.debug(u'If-Modified-Since header was not valid.')
+                logger.debug('If-Modified-Since header was not valid.')
             if mod_since is not None:
-                logger.debug(u'Requesting page if modified since ' + mod_since)
+                logger.debug('Requesting page if modified since ' + mod_since)
                 # convert to UTC and normalize for comparison
                 modified = self.context.modified().utcdatetime()
                 modified = modified.strftime('%Y-%m-%d %H:%M:%S')
-                logger.debug(u'Last modification occurred on ' + modified)
+                logger.debug('Last modification occurred on ' + modified)
                 if modified <= mod_since:
-                    logger.debug(u'Setting status code 304.')
+                    logger.debug('Setting status code 304.')
                     self.request.RESPONSE.setStatus(304)  # not modified
                     return True
-        logger.debug(u'No If-Modified-Since header on the request.')
+        logger.debug('No If-Modified-Since header on the request.')
 
     def __call__(self):
         logger.debug(
-            u'Processing request from ' +
+            'Processing request from ' +
             self.request.environ['REMOTE_ADDR'])
 
         if self._needs_hard_refresh():

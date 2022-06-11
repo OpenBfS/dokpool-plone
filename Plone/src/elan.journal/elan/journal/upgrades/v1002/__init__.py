@@ -1,6 +1,3 @@
-# -*- coding:utf-8 -*-
-
-
 def migrate_journal_workflow(context):
     """Migrate journal workflow."""
 

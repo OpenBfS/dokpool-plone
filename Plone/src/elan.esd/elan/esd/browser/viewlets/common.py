@@ -13,7 +13,7 @@ allow_module("elan.esd.browser.viewlets.common")
 class ELANViewlet(ViewletBase):
     def isSupported(self):
         dp_app_state = getMultiAdapter(
-            (self.context, self.request), name=u'dp_app_state'
+            (self.context, self.request), name='dp_app_state'
         )
         return dp_app_state.isCurrentlyActive(ELAN_APP)
 

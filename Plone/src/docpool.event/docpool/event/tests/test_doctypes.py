@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.event.utils import getScenariosForCurrentUser
@@ -284,8 +283,7 @@ class TestDocTypes(unittest.TestCase):
         doctypes_ids = [i.id for i in doctypes]
         self.assertEqual(
             set(doctypes_ids),
-            set(
-                [
+            {
                     'notification',
                     'rodosprojection',
                     'mresult_flight',
@@ -324,8 +322,7 @@ class TestDocTypes(unittest.TestCase):
                     'sitrep',
                     'note',
                     'doksysdok',
-                ]
-            ),
+            },
         )
 
         # get the content-folder for a group to test with
@@ -353,7 +350,7 @@ class TestDocTypes(unittest.TestCase):
 
         # add a user to test with
         user = api.user.create(
-            email=u'foo@plone.org', username=u'foo', password=u'secret'
+            email='foo@plone.org', username='foo', password='secret'
         )
 
         # add the user to the groups
@@ -368,11 +365,11 @@ class TestDocTypes(unittest.TestCase):
 
         # now this user can add dpdocument using all doctypes
         allowed = getAllowedDocumentTypes(folder)
-        self.assertEqual(set([i.id for i in allowed]), set(doctypes_ids))
+        self.assertEqual({i.id for i in allowed}, set(doctypes_ids))
         from docpool.base.utils import getAllowedDocumentTypesForGroup
 
         self.assertEqual(
-            set([i.id for i in getAllowedDocumentTypesForGroup(folder)]),
+            {i.id for i in getAllowedDocumentTypesForGroup(folder)},
             set(doctypes_ids),
         )
 
@@ -394,19 +391,19 @@ class TestDocTypes(unittest.TestCase):
         weatherinfo = api.content.create(
             container=folder,
             type='DPDocument',
-            title=u'Some Document',
-            description=u'foo',
+            title='Some Document',
+            description='foo',
             docType='weatherinformation',
         )
         self.assertEqual(
-            weatherinfo.created_by, u'foo <i>Content Administrators (Test Dokpool)</i>'
+            weatherinfo.created_by, 'foo <i>Content Administrators (Test Dokpool)</i>'
         )
 
         eventinfo = api.content.create(
             container=folder,
             type='DPDocument',
-            title=u'Some Document',
-            description=u'foo',
+            title='Some Document',
+            description='foo',
             docType='eventinformation',
         )
         modified(weatherinfo)
@@ -425,13 +422,13 @@ class TestDocTypes(unittest.TestCase):
         )
 
         # only the one is reindexed
-        self.assertEqual(len(api.content.find(Description=u'foo')), 2)
-        self.assertEqual(len(api.content.find(Description=u'bar')), 0)
-        weatherinfo.description = u'bar'
-        eventinfo.description = u'bar'
+        self.assertEqual(len(api.content.find(Description='foo')), 2)
+        self.assertEqual(len(api.content.find(Description='bar')), 0)
+        weatherinfo.description = 'bar'
+        eventinfo.description = 'bar'
 
         # they are not reindexed when changed like this
-        self.assertEqual(len(api.content.find(Description=u'bar')), 0)
+        self.assertEqual(len(api.content.find(Description='bar')), 0)
 
         # get the base-doctype for one of the two
         weatherinfo_template = docpool['config']['dtypes']['weatherinformation']
@@ -440,8 +437,8 @@ class TestDocTypes(unittest.TestCase):
         notify(EditFinishedEvent(weatherinfo_template))
 
         # only that one was reindexed
-        self.assertEqual(len(api.content.find(Description=u'foo')), 1)
-        self.assertEqual(len(api.content.find(Description=u'bar')), 1)
+        self.assertEqual(len(api.content.find(Description='foo')), 1)
+        self.assertEqual(len(api.content.find(Description='bar')), 1)
 
     def test_docpool_searchresults(self):
         docpool = self.portal['test_docpool']
@@ -452,16 +449,16 @@ class TestDocTypes(unittest.TestCase):
             container=container,
             type='DPEvent',
             id='test_event',
-            title=u'Test Event',
+            title='Test Event',
         )
         folder = docpool['content']['Groups']['test_docpool_ELANUsers']
         new = api.content.create(
             container=folder,
             type='DPDocument',
-            title=u'Test DPDocument',
-            description=u'willbefound',
+            title='Test DPDocument',
+            description='willbefound',
             docType='weatherinformation',
-            text=RichTextValue(u'<p>Text</p>', 'text/html',
+            text=RichTextValue('<p>Text</p>', 'text/html',
                                'text/x-html-safe'),
             local_behaviors=['elan', 'doksys'],
             scenarios=[event.id])
@@ -473,9 +470,9 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(scenarios, [event.id])
         # Test search in catalog
         brains = api.content.find(SearchableText='willbefound')
-        self.assertEqual(brains[0].getObject().description, u'willbefound')
+        self.assertEqual(brains[0].getObject().description, 'willbefound')
         # Success in the 'content' folder
-        query_found = {'SearchableText': u'willbefound'}
+        query_found = {'SearchableText': 'willbefound'}
         # We call the search from the docpool
         # Because of the registration of plone.restapi.controlpanels.SearchControlpanel
         # a lookup by name will not find the default search-form. Duh!
@@ -484,7 +481,7 @@ class TestDocTypes(unittest.TestCase):
         res = search_view.results(query=query_found, batch=False)
         self.assertEqual(len(res), 1)
         # failure in 'config'
-        query_notfound = {'SearchableText': u'Test Event'}
+        query_notfound = {'SearchableText': 'Test Event'}
         res_not = search_view.results(query=query_notfound)
         self.assertEqual(len(res_not), 0)
         # Check the catalog_path

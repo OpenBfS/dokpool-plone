@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.base.appregistry import registerApp
 from docpool.config.local.elan import dpAdded
 from docpool.config.local.elan import dpRemoved
@@ -10,7 +8,7 @@ from docpool.elan.config import ELAN_APP
 
 registerApp(
     ELAN_APP,
-    u"ELAN",
+    "ELAN",
     IELANDocType,
     IELANDocument,
     dpAdded,

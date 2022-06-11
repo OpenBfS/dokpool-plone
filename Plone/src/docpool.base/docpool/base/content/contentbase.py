@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: contentbase.py
 #
@@ -52,32 +51,32 @@ class IContentBase(model.Schema):
     """
 
     created_by = schema.TextLine(
-        title=_(u'label_contentbase_created_by', default=u'Created by'),
-        description=_(u'description_contentbase_created_by', default=u''),
+        title=_('label_contentbase_created_by', default='Created by'),
+        description=_('description_contentbase_created_by', default=''),
         required=False,
     )
     directives.omitted('created_by')
 
     modified_by = schema.TextLine(
-        title=_(u'label_contentbase_modified_by', default=u'Modified by'),
-        description=_(u'description_contentbase_modified_by', default=u''),
+        title=_('label_contentbase_modified_by', default='Modified by'),
+        description=_('description_contentbase_modified_by', default=''),
         required=False,
     )
     directives.omitted('modified_by')
 
     mdate = schema.Datetime(
-        title=_(u'label_contentbase_mdate',
-                default=u'Date of last user action'),
-        description=_(u'description_contentbase_mdate', default=u''),
+        title=_('label_contentbase_mdate',
+                default='Date of last user action'),
+        description=_('description_contentbase_mdate', default=''),
         required=False,
         defaultFactory=initializeMdate,
     )
     directives.omitted('mdate')
 
     wdate = schema.Datetime(
-        title=_(u'label_contentbase_wdate',
-                default=u'Date of last workflow action'),
-        description=_(u'description_contentbase_wdate', default=u''),
+        title=_('label_contentbase_wdate',
+                default='Date of last workflow action'),
+        description=_('description_contentbase_wdate', default=''),
         required=False,
     )
     directives.omitted('wdate')
@@ -98,9 +97,9 @@ class ContentBase(Item):
         res = safe_text(fullname)
         if primary_group:
             if plain:
-                res += u" %s" % safe_text(primary_group)
+                res += " %s" % safe_text(primary_group)
             else:
-                res += u" <i>%s</i>" % safe_text(primary_group)
+                res += " <i>%s</i>" % safe_text(primary_group)
         return res
 
     def getWdate(self):

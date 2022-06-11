@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from io import StringIO
 from OFS.Image import Image as OFSImage
 from PIL import Image
@@ -86,7 +85,7 @@ def metadata(pdf):
     try:
         data = dict(pdf.getDocumentInfo())
     except (TypeError, PdfReadError) as e:
-        logger.error('{0}: {1}'.format(e.__class__, e))
+        logger.error(f'{e.__class__}: {e}')
 
     data['width'] = float(pdf.getPage(0).mediaBox.getWidth())
     data['height'] = float(pdf.getPage(0).mediaBox.getHeight())
@@ -103,7 +102,7 @@ def get_images(doc, page_start=0, pages=1):
     images = {}
 
     # Extracting self.pages pages
-    logger.info('Extracting {0:d} page screenshots'.format(pages))
+    logger.info(f'Extracting {pages:d} page screenshots')
 
     for page in range(page_start, page_start + pages):
         # for each page in the pdf file,
@@ -122,8 +121,8 @@ def get_images(doc, page_start=0, pages=1):
         # use PIL to generate thumbnail from image_result
         try:
             img_thumb = Image.open(StringIO(raw_image))
-        except IOError:
-            logger.error('This is not an image: {0}'.format(raw_image))
+        except OSError:
+            logger.error(f'This is not an image: {raw_image}')
             break
 
         img_thumb.thumbnail(thumb_size, Image.ANTIALIAS)
@@ -165,8 +164,8 @@ def ghostscript_transform(doc, page_num):
     and a page number argument and converts that page number of the pdf
     file to a png image file.
     """
-    first_page = '-dFirstPage={0:d}'.format(page_num)
-    last_page = '-dLastPage={0:d}'.format(page_num)
+    first_page = f'-dFirstPage={page_num:d}'
+    last_page = f'-dLastPage={page_num:d}'
     gs_cmd = [
         'gs',
         '-q',
@@ -199,7 +198,7 @@ def ghostscript_transform(doc, page_num):
     else:
         logger.warn(
             'Ghostscript process did not exit cleanly! '
-            'Error Code: {0}'.format(return_code)
+            'Error Code: {}'.format(return_code)
         )
         image_result = None
     return image_result
@@ -215,6 +214,6 @@ def remove_image_previews(doc):
     if 'pdfimages' in annotations:
         del annotations['pdfimages']
     doc.reindexObject()
-    msg = 'Removed preview annotations from {0:s}.'.format(doc.id)
+    msg = f'Removed preview annotations from {doc.id:s}.'
     logger.info(msg)
     return msg

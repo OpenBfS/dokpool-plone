@@ -5,15 +5,15 @@ from zope.schema.interfaces import IVocabularyFactory
 
 
 @implementer(IVocabularyFactory)
-class PrognosisTypesVocabulary(object):
+class PrognosisTypesVocabulary:
     """
     """
 
     def __call__(self, context):
         return safe_simplevocabulary_from_values([
-            u'RODOS Prognose',
-            u'RODOS Diagnose',
-            u'DWD Prognose',
+            'RODOS Prognose',
+            'RODOS Diagnose',
+            'DWD Prognose',
         ])
 
 
@@ -21,14 +21,14 @@ PrognosisTypesVocabularyFactory = PrognosisTypesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PrognosisFormsVocabulary(object):
+class PrognosisFormsVocabulary:
     """
     """
 
     def __call__(self, context):
         return safe_simplevocabulary_from_values([
-            u'Einzeldokument',
-            u'RODOS Lauf',
+            'Einzeldokument',
+            'RODOS Lauf',
         ])
 
 
@@ -36,31 +36,31 @@ PrognosisFormsVocabularyFactory = PrognosisFormsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class ReleaseSitesVocabulary(object):
+class ReleaseSitesVocabulary:
     """
     """
 
     def __call__(self, context):
         return safe_simplevocabulary_from_values([
-            u'ISAR',
-            u'GUNDREMMINGEN',
-            u'PHILIPSBURG',
-            u'NECKARWESTHEIM',
-            u'EMSLAND',
-            u'GROHNDE',
-            u'BROKDORF',
-            u'FR-MUENCHEN',
-            u'FR-BERLIN',
-            u'LEIBSTADT',
-            u'GOESGEN',
-            u'BEZNAU',
-            u'MUEHLEBERG',
-            u'CATTENOM',
-            u'FESSENHEIM',
-            u'CHOOZ',
-            u'TIHANGE',
-            u'TEMELIN',
-            u'mobiler Standort',
+            'ISAR',
+            'GUNDREMMINGEN',
+            'PHILIPSBURG',
+            'NECKARWESTHEIM',
+            'EMSLAND',
+            'GROHNDE',
+            'BROKDORF',
+            'FR-MUENCHEN',
+            'FR-BERLIN',
+            'LEIBSTADT',
+            'GOESGEN',
+            'BEZNAU',
+            'MUEHLEBERG',
+            'CATTENOM',
+            'FESSENHEIM',
+            'CHOOZ',
+            'TIHANGE',
+            'TEMELIN',
+            'mobiler Standort',
         ])
 
 

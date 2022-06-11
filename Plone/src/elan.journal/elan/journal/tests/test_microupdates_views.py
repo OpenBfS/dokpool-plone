@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.adapters import JournalEntry
 from elan.journal.interfaces import IBrowserLayer
@@ -27,7 +26,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
             'base-journalentry', self.journal, self.request
         )
         adapter = IJournalEntryContainer(self.journal)
-        adapter.add(JournalEntry(u'', u'Check me!'))
+        adapter.add(JournalEntry('', 'Check me!'))
 
     def test_validate_journalentry_id(self):
         self.request.form['id'] = '0'
@@ -39,7 +38,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'No entry selected.'
+        expected = 'No entry selected.'
         self.assertEqual(msg[0].message, expected)
 
     def test_validate_journalentry_invalid_id(self):
@@ -48,7 +47,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'Journalentry id is not an integer.'
+        expected = 'Journalentry id is not an integer.'
         self.assertEqual(msg[0].message, expected)
 
     def test_validate_journalentry_id_greater_than_lenght(self):
@@ -57,7 +56,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.assertFalse(valid)
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'Journalentry id does not exist.'
+        expected = 'Journalentry id does not exist.'
         self.assertEqual(msg[0].message, expected)
 
 
@@ -80,7 +79,7 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'Required text input is missing.'
+        expected = 'Required text input is missing.'
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
@@ -95,7 +94,7 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'Item published.'
+        expected = 'Item published.'
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
@@ -118,7 +117,7 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
             self.journal = api.content.create(
                 self.container, 'Journal', 'journal')
         adapter = IJournalEntryContainer(self.journal)
-        adapter.add(JournalEntry(u'', u'Edit me!'))
+        adapter.add(JournalEntry('', 'Edit me!'))
 
     def test_edit_journalentry(self):
         self.request.form['id'] = '0'
@@ -133,7 +132,7 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'Item saved.'
+        expected = 'Item saved.'
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(
@@ -156,7 +155,7 @@ class DeleteJournalEntryViewTestCase(unittest.TestCase):
             self.journal = api.content.create(
                 self.container, 'Journal', 'journal')
         adapter = IJournalEntryContainer(self.journal)
-        adapter.add(JournalEntry(u'', u'Delete me!'))
+        adapter.add(JournalEntry('', 'Delete me!'))
 
     def test_delete_journalentry(self):
         self.request.form['id'] = '0'
@@ -169,7 +168,7 @@ class DeleteJournalEntryViewTestCase(unittest.TestCase):
         # status message is set
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
-        expected = u'Item deleted.'
+        expected = 'Item deleted.'
         self.assertEqual(msg[0].message, expected)
         # redirection will happen
         self.assertEqual(

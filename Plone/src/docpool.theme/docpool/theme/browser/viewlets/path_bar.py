@@ -8,7 +8,7 @@ class PathBarViewlet(ViewletBase):
     index = ViewPageTemplateFile('path_bar.pt')
 
     def update(self):
-        super(PathBarViewlet, self).update()
+        super().update()
 
         self.is_rtl = self.portal_state.is_rtl()
 

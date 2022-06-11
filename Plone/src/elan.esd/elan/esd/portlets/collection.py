@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.base.utils import getDocumentPoolSite
 from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
@@ -19,8 +17,8 @@ from zope.interface import implementer
 
 class ICollectionPortlet(IPortletDataProvider):
     collection = schema.Choice(
-        title=_(u'label_elandocument_doctype', default=u'Document Type'),
-        description=_(u'description_elandocument_doctype', default=u''),
+        title=_('label_elandocument_doctype', default='Document Type'),
+        description=_('description_elandocument_doctype', default=''),
         required=True,
         source="elan.esd.vocabularies.Category",
     )
@@ -38,7 +36,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"Collection")
+        return _("Collection")
 
 
 # The renderer is like a view (in fact, like a content provider/viewlet). The
@@ -97,9 +95,9 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = field.Fields(ICollectionPortlet)
-    label = _(u"Add Collection Portlet")
+    label = _("Add Collection Portlet")
     description = _(
-        u"This portlet displays recently modified content from a collection."
+        "This portlet displays recently modified content from a collection."
     )
 
     def create(self, data):
@@ -108,7 +106,7 @@ class AddForm(base.AddForm):
 
 class EditForm(base.EditForm):
     form_fields = field.Fields(ICollectionPortlet)
-    label = _(u"Edit Collection Portlet")
+    label = _("Edit Collection Portlet")
     description = _(
-        u"This portlet displays recently modified content from a collection."
+        "This portlet displays recently modified content from a collection."
     )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Copyright (c) 2016 by Bundesamt für Strahlenschutz
 # Generator: ConPD2

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_get
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
@@ -34,14 +33,14 @@ import random
 log = logging.getLogger(__name__)
 
 
-def dummy_image(filename=u'image.png'):
+def dummy_image(filename='image.png'):
     filename = os.path.join(os.path.dirname(__file__), filename)
     with open(filename, 'rb') as fd:
         data = fd.read()
     return NamedBlobImage(data=data, filename=filename)
 
 
-def dummy_file(filename=u'file.pdf'):
+def dummy_file(filename='file.pdf'):
     filename = os.path.join(os.path.dirname(__file__), filename)
     with open(filename, 'rb') as fd:
         data = fd.read()
@@ -63,7 +62,7 @@ class DocpoolSetup(BrowserView):
         portal = api.portal.get()
         if portal.id != 'dokpool' and not api.env.test_mode():
             api.portal.show_message(
-                'The instance needs to be called "dokpool", not "{}"!'.format(portal.id),
+                f'The instance needs to be called "dokpool", not "{portal.id}"!',
                 self.request,
                 type='error')
             return self.index()
@@ -90,32 +89,32 @@ class DocpoolSetup(BrowserView):
             container=self.context,
             type='DocumentPool',
             id='bund',
-            title=u'Bund',
+            title='Bund',
             prefix='bund',
             supportedApps=('elan', 'doksys', 'rei'),
         )
         notify(EditFinishedEvent(docpool_bund))
-        log.info(u'Created docpool bund')
+        log.info('Created docpool bund')
 
         # create docpool 2 (without rei)
         docpool_land = api.content.create(
             container=self.context,
             type='DocumentPool',
             id='hessen',
-            title=u'Hessen',
+            title='Hessen',
             prefix='hessen',
             supportedApps=('elan', 'doksys'),
         )
         notify(EditFinishedEvent(docpool_land))
-        log.info(u'Created docpool hessen')
+        log.info('Created docpool hessen')
 
         user1 = add_user(docpool_bund, 'user1', ['group1'])
-        log.info(u'Created user1 and group1 in docpool bund')
+        log.info('Created user1 and group1 in docpool bund')
         user2 = add_user(docpool_land, 'user2', ['group2'], enabled_apps=['elan', 'doksys'])
-        log.info(u'Created user2 and group2 in docpool hessen')
+        log.info('Created user2 and group2 in docpool hessen')
 
         # Setup REI Users and groups for hessen and bayern
-        log.info(u'Creating Groups for REI')
+        log.info('Creating Groups for REI')
         add_user(docpool_bund, 'aufsicht_he', ['aufsicht_he'], enabled_apps=['rei'])
         add_user(docpool_bund, 'betreiber_he', ['betreiber_he'], enabled_apps=['rei'])
         add_user(docpool_bund, 'aufsicht_by', ['aufsicht_by'], enabled_apps=['rei'])
@@ -187,38 +186,38 @@ class DocpoolSetup(BrowserView):
             container=event_config_folder,
             type='DPNuclearPowerStation',
             id='kernkraftwerk-1',
-            title=u'Kernkraftwerk 1',
-            coordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            title='Kernkraftwerk 1',
+            coordinates='POINT(12.240313700000002 48.59873489999998)',
             )
-        log.info(u'Created dpnuclearpowerstation')
+        log.info('Created dpnuclearpowerstation')
         dpnetwork = api.content.create(
             container=event_config_folder,
             type='DPNetwork',
             id='testnetz',
-            title=u'Testnetz',
-            coordinates=u'POLYGON((12.789515693194565 48.70897536061274,11.9394485546417 48.750643880797945,11.725215156233618 48.447309003359074,12.352809150286648 48.38076862235553,12.803248603348985 48.39080082760333,12.789515693194565 48.70897536061274))',
+            title='Testnetz',
+            coordinates='POLYGON((12.789515693194565 48.70897536061274,11.9394485546417 48.750643880797945,11.725215156233618 48.447309003359074,12.352809150286648 48.38076862235553,12.803248603348985 48.39080082760333,12.789515693194565 48.70897536061274))',
             )
-        log.info(u'Created dpnetwork')
+        log.info('Created dpnetwork')
         dpevent = api.content.create(
             container=event_config_folder,
             type='DPEvent',
             id='test-event',
-            title=u'Test Event',
-            description=u'Die Beschreibung',
-            EventType=u'Exercise',
+            title='Test Event',
+            description='Die Beschreibung',
+            EventType='Exercise',
             Status='active',
-            AlertingStatus=u'none',
-            AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
-            EventCoordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            AlertingStatus='none',
+            AreaOfInterest='POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
+            EventCoordinates='POINT(12.240313700000002 48.59873489999998)',
             EventLocation=RelationValue(get_intid(dpnuclearpowerstation)),
             SectorizingNetworks=[RelationValue(get_intid(dpnetwork))],
             EventPhase=None,
             Exercise=True,
             TimeOfEvent=datetime.now(),
             OperationMode='routine',
-            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            SectorizingSampleTypes=['A', 'A1', 'A11', 'A12', 'A13', 'A2', 'A21', 'A22', 'A23', 'A24', 'A3', 'A31', 'A32', 'B11'],
             )
-        log.info(u'Created dpevent')
+        log.info('Created dpevent')
 
         journal1 = dpevent['journal1']
         _create_journalentries(journal1, 5)
@@ -233,22 +232,22 @@ class DocpoolSetup(BrowserView):
             container=event_config_folder,
             type='DPEvent',
             id='archived-event',
-            title=u'Test Event that was archived',
-            description=u'Die Beschreibung',
-            EventType=u'Test',
+            title='Test Event that was archived',
+            description='Die Beschreibung',
+            EventType='Test',
             Status='inactive',
-            AlertingStatus=u'none',
-            AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
-            EventCoordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            AlertingStatus='none',
+            AreaOfInterest='POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
+            EventCoordinates='POINT(12.240313700000002 48.59873489999998)',
             EventLocation=RelationValue(get_intid(dpnuclearpowerstation)),
             SectorizingNetworks=[RelationValue(get_intid(dpnetwork))],
             EventPhase=None,
             Exercise=True,
             TimeOfEvent=datetime.now(),
             OperationMode='routine',
-            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            SectorizingSampleTypes=['A', 'A1', 'A11', 'A12', 'A13', 'A2', 'A21', 'A22', 'A23', 'A24', 'A3', 'A31', 'A32', 'B11'],
             )
-        log.info(u'Created dpevent')
+        log.info('Created dpevent')
 
         journal1 = dpevent_to_archive['journal1']
         _create_journalentries(journal1, 5)
@@ -266,7 +265,7 @@ class DocpoolSetup(BrowserView):
         # Add modulkonfiguration
 
         with api.env.adopt_user(user=user1):
-            sampletype_ids = [u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
+            sampletype_ids = ['A', 'B', 'F', 'G', 'I', 'L', 'M', 'N', 'S', 'Z']
             # add one dpdocument for each type (except reireport)
             for doctype in doctypes:
                 if doctype.id == 'reireport':
@@ -275,36 +274,36 @@ class DocpoolSetup(BrowserView):
                 new = api.content.create(
                     container=folder,
                     type='DPDocument',
-                    title=u'Ein {}'.format(doctype.title),
-                    description=u'foo ({})'.format(doctype.id),
+                    title=f'Ein {doctype.title}',
+                    description=f'foo ({doctype.id})',
                     docType=doctype.id,
                     text=RichTextValue(
-                        u'<p>Text für {}</p>'.format(doctype.title),
+                        f'<p>Text für {doctype.title}</p>',
                         'text/html',
                         'text/x-html-safe'),
                     local_behaviors=['elan', 'doksys'],
                     scenarios=[dpevent.id],
                     SampleType=[random.choice(sampletype_ids)],
-                    Area=u'D',
-                    DataType=[u'ONMON'],
-                    Dom=[u'84 _deposition_ground_beta surface activity_2 h'],
-                    Duration=u'1d',
-                    LegalBase=[u'IRMIS'],
-                    MeasurementCategory=[u'Si-31'],
-                    MeasuringProgram=u'Intensivmessprogramm',
-                    NetworkOperator=[u'Bremen'],
-                    OperationMode=u'Routine',
-                    Purpose=u'Standard-Info Bundesmessnetze',
+                    Area='D',
+                    DataType=['ONMON'],
+                    Dom=['84 _deposition_ground_beta surface activity_2 h'],
+                    Duration='1d',
+                    LegalBase=['IRMIS'],
+                    MeasurementCategory=['Si-31'],
+                    MeasuringProgram='Intensivmessprogramm',
+                    NetworkOperator=['Bremen'],
+                    OperationMode='Routine',
+                    Purpose='Standard-Info Bundesmessnetze',
                     SamplingBegin=datetime.now(),
                     SamplingEnd=datetime.now() + timedelta(hours=1),
-                    Status=u'geprueft',
+                    Status='geprueft',
                     TrajectoryEndTime=datetime.now() + timedelta(hours=1),
                     TrajectoryStartTime=datetime.now(),
                 )
                 api.content.create(
                     container=new,
                     type='Image',
-                    title='{}_image'.format(doctype.id),
+                    title=f'{doctype.id}_image',
                     image=dummy_image()
                     )
                 try:
@@ -312,32 +311,32 @@ class DocpoolSetup(BrowserView):
                 except Exception as e:
                     log.info(e)
                 modified(new)
-                log.info(u'Created dpdocument of type {}'.format(doctype.id))
+                log.info(f'Created dpdocument of type {doctype.id}')
 
             # add one full DPDocument
             new = api.content.create(
                 container=folder,
                 type='DPDocument',
-                title=u'Eine Bodenprobe',
-                description=u'foo',
-                text=RichTextValue(u'<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
+                title='Eine Bodenprobe',
+                description='foo',
+                text=RichTextValue('<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
                 docType='groundcontamination',
                 scenarios=[dpevent.id],
                 local_behaviors=['elan', 'doksys'],
-                Area=u'D',
-                DataType=[u'ONMON'],
-                Dom=[u'84 _deposition_ground_beta surface activity_2 h'],
-                Duration=u'1d',
-                LegalBase=[u'IRMIS'],
-                MeasurementCategory=[u'Si-31'],
-                MeasuringProgram=u'Intensivmessprogramm',
-                NetworkOperator=[u'Bremen'],
-                OperationMode=u'Routine',
-                Purpose=u'Standard-Info Bundesmessnetze',
-                SampleType=[u'B2'],
+                Area='D',
+                DataType=['ONMON'],
+                Dom=['84 _deposition_ground_beta surface activity_2 h'],
+                Duration='1d',
+                LegalBase=['IRMIS'],
+                MeasurementCategory=['Si-31'],
+                MeasuringProgram='Intensivmessprogramm',
+                NetworkOperator=['Bremen'],
+                OperationMode='Routine',
+                Purpose='Standard-Info Bundesmessnetze',
+                SampleType=['B2'],
                 SamplingBegin=datetime.now(),
                 SamplingEnd=datetime.now() + timedelta(hours=1),
-                Status=u'geprueft',
+                Status='geprueft',
                 TrajectoryEndTime=datetime.now() + timedelta(hours=1),
                 TrajectoryStartTime=datetime.now(),
             )
@@ -345,26 +344,26 @@ class DocpoolSetup(BrowserView):
             api.content.create(
                 container=new,
                 type='Image',
-                title=u'Ein Bild',
+                title='Ein Bild',
                 image=dummy_image(),
                 )
             api.content.create(
                 container=new,
                 type='File',
-                title=u'Eine Datei',
+                title='Eine Datei',
                 file=dummy_file(),
                 )
             api.content.transition(obj=new, transition='publish')
-            log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
+            log.info('Created dpdocument Eine Bodenprobe {}'.format(
                 new.absolute_url()))
 
             # add one full DPDocument to the event to archive
             new = api.content.create(
                 container=folder,
                 type='DPDocument',
-                title=u'Eine ELAN Bodenprobe zum archivieren',
-                description=u'foo',
-                text=RichTextValue(u'<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
+                title='Eine ELAN Bodenprobe zum archivieren',
+                description='foo',
+                text=RichTextValue('<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
                 docType='groundcontamination',
                 scenarios=[dpevent_to_archive.id],
                 local_behaviors=['elan'],
@@ -373,17 +372,17 @@ class DocpoolSetup(BrowserView):
             api.content.create(
                 container=new,
                 type='Image',
-                title=u'Ein Bild',
+                title='Ein Bild',
                 image=dummy_image(),
                 )
             api.content.create(
                 container=new,
                 type='File',
-                title=u'Eine Datei',
+                title='Eine Datei',
                 file=dummy_file(),
                 )
             api.content.transition(obj=new, transition='publish')
-            log.info(u'Created dpdocument Eine Bodenprobe {}'.format(
+            log.info('Created dpdocument Eine Bodenprobe {}'.format(
                 new.absolute_url()))
 
         # archive event
@@ -400,38 +399,38 @@ class DocpoolSetup(BrowserView):
             new = api.content.create(
                 container=folder,
                 type='DPDocument',
-                title=u'Ein Bericht',
-                description=u'foo',
-                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                title='Ein Bericht',
+                description='foo',
+                text=RichTextValue('<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
                 Year=2017,
-                Period=u'Q1',
+                Period='Q1',
                 NuclearInstallations=['UCHL'],
-                Medium=u'Fortluft',
-                ReiLegalBases=[u'REI-E'],
-                Origins=[u'unabhängige Messstelle'],
-                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
-                Authority=u'de_bw',
-                PDFVersion=u'PDF/A-1b',
+                Medium='Fortluft',
+                ReiLegalBases=['REI-E'],
+                Origins=['unabhängige Messstelle'],
+                MStIDs=['03132', '03141', '03151', '03161', '03171'],
+                Authority='de_bw',
+                PDFVersion='PDF/A-1b',
             )
             new = api.content.create(
                 container=folder,
                 type='DPDocument',
-                title=u'Ein Bericht',
-                description=u'foo',
-                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                title='Ein Bericht',
+                description='foo',
+                text=RichTextValue('<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
                 Year=2020,
-                Period=u'Q1',
+                Period='Q1',
                 NuclearInstallations=['U07U'],
-                Medium=u'Abwasser/Fortluft',
-                ReiLegalBases=[u'REI-E'],
-                Origins=[u'unabhängige Messstelle'],
-                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
-                Authority=u'de_bw',
-                PDFVersion=u'PDF/A-1b',
+                Medium='Abwasser/Fortluft',
+                ReiLegalBases=['REI-E'],
+                Origins=['unabhängige Messstelle'],
+                MStIDs=['03132', '03141', '03151', '03161', '03171'],
+                Authority='de_bw',
+                PDFVersion='PDF/A-1b',
             )
 
         folder = docpool_bund['content']['Groups']['bund_aufsicht_by']
@@ -439,57 +438,57 @@ class DocpoolSetup(BrowserView):
             new = api.content.create(
                 container=folder,
                 type='DPDocument',
-                title=u'Ein Bericht',
-                description=u'foo',
-                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                title='Ein Bericht',
+                description='foo',
+                text=RichTextValue('<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
                 Year=2019,
-                Period=u'M1',
+                Period='M1',
                 NuclearInstallations=['U13A'],
-                Medium=u'Abwasser',
-                ReiLegalBases=[u'REI-I'],
-                Origins=[u'Genehmigungsinhaber'],
-                MStIDs=[u'09121'],
-                Authority=u'de_mv',
-                PDFVersion=u'PDF/A-1b',
+                Medium='Abwasser',
+                ReiLegalBases=['REI-I'],
+                Origins=['Genehmigungsinhaber'],
+                MStIDs=['09121'],
+                Authority='de_mv',
+                PDFVersion='PDF/A-1b',
             )
             new = api.content.create(
                 container=folder,
                 type='DPDocument',
-                title=u'Ein Bericht',
-                description=u'foo',
-                text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+                title='Ein Bericht',
+                description='foo',
+                text=RichTextValue('<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
                 docType='reireport',
                 local_behaviors=['rei'],
                 Year=2021,
-                Period=u'M1',
+                Period='M1',
                 NuclearInstallations=['U07U'],
-                Medium=u'Abwasser/Fortluft',
-                ReiLegalBases=[u'REI-E'],
-                Origins=[u'unabhängige Messstelle'],
-                MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
-                Authority=u'de_bw',
-                PDFVersion=u'PDF/A-1b',
+                Medium='Abwasser/Fortluft',
+                ReiLegalBases=['REI-E'],
+                Origins=['unabhängige Messstelle'],
+                MStIDs=['03132', '03141', '03151', '03161', '03171'],
+                Authority='de_bw',
+                PDFVersion='PDF/A-1b',
             )
 
         new = api.content.create(
             container=folder,
             type='DPDocument',
-            title=u'Ein Bericht des Berichts',
-            description=u'foo',
-            text=RichTextValue(u'<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
+            title='Ein Bericht des Berichts',
+            description='foo',
+            text=RichTextValue('<p>Ein Bericht!</p>', 'text/html', 'text/x-html-safe'),
             docType='reireport',
             local_behaviors=['rei'],
             Year=2009,
-            Period=u'M1',
+            Period='M1',
             NuclearInstallations=['U08K'],
-            Medium=u'Abwasser/Fortluft',
-            ReiLegalBases=[u'REI-E'],
-            Origins=[u'unabhängige Messstelle'],
-            MStIDs=[u'03132', u'03141', u'03151', u'03161', u'03171'],
-            Authority=u'de_bw',
-            PDFVersion=u'PDF/A-1b',
+            Medium='Abwasser/Fortluft',
+            ReiLegalBases=['REI-E'],
+            Origins=['unabhängige Messstelle'],
+            MStIDs=['03132', '03141', '03151', '03161', '03171'],
+            Authority='de_bw',
+            PDFVersion='PDF/A-1b',
         )
         # Create Pinnwand Collections for Docpools
         dbconfig_bund = docpool_bund['contentconfig']['dbconfig']
@@ -498,8 +497,8 @@ class DocpoolSetup(BrowserView):
             container=dbconfig_bund,
             type='DashboardCollection',
             id="pinnwand_bund",
-            title=u'Default Bund Pinnwand',
-            description=u'Default Bund Pinnwand',
+            title='Default Bund Pinnwand',
+            description='Default Bund Pinnwand',
             docTypes=[RelationValue(get_intid(groundcontamination))])
         # Set the create DCollection
         docpool_bund['esd']['dashboard'].dbCollections = [RelationValue(get_intid(pinnwand_bund))]
@@ -513,8 +512,8 @@ class DocpoolSetup(BrowserView):
         dptransferfolder = api.content.create(
             container=dptranfers_folder,
             type='DPTransferFolder',
-            title=u'von Bund',
-            description=u'foo',
+            title='von Bund',
+            description='foo',
             sendingESD=docpool_bund.UID(),
             permLevel="read/write",
             unknownDtDefault='block',
@@ -527,20 +526,20 @@ class DocpoolSetup(BrowserView):
             container=docpool_land['contentconfig']['scen'],
             type='DPEvent',
             id='test-event',
-            title=u'Test Event',
-            description=u'Die Beschreibung',
-            EventType=u'Exercise',
+            title='Test Event',
+            description='Die Beschreibung',
+            EventType='Exercise',
             Status='active',
-            AlertingStatus=u'none',
-            AreaOfInterest=u'POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
-            EventCoordinates=u'POINT(12.240313700000002 48.59873489999998)',
+            AlertingStatus='none',
+            AreaOfInterest='POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))',
+            EventCoordinates='POINT(12.240313700000002 48.59873489999998)',
             EventPhase=None,
             Exercise=True,
             TimeOfEvent=datetime.now(),
             OperationMode='routine',
-            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            SectorizingSampleTypes=['A', 'A1', 'A11', 'A12', 'A13', 'A2', 'A21', 'A22', 'A23', 'A24', 'A3', 'A31', 'A32', 'B11'],
             )
-        log.info(u'Created test-event for hessen')
+        log.info('Created test-event for hessen')
 
         from docpool.transfers.behaviors.transferable import ITransferable
         # transfer a elan/doksys document from bund to hessen
@@ -554,7 +553,7 @@ class DocpoolSetup(BrowserView):
         )
         # Configure EEA faceted navigation
         search = api.content.create(
-            container=docpool_bund, type="Folder", id="rei-suche", title=u"Rei Suche",
+            container=docpool_bund, type="Folder", id="rei-suche", title="Rei Suche",
             local_behaviors=['rei'],
         )
         _configure_faceted_view(search, import_file_path, 'faceted-table-items')
@@ -564,7 +563,7 @@ class DocpoolSetup(BrowserView):
         modified(search)
 
         # Workaround for broken indexes (See #3502)
-        log.info(u'Rebuilding catalog')
+        log.info('Rebuilding catalog')
         catalog = api.portal.get_tool('portal_catalog')
         catalog.clearFindAndRebuild()
         # FIXME: Why do we need this? Argh!
@@ -595,9 +594,9 @@ def add_user(
         add_group(docpool, groupname)
 
     # add the user
-    user_fullname = '{} ({})'.format(username, docpool_title)
+    user_fullname = f'{username} ({docpool_title})'
     user = api.user.create(
-        email=u'tester@plone.org',
+        email='tester@plone.org',
         username=username,
         password=username,
         roles=('Member',),
@@ -612,18 +611,18 @@ def add_user(
     )
     # add the user to specified groups
     for groupname in groupnames:
-        real_groupname = '%s_%s' % (prefix, groupname)
+        real_groupname = '{}_{}'.format(prefix, groupname)
         group = api.group.get(real_groupname)
         api.group.add_user(group=group, user=user)
 
     # Add the user to app-specific default-groups
-    api.group.add_user(groupname='{}_Members'.format(prefix), user=user)
+    api.group.add_user(groupname=f'{prefix}_Members', user=user)
     if 'doksys' in enabled_apps:
-        api.group.add_user(groupname='{}_DoksysUsers'.format(prefix), user=user)
+        api.group.add_user(groupname=f'{prefix}_DoksysUsers', user=user)
     if 'elan' in enabled_apps:
-        api.group.add_user(groupname='{}_ELANUsers'.format(prefix), user=user)
+        api.group.add_user(groupname=f'{prefix}_ELANUsers', user=user)
     if 'rei' in enabled_apps:
-        api.group.add_user(groupname='{}_REIUsers'.format(prefix), user=user)
+        api.group.add_user(groupname=f'{prefix}_REIUsers', user=user)
     pm = getToolByName(docpool, 'portal_membership')
     pm.createMemberArea(username)
     return user
@@ -648,13 +647,13 @@ def add_group(docpool, groupname):
     gtool = getToolByName(docpool, 'portal_groups')
     docpool_uid = IUUID(docpool)
     docpool_title = docpool.Title()
-    group_title = '{} ({})'.format(groupname.capitalize(), docpool_title)
+    group_title = f'{groupname.capitalize()} ({docpool_title})'
     description = ''
     prefix = docpool.prefix or docpool.id
-    groupname = '%s_%s' % (prefix, groupname)
+    groupname = '{}_{}'.format(prefix, groupname)
 
     if api.group.get(groupname=groupname) is not None:
-        log.info(u'Skipping. Group {} exists.'.format(groupname))
+        log.info(f'Skipping. Group {groupname} exists.')
         return
 
     props = {

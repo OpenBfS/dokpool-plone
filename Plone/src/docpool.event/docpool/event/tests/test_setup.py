@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING  # noqa: E501
 from plone import api

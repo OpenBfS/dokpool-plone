@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: documentpool.py
 #
@@ -49,26 +48,26 @@ class IDocumentPool(model.Schema):
     """
 
     prefix = schema.TextLine(
-        title=_(u'label_documentpool_prefix', default=u'Prefix names'),
+        title=_('label_documentpool_prefix', default='Prefix names'),
         description=_(
-            u'description_documentpool_prefix',
-            default=u'Will be used to construct user and group names. If left blank, the id of the ESD will be used. ',
+            'description_documentpool_prefix',
+            default='Will be used to construct user and group names. If left blank, the id of the ESD will be used. ',
         ),
         required=False,
     )
 
     customLogo = NamedBlobImage(
-        title=_(u'label_documentpool_customlogo', default=u'Custom Logo'),
-        description=_(u'description_documentpool_customlogo', default=u''),
+        title=_('label_documentpool_customlogo', default='Custom Logo'),
+        description=_('description_documentpool_customlogo', default=''),
         required=False,
     )
 
     supportedApps = schema.List(
         title=_(
-            u'label_documentpool_supportedapps',
-            default=u'Applications supported in this document pool',
+            'label_documentpool_supportedapps',
+            default='Applications supported in this document pool',
         ),
-        description=_(u'description_documentpool_supportedapps', default=u''),
+        description=_('description_documentpool_supportedapps', default=''),
         required=False,
         missing_value=(),
         value_type=schema.Choice(
@@ -134,7 +133,7 @@ class DocumentPool(Container):
         """
         """
         safeWrite(obj, self.REQUEST)
-        obj.text = RichTextValue(u"", 'text/plain', 'text/html')
+        obj.text = RichTextValue("", 'text/plain', 'text/html')
 
     def allSupportedApps(self):
         """
@@ -145,7 +144,7 @@ class DocumentPool(Container):
 
     def isActive(self, APP):
         dp_app_state = getMultiAdapter(
-            (self, self.REQUEST), name=u'dp_app_state')
+            (self, self.REQUEST), name='dp_app_state')
         return dp_app_state.isCurrentlyActive(APP)
 
     def myDocumentPool(self):

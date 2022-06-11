@@ -320,7 +320,7 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     @return:
     """
     try:
-        dp_app_state = getMultiAdapter((doc, request), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter((doc, request), name='dp_app_state')
         if doc.isPersonal():  # no personal filtering in the content area
             permitted_apps = dp_app_state.appsEffectiveForObject(
                 request, filtered=False

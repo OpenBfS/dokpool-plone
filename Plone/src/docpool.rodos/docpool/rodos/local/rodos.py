@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.rodos.config import RODOS_APP
 from docpool.rodos import DocpoolMessageFactory as _

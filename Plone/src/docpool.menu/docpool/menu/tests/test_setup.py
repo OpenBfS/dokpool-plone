@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from docpool.menu.testing import DOCPOOL_MENU_INTEGRATION_TESTING  # noqa
 from plone import api

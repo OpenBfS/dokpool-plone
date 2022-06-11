@@ -11,7 +11,7 @@ class DPFactoriesMenu(FactoriesMenu):
     def getMenuItems(self, obj, request):
         """ Safely get menu items
         """
-        menu_items = super(DPFactoriesMenu, self).getMenuItems(obj, request)
+        menu_items = super().getMenuItems(obj, request)
 
         if not api.user.has_permission(
                 'Docpool: Manage Addable Types', obj=obj):
@@ -33,7 +33,7 @@ class DPWorkflowMenu(WorkflowMenu):
 
     def getMenuItems(self, context, request):
 
-        results = super(DPWorkflowMenu, self).getMenuItems(context, request)
+        results = super().getMenuItems(context, request)
         if len(results) > 0:
 
             # Remove status history menu item ('Advanced...')

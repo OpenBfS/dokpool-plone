@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 from elan.esd.content.elaninfos import IELANInfos
 from elan.esd.content.elandoccollection import IELANDocCollection

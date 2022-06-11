@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: srtextblock.py
 #
@@ -37,8 +36,8 @@ class ISRTextBlock(model.Schema, IContentBase):
 
     searchable('text')
     text = RichText(
-        title=_(u'label_srtextblock_text', default=u'Text'),
-        description=_(u'description_srtextblock_text', default=u''),
+        title=_('label_srtextblock_text', default='Text'),
+        description=_('description_srtextblock_text', default=''),
         required=False,
     )
 

@@ -7,7 +7,7 @@ from zope.interface import implementer
 
 @implementer(ILastModified)
 @adapter(IContentBase)
-class ContentBaseLastModified(object):
+class ContentBaseLastModified:
     """
     """
 
@@ -46,10 +46,10 @@ class ContentBaseLastModified(object):
 @adapter(IDPDocument)
 class DocumentLastModified(ContentBaseLastModified):
     def __init__(self, context):
-        super(DocumentLastModified, self).__init__(context)
+        super().__init__(context)
 
     def __call__(self):
-        lm = super(DocumentLastModified, self).__call__()
+        lm = super().__call__()
         # we need to consider date of last transfer
         transferred = None
         try:

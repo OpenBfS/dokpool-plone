@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: folderbase.py
 #
@@ -159,7 +158,7 @@ class FolderDeleteForm(form.Form):
         objects = [api.content.get(path=str(path)) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if not objects:
-            api.portal.show_message(_(u'No items to delete.'), self.request)
+            api.portal.show_message(_('No items to delete.'), self.request)
             return self.request.response.redirect(self.view_url())
         adapter = api.content.get_view('delete_confirmation_info', self.context, self.request)
         if adapter:
@@ -174,9 +173,9 @@ class FolderDeleteForm(form.Form):
         if objects:
             # linkintegrity was already checked and maybe ignored!
             api.content.delete(objects=objects, check_linkintegrity=False)
-            api.portal.show_message(_(u'Items deleted.'), self.request)
+            api.portal.show_message(_('Items deleted.'), self.request)
         else:
-            api.portal.show_message(_(u'No items deleted.'), self.request)
+            api.portal.show_message(_('No items deleted.'), self.request)
         target = self.view_url()
         return self.request.response.redirect(target)
 
@@ -187,7 +186,7 @@ class FolderDeleteForm(form.Form):
         return self.request.response.redirect(target)
 
     def updateActions(self):
-        super(FolderDeleteForm, self).updateActions()
+        super().updateActions()
         if self.actions and 'Delete' in self.actions:
             self.actions['Delete'].addClass('btn-danger')
         if self.actions and 'Cancel' in self.actions:

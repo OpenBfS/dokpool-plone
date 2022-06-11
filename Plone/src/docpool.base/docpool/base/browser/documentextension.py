@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: dpdocument.py
 #
@@ -37,7 +36,7 @@ class DocMetaView(BrowserView):
             icon = appIcon(behavior_name)
             item = {
                 'behavior_name': behavior_name,
-                'icon_url': icon and '{}/{}'.format(portal_url, icon) or False,
+                'icon_url': icon and f'{portal_url}/{icon}' or False,
                 'behavior': context.doc_extension(behavior_name),
             }
             # TODO: Sort?

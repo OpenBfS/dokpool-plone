@@ -44,11 +44,11 @@ def allowed_targets(context):
 
     if isinstance(context, DPDocument):
         mdate = context.getMdate()
-        sent_to_since_last_modified = set(
+        sent_to_since_last_modified = {
             entry['transferfolder_uid']
             for entry in adapted.sender_log
             if entry['timestamp'] > mdate
-        )
+        }
         targets = [t for t in targets if t not in sent_to_since_last_modified]
 
     return targets

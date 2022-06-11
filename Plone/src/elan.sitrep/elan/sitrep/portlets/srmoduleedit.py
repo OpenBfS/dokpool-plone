@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
@@ -25,7 +23,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"SRModuleEdit")
+        return _("SRModuleEdit")
 
 
 # The renderer is like a view (in fact, like a content provider/viewlet). The

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from docpool.api.testing import DOCPOOL_API_FUNCTIONAL_FULL_TESTING  # noqa
 from docpool.api.testing import DOCPOOL_API_INTEGRATION_TESTING  # noqa

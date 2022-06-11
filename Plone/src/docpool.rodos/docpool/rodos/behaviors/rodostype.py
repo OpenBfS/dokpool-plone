@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: rodostype.py
 #
@@ -22,7 +21,7 @@ class IRodosType(IDocTypeExtension):
     pass
 
 
-class RodosType(object):
+class RodosType:
     """
     """
 

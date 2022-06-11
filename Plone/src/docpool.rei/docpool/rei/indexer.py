@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.rei.behaviors.reidoc import IREIDoc
 from plone.base.utils import safe_bytes

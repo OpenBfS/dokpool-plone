@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import implicitApps
 from docpool.base.config import BASE_APP
@@ -30,7 +29,7 @@ class ApplicationState(BrowserView):
             dto = self.context.docTypeObj()
         else:
             dtFromRequest = request.get('form.widgets.docType', [''])
-            if isinstance(dtFromRequest, type('')):
+            if isinstance(dtFromRequest, str):
                 dtFromRequest = [dtFromRequest]
             dt = request.get('docType', dtFromRequest[0])
             if dt:

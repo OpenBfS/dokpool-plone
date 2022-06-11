@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from datetime import datetime  # mindestens für Expressions hilfreich
 from docpool.dbaccess.content.events import ObjectAddedEvent
 from docpool.dbaccess.content.events import ObjectChangedEvent
@@ -37,7 +35,7 @@ def genericImportFromCSV(
     efields = getAllEntityFields(klass)
     # print pkfields
     # print efields
-    if type(file) in (type(""), type(u"")):
+    if type(file) in (str, str):
         file = StringIO(file)
         meldung = ["Import aus Zeichenkette fuer %s" % (typ), "", ""]
     else:
@@ -123,11 +121,11 @@ def genericImportFromCSV(
         if pkfield not in alle:
             mitpk = False
 
-    meldung.append(u"Spalten: " + ", ".join(alle))
-    meldung.append(u"Enthalten Schlüssel? %s" % (mitpk and "Ja" or "Nein"))
-    meldung.append(u"Eindeutige Werte beachten: %s" % ", ".join(unique))
-    meldung.append(u"Ignorierte Spalten: %s" % ", ".join(ungueltig))
-    meldung.append(u"")
+    meldung.append("Spalten: " + ", ".join(alle))
+    meldung.append("Enthalten Schlüssel? %s" % (mitpk and "Ja" or "Nein"))
+    meldung.append("Eindeutige Werte beachten: %s" % ", ".join(unique))
+    meldung.append("Ignorierte Spalten: %s" % ", ".join(ungueltig))
+    meldung.append("")
 
     # print "mit PK?", mitpk
 
@@ -139,7 +137,7 @@ def genericImportFromCSV(
 
     if len(alle) == 0:
         # Nichts zu importieren, ungueltige Daten
-        meldung.append(u"Keine Spaltennamen gefunden.")
+        meldung.append("Keine Spaltennamen gefunden.")
         status = False
         return status, meldung
     reader = unicode_csv_reader(file, delimiter=delimiter, fieldnames=alle)
@@ -178,10 +176,10 @@ def genericImportFromCSV(
                     except Exception as e:
                         # print e
                         meldung.append(
-                            u"Kein Verweis '%s' gefunden - ignoriert" % row[f]
+                            "Kein Verweis '%s' gefunden - ignoriert" % row[f]
                         )
-                        meldung.append(u"Daten: %s" % safe_text(str(orig)))
-                        meldung.append(u"")
+                        meldung.append("Daten: %s" % safe_text(str(orig)))
+                        meldung.append("")
                         fkerror = True
                 else:
                     row[f] = None
@@ -256,9 +254,9 @@ def genericImportFromCSV(
                 except Exception as e:
                     # print e
                     transaction.abort()
-                    meldung.append(u"Fehler: %s" % str(e))
+                    meldung.append("Fehler: %s" % str(e))
                     meldung.append("Daten: %s" % safe_text(str(orig)))
-                    meldung.append(u"")
+                    meldung.append("")
                     fehler += 1
                     summe += 1
                     continue
@@ -287,11 +285,11 @@ def genericImportFromCSV(
                     else:
                         #                        fehler += 1
                         meldung.append(
-                            u"Kein Objekt zum Schlüssel %s gefunden - neu angelegt"
+                            "Kein Objekt zum Schlüssel %s gefunden - neu angelegt"
                             % str(pkvals)
                         )
-                        meldung.append(u"Daten: %s" % safe_text(str(orig)))
-                        meldung.append(u"")
+                        meldung.append("Daten: %s" % safe_text(str(orig)))
+                        meldung.append("")
                         neu = klass(**row)
                         for f in pkfields:
                             c = pkvals[f]
@@ -306,18 +304,18 @@ def genericImportFromCSV(
         except Exception as e:
             transaction.abort()
             fehler += 1
-            meldung.append(u"Fehler: %s" % str(e))
+            meldung.append("Fehler: %s" % str(e))
             meldung.append("Daten: %s" % safe_text(str(orig)))
-            meldung.append(u"")
+            meldung.append("")
             log(str(orig))
             log_exc(e)
         summe += 1
-    meldung.append(u"Insgesamt behandelt: %d" % summe)
-    meldung.append(u"Davon neu: %d" % inserts)
-    meldung.append(u"Davon geändert: %d" % updates)
+    meldung.append("Insgesamt behandelt: %d" % summe)
+    meldung.append("Davon neu: %d" % inserts)
+    meldung.append("Davon geändert: %d" % updates)
     if fehler:
         status = False
-        meldung.append(u"Fehlerhafte Datensätze: %d" % fehler)
+        meldung.append("Fehlerhafte Datensätze: %d" % fehler)
     else:
-        meldung.append(u"Keine Fehler")
+        meldung.append("Keine Fehler")
     return meldung, status

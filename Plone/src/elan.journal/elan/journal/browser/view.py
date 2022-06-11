@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from elan.journal.browser.base import BaseView
 from plone.memoize import ram

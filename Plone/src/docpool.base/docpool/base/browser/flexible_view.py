@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from docpool.base.utils import extendOptions
 from logging import getLogger
@@ -32,7 +31,7 @@ class FlexibleView(BrowserView):
         @param context:
         @param request:
         """
-        super(FlexibleView, self).__init__(context, request)
+        super().__init__(context, request)
 
     #        self.extensions = self.context.myExtensions(request)
 
@@ -43,7 +42,7 @@ class FlexibleView(BrowserView):
         if app_defined_by_behaviour:
             return app_defined_by_behaviour
         dp_app_state = getMultiAdapter(
-            (self, self.request), name=u'dp_app_state')
+            (self, self.request), name='dp_app_state')
         active_apps = dp_app_state.appsActivatedByCurrentUser()
         if len(active_apps) > 0:
             return active_apps[0]
@@ -69,17 +68,17 @@ class FlexibleView(BrowserView):
 
         if app:
             names = [
-                "%s_%s_%s" % (app, dtid, vtype),
-                "%s_%s" % (app, vtype),
-                "%s_%s" % (dtid, vtype),
+                "{}_{}_{}".format(app, dtid, vtype),
+                "{}_{}".format(app, vtype),
+                "{}_{}".format(dtid, vtype),
                 "doc_%s" % vtype,
             ]
         else:
-            names = ["%s_%s" % (dtid, vtype), "doc_%s" % vtype]
+            names = ["{}_{}".format(dtid, vtype), "doc_%s" % vtype]
         for n in names:
             if safe_hasattr(dto, n):
                 o = aq_base(getattr(dto, n))
-                logger.debug(u'Rendering template {} ({}) for {} ({})'.format('/'.join(o._filepath.split('/')[-2:]), vtype, doc, dtid))
+                logger.debug('Rendering template {} ({}) for {} ({})'.format('/'.join(o._filepath.split('/')[-2:]), vtype, doc, dtid))
                 if IFile.providedBy(o):
                     f = o.file.open()
                     data = f.read()

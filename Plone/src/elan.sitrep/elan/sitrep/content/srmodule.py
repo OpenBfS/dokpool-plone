@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: srmodule.py
 #
@@ -6,7 +5,6 @@
 # Generator: ConPD2
 #            http://www.condat.de
 #
-from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -55,26 +53,26 @@ class ISRModule(model.Schema, IDPDocument):
     directives.omitted(IAddForm, 'text')
 
     currentReport = RelationChoice(
-        title=_(u'label_srmodule_currentreport', default=u'Current report'),
+        title=_('label_srmodule_currentreport', default='Current report'),
         description=_(
-            u'description_srmodule_currentreport',
-            default=u'If selected this report defines helpful defaults (text blocks, documents) for the content of this module.',
+            'description_srmodule_currentreport',
+            default='If selected this report defines helpful defaults (text blocks, documents) for the content of this module.',
         ),
         required=False,
         source="elan.sitrep.vocabularies.CurrentReports",
     )
 
     docType = schema.Choice(
-        title=_(u'label_srmodule_doctype', default=u'Module Type'),
-        description=_(u'description_srmodule_doctype', default=u''),
+        title=_('label_srmodule_doctype', default='Module Type'),
+        description=_('description_srmodule_doctype', default=''),
         required=True,
         source="elan.sitrep.vocabularies.ModuleTypes",
     )
     directives.widget(currentReport='z3c.form.browser.select.SelectFieldWidget')
 
     summary = RichText(
-        title=_(u'label_srtextblock_summary', default=u'Summary'),
-        description=_(u'description_srtextblock_summary', default=u''),
+        title=_('label_srtextblock_summary', default='Summary'),
+        description=_('description_srtextblock_summary', default=''),
         required=False,
     )
 
@@ -97,14 +95,14 @@ class SRModule(Container, DPDocument):
                 tb.to_object for tb in (
                     mc.defaultTextBlocks or [])]
             if defaultTextBlocks:
-                text = u""
+                text = ""
                 for tb in defaultTextBlocks:
                     if tb.text:
                         text = text + safe_text(tb.text.output)
                 self.text = RichTextValue(text, 'text/html', 'text/html')
                 return
         self.text = RichTextValue(
-            _(u"No information."),
+            _("No information."),
             'text/plain',
             'text/html')
 
@@ -121,7 +119,7 @@ class SRModule(Container, DPDocument):
                 self.currentReport.to_object.Title())
             self_title = safe_text(self.Title())
 
-            return "%s: %s (%s)" % (
+            return "{}: {} ({})".format(
                 to_object_title,
                 self_title,
                 self.toLocalizedTime(DateTime(self.changed()), long_format=1),
@@ -464,7 +462,7 @@ def fetch_resources(portalbase, uri, resource_type="image"):
             ctype = ct.split(';')[0]
 
         data = data.encode("base64").replace("\n", "")
-        data_uri = 'data:{0};base64,{1}'.format(ctype, data)
+        data_uri = f'data:{ctype};base64,{data}'
         return data_uri
     else:
         return data

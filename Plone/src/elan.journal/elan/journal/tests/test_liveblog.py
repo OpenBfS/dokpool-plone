@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.journal.interfaces import IJournal
 from elan.journal.testing import INTEGRATION_TESTING
 from elan.journal.tests.utils import _create_journalentries

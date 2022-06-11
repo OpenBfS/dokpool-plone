@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.journal import _
 from elan.journal.browser.view import View
 from elan.journal.config import BATCH_SIZE
@@ -25,16 +24,16 @@ class Update(View):
         return checkPermission('zope2.DeleteObjects', self.context)
 
     def delete_confirmation(self):
-        msg = _(u'Do you really want to delete this item?')
+        msg = _('Do you really want to delete this item?')
         msg = translate(msg, 'elan.journal', context=self.request)
-        return u"return confirm('{0}')".format(msg)
+        return f"return confirm('{msg}')"
 
     @property
     def automatic_updates_enabled(self):
         """Check if the Livelog must be updated automatically.
         Automatic updates should be enabled on first page of batch.
         """
-        enabled = super(Update, self).automatic_updates_enabled
+        enabled = super().automatic_updates_enabled
         return enabled and self.start == 0
 
     def __call__(self):
@@ -43,7 +42,7 @@ class Update(View):
         self.start = int(self.request.get('b_start', 0))
         if self.start != 0:
             msg = _(
-                u'You must be on the first page of the batch to add journal entries.'
+                'You must be on the first page of the batch to add journal entries.'
             )
             api.portal.show_message(msg, self.request, type='info')
         return self.index()

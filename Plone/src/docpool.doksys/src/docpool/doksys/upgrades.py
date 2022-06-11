@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 import transaction

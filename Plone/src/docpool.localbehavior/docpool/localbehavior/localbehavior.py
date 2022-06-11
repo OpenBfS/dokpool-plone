@@ -14,7 +14,7 @@ from zope.globalrequest import getRequest
 
 @provider(IContextAwareDefaultFactory)
 def initializeLocalBehaviors(context):
-    dp_app_state = getMultiAdapter((context, getRequest()), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, getRequest()), name='dp_app_state')
     return dp_app_state.effectiveAppsHere()
 
 
@@ -23,16 +23,16 @@ class ILocalBehaviorSupport(model.Schema):
 
     directives.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(
-        title=u'Behaviors',
+        title='Behaviors',
         description=_(
-            u'description_local_behaviors',
-            default=u'Select applications supported for this content,'
+            'description_local_behaviors',
+            default='Select applications supported for this content,'
                     ' changes will be applied after saving',
         ),
         required=False,
         defaultFactory=initializeLocalBehaviors,
         value_type=schema.Choice(
-            title=u'Applications',
+            title='Applications',
             vocabulary="LocalBehaviors"),
     )
 
@@ -41,7 +41,7 @@ class ILocalBehaviorSupporting(Interface):
     """Marker"""
 
 
-class LocalBehaviorSupport(object):
+class LocalBehaviorSupport:
     def __init__(self, context):
         self.context = context
 

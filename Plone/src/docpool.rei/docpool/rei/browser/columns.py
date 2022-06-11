@@ -8,7 +8,7 @@ from zope.component import getUtility
 def populate_a_tag(obj, link_title):
     """ Prepares the link """
     url = obj.absolute_url()
-    return u'<a title="{0}" href={1}>{2}</a>'.format(safe_text(obj.Title()), url, safe_text(link_title))
+    return f'<a title="{safe_text(obj.Title())}" href={url}>{safe_text(link_title)}</a>'
 
 
 class ReiReport(BaseColumn):
@@ -24,12 +24,12 @@ class ReiReport(BaseColumn):
             return
         files = obj.getFiles()
         if not files:
-            pdf_link = u''
+            pdf_link = ''
         if files:
             title = files[0].title
             url = files[0].absolute_url()
-            pdf_link = u'<a title="{0}" href={1} target="_blank">PDF ansehen</a><br>'.format(safe_text(title), url)
-        return pdf_link + u'<a title="{0}" href={1}>zum Dokument</a>'.format(safe_text(obj.Title()), obj.absolute_url())
+            pdf_link = f'<a title="{safe_text(title)}" href={url} target="_blank">PDF ansehen</a><br>'
+        return pdf_link + f'<a title="{safe_text(obj.Title())}" href={obj.absolute_url()}>zum Dokument</a>'
 
 
 class ReiLegalBases(BaseColumn):
@@ -108,7 +108,7 @@ class NuclearInstallation(BaseColumn):
         if not obj:
             return
         voc = getUtility(IVocabularyFactory, 'docpool.rei.vocabularies.NuclearInstallationVocabulary')()
-        installations = u', '.join(voc.getTerm(i).title for i in obj.NuclearInstallations)
+        installations = ', '.join(voc.getTerm(i).title for i in obj.NuclearInstallations)
         return populate_a_tag(obj, installations)
 
 
@@ -136,6 +136,6 @@ class Metadata(BaseColumn):
         if not obj:
             return
         obj_url = item.original_getURL()
-        title_html = u'<a href="#" class="pat-contentloader-bfs rei-eea-search metatitle" data-pat-contentloader-bfs="content:#row_{0} .rei_title;target:#target_{0}"><div title="Titel auf- bzw. zuklappen" >Open</div></a><h4 class="rei_title" style="display:none">{1}</h4>'.format(item.UID, safe_text(obj.Title()))
-        metadata_html = u'<a href="#" class="pat-contentloader-bfs rei-eea-search metadata" data-pat-contentloader-bfs="url:{0}/@@meta?ajax=true;target:#target_{1}"><div title="Metadaten auf- bzw. zuklappen" >Open</div></a><div id="target_{2}"></div>'.format(obj_url, item.UID, item.UID)
+        title_html = '<a href="#" class="pat-contentloader-bfs rei-eea-search metatitle" data-pat-contentloader-bfs="content:#row_{0} .rei_title;target:#target_{0}"><div title="Titel auf- bzw. zuklappen" >Open</div></a><h4 class="rei_title" style="display:none">{1}</h4>'.format(item.UID, safe_text(obj.Title()))
+        metadata_html = f'<a href="#" class="pat-contentloader-bfs rei-eea-search metadata" data-pat-contentloader-bfs="url:{obj_url}/@@meta?ajax=true;target:#target_{item.UID}"><div title="Metadaten auf- bzw. zuklappen" >Open</div></a><div id="target_{item.UID}"></div>'
         return title_html + metadata_html

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.esd.testing import ELAN_ESD_FUNCTIONAL_TESTING
 from plone.testing.z2 import Browser
 from plone.app.testing import login
@@ -25,7 +24,7 @@ class TestTickerFunctional(unittest.TestCase):
     def test_ticker(self):
         self.browser.addHeader(
             'Authorization',
-            'Basic {}:{}'.format(SITE_OWNER_NAME, SITE_OWNER_PASSWORD),
+            f'Basic {SITE_OWNER_NAME}:{SITE_OWNER_PASSWORD}',
         )
         login(self.portal, SITE_OWNER_NAME)
         # Switch to elan
@@ -37,7 +36,7 @@ class TestTickerFunctional(unittest.TestCase):
         # Add a ticker text
         self.browser.open(self.portal_url + '/test_docpool/contentconfig/ticker/edit')
         form_field = self.browser.getControl(name='form.widgets.text')
-        form_field.value = u'Important Ticker - do not touch'
+        form_field.value = 'Important Ticker - do not touch'
         # Save
         self.browser.getControl(name='form.buttons.save').click()
         # Saved correctly

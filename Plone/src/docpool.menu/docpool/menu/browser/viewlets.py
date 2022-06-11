@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from docpool.menu.utils import getApplicationDocPoolsForCurrentUser
 from docpool.menu.utils import getFoldersForCurrentUser
@@ -37,7 +36,7 @@ def menu_cache_key(f, view):
     # - language is important for multilingua sites
 
     portal_state = getMultiAdapter(
-        (view.context, view.request), name=u'plone_portal_state'
+        (view.context, view.request), name='plone_portal_state'
     )
     site_len = len(portal_state.navigation_root_path().split('/'))
     content_path = view.context.getPhysicalPath()[site_len:]
@@ -56,7 +55,7 @@ def menu_cache_key(f, view):
 # this cache key does not take in account expressions and roles settings
 def tabs_cache_key(f, view, site_url):
     portal_state = getMultiAdapter(
-        (view.context, view.request), name=u'plone_portal_state'
+        (view.context, view.request), name='plone_portal_state'
     )
     language = portal_state.locale().getLocaleID()
     return site_url + language + str(time() // (60 * 60))
@@ -65,7 +64,7 @@ def tabs_cache_key(f, view, site_url):
 def dropdowncache(f):
     def func(view):
         portal_state = getMultiAdapter(
-            (view.context, view.request), name=u'plone_portal_state'
+            (view.context, view.request), name='plone_portal_state'
         )
         # it is impossible to reliably cache entire rendered menu generated
         # with potral actions strategy.

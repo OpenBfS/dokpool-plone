@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Test case for viewlets on the package.
 
 For more information on how to test viewlets, see:
@@ -46,7 +45,7 @@ class ViewletTestCase(unittest.TestCase):
         manager = self._get_viewlet_manager()
         self.assertTrue(manager)
         manager.update()
-        self.assertIn(u'elan.journal.header', manager)
+        self.assertIn('elan.journal.header', manager)
 
     def test_viewlet_order(self):
         manager = self._get_viewlet_manager()
@@ -60,7 +59,7 @@ class ViewletTestCase(unittest.TestCase):
 
         manager = self._get_viewlet_manager()
         manager.update()
-        viewlet = manager[u'elan.journal.header']
+        viewlet = manager['elan.journal.header']
         viewlet.update()
         self.assertFalse(viewlet.available())
         self.journal.image = NamedBlobImage()

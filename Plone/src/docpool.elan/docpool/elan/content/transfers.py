@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.utils import _copyPaste
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getOpenScenarios

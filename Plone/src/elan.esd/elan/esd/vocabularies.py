@@ -8,7 +8,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class CategoryVocabulary(object):
+class CategoryVocabulary:
     """
     """
 
@@ -20,10 +20,10 @@ class CategoryVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.getObject())
             for t in cat({"portal_type": "ELANDocCollection", "path": path})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -32,7 +32,7 @@ CategoryVocabularyFactory = CategoryVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class CategoriesVocabulary(object):
+class CategoriesVocabulary:
     """
     """
 
@@ -44,10 +44,10 @@ class CategoriesVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.getId)
             for t in cat({"portal_type": "ELANDocCollection", "path": path})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 

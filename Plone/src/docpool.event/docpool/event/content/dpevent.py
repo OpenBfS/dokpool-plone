@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 #
 # Copyright (c) 2016 by Bundesamt für Strahlenschutz
 # Generator: ConPD2
 #            http://www.condat.de
 #
 
-from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -70,9 +68,9 @@ def is_coordinate(value):
         try:
             wkt = geometry.from_wkt(value)
         except Exception:
-            raise Invalid(u'Value is no a valid WKT.')
+            raise Invalid('Value is no a valid WKT.')
         if not wkt.geom_type == "Point":
-            raise Invalid(u'Value is not a Point.')
+            raise Invalid('Value is not a Point.')
     return True
 
 
@@ -81,10 +79,10 @@ def is_polygon(value):
         try:
             wkt = geometry.from_wkt(value)
         except Exception:
-            raise Invalid(u'Value is not a valid WKT.')
+            raise Invalid('Value is not a valid WKT.')
         if not wkt.geom_type == "Polygon":
-            raise Invalid(u'Value is not a Polygon.')
-        raise Invalid(u'Vaueis not a valid coordinate.')
+            raise Invalid('Value is not a Polygon.')
+        raise Invalid('Vaueis not a valid coordinate.')
     return True
 
 
@@ -95,10 +93,10 @@ class IDPEvent(model.Schema, IContentBase):
     directives.write_permission(Substitute='docpool.event.ManageDPEvents')
     directives.widget(Substitute='z3c.form.browser.select.SelectFieldWidget')
     Substitute = RelationChoice(
-        title=_(u'label_dpevent_substitute', default=u'Substitute event'),
+        title=_('label_dpevent_substitute', default='Substitute event'),
         description=_(
-            u'description_dpevent_substitute',
-            default=u'Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',  # noqa: E501
+            'description_dpevent_substitute',
+            default='Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.',  # noqa: E501
         ),
         required=False,
         source="docpool.event.vocabularies.EventSubstitutes",
@@ -106,8 +104,8 @@ class IDPEvent(model.Schema, IContentBase):
 
     directives.widget(EventType=RadioFieldWidget)
     EventType = schema.Choice(
-        title=_(u'label_dpevent_type', default=u'Type of event'),
-        description=_(u'description_dpevent_type', default=u''),
+        title=_('label_dpevent_type', default='Type of event'),
+        description=_('description_dpevent_type', default=''),
         required=True,
         source='docpool.event.vocabularies.EventTypes',
     )
@@ -115,16 +113,16 @@ class IDPEvent(model.Schema, IContentBase):
     directives.write_permission(Status='docpool.event.ManageDPEvents')
     directives.widget(Status=RadioFieldWidget)
     Status = schema.Choice(
-        title=_(u'label_dpevent_status', default=u'Status of the event'),
-        description=_(u'description_dpevent_status', default=u''),
+        title=_('label_dpevent_status', default='Status of the event'),
+        description=_('description_dpevent_status', default=''),
         required=True,
         default='active',
         source="docpool.event.vocabularies.Status",
     )
 
     TimeOfEvent = schema.Datetime(
-        title=_(u'label_dpevent_timeofevent', default=u'Time of event'),
-        description=_(u'description_dpevent_timeofevent', default=u''),
+        title=_('label_dpevent_timeofevent', default='Time of event'),
+        description=_('description_dpevent_timeofevent', default=''),
         required=True,
         defaultFactory=initializeTimeOfEvent,
     )
@@ -133,8 +131,8 @@ class IDPEvent(model.Schema, IContentBase):
     directives.widget(
         EventPhase='z3c.form.browser.select.SelectFieldWidget')
     EventPhase = RelationChoice(
-        title=_(u"Scenario & Phase"),
-        vocabulary=u"docpool.event.vocabularies.Phases",
+        title=_("Scenario & Phase"),
+        vocabulary="docpool.event.vocabularies.Phases",
         required=False,
     )
 
@@ -142,81 +140,81 @@ class IDPEvent(model.Schema, IContentBase):
     directives.widget(
         EventLocation='z3c.form.browser.select.SelectFieldWidget')
     EventLocation = RelationChoice(
-        title=_(u'Event location'),
-        vocabulary=u"docpool.event.vocabularies.PowerStations",
+        title=_('Event location'),
+        vocabulary="docpool.event.vocabularies.PowerStations",
         required=False,
     )
 
     directives.write_permission(EventCoordinates='docpool.event.ManageDPEvents')
     EventCoordinates = schema.Text(
-        title=_(u"Event coordinates"),
-        description=_(u"Example: POINT(12.293121814727781 48.60338936478996)"),
+        title=_("Event coordinates"),
+        description=_("Example: POINT(12.293121814727781 48.60338936478996)"),
         required=False,
         constraint=is_coordinate,
     )
 
     directives.write_permission(AreaOfInterest='docpool.event.ManageDPEvents')
     AreaOfInterest = schema.Text(
-        title=_(u"Area of interest"),
-        description=_(u"Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"),
+        title=_("Area of interest"),
+        description=_("Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"),
         required=False,
         constraint=is_polygon,
     )
 
     directives.widget(OperationMode=RadioFieldWidget)
     OperationMode = schema.Choice(
-        title=_(u'Operation mode'),
-        vocabulary=u"docpool.event.vocabularies.Modes",
+        title=_('Operation mode'),
+        vocabulary="docpool.event.vocabularies.Modes",
         required=True,
     )
 
     directives.widget(AlertingStatus=RadioFieldWidget)
     AlertingStatus = schema.Choice(
-        title=_(u'label_dpevent_alerting_status', default=u'Status of Alerting'),
-        description=_(u'description_dpevent_alerting_status', default=u''),
+        title=_('label_dpevent_alerting_status', default='Status of Alerting'),
+        description=_('description_dpevent_alerting_status', default=''),
         required=True,
         source="docpool.event.vocabularies.AlertingStatus",
     )
 
     AlertingNote = schema.Text(
-        title=_(u'label_dpevent_alteringnote', default=u'Alert Note'),
-        description=_(u'description_dpevent_alert_note', default=u'Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.'),  # noqa: E501
+        title=_('label_dpevent_alteringnote', default='Alert Note'),
+        description=_('description_dpevent_alert_note', default='Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.'),  # noqa: E501
         required=False,
         )
 
     SectorizingSampleTypes = schema.List(
-        title=_(u'Sectorizing sample types'),
+        title=_('Sectorizing sample types'),
         required=False,
         value_type=schema.Choice(
-            source=u"docpool.event.vocabularies.SampleType"),
+            source="docpool.event.vocabularies.SampleType"),
     )
 
     directives.widget(
         SectorizingNetworks='z3c.form.browser.select.CollectionSelectFieldWidget'
     )
     SectorizingNetworks = RelationList(
-        title=_(u'Sectorizing networks'),
+        title=_('Sectorizing networks'),
         required=False,
         value_type=RelationChoice(
-            source=u'docpool.event.vocabularies.Networks'),
+            source='docpool.event.vocabularies.Networks'),
     )
 
     directives.omitted(IEditForm, 'Journals')
     Journals = schema.List(
-        title=_(u'Journals'),
+        title=_('Journals'),
         required=False,
         default=[
-            u'Einsatztagebuch BfS',
-            u'Einsatztagebuch RLZ',
-            u'Einsatztagebuch SSK',
-            u'Einsatztagebuch Messdienste',
+            'Einsatztagebuch BfS',
+            'Einsatztagebuch RLZ',
+            'Einsatztagebuch SSK',
+            'Einsatztagebuch Messdienste',
             ],
         value_type=schema.TextLine(),
     )
 
     changelog = schema.Text(
-        title=_(u'label_dpevent_changelog', default=u'Changelog'),
-        description=_(u'Changelog'),
+        title=_('label_dpevent_changelog', default='Changelog'),
+        description=_('Changelog'),
         required=False,
         readonly=True,
     )
@@ -427,8 +425,8 @@ class DPEvent(Container, ContentBase):
         a = self.archive  # Acquire root for archives
         e = self.esd  # Acquire esd root
         now = safe_text(self.toLocalizedTime(DateTime(), long_format=1))
-        id = ploneId(self, "%s_%s" % (self.getId(), now))
-        title = u"%s %s" % (safe_text(self.Title()), now)
+        id = ploneId(self, "{}_{}".format(self.getId(), now))
+        title = "{} {}".format(safe_text(self.Title()), now)
         # create the archive root
         a.invokeFactory(id=id, type_name="ELANArchive", title=title)
         arc = a._getOb(id)  # get new empty archive
@@ -543,7 +541,7 @@ class DPEvent(Container, ContentBase):
             # Skip empty lines
             if not title:
                 continue
-            journal_id = 'journal{}'.format(str(index))
+            journal_id = f'journal{str(index)}'
             # Skip if it already exists
             if self.get(journal_id):
                 pass
@@ -555,13 +553,13 @@ class DPEvent(Container, ContentBase):
                 )
             # Grant local role to Journal Editor Groups
             api.group.grant_roles(
-                groupname='{}_Journal{}_Editors'.format(prefix, index),
+                groupname=f'{prefix}_Journal{index}_Editors',
                 roles=['JournalEditor'],
                 obj=journal,
                 )
             # Grant local role to Journal Reader Groups
             api.group.grant_roles(
-                groupname='{}_Journal{}_Readers'.format(prefix, index),
+                groupname=f'{prefix}_Journal{index}_Readers',
                 roles=['JournalReader'],
                 obj=journal,
                 )
@@ -619,19 +617,19 @@ def eventAdded(obj, event=None):
 def addLogEntry(obj):
     changelog = json.loads(obj.changelog or '[]')
     entry = {}
-    entry[u'Date'] = api.portal.get_localized_time(
+    entry['Date'] = api.portal.get_localized_time(
         datetime.datetime.now(), long_format=1)
-    entry[u'User'] = obj._getUserInfoString()
-    entry[u'Status'] = obj.Status
-    entry[u'EventType'] = obj.EventType
-    entry[u'Operation mode'] = obj.OperationMode
-    entry[u'Alerting status'] = obj.AlertingStatus
-    entry[u'Alerting note'] = obj.AlertingNote
-    entry[u'Phase'] = obj.phaseInfo()
-    entry[u'Sectorizing sample types'] = u", ".join(
+    entry['User'] = obj._getUserInfoString()
+    entry['Status'] = obj.Status
+    entry['EventType'] = obj.EventType
+    entry['Operation mode'] = obj.OperationMode
+    entry['Alerting status'] = obj.AlertingStatus
+    entry['Alerting note'] = obj.AlertingNote
+    entry['Phase'] = obj.phaseInfo()
+    entry['Sectorizing sample types'] = ", ".join(
         obj.SectorizingSampleTypes
         if obj.SectorizingSampleTypes is not None else ' ')
-    entry[u'Sectorizing networks'] = u", ".join(
+    entry['Sectorizing networks'] = ", ".join(
         (n.to_object.title for n in obj.SectorizingNetworks)
         if obj.SectorizingNetworks is not None else ' ')
     # Check if there are changes to prevent duplicate log entries.
@@ -688,7 +686,7 @@ def eventRemoved(obj, event=None):
             event.object):
         return
     if obj.id == 'routinemode':
-        raise RuntimeError(u'The "routinemode" event cannot be removed.')
+        raise RuntimeError('The "routinemode" event cannot be removed.')
 
     global_scenarios = get_global_scenario_selection()
     global_scenarios[obj.getId()] = 'removed'

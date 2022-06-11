@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import allow_class
 from AccessControl import allow_module
 from docpool.dbaccess.content.errors import ObjectDuplicateException

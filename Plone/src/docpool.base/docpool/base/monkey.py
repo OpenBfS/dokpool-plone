@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone.app.discussion.browser.conversation import ConversationView
@@ -64,7 +63,7 @@ def getURL(self, relative=0, original=False):
     ):
         if self.cat_path:
             # This is it: we use the path of the category
-            return "%s/@@dview?d=%s&disable_border=1" % (
+            return "{}/@@dview?d={}&disable_border=1".format(
                 self.cat_path, self.UID)
         else:
             pass
@@ -95,7 +94,7 @@ def setMemberProperties(self, mapping, **kw):
     if request is None:
         request = getRequest()
     log.info(
-        'Setting member properties:\n{0} at {1}\n{2}'.format(
+        'Setting member properties:\n{} at {}\n{}'.format(
             str(list(mapping)),
             request['URL'],
             '\n'.join(item.splitlines()[0] for item in traceback.format_stack())

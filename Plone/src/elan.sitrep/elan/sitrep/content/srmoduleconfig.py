@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: srmoduleconfig.py
 #
@@ -33,28 +32,28 @@ class ISRModuleConfig(model.Schema):
     """
 
     modType = schema.Choice(
-        title=_(u'label_srmoduleconfig_modtype', default=u'Module Type'),
-        description=_(u'description_srmoduleconfig_modtype', default=u''),
+        title=_('label_srmoduleconfig_modtype', default='Module Type'),
+        description=_('description_srmoduleconfig_modtype', default=''),
         required=True,
         source="elan.sitrep.vocabularies.ModuleTypes",
     )
 
     docSelection = RelationChoice(
         title=_(
-            u'label_srmoduleconfig_docselection',
-            default=u'Collection for relevant documents',
+            'label_srmoduleconfig_docselection',
+            default='Collection for relevant documents',
         ),
         description=_(
-            u'description_srmoduleconfig_docselection',
-            default=u'This collection defines a pre-selection of possible documents to reference within this module.',
+            'description_srmoduleconfig_docselection',
+            default='This collection defines a pre-selection of possible documents to reference within this module.',
         ),
         required=False,
         source="elan.sitrep.vocabularies.Collections",
     )
 
     textBlocks = RelationList(
-        title=_(u'label_srmoduleconfig_textblocks', default=u'Text Blocks'),
-        description=_(u'description_srmoduleconfig_textblocks', default=u''),
+        title=_('label_srmoduleconfig_textblocks', default='Text Blocks'),
+        description=_('description_srmoduleconfig_textblocks', default=''),
         required=False,
         value_type=RelationChoice(
             title=_("Text Blocks"), source="elan.sitrep.vocabularies.TextBlocks"
@@ -63,12 +62,12 @@ class ISRModuleConfig(model.Schema):
 
     defaultTextBlocks = RelationList(
         title=_(
-            u'label_srmoduletype_defaulttextblocks',
-            default=u'Default Text (when freshly created)',
+            'label_srmoduletype_defaulttextblocks',
+            default='Default Text (when freshly created)',
         ),
         description=_(
-            u'description_srmoduletype_defaulttextblocks',
-            default=u''),
+            'description_srmoduletype_defaulttextblocks',
+            default=''),
         required=False,
         value_type=RelationChoice(
             title=_("Default Text"), source="elan.sitrep.vocabularies.TextBlocks"

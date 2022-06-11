@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 APP_REGISTRY = {}
 BEHAVIOR_REGISTRY = {}
 

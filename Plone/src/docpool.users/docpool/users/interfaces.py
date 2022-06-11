@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 from docpool.users import DocpoolMessageFactory as _
 

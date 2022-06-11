@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: situationreport.py
 #
@@ -66,9 +65,9 @@ class ISituationReport(IDPDocument):
 
     phase = RelationChoice(
         title=_(
-            u'label_situationreport_phase',
-            default=u'Phase (scenario-specific)'),
-        description=_(u'description_situationreport_phase', default=u''),
+            'label_situationreport_phase',
+            default='Phase (scenario-specific)'),
+        description=_('description_situationreport_phase', default=''),
         required=False,
         source="elan.sitrep.vocabularies.Phases",
         defaultFactory=initializePhase,
@@ -77,11 +76,11 @@ class ISituationReport(IDPDocument):
 
     currentModules = RelationList(
         title=_(
-            u'label_situationreport_currentmodules',
-            default=u'Current Modules'),
+            'label_situationreport_currentmodules',
+            default='Current Modules'),
         description=_(
-            u'description_situationreport_currentmodules',
-            default=u''),
+            'description_situationreport_currentmodules',
+            default=''),
         required=False,
         value_type=RelationChoice(
             title=_("Current Modules"), source="elan.sitrep.vocabularies.CurrentModules"
@@ -91,14 +90,14 @@ class ISituationReport(IDPDocument):
         currentModules='z3c.form.browser.select.CollectionSelectFieldWidget')
     directives.mode(docType='hidden')
     text = RichText(
-        title=_(u'label_situationreport_text', default=u'Introduction'),
-        description=_(u'description_situationreport_text', default=u''),
+        title=_('label_situationreport_text', default='Introduction'),
+        description=_('description_situationreport_text', default=''),
         required=False,
     )
     docType = schema.Choice(
         required=True,
         source="docpool.base.vocabularies.DocumentTypes",
-        default=u"sitrep",
+        default="sitrep",
     )
 
 
@@ -222,7 +221,7 @@ class SituationReport(Container, DPDocument):
         #    content.copy(source=mod, target=new_version, safe_id=True)
         # create PDF, upload it
         data = self.restrictedTraverse("@@pdfprint")._generatePDF(raw=True)
-        nice_filename = 'report_%s_%s.pdf' % (
+        nice_filename = 'report_{}_{}.pdf'.format(
             self.getId(),
             datetime.now().strftime('%Y%m%d'),
         )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup testing infrastructure.
 
 For Plone 5 we need to install plone.app.contenttypes.
@@ -80,7 +79,7 @@ class Fixture(PloneSandboxLayer):
             container=portal,
             type='DocumentPool',
             id='test_docpool',
-            title=u'Test Dokpool',
+            title='Test Dokpool',
             supportedApps=('elan',),
         )
         notify(EditFinishedEvent(docpool))

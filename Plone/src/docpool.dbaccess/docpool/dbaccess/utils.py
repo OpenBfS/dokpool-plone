@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 from docpool.dbaccess.interfaces import Idbadmin
 from Products.CMFCore.utils import getToolByName
@@ -74,7 +73,7 @@ def unicode_csv_reader(unicode_csv_data, delimiter, fieldnames):
         res = {}
         for field in row.keys():
             try:
-                res[field] = six.text_type(row[field], 'utf-8')
+                res[field] = str(row[field], 'utf-8')
             except BaseException:
                 res[field] = row[field]
             if row[field] == '0':

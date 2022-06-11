@@ -143,7 +143,7 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
 
     # DOCPOOL modification! We only want to see behaviors that are allowed
     # here.
-    dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
     available_apps = dp_app_state.appsPermittedForObject(context.REQUEST)
     activated_apps = dp_app_state.appsActivatedByCurrentUser()
     effective_apps = list(

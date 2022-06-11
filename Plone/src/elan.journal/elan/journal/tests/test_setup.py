@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.journal.config import PROJECTNAME
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING

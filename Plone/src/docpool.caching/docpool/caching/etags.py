@@ -10,7 +10,7 @@ from docpool.event.utils import getOpenScenarios
 
 @implementer(IETagValue)
 @adapter(Interface, Interface)
-class DokPoolApps(object):
+class DokPoolApps:
     """
     """
 
@@ -21,7 +21,7 @@ class DokPoolApps(object):
     def __call__(self):
         context = getContext(self.published)
         dp_app_state = getMultiAdapter(
-            (context, self.request), name=u'dp_app_state')
+            (context, self.request), name='dp_app_state')
         apps = ";".join(dp_app_state.effectiveAppsHere())
 
         scenarios = ""
@@ -58,7 +58,7 @@ cacheTimes = {
 
 @implementer(IETagValue)
 @adapter(Interface, Interface)
-class DokPoolCacheTime(object):
+class DokPoolCacheTime:
     """
     Hiervon Varianten je nach Typ:
     DPDocument -->

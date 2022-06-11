@@ -43,7 +43,7 @@ class PrintView(BrowserView):
                     data = response.getBody()
 
                 data = data.encode("base64").replace("\n", "")
-                data_uri = 'data:{0};base64,{1}'.format(ctype, data)
+                data_uri = f'data:{ctype};base64,{data}'
                 return data_uri
             return uri
 
@@ -71,7 +71,7 @@ class PrintView(BrowserView):
         # close output file
         resultFile.close()  # close output file
         now = DateTime()
-        nice_filename = '%s_%s' % (
+        nice_filename = '{}_{}'.format(
             self.context.getId(), now.strftime('%Y%m%d'))
 
         if not raw:

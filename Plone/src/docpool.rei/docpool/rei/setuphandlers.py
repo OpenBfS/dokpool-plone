@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.rei.general.rei import install
 from plone import api
 

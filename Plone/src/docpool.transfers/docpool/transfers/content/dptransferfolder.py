@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: dptransferfolder.py
 #
@@ -46,19 +45,19 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
     sendingESD = schema.Choice(
         title=_(
-            u'label_dptransferfolder_sendingesd',
-            default=u'The organisation sending content via this transfer folder',
+            'label_dptransferfolder_sendingesd',
+            default='The organisation sending content via this transfer folder',
         ),
-        description=_(u'description_dptransferfolder_sendingesd', default=u''),
+        description=_('description_dptransferfolder_sendingesd', default=''),
         required=True,
         source="docpool.base.vocabularies.DocumentPools",
     )
 
     permLevel = schema.Choice(
         title=_(
-            u'label_dptransferfolder_permlevel',
-            default=u'Permission level'),
-        description=_(u'description_dptransferfolder_permlevel', default=u''),
+            'label_dptransferfolder_permlevel',
+            default='Permission level'),
+        description=_('description_dptransferfolder_permlevel', default=''),
         required=True,
         default="read/write",
         source="docpool.transfers.vocabularies.Permissions",
@@ -66,8 +65,8 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
     doctypePermissions = schema.Dict(
         title=_(
-            u'label_dptransferfolder_doctypepermissions',
-            default=u'Permissions by document type',
+            'label_dptransferfolder_doctypepermissions',
+            default='Permissions by document type',
         ),
         value_type=schema.Choice(
             required=True,
@@ -78,12 +77,12 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
     unknownDtDefault = schema.Choice(
         title=_(
-            u'label_dptransferfolder_unknowndtdefault',
-            default=u'Default for unknown document types',
+            'label_dptransferfolder_unknowndtdefault',
+            default='Default for unknown document types',
         ),
         description=_(
-            u'description_dptransferfolder_unknowndtdefault',
-            default=u''),
+            'description_dptransferfolder_unknowndtdefault',
+            default=''),
         required=True,
         default="block",
         source="docpool.transfers.vocabularies.UnknownOptions",
@@ -91,12 +90,12 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
     unknownScenDefault = schema.Choice(
         title=_(
-            u'label_dptransferfolder_unknownscendefault',
-            default=u'Default for unknown scenarios',
+            'label_dptransferfolder_unknownscendefault',
+            default='Default for unknown scenarios',
         ),
         description=_(
-            u'description_dptransferfolder_unknownscendefault',
-            default=u''),
+            'description_dptransferfolder_unknownscendefault',
+            default=''),
         required=True,
         default="block",
         source="docpool.transfers.vocabularies.UnknownOptions",

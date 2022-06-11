@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from zope.interface import Interface, Attribute
 from elan.sitrep.content.srconfig import ISRConfig
 from elan.sitrep.content.srscenario import ISRScenario

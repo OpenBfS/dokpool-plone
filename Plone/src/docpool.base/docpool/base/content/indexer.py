@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.config import BASE_APP
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.dpdocument import IDPDocument

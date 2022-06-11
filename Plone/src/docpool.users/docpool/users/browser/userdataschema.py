@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.users import DocpoolMessageFactory as _
 from docpool.users.interfaces import IDocPoolUsersLayer
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
@@ -19,8 +18,8 @@ class IEnhancedUserDataSchema(model.Schema):
     """
 
     dp = schema.Choice(
-        title=_(u'label_user_dp', default=u'DocPool'),
-        description=_(u'description_user_dp', default=u''),
+        title=_('label_user_dp', default='DocPool'),
+        description=_('description_user_dp', default=''),
         required=False,
         source="docpool.base.vocabularies.UserDocumentPools",
     )

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -95,20 +93,20 @@ def create_all_collection(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Modification date
-    iwas.sort_on = u'modified'
+    iwas.sort_on = 'modified'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type
     iwas.query = [
         {
-            'i': u'dp_type',
-            'o': u'plone.app.querystring.operation.selection.is',
-            'v': [u'reireport'],
+            'i': 'dp_type',
+            'o': 'plone.app.querystring.operation.selection.is',
+            'v': ['reireport'],
         },
         {
-            u'i': u'review_state',
-            u'o': u'plone.app.querystring.operation.selection.any',
-            u'v': ['published', 'pending_bmu', 'pending_bfs', 'pending_authority', 'private'],
+            'i': 'review_state',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['published', 'pending_bmu', 'pending_bfs', 'pending_authority', 'private'],
         },
     ]
     iwas.text = RichTextValue(
@@ -133,20 +131,20 @@ def create_all_private_collection(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Modification date
-    iwas.sort_on = u'modified'
+    iwas.sort_on = 'modified'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'dp_type',
-            'o': u'plone.app.querystring.operation.selection.is',
-            'v': [u'reireport'],
+            'i': 'dp_type',
+            'o': 'plone.app.querystring.operation.selection.is',
+            'v': ['reireport'],
         },
         {
-            u'i': u'review_state',
-            u'o': u'plone.app.querystring.operation.selection.any',
-            u'v': ['pending_bfs', 'pending_bmu', 'pending_authority', 'private'],
+            'i': 'review_state',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['pending_bfs', 'pending_bmu', 'pending_authority', 'private'],
         },
     ]
     iwas.text = RichTextValue(
@@ -183,7 +181,7 @@ BASICSTRUCTURE = [
 DTYPES = [
     {
         TYPE: 'DocType',
-        TITLE: u'REI_Bericht',
+        TITLE: 'REI_Bericht',
         ID: 'reireport',
         CHILDREN: [],
         'local_behaviors': ['rei'],

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: collaborationfolder.py
 #
@@ -36,11 +35,11 @@ class ICollaborationFolder(model.Schema, ISimpleFolder):
 
     allowedPartnerDocTypes = schema.List(
         title=_(
-            u'label_collaborationfolder_allowedpartnerdoctypes',
-            default=u'Document types allowed for the guest group(s)',
+            'label_collaborationfolder_allowedpartnerdoctypes',
+            default='Document types allowed for the guest group(s)',
         ),
         description=_(
-            u'description_collaborationfolder_allowedpartnerdoctypes', default=u''
+            'description_collaborationfolder_allowedpartnerdoctypes', default=''
         ),
         required=True,
         value_type=schema.Choice(

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.base.appregistry import registerApp
 from docpool.doksys.behaviors.doksysdoc import IDoksysDoc
 from docpool.doksys.config import DOKSYS_APP
@@ -14,7 +12,7 @@ from docpool.doksys.local.doksys import dpRemoved
 # to be executed when docpools are created
 registerApp(
     DOKSYS_APP,
-    u"IMIS Doksys",
+    "IMIS Doksys",
     None,
     IDoksysDoc,
     dpAdded,

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -32,12 +30,12 @@ def install(self):
 ADMINSTRUCTURE = [
     {
         TYPE: 'DPConfig',
-        TITLE: u'Global Configuration',
+        TITLE: 'Global Configuration',
         ID: 'config',
         CHILDREN: [
             {
                 TYPE: 'DocTypes',
-                TITLE: u'Global Document Types',
+                TITLE: 'Global Document Types',
                 ID: 'dtypes',
                 CHILDREN: [],
             }

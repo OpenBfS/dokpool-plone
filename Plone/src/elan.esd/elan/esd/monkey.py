@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.browser.dpdocument import DPDocumentinlineView
 from docpool.base.browser.dpdocument import DPDocumentlistitemView
 from docpool.base.browser.dpdocument import DPDocumentprintView
@@ -66,7 +65,7 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
                     utils.setMemberProperties(
                         member, REQUEST=context.REQUEST, email=user.email
                     )
-                    utils.addPortalMessage(_(u'Changes applied.'))
+                    utils.addPortalMessage(_('Changes applied.'))
 
             # If reset password has been checked email user a new password
             pw = None
@@ -97,21 +96,21 @@ def manageUser(self, users=None, resetpassword=None, delete=None):
 
         if users_with_reset_passwords:
             reset_passwords_message = _(
-                u"reset_passwords_msg",
-                default=u"The following users have been sent an e-mail with link to reset their password: ${user_ids}",
-                mapping={u"user_ids": ', '.join(users_with_reset_passwords)},
+                "reset_passwords_msg",
+                default="The following users have been sent an e-mail with link to reset their password: ${user_ids}",
+                mapping={"user_ids": ', '.join(users_with_reset_passwords)},
             )
             utils.addPortalMessage(reset_passwords_message)
         if users_failed_reset_passwords:
             failed_passwords_message = _(
-                u'failed_passwords_msg',
-                default=u'A password reset e-mail could not be sent to the following users: ${user_ids}',
-                mapping={u'user_ids': ', '.join(users_failed_reset_passwords)},
+                'failed_passwords_msg',
+                default='A password reset e-mail could not be sent to the following users: ${user_ids}',
+                mapping={'user_ids': ', '.join(users_failed_reset_passwords)},
             )
             utils.addPortalMessage(failed_passwords_message, type='error')
 
         # TODO: issue message only if something actually has changed
-        utils.addPortalMessage(_(u'Changes applied.'))
+        utils.addPortalMessage(_('Changes applied.'))
 
 
 # if not hasattr(UsersOverviewControlPanel, "original_manageUser"):

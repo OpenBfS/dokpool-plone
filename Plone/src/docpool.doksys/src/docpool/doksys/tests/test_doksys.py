@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
 from plone import api
@@ -30,14 +29,14 @@ class TestSetup(unittest.TestCase):
             container=self.portal,
             type='DocumentPool',
             id='test_doksys',
-            title=u'Test Doksys',
+            title='Test Doksys',
             supportedApps=(),
             )
         docpool = api.content.create(
             container=self.portal,
             type='DocumentPool',
             id='test_docpool',
-            title=u'Test Doksys',
+            title='Test Doksys',
             supportedApps=('doksys',),
             )
         self.assertIn('doksys', IAnnotations(docpool)[APPLICATIONS_KEY])
@@ -50,7 +49,7 @@ class TestSetup(unittest.TestCase):
             container=self.portal,
             type='DocumentPool',
             id='test_docpool',
-            title=u'Test Doksys',
+            title='Test Doksys',
             supportedApps=(),
             )
         self.assertEqual(docpool.contentIds(), ['content', 'config'])

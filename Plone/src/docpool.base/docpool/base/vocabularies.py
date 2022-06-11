@@ -17,13 +17,13 @@ from zope.component.hooks import getSite
 
 
 @implementer(IVocabularyFactory)
-class AvailableAppsVocabulary(object):
+class AvailableAppsVocabulary:
     """
     """
 
     def __call__(self, context):
         dp_app_state = getMultiAdapter(
-            (context, context.REQUEST), name=u'dp_app_state')
+            (context, context.REQUEST), name='dp_app_state')
         available = dp_app_state.appsPermittedForCurrentUser()
         return SimpleVocabulary(
             [
@@ -38,7 +38,7 @@ AvailableAppsVocabularyFactory = AvailableAppsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class ActiveAppsVocabulary(object):
+class ActiveAppsVocabulary:
     """
     """
 
@@ -53,7 +53,7 @@ ActiveAppsVocabularyFactory = ActiveAppsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class ExtendingAppsVocabulary(object):
+class ExtendingAppsVocabulary:
     """
     """
 
@@ -68,7 +68,7 @@ ExtendingAppsVocabularyFactory = ExtendingAppsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class SelectableAppsVocabulary(object):
+class SelectableAppsVocabulary:
     """
     """
 
@@ -83,7 +83,7 @@ SelectableAppsVocabularyFactory = SelectableAppsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class DTOptionsVocabulary(object):
+class DTOptionsVocabulary:
     """
     """
 
@@ -101,7 +101,7 @@ DTOptionsVocabularyFactory = DTOptionsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class DocumentTypesVocabulary(object):
+class DocumentTypesVocabulary:
     """
     """
 
@@ -131,7 +131,7 @@ DocumentTypesVocabularyFactory = DocumentTypesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class DocTypeVocabulary(object):
+class DocTypeVocabulary:
     """
     """
 
@@ -176,7 +176,7 @@ DocTypeVocabularyFactory = DocTypeVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class GroupDocTypeVocabulary(object):
+class GroupDocTypeVocabulary:
     """
     """
 
@@ -193,7 +193,7 @@ GroupDocTypeVocabularyFactory = GroupDocTypeVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class DocumentPoolVocabulary(object):
+class DocumentPoolVocabulary:
     """
     """
 
@@ -227,7 +227,7 @@ DocumentPoolVocabularyFactory = DocumentPoolVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class UserDocumentPoolVocabulary(object):
+class UserDocumentPoolVocabulary:
     """
     """
 

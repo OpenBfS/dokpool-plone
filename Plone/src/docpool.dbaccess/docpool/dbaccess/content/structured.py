@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.dbaccess import DocpoolMessageFactory as _
 from docpool.dbaccess.content.forms import NoRenderer
 from docpool.dbaccess.content.registry import registerEntityConfig
@@ -17,7 +16,7 @@ metadata = __metadata__
 session = __session__
 
 
-class StructuredEntity(object):
+class StructuredEntity:
 
     _c_min_ = 0
     _c_max_ = 0

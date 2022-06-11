@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: reitype.py
 #
@@ -22,7 +21,7 @@ class IREIType(IDocTypeExtension):
     pass
 
 
-class REIType(object):
+class REIType:
     """
     """
 

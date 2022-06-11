@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from ..utils import set_local_roles
 from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
@@ -60,7 +59,7 @@ def dpAdded(self):
 
 
 BASICSTRUCTURE = [
-    {TYPE: 'ELANArchives', TITLE: u'Archive', ID: 'archive', CHILDREN: [], 'local_behaviors': ['elan']}
+    {TYPE: 'ELANArchives', TITLE: 'Archive', ID: 'archive', CHILDREN: [], 'local_behaviors': ['elan']}
 ]
 
 ARCHIVESTRUCTURE = [
@@ -74,7 +73,7 @@ ARCHIVESTRUCTURE = [
 ]
 
 SPECIAL_PAGES = [
-    {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
+    {TYPE: 'Text', TITLE: 'Hilfe', ID: 'help', CHILDREN: []},
 ]
 
 ADMINSTRUCTURE = [
@@ -85,12 +84,12 @@ ADMINSTRUCTURE = [
         CHILDREN: [
             {
                 TYPE: 'DPEvents',
-                TITLE: u'Ereignisse',
+                TITLE: 'Ereignisse',
                 ID: 'scen',
                 CHILDREN: [
                     {
                         TYPE: 'DPEvent',
-                        TITLE: u'Normalfall',
+                        TITLE: 'Normalfall',
                         ID: 'routinemode',
                         "Status": "active",
                         "TimeOfEvent": datetime.now(),
@@ -98,11 +97,11 @@ ADMINSTRUCTURE = [
                     }
                 ],
             },
-            {TYPE: 'Text', TITLE: u'Ticker', ID: 'ticker', CHILDREN: []},
-            {TYPE: 'Text', TITLE: u'Hilfe', ID: 'help', CHILDREN: []},
+            {TYPE: 'Text', TITLE: 'Ticker', ID: 'ticker', CHILDREN: []},
+            {TYPE: 'Text', TITLE: 'Hilfe', ID: 'help', CHILDREN: []},
             {
                 TYPE: 'DashboardsConfig',
-                TITLE: u'Dokumentsammlungen Pinnwand',
+                TITLE: 'Dokumentsammlungen Pinnwand',
                 ID: 'dbconfig',
                 CHILDREN: [],
             },

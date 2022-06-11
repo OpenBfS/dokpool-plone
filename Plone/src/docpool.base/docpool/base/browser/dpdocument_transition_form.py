@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 """A BrowserView to replace the Controller Python Script "folder_publish"
 """
 from DateTime import DateTime
@@ -78,7 +77,7 @@ class WorkflowActionView(BrowserView):
         self.transitions = sorted(self.transitions, key=itemgetter('sort_key'))
 
         if form.get('form.button.cancel'):
-            msg = PMF(u'Changes canceled.')
+            msg = PMF('Changes canceled.')
             api.portal.show_message(msg, self.request)
             return self.request.response.redirect(self.context.absolute_url())
 

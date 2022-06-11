@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.rei.config import REI_APP
@@ -30,7 +29,7 @@ def dpAdded(docpool):
         copyberichte(docpool)
         createREIUsers(docpool)
         createREIGroups(docpool)
-    log.info(u'Rebuilding catalog...')
+    log.info('Rebuilding catalog...')
     docpool.reindexAll()
 
     # TODO: further initializations?

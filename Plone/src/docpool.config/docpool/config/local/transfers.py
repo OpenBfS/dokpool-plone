@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
@@ -29,7 +28,7 @@ def dpAdded(self):
 
 
 TRANSFER_AREA = [
-    {TYPE: 'DPTransfers', TITLE: u'Transfers', ID: 'Transfers', CHILDREN: []}
+    {TYPE: 'DPTransfers', TITLE: 'Transfers', ID: 'Transfers', CHILDREN: []}
 ]
 
 

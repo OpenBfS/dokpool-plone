@@ -15,7 +15,7 @@ if db_complete:
     __metadata__.bind = create_engine("%s" % (db_complete), echo=False)
 else:
     __metadata__.bind = create_engine(
-        "postgres://elan:elan@%s:5432/%s" % (db_host, db_string), echo=False
+        "postgres://elan:elan@{}:5432/{}".format(db_host, db_string), echo=False
     )
 __session__ = scoped_session(
     sessionmaker(

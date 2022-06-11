@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.example.config import EXAMPLE_APP
 from Products.CMFCore.utils import getToolByName

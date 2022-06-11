@@ -156,19 +156,19 @@ class ImageScalingFactory(OriginalImageScalingFactory):
             )
         except (ConflictError, KeyboardInterrupt):
             raise
-        except IOError:
+        except OSError:
             if getattr(orig_value, 'contentType', '') == 'image/svg+xml':
                 result = orig_data.read(), 'SVG', (width, height)
             else:
                 logger.exception(
-                    'Could not scale "{0!r}" of {1!r}'.format(
+                    'Could not scale "{!r}" of {!r}'.format(
                         orig_value, self.context.absolute_url
                     )
                 )
                 return
         except Exception as e:
             logger.exception(
-                'Could not scale "{0!r}" of {1!r}'.format(
+                'Could not scale "{!r}" of {!r}'.format(
                     orig_value, self.context.absolute_url
                 )
             )
@@ -176,7 +176,7 @@ class ImageScalingFactory(OriginalImageScalingFactory):
         if result is None:
             return
         data, format_, dimensions = result
-        mimetype = 'image/{0}'.format(format_.lower())
+        mimetype = f'image/{format_.lower()}'
         value = orig_value.__class__(
             data, contentType=mimetype, filename=orig_value.filename
         )

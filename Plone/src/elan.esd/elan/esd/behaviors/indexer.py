@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.behaviors.elandocument import IELANDocument
 from plone.indexer import indexer

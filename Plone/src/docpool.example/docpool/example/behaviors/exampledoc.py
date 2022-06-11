@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Common configuration constants
 """
 from AccessControl import ClassSecurityInfo
@@ -18,8 +17,8 @@ from zope.interface import provider
 @provider(IFormFieldProvider)
 class IExampleDoc(IDocumentExtension):
     example_attribute = schema.TextLine(
-        title=_(u'label_example_attribute', default=u'Example Attribute'),
-        description=_(u'description_example_attribute', default=u''),
+        title=_('label_example_attribute', default='Example Attribute'),
+        description=_('description_example_attribute', default=''),
         required=False,
     )
     read_permission(example_attribute='docpool.example.AccessExample')

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.api.testing import DOCPOOL_API_ACCEPTANCE_TESTING  # noqa
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
 from docpool.base.utils import back_references
@@ -29,9 +28,9 @@ def getDefaultCategory(context):
 class IELANDocType(IDocTypeExtension):
     contentCategory = RelationChoice(
         title=_(
-            u'label_doctype_contentcategory', default=u'Choose category for this type '
+            'label_doctype_contentcategory', default='Choose category for this type '
         ),
-        description=_(u'description_doctype_contentcategory', default=u''),
+        description=_('description_doctype_contentcategory', default=''),
         required=False,
         defaultFactory=getDefaultCategory,
         source="elan.esd.vocabularies.Category",
@@ -39,7 +38,7 @@ class IELANDocType(IDocTypeExtension):
     directives.widget(contentCategory='z3c.form.browser.select.SelectFieldWidget')
 
 
-class ELANDocType(object):
+class ELANDocType:
     def __init__(self, context):
         self.context = context
 
@@ -67,15 +66,13 @@ class ELANDocType(object):
         #         colls = self.getBackReferences(relationship='doctypes')
         colls = back_references(self.context, "docTypes")
         return list(
-            set(
-                [
+            {
                     coll.Title()
                     for coll in colls
                     if coll
                     and not coll.restrictedTraverse("@@context_helpers").is_archive()
                     and coll.getPortalTypeName() == 'ELANDocCollection'
-                ]
-            )
+            }
         )
 
     def getDefaultCategory(self):

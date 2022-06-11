@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from elan.journal import _
 from plone.app.textfield import RichText
 from plone.namedfile.field import NamedBlobImage

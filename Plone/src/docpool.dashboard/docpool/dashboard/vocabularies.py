@@ -8,7 +8,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class DashboardCollectionsVocabulary(object):
+class DashboardCollectionsVocabulary:
     """
     """
 

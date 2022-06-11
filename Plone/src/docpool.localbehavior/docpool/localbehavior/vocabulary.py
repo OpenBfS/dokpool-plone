@@ -20,7 +20,7 @@ def LocalBehaviorsVocabularyFactory(context):
     request = getRequest()
     path = request.physicalPathFromURL(request.getURL())
     isType = False
-    dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
     if 'config' in path:
         isType = True
         if path.index('config') == 2:  # global config

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -20,7 +17,7 @@ class IDPNetwork(model.Schema):
     """
     """
 
-    area = schema.Text(title=_(u"Area coordinates"), required=False)
+    area = schema.Text(title=_("Area coordinates"), required=False)
 
 
 @implementer(IDPNetwork)

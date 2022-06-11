@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -20,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 @implementer(INonInstallable)
-class HiddenProfiles(object):
+class HiddenProfiles:
     def getNonInstallableProfiles(self):
         """Hide uninstall profile from site-creation and quickinstaller."""
         return ['docpool.doksys:uninstall']
@@ -65,8 +63,8 @@ def changedoksysDocTypes(plonesite, fresh):
 
 def create_today_collection(plonesite):
     container = api.content.get(path='/searches')
-    title = u'Dokumente von Heute'
-    description = u'Dokumente seit heute 0:00 Uhr'
+    title = 'Dokumente von Heute'
+    description = 'Dokumente seit heute 0:00 Uhr'
     _createObjectByType(
         'Collection', container, id='today', title=title, description=description
     )
@@ -74,25 +72,25 @@ def create_today_collection(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    today.sort_on = u'changed'
+    today.sort_on = 'changed'
     today.sort_reversed = True
     today.relatedItems = ""
     #: Query by Type and Review State
     today.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'created',
-            u'o': u'plone.app.querystring.operation.date.today',
-            u'v': u'',
+            'i': 'created',
+            'o': 'plone.app.querystring.operation.date.today',
+            'v': '',
         },
         {
-            u'i': u'OperationMode',
-            u'o': u'plone.app.querystring.operation.selection.any',
-            u'v': [u'Intensiv', u'Routine'],
+            'i': 'OperationMode',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['Intensiv', 'Routine'],
         },
     ]
     today.text = RichTextValue('', 'text/html', 'text/x-html-safe')
@@ -103,8 +101,8 @@ def create_today_collection(plonesite):
 
 def create_since_yesterday_collection(plonesite):
     container = api.content.get(path='/searches')
-    title = u'Dokumente seit Gestern'
-    description = u'Dokumente der letzten 24 Stunden'
+    title = 'Dokumente seit Gestern'
+    description = 'Dokumente der letzten 24 Stunden'
     _createObjectByType(
         'Collection', container, id='yesterday', title=title, description=description
     )
@@ -112,25 +110,25 @@ def create_since_yesterday_collection(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    yesterday.sort_on = u'changed'
+    yesterday.sort_on = 'changed'
     yesterday.sort_reversed = True
     yesterday.relatedItems = ""
     #: Query by Type and Review State
     yesterday.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'creationDate',
-            u'o': u'plone.app.querystring.operation.date.largerThanRelativeDate',
-            u'v': u'-1',
+            'i': 'creationDate',
+            'o': 'plone.app.querystring.operation.date.largerThanRelativeDate',
+            'v': '-1',
         },
         {
-            u'i': u'OperationMode',
-            u'o': u'plone.app.querystring.operation.selection.any',
-            u'v': [u'Intensiv', u'Routine'],
+            'i': 'OperationMode',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['Intensiv', 'Routine'],
         },
     ]
     yesterday.text = RichTextValue('', 'text/html', 'text/x-html-safe')
@@ -153,20 +151,20 @@ def create_purpose_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'Purpose',
-            u'o': u'plone.app.querystring.operation.string.is',
-            u'v': u'Standard-Info Bundesmessnetze',
+            'i': 'Purpose',
+            'o': 'plone.app.querystring.operation.string.is',
+            'v': 'Standard-Info Bundesmessnetze',
         },
     ]
     iwas.text = RichTextValue(
@@ -183,20 +181,20 @@ def create_purpose_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'Purpose',
-            u'o': u'plone.app.querystring.operation.string.is',
-            u'v': u'Standard-Info Bundesmessnetze',
+            'i': 'Purpose',
+            'o': 'plone.app.querystring.operation.string.is',
+            'v': 'Standard-Info Bundesmessnetze',
         },
     ]
     iwas.text = RichTextValue(
@@ -219,20 +217,20 @@ def create_sample_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'SampleTypeId',
-            u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'B*',
+            'i': 'SampleTypeId',
+            'o': 'plone.app.querystring.operation.string.contains',
+            'v': 'B*',
         },
     ]
     iwas.text = RichTextValue(
@@ -250,20 +248,20 @@ def create_sample_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'SampleTypeId',
-            u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'F*',
+            'i': 'SampleTypeId',
+            'o': 'plone.app.querystring.operation.string.contains',
+            'v': 'F*',
         },
     ]
     iwas.text = RichTextValue(
@@ -280,20 +278,20 @@ def create_sample_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'SampleTypeId',
-            u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'G*',
+            'i': 'SampleTypeId',
+            'o': 'plone.app.querystring.operation.string.contains',
+            'v': 'G*',
         },
     ]
     iwas.text = RichTextValue(
@@ -310,20 +308,20 @@ def create_sample_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'SampleTypeId',
-            u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'L*',
+            'i': 'SampleTypeId',
+            'o': 'plone.app.querystring.operation.string.contains',
+            'v': 'L*',
         },
     ]
     iwas.text = RichTextValue(
@@ -341,20 +339,20 @@ def create_sample_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'SampleTypeId',
-            u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'N*',
+            'i': 'SampleTypeId',
+            'o': 'plone.app.querystring.operation.string.contains',
+            'v': 'N*',
         },
     ]
     iwas.text = RichTextValue(
@@ -371,20 +369,20 @@ def create_sample_collections(plonesite):
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = u'effective'
+    iwas.sort_on = 'effective'
     iwas.sort_reversed = True
     iwas.relatedItems = ""
     #: Query by Type and Review State
     iwas.query = [
         {
-            'i': u'portal_type',
-            'o': u'plone.app.querystring.operation.selection.any',
-            'v': [u'DPDocument'],
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.any',
+            'v': ['DPDocument'],
         },
         {
-            u'i': u'SampleTypeId',
-            u'o': u'plone.app.querystring.operation.string.contains',
-            u'v': u'S*',
+            'i': 'SampleTypeId',
+            'o': 'plone.app.querystring.operation.string.contains',
+            'v': 'S*',
         },
     ]
     iwas.text = RichTextValue(
@@ -434,7 +432,7 @@ BASICSTRUCTURE = [
 DTYPES = [
     {
         TYPE: 'DocType',
-        TITLE: u'DoksysDokument',
+        TITLE: 'DoksysDokument',
         ID: 'doksysdok',
         CHILDREN: [],
         'local_behaviors': ['doksys'],

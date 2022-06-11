@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: srmoduletype.py
 #
@@ -30,12 +29,12 @@ class ISRModuleType(model.Schema, IDocType):
 
     docSelection = RelationChoice(
         title=_(
-            u'label_srmoduletype_docselection',
-            default=u'Collection for relevant documents',
+            'label_srmoduletype_docselection',
+            default='Collection for relevant documents',
         ),
         description=_(
-            u'description_srmoduletype_docselection',
-            default=u'This collection defines a pre-selection of possible documents to reference within this module.',
+            'description_srmoduletype_docselection',
+            default='This collection defines a pre-selection of possible documents to reference within this module.',
         ),
         required=False,
         source="elan.sitrep.vocabularies.Collections",

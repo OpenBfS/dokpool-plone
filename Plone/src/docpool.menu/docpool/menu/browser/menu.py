@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.menu.utils import adaptQuery
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
@@ -24,7 +23,7 @@ show_nonfolderish_tabs = True
 class DropDownMenuQueryBuilder(SitemapQueryBuilder):
 
     def __init__(self, context):
-        super(DropDownMenuQueryBuilder, self).__init__(context)
+        super().__init__(context)
         self.context = context
         # customize depth according to dropdown menu settings
         if content_tabs_level > 0:
@@ -43,5 +42,5 @@ class DropDownMenuQueryBuilder(SitemapQueryBuilder):
 class DropDownMenuStrategy(DefaultNavtreeStrategy):
 
     def __init__(self, context, view=None):
-        super(DropDownMenuStrategy, self).__init__(context, view)
+        super().__init__(context, view)
         self.bottomLevel = content_tabs_level

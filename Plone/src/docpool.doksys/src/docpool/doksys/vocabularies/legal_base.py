@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.doksys import _
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -7,19 +6,19 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class LegalBase(object):
+class LegalBase:
 
     def __call__(self, context=None):
         items = [
-            (u'AVV IMIS', _(u'AVV IMIS')),
-            (u'EURDEP', _(u'EURDEP')),
-            (u'IRMIS', _(u'IRMIS')),
-            (u'DENSE', _(u'DENSE')),
-            (u'KFÜ', _(u'KFÜ')),
-            (u'Land', _(u'Land')),
-            (u'SPARSE', _(u'SPARSE')),
-            (u'REI-E', _(u'REI-E')),
-            (u'REI-I', _(u'REI-I')),
+            ('AVV IMIS', _('AVV IMIS')),
+            ('EURDEP', _('EURDEP')),
+            ('IRMIS', _('IRMIS')),
+            ('DENSE', _('DENSE')),
+            ('KFÜ', _('KFÜ')),
+            ('Land', _('Land')),
+            ('SPARSE', _('SPARSE')),
+            ('REI-E', _('REI-E')),
+            ('REI-I', _('REI-I')),
         ]
         terms = [SimpleTerm(value, value, title)
                  for value, title in items]

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: dpdocument.py
 #
@@ -7,7 +6,6 @@
 #            http://www.condat.de
 #
 
-from __future__ import print_function
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -66,7 +64,7 @@ def default_text():
     """
     request = getRequest()
     if request and 'reireport' in request.get('form.widgets.docType', []):
-        return RichTextValue(u'REI-Bericht', 'text/html', 'text/x-html-safe')
+        return RichTextValue('REI-Bericht', 'text/html', 'text/x-html-safe')
 
 
 class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
@@ -74,16 +72,16 @@ class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
     """
 
     docType = schema.Choice(
-        title=_(u'label_dpdocument_doctype', default=u'Document Type'),
-        description=_(u'description_dpdocument_doctype', default=u''),
+        title=_('label_dpdocument_doctype', default='Document Type'),
+        description=_('description_dpdocument_doctype', default=''),
         required=True,
         source="docpool.base.vocabularies.DocumentTypes",
     )
 
     searchable('text')
     text = RichText(
-        title=_(u'label_dpdocument_text', default=u'Text'),
-        description=_(u'description_dpdocument_text', default=u''),
+        title=_('label_dpdocument_text', default='Text'),
+        description=_('description_dpdocument_text', default=''),
         defaultFactory=default_text,
         required=True,
     )
@@ -133,7 +131,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         @return:
         """
         request = self.REQUEST
-        dp_app_state = getMultiAdapter((self, request), name=u'dp_app_state')
+        dp_app_state = getMultiAdapter((self, request), name='dp_app_state')
 
         def _isClean():
             lbs = dp_app_state.appsEffectiveForObject(request)
@@ -411,7 +409,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         if dto:
             cat = dto.contentCategory
             if cat:
-                return "%s/@@dview?d=%s&disable_border=1" % (
+                return "{}/@@dview?d={}&disable_border=1".format(
                     cat.absolute_url(),
                     self.UID(),
                 )
@@ -568,9 +566,9 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         """
         img = self.getMapImageObj()
         if img:
-            return "<img src='%s%s' />" % (img.absolute_url(), scale)
+            return "<img src='{}{}' />".format(img.absolute_url(), scale)
         else:
-            return _(u"No map image")
+            return _("No map image")
 
     def getLegendImageObj(self):
         """
@@ -582,9 +580,9 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         """
         img = self.getLegendImageObj()
         if img:
-            return "<img src='%s%s' />" % (img.absolute_url(), scale)
+            return "<img src='{}{}' />".format(img.absolute_url(), scale)
         else:
-            return _(u"No legend image")
+            return _("No legend image")
 
     def getMyImage(self, refresh=False, full=True):
         """
@@ -604,7 +602,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
             mapimg = self.getMapImageObj()
             if mapimg:
                 legendimg = self.getLegendImageObj()
-                dateiname = '%s.%s' % (mapimg.getId(), "png")
+                dateiname = '{}.{}'.format(mapimg.getId(), "png")
                 if not full or not legendimg:
                     return mapimg.image.data, dateiname
                 else:
@@ -629,11 +627,11 @@ class DPDocument(Container, Document, Extendable, ContentBase):
 
             img = doc.getRepresentativeImage()
             if img:
-                dateiname = '%s.%s' % (img.getId(), "png")
+                dateiname = '{}.{}'.format(img.getId(), "png")
                 return img.image.data, dateiname
             img = doc.pdfImage()
             if img and not refresh:
-                dateiname = '%s.%s' % (img.getId(), "png")
+                dateiname = '{}.{}'.format(img.getId(), "png")
                 return img.data, dateiname
 
             pdf = doc.getRepresentativePDF()
@@ -642,12 +640,12 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                     doc, "Manager", DPDocument.generatePdfImage, doc, pdf
                 )
                 img = doc.pdfImage()
-                dateiname = '%s.%s' % (img.getId(), "png")
+                dateiname = '{}.{}'.format(img.getId(), "png")
                 return img.data, dateiname
 
             img = doc.getFirstImageObj()
             if img:
-                dateiname = '%s.%s' % (img.getId(), "png")
+                dateiname = '{}.{}'.format(img.getId(), "png")
                 return img.image.data, dateiname
         except Exception as e:
             log_exc(e)
@@ -677,7 +675,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     def getFirstImage(self, scale=""):
         img = self.getFirstImageObj()
         if img:
-            return "<img src='%s%s' />" % (img.absolute_url(), scale)
+            return "<img src='{}{}' />".format(img.absolute_url(), scale)
         else:
             return None
 

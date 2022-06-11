@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: dbadmin.py
 #
@@ -64,7 +63,7 @@ std_encoding = 'latin-1'
 
 
 @implementer(Idbadmin)
-class dbadmin(object):
+class dbadmin:
     """
     """
 
@@ -326,7 +325,7 @@ class dbadmin(object):
             sfun = desc
         sort_join_field = None
         if isinstance(sort_on, list):
-            sort = tuple([sfun(getattr(klass, att)) for att in sort_on])
+            sort = tuple(sfun(getattr(klass, att)) for att in sort_on)
         else:
             if sort_on:
                 if sort_on.find('|') != -1:
@@ -403,7 +402,7 @@ class dbadmin(object):
                             if v:
                                 v = int(v[1:-1])  # % entfernen
                         krit.append(a == v)
-                    elif isinstance(f[1], str) or isinstance(f[1], six.text_type):
+                    elif isinstance(f[1], str) or isinstance(f[1], str):
                         if f[1] == 'is Null':
                             krit.append(a is None)
                         elif f[1] == 'is not Null':
@@ -438,7 +437,7 @@ class dbadmin(object):
         for key in request.keys():
             if key.lower().startswith(typ.lower()):
                 data[key] = request[key]
-                if isinstance(data[key], type('')):
+                if isinstance(data[key], str):
                     data[key] = data[key].decode('utf-8')
         # print data
         return data
@@ -669,10 +668,10 @@ class dbadmin(object):
         """
         Sonderbehandlung fuer Datumswerte und Boolean. Unicode Handling
         """
-        for field, value in six.iteritems(dict):
+        for field, value in dict.items():
             if isinstance(value, datetime):
                 dict[field] = value.strftime('%d.%m.%Y %H:%M:%S')
-            elif isinstance(value, six.text_type):
+            elif isinstance(value, str):
                 if value:
                     dict[field] = value.encode(encoding)
         return dict
@@ -911,7 +910,7 @@ class dbadmin(object):
 
             if REQUEST is not None and not justData:
                 RESPONSE = REQUEST.RESPONSE
-                filename = '%s_%s.csv' % (typ, DateTime().millis())
+                filename = '{}_{}.csv'.format(typ, DateTime().millis())
                 RESPONSE.setHeader("Content-disposition",
                                    'attachment; filename=%s' % filename)
 

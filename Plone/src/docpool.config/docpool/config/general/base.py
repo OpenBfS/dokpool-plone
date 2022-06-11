@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -32,12 +30,12 @@ def install(self):
 ADMINSTRUCTURE = [
     {
         TYPE: 'DPConfig',
-        TITLE: u'Globale Konfiguration',
+        TITLE: 'Globale Konfiguration',
         ID: 'config',
         CHILDREN: [
             {
                 TYPE: 'DocTypes',
-                TITLE: u'Globale Dokumenttypen',
+                TITLE: 'Globale Dokumenttypen',
                 ID: 'dtypes',
                 CHILDREN: [],
             }
@@ -286,5 +284,5 @@ def configureGroups(self):
     gdata = getToolByName(self, 'portal_groupdata')
     prop = gdata.propdict().get("allowedDocTypes")
     if prop is not None:
-        prop["label"] = u"Allowed document types"
+        prop["label"] = "Allowed document types"
         gdata._p_changed = True

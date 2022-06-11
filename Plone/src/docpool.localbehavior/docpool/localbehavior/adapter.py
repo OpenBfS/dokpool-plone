@@ -16,7 +16,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
     def enumerateBehaviors(self):
         request = aq_get(self.context, "REQUEST", None)
-        if not request or isinstance(request, six.string_types):
+        if not request or isinstance(request, str):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
             return
         edited_behaviors = request.get(
@@ -35,7 +35,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter(
-                (self.context, request), name=u'dp_app_state'
+                (self.context, request), name='dp_app_state'
             )
             available_apps = dp_app_state.appsEffectiveForObject(request)
         else:

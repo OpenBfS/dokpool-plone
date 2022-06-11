@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.elan.config import ELAN_APP
@@ -28,9 +27,9 @@ class IELANDocument(ITransferable):
 
     scenarios = schema.List(
         title=_(
-            u'label_dpdocument_scenarios',
-            default=u'Belongs to scenarios'),
-        description=_(u'description_dpdocument_scenarios', default=u''),
+            'label_dpdocument_scenarios',
+            default='Belongs to scenarios'),
+        description=_('description_dpdocument_scenarios', default=''),
         required=True,
         defaultFactory=initializeScenarios,
         value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
@@ -39,7 +38,7 @@ class IELANDocument(ITransferable):
     directives.widget(scenarios=CheckBoxFieldWidget)
 
 
-class ELANDocument(object):
+class ELANDocument:
 
     __allow_access_to_unprotected_subobjects__ = 1
 

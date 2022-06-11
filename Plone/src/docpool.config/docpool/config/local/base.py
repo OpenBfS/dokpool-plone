@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.config import BASE_APP
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
@@ -36,12 +35,12 @@ def dpAdded(self):
 
 CONTENT_AREA = {
     TYPE: 'ContentArea',
-    TITLE: u'Benutzer/Gruppen/Transferordner',
+    TITLE: 'Benutzer/Gruppen/Transferordner',
     ID: 'content',
     "setExcludeFromNav": True,
     CHILDREN: [
-        {TYPE: 'Users', TITLE: u'Benutzer', ID: 'Members', CHILDREN: []},
-        {TYPE: 'Groups', TITLE: u'Gruppen', ID: 'Groups', CHILDREN: []},
+        {TYPE: 'Users', TITLE: 'Benutzer', ID: 'Members', CHILDREN: []},
+        {TYPE: 'Groups', TITLE: 'Gruppen', ID: 'Groups', CHILDREN: []},
     ],
 }
 

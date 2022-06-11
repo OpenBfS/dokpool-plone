@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.PlonePAS.browser.search import PASSearchView as PSV

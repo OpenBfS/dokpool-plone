@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: srphase.py
 #
@@ -50,7 +49,7 @@ class SRPhase(Container):
     def getPhaseTitle(self):
         """
         """
-        return u"%s: %s" % (
+        return "{}: {}".format(
             self.mySRScenario().Title(),
             self.Title(),
         )

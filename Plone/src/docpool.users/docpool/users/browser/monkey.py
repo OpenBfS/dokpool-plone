@@ -151,7 +151,7 @@ def getUserDataSchema():
     schema = getattr(portal, '_v_userdata_schema', None)
     if schema is None:
         portal._v_userdata_schema = schema = getFromBaseSchema(
-            IUserDataSchema, form_name=u'In User Profile'
+            IUserDataSchema, form_name='In User Profile'
         )
         # as schema is a generated supermodel,
         # needed adapters can only be registered at run time
@@ -188,7 +188,7 @@ def getGroupIds(self, context):
 
         group_title = safe_text(g.getGroupTitleOrName())
         if group_title != g.id:
-            title = u'%s (%s)' % (group_title, g.id)
+            title = '{} ({})'.format(group_title, g.id)
         else:
             title = group_title
         terms.append(SimpleTerm(g.id, g.id, title))

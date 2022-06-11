@@ -70,7 +70,7 @@ def phase_title(brain):
 
 
 @implementer(IVocabularyFactory)
-class PhasesVocabulary(object):
+class PhasesVocabulary:
     """
     """
 
@@ -90,7 +90,7 @@ PhasesVocabularyFactory = PhasesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class CurrentReportsVocabulary(object):
+class CurrentReportsVocabulary:
     """
     """
 
@@ -113,7 +113,7 @@ def module_title(brain):
 
 
 @implementer(IVocabularyFactory)
-class CurrentModulesVocabulary(object):
+class CurrentModulesVocabulary:
     """
     """
 
@@ -144,7 +144,7 @@ CurrentModulesVocabularyFactory = CurrentModulesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PastReportsVocabulary(object):
+class PastReportsVocabulary:
     """
     """
 
@@ -163,7 +163,7 @@ PastReportsVocabularyFactory = PastReportsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class ModuleTypesVocabulary(object):
+class ModuleTypesVocabulary:
     """
     """
 
@@ -178,7 +178,7 @@ ModuleTypesVocabularyFactory = ModuleTypesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class CollectionsVocabulary(object):
+class CollectionsVocabulary:
     """
     """
 
@@ -191,7 +191,7 @@ CollectionsVocabularyFactory = CollectionsVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class TextBlocksVocabulary(object):
+class TextBlocksVocabulary:
     """
     """
 

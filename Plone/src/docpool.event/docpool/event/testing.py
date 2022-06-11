@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
@@ -78,7 +77,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
             container=portal,
             type='DocumentPool',
             id='test_docpool',
-            title=u'Test Dokpool',
+            title='Test Dokpool',
             supportedApps=('elan',),
         )
         notify(EditFinishedEvent(docpool))

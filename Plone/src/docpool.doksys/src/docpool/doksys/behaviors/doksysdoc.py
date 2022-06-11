@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Common configuration constants
 """
 from AccessControl import ClassSecurityInfo
@@ -26,18 +25,18 @@ class IDoksysDoc(IDocumentExtension):
     # supposed to be fulltext searchable
 
     OperationMode = schema.Choice(
-        title=_(u'label_doksys_operation_mode', default=u'Operation Mode'),
-        description=_(u'description_doksys_operation_mode', default=u''),
+        title=_('label_doksys_operation_mode', default='Operation Mode'),
+        description=_('description_doksys_operation_mode', default=''),
         source="docpool.doksys.OperationMode",
-        default=u'Routine',
+        default='Routine',
         required=True,
     )
     read_permission(OperationMode='docpool.doksys.AccessDoksys')
     write_permission(OperationMode='docpool.doksys.AccessDoksys')
 
     Purpose = schema.Choice(
-        title=_(u'label_doksys_purpose', default=u'Purpose'),
-        description=_(u'description_doksys_purpose', default=u''),
+        title=_('label_doksys_purpose', default='Purpose'),
+        description=_('description_doksys_purpose', default=''),
         source="docpool.doksys.Purpose",
         required=False,
     )
@@ -46,8 +45,8 @@ class IDoksysDoc(IDocumentExtension):
 
     widget(NetworkOperator=SelectFieldWidget)
     NetworkOperator = schema.List(
-        title=_(u'label_doksys_network_operator', default=u'Network Operator'),
-        description=_(u'description_doksys_network_operator', default=u''),
+        title=_('label_doksys_network_operator', default='Network Operator'),
+        description=_('description_doksys_network_operator', default=''),
         value_type=schema.Choice(
             source="docpool.doksys.NetworkOperators",
         ),
@@ -59,8 +58,8 @@ class IDoksysDoc(IDocumentExtension):
 
     widget(LegalBase=CheckBoxFieldWidget)
     LegalBase = schema.List(
-        title=_(u'label_doksys_legal_base', default=u'Legal Base'),
-        description=_(u'description_doksys_legal_base', default=u''),
+        title=_('label_doksys_legal_base', default='Legal Base'),
+        description=_('description_doksys_legal_base', default=''),
         value_type=schema.Choice(
             source="docpool.doksys.LegalBase",
         ),
@@ -72,9 +71,9 @@ class IDoksysDoc(IDocumentExtension):
 
     MeasuringProgram = schema.Choice(
         title=_(
-            u'label_doksys_measuring_program',
-            default=u'Measuring Program'),
-        description=_(u'description_doksys_measuring_program', default=u''),
+            'label_doksys_measuring_program',
+            default='Measuring Program'),
+        description=_('description_doksys_measuring_program', default=''),
         source="docpool.doksys.MeasuringProgram",
         required=False,
     )
@@ -83,8 +82,8 @@ class IDoksysDoc(IDocumentExtension):
 
     widget(DataType=CheckBoxFieldWidget)
     DataType = schema.List(
-        title=_(u'label_doksys_data_type', default=u'Data Type'),
-        description=_(u'description_doksys_data_type', default=u''),
+        title=_('label_doksys_data_type', default='Data Type'),
+        description=_('description_doksys_data_type', default=''),
         value_type=schema.Choice(
             source="docpool.doksys.DataType",
         ),
@@ -96,8 +95,8 @@ class IDoksysDoc(IDocumentExtension):
 
     widget(SampleType=SelectFieldWidget)
     SampleType = schema.List(
-        title=_(u'label_doksys_sample_type', default=u'Sample Type'),
-        description=_(u'description_doksys_sample_type', default=u''),
+        title=_('label_doksys_sample_type', default='Sample Type'),
+        description=_('description_doksys_sample_type', default=''),
         value_type=schema.Choice(
             source="docpool.doksys.SampleType",
         ),
@@ -109,8 +108,8 @@ class IDoksysDoc(IDocumentExtension):
 
     widget(Dom=SelectFieldWidget)
     Dom = schema.List(
-        title=_(u'label_doksys_Dom', default=u'Description of Measurement'),
-        description=_(u'description_doksys_Dom', default=u''),
+        title=_('label_doksys_Dom', default='Description of Measurement'),
+        description=_('description_doksys_Dom', default=''),
         value_type=schema.Choice(
             source="docpool.doksys.Dom",
         ),
@@ -121,8 +120,8 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(Dom='docpool.doksys.AccessDoksysDOM')
 
     InfoType = schema.Choice(
-        title=_(u'label_doksys_infotype', default=u'InfoType'),
-        description=_(u'description_doksys_infotype', default=u''),
+        title=_('label_doksys_infotype', default='InfoType'),
+        description=_('description_doksys_infotype', default=''),
         source="docpool.doksys.InfoType",
         required=False,
     )
@@ -132,9 +131,9 @@ class IDoksysDoc(IDocumentExtension):
     widget(MeasurementCategory=SelectFieldWidget)
     MeasurementCategory = schema.List(
         title=_(
-            u'label_doksys_measurement_category',
-            default=u'Measurement Category'),
-        description=_(u'description_doksys_measurement_category', default=u''),
+            'label_doksys_measurement_category',
+            default='Measurement Category'),
+        description=_('description_doksys_measurement_category', default=''),
         value_type=schema.Choice(
             source="docpool.doksys.MeasurementCategory",
         ),
@@ -145,8 +144,8 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(MeasurementCategory='docpool.doksys.AccessDoksys')
 
     Duration = schema.Choice(
-        title=_(u'label_doksys_duration', default=u'Duration'),
-        description=_(u'description_doksys_duration', default=u''),
+        title=_('label_doksys_duration', default='Duration'),
+        description=_('description_doksys_duration', default=''),
         source="docpool.doksys.Duration",
         required=False,
     )
@@ -154,8 +153,8 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(Duration='docpool.doksys.AccessDoksys')
 
     Status = schema.Choice(
-        title=_(u'label_doksys_status', default=u'Status'),
-        description=_(u'description_doksys_status', default=u''),
+        title=_('label_doksys_status', default='Status'),
+        description=_('description_doksys_status', default=''),
         source="docpool.doksys.Status",
         required=False,
     )
@@ -163,16 +162,16 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(Status='docpool.doksys.AccessDoksys')
 
     SamplingBegin = schema.Datetime(
-        title=_(u'label_doksys_sampling_begin', default=u'Sampling Begin'),
-        description=_(u'description_doksys_sampling_begin', default=u''),
+        title=_('label_doksys_sampling_begin', default='Sampling Begin'),
+        description=_('description_doksys_sampling_begin', default=''),
         required=False,
     )
     read_permission(SamplingBegin='docpool.doksys.AccessDoksys')
     write_permission(SamplingBegin='docpool.doksys.AccessDoksys')
 
     SamplingEnd = schema.Datetime(
-        title=_(u'label_doksys_sampling_end', default=u'Sampling End'),
-        description=_(u'description_doksys_sampling_end', default=u''),
+        title=_('label_doksys_sampling_end', default='Sampling End'),
+        description=_('description_doksys_sampling_end', default=''),
         required=False,
     )
     read_permission(SamplingEnd='docpool.doksys.AccessDoksys')
@@ -180,12 +179,12 @@ class IDoksysDoc(IDocumentExtension):
 
     TrajectoryStartLocation = schema.TextLine(
         title=_(
-            u'label_doksys_trajectory_start_location',
-            default=u'Trajectory Start Location',
+            'label_doksys_trajectory_start_location',
+            default='Trajectory Start Location',
         ),
         description=_(
-            u'description_doksys_trajectory_start_location',
-            default=u''),
+            'description_doksys_trajectory_start_location',
+            default=''),
         required=False,
     )
     read_permission(TrajectoryStartLocation='docpool.doksys.AccessDoksys')
@@ -193,11 +192,11 @@ class IDoksysDoc(IDocumentExtension):
 
     TrajectoryEndLocation = schema.TextLine(
         title=_(
-            u'label_doksys_trajectory_end_location', default=u'Trajectory End Location'
+            'label_doksys_trajectory_end_location', default='Trajectory End Location'
         ),
         description=_(
-            u'description_doksys_trajectory_end_location',
-            default=u''),
+            'description_doksys_trajectory_end_location',
+            default=''),
         required=False,
     )
     read_permission(TrajectoryEndLocation='docpool.doksys.AccessDoksys')
@@ -205,11 +204,11 @@ class IDoksysDoc(IDocumentExtension):
 
     TrajectoryStartTime = schema.Datetime(
         title=_(
-            u'label_doksys_trajectory_start_time', default=u'Trajectory Start Time'
+            'label_doksys_trajectory_start_time', default='Trajectory Start Time'
         ),
         description=_(
-            u'description_doksys_trajectory_start_time',
-            default=u''),
+            'description_doksys_trajectory_start_time',
+            default=''),
         required=False,
     )
     read_permission(TrajectoryStartTime='docpool.doksys.AccessDoksys')
@@ -217,17 +216,17 @@ class IDoksysDoc(IDocumentExtension):
 
     TrajectoryEndTime = schema.Datetime(
         title=_(
-            u'label_doksys_trajectory_end_time',
-            default=u'Trajectory End Time'),
-        description=_(u'description_doksys_trajectory_end_time', default=u''),
+            'label_doksys_trajectory_end_time',
+            default='Trajectory End Time'),
+        description=_('description_doksys_trajectory_end_time', default=''),
         required=False,
     )
     read_permission(TrajectoryEndTime='docpool.doksys.AccessDoksys')
     write_permission(TrajectoryEndTime='docpool.doksys.AccessDoksys')
 
     Area = schema.Choice(
-        title=_(u'label_doksys_area', default=u'Area'),
-        description=_(u'description_doksys_area', default=u''),
+        title=_('label_doksys_area', default='Area'),
+        description=_('description_doksys_area', default=''),
         source="docpool.doksys.Area",
         required=False,
     )
@@ -325,7 +324,7 @@ class DoksysDoc(FlexibleView):
 
     def sample_type_display(self):
         voc = getUtility(IVocabularyFactory, 'docpool.doksys.SampleType')()
-        return u', '.join(voc.getTerm(i).title for i in self.SampleType)
+        return ', '.join(voc.getTerm(i).title for i in self.SampleType)
 
     def _get_Dom(self):
         return self.context.Dom

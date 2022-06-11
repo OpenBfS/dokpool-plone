@@ -1,4 +1,3 @@
-# - * - coding: utf - 8 -*-
 from AccessControl.SecurityInfo import allow_module
 from datetime import date
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
@@ -9,30 +8,30 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class AuthorityVocabulary(object):
+class AuthorityVocabulary:
     """
     """
 
     def __call__(self, context=None):
         items = [
-            (u'', u'Select a value ...'),
-            (u'de_bw', u'Baden-Württemberg'),
-            (u'de_by', u'Bayern'),
-            (u'de_be', u'Berlin'),
-            (u'de_bb', u'Brandenburg'),
-            (u'de_hb', u'Bremen'),
-            (u'de_el', u'Endlager (Bundesaufsicht)'),
-            (u'de_hh', u'Hamburg'),
-            (u'de_he', u'Hessen'),
-            (u'de_mv', u'Mecklenburg-Vorpommern'),
-            (u'de_ni', u'Niedersachsen'),
-            (u'de_nw', u'Nordrhein-Westfalen'),
-            (u'de_rp', u'Rheinland-Pfalz'),
-            (u'de_sl', u'Saarland'),
-            (u'de_sn', u'Sachsen'),
-            (u'de_st', u'Sachsen-Anhalt'),
-            (u'de_sh', u'Schleswig-Holstein'),
-            (u'de_th', u'Thüringen'),
+            ('', 'Select a value ...'),
+            ('de_bw', 'Baden-Württemberg'),
+            ('de_by', 'Bayern'),
+            ('de_be', 'Berlin'),
+            ('de_bb', 'Brandenburg'),
+            ('de_hb', 'Bremen'),
+            ('de_el', 'Endlager (Bundesaufsicht)'),
+            ('de_hh', 'Hamburg'),
+            ('de_he', 'Hessen'),
+            ('de_mv', 'Mecklenburg-Vorpommern'),
+            ('de_ni', 'Niedersachsen'),
+            ('de_nw', 'Nordrhein-Westfalen'),
+            ('de_rp', 'Rheinland-Pfalz'),
+            ('de_sl', 'Saarland'),
+            ('de_sn', 'Sachsen'),
+            ('de_st', 'Sachsen-Anhalt'),
+            ('de_sh', 'Schleswig-Holstein'),
+            ('de_th', 'Thüringen'),
         ]
         terms = [SimpleTerm(code, code, title) for code, title in items]
         return SimpleVocabulary(terms)
@@ -43,14 +42,14 @@ AuthorityVocabularyFactory = AuthorityVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class ReiLegalBaseVocabulary(object):
+class ReiLegalBaseVocabulary:
     """
     """
 
     def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
-            u'REI-E',
-            u'REI-I',
+            'REI-E',
+            'REI-I',
         ])
 
 
@@ -58,15 +57,15 @@ ReiLegalBaseVocabularyFactory = ReiLegalBaseVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class MediumVocabulary(object):
+class MediumVocabulary:
     """
     """
 
     def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
-            u'Fortluft',
-            u'Abwasser',
-            u'Abwasser/Fortluft',
+            'Fortluft',
+            'Abwasser',
+            'Abwasser/Fortluft',
         ])
 
 
@@ -74,31 +73,31 @@ MediumVocabularyFactory = MediumVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PeriodVocabulary(object):
+class PeriodVocabulary:
     """
     """
 
     def __call__(self, context=None):
         items = [
-            (u'Y', u'Jahr'),
-            (u'H1', u'1. Halbjahr'),
-            (u'H2', u'2. Halbjahr'),
-            (u'Q1', u'1. Quartal'),
-            (u'Q2', u'2. Quartal'),
-            (u'Q3', u'3. Quartal'),
-            (u'Q4', u'4. Quartal'),
-            (u'M1', u'Januar'),
-            (u'M2', u'Februar'),
-            (u'M3', u'März'),
-            (u'M4', u'April'),
-            (u'M5', u'Mai'),
-            (u'M6', u'Juni'),
-            (u'M7', u'Juli'),
-            (u'M8', u'August'),
-            (u'M9', u'September'),
-            (u'M10', u'Oktober'),
-            (u'M11', u'November'),
-            (u'M12', u'Dezember'),
+            ('Y', 'Jahr'),
+            ('H1', '1. Halbjahr'),
+            ('H2', '2. Halbjahr'),
+            ('Q1', '1. Quartal'),
+            ('Q2', '2. Quartal'),
+            ('Q3', '3. Quartal'),
+            ('Q4', '4. Quartal'),
+            ('M1', 'Januar'),
+            ('M2', 'Februar'),
+            ('M3', 'März'),
+            ('M4', 'April'),
+            ('M5', 'Mai'),
+            ('M6', 'Juni'),
+            ('M7', 'Juli'),
+            ('M8', 'August'),
+            ('M9', 'September'),
+            ('M10', 'Oktober'),
+            ('M11', 'November'),
+            ('M12', 'Dezember'),
         ]
         terms = [SimpleTerm(code, code, title) for code, title in items]
         return SimpleVocabulary(terms)
@@ -107,21 +106,21 @@ PeriodVocabularyFactory = PeriodVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PDFVersionVocabulary(object):
+class PDFVersionVocabulary:
     """
     """
 
     def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
-            u'keine Angabe',
-            u'PDF/A-1b',
-            u'PDF/A-1a',
-            u'PDF/A-2a',
-            u'PDF/A-2b',
-            u'PDF/A-2u',
-            u'PDF/A-3a',
-            u'PDF/A-3b',
-            u'PDF/A-3u',
+            'keine Angabe',
+            'PDF/A-1b',
+            'PDF/A-1a',
+            'PDF/A-2a',
+            'PDF/A-2b',
+            'PDF/A-2u',
+            'PDF/A-3a',
+            'PDF/A-3b',
+            'PDF/A-3u',
         ])
 
 
@@ -129,129 +128,129 @@ PDFVersionVocabularyFactory = PDFVersionVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class MStIDVocabulary(object):
+class MStIDVocabulary:
     """
     """
 
     def __call__(self, context=None):
         items = [
-            (u'00000', u'ESN Sicherheit und Zertifizierung GmbH'),
-            (u'00001', u'Ministerium für Wirtschaft, Innovation,  Digitalisierung und Energie des Landes NRW'),
-            (u'01002', u'Ministerium für Energiewende, Landwirtschaft, Umwelt, Natur und Digitalisierung des Landes Schleswig-Holstein (SH)'),
-            (u'01010', u'Helmholtz-Zentrum hereon GmbH'),
-            (u'01011', u'Helmholtz-Zentrum hereon GmbH'),
-            (u'01020', u'Landesmessstelle Schleswig-Holstein - LMst 1 Kiel'),
-            (u'01051', u'Kernkraftwerk Krümmel (KKK)'),
-            (u'01071', u'Kernkraftwerk Brunsbüttel(KKB)'),
-            (u'01081', u'Kernkraftwerk Brokdorf (KBR)'),
-            (u'01181', u'SH-KTA-Brokdorf_SZL'),
-            (u'01551', u'SH-KTA-Krümmel_SZL'),
-            (u'03020', u'Universität Göttingen'),
-            (u'03040', u'Landesmessstelle Niedersachsen - LMst 1 Hildesheim'),
-            (u'03060', u'Landesmessstelle Niedersachsen - LMst 2 Hildesheim'),
-            (u'03102', u'Landeszentrale Niedersachsen (NI)'),
-            (u'03132', u'Niedersächsisches Ministerium für Umwelt, Energie, Bauen und Klimaschutz (MU)'),
-            (u'03141', u'Kernkraftwerk Lingen GmbH'),
-            (u'03151', u'PreussenElektra GmbH Kernkraftwerk Stade'),
-            (u'03161', u'PreussenElektra GmbH Kernkraftwerk Unterweser '),
-            (u'03171', u'PreussenElektra GmbH Gemeinschaftskernkraftwerk Grohnde'),
-            (u'03191', u'Kernkraftwerke Lippe-Ems GmbH Kernkraftwerk Emsland'),
-            (u'03201', u'BGZ Gesellschaft für Zwischenlagerung mbH Betrieb Gorleben'),
-            (u'03211', u'Konrad Schacht II'),
-            (u'03221', u'Advanced Nuclear Fuels GmbH'),
-            (u'03231', u'NI-KTA-Lingen_SZL'),
-            (u'03561', u'NI-KTA-Unterweser_SZL'),
-            (u'03571', u'NI-KTA-Grohnde_SZL'),
-            (u'04020', u'Landesmessstelle Bremen - LMst 1 Bremen'),
-            (u'04032', u'Landeszentrale Bremen (BR)'),
-            (u'05020', u'Landesmessstelle Nordrhein-Westfalen - LMst 1 Duisburg'),
-            (u'05030', u'Landesmessstelle Nordrhein-Westfalen - LMst 2 Düsseldorf'),
-            (u'05040', u'Ruhrverband Ruhrtalsperrverein'),
-            (u'05050', u'TüV Rheinland - Köln'),
-            (u'05060', u'Staatliches Veterinäruntersuchungsamt'),
-            (u'05080', u'Landwirtschaftliche Untersuchungs- und Forschungsanstalt'),
-            (u'05090', u'Materialprüfungsamt des Landes NRW'),
-            (u'05091', u'Forschungszentrum Jülich (FZJ)'),
-            (u'05092', u'Arbeitsgemeinschaft Versuchsreaktor GmbH (AVR)'),
-            (u'05141', u'Kernkraftwerk Würgassen(KWW)'),
-            (u'05151', u'Prototypenkraftwerk Hamm-Uentrop (THTR-300)'),
-            (u'05161', u'SNR-Versuchskraftwerk Kalkar (SNR-300)'),
-            (u'05171', u'BGZ Gesellschaft für Zwischenlagerung mbH Brennelement-Zwischenlager Ahaus GmbH'),
-            (u'05181', u'Urananreicherungsanlage Gronau (UAG)'),
-            (u'06060', u'Landesmessstelle Hessen - LMst 3 Darmstadt'),
-            (u'06101', u'Kernkraftwerk Biblis'),
-            (u'06122', u'Hessisches Ministerium für Umwelt, Klimaschutz, Landwirtschaft und Verbraucherschutz (HMUKLV)'),
-            (u'06501', u'HE-KTA-Biblis_SZL'),
-            (u'07002', u'Ministerium für Umwelt, Energie, Ernährung und Forsten Rheinland-Pfalz (RP) / Landeszentrale Rheinland-Pfalz (RP)'),
-            (u'07010', u'Landesmessstelle Rheinland-Pfalz - LMst 1 Mainz'),
-            (u'07020', u'Landesmessstelle Rheinland-Pfalz - LMst 4 Mainz'),
-            (u'07030', u'Landesmessstelle Rheinland-Pfalz - LMst 2 Speyer'),
-            (u'07040', u'Landesmessstelle Rheinland-Pfalz - LMst 5 Speyer'),
-            (u'07071', u'Johannes Gutenberg Universität'),
-            (u'07081', u'Anlage Mülheim-Kärlich (KMK)'),
-            (u'08002', u'Ministerium für Umwelt,  Klima und Energiewirtschaft Baden-Württemberg (BW)'),
-            (u'08010', u'Landesmessstelle Baden-Württemberg - LMst 1 Karlsruhe'),
-            (u'08031', u'Universität Hohenheim'),
-            (u'08041', u'Karlsruher Institut für Technologie - Campus Nord stellvertretend für alle Betreiber von Anlagen und Einrichtungen am Standort (Kerntechnische Entsorgung Karlsruhe GmbH, Europäische Kommission - Joint Research Centre Karlsruhe, Zyklotron AG)'),
-            (u'08061', u'Staatliche milchwirtschaftliche Lehr- und Forschungsanstalt'),
-            (u'08082', u'Landeszentrale Baden-Württemberg (BW)'),
-            (u'08101', u'Kernkraftwerk Obrigheim'),
-            (u'08111', u'EnBW Kernkraft GmbH Kernkraftwerk Neckarwestheim'),
-            (u'08121', u'EnBW Kernkraft GmbH Kernkraftwerk Philippsburg'),
-            (u'08131', u'Deutsches Krebsforschungszentrum Heidelberg'),
-            (u'08201', u'Fachhochschule Ravensburg-Weingarten'),
-            (u'08210', u'Landesfeuerwehrschule Baden-Württemberg'),
-            (u'08221', u'Kerntechnische Hilfsdienst GmbH'),
-            (u'08511', u'BW-KTA-Neckarwestheim_SZL'),
-            (u'08521', u'BW-KTA-Philippsburg_SZL'),
-            (u'09030', u'Landesmessstelle Bayern - LMst 3 Augsburg'),
-            (u'09051', u'Nicht mehr verwendet'),
-            (u'09052', u'Mirion Technologies (AWST) GmbH'),
-            (u'09081', u'Landesgewerbeanstalt Bayern'),
-            (u'09082', u'Bayerisches Geologisches Landesamt'),
-            (u'09111', u'Technische Universität München'),
-            (u'09121', u'Kernkraftwerk Isar1+2 GmbH'),
-            (u'09122', u'Kernkraftwerk Isar 1 GmbH'),
-            (u'09123', u'Bayernwerk AG'),
-            (u'09131', u'Kernkraftwerk Grafenrheinfeld (KKG)'),
-            (u'09141', u'Kernkraftwerk Gundremmingen (KRB)'),
-            (u'09151', u'Versuchsatomkraftwerk Kahl GmbH (VAK)'),
-            (u'09161', u'Siemens AG'),
-            (u'09162', u'Framatome GmbH'),
-            (u'09171', u'Siemens AG'),
-            (u'09181', u'Siemens AG Brennelementewerk Hanau'),
-            (u'09192', u'Landeszentrale Bayern (BY)'),
-            (u'09231', u'Technischer Überwachungsverein e.V.'),
-            (u'09300', u'Universitäten in Bayern'),
-            (u'09521', u'BY-KTA-Isar_SZL'),
-            (u'09531', u'BY-KTA-Grafenrheinfeld_SZL'),
-            (u'09541', u'BY-KTA-Gundremmingen_SZL'),
-            (u'10010', u'Landesmessstelle Saarland - LMst 1 Saarbrücken'),
-            (u'10030', u'Landesmessstelle Saarland - LMst 1 Saarbrücken'),
-            (u'10042', u'Landeszentrale Saarland (SL)'),
-            (u'11010', u'Landesmessstelle Berlin - LMst 1 Berlin'),
-            (u'11020', u'Freie Universität Berlin'),
-            (u'11042', u'Senatsverwaltung für Umwelt, Verkehr und Klimaschutz (BE) / Landeszentrale Berlin (BE)'),
-            (u'11061', u'Helmholtz-Zentrum Berlin für Materialien und Energie (BERII)'),
-            (u'12010', u'Landesmessstelle Brandenburg - LMst 1 Oranienburg'),
-            (u'12032', u'Landeszentrale Brandenburg (BB)'),
-            (u'12041', u'Energiewerke Nord GmbH - Kernkraftwerk Rheinsberg'),
-            (u'13002', u'Ministerium für Inneres und Europa Mecklenburg-Vorpommern (M-V)'),
-            (u'13010', u'Landesmessstelle Mecklenburg-Vorpommern - Stralsund'),
-            (u'13031', u'EWN Entsorgungswerk für Nuklearanlagen GmbH '),
-            (u'13032', u'Landeszentrale Mecklenburg-Vorpommern (MV)'),
-            (u'13033', u'Energiewerke Nord GmbH - Zwischenlager Nord'),
-            (u'14002', u'Sächsisches Staatsministerium für Energie, Klimaschutz, Umwelt und Landwirtschaft (SMEKUL)'),
-            (u'14010', u'Landesmessstelle Sachsen - LMst 1 Radebeul'),
-            (u'14032', u'Landeszentrale Sachsen (SN)'),
-            (u'14040', u'IAF-Radioökologie GmbH'),
-            (u'14041', u'Forschungszentrum Rossendorf e.V'),
-            (u'15010', u'Landesmessstelle Sachsen-Anhalt - LMst 1 Halle/Saale'),
-            (u'18001', u'Endlager für radioaktive Abfälle Morsleben (ERAM)'),
-            (u'18002', u'Bundesamt für Kerntechnische Entsorgungssicherheit Atomrechtliche Aufsicht'),
-            (u'18003', u'KTA Asse'),
+            ('00000', 'ESN Sicherheit und Zertifizierung GmbH'),
+            ('00001', 'Ministerium für Wirtschaft, Innovation,  Digitalisierung und Energie des Landes NRW'),
+            ('01002', 'Ministerium für Energiewende, Landwirtschaft, Umwelt, Natur und Digitalisierung des Landes Schleswig-Holstein (SH)'),
+            ('01010', 'Helmholtz-Zentrum hereon GmbH'),
+            ('01011', 'Helmholtz-Zentrum hereon GmbH'),
+            ('01020', 'Landesmessstelle Schleswig-Holstein - LMst 1 Kiel'),
+            ('01051', 'Kernkraftwerk Krümmel (KKK)'),
+            ('01071', 'Kernkraftwerk Brunsbüttel(KKB)'),
+            ('01081', 'Kernkraftwerk Brokdorf (KBR)'),
+            ('01181', 'SH-KTA-Brokdorf_SZL'),
+            ('01551', 'SH-KTA-Krümmel_SZL'),
+            ('03020', 'Universität Göttingen'),
+            ('03040', 'Landesmessstelle Niedersachsen - LMst 1 Hildesheim'),
+            ('03060', 'Landesmessstelle Niedersachsen - LMst 2 Hildesheim'),
+            ('03102', 'Landeszentrale Niedersachsen (NI)'),
+            ('03132', 'Niedersächsisches Ministerium für Umwelt, Energie, Bauen und Klimaschutz (MU)'),
+            ('03141', 'Kernkraftwerk Lingen GmbH'),
+            ('03151', 'PreussenElektra GmbH Kernkraftwerk Stade'),
+            ('03161', 'PreussenElektra GmbH Kernkraftwerk Unterweser '),
+            ('03171', 'PreussenElektra GmbH Gemeinschaftskernkraftwerk Grohnde'),
+            ('03191', 'Kernkraftwerke Lippe-Ems GmbH Kernkraftwerk Emsland'),
+            ('03201', 'BGZ Gesellschaft für Zwischenlagerung mbH Betrieb Gorleben'),
+            ('03211', 'Konrad Schacht II'),
+            ('03221', 'Advanced Nuclear Fuels GmbH'),
+            ('03231', 'NI-KTA-Lingen_SZL'),
+            ('03561', 'NI-KTA-Unterweser_SZL'),
+            ('03571', 'NI-KTA-Grohnde_SZL'),
+            ('04020', 'Landesmessstelle Bremen - LMst 1 Bremen'),
+            ('04032', 'Landeszentrale Bremen (BR)'),
+            ('05020', 'Landesmessstelle Nordrhein-Westfalen - LMst 1 Duisburg'),
+            ('05030', 'Landesmessstelle Nordrhein-Westfalen - LMst 2 Düsseldorf'),
+            ('05040', 'Ruhrverband Ruhrtalsperrverein'),
+            ('05050', 'TüV Rheinland - Köln'),
+            ('05060', 'Staatliches Veterinäruntersuchungsamt'),
+            ('05080', 'Landwirtschaftliche Untersuchungs- und Forschungsanstalt'),
+            ('05090', 'Materialprüfungsamt des Landes NRW'),
+            ('05091', 'Forschungszentrum Jülich (FZJ)'),
+            ('05092', 'Arbeitsgemeinschaft Versuchsreaktor GmbH (AVR)'),
+            ('05141', 'Kernkraftwerk Würgassen(KWW)'),
+            ('05151', 'Prototypenkraftwerk Hamm-Uentrop (THTR-300)'),
+            ('05161', 'SNR-Versuchskraftwerk Kalkar (SNR-300)'),
+            ('05171', 'BGZ Gesellschaft für Zwischenlagerung mbH Brennelement-Zwischenlager Ahaus GmbH'),
+            ('05181', 'Urananreicherungsanlage Gronau (UAG)'),
+            ('06060', 'Landesmessstelle Hessen - LMst 3 Darmstadt'),
+            ('06101', 'Kernkraftwerk Biblis'),
+            ('06122', 'Hessisches Ministerium für Umwelt, Klimaschutz, Landwirtschaft und Verbraucherschutz (HMUKLV)'),
+            ('06501', 'HE-KTA-Biblis_SZL'),
+            ('07002', 'Ministerium für Umwelt, Energie, Ernährung und Forsten Rheinland-Pfalz (RP) / Landeszentrale Rheinland-Pfalz (RP)'),
+            ('07010', 'Landesmessstelle Rheinland-Pfalz - LMst 1 Mainz'),
+            ('07020', 'Landesmessstelle Rheinland-Pfalz - LMst 4 Mainz'),
+            ('07030', 'Landesmessstelle Rheinland-Pfalz - LMst 2 Speyer'),
+            ('07040', 'Landesmessstelle Rheinland-Pfalz - LMst 5 Speyer'),
+            ('07071', 'Johannes Gutenberg Universität'),
+            ('07081', 'Anlage Mülheim-Kärlich (KMK)'),
+            ('08002', 'Ministerium für Umwelt,  Klima und Energiewirtschaft Baden-Württemberg (BW)'),
+            ('08010', 'Landesmessstelle Baden-Württemberg - LMst 1 Karlsruhe'),
+            ('08031', 'Universität Hohenheim'),
+            ('08041', 'Karlsruher Institut für Technologie - Campus Nord stellvertretend für alle Betreiber von Anlagen und Einrichtungen am Standort (Kerntechnische Entsorgung Karlsruhe GmbH, Europäische Kommission - Joint Research Centre Karlsruhe, Zyklotron AG)'),
+            ('08061', 'Staatliche milchwirtschaftliche Lehr- und Forschungsanstalt'),
+            ('08082', 'Landeszentrale Baden-Württemberg (BW)'),
+            ('08101', 'Kernkraftwerk Obrigheim'),
+            ('08111', 'EnBW Kernkraft GmbH Kernkraftwerk Neckarwestheim'),
+            ('08121', 'EnBW Kernkraft GmbH Kernkraftwerk Philippsburg'),
+            ('08131', 'Deutsches Krebsforschungszentrum Heidelberg'),
+            ('08201', 'Fachhochschule Ravensburg-Weingarten'),
+            ('08210', 'Landesfeuerwehrschule Baden-Württemberg'),
+            ('08221', 'Kerntechnische Hilfsdienst GmbH'),
+            ('08511', 'BW-KTA-Neckarwestheim_SZL'),
+            ('08521', 'BW-KTA-Philippsburg_SZL'),
+            ('09030', 'Landesmessstelle Bayern - LMst 3 Augsburg'),
+            ('09051', 'Nicht mehr verwendet'),
+            ('09052', 'Mirion Technologies (AWST) GmbH'),
+            ('09081', 'Landesgewerbeanstalt Bayern'),
+            ('09082', 'Bayerisches Geologisches Landesamt'),
+            ('09111', 'Technische Universität München'),
+            ('09121', 'Kernkraftwerk Isar1+2 GmbH'),
+            ('09122', 'Kernkraftwerk Isar 1 GmbH'),
+            ('09123', 'Bayernwerk AG'),
+            ('09131', 'Kernkraftwerk Grafenrheinfeld (KKG)'),
+            ('09141', 'Kernkraftwerk Gundremmingen (KRB)'),
+            ('09151', 'Versuchsatomkraftwerk Kahl GmbH (VAK)'),
+            ('09161', 'Siemens AG'),
+            ('09162', 'Framatome GmbH'),
+            ('09171', 'Siemens AG'),
+            ('09181', 'Siemens AG Brennelementewerk Hanau'),
+            ('09192', 'Landeszentrale Bayern (BY)'),
+            ('09231', 'Technischer Überwachungsverein e.V.'),
+            ('09300', 'Universitäten in Bayern'),
+            ('09521', 'BY-KTA-Isar_SZL'),
+            ('09531', 'BY-KTA-Grafenrheinfeld_SZL'),
+            ('09541', 'BY-KTA-Gundremmingen_SZL'),
+            ('10010', 'Landesmessstelle Saarland - LMst 1 Saarbrücken'),
+            ('10030', 'Landesmessstelle Saarland - LMst 1 Saarbrücken'),
+            ('10042', 'Landeszentrale Saarland (SL)'),
+            ('11010', 'Landesmessstelle Berlin - LMst 1 Berlin'),
+            ('11020', 'Freie Universität Berlin'),
+            ('11042', 'Senatsverwaltung für Umwelt, Verkehr und Klimaschutz (BE) / Landeszentrale Berlin (BE)'),
+            ('11061', 'Helmholtz-Zentrum Berlin für Materialien und Energie (BERII)'),
+            ('12010', 'Landesmessstelle Brandenburg - LMst 1 Oranienburg'),
+            ('12032', 'Landeszentrale Brandenburg (BB)'),
+            ('12041', 'Energiewerke Nord GmbH - Kernkraftwerk Rheinsberg'),
+            ('13002', 'Ministerium für Inneres und Europa Mecklenburg-Vorpommern (M-V)'),
+            ('13010', 'Landesmessstelle Mecklenburg-Vorpommern - Stralsund'),
+            ('13031', 'EWN Entsorgungswerk für Nuklearanlagen GmbH '),
+            ('13032', 'Landeszentrale Mecklenburg-Vorpommern (MV)'),
+            ('13033', 'Energiewerke Nord GmbH - Zwischenlager Nord'),
+            ('14002', 'Sächsisches Staatsministerium für Energie, Klimaschutz, Umwelt und Landwirtschaft (SMEKUL)'),
+            ('14010', 'Landesmessstelle Sachsen - LMst 1 Radebeul'),
+            ('14032', 'Landeszentrale Sachsen (SN)'),
+            ('14040', 'IAF-Radioökologie GmbH'),
+            ('14041', 'Forschungszentrum Rossendorf e.V'),
+            ('15010', 'Landesmessstelle Sachsen-Anhalt - LMst 1 Halle/Saale'),
+            ('18001', 'Endlager für radioaktive Abfälle Morsleben (ERAM)'),
+            ('18002', 'Bundesamt für Kerntechnische Entsorgungssicherheit Atomrechtliche Aufsicht'),
+            ('18003', 'KTA Asse'),
             ]
-        terms = [SimpleTerm(code, code, u'{} - {}'.format(code, title))
+        terms = [SimpleTerm(code, code, f'{code} - {title}')
                  for code, title in items]
         return SimpleVocabulary(terms)
 
@@ -260,14 +259,14 @@ MStIDVocabularyFactory = MStIDVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class OriginVocabulary(object):
+class OriginVocabulary:
     """
     """
 
     def __call__(self, context=None):
         return safe_simplevocabulary_from_values([
-            u'Genehmigungsinhaber',
-            u'unabhängige Messstelle',
+            'Genehmigungsinhaber',
+            'unabhängige Messstelle',
         ])
 
 
@@ -275,7 +274,7 @@ OriginVocabularyFactory = OriginVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class YearVocabulary(object):
+class YearVocabulary:
     """
     """
 
@@ -296,71 +295,71 @@ YearVocabularyFactory = YearVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class NuclearInstallationVocabulary(object):
+class NuclearInstallationVocabulary:
     """
     """
 
     def __call__(self, context=None):
         items = [
-            ('UCHL', u'KTA Leibstadt mit Beznau und Villigen'),
-            ('UELA', u'Endlager für radioaktive Abfälle Asse'),
-            ('UELM', u'Endlager für radioaktive Abfälle Morsleben (ERAM)'),
-            ('UFRC', u'KKW Cattenom'),
-            ('UFRF', u'KKW Fessenheim'),
-            ('U01A', u'Helmholtz-Zentrum hereon'),
-            ('U01B', u'KKW Krümmel'),
-            ('U01C', u'KKW Brunsbüttel'),
-            ('U01D', u'KKW Brokdorf'),
-            ('U01I', u'Interimslager Krümmel'),
-            ('U01K', u'Brennelemente-Zwischenlager Krümmel (BZK)'),
-            ('U01L', u'Standortzwischenlager Brunsbüttel'),
-            ('U01M', u'Brennelemente-Zwischenlager Brokdorf (BZF)'),
-            ('U03A', u'Brennelemente-Zwischenlager Grohnde (BZD)'),
-            ('U03B', u'Brennelementefertigungsanl. Lingen'),
-            ('U03C', u'Brennelemente-Zwischenlager Unterweser (BZU)'),
-            ('U03E', u'KKW Emsland'),
-            ('U03G', u'KKW Grohnde'),
-            ('U03K', u'Endlager Konrad'),
-            ('U03L', u'KKW Lingen'),
-            ('U03P', u'BGZ - Betrieb Gorleben'),
-            ('U03S', u'KKW Stade'),
-            ('U03U', u'KKW Unterweser'),
-            ('U03Z', u'Brennelemente-Zwischenlager Lingen (BZL)'),
-            ('U05B', u'BGZ - Brennelement-Zwischenl. Ahaus'),
-            ('U05F', u'Forschungszentrum Jülich'),
-            ('U05G', u'AVR-Versuchskernkraftwerk Jülich'),
-            ('U05K', u'KKW Würgassen'),
-            ('U05T', u'Thorium-Hochtemp.reakt. Hamm-Uentrop'),
-            ('U05U', u'Urananreicherungsanlage Gronau'),
-            ('U06B', u'KKW Biblis und BE-Zwischenlager'),
-            ('U07M', u'KKW Mülheim-Kärlich'),
-            ('U07U', u'Uni Mainz'),
-            ('U08H', u'DKFZ Heidelberg'),
-            ('U08K', u'Karlsruher Institut für Technologie - Campus Nord (Einrichtungen am Standort)'),
-            ('U08M', u'Abraumhalde Menz.'),
-            ('U08N', u'EnKK Neckarwestheim'),
-            ('U08O', u'EnKK Obrigheim'),
-            ('U08P', u'EnKK Philippsburg'),
-            ('U08W', u'KKW Wyhl'),
-            ('U09A', u'KKW Isar 1+2'),
-            ('U09B', u'KKW Isar1'),
-            ('U09C', u'KKW Isar2'),
-            ('U09D', u'KKW Grafenrheinfeld'),
-            ('U09E', u'KKW Gundremmingen Block B/C'),
-            ('U09F', u'Versuchs-AKW Kahl a.M.'),
-            ('U09G', u'Forschungsreaktor München'),
-            ('U09H', u'Siemens Brennelementewerk Hanau, Standort Karlstein'),
-            ('U09I', u'Siemens AG, Karlstein'),
-            ('U09J', u'Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE)'),
-            ('U09K', u'Forschungsneutronenquelle Heinz Maier-Leibnitz'),
-            ('U11B', u'Experimentierreakt. II Berlin'),
-            ('U12R', u'KKW Rheinsberg'),
-            ('U13A', u'KKW Lubmin/Greifswald'),
-            ('U13B', u'Zwischenlager Nord'),
-            ('U14R', u'Forschungszentrum Rossendorf'),
-            ('U15M', u'nicht benutzen, jetzt UELM, Endlager für radioaktive Abfälle Morsleben (ERAM)'),
+            ('UCHL', 'KTA Leibstadt mit Beznau und Villigen'),
+            ('UELA', 'Endlager für radioaktive Abfälle Asse'),
+            ('UELM', 'Endlager für radioaktive Abfälle Morsleben (ERAM)'),
+            ('UFRC', 'KKW Cattenom'),
+            ('UFRF', 'KKW Fessenheim'),
+            ('U01A', 'Helmholtz-Zentrum hereon'),
+            ('U01B', 'KKW Krümmel'),
+            ('U01C', 'KKW Brunsbüttel'),
+            ('U01D', 'KKW Brokdorf'),
+            ('U01I', 'Interimslager Krümmel'),
+            ('U01K', 'Brennelemente-Zwischenlager Krümmel (BZK)'),
+            ('U01L', 'Standortzwischenlager Brunsbüttel'),
+            ('U01M', 'Brennelemente-Zwischenlager Brokdorf (BZF)'),
+            ('U03A', 'Brennelemente-Zwischenlager Grohnde (BZD)'),
+            ('U03B', 'Brennelementefertigungsanl. Lingen'),
+            ('U03C', 'Brennelemente-Zwischenlager Unterweser (BZU)'),
+            ('U03E', 'KKW Emsland'),
+            ('U03G', 'KKW Grohnde'),
+            ('U03K', 'Endlager Konrad'),
+            ('U03L', 'KKW Lingen'),
+            ('U03P', 'BGZ - Betrieb Gorleben'),
+            ('U03S', 'KKW Stade'),
+            ('U03U', 'KKW Unterweser'),
+            ('U03Z', 'Brennelemente-Zwischenlager Lingen (BZL)'),
+            ('U05B', 'BGZ - Brennelement-Zwischenl. Ahaus'),
+            ('U05F', 'Forschungszentrum Jülich'),
+            ('U05G', 'AVR-Versuchskernkraftwerk Jülich'),
+            ('U05K', 'KKW Würgassen'),
+            ('U05T', 'Thorium-Hochtemp.reakt. Hamm-Uentrop'),
+            ('U05U', 'Urananreicherungsanlage Gronau'),
+            ('U06B', 'KKW Biblis und BE-Zwischenlager'),
+            ('U07M', 'KKW Mülheim-Kärlich'),
+            ('U07U', 'Uni Mainz'),
+            ('U08H', 'DKFZ Heidelberg'),
+            ('U08K', 'Karlsruher Institut für Technologie - Campus Nord (Einrichtungen am Standort)'),
+            ('U08M', 'Abraumhalde Menz.'),
+            ('U08N', 'EnKK Neckarwestheim'),
+            ('U08O', 'EnKK Obrigheim'),
+            ('U08P', 'EnKK Philippsburg'),
+            ('U08W', 'KKW Wyhl'),
+            ('U09A', 'KKW Isar 1+2'),
+            ('U09B', 'KKW Isar1'),
+            ('U09C', 'KKW Isar2'),
+            ('U09D', 'KKW Grafenrheinfeld'),
+            ('U09E', 'KKW Gundremmingen Block B/C'),
+            ('U09F', 'Versuchs-AKW Kahl a.M.'),
+            ('U09G', 'Forschungsreaktor München'),
+            ('U09H', 'Siemens Brennelementewerk Hanau, Standort Karlstein'),
+            ('U09I', 'Siemens AG, Karlstein'),
+            ('U09J', 'Framatome GmbH, Forschungszentrum Erlangen-Süd (FZE)'),
+            ('U09K', 'Forschungsneutronenquelle Heinz Maier-Leibnitz'),
+            ('U11B', 'Experimentierreakt. II Berlin'),
+            ('U12R', 'KKW Rheinsberg'),
+            ('U13A', 'KKW Lubmin/Greifswald'),
+            ('U13B', 'Zwischenlager Nord'),
+            ('U14R', 'Forschungszentrum Rossendorf'),
+            ('U15M', 'nicht benutzen, jetzt UELM, Endlager für radioaktive Abfälle Morsleben (ERAM)'),
         ]
-        terms = [SimpleTerm(code, code, u'{} {}'.format(code, title))
+        terms = [SimpleTerm(code, code, f'{code} {title}')
                  for code, title in items]
         return SimpleVocabulary(terms)
 

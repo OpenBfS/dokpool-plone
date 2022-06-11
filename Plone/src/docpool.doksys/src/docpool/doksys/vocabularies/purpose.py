@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.doksys import _
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -7,12 +6,12 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class Purpose(object):
+class Purpose:
 
     def __call__(self, context=None):
         items = [
-            (u'Standard-Info Bundesmessnetze', _(u'Standard-Info Bundesmessnetze')),
-            (u'Standard-Info DWD', _(u'Standard-Info DWD')),
+            ('Standard-Info Bundesmessnetze', _('Standard-Info Bundesmessnetze')),
+            ('Standard-Info DWD', _('Standard-Info DWD')),
         ]
 
         terms = [SimpleTerm(value, value, title)

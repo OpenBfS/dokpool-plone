@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: doctype.py
 #
@@ -38,38 +37,38 @@ class IDocType(model.Schema, IExtendable):
 
     allowUploads = schema.Bool(
         title=_(
-            u'label_doctype_allowuploads', default=u'Can contain documents and images'
+            'label_doctype_allowuploads', default='Can contain documents and images'
         ),
-        description=_(u'description_doctype_allowuploads', default=u''),
+        description=_('description_doctype_allowuploads', default=''),
         required=False,
         default=True,
     )
 
     publishImmediately = schema.Bool(
         title=_(
-            u'label_doctype_publishimmediately',
-            default=u'Publish immediately?'),
-        description=_(u'description_doctype_publishimmediately', default=u''),
+            'label_doctype_publishimmediately',
+            default='Publish immediately?'),
+        description=_('description_doctype_publishimmediately', default=''),
         required=False,
         default=False,
     )
 
     globalAllow = schema.Bool(
         title=_(
-            u'label_doctype_globalallow',
-            default=u'Can be used everywhere (not only as part of another type)',
+            'label_doctype_globalallow',
+            default='Can be used everywhere (not only as part of another type)',
         ),
-        description=_(u'description_doctype_globalallow', default=u''),
+        description=_('description_doctype_globalallow', default=''),
         required=False,
         default=True,
     )
 
     allowedDocTypes = RelationList(
         title=_(
-            u'label_doctype_alloweddoctypes',
-            default=u'Types are allowed as part of this type',
+            'label_doctype_alloweddoctypes',
+            default='Types are allowed as part of this type',
         ),
-        description=_(u'description_doctype_alloweddoctypes', default=u''),
+        description=_('description_doctype_alloweddoctypes', default=''),
         required=False,
         value_type=RelationChoice(
             title=_("Folder for Document Types"),
@@ -79,44 +78,44 @@ class IDocType(model.Schema, IExtendable):
 
     partsPattern = schema.TextLine(
         title=_(
-            u'label_doctype_partspattern',
-            default=u'Name pattern for files and images belonging to this type',
+            'label_doctype_partspattern',
+            default='Name pattern for files and images belonging to this type',
         ),
         description=_(
-            u'description_doctype_partspattern',
-            default=u'Used for automatically creating objects of this type from collections of files and images.',
+            'description_doctype_partspattern',
+            default='Used for automatically creating objects of this type from collections of files and images.',
         ),
         required=False,
     )
 
     pdfPattern = schema.TextLine(
         title=_(
-            u'label_doctype_pdfpattern', default=u'Name pattern for representative PDF'
+            'label_doctype_pdfpattern', default='Name pattern for representative PDF'
         ),
         description=_(
-            u'description_doctype_pdfpattern',
-            default=u'If PDF exists, an image will be created from its first page as a visual representation for objects of this type.',
+            'description_doctype_pdfpattern',
+            default='If PDF exists, an image will be created from its first page as a visual representation for objects of this type.',
         ),
         required=False,
     )
 
     imgPattern = schema.TextLine(
         title=_(
-            u'label_doctype_imgpattern',
-            default=u'Name pattern for representative image',
+            'label_doctype_imgpattern',
+            default='Name pattern for representative image',
         ),
         description=_(
-            u'description_doctype_imgpattern',
-            default=u'If image exists, it will be used as a visual representation for objects of this type.',
+            'description_doctype_imgpattern',
+            default='If image exists, it will be used as a visual representation for objects of this type.',
         ),
         required=False,
     )
 
     customViewTemplate = schema.TextLine(
         title=_(
-            u'label_doctype_customviewtemplate',
-            default=u'Custom View Template'),
-        description=_(u'description_doctype_customviewtemplate', default=u''),
+            'label_doctype_customviewtemplate',
+            default='Custom View Template'),
+        description=_('description_doctype_customviewtemplate', default=''),
         required=False,
     )
 

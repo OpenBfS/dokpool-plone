@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.doksys import _
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -7,19 +6,19 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class InfoType(object):
+class InfoType:
 
     def __call__(self, context=None):
         items = [
-            (u'vorwaerts', _(u'vorwaerts')),
-            (u'rueckwaerts', _(u'rueckwaerts')),
-            (u'brutto', _(u'brutto')),
-            (u'netto', _(u'netto')),
-            (u'nass', _(u'nass')),
-            (u'trocken', _(u'trocken')),
-            (u'Messergebnisse', _(u'Messergebnisse')),
-            (u'Ueberblick', _(u'Ueberblick')),
-            (u'Soll-Ist-Vergleich', _(u'Soll-Ist-Vergleich')),
+            ('vorwaerts', _('vorwaerts')),
+            ('rueckwaerts', _('rueckwaerts')),
+            ('brutto', _('brutto')),
+            ('netto', _('netto')),
+            ('nass', _('nass')),
+            ('trocken', _('trocken')),
+            ('Messergebnisse', _('Messergebnisse')),
+            ('Ueberblick', _('Ueberblick')),
+            ('Soll-Ist-Vergleich', _('Soll-Ist-Vergleich')),
         ]
         terms = [SimpleTerm(value, value, title)
                  for value, title in items]

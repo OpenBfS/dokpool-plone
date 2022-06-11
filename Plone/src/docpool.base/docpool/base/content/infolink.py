@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: infolink.py
 #
@@ -26,7 +25,7 @@ class IInfoLink(model.Schema, ILink):
     """
     """
 
-    remoteUrl = schema.TextLine(title=u"URL", default=u"http://")
+    remoteUrl = schema.TextLine(title="URL", default="http://")
 
 
 @implementer(IInfoLink)

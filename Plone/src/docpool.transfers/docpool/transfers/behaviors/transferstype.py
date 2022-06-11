@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: transferstype.py
 #
@@ -40,10 +39,10 @@ def possible_targets_vocabulary_factory(context):
 class ITransfersType(model.Schema):
     allowTransfer = schema.Bool(
         title=_(
-            u'label_doctype_allowtransfer',
-            default=u'Can documents of this type be sent to other ESDs?',
+            'label_doctype_allowtransfer',
+            default='Can documents of this type be sent to other ESDs?',
         ),
-        description=_(u'description_doctype_allowtransfer', default=u''),
+        description=_('description_doctype_allowtransfer', default=''),
         required=False,
         default=True,
     )
@@ -51,20 +50,20 @@ class ITransfersType(model.Schema):
     widget(automaticTransferTargets=CheckBoxFieldWidget)
     automaticTransferTargets = schema.List(
         title=_(
-            u'label_doctype_automatictransfertargets',
-            default=u'Where are documents of this type transferred automatically?',
+            'label_doctype_automatictransfertargets',
+            default='Where are documents of this type transferred automatically?',
         ),
         description=_(
-            u'description_doctype_automatictransfertargets', default=u''),
+            'description_doctype_automatictransfertargets', default=''),
         required=False,
         value_type=schema.Choice(
-            title=_(u'Transfer target'),
+            title=_('Transfer target'),
             source=possible_targets_vocabulary_factory,
         ),
     )
 
 
-class TransfersType(object):
+class TransfersType:
     """
     """
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.users import DocpoolMessageFactory as _
 from docpool.users.interfaces import IDocPoolUsersLayer
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
@@ -19,8 +18,8 @@ class IEnhancedPersonalPreferences(model.Schema):
     """
 
     apps = schema.List(
-        title=_(u'label_user_apps', default=u'Applications'),
-        description=_(u'description_user_apps', default=u''),
+        title=_('label_user_apps', default='Applications'),
+        description=_('description_user_apps', default=''),
         required=False,
         value_type=schema.Choice(
             source="docpool.base.vocabularies.AvailableApps"),

@@ -33,7 +33,7 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
 
     # dps = _folderTree(context, "%s" % ("/".join(portal.getPhysicalPath())), {'portal_type': ('PloneSite', 'DocumentPool')})['children']
     request = context.REQUEST
-    dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
     active_apps = dp_app_state.appsActivatedByCurrentUser()
     current_app = None
     if len(active_apps) > 0:
@@ -44,7 +44,7 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
     root_title = (
         current_dp is None
         and utranslate("docpool.menu", "Docpools", context=context)
-        or u"%s: %s" % (current_dp.title, current_app)
+        or "{}: {}".format(current_dp.title, current_app)
     )
     apps_root = [
         {
@@ -63,7 +63,7 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
     pools = []
     for dp in dps:
         dp_app_state = getMultiAdapter(
-            (dp, request), name=u'dp_app_state'
+            (dp, request), name='dp_app_state'
         )  # need to get fresh adapter for each pool
         app_names = dp_app_state.appsAvailableToCurrentUser()
         app_names.insert(0, BASE_APP)
@@ -81,7 +81,7 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
                 pools.append(
                     {
                         'id': dp.getId() + "-" + app_name,
-                        'Title': dp.title + u": " + app_title,
+                        'Title': dp.title + ": " + app_title,
                         'Description': '',
                         'getURL': "%s/setActiveApp?app=%s"
                         % (context.absolute_url(), app_name),
@@ -97,7 +97,7 @@ def getApplicationDocPoolsForCurrentUser(context, user=None):
                 pools.append(
                     {
                         'id': dp.getId() + "-" + app_name,
-                        'Title': dp.title + u": " + app_title,
+                        'Title': dp.title + ": " + app_title,
                         'Description': '',
                         'getURL': "%s/setActiveApp?app=%s"
                         % (dp.absolute_url(), app_name),
@@ -228,7 +228,7 @@ def getFoldersForCurrentUser(
             if groups_folder.get(group['id']):
                 gft = _folderTree(
                     context,
-                    "%s/%s" % (groups_folder_path, group['id']),
+                    "{}/{}".format(groups_folder_path, group['id']),
                     queryBuilderClass=queryBuilderClass,
                     strategy=strategy,
                 )
@@ -239,7 +239,7 @@ def getFoldersForCurrentUser(
     res.extend(group_result)
 
     # show personal folder unless we're in elan
-    dp_app_state = getMultiAdapter((context, context.REQUEST), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, context.REQUEST), name='dp_app_state')
     effective_apps = dp_app_state.effectiveAppsHere()
     hide_user_folder = 'elan' in effective_apps or 'rei' in effective_apps
     member_result = []
@@ -247,7 +247,7 @@ def getFoldersForCurrentUser(
         member_result = [
             _folderTree(
                 context,
-                "%s/%s" % (members_folder_path, user_name),
+                "{}/{}".format(members_folder_path, user_name),
                 queryBuilderClass=queryBuilderClass,
                 strategy=strategy,
             )
@@ -304,7 +304,7 @@ def _folderTree(context, path, filter={},
 
 def adaptQuery(query, context):
     request = context.REQUEST
-    dp_app_state = getMultiAdapter((context, request), name=u'dp_app_state')
+    dp_app_state = getMultiAdapter((context, request), name='dp_app_state')
     active_apps = dp_app_state.appsActivatedByCurrentUser()
     active_apps.extend([BASE_APP, TRANSFERS_APP])
     query['apps_supported'] = active_apps

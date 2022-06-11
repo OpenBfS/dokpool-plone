@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.doksys import _
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -7,14 +6,14 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class Area(object):
+class Area:
 
     def __call__(self, context=None):
         items = [
-            (u'D', _(u'D')),
-            (u'EU', _(u'EU')),
-            (u'ME', _(u'ME')),
-            (u'World', _(u'World')),
+            ('D', _('D')),
+            ('EU', _('EU')),
+            ('ME', _('ME')),
+            ('World', _('World')),
         ]
         terms = [SimpleTerm(value, value, title)
                  for value, title in items]

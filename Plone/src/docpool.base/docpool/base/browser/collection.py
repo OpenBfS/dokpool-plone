@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.browser.folderbase import FolderBaseView
 from docpool.base.utils import extendOptions
 from plone import api
@@ -16,7 +15,7 @@ class CollectionView(BaseView):
     """
 
     def __init__(self, context, request):
-        super(CollectionView, self).__init__(context, request)
+        super().__init__(context, request)
         # set batch size in request to fool the macro 'listing' from dp_macros.pt
         self.request.set('b_size', self.b_size)
 

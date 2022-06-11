@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.base.utils import _copyPaste
 from Products.CMFCore.utils import getToolByName
 

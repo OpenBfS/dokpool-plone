@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.adapters import JournalEntry
 from time import sleep
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
-from six.moves import range
 
 
 def _create_journalentries(context, count):
@@ -15,7 +13,7 @@ def _create_journalentries(context, count):
     for index in range(1, count + 1):
         sleep(0.05)
         adapter.add(
-            JournalEntry('', u'<p>This is demo journal entry {}</p>'.format(index)))
+            JournalEntry('', f'<p>This is demo journal entry {index}</p>'))
 
     # wait and update Journal modification time to invalidate the cache
     sleep(1)

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 __author__ = ''
 __docformat__ = 'plaintext'
 
@@ -20,7 +17,7 @@ class IDPNuclearPowerStation(model.Schema):
     """
     """
 
-    coordinates = schema.TextLine(title=_(u'Coordinates'), required=False)
+    coordinates = schema.TextLine(title=_('Coordinates'), required=False)
 
 
 @implementer(IDPNuclearPowerStation)

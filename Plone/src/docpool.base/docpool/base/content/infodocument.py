@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: infodocument.py
 #
@@ -31,7 +30,7 @@ class IInfoDocument(model.Schema, IDPDocument):
     docType = schema.Choice(
         required=True,
         source="docpool.base.vocabularies.DocumentTypes",
-        default=u"infodoc",
+        default="infodoc",
     )
 
 

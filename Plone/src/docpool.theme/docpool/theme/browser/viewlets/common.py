@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from plone.app.layout.viewlets.common import ViewletBase

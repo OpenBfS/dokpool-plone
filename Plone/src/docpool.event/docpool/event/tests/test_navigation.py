@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docpool.api.browser.setup import add_user
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from plone import api
@@ -29,7 +28,7 @@ class TestNavigation(unittest.TestCase):
             container=self.portal,
             type='DocumentPool',
             id='bund',
-            title=u'Bund',
+            title='Bund',
             prefix='bund',
             supportedApps=('elan', 'doksys'),
             )

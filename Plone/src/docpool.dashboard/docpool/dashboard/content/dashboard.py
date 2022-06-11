@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # File: dashboard.py
 #
@@ -28,10 +27,10 @@ class IDashboard(model.Schema):
     """
 
     dbCollections = RelationList(
-        title=_(u'label_dashboard_dbcollections', default=u'Document Types'),
+        title=_('label_dashboard_dbcollections', default='Document Types'),
         description=_(
-            u'description_dashboard_dbcollections',
-            default=u'Select the document types you want to show in this dashboard.',
+            'description_dashboard_dbcollections',
+            default='Select the document types you want to show in this dashboard.',
         ),
         required=False,
         value_type=RelationChoice(

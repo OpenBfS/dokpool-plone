@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Installer for the docpool.doksys package."""
 
 from setuptools import find_packages

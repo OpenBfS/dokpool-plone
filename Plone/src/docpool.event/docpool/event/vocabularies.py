@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from docpool.event import DocpoolMessageFactory as _
@@ -11,7 +10,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class EventVocabulary(object):
+class EventVocabulary:
     """
     """
 
@@ -22,10 +21,10 @@ class EventVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.id)
             for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -34,14 +33,14 @@ EventVocabularyFactory = EventVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class EventTypesVocabulary(object):
+class EventTypesVocabulary:
 
     def __call__(self, context):
         values = [
-            (u'Emergency', _(u'Emergency')),
-            (u'Routine', _(u'Routine')),
-            (u'Exercise', _(u'Exercise')),
-            (u'Test', _(u'Test')),
+            ('Emergency', _('Emergency')),
+            ('Routine', _('Routine')),
+            ('Exercise', _('Exercise')),
+            ('Test', _('Test')),
             ]
         # value, token, title
         return SimpleVocabulary([SimpleTerm(i[0], i[0], i[1]) for i in values])
@@ -51,7 +50,7 @@ EventTypesVocabularyFactory = EventTypesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class EventRefVocabulary(object):
+class EventRefVocabulary:
     """
     """
 
@@ -62,9 +61,9 @@ class EventRefVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.UID) for t in cat({"portal_type": "DPEvent", "path": path})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -73,7 +72,7 @@ EventRefVocabularyFactory = EventRefVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class EventSubstituteVocabulary(object):
+class EventSubstituteVocabulary:
     """
     """
 
@@ -84,10 +83,10 @@ class EventSubstituteVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.getObject())
             for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -95,7 +94,7 @@ class EventSubstituteVocabulary(object):
 EventSubstituteVocabularyFactory = EventSubstituteVocabulary()
 
 @implementer(IVocabularyFactory)
-class StatusVocabulary(object):
+class StatusVocabulary:
     """
     """
 
@@ -115,7 +114,7 @@ StatusVocabularyFactory = StatusVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PhasesVocabulary(object):
+class PhasesVocabulary:
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -124,10 +123,10 @@ class PhasesVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.getObject().getPhaseTitle(), t.getObject())
             for t in cat({"portal_type": "SRPhase", "path": path})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -136,17 +135,17 @@ PhasesVocabularyFactory = PhasesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class ModesVocabulary(object):
+class ModesVocabulary:
 
     def __call__(self, context):
         terms = []
         terms.append(
             SimpleVocabulary.createTerm(
-                "routine", "routine", _(u"Routine mode"))
+                "routine", "routine", _("Routine mode"))
         )
         terms.append(
             SimpleVocabulary.createTerm(
-                "intensive", "intensive", _(u"Intensive mode"))
+                "intensive", "intensive", _("Intensive mode"))
         )
         return SimpleVocabulary(terms)
 
@@ -155,70 +154,70 @@ ModesVocabularyFactory = ModesVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class SampleType(object):
+class SampleType:
 
     def __call__(self, context=None):
         items = [
-            (u'A', u'Abwasser, Reststoffe und Abfälle'),
-            (u'A1', u'Kläranlage'),
-            (u'A2', u'Verbrennungsanlage'),
-            (u'A3', u'Mülldeponie'),
-            (u'A4', u'Kompostierungsanlage'),
-            (u'A5', u'Spezielle Reststoffe und Abfälle'),
-            (u'B', u'Boden'),
-            (u'B2', u'Boden in-situ (nuklidspezifische Dosisleistung)'),
-            (u'B3', u'Weide-/ Acker-/ Wald-/ Freizeitflächen-/ Ödland- und Gartenböden'),
-            (u'F', u'Futtermittel'),
-            (u'F1', u'Grünfutter (einschl. Weide- und Wiesenbewuchs)'),
-            (u'F2', u'Mais'),
-            (u'F3', u'Futtergetreide'),
-            (u'F4', u'Hackfrüchte'),
-            (u'F5', u'Heu, Stroh, Cobs, Trockenmehle'),
-            (u'F6', u'Mischfuttermittelrohstoffe'),
-            (u'F7', u'Mischfuttermittel'),
-            (u'G', u'Gewässer'),
-            (u'G1', u'Fließgewässer'),
-            (u'G2', u'Stehende Gewässer'),
-            (u'G3', u'Meer'),
-            (u'G4', u'Grundwasser'),
-            (u'G5', u'Rohwasser zur Trinkwassergewinnung'),
-            (u'GZ', u'Sonstige Wässer'),
-            (u'I', u'Bio-Indikatoren, Tabak und Arzneimittel'),
-            (u'I1', u'Pflanzliche Indikatoren'),
-            (u'I2', u'Tabak'),
-            (u'I3', u'Arzneimittel'),
-            (u'L', u'Luft und Niederschlag'),
-            (u'L1', u'Luft/Gammastrahlung'),
-            (u'L2', u'Luft/Neutronenstrahlung'),
-            (u'L3', u'Luft/Aerosole'),
-            (u'L4', u'Luft/gasförmige Komponenten (einschl. Iod)'),
-            (u'L5', u'Niederschlag'),
-            (u'L6', u'Spurenmessung Luft'),
-            (u'M', u'Meteo-Umweltbereich'),
-            (u'N', u'Nahrungsmittel (einschl. Trinkwasser)'),
-            (u'N1', u'Milch'),
-            (u'N2', u'Frischgemüse (einschl. Kartoffeln und Pilze)'),
-            (u'N3', u'Getreide'),
-            (u'N4', u'Obst'),
-            (u'N5', u'Fleisch'),
-            (u'N6', u'Fisch und Meeresfrüchte'),
-            (u'N7', u'Trinkwasser'),
-            (u'N8', u'Gesamtnahrung, Fertiggerichte und Getränke'),
-            (u'N9', u'Nahrungsmittelprodukte'),
-            (u'NZ', u'Sonstige Nahrungsmittel'),
-            (u'S', u'Umweltbereiche für Störfall'),
-            (u'S1', u'Luft - Störfall'),
-            (u'S2', u'Boden/-Oberfläche - Störfall'),
-            (u'S3', u'Pflanzen/Bewuchs - Störfall'),
-            (u'S4', u'Oberirdische Gewässer - Störfall'),
-            (u'Z', u'Sonstige Mediengruppen'),
-            (u'Z1', u'Baustoffe'),
-            (u'Z2', u'Bodenschätze'),
-            (u'Z3', u'Bedarfsgegenstände und Kosmetische Mittel'),
+            ('A', 'Abwasser, Reststoffe und Abfälle'),
+            ('A1', 'Kläranlage'),
+            ('A2', 'Verbrennungsanlage'),
+            ('A3', 'Mülldeponie'),
+            ('A4', 'Kompostierungsanlage'),
+            ('A5', 'Spezielle Reststoffe und Abfälle'),
+            ('B', 'Boden'),
+            ('B2', 'Boden in-situ (nuklidspezifische Dosisleistung)'),
+            ('B3', 'Weide-/ Acker-/ Wald-/ Freizeitflächen-/ Ödland- und Gartenböden'),
+            ('F', 'Futtermittel'),
+            ('F1', 'Grünfutter (einschl. Weide- und Wiesenbewuchs)'),
+            ('F2', 'Mais'),
+            ('F3', 'Futtergetreide'),
+            ('F4', 'Hackfrüchte'),
+            ('F5', 'Heu, Stroh, Cobs, Trockenmehle'),
+            ('F6', 'Mischfuttermittelrohstoffe'),
+            ('F7', 'Mischfuttermittel'),
+            ('G', 'Gewässer'),
+            ('G1', 'Fließgewässer'),
+            ('G2', 'Stehende Gewässer'),
+            ('G3', 'Meer'),
+            ('G4', 'Grundwasser'),
+            ('G5', 'Rohwasser zur Trinkwassergewinnung'),
+            ('GZ', 'Sonstige Wässer'),
+            ('I', 'Bio-Indikatoren, Tabak und Arzneimittel'),
+            ('I1', 'Pflanzliche Indikatoren'),
+            ('I2', 'Tabak'),
+            ('I3', 'Arzneimittel'),
+            ('L', 'Luft und Niederschlag'),
+            ('L1', 'Luft/Gammastrahlung'),
+            ('L2', 'Luft/Neutronenstrahlung'),
+            ('L3', 'Luft/Aerosole'),
+            ('L4', 'Luft/gasförmige Komponenten (einschl. Iod)'),
+            ('L5', 'Niederschlag'),
+            ('L6', 'Spurenmessung Luft'),
+            ('M', 'Meteo-Umweltbereich'),
+            ('N', 'Nahrungsmittel (einschl. Trinkwasser)'),
+            ('N1', 'Milch'),
+            ('N2', 'Frischgemüse (einschl. Kartoffeln und Pilze)'),
+            ('N3', 'Getreide'),
+            ('N4', 'Obst'),
+            ('N5', 'Fleisch'),
+            ('N6', 'Fisch und Meeresfrüchte'),
+            ('N7', 'Trinkwasser'),
+            ('N8', 'Gesamtnahrung, Fertiggerichte und Getränke'),
+            ('N9', 'Nahrungsmittelprodukte'),
+            ('NZ', 'Sonstige Nahrungsmittel'),
+            ('S', 'Umweltbereiche für Störfall'),
+            ('S1', 'Luft - Störfall'),
+            ('S2', 'Boden/-Oberfläche - Störfall'),
+            ('S3', 'Pflanzen/Bewuchs - Störfall'),
+            ('S4', 'Oberirdische Gewässer - Störfall'),
+            ('Z', 'Sonstige Mediengruppen'),
+            ('Z1', 'Baustoffe'),
+            ('Z2', 'Bodenschätze'),
+            ('Z3', 'Bedarfsgegenstände und Kosmetische Mittel'),
         ]
         terms = [SimpleTerm(value,
                             safe_bytes(value),
-                            u'{} {}'.format(value, title))
+                            f'{value} {title}')
                  for value, title in items]
         return SimpleVocabulary(terms)
 
@@ -227,7 +226,7 @@ SampleTypeVocabularyFactory = SampleType()
 
 
 @implementer(IVocabularyFactory)
-class NetworksVocabulary(object):
+class NetworksVocabulary:
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -236,10 +235,10 @@ class NetworksVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.getObject())
             for t in cat({"portal_type": "DPNetwork", "path": path})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -248,7 +247,7 @@ NetworksVocabularyFactory = NetworksVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PowerStationsVocabulary(object):
+class PowerStationsVocabulary:
 
     def __call__(self, context):
         esd = getDocumentPoolSite(context)
@@ -257,10 +256,10 @@ class PowerStationsVocabulary(object):
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted([
+        items = sorted(
             (t.Title, t.getObject())
             for t in cat({"portal_type": "DPNuclearPowerStation", "path": path})
-        ])
+        )
         items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -273,13 +272,13 @@ allow_module("docpool.event.vocabularies")
 
 
 @implementer(IVocabularyFactory)
-class AlertingStatusVocabulary(object):
+class AlertingStatusVocabulary:
 
     def __call__(self, context):
         values = [
-            (u'none', u'keine'),
-            (u'initialized', u'ausgelöst'),
-            (u'alerted', u'durchgeführt'),
+            ('none', 'keine'),
+            ('initialized', 'ausgelöst'),
+            ('alerted', 'durchgeführt'),
             ]
         # value, token, title
         return SimpleVocabulary([SimpleTerm(i[0], i[0], i[1]) for i in values])
