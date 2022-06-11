@@ -12,8 +12,8 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives
+from plone.base.utils import safe_text
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -163,7 +163,7 @@ class ELANDocument(FlexibleView):
         docp = docp.aq_parent
         over = docp.esd.overview.title_or_id()
         rec = docp.esd.recent.title_or_id()
-        cats = [safe_unicode(i) for i in self.category()]
+        cats = [safe_text(i) for i in self.category()]
         cats = [i for i in cats if i not in [over, rec]]
         cats = u'({0})'.format(u', '.join(cats))
         return cats

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.rei.behaviors.reidoc import IREIDoc
-from Products.CMFPlone.utils import safe_encode
+from plone.base.utils import safe_bytes
 from plone.indexer import indexer
 
 import six
@@ -16,5 +16,5 @@ def Origins(obj):
     if not reidoc.Origins:
         return []
     if six.PY2:
-        return [safe_encode(s) for s in reidoc.Origins]
+        return [safe_bytes(s) for s in reidoc.Origins]
     return reidoc.Origins

@@ -27,7 +27,6 @@ from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_encode
 from z3c.relationfield.event import updateRelations
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice

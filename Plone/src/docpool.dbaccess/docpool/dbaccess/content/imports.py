@@ -7,9 +7,9 @@ from docpool.dbaccess.dbinit import __metadata__
 from docpool.dbaccess.dbinit import __session__
 from docpool.dbaccess.utils import dtFromString
 from docpool.dbaccess.utils import unicode_csv_reader
+from plone.base.utils import safe_text
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from Products.CMFPlone.utils import safe_unicode
 from six import StringIO
 from zope.event import notify
 
@@ -180,7 +180,7 @@ def genericImportFromCSV(
                         meldung.append(
                             u"Kein Verweis '%s' gefunden - ignoriert" % row[f]
                         )
-                        meldung.append(u"Daten: %s" % safe_unicode(str(orig)))
+                        meldung.append(u"Daten: %s" % safe_text(str(orig)))
                         meldung.append(u"")
                         fkerror = True
                 else:
@@ -257,7 +257,7 @@ def genericImportFromCSV(
                     # print e
                     transaction.abort()
                     meldung.append(u"Fehler: %s" % str(e))
-                    meldung.append("Daten: %s" % safe_unicode(str(orig)))
+                    meldung.append("Daten: %s" % safe_text(str(orig)))
                     meldung.append(u"")
                     fehler += 1
                     summe += 1
@@ -290,7 +290,7 @@ def genericImportFromCSV(
                             u"Kein Objekt zum Schlüssel %s gefunden - neu angelegt"
                             % str(pkvals)
                         )
-                        meldung.append(u"Daten: %s" % safe_unicode(str(orig)))
+                        meldung.append(u"Daten: %s" % safe_text(str(orig)))
                         meldung.append(u"")
                         neu = klass(**row)
                         for f in pkfields:
@@ -307,7 +307,7 @@ def genericImportFromCSV(
             transaction.abort()
             fehler += 1
             meldung.append(u"Fehler: %s" % str(e))
-            meldung.append("Daten: %s" % safe_unicode(str(orig)))
+            meldung.append("Daten: %s" % safe_text(str(orig)))
             meldung.append(u"")
             log(str(orig))
             log_exc(e)

@@ -16,8 +16,8 @@ view of that content type.
 from docpool.event.browser.viewlets.common import EventViewlet
 from elan.esd.utils import getAvailableCategories
 from elan.esd.utils import getCategoriesForCurrentUser
+from plone.base.utils import safe_text
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -43,7 +43,7 @@ class ELANDocCollectionrpopupView(BrowserView):
     def available_categories(self):
         """
         """
-        return [safe_unicode(brain.Title) for brain in getAvailableCategories(self.context)]
+        return [safe_text(brain.Title) for brain in getAvailableCategories(self.context)]
 
     def scenario_view(self):
         """

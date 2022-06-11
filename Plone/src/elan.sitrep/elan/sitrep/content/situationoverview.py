@@ -21,9 +21,9 @@ from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
+from plone.base.utils import safe_text
 from plone.dexterity.content import Item
 from plone.supermodel import model
-from Products.CMFPlone.utils import safe_unicode
 from zope.interface import implementer
 
 
@@ -83,7 +83,7 @@ class SituationOverview(Item):
                     report.UID(),
                     "%s %s"
                     % (
-                        safe_unicode(report.Title()),
+                        safe_text(report.Title()),
                         self.toLocalizedTime(
                             DateTime(
                                 report.changed()),
@@ -144,7 +144,7 @@ def _availableModules(self, reportUID=None):
                 m.UID,
                 u"%s %s"
                 % (
-                    safe_unicode(m.Title),
+                    safe_text(m.Title),
                     self.toLocalizedTime(DateTime(m.changed), long_format=1),
                 ),
             )

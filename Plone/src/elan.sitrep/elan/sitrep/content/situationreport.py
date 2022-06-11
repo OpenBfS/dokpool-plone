@@ -28,8 +28,8 @@ from plone.api import content
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.base.utils import safe_text
 from plone.dexterity.content import Container
-from plone.dexterity.utils import safe_unicode
 from plone.namedfile import NamedBlobFile
 from plone.protect.interfaces import IDisableCSRFProtection
 from z3c.relationfield.relation import RelationValue
@@ -226,7 +226,7 @@ class SituationReport(Container, DPDocument):
             self.getId(),
             datetime.now().strftime('%Y%m%d'),
         )
-        nice_filename = safe_unicode(nice_filename)
+        nice_filename = safe_text(nice_filename)
         field = NamedBlobFile(data=data, filename=nice_filename)
         fid = new_version.invokeFactory(
             id=nice_filename, type_name="File", title=self.Title(), description=""

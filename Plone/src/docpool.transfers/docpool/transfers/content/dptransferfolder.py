@@ -24,10 +24,10 @@ from docpool.base.utils import queryForObjects
 from docpool.transfers import DocpoolMessageFactory as _
 from logging import getLogger
 from persistent.mapping import PersistentMapping
+from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import parent
 from zope import schema

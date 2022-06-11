@@ -27,9 +27,9 @@ from docpool.dbaccess.utils import stringFromDatetime
 from events import ObjectAddedEvent
 from events import ObjectChangedEvent
 from events import ObjectDeletedEvent
+from plone.base.utils import safe_text
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from Products.CMFPlone.utils import safe_unicode
 from registry import _ecreg
 from registry import _exportConfigReg
 from registry import _reportConfigReg
@@ -1009,7 +1009,7 @@ class dbadmin(object):
 
                 #                print template_obj
                 #                return template_obj(**templatevars)
-                return safe_unicode(template_obj(**templatevars))
+                return safe_text(template_obj(**templatevars))
 
     def isReportable(self, typ):
         """

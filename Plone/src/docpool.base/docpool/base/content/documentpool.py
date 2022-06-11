@@ -24,13 +24,13 @@ from docpool.base.events import DocumentPoolRemovedEvent
 from persistent.list import PersistentList
 from plone.app.textfield.value import RichTextValue
 from plone.autoform import directives
+from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from plone.namedfile.field import NamedBlobImage
 from plone.protect.utils import safeWrite
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.annotation.interfaces import IAnnotations

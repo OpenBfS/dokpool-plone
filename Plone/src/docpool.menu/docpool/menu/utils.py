@@ -10,7 +10,7 @@ from plone.app.layout.navigation.navtree import buildFolderTree
 from Products.CMFPlone.utils import safe_hasattr
 from Products.CMFPlone.i18nl10n import utranslate
 from zope.component import getMultiAdapter
-from zope.site.hooks import getSite
+from zope.component.hooks import getSite
 
 
 def getApplicationDocPoolsForCurrentUser(context, user=None):

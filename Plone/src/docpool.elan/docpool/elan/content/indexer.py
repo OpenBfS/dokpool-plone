@@ -3,9 +3,6 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from plone.indexer import indexer
-from Products.CMFPlone.utils import safe_encode
-
-import six
 
 
 @indexer(IDPDocument)

@@ -1,8 +1,8 @@
 from Acquisition import aq_parent
 from plone.app.workflow import PloneMessageFactory as _
 from plone.app.workflow.browser.sharing import SharingView as OSV
+from plone.base.utils import safe_text
 from plone.memoize.instance import memoize
-from Products.CMFPlone.utils import safe_unicode
 from zope.component import getMultiAdapter
 from zope.i18n import translate
 
@@ -47,7 +47,7 @@ class SharingView(OSV):
         translated_message = translate(
             _(u"Search for user or group"), context=self.request
         )
-        search_term = safe_unicode(self.request.form.get('search_term', None))
+        search_term = safe_text(self.request.form.get('search_term', None))
         if not search_term or search_term == translated_message:
             return []
 

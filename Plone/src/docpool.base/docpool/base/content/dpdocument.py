@@ -37,8 +37,8 @@ from plone.app.contenttypes.content import Document
 from plone.app.contenttypes.content import IDocument
 from plone.app.discussion.interfaces import IConversation
 from plone.app.textfield import RichText
+from plone.base.utils import safe_text
 from plone.dexterity.content import Container
-from plone.dexterity.utils import safe_unicode
 from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
@@ -57,8 +57,6 @@ from zope.interface import implementer
 from plone.app.textfield import RichTextValue
 
 import re
-from six.moves import map
-
 
 
 def default_text():
@@ -207,7 +205,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
                             },
                             'submenu': None,
                             'description': '',
-                            'title': safe_unicode(dt.Title),
+                            'title': safe_text(dt.Title),
                             'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
                             % (self.absolute_url(), dt.id),
                             'selected': False,
@@ -669,7 +667,7 @@ class DPDocument(Container, Document, Extendable, ContentBase):
         )
         if result:
             data, filename = result
-            return namedfile.NamedImage(data, filename=safe_unicode(filename))
+            return namedfile.NamedImage(data, filename=safe_text(filename))
 
     def myState(self):
         """

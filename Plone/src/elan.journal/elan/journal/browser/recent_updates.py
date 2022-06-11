@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from App.Common import rfc1123_date
 from datetime import datetime
 from elan.journal.browser.base import BaseView
 from elan.journal.logger import logger
 from time import time
+from zope.datetime import rfc1123_date
 from zope.publisher.browser import BrowserView
 
 

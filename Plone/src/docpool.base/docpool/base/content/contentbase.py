@@ -19,13 +19,13 @@ from Acquisition import aq_inner
 from Acquisition import aq_parent
 from docpool.base import DocpoolMessageFactory as _
 from plone import api
+from plone.base.utils import safe_text
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from plone.autoform import directives
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import safe_unicode
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
 from zope.component import adapter
@@ -95,12 +95,12 @@ class ContentBase(Item):
 
         userid, fullname, primary_group = getUserInfo(self)
         # print userid, fullname, primary_group
-        res = safe_unicode(fullname)
+        res = safe_text(fullname)
         if primary_group:
             if plain:
-                res += u" %s" % safe_unicode(primary_group)
+                res += u" %s" % safe_text(primary_group)
             else:
-                res += u" <i>%s</i>" % safe_unicode(primary_group)
+                res += u" <i>%s</i>" % safe_text(primary_group)
         return res
 
     def getWdate(self):

@@ -2,10 +2,8 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from docpool.event import DocpoolMessageFactory as _
-from plone.registry.interfaces import IRegistry
+from plone.base.utils import safe_bytes
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_encode
-from zope.component import queryUtility
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -219,7 +217,7 @@ class SampleType(object):
             (u'Z3', u'Bedarfsgegenstände und Kosmetische Mittel'),
         ]
         terms = [SimpleTerm(value,
-                            safe_encode(value),
+                            safe_bytes(value),
                             u'{} {}'.format(value, title))
                  for value, title in items]
         return SimpleVocabulary(terms)

@@ -20,11 +20,11 @@ from docpool.base.content.contentbase import IContentBase
 from docpool.base.utils import back_references
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.app.textfield import RichText
+from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from zope.component import adapter
 from zope.interface import implementer

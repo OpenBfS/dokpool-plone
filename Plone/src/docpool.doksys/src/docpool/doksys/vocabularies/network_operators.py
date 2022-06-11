@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from docpool.doksys import _
-from Products.CMFPlone.utils import safe_encode
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm

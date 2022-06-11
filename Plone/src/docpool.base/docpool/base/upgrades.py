@@ -2,7 +2,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
-from Products.CMFPlone.utils import safe_unicode
 from bs4 import BeautifulSoup
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified

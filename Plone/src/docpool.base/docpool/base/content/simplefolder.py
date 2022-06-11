@@ -20,11 +20,11 @@ from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import portalMessage
 from docpool.base.utils import queryForObjects
+from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 from zope import schema
 from zope.interface import alsoProvides
 from zope.interface import implementer
@@ -96,7 +96,7 @@ class SimpleFolder(Container, FolderBase):
                                 },
                                 'submenu': None,
                                 'description': '',
-                                'title': safe_unicode(dt.Title),
+                                'title': safe_text(dt.Title),
                                 'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
                                 % (self.absolute_url(), dt.id),
                                 'selected': False,

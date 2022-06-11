@@ -28,6 +28,7 @@ from plone.api import content
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from plone.autoform import directives
+from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
@@ -35,7 +36,6 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import safe_unicode
 from six.moves.urllib.parse import unquote
 from z3c.form.interfaces import IAddForm
 from z3c.relationfield.schema import RelationChoice
@@ -100,7 +100,7 @@ class SRModule(Container, DPDocument):
                 text = u""
                 for tb in defaultTextBlocks:
                     if tb.text:
-                        text = text + safe_unicode(tb.text.output)
+                        text = text + safe_text(tb.text.output)
                 self.text = RichTextValue(text, 'text/html', 'text/html')
                 return
         self.text = RichTextValue(
@@ -117,9 +117,9 @@ class SRModule(Container, DPDocument):
         """
         """
         if self.currentReport:
-            to_object_title = safe_unicode(
+            to_object_title = safe_text(
                 self.currentReport.to_object.Title())
-            self_title = safe_unicode(self.Title())
+            self_title = safe_text(self.Title())
 
             return "%s: %s (%s)" % (
                 to_object_title,
@@ -419,7 +419,7 @@ def updated(obj, event=None):
         # version
         new_html = str(soup)
         obj.text = RichTextValue(
-            safe_unicode(new_html),
+            safe_text(new_html),
             'text/html',
             'text/html')
 

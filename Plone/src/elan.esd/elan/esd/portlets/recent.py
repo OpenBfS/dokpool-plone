@@ -8,9 +8,6 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
-from Products.CMFPlone.utils import safe_unicode
-
-import string
 
 
 # This interface defines the configurable options (if any) for the portlet.

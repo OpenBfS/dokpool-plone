@@ -19,12 +19,12 @@ from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from plone.api import user
+from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from Products.CMFPlone.utils import safe_unicode
 from zExceptions import BadRequest
 from zope import schema
 from zope.interface import implementer
@@ -107,7 +107,7 @@ class CollaborationFolder(Container, SimpleFolder):
                                     },
                                     'submenu': None,
                                     'description': '',
-                                    'title': safe_unicode(dt.Title),
+                                    'title': safe_text(dt.Title),
                                     'action': '%s/++add++DPDocument?form.widgets.docType:list=%s'
                                     % (self.absolute_url(), dt.id),
                                     'selected': False,

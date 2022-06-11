@@ -28,13 +28,13 @@ from docpool.transfers.config import TRANSFERS_APP
 from logging import getLogger
 from plone.autoform import directives
 from plone.dexterity.content import Container
-from plone.dexterity.utils import safe_unicode
+from plone.base.i18nl10n import utranslate
+from plone.base.interfaces.siteroot import IPloneSiteRoot
+from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.i18nl10n import utranslate
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
@@ -426,9 +426,9 @@ class DPEvent(Container, ContentBase):
         """
         a = self.archive  # Acquire root for archives
         e = self.esd  # Acquire esd root
-        now = safe_unicode(self.toLocalizedTime(DateTime(), long_format=1))
+        now = safe_text(self.toLocalizedTime(DateTime(), long_format=1))
         id = ploneId(self, "%s_%s" % (self.getId(), now))
-        title = u"%s %s" % (safe_unicode(self.Title()), now)
+        title = u"%s %s" % (safe_text(self.Title()), now)
         # create the archive root
         a.invokeFactory(id=id, type_name="ELANArchive", title=title)
         arc = a._getOb(id)  # get new empty archive
