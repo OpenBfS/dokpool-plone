@@ -19,6 +19,7 @@ api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
 # Patch Products.PloneHotfix20210518 to allow text/html to be displayed inline.
+# TODO: Apply change to Plone 6 that does not have the HotFix
 try:
     pkg_resources.get_distribution("Products.PloneHotfix20210518")
 except pkg_resources.DistributionNotFound:
