@@ -16,7 +16,7 @@ class TestNavigation(unittest.TestCase):
         self.portal = self.layer["portal"]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
-    @unittest.skip("Test needs to be fixed. Feature seems to work.")
+    @unittest.skip("Test should work after nav with content is reimplemented")
     def test_personal_folder(self):
         """Personal Folder are not visible for elan
         See https://redmine-koala.bfs.de/issues/2690
@@ -31,7 +31,7 @@ class TestNavigation(unittest.TestCase):
         )
         notify(EditFinishedEvent(docpool))
 
-        add_user(docpool, "user1", ["group1"])
+        add_user(docpool, "user1", ["group1"], enabled_apps=["elan", "doksys"])
         content = docpool["content"]
         self.assertEqual(content.keys(), ["Transfers", "Members", "Groups"])
         self.assertTrue(content["Members"]["user1"])
@@ -47,7 +47,12 @@ class TestNavigation(unittest.TestCase):
         self.assertEqual(url, "http://nohost/plone/bund")
         view = docpool.restrictedTraverse("@@view")
         html = view()
-        self.assertIn('<li class="plain personal">', html)
+        # personal folder is there
+        self.assertIn('<a href="http://nohost/plone/bund/content/Members/user1"', html)
+        # group folder is there
+        self.assertIn(
+            '<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html
+        )
 
         # enable elan
         # result: personal folder is not in navigation
@@ -55,7 +60,18 @@ class TestNavigation(unittest.TestCase):
         self.assertEqual(url, "http://nohost/plone/bund/esd")
         esd = docpool.esd
         dp_app_state = esd.restrictedTraverse("dp_app_state")
-        self.assertFalse(dp_app_state.isCurrentlyActive("elan"))
+        # purge caching on request
+        # key = (('', 'plone', 'bund'), 'ApplicationState', 'isCurrentlyActive', ('elan',), frozenset([]))
+        # cache is self.layer["request"].__annotations__["plone.memoize"][key]
+        self.layer["request"].__annotations__.pop("plone.memoize")
+        self.assertTrue(dp_app_state.isCurrentlyActive("elan"))
         view = esd.restrictedTraverse("@@view")
         html = view()
-        self.assertNotIn('<li class="plain personal">', html)
+        # personal folder is not there
+        self.assertNotIn(
+            '<a href="http://nohost/plone/bund/content/Members/user1"', html
+        )
+        # group folder is there
+        self.assertIn(
+            '<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html
+        )
