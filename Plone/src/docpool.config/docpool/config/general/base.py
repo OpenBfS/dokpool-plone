@@ -73,15 +73,12 @@ def configUserFolders(self, fresh):
 
 
 def navSettings(self):
-    if "news" in self:
-        IExcludeFromNavigation(self.news).exclude_from_nav = True
-        self.news.reindexObject()
-    if "events" in self:
-        IExcludeFromNavigation(self.events).exclude_from_nav = True
-        self.events.reindexObject()
-    if "Members" in self:
-        IExcludeFromNavigation(self.Members).exclude_from_nav = True
-        self.Members.reindexObject()
+    IExcludeFromNavigation(self.news).exclude_from_nav = True
+    self.news.reindexObject()
+    IExcludeFromNavigation(self.events).exclude_from_nav = True
+    self.events.reindexObject()
+    IExcludeFromNavigation(self.Members).exclude_from_nav = True
+    self.Members.reindexObject()
 
 
 def createStructure(self, fresh):

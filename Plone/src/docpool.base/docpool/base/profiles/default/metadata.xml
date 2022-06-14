@@ -7,5 +7,6 @@
         <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
         <dependency>profile-eea.facetednavigation:default</dependency>
         <dependency>profile-Products.CMFFormController:CMFFormController</dependency>
+        <dependency>profile-plone.app.contenttypes:plone-content</dependency>
     </dependencies>
 </metadata>
