@@ -280,7 +280,7 @@ def transfer_folders_for(obj):
         return []
 
     brains = queryForObjects(
-        esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder._identifier__
+        esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__
     )
     return [brain.getObject() for brain in brains]
 
