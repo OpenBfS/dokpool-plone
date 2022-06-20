@@ -119,7 +119,7 @@ undeploy_dev:
     name: dev
     action: stop
 
-linttests:
+lint_tests:
   tags:
     - docker
   stage: test
@@ -131,7 +131,7 @@ linttests:
     - pipenv install
     - pipenv run pre-commit run -a
 
-unittests:
+unit_tests:
   tags:
     - docker
   stage: test
