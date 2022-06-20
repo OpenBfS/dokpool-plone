@@ -22,7 +22,7 @@ class TestSetup(unittest.TestCase):
 
     def test_product_installed(self):
         """Test if docpool.api is installed."""
-        self.assertTrue(self.installer.is_product_installed("docpool.api_error"))
+        self.assertTrue(self.installer.is_product_installed("docpool.api"))
 
     def test_browserlayer(self):
         """Test that IDocpoolApiLayer is registered."""
