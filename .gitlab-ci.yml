@@ -119,6 +119,18 @@ undeploy_dev:
     name: dev
     action: stop
 
+linttests:
+  tags:
+    - docker
+  stage: test
+  script:
+    # Buildout configuration
+    - cd Plone
+    # lint test
+    - mkdir .venv
+    - pipenv install
+    - pipenv run pre-commit run -a
+
 unittests:
   tags:
     - docker
@@ -149,15 +161,3 @@ unittests:
   artifacts:
     paths:
       - parts/test/htmlreport
-
-linttests:
-  tags:
-    - docker
-  stage: test
-  script:
-    # Buildout configuration
-    - cd Plone
-    # lint test
-    - mkdir .venv
-    - pipenv install
-    - pipenv run pre-commit run -a
