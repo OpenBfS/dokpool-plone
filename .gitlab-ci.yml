@@ -127,7 +127,7 @@ linttests:
     # Buildout configuration
     - cd Plone
     # lint test
-    - mkdir .venv
+    - mkdir -p .venv
     - pipenv install
     - pipenv run pre-commit run -a
 
@@ -143,7 +143,7 @@ unittests:
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
-    - mkdir .venv
+    - mkdir -p .venv
     - pipenv install
     # Pin setuptools
     - pipenv install setuptools==62.0.0
