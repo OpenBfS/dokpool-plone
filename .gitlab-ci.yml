@@ -15,7 +15,7 @@ cache:
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
     - .cache
-    - .venv/
+    - Plone/.venv/
     - Plone/downloads/
     - Plone/eggs/
 
