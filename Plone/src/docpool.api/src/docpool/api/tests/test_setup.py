@@ -46,7 +46,7 @@ class TestUninstall(unittest.TestCase):
 
     def test_product_uninstalled(self):
         """Test if docpool.api is cleanly uninstalled."""
-        self.assertFalse(self.installer.is_product_installed("docpool.api"))
+        self.assertFalse(self.installer.is_product_installed("docpool.api_error"))
 
     def test_browserlayer_removed(self):
         """Test that IDocpoolApiLayer is removed."""
