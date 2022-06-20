@@ -6,9 +6,7 @@
     "node": true,
     "mocha": true
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "no-console": 1,
     "new-cap": 1,

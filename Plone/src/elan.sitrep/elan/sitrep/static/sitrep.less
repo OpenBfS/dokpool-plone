@@ -1,61 +1,66 @@
 @import "++theme++barceloneta/less/variables.plone.less";
 
 .srscenario {
-    th, td {
-        border: 1px solid !important;
-        ul {
-            list-style-position: inside;
-            padding-left: 0;
-        }
+  th,
+  td {
+    border: 1px solid !important;
+    ul {
+      list-style-position: inside;
+      padding-left: 0;
     }
+  }
 }
 .portaltype-situationoverview {
-    #sidebar {
-        display: none;
+  #sidebar {
+    display: none;
+  }
+  .col-sm-9 {
+    width: 100%;
+  }
+  #viewlet-below-content-body {
+    clear: both;
+  }
+  .reportselection {
+    label {
+      float: left;
     }
-    .col-sm-9 {
-        width: 100%;
+    .reportuid {
+      width: auto;
+      float: left;
     }
-    #viewlet-below-content-body {
-        clear: both;
-    }
-    .reportselection {
-        label {float: left;}
-        .reportuid {
-            width: auto;
-            float: left;            
-        }
-    }
+  }
 }
 
 .portaltype-situationreport {
-    .formControls.publish {
-        border-top: none;
-    }
+  .formControls.publish {
+    border-top: none;
+  }
 }
 
-.portaltype-srmoduletype, .portaltype-srmoduletypes {
-    #formfield-form-widgets-allowedDocTypes, #formfield-form-widgets-IELANDocType-contentCategory  {
-        display: none;
-    }
+.portaltype-srmoduletype,
+.portaltype-srmoduletypes {
+  #formfield-form-widgets-allowedDocTypes,
+  #formfield-form-widgets-IELANDocType-contentCategory {
+    display: none;
+  }
 }
 
 .image .caption {
-    display: block;
+  display: block;
 }
 
 li.ready {
-    color: green;
+  color: green;
 }
 
 li.published {
-    color: gold;
+  color: gold;
 }
 
 li.planned {
-    color: orange;
+  color: orange;
 }
 
 li.missing {
-    color: red;
+  color: red;
 }

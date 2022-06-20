@@ -1,7 +1,6 @@
-# Docker 
+# Docker
 
 WIP Docker howto
-
 
 ## Docker Image build
 
@@ -9,7 +8,7 @@ Image muss so mit relativem Pfad vom Projekt-Root gebaut werden:
 (Sonst werden die Porjektfiles nicht gemountet)
 
 .. code-block:: bash
-    
+
     $ docker build --force-rm=true -t bfs/dokpool5standalone -f ./Docker/ubuntu16/Dockerfile.standalone .',
 
 ## How to debug build failures
@@ -48,4 +47,4 @@ Nun kann man in ein bestehenden Teil des Containers springen und den letzten Bef
 
 .. code-block:: bash
 
-  $ docker run -it a0a359e2065c bash
+$ docker run -it a0a359e2065c bash

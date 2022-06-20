@@ -1,10 +1,11 @@
 # Official Python Image
-image: python:3.10.5-bullseye
+image: python:3.9.13-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+  PRE_COMMIT_HOME: "${CI_PROJECT_DIR}/.cache/pre-commit"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -14,10 +15,11 @@ variables:
 cache:
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
-    - .cache
-    - .venv/
-    - downloads/
-    - eggs/
+    - ${PRE_COMMIT_HOME}
+    - ${PIP_CACHE_DIR}
+    - Plone/.venv/
+    - Plone/downloads/
+    - Plone/eggs/
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
@@ -32,7 +34,7 @@ before_script:
   - git --version
 
   ## Install ssh-agent if not already installed, it is required by Docker.
-  - 'command -v ssh-agent >/dev/null || ( sudo apt-get update -y && sudo apt-get install openssh-client -y )'
+  - "command -v ssh-agent >/dev/null || ( sudo apt-get update -y && sudo apt-get install openssh-client -y )"
 
   ## Run ssh-agent (inside the build environment)
   - eval $(ssh-agent -s)
@@ -54,7 +56,7 @@ before_script:
 
   - apt update
   # LDAP client dependencies
-  - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
+  - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
 
   # Check Python version
   - python -V
@@ -76,7 +78,7 @@ build:
     - docker tag bfs/dokpool:latest git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
     - docker push git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
   only:
-  - review
+    - review
 
 deploy_dev:
   tags:
@@ -102,7 +104,7 @@ deploy_dev:
     name: dev
     url: https://review-one-bfs.starzel.de/
   only:
-  - review
+    - review
 
 undeploy_dev:
   tags:
@@ -119,7 +121,19 @@ undeploy_dev:
     name: dev
     action: stop
 
-unittests:
+lint_tests:
+  tags:
+    - docker
+  stage: test
+  script:
+    # Buildout configuration
+    - cd Plone
+    # lint test
+    - mkdir -p .venv
+    - pipenv install
+    - pipenv run pre-commit run -a
+
+unit_tests:
   tags:
     - docker
   stage: test
@@ -131,7 +145,7 @@ unittests:
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
-    - mkdir .venv
+    - mkdir -p .venv
     - pipenv install
     # Pin setuptools
     - pipenv install setuptools==62.0.0

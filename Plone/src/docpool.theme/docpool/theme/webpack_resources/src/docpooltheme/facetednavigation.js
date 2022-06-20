@@ -39,7 +39,7 @@ if (typeof window.Faceted !== "undefined") {
   Faceted.Options.FADE_SPEED = 0;
 }
 
-jQuery(function($) {
+jQuery(function ($) {
   "use strict";
 
   if ($.datepicker) {

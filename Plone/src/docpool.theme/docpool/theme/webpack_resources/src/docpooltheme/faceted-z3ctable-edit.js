@@ -1,1 +1,1 @@
-import('faceted-z3ctable');
+import("faceted-z3ctable");

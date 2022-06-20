@@ -1,14 +1,12 @@
 # Conventions
 
-
 ## Technical Changelog
 
-* File `CHANGES.txt` in the main repository.
-* English
-* Changes are categorized: Added/Changed/Fixed/Deprecated/Removed
-* Each entry ends with a Ticketnummer (or commit-hash if there is no ticket)
-* We do not track recurring changes like updating translations or the bundle.
-
+- File `CHANGES.txt` in the main repository.
+- English
+- Changes are categorized: Added/Changed/Fixed/Deprecated/Removed
+- Each entry ends with a Ticketnummer (or commit-hash if there is no ticket)
+- We do not track recurring changes like updating translations or the bundle.
 
 An Example for the technical Changelog:
 
@@ -52,26 +50,22 @@ Added:
   [name]
 ```
 
-
 ## Feature-branches
 
-* Feature-branches need to have a entry in CHANGES.txt
-* PRs to such branches do not need that
-
+- Feature-branches need to have a entry in CHANGES.txt
+- PRs to such branches do not need that
 
 ## Pull-Requests
 
-* Usefull short title that describes the change
-* The Description can be more explicit
-* needs the ticket number like #1234. Gitlab turns this into a link.
-
+- Usefull short title that describes the change
+- The Description can be more explicit
+- needs the ticket number like #1234. Gitlab turns this into a link.
 
 ## Commit message
 
-* Please write useful commit messages!
-* Always ends with ticket number if there is one.
-
+- Please write useful commit messages!
+- Always ends with ticket number if there is one.
 
 ## Generic setup upgrades
 
-* All future upgrades should go in docpool.base.
+- All future upgrades should go in docpool.base.

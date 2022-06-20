@@ -1,34 +1,35 @@
-const path = require('path');
-const merge = require('webpack-merge');
+const path = require("path");
+const merge = require("webpack-merge");
 
-const PlonePlugin = require('plonetheme-webpack-plugin');
+const PlonePlugin = require("plonetheme-webpack-plugin");
 
-const SITENAME = process.env.SITENAME || 'dokpool';
-const THEMENAME = process.env.THEMENAME || 'docpooltheme';
-const PUBLICPATH = process.env.PUBLICPATH || '/' + SITENAME + '/++theme++' + THEMENAME + '/';
+const SITENAME = process.env.SITENAME || "dokpool";
+const THEMENAME = process.env.THEMENAME || "docpooltheme";
+const PUBLICPATH =
+  process.env.PUBLICPATH || "/" + SITENAME + "/++theme++" + THEMENAME + "/";
 
 const PATHS = {
-  src: path.join(__dirname, 'src', THEMENAME),
-  build: path.join(__dirname, 'theme', THEMENAME)
+  src: path.join(__dirname, "src", THEMENAME),
+  build: path.join(__dirname, "theme", THEMENAME),
 };
 
 const PLONE = new PlonePlugin({
-  portalUrl: 'http://localhost:8080/' + SITENAME,
+  portalUrl: "http://localhost:8080/" + SITENAME,
   publicPath: PUBLICPATH,
   sourcePath: PATHS.src,
-  momentLocales: ['de'],
-  debug: false
+  momentLocales: ["de"],
+  debug: false,
 });
 
 const common = {
   entry: {
-   'default': path.join(PATHS.src, 'default'),
+    default: path.join(PATHS.src, "default"),
   },
   output: {
-    path: PATHS.build
+    path: PATHS.build,
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: [".js", ".json"],
   },
   module: {
     rules: [
@@ -36,28 +37,26 @@ const common = {
         test: /\.js$/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
               cacheDirectory: true,
-            }
-          }
+            },
+          },
         ],
-        include: PATHS.src
-      }
-    ]
-  }
+        include: PATHS.src,
+      },
+    ],
+  },
 };
 
-switch(path.basename(process.argv[1])) {
-  case 'webpack':
+switch (path.basename(process.argv[1])) {
+  case "webpack":
     module.exports = merge(PLONE.production, common);
     break;
 
-  case 'webpack-dev-server':
+  case "webpack-dev-server":
     module.exports = merge(PLONE.development, common, {
-      entry: [
-        path.join(PATHS.src, 'default')
-      ]
+      entry: [path.join(PATHS.src, "default")],
     });
     break;
 }
