@@ -24,6 +24,7 @@
     <plone:behavior
         title="Local Behavior Support"
         description="Add local behavior support"
+        name="docpool.localbehavior"
         provides=".localbehavior.ILocalBehaviorSupport"
         factory=".localbehavior.LocalBehaviorSupport"
         for="plone.dexterity.interfaces.IDexterityContent"

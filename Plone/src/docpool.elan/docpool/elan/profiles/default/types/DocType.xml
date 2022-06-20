@@ -4,6 +4,6 @@
              <element value="ELANType" />
  </property>
  <property name="behaviors" purge="False">
-     <element value="docpool.elan.behaviors.elandoctype.IELANDocType" />
+     <element value="docpool.elandoctype" />
  </property>
 </object>

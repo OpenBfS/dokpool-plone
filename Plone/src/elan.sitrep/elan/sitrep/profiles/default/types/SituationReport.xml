@@ -32,14 +32,14 @@
 
  <!-- enabled behaviors -->
  <property name="behaviors">
-     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
-     <element value="plone.app.content.interfaces.INameFromTitle" />
+     <element value="plone.dublincore" />
+     <element value="plone.namefromtitle" />
      <element value="plone.textindexer" />
-     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
-     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
-     <element value="docpool.localbehavior.localbehavior.ILocalBehaviorSupport" />
-     <element value="docpool.elan.behaviors.elandocument.IELANDocument" />
-     <element value="docpool.transfers.behaviors.transferable.ITransferable" />
+     <element value="plone.allowdiscussion" />
+     <element value="plone.excludefromnavigation" />
+     <element value="docpool.localbehavior" />
+     <element value="docpool.elandocument" />
+     <element value="docpool.transferable" />
 </property>
 
  <!-- View information -->

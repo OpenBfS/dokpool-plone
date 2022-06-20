@@ -5,6 +5,7 @@
     <plone:behavior
         title="RodosDoc"
         description="Makes documents support Rodos functions"
+        name="docpool.rodosdoc"
         provides=".rodosdoc.IRodosDoc"
         factory=".rodosdoc.RodosDoc"
         for="docpool.base.interfaces.IDPDocument"
@@ -12,6 +13,7 @@
     <plone:behavior
         title="Rodos DocType"
         description="Type extension for Rodos types"
+        name="docpool.rodosdoctype"
         provides=".rodostype.IRodosType"
         factory=".rodostype.RodosType"
         for="docpool.base.interfaces.IDocType"

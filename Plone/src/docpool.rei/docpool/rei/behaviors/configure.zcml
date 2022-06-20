@@ -5,6 +5,7 @@
     <plone:behavior
         title="REIDoc"
         description="Makes documents support REI functions"
+        name="docpool.reidoc"
         provides=".reidoc.IREIDoc"
         factory=".reidoc.REIDoc"
         for="docpool.base.interfaces.IDPDocument"
@@ -13,6 +14,7 @@
     <plone:behavior
         title="REI DocType"
         description="Type extension for REI types"
+        name="docpool.reidoctype"
         provides=".reitype.IREIType"
         factory=".reitype.REIType"
         for="docpool.base.interfaces.IDocType"

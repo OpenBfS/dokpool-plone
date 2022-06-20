@@ -22,13 +22,13 @@
 
  <!-- enabled behaviors -->
  <property name="behaviors">
-     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
-     <element value="plone.app.content.interfaces.INameFromTitle" />
+     <element value="plone.dublincore" />
+     <element value="plone.namefromtitle" />
      <element value="plone.textindexer" />
-     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
-     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
-     <element value="plone.app.contenttypes.behaviors.collection.ICollection"/>
-     <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
+     <element value="plone.allowdiscussion" />
+     <element value="plone.excludefromnavigation" />
+     <element value="plone.collection"/>
+     <element value="plone.richtext"/>
 </property>
 
  <!-- View information -->

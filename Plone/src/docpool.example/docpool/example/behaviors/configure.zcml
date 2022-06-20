@@ -5,6 +5,7 @@
     <plone:behavior
         title="ExampleDoc"
         description="Makes documents support example functions"
+        name="docpool.exampledoc"
         provides=".exampledoc.IExampleDoc"
         factory=".exampledoc.ExampleDoc"
         for="docpool.base.interfaces.IDPDocument"
@@ -12,6 +13,7 @@
     <plone:behavior
         title="Example DocType"
         description="Type extension for example types"
+        name="docpool.exampledoctype"
         provides=".exampletype.IExampleType"
         factory=".exampletype.ExampleType"
         for="docpool.base.interfaces.IDocType"

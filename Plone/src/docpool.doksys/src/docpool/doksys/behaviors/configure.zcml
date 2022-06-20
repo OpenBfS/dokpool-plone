@@ -5,6 +5,7 @@
     <plone:behavior
         title="DoksysDoc"
         description="Makes documents support doksys functions"
+        name="docpool.doksysdoc"
         provides=".doksysdoc.IDoksysDoc"
         factory=".doksysdoc.DoksysDoc"
         for="docpool.base.interfaces.IDPDocument"

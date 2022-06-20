@@ -6,6 +6,6 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
-     <element value="docpool.localbehavior.localbehavior.ILocalBehaviorSupport" />
+     <element value="docpool.localbehavior" />
   </property>
 </object>

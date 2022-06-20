@@ -5,6 +5,7 @@
     <plone:behavior
         title="Transferable"
         description="Makes documents transferable between pools"
+        name="docpool.transferable"
         provides=".transferable.ITransferable"
         factory=".transferable.Transferable"
         for="docpool.base.interfaces.IDPDocument"
@@ -12,6 +13,7 @@
     <plone:behavior
         title="Transfer DocType"
         description="Type extension for transferable types"
+        name="docpool.transferstype"
         provides=".transferstype.ITransfersType"
         factory=".transferstype.TransfersType"
         for="docpool.base.interfaces.IDocType"

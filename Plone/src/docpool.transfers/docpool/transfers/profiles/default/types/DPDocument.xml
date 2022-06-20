@@ -4,6 +4,6 @@
              <element value="Transferable" />
  </property>
  <property name="behaviors" purge="False">
-     <element value="docpool.transfers.behaviors.transferable.ITransferable" />
+     <element value="docpool.transferable" />
  </property>
 </object>
