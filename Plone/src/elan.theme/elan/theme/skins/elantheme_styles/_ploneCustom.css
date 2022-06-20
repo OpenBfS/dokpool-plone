@@ -1,123 +1,126 @@
 body {
-    background-color: #FFFFFF;
-    background-image: url("background.gif");
-    background-repeat: repeat-x;
-    color: #464646;
-    font: 100% "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
+  background-color: #ffffff;
+  background-image: url("background.gif");
+  background-repeat: repeat-x;
+  color: #464646;
+  font: 100% "Trebuchet MS", Verdana, Arial, Geneva, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Trebuchet MS", Verdana, Arial, Geneva, sans-serif;
 }
 
 h1 {
-    color: #EC870E;
+  color: #ec870e;
 }
 
 input {
-    font-family: "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
+  font-family: "Trebuchet MS", Verdana, Arial, Geneva, sans-serif;
 }
 
-#visual-portal-wrapper { 
-    width: 60em; 
-    margin: 35px auto 0; 
-    border: 0.0625em solid #EC870E;
-} 
+#visual-portal-wrapper {
+  width: 60em;
+  margin: 35px auto 0;
+  border: 0.0625em solid #ec870e;
+}
 
 #portal-columns {
-    background-color: #004681;
-    border-top: 0.0625em solid #EC870E;
+  background-color: #004681;
+  border-top: 0.0625em solid #ec870e;
 }
 
 #portal-columns .width-full {
-	width: 98%;	
+  width: 98%;
 }
 
 #portal-column-one {
 }
 
 #portal-column-two {
-    background-color: #D0DCE9;
-    color: #004681;
+  background-color: #d0dce9;
+  color: #004681;
 }
 
 #portal-column-content {
-    background-color: #FFFFFF;
-    padding: 0.4em 1%;
+  background-color: #ffffff;
+  padding: 0.4em 1%;
 }
 
-
 #portal-top {
-    background-color: #004681;
+  background-color: #004681;
 }
 
 #portal-logo {
-    display: inline-block;
-    margin: 0;
+  display: inline-block;
+  margin: 0;
 }
 
 #portal-personaltools-wrapper {
-    position: absolute;
-    right: 12em;
+  position: absolute;
+  right: 12em;
 }
 
 #portal-personaltools {
-    background-color: #D0DCE9;
+  background-color: #d0dce9;
 }
 
 #portal-searchbox {
-    margin: 0;
-    position: absolute;
-    right: 15em;
-    top: 2.5em;
+  margin: 0;
+  position: absolute;
+  right: 15em;
+  top: 2.5em;
 }
 
 /* fuer Angleichung FF und IE */
 .searchButton {
-    width: 3.7em;
+  width: 3.7em;
 }
 
 /* Dropdown Menus */
 
 #portal-globalnav {
-    background: #004681;
-    border-top: 1px solid #EC870E;
-    font-size: 80%;
-    margin: 0;
+  background: #004681;
+  border-top: 1px solid #ec870e;
+  font-size: 80%;
+  margin: 0;
 }
 
-
 /* Allgemein */
-#portal-globalnav li a, #portal-globalnav ul li a {
-	border-color: #EC870E;
-    background: #004681;
-    padding: 0.5em 1em 0.5em;
-    font-weight: bold;
-    color: #D0DCE9;
+#portal-globalnav li a,
+#portal-globalnav ul li a {
+  border-color: #ec870e;
+  background: #004681;
+  padding: 0.5em 1em 0.5em;
+  font-weight: bold;
+  color: #d0dce9;
 }
 
 #portal-globalnav ul li a {
-	border-bottom: 1px solid #EC870E;
-	border-top: none;
+  border-bottom: 1px solid #ec870e;
+  border-top: none;
 }
 
 #portal-globalnav .selected a {
-    background: #004681;
-    color: #FFFFFF;
+  background: #004681;
+  color: #ffffff;
 }
 
 /* Gewaehlter Zweig erste Ebene */
 #portal-globalnav li.selected a {
   background-color: #004681;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* Gewaehlter Zweig weitere Ebenen */
 #portal-globalnav li.selected ul li a {
   background-color: #004681;
-  color: #D0DCE9;
+  color: #d0dce9;
 }
-
 
 /* Hover */
 
@@ -125,29 +128,25 @@ input {
 #portal-globalnav li.selected a:hover,
 #portal-globalnav li a.hasChildrens:hover,
 #portal-globalnav ul li a.hasChildrens:hover {
-    background: #D0DCE9;
-    color: White;
+  background: #d0dce9;
+  color: White;
 }
 
 /* Knoten mit Kindern */
 
-#portal-globalnav li a.hasChildrens, #portal-globalnav li a.hasChildrens:hover {
+#portal-globalnav li a.hasChildrens,
+#portal-globalnav li a.hasChildrens:hover {
   background-image: url("pointer_on.gif");
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-	
-	
-#portal-globalnav ul li a.hasChildrens, #portal-globalnav ul li a.hasChildrens:hover {
+
+#portal-globalnav ul li a.hasChildrens,
+#portal-globalnav ul li a.hasChildrens:hover {
   background-image: url("pointer_sub_off.gif");
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-
-
-
-
-
 
 /* To change the link color (or the navigation link  background), uncomment *
  * the selectors below, and insert new color values:                        */
@@ -168,105 +167,110 @@ a:link, a:visited, #content a:link, #content a:visited, dl.portlet a:link, dl.po
 dl.actionMenu.activated dd,
 #content-views,
 #edit-bar {
-	background-color: #D0DCE9;
-	border-color: #004681;
+  background-color: #d0dce9;
+  border-color: #004681;
 }
 dl.actionMenu a,
-dl.actionMenu.activated dd  {
-	background-color: #D0DCE9 !important;
+dl.actionMenu.activated dd {
+  background-color: #d0dce9 !important;
 }
-
 
 dl.portlet dt,
 div.portletAssignments div.portletHeader {
-    background: #EC870E;
+  background: #ec870e;
 }
 
 dl.portlet ul.navTree li a {
-    font-weight: bold;
-    color: #D0DCE9 !important;
+  font-weight: bold;
+  color: #d0dce9 !important;
 }
 
 dl.portlet ul.navTree li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 dl.portlet ul.navTreeLevel0 > .navTreeItem {
-    padding: 0.25em 0.25em;
+  padding: 0.25em 0.25em;
 }
 
 dl.portlet ul.navTree .navTreeCurrentItem {
-    background-color: #AE9F96;
-    border: none;
-    margin: 0 0.5em 0 0;
+  background-color: #ae9f96;
+  border: none;
+  margin: 0 0.5em 0 0;
 }
 
-dl.portletNavigationTree span.toggleNode, dl.portletNavigationTree span.toggleNode:hover {
-    background-image: url("pointer_off.gif");
-    margin-top: 0.2em;
-    margin-right: 0.2em;
+dl.portletNavigationTree span.toggleNode,
+dl.portletNavigationTree span.toggleNode:hover {
+  background-image: url("pointer_off.gif");
+  margin-top: 0.2em;
+  margin-right: 0.2em;
 }
 
-dl.portletNavigationTree span.expandedNode, dl.portletNavigationTree span.expandedNode:hover {
-    background-image: url("pointer_on.gif");
-    margin-top: 0.2em;
-    margin-right: 0.2em;
+dl.portletNavigationTree span.expandedNode,
+dl.portletNavigationTree span.expandedNode:hover {
+  background-image: url("pointer_on.gif");
+  margin-top: 0.2em;
+  margin-right: 0.2em;
 }
 
-ul.navTreeLevel1 span.toggleNode, ul.navTreeLevel1 span.toggleNode:hover {
-    background-image: url("pointer_sub_off.gif");
+ul.navTreeLevel1 span.toggleNode,
+ul.navTreeLevel1 span.toggleNode:hover {
+  background-image: url("pointer_sub_off.gif");
 }
 
-ul.navTreeLevel1 span.expandedNode, ul.navTreeLevel1 span.expandedNode:hover {
-    background-image: url("pointer_sub_off.gif");
+ul.navTreeLevel1 span.expandedNode,
+ul.navTreeLevel1 span.expandedNode:hover {
+  background-image: url("pointer_sub_off.gif");
 }
 
 dl.portlet ul.navTreeLevel2 li a {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 #portal-column-two dt.portletHeader {
-    height: 1em;
-    padding: 0 1em 0.5em;
+  height: 1em;
+  padding: 0 1em 0.5em;
 }
 
 #content .documentDescription,
 #content #description {
-    font: bold 1.25em "Trebuchet MS",Verdana,Arial,Geneva,sans-serif;
+  font: bold 1.25em "Trebuchet MS", Verdana, Arial, Geneva, sans-serif;
 }
 
 #portal-footer {
-    border-top: 0.0625em solid #EC870E;
-    clear: both;
-    text-align: center;
-    font-size: 75%;
-    background: #FFFFFF;
-    padding: 0.5em;
-    margin: 0;
-    line-height: 1em;
+  border-top: 0.0625em solid #ec870e;
+  clear: both;
+  text-align: center;
+  font-size: 75%;
+  background: #ffffff;
+  padding: 0.5em;
+  margin: 0;
+  line-height: 1em;
 }
 
 .hidden {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .hidden:hover {
-    opacity: 1.2;
+  opacity: 1.2;
 }
 
-#content a:hover, dl.portlet a:hover {
-    color: #EC870E !important;
+#content a:hover,
+dl.portlet a:hover {
+  color: #ec870e !important;
 }
 
-#content a, dl.portlet a {
-    border-bottom: none !important;
+#content a,
+dl.portlet a {
+  border-bottom: none !important;
 }
 
 #content span.link-external a {
-/*    background: url("link_icon.png") no-repeat scroll 0 1px transparent;
+  /*    background: url("link_icon.png") no-repeat scroll 0 1px transparent;
     padding: 1px 0 1px 16px; */
 }
 
 #LSResult {
-    z-index: 999999;
+  z-index: 999999;
 }

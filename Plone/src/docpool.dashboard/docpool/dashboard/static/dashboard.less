@@ -1,74 +1,73 @@
 @import "++theme++barceloneta/less/variables.plone.less";
 
 .dashboard {
-    .doctile {
-            border: 1px solid;
-            float: left;
-            padding: 0 10px 10px;
-            width: 300px;
-            height: 300px;
-            overflow-x: scroll;
-            
-            .visualization {
-                .whole {
-                    img {
-                            width: 100%;
-                        }
-                        max-width: 90%;
-                        height: auto;
-                        float: left;
-                       }
-                .map {
-                    img {
-                            width: 100%;
-                        }                    
-                        max-width: 66%;
-                        height: auto;
-                        float: left;
-                       }
-                .legend {
-                    img {
-                            width: 100%;
-                        }                    
-                        max-width: 34%;
-                        height: auto;
-                        float: left;
-                    }
-            }
+  .doctile {
+    border: 1px solid;
+    float: left;
+    padding: 0 10px 10px;
+    width: 300px;
+    height: 300px;
+    overflow-x: scroll;
 
-            .metadata {
-                vertical-align: bottom;
-            }
+    .visualization {
+      .whole {
+        img {
+          width: 100%;
         }
+        max-width: 90%;
+        height: auto;
+        float: left;
+      }
+      .map {
+        img {
+          width: 100%;
+        }
+        max-width: 66%;
+        height: auto;
+        float: left;
+      }
+      .legend {
+        img {
+          width: 100%;
+        }
+        max-width: 34%;
+        height: auto;
+        float: left;
+      }
+    }
+
+    .metadata {
+      vertical-align: bottom;
+    }
+  }
 }
 
 .portaltype-dashboard {
-    #sidebar {
-        display: none;
-    }
-    .col-sm-9 {
-        width: 100%;
-    }
-    #viewlet-below-content-body {
-        clear: both;
-    }
+  #sidebar {
+    display: none;
+  }
+  .col-sm-9 {
+    width: 100%;
+  }
+  #viewlet-below-content-body {
+    clear: both;
+  }
 }
-@media (min-width: @plone-screen-sm-min) { 
-    
+@media (min-width: @plone-screen-sm-min) {
 }
-@media (min-width: @plone-screen-md-min) { 
-    .dashboard {
-        .doctile {
-                width: 400px;
-                height: 320px;
-            }
+@media (min-width: @plone-screen-md-min) {
+  .dashboard {
+    .doctile {
+      width: 400px;
+      height: 320px;
     }
+  }
 }
-@media (min-width: @plone-screen-lg-min) { 
-    .dashboard {
-        .doctile {
-                width: 500px;
-                height: 400px;
-            }
+@media (min-width: @plone-screen-lg-min) {
+  .dashboard {
+    .doctile {
+      width: 500px;
+      height: 400px;
     }
+  }
 }

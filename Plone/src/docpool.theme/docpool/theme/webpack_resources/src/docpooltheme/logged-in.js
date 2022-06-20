@@ -1,4 +1,4 @@
-import 'plone-logged-in';
-import 'resourceregistry';
+import "plone-logged-in";
+import "resourceregistry";
 
-import './logged-in.less';
+import "./logged-in.less";

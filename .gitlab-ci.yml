@@ -32,7 +32,7 @@ before_script:
   - git --version
 
   ## Install ssh-agent if not already installed, it is required by Docker.
-  - 'command -v ssh-agent >/dev/null || ( sudo apt-get update -y && sudo apt-get install openssh-client -y )'
+  - "command -v ssh-agent >/dev/null || ( sudo apt-get update -y && sudo apt-get install openssh-client -y )"
 
   ## Run ssh-agent (inside the build environment)
   - eval $(ssh-agent -s)
@@ -76,7 +76,7 @@ build:
     - docker tag bfs/dokpool:latest git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
     - docker push git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
   only:
-  - review
+    - review
 
 deploy_dev:
   tags:
@@ -102,7 +102,7 @@ deploy_dev:
     name: dev
     url: https://review-one-bfs.starzel.de/
   only:
-  - review
+    - review
 
 undeploy_dev:
   tags:

@@ -152,8 +152,7 @@ Example:
     # Visit the url and create a new merge request
     # Wait for a successful CI run and assign to reviewer
 
-dual-use branches
------------------
+## dual-use branches
 
 When a feature is meant to be used in develop and in release/xxx we need to first create a branch from develop and later create another from release/xxx. The changes in the first branch will be cherry-picked into the second branch.
 
@@ -256,7 +255,7 @@ erstellt und eingecheckt werden:
 
 Haben sich CSS/LESS/JS Dateien von Plone oder in unseren bestehenden
 Resources (z.B in: `Plone/src/docpool.theme/docpool/theme/diazo_resources/static`)
-geändert,  muss das `.plone` Verzeichins in `webpack_resources` gelöscht werden. Beim
+geändert, muss das `.plone` Verzeichins in `webpack_resources` gelöscht werden. Beim
 nächsten `npm run build/watch` werden diese Dateien dann neu von Plone geladen.
 
 #### Bundle-Files rebase / update
