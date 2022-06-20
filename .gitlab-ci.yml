@@ -16,8 +16,8 @@ cache:
   paths:
     - .cache
     - .venv/
-    - downloads/
-    - eggs/
+    - Plone/downloads/
+    - Plone/eggs/
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
@@ -149,3 +149,15 @@ unittests:
   artifacts:
     paths:
       - parts/test/htmlreport
+
+linttests:
+  tags:
+    - docker
+  stage: test
+  script:
+    # Buildout configuration
+    - cd Plone
+    # lint test
+    - mkdir .venv
+    - pipenv install
+    - pipenv run pre-commit run -a
