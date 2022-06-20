@@ -5,6 +5,7 @@ image: python:3.9.13-bullseye
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+  PRE_COMMIT_HOME: "${CI_PROJECT_DIR}/.cache/pre-commit"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -14,7 +15,8 @@ variables:
 cache:
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
-    - .cache/
+    - ${PRE_COMMIT_HOME}
+    - ${PIP_CACHE_DIR}
     - Plone/.venv/
     - Plone/downloads/
     - Plone/eggs/
