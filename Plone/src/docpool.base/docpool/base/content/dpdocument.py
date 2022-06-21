@@ -14,6 +14,7 @@ explanation on the statements below.
 """
 import re
 from io import StringIO
+from logging import getLogger
 
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
@@ -42,6 +43,8 @@ from zope.component import adapter, getMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides, implementer
+
+logger = getLogger(__name__)
 
 
 def default_text():
@@ -270,21 +273,20 @@ class DPDocument(Container, Document, Extendable, ContentBase):
     # @ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """ """
-        et = self.dp_type()
-        if (
-            not et
-        ):  # The object is just being initialized and the attributes have not yet been saved
-            et = self.REQUEST.get("docType", "")
-        # dto = queryForObject(self, id=et)
+        et = self.docType
+        if not et:
+            # The object might just be initialized and the attributes have not yet been saved
+            request = getRequest()
+            et = request.get("docType", "")
+            if not et:
+                return
         dto = None
         try:
             dto = self.config.dtypes[et]
-        except Exception as e:
-            # et can be empty
-            # print e
+        except Exception:
             pass
         if not dto:
-            log("No DocType Object for type name '%s'" % self.dp_type())
+            logger.debug("No DocType Object for type name '%s'", et)
         return dto
 
     def dp_type_name(self):
