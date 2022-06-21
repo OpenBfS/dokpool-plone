@@ -6,6 +6,7 @@ from datetime import date
 from AccessControl import ClassSecurityInfo
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension, IDPDocument
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
@@ -20,6 +21,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.component import adapter, getUtility
+from zope.globalrequest import getRequest
 from zope.interface import Invalid, invariant, provider
 from zope.lifecycleevent import IObjectAddedEvent, IObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory, RequiredMissing
@@ -356,6 +358,9 @@ class REIDoc(FlexibleView):
 # the suscriber on IREIDoc. Instead we use IDPDocument
 @adapter(IDPDocument, IObjectAddedEvent)
 def set_title(obj, event=None):
+    if IImportingMarker.providedBy(getRequest()):
+        return []
+
     # Only if it is a IREIDoc.
     try:
         adapted = IREIDoc(obj)

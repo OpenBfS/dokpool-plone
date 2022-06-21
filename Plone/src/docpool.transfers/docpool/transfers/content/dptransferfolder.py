@@ -18,6 +18,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.folderbase import FolderBase, IFolderBase
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import (
     execute_under_special_role,
     queryForObject,
@@ -32,6 +33,7 @@ from plone.supermodel import model
 from Products.CMFPlone.utils import log, parent
 from zope import schema
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectRemovedEvent
 
@@ -234,16 +236,19 @@ class DPTransferFolder(Container, FolderBase):
 def created(obj, event=None):
     # For all document types shared between the two ESDs
     # set the default to "publish"
+    if obj.restrictedTraverse("@@context_helpers").is_archive():
+        return
+    if IImportingMarker.providedBy(getRequest()):
+        return
     log("TransferFolder created: %s" % str(obj))
-    if not obj.restrictedTraverse("@@context_helpers").is_archive():
-        dts = obj.getMatchingDocumentTypes(ids_only=True)
-        obj.doctypePermissions.update(dict.fromkeys(dts, "publish"))
+    dts = obj.getMatchingDocumentTypes(ids_only=True)
+    obj.doctypePermissions.update(dict.fromkeys(dts, "publish"))
 
-        # Also, if the permissions include read access,
-        # set the local Reader role for the members of
-        # the sending ESD
-        if obj.permLevel == "read/write":
-            obj.grantReadAccess()
+    # Also, if the permissions include read access,
+    # set the local Reader role for the members of
+    # the sending ESD
+    if obj.permLevel == "read/write":
+        obj.grantReadAccess()
 
 
 @adapter(IDPTransferFolder, IEditFinishedEvent)

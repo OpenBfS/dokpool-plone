@@ -18,6 +18,7 @@ from docpool.base.appregistry import APP_REGISTRY, implicitApps
 from docpool.base.config import BASE_APP
 from docpool.base.content.doctype import IDocType
 from docpool.base.events import DocumentPoolInitializedEvent, DocumentPoolRemovedEvent
+from docpool.base.marker import IImportingMarker
 from persistent.list import PersistentList
 from plone.app.textfield.value import RichTextValue
 from plone.autoform import directives
@@ -33,6 +34,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter, getMultiAdapter
 from zope.event import notify
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
 
@@ -172,11 +174,14 @@ def docPoolAdded(obj, event=None):
     if APPLICATIONS_KEY not in annotations:
         annotations[APPLICATIONS_KEY] = PersistentList()
 
+    if IImportingMarker.providedBy(getRequest()):
+        return
     # Trigger my own method
     APP_REGISTRY[BASE_APP]["dpAddedMethod"](self)
     # Trigger configs for all supported applications
-    for app in self.supportedApps:
-        APP_REGISTRY[app]["dpAddedMethod"](self)
+    if self.supportedApps:
+        for app in self.supportedApps:
+            APP_REGISTRY[app]["dpAddedMethod"](self)
     for appdef in implicitApps():
         appdef[2]["dpAddedMethod"](self)
     notify(DocumentPoolInitializedEvent(self))
@@ -191,6 +196,8 @@ def docPoolModified(obj, event=None):
     @param event:
     @return:
     """
+    if IImportingMarker.providedBy(getRequest()):
+        return
     self = obj
     # Trigger configs for all supported applications
     if self.supportedApps:
