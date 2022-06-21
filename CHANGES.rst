@@ -4,6 +4,11 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
+Fixed:
+
+- Show comments in archive. #4819
+  [tlotze]
+
 
 1.9.0 (13.05.22)
 ------------------
