@@ -2,7 +2,7 @@ import unittest
 
 from elan.esd.testing import ELAN_ESD_FUNCTIONAL_TESTING
 from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD, login
-from plone.testing.z2 import Browser
+from plone.testing.zope import Browser
 
 
 class TestTickerFunctional(unittest.TestCase):

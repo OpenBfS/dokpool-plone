@@ -9,7 +9,7 @@ from plone.app.testing import (
     PloneSandboxLayer,
     applyProfile,
 )
-from plone.testing import z2
+from plone.testing.zope import WSGI_SERVER_FIXTURE
 
 
 class DocpoolReiLayer(PloneSandboxLayer):
@@ -76,6 +76,6 @@ DOCPOOL_REI_FUNCTIONAL_TESTING = FunctionalTesting(
 
 
 DOCPOOL_REI_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_REI_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
+    bases=(DOCPOOL_REI_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, WSGI_SERVER_FIXTURE),
     name="DocpoolReiLayer:AcceptanceTesting",
 )

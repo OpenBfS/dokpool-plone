@@ -185,7 +185,7 @@ class ELANDocCollection(Item, Collection):
     def getQuery(self, **kwargs):
         """Get the query dict from the request or from the object"""
         from plone.app.querystring.querybuilder import QueryBuilder
-        from zope.site.hooks import getSite
+        from zope.component.hooks import getSite
 
         # print "modified get"
         request = self.REQUEST

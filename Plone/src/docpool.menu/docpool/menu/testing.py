@@ -7,7 +7,7 @@ from plone.app.testing import (
     PloneSandboxLayer,
     applyProfile,
 )
-from plone.testing import z2
+from plone.testing.zope import WSGI_SERVER_FIXTURE
 
 
 class DocpoolMenuLayer(PloneSandboxLayer):
@@ -35,6 +35,6 @@ DOCPOOL_MENU_FUNCTIONAL_TESTING = FunctionalTesting(
 
 
 DOCPOOL_MENU_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_MENU_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
+    bases=(DOCPOOL_MENU_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, WSGI_SERVER_FIXTURE),
     name="DocpoolMenuLayer:AcceptanceTesting",
 )

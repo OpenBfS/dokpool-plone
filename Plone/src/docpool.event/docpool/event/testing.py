@@ -13,7 +13,7 @@ from plone.app.testing import (
     setRoles,
 )
 from plone.dexterity.events import EditFinishedEvent
-from plone.testing import z2
+from plone.testing.zope import WSGI_SERVER_FIXTURE
 from zope.event import notify
 
 
@@ -105,7 +105,7 @@ DOCPOOL_EVENT_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
         DOCPOOL_EVENT_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE,
+        WSGI_SERVER_FIXTURE,
     ),
     name="DocpoolEventLayer:AcceptanceTesting",
 )

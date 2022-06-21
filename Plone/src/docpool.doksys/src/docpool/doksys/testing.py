@@ -7,7 +7,7 @@ from plone.app.testing import (
     PloneSandboxLayer,
     applyProfile,
 )
-from plone.testing import z2
+from plone.testing.zope import WSGI_SERVER_FIXTURE
 
 
 class DocpoolDoksysLayer(PloneSandboxLayer):
@@ -58,6 +58,6 @@ DOCPOOL_DOKSYS_FUNCTIONAL_TESTING = FunctionalTesting(
 
 
 DOCPOOL_DOKSYS_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(DOCPOOL_DOKSYS_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, z2.ZSERVER_FIXTURE),
+    bases=(DOCPOOL_DOKSYS_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, WSGI_SERVER_FIXTURE),
     name="DocpoolDoksysLayer:AcceptanceTesting",
 )
