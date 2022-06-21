@@ -4,6 +4,11 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
+Fixed:
+
+- Run CI test in correct dir #4823
+  [slindner]
+
 
 1.9.0 (13.05.22)
 ------------------
