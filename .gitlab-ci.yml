@@ -57,7 +57,6 @@ before_script:
   # LDAP client dependencies
   # - sudo apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
 
-  - pwd
   # Check Python version
   - python -V
 
