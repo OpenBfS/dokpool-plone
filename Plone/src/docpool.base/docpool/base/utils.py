@@ -87,7 +87,10 @@ def getAllowedDocumentTypesForGroup(self):
     dts = []
     if isGF:
         grp = self.getGroupOfFolder()
-        dts.extend(grp.getProperty("allowedDocTypes", []))
+        if grp:
+            allowed = grp.getProperty("allowedDocTypes", [])
+            if allowed:
+                dts.extend(allowed)
     else:
         return getAllowedDocumentTypes(self)
     tids = list(set(dts))
@@ -104,6 +107,9 @@ def getAllowedDocumentTypesForGroup(self):
 
 def getGroupsForCurrentUser(self, user=None):
     """ """
+    if "content" not in self.keys():
+        # self is not the parent of the content-area
+        return []
     g = self.content.Groups
     #    gpath = "/".join(g.getPhysicalPath())
     gordner = g.getFolderContents()
