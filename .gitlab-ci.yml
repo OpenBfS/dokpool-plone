@@ -18,8 +18,8 @@ cache:
   paths:
     - .cache
     - venv/
-    - downloads/
-    - eggs/
+    - Plone/downloads/
+    - Plone/eggs/
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
@@ -57,6 +57,7 @@ before_script:
   # LDAP client dependencies
   # - sudo apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
 
+  - pwd
   # Check Python version
   - python -V
 
@@ -135,13 +136,13 @@ unittests:
   # success_with_warnings: True
   script:
     # build
-    - cd /opt/bfs/dokpool/Plone
+    - cd Plone
     # Buildout configuration
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
-    - ./bin/buildout bootstrap
     - pip install -r requirements.txt
-    - ./bin/buildout -N -t 3 -c test_ci_server.cfg
+    - buildout bootstrap
+    - buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
     - ./bin/coverage erase
     - ./bin/coverage run ./bin/test || exit 1
