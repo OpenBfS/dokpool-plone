@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-06-10 16:39+0000\n"
+"POT-Creation-Date: 2022-06-22 16:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,16 @@ msgstr ""
 msgid "${transferred} Items transferred!"
 msgstr ""
 
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py
-msgid ". Doc type not accepted."
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py
-msgid ". Document has no scenario."
-msgstr ""
-
-#: docpool.transfers/docpool/transfers/behaviors/transferable.py
-msgid ". Unknown scenario not accepted."
-msgstr ""
-
 #: docpool.transfers/docpool/transfers/profiles/default/types/DPTransfers.xml
 msgid "Area for Transfer Folders"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py
+msgid "Doc type not accepted."
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py
+msgid "Document has no scenario."
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/browser/dptransferfolder.pt
@@ -101,6 +97,10 @@ msgstr ""
 
 #: docpool.transfers/docpool/transfers/behaviors/configure.zcml
 msgid "Type extension for transferable types"
+msgstr ""
+
+#: docpool.transfers/docpool/transfers/behaviors/transferable.py
+msgid "Unknown scenario not accepted."
 msgstr ""
 
 #: docpool.transfers/docpool/transfers/browser/dpdocument_transfer_form.pt

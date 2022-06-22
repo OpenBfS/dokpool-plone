@@ -267,6 +267,10 @@ class Transferable(FlexibleView):
         except BaseException:
             HAS_ELAN = False
 
+        def error_message(esd_to_title, msg):
+            prefix = _("No transfer to")
+            portalMessage(self.context, f'{prefix} {esd_to_title}. {msg}', type="error")
+
         def doIt():
             timestamp = datetime.now()
             userinfo_string = self.context._getUserInfoString(plain=True)
@@ -282,15 +286,7 @@ class Transferable(FlexibleView):
                     # check my precise DocType
                     dto = self.context.docTypeObj()
                     if not transfer_folder.acceptsDT(dto.getId()):
-                        portalMessage(
-                            self.context,
-                            _("No transfer to")
-                            + " "
-                            + esd_to_title
-                            + _(". Doc type not accepted."),
-                            type="error",
-                        )
-                        # Message
+                        error_message(esd_to_title, _("Doc type not accepted."))
                         continue
                 # b) Is my Scenario known, are unknown Scenarios accepted?
                 scen_ok = transfer_folder.unknownScenDefault != "block"
@@ -307,26 +303,13 @@ class Transferable(FlexibleView):
                         if scens:
                             scen_id = scens[0].getId()
                             if not knowsScen(transfer_folder, scen_id):
-                                # Message
-                                portalMessage(
-                                    self.context,
-                                    _("No transfer to")
-                                    + " "
-                                    + esd_to_title
-                                    + _(". Unknown scenario not accepted."),
-                                    type="error",
+                                error_message(
+                                    esd_to_title,
+                                    _("Unknown scenario not accepted."),
                                 )
                                 continue
                         else:
-                            # Message
-                            portalMessage(
-                                self.context,
-                                _("No transfer to")
-                                + " "
-                                + esd_to_title
-                                + _(". Document has no scenario."),
-                                type="error",
-                            )
+                            error_message(esd_to_title, _("Document has no scenario."))
                             continue
 
                 logger.info(
