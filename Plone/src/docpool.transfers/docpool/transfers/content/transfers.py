@@ -9,6 +9,11 @@ except BaseException:
 
 
 def ensureDocTypeInTarget(original, copy):
+    """If my document type is unknown in the target ESD, copy it to the target.
+
+    Set it to private state.
+
+    """
     my_dt = original.docType
     config = copy.myDocumentPool().config.dtypes
     if config.hasObject(my_dt):

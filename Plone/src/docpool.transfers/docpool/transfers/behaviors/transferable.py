@@ -1,5 +1,3 @@
-"""Common configuration constants
-"""
 from contextlib import contextmanager
 from datetime import datetime
 from logging import getLogger
@@ -251,16 +249,10 @@ class Transferable(FlexibleView):
         1) Determine all transfer folder objects.
         2) Put a copy of me in each of them, preserving timestamps.
         3) Add transfer information the copies.
-        4) Add log entry to sender log.
-        5) If my document type is unknown in the target ESD,
-           copy it to the target setting it to private state.
-        6) If my scenarios are unknown in the target ESD,
-           copy them to the target setting them to private state.
-           If there is an equivalent scenario in the target,
-           but it is in private state, check if it defines
-           a published substitute scenario. If it does,
-           change the scenario for the copy to that one.
-        7) Add entry to receiver log.
+        4) Add entries to sender logs.
+        5) Make sure document types and scenarios exist in the target ESDs.
+        6) Set workflow state of the copies according to folder permissions.
+        7) Add entries to receiver logs.
         """
 
         def error_message(esd_to_title, msg):
@@ -274,10 +266,11 @@ class Transferable(FlexibleView):
             if HAS_ELAN:
                 elanobj = IELANDocument(self.context)
 
-            # 1) Determine all transfer folder objects.
             for target in targets:
+                # 1) Determine target transfer folder object.
                 transfer_folder = api.content.get(UID=target)
                 esd_to_title = transfer_folder.myDocumentPool().Title()
+
                 # Check permissions:
                 # a) Is my DocType accepted, are unknown DocTypes accepted?
                 udt_ok = transfer_folder.unknownDtDefault != "block"
@@ -286,6 +279,7 @@ class Transferable(FlexibleView):
                     if not transfer_folder.acceptsDT(dto.getId()):
                         error_message(esd_to_title, _("Doc type not accepted."))
                         continue
+
                 # b) Is my Scenario known, are unknown Scenarios accepted?
                 scen_ok = transfer_folder.unknownScenDefault != "block"
                 if not scen_ok and HAS_ELAN:
@@ -307,6 +301,7 @@ class Transferable(FlexibleView):
                         error_message(esd_to_title, _("Document has no scenario."))
                         continue
 
+                # At this point, transfer is allowed.
                 logger.info(
                     "Transfer {} to {}.".format(
                         "/".join(self.context.getPhysicalPath()),
@@ -314,7 +309,7 @@ class Transferable(FlexibleView):
                     )
                 )
 
-                # 2) Put a copy of me in each of them, preserving timestamps.
+                # 2) Put a copy of me in transfer folder, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
                 behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
@@ -326,7 +321,7 @@ class Transferable(FlexibleView):
                 my_copy.transferred = timestamp
                 my_copy.transferred_by = userinfo_string
 
-                # 4) Add log entries to sender log.
+                # 4) Add entry to sender log.
                 scenario_ids = ", ".join(elanobj.scenarios or ()) if HAS_ELAN else ""
                 self.sender_log += (
                     dict(
@@ -337,23 +332,18 @@ class Transferable(FlexibleView):
                         transferfolder_uid=transfer_folder.UID(),
                     ),
                 )
-                # 5) If my document type is unknown in the target ESD,
-                #    copy it to the target setting it to private state.
+
+                # 5) Make sure document type and scenarios exist in the target ESD and
+                #    are in a suitable state.
                 ensureDocTypeInTarget(self.context, my_copy)
-                # 6) If my scenarios are unknown in the target ESD,
-                #    copy them to the target setting them to private state.
-                #    If there is an equivalent scenario in the target,
-                #    but it is in private state, check if it defines
-                #    a published substitute scenario. If it does,
-                #    change the scenario for the copy to that one.
+
                 if HAS_ELAN:
                     ensureScenariosInTarget(self.context, my_copy)
-                # Make sure workflow state of the copy is published,
-                # if there is no restriction on the transfer folder (permission = publish)
-                # Make sure workflow state of the copy is private,
-                # if permission is 'needs confirmation'
+
+                # 6) Set workflow state of the copy according to folder permissions.
                 ITransferable(my_copy).ensureState()
                 my_copy.reindexObject()
+
                 # 7) Add entry to receiver log.
                 elancopy = IELANDocument(my_copy)
                 scenario_ids = ", ".join(elancopy.scenarios or ()) if HAS_ELAN else ""
@@ -365,6 +355,7 @@ class Transferable(FlexibleView):
                         esd_title=transfer_folder.getSendingESD().Title(),
                     ),
                 )
+
                 msg = _(
                     "Transferred to ${target_title}",
                     mapping={"target_title": esd_to_title},
@@ -374,9 +365,12 @@ class Transferable(FlexibleView):
         execute_under_special_role(self.context, "Manager", doIt)
 
     def ensureState(self):
-        """
-        If this object is in a transfer folder,
-        make sure it is in a state corresponding to the permission.
+        """Put a transferred object in a state corresponding to the doctype permission.
+
+        If there is no restriction on the transfer folder (permission is 'publish'),
+        make sure workflow state of the copy is private if permission is 'needs
+        confirmation' but public if it is 'publish'.
+
         """
         if self.transferred:
             tf = self.context.myDPTransferFolder()

@@ -6,6 +6,13 @@ from Products.CMFPlone.utils import log_exc
 
 
 def ensureScenariosInTarget(original, copy):
+    """If original's scenarios are unknown in the target ESD, copy them to the target.
+
+    Set them to private state. For those with an equivalent scenario in the target that
+    is in private state, check if it defines a published substitute scenario. If it
+    does, change the scenario for the copy to that one.
+
+    """
     my_scenarios = original.doc_extension(ELAN_APP).scenarios
     scen_source = original.myDocumentPool().contentconfig.scen
     scen = copy.myDocumentPool().contentconfig.scen
