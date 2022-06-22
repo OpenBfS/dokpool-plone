@@ -4,20 +4,27 @@
 <body>
 
 <metal:listingmacro define-macro="listing">
-    <tal:results define="b_start python:request.get('b_start', 0);
-                             Batch python:modules['Products.CMFPlone'].Batch;
-                             b_size python:int(request.get('b_size', 10));
-                             b_start python:int(request.get('b_start', 0));
-                             results python:view.getFolderContents({'sort_on':'mdate','sort_order':'reverse'});
-                             batch python:Batch(results, b_size, b_start);
-                             site_properties context/portal_properties/site_properties;
+
+<?python
+# Work around Unauthorized Errors in Plone 6
+from Products.CMFPlone import Batch
+import os
+request = econtext["request"]
+view = econtext["view"]
+b_start = request.get('b_start', 0)
+b_size  = request.get('b_size', 10)
+results = view.getFolderContents({'sort_on':'mdate','sort_order':'reverse'})
+batch   = Batch(results, b_size, b_start, orphan=1)
+buttons = view.dp_buttons(batch)
+?>
+
+    <tal:results define="    site_properties context/portal_properties/site_properties;
                              use_view_action site_properties/typesUseViewActionInListings|python:();
                              isAnon context/@@plone_portal_state/anonymous;
                              normalizeString nocall: context/plone_utils/normalizeString;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                              show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                              pas_member context/@@pas_member;
-                             buttons python:view.dp_buttons(batch);
                              container_type python: context.portal_type;">
         <tal:listing>
 
@@ -281,15 +288,21 @@
 </metal:macro>
 
 <metal:macro define-macro="doc_files" i18n:domain="docpool.base">
-          <span tal:define="files context/getFiles" tal:condition="files">
+          <span tal:define="files context/getFiles" tal:condition="python: files">
             <label i18n:translate="">Files:</label>
             <ul tal:define="multiple_files python:len(files) > 1">
              <span tal:repeat="d files">
               <li><a href="" target="_blank" tal:attributes="href python:d.absolute_url()"
                      tal:content="structure python:d.title_or_id()">documents</a>
                 <font size="1">
-                  (<span tal:content="python:d.file.contentType"/>,&nbsp;<span
-                        tal:content="python:d.getObjSize(None, d.file.size)"/>)
+<?python
+from Products.CMFPlone.utils import human_readable_size
+c_type = econtext["d"].file and econtext["d"].file.contentType or ""
+size = econtext["d"].get_size() or 0
+size = human_readable_size(size)
+?>
+                  (<span tal:content="python:c_type"/>,&nbsp;<span
+                        tal:content="python:size"/>)
                 </font>
                   <a tal:attributes="href python: d.absolute_url() + '/delete_confirmation'"
                      tal:condition="python: edit_allowed"
@@ -303,7 +316,11 @@
                       <span class="glyphicon glyphicon-trash"></span>
                   </a>
                 <tal:if condition="python:multiple_files and edit_allowed">
-                   <tal:block tal:define="quoted_id python: view.quote_plus(d.getId());">
+<?python
+from urllib.parse import quote_plus
+quoted_id = quote_plus(econtext["d"].getId());
+?>
+                   <tal:block>
                     <a href=""
                        title="Move item up"
                        i18n:attributes="title title_move_item_up;"
@@ -327,7 +344,7 @@
 
 <metal:macro define-macro="doc_images" i18n:domain="docpool.base">
 
-          <span tal:define="images context/getImages" tal:condition="images">
+          <span tal:define="images context/getImages">
             <label i18n:translate="">Images:</label>
             <table border="0">
             <tr tal:define="multiple_images python:len(images) > 1">
@@ -345,8 +362,16 @@
                   <br/>
               </a>
               <font size="1">
-                 <span tal:content="python:b.image.contentType"/><br>
-                 (<span tal:content="python:b.getObjSize(None,b.image.size)"/>)<br><br>
+
+<?python
+from Products.CMFPlone.utils import human_readable_size
+c_type = econtext["b"].image and econtext["b"].image.contentType or ""
+size = econtext["b"].get_size() or 0
+size = human_readable_size(size)
+?>
+
+                 <span tal:content="python:c_type"/><br>
+                 (<span tal:content="python:size"/>)<br><br>
               </font>
 
               <font size="1">
@@ -366,7 +391,12 @@
                   </a>
 
               <tal:if condition="python:multiple_images and edit_allowed">
-                   <tal:block tal:define="quoted_id python: view.quote_plus(b.getId());">
+<?python
+from urllib.parse import quote_plus
+quoted_id = quote_plus(econtext["b"].getId());
+?>
+
+                   <tal:block>
                     <a href=""
                        title="Move item up"
                        i18n:attributes="title title_move_item_up;"
