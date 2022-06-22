@@ -22,8 +22,6 @@ from plone.autoform.directives import read_permission, write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
-from Products.CMFCore.utils import getToolByName
-from Products.statusmessages.interfaces import IStatusMessage
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -33,6 +31,15 @@ from zope.interface import provider
 logger = getLogger(__name__)
 
 ANNOTATIONS_KEY = __name__
+
+
+HAS_ELAN = True
+try:
+    from docpool.elan.behaviors.elandocument import IELANDocument
+    from docpool.elan.config import ELAN_APP
+    from docpool.elan.content.transfers import ensureScenariosInTarget, knowsScen
+except BaseException:
+    HAS_ELAN = False
 
 
 @contextmanager
@@ -207,8 +214,7 @@ class Transferable(FlexibleView):
             or self.context.restrictedTraverse("@@context_helpers").is_archive()
         ):
             return False
-        wftool = getToolByName(self.context, "portal_workflow")
-        if wftool.getInfoFor(self.context, "review_state") != "published":
+        if api.content.get_state(obj=self.context, default=None) != "published":
             return False
         if not self.context.allSubobjectsPublished():
             return False
@@ -256,16 +262,6 @@ class Transferable(FlexibleView):
            change the scenario for the copy to that one.
         7) Add entry to receiver log.
         """
-        HAS_ELAN = True
-        try:
-            from docpool.elan.behaviors.elandocument import IELANDocument
-            from docpool.elan.config import ELAN_APP
-            from docpool.elan.content.transfers import (
-                ensureScenariosInTarget,
-                knowsScen,
-            )
-        except BaseException:
-            HAS_ELAN = False
 
         def error_message(esd_to_title, msg):
             prefix = _("No transfer to")
@@ -274,6 +270,9 @@ class Transferable(FlexibleView):
         def doIt():
             timestamp = datetime.now()
             userinfo_string = self.context._getUserInfoString(plain=True)
+            dto = self.context.docTypeObj()
+            if HAS_ELAN:
+                elanobj = IELANDocument(self.context)
 
             # 1) Determine all transfer folder objects.
             for target in targets:
@@ -284,33 +283,29 @@ class Transferable(FlexibleView):
                 udt_ok = transfer_folder.unknownDtDefault != "block"
                 if not udt_ok:
                     # check my precise DocType
-                    dto = self.context.docTypeObj()
                     if not transfer_folder.acceptsDT(dto.getId()):
                         error_message(esd_to_title, _("Doc type not accepted."))
                         continue
                 # b) Is my Scenario known, are unknown Scenarios accepted?
                 scen_ok = transfer_folder.unknownScenDefault != "block"
-                elanobj = None
                 if not scen_ok and HAS_ELAN:
                     # check my precise Scenario
                     # FIXME: ELAN dependency
-                    try:
-                        elanobj = IELANDocument(self.context)
-                    except BaseException:
-                        pass  # ELAN App not active
-                    if elanobj is not None:
-                        scens = IELANDocument(self.context).myScenarioObjects()
-                        if scens:
-                            scen_id = scens[0].getId()
-                            if not knowsScen(transfer_folder, scen_id):
-                                error_message(
-                                    esd_to_title,
-                                    _("Unknown scenario not accepted."),
-                                )
-                                continue
-                        else:
-                            error_message(esd_to_title, _("Document has no scenario."))
+                    # TODO The following is inefficient in that it creates a list of
+                    # full objects, but it effectively filters elanobj.scenarios for
+                    # those that actually exist in the catalog. Is this necessary?
+                    scens = elanobj.myScenarioObjects()
+                    if scens:
+                        scen_id = scens[0].getId()
+                        if not knowsScen(transfer_folder, scen_id):
+                            error_message(
+                                esd_to_title,
+                                _("Unknown scenario not accepted."),
+                            )
                             continue
+                    else:
+                        error_message(esd_to_title, _("Document has no scenario."))
+                        continue
 
                 logger.info(
                     "Transfer {} to {}.".format(
@@ -323,20 +318,16 @@ class Transferable(FlexibleView):
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
                 behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
-                if HAS_ELAN and elanobj is not None:
+                if HAS_ELAN:
                     behaviors.add(ELAN_APP)  # FIXME: ELAN dependency
-                ILocalBehaviorSupport(my_copy).local_behaviors = list(set(behaviors))
+                ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
 
                 # 3) Add transfer information to the copies.
                 my_copy.transferred = timestamp
                 my_copy.transferred_by = userinfo_string
 
                 # 4) Add log entries to sender log.
-                scenario_ids = ""
-                if HAS_ELAN and elanobj is not None:
-                    scenario_ids = (
-                        elanobj.scenarios and ", ".join(elanobj.scenarios) or ""
-                    )
+                scenario_ids = ", ".join(elanobj.scenarios or ()) if HAS_ELAN else ""
                 self.sender_log += (
                     dict(
                         timestamp=timestamp,
@@ -355,7 +346,7 @@ class Transferable(FlexibleView):
                 #    but it is in private state, check if it defines
                 #    a published substitute scenario. If it does,
                 #    change the scenario for the copy to that one.
-                if HAS_ELAN and elanobj is not None:
+                if HAS_ELAN:
                     ensureScenariosInTarget(self.context, my_copy)
                 # Make sure workflow state of the copy is published,
                 # if there is no restriction on the transfer folder (permission = publish)
@@ -364,13 +355,8 @@ class Transferable(FlexibleView):
                 ITransferable(my_copy).ensureState()
                 my_copy.reindexObject()
                 # 7) Add entry to receiver log.
-                scenario_ids = ""
-                if elanobj is not None:
-                    scenario_ids = (
-                        IELANDocument(my_copy).scenarios
-                        and ", ".join(IELANDocument(my_copy).scenarios)
-                        or ""
-                    )
+                elancopy = IELANDocument(my_copy)
+                scenario_ids = ", ".join(elancopy.scenarios or ()) if HAS_ELAN else ""
                 self.receiver_log += (
                     dict(
                         timestamp=timestamp,
@@ -392,11 +378,6 @@ class Transferable(FlexibleView):
         If this object is in a transfer folder,
         make sure it is in a state corresponding to the permission.
         """
-        HAS_ELAN = True
-        try:
-            from docpool.elan.behaviors.elandocument import IELANDocument
-        except BaseException:
-            HAS_ELAN = False
         if self.transferred:
             tf = self.context.myDPTransferFolder()
             dtObj = self.context.docTypeObj()
@@ -410,19 +391,13 @@ class Transferable(FlexibleView):
                 if dstate == "published" and perm == "confirm":
                     api.content.transition(self.context, "retract")
             if HAS_ELAN:
-                elanobj = None
-                try:
-                    elanobj = IELANDocument(self.context)
-                except BaseException:
-                    pass  # no ELAN App active
-                if elanobj is not None:
-                    uscn = IELANDocument(self.context).unknownScenario()
-                    if uscn:
-                        # Documents with unknown scenarios must be private
-                        try:
-                            api.content.transition(self.context, "retract")
-                        except BaseException:
-                            pass
+                uscn = IELANDocument(self.context).unknownScenario()
+                if uscn:
+                    # Documents with unknown scenarios must be private
+                    try:
+                        api.content.transition(self.context, "retract")
+                    except BaseException:
+                        pass
 
 
 @adapter(IDPDocument, IActionSucceededEvent)
