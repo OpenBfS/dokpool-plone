@@ -1,19 +1,18 @@
 from logging import getLogger
 
-import Acquisition
 from Acquisition import aq_base
 from docpool.base.utils import extendOptions
 from plone.app.contenttypes.interfaces import IFile
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 from Products.Five.browser import BrowserView
-from Products.PageTemplates.PageTemplate import PageTemplate
+from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
 from zope.component import getMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 
 logger = getLogger(__name__)
 
 
-class OnTheFlyTemplate(Acquisition.Explicit, PageTemplate):
+class OnTheFlyTemplate(ZopePageTemplate):
     def __call__(self, request, *args, **kwargs):
         if "args" not in kwargs:
             kwargs["args"] = args
@@ -93,10 +92,8 @@ class FlexibleView(BrowserView):
         """
         # Get all macros / skin_templates for the context/app/...
         src = self.myViewSource(vtype)
-        template = OnTheFlyTemplate()
-        template = template.__of__(aq_base(self.context))
-        template.pt_edit(src, "text/html")
-        #        template.id = "flexible"
+        template = OnTheFlyTemplate(id="flexible", text=src)
+        template = template.__of__(self.context)
         # This "view" will run with security restrictions. The code will not be able
         # to access protected attributes and functions.
         # Todo WTF ? We do this to bypass security stuff?
