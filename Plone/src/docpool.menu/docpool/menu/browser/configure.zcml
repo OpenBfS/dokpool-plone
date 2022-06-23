@@ -17,7 +17,6 @@
       name="docpool.menu"
       />
 
-  <!--
   <browser:viewlet
       name="plone.global_sections"
       manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
@@ -26,6 +25,7 @@
       permission="zope2.View"
       />
 
+  <!--
   <class class=".menu.DropDownMenuQueryBuilder">
     <allow interface="plone.app.layout.navigation.interfaces.INavigationQueryBuilder" />
   </class>
