@@ -4,7 +4,7 @@ import re
 from AccessControl import getSecurityManager
 from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
-from Acquisition import aq_inner
+from Acquisition import aq_get, aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from plone.api.exc import CannotGetPortalError
@@ -105,28 +105,28 @@ def getAllowedDocumentTypesForGroup(self):
     return res
 
 
-def getGroupsForCurrentUser(self, user=None):
+def getGroupsForCurrentUser(obj, user=None):
     """ """
-    if "content" not in self.keys():
-        # self is not the parent of the content-area
-        return []
-    g = self.content.Groups
-    #    gpath = "/".join(g.getPhysicalPath())
-    gordner = g.getFolderContents()
+    results = []
 
-    # print groups
-    gtool = getToolByName(self, "portal_groups")
-    res = []
-    for g in gordner:
+    # TODO: Make this method saner
+    # find content-area through acquisition - duh...
+    content = aq_get(obj, "content", None)
+    if not content:
+        return results
+
+    gtool = getToolByName(obj, "portal_groups")
+    # find folder "Groups" through acquisition  - duh...
+    for item in content.Groups.getFolderContents():
         try:
-            grp = gtool.getGroupById(g.id)
+            grp = gtool.getGroupById(item.id)
             etypes = grp.getProperty("allowedDocTypes", [])
             if etypes:
                 title = grp.getProperty("title", "")
-                res.append({"id": g.id, "title": title, "etypes": etypes})
+                results.append({"id": item.id, "title": title, "etypes": etypes})
         except Exception as e:
             log_exc(e)
-    return res
+    return results
 
 
 def deleteMemberFolders(self, member_ids):
