@@ -1,120 +1,39 @@
-from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
-from docpool.base.utils import (
-    getDocumentPoolSite,
-    getGroupsForCurrentUser,
-    queryForObjects,
-)
+from docpool.base.utils import getDocumentPoolSite, getGroupsForCurrentUser
 from docpool.transfers.config import TRANSFERS_APP
 from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-from Products.CMFPlone.i18nl10n import utranslate
 from Products.CMFPlone.utils import safe_hasattr
 from zope.component import getMultiAdapter
-from zope.component.hooks import getSite
+from zope.globalrequest import getRequest
 
 
-def getApplicationDocPoolsForCurrentUser(context, user=None):
+def getApplicationDocPoolsForCurrentUser(context):
     """
-    Determine all accessible DocPools an their applications, that the user has access to.
+    Determine all DocPools and their applications that the user has access to.
     """
-    if not user:
-        if api.user.is_anonymous():
-            return None
-        user = api.user.get_current()
+    request = getRequest()
 
-    portal = getSite()
-
-    dps = [
-        dp.getObject()
-        for dp in queryForObjects(
-            context, path="/".join(portal.getPhysicalPath()), portal_type="DocumentPool"
-        )
-    ]
-
-    # dps = _folderTree(context, "%s" % ("/".join(portal.getPhysicalPath())), {'portal_type': ('PloneSite', 'DocumentPool')})['children']
-    request = context.REQUEST
     dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
     active_apps = dp_app_state.appsActivatedByCurrentUser()
-    current_app = None
-    if len(active_apps) > 0:
-        current_app = appName(active_apps[0])
+    current_app = active_apps[0] if active_apps else None
+
     current_dp = None
     if safe_hasattr(context, "myDocumentPool"):
         current_dp = context.myDocumentPool()
-    root_title = (
-        current_dp is None
-        and utranslate("docpool.menu", "Docpools", context=context)
-        or f"{current_dp.title}: {current_app}"
-    )
-    apps_root = [
-        {
-            "id": "apps",
-            "Title": root_title,
-            "Description": "",
-            "getURL": "",
-            "show_children": True,
-            "children": None,
-            "currentItem": False,
-            "currentParent": True,
-            "item_class": "applications",
-            "normalized_review_state": "visible",
-        }
-    ]
+
+    dps = (dp.getObject() for dp in api.content.find(portal_type="DocumentPool"))
     pools = []
     for dp in dps:
-        dp_app_state = getMultiAdapter(
-            (dp, request), name="dp_app_state"
-        )  # need to get fresh adapter for each pool
+        dp_app_state = getMultiAdapter((dp, request), name="dp_app_state")
         app_names = dp_app_state.appsAvailableToCurrentUser()
-        app_names.insert(0, BASE_APP)
-        for app_name in app_names:
-            if app_name == "base":
-                if context.isAdmin():
-                    app_title = utranslate(
-                        "docpool.menu", "Docpool Base", context=context
-                    )
-                else:
-                    continue
-            else:
-                app_title = appName(app_name)
+        if context.isAdmin():
+            app_names.insert(0, BASE_APP)
 
-            if dp.getId() in context.absolute_url():
-                pools.append(
-                    {
-                        "id": dp.getId() + "-" + app_name,
-                        "Title": dp.title + ": " + app_title,
-                        "Description": "",
-                        "getURL": "%s/setActiveApp?app=%s"
-                        % (context.absolute_url(), app_name),
-                        "show_children": False,
-                        "children": [],
-                        "currentItem": False,
-                        "currentParent": False,
-                        "item_class": app_title,
-                        "normalized_review_state": "visible",
-                    }
-                )
-            else:
-                pools.append(
-                    {
-                        "id": dp.getId() + "-" + app_name,
-                        "Title": dp.title + ": " + app_title,
-                        "Description": "",
-                        "getURL": "%s/setActiveApp?app=%s"
-                        % (dp.absolute_url(), app_name),
-                        "show_children": False,
-                        "children": [],
-                        "currentItem": False,
-                        "currentParent": False,
-                        "item_class": app_title,
-                        "normalized_review_state": "visible",
-                    }
-                )
+        pools.append((dp, app_names))
 
-    apps_root[0]["children"] = pools
-    return apps_root
+    return current_dp, current_app, pools
 
 
 def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strategy=None):
