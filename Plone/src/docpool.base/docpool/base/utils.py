@@ -105,7 +105,7 @@ def getAllowedDocumentTypesForGroup(self):
     return res
 
 
-def getGroupsForCurrentUser(obj, user=None):
+def getGroupsForCurrentUser(obj):
     """ """
     results = []
 
@@ -154,17 +154,12 @@ def getUserInfo(self, username=None):
         # we can be called with a special permission context (execute_under_special_role)
         # therefore we need to get the correct user object
         user = mtool.getMemberById(user.getId())
-    # groups = [g for g in getGroupsForCurrentUser(self, user) if g['etypes']]
     fullname = user.getProperty("fullname")
     userid = user.getId()
     if not fullname:
         fullname = userid
     primary_group = None
-    # if len(groups) > 0:
-    #    # Normal user with at least one group
-    #    primary_group = groups[0]['title']
     if self.isInGroupFolder():
-        # determine the group
         primary_group = self.myGroup()
     return userid, fullname, primary_group
 

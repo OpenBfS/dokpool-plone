@@ -66,7 +66,7 @@ def getFoldersForCurrentUser(context):
     if not content_folder:
         return
 
-    groups = getGroupsForCurrentUser(context, user)
+    groups = getGroupsForCurrentUser(context)
     if not groups:  # User is reader only
         return
 
