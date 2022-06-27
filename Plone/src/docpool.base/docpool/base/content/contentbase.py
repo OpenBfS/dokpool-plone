@@ -15,8 +15,9 @@ explanation on the statements below.
 import datetime
 
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base, aq_inner, aq_parent
+from Acquisition import aq_base, aq_get, aq_inner, aq_parent
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.marker import IImportingMarker
 from plone import api
 from plone.autoform import directives
 from plone.base.utils import safe_text
@@ -28,6 +29,7 @@ from Products.CMFPlone.utils import base_hasattr
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer, provider
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectCopiedEvent, IObjectCreatedEvent
@@ -177,7 +179,12 @@ class ContentBase:
 
 @adapter(IContentBase, IObjectAddedEvent)
 def updateCreated(obj, event=None):
-    request = obj.REQUEST
+    request = getRequest()
+    if request is None:
+        # fallback for failing test
+        request = aq_get(obj, "REQUEST")
+    if IImportingMarker.providedBy(request):
+        return
     if request.get("creating", False):
         # print "#" * 20, "creating"
         if not obj.restrictedTraverse("@@context_helpers").is_archive():
@@ -198,6 +205,9 @@ def updateModified(obj, event=None):
 def markCreateEvent(obj, event):
     if IObjectCopiedEvent.providedBy(event):
         return
+    if IImportingMarker.providedBy(getRequest()):
+        return
+
     context = api.portal.get()
     request = context.REQUEST
     request.set("creating", True)
@@ -207,5 +217,7 @@ def markCreateEvent(obj, event):
 # Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
 def updateWorkflow(obj, event=None):
+    if IImportingMarker.providedBy(getRequest()):
+        return
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
         obj.update_workflow()

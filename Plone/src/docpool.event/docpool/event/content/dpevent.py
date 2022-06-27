@@ -17,6 +17,7 @@ from Acquisition import aq_base
 from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import portalMessage
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
@@ -42,6 +43,7 @@ from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.component import adapter, getUtility
+from zope.globalrequest import getRequest
 from zope.interface import Interface, Invalid, alsoProvides, implementer
 from zope.lifecycleevent.interfaces import (
     IObjectAddedEvent,
@@ -598,7 +600,8 @@ def eventAdded(obj, event=None):
     For new scenarios, add them to each user's personal selection and
     create the journals.
     """
-    # print "scenarioAdded"
+    if IImportingMarker.providedBy(getRequest()):
+        return
     obj.selectGlobally()
     obj.createDefaultJournals()
 
@@ -634,6 +637,8 @@ def addLogEntry(obj):
 @adapter(IDPEvent, IObjectModifiedEvent)
 def eventChanged(obj, event=None):
     """ """
+    if IImportingMarker.providedBy(getRequest()):
+        return
     addLogEntry(obj)
 
     if obj.Status != "active":
@@ -687,6 +692,8 @@ def eventRemoved(obj, event=None):
 @adapter(IDPEvent, IActionSucceededEvent)
 def eventPublished(obj, event=None):
     if event.__dict__["action"] == "publish":
+        if IImportingMarker.providedBy(getRequest()):
+            return
         # Update all objects for this scenario
         m = obj.content
         mpath = "/".join(m.getPhysicalPath())

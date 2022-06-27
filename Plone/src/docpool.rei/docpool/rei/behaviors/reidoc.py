@@ -153,6 +153,7 @@ class IREIDoc(IDocumentExtension):
         value_type=schema.Choice(source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
         missing_value=[],
+        default=[],
     )
     read_permission(MStIDs="docpool.rei.AccessRei")
     write_permission(MStIDs="docpool.rei.AccessRei")
@@ -439,6 +440,8 @@ def save_mstid_added(obj, event=None):
 
 @adapter(IDPDocument, IObjectModifiedEvent)
 def save_mstid_modified(obj, event=None):
+    if IImportingMarker.providedBy(getRequest()):
+        return
     return save_mstid(obj)
 
 

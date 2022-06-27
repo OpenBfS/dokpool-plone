@@ -21,6 +21,7 @@ from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.content.extendable import Extendable
+from docpool.base.marker import IImportingMarker
 from docpool.base.pdfconversion import data, get_images, metadata, pdfobj
 from docpool.base.utils import execute_under_special_role, portalMessage, queryForObject
 from PIL import Image
@@ -697,6 +698,8 @@ class DPDocument(Container, Extendable, ContentBase):
 @adapter(IDPDocument, IContainerModifiedEvent)
 def updateContainerModified(obj, event=None):
     """ """
+    if IImportingMarker.providedBy(getRequest()):
+        return
     if not obj.restrictedTraverse("@@context_helpers").is_archive():
         obj.update_modified()
         obj.reindexObject()  # New fulltext maybe needed

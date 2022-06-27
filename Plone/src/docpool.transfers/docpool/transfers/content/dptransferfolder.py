@@ -292,6 +292,8 @@ def transfer_folders_for(obj):
 
 @adapter(IDocType, IObjectAddedEvent)
 def doctype_added(obj, event=None):
+    if IImportingMarker.providedBy(getRequest()):
+        return
     dt_id = obj.getId()
     for tf in transfer_folders_for(obj):
         tf.doctypePermissions.setdefault(dt_id, "publish")

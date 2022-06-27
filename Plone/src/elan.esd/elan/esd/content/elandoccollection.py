@@ -13,6 +13,7 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
+from docpool.base.marker import IImportingMarker
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
@@ -28,6 +29,7 @@ from z3c.relationfield.event import updateRelations
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter, getUtility
+from zope.globalrequest import getRequest
 from zope.interface import alsoProvides, implementer
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
@@ -286,6 +288,8 @@ class ELANDocCollection(Item, Collection):
 @adapter(IELANDocCollection, IObjectModifiedEvent)
 def update_docTypes(obj, event=None):
     """ """
+    if IImportingMarker.providedBy(getRequest()):
+        return
     if obj:
         # print "update_docTypes", obj.docTypes
         obj.setDocTypesUpdateCollection()
@@ -294,6 +298,9 @@ def update_docTypes(obj, event=None):
 
 @adapter(IELANDocCollection, IObjectAddedEvent)
 def enableSyndication(obj, event=None):
+    if IImportingMarker.providedBy(getRequest()):
+        return
+
     syn_tool = getToolByName(obj, "portal_syndication", None)
     if syn_tool is not None:
         if syn_tool.isSiteSyndicationAllowed() and not syn_tool.isSyndicationAllowed(

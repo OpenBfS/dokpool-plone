@@ -14,10 +14,12 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.infofolder import IInfoFolder, InfoFolder
+from docpool.base.marker import IImportingMarker
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.lifecycleevent import IObjectAddedEvent
 
@@ -80,6 +82,9 @@ def infosAdded(obj, event=None):
     """
     Set local role for Content Administrators
     """
+    if IImportingMarker.providedBy(getRequest()):
+        return
+
     self = obj
     esd = self.myDocumentPool()
     prefix = esd.prefix or esd.getId()
