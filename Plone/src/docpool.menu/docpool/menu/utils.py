@@ -57,18 +57,20 @@ def getFoldersForCurrentUser(context):
     if api.user.is_anonymous():
         return None
     user = api.user.get_current()
-    res = []
+
     if getattr(context, "myDocumentPool", None) is None:
-        return res
+        return
+
     docpool = getDocumentPoolSite(context)
     content_folder = docpool.get("content")
     if not content_folder:
-        return res
-    rres = []
+        return
+
     groups = getGroupsForCurrentUser(context, user)
     if not groups:  # User is reader only
-        return rres
+        return
 
+    transfers_result = []
     user_is_receiver = False
     roles = api.user.get_roles(user=user, obj=context)
     if "Manager" in roles or "Site Administrator" in roles:
@@ -80,13 +82,13 @@ def getFoldersForCurrentUser(context):
         transfers = content_folder.get("Transfers")
         if transfers:
             path = "/".join(transfers.getPhysicalPath())
-            rres = [
+            transfers_result = [
                 _folderTree(
                     context,
                     path,
                 )
             ]
-            rres[0]["item_class"] = "personal transfer"
+            transfers_result[0]["item_class"] = "personal transfer"
 
     # strangely, member folders for users with '-' in their username
     # are created with double dashes
@@ -111,7 +113,6 @@ def getFoldersForCurrentUser(context):
                 if "show_children" in gft:
                     gft["item_class"] = "personal"
                     group_result.append(gft)
-    res.extend(group_result)
 
     # show personal folder unless we're in elan or rei
     dp_app_state = getMultiAdapter((context, context.REQUEST), name="dp_app_state")
@@ -130,18 +131,15 @@ def getFoldersForCurrentUser(context):
             member_result = []
         else:
             member_result[0]["item_class"] = "personal"
-        res.extend(member_result)
 
-    res.extend(rres)
-    res.reverse()
     if group_result:
         # Has groups, so return all the folders
-        return res
+        return transfers_result + member_result + group_result
     if has_group:
         # If the groups are not navigable (i.e. in archive): only member folder
         return member_result
     # otherwise this will be empty for a reading user, or the Transfers for a receiver
-    return rres
+    return transfers_result
 
 
 def _folderTree(context, path, filter={}):
