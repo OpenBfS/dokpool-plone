@@ -70,26 +70,6 @@ def getFoldersForCurrentUser(context):
     if not groups:  # User is reader only
         return
 
-    transfers_result = []
-    user_is_receiver = False
-    roles = api.user.get_roles(user=user, obj=context)
-    if "Manager" in roles or "Site Administrator" in roles:
-        user_is_receiver = True
-    elif any([("Receivers" in group["id"]) for group in groups]):
-        user_is_receiver = True
-    if user_is_receiver:
-        # add the transfers folder if it exists.
-        transfers = content_folder.get("Transfers")
-        if transfers:
-            path = "/".join(transfers.getPhysicalPath())
-            transfers_result = [
-                _folderTree(
-                    context,
-                    path,
-                )
-            ]
-            transfers_result[0]["item_class"] = "personal transfer"
-
     # strangely, member folders for users with '-' in their username
     # are created with double dashes
     user_name = user.getUserName().replace("-", "--")
@@ -132,12 +112,33 @@ def getFoldersForCurrentUser(context):
         else:
             member_result[0]["item_class"] = "personal"
 
+    if has_group and not group_result:
+        # If the groups are not navigable (i.e. in archive): only member folder
+        return member_result
+
+    transfers_result = []
+    user_is_receiver = False
+    roles = api.user.get_roles(user=user, obj=context)
+    if "Manager" in roles or "Site Administrator" in roles:
+        user_is_receiver = True
+    elif any([("Receivers" in group["id"]) for group in groups]):
+        user_is_receiver = True
+    if user_is_receiver:
+        # add the transfers folder if it exists.
+        transfers = content_folder.get("Transfers")
+        if transfers:
+            path = "/".join(transfers.getPhysicalPath())
+            transfers_result = [
+                _folderTree(
+                    context,
+                    path,
+                )
+            ]
+            transfers_result[0]["item_class"] = "personal transfer"
+
     if group_result:
         # Has groups, so return all the folders
         return transfers_result + member_result + group_result
-    if has_group:
-        # If the groups are not navigable (i.e. in archive): only member folder
-        return member_result
     # otherwise this will be empty for a reading user, or the Transfers for a receiver
     return transfers_result
 
