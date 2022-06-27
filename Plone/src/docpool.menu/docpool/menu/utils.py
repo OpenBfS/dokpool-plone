@@ -24,8 +24,18 @@ def getApplicationDocPoolsForCurrentUser(context):
         current_dp = context.myDocumentPool()
 
     dps = (dp.getObject() for dp in api.content.find(portal_type="DocumentPool"))
+    ordering = api.portal.get().getOrdering()
+
+    # Quick and dirty safeguard against DocumentPools not living directly in the portal.
+    # Shouldn't happen but DocumentPool is globally allowed so just make sure.
+    def sort_key(dp):
+        try:
+            return ordering.getObjectPosition(dp.getId())
+        except ValueError:
+            return 0
+
     pools = []
-    for dp in dps:
+    for dp in sorted(dps, key=sort_key):
         dp_app_state = getMultiAdapter((dp, request), name="dp_app_state")
         app_names = dp_app_state.appsAvailableToCurrentUser()
         if context.isAdmin():
