@@ -20,13 +20,13 @@ from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.contentbase import ContentBase, IContentBase
-from docpool.base.content.extendable import Extendable, IExtendable
+from docpool.base.content.extendable import Extendable
 from docpool.base.pdfconversion import data, get_images, metadata, pdfobj
 from docpool.base.utils import execute_under_special_role, portalMessage, queryForObject
 from PIL import Image
 from plone import api, namedfile
 from plone.api import content
-from plone.app.contenttypes.content import Document, IDocument
+from plone.app.contenttypes.content import Document
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
 from plone.app.textfield import RichText, RichTextValue
@@ -57,7 +57,7 @@ def default_text():
         return RichTextValue("REI-Bericht", "text/html", "text/x-html-safe")
 
 
-class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
+class IDPDocument(model.Schema, IContentBase):
     """ """
 
     docType = schema.Choice(
@@ -77,8 +77,7 @@ class IDPDocument(model.Schema, IDocument, IExtendable, IContentBase):
 
 
 @implementer(IDPDocument)
-class DPDocument(Container, Document, Extendable, ContentBase):
-    """ """
+class DPDocument(Container, Extendable, ContentBase):
 
     security = ClassSecurityInfo()
 

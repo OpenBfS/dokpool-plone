@@ -15,18 +15,10 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from docpool.base.appregistry import APP_REGISTRY, appIcon
 from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
-from plone.dexterity.content import Item
-from plone.supermodel import model
-from zope.interface import implementer
 
 
-class IExtendable(model.Schema):
-    """ """
-
-
-@implementer(IExtendable)
-class Extendable(Item):
-    """ """
+class Extendable:
+    """Mixin class used by DPDocument and DocType."""
 
     security = ClassSecurityInfo()
 

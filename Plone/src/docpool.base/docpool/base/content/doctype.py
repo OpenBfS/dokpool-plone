@@ -14,7 +14,7 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.content.extendable import Extendable, IExtendable
+from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
 from plone.autoform import directives
@@ -28,7 +28,7 @@ from zope.component import adapter
 from zope.interface import implementer
 
 
-class IDocType(model.Schema, IExtendable):
+class IDocType(model.Schema):
     """ """
 
     allowUploads = schema.Bool(
