@@ -7,6 +7,7 @@ from Acquisition import aq_inner
 from DateTime import DateTime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste, execute_under_special_role, portalMessage
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers import DocpoolMessageFactory as _
@@ -406,6 +407,8 @@ def automatic_transfer(obj):
         # In the process of archiving an event, its associated documents are copied and
         # afterwards applied a workflow transition in order to restore their original
         # workflow state. Objects published for this reason should not be transferred.
+        return
+    if IImportingMarker.providedBy(getRequest()):
         return
 
     try:
