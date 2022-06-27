@@ -50,62 +50,9 @@ def getApplicationDocPoolsForCurrentUser(context):
 
 def getFoldersForCurrentUser(context):
     """
-    Additional navigation-items for user-folder and group-folders.
+    Additional navigation items for user folder and group folders.
 
     Results differ depending on user, state of the docpool and active app.
-    example = [{
-        'Creator': 'user1',
-        'Description': '',
-        'Title': 'user1 (Bund)',
-        'UID': '8dd836f9ff474897a8e618cf019c73a4',
-        'absolute_url': 'http://localhost:8081/Plone6/bund/content/Members/user1',
-        'children': [],
-        'creation_date': '2019-10-07T16:17:51+02:00',
-        'currentItem': False,
-        'currentParent': False,
-        'depth': 0,
-        'getRemoteUrl': Missing.Value,
-        'getURL': 'http://localhost:8081/Plone6/bund/content/Members/user1',
-        'id': 'user1',
-        'item': <Products.ZCatalog.Catalog.mybrains object at 0x10e109460>,
-        'item_class': 'personal',
-        'link_remote': Missing.Value,
-        'no_display': False,
-        'normalized_id': 'user1',
-        'normalized_portal_type': 'userfolder',
-        'normalized_review_state': 'published',
-        'path': '/Plone6/bund/content/Members/user1',
-        'portal_type': 'UserFolder',
-        'review_state': 'published',
-        'show_children': True,
-        'useRemoteUrl': False,
-    }, {
-        'Creator': 'admin',
-        'Description': '',
-        'Title': 'Group1 (Bund)',
-        'UID': '4001a95e06394747aa6d697addf50065',
-        'absolute_url': 'http://localhost:8081/Plone6/bund/content/Groups/bund_group1',
-        'children': [],
-        'creation_date': '2019-09-28T11:43:00+02:00',
-        'currentItem': False,
-        'currentParent': False,
-        'depth': 0,
-        'getRemoteUrl': Missing.Value,
-        'getURL': 'http://localhost:8081/Plone6/bund/content/Groups/bund_group1',
-        'id': 'bund_group1',
-        'item': <Products.ZCatalog.Catalog.mybrains object at 0x10df640b8>,
-        'item_class': 'personal',
-        'link_remote': Missing.Value,
-        'no_display': False,
-        'normalized_id': 'bund_group1',
-        'normalized_portal_type': 'groupfolder',
-        'normalized_review_state': 'published',
-        'path': '/Plone6/bund/content/Groups/bund_group1',
-        'portal_type': 'GroupFolder',
-        'review_state': 'published',
-        'show_children': True,
-        'useRemoteUrl': False,
-    }]
     """
     if api.user.is_anonymous():
         return None
