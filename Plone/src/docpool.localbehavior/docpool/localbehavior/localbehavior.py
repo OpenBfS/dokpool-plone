@@ -14,7 +14,7 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 @provider(IContextAwareDefaultFactory)
 def initializeLocalBehaviors(context):
     dp_app_state = getMultiAdapter((context, getRequest()), name="dp_app_state")
-    return dp_app_state.effectiveAppsHere()
+    return list(dp_app_state.effectiveAppsHere())
 
 
 @provider(IFormFieldProvider)
