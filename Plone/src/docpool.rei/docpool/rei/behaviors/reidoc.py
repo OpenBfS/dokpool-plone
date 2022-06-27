@@ -432,6 +432,8 @@ def set_title(obj, event=None):
 
 @adapter(IDPDocument, IObjectAddedEvent)
 def save_mstid_added(obj, event=None):
+    if IImportingMarker.providedBy(getRequest()):
+        return
     return save_mstid(obj)
 
 
