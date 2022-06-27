@@ -46,7 +46,7 @@ def getApplicationDocPoolsForCurrentUser(context):
     return current_dp, current_app, pools
 
 
-def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strategy=None):
+def getFoldersForCurrentUser(context):
     """
     Additional navigation-items for user-folder and group-folders.
 
@@ -105,10 +105,9 @@ def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strateg
         'useRemoteUrl': False,
     }]
     """
-    if not user:
-        if api.user.is_anonymous():
-            return None
-        user = api.user.get_current()
+    if api.user.is_anonymous():
+        return None
+    user = api.user.get_current()
     res = []
     if getattr(context, "myDocumentPool", None) is None:
         return res
@@ -136,8 +135,6 @@ def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strateg
                 _folderTree(
                     context,
                     path,
-                    queryBuilderClass=queryBuilderClass,
-                    strategy=strategy,
                 )
             ]
             rres[0]["item_class"] = "personal transfer"
@@ -160,8 +157,6 @@ def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strateg
                 gft = _folderTree(
                     context,
                     "{}/{}".format(groups_folder_path, group["id"]),
-                    queryBuilderClass=queryBuilderClass,
-                    strategy=strategy,
                 )
                 # print gft
                 if "show_children" in gft:
@@ -179,8 +174,6 @@ def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strateg
             _folderTree(
                 context,
                 f"{members_folder_path}/{user_name}",
-                queryBuilderClass=queryBuilderClass,
-                strategy=strategy,
             )
         ]
         # A folder for the user has not been found, e.g. in archive
@@ -203,22 +196,16 @@ def getFoldersForCurrentUser(context, user=None, queryBuilderClass=None, strateg
     return rres
 
 
-def _folderTree(context, path, filter={}, queryBuilderClass=None, strategy=None):
+def _folderTree(context, path, filter={}):
     """Return tree of tabs based on content structure"""
 
     from docpool.menu.browser.menu import DropDownMenuQueryBuilder
 
-    if not queryBuilderClass:
-        queryBuilder = DropDownMenuQueryBuilder(context)
-        query = queryBuilder()
-        query.update(filter)
-        query["path"] = {"query": path, "depth": 1, "navtree": 1, "navtree_start": 2}
-    else:
-        queryBuilder = queryBuilderClass(context)
-        query = queryBuilder()
-        query["path"] = {"query": path, "depth": 1, "navtree": 1, "navtree_start": 2}
-    if not strategy:
-        strategy = getMultiAdapter((context, None), INavtreeStrategy)
+    queryBuilder = DropDownMenuQueryBuilder(context)
+    query = queryBuilder()
+    query.update(filter)
+    query["path"] = {"query": path, "depth": 1, "navtree": 1, "navtree_start": 2}
+    strategy = getMultiAdapter((context, None), INavtreeStrategy)
     strategy.rootPath = path
     return buildFolderTree(context, obj=context, query=query, strategy=strategy)
 
