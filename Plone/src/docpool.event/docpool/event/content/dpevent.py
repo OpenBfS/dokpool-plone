@@ -69,15 +69,14 @@ def is_coordinate(value):
     return True
 
 
-def is_polygon(value):
+def is_point_or_polygon(value):
     if value:
         try:
             wkt = geometry.from_wkt(value)
         except Exception:
             raise Invalid("Value is not a valid WKT.")
-        if not wkt.geom_type == "Polygon":
-            raise Invalid("Value is not a Polygon.")
-        raise Invalid("Vaueis not a valid coordinate.")
+        if not wkt.geom_type in ["Point", "Polygon"]:
+            raise Invalid("Value is neither Point nor Polygon.")
     return True
 
 
@@ -152,7 +151,7 @@ class IDPEvent(model.Schema, IContentBase):
             "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
         ),
         required=False,
-        constraint=is_polygon,
+        constraint=is_point_or_polygon,
     )
 
     directives.widget(OperationMode=RadioFieldWidget)
