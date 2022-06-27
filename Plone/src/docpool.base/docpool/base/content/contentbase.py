@@ -75,8 +75,8 @@ class IContentBase(model.Schema):
 
 
 @implementer(IContentBase)
-class ContentBase(Item):
-    """ """
+class ContentBase:
+    """Mixin class used by DPDocument, FolderBase, InfoLink, Text, DPEvent and SRTextBlock."""
 
     security = ClassSecurityInfo()
 

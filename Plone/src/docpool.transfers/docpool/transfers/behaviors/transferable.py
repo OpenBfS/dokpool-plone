@@ -257,7 +257,7 @@ class Transferable(FlexibleView):
 
         def error_message(esd_to_title, msg):
             prefix = _("No transfer to")
-            portalMessage(self.context, f'{prefix} {esd_to_title}. {msg}', type="error")
+            portalMessage(self.context, f"{prefix} {esd_to_title}. {msg}", type="error")
 
         def doIt():
             timestamp = datetime.now()

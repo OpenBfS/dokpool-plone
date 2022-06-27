@@ -7,7 +7,6 @@ from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.dpapplication import IDPApplication
 from docpool.base.content.dpconfig import IDPConfig
 from docpool.base.content.dpdocument import IDPDocument
-from docpool.base.content.extendable import IExtendable
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.groups import IGroups
