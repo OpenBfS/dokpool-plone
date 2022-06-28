@@ -190,8 +190,17 @@ buttons = view.dp_buttons(batch)
                                href python:d.absolute_url()"
            tal:content="python:d.title_or_id()">documents
         </a>
-        (<span tal:content="python:view.ctype_short(d)"/>,&nbsp;<span
-            tal:content="python:d.getObjSize(None, d.file.size)"/>)
+
+<?python
+# Work around Unauthorized Errors in Plone 6
+from Products.CMFPlone.utils import human_readable_size
+ctype_short = econtext["view"].ctype_short(econtext["d"])
+size = econtext["d"].file and econtext["d"].file.get_size() or 0
+size = human_readable_size(size)
+?>
+
+        (<span tal:content="python: ctype_short"/>,&nbsp;<span
+            tal:content="python: size"/>)
         </span>
     </div>
     <div class="images" tal:define="images context/getImages" tal:condition="images">
@@ -208,28 +217,35 @@ buttons = view.dp_buttons(batch)
 
 <metal:macro define-macro="doccontent"
     tal:define="auth_token context/@@authenticator/token;
-                portal context/plone_portal_state/portal;
-                actionhelpers portal/actionhelpers">
+                portal context/@@plone_portal_state/portal;
+                actionhelpers portal/@@actionhelpers">
 
-    <tal:def tal:define="dpbrain_title python: actionhelpers.is_rei_workflow(dpbrain) and
-                         context.translate(dpbrain.review_state + ' - Show document',domain='docpool.rei') or
+<?python
+# Work around Unauthorized Errors in Plone 6
+actionhelpers = econtext["actionhelpers"]
+dpbrain = econtext["dpbrain"]
+context = econtext["context"]
+if actionhelpers.is_rei_workflow(dpbrain):
+    domain = "docpool.rei"
+else:
+    domain = "docpool.base"
+dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', domain=domain)
+?>
 
-                         context.translate(dpbrain.review_state + ' - Show document',domain='docpool.base')">
-        <a href=""
-           title=""
-           i18n:attributes="title"
-           tal:attributes="title dpbrain_title;
-                           href string:javascript:go_to('${item_url}?_authenticator=${auth_token}');
-                           class string:$item_type_class $item_wf_state_class"
-           tal:content="dpbrain/Title">Title
-        </a>
-    </tal:def>
+    <a href=""
+        title=""
+        i18n:attributes="title"
+        tal:attributes="title dpbrain_title;
+                        href string:javascript:go_to('${item_url}?_authenticator=${auth_token}');
+                        class string:$item_type_class $item_wf_state_class"
+        tal:content="dpbrain/Title">Title
+    </a>
     <div class="description" tal:condition="python:item_description"
          tal:content="structure string:$item_description"> description
     </div>
     <div class="fulltext" tal:content="structure dpbrainobj/text/output|nothing"/>
-
 </metal:macro>
+
 <metal:macro define-macro="foldercontent">
     <img src="" tal:attributes="src string:${context/portal_url}/folder.png"/>
     <a href=""
