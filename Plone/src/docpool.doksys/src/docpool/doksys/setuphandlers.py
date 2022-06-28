@@ -1,7 +1,8 @@
-import logging
-
-import transaction
-from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from persistent.list import PersistentList
 from plone import api
 from plone.app.textfield.value import RichTextValue
@@ -9,6 +10,10 @@ from Products.CMFPlone.interfaces import INonInstallable
 from Products.CMFPlone.utils import _createObjectByType
 from zope.component.hooks import getSite
 from zope.interface import implementer
+
+import logging
+import transaction
+
 
 log = logging.getLogger(__name__)
 
@@ -34,9 +39,10 @@ def uninstall(context):
 
 def createStructure(context, plonesite, fresh):
     changedoksysNavigation(plonesite, fresh)
-    s = context.restrictedTraverse("searches")
-    s.manage_addProperty("text", "", "string")
-    transaction.commit()
+    searches = context.restrictedTraverse("searches")
+    if searches.getProperty("text") is None:
+        searches.manage_addProperty("text", "", "string")
+        transaction.commit()
     create_today_collection(plonesite)
     transaction.commit()
     create_since_yesterday_collection(plonesite)
@@ -59,6 +65,9 @@ def changedoksysDocTypes(plonesite, fresh):
 
 def create_today_collection(plonesite):
     container = api.content.get(path="/searches")
+    if "today" in container:
+        return
+
     title = "Dokumente von Heute"
     description = "Dokumente seit heute 0:00 Uhr"
     _createObjectByType(
@@ -97,6 +106,9 @@ def create_today_collection(plonesite):
 
 def create_since_yesterday_collection(plonesite):
     container = api.content.get(path="/searches")
+    if "yesterday" in container:
+        return
+
     title = "Dokumente seit Gestern"
     description = "Dokumente der letzten 24 Stunden"
     _createObjectByType(
@@ -135,6 +147,8 @@ def create_since_yesterday_collection(plonesite):
 
 def create_purpose_collections(plonesite):
     container = api.content.get(path="/searches")
+    if "bundesmessnetze" in container:
+        return
     title = "Standard-Info Bundesmessnetze"
     description = "Standard-Info Bundesmessnetze"
     _createObjectByType(
@@ -205,6 +219,8 @@ def create_purpose_collections(plonesite):
 
 def create_sample_collections(plonesite):
     container = api.content.get(path="/searches")
+    if "boden" in container:
+        return
     title = "Ergebnisse Boden"
     description = "Ergebnisse Boden"
     _createObjectByType(
