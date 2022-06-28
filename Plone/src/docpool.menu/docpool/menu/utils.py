@@ -70,14 +70,8 @@ def getFoldersForCurrentUser(context):
     if not groups:  # User is reader only
         return
 
-    # strangely, member folders for users with '-' in their username
-    # are created with double dashes
-    user_name = user.getUserName().replace("-", "--")
-    members_folder = content_folder["Members"]
     groups_folder = content_folder["Groups"]
-    members_folder_path = "/".join(members_folder.getPhysicalPath())
     groups_folder_path = "/".join(groups_folder.getPhysicalPath())
-
     has_group = False
     group_result = []
     for group in groups:
@@ -99,6 +93,11 @@ def getFoldersForCurrentUser(context):
     effective_apps = dp_app_state.effectiveAppsHere()
     member_result = []
     if not effective_apps.intersection((ELAN_APP, REI_APP)):
+        # strangely, member folders for users with '-' in their username
+        # are created with double dashes
+        user_name = user.getUserName().replace("-", "--")
+        members_folder = content_folder["Members"]
+        members_folder_path = "/".join(members_folder.getPhysicalPath())
         member_result = [
             _folderTree(
                 context,
