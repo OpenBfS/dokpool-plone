@@ -1,5 +1,5 @@
 from docpool.base.config import BASE_APP
-from docpool.base.utils import getDocumentPoolSite, getGroupsForCurrentUser
+from docpool.base.utils import getGroupsForCurrentUser
 from docpool.elan.config import ELAN_APP
 from docpool.rei.config import REI_APP
 from docpool.transfers.config import TRANSFERS_APP
@@ -55,13 +55,14 @@ def getFoldersForCurrentUser(context):
     Results differ depending on user, state of the docpool and active app.
     """
     if api.user.is_anonymous():
-        return None
-    user = api.user.get_current()
-
-    if getattr(context, "myDocumentPool", None) is None:
         return
 
-    docpool = getDocumentPoolSite(context)
+    user = api.user.get_current()
+
+    if not safe_hasattr(context, "myDocumentPool"):
+        return
+
+    docpool = context.myDocumentPool()
     content_folder = docpool.get("content")
     if not content_folder:
         return
@@ -79,17 +80,13 @@ def getFoldersForCurrentUser(context):
             # Group is ELAN group which can produce documents
             has_group = True
             if groups_folder.get(group["id"]):
-                gft = _folderTree(
-                    context,
-                    "{}/{}".format(groups_folder_path, group["id"]),
-                )
-                # print gft
+                gft = _folderTree(context, f"{groups_folder_path}/{group['id']}")
                 if "show_children" in gft:
                     gft["item_class"] = "personal"
                     group_result.append(gft)
 
     # show personal folder unless we're in elan or rei
-    dp_app_state = getMultiAdapter((context, context.REQUEST), name="dp_app_state")
+    dp_app_state = getMultiAdapter((context, getRequest()), name="dp_app_state")
     effective_apps = dp_app_state.effectiveAppsHere()
     member_result = []
     if not effective_apps.intersection((ELAN_APP, REI_APP)):
@@ -98,42 +95,29 @@ def getFoldersForCurrentUser(context):
         user_name = user.getUserName().replace("-", "--")
         members_folder = content_folder["Members"]
         members_folder_path = "/".join(members_folder.getPhysicalPath())
-        member_result = [
-            _folderTree(
-                context,
-                f"{members_folder_path}/{user_name}",
-            )
-        ]
+        member_tree = _folderTree(context, f"{members_folder_path}/{user_name}")
         # A folder for the user has not been found, e.g. in archive
-        if member_result and "show_children" not in member_result[0]:
-            # print "has no user folder"
-            member_result = []
-        else:
-            member_result[0]["item_class"] = "personal"
+        if "show_children" in member_tree:
+            member_tree["item_class"] = "personal"
+            member_result = [member_tree]
 
     if has_group and not group_result:
         # If the groups are not navigable (i.e. in archive): only member folder
         return member_result
 
     transfers_result = []
-    user_is_receiver = False
     roles = api.user.get_roles(user=user, obj=context)
-    if "Manager" in roles or "Site Administrator" in roles:
-        user_is_receiver = True
-    elif any([("Receivers" in group["id"]) for group in groups]):
-        user_is_receiver = True
-    if user_is_receiver:
-        # add the transfers folder if it exists.
+    if (
+        "Manager" in roles
+        or "Site Administrator" in roles
+        or any(("Receivers" in group["id"]) for group in groups)
+    ):
         transfers = content_folder.get("Transfers")
         if transfers:
             path = "/".join(transfers.getPhysicalPath())
-            transfers_result = [
-                _folderTree(
-                    context,
-                    path,
-                )
-            ]
-            transfers_result[0]["item_class"] = "personal transfer"
+            transfers_tree = _folderTree(context, path)
+            transfers_tree["item_class"] = "personal transfer"
+            transfers_result = [transfers_tree]
 
     if group_result:
         # Has groups, so return all the folders
