@@ -218,14 +218,6 @@ def getDocumentPoolSite(context):
         return getSite()
 
 
-def possibleDocumentPools(context):
-    cat = getToolByName(context, "portal_catalog")
-    dps = cat.unrestrictedSearchResults(
-        {"portal_type": "DocumentPool", "sort_on": "sortable_title"}
-    )
-    return dps
-
-
 class UnrestrictedUser(BaseUnrestrictedUser):
     """Unrestricted user that still has an id."""
 

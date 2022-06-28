@@ -4,6 +4,7 @@ import traceback
 
 from Acquisition import aq_get, aq_inner
 from plone.app.discussion.browser.conversation import ConversationView
+from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
@@ -103,3 +104,21 @@ def setMemberProperties(self, mapping, **kw):
 
 MemberData._orig_setMemberProperties = MemberData.setMemberProperties
 MemberData.setMemberProperties = setMemberProperties
+
+
+def possibleDocTypes(self):
+    aedt = DocTypeVocabulary()
+    return [f"{a[0]}|{a[1]}" for a in aedt(self, raw=True, filtered=True)]
+
+
+def possibleDocumentPools(self):
+    dps = api.content.find(portal_type="DocumentPool", sort_on="sortable_title")
+    res = [""]
+    res.extend([f"{dp.UID}|{dp.Title}" for dp in dps])
+    return res
+
+
+# XXX quick & dirty; how to do this better?
+# methods called to provide options
+GroupDataTool.possibleDocTypes = possibleDocTypes
+GroupDataTool.possibleDocumentPools = possibleDocumentPools
