@@ -27,8 +27,4 @@
          skinname="docpool.theme">
   <viewlet name="plone.logo"/>
  </hidden>
- <hidden skinname="docpool.theme" manager="plone.abovecontent">
-  <viewlet name="plone.path_bar" />
- </hidden>
- 
 </object>
