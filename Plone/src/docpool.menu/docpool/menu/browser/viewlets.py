@@ -24,6 +24,10 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         if not self.context.restrictedTraverse("@@context_helpers").is_archive():
             self.navtree_add_contentarea(tree)
 
+        # for tab in tree[self.navtree_path]:
+        #     if "config" in tab["id"]:
+        #         tab["item_class"] = "config"
+
         return tree
 
     def navtree_add_apps_menu(self, tree):
@@ -111,12 +115,3 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         tree[path] = []
         for child in folder.get('children', ()):
             self.recurse_folder(child, path, tree)
-
-    def _portal_tabs(self):
-        tabs = self._content_tabs()
-
-        for tab in tabs:
-            if tab["id"].find("config") != -1:
-                tab["item_class"] = "config"
-
-        return tabs
