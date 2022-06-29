@@ -9,8 +9,8 @@
 
   <plone:static
            directory="static"
-           type="theme"
-           name="docpoolrei" />
+           type="plone"
+           name="docpool.rei" />
 
   <adapter
           for="zope.interface.Interface
