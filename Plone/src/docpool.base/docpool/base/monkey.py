@@ -3,6 +3,7 @@ import ssl
 import traceback
 
 from Acquisition import aq_get, aq_inner
+from plone import api
 from plone.app.discussion.browser.conversation import ConversationView
 from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.PlonePAS.tools.memberdata import MemberData
@@ -107,6 +108,8 @@ MemberData.setMemberProperties = setMemberProperties
 
 
 def possibleDocTypes(self):
+    from docpool.base.vocabularies import DocTypeVocabulary
+
     aedt = DocTypeVocabulary()
     return [f"{a[0]}|{a[1]}" for a in aedt(self, raw=True, filtered=True)]
 

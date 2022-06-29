@@ -1,7 +1,5 @@
 import transaction
-from docpool.base.vocabularies import DocTypeVocabulary
 from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
-from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
