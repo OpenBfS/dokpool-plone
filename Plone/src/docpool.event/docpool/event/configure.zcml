@@ -32,10 +32,6 @@
         post_handler=".setuphandlers.uninstall"
         />
 
-   <include file="skins.zcml" />
-
-
-
    <permission id="docpool.event.AddDPEvent" title="Docpool: Add DPEvent" />
    <permission id="docpool.event.ManageDPEvents" title="Docpool: Manage DPEvent" />
 
