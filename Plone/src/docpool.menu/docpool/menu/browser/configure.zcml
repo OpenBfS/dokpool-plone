@@ -29,6 +29,7 @@
   <class class=".menu.DropDownMenuQueryBuilder">
     <allow interface="plone.app.layout.navigation.interfaces.INavigationQueryBuilder" />
   </class>
+  -->
 
   <class class=".menu.DropDownMenuStrategy">
         <allow interface="plone.app.layout.navigation.interfaces.INavtreeStrategy" />
@@ -38,6 +39,5 @@
       for="* *"
       factory=".menu.DropDownMenuStrategy"
       provides="plone.app.layout.navigation.interfaces.INavtreeStrategy" />
-  -->
 
 </configure>
