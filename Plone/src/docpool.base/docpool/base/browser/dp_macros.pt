@@ -195,7 +195,7 @@ buttons = view.dp_buttons(batch)
 # Work around Unauthorized Errors in Plone 6
 from Products.CMFPlone.utils import human_readable_size
 ctype_short = econtext["view"].ctype_short(econtext["d"])
-size = econtext["d"].file and econtext["d"].file.get_size() or 0
+size = econtext["d"].get_size()
 size = human_readable_size(size)
 ?>
 
@@ -313,9 +313,8 @@ dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', dom
                 <font size="1">
 <?python
 from Products.CMFPlone.utils import human_readable_size
-c_type = econtext["d"].file and econtext["d"].file.contentType or ""
-size = econtext["d"].get_size() or 0
-size = human_readable_size(size)
+c_type = econtext["d"].content_type()
+size = human_readable_size(econtext["d"].get_size())
 ?>
                   (<span tal:content="python:c_type"/>,&nbsp;<span
                         tal:content="python:size"/>)
@@ -381,9 +380,8 @@ quoted_id = quote_plus(econtext["d"].getId());
 
 <?python
 from Products.CMFPlone.utils import human_readable_size
-c_type = econtext["b"].image and econtext["b"].image.contentType or ""
-size = econtext["b"].get_size() or 0
-size = human_readable_size(size)
+c_type = econtext["b"].content_type()
+size = human_readable_size(econtext["b"].get_size())
 ?>
 
                  <span tal:content="python:c_type"/><br>
