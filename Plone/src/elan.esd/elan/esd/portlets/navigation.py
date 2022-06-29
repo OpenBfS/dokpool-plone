@@ -23,8 +23,6 @@ class Renderer(navigation.Renderer):
 
         if context.isPersonal():
             # Special treatment for the user's personal folders
-            # print "Personal", context
-            #            pfs = getFoldersForCurrentUser(context, queryBuilderClass=SitemapQueryBuilder, strategy=strategy)
             pfs = getFoldersForCurrentUser(context)
             return {"children": pfs}
 

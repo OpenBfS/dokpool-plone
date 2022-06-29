@@ -148,10 +148,8 @@ class ApplicationState(BrowserView):
         and die apps that are supported in the current context (docpool).
         @return:
         """
-        return list(
-            set(self.appsActivatedByCurrentUser()).intersection(
-                set(self.appsSupportedHere())
-            )
+        return set(self.appsActivatedByCurrentUser()).intersection(
+            self.appsSupportedHere()
         )
 
     @memoize

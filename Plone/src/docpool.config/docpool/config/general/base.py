@@ -1,5 +1,7 @@
 import transaction
+from docpool.base.vocabularies import DocTypeVocabulary
 from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
@@ -247,25 +249,11 @@ def configureFiltering(self):
 
 def createGroups(self):
     gdata = getToolByName(self, "portal_groupdata")
-    try:
-        self.possibleDocTypes
-    except AttributeError:
-        # The current skin is not initialized during setup of test-layers in Plone 6
-        # Trigger setup the current skin
-        self.setupCurrentSkin(self.REQUEST)
-    try:
-        # possibleDocTypes: FSPythonScript that is called to provide options
-        gdata.manage_addProperty(
-            "allowedDocTypes", "possibleDocTypes", "multiple selection"
-        )
-    except BaseException:
-        pass
+    gdata.manage_addProperty(
+        "allowedDocTypes", "possibleDocTypes", "multiple selection"
+    )
     configureGroups(self)
-    try:
-        # possibleDocumentPools: FSPythonScript that is called to provide options
-        gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
-    except BaseException:
-        pass
+    gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
 
 
 def configureGroups(self):
