@@ -554,10 +554,6 @@ class DPEvent(Container, ContentBase):
         return vocab(self).getTerm(self.EventType).title
 
 
-class ELANScenario(DPEvent):
-    pass
-
-
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):
     """
