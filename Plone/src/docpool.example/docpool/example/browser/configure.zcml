@@ -1,7 +1,14 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.example">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.example">
 
     <include package="plone.app.contentmenu" />
 
-
+    <plone:static
+        directory="static"
+        type="plone"
+        name="docpool.example" />
 
 </configure>
