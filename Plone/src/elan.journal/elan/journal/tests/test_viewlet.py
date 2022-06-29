@@ -46,13 +46,6 @@ class ViewletTestCase(unittest.TestCase):
         manager.update()
         self.assertIn("elan.journal.header", manager)
 
-    def test_viewlet_order(self):
-        manager = self._get_viewlet_manager()
-        manager.update()
-        self.assertEqual(len(manager.viewlets), 2)
-        viewlets = [v.__name__ for v in manager.viewlets]
-        self.assertListEqual(viewlets, ["elan.journal.header", "docpool.path_bar"])
-
     def test_viewlet_is_available(self):
         from plone.namedfile.file import NamedBlobImage
 
