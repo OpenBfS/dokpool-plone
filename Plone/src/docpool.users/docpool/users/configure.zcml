@@ -17,9 +17,4 @@
 
     <genericsetup:registerProfile name="default" title="docpool.users" directory="profiles/default" provides="Products.GenericSetup.interfaces.EXTENSION"/>
 
-
-   <include file="skins.zcml" />
-
-
-
 </configure>
