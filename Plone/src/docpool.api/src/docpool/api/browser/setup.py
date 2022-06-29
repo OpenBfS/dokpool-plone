@@ -90,6 +90,7 @@ class DocpoolSetup(BrowserView):
             title="Bund",
             prefix="bund",
             supportedApps=("elan", "doksys", "rei"),
+            exclude_from_nav=False,
         )
         notify(EditFinishedEvent(docpool_bund))
         log.info("Created docpool bund")
@@ -102,6 +103,7 @@ class DocpoolSetup(BrowserView):
             title="Hessen",
             prefix="hessen",
             supportedApps=("elan", "doksys"),
+            exclude_from_nav=False,
         )
         notify(EditFinishedEvent(docpool_land))
         log.info("Created docpool hessen")
@@ -188,6 +190,7 @@ class DocpoolSetup(BrowserView):
             id="kernkraftwerk-1",
             title="Kernkraftwerk 1",
             coordinates="POINT(12.240313700000002 48.59873489999998)",
+            exclude_from_nav=False,
         )
         log.info("Created dpnuclearpowerstation")
         dpnetwork = api.content.create(
@@ -196,6 +199,7 @@ class DocpoolSetup(BrowserView):
             id="testnetz",
             title="Testnetz",
             coordinates="POLYGON((12.789515693194565 48.70897536061274,11.9394485546417 48.750643880797945,11.725215156233618 48.447309003359074,12.352809150286648 48.38076862235553,12.803248603348985 48.39080082760333,12.789515693194565 48.70897536061274))",
+            exclude_from_nav=False,
         )
         log.info("Created dpnetwork")
         dpevent = api.content.create(
@@ -231,6 +235,7 @@ class DocpoolSetup(BrowserView):
                 "A32",
                 "B11",
             ],
+            exclude_from_nav=False,
         )
         log.info("Created dpevent")
 
@@ -276,6 +281,7 @@ class DocpoolSetup(BrowserView):
                 "A32",
                 "B11",
             ],
+            exclude_from_nav=False,
         )
         log.info("Created dpevent")
 
@@ -330,12 +336,14 @@ class DocpoolSetup(BrowserView):
                     Status="geprueft",
                     TrajectoryEndTime=datetime.now() + timedelta(hours=1),
                     TrajectoryStartTime=datetime.now(),
+                    exclude_from_nav=False,
                 )
                 api.content.create(
                     container=new,
                     type="Image",
                     title=f"{doctype.id}_image",
                     image=dummy_image(),
+                    exclude_from_nav=False,
                 )
                 try:
                     api.content.transition(obj=new, transition="publish")
@@ -372,6 +380,7 @@ class DocpoolSetup(BrowserView):
                 Status="geprueft",
                 TrajectoryEndTime=datetime.now() + timedelta(hours=1),
                 TrajectoryStartTime=datetime.now(),
+                exclude_from_nav=False,
             )
             modified(new)
             api.content.create(
@@ -379,12 +388,14 @@ class DocpoolSetup(BrowserView):
                 type="Image",
                 title="Ein Bild",
                 image=dummy_image(),
+                exclude_from_nav=False,
             )
             api.content.create(
                 container=new,
                 type="File",
                 title="Eine Datei",
                 file=dummy_file(),
+                exclude_from_nav=False,
             )
             api.content.transition(obj=new, transition="publish")
             log.info(f"Created dpdocument Eine Bodenprobe {new.absolute_url()}")
@@ -401,6 +412,7 @@ class DocpoolSetup(BrowserView):
                 docType="groundcontamination",
                 scenarios=[dpevent_to_archive.id],
                 local_behaviors=["elan"],
+                exclude_from_nav=False,
             )
             modified(new)
             api.content.create(
@@ -408,12 +420,14 @@ class DocpoolSetup(BrowserView):
                 type="Image",
                 title="Ein Bild",
                 image=dummy_image(),
+                exclude_from_nav=False,
             )
             api.content.create(
                 container=new,
                 type="File",
                 title="Eine Datei",
                 file=dummy_file(),
+                exclude_from_nav=False,
             )
             api.content.transition(obj=new, transition="publish")
             log.info(f"Created dpdocument Eine Bodenprobe {new.absolute_url()}")
@@ -449,6 +463,7 @@ class DocpoolSetup(BrowserView):
                 MStIDs=["03132", "03141", "03151", "03161", "03171"],
                 Authority="de_bw",
                 PDFVersion="PDF/A-1b",
+                exclude_from_nav=False,
             )
             new = api.content.create(
                 container=folder,
@@ -469,6 +484,7 @@ class DocpoolSetup(BrowserView):
                 MStIDs=["03132", "03141", "03151", "03161", "03171"],
                 Authority="de_bw",
                 PDFVersion="PDF/A-1b",
+                exclude_from_nav=False,
             )
 
         folder = docpool_bund["content"]["Groups"]["bund_aufsicht_by"]
@@ -492,6 +508,7 @@ class DocpoolSetup(BrowserView):
                 MStIDs=["09121"],
                 Authority="de_mv",
                 PDFVersion="PDF/A-1b",
+                exclude_from_nav=False,
             )
             new = api.content.create(
                 container=folder,
@@ -512,6 +529,7 @@ class DocpoolSetup(BrowserView):
                 MStIDs=["03132", "03141", "03151", "03161", "03171"],
                 Authority="de_bw",
                 PDFVersion="PDF/A-1b",
+                exclude_from_nav=False,
             )
 
         new = api.content.create(
@@ -531,6 +549,7 @@ class DocpoolSetup(BrowserView):
             MStIDs=["03132", "03141", "03151", "03161", "03171"],
             Authority="de_bw",
             PDFVersion="PDF/A-1b",
+            exclude_from_nav=False,
         )
         # Create Pinnwand Collections for Docpools
         dbconfig_bund = docpool_bund["contentconfig"]["dbconfig"]
@@ -542,6 +561,7 @@ class DocpoolSetup(BrowserView):
             title="Default Bund Pinnwand",
             description="Default Bund Pinnwand",
             docTypes=[RelationValue(get_intid(groundcontamination))],
+            exclude_from_nav=False,
         )
         # Set the create DCollection
         docpool_bund["esd"]["dashboard"].dbCollections = [
@@ -563,6 +583,7 @@ class DocpoolSetup(BrowserView):
             permLevel="read/write",
             unknownDtDefault="block",
             unknownScenDefault="block",
+            exclude_from_nav=False,
         )
         modified(dptransferfolder)
 
@@ -598,6 +619,7 @@ class DocpoolSetup(BrowserView):
                 "A32",
                 "B11",
             ],
+            exclude_from_nav=False,
         )
         log.info("Created test-event for hessen")
 
@@ -621,6 +643,7 @@ class DocpoolSetup(BrowserView):
             id="rei-suche",
             title="Rei Suche",
             local_behaviors=["rei"],
+            exclude_from_nav=False,
         )
         _configure_faceted_view(search, import_file_path, "faceted-table-items")
         # Why we need to set to empty?

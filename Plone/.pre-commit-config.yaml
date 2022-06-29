@@ -17,11 +17,11 @@ repos:
     hooks:
       - id: pyupgrade
         args: [--py39-plus]
-  - repo: https://github.com/pycqa/isort
-    rev: 5.10.1
-    hooks:
-      - id: isort
-        args: ["--profile", "black", "--filter-files"]
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.10.1
+  #   hooks:
+  #     - id: isort
+  #       args: ["--profile", "black", "--filter-files"]
   # - repo: https://gitlab.com/pycqa/flake8
   #   rev: flake8
   #   hooks:

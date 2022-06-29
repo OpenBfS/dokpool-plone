@@ -542,6 +542,7 @@ class DPEvent(Container, ContentBase):
                 type="Journal",
                 title=title,
                 id=journal_id,
+                exclude_from_nav=False,
             )
             # Grant local role to Journal Editor Groups
             api.group.grant_roles(
