@@ -1,0 +1,15 @@
+# Configure git to ignore bulk changes in git annotate/blame:
+#
+# ~$ git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# The file name appears to be established by convention.
+
+# Author: Philip Bauer <bauer@starzel.de>
+# Date:   Mon Aug 12 17:53:28 2019 +0200
+# black
+be7a82aa7773f33c0efa595cac3bb2ccf907bfa1
+
+# Author: Philip Bauer <bauer@starzel.de>
+# Date:   Sat Jun 11 11:33:11 2022 +0200
+# black, isort, simpler namespace-declaration
+09c4f9e7420bfd94ab1c957cd9358a41d958b992
