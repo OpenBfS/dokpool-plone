@@ -79,7 +79,7 @@ def create_today_collection(plonesite):
     #: Sort on the Effective date
     today.sort_on = "changed"
     today.sort_reversed = True
-    today.relatedItems = ""
+    today.relatedItems = []
     #: Query by Type and Review State
     today.query = [
         {
@@ -120,7 +120,7 @@ def create_since_yesterday_collection(plonesite):
     #: Sort on the Effective date
     yesterday.sort_on = "changed"
     yesterday.sort_reversed = True
-    yesterday.relatedItems = ""
+    yesterday.relatedItems = []
     #: Query by Type and Review State
     yesterday.query = [
         {
@@ -164,7 +164,7 @@ def create_purpose_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -194,7 +194,7 @@ def create_purpose_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -232,7 +232,7 @@ def create_sample_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -260,7 +260,7 @@ def create_sample_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -290,7 +290,7 @@ def create_sample_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -320,7 +320,7 @@ def create_sample_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -348,7 +348,7 @@ def create_sample_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {
@@ -378,7 +378,7 @@ def create_sample_collections(plonesite):
     #: Sort on the Effective date
     iwas.sort_on = "effective"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {

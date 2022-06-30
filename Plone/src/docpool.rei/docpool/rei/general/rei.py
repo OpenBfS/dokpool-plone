@@ -42,7 +42,7 @@ def configUsers(plonesite, fresh):
 def createStructure(plonesite, fresh):
     changeREINavigation(plonesite, fresh)
     s = api.content.get(path="/berichte")
-    s.relatedItems = ""
+    s.relatedItems = []
     s.manage_addProperty("text", "", "string")
     transaction.commit()
     create_all_collection(plonesite)
@@ -86,7 +86,7 @@ def create_all_collection(plonesite):
     #: Sort on the Modification date
     iwas.sort_on = "modified"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type
     iwas.query = [
         {
@@ -127,7 +127,7 @@ def create_all_private_collection(plonesite):
     #: Sort on the Modification date
     iwas.sort_on = "modified"
     iwas.sort_reversed = True
-    iwas.relatedItems = ""
+    iwas.relatedItems = []
     #: Query by Type and Review State
     iwas.query = [
         {

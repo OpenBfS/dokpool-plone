@@ -651,7 +651,7 @@ class DocpoolSetup(BrowserView):
         _configure_faceted_view(search, import_file_path, "faceted-table-items")
         # Why we need to set to empty?
         # Todo: https://redmine-koala.bfs.de/issues/3951
-        search.relatedItems = ""
+        search.relatedItems = []
         modified(search)
 
         # Workaround for broken indexes (See #3502)
