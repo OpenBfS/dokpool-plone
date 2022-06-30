@@ -6,6 +6,7 @@ from Acquisition import aq_get, aq_inner
 from plone import api
 from plone.app.discussion.browser.conversation import ConversationView
 from Products.PlonePAS.tools.groupdata import GroupDataTool
+from Products.CMFPlone.Portal import PloneSite
 from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
@@ -103,8 +104,9 @@ def setMemberProperties(self, mapping, **kw):
     self._orig_setMemberProperties(mapping, **kw)
 
 
-MemberData._orig_setMemberProperties = MemberData.setMemberProperties
-MemberData.setMemberProperties = setMemberProperties
+# TODO: Remove Logging setMemberProperties for Plone 6
+# MemberData._orig_setMemberProperties = MemberData.setMemberProperties
+# MemberData.setMemberProperties = setMemberProperties
 
 
 def possibleDocTypes(self):
@@ -125,3 +127,5 @@ def possibleDocumentPools(self):
 # methods called to provide options
 GroupDataTool.possibleDocTypes = possibleDocTypes
 GroupDataTool.possibleDocumentPools = possibleDocumentPools
+PloneSite.possibleDocTypes = possibleDocTypes
+PloneSite.possibleDocumentPools = possibleDocumentPools
