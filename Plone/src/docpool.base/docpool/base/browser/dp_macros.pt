@@ -444,7 +444,7 @@ quoted_id = quote_plus(econtext["b"].getId());
 </metal:macro>
 
 <metal:macro define-macro="doc_videos" i18n:domain="docpool.base">
-  <span tal:define="videos context/getVideos" tal:condition="videos">
+  <span tal:define="videos context/getVideos | nothing" tal:condition="videos">
     <label i18n:translate="">Videos:</label>
     <tal:loop repeat="video videos">
         <div metal:use-macro="context/docpool_video_macro/macros/video" />
