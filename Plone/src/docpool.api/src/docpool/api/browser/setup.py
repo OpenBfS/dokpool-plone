@@ -57,14 +57,17 @@ class DocpoolSetup(BrowserView):
     """
 
     def __call__(self):
-        portal = api.portal.get()
-        if portal.id != "dokpool" and not api.env.test_mode():
-            api.portal.show_message(
-                f'The instance needs to be called "dokpool", not "{portal.id}"!',
-                self.request,
-                type="error",
-            )
-            return self.index()
+
+        # TODO: Re-add or completely remove this check
+        # This is only relevant for the old webpack theme which is not used so far in Plone 6
+        # portal = api.portal.get()
+        # if portal.id != "dokpool" and not api.env.test_mode():
+        #     api.portal.show_message(
+        #         f'The instance needs to be called "dokpool", not "{portal.id}"!',
+        #         self.request,
+        #         type="error",
+        #     )
+        #     return self.index()
 
         if not self.request.form.get("submit", None):
             return self.index()
