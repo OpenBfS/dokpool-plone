@@ -7,6 +7,7 @@ from plone import api
 from plone.app.testing import SITE_OWNER_NAME, TEST_USER_ID, login, setRoles
 from plone.app.z3cform.interfaces import IPloneFormLayer
 from plone.base.utils import get_installer
+from zope.component import queryMultiAdapter
 from zope.interface.declarations import alsoProvides
 
 
@@ -82,3 +83,74 @@ class TestInstallComplex(unittest.TestCase):
         self.assertEqual(
             2, len(portal_catalog.unrestrictedSearchResults(portal_type="DocumentPool"))
         )
+
+        # Check if we can render some of the created content
+        portal = api.portal.get()
+        portal.clearCurrentSkin()
+        portal.setupCurrentSkin(self.request)
+
+        views = [
+            "view",
+            "listitem",
+            "meta",
+        ]
+        dp_types = portal_catalog.uniqueValuesFor("dp_type")
+        ignore = [
+            "sitrep",  # sitrep is broken. See #4861
+        ]
+        for dp_type in dp_types:
+            if dp_type in ignore:
+                continue
+            brains = api.content.find(portal_type="DPDocument", dp_type=dp_type)
+            print(f"Found {len(brains)} DPDocument of type {dp_type}")
+            for brain in brains:
+                obj = brain.getObject()
+                for viewname in views:
+                    view = queryMultiAdapter((obj, self.request), name=viewname)
+                    if view:
+                        try:
+                            html = view()
+                            self.assertTrue(html)
+                        except Exception as e:
+                            print(
+                                f"Could not render view {viewname} for DPDocument ({obj.dp_type}) {obj.absolute_url()}: \n{e}"
+                            )
+                            break
+                    else:
+                        print(
+                            f"Could not find view {viewname} for DPDocument ({obj.dp_type}) {obj.absolute_url()}"
+                        )
+
+        portal_types = portal_catalog.uniqueValuesFor("portal_type")
+        ignore = [
+            "DPDocument",
+        ]
+        for portal_type in portal_types:
+            if portal_type in ignore:
+                continue
+            brains = api.content.find(portal_type=portal_type)
+            print(f"Found {len(brains)} of type {portal_type}")
+            for brain in brains:
+                obj = brain.getObject()
+                if portal_type in ["Folder", "Collection"]:
+                    from plone.app.relationfield.behavior import IRelatedItems
+
+                    try:
+                        IRelatedItems(obj)
+                    except TypeError:
+                        # Work around weird could not adapt Error...
+                        delattr(obj, "_v__providedBy__")
+                        delattr(self.request, "__plone_dexterity_assignable_cache__")
+                view = queryMultiAdapter((obj, self.request), name="view")
+                if view is None:
+                    print(
+                        f"Could not find view for {obj.portal_type} {obj.absolute_url()}"
+                    )
+                    break
+                try:
+                    html = view()
+                    self.assertTrue(html)
+                except Exception as e:
+                    print(
+                        f"Could not render view for {obj.portal_type} {obj.absolute_url()}: \n{e}"
+                    )
