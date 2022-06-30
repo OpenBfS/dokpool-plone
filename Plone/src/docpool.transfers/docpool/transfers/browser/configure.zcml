@@ -16,6 +16,7 @@
         name="view"
         for="..interfaces.IDPTransferFolder"
         template="dptransferfolder.pt"
+        class="docpool.base.browser.folderbase.FolderBaseView"
         permission="docpool.transfers.SendContent"
         />
 
