@@ -113,5 +113,5 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             )
         )
         tree[path] = []
-        for child in folder.get('children', ()):
+        for child in folder.get("children", ()):
             self.recurse_folder(child, path, tree)
