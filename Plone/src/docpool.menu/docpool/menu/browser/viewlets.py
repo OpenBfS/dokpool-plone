@@ -19,6 +19,18 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         if api.user.is_anonymous():
             return tree
 
+        self.navtree_add_apps_menu(tree)
+
+        if not self.context.restrictedTraverse("@@context_helpers").is_archive():
+            self.navtree_add_contentarea(tree)
+
+        # for tab in tree[self.navtree_path]:
+        #     if "config" in tab["id"]:
+        #         tab["item_class"] = "config"
+
+        return tree
+
+    def navtree_add_apps_menu(self, tree):
         current_dp, current_app, dp_apps = getApplicationDocPoolsForCurrentUser(
             self.context
         )
@@ -67,37 +79,39 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     )
                 )
 
-        return tree
+    def navtree_add_contentarea(self, tree):
+        folders = getFoldersForCurrentUser(self.context)
+        if not folders:
+            return
 
-    def _portal_tabs(self):
-        tabs = self._content_tabs()
+        content_path = f"{self.navtree_path}/content"
+        tree[self.navtree_path].append(
+            dict(
+                id="content",
+                path=content_path,
+                uid="content",
+                url="",
+                title=utranslate("docpool.base", "Content Area", context=self.context),
+                review_state="visible",
+            )
+        )
 
-        for tab in tabs:
-            if tab["id"].find("config") != -1:
-                tab["item_class"] = "config"
-            elif tab["id"] == "content":
-                tab["item_class"] = "hide"
+        tree[content_path] = []
+        for folder in folders:
+            self.recurse_folder(folder, content_path, tree)
 
-        if not self.context.restrictedTraverse("@@context_helpers").is_archive():
-            ffu = getFoldersForCurrentUser(self.context)
-            if ffu:
-                for f in ffu:
-                    if "item_class" not in f:
-                        f["item_class"] = "personal"
-                tabs.append(
-                    {
-                        "id": "content",
-                        "Title": utranslate(
-                            "docpool.base", "Content Area", context=self.context
-                        ),
-                        "Description": "",
-                        "getURL": "",
-                        "show_children": True,
-                        "children": ffu,
-                        "currentItem": False,
-                        "item_class": "contentarea",
-                        "currentParent": self.context.isPersonal(),
-                        "normalized_review_state": "visible",
-                    }
-                )
-        return tabs
+    def recurse_folder(self, folder, parent_path, tree):
+        path = folder["path"]
+        tree[parent_path].append(
+            dict(
+                id=folder["id"],
+                path=path,
+                uid=folder["UID"],
+                url=folder["getURL"],
+                title=folder["Title"],
+                review_state=folder["review_state"],
+            )
+        )
+        tree[path] = []
+        for child in folder.get("children", ()):
+            self.recurse_folder(child, path, tree)

@@ -84,6 +84,7 @@ def getFoldersForCurrentUser(context):
                 if "show_children" in gft:
                     gft["item_class"] = "personal"
                     group_result.append(gft)
+    group_result.reverse()
 
     # show personal folder unless we're in elan or rei
     dp_app_state = getMultiAdapter((context, getRequest()), name="dp_app_state")
