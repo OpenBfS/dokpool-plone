@@ -184,7 +184,7 @@ class DocpoolSetup(BrowserView):
         folder = docpool_bund["content"]["Groups"]["bund_group1"]
 
         voc = getUtility(IVocabularyFactory, name="docpool.base.vocabularies.DocType")
-        doctypes = voc(self.context).by_value
+        doctypes = voc(self.context, raw=True)
 
         event_config_folder = docpool_bund["contentconfig"]["scen"]
         dpnuclearpowerstation = api.content.create(
@@ -307,17 +307,17 @@ class DocpoolSetup(BrowserView):
             sampletype_ids = ["A", "B", "F", "G", "I", "L", "M", "N", "S", "Z"]
             # add one dpdocument for each type (except reireport)
             for doctype in doctypes:
-                if doctype.id == "reireport":
+                if doctype[0] == "reireport":
                     # Do not create reireports here
                     continue
                 new = api.content.create(
                     container=folder,
                     type="DPDocument",
-                    title=f"Ein {doctype.title}",
-                    description=f"foo ({doctype.id})",
-                    docType=doctype.id,
+                    title=f"Ein {doctype[1]}",
+                    description=f"foo ({doctype[0]})",
+                    docType=doctype[0],
                     text=RichTextValue(
-                        f"<p>Text für {doctype.title}</p>",
+                        f"<p>Text für {doctype[1]}</p>",
                         "text/html",
                         "text/x-html-safe",
                     ),
@@ -344,7 +344,7 @@ class DocpoolSetup(BrowserView):
                 api.content.create(
                     container=new,
                     type="Image",
-                    title=f"{doctype.id}_image",
+                    title=f"{doctype[0]}_image",
                     image=dummy_image(),
                     exclude_from_nav=False,
                 )
@@ -353,7 +353,7 @@ class DocpoolSetup(BrowserView):
                 except Exception as e:
                     log.info(e)
                 modified(new)
-                log.info(f"Created dpdocument of type {doctype.id}")
+                log.info(f"Created dpdocument of type {doctype[0]}")
 
             # add one full DPDocument
             new = api.content.create(
@@ -730,8 +730,8 @@ def add_group(docpool, groupname):
     """
     # get all doctypes to enable them for the new group
     voc = getUtility(IVocabularyFactory, name="docpool.base.vocabularies.DocType")
-    doctypes = voc(docpool).by_value
-    doctypes_ids = [i.id for i in doctypes]
+    doctypes = voc(docpool, raw=True)
+    doctypes_ids = [i[0] for i in doctypes]
     # Do not create reireports. Can be added after creating the group.
     if "reireport" in doctypes_ids:
         doctypes_ids.remove("reireport")

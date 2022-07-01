@@ -17,11 +17,13 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
+from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFPlone.utils import log, safe_hasattr
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.component import adapter
@@ -57,6 +59,8 @@ class IDocType(model.Schema):
         default=True,
     )
 
+    # TODO: This pattern allows to create relations to itself
+    # Would it be better to not use relations here?
     allowedDocTypes = RelationList(
         title=_(
             "label_doctype_alloweddoctypes",
@@ -65,10 +69,10 @@ class IDocType(model.Schema):
         description=_("description_doctype_alloweddoctypes", default=""),
         required=False,
         value_type=RelationChoice(
-            title=_("Folder for Document Types"),
-            source="docpool.base.vocabularies.DocType",
+            vocabulary="docpool.base.vocabularies.DocType",
         ),
     )
+    directives.widget("allowedDocTypes", CheckBoxFieldWidget)
 
     partsPattern = schema.TextLine(
         title=_(
@@ -109,10 +113,6 @@ class IDocType(model.Schema):
         title=_("label_doctype_customviewtemplate", default="Custom View Template"),
         description=_("description_doctype_customviewtemplate", default=""),
         required=False,
-    )
-
-    directives.widget(
-        allowedDocTypes="z3c.form.browser.select.CollectionSelectFieldWidget"
     )
 
 

@@ -19,7 +19,7 @@ class ICollectionPortlet(IPortletDataProvider):
         title=_("label_elandocument_doctype", default="Document Type"),
         description=_("description_elandocument_doctype", default=""),
         required=True,
-        source="elan.esd.vocabularies.Category",
+        vocabulary="elan.esd.vocabularies.Category",
     )
 
 

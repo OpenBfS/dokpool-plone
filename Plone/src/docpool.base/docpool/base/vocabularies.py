@@ -3,10 +3,13 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import activeApps, extendingApps, selectableApps
 from docpool.base.content.doctype import IDocType
 from docpool.base.utils import getAllowedDocumentTypesForGroup, getDocumentPoolSite
+from plone import api
+from plone.app.vocabularies.catalog import StaticCatalogVocabulary
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
 from zope.component.hooks import getSite
 from zope.interface import implementer
+from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
@@ -116,48 +119,22 @@ class DocumentTypesVocabulary:
 DocumentTypesVocabularyFactory = DocumentTypesVocabulary()
 
 
-@implementer(IVocabularyFactory)
-class DocTypeVocabulary:
-    """ """
-
-    def __call__(self, context, raw=False, filtered=False):
-        # print context
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/config"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            if not raw:
-                return SimpleVocabulary([])
-            else:
-                return []
-        types = cat(
-            {
-                "object_provides": IDocType.__identifier__,
-                "sort_on": "sortable_title",
-                "path": path,
-            }
-        )
-        # print len(types)
-        if filtered:
-            if not raw:
-                types = [(brain.getObject(), brain.Title) for brain in types]
-            else:
-                types = [(brain.getId, brain.Title) for brain in types]
-        else:
-            if not raw:
-                types = [(brain.getObject(), brain.Title) for brain in types]
-            else:
-                types = [(brain.getId, brain.Title) for brain in types]
-
-        # print types
-        if not raw:
-            items = [SimpleTerm(i[0], i[0], i[1]) for i in types]
-            return SimpleVocabulary(items)
-        else:
-            return types
-
-
-DocTypeVocabularyFactory = DocTypeVocabulary()
+@provider(IVocabularyFactory)
+def DocTypeVocabularyFactory(context=None, raw=False):
+    """Used for Relationfield docpool.base.content.doctype.IDocType.allowedDocTypes
+    and in docpool.base.monkey.possibleDocTypes
+    """
+    esd = getDocumentPoolSite(context)
+    path = "/".join(esd.getPhysicalPath()) + "/config"
+    query = {
+        "object_provides": IDocType.__identifier__,
+        "sort_on": "sortable_title",
+        "path": path,
+    }
+    if raw:
+        brains = api.content.find(**query)
+        return [(brain.getId, brain.Title) for brain in brains]
+    return StaticCatalogVocabulary(query, title_template="{brain.Title}")
 
 
 @implementer(IVocabularyFactory)

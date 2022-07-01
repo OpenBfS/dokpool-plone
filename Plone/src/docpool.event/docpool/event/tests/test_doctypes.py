@@ -272,8 +272,8 @@ class TestDocTypes(unittest.TestCase):
 
         # check for available subtypes of DPDocument
         voc = getUtility(IVocabularyFactory, name="docpool.base.vocabularies.DocType")
-        doctypes = voc(self.portal).by_value
-        doctypes_ids = [i.id for i in doctypes]
+        doctypes = voc(raw=True)
+        doctypes_ids = [i[0] for i in doctypes]
         self.assertEqual(
             set(doctypes_ids),
             {

@@ -110,10 +110,9 @@ def setMemberProperties(self, mapping, **kw):
 
 
 def possibleDocTypes(self):
-    from docpool.base.vocabularies import DocTypeVocabulary
+    from docpool.base.vocabularies import DocTypeVocabularyFactory
 
-    aedt = DocTypeVocabulary()
-    return [f"{a[0]}|{a[1]}" for a in aedt(self, raw=True, filtered=True)]
+    return [f"{a[0]}|{a[1]}" for a in DocTypeVocabularyFactory(self, raw=True)]
 
 
 def possibleDocumentPools(self):

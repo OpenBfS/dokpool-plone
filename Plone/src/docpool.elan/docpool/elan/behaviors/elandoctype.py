@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from docpool.base.interfaces import IDocTypeExtension
 from docpool.base.utils import back_references, queryForObject
 from docpool.elan import DocpoolMessageFactory as _
+from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFPlone.utils import safe_hasattr
@@ -16,6 +17,8 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 @provider(IContextAwareDefaultFactory)
 def getDefaultCategory(context):
     """ """
+    # TODO: Does this make sense here?
+    # Context is the container where the item is created...
     if hasattr(context, "getDefaultCategory"):
         return context.getDefaultCategory()
     else:
@@ -30,10 +33,14 @@ class IELANDocType(IDocTypeExtension):
         ),
         description=_("description_doctype_contentcategory", default=""),
         required=False,
-        defaultFactory=getDefaultCategory,
-        source="elan.esd.vocabularies.Category",
+        # TODO: Why would we want a defaultFactory?
+        # defaultFactory=getDefaultCategory,
+        vocabulary="elan.esd.vocabularies.Category",
     )
-    directives.widget(contentCategory="z3c.form.browser.select.SelectFieldWidget")
+    directives.widget(
+        "contentCategory",
+        SelectFieldWidget,
+    )
 
 
 class ELANDocType:
@@ -75,7 +82,7 @@ class ELANDocType:
 
     def getDefaultCategory(self):
         """ """
-        #         colls = self.getBackReferences(relationship='doctypes')
+        # TODO: does this make sense here?
         colls = self.context.back_references("docTypes")
         res = None
         if len(colls) == 1:  # Only when unique
