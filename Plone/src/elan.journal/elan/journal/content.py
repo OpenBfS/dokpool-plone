@@ -72,4 +72,4 @@ class Journal(Container):
             return False
         if obj.isArchive():
             return False
-        return api.user.has_permission('elan.journal: Add JournalEntry', obj=obj)
+        return api.user.has_permission('elan.journal: Add JournalEntry', obj=self)
