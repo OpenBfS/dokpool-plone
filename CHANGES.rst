@@ -1,16 +1,20 @@
 Changelog
 =========
 
-1.9.1 (unreleased)
+1.9.1 (05.07.22)
 ------------------
 
 Fixed:
 
+- Fix Icon path #4808
+  [slindner]
+
+- Fix journal permission check #4818
+  [pbauer]
+
 - Run CI test in correct dir #4823
   [slindner]
 
-- Fix Icon path #4808
-  [slindner]
 
 1.9.0 (13.05.22)
 ------------------
