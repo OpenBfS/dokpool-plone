@@ -9,6 +9,8 @@ Fixed:
 - Run CI test in correct dir #4823
   [slindner]
 
+- Fix Icon path #4808
+  [slindner]
 
 1.9.0 (13.05.22)
 ------------------
