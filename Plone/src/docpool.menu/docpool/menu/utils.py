@@ -43,7 +43,8 @@ def getApplicationDocPoolsForCurrentUser(context):
         if context.isAdmin():
             app_names.insert(0, BASE_APP)
 
-        pools.append((dp, app_names))
+        if app_names:
+            pools.append((dp, app_names))
 
     return current_dp, current_app, pools
 

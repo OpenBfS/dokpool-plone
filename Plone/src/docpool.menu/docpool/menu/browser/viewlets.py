@@ -60,6 +60,18 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         for dp, app_names in dp_apps:
             dp_id = dp.getId()
             here = (self.context if current_dp_id == dp_id else dp).absolute_url()
+            dp_path = f"{self.navtree_path}/apps/{dp_id}"
+            tree[apps_path].append(
+                dict(
+                    id=dp_id,
+                    path=dp_path,
+                    uid=dp_id,
+                    title=f"{dp.title}",
+                    url=here,
+                    review_state="visible",
+                    # item_class=app_title,
+                )
+            )
             for app_name in app_names:
                 app_title = (
                     utranslate("docpool.menu", "Docpool Base", context=self.context)
@@ -67,12 +79,12 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     else appName(app_name)
                 )
                 app_id = f"{dp_id}-{app_name}"
-                tree[apps_path].append(
+                tree[dp_path].append(
                     dict(
                         id=app_id,
-                        path=f"{self.navtree_path}/apps/{app_id}",
+                        path=f"{dp_path}/{app_name}",
                         uid=app_id,
-                        title=f"{dp.title}: {app_title}",
+                        title=f"{app_title}",
                         url=f"{here}/setActiveApp?app={app_name}",
                         review_state="visible",
                         # item_class=app_title,
