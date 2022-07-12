@@ -272,72 +272,77 @@ class DPEvent(Container, ContentBase):
         global_scenarios = get_global_scenario_selection()
         global_scenarios[self.getId()] = 'closed'
         archive = self._createArchive()
+        logger.info(u"Archiving DPEvent %s to %s", self.title, archive.absolute_url())
         contentarea = self.content
         contentarea_path = "/".join(contentarea.getPhysicalPath())
 
         archive_contentarea = archive.content
-        mdocs = self._getDocumentsForScenario(path=contentarea_path)
-        for doc in mdocs:
-            target_folder = self._ensureTargetFolder(doc, archive_contentarea)
-            self._copyDocument(target_folder, doc)
+        brains = self._getDocumentsForScenario(path=contentarea_path)
+        total = len(brains)
+        logger.info(u"Archiving %s items associated with DPEvent %s. This may take a while...", total, self.title)
+        for index, brain in enumerate(brains, start=1):
+            target_folder = self._ensureTargetFolder(brain, archive_contentarea)
+            self._copyDocument(target_folder, brain)
+            if not index % 10:
+                logger.info(u"Archived %s of %s documents...", index, total)
 
         self.purge()
         self.Status = 'closed'
         # Move DPEvent into archive and redirect to it
         archived_event = api.content.move(self, target=archive)
         archived_event.reindexObject()
+        logger.info(u"Finished archiving DPEvent %s", archived_event.title)
         api.portal.show_message(_("Scenario archived"), REQUEST)
         return REQUEST.response.redirect(archived_event.absolute_url())
 
-    def _ensureTargetFolder(self, doc, aroot):
+    def _ensureTargetFolder(self, brain, target):
         """
         Make sure that a personal or group folder with proper permissions
         exists for this document in the archive.
         """
+        path = brain.getPath().split("/")
+
         # 1. check whether this is a personal or a group document
-        path = doc.getPath().split("/")
         isGroup = "Groups" in path
-        if isGroup:
-            aroot = aroot.Groups
         isTransfer = "Transfers" in path
-        if isTransfer:
-            aroot = aroot.Transfers
         isMember = "Members" in path
-        if isMember:
-            aroot = aroot.Members
-        # 2. check for which user / group
-        if len(path) >= 4:
-            if isGroup or isTransfer or isMember:
-                fname = path[5]
-            else:
-                fname = path[4]
-        # 3. check for corresponding folder
-        hasFolder = aroot.hasObject(fname)
-        # 4. if it doesn't exist: create it
-        if not hasFolder:
-            if isGroup:
-                folderType = "GroupFolder"
-            if isMember:
-                folderType = "UserFolder"
-            if isTransfer:
-                folderType = "DPTransferFolder"
-            # if not we create a new folder
-            aroot.invokeFactory(folderType, id=fname)
-        af = aroot._getOb(fname)
-        # 5. and copy the local roles
-        mroot = self.content.Members
         if isGroup:
-            mroot = self.content.Groups
-        if isTransfer:
-            mroot = self.content.Transfers
-        mf = mroot._getOb(fname)
-        af.setTitle(mf.Title())
+            target = target.Groups
+            container = self.content.Groups
+            foldertype = "GroupFolder"
+        elif isMember:
+            target = target.Members
+            container = self.content.Members
+            foldertype = "UserFolder"
+        elif isTransfer:
+            target = target.Transfers
+            container = self.content.Transfers
+            foldertype = "DPTransferFolder"
+
+        # 2. check for which user / group
+        if isGroup or isTransfer or isMember:
+            foldername = path[5]
+        else:
+            foldername = path[4]
+
+        # 3. check for corresponding folder
+        if foldername in target:
+            return target[foldername]
+
+        # 4. if it doesn't exist: create it
+        old_parent = container.get(foldername)
+        new = api.content.create(
+            container=target,
+            type=foldertype,
+            id=foldername,
+            title=old_parent.title,
+            )
+
+        # 5. and copy the local roles
         if not isTransfer:
-            mtool = getToolByName(self, "portal_membership")
-            mtool.setLocalRoles(af, [fname], 'Owner')
-        af.reindexObject()
-        af.reindexObjectSecurity()
-        return af
+            mtool = api.portal.get_tool("portal_membership")
+            mtool.setLocalRoles(new, [foldername], "Owner")
+        return new
 
     def _copyDocument(self, target_folder_obj, source_brain):
         """
@@ -346,6 +351,11 @@ class DPEvent(Container, ContentBase):
         # TODO: transferLog fuellen und DB Eintraege loeschen
         # print source_brain.getId
         source_obj = source_brain.getObject()
+        logger.info(
+            u"Archiving %s with %s attachments to %s",
+            source_obj.absolute_url(),
+            len(source_obj.keys()),
+            target_folder_obj.absolute_url())
         # determine parent folder for copy
         p = parent(source_obj)
         # if source_obj.getId() == 'ifinprojection.2012-08-08.4378013443':
