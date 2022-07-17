@@ -56,6 +56,7 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 import plone.api as api
 import datetime
 import json
+import transaction
 
 
 logger = getLogger("dpevent")
@@ -267,40 +268,56 @@ class DPEvent(Container, ContentBase):
         """
         Saves all content for this scenario to an archive, deletes the original content,
         and sets the scenario to state "closed".
+
+        This can take a long time since associated DPDocuments can have many attechments
+        and all need to be copied or moved and reindexed. This is why we make savepoints.
         """
         alsoProvides(REQUEST, IDisableCSRFProtection)
+
+        # 1. Disable scenario to prevent new data from being added for it
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.getId()] = 'closed'
+        global_scenarios[self.id] = 'closed'
+        self.Status = 'closed'
+        transaction.savepoint(optimistic=True)
+
+        # 2. Create Archive
         archive = self._createArchive()
+        archive_contentarea = archive.content
         logger.info(u"Archiving DPEvent %s to %s", self.title, archive.absolute_url())
         contentarea = self.content
         contentarea_path = "/".join(contentarea.getPhysicalPath())
 
-        archive_contentarea = archive.content
+        # 3. Move or Copy related DPDocuments
         brains = self._getDocumentsForScenario(path=contentarea_path)
         total = len(brains)
-        logger.info(u"Archiving %s items associated with DPEvent %s. This may take a while...", total, self.title)
+        logger.info(u"Archiving %s items associated with DPEvent %s. This may take a while...", total, self.absolute_url())
         for index, brain in enumerate(brains, start=1):
-            target_folder = self._ensureTargetFolder(brain, archive_contentarea)
-            self._copyDocument(target_folder, brain)
+            obj = brain.getObject()
+            target_folder = self._ensureTargetFolder(obj, archive_contentarea)
+            if self.can_move(obj):
+                self._move_to_archive(target_folder, obj)
+            else:
+                self._copy_to_archive(target_folder, obj)
+
             if not index % 10:
                 logger.info(u"Archived %s of %s documents...", index, total)
+                transaction.savepoint(optimistic=True)
 
-        self.purge()
-        self.Status = 'closed'
-        # Move DPEvent into archive and redirect to it
+        # 4. Move DPEvent into archive and redirect to it
         archived_event = api.content.move(self, target=archive)
         archived_event.reindexObject()
+        # local roles were set when adding items to the archive but reindexing was deferred.
+        archive_contentarea.reindexObjectSecurity()
         logger.info(u"Finished archiving DPEvent %s", archived_event.title)
         api.portal.show_message(_("Scenario archived"), REQUEST)
         return REQUEST.response.redirect(archived_event.absolute_url())
 
-    def _ensureTargetFolder(self, brain, target):
+    def _ensureTargetFolder(self, obj, target):
         """
         Make sure that a personal or group folder with proper permissions
         exists for this document in the archive.
         """
-        path = brain.getPath().split("/")
+        path = obj.getPhysicalPath()
 
         # 1. check whether this is a personal or a group document
         isGroup = "Groups" in path
@@ -327,6 +344,9 @@ class DPEvent(Container, ContentBase):
 
         # 3. check for corresponding folder
         if foldername in target:
+            if not isTransfer:
+                mtool = api.portal.get_tool("portal_membership")
+                mtool.setLocalRoles(new, [foldername], "Owner", reindex=False)
             return target[foldername]
 
         # 4. if it doesn't exist: create it
@@ -341,54 +361,81 @@ class DPEvent(Container, ContentBase):
         # 5. and copy the local roles
         if not isTransfer:
             mtool = api.portal.get_tool("portal_membership")
-            mtool.setLocalRoles(new, [foldername], "Owner")
+            mtool.setLocalRoles(new, [foldername], "Owner", reindex=False)
         return new
 
-    def _copyDocument(self, target_folder_obj, source_brain):
-        """
-        Copy utility
-        """
-        # TODO: transferLog fuellen und DB Eintraege loeschen
-        # print source_brain.getId
-        source_obj = source_brain.getObject()
+    def can_move(self, obj):
+        from docpool.elan.config import ELAN_APP
+        from docpool.elan.behaviors.elandocument import IELANDocument
+        try:
+            scns = IELANDocument(obj).scenarios
+        except BaseException:
+            # Object could have lost its ELAN behavior but that means we can
+            # potentially delete it
+            scns = ['dummy']
+        apps = ILocalBehaviorSupport(obj).local_behaviors
+        if len(scns) == 1 and len(apps) == 1:
+                return True
+        return False
+
+    def _move_to_archive(self, target_folder_obj, obj):
         logger.info(
-            u"Archiving %s with %s attachments to %s",
-            source_obj.absolute_url(),
-            len(source_obj.keys()),
+            u"Moving %s with %s attachments to %s",
+            obj.absolute_url(),
+            len(obj.keys()),
             target_folder_obj.absolute_url())
-        # determine parent folder for copy
-        p = parent(source_obj)
-        # if source_obj.getId() == 'ifinprojection.2012-08-08.4378013443':
-        #    p._delOb('ifinprojection.2012-08-08.4378013443')
-        #    return
-        cb_copy_data = p.manage_copyObjects(source_obj.getId())
-        result = target_folder_obj.manage_pasteObjects(cb_copy_data)
+
+        mdate = obj.modified()
+        moved_obj = api.content.move(obj, target_folder_obj)
+
         # Now do some repairs
-        if len(result) == 1:
-            new_id = result[0]['new_id']
-            copied_obj = target_folder_obj._getOb(new_id)
-            mdate = source_obj.modified()
-            copied_obj.scenarios = []
-            wf_state = source_brain.review_state
-            wftool = getToolByName(self, 'portal_workflow')
-            # print wf_state, wftool.getInfoFor(copied_obj, 'review_state')
-            if (
-                wf_state == "published"
-                and wftool.getInfoFor(copied_obj, 'review_state') != 'published'
-            ):
-                wftool.doActionFor(copied_obj, 'publish')
-            if (
-                wf_state == "pending"
-                and wftool.getInfoFor(copied_obj, 'review_state') == 'private'
-            ):
-                wftool.doActionFor(copied_obj, 'submit')
-            copied_obj.setModificationDate(mdate)
-            events = source_obj.doc_extension(TRANSFERS_APP).transferEvents()
-            copied_obj.transferLog = str(events)
-            copied_obj.reindexObject()
-            copied_obj.reindexObjectSecurity()
-        else:
-            log("Could not archive %s" % source_obj.absolute_url())
+        moved_obj.scenarios = []
+        moved_obj.setModificationDate(mdate)
+
+    def _copy_to_archive(self, target_folder_obj, obj):
+        logger.info(
+            u"Copying %s with %s attachments to %s",
+            obj.absolute_url(),
+            len(obj.keys()),
+            target_folder_obj.absolute_url())
+
+        copied_obj = api.content.copy(obj, target_folder_obj)
+
+        # Now do some repairs
+        mdate = obj.modified()
+        copied_obj.scenarios = []
+
+        wftool = api.portal.get_tool("portal_workflow")
+        old_state = api.content.get_state(obj)
+        if old_state == "published":
+            wftool.doActionFor(copied_obj, "publish")
+        elif old_state == "pending":
+            wftool.doActionFor(copied_obj, "submit")
+
+        copied_obj.setModificationDate(mdate)
+        events = obj.doc_extension(TRANSFERS_APP).transferEvents()
+        copied_obj.transferLog = str(events)
+        copied_obj.reindexObject()
+
+        # Cleanup original DPDocument
+        # 1. Remove current scenario
+        from docpool.elan.behaviors.elandocument import IELANDocument
+        scns = IELANDocument(obj).scenarios
+        scns.remove(self.id)
+        obj.scenarios = scns
+
+        # 2. Remove elan behavior if there are no other events but other behaviors
+        if not scns:
+            from docpool.elan.config import ELAN_APP
+            apps = ILocalBehaviorSupport(obj).local_behaviors
+            if len(apps) > 1:
+                # There are others --> only remove ELAN behavior
+                try:
+                    apps.remove(ELAN_APP)
+                    ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
+                except Exception as e:
+                    log_exc(e)
+        obj.reindexObject()
 
     def _getDocumentsForScenario(self, **kwargs):
         """
@@ -398,8 +445,7 @@ class DPEvent(Container, ContentBase):
         #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
         args = {'portal_type': "DPDocument", 'scenarios': self.getId()}
         args.update(kwargs)
-        cat = getToolByName(self, "portal_catalog")
-        return cat(args)
+        return api.content.find(**args)
 
     def _createArchive(self):
         """
@@ -407,14 +453,18 @@ class DPEvent(Container, ContentBase):
         We also create two folders "Members" and "Groups", which will hold all the
         documents for the scenario.
         """
-        a = self.archive  # Acquire root for archives
-        e = self.esd  # Acquire esd root
+        archive = self.archive  # Acquire root for archives
+        esd = self.esd  # Acquire esd root
         now = safe_unicode(self.toLocalizedTime(DateTime(), long_format=1))
         id = ploneId(self, "%s_%s" % (self.getId(), now))
         title = u"%s %s" % (safe_unicode(self.Title()), now)
         # create the archive root
-        a.invokeFactory(id=id, type_name="ELANArchive", title=title)
-        arc = a._getOb(id)  # get new empty archive
+        arc = api.content.create(
+            container=archive,
+            type="ELANArchive",
+            id=id,
+            title=title,
+            )
         arc.setDescription(self.Description())
         # create the document folders
         createPloneObjects(arc, ARCHIVESTRUCTURE)
@@ -423,50 +473,34 @@ class DPEvent(Container, ContentBase):
         navSettings(arc)
 
         # copy the ESD folders
-        objs = [
-            o.getId
-            for o in e.getFolderContents(
-                {'portal_type': ['ELANSection', 'ELANDocCollection']}
-            )
-        ]
-        # print objs
-        cb_copy_data = e.manage_copyObjects(objs)  # Copy aus der Quelle
-        result = arc.esd.manage_pasteObjects(cb_copy_data)
+        for brain in esd.getFolderContents({'portal_type': ['ELANSection', 'ELANDocCollection']}):
+            api.content.copy(brain.getObject(), arc.esd)
         arc.esd.setDefaultPage("overview")
 
         return arc
 
     security.declareProtected("Modify portal content", "purge")
-
     def purge(self, REQUEST=None):
         """
-        Deletes the content for this scenario but leaves the status unchanged.
+        Deletes the content for this scenario but leaves the event unchanged.
         Documents are deleted if they are not part of any other scenario.
         If they are part of another scenario, only the tag for the current scenario is removed.
         """
         alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
         # TODO im EVENT auf Elandoc DB-Eintraege loeschen.
-        m = self.content.Members
-        mpath = "/".join(m.getPhysicalPath())
-        # We now query the catalog for all documents belonging to this scenario within
-        # the personal and group folders
-        mdocs = self._getDocumentsForScenario(path=mpath)
-        for doc in mdocs:
-            self._purgeDocument(doc)
-        g = self.content.Groups
-        gpath = "/".join(g.getPhysicalPath())
-        # We now query the catalog for all documents belonging to this scenario within
-        # the personal and group folders
-        gdocs = self._getDocumentsForScenario(path=gpath)
-        for doc in gdocs:
-            self._purgeDocument(doc)
-        t = self.content.Transfers
-        tpath = "/".join(t.getPhysicalPath())
-        # We now query the catalog for all documents belonging to this scenario within
-        # the personal and group folders
-        tdocs = self._getDocumentsForScenario(path=tpath)
-        for doc in tdocs:
-            self._purgeDocument(doc)
+
+        foldernames = ["Members", "Groups", "Transfers"]
+        for foldername in foldernames:
+            folder = self.content[foldername]
+            path = "/".join(folder.getPhysicalPath())
+            docs = self._getDocumentsForScenario(path=path)
+            total = len(docs)
+            logger.info(u"Purging %s documents in %s", total, foldername)
+            for index, doc in enumerate(docs, start=1):
+                self._purgeDocument(doc)
+                if not index % 20:
+                    logger.info(u"Purged %s of %s documents...", index, total)
+
         if REQUEST:
             portalMessage(
                 self, _("There are no more documents for this scenario."), "info"
