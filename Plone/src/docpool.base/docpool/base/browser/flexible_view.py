@@ -7,6 +7,7 @@ from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 from Products.Five.browser import BrowserView
 from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
 from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 
 logger = getLogger(__name__)
@@ -22,16 +23,6 @@ class OnTheFlyTemplate(ZopePageTemplate):
 class FlexibleView(BrowserView):
     __allow_access_to_unprotected_subobjects__ = 1
 
-    def __init__(self, context, request):
-        """
-
-        @param context:
-        @param request:
-        """
-        super().__init__(context, request)
-
-    #        self.extensions = self.context.myExtensions(request)
-
     def currentApplication(self):
         """ """
         app_defined_by_behaviour = getattr(self, "appname", None)
@@ -43,46 +34,105 @@ class FlexibleView(BrowserView):
             return active_apps[0]
         return None
 
+    def find_view(self, vtype):
+        """Find correct view for that doc of that type with that view-type
+
+        For that we need:
+        * obj: the context obj, either a DPDocument or something else like a SituationReport
+        * doctype: the doctype/template for that DPDocument (usually in in /config/dtypes/xxx) or nothing
+        * vtype: the view-type, usually "meta" or "listitem"
+        * app: the currently active app (elan/rei/doksys) or nothing
+        """
+        document = self.context
+        app = self.currentApplication()
+        doctype = document.docTypeObj()
+
+        if doctype:
+            typename = doctype.customViewTemplate or doctype.id
+        elif base_hasattr(document, "typeName"):
+            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is called "sitrep"
+            typename = document.typeName()
+        else:
+            typename = document.portal_type.lower()
+
+        # Check view by order of specification
+        if app:
+            names = [
+                f"{app}_{typename}_{vtype}",
+                f"{app}_{vtype}",
+                f"{typename}_{vtype}",
+                f"doc_{vtype}",
+            ]
+        else:
+            names = [
+                f"{typename}_{vtype}",
+                f"doc_{vtype}",
+            ]
+
+        for name in names:
+            # Look for a BrowserView first (see #4840)
+            view = queryMultiAdapter((document, self.request), name=name)
+            if view is not None:
+                logger.info(
+                    "Rendering view %s (%s) for %r (%s)",
+                    name,
+                    view.index.filename,
+                    document,
+                    typename,
+                )
+                return view
+
     def myViewSource(self, vtype):
         """
         Collects suitable macros/templates from apps, types, docs
         """
-        doc = self.context
-        dto = doc.docTypeObj()
+        document = self.context
         app = self.currentApplication()
-        dtid = doc.getPortalTypeName().lower()
-        if base_hasattr(doc, "typeName"):
-            dtid = doc.typeName()
-        if dto:
-            dtid = dto.customViewTemplate
-            if not dtid:
-                dtid = dto.getId()
-        else:
-            dto = doc  # so that we can acquire stuff below
-        data = ""
+        doctype = document.docTypeObj()
 
+        if doctype:
+            typename = doctype.customViewTemplate or doctype.id
+        elif base_hasattr(document, "typeName"):
+            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is called "sitrep"
+            typename = document.typeName()
+        else:
+            typename = document.portal_type.lower()
+
+        data = ""
+        if not doctype:
+            # to acqucire the template from
+            doctype = document
+
+        # Check view by order of specification
         if app:
             names = [
-                f"{app}_{dtid}_{vtype}",
+                f"{app}_{typename}_{vtype}",
                 f"{app}_{vtype}",
-                f"{dtid}_{vtype}",
-                "doc_%s" % vtype,
+                f"{typename}_{vtype}",
+                f"doc_{vtype}",
             ]
         else:
-            names = [f"{dtid}_{vtype}", "doc_%s" % vtype]
-        for n in names:
-            if safe_hasattr(dto, n):
-                o = aq_base(getattr(dto, n))
-                logger.debug(
-                    "Rendering template {} ({}) for {} ({})".format(
-                        "/".join(o._filepath.split("/")[-2:]), vtype, doc, dtid
-                    )
+            names = [
+                f"{typename}_{vtype}",
+                f"doc_{vtype}",
+            ]
+
+        for name in names:
+            # Acquire a skin template
+            if safe_hasattr(doctype, name):
+                template = aq_base(getattr(doctype, name))
+                logger.info(
+                    "Rendering template %s (%s) for %r (%s)",
+                    "/".join(template._filepath.split("/")[-2:]),
+                    vtype,
+                    document,
+                    typename,
                 )
-                if IFile.providedBy(o):
-                    f = o.file.open()
+                if IFile.providedBy(template):
+                    f = template.file.open()
                     data = f.read()
-                elif IPageTemplateSubclassing.providedBy(o):
-                    data = o.read()
+                elif IPageTemplateSubclassing.providedBy(template):
+                    data = template.read()
                 return data
         return data
 
@@ -90,6 +140,20 @@ class FlexibleView(BrowserView):
         """
         Renders collected macros into a single template
         """
+        # find view
+        view = self.find_view(vtype)
+        if view is not None:
+            # add additional info uses in the templates
+            options = extendOptions(self.context, self.request, options)
+            # self is the adapter for the obj wrapped in it's behavior
+            # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc object at 0x1213c1520>
+            # because these are registered as the behavior-factory and inherit from FlexibleView
+            # This (options/view) is used in the templates to call methods on these adapters
+            # TODO: Maye we need to refactor all behaviors to make the templates more sane.
+            options["view"] = self
+            return view(**options)
+
+        # Fallback!
         # Get all macros / skin_templates for the context/app/...
         src = self.myViewSource(vtype)
         template = OnTheFlyTemplate(id="flexible", text=src)
