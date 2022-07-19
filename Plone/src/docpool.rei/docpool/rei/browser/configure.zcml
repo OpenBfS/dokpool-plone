@@ -76,4 +76,25 @@
              provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
              name="Metadata" />
 
+   <browser:page
+        name="rei_meta"
+        for="docpool.rei.behaviors.reidoc.IREIDoc"
+        template="templates/rei_meta.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="rei_meta"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/rei_meta.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="rei_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/rei_actions.pt"
+        permission="zope2.View"
+        />
+
  </configure>

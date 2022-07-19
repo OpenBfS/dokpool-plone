@@ -1,0 +1,22 @@
+<tal:block i18n:domain="docpool.base"
+           define="view nocall:options/view;
+                   here nocall:context">
+<tal:def define="edit_allowed context/canBeEdited;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+    <div metal:use-macro="here/@@dp.macros/macros/doc_complete"/>
+
+    <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
+      <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>
+
+      <input class="context"
+                  type="submit"
+                  name="form.button.save"
+                  value="Finish uploads and publish"
+                  tal:condition="python:context.publishedImmediately(raw=True) and not context.isIndividual()"
+                  i18n:attributes="value"
+                  onclick="window.location.href='content_status_modify?workflow_action=publish';return false;"
+                  />
+
+    </tal:if>
+ </tal:def>
+</tal:block>
