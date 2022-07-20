@@ -5,7 +5,9 @@
         <dependency>profile-docpool.users:default</dependency>
         <dependency>profile-docpool.localbehavior:default</dependency>
         <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
+        <!-- Add back as it runs in Plone 6
         <dependency>profile-eea.facetednavigation:default</dependency>
+         -->
         <dependency>profile-Products.CMFFormController:CMFFormController</dependency>
         <dependency>profile-plone.app.contenttypes:plone-content</dependency>
     </dependencies>

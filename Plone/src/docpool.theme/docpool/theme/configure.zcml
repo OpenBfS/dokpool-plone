@@ -16,12 +16,19 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <!-- The main webpack theme -->
+  <!-- The main theme -->
   <plone:static
-    directory="webpack_resources/theme/docpooltheme"
+    directory="theme"
     type="theme"
     name="docpooltheme"
     />
+
+  <!-- The static files-->
+  <plone:static
+    directory="static"
+    type="plone"
+    name="docpool"
+  />
 
   <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot
