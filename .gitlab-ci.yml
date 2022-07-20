@@ -54,10 +54,6 @@ before_script:
   - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
 
-  - apt update
-  # LDAP client dependencies
-  - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
-
   # Check Python version
   - python -V
   - python3 -V
@@ -140,6 +136,9 @@ unit_tests:
   # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
   # success_with_warnings: True
   script:
+    - apt update
+    # LDAP client dependencies
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
     # Buildout configuration
     - ls -lah .cache
     - ls -lah
