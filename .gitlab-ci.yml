@@ -74,11 +74,11 @@ build:
   script:
     # build docker
     - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
-    - docker build -t bfs/dokpool -f ./Docker/ubuntu16/Dockerfile.standalone .
-    - docker tag bfs/dokpool:latest git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
-    - docker push git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
+    - docker build -t bfs/dokpool_py3 -f ./Docker/Dockerfile.review .
+    - docker tag bfs/dokpool_py3:latest git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
+    - docker push git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
   only:
-    - review
+    - review_py3
 
 deploy_dev:
   tags:
@@ -89,17 +89,17 @@ deploy_dev:
   script:
     # Remove all unused images
     - docker system prune -a -f
-    - docker pull git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
+    - docker pull git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
     # Stop if it is running
-    - docker stop dokpool-review || true
-    - docker rm dokpool-review || true
+    - docker stop dokpool-review-py3 || true
+    - docker rm dokpool-review-py3 || true
     # Start instance and build demo data
-    - docker run --detach --publish 8081:8081 --name dokpool-review git.starzel.de:5050/bfs/dokpool:review
+    - docker run --detach --publish 8082:8082 --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool:review_py3
     # Create the vanilla plone site
-    - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=dokpool&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8081/@@plone-addsite
+    - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8082/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
-    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True' --delete-after http://127.0.0.1:8081/dokpool/login
-    - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8081/dokpool/docpool_setup
+    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True' --delete-after http://127.0.0.1:8082/Plone/login
+    - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8082/Plone/docpool_setup
   environment:
     name: dev
     url: https://review-one-bfs.starzel.de/
@@ -114,8 +114,8 @@ undeploy_dev:
     GIT_STRATEGY: none
   script:
     - echo "Remove review app from dev.loc"
-    - docker stop dokpool-review || true
-    - docker rm dokpool-review || true
+    - docker stop dokpool-review-py3 || true
+    - docker rm dokpool-review-py3 || true
   when: manual
   environment:
     name: dev

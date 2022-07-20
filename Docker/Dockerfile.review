@@ -1,0 +1,54 @@
+FROM python:3.9.13-bullseye as base
+FROM base as builder
+
+ENV PIP_PARAMS=""
+ENV PIP_VERSION=22.1.2
+ENV SETUPTOOLS_VERSION=62.1.0
+# set timezone ME(S)Z
+ENV TZ=Europe/Berlin
+
+
+RUN apt-get update \
+    && buildDeps="dpkg-dev gcc libbz2-dev libc6-dev libffi-dev libjpeg62-turbo-dev libsasl2-dev libldap2-dev libopenjp2-7-dev libpcre3-dev libpq-dev libsasl2-dev libssl-dev libtiff5-dev libxml2-dev libxslt1-dev wget zlib1g-dev python3-dev build-essential" \
+    && apt-get install -y --no-install-recommends $buildDeps\
+    && pip install -U "pip==${PIP_VERSION}" \
+    && rm -rf /var/lib/apt/lists/* /usr/share/doc
+
+FROM base
+
+ENV PIP_PARAMS=""
+ENV PIP_VERSION=22.1.2
+ENV SETUPTOOLS_VERSION=62.1.0
+
+LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
+      org.label-schema.name="plone-bfs" \
+      org.label-schema.description="Plone image using Python 3.9" \
+      org.label-schema.vendor="Bfs"
+
+# Todo: Cleanup - some deps are not needed
+RUN useradd --system -m -d /app -U -u 500 plone \
+    && runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make" \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends $runDeps \
+    && busybox --install -s
+
+# Todo: Cleanup - some deps are not needed
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install git python3 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev tar python3-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python3-pip && apt-get autoclean
+
+RUN mkdir -p /opt/bfs/dokpool
+ADD . /opt/bfs/dokpool/
+WORKDIR /opt/bfs/dokpool/Plone
+
+RUN cd /opt/bfs/dokpool/Plone \
+    && pip install pipenv \
+    && pipenv install "setuptools==${SETUPTOOLS_VERSION}" \
+    && pipenv install --python=$(whereis python2 | awk '{print $2}')
+
+RUN pipenv run buildout -Nvc buildout_docker_so.cfg
+
+RUN find . \( -type f -a -name '*.pyc' -o -name '*.pyo' \) -exec rm -rf '{}' + \
+    && rm -rf .cache
+
+WORKDIR /opt/bfs/dokpool/Plone
+EXPOSE 8082
+CMD [ "/opt/bfs/dokpool/Plone/bin/instance", "fg"]
