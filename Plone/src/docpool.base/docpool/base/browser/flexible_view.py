@@ -82,7 +82,7 @@ class FlexibleView(BrowserView):
                 )
                 return view
 
-    def myViewSource(self, vtype):
+    def render_view_or_template(self, vtype, **options):
         """
         Collects suitable macros/templates from apps, types, docs
         """
@@ -97,11 +97,6 @@ class FlexibleView(BrowserView):
             typename = document.typeName()
         else:
             typename = document.portal_type.lower()
-
-        data = ""
-        if not doctype:
-            # to acqucire the template from
-            doctype = document
 
         # Check view by order of specification
         if app:
@@ -118,7 +113,32 @@ class FlexibleView(BrowserView):
             ]
 
         for name in names:
-            # Acquire a skin template
+            # 1. Check for a BrowserView (usually only a registered template)
+            view = queryMultiAdapter((document, self.request), name=name)
+            if view is not None:
+                logger.info(
+                    "Rendering view %s (%s) for %r (%s)",
+                    name,
+                    view.index.filename,
+                    document,
+                    typename,
+                )
+                if view is not None:
+                    # add additional info uses in the templates
+                    options = extendOptions(self.context, self.request, options)
+                    # self is the adapter for the obj wrapped in it's behavior
+                    # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc object at 0x1213c1520>
+                    # because these are registered as the behavior-factory and inherit from FlexibleView
+                    # This (options/view) is used in the templates to call methods on these adapters
+                    # TODO: Maye we need to refactor all behaviors to make the templates more sane.
+                    options["view"] = self
+                    return view(**options)
+
+            # 2. Acquire a skin template (deprecated)
+            data = ""
+            if not doctype:
+                # to acqucire the template from
+                doctype = document
             if safe_hasattr(doctype, name):
                 template = aq_base(getattr(doctype, name))
                 logger.info(
@@ -133,37 +153,20 @@ class FlexibleView(BrowserView):
                     data = f.read()
                 elif IPageTemplateSubclassing.providedBy(template):
                     data = template.read()
-                return data
-        return data
+                template = OnTheFlyTemplate(id="flexible", text=data)
+                template = template.__of__(self.context)
+                # This "view" will run with security restrictions. The code will not be able
+                # to access protected attributes and functions.
+                # Todo WTF ? We do this to bypass security stuff?
+                # BUT: code included via macros works!
+                options = extendOptions(self.context, self.request, options)
+                # Debug here
+                return template(
+                    view=self, context=self.context, request=self.request, **options
+                )
 
     def myView(self, vtype, **options):
         """
         Renders collected macros into a single template
         """
-        # find view
-        view = self.find_view(vtype)
-        if view is not None:
-            # add additional info uses in the templates
-            options = extendOptions(self.context, self.request, options)
-            # self is the adapter for the obj wrapped in it's behavior
-            # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc object at 0x1213c1520>
-            # because these are registered as the behavior-factory and inherit from FlexibleView
-            # This (options/view) is used in the templates to call methods on these adapters
-            # TODO: Maye we need to refactor all behaviors to make the templates more sane.
-            options["view"] = self
-            return view(**options)
-
-        # Fallback!
-        # Get all macros / skin_templates for the context/app/...
-        src = self.myViewSource(vtype)
-        template = OnTheFlyTemplate(id="flexible", text=src)
-        template = template.__of__(self.context)
-        # This "view" will run with security restrictions. The code will not be able
-        # to access protected attributes and functions.
-        # Todo WTF ? We do this to bypass security stuff?
-        # BUT: code included via macros works!
-        options = extendOptions(self.context, self.request, options)
-        # Debug here
-        return template(
-            view=self, context=self.context, request=self.request, **options
-        )
+        return self.render_view_or_template(vtype, **options)
