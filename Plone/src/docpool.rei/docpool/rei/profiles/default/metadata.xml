@@ -3,6 +3,8 @@
     <version>0.0.1</version>
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
+        <!-- Add back as it runs in Plone 6
         <dependency>profile-collective.eeafaceted.z3ctable:default</dependency>
+        -->
     </dependencies>
 </metadata>
