@@ -59,8 +59,6 @@ before_script:
   - python3 -V
   - whereis python
 
-
-
 build:
   tags:
     - shell
