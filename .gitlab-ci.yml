@@ -59,9 +59,7 @@ before_script:
   - python3 -V
   - whereis python
 
-  # Install pipenv
-  - pip install pipenv
-  - pipenv --version
+
 
 build:
   tags:
@@ -122,6 +120,9 @@ lint_tests:
     - docker
   stage: test
   script:
+    # Install pipenv
+    - pip install pipenv
+    - pipenv --version
     # Buildout configuration
     - cd Plone
     # lint test
@@ -139,6 +140,9 @@ unit_tests:
     - apt update
     # LDAP client dependencies
     - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
+    # Install pipenv
+    - pip install pipenv
+    - pipenv --version
     # Buildout configuration
     - ls -lah .cache
     - ls -lah
