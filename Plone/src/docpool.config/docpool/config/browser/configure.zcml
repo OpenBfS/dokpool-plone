@@ -40,9 +40,37 @@
         />
 
    <browser:page
+        name="elan_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/elan_actions.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
         name="transfers_meta"
         for="docpool.base.interfaces.IDPDocument"
         template="templates/transfers_meta.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="transfers_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/transfers_actions.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="simpleviz_listitem"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/simpleviz_listitem.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="simpleviz_full"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/simpleviz_full.pt"
         permission="zope2.View"
         />
 
