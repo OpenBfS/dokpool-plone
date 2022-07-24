@@ -4,6 +4,10 @@ Changelog
 1.9.2 (unreleased)
 ------------------
 
+Fixed:
+
+- Fix varnish config to avoid mixing up user identities #4539
+  [tlotze]
 
 
 1.9.1 (05.07.22)
