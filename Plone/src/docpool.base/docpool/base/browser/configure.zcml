@@ -134,13 +134,6 @@
       />
 
   <browser:page
-      name="context_helpers"
-      for="*"
-      class=".helpers.ContextHelpers"
-      permission="zope.Public"
-      />
-
-  <browser:page
       name="dokpool_version"
       for="*"
       class=".helpers.DokpoolVersion"

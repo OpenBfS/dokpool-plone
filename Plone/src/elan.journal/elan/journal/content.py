@@ -1,3 +1,4 @@
+from docpool.base.content.archiving import IArchiving
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.interfaces import IJournal
 from plone import api
@@ -67,6 +68,6 @@ class Journal(Container):
         assert obj.portal_type == "DPEvent"
         if getattr(obj.aq_base, "Status", None) not in ["active"]:
             return False
-        if obj.restrictedTraverse("@@context_helpers").is_archive():
+        if IArchiving(obj).is_archive:
             return False
         return api.user.has_permission("elan.journal: Add JournalEntry", obj=self)

@@ -1,3 +1,4 @@
+from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import getDocumentPoolSite
 from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
@@ -70,9 +71,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return (
-            not self.context.restrictedTraverse("@@context_helpers").is_archive()
-        ) and self.collection is not None
+        return self.collection is not None and not IArchiving(self.context).is_archive
 
     def recent_items(self):
         return self._data()

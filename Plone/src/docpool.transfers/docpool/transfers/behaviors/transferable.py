@@ -6,6 +6,7 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from DateTime import DateTime
 from docpool.base.browser.flexible_view import FlexibleView
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste, execute_under_special_role, portalMessage
@@ -173,7 +174,7 @@ class Transferable(FlexibleView):
 
     def transferEvents(self):
         """Query metadata of past transfers ("transfer events") of the context object."""
-        if self.context.restrictedTraverse("@@context_helpers").is_archive():
+        if IArchiving(self.context).is_archive:
             logRaw = self.transferLog
             logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime") or ""
             return eval(logRaw)
@@ -208,10 +209,7 @@ class Transferable(FlexibleView):
         """
         if not is_sender(self.context):
             return False
-        if (
-            self.transferred
-            or self.context.restrictedTraverse("@@context_helpers").is_archive()
-        ):
+        if self.transferred or IArchiving(self.context).is_archive:
             return False
         if api.content.get_state(obj=self.context, default=None) != "published":
             return False
@@ -403,7 +401,7 @@ def automatic_transfer_on_publish(obj, event=None):
 
 
 def automatic_transfer(obj):
-    if obj.restrictedTraverse("@@context_helpers").is_archive():
+    if IArchiving(obj).is_archive:
         # In the process of archiving an event, its associated documents are copied and
         # afterwards applied a workflow transition in order to restore their original
         # workflow state. Objects published for this reason should not be transferred.

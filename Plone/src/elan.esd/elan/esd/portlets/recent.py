@@ -1,5 +1,6 @@
 from AccessControl.SecurityInfo import allow_class, allow_module
 from Acquisition import aq_inner
+from docpool.base.content.archiving import IArchiving
 from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
@@ -53,8 +54,8 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         return (
-            (not self.context.restrictedTraverse("@@context_helpers").is_archive())
-            and self.collection is not None
+            self.collection is not None
+            and not IArchiving(self.context).is_archive
             and self.context.isCurrentSituation()
             and not self.isEditMode()
         )
