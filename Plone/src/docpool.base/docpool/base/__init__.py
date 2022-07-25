@@ -2,7 +2,6 @@ import logging
 
 import pkg_resources
 from AccessControl import allow_module
-from docpool.base import monkey  # noqa: F401
 from plone import api
 from zope.i18nmessageid import MessageFactory
 
@@ -10,6 +9,7 @@ logger = logging.getLogger(__name__)
 DocpoolMessageFactory = MessageFactory("docpool.base")
 
 from docpool.base import appregistration  # noqa: F401
+from docpool.base import monkey  # noqa: F401
 
 allow_module("docpool.base")
 allow_module("docpool.base.config")

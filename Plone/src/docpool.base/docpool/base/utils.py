@@ -381,3 +381,16 @@ def getInheritedValue(behaviour_obj, key):
         return getattr(parentObject, key)
     else:
         return getattr(behaviour_obj.context, key)
+
+
+def possibleDocTypes(self):
+    from docpool.base.vocabularies import DocTypeVocabularyFactory
+
+    return [f"{a[0]}|{a[1]}" for a in DocTypeVocabularyFactory(self, raw=True)]
+
+
+def possibleDocumentPools(self):
+    dps = api.content.find(portal_type="DocumentPool", sort_on="sortable_title")
+    res = [""]
+    res.extend([f"{dp.UID}|{dp.Title}" for dp in dps])
+    return res

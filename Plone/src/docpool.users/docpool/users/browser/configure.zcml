@@ -57,6 +57,34 @@
       layer="docpool.users.interfaces.IDocPoolUsersLayer"
       />
 
+  <browser:view
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    name="possibleDocTypes"
+    class=".group.PossibleDocTypes"
+    permission="zope2.Public"
+    />
+
+  <browser:view
+    for="docpool.base.interfaces.IDocumentPool"
+    name="possibleDocTypes"
+    class=".group.PossibleDocTypes"
+    permission="zope2.Public"
+    />
+
+  <browser:view
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    name="possibleDocumentPools"
+    class=".group.PossibleDocumentPools"
+    permission="zope2.Public"
+    />
+
+  <browser:view
+    for="docpool.base.interfaces.IDocumentPool"
+    name="possibleDocumentPools"
+    class=".group.PossibleDocumentPools"
+    permission="zope2.Public"
+    />
+
   <browser:page
       allowed_interface="Products.PlonePAS.interfaces.browser.IPASSearchView"
       class=".search.PASSearchView"

@@ -3,10 +3,10 @@ import ssl
 import traceback
 
 from Acquisition import aq_get, aq_inner
-from plone import api
+from docpool.base.utils import possibleDocTypes, possibleDocumentPools
 from plone.app.discussion.browser.conversation import ConversationView
-from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.CMFPlone.Portal import PloneSite
+from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
@@ -108,23 +108,7 @@ def setMemberProperties(self, mapping, **kw):
 # MemberData._orig_setMemberProperties = MemberData.setMemberProperties
 # MemberData.setMemberProperties = setMemberProperties
 
-
-def possibleDocTypes(self):
-    from docpool.base.vocabularies import DocTypeVocabularyFactory
-
-    return [f"{a[0]}|{a[1]}" for a in DocTypeVocabularyFactory(self, raw=True)]
-
-
-def possibleDocumentPools(self):
-    dps = api.content.find(portal_type="DocumentPool", sort_on="sortable_title")
-    res = [""]
-    res.extend([f"{dp.UID}|{dp.Title}" for dp in dps])
-    return res
-
-
-# XXX quick & dirty; how to do this better?
-# methods called to provide options
+# XXX PropertyManagers expect methods called to provide options for select variables to
+# be available as an object attribute. Should be modernised some day.
 GroupDataTool.possibleDocTypes = possibleDocTypes
 GroupDataTool.possibleDocumentPools = possibleDocumentPools
-PloneSite.possibleDocTypes = possibleDocTypes
-PloneSite.possibleDocumentPools = possibleDocumentPools
