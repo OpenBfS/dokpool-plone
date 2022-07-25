@@ -81,7 +81,7 @@ deploy_dev:
   script:
     # Remove all unused images
     - docker system prune -a -f
-    - docker pull git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
+    - docker pull git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Stop if it is running
     - docker stop dokpool-review-py3 || true
     - docker rm dokpool-review-py3 || true
@@ -94,9 +94,9 @@ deploy_dev:
     - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8082/Plone/docpool_setup
   environment:
     name: dev
-    url: https://review-one-bfs.starzel.de/
+    url: https://review-two-bfs.starzel.de/
   only:
-    - review
+    - review_py3
 
 undeploy_dev:
   tags:
