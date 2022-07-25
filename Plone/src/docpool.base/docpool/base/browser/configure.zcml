@@ -141,6 +141,13 @@
       />
 
   <browser:page
+      name="dokpool_version"
+      for="*"
+      class=".helpers.DokpoolVersion"
+      permission="zope.Public"
+      />
+
+  <browser:page
       name="dview"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       class=".collection.CollectionDocView"
