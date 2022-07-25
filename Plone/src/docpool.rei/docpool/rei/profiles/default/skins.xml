@@ -1,20 +1,7 @@
 <?xml version="1.0"?>
-
 <object name="portal_skins" meta_type="Plone Skins Tool" allow_any="False" cookie_persistence="False" request_varname="plone_skin">
-
  <object name="docpool_rei_images" meta_type="Filesystem Directory View" directory="docpool.rei:skins/docpool_rei_images"/>
- <object name="docpool_rei_templates" meta_type="Filesystem Directory View" directory="docpool.rei:skins/docpool_rei_templates"/>
- <object name="docpool_rei_styles" meta_type="Filesystem Directory View" directory="docpool.rei:skins/docpool_rei_styles"/>
-
-
-
  <skin-path name="*">
   <layer name="docpool_rei_images" insert-after="custom"/>
-  <layer name="docpool_rei_templates" insert-after="custom"/>
-  <layer name="docpool_rei_styles" insert-after="custom"/>
-
-
  </skin-path>
-
-
 </object>

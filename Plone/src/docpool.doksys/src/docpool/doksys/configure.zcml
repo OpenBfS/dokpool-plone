@@ -50,7 +50,6 @@
             <permission id="docpool.doksys.AccessDoksysDOM" title="Docpool: Access Doksys DOM" />
 
     <include package=".behaviors"/>
-    <include file="skins.zcml"/>
 
     <adapter
             factory=".indexer.network_operator_indexer"
