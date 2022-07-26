@@ -10,26 +10,22 @@
 </div>
     <div class="visualization" tal:define="mi context/getMapImageObj;
                                            li context/getLegendImageObj;
-                                           fi context/getFirstImage;
-                                           myi python:context.getMyImage()" >
-      <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">  
+                                           fi context/getFirstImage" >
+      <span tal:condition="python:mi and li">
         <div class="map">
-           <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi"/>
-        </div> 
+           <tal:insert replace="structure context/getMapImage" />
+        </div>
         <div class="legend">
-           <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
-        </div> 
+           <tal:insert replace="structure context/getLegendImage" />
+        </div>
       </span>
-        <div class="pdf"  tal:condition="python:myi">
+        <div class="pdf">
             <img src="${context/absolute_url}/docimage"/>
         </div>
-        <span tal:condition="python:(context.getMapImageObj() == None) or (context.getLegendImageObj() == None)">
+      <span tal:condition="python:not(mi and li)">
         <div class="whole" tal:condition="python: fi">
            <tal:insert replace="structure fi"/>
         </div>
-          <div class="whole" tal:condition="python: not fi and not myi" i18n:domain="docpool.dashboard">
-                    <span i18n:translate="">No image available</span>
-          </div>
       </span>
     </div>
 </tal:block>
