@@ -15,11 +15,11 @@ variables:
 cache:
   key: one-cache-for-everything
   paths:
+    - Plone/eggs/
+    - Plone/downloads/
+    - Plone/.venv/
     - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
-    - Plone/.venv/
-    - Plone/downloads/
-    - Plone/eggs/
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
@@ -153,6 +153,10 @@ unit_tests:
     # Pin setuptools
     - pipenv install setuptools==62.6.0
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
+    - cd ..
+    - ls -lah
+    - cd Plone
+    - ls -lah
     # Run tests
     - pipenv run ./bin/coverage erase
     - pipenv run ./bin/coverage run ./bin/test || exit 1
