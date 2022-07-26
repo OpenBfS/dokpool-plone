@@ -613,8 +613,11 @@ class DPDocument(Container, Extendable, ContentBase):
             log_exc(e)
             # TODO: Idea: support default image in DocType
             # Show Default image, if no other image is available
-            img = getattr(self, "docdefaultimage.png")
-            return img._data, "docdefaultimage.png"
+            img = self.restrictedTraverse(
+                api.portal.get().absolute_url()
+                + "/++plone++docpool.base/docdefaultimage.png"
+            )
+            return img().read(), "docdefaultimage.png"
 
     @property
     def image(self):

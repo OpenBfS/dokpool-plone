@@ -255,7 +255,7 @@ dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', dom
 </metal:macro>
 
 <metal:macro define-macro="foldercontent">
-    <img src="" tal:attributes="src string:${context/portal_url}/folder.png"/>
+    <img src="" tal:attributes="src string:${context/portal_url}/++plone++docpool.base/folder.png"/>
     <a href=""
        title="Show folder"
        i18n:attributes="title"
