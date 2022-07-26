@@ -18,12 +18,11 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.utils import portalMessage
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
-from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.interface import alsoProvides, implementer
 
 
-class IFolderBase(model.Schema, IContentBase):
+class IFolderBase(IContentBase):
     """ """
 
 

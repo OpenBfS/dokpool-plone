@@ -27,7 +27,6 @@ from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from plone.autoform import directives
 from plone.base.utils import safe_text
-from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.subrequest import subrequest
@@ -72,7 +71,7 @@ class ISRModule(model.Schema, IDPDocument):
 
 
 @implementer(ISRModule)
-class SRModule(Container, DPDocument):
+class SRModule(DPDocument):
     """ """
 
     security = ClassSecurityInfo()

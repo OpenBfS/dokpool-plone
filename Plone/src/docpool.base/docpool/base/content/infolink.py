@@ -14,7 +14,6 @@ explanation on the statements below.
 """
 from docpool.base.content.contentbase import ContentBase
 from plone.app.contenttypes.content import ILink, Link
-from plone.dexterity.content import Item
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer

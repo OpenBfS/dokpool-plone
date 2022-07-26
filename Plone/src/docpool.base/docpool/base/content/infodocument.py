@@ -15,7 +15,6 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.dpdocument import DPDocument, IDPDocument
 from plone.autoform import directives
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
@@ -33,7 +32,7 @@ class IInfoDocument(model.Schema, IDPDocument):
 
 
 @implementer(IInfoDocument)
-class InfoDocument(Container, DPDocument):
+class InfoDocument(DPDocument):
     """ """
 
     security = ClassSecurityInfo()

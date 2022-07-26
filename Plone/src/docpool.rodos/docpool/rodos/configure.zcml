@@ -6,8 +6,6 @@
     <!-- Include the sub-packages that use their own configure.zcml files. -->
 
     <include package=".browser" />
-    <include package=".content" />
-
 
     <include package="plone.app.relationfield" />
     <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />

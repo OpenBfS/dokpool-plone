@@ -15,7 +15,6 @@ explanation on the statements below.
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
 from docpool.base.utils import _cutPaste, execute_under_special_role
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
@@ -26,7 +25,7 @@ class IUserFolder(model.Schema, ISimpleFolder):
 
 
 @implementer(IUserFolder)
-class UserFolder(Container, SimpleFolder):
+class UserFolder(SimpleFolder):
     """ """
 
     security = ClassSecurityInfo()

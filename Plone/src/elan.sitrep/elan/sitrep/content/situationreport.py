@@ -90,7 +90,7 @@ class ISituationReport(IDPDocument):
 
 
 @implementer(ISituationReport)
-class SituationReport(Container, DPDocument):
+class SituationReport(DPDocument):
     """ """
 
     security = ClassSecurityInfo()

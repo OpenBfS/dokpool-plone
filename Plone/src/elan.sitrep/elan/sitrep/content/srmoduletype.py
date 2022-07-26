@@ -51,7 +51,7 @@ class ISRModuleType(model.Schema, IDocType):
 
 
 @implementer(ISRModuleType)
-class SRModuleType(Container, DocType):
+class SRModuleType(DocType):
     """ """
 
     security = ClassSecurityInfo()

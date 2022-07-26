@@ -29,7 +29,7 @@ class ISRFolder(model.Schema, ISimpleFolder):
 
 
 @implementer(ISRFolder)
-class SRFolder(Container, SimpleFolder):
+class SRFolder(SimpleFolder):
     """ """
 
     security = ClassSecurityInfo()

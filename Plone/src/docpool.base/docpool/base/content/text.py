@@ -18,11 +18,10 @@ from docpool.base.content.contentbase import ContentBase, IContentBase
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.textfield import RichText
 from plone.dexterity.content import Item
-from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IText(model.Schema, IContentBase):
+class IText(IContentBase):
     """ """
 
     searchable("text")

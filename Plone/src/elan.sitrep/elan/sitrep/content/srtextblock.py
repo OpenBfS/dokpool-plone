@@ -21,7 +21,6 @@ from plone.app.textfield import RichText
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
-from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from zope.component import adapter
@@ -29,7 +28,7 @@ from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
-class ISRTextBlock(model.Schema, IContentBase):
+class ISRTextBlock(IContentBase):
     """ """
 
     searchable("text")

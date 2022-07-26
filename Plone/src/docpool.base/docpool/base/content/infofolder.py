@@ -14,7 +14,6 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.folderbase import FolderBase, IFolderBase
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr, log, log_exc
@@ -27,7 +26,7 @@ class IInfoFolder(model.Schema, IFolderBase):
 
 
 @implementer(IInfoFolder)
-class InfoFolder(Container, FolderBase):
+class InfoFolder(FolderBase):
     """ """
 
     security = ClassSecurityInfo()

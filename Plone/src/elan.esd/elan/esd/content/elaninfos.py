@@ -16,7 +16,6 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.infofolder import IInfoFolder, InfoFolder
 from docpool.base.marker import IImportingMarker
 from docpool.elan.config import ELAN_APP
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.component import adapter
 from zope.globalrequest import getRequest
@@ -29,7 +28,7 @@ class IELANInfos(model.Schema, IInfoFolder):
 
 
 @implementer(IELANInfos)
-class ELANInfos(Container, InfoFolder):
+class ELANInfos(InfoFolder):
     """ """
 
     security = ClassSecurityInfo()

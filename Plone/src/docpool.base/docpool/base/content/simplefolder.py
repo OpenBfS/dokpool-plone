@@ -18,7 +18,6 @@ from docpool.base.content.folderbase import FolderBase, IFolderBase
 from docpool.base.utils import getAllowedDocumentTypes, portalMessage, queryForObjects
 from plone import api
 from plone.base.utils import safe_text
-from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
@@ -44,7 +43,7 @@ class ISimpleFolder(model.Schema, IFolderBase):
 
 
 @implementer(ISimpleFolder)
-class SimpleFolder(Container, FolderBase):
+class SimpleFolder(FolderBase):
     """ """
 
     security = ClassSecurityInfo()

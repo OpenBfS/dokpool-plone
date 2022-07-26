@@ -14,7 +14,6 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from elan.esd.content.elandoccollection import ELANDocCollection, IELANDocCollection
-from plone.dexterity.content import Item
 from plone.supermodel import model
 from zope.interface import implementer
 
@@ -24,7 +23,7 @@ class IDashboardCollection(model.Schema, IELANDocCollection):
 
 
 @implementer(IDashboardCollection)
-class DashboardCollection(Item, ELANDocCollection):
+class DashboardCollection(ELANDocCollection):
     """ """
 
     security = ClassSecurityInfo()

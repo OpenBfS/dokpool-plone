@@ -16,7 +16,6 @@ from AccessControl import ClassSecurityInfo
 from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
 from docpool.base.utils import RARELY_USED_TYPES
 from plone.app.content.browser import constraintypes
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
@@ -28,7 +27,7 @@ class IGroupFolder(model.Schema, ISimpleFolder):
 
 
 @implementer(IGroupFolder)
-class GroupFolder(Container, SimpleFolder):
+class GroupFolder(SimpleFolder):
     """ """
 
     security = ClassSecurityInfo()

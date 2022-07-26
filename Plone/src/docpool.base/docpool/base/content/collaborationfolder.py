@@ -18,7 +18,6 @@ from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from plone.api import user
 from plone.base.utils import safe_text
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log, log_exc
@@ -44,7 +43,7 @@ class ICollaborationFolder(model.Schema, ISimpleFolder):
 
 
 @implementer(ICollaborationFolder)
-class CollaborationFolder(Container, SimpleFolder):
+class CollaborationFolder(SimpleFolder):
     """ """
 
     security = ClassSecurityInfo()

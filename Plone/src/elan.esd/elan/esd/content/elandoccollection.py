@@ -54,7 +54,7 @@ class IELANDocCollection(model.Schema, ICollection):
 
 
 @implementer(IELANDocCollection)
-class ELANDocCollection(Item, Collection):
+class ELANDocCollection(Collection):
     """ """
 
     security = ClassSecurityInfo()
