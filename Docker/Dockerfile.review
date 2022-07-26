@@ -3,7 +3,7 @@ FROM base as builder
 
 ENV PIP_PARAMS=""
 ENV PIP_VERSION=22.1.2
-ENV SETUPTOOLS_VERSION=62.1.0
+ENV SETUPTOOLS_VERSION=62.6.0
 # set timezone ME(S)Z
 ENV TZ=Europe/Berlin
 
@@ -18,7 +18,7 @@ FROM base
 
 ENV PIP_PARAMS=""
 ENV PIP_VERSION=22.1.2
-ENV SETUPTOOLS_VERSION=62.1.0
+ENV SETUPTOOLS_VERSION=62.6.0
 
 LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
       org.label-schema.name="plone-bfs" \
