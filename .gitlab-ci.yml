@@ -13,7 +13,7 @@ variables:
 # If you want to also cache the installed packages, you have to install
 # them in a virtualenv and cache it as well.
 cache:
-  key: "${CI_COMMIT_REF_SLUG}"
+  key: one-cache-for-everything
   paths:
     - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
@@ -141,7 +141,9 @@ unit_tests:
   # success_with_warnings: True
   script:
     # Buildout configuration
+    - ls -lah
     - cd Plone
+    - ls -lah eggs/
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
