@@ -1,6 +1,5 @@
 <tal:block i18n:domain="elan.sitrep"
            define="view nocall:options/view;
-                   context nocall:options/context;
                    here nocall:context">
 <tal:def define="edit_allowed context/canBeEdited;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
@@ -16,7 +15,7 @@
 <!--          <h3 i18n:translate="">Summary</h3> -->
           <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
           </tal:if>
-          
+
           <tal:loop repeat="m context/myModules">
 <!--           <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>  -->
           <tal:if condition="htmltext" define="htmltext m/text/output|nothing">
@@ -26,6 +25,6 @@
         </div>
         <div id="footer_content">
         <!-- Place content for the document footer here -->
-        </div>    
+        </div>
  </tal:def>
 </tal:block>

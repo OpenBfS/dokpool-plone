@@ -1,8 +1,0 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:cmf="http://namespaces.zope.org/cmf" i18n_domain="elan.sitrep">
-
-   <!-- File System Directory Views registration -->
-    <cmf:registerDirectory name="elan_sitrep_images"/>
-    <cmf:registerDirectory name="elan_sitrep_templates"/>
-    <cmf:registerDirectory name="elan_sitrep_styles"/>
-
-</configure>

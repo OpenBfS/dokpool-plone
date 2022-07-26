@@ -29,9 +29,6 @@
         />
 
 
-   <include file="skins.zcml" />
-
-
    <permission id="elan.sitrep.AddSRConfig" title="Docpool: Add SRConfig" />
 
 
