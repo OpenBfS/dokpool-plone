@@ -141,9 +141,10 @@ unit_tests:
   # success_with_warnings: True
   script:
     # Buildout configuration
+    - ls -lah .cache
     - ls -lah
     - cd Plone
-    - ls -lah eggs/
+    - ls -lah
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
