@@ -162,6 +162,12 @@ unit_tests:
     - pipenv run ./bin/coverage combine
     - pipenv run ./bin/coverage html
     - pipenv run ./bin/coverage report
+  cache:
+    key: one-cache-for-everything
+    paths:
+      - Plone/.venv/
+      - Plone/downloads/
+      - Plone/eggs/
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:
