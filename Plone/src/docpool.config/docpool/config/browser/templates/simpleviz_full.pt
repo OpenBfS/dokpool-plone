@@ -7,9 +7,7 @@
     <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
 
         <div class="visualization" tal:define="mi context/getMapImageObj;
-                                           li context/getLegendImageObj;
-                                           fi context/getFirstImage;
-                                           myi python:context.getMyImage()" >
+                                           li context/getLegendImageObj" >
         <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
            <div class="map">
               <tal:insert replace="structure context/getMapImage" tal:condition="nocall:mi"/>

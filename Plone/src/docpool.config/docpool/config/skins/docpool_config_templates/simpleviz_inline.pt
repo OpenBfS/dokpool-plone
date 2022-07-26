@@ -7,9 +7,7 @@
     <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
 
       <div class="visualization" tal:define="mi context/getMapImageObj;
-                                           li context/getLegendImageObj;
-                                           fi context/getFirstImage;
-                                           myi python:context.getMyImage()" >
+                                           li context/getLegendImageObj" >
         <span tal:condition="python:len(context.objectValues()) != 0">
         <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
         <div class="map">
@@ -23,15 +21,15 @@
         </span>
         <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None)) and not context.getFiles()">
         <div class="whole">
-           <div metal:use-macro="here/@@dp.macros/macros/doc_images"/> 
+           <div metal:use-macro="here/@@dp.macros/macros/doc_images"/>
         </div>
         </span>
-        <span tal:condition="python:context.getFiles()">  
+        <span tal:condition="python:context.getFiles()">
         <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf">
-            <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))"> 
+            <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
                <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
             </span>
-            <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))"> 
+            <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
               <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" ><span tal:content="python:pdf.Title()" /></a>
             </span>
         </div>

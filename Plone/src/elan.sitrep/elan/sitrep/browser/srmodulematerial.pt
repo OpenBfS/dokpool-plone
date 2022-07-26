@@ -91,8 +91,7 @@
                         </thead>
                         <tbody>
                         <tal:loop repeat="tb textblocks">
-                            <tr tal:define="item_modified tb/getMdate;
-                                    item_created tb/CreationDate;">
+                            <tr>
                             <td class="actions">
                                     <a i18n:translate="" onclick=""
                                                          class="submit-widget button-field context"
@@ -148,10 +147,7 @@
                     </thead>
                     <tbody>
                     <tal:loop repeat="vis visualisations">
-                        <tr tal:define="vis vis/getObject;
-                                item_modified vis/getMdate;
-                                item_created vis/CreationDate;
-                                myi python:vis.getMyImage()">
+                        <tr>
                         <td class="actions">
                                 <a i18n:translate="" onclick=""
                                                      class="submit-widget button-field context"
