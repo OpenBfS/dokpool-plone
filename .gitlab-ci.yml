@@ -86,7 +86,7 @@ deploy_dev:
     - docker stop dokpool-review-py3 || true
     - docker rm dokpool-review-py3 || true
     # Start instance and build demo data
-    - docker run --detach --publish 8082:8082 --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool:review_py3
+    - docker run --detach --publish 8082:8082 --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Create the vanilla plone site
     - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8082/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
