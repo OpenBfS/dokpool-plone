@@ -90,7 +90,7 @@ deploy_dev:
     # Create the vanilla plone site
     - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8082/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
-    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True' --delete-after http://127.0.0.1:8082/Plone/login
+    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True&buttons.login=Anmelden' --delete-after http://127.0.0.1:8082/Plone/login
     - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8082/Plone/docpool_setup
   environment:
     name: dev
