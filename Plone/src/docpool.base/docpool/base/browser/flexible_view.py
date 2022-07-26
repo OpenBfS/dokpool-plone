@@ -123,16 +123,15 @@ class FlexibleView(BrowserView):
                     document,
                     typename,
                 )
-                if view is not None:
-                    # add additional info uses in the templates
-                    options = extendOptions(self.context, self.request, options)
-                    # self is the adapter for the obj wrapped in it's behavior
-                    # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc object at 0x1213c1520>
-                    # because these are registered as the behavior-factory and inherit from FlexibleView
-                    # This (options/view) is used in the templates to call methods on these adapters
-                    # TODO: Maye we need to refactor all behaviors to make the templates more sane.
-                    options["view"] = self
-                    return view(**options)
+                # add additional info uses in the templates
+                options = extendOptions(self.context, self.request, options)
+                # self is the adapter for the obj wrapped in it's behavior
+                # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc object at 0x1213c1520>
+                # because these are registered as the behavior-factory and inherit from FlexibleView
+                # This (options/view) is used in the templates to call methods on these adapters
+                # TODO: Maye we need to refactor all behaviors to make the templates more sane.
+                options["view"] = self
+                return view(**options)
 
             # 2. Acquire a skin template (deprecated)
             data = ""
