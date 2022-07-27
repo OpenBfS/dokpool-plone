@@ -34,7 +34,6 @@ from plone.app.textfield import RichText, RichTextValue
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
-from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log, log_exc
 from zExceptions import BadRequest
@@ -58,7 +57,7 @@ def default_text():
         return RichTextValue("REI-Bericht", "text/html", "text/x-html-safe")
 
 
-class IDPDocument(model.Schema, IContentBase):
+class IDPDocument(IContentBase):
     """ """
 
     docType = schema.Choice(

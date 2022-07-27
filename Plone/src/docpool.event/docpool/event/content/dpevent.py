@@ -33,7 +33,6 @@ from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
-from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log, log_exc, parent
@@ -80,7 +79,7 @@ def is_point_or_polygon(value):
     return True
 
 
-class IDPEvent(model.Schema, IContentBase):
+class IDPEvent(IContentBase):
     """ """
 
     directives.write_permission(Substitute="docpool.event.ManageDPEvents")

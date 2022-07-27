@@ -97,7 +97,7 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 
 
 @implementer(IDPTransferFolder)
-class DPTransferFolder(Container, FolderBase):
+class DPTransferFolder(FolderBase):
     """ """
 
     security = ClassSecurityInfo()
