@@ -1,7 +1,6 @@
 <table>
 <tr i18n:domain="docpool.base"
            tal:define="view nocall:options/view;
-                   context nocall:options/context;
                    here nocall:context"
             class="wrapper">
     <tal:def define="dpbrain nocall:options/dpbrain;

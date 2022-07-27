@@ -1,7 +1,5 @@
 <tal:block i18n:domain="docpool.rei"
            define="view nocall:options/view;
-                   context nocall:options/context;
-                   here nocall:context;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <tal:def define="reiobj python:view">
         <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->

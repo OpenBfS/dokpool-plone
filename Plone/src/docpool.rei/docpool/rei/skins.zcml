@@ -3,9 +3,6 @@
     xmlns:cmf="http://namespaces.zope.org/cmf"
     i18n_domain="docpool.rei">
 
-   <!-- File System Directory Views registration -->
     <cmf:registerDirectory name="docpool_rei_images"/>
-    <cmf:registerDirectory name="docpool_rei_templates"/>
-    <cmf:registerDirectory name="docpool_rei_styles"/>
 
 </configure>

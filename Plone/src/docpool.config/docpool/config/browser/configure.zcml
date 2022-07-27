@@ -11,6 +11,67 @@
       layer="docpool.config.interfaces.IDocpoolConfigLayer"
       />
 
+   <browser:page
+        name="doc_listitem"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doc_listitem.pt"
+        permission="zope2.View"
+        />
 
+   <browser:page
+        name="doc_full"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doc_full.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="doc_inline"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doc_inline.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="elan_meta"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/elan_meta.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="elan_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/elan_actions.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="transfers_meta"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/transfers_meta.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="transfers_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/transfers_actions.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="simpleviz_listitem"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/simpleviz_listitem.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="simpleviz_full"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/simpleviz_full.pt"
+        permission="zope2.View"
+        />
 
 </configure>

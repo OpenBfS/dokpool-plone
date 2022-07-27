@@ -24,5 +24,18 @@
                   template="doksys_macros.pt"
     />
 
+   <browser:page
+        name="doksys_meta"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doksys_meta.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="doksys_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doksys_actions.pt"
+        permission="zope2.View"
+        />
 
 </configure>
