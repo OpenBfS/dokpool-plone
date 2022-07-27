@@ -16,7 +16,6 @@ from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import IDocumentPool
-from docpool.base.utils import portalMessage
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
@@ -31,6 +30,7 @@ from docpool.transfers.config import TRANSFERS_APP
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.adapters import JournalEntry
 from logging import getLogger
+from plone import api
 from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.utils import safe_unicode
@@ -57,7 +57,7 @@ from zope.interface import implementer
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-import plone.api as api
+
 import datetime
 import json
 import transaction
@@ -254,12 +254,6 @@ class DPEvent(Container, ContentBase):
         We reuse the dp_type index for the scenario status.
         """
         return self.Status
-
-    def purgeConfirmMsg(self):
-        """
-        Do you really want to remove all documents from this scenario?
-        """
-        return utranslate("docpool.event", "purge_confirm_msg", context=self)
 
     def archiveConfirmMsg(self):
         """
@@ -547,67 +541,6 @@ class DPEvent(Container, ContentBase):
         arc.esd.setDefaultPage("overview")
 
         return arc
-
-    security.declareProtected("Modify portal content", "purge")
-    def purge(self, REQUEST=None):
-        """
-        Deletes the content for this scenario but leaves the event unchanged.
-        Documents are deleted if they are not part of any other scenario.
-        If they are part of another scenario, only the tag for the current scenario is removed.
-        """
-        alsoProvides(REQUEST or self.REQUEST, IDisableCSRFProtection)
-        # TODO im EVENT auf Elandoc DB-Eintraege loeschen.
-
-        foldernames = ["Members", "Groups", "Transfers"]
-        for foldername in foldernames:
-            folder = self.content[foldername]
-            path = "/".join(folder.getPhysicalPath())
-            docs = self._getDocumentsForScenario(path=path)
-            total = len(docs)
-            logger.info(u"Purging %s documents in %s", total, foldername)
-            for index, doc in enumerate(docs, start=1):
-                self._purgeDocument(doc)
-                if not index % 20:
-                    logger.info(u"Purged %s of %s documents...", index, total)
-
-        if REQUEST:
-            portalMessage(
-                self, _("There are no more documents for this scenario."), "info"
-            )
-            return self.restrictedTraverse("view")()
-
-    def _purgeDocument(self, source_brain):
-        """
-        Delete utility
-        """
-        source_obj = source_brain.getObject()
-        # determine parent folder for copy
-        scns = None
-        try:
-            scns = IELANDocument(source_obj).scenarios
-        except BaseException:
-            # Object could have lost its ELAN behavior but that means we can
-            # potentially delete it
-            scns = ['dummy']
-        if len(scns) == 1:  # only the one scenario --> potential delete
-            # Check for other applications than ELAN
-            apps = ILocalBehaviorSupport(source_obj).local_behaviors
-            if apps and len(
-                    apps) > 1:  # There are others --> only remove ELAN behavior
-                try:
-                    apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(
-                        source_obj).local_behaviors = list(set(apps))
-                except Exception as e:
-                    log_exc(e)
-            else:  # we delete
-                p = parent(source_obj)
-                p.manage_delObjects([source_obj.getId()])
-        else:  # Only remove the scenario
-            scns = list(scns)
-            scns.remove(self.getId())
-            source_obj.scenarios = scns
-            source_obj.reindexObject()
 
     def selectGlobally(self):
         global_scenarios = get_global_scenario_selection()

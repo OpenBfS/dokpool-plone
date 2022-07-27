@@ -37,17 +37,6 @@
    <property name="permissions" />
    <property name="visible">True</property>
   </object>
-  <object name="purge" meta_type="CMF Action" i18n:domain="docpool.event">
-   <property name="title" i18n:translate="">Purge</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:javascript: if (confirm('${object/purgeConfirmMsg}')) window.location.href='${object/absolute_url}/purge'</property>
-   <property name="link_target"></property>
-   <property name="icon_expr"></property>
-   <property
-      name="available_expr">python:object.getPortalTypeName() == 'DPEvent' and object.Status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
-   <property name="permissions" />
-   <property name="visible">True</property>
-  </object>
   <object name="archive" meta_type="CMF Action" i18n:domain="docpool.event">
    <property name="title" i18n:translate="">Archiving</property>
    <property name="description" i18n:translate=""></property>
