@@ -22,10 +22,14 @@ from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ploneId
+from docpool.elan.behaviors.elandocument import IELANDocument
+from docpool.elan.config import ELAN_APP
 from docpool.event import DocpoolMessageFactory as _
 from docpool.event.utils import get_global_scenario_selection
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
+from elan.journal.adapters import IJournalEntryContainer
+from elan.journal.adapters import JournalEntry
 from logging import getLogger
 from plone.autoform import directives
 from plone.dexterity.content import Container
@@ -263,6 +267,12 @@ class DPEvent(Container, ContentBase):
         """
         return utranslate("docpool.event", "archive_confirm_msg", context=self)
 
+    def snapshot_confirm_msg(self):
+        """
+        Do you really want to remove all documents from this scenario?
+        """
+        return utranslate("docpool.event", "purge_confirm_msg", context=self)
+
     security.declareProtected("Modify portal content", "archiveAndClose")
     def archiveAndClose(self, REQUEST):
         """
@@ -312,6 +322,64 @@ class DPEvent(Container, ContentBase):
         api.portal.show_message(_("Scenario archived"), REQUEST)
         return REQUEST.response.redirect(archived_event.absolute_url())
 
+    security.declareProtected("Modify portal content", "snapshot")
+    def snapshot(self, REQUEST=None):
+        """
+        Similar to archiveAndClose but leave the old event as is.
+        Previously this was two seperate actions snapshot & purge. But if content would be
+        added between snapshop and purge that would be lost forever.
+
+        * Create Archive for event but leave Event unchanged
+        * Copy Journals and Event to Archive
+        * Purge Journals
+        * Purge Event (move content to archive unless used by other apps or events)
+        """
+        alsoProvides(REQUEST, IDisableCSRFProtection)
+
+        # 1. Create Archive
+        archive = self._createArchive()
+        archive_contentarea = archive.content
+        logger.info(u"Create snapshot of DPEvent %s in %s", self.title, archive.absolute_url())
+
+        # 2. Move or Copy related DPDocuments (previously done by purge)
+        contentarea = self.content
+        contentarea_path = "/".join(contentarea.getPhysicalPath())
+        brains = self._getDocumentsForScenario(path=contentarea_path)
+        total = len(brains)
+        logger.info(u"Archiving %s items associated with DPEvent %s. This may take a while...", total, self.absolute_url())
+        for index, brain in enumerate(brains, start=1):
+            obj = brain.getObject()
+            target_folder = self._ensureTargetFolder(obj, archive_contentarea)
+            if self.can_move(obj):
+                self._move_to_archive(target_folder, obj)
+            else:
+                self._copy_to_archive(target_folder, obj)
+
+            if not index % 10:
+                logger.info(u"Archived %s of %s documents...", index, total)
+                transaction.savepoint(optimistic=True)
+
+        # 3. Copy DPEvent and Journals into snapshot
+        copied_event = api.content.copy(self, target=archive)
+        copied_event.Status = "closed"
+        copied_event.reindexObject()
+
+        # 4. Empty current Journals
+        for journal in self.contentValues({'portal_type': 'Journal'}):
+            adapter = IJournalEntryContainer(journal)
+            for id, update in enumerate(adapter):
+                adapter.delete(id)
+            # Create message in old Journal to point to the new snapshot
+            msg = u"Created snapshot of this event at {}".format(copied_event.absolute_url())
+            adapter.add(JournalEntry(title="", text=msg))
+
+        # local roles were set when adding items to the archive but reindexing was deferred.
+        archive_contentarea.reindexObjectSecurity()
+
+        logger.info(u"Finished snapshot of DPEvent %s", self.title)
+        api.portal.show_message(_("Created snapshot of event."), REQUEST)
+        return REQUEST.response.redirect(copied_event.absolute_url())
+
     def _ensureTargetFolder(self, obj, target):
         """
         Make sure that a personal or group folder with proper permissions
@@ -346,7 +414,7 @@ class DPEvent(Container, ContentBase):
         if foldername in target:
             if not isTransfer:
                 mtool = api.portal.get_tool("portal_membership")
-                mtool.setLocalRoles(new, [foldername], "Owner", reindex=False)
+                mtool.setLocalRoles(target[foldername], [foldername], "Owner", reindex=False)
             return target[foldername]
 
         # 4. if it doesn't exist: create it
@@ -365,8 +433,6 @@ class DPEvent(Container, ContentBase):
         return new
 
     def can_move(self, obj):
-        from docpool.elan.config import ELAN_APP
-        from docpool.elan.behaviors.elandocument import IELANDocument
         try:
             scns = IELANDocument(obj).scenarios
         except BaseException:
@@ -375,7 +441,7 @@ class DPEvent(Container, ContentBase):
             scns = ['dummy']
         apps = ILocalBehaviorSupport(obj).local_behaviors
         if len(scns) == 1 and len(apps) == 1:
-                return True
+            return True
         return False
 
     def _move_to_archive(self, target_folder_obj, obj):
@@ -386,11 +452,15 @@ class DPEvent(Container, ContentBase):
             target_folder_obj.absolute_url())
 
         mdate = obj.modified()
+        transfer_events = obj.doc_extension(TRANSFERS_APP).transferEvents()
         moved_obj = api.content.move(obj, target_folder_obj)
 
         # Now do some repairs
         moved_obj.scenarios = []
         moved_obj.setModificationDate(mdate)
+        # transferLog for archived items needs to be a string
+        moved_obj.transferLog = str(transfer_events)
+        moved_obj.reindexObject()
 
     def _copy_to_archive(self, target_folder_obj, obj):
         logger.info(
@@ -413,20 +483,19 @@ class DPEvent(Container, ContentBase):
             wftool.doActionFor(copied_obj, "submit")
 
         copied_obj.setModificationDate(mdate)
+        # transferLog for archived items needs to be a string
         events = obj.doc_extension(TRANSFERS_APP).transferEvents()
         copied_obj.transferLog = str(events)
         copied_obj.reindexObject()
 
         # Cleanup original DPDocument
         # 1. Remove current scenario
-        from docpool.elan.behaviors.elandocument import IELANDocument
         scns = IELANDocument(obj).scenarios
         scns.remove(self.id)
         obj.scenarios = scns
 
         # 2. Remove elan behavior if there are no other events but other behaviors
         if not scns:
-            from docpool.elan.config import ELAN_APP
             apps = ILocalBehaviorSupport(obj).local_behaviors
             if len(apps) > 1:
                 # There are others --> only remove ELAN behavior
@@ -511,9 +580,6 @@ class DPEvent(Container, ContentBase):
         """
         Delete utility
         """
-        from docpool.elan.config import ELAN_APP
-        from docpool.elan.behaviors.elandocument import IELANDocument
-
         source_obj = source_brain.getObject()
         # determine parent folder for copy
         scns = None
@@ -628,7 +694,8 @@ def eventAdded(obj, event=None):
     For new scenarios, add them to each user's personal selection and
     create the journals.
     """
-    # print "scenarioAdded"
+    if obj.isArchive():
+        return
     obj.selectGlobally()
     obj.createDefaultJournals()
 

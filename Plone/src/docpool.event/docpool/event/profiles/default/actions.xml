@@ -29,7 +29,7 @@
   <object name="snapshot" meta_type="CMF Action" i18n:domain="docpool.event">
    <property name="title" i18n:translate="">Snapshot</property>
    <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:${object/absolute_url}/snapshot</property>
+   <property name="url_expr">string:javascript: if (confirm('${object/snapshot_confirm_msg}')) window.location.href='${object/absolute_url}/snapshot'</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property
