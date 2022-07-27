@@ -13,7 +13,6 @@ from logging import getLogger
 
 import plone.api as api
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base
 from DateTime import DateTime
 from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.content.documentpool import IDocumentPool
@@ -218,40 +217,6 @@ class DPEvent(Container, ContentBase):
     """ """
 
     security = ClassSecurityInfo()
-
-    def print_dict(self):
-        """
-
-        :return:
-        """
-        return self.__dict__
-
-    def migrate(self):
-        request = self.REQUEST
-        alsoProvides(request, IDisableCSRFProtection)
-        f = parent(self)
-        if hasattr(self, "_setPortalTypeName"):
-            self._setPortalTypeName("DPEvent")
-        myid = self.getId()
-        del f[myid]
-        self.__class__ = DPEvent
-        f[myid] = self
-        logger.info(self.__class__)
-        logger.info(self.getPortalTypeName())
-
-    def migrateProperties(self):
-        request = self.REQUEST
-        alsoProvides(request, IDisableCSRFProtection)
-
-        self = aq_base(self)
-        if hasattr(self, "status"):
-            self.Status = self.status
-        if hasattr(self, "exercise"):
-            self.Exercise = self.exercise
-        if hasattr(self, "timeOfEvent"):
-            self.TimeOfEvent = self.timeOfEvent
-        if hasattr(self, "substitute"):
-            self.Substitute = self.substitute
 
     def phaseInfo(self):
         """
