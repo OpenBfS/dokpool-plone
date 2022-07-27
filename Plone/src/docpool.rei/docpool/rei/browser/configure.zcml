@@ -78,13 +78,6 @@
 
    <browser:page
         name="rei_meta"
-        for="docpool.rei.behaviors.reidoc.IREIDoc"
-        template="templates/rei_meta.pt"
-        permission="zope2.View"
-        />
-
-   <browser:page
-        name="rei_meta"
         for="docpool.base.interfaces.IDPDocument"
         template="templates/rei_meta.pt"
         permission="zope2.View"
