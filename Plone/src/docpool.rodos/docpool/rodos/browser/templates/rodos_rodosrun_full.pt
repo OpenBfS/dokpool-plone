@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.rodos"
            define="view nocall:options/view;
-                   context nocall:options/context;
                    here nocall:context">
 <tal:def define="edit_allowed context/canBeEdited;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
@@ -11,11 +10,11 @@
     <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
     Alle pdf-Ergebnisse als zip-Datei (zum Download):  <span tal:condition="python:'rodos_zip' in [o.docType for o in here.objectValues()]">
 
-                 <a href="#" target="blank" tal:attributes="href python: [o.objectValues()[0].absolute_url() for o in here.objectValues() if o.docType=='rodos_zip'][0]">Alle pdf-Ergebnisse</a> 
+                 <a href="#" target="blank" tal:attributes="href python: [o.objectValues()[0].absolute_url() for o in here.objectValues() if o.docType=='rodos_zip'][0]">Alle pdf-Ergebnisse</a>
 (<span tal:content=" python: [f.getObjSize() for f in [o.objectValues()[0] for o in here.objectValues() if o.docType=='rodos_zip']][0]" />)
              </span>
   <br/><br/>
-    <table class="elanlisting">        
+    <table class="elanlisting">
        <tr>
          <th>Maßnahmen</th>
          <th>Ergebnis</th>
@@ -168,9 +167,9 @@
          <td>Schilddrüsen-Dosis für Kleinkinder durch im Zeitraum von 7 Tagen inhaliertes Radioiod<br>
 
              <span tal:condition="python:'rodos_iodinetablets_children_zip' in [o.docType for o in here.objectValues()]">
-         
+
                  <a href="#" target="blank" tal:attributes="href python: [o.objectValues()[0].absolute_url() for o in here.objectValues() if o.docType=='rodos_iodinetablets_children_zip'][0]">Download Shapefile</a>
-             
+
              </span>
 
        </td>
@@ -353,7 +352,7 @@
          <td>Vermarktungssperre</td>
 
          <td>Kontamination von Kuhmilch durch Iod<br>
-      
+
              <span tal:condition="python:'rodos_ban_on_selling_cowmilk_i_zip' in [o.docType for o in here.objectValues()]">
 
                  <a href="#" target="blank" tal:attributes="href python: [o.objectValues()[0].absolute_url() for o in here.objectValues() if o.docType=='rodos_ban_on_selling_cowmilk_i_zip'][0]">Download Shapefile</a>
@@ -736,6 +735,3 @@ Tel. 0160-7418621<br/>
  </tal:def>
 
 </tal:block>
-
-
-

@@ -1,7 +1,0 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:cmf="http://namespaces.zope.org/cmf" i18n_domain="docpool.rodos">
-
-   <!-- File System Directory Views registration -->
-    <cmf:registerDirectory name="docpool_rodos_templates"/>
-    <cmf:registerDirectory name="docpool_rodos_styles"/>
-
-</configure>
