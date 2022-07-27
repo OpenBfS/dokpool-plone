@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from docpool.base.content.archiving import IArchiving
 from docpool.menu.utils import adaptQuery, getFoldersForCurrentUser
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
@@ -48,16 +49,15 @@ class SitemapQueryBuilder(NavtreeQueryBuilder):
         portal_properties = getToolByName(context, "portal_properties")
         navtree_properties = getattr(portal_properties, "navtree_properties")
         sitemapDepth = navtree_properties.getProperty("sitemapDepth", 4)
-        if (
-            context.restrictedTraverse("@@context_helpers").is_archive()
-            and not context.getId() == "archive"
-        ):
+        is_archive = IArchiving(context).is_archive and context.getId() != "archive"
+        if is_archive:
             sitemapDepth += 3
         self.query["path"] = {
-            "query": context.restrictedTraverse("@@context_helpers").is_archive()
-            and not context.getId() == "archive"
-            and "/".join(context.myELANArchive().getPhysicalPath())
-            or portal_url.getPortalPath(),
+            "query": (
+                "/".join(context.myELANArchive().getPhysicalPath())
+                if is_archive
+                else portal_url.getPortalPath()
+            ),
             "depth": sitemapDepth,
         }
         adaptQuery(self.query, context)

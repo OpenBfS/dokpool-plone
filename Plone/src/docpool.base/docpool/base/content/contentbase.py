@@ -17,6 +17,7 @@ import datetime
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base, aq_get, aq_inner, aq_parent
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.content.archiving import IArchiving
 from docpool.base.marker import IImportingMarker
 from plone import api
 from plone.autoform import directives
@@ -187,7 +188,7 @@ def updateCreated(obj, event=None):
         return
     if request.get("creating", False):
         # print "#" * 20, "creating"
-        if not obj.restrictedTraverse("@@context_helpers").is_archive():
+        if not IArchiving(obj).is_archive:
             obj.update_created()
         obj.createActions()
 
@@ -197,7 +198,7 @@ def updateCreated(obj, event=None):
 # Edit was finished and contents are saved. This event is fired
 #    even when no changes happen (and no modified event is fired.)
 def updateModified(obj, event=None):
-    if not obj.restrictedTraverse("@@context_helpers").is_archive():
+    if not IArchiving(obj).is_archive:
         obj.update_modified()
 
 
@@ -219,5 +220,5 @@ def markCreateEvent(obj, event):
 def updateWorkflow(obj, event=None):
     if IImportingMarker.providedBy(getRequest()):
         return
-    if not obj.restrictedTraverse("@@context_helpers").is_archive():
+    if not IArchiving(obj).is_archive:
         obj.update_workflow()

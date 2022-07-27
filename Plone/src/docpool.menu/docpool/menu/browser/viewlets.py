@@ -1,5 +1,6 @@
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
+from docpool.base.content.archiving import IArchiving
 from docpool.menu.utils import (
     getApplicationDocPoolsForCurrentUser,
     getFoldersForCurrentUser,
@@ -21,7 +22,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
 
         self.navtree_add_apps_menu(tree)
 
-        if not self.context.restrictedTraverse("@@context_helpers").is_archive():
+        if not IArchiving(self.context).is_archive:
             self.navtree_add_contentarea(tree)
 
         # for tab in tree[self.navtree_path]:

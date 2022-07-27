@@ -1,4 +1,5 @@
 from AccessControl.SecurityInfo import allow_module
+from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -23,7 +24,7 @@ class TickerViewlet(ELANViewlet):
     @property
     def available(self):
         return (
-            (not self.context.restrictedTraverse("@@context_helpers").is_archive())
+            not IArchiving(self.context).is_archive
             and self.context.isSituationDisplay()
             and self.isSupported()
         )

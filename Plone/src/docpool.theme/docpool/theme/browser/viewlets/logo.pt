@@ -19,7 +19,7 @@
           <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
 
     </tal:app_logo>
-        <p class="version" tal:content="context/@@context_helpers/dokpool_version">1.0</p>
+        <p class="version">${context/dokpool_version}</p>
 
 
 

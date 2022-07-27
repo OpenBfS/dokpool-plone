@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from docpool.base.content.archiving import IArchiving
 from docpool.base.interfaces import IDocTypeExtension
 from docpool.base.utils import back_references, queryForObject
 from docpool.elan import DocpoolMessageFactory as _
@@ -75,7 +76,7 @@ class ELANDocType:
                 coll.Title()
                 for coll in colls
                 if coll
-                and not coll.restrictedTraverse("@@context_helpers").is_archive()
+                and not IArchiving(coll).is_archive
                 and coll.getPortalTypeName() == "ELANDocCollection"
             }
         )

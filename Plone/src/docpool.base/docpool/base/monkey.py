@@ -26,14 +26,12 @@ def enabled(self):
     Normally, they cannot be enabled for a folderish type.
     """
     # print "enabled"
+    from docpool.base.content.archiving import IArchiving
     from docpool.base.content.dpdocument import IDPDocument
 
     context = aq_inner(self.context)
     if IDPDocument.providedBy(context):
-        if not context.restrictedTraverse("@@context_helpers").is_archive():
-            return True
-        else:
-            return False
+        return not IArchiving(context).is_archive
     else:
         return self.original_enabled()
 

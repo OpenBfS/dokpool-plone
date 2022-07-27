@@ -1,5 +1,6 @@
 import plone.api as api
 from Acquisition import aq_chain, aq_inner
+from docpool.base.content.archiving import IArchiving
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
@@ -65,7 +66,7 @@ class Renderer(base.Renderer):
         )
 
         # In archive we only return the archived journals
-        if self.context.restrictedTraverse("@@context_helpers").is_archive():
+        if IArchiving(self.context).is_archive:
             for item in aq_chain(aq_inner(self.context)):
                 if getattr(item, "portal_type", None) == "ELANArchive":
                     yield from api.content.find(context=item, portal_type="Journal")

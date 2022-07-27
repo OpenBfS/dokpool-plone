@@ -19,6 +19,7 @@ from logging import getLogger
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase, IContentBase
 from docpool.base.content.extendable import Extendable
 from docpool.base.marker import IImportingMarker
@@ -699,6 +700,6 @@ def updateContainerModified(obj, event=None):
     """ """
     if IImportingMarker.providedBy(getRequest()):
         return
-    if not obj.restrictedTraverse("@@context_helpers").is_archive():
+    if not IArchiving(obj).is_archive:
         obj.update_modified()
         obj.reindexObject()  # New fulltext maybe needed

@@ -13,6 +13,7 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
+from docpool.base.content.archiving import IArchiving
 from docpool.base.marker import IImportingMarker
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
@@ -207,7 +208,7 @@ class ELANDocCollection(Collection):
         if implicit_filter:
             # Not in the archive:
             value = list(value[:])  # Otherwise we change the stored query!
-            if not self.restrictedTraverse("@@context_helpers").is_archive():
+            if not IArchiving(self).is_archive:
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
                 uss = self.getUserSelectedScenarios()
