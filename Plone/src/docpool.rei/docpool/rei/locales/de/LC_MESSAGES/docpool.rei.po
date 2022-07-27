@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-11 12:45+0000\n"
+"POT-Creation-Date: 2022-07-27 12:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -249,7 +249,7 @@ msgstr "REI-Bericht"
 
 #. Default: "Authority"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_Authority"
 msgstr "Aufsichtsbehörde"
 
@@ -259,43 +259,43 @@ msgid "label_rei_MStID"
 msgstr ""
 
 #. Default: "MStIDs"
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_MStIDs"
 msgstr "Bericht enthält Daten folgender Messstellen"
 
 #. Default: "Medium"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_Medium"
 msgstr ""
 
 #. Default: "NuclearInstallations"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_NuclearInstallations"
 msgstr "Kerntechnische Anlage"
 
 #. Default: "Origins"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_Origins"
 msgstr "Berichtende Stelle"
 
 #. Default: "PDF Version"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_PDFVersion"
 msgstr "PDF/A Version"
 
 #. Default: "Period"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_Period"
 msgstr "Zeitraum"
 
 #. Default: "ReiLegalBases"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
-#: docpool.rei/docpool/rei/skins/docpool_rei_templates/rei_meta.pt
+#: docpool.rei/docpool/rei/browser/templates/rei_meta.pt
 msgid "label_rei_ReiLegalBases"
 msgstr "Gesetzliche Grundlage"
 
