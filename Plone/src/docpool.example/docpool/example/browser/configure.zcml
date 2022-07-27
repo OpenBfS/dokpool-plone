@@ -11,4 +11,18 @@
         type="plone"
         name="docpool.example" />
 
+   <browser:page
+        name="example_actions"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/example_actions.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="example_meta"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/example_meta.pt"
+        permission="zope2.View"
+        />
+
 </configure>
