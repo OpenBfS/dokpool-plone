@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-11-23 14:15+0000\n"
+"POT-Creation-Date: 2022-07-27 12:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,22 +15,75 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Calculation Date"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Date"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:13
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "End of release"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Makes documents support Rodos functions"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:20
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Metadata"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Model"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Numeric Weather Prediction Date"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Begin"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis End"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Form"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Type"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Project Name"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Project User"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Release Site"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Report ID"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Rodos DocType"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:13
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "RodosDoc"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/local/rodos.py:43
+#: docpool.rodos/docpool/rodos/local/rodos.py
 msgid "Run Display"
 msgstr ""
 
@@ -38,37 +91,122 @@ msgstr ""
 msgid "Start of release"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/configure.zcml:20
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Type extension for Rodos types"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:37
-msgid "description_rodos_releaseSite"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_CalculationDate"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:46
-msgid "description_rodos_releaseStart"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_Model"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:28
-msgid "description_rodos_reportId"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_NumericWeatherPredictionDate"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/configure.zcml:23
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_PrognosisBegin"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_PrognosisEnd"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_PrognosisForm"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_PrognosisType"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_ProjectName"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_ProjectUser"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_ReleaseSite"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_ReleaseStart"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_ReleaseStop"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "description_rodos_ReportId"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/configure.zcml
 msgid "docpool.rodos"
 msgstr ""
 
+#. Default: "Calculation Date"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_CalculationDate"
+msgstr ""
+
+#. Default: "Model"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_Model"
+msgstr ""
+
+#. Default: "Numeric Weather Prediction Date"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_NumericWeatherPredictionDate"
+msgstr ""
+
+#. Default: "Prognosis Begin"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_PrognosisBegin"
+msgstr ""
+
+#. Default: "Prognosis End"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_PrognosisEnd"
+msgstr ""
+
+#. Default: "Prognosis Form"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_PrognosisForm"
+msgstr ""
+
+#. Default: "Project Name"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_ProjectName"
+msgstr ""
+
+#. Default: "Project User"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_ProjectUser"
+msgstr ""
+
 #. Default: "Release Site"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:36
-msgid "label_rodos_releaseSite"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_ReleaseSite"
 msgstr ""
 
 #. Default: "Release Start"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:45
-msgid "label_rodos_releaseStart"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_ReleaseStart"
+msgstr ""
+
+#. Default: "Release Stop"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_ReleaseStop"
 msgstr ""
 
 #. Default: "Report ID"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py:27
-msgid "label_rodos_reportId"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_ReportId"
 msgstr ""
