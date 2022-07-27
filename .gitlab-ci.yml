@@ -54,18 +54,10 @@ before_script:
   - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
 
-  - apt update
-  # LDAP client dependencies
-  - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
-
   # Check Python version
   - python -V
   - python3 -V
   - whereis python
-
-  # Install pipenv
-  - pip install pipenv
-  - pipenv --version
 
 build:
   tags:
@@ -74,9 +66,9 @@ build:
   script:
     # build docker
     - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
-    - docker build -t bfs/dokpool_py3 -f ./Docker/Dockerfile.review .
-    - docker tag bfs/dokpool_py3:latest git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
-    - docker push git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
+    - docker build -t bfs/dokpool/py3 -f ./Docker/Dockerfile.review .
+    - docker tag bfs/dokpool/py3:latest git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
+    - docker push git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
   only:
     - review_py3
 
@@ -89,22 +81,22 @@ deploy_dev:
   script:
     # Remove all unused images
     - docker system prune -a -f
-    - docker pull git.starzel.de:5050/bfs/dokpool_py3:$CI_COMMIT_REF_NAME
+    - docker pull git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Stop if it is running
     - docker stop dokpool-review-py3 || true
     - docker rm dokpool-review-py3 || true
     # Start instance and build demo data
-    - docker run --detach --publish 8082:8082 --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool:review_py3
+    - docker run --detach --publish 8082:8082 --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Create the vanilla plone site
     - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8082/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
-    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True' --delete-after http://127.0.0.1:8082/Plone/login
+    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True&buttons.login=Anmelden' --delete-after http://127.0.0.1:8082/Plone/login
     - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8082/Plone/docpool_setup
   environment:
     name: dev
-    url: https://review-one-bfs.starzel.de/
+    url: https://review-two-bfs.starzel.de/
   only:
-    - review
+    - review_py3
 
 undeploy_dev:
   tags:
@@ -126,6 +118,9 @@ lint_tests:
     - docker
   stage: test
   script:
+    # Install pipenv
+    - pip install pipenv
+    - pipenv --version
     # Buildout configuration
     - cd Plone
     # lint test
@@ -140,11 +135,13 @@ unit_tests:
   # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
   # success_with_warnings: True
   script:
-    # Buildout configuration
-    - ls -lah .cache
-    - ls -lah
+    - apt update
+    # LDAP client dependencies
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
+    # Install pipenv
+    - pip install pipenv
+    - pipenv --version
     - cd Plone
-    - ls -lah
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
@@ -153,10 +150,6 @@ unit_tests:
     # Pin setuptools
     - pipenv install setuptools==62.6.0
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
-    - cd ..
-    - ls -lah
-    - cd Plone
-    - ls -lah
     # Run tests
     - pipenv run ./bin/coverage erase
     - pipenv run ./bin/coverage run ./bin/test || exit 1
