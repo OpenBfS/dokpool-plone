@@ -1,22 +1,17 @@
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
-from Products.CMFCore.utils import getToolByName
 
 
 def getAvailableCategories(self):
-    cat = getToolByName(self, "portal_catalog")
     esd = getDocumentPoolSite(self)
-    res0 = cat(
-        path="/".join(esd.getPhysicalPath()) + "/esd",
+    path = "/".join(esd.getPhysicalPath()) + "/esd"
+    brains = api.content.find(
+        path=path,
         portal_type="ELANDocCollection",
         dp_type=["active"],
         sort_on="sortable_title",
     )
-    res = []
-    for r in res0:
-        if r.id not in ["recent", "overview"]:
-            res.append(r)
-    return res
+    return [i for i in brains if i.id not in ["recent", "overview"]]
 
 
 def getCategoriesForCurrentUser(self):
