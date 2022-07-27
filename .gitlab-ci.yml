@@ -141,11 +141,7 @@ unit_tests:
     # Install pipenv
     - pip install pipenv
     - pipenv --version
-    # Buildout configuration
-    - ls -lah .cache
-    - ls -lah
     - cd Plone
-    - ls -lah
     - cp config-template.cfg.tmpl config.cfg
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
@@ -154,10 +150,6 @@ unit_tests:
     # Pin setuptools
     - pipenv install setuptools==62.6.0
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
-    - cd ..
-    - ls -lah
-    - cd Plone
-    - ls -lah
     # Run tests
     - pipenv run ./bin/coverage erase
     - pipenv run ./bin/coverage run ./bin/test || exit 1
