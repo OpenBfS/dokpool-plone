@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-10-03 14:19+0000\n"
+"POT-Creation-Date: 2022-08-02 11:43+0000\n"
 "PO-Revision-Date: 2018-12-21 10:42+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
@@ -67,6 +67,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Created"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Created snapshot of event."
 msgstr ""
 
 #: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
@@ -142,10 +146,6 @@ msgstr ""
 msgid "Please select at least one scenario!"
 msgstr "Please select at least one event!"
 
-#: docpool.event/docpool/event/profiles/default/actions.xml
-msgid "Purge"
-msgstr ""
-
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine"
 msgstr ""
@@ -176,10 +176,6 @@ msgstr ""
 msgid "Snapshot"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "Snapshot created"
-msgstr ""
-
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "State"
 msgstr ""
@@ -192,10 +188,6 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "There are no more documents for this scenario."
-msgstr "There are no more documents for this event."
-
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
 msgstr ""
@@ -206,6 +198,18 @@ msgstr ""
 
 #: docpool.event/docpool/event/configure.zcml
 msgid "Uninstalls the docpool.event add-on."
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "archive_confirm_msg"
+msgstr "Do you really want to archive this event?"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "closed"
 msgstr ""
 
 #. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
@@ -240,6 +244,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/configure.zcml
 msgid "docpool.event (uninstall)"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "inactive"
 msgstr ""
 
 #. Default: "Status of Alerting"
@@ -277,34 +285,6 @@ msgstr ""
 msgid "label_dpevent_type"
 msgstr ""
 
-#: docpool.event/docpool/event/vocabularies.py
-msgid "routine"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "intensive"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "none"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "initialized"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "alerted"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "active"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "inactive"
-msgstr ""
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "closed"
-msgstr ""
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "snapshot_confirm_msg"
+msgstr "Do you really want to create a snapshot of this event? The event stays active but all documents are moved to a archive."

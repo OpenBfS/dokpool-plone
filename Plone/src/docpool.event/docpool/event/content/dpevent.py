@@ -263,9 +263,10 @@ class DPEvent(Container, ContentBase):
 
     def snapshot_confirm_msg(self):
         """
-        Do you really want to remove all documents from this scenario?
+        Do you really want to create a snapshot of this event?
+        The event stays active but all documents are moved to a archive.
         """
-        return utranslate("docpool.event", "purge_confirm_msg", context=self)
+        return utranslate("docpool.event", "snapshot_confirm_msg", context=self)
 
     security.declareProtected("Modify portal content", "archiveAndClose")
     def archiveAndClose(self, REQUEST):

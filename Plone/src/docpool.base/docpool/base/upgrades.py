@@ -625,3 +625,8 @@ def to_1009_archive_closed_events(context=None):
             log.warning(u"%s DPEvent in Archive %s", len(events), obj.absolute_url())
 
     log.info(u"Archived all closed Events")
+
+
+def to_1010(context=None):
+    portal_setup = api.portal.get_tool('portal_setup')
+    loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1010')
