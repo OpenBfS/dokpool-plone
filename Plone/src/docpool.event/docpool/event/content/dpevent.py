@@ -364,9 +364,6 @@ class DPEvent(Container, ContentBase):
             adapter = IJournalEntryContainer(journal)
             for id, update in enumerate(adapter):
                 adapter.delete(id)
-            # Create message in old Journal to point to the new snapshot
-            msg = u"Created snapshot of this event at {}".format(copied_event.absolute_url())
-            adapter.add(JournalEntry(title="", text=msg))
 
         # local roles were set when adding items to the archive but reindexing was deferred.
         archive_contentarea.reindexObjectSecurity()
