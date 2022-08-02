@@ -161,6 +161,7 @@ class SampleType(object):
 
     def __call__(self, context=None):
         items = [
+            (u'-', u'noch nicht festgelegt'),
             (u'A', u'Abwasser, Reststoffe und Abfälle'),
             (u'A1', u'Kläranlage'),
             (u'A2', u'Verbrennungsanlage'),
@@ -239,12 +240,11 @@ class NetworksVocabulary(object):
             return SimpleVocabulary([])
 
         items = sorted([
-            (t.Title, t.getObject())
+            (t.id, t.Title, t.getObject())
             for t in cat({"portal_type": "DPNetwork", "path": path})
         ])
-        items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
+        items = [SimpleTerm(i[2], i[2].UID(), i[1]) for i in items]
         return SimpleVocabulary(items)
-
 
 NetworksVocabularyFactory = NetworksVocabulary()
 
