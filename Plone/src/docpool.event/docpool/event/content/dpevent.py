@@ -445,14 +445,21 @@ class DPEvent(Container, ContentBase):
 
         mdate = obj.modified()
         transfer_events = obj.doc_extension(TRANSFERS_APP).transferEvents()
+        wftool = api.portal.get_tool("portal_workflow")
+        old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
+
+        if old_state == "published":
+            wftool.doActionFor(moved_obj, "publish")
+        elif old_state == "pending":
+            wftool.doActionFor(moved_obj, "submit")
 
         # Now do some repairs
         moved_obj.scenarios = []
         moved_obj.setModificationDate(mdate)
         # transferLog for archived items needs to be a string
         moved_obj.transferLog = str(transfer_events)
-        moved_obj.reindexObject()
+        moved_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
 
     def _copy_to_archive(self, target_folder_obj, obj):
         logger.info(
@@ -478,7 +485,7 @@ class DPEvent(Container, ContentBase):
         # transferLog for archived items needs to be a string
         events = obj.doc_extension(TRANSFERS_APP).transferEvents()
         copied_obj.transferLog = str(events)
-        copied_obj.reindexObject()
+        copied_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
 
         # Cleanup original DPDocument
         # 1. Remove current scenario
@@ -496,7 +503,7 @@ class DPEvent(Container, ContentBase):
                     ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
                 except Exception as e:
                     log_exc(e)
-        obj.reindexObject()
+        obj.reindexObject(idxs=["apps_supported", "scenarios"])
 
     def _getDocumentsForScenario(self, **kwargs):
         """
