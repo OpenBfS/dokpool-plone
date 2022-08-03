@@ -33,7 +33,6 @@ setup(
         "docpool.users",
         "docpool.config",
         "docpool.dashboard",
-        "docpool.video",
         "docpool.elan",
     ],
     entry_points="""

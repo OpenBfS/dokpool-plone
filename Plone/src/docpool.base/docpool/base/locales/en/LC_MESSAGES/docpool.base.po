@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-08-03 14:39+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -386,10 +386,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Users.xml
 msgid "Users Area"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/dp_macros.pt
-msgid "Videos:"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt

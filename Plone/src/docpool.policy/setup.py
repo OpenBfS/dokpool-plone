@@ -32,7 +32,6 @@ setup(
         "docpool.transfers",
         "docpool.users",
         "docpool.config",
-        "docpool.video",
     ],
     entry_points="""
       # -*- Entry points: -*-

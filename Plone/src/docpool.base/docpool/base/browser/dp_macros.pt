@@ -290,8 +290,6 @@ dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', dom
     <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_images"/>
     <br/>
-    <div metal:use-macro="here/@@dp.macros/macros/doc_videos"/>
-    <br/>
     <div metal:use-macro="here/@@dp.macros/macros/doc_subdocuments"/>
 </div>
 
@@ -441,15 +439,6 @@ quoted_id = quote_plus(econtext["b"].getId());
           </table>
           <br><br>
          </span>
-</metal:macro>
-
-<metal:macro define-macro="doc_videos" i18n:domain="docpool.base">
-  <span tal:define="videos context/getVideos | nothing" tal:condition="videos">
-    <label i18n:translate="">Videos:</label>
-    <tal:loop repeat="video videos">
-        <div metal:use-macro="context/docpool_video_macro/macros/video" />
-    </tal:loop>
-  </span>
 </metal:macro>
 
 <!--<metal:macro define-macro="app_icons">

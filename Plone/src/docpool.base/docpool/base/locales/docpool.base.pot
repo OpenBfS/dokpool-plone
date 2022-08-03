@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-08-03 14:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -387,10 +387,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Users.xml
 msgid "Users Area"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/dp_macros.pt
-msgid "Videos:"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
