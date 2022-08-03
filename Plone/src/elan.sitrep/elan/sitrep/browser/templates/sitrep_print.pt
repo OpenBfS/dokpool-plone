@@ -1,0 +1,30 @@
+<tal:block i18n:domain="elan.sitrep"
+           define="view nocall:options/view;
+                   here nocall:context">
+<tal:def define="edit_allowed context/canBeEdited;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                 elanobj view/elanobject;">
+        <div id="header_content">
+        <!-- Place content for the document header such as logo etc. here -->
+        </div>
+        <div id="content">
+        <h2 tal:content="context/Title"></h2>
+          <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
+
+          <tal:if condition="htmltext" define="htmltext context/text/output|nothing">
+<!--          <h3 i18n:translate="">Summary</h3> -->
+          <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
+          </tal:if>
+
+          <tal:loop repeat="m context/myModules">
+<!--           <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>  -->
+          <tal:if condition="htmltext" define="htmltext m/text/output|nothing">
+          <span tal:attributes="id string:mod_${m/getId}" tal:content="structure htmltext" />
+          </tal:if>
+          </tal:loop>
+        </div>
+        <div id="footer_content">
+        <!-- Place content for the document footer here -->
+        </div>
+ </tal:def>
+</tal:block>

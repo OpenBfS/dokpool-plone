@@ -28,17 +28,6 @@ class DPEvents(Container):
 
     security = ClassSecurityInfo()
 
-    def migrate(self):
-        f = parent(self)
-        if hasattr(self, "_setPortalTypeName"):
-            self._setPortalTypeName("DPEvents")
-        myid = self.getId()
-        del f[myid]
-        self.__class__ = DPEvents
-        f[myid] = self
-        logger.info(self.__class__)
-        logger.info(self.getPortalTypeName())
-
     def myDPEvents(self):
         """ """
         return self
@@ -60,7 +49,3 @@ class DPEvents(Container):
         args = {"portal_type": "DPEvent"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-
-class ELANScenarios(DPEvents):
-    pass

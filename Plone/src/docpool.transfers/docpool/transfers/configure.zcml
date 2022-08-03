@@ -26,8 +26,6 @@
         post_handler=".setuphandlers.post_install"
         />
 
-    <include file="skins.zcml" />
-
   <utility
     component=".vocabularies.PermissionsVocabularyFactory"
     name="docpool.transfers.vocabularies.Permissions"

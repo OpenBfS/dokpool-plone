@@ -40,7 +40,7 @@
                         i18n:attributes="title"
                    class="z3ctable-toggle-metatitle">
                     <img src="#"
-                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/title.svg" />
+                         tal:attributes="src string:${context/portal_url}/++plone++docpool.rei/title.svg" />
                         <span i18n:domain="docpool.theme"
                                 i18n:translate="">Open/close all metatitle</span>
                 </a>
@@ -48,7 +48,7 @@
                         i18n:attributes="title"
                    class="z3ctable-toggle-metadata">
                     <img src="#"
-                         tal:attributes="src string:${context/portal_url}/++theme++docpoolrei/titles_and_metainfos.svg" /><span i18n:domain="docpool.theme" i18n:translate="">Open/close all metadata</span>
+                         tal:attributes="src string:${context/portal_url}/++plone++docpool.rei/titles_and_metainfos.svg" /><span i18n:domain="docpool.theme" i18n:translate="">Open/close all metadata</span>
                 </a>
             </span>
         </div>

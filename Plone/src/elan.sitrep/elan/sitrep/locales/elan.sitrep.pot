@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-07-26 09:35+0000\n"
+"POT-Creation-Date: 2022-07-26 09:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgid "Folder for Module Types"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "In progress:"
 msgstr ""
 
@@ -58,12 +58,12 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "Mirror Overview"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "Missing:"
 msgstr ""
 
@@ -111,22 +111,22 @@ msgstr ""
 msgid "Previous version"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "Printable version"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/sitrep_macros.pt
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "Publish"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "Published:"
 msgstr ""
 
 #: elan.sitrep/elan/sitrep/browser/i18ndummy.pt
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "Ready:"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Situation Scenario"
 msgstr ""
 
-#: elan.sitrep/elan/sitrep/skins/elan_sitrep_templates/sitrep_full.pt
+#: elan.sitrep/elan/sitrep/browser/templates/sitrep_full.pt
 msgid "State of modules"
 msgstr ""
 

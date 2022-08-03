@@ -20,8 +20,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-   <include file="skins.zcml" />
-
     <!-- TODO -->
    <permission id="docpool.example.AccessExample" title="Docpool: Access Example Content" />
    <include package=".behaviors" />

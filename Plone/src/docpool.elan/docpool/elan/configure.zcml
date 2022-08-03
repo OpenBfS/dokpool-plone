@@ -23,9 +23,6 @@
         post_handler=".setuphandlers.post_install"
         />
 
-   <include file="skins.zcml" />
-
-
    <permission id="docpool.elan.AccessELAN" title="Docpool: Access ELAN Content" />
    <include package=".behaviors" />
 

@@ -1,0 +1,62 @@
+<tal:block i18n:domain="elan.sitrep">
+           define="here nocall:context">
+<tal:def define="edit_allowed context/canBeEdited;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                 rs context/myState;">
+<tal:if condition="python:rs=='private'">
+   <div class="formControls publish" tal:condition="edit_allowed">
+   <tal:def define="moduleState context/moduleState">
+       <h4 i18n:translate="">State of modules</h4>
+       <ul>
+            <tal:loop repeat="mt moduleState">
+            <tal:def define="status python:mt[0];
+                             title  python:mt[1];
+                             mod    python:mt[2]">
+                <li tal:condition="python:status=='missing'" class="missing">
+                    <i18n:var translate="">Missing:</i18n:var>&nbsp;${title}
+                </li>
+                <li tal:condition="python:status=='planned'" class="planned">
+                    <i18n:var translate="">In progress:</i18n:var>&nbsp;${title}&nbsp;<a href="${mod/absolute_url}" target="_blank">${mod/Title}</a>
+                </li>
+                <li tal:condition="python:status=='published'" class="published">
+                    <i18n:var translate="">Published:</i18n:var>&nbsp;${title}&nbsp;<a href="${mod/absolute_url}" target="_blank">${mod/Title}</a>
+                </li>
+                <li tal:condition="python:status=='ready'" class="ready">
+                    <i18n:var translate="">Ready:</i18n:var>&nbsp;${title}&nbsp;<a href="${mod/absolute_url}" target="_blank">${mod/Title}</a>
+                </li>
+            </tal:def>
+            </tal:loop>
+       </ul>
+	   <a id="form-buttons-publish"
+	       onclick="return confirm('${context/Title}: ${alert_msg}');"
+	      tal:define="alert_msg python:context.translate('report_publish_popup', default='Do you really want to create a published version of this report? Please consider possible missing modules!', domain='elan.sitrep', escape_for_js=True)"
+	   class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishReport" i18n:translate="">Publish</a>
+	   <a id="form-buttons-create"
+	       onclick="return confirm('${context/Title}: ${alert_msg}');"
+	      tal:define="alert_msg python:context.translate('report_mirror_popup', default='Do you really want to define this report based on the current overview?', domain='elan.sitrep', escape_for_js=True)"
+	   class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/mirrorOverview" i18n:translate="">Mirror Overview</a>
+   </tal:def>
+   </div>
+</tal:if>
+<tal:if condition="python:rs=='published'">
+        <div class="pdflink" tal:define="pdf context/getRepresentativePDF" tal:condition="nocall:pdf">
+            <a href="${pdf/absolute_url}" target="_blank" i18n:domain="elan.sitrep" i18n:translate="">Printable version</a>
+        </div>
+</tal:if>
+          <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
+          <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+
+          <tal:if condition="htmltext" define="htmltext context/text/output|nothing">
+<!--           <h3 i18n:translate="">Summary</h3>  -->
+          <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext" />
+          </tal:if>
+
+          <tal:loop repeat="m context/myModules">
+<!--          <h3><tal:var replace="repeat/m/number"/> <tal:var replace="m/Title" /></h3>  -->
+          <tal:if condition="htmltext" define="htmltext m/text/output|nothing">
+          <span tal:attributes="id string:mod_${m/getId}" tal:content="structure htmltext" />
+          </tal:if>
+          </tal:loop>
+
+ </tal:def>
+</tal:block>

@@ -11,8 +11,6 @@
 
   <include package=".browser" />
 
-  <include file="skins.zcml" />
-
   <plone:static
       directory="static"
       type="plone"

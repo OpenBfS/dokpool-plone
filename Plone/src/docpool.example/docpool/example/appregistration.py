@@ -19,6 +19,6 @@ from docpool.example.local.example import dpAdded, dpRemoved
 #     IExampleDoc,
 #     dpAdded,
 #     dpRemoved,
-#     icon="example_app_icon.png",
+#     icon="++plone++docpool.example/example_app_icon.png",
 #     implicit=False,
 # )

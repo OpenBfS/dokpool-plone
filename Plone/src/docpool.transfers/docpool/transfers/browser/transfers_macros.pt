@@ -22,7 +22,7 @@
               title="Transfer"
               tal:attributes="href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % ('/'.join(context.absolute_url().split('/')[:-1]), context.absolute_url_path())"
               i18n:attributes="title">
-              <img src="" tal:attributes="src string:${context/portal_url}/transfer.png"/>
+              <img src="" tal:attributes="src string:${context/portal_url}/++plone++docpool.transfers/transfer.png"/>
           </a>
         </tal:if>
     </metal:macro>

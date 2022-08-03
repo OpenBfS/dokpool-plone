@@ -54,4 +54,18 @@
         class=".srmodule.SRModuleinfoView"
         />
 
+    <browser:page
+        name="sitrep_full"
+        for="..interfaces.ISituationReport"
+        template="templates/sitrep_full.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="sitrep_print"
+        for="..interfaces.ISituationReport"
+        template="templates/sitrep_print.pt"
+        permission="zope2.View"
+        />
+
 </configure>

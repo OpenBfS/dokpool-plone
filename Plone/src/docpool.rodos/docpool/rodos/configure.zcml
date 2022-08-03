@@ -19,9 +19,6 @@
         post_handler=".setuphandlers.post_install"
         />
 
-   <include file="skins.zcml" />
-
-
     <!-- TODO -->
    <permission id="docpool.rodos.AccessRodos" title="Docpool: Access Rodos Content" />
    <include package=".behaviors" />
