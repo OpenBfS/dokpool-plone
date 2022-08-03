@@ -41,7 +41,6 @@ setup(
         # -*- Extra requirements: -*-
         "setuptools",
         "z3c.jbot",
-        "docpool.event",
         "Products.CMFFormController",
     ],
     extras_require={

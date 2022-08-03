@@ -21,7 +21,6 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         import docpool.base
         import docpool.config
         import docpool.elan
-        import docpool.event
         import docpool.localbehavior
         import docpool.transfers
         import docpool.users
@@ -30,7 +29,6 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
 
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.config)
-        self.loadZCML(package=docpool.event)
         # required since we need to be able to add DBTranfers
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=docpool.users)
