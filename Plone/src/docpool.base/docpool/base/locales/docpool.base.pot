@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-11 12:49+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,7 +130,6 @@ msgstr ""
 msgid "Folder Base"
 msgstr ""
 
-#: docpool.base/docpool/base/content/doctype.py
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
 msgid "Folder for Document Types"
 msgstr ""

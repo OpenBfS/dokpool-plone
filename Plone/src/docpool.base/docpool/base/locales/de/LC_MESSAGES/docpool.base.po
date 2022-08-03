@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-05-11 12:49+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -129,7 +129,6 @@ msgstr "Privater Ordner"
 msgid "Folder Base"
 msgstr "Basisordner"
 
-#: docpool.base/docpool/base/content/doctype.py
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
 msgid "Folder for Document Types"
 msgstr "Ordner für Dokumenttypen"

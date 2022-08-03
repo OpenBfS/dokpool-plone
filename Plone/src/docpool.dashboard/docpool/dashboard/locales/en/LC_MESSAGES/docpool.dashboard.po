@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,24 +22,24 @@ msgstr ""
 msgid "Dashboards Configuration"
 msgstr ""
 
-#: docpool.dashboard/docpool/dashboard/content/dashboard.py:49
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py
 msgid "Document Types"
 msgstr ""
 
-#: docpool.dashboard/docpool/dashboard/browser/dashboard.pt:22
+#: docpool.dashboard/docpool/dashboard/profiles/default/actions.xml
+msgid "Edit Dashboard"
+msgstr ""
+
+#: docpool.dashboard/docpool/dashboard/browser/dashboard.pt
 msgid "No current data"
 msgstr ""
 
-#: docpool.config/docpool/config/skins/docpool_config_templates/doc_dashboard.pt:28
-msgid "No image available"
-msgstr ""
-
 #. Default: "Select the document types you want to show in this dashboard."
-#: docpool.dashboard/docpool/dashboard/content/dashboard.py:45
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py
 msgid "description_dashboard_dbcollections"
 msgstr ""
 
-#: docpool.dashboard/docpool/dashboard/configure.zcml:23
+#: docpool.dashboard/docpool/dashboard/configure.zcml
 msgid "docpool.dashboard"
 msgstr ""
 
@@ -49,6 +49,6 @@ msgid "label_dashboard"
 msgstr ""
 
 #. Default: "Document Types"
-#: docpool.dashboard/docpool/dashboard/content/dashboard.py:44
+#: docpool.dashboard/docpool/dashboard/content/dashboard.py
 msgid "label_dashboard_dbcollections"
 msgstr ""

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-14 13:40+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: elan.policy\n"
 
-#: elan.policy/elan/policy/configure.zcml:19
+#: elan.policy/elan/policy/configure.zcml
 msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
 msgstr ""
 
-#: elan.policy/elan/policy/configure.zcml:19
+#: elan.policy/elan/policy/configure.zcml
 msgid "elan.policy"
 msgstr ""

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-07-13 10:07+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.theme\n"
 
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Alle entfernen"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
+msgid "Ausblenden Filter"
+msgstr ""
+
 #: docpool.theme/docpool/theme/configure.zcml
 msgid "DocPool Theme"
 msgstr ""
@@ -26,11 +34,15 @@ msgid "Extension profile for DocPool Theme"
 msgstr ""
 
 #: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
-msgid "Hide filters"
+msgid "Filter anzeigen"
 msgstr ""
 
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
-msgid "Metadata"
+msgid "Metadaten"
+msgstr ""
+
+#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
+msgid "Metatitel"
 msgstr ""
 
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
@@ -39,22 +51,6 @@ msgstr ""
 
 #: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
 msgid "Open/close all metatitle"
-msgstr ""
-
-#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
-msgid "Remove all"
-msgstr ""
-
-#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
-msgid "Remove all filters"
-msgstr ""
-
-#: docpool.theme/docpool/theme/template_overrides/eea.facetednavigation.widgets.criteria.widget.pt
-msgid "Show filters"
-msgstr ""
-
-#: docpool.theme/docpool/theme/template_overrides/collective.eeafaceted.z3ctable.browser.faceted-table-items.pt
-msgid "Title"
 msgstr ""
 
 #. Default: "Refresh search results."

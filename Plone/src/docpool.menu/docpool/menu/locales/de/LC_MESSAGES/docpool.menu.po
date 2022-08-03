@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-14 13:39+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,14 +14,14 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.menu/docpool/menu/configure.zcml:21
+#: docpool.menu/docpool/menu/configure.zcml
 msgid "Installs the docpool.menu add-on."
 msgstr "Installiert das docpool.menu Add-On."
 
-#: docpool.menu/docpool/menu/configure.zcml:36
+#: docpool.menu/docpool/menu/configure.zcml
 msgid "Uninstalls the docpool.menu add-on."
 msgstr "Deinstalliert das docpool.menu Add-On."
 
-#: docpool.menu/docpool/menu/configure.zcml:21
+#: docpool.menu/docpool/menu/configure.zcml
 msgid "docpool.menu"
 msgstr ""

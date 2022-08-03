@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-07-01 00:03+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: 2018-08-06 10:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <pbieringer@bfs.de>\n"
@@ -4012,9 +4012,8 @@ msgstr "docpool.doksys (Deinstallation)"
 msgid "geprueft"
 msgstr ""
 
-#. Default: "Dom"
+#. Default: "Description of Measurement"
 #: docpool/doksys/behaviors/doksysdoc.py
-#: docpool/doksys/browser/doksys_macros.pt
 #, fuzzy
 msgid "label_doksys_Dom"
 msgstr "Beschreibung der Messung"

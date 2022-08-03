@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-10-03 14:19+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,6 +106,14 @@ msgstr ""
 msgid "Event location"
 msgstr ""
 
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Example: POINT(12.293121814727781 48.60338936478996)"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
+msgstr ""
+
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Exercise"
 msgstr ""
@@ -177,10 +185,6 @@ msgstr ""
 msgid "Snapshot"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "Snapshot created"
-msgstr ""
-
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "State"
 msgstr ""
@@ -207,6 +211,14 @@ msgstr ""
 
 #: docpool.event/docpool/event/configure.zcml
 msgid "Uninstalls the docpool.event add-on."
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "closed"
 msgstr ""
 
 #. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
@@ -241,6 +253,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/configure.zcml
 msgid "docpool.event (uninstall)"
+msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "inactive"
 msgstr ""
 
 #. Default: "Status of Alerting"

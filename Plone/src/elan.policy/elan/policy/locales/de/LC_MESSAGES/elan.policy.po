@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2018-09-14 13:40+0000\n"
+"POT-Creation-Date: 2022-08-03 14:13+0000\n"
 "PO-Revision-Date: 2014-05-22 12:05+0100\n"
 "Last-Translator: Kathrin Probst <kprobst@bfs.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,10 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: elan.policy/elan/policy/configure.zcml:19
+#: elan.policy/elan/policy/configure.zcml
 msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
 msgstr "Eine Plone Site zu ELAN umwandeln. (Beinhaltet DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
 
-#: elan.policy/elan/policy/configure.zcml:19
+#: elan.policy/elan/policy/configure.zcml
 msgid "elan.policy"
 msgstr ""
