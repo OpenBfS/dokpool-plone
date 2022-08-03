@@ -1,17 +1,16 @@
-from time import time
-
-from plone import api
 from plone.app.caching.interfaces import IETagValue
 from plone.app.caching.operations.utils import getContext
-from zope.component import adapter, getMultiAdapter
-from zope.interface import Interface, implementer
+from time import time
+from zope.component import adapter
+from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 @implementer(IETagValue)
 @adapter(Interface, Interface)
 class DokPoolApps:
-    """ """
-
     def __init__(self, published, request):
         self.published = published
         self.request = request
@@ -19,22 +18,17 @@ class DokPoolApps:
     def __call__(self):
         context = getContext(self.published)
         dp_app_state = getMultiAdapter((context, self.request), name="dp_app_state")
-        apps = ";".join(dp_app_state.effectiveAppsHere())
+        apps = dp_app_state.effectiveAppsHere()
+        pieces = [";".join(apps)]
 
-        scenarios = ""
-        if hasattr(context, "getUserSelectedScenarios"):
-            scenarios = context.getUserSelectedScenarios()
-            scenarios = ";".join(scenarios)
+        for app in apps:
+            app_caching = queryMultiAdapter(
+                (context, self.request), name=f"app_caching_{app}"
+            )
+            if app_caching:
+                pieces.extend(app_caching.etag_pieces())
 
-        from docpool.event.utils import getOpenScenarios
-
-        scs = getOpenScenarios(context)
-        all_scenarios = ";".join(s.id for s in scs if s.review_state == "published")
-
-        user = api.user.get_current()
-        filtered = user.getProperty("filter_active") or False
-
-        return "-".join([apps, scenarios, str(filtered), all_scenarios])
+        return "-".join(pieces)
 
 
 cacheTimes = {
@@ -46,9 +40,6 @@ cacheTimes = {
     "InfoDocument": 7200,
     "InfoFolder": 3600,
     "UserFolder": 300,
-    "ELANArchive": 7200,
-    "ELANCurrentSituation": 300,
-    "ELANDocCollection": 300,
     "DPTransferFolder": 300,
     "Dashboard": 120,
 }
