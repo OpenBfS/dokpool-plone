@@ -359,11 +359,15 @@ class DPEvent(Container, ContentBase):
         copied_event.Status = "closed"
         copied_event.reindexObject()
 
-        # 4. Empty current Journals
+        # 4. Empty current Journals and copy local roles
         for journal in self.contentValues({'portal_type': 'Journal'}):
             adapter = IJournalEntryContainer(journal)
             for id, update in enumerate(adapter):
                 adapter.delete(id)
+            # Copy local roles to journals
+            copied_journal = copied_event[journal.id]
+            copied_journal.__ac_local_roles__ = journal.__ac_local_roles__
+            copied_journal._p_changed = True
 
         # local roles were set when adding items to the archive but reindexing was deferred.
         archive_contentarea.reindexObjectSecurity()
