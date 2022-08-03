@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.base"
            define="view nocall:options/view;
-                   context nocall:options/context;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                    edit_allowed context/canBeEdited;
                    here nocall:context">

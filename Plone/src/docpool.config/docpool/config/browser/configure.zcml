@@ -33,6 +33,20 @@
         />
 
    <browser:page
+        name="doc_print"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doc_print.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="doc_dashboard"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/doc_dashboard.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
         name="elan_meta"
         for="docpool.base.interfaces.IDPDocument"
         template="templates/elan_meta.pt"
@@ -71,6 +85,27 @@
         name="simpleviz_full"
         for="docpool.base.interfaces.IDPDocument"
         template="templates/simpleviz_full.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="simpleviz_inline"
+        for="docpool.base.interfaces.IDPDocument"
+        template="templates/simpleviz_inline.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="infodocument_listitem"
+        for="docpool.base.interfaces.IInfoDocument"
+        template="templates/infodocument_listitem.pt"
+        permission="zope2.View"
+        />
+
+   <browser:page
+        name="infodocument_full"
+        for="docpool.base.interfaces.IInfoDocument"
+        template="templates/infodocument_full.pt"
         permission="zope2.View"
         />
 

@@ -1,7 +1,6 @@
 <table>
     <tr i18n:domain="docpool.base"
                tal:define="view nocall:options/view;
-                   context nocall:options/context;
                    here nocall:context"
     class="wrapper">
         <tal:def define="dpbrain options/dpbrain;
@@ -11,7 +10,7 @@
                  eurl dpbrain/getURL;
                  item_id dpbrain/id|dpbrain/getId;
                  item_title dpbrain/Title|dpbrain/title_or_id;
-                 title_or_id python:item_title or item_id;                 
+                 title_or_id python:item_title or item_id;
                  buttons options/buttons|nothing;
                  dpbrainobj dpbrain/getObject;
                  myfolder_url nocall:options/myfolder_url;
@@ -28,7 +27,7 @@
                  normalizeString nocall: context/plone_utils/normalizeString;
                  item_type_class python:'contenttype-' + normalizeString(item_ptype);
                  rs dpbrain/review_state;
-                 item_wf_state_class python:'state-' + normalizeString(rs);              
+                 item_wf_state_class python:'state-' + normalizeString(rs);
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
             <td class="actions" tal:condition="python:not isOverview and not isCollection">
