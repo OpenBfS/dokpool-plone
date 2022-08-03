@@ -281,7 +281,9 @@
 </metal:macro>
 
 <metal:macro define-macro="doc_files" i18n:domain="docpool.base">
-          <span tal:define="files context/getFiles" tal:condition="files">
+          <span tal:define="files context/getFiles;
+                            edit_allowed python:not '@@dview' in str(context.REQUEST);" 
+                tal:condition="files">
             <label i18n:translate="">Files:</label>
             <ul tal:define="multiple_files python:len(files) > 1">
              <span tal:repeat="d files">
@@ -326,8 +328,9 @@
 </metal:macro>
 
 <metal:macro define-macro="doc_images" i18n:domain="docpool.base">
-
-          <span tal:define="images context/getImages" tal:condition="images">
+          <span tal:define="images context/getImages;
+                            edit_allowed python:not '@@dview' in str(context.REQUEST);" 
+                tal:condition="images">
             <label i18n:translate="">Images:</label>
             <table border="0">
             <tr tal:define="multiple_images python:len(images) > 1">

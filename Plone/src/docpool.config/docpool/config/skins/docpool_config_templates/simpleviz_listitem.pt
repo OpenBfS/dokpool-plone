@@ -57,15 +57,16 @@
                           </div>
                        </div>
                     </span>
-                    <span tal:condition="python:context.getFiles()">
-                      <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf">
+                    <span tal:condition="python:context.getFiles()"
+                          tal:define="pdfs python:context.getFiles()"
+                          tal:repeat="pdf pdfs">
                          <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
                              <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
                          </span>
                          <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
                              <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config"><span tal:content="python:pdf.Title()"/></a>
                          </span>
-                      </div>
+                         <br>
                     </span>
                 </td>
                 <td class="metadata">
