@@ -27,7 +27,6 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import docpool.base
-        import docpool.caching
         import docpool.config
         import docpool.dashboard
         import docpool.doksys
@@ -43,7 +42,6 @@ class Fixture(PloneSandboxLayer):
         import elan.journal
         import elan.policy
         import elan.sitrep
-        import plone.app.caching
         import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
@@ -57,9 +55,7 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
-        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=docpool.dashboard)
-        self.loadZCML(package=docpool.caching)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=elan.sitrep)
         self.loadZCML(package=elan.esd)

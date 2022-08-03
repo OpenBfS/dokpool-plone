@@ -26,7 +26,6 @@ setup(
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-
-        "plone.app.caching",
         "plone.app.upgrade",
         "docpool.theme",
         "docpool.base",
@@ -34,7 +33,6 @@ setup(
         "docpool.users",
         "docpool.config",
         "docpool.video",
-        "docpool.caching",
     ],
     entry_points="""
       # -*- Entry points: -*-

@@ -1,6 +1,5 @@
 from time import time
 
-from docpool.event.utils import getOpenScenarios
 from plone import api
 from plone.app.caching.interfaces import IETagValue
 from plone.app.caching.operations.utils import getContext
@@ -26,6 +25,8 @@ class DokPoolApps:
         if hasattr(context, "getUserSelectedScenarios"):
             scenarios = context.getUserSelectedScenarios()
             scenarios = ";".join(scenarios)
+
+        from docpool.event.utils import getOpenScenarios
 
         scs = getOpenScenarios(context)
         all_scenarios = ";".join(s.id for s in scs if s.review_state == "published")

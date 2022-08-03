@@ -25,7 +25,6 @@ class ElanESDLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import docpool.caching
         import docpool.config
         import docpool.dashboard
         import docpool.doksys
@@ -41,7 +40,6 @@ class ElanESDLayer(PloneSandboxLayer):
         import elan.journal
         import elan.policy
         import elan.sitrep
-        import plone.app.caching
         import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
@@ -55,9 +53,7 @@ class ElanESDLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
-        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=docpool.dashboard)
-        self.loadZCML(package=docpool.caching)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=elan.sitrep)
         self.loadZCML(package=elan.esd)

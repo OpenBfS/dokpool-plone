@@ -27,7 +27,6 @@ setup(
         "setuptools",
         # -*- Extra requirements: -*-
         "Products.CMFPlacefulWorkflow",
-        "plone.app.caching",
         "plone.app.upgrade",
         "docpool.theme",
         "docpool.base",
@@ -35,7 +34,6 @@ setup(
         "docpool.config",
         "docpool.dashboard",
         "docpool.video",
-        "docpool.caching",
         "docpool.elan",
     ],
     entry_points="""
