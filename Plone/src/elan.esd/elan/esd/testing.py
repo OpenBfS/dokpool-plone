@@ -26,7 +26,6 @@ class ElanESDLayer(PloneSandboxLayer):
         # layer.
         import docpool.base
         import docpool.config
-        import docpool.dashboard
         import docpool.doksys
         import docpool.elan
         import docpool.event
@@ -53,7 +52,6 @@ class ElanESDLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
-        self.loadZCML(package=docpool.dashboard)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=elan.sitrep)
         self.loadZCML(package=elan.esd)

@@ -13,6 +13,7 @@
    <element value="ELANSection" />
    <element value="Document" />
    <element value="Journal" />
+   <element value="Dashboard" />
  </property>
  <!-- schema interface -->
  <property name="schema">elan.esd.content.elancurrentsituation.IELANCurrentSituation</property>

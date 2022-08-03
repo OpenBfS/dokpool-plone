@@ -15,7 +15,7 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: elan.policy/elan/policy/configure.zcml
-msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
+msgid "Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, elan.esd, docpool.dbaccess and docpool.users)"
 msgstr ""
 
 #: elan.policy/elan/policy/configure.zcml

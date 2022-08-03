@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.dashboard" name="Dashboard">
+<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.base" name="DashboardCollection">
 
  <!-- Basic metadata -->
- <property name="title" i18n:translate="label_dashboard">Dashboard</property>
+ <property name="title" i18n:translate="">Dashboard Collection</property>
  <property name="description" i18n:translate=""></property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
 
  </property>
  <!-- schema interface -->
- <property name="schema">docpool.dashboard.content.dashboard.IDashboard</property>
+ <property name="schema">docpool.base.content.dashboardcollection.IDashboardCollection</property>
 
  <!-- class used for content items -->
- <property name="klass">docpool.dashboard.content.dashboard.Dashboard</property>
+ <property name="klass">docpool.base.content.dashboardcollection.DashboardCollection</property>
 
  <!-- add permission -->
- <property name="add_permission">docpool.dashboard.AddDashboard</property>
+ <property name="add_permission">docpool.base.AddDashboardCollection</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">
@@ -27,6 +27,8 @@
      <element value="plone.textindexer" />
      <element value="plone.allowdiscussion" />
      <element value="plone.excludefromnavigation" />
+     <element value="plone.collection"/>
+     <element value="plone.richtext"/>
 </property>
 
  <!-- View information -->

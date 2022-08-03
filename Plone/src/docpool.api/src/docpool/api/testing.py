@@ -38,7 +38,6 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import docpool.dashboard
         import docpool.elan
         import docpool.localbehavior
         import docpool.rei
@@ -62,7 +61,6 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.base)
-        self.loadZCML(package=docpool.dashboard)
         self.loadZCML(package=docpool.users)
         self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=docpool.elan)

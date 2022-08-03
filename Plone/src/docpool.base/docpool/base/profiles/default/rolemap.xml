@@ -220,6 +220,23 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
+    <permission name="Docpool: Add Dashboard" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add DashboardsConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add DashboardCollection" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+      <role name="Reviewer"/>
+      <role name="ContentAdmin"/>
+    </permission>
     <permission name="Docpool: Manage Addable Types" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>

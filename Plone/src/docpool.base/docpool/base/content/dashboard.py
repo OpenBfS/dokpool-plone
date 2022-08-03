@@ -1,19 +1,5 @@
-#
-# File: dashboard.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the Dashboard content type. See dashboard.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
-from docpool.dashboard import DocpoolMessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.supermodel import model
@@ -33,7 +19,7 @@ class IDashboard(model.Schema):
         required=False,
         value_type=RelationChoice(
             title=_("Document Types"),
-            source="docpool.dashboard.vocabularies.DashboardCollections",
+            source="docpool.base.vocabularies.DashboardCollections",
         ),
     )
 

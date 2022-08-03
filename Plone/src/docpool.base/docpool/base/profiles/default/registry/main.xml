@@ -22,6 +22,8 @@
       <element>UserFolder</element>
       <element>InfoFolder</element>
       <element>SimpleFolder</element>
+      <element>DashboardsConfig</element>
+      <element>Dashboard</element>
     </value>
   </record>
   <record name="plone.image_objects" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="image_objects">

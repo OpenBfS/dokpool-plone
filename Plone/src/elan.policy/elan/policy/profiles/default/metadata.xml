@@ -5,7 +5,6 @@
         <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
         <dependency>profile-docpool.theme:default</dependency>
         <dependency>profile-docpool.base:default</dependency>
-        <dependency>profile-docpool.dashboard:default</dependency>
         <dependency>profile-docpool.users:default</dependency>
         <dependency>profile-docpool.config:default</dependency>
         <dependency>profile-docpool.elan:default</dependency>

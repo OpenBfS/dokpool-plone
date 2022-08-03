@@ -10,7 +10,7 @@
         name="default"
         title="elan.policy"
         directory="profiles/default"
-        description="Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, docpool.dashboard, elan.esd, docpool.dbaccess and docpool.users)"
+        description="Turn a Plone site into the ELAN site. (Includes DocPool Theme, docpool.elan, docpool.transfers, docpool.base, elan.sitrep, docpool.config, docpool.menu, Local behavior support for Dexterity, elan.esd, docpool.dbaccess and docpool.users)"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         post_handler=".setuphandlers.post_install"
         />

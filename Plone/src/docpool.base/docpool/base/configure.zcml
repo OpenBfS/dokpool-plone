@@ -94,6 +94,15 @@
    <permission id="docpool.base.AddDPConfig" title="Docpool: Add DPConfig" />
 
 
+   <permission id="docpool.base.AddDashboardCollection" title="Docpool: Add DashboardCollection"/>
+
+
+   <permission id="docpool.base.AddDashboardsConfig" title="Docpool: Add DashboardsConfig"/>
+
+
+   <permission id="docpool.base.AddDashboard" title="Docpool: Add Dashboard"/>
+
+
    <permission id="docpool.base.ManageAddableTypes" title="Docpool: Manage Addable Types" />
 
 
@@ -136,6 +145,10 @@
    <utility
     component=".vocabularies.UserDocumentPoolVocabularyFactory"
     name="docpool.base.vocabularies.UserDocumentPools"
+    />
+   <utility
+    component=".vocabularies.DashboardCollectionsVocabularyFactory"
+    name="docpool.base.vocabularies.DashboardCollections"
     />
 
     <subscriber handler=".events.delete_handler" />

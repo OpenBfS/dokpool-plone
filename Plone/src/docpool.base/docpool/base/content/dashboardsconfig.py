@@ -1,17 +1,3 @@
-#
-# File: dashboardsconfig.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the DashboardsConfig content type. See dashboardsconfig.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
 from plone.dexterity.content import Container
 from plone.supermodel import model
@@ -24,7 +10,6 @@ class IDashboardsConfig(model.Schema):
 
 @implementer(IDashboardsConfig)
 class DashboardsConfig(Container):
-    """ """
 
     security = ClassSecurityInfo()
 

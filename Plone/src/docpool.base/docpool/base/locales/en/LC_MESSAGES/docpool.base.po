@@ -56,6 +56,14 @@ msgstr ""
 msgid "DPDocument"
 msgstr "Document"
 
+#: docpool.base/docpool/base/profiles/default/types/DashboardCollection.xml
+msgid "Dashboard Collection"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DashboardsConfig.xml
+msgid "Dashboards Configuration"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "Delete"
@@ -81,6 +89,11 @@ msgstr ""
 msgid "Docpool view with bulk actions"
 msgstr ""
 
+#: docpool.base/docpool/base/content/dashboard.py
+#: docpool.base/docpool/base/content/dashboardcollection.py
+msgid "Document Types"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
 msgstr ""
@@ -92,6 +105,10 @@ msgstr ""
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
 msgstr "Document Type"
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Edit Dashboard"
+msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Edit the document"
@@ -189,6 +206,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dashboard.pt
+msgid "No current data"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.py
@@ -480,6 +501,11 @@ msgstr ""
 msgid "description_contentbase_wdate"
 msgstr ""
 
+#. Default: "Select the document types you want to show in this dashboard."
+#: docpool.base/docpool/base/content/dashboard.py
+msgid "description_dashboard_dbcollections"
+msgstr ""
+
 #: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_alloweddoctypes"
 msgstr ""
@@ -534,6 +560,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/content/dpdocument.py
 msgid "description_dpdocument_text"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dashboardcollection.py
+msgid "description_elandoccollection_doctypes"
 msgstr ""
 
 #. Default: "There are currently no items in this folder."
@@ -600,6 +630,16 @@ msgstr "Date of last workflow action"
 msgid "label_continue"
 msgstr "Continue with files & images"
 
+#. Default: "Dashboard"
+#: docpool.base/docpool/base/profiles/default/types/Dashboard.xml
+msgid "label_dashboard"
+msgstr ""
+
+#. Default: "Document Types"
+#: docpool.base/docpool/base/content/dashboard.py
+msgid "label_dashboard_dbcollections"
+msgstr ""
+
 #. Default: "Types are allowed as part of this type"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_alloweddoctypes"
@@ -664,6 +704,11 @@ msgstr "Document Type"
 #: docpool.base/docpool/base/content/dpdocument.py
 msgid "label_dpdocument_text"
 msgstr "Text"
+
+#. Default: "Document Types"
+#: docpool.base/docpool/base/content/dashboardcollection.py
+msgid "label_elandoccollection_doctypes"
+msgstr ""
 
 #. Default: "Save"
 #: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt

@@ -27,7 +27,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         # layer.
         import docpool.base
         import docpool.config
-        import docpool.dashboard
         import docpool.doksys
         import docpool.elan
         import docpool.event
@@ -53,7 +52,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.doksys)
-        self.loadZCML(package=docpool.dashboard)
         self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=elan.sitrep)
