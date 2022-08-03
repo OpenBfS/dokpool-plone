@@ -22,9 +22,11 @@ from docpool.base.marker import IImportingMarker
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
+from docpool.base.utils import _copyPaste
 from docpool.transfers import DocpoolMessageFactory as _
 from logging import getLogger
 from persistent.mapping import PersistentMapping
+from plone import api
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
@@ -39,6 +41,13 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
 logger = getLogger("dptransferfolder")
+
+
+HAS_ELAN = True
+try:
+    from docpool.elan.config import ELAN_APP
+except ImportError:
+    HAS_ELAN = False
 
 
 class IDPTransferFolder(model.Schema, IFolderBase):
@@ -146,6 +155,28 @@ class DPTransferFolder(FolderBase):
                 return [dt for dt in myDts if dt[0] in theirDts]
 
         return execute_under_special_role(self, "Manager", doIt)
+
+    def ensureDocTypeInTarget(self, doctype):
+        """If my document type is unknown in the target ESD, copy it to the target.
+
+        Set it to private state.
+
+        """
+        config = self.myDocumentPool().config.dtypes
+        if doctype.getId() in config:
+            return
+
+        copy_id = _copyPaste(doctype, config)
+        copy = config._getOb(copy_id)
+
+        if HAS_ELAN:
+            # Set intermediate category
+            copy.doc_extension(ELAN_APP).setCCategory("recent")
+
+        api.content.transition(copy, transition="retract")
+        copy.reindexObject()
+        copy.reindexObjectSecurity()
+        config.reindexObject()
 
     def getSendingESD(self):
         """ """
