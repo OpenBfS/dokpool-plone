@@ -326,7 +326,6 @@
 </metal:macro>
 
 <metal:macro define-macro="doc_images" i18n:domain="docpool.base">
-
           <span tal:define="images context/getImages" tal:condition="images">
             <label i18n:translate="">Images:</label>
             <table border="0">
@@ -340,6 +339,7 @@
                       tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview'" border="0"
                       width="80%" height="auto"/>
                  <img tal:condition="not:multiple_images"
+
                       tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image'" border="0"
                       width="100%" height="auto"/>
                   <br/>

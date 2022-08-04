@@ -19,13 +19,13 @@
               <tal:insert replace="structure context/getLegendImage" tal:condition="nocall:li"/>
            </div>
         </span>
-        <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None)) and not context.getFiles()">
+        <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
            <div metal:use-macro="here/@@dp.macros/macros/doc_images"/> 
         </span>
         <span tal:condition="python:context.getFiles()"> 
            <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf">
                <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
-                  <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
+                  <table><tr><td><br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a></td></tr></table>
                </span>
                <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
                  <br><div metal:use-macro="here/@@dp.macros/macros/doc_files"/> 
