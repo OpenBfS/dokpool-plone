@@ -6,15 +6,17 @@ Changelog
 
 Changed:
 
+- Limit blob-cache to 25GB #4739
+  [slindner]
+
 - Speed up archiving events, bring back combined snapshot and purge #4870
   [pbauer]
 
 - Update SampleType vocabulary and change sorting on NetworksVocabulary #4902
   [kprobst]
 
-- Limit blob-cache to 25GB #4739
-  [slindner]
-
+- Adapted simpleviz templates for dtypes (visualisation of non-map+legend-attachments) #4903
+  [kprobst]
 
 Fixed:
 
