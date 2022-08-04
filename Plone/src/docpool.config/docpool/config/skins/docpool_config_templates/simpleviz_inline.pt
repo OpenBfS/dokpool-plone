@@ -30,7 +30,7 @@
               tal:condition="python:pdf">
            <div class="pdflink" tal:condition="nocall:pdf">
                <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
-                  <table><tr><td><br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a></td></tr></table>
+                  <table><tr><td><br><a href="python:pdf[0].absolute_url" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a></td></tr></table>
                </span>
                <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
                  <br><div metal:use-macro="here/@@dp.macros/macros/doc_files"/>
