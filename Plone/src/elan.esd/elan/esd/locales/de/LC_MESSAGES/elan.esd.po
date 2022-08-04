@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2021-01-28 22:33+0000\n"
+"POT-Creation-Date: 2022-08-02 11:51+0000\n"
 "PO-Revision-Date: 2018-11-16 10:37+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -155,7 +155,7 @@ msgstr "Letzte Änderungen"
 
 #: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "Snapshot"
-msgstr "Kopie des aktuellen Standes"
+msgstr "Teilarchivierung des aktuellen Standes"
 
 #: elan.esd/elan/esd/profiles/default/registry.xml
 msgid "The location of an item"
@@ -188,10 +188,6 @@ msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
 #: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "alert_submit_popup"
 msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "archive_confirm_msg"
-msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
 #. Default: "No items changed yet."
 #: elan.esd/elan/esd/portlets/collection.pt
@@ -247,10 +243,6 @@ msgstr "privat"
 #: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "published"
 msgstr "Veröffentlicht"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "purge_confirm_msg"
-msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
 
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
 #: elan.esd/elan/esd/monkey.py

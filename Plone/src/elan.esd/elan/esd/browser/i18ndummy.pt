@@ -19,8 +19,6 @@
 <i18n:dummy translate="Archiving"></i18n:dummy>
 <i18n:dummy translate="Purge"></i18n:dummy>
 <i18n:dummy translate="Snapshot"></i18n:dummy>
-<i18n:dummy translate="archive_confirm_msg"></i18n:dummy>
-<i18n:dummy translate="purge_confirm_msg"></i18n:dummy>
 
 </metal:content-core>
 </metal:content-core>

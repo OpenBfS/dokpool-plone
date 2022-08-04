@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-10-03 14:19+0000\n"
+"POT-Creation-Date: 2022-08-02 11:43+0000\n"
 "PO-Revision-Date: 2018-12-21 10:44+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
@@ -68,6 +68,10 @@ msgstr "Koordinaten"
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Created"
 msgstr "Erzeugt"
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Created snapshot of event."
+msgstr "Teilarchiv des Ereignisses erstellt."
 
 #: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
 msgid "DP Event"
@@ -142,10 +146,6 @@ msgstr "Szenario & Phase"
 msgid "Please select at least one scenario!"
 msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
-#: docpool.event/docpool/event/profiles/default/actions.xml
-msgid "Purge"
-msgstr "Inhalte des Ereignisses löschen"
-
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine"
 msgstr "Kleine Lage"
@@ -174,11 +174,7 @@ msgstr "Sektorierung Umweltbereiche"
 
 #: docpool.event/docpool/event/profiles/default/actions.xml
 msgid "Snapshot"
-msgstr "Kopie des aktuellen Standes"
-
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "Snapshot created"
-msgstr "Kopie der Inhalte erzeugt"
+msgstr "Teilarchivierung des aktuellen Standes"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "State"
@@ -192,10 +188,6 @@ msgstr "Status"
 msgid "Test"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "There are no more documents for this scenario."
-msgstr "Es gibt keine Dokumente zu diesem Ereignis."
-
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
@@ -207,6 +199,18 @@ msgstr "Art des Ereignisses"
 #: docpool.event/docpool/event/configure.zcml
 msgid "Uninstalls the docpool.event add-on."
 msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "active"
+msgstr "Aktiv"
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "archive_confirm_msg"
+msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "closed"
+msgstr "Geschlossen"
 
 #. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
 #: docpool.event/docpool/event/content/dpevent.py
@@ -241,6 +245,10 @@ msgstr ""
 #: docpool.event/docpool/event/configure.zcml
 msgid "docpool.event (uninstall)"
 msgstr ""
+
+#: docpool.event/docpool/event/vocabularies.py
+msgid "inactive"
+msgstr "Inaktiv"
 
 #. Default: "Status of Alerting"
 #: docpool.event/docpool/event/content/dpevent.py
@@ -277,44 +285,6 @@ msgstr "Ereigniszeit"
 msgid "label_dpevent_type"
 msgstr "Art des Ereignisses"
 
-#. Default: "Confirm purge"
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "purge_confirm_msg"
-msgstr "Wollen Sie wirklich alle Dokumente aus diesem Ereignis entfernen?"
-
-#. Default: "Confirm archive"
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "archive_confirm_msg"
-msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "routine"
-msgstr "Routinebetrieb"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "intensive"
-msgstr "Intensivbetrieb"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "none"
-msgstr "keine"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "initialized"
-msgstr "ausgelöst"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "alerted"
-msgstr "durchgeführt"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "active"
-msgstr "Aktiv"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "inactive"
-msgstr "Inaktiv"
-
-#: docpool.event/docpool/event/vocabularies.py
-msgid "closed"
-msgstr "Geschlossen"
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "snapshot_confirm_msg"
+msgstr "Wollen Sie wirklich dieses Ereignis teilarchivieren? Das Ereignis bleibt dabei erhalten, alle Dokumente werden in ein Archiv verschoben."
