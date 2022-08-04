@@ -61,6 +61,10 @@ Changed:
 
 - Expand EventType history. #4463
   [slindner]
+- Add blob cache size to production buildout #4739
+  [slindner]
+
+Fixed:
 
 - Don't log login times to member properties to avoid DB hotspot. #4325
   [tlotze]
