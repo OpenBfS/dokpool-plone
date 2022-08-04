@@ -2,6 +2,41 @@ Changelog
 =========
 
 1.9.1 (05.07.22)
+1.9.2 (04.08.2022)
+------------------
+
+Changed:
+
+- Fix Icon path #4808
+  [slindner]
+
+- Fix journal permission check #4818
+  [pbauer]
+
+- Run CI test in correct dir #4823
+  [slindner]
+
+
+1.9.0 (13.05.22)
+- Limit blob-cache to 25GB #4739
+  [slindner]
+
+- Speed up archiving events, bring back combined snapshot and purge #4870
+  [pbauer]
+
+- Update SampleType vocabulary and change sorting on NetworksVocabulary #4902
+  [kprobst]
+
+- Adapted simpleviz templates for dtypes (visualisation of non-map+legend-attachments) #4903
+  [kprobst]
+
+Fixed:
+
+- Fix varnish config to avoid mixing up user identities #4539
+  [tlotze]
+
+
+1.9.1 (05.07.2022)
 ------------------
 
 Fixed:
@@ -16,7 +51,7 @@ Fixed:
   [slindner]
 
 
-1.9.0 (13.05.22)
+1.9.0 (13.05.2022)
 ------------------
 
 Added:
@@ -56,6 +91,10 @@ Changed:
 
 - Expand EventType history. #4463
   [slindner]
+- Add blob cache size to production buildout #4739
+  [slindner]
+
+Fixed:
 
 - Don't log login times to member properties to avoid DB hotspot. #4325
   [tlotze]

@@ -20,9 +20,5 @@
 
     </tal:app_logo>
 <!--        <p class="version" tal:content="context/docpoolversion|nothing">1.0</p> -->
-        <p class="version">1.9.1</p>
-
-
-
-
+        <p class="version">1.9.2</p>
 </div>
