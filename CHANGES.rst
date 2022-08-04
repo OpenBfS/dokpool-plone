@@ -1,23 +1,11 @@
 Changelog
 =========
 
-1.9.1 (05.07.22)
 1.9.2 (04.08.2022)
 ------------------
 
 Changed:
 
-- Fix Icon path #4808
-  [slindner]
-
-- Fix journal permission check #4818
-  [pbauer]
-
-- Run CI test in correct dir #4823
-  [slindner]
-
-
-1.9.0 (13.05.22)
 - Limit blob-cache to 25GB #4739
   [slindner]
 
