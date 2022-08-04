@@ -57,8 +57,8 @@
                           </div>
                        </div>
                     </span>
-                    <span tal:condition="python:context.getFiles()"
-                          tal:define="pdfs python:context.getFiles()"
+                    <span tal:define="pdfs python:context.getFiles()"
+                          tal:condition="python:pdfs"
                           tal:repeat="pdf pdfs">
                          <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
                              <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>

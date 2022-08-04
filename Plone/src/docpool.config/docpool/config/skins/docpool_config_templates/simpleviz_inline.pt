@@ -2,7 +2,7 @@
            define="view nocall:options/view;
                    context nocall:options/context;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                   edit_allowed context/canBeEdited;
+                   edit_allowed python:False;
                    here nocall:context">
     <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
 
@@ -26,8 +26,9 @@
            <div metal:use-macro="here/@@dp.macros/macros/doc_images"/> 
         </div>
         </span>
-        <span tal:condition="python:context.getFiles()">
-           <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf">
+        <span tal:define="pdf python:context.getFiles()"
+              tal:condition="python:pdf">
+           <div class="pdflink" tal:condition="nocall:pdf">
                <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
                   <table><tr><td><br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a></td></tr></table>
                </span>
