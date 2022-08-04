@@ -4,13 +4,25 @@ Changelog
 1.9.2 (unreleased)
 ------------------
 
+Changed:
+
+- Speed up archiving events, bring back combined snapshot and purge #4870
+  [pbauer]
+
+- Update SampleType vocabulary and change sorting on NetworksVocabulary #4902
+  [kprobst]
+
+- Limit blob-cache to 25GB #4739
+  [slindner]
+
+
 Fixed:
 
 - Fix varnish config to avoid mixing up user identities #4539
   [tlotze]
 
 
-1.9.1 (05.07.22)
+1.9.1 (05.07.2022)
 ------------------
 
 Fixed:
@@ -25,7 +37,7 @@ Fixed:
   [slindner]
 
 
-1.9.0 (13.05.22)
+1.9.0 (13.05.2022)
 ------------------
 
 Added:
