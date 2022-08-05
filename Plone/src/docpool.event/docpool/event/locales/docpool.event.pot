@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-08-05 10:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,6 +68,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Created"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Created snapshot of event."
 msgstr ""
 
 #: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
@@ -151,10 +155,6 @@ msgstr ""
 msgid "Please select at least one scenario!"
 msgstr ""
 
-#: docpool.event/docpool/event/profiles/default/actions.xml
-msgid "Purge"
-msgstr ""
-
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine"
 msgstr ""
@@ -197,10 +197,6 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "There are no more documents for this scenario."
-msgstr ""
-
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
 msgstr ""
@@ -215,6 +211,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "active"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "archive_confirm_msg"
 msgstr ""
 
 #: docpool.event/docpool/event/vocabularies.py
@@ -292,4 +292,8 @@ msgstr ""
 #. Default: "Type of event"
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "label_dpevent_type"
+msgstr ""
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "snapshot_confirm_msg"
 msgstr ""
