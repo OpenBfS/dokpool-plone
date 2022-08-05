@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-08-05 12:46+0000\n"
 "PO-Revision-Date: 2015-10-27 20:26+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -189,10 +189,6 @@ msgstr "Do you really want to retract this document?"
 msgid "alert_submit_popup"
 msgstr "Do you really want to submit this document?"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "archive_confirm_msg"
-msgstr "Do you really want to archive this scenario?"
-
 #. Default: "No items changed yet."
 #: elan.esd/elan/esd/portlets/collection.pt
 #: elan.esd/elan/esd/portlets/recent.pt
@@ -247,10 +243,6 @@ msgstr "Private"
 #: elan.esd/elan/esd/browser/i18ndummy.pt
 msgid "published"
 msgstr "Published"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "purge_confirm_msg"
-msgstr "Do you really want to remove all documents from this scenario?"
 
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
 #: elan.esd/elan/esd/monkey.py

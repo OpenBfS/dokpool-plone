@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-08-05 10:01+0000\n"
 "PO-Revision-Date: 2018-12-21 10:44+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
@@ -68,6 +68,10 @@ msgstr "Koordinaten"
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Created"
 msgstr "Erzeugt"
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Created snapshot of event."
+msgstr "Teilarchiv des Ereignisses erstellt."
 
 #: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
 msgid "DP Event"
@@ -150,10 +154,6 @@ msgstr "Szenario & Phase"
 msgid "Please select at least one scenario!"
 msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
-#: docpool.event/docpool/event/profiles/default/actions.xml
-msgid "Purge"
-msgstr "Inhalte des Ereignisses löschen"
-
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine"
 msgstr "Kleine Lage"
@@ -182,7 +182,7 @@ msgstr "Sektorierung Umweltbereiche"
 
 #: docpool.event/docpool/event/profiles/default/actions.xml
 msgid "Snapshot"
-msgstr "Kopie des aktuellen Standes"
+msgstr "Teilarchivierung des aktuellen Standes"
 
 #: docpool.event/docpool/event/browser/dpevent.pt
 msgid "State"
@@ -195,10 +195,6 @@ msgstr "Status"
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Test"
 msgstr ""
-
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "There are no more documents for this scenario."
-msgstr "Es gibt keine Dokumente zu diesem Ereignis."
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
@@ -215,6 +211,10 @@ msgstr ""
 #: docpool.event/docpool/event/vocabularies.py
 msgid "active"
 msgstr "Aktiv"
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "archive_confirm_msg"
+msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "closed"
@@ -292,3 +292,7 @@ msgstr "Ereigniszeit"
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "label_dpevent_type"
 msgstr "Art des Ereignisses"
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "snapshot_confirm_msg"
+msgstr "Wollen Sie wirklich dieses Ereignis teilarchivieren? Das Ereignis bleibt dabei erhalten, alle Dokumente werden in ein Archiv verschoben."

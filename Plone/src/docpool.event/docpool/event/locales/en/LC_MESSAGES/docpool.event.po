@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-08-05 10:01+0000\n"
 "PO-Revision-Date: 2018-12-21 10:42+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: \n"
@@ -67,6 +67,10 @@ msgstr ""
 
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Created"
+msgstr ""
+
+#: docpool.event/docpool/event/content/dpevent.py
+msgid "Created snapshot of event."
 msgstr ""
 
 #: docpool.event/docpool/event/profiles/default/types/DPEvent.xml
@@ -150,10 +154,6 @@ msgstr ""
 msgid "Please select at least one scenario!"
 msgstr "Please select at least one event!"
 
-#: docpool.event/docpool/event/profiles/default/actions.xml
-msgid "Purge"
-msgstr ""
-
 #: docpool.event/docpool/event/vocabularies.py
 msgid "Routine"
 msgstr ""
@@ -196,10 +196,6 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: docpool.event/docpool/event/content/dpevent.py
-msgid "There are no more documents for this scenario."
-msgstr "There are no more documents for this event."
-
 #: docpool.event/docpool/event/browser/dpevents.pt
 msgid "Title/Description"
 msgstr ""
@@ -215,6 +211,10 @@ msgstr ""
 #: docpool.event/docpool/event/vocabularies.py
 msgid "active"
 msgstr ""
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "archive_confirm_msg"
+msgstr "Do you really want to archive this event?"
 
 #: docpool.event/docpool/event/vocabularies.py
 msgid "closed"
@@ -292,3 +292,7 @@ msgstr ""
 #: docpool.event/docpool/event/content/dpevent.py
 msgid "label_dpevent_type"
 msgstr ""
+
+#: docpool.event/docpool/event/browser/i18ndummy.pt
+msgid "snapshot_confirm_msg"
+msgstr "Do you really want to create a snapshot of this event? The event stays active but all documents are moved to a archive."
