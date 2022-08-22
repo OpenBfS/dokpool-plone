@@ -12,11 +12,16 @@ repos:
         args: [--maxkb=1403]
       - id: check-ast
       - id: check-merge-conflict
+      - id: check-toml
       - id: check-xml
         types: [file]
         files: \.(xml|zcml)$
+      #   files: \.(xml|zcml|pt)$
       - id: check-yaml
       - id: debug-statements
+      # - id: double-quote-string-fixer
+      # - id: end-of-file-fixer
+      # - id: trailing-whitespace
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.37.3
@@ -32,18 +37,22 @@ repos:
   #         - isort[pyproject]
 
   # - repo: https://gitlab.com/pycqa/flake8
-  #   rev: flake8
+  #   rev: 5.0.4
   #   hooks:
   #     - id: flake8
   #       additional_dependencies:
+  #         - flake8-blind-except
+  #         - flake8-coding
   #         - flake8-debugger
-  #         - flake8-print
   #         - flake8-deprecated
-  #         - flake8-plone-hasattr
-  #         # - flake8-plone-api
-  #         # - pep8-naming
   #         - flake8-mutable
+  #         # - flake8-plone-api
+  #         - flake8-plone-hasattr
+  #         - flake8-print
+  #         - flake8-quotes
+  #         - flake8-string-format
   #         - flake8-tidy-imports
+  #         # - pep8-naming
   #       args: [--config=Plone/.flake8]
 
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -52,3 +61,11 @@ repos:
       - id: prettier
         # Exclude the build files
         exclude: ^Plone/src/docpool.theme/docpool/theme/webpack_resources/theme
+
+  # - repo: https://github.com/PyCQA/bandit
+  #   rev: 1.7.4
+  #   hooks:
+  #     - id: bandit
+  #       additional_dependencies:
+  #         - bandit[toml]
+  #       args: [-c, Plone/pyproject.toml]

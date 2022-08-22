@@ -1,3 +1,10 @@
+[tool.bandit]
+targets = ["src"]
+skips = []
+
+[tool.black]
+# skip-string-normalization = true
+
 [tool.isort]
 filter_files = true
 force_alphabetical_sort = true

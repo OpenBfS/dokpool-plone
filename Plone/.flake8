@@ -1,0 +1,23 @@
+[flake8]
+exclude =
+    *.egg
+    .venv
+    bootstrap-buildout.py
+    bootstrap.py
+    collective.*
+    docs
+    overrides
+    plone.*
+    setup.py
+    template_overrides
+extend-ignore =
+ignore-names =
+    configurationContext
+    getNonInstallableProfiles
+    setUp
+    setUpPloneSite
+    setUpZope
+    tearDown
+max-complexity = 18
+max-line-length = 88
+no-accept-encodings = True
