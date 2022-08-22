@@ -28,7 +28,8 @@ repos:
   #   rev: 5.10.1
   #   hooks:
   #     - id: isort
-  #       args: ["--profile", "black", "--filter-files"]
+  #       additional_dependencies:
+  #         - isort[pyproject]
 
   # - repo: https://gitlab.com/pycqa/flake8
   #   rev: flake8

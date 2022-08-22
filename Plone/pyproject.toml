@@ -1,0 +1,7 @@
+[tool.isort]
+filter_files = true
+force_alphabetical_sort = true
+force_single_line = true
+line_length = 88
+lines_after_imports = 2
+profile = "black"
