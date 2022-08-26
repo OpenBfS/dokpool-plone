@@ -1,8 +1,5 @@
-from docpool.event import DocpoolMessageFactory as _
-from docpool.event.content.dpevent import IDPEvent
-from docpool.event.content.dpevents import IDPEvents
-from zope.interface import Attribute
-from zope.interface import Interface
+from docpool.event.content.dpevent import IDPEvent  # noqa: F401
+from docpool.event.content.dpevents import IDPEvents  # noqa: F401
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
