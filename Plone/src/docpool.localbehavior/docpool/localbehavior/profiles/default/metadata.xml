@@ -4,4 +4,3 @@
         <dependency>profile-plone.app.dexterity:default</dependency>
     </dependencies>
 </metadata>
-

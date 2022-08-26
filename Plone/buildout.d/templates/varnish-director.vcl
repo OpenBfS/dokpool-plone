@@ -214,4 +214,3 @@ sub compress_content {
         set beresp.do_gzip = true;
     }
 }
-

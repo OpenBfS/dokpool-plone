@@ -46,4 +46,3 @@ WORKDIR /opt/bfs/dokpool/Plone
 # run using varnish
 EXPOSE 8081 8082 8083 8100 8881 9001
 CMD [ "/opt/bfs/dokpool/Plone/bin/supervisord", "-n"]
-

@@ -44,4 +44,3 @@ ENV HOME /home/plone
 WORKDIR /opt/bfs/elan/Plone
 EXPOSE 8081 8082 8083 8100 8881 9001
 CMD [ "/opt/bfs/dokpool/Plone/bin/supervisord", "-n"]
-

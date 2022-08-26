@@ -17,4 +17,3 @@ msgstr ""
 #: docpool.localbehavior/docpool/localbahavior/localbehavior.py:17
 msgid "description_local_behaviors"
 msgstr "Unterstützte Anwendungen für diesen Inhalt auswählen. Änderungen werden nach dem Speichern angewendet."
-

@@ -42,4 +42,3 @@ ENV HOME /home/plone
 WORKDIR /opt/bfs/dokpool/Plone
 EXPOSE 8081
 CMD [ "/opt/bfs/dokpool/Plone/bin/instance", "fg"]
-

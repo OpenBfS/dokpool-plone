@@ -139,6 +139,3 @@ msgstr "Tagebuch1-Eintrag hinzufügen"
 #: /elan/journal/profiles/default/actions.xml
 msgid "Add Journal2 Entry"
 msgstr "Tagebuch2-Eintrag hinzufügen"
-
-
-
