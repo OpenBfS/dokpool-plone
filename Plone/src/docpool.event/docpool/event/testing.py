@@ -38,7 +38,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import eea.facetednavigation
         import elan.esd
         import elan.journal
-        import elan.policy
         import elan.sitrep
         import Products.CMFFormController
 
@@ -50,7 +49,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.menu)
         self.loadZCML(package=docpool.users)
         self.loadZCML(package=docpool.localbehavior)
-        self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.transfers)
@@ -61,7 +59,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.base:default")
-        applyProfile(portal, "elan.policy:default")
         applyProfile(portal, "elan.journal:default")
         applyProfile(portal, "docpool.doksys:default")
         applyProfile(portal, "docpool.event:default")

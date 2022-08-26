@@ -2,5 +2,10 @@
 <metadata>
   <version>1001</version>
   <dependencies>
+    <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
+    <dependency>profile-docpool.theme:default</dependency>
+    <dependency>profile-docpool.base:default</dependency>
+    <dependency>profile-docpool.users:default</dependency>
+    <dependency>profile-docpool.elan:default</dependency>
   </dependencies>
 </metadata>

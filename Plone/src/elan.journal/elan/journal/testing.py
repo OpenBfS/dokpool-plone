@@ -39,7 +39,6 @@ class Fixture(PloneSandboxLayer):
         import eea.facetednavigation
         import elan.esd
         import elan.journal
-        import elan.policy
         import elan.sitrep
         import Products.CMFFormController
 
@@ -49,7 +48,6 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.menu)
-        self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.users)
         self.loadZCML(package=docpool.localbehavior)
         self.loadZCML(package=eea.facetednavigation)
@@ -64,7 +62,6 @@ class Fixture(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         # required because the templates in elan.journal use skin-scripts from docpool.base
         applyProfile(portal, "docpool.base:default")
-        applyProfile(portal, "elan.policy:default")
         applyProfile(portal, "elan.journal:default")
         applyProfile(portal, "elan.esd:default")
         applyProfile(portal, "docpool.doksys:default")
