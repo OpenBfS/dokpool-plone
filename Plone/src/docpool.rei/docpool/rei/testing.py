@@ -8,8 +8,6 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.testing.zope import WSGI_SERVER_FIXTURE
 
-import docpool.rei
-
 
 class DocpoolReiLayer(PloneSandboxLayer):
 

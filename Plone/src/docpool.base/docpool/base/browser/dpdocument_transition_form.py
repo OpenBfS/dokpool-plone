@@ -11,7 +11,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZODB.POSException import ConflictError
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
-from zope.interface import implementer
 
 
 PMF = MessageFactory("plone")

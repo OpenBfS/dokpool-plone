@@ -17,7 +17,6 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
-from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent

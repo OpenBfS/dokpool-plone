@@ -23,7 +23,6 @@ from docpool.base.marker import IImportingMarker
 from plone import api
 from plone.autoform import directives
 from plone.base.utils import safe_text
-from plone.dexterity.content import Item
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName

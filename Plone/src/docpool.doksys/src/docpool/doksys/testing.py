@@ -6,8 +6,6 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.testing.zope import WSGI_SERVER_FIXTURE
 
-import docpool.doksys
-
 
 class DocpoolDoksysLayer(PloneSandboxLayer):
 

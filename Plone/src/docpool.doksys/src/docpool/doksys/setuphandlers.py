@@ -3,7 +3,6 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from persistent.list import PersistentList
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from Products.CMFPlone.interfaces import INonInstallable

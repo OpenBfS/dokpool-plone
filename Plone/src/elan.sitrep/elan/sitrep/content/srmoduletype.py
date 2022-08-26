@@ -17,7 +17,6 @@ from docpool.base.content.doctype import DocType
 from docpool.base.content.doctype import IDocType
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.autoform import directives
-from plone.dexterity.content import Container
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from zope.interface import implementer

@@ -1,6 +1,5 @@
 """Setup tests for this package."""
-from docpool.menu.testing import DOCPOOL_MENU_INTEGRATION_TESTING  # noqa
-from plone import api
+from docpool.menu.testing import DOCPOOL_MENU_INTEGRATION_TESTING
 from plone.base.utils import get_installer
 
 import unittest

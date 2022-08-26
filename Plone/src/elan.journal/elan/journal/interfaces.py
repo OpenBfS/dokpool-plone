@@ -1,6 +1,3 @@
-from elan.journal import _
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedBlobImage
 from zope.interface import Interface
 
 

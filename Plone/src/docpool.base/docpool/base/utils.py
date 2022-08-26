@@ -4,7 +4,6 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_get
 from Acquisition import aq_inner
-from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.protect.interfaces import IDisableCSRFProtection
