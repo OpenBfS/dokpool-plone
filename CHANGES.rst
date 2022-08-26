@@ -1,7 +1,64 @@
 Changelog
 =========
 
-1.9.0 (unreleased)
+2.0.0 (unreleased)
+------------------
+
+- Python 3 Migration #4345
+  This is a mayor breaking change with many refactorings.
+  Updating a existing installation requires the data to be moved to a new instance using exportimport.
+  See the ticket #4345 for links to all subtasks.
+  [everyone]
+
+- Cleanup packages structure #4076
+  Remove docpool.caching and move code to docpool.base
+  Remove docpool.video
+  Remove docpool.dashboard and move code to docpool.base
+  Make etag module of docpool.base pluggable and move elan-specifics to docpool.elan
+  Remove docpool.policy
+  Remove elan.policy and move code adn dependecies to docpool.config
+  [tlotze, pbauer]
+
+
+1.9.2 (04.08.22)
+------------------
+
+Changed:
+
+- Limit blob-cache to 25GB #4739
+  [slindner]
+
+- Speed up archiving events, bring back combined snapshot and purge #4870
+  [pbauer]
+
+- Update SampleType vocabulary and change sorting on NetworksVocabulary #4902
+  [kprobst]
+
+- Adapted simpleviz templates for dtypes (visualisation of non-map+legend-attachments) #4903
+  [kprobst]
+
+Fixed:
+
+- Fix varnish config to avoid mixing up user identities #4539
+  [tlotze]
+
+
+1.9.1 (05.07.2022)
+------------------
+
+Fixed:
+
+- Fix Icon path #4808
+  [slindner]
+
+- Fix journal permission check #4818
+  [pbauer]
+
+- Run CI test in correct dir #4823
+  [slindner]
+
+
+1.9.0 (13.05.2022)
 ------------------
 
 Added:
@@ -41,6 +98,10 @@ Changed:
 
 - Expand EventType history. #4463
   [slindner]
+- Add blob cache size to production buildout #4739
+  [slindner]
+
+Fixed:
 
 - Don't log login times to member properties to avoid DB hotspot. #4325
   [tlotze]
