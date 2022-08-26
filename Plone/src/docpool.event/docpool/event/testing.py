@@ -26,9 +26,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import docpool.caching
         import docpool.config
-        import docpool.dashboard
         import docpool.doksys
         import docpool.elan
         import docpool.event
@@ -40,9 +38,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import eea.facetednavigation
         import elan.esd
         import elan.journal
-        import elan.policy
         import elan.sitrep
-        import plone.app.caching
         import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
@@ -53,21 +49,16 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.menu)
         self.loadZCML(package=docpool.users)
         self.loadZCML(package=docpool.localbehavior)
-        self.loadZCML(package=elan.policy)
         self.loadZCML(package=docpool.doksys)
-        self.loadZCML(package=docpool.dashboard)
-        self.loadZCML(package=docpool.caching)
         self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=elan.sitrep)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
-        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=docpool.event)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.base:default")
-        applyProfile(portal, "elan.policy:default")
         applyProfile(portal, "elan.journal:default")
         applyProfile(portal, "docpool.doksys:default")
         applyProfile(portal, "docpool.event:default")

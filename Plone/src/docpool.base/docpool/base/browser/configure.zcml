@@ -246,4 +246,18 @@
           />
   </class>
 
+    <browser:page
+            permission="zope2.View"
+            name="dashboard"
+            for="..interfaces.IDPDocument"
+            class=".dpdocument.DPDocumentdashboardView"
+    />
+
+    <browser:page
+            permission="zope2.View"
+            name="view"
+            for="..content.dashboard.IDashboard"
+            class=".dashboard.DashboardView"
+    />
+
 </configure>

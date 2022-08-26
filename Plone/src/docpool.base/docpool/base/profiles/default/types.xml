@@ -67,4 +67,14 @@
 
 
      <object name="Collection" meta_type="Dexterity FTI"/>
+
+
+     <object name="DashboardCollection" meta_type="Dexterity FTI" />
+
+
+     <object name="DashboardsConfig" meta_type="Dexterity FTI" />
+
+
+     <object name="Dashboard" meta_type="Dexterity FTI" />
+
 </object>

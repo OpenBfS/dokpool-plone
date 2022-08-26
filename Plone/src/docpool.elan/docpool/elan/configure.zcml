@@ -26,5 +26,6 @@
    <permission id="docpool.elan.AccessELAN" title="Docpool: Access ELAN Content" />
    <include package=".behaviors" />
 
+   <adapter factory=".caching.AppCaching" name="app_caching_elan" />
 
 </configure>

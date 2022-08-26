@@ -2,6 +2,6 @@
 <metadata>
   <version>1001</version>
   <dependencies>
-    <dependency>profile-docpool.event:default</dependency>
+    <dependency>profile-docpool.base:default</dependency>
   </dependencies>
 </metadata>

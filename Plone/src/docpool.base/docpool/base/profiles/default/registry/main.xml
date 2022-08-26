@@ -1,0 +1,65 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.base">
+  <record name="plone.disable_filtering" interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" field="disable_filtering">
+    <value>True</value>
+  </record>
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>Folder</element>
+    </value>
+  </record>
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>InfoFolder</element>
+      <element>DPConfig</element>
+      <element>DocTypes</element>
+      <element>DocumentPool</element>
+      <element>CollaborationFolder</element>
+      <element>ReviewFolder</element>
+      <element>PrivateFolder</element>
+      <element>Groups</element>
+      <element>GroupFolder</element>
+      <element>UserFolder</element>
+      <element>InfoFolder</element>
+      <element>SimpleFolder</element>
+      <element>DashboardsConfig</element>
+      <element>Dashboard</element>
+    </value>
+  </record>
+  <record name="plone.image_objects" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="image_objects">
+    <value>
+      <element>Image</element>
+      <element>DPDocument</element>
+    </value>
+  </record>
+  <record name="plone.toolbar" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="toolbar">
+    <value>ltr rtl | undo redo | styleselect | bold italic | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | unlink plonelink ploneimage | forecolor backcolor</value>
+  </record>
+  <record name="plone.plugins" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="plugins">
+    <value>
+      <element>advlist</element>
+      <element>code</element>
+      <element>fullscreen</element>
+      <element>hr</element>
+      <element>lists</element>
+      <element>media</element>
+      <element>nonbreaking</element>
+      <element>noneditable</element>
+      <element>pagebreak</element>
+      <element>paste</element>
+      <element>preview</element>
+      <element>print</element>
+      <element>searchreplace</element>
+      <element>tabfocus</element>
+      <element>table</element>
+      <element>textcolor</element>
+      <element>visualchars</element>
+      <element>wordcount</element>
+    </value>
+  </record>
+  <record name="plone.custom_attributes" interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" field="custom_attributes">
+    <value>
+      <element>style</element>
+    </value>
+  </record>
+</registry>

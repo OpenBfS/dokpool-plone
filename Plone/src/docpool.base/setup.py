@@ -30,6 +30,7 @@ setup(
         "setuptools",
         "collective.monkeypatcher",
         "docpool.users",
+        "docpool.config",
         "docpool.localbehavior",
         "PyPDF2",
         "xhtml2pdf",

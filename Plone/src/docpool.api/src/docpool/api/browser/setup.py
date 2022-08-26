@@ -80,7 +80,7 @@ class DocpoolSetup(BrowserView):
 
         # install addons
         installer = get_installer(self.context, self.request)
-        installer.install_product("elan.policy")
+        installer.install_product("docpool.config")
         installer.install_product("docpool.doksys")
         installer.install_product("elan.journal")
         installer.install_product("docpool.rei")

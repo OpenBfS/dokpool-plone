@@ -4,19 +4,21 @@ from plone.supermodel import model
 from zope.interface import implementer
 
 
-class IELANSection(model.Schema):
-    pass
+class IDashboardsConfig(model.Schema):
+    """ """
 
 
-@implementer(IELANSection)
-class ELANSection(Container):
+@implementer(IDashboardsConfig)
+class DashboardsConfig(Container):
 
     security = ClassSecurityInfo()
 
-    def myELANSection(self):
+    def myDashboardsConfig(self):
+        """ """
         return self
 
     def getFirstChild(self):
+        """ """
         fc = self.getFolderContents()
         if len(fc) > 0:
             return fc[0].getObject()
@@ -24,4 +26,5 @@ class ELANSection(Container):
             return None
 
     def getAllContentObjects(self):
+        """ """
         return [obj.getObject() for obj in self.getFolderContents()]
