@@ -19,7 +19,6 @@ repos:
       #   files: \.(xml|zcml|pt)$
       - id: check-yaml
       - id: debug-statements
-      # - id: double-quote-string-fixer
       - id: end-of-file-fixer
       - id: trailing-whitespace
 
