@@ -61,9 +61,9 @@ logger = getLogger(__name__)
 
 
 def default_text():
-    """This is a evil hack to work around https://redmine-koala.bfs.de/issues/3701 task 3d.
-    Rei-Reports do not want the text field which is required in the schema.
-    By setting a default value for these the field can be hidden from the editor with css.
+    """This is a evil hack to work around https://redmine-koala.bfs.de/issues/3701 task
+    3d. Rei-Reports do not want the text field which is required in the schema. By
+    setting a default value for these the field can be hidden from the editor with css.
     """
     request = getRequest()
     if request and "reireport" in request.get("form.widgets.docType", []):
@@ -109,9 +109,9 @@ class DPDocument(Container, Extendable, ContentBase):
             wftool = getToolByName(self, "portal_workflow")
             try:
                 wftool.doActionFor(doc, action)
-                if (
-                    str(action) == "publish"
-                ):  # when publishing we also publish any document inside the current document
+                if str(action) == "publish":
+                    # when publishing we also publish any document inside the current
+                    # document
                     for subdoc in doc.getDPDocuments():
                         try:
                             wftool.doActionFor(subdoc, action)
@@ -191,6 +191,10 @@ class DPDocument(Container, Extendable, ContentBase):
         for menu_item in res1:
             if menu_item.get("id") == "DPDocument":
                 for dt in dts:
+                    action = "{}add++DPDocument?form.widgets.docType:list={}".format(
+                        self.absolute_url(),
+                        dt.id,
+                    )
                     res.append(
                         {
                             "extra": {
@@ -201,8 +205,7 @@ class DPDocument(Container, Extendable, ContentBase):
                             "submenu": None,
                             "description": "",
                             "title": safe_text(dt.Title),
-                            "action": "%s/++add++DPDocument?form.widgets.docType:list=%s"
-                            % (self.absolute_url(), dt.id),
+                            "action": action,
                             "selected": False,
                             "id": dt.id,
                             "icon": None,
@@ -287,7 +290,8 @@ class DPDocument(Container, Extendable, ContentBase):
         """ """
         et = self.docType
         if not et:
-            # The object might just be initialized and the attributes have not yet been saved
+            # The object might just be initialized and the attributes have not yet been
+            # saved
             request = getRequest()
             et = request.get("docType", "")
             if not et:
@@ -350,8 +354,8 @@ class DPDocument(Container, Extendable, ContentBase):
 
     def isInOneOfMyFolders(self):
         """
-        Determine if the document is either in the users personal folder or in one of his groups.
-        This should be defined by the Owner role on the object.
+        Determine if the document is either in the users personal folder or in one of
+        his groups. This should be defined by the Owner role on the object.
         """
         mtool = getToolByName(self, "portal_membership")
         return mtool.getAuthenticatedMember().has_role(
@@ -465,8 +469,10 @@ class DPDocument(Container, Extendable, ContentBase):
         """
         TODO: specifically for XMLRPC usage
         """
-        # * Von den allowed Types alle autocreatable Types durchgehen und ihre Muster "ausprobieren"
-        # * Wenn Files oder Images gefunden zu einem Muster: entsprechendes DPDocument erzeugen und Files/Images verschieben
+        # * Von den allowed Types alle autocreatable Types durchgehen und ihre Muster
+        #   "ausprobieren"
+        # * Wenn Files oder Images gefunden zu einem Muster: entsprechendes DPDocument
+        #   erzeugen und Files/Images verschieben
         return "ok"
 
     def setDPProperty(self, name, value, ptype="string"):
@@ -530,7 +536,8 @@ class DPDocument(Container, Extendable, ContentBase):
 
     def getMapImageObj(self):
         """
-        The map image is expected to be a file with with a name like 'xxx-map.png' or 'yyy_map.jpg'.
+        The map image is expected to be a file with with a name like 'xxx-map.png' or
+        'yyy_map.jpg'.
         """
         return self.getFileOrImageByPattern(r".*[-_]map\..*")
 

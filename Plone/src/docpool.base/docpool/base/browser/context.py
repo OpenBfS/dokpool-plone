@@ -14,12 +14,13 @@ class ApplicationState(BrowserView):
 
     def appsPermittedForObject(self, request):
         """
-        Determines all applications that are permitted for the object which is the current context of the
-        dp_app_state view.
-        The list of permitted apps is determined by the apps which may be configured in the doctype
-        (if one is available) plus all implictly active apps.
+        Determines all applications that are permitted for the object which is the
+        current context of the dp_app_state view.
+        The list of permitted apps is determined by the apps which may be configured in
+        the doctype (if one is available) plus all implictly active apps.
         :param request:
         :return:
+
         """
 
         available_apps = self.appsAvailableToCurrentUser()
@@ -53,15 +54,17 @@ class ApplicationState(BrowserView):
 
     def appsEffectiveForObject(self, request, filtered=False):
         """
-        Determines all apps that are actually effective for the object which is the current context of the
-        dp_app_state view.
+        Determines all apps that are actually effective for the object which is the
+        current context of the dp_app_state view.
         The list is an intersection of the following sets of apps:
         - the apps permitted for the object type
-        - the apps, which the user has actived via global preferencs (only if param filtered == true)
-          which currently means: which are activated by navigating to an app-specific version of a docpool
+        - the apps, which the user has actived via global preferencs (only if param
+          filtered == true) which currently means: which are activated by navigating to
+          an app-specific version of a docpool
         - the apps, which are supported on the object itself.
         :param request:
-        :param filtered: If true, only return apps that are also in the user's preferences.
+        :param filtered: If true, only return apps that are also in the user's
+                         preferences.
         :return:
         """
         effective = self.appsPermittedForObject(request)
@@ -79,9 +82,10 @@ class ApplicationState(BrowserView):
 
     def locallyAcivated(self):
         """
-        Returns the apps which are supported directly by the object which is the current context of the
-        dp_app_state view.
-        The list is determined by inspecting the local behaviours for the object and adding all implictly active apps.
+        Returns the apps which are supported directly by the object which is the current
+        context of the dp_app_state view.
+        The list is determined by inspecting the local behaviours for the object and
+        adding all implictly active apps.
         :return:
         """
         res = getattr(self.context, "local_behaviors", [])[:]
@@ -92,8 +96,8 @@ class ApplicationState(BrowserView):
     def appsPermittedForCurrentUser(self):
         """
         Determines all apps, that the current user has access to in the current context.
-        The list is determined by evaluating the user roles and recognizing app specific roles of the format
-        <AppName>User.
+        The list is determined by evaluating the user roles and recognizing app specific
+        roles of the format <AppName>User.
         For users with administrative rights all available apps are returned.
         @return:
         """
@@ -118,10 +122,10 @@ class ApplicationState(BrowserView):
     @memoize
     def appsAvailableToCurrentUser(self):
         """
-        Determines the list of apps, that are actually available to the current user in the current context.
-        The list is an intersection of
+        Determines the list of apps, that are actually available to the current user in
+        the current context. The list is an intersection of:
         - the list of apps which the user has access permission for and
-        - the list of apps which are actually supported in the current context (docpool).
+        - the list of apps which are actually supported in the current context (docpool)
         @return:
         """
         return list(
@@ -132,8 +136,8 @@ class ApplicationState(BrowserView):
 
     def appsActivatedByCurrentUser(self):
         """
-        Returns the app(s) which is/are activated by the user. Currently the active app is implicitly set
-        by navigating to an app-specific version of a docpool.
+        Returns the app(s) which is/are activated by the user. Currently the active app
+        is implicitly set by navigating to an app-specific version of a docpool.
         @return:
         """
         user = api.user.get_current()
@@ -145,8 +149,8 @@ class ApplicationState(BrowserView):
     def effectiveAppsHere(self):
         """
         Returns the apps - actually currently only one max - that are in effect.
-        This is determined as an intersection of the app(s) activated by the user (via navigation)
-        and die apps that are supported in the current context (docpool).
+        This is determined as an intersection of the app(s) activated by the user (via
+        navigation) and die apps that are supported in the current context (docpool).
         @return:
         """
         return set(self.appsActivatedByCurrentUser()).intersection(

@@ -39,8 +39,10 @@ class FlexibleView(BrowserView):
         """Find correct view for that doc of that type with that view-type
 
         For that we need:
-        * obj: the context obj, either a DPDocument or something else like a SituationReport
-        * doctype: the doctype/template for that DPDocument (usually in in /config/dtypes/xxx) or nothing
+        * obj: the context obj, either a DPDocument or something else like a
+               SituationReport
+        * doctype: the doctype/template for that DPDocument (usually in
+                   /config/dtypes/xxx) or nothing
         * vtype: the view-type, usually "meta" or "listitem"
         * app: the currently active app (elan/rei/doksys) or nothing
         """
@@ -51,7 +53,8 @@ class FlexibleView(BrowserView):
         if doctype:
             typename = doctype.customViewTemplate or doctype.id
         elif base_hasattr(document, "typeName"):
-            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is called "sitrep"
+            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is
+            # called "sitrep"
             typename = document.typeName()
         else:
             typename = document.portal_type.lower()
@@ -94,7 +97,8 @@ class FlexibleView(BrowserView):
         if doctype:
             typename = doctype.customViewTemplate or doctype.id
         elif base_hasattr(document, "typeName"):
-            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is called "sitrep"
+            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is
+            # called "sitrep"
             typename = document.typeName()
         else:
             typename = document.portal_type.lower()
@@ -127,10 +131,13 @@ class FlexibleView(BrowserView):
                 # add additional info uses in the templates
                 options = extendOptions(self.context, self.request, options)
                 # self is the adapter for the obj wrapped in it's behavior
-                # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc object at 0x1213c1520>
-                # because these are registered as the behavior-factory and inherit from FlexibleView
-                # This (options/view) is used in the templates to call methods on these adapters
-                # TODO: Maye we need to refactor all behaviors to make the templates more sane.
+                # e.g. IREIDoc(self.context) => <docpool.rei.behaviors.reidoc.REIDoc
+                # object at 0x1213c1520> because these are registered as the
+                # behavior-factory and inherit from FlexibleView
+                # This (options/view) is used in the templates to call methods on these
+                # adapters
+                # TODO: Maye we need to refactor all behaviors to make the templates
+                # more sane.
                 options["view"] = self
                 return view(**options)
 
@@ -155,8 +162,8 @@ class FlexibleView(BrowserView):
                     data = template.read()
                 template = OnTheFlyTemplate(id="flexible", text=data)
                 template = template.__of__(self.context)
-                # This "view" will run with security restrictions. The code will not be able
-                # to access protected attributes and functions.
+                # This "view" will run with security restrictions. The code will not be
+                # able to access protected attributes and functions.
                 # Todo WTF ? We do this to bypass security stuff?
                 # BUT: code included via macros works!
                 options = extendOptions(self.context, self.request, options)
