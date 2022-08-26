@@ -59,8 +59,6 @@ repos:
     rev: v2.7.1
     hooks:
       - id: prettier
-        # Exclude the build files
-        exclude: ^Plone/src/docpool.theme/docpool/theme/webpack_resources/theme
 
   # - repo: https://github.com/PyCQA/bandit
   #   rev: 1.7.4
