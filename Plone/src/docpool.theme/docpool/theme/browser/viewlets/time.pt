@@ -10,7 +10,7 @@
            <td class="time">
                 <span tal:content="python: toLocalizedTime(now, long_format=1)">LT</span>
            </td>
-        </tr>       
+        </tr>
         <tr class="times">
             <td class="zone">
                 <tal:var i18n:translate="">UTC</tal:var>:
@@ -18,7 +18,7 @@
            <td class="time">
                 <span tal:content="python: toLocalizedTime(now.toZone('UTC') - offset, long_format=1)">LT</span>
            </td>
-        </tr>       
+        </tr>
        </table>
        </div>
 </tal:block>

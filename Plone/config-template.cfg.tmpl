@@ -20,9 +20,9 @@ parts =
     i18nize_policy
     zodbpack-conf
     cron-pack
-    
+
     ${buildout:varnish-parts}
-    
+
 extends =
     relstorage.cfg
 
@@ -70,7 +70,7 @@ rel-storage =
     dsn ${database:dsn}
     blob-dir ${buildout:directory}/var/blobcache
     shared-blob-dir false
-environment-vars =    
+environment-vars =
     zope_i18n_compile_mo_files true
     PTS_LANGUAGES de
     zope_i18n_allowed_languages de

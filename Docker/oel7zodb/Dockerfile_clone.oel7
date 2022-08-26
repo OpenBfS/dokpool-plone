@@ -39,7 +39,7 @@ RUN buildout bootstrap && ./bin/buildout -Nvc buildout_docker.cfg
 # restore backup if initialELAN-backup.tgz or elan.sqlite exist
 #
 
-# ADD elan_transfer.sqlite /opt/bfs/dokpool/ 
+# ADD elan_transfer.sqlite /opt/bfs/dokpool/
 RUN cd /opt/bfs/dokpool/Plone && ./bin/plonebackup-restore -n
 RUN chown -R plone.plone /opt/bfs
 USER plone

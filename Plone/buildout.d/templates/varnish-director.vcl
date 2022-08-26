@@ -116,7 +116,7 @@ sub vcl_hit {
 sub vcl_recv {
     set req.http.grace = "none";
     set req.backend_hint = cluster1.backend();
-    
+
     if (req.method == "PURGE") {
         if (!client.ip ~ purge) {
             return(synth(405,"Not allowed."));

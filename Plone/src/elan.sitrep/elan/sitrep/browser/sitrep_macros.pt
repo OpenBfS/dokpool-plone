@@ -1,10 +1,10 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal" 
-     xmlns:metal="http://xml.zope.org/namespaces/metal" 
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
      i18n:domain="elan.sitrep">
     <body>
-       
-	 <metal:macro define-macro="module">  
+
+	 <metal:macro define-macro="module">
 		<tal:def define="edit_allowed context/canBeEdited;
 		                 elanobj view/elanobject;
 		                 DateTime python:modules['DateTime'].DateTime;
@@ -15,18 +15,18 @@
 		    <span tal:define="report context/myReport;" class="report"><tal:if tal:condition="nocall:report"><i18n:txt translate="">Meant for report: </i18n:txt> <a href="" tal:content="report/Title"
 		        tal:attributes="href string:${report/absolute_url}?cb=${now}"></a></tal:if>
             <div class="formControls" tal:condition="edit_allowed" tal:omit-tag="">
-            <a id="form-buttons-publish" 
+            <a id="form-buttons-publish"
                 onclick="return confirm('${context/Title}: ${alert_msg}');"
                tal:define="alert_msg python:context.translate('module_publish_popup', default='Do you really want to create a published version of this module?', domain='elan.sitrep', escape_for_js=True)"
             class="submit-widget button-field context" tal:attributes="href string:${context/absolute_url}/publishModule" i18n:translate="">Publish</a>
-            </div>     
-		        
+            </div>
+
 		        <br><br>
 		     </span>
-		        
+
 		  </tal:if>
 		  <tal:if condition="python:rs=='published'">
-		    <span tal:define="reports context/usingReports" class="report" tal:condition="nocall:reports"><i18n:txt translate="">Used in report(s): </i18n:txt> 
+		    <span tal:define="reports context/usingReports" class="report" tal:condition="nocall:reports"><i18n:txt translate="">Used in report(s): </i18n:txt>
 		    <ul>
 		        <li tal:repeat="report reports"><a href="" tal:content="report/Title"
 		        tal:attributes="href report/absolute_url"></a></li>
@@ -34,10 +34,10 @@
 		    <br><br></span>
 		  </tal:if>
 		    <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
-		                 
+
 		</tal:def>
      </metal:macro>
-     			
+
     <metal:macro define-macro="scenario_configs">
 		<tal:loop repeat="scenario context/getSRScenarios">
 		<h3><a href="${scenario/absolute_url}">${scenario/Title}</a></h3>
@@ -70,13 +70,13 @@
 		    </tal:loop>
 		</tbody>
 		</table>
-		
+
 		</tal:loop>
     </metal:macro>
-     			
+
     <metal:macro define-macro="selectwidget" tal:define="do_submit do_submit|nothing">
        <label class="" for="scenario" i18n:translate="" tal:attributes="for wname" tal:content="wtitle"></label>
-       <select name="selection" 
+       <select name="selection"
            tal:attributes="name wname;
                            class wname;
                            onclick python:do_submit and 'javascript:this.form.submit()' or None">

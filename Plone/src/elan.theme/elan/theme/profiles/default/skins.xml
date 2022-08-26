@@ -10,7 +10,7 @@
     directory="elan.theme:skins/elantheme_templates"/>
  <object name="elantheme_styles"
     meta_type="Filesystem Directory View"
-    directory="elan.theme:skins/elantheme_styles"/>    
+    directory="elan.theme:skins/elantheme_styles"/>
 
  <skin-path name="ELAN-E Theme" based-on="Plone Default">
   <layer name="elantheme_images"

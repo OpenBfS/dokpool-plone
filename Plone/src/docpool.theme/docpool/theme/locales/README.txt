@@ -1,5 +1,5 @@
-This directory will be the home for internationalizations for your layer 
-package.  For more information on internationalization please consult the 
+This directory will be the home for internationalizations for your layer
+package.  For more information on internationalization please consult the
 following sources:
 
 http://plone.org/documentation/kb/product-skin-localization

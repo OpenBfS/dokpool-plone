@@ -9,7 +9,7 @@
       type="zope.publisher.interfaces.browser.IBrowserSkinType"
       name="ELAN-E Theme"
       />
-  
+
   <!-- Viewlets registration -->
   <!-- Zope 3 browser resources -->
 
@@ -26,7 +26,7 @@
       directory="stylesheets"
       layer=".interfaces.IThemeSpecific"
       />
-        
+
   <browser:resourceDirectory
       name="elan.theme.javascripts"
       directory="scripts"

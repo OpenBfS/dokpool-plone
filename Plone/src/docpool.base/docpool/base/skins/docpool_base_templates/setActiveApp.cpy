@@ -15,7 +15,7 @@ from docpool.base.utils import activateAppFilter
 
 setApplicationsForCurrentUser(context, [ app ])
 activateAppFilter(context, True)
-absurl = context.absolute_url() 
+absurl = context.absolute_url()
 if not 'content' in absurl:
   if app == 'base':
     absurl = context.myDocumentPool().absolute_url()

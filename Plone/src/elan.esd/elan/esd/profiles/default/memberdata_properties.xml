@@ -2,4 +2,4 @@
 <object name="portal_memberdata" meta_type="Plone Memberdata Tool">
  <property name="scenarios" type="lines"></property>
  <property name="categories" type="lines"></property>
-</object> 
+</object>

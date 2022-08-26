@@ -20,7 +20,7 @@
         <element>++plone++elan.sitrep/sitrep.less</element>
       </value>
   </records>
-  
+
   <records interface="Products.CMFPlone.interfaces.ITinyMCESchema" prefix="plone">
     <value key="other_settings">
   {

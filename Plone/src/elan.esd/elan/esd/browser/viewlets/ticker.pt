@@ -1,7 +1,7 @@
 <tal:block i18n:domain="docpool.base" tal:condition="view/available|nothing">
 <aside class="marquee"
 	tal:define="t nocall: python:context.restrictedTraverse('contentconfig').ticker;
-				toLocalizedTime nocall: context/@@plone/toLocalizedTime;" 
+				toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
 	tal:condition="python:t is not None and t.text and len(t.text.output) > 10 or False">
 	<tal:def define="ttext t/text/output;
 					 ttext python:' - ' + ttext[3:-4]">

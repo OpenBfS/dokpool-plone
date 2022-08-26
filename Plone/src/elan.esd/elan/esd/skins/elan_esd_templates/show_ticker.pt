@@ -4,7 +4,7 @@
 <meta http-equiv="refresh" content="60">
 </head>
 <body>
-<div id="datacontainer" 
+<div id="datacontainer"
     tal:define="t nocall: python:context.restrictedTraverse('contentconfig').ticker;
     toLocalizedTime nocall: context/@@plone/toLocalizedTime;" style="position:absolute;left:1px;top:10px;width:100%" onMouseover="scrollspeed=0" onMouseout="scrollspeed=cache">
 

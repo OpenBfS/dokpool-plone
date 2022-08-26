@@ -1,5 +1,5 @@
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-	
+
     <index name="dp_type" meta_type="FieldIndex">
         <indexed_attr value="dp_type"/>
     </index>

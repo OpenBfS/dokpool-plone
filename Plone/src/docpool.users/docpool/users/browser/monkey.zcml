@@ -19,7 +19,7 @@
         original="applyProperties"
         replacement=".monkey.applyProperties"
         preservedoc="true"
-        preserveOriginal="true"        
+        preserveOriginal="true"
         />
 
     <monkey:patch
@@ -28,7 +28,7 @@
         original="addGroup"
         replacement=".monkey.addGroup"
         preservedoc="true"
-        preserveOriginal="true"        
+        preserveOriginal="true"
         />
 
     <monkey:patch
@@ -37,7 +37,7 @@
         original="removeGroup"
         replacement=".monkey.removeGroup"
         preservedoc="true"
-        preserveOriginal="true"        
+        preserveOriginal="true"
         />
 
     <monkey:patch

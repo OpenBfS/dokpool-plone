@@ -14,7 +14,7 @@
         <metal:header define-macro="header">
         </metal:header>
 
-        
+
 
         <!-- typedesription, typeDescription from the content type -->
 
@@ -23,11 +23,11 @@
 
 
 
-        <!-- body, editform , fields, buttons, the default macro 
+        <!-- body, editform , fields, buttons, the default macro
 
              contains a number of slots which usually provide enough
 
-             ways to customise so often I use that macro and just 
+             ways to customise so often I use that macro and just
 
              fill the slots
 
@@ -43,16 +43,16 @@
 
               </metal:block>
 
-              
 
-              <!-- listing of the fields, usually I won't customise this 
+
+              <!-- listing of the fields, usually I won't customise this
 
               <metal:block fill-slot="widgets">
 
               </metal:block>
 
 			  -->
-            
+
 
 
 
@@ -108,13 +108,13 @@
 
 
 
-        
+
 
         <!-- footer, by line created date etc. -->
 
         <metal:footer define-macro="footer">
 
-        
+
 
         </metal:footer>
 

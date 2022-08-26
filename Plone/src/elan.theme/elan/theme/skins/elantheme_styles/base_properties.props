@@ -9,7 +9,7 @@ fontFamily:string="Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif
 linkColor:string=#205c90
 editBarColor:string=#75ad0a
 
-compatibilityClassic:string=The below values are copied directly from the old Plone theme to make sure that products that rely on them don't break. 
+compatibilityClassic:string=The below values are copied directly from the old Plone theme to make sure that products that rely on them don't break.
 
 fontBaseSize:string=85%
 fontColor:string=Black
@@ -38,7 +38,7 @@ inputFontColor:string=Black
 
 textTransform:string=none
 
-evenRowBackgroundColor:string=#eef3f5 
+evenRowBackgroundColor:string=#eef3f5
 oddRowBackgroundColor:string=transparent
 
 notifyBorderColor:string=#ffa500

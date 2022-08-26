@@ -1,7 +1,7 @@
-/* The 16-column ELAN-E Grid System. 
+/* The 16-column ELAN-E Grid System.
  *
  * Cells are 6.25% width, 0% left/right margin.
- * 
+ *
  * If page width is fixed to 960px width:
  * Cell will be equivalent to 60px, left/right margin will be 0px.
  */
@@ -18,7 +18,7 @@ div.cell {
   left: 100%;
 }
 
-/* Width classes. 
+/* Width classes.
    For a given cell width, the calculation is: width: (6.25*n)% */
 div.width-1 {
   width: 6.25%;
@@ -69,7 +69,7 @@ div.width-16 {
   width: 100%;
 }
 
-/* Positioning classes, these are subtracting from a rightmost 
+/* Positioning classes, these are subtracting from a rightmost
    position, which is why they seem the wrong way around */
 /* For a given position, the calculation is margin-left: -100 + (6.25*n) + 1.125 */
 div.position-0 {

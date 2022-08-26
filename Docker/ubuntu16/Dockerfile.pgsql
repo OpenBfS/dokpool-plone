@@ -57,7 +57,7 @@ EXPOSE 5432
 # ADD pgsql elan_pgsql/
 RUN /usr/lib/postgresql/12/bin/pg_ctl start -wD /etc/postgresql/12/main/ && \
     createdb -E UTF-8 -O zodbuser zodb && \
-    createdb -E UTF-8 -O elan elan 
+    createdb -E UTF-8 -O elan elan
 
 #
 # Start Postgres-Server

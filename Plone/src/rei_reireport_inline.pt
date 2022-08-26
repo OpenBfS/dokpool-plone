@@ -5,6 +5,6 @@
     <tal:def define="edit_allowed python:False;
                      toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <div metal:use-macro="here/@@dp.macros/macros/doc_complete"/>
-    </tal:def>  
+    </tal:def>
     <p><b>rei_reireport_inline.pt</b></p>
 </tal:block>
