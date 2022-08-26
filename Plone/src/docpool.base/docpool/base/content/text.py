@@ -14,7 +14,8 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.content.contentbase import ContentBase, IContentBase
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.textfield import RichText
 from plone.dexterity.content import Item

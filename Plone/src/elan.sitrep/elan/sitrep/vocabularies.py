@@ -3,7 +3,8 @@ from docpool.base.utils import getDocumentPoolSite
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 def title_default(brain):

@@ -1,14 +1,15 @@
-from logging import getLogger
-
 from Acquisition import aq_base
 from docpool.base.utils import extendOptions
+from logging import getLogger
 from plone.app.contenttypes.interfaces import IFile
-from Products.CMFPlone.utils import base_hasattr, safe_hasattr
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import safe_hasattr
 from Products.Five.browser import BrowserView
 from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 from zope.pagetemplate.interfaces import IPageTemplateSubclassing
+
 
 logger = getLogger(__name__)
 

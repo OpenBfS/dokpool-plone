@@ -20,7 +20,8 @@ from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
 from zope.interface import implementer

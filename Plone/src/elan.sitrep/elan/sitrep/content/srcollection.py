@@ -13,7 +13,8 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from elan.esd.content.elandoccollection import ELANDocCollection, IELANDocCollection
+from elan.esd.content.elandoccollection import ELANDocCollection
+from elan.esd.content.elandoccollection import IELANDocCollection
 from plone.supermodel import model
 from zope.interface import implementer
 

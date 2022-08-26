@@ -1,8 +1,12 @@
-import plone.api as api
-from AccessControl.SecurityInfo import allow_class, allow_module
+from AccessControl.SecurityInfo import allow_class
+from AccessControl.SecurityInfo import allow_module
 from docpool.base.appregistry import APP_REGISTRY
-from plone.app.layout.viewlets.common import LogoViewlet, ViewletBase
+from plone.app.layout.viewlets.common import LogoViewlet
+from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+import plone.api as api
+
 
 allow_module("elan.esd.browser")
 allow_module("elan.esd.browser.viewlets")

@@ -22,9 +22,11 @@ from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
-from Products.CMFPlone.utils import log, safe_hasattr
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import safe_hasattr
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
 from zope.interface import implementer

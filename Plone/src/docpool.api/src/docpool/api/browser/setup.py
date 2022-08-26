@@ -1,15 +1,13 @@
-import logging
-import os
-import random
-from datetime import datetime, timedelta
-
 from Acquisition import aq_get
+from datetime import datetime
+from datetime import timedelta
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
-from plone.namedfile.file import NamedBlobFile, NamedBlobImage
+from plone.namedfile.file import NamedBlobFile
+from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
@@ -19,7 +17,8 @@ from Products.Five.browser import BrowserView
 from Products.GenericSetup.context import SnapshotImportContext
 from Products.GenericSetup.interfaces import IBody
 from z3c.relationfield.relation import RelationValue
-from zope.component import getUtility, queryUtility
+from zope.component import getUtility
+from zope.component import queryUtility
 from zope.component._api import queryMultiAdapter
 from zope.event import notify
 from zope.globalrequest import getRequest
@@ -27,6 +26,11 @@ from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
+
+import logging
+import os
+import random
+
 
 log = logging.getLogger(__name__)
 

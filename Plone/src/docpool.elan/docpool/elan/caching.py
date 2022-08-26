@@ -3,7 +3,8 @@ from docpool.base.caching.interfaces import IAppCaching
 from docpool.event.utils import getOpenScenarios
 from plone import api
 from zope.component import adapter
-from zope.interface import Interface, implementer
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 @implementer(IAppCaching)

@@ -4,7 +4,8 @@ from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import directlyProvides
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 def LocalBehaviorsVocabularyFactory(context):

@@ -1,5 +1,6 @@
 from docpool.users import DocpoolMessageFactory as _
-from zope.interface import Attribute, Interface
+from zope.interface import Attribute
+from zope.interface import Interface
 
 
 class IDocPoolUsersLayer(Interface):

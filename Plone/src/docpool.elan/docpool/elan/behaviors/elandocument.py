@@ -8,7 +8,8 @@ from docpool.elan.behaviors.elandoctype import IELANDocType
 from docpool.elan.config import ELAN_APP
 from plone import api
 from plone.autoform import directives
-from plone.autoform.directives import read_permission, write_permission
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_text
 from Products.CMFCore.utils import getToolByName

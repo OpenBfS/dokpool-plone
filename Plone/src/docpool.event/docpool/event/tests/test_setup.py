@@ -1,10 +1,11 @@
 """Setup tests for this package."""
-import unittest
-
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING  # noqa: E501
 from plone import api
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.base.utils import get_installer
+
+import unittest
 
 
 class TestSetup(unittest.TestCase):

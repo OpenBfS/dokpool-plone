@@ -1,4 +1,5 @@
-from Acquisition import aq_base, aq_inner
+from Acquisition import aq_base
+from Acquisition import aq_inner
 from plone import api
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.WorkflowCore import WorkflowException

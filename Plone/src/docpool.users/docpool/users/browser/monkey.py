@@ -17,13 +17,15 @@ from Products.CMFPlone.controlpanel.browser.usergroups import (
 )
 from Products.CMFPlone.interfaces import ISecuritySchema
 from Products.CMFPlone.log import log
-from Products.CMFPlone.utils import base_hasattr, normalizeString
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import normalizeString
 from Products.PlonePAS.tools.groups import GroupsTool
 from zope.component import getAdapter
 from zope.component.globalregistry import provideAdapter
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 def email_as_username(self):

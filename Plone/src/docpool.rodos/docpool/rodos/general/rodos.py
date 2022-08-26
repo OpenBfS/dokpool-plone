@@ -1,7 +1,12 @@
-import transaction
-from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from plone import api
 from Products.CMFCore.utils import getToolByName
+
+import transaction
 
 
 def install(plonesite):

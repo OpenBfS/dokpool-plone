@@ -9,7 +9,8 @@ from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.config import RODOS_APP
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.autoform import directives
-from plone.autoform.directives import read_permission, write_permission
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema

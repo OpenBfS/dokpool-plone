@@ -1,19 +1,19 @@
-import logging
-
-import pkg_resources
 from AccessControl import allow_module
 from plone import api
 from zope.i18nmessageid import MessageFactory
 
+import logging
+import pkg_resources
+
+
 logger = logging.getLogger(__name__)
 DocpoolMessageFactory = MessageFactory("docpool.base")
 
-from docpool.base import appregistration  # noqa: F401
-
 # TODO: Remove when https://community.plone.org/t/plone-6-beta-1-released/15485/5 is fixed
+from docpool.base import appregistration  # noqa: F401
 from docpool.base import expressions  # noqa
-
 from docpool.base import monkey  # noqa: F401
+
 
 allow_module("docpool.base")
 allow_module("docpool.base.config")

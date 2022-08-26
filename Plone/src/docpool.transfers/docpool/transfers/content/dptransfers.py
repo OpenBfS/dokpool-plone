@@ -12,13 +12,13 @@ __docformat__ = "plaintext"
 """Definition of the DPTransfers content type. See dptransfers.py for more
 explanation on the statements below.
 """
-from logging import getLogger
-
 from AccessControl import ClassSecurityInfo
+from logging import getLogger
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFPlone.utils import parent
 from zope.interface import implementer
+
 
 logger = getLogger("dptransfers")
 

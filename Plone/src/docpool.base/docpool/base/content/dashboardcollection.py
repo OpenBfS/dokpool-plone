@@ -1,18 +1,20 @@
 from AccessControl import ClassSecurityInfo
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getScenariosForCurrentUser
-from docpool.base import DocpoolMessageFactory as _
-from plone.app.contenttypes.content import Collection, ICollection
+from plone.app.contenttypes.content import Collection
+from plone.app.contenttypes.content import ICollection
 from plone.autoform import directives
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.event import updateRelations
 from z3c.relationfield.relation import RelationValue
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope.component import getUtility
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.intid.interfaces import IIntIds
 

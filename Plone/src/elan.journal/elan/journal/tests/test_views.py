@@ -1,14 +1,15 @@
-import unittest
-from datetime import datetime, timedelta
-from time import time
-
+from datetime import datetime
+from datetime import timedelta
 from DateTime import DateTime
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
+from time import time
 from zExceptions import NotFound
 from zope.interface import alsoProvides
+
+import unittest
 
 
 class ViewTestCase(unittest.TestCase):

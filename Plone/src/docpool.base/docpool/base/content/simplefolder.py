@@ -14,15 +14,19 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.content.folderbase import FolderBase, IFolderBase
-from docpool.base.utils import getAllowedDocumentTypes, portalMessage, queryForObjects
+from docpool.base.content.folderbase import FolderBase
+from docpool.base.content.folderbase import IFolderBase
+from docpool.base.utils import getAllowedDocumentTypes
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObjects
 from plone import api
 from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope import schema
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
 
 
 class ISimpleFolder(model.Schema, IFolderBase):

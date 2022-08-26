@@ -1,4 +1,5 @@
-from docpool.base.appregistry import extendingApps, implicitApps
+from docpool.base.appregistry import extendingApps
+from docpool.base.appregistry import implicitApps
 from docpool.base.config import BASE_APP
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone import api

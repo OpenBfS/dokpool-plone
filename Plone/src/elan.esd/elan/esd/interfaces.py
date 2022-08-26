@@ -6,4 +6,5 @@ from elan.esd.content.elancurrentsituation import IELANCurrentSituation
 from elan.esd.content.elandoccollection import IELANDocCollection
 from elan.esd.content.elaninfos import IELANInfos
 from elan.esd.content.elansection import IELANSection
-from zope.interface import Attribute, Interface
+from zope.interface import Attribute
+from zope.interface import Interface

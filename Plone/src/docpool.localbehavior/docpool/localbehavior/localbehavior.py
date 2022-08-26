@@ -7,7 +7,8 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
-from zope.interface import Interface, provider
+from zope.interface import Interface
+from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
 

@@ -12,10 +12,11 @@ __docformat__ = "plaintext"
 """Definition of the ContentBase content type. See contentbase.py for more
 explanation on the statements below.
 """
-import datetime
-
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base, aq_get, aq_inner, aq_parent
+from Acquisition import aq_base
+from Acquisition import aq_get
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.base.marker import IImportingMarker
@@ -31,10 +32,14 @@ from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from zope import schema
 from zope.component import adapter
 from zope.globalrequest import getRequest
-from zope.interface import implementer, provider
+from zope.interface import implementer
+from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
-from zope.lifecycleevent.interfaces import IObjectCopiedEvent, IObjectCreatedEvent
+from zope.lifecycleevent.interfaces import IObjectCopiedEvent
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from zope.schema.interfaces import IContextAwareDefaultFactory
+
+import datetime
 
 
 @provider(IContextAwareDefaultFactory)

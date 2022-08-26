@@ -5,7 +5,9 @@ from docpool.rei.config import REI_APP
 
 # This logic should eventually be bundled in the global docpool.config
 # module to allow for easy customization
-from docpool.rei.local.rei import dpAdded, dpRemoved
+from docpool.rei.local.rei import dpAdded
+from docpool.rei.local.rei import dpRemoved
+
 
 # TODO: register any app specific type extension, doc extension, methods
 # to be executed when docpools are created

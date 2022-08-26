@@ -13,7 +13,8 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from docpool.base.content.contentbase import ContentBase
-from plone.app.contenttypes.content import ILink, Link
+from plone.app.contenttypes.content import ILink
+from plone.app.contenttypes.content import Link
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer

@@ -7,7 +7,8 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
-from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 
 class IELANDocCollection(model.Schema, IDashboardCollection):

@@ -1,10 +1,12 @@
-import unittest
-
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
-from docpool.event.utils import get_scenarios_for_user, set_scenarios_for_user
+from docpool.event.utils import get_scenarios_for_user
+from docpool.event.utils import set_scenarios_for_user
 from plone import api
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
+
+import unittest
 
 
 class TestEvent(unittest.TestCase):

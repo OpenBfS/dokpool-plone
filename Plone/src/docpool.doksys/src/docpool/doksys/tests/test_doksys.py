@@ -1,14 +1,15 @@
-import unittest
-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
 from plone import api
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.dexterity.events import EditFinishedEvent
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.event import notify
 from zope.schema.interfaces import IVocabularyFactory
+
+import unittest
 
 
 class TestSetup(unittest.TestCase):

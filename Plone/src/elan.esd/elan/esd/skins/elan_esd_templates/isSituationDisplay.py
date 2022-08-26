@@ -9,6 +9,7 @@
 ##
 from docpool.elan.config import ELAN_APP
 
+
 if getattr(context, "myDocumentPool", None) is not None:
     return context.isActive(ELAN_APP)
 else:

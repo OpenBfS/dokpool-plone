@@ -13,7 +13,8 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import RARELY_USED_TYPES
 from plone.app.content.browser import constraintypes
 from plone.supermodel import model

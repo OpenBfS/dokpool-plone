@@ -1,11 +1,14 @@
-import unittest
-
 from docpool.api.browser.setup import add_user
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from plone import api
-from plone.app.testing import TEST_USER_ID, login, logout, setRoles
+from plone.app.testing import login
+from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.dexterity.events import EditFinishedEvent
 from zope.event import notify
+
+import unittest
 
 
 class TestNavigation(unittest.TestCase):

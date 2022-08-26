@@ -1,7 +1,8 @@
 from docpool.users import DocpoolMessageFactory as _
 from docpool.users.interfaces import IDocPoolUsersLayer
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
-from plone.app.users.browser.register import AddUserForm, RegistrationForm
+from plone.app.users.browser.register import AddUserForm
+from plone.app.users.browser.register import RegistrationForm
 from plone.app.users.browser.userdatapanel import UserDataPanel
 from plone.supermodel import model
 from plone.z3cform.fieldsets import extensible

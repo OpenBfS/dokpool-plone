@@ -1,11 +1,12 @@
-import unittest
-
 from elan.journal.interfaces import IJournal
 from elan.journal.testing import INTEGRATION_TESTING
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
-from zope.component import createObject, queryUtility
+from zope.component import createObject
+from zope.component import queryUtility
+
+import unittest
 
 
 class ContentTypeTestCase(unittest.TestCase):

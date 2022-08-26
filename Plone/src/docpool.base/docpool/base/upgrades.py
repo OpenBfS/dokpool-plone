@@ -1,19 +1,23 @@
-import json
-import logging
-
 from bs4 import BeautifulSoup
-from docpool.base.content.documentpool import DocumentPool, docPoolModified
+from docpool.base.content.documentpool import docPoolModified
+from docpool.base.content.documentpool import DocumentPool
 from docpool.config.general.base import configureGroups
 from docpool.config.utils import set_local_roles
 from docpool.rei.vocabularies import AuthorityVocabularyFactory
 from plone import api
 from plone.app.textfield import RichTextValue
-from plone.app.theming.utils import applyTheme, getTheme
+from plone.app.theming.utils import applyTheme
+from plone.app.theming.utils import getTheme
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import base_hasattr, get_installer
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import get_installer
 from zope.component import queryUtility
+
+import json
+import logging
+
 
 log = logging.getLogger(__name__)
 
@@ -119,10 +123,8 @@ def update_doksys_collections(context=None):
     """Remove existing collections and replace with new ones.
     See https://redmine-koala.bfs.de/issues/3165
     """
-    from docpool.doksys.setuphandlers import (
-        create_since_yesterday_collection,
-        create_today_collection,
-    )
+    from docpool.doksys.setuphandlers import create_since_yesterday_collection
+    from docpool.doksys.setuphandlers import create_today_collection
 
     portal = api.portal.get()
     if "searches" not in portal.keys():

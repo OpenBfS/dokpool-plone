@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
-from docpool.menu.utils import adaptQuery, getFoldersForCurrentUser
+from docpool.menu.utils import adaptQuery
+from docpool.menu.utils import getFoldersForCurrentUser
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation

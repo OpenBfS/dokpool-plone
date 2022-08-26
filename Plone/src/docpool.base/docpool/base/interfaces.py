@@ -20,7 +20,8 @@ from docpool.base.content.text import IText
 from docpool.base.content.userfolder import IUserFolder
 from docpool.base.content.users import IUsers
 from plone.supermodel import model
-from zope.interface import Attribute, Interface
+from zope.interface import Attribute
+from zope.interface import Interface
 
 
 class IExtension(model.Schema):

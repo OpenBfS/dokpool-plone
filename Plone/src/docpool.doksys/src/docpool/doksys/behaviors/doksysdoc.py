@@ -8,7 +8,9 @@ from docpool.base.interfaces import IDocumentExtension
 from docpool.doksys import DocpoolMessageFactory as _
 from docpool.doksys.config import DOKSYS_APP
 from plone.app.z3cform.widget import SelectFieldWidget
-from plone.autoform.directives import read_permission, widget, write_permission
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import widget
+from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema

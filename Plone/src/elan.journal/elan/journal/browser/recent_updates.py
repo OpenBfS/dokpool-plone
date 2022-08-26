@@ -1,8 +1,7 @@
 from datetime import datetime
-from time import time
-
 from elan.journal.browser.base import BaseView
 from elan.journal.logger import logger
+from time import time
 from zope.datetime import rfc1123_date
 from zope.publisher.browser import BrowserView
 

@@ -13,10 +13,12 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 from zope.interface import implementer
 

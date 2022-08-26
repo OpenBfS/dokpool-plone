@@ -1,4 +1,5 @@
-from docpool.base.utils import possibleDocTypes, possibleDocumentPools
+from docpool.base.utils import possibleDocTypes
+from docpool.base.utils import possibleDocumentPools
 from zope.publisher.browser import BrowserView
 
 

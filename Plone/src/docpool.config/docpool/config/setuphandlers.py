@@ -1,5 +1,6 @@
 from plone import api
 
+
 PAS_TITLE = "Trusted Proxy Auth"
 
 

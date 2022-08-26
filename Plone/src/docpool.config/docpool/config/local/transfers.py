@@ -1,7 +1,12 @@
 from docpool.base.content.documentpool import APPLICATIONS_KEY
-from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import base_hasattr, log
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import log
 from zExceptions import BadRequest
 from zope.annotation.interfaces import IAnnotations
 

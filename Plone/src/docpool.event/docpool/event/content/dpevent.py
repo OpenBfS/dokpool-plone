@@ -1,17 +1,15 @@
-import datetime
-import json
-import transaction
-
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
 from docpool.base.content.archiving import IArchiving
-from docpool.base.content.contentbase import ContentBase, IContentBase
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.marker import IImportingMarker
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
 from docpool.config.local.transfers import TRANSFER_AREA
-from docpool.config.utils import createPloneObjects, ploneId
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ploneId
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from docpool.event import DocpoolMessageFactory as _
@@ -28,20 +26,29 @@ from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from pygeoif import geometry
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.form.interfaces import IEditForm
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
-from zope.component import adapter, getUtility
+from zope.component import adapter
+from zope.component import getUtility
 from zope.globalrequest import getRequest
-from zope.interface import Interface, Invalid, alsoProvides, implementer
-from zope.lifecycleevent.interfaces import (
-    IObjectAddedEvent,
-    IObjectModifiedEvent,
-    IObjectRemovedEvent,
-)
+from zope.interface import alsoProvides
+from zope.interface import implementer
+from zope.interface import Interface
+from zope.interface import Invalid
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+
+import datetime
+import json
+import transaction
+
 
 logger = getLogger(__name__)
 

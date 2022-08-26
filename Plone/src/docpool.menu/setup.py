@@ -1,6 +1,8 @@
 """Installer for the docpool.menu package."""
 
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
+
 
 long_description = (
     open("README.rst").read() + "\n" + "Contributors\n"

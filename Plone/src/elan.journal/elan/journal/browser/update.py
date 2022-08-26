@@ -1,6 +1,7 @@
 from elan.journal import _
 from elan.journal.browser.view import View
-from elan.journal.config import BATCH_SIZE, ORPHAN
+from elan.journal.config import BATCH_SIZE
+from elan.journal.config import ORPHAN
 from plone import api
 from plone.batching import Batch
 from zope.i18n import translate

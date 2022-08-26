@@ -1,9 +1,8 @@
 """A BrowserView to replace the Controller Python Script "folder_publish"
 """
-from operator import itemgetter
-
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
+from operator import itemgetter
 from plone import api
 from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
@@ -13,6 +12,7 @@ from ZODB.POSException import ConflictError
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
+
 
 PMF = MessageFactory("plone")
 

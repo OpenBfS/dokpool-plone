@@ -1,7 +1,8 @@
 """ Menu
 """
 from plone import api
-from plone.app.contentmenu.menu import FactoriesMenu, WorkflowMenu
+from plone.app.contentmenu.menu import FactoriesMenu
+from plone.app.contentmenu.menu import WorkflowMenu
 
 
 class DPFactoriesMenu(FactoriesMenu):

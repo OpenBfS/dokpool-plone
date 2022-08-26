@@ -1,7 +1,5 @@
-import logging
-from logging import exception
-
 from Acquisition import aq_base
+from logging import exception
 from plone.namedfile.file import FileChunk
 from plone.namedfile.interfaces import IStableImageScale
 from plone.namedfile.scaling import (
@@ -15,6 +13,9 @@ from Products.CMFPlone.utils import safe_callable
 from ZODB.POSException import ConflictError
 from zope.interface import alsoProvides
 from zope.publisher.interfaces import NotFound
+
+import logging
+
 
 _marker = object()
 

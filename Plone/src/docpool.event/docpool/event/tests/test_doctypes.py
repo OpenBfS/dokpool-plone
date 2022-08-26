@@ -1,16 +1,20 @@
-import unittest
-
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
-from docpool.event.utils import getScenariosForCurrentUser, setScenariosForCurrentUser
+from docpool.event.utils import getScenariosForCurrentUser
+from docpool.event.utils import setScenariosForCurrentUser
 from plone import api
-from plone.app.testing import TEST_USER_ID, login, logout, setRoles
+from plone.app.testing import login
+from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
+
+import unittest
 
 
 class TestDocTypes(unittest.TestCase):

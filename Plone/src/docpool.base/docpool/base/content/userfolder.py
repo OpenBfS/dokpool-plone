@@ -13,8 +13,10 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
-from docpool.base.utils import _cutPaste, execute_under_special_role
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
+from docpool.base.utils import _cutPaste
+from docpool.base.utils import execute_under_special_role
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer

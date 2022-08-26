@@ -1,4 +1,5 @@
-from AccessControl.SecurityInfo import allow_class, allow_module
+from AccessControl.SecurityInfo import allow_class
+from AccessControl.SecurityInfo import allow_module
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
 from elan.esd import DocpoolMessageFactory as _
@@ -7,6 +8,7 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
+
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't

@@ -13,4 +13,5 @@ from elan.sitrep.content.srphase import ISRPhase
 from elan.sitrep.content.srscenario import ISRScenario
 from elan.sitrep.content.srtextblock import ISRTextBlock
 from elan.sitrep.content.srtextblocks import ISRTextBlocks
-from zope.interface import Attribute, Interface
+from zope.interface import Attribute
+from zope.interface import Interface

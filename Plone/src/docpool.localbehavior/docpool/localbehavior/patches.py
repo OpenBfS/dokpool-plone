@@ -1,16 +1,15 @@
-import logging
-
 from docpool.base.appregistry import extensionFor
 from docpool.localbehavior.adapter import isSupported
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import getMultiAdapter
-from zope.interface.declarations import (
-    Implements,
-    getObjectSpecification,
-    implementedBy,
-)
+from zope.interface.declarations import getObjectSpecification
+from zope.interface.declarations import implementedBy
+from zope.interface.declarations import Implements
+
+import logging
+
 
 log = logging.getLogger("docpool.localbehavior")
 

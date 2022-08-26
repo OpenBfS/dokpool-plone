@@ -1,9 +1,10 @@
-import os
-import unittest
-
-import robotsuite
 from elan.journal.testing import ROBOT_TESTING
 from plone.testing import layered
+
+import os
+import robotsuite
+import unittest
+
 
 dirname = os.path.dirname(__file__)
 files = os.listdir(dirname)

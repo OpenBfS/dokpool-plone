@@ -1,10 +1,11 @@
-import unittest
-
 from elan.journal.config import PROJECTNAME
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
 from plone.base.utils import get_installer
 from plone.browserlayer.utils import registered_layers
+
+import unittest
+
 
 ADD_PERMISSIONS = (
     dict(

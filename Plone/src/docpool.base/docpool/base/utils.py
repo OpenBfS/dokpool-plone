@@ -1,23 +1,28 @@
-import logging
-import re
-
 from AccessControl import getSecurityManager
-from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
-from Acquisition import aq_get, aq_inner
+from Acquisition import aq_get
+from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
-from Products.CMFPlone.utils import base_hasattr, parent
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import parent
 from zc.relation.interfaces import ICatalog
-from zope.component import getMultiAdapter, getUtility
+from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
+
+import logging
+import re
+
 
 log = logging.getLogger(__name__)
 

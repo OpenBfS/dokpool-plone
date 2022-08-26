@@ -12,31 +12,32 @@ __docformat__ = "plaintext"
 """Definition of the DPTransferFolder content type. See dptransferfolder.py for more
 explanation on the statements below.
 """
-from logging import getLogger
-
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
-from docpool.base.content.folderbase import FolderBase, IFolderBase
+from docpool.base.content.folderbase import FolderBase
+from docpool.base.content.folderbase import IFolderBase
 from docpool.base.marker import IImportingMarker
-from docpool.base.utils import (
-    execute_under_special_role,
-    queryForObject,
-    queryForObjects,
-)
+from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import queryForObject
+from docpool.base.utils import queryForObjects
 from docpool.transfers import DocpoolMessageFactory as _
+from logging import getLogger
 from persistent.mapping import PersistentMapping
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
-from Products.CMFPlone.utils import log, parent
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import parent
 from zope import schema
 from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
-from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectRemovedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+
 
 logger = getLogger("dptransferfolder")
 

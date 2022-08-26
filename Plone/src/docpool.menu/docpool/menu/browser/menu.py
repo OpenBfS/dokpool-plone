@@ -1,13 +1,10 @@
 from docpool.menu.utils import adaptQuery
-from plone.app.layout.navigation.interfaces import (
-    INavigationQueryBuilder,
-    INavtreeStrategy,
-)
-from Products.CMFPlone.browser.navtree import (
-    DefaultNavtreeStrategy,
-    SitemapQueryBuilder,
-)
+from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
+from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 from zope.interface import implementer
+
 
 caching_strategy = "anonymous"  # FIXME: maybe cache individually?
 

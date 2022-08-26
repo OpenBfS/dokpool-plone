@@ -12,38 +12,50 @@ __docformat__ = "plaintext"
 """Definition of the DPDocument content type. See dpdocument.py for more
 explanation on the statements below.
 """
-import re
-from io import StringIO
-from logging import getLogger
-
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
-from docpool.base.content.contentbase import ContentBase, IContentBase
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.extendable import Extendable
 from docpool.base.marker import IImportingMarker
-from docpool.base.pdfconversion import data, get_images, metadata, pdfobj
-from docpool.base.utils import execute_under_special_role, portalMessage, queryForObject
+from docpool.base.pdfconversion import data
+from docpool.base.pdfconversion import get_images
+from docpool.base.pdfconversion import metadata
+from docpool.base.pdfconversion import pdfobj
+from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObject
+from io import StringIO
+from logging import getLogger
 from PIL import Image
-from plone import api, namedfile
+from plone import api
+from plone import namedfile
 from plone.api import content
 from plone.app.contenttypes.content import Document
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
-from plone.app.textfield import RichText, RichTextValue
+from plone.app.textfield import RichText
+from plone.app.textfield import RichTextValue
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.globalrequest import getRequest
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
+
+import re
+
 
 logger = getLogger(__name__)
 

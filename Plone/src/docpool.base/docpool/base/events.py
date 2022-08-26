@@ -1,9 +1,11 @@
 from AccessControl import Unauthorized
 from OFS.interfaces import IObjectWillBeRemovedEvent
 from plone.base.interfaces.siteroot import IPloneSiteRoot
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zope.component import adapter
-from zope.interface import Interface, implementer
+from zope.interface import implementer
+from zope.interface import Interface
 from zope.interface.interfaces import ObjectEvent
 
 

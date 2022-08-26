@@ -5,7 +5,9 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import CatalogTool
 from Products.ZCatalog.ZCatalog import ZCatalog
-from zope.interface import Interface, alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 class ISRCatalog(Interface):

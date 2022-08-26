@@ -1,8 +1,8 @@
 """Setup tests for this package."""
-import unittest
-
 from elan.esd.testing import ELAN_ESD_INTEGRATION_TESTING  # noqa: E501
 from plone.base.utils import get_installer
+
+import unittest
 
 
 class TestSetup(unittest.TestCase):

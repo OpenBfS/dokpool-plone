@@ -1,6 +1,7 @@
 from docpool.base.utils import _copyPaste
 from Products.CMFCore.utils import getToolByName
 
+
 HAS_ELAN = True
 try:
     from docpool.elan.config import ELAN_APP

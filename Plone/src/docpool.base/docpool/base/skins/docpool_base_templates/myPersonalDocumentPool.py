@@ -11,6 +11,7 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 
+
 user = api.user.get_current()
 username = user.getUserName()
 parts = username.split("_")

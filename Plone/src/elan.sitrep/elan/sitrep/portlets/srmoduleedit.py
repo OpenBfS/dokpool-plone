@@ -4,6 +4,7 @@ from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
 
+
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
 # have an edit form, since there are no editable options.

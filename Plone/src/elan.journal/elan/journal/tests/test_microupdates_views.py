@@ -1,11 +1,12 @@
-import unittest
-
-from elan.journal.adapters import IJournalEntryContainer, JournalEntry
+from elan.journal.adapters import IJournalEntryContainer
+from elan.journal.adapters import JournalEntry
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
 from plone import api
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.interface import alsoProvides
+
+import unittest
 
 
 class BaseJournalEntryViewTestCase(unittest.TestCase):

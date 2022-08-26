@@ -26,7 +26,9 @@ from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from z3c.form import button, field, form
+from z3c.form import button
+from z3c.form import field
+from z3c.form import form
 from zope.interface import implementer
 
 

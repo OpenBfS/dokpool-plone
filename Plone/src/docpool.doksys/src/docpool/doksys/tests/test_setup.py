@@ -1,10 +1,11 @@
 """Setup tests for this package."""
-import unittest
-
 from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
 from plone import api
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.base.utils import get_installer
+
+import unittest
 
 
 class TestSetup(unittest.TestCase):

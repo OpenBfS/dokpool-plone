@@ -1,6 +1,7 @@
-import transaction
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
+
+import transaction
 
 
 def to_1001(context):

@@ -1,9 +1,9 @@
 """Setup tests for this package."""
-import unittest
-
 from docpool.rei.testing import DOCPOOL_REI_INTEGRATION_TESTING  # noqa
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
+
+import unittest
 
 
 class TestVocabularies(unittest.TestCase):

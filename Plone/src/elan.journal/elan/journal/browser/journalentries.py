@@ -1,15 +1,16 @@
 from datetime import datetime
-from time import time
-
 from elan.journal import _
-from elan.journal.adapters import IJournalEntryContainer, JournalEntry
+from elan.journal.adapters import IJournalEntryContainer
+from elan.journal.adapters import JournalEntry
 from elan.journal.browser.base import BaseView
 from plone import api
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
+from time import time
 from zExceptions import NotFound
 from zope.event import notify
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.publisher.interfaces import IPublishTraverse
 

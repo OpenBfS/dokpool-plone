@@ -1,6 +1,6 @@
-import json
-
 from plone.dexterity.browser.view import DefaultView
+
+import json
 
 
 class DPEventView(DefaultView):

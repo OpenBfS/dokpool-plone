@@ -5,6 +5,7 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
+
 ANN_KEY_SCENARIO_SELECTION = "SCENARIO_SELECTION"
 
 

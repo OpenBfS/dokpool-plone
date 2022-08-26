@@ -7,13 +7,13 @@
 __author__ = ""
 __docformat__ = "plaintext"
 
-from logging import getLogger
-
 from AccessControl import ClassSecurityInfo
+from logging import getLogger
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from Products.CMFPlone.utils import parent
 from zope.interface import implementer
+
 
 logger = getLogger("dpevents")
 

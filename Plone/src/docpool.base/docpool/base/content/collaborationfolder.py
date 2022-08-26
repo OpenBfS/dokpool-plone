@@ -14,13 +14,15 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.content.simplefolder import ISimpleFolder, SimpleFolder
+from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from plone.api import user
 from plone.base.utils import safe_text
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log, log_exc
+from Products.CMFPlone.utils import log
+from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 from zope import schema
 from zope.interface import implementer

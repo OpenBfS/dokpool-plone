@@ -1,14 +1,17 @@
 """Setup tests for this package."""
-import unittest
-
 from docpool.api.testing import DOCPOOL_API_FUNCTIONAL_FULL_TESTING  # noqa
 from docpool.api.testing import DOCPOOL_API_INTEGRATION_TESTING  # noqa
 from plone import api
-from plone.app.testing import SITE_OWNER_NAME, TEST_USER_ID, login, setRoles
+from plone.app.testing import login
+from plone.app.testing import setRoles
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import TEST_USER_ID
 from plone.app.z3cform.interfaces import IPloneFormLayer
 from plone.base.utils import get_installer
 from zope.component import queryMultiAdapter
 from zope.interface.declarations import alsoProvides
+
+import unittest
 
 
 class TestSetup(unittest.TestCase):

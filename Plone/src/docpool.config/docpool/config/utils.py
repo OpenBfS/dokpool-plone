@@ -6,6 +6,7 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 
+
 TYPE = "type"
 TITLE = "title"
 ID = "id"

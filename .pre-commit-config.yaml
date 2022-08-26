@@ -29,12 +29,12 @@ repos:
       - id: pyupgrade
         args: [--py39-plus]
 
-  # - repo: https://github.com/pycqa/isort
-  #   rev: 5.10.1
-  #   hooks:
-  #     - id: isort
-  #       additional_dependencies:
-  #         - isort[pyproject]
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        additional_dependencies:
+          - isort[pyproject]
 
   # - repo: https://gitlab.com/pycqa/flake8
   #   rev: 5.0.4

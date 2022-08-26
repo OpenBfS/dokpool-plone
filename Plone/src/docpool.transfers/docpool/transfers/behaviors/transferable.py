@@ -1,24 +1,26 @@
-from contextlib import contextmanager
-from datetime import datetime
-from logging import getLogger
-
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
+from contextlib import contextmanager
+from datetime import datetime
 from DateTime import DateTime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.marker import IImportingMarker
-from docpool.base.utils import _copyPaste, execute_under_special_role, portalMessage
+from docpool.base.utils import _copyPaste
+from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import portalMessage
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.config import TRANSFERS_APP
 from docpool.transfers.content.transfers import ensureDocTypeInTarget
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
+from logging import getLogger
 from plone import api
 from plone.autoform import directives
-from plone.autoform.directives import read_permission, write_permission
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
@@ -27,6 +29,7 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import provider
+
 
 logger = getLogger(__name__)
 
@@ -37,7 +40,8 @@ HAS_ELAN = True
 try:
     from docpool.elan.behaviors.elandocument import IELANDocument
     from docpool.elan.config import ELAN_APP
-    from docpool.elan.content.transfers import ensureScenariosInTarget, knowsScen
+    from docpool.elan.content.transfers import ensureScenariosInTarget
+    from docpool.elan.content.transfers import knowsScen
 except BaseException:
     HAS_ELAN = False
 

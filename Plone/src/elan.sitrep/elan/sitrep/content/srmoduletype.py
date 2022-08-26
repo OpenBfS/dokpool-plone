@@ -13,7 +13,8 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.doctype import DocType, IDocType
+from docpool.base.content.doctype import DocType
+from docpool.base.content.doctype import IDocType
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.dexterity.content import Container

@@ -1,7 +1,9 @@
 from AccessControl.SecurityInfo import allow_module
-from docpool.event.utils import getOpenScenarios, getScenariosForCurrentUser
+from docpool.event.utils import getOpenScenarios
+from docpool.event.utils import getScenariosForCurrentUser
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 
 allow_module("docpool.event.browser")
 allow_module("docpool.event.browser.viewlets")

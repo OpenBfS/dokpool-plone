@@ -12,11 +12,6 @@ view of that content type.
 """
 
 
-import json
-import mimetypes
-import uuid
-from urllib.parse import quote_plus
-
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IDPDocument
@@ -29,7 +24,13 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.interface import alsoProvides, implementer
+from urllib.parse import quote_plus
+from zope.interface import alsoProvides
+from zope.interface import implementer
+
+import json
+import mimetypes
+import uuid
 
 
 class DPDocumentView(FlexibleView):

@@ -12,12 +12,13 @@ __docformat__ = "plaintext"
 """Definition of the SituationReport content type. See situationreport.py for more
 explanation on the statements below.
 """
-import re
-from datetime import datetime
-
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.dpdocument import DPDocument, IDPDocument
-from docpool.base.utils import back_references, portalMessage, queryForObject
+from datetime import datetime
+from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import back_references
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObject
 from docpool.elan.config import ELAN_APP
 from docpool.event.utils import getActiveScenarios
 from elan.sitrep import DocpoolMessageFactory as _
@@ -31,12 +32,17 @@ from plone.dexterity.content import Container
 from plone.namedfile import NamedBlobFile
 from plone.protect.interfaces import IDisableCSRFProtection
 from z3c.relationfield.relation import RelationValue
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import getUtility
-from zope.interface import alsoProvides, implementer, provider
+from zope.interface import alsoProvides
+from zope.interface import implementer
+from zope.interface import provider
 from zope.intid.interfaces import IIntIds
 from zope.schema.interfaces import IContextAwareDefaultFactory
+
+import re
 
 
 @provider(IContextAwareDefaultFactory)

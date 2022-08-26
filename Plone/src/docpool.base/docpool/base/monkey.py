@@ -1,15 +1,18 @@
-import logging
-import ssl
-import traceback
-
-from Acquisition import aq_get, aq_inner
-from docpool.base.utils import possibleDocTypes, possibleDocumentPools
+from Acquisition import aq_get
+from Acquisition import aq_inner
+from docpool.base.utils import possibleDocTypes
+from docpool.base.utils import possibleDocumentPools
 from plone.app.discussion.browser.conversation import ConversationView
 from Products.CMFPlone.Portal import PloneSite
 from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
+
+import logging
+import ssl
+import traceback
+
 
 log = logging.getLogger(__name__)
 

@@ -1,7 +1,8 @@
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
 from docpool.base.interfaces import IDocTypeExtension
-from docpool.base.utils import back_references, queryForObject
+from docpool.base.utils import back_references
+from docpool.base.utils import queryForObject
 from docpool.elan import DocpoolMessageFactory as _
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives

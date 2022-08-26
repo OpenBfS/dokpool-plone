@@ -1,10 +1,9 @@
-from io import StringIO
-from urllib.parse import unquote
-
 from DateTime import DateTime
+from io import StringIO
 from plone.subrequest import subrequest
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
+from urllib.parse import unquote
 from xhtml2pdf import pisa
 
 

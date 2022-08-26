@@ -1,12 +1,17 @@
-import transaction
 from docpool.base.events import IDocumentPoolUndeleteable
-from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from docpool.elan.config import ELAN_APP
 from plone import api
 from plone.app.textfield import RichTextValue
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from Products.Five.utilities.marker import mark
+
+import transaction
 
 
 def install(self):

@@ -1,11 +1,17 @@
 from docpool.base.config import BASE_APP
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.config import _
-from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import base_hasattr, log_exc
+from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import log_exc
 from zope.annotation.interfaces import IAnnotations
+
 
 # General Docpool structures
 

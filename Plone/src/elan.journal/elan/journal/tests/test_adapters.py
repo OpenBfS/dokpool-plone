@@ -1,9 +1,10 @@
-import unittest
 from datetime import datetime
-
-from elan.journal.adapters import IJournalEntryContainer, JournalEntry
+from elan.journal.adapters import IJournalEntryContainer
+from elan.journal.adapters import JournalEntry
 from elan.journal.testing import INTEGRATION_TESTING
 from plone import api
+
+import unittest
 
 
 class ContentTypeTestCase(unittest.TestCase):

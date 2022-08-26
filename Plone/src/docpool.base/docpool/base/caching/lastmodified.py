@@ -1,5 +1,4 @@
 from datetime import timezone
-
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.dpdocument import IDPDocument
 from z3c.caching.interfaces import ILastModified

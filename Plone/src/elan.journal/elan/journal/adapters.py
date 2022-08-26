@@ -2,17 +2,19 @@
 
 """
 from datetime import datetime
-from time import time
-
 from elan.journal.interfaces import IJournal
 from persistent import Persistent
 from persistent.list import PersistentList
 from plone import api
+from time import time
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
-from zope.container.contained import ObjectAddedEvent, ObjectRemovedEvent
+from zope.container.contained import ObjectAddedEvent
+from zope.container.contained import ObjectRemovedEvent
 from zope.event import notify
-from zope.interface import Attribute, Interface, implementer
+from zope.interface import Attribute
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 class IJournalEntryContainer(Interface):

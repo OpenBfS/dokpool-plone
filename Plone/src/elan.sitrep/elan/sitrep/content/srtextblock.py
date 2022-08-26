@@ -13,7 +13,8 @@ __docformat__ = "plaintext"
 explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.contentbase import ContentBase, IContentBase
+from docpool.base.content.contentbase import ContentBase
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.utils import back_references
 from elan.sitrep import DocpoolMessageFactory as _
 from plone.app.dexterity.textindexer.directives import searchable

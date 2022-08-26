@@ -1,12 +1,15 @@
+from ..utils import set_local_roles
 from datetime import datetime
-
-import transaction
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.utils import RARELY_USED_TYPES
 from docpool.config import _
 from docpool.config.general.elan import connectTypesAndCategories
 from docpool.config.local.base import CONTENT_AREA
-from docpool.config.utils import CHILDREN, ID, TITLE, TYPE, createPloneObjects
+from docpool.config.utils import CHILDREN
+from docpool.config.utils import createPloneObjects
+from docpool.config.utils import ID
+from docpool.config.utils import TITLE
+from docpool.config.utils import TYPE
 from docpool.elan.config import ELAN_APP
 from plone import api
 from Products.CMFCore.utils import getToolByName
@@ -14,7 +17,8 @@ from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
 from zope.annotation.interfaces import IAnnotations
 
-from ..utils import set_local_roles
+import transaction
+
 
 # ELAN specific structures
 

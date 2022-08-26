@@ -5,7 +5,8 @@ from docpool.base.interfaces import IExtension
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupporting
 from plone.dexterity.behavior import DexterityBehaviorAssignable
 from plone.dexterity.schema import SCHEMA_CACHE
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
+from zope.component import getMultiAdapter
 
 
 @adapter(ILocalBehaviorSupporting)

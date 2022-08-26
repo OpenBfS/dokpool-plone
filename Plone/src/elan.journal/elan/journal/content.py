@@ -4,7 +4,8 @@ from elan.journal.interfaces import IJournal
 from plone import api
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
 
 
 @implementer(IJournal)

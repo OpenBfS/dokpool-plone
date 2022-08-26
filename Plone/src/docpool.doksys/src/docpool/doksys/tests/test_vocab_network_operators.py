@@ -1,10 +1,12 @@
-import unittest
-
 from docpool.doksys import _
 from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory, IVocabularyTokenized
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.interfaces import IVocabularyTokenized
+
+import unittest
 
 
 class NetworkOperatorsIntegrationTest(unittest.TestCase):

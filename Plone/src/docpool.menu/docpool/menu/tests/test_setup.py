@@ -1,9 +1,9 @@
 """Setup tests for this package."""
-import unittest
-
 from docpool.menu.testing import DOCPOOL_MENU_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.base.utils import get_installer
+
+import unittest
 
 
 class TestSetup(unittest.TestCase):

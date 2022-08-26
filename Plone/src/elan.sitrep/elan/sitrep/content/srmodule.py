@@ -11,14 +11,14 @@ __docformat__ = "plaintext"
 """Definition of the SRModule content type. See srmodule.py for more
 explanation on the statements below.
 """
-from urllib.parse import unquote, urljoin
-
-import requests
 from AccessControl import ClassSecurityInfo
 from bs4 import BeautifulSoup
 from DateTime import DateTime
-from docpool.base.content.dpdocument import DPDocument, IDPDocument
-from docpool.base.utils import back_references, portalMessage, queryForObjects
+from docpool.base.content.dpdocument import DPDocument
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import back_references
+from docpool.base.utils import portalMessage
+from docpool.base.utils import queryForObjects
 from docpool.elan.config import ELAN_APP
 from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
@@ -33,11 +33,16 @@ from plone.subrequest import subrequest
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
+from urllib.parse import unquote
+from urllib.parse import urljoin
 from z3c.form.interfaces import IAddForm
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
+
+import requests
 
 
 class ISRModule(model.Schema, IDPDocument):

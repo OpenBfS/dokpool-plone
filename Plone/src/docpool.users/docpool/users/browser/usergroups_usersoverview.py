@@ -1,5 +1,3 @@
-import logging
-
 from Acquisition import aq_inner
 from docpool.base.utils import deleteMemberFolders
 from plone.protect import CheckAuthenticator
@@ -9,6 +7,9 @@ from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import (
     UsersOverviewControlPanel as UOCP,
 )
 from zExceptions import Forbidden
+
+import logging
+
 
 logger = logging.getLogger("Products.CMFPlone")
 

@@ -1,9 +1,10 @@
-import transaction
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.config import RODOS_APP
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
+
+import transaction
 
 
 def dpAdded(self):

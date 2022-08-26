@@ -14,10 +14,12 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.appregistry import APP_REGISTRY, implicitApps
+from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.appregistry import implicitApps
 from docpool.base.config import BASE_APP
 from docpool.base.content.doctype import IDocType
-from docpool.base.events import DocumentPoolInitializedEvent, DocumentPoolRemovedEvent
+from docpool.base.events import DocumentPoolInitializedEvent
+from docpool.base.events import DocumentPoolRemovedEvent
 from docpool.base.marker import IImportingMarker
 from persistent.list import PersistentList
 from plone.app.textfield.value import RichTextValue
@@ -32,11 +34,14 @@ from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.event import notify
 from zope.globalrequest import getRequest
 from zope.interface import implementer
-from zope.lifecycleevent import IObjectAddedEvent, IObjectRemovedEvent
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectRemovedEvent
+
 
 APPLICATIONS_KEY = "docpool_applications_key"
 

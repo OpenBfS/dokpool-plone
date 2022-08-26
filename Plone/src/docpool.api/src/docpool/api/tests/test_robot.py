@@ -1,10 +1,10 @@
-import os
-import unittest
-
-import robotsuite
 from docpool.api.testing import DOCPOOL_API_ACCEPTANCE_TESTING  # noqa
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
+
+import os
+import robotsuite
+import unittest
 
 
 def test_suite():

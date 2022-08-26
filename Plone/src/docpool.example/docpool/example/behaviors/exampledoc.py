@@ -7,7 +7,8 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.example import DocpoolMessageFactory as _
 from docpool.example.config import EXAMPLE_APP
-from plone.autoform.directives import read_permission, write_permission
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from zope import schema
 from zope.interface import provider

@@ -10,4 +10,5 @@
 
 from docpool.event.utils import getActiveScenarios
 
+
 return getActiveScenarios(context)

@@ -1,6 +1,6 @@
+from elan.journal.adapters import IJournalEntryContainer
+from elan.journal.adapters import JournalEntry
 from time import sleep
-
-from elan.journal.adapters import IJournalEntryContainer, JournalEntry
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
 

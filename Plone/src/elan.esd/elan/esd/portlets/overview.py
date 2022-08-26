@@ -1,5 +1,5 @@
-import plone.api as api
-from Acquisition import aq_chain, aq_inner
+from Acquisition import aq_chain
+from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
@@ -7,6 +7,9 @@ from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
+
+import plone.api as api
+
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't

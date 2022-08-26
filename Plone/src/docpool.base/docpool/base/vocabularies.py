@@ -1,8 +1,12 @@
-from AccessControl.SecurityInfo import allow_class, allow_module
+from AccessControl.SecurityInfo import allow_class
+from AccessControl.SecurityInfo import allow_module
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.appregistry import activeApps, extendingApps, selectableApps
+from docpool.base.appregistry import activeApps
+from docpool.base.appregistry import extendingApps
+from docpool.base.appregistry import selectableApps
 from docpool.base.content.doctype import IDocType
-from docpool.base.utils import getAllowedDocumentTypesForGroup, getDocumentPoolSite
+from docpool.base.utils import getAllowedDocumentTypesForGroup
+from docpool.base.utils import getDocumentPoolSite
 from plone import api
 from plone.app.vocabularies.catalog import StaticCatalogVocabulary
 from Products.CMFCore.utils import getToolByName
@@ -11,7 +15,8 @@ from zope.component.hooks import getSite
 from zope.interface import implementer
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)

@@ -5,7 +5,9 @@ from docpool.rodos.config import RODOS_APP
 
 # This logic should eventually be bundled in the global docpool.config
 # module to allow for easy customization
-from docpool.rodos.local.rodos import dpAdded, dpRemoved
+from docpool.rodos.local.rodos import dpAdded
+from docpool.rodos.local.rodos import dpRemoved
+
 
 # TODO: register any app specific type extension, doc extension, methods
 # to be executed when docpools are created

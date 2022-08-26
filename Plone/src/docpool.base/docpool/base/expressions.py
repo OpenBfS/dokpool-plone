@@ -182,6 +182,7 @@ Expressions.ZopePathExpr._TRAVERSER = staticmethod(boboAwareZopeTraverse)
 from Products.PageTemplates.expression import BoboAwareZopeTraverse
 from Products.PageTemplates.expression import TrustedBoboAwareZopeTraverse
 
+
 # We do not want to change the trusted version.  It inherits the traverse method
 # from the untrusted class.  It may be better to give it its own method.
 # The @classmethod makes this tricky to get right.

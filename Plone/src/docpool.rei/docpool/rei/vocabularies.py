@@ -1,10 +1,10 @@
-from datetime import date
-
 from AccessControl.SecurityInfo import allow_module
+from datetime import date
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)

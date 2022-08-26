@@ -2,7 +2,8 @@ from AccessControl.SecurityInfo import allow_module
 from docpool.transfers import DocpoolMessageFactory as _
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)

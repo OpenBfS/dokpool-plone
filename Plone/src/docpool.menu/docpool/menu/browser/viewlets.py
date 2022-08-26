@@ -1,10 +1,8 @@
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.content.archiving import IArchiving
-from docpool.menu.utils import (
-    getApplicationDocPoolsForCurrentUser,
-    getFoldersForCurrentUser,
-)
+from docpool.menu.utils import getApplicationDocPoolsForCurrentUser
+from docpool.menu.utils import getFoldersForCurrentUser
 from plone import api
 from plone.app.layout.viewlets import common
 from plone.memoize.view import memoize

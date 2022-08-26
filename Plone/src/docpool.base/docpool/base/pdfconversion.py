@@ -1,13 +1,14 @@
-import logging
-import subprocess
 from io import StringIO
-
 from OFS.Image import Image as OFSImage
 from PIL import Image
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 from PyPDF2 import PdfFileReader
 from PyPDF2.errors import PdfReadError
 from zope.annotation.interfaces import IAnnotations
+
+import logging
+import subprocess
+
 
 logger = logging.getLogger("docpool.base.pdfconversion")
 

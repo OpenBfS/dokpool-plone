@@ -1,11 +1,7 @@
-import logging
-
-from docpool.base.browser.dpdocument import (
-    DPDocumentinlineView,
-    DPDocumentlistitemView,
-    DPDocumentprintView,
-    DPDocumentView,
-)
+from docpool.base.browser.dpdocument import DPDocumentinlineView
+from docpool.base.browser.dpdocument import DPDocumentlistitemView
+from docpool.base.browser.dpdocument import DPDocumentprintView
+from docpool.base.browser.dpdocument import DPDocumentView
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import deleteMemberFolders
 from docpool.elan.config import ELAN_APP
@@ -16,6 +12,9 @@ from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.CatalogTool import CatalogTool
 from Products.CMFPlone.utils import aq_inner
 from zExceptions import Forbidden
+
+import logging
+
 
 # from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
 

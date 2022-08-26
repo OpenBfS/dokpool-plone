@@ -1,11 +1,12 @@
-import logging
-
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
 from plone import api
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
+
+import logging
+
 
 log = logging.getLogger(__name__)
 

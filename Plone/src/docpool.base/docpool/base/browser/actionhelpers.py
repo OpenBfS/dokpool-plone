@@ -1,9 +1,10 @@
-import logging
-
 from docpool.base.content.dpdocument import IDPDocument
 from plone import api
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
+
+import logging
+
 
 log = logging.getLogger(__name__)
 
