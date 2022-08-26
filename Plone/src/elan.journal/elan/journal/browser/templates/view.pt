@@ -10,7 +10,7 @@
     <div id="spinner" tal:condition="view/automatic_updates_enabled"
         i18n:translate="">Live updating</div>
 -->
-    <article itemscope itemtype="http://schema.org/BlogPosting">
+    <article itemscope="" itemtype="http://schema.org/BlogPosting">
       <header>
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         <h1 class="documentFirstHeading" itemprop="headline"
@@ -32,7 +32,7 @@
       <div tal:replace="structure provider:plone.abovecontentbody" />
       <div id="content-core" itemprop="articleBody">
     <section id="journal-entries">
-      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
           tal:repeat="update view/updates"
           tal:attributes="data-timestamp update/timestamp">
         <h2 class="journalentry-title" itemprop="headline"

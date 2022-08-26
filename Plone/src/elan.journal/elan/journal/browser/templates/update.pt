@@ -10,7 +10,7 @@
     <div id="spinner" tal:condition="view/automatic_updates_enabled"
         i18n:translate="">Live updating</div>
 -->
-    <article itemscope itemtype="http://schema.org/BlogPosting">
+    <article itemscope="" itemtype="http://schema.org/BlogPosting">
       <header>
         <div id="parent-fieldname-text" class=""
             tal:define="text context/text/output|nothing"
@@ -46,7 +46,7 @@
       </form>
 
     <section id="journal-entries" tal:define="batch view/batch">
-      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
           tal:repeat="update batch"
           tal:attributes="data-timestamp update/timestamp">
         <div class="journalentry-helpers">

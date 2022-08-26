@@ -11,7 +11,7 @@
   </head>
   <body>
     <metal:block fill-slot="main">
-      <article itemscope
+      <article itemscope=""
           itemtype="http://schema.org/BlogPosting"
           tal:define="update view/update">
         <header>

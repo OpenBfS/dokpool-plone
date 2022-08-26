@@ -5,7 +5,7 @@
     tal:omit-tag="">
 <body tal:omit-tag="">
     <section id="journal-entries" tal:omit-tag="">
-      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
           tal:repeat="update view/latest_journalentries"
           tal:attributes="data-timestamp update/timestamp">
         <h2 class="journalentry-title" itemprop="headline"
