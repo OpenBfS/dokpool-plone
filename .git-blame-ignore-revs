@@ -28,3 +28,8 @@ f358781515d76340a5d2502395e2cd3ebc3f29f9
 # Date:   Fri Aug 26 14:47:27 2022 +0200
 # isort
 baf67076ffc37814be3b80d6d9ea289a9b29eb44
+
+# Author: Thomas Lotze <lotze@starzel.de>
+# Date:   Fri Aug 26 17:49:16 2022 +0200
+# coding style: fix non-Unix-style line endings
+da64389d65ded9c5714734c1e8dbc70b0b8c5616
