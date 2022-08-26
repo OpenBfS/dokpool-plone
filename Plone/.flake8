@@ -21,4 +21,3 @@ ignore-names =
 inline-quotes = double
 max-complexity = 18
 max-line-length = 88
-no-accept-encodings = True
