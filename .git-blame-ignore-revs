@@ -13,3 +13,18 @@ be7a82aa7773f33c0efa595cac3bb2ccf907bfa1
 # Date:   Sat Jun 11 11:33:11 2022 +0200
 # black, isort, simpler namespace-declaration
 09c4f9e7420bfd94ab1c957cd9358a41d958b992
+
+# Author: Thomas Lotze <lotze@starzel.de>
+# Date:   Fri Aug 26 14:45:45 2022 +0200
+# end-of-file-fixer
+2a34e75133f2b50ef47a7a4a050aa3fb7fd50008
+
+# Author: Thomas Lotze <lotze@starzel.de>
+# Date:   Fri Aug 26 14:46:01 2022 +0200
+# trailing-whitespace
+f358781515d76340a5d2502395e2cd3ebc3f29f9
+
+# Author: Thomas Lotze <lotze@starzel.de>
+# Date:   Fri Aug 26 14:47:27 2022 +0200
+# isort
+baf67076ffc37814be3b80d6d9ea289a9b29eb44
