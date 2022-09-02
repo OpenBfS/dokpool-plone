@@ -1,5 +1,5 @@
 from docpool.base.appregistry import extensionFor
-from docpool.localbehavior.adapter import isSupported
+from docpool.base.localbehavior.adapter import isSupported
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.schema import SCHEMA_CACHE

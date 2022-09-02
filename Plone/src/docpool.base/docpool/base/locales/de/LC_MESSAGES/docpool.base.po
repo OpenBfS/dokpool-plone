@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-08-03 14:39+0000\n"
+"POT-Creation-Date: 2022-09-02 12:34+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -23,6 +23,10 @@ msgstr "${count} Objekte ausgeschnitten."
 #: docpool.base/docpool/base/browser/dpdocument_transition_form.py
 msgid "${transitioned} Items transitioned!"
 msgstr "${transitioned} Einträge geändert!"
+
+#: docpool.base/docpool/base/localbehavior/configure.zcml
+msgid "Add local behavior support"
+msgstr "Unterstützung für Anwendungen hinzufügen"
 
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
@@ -203,6 +207,10 @@ msgstr "Ortszeit"
 #: docpool.base/docpool/base/profiles/default/types/InfoLink.xml
 msgid "Link"
 msgstr "Info-Link"
+
+#: docpool.base/docpool/base/localbehavior/configure.zcml
+msgid "Local Behavior Support"
+msgstr "Unterstützung für Anwendungen"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
@@ -565,6 +573,11 @@ msgstr ""
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "description_elandoccollection_doctypes"
 msgstr ""
+
+#. Default: "Select applications supported for this content, changes will be applied after saving"
+#: docpool.base/docpool/base/localbehavior/localbehavior.py
+msgid "description_local_behaviors"
+msgstr "Unterstützte Anwendungen für diesen Inhalt auswählen. Änderungen werden nach dem Speichern angewendet."
 
 #. Default: "There are currently no items in this folder."
 #: docpool.base/docpool/base/browser/dp_macros.pt

@@ -2,7 +2,7 @@ from Acquisition import aq_get
 from docpool.base.appregistry import BEHAVIOR_REGISTRY
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.interfaces import IExtension
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupporting
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupporting
 from plone.dexterity.behavior import DexterityBehaviorAssignable
 from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import adapter

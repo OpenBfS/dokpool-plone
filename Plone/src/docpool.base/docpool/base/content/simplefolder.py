@@ -74,7 +74,7 @@ class SimpleFolder(FolderBase):
                     ):  # only generally allowed doctypes
                         continue
                     # Get behavior of menu_item
-                    from docpool.localbehavior.localbehavior import (
+                    from docpool.base.localbehavior.localbehavior import (
                         ILocalBehaviorSupport,
                     )
 

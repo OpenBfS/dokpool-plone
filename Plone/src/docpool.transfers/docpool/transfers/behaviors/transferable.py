@@ -6,11 +6,11 @@ from DateTime import DateTime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.config import TRANSFERS_APP
 from docpool.transfers.content.transfers import ensureDocTypeInTarget

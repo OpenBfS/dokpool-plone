@@ -9,6 +9,7 @@
     <include package=".content" />
     <include package=".portlets" />
     <include package=".caching" />
+    <include package=".localbehavior" />
     <include file="upgrades.zcml" />
 
     <include package="plone.app.relationfield" />

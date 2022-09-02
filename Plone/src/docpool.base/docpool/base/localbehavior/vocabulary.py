@@ -2,12 +2,13 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import extendingApps
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
-from zope.interface import directlyProvides
+from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
+@provider(IVocabularyFactory)
 def LocalBehaviorsVocabularyFactory(context):
     """
     The local behaviors available to an object are determined as follows:
@@ -19,10 +20,8 @@ def LocalBehaviorsVocabularyFactory(context):
     """
     request = getRequest()
     path = request.physicalPathFromURL(request.getURL())
-    isType = False
     dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
     if "config" in path:
-        isType = True
         if path.index("config") == 2:  # global config
             apps = dp_app_state.appsPermittedForCurrentUser()
         else:
@@ -45,6 +44,3 @@ def LocalBehaviorsVocabularyFactory(context):
                 if not app[2]["implicit"]
             ]
         )
-
-
-directlyProvides(LocalBehaviorsVocabularyFactory, IVocabularyFactory)

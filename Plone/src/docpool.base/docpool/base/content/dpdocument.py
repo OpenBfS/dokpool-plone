@@ -676,7 +676,7 @@ class DPDocument(Container, Extendable, ContentBase):
 
         :return:
         """
-        from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+        from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 
         print(type(self.local_behaviors))
         print(self.local_behaviors)

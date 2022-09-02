@@ -3,7 +3,6 @@
     <version>1009</version>
     <dependencies>
         <dependency>profile-docpool.users:default</dependency>
-        <dependency>profile-docpool.localbehavior:default</dependency>
         <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
         <!-- Add back as it runs in Plone 6
         <dependency>profile-eea.facetednavigation:default</dependency>

@@ -59,7 +59,7 @@ def createPloneObjects(parent, definitions, fresh=False):
 
 
 def setAttributes(obj, objdef):
-    from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+    from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 
     for attr in objdef:
         if not attr in specialAttributes:

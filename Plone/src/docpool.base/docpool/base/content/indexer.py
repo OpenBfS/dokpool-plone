@@ -2,7 +2,7 @@ from docpool.base.config import BASE_APP
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.infodocument import IInfoDocument
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer

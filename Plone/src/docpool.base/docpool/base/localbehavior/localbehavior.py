@@ -1,5 +1,5 @@
 from Acquisition import aq_inner
-from docpool.localbehavior import MessageFactory as _
+from docpool.base import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model

@@ -4,6 +4,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
@@ -14,7 +15,6 @@ from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from docpool.event import DocpoolMessageFactory as _
 from docpool.event.utils import get_global_scenario_selection
-from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
 from elan.journal.adapters import IJournalEntryContainer
 from logging import getLogger
