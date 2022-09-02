@@ -3,9 +3,7 @@ from Acquisition import aq_inner
 from docpool.base.utils import possibleDocTypes
 from docpool.base.utils import possibleDocumentPools
 from plone.app.discussion.browser.conversation import ConversationView
-from Products.CMFPlone.Portal import PloneSite
 from Products.PlonePAS.tools.groupdata import GroupDataTool
-from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
 
@@ -17,7 +15,7 @@ import traceback
 log = logging.getLogger(__name__)
 
 
-# from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
+# from Products.PlonePAS.tools.memberdata import MemberData
 
 
 # Patches for the automatic creation of group folders

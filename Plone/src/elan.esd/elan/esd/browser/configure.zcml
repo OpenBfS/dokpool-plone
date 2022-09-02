@@ -19,19 +19,19 @@
     <browser:page
         permission="zope2.View"
         name="view"
-        for="..interfaces.IELANDocCollection"
+        for="..content.elandoccollection.IELANDocCollection"
         class=".elandoccollection.ELANDocCollectionView" />
 
     <browser:page
         permission="zope2.View"
         name="rpopup"
-        for="..interfaces.IELANDocCollection"
+        for="..content.elandoccollection.IELANDocCollection"
         class=".elandoccollection.ELANDocCollectionrpopupView" />
 
     <browser:page
         permission="zope2.View"
         name="view"
-        for="..interfaces.IELANArchive"
+        for="..content.elanarchive.IELANArchive"
         class=".elanarchive.ELANArchiveView" />
 
 </configure>

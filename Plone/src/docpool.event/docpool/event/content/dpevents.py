@@ -11,7 +11,6 @@ from AccessControl import ClassSecurityInfo
 from logging import getLogger
 from plone.dexterity.content import Container
 from plone.supermodel import model
-from Products.CMFPlone.utils import parent
 from zope.interface import implementer
 
 

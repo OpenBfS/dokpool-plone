@@ -1,7 +1,6 @@
 from docpool.base.content.dashboardcollection import DashboardCollection
 from docpool.base.content.dashboardcollection import IDashboardCollection
 from docpool.base.marker import IImportingMarker
-from elan.esd import DocpoolMessageFactory as _
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.component import adapter

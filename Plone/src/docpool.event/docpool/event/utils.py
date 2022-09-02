@@ -1,5 +1,4 @@
 from docpool.base.utils import getDocumentPoolSite
-from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
 from plone import api
 from Products.CMFCore.utils import getToolByName

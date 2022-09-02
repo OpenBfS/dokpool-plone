@@ -9,7 +9,6 @@ from docpool.base.marker import IImportingMarker
 from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
-from docpool.rei.vocabularies import AuthorityVocabulary
 from plone import api
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.z3cform.widget import SelectFieldWidget
@@ -18,7 +17,6 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.component import adapter
 from zope.component import getUtility
@@ -29,7 +27,6 @@ from zope.interface import provider
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.interfaces import RequiredMissing
 
 import re
 

@@ -28,7 +28,6 @@ from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_text
-from plone.dexterity.content import Container
 from plone.namedfile import NamedBlobFile
 from plone.protect.interfaces import IDisableCSRFProtection
 from z3c.relationfield.relation import RelationValue

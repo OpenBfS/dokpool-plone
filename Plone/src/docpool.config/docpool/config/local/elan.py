@@ -11,7 +11,6 @@ from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from docpool.elan.config import ELAN_APP
-from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest

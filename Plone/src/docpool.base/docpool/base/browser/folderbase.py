@@ -22,7 +22,6 @@ from plone import api
 from plone.app.content.browser.interfaces import IFolderContentsView
 from plone.app.contenttypes.interfaces import ICollection
 from plone.memoize import view
-from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
