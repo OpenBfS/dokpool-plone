@@ -18,6 +18,7 @@ Changelog
   Remove docpool.policy
   Remove elan.policy and move code and dependecies to docpool.config
   Remove docpool.localbehavior and move code to docpool.base
+  Remove docpool.menu and move code to docpool.base.browser.viewlets
   [tlotze, pbauer]
 
 

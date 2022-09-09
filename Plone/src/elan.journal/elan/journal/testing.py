@@ -26,7 +26,6 @@ class Fixture(PloneSandboxLayer):
         import docpool.doksys
         import docpool.elan
         import docpool.event
-        import docpool.menu
         import docpool.theme
         import docpool.transfers
         import docpool.users
@@ -41,7 +40,6 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
-        self.loadZCML(package=docpool.menu)
         self.loadZCML(package=docpool.users)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)

@@ -1,3 +1,0 @@
-graft docpool
-graft docs/
-include *.cfg *.rst *.in
