@@ -16,7 +16,8 @@ Changelog
   Remove docpool.dashboard and move code to docpool.base
   Make etag module of docpool.base pluggable and move elan-specifics to docpool.elan
   Remove docpool.policy
-  Remove elan.policy and move code adn dependecies to docpool.config
+  Remove elan.policy and move code and dependecies to docpool.config
+  Remove docpool.localbehavior and move code to docpool.base
   [tlotze, pbauer]
 
 
