@@ -6,6 +6,11 @@ from docpool.base.content.folderbase import IFolderBase  # noqa: F401
 from docpool.base.content.infodocument import IInfoDocument  # noqa: F401
 from docpool.base.content.infolink import IInfoLink  # noqa: F401
 from plone.supermodel import model
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+
+
+class IDocpoolBaseLayer(IDefaultBrowserLayer):
+    """Marker interface that defines a browser layer."""
 
 
 class IExtension(model.Schema):

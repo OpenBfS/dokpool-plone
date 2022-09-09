@@ -51,7 +51,6 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=docpool.api)
-        self.loadZCML(package=docpool.menu)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.event)

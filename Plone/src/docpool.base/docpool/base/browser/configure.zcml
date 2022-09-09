@@ -6,6 +6,7 @@
 
   <include package="plone.app.contentmenu" />
   <include package=".search"/>
+  <include package=".viewlets"/>
 
   <plone:static
            directory="static"

@@ -33,7 +33,6 @@ setup(
         "setuptools",
         "z3c.jbot",
         # -*- Extra requirements: -*-
-        "docpool.menu",
     ],
     entry_points="""
       # -*- Entry points: -*-
