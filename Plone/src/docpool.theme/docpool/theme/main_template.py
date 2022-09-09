@@ -3,25 +3,25 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class MainTemplate(OrigMainTemplate):
+    # popup_main_template.pt is a file in this package, the default templates are in CMFPlone
+    # We need to hack all cases where the local template is actually initialilzed
 
-    popup_template = ViewPageTemplateFile("templates/popup_main_template.pt")
-
-    def __call__(self):
-        return self.template()
+    popup_template_name = "templates/popup_main_template.pt"
 
     @property
-    def template(self):
-        self.request.RESPONSE.setHeader("X-UA-Compatible", "IE=edge,chrome=1")
-        try:
-            if (
-                self.request.form.get("popup_load")
-                or self.request["URL"].find("@@inline") > -1
-            ):
-                # Marked in the template as css class .bfs_popup
-                return self.popup_template
-            elif self.request.form.get("ajax_load"):
-                return OrigMainTemplate.ajax_template
-            else:
-                return OrigMainTemplate.main_template
-        except BaseException:
-            return OrigMainTemplate.main_template
+    def template_name(self):
+        if (
+            self.request.form.get("popup_load")
+            or self.request["URL"].find("@@inline") > -1
+        ):
+            return self.popup_template_name
+        return super().template_name
+
+    def __call__(self):
+        if self.template_name == self.popup_template_name:
+            return ViewPageTemplateFile(self.popup_template_name)
+        return super().__call__()
+
+    @property
+    def macros(self):
+        return self.__call__().macros
