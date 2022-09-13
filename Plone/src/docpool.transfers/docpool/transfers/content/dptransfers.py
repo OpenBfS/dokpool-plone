@@ -16,7 +16,6 @@ from AccessControl import ClassSecurityInfo
 from logging import getLogger
 from plone.dexterity.content import Container
 from plone.supermodel import model
-from Products.CMFPlone.utils import parent
 from zope.interface import implementer
 
 
@@ -32,17 +31,6 @@ class DPTransfers(Container):
     """ """
 
     security = ClassSecurityInfo()
-
-    def migrate(self):
-        f = parent(self)
-        if hasattr(self, "_setPortalTypeName"):
-            self._setPortalTypeName("DPTransfers")
-        myid = self.getId()
-        del f[myid]
-        self.__class__ = DPTransfers
-        f[myid] = self
-        logger.info(self.__class__)
-        logger.info(self.getPortalTypeName())
 
     def myDPTransfers(self):
         """ """
@@ -65,7 +53,3 @@ class DPTransfers(Container):
         args = {"portal_type": "DPTransferFolder"}
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
-
-
-class ELANTransfers(DPTransfers):
-    pass

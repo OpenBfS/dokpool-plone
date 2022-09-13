@@ -122,17 +122,6 @@ class DPTransferFolder(FolderBase):
         to_title = self.myDocumentPool().Title()
         return f"{from_title} --> {to_title} ({self.title})"
 
-    def migrate(self):
-        f = parent(self)
-        if hasattr(self, "_setPortalTypeName"):
-            self._setPortalTypeName("DPTransfers")
-        myid = self.getId()
-        del f[myid]
-        self.__class__ = DPTransferFolder
-        f[myid] = self
-        logger.info(self.__class__)
-        logger.info(self.getPortalTypeName())
-
     def acceptsDT(self, dt_id):
         """
         Do I specifically accept this doc type?
@@ -338,7 +327,3 @@ def doctype_will_be_removed(obj, event=None):
     dt_id = obj.getId()
     for tf in transfer_folders_for(event.oldParent):
         tf.doctypePermissions.pop(dt_id, None)
-
-
-class ELANTransferFolder(DPTransferFolder):
-    pass
