@@ -28,6 +28,8 @@ Plone/\.pydevproject
 Plone/etc/zodbpack.conf
 .plone.versioncheck.tracked.json
 # node modules webpack theme
-Plone/src/docpool.theme/docpool/theme/webpack_resources/node_modules
-Plone/src/docpool.theme/docpool/theme/webpack_resources/.plone
+node_modules/
+Plone/src/docpool.theme/docpool/theme/static/*.js
+Plone/src/docpool.theme/docpool/theme/static/*.css
+Plone/src/docpool.theme/docpool/theme/static/*.map
 .python-version
