@@ -13,7 +13,6 @@ from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
 from docpool.transfers import DocpoolMessageFactory as _
 from docpool.transfers.config import TRANSFERS_APP
-from docpool.transfers.content.transfers import ensureDocTypeInTarget
 from docpool.transfers.db.query import allowed_targets
 from docpool.transfers.utils import is_sender
 from logging import getLogger
@@ -338,7 +337,7 @@ class Transferable(FlexibleView):
 
                 # 5) Make sure document type and scenarios exist in the target ESD and
                 #    are in a suitable state.
-                ensureDocTypeInTarget(self.context, my_copy)
+                transfer_folder.ensureDocTypeInTarget(dto)
 
                 if HAS_ELAN:
                     ensureScenariosInTarget(self.context, my_copy)
