@@ -19,10 +19,10 @@ from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.marker import IImportingMarker
+from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
-from docpool.base.utils import _copyPaste
 from docpool.transfers import DocpoolMessageFactory as _
 from logging import getLogger
 from persistent.mapping import PersistentMapping
