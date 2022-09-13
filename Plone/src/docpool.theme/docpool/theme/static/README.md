@@ -3,5 +3,4 @@
 To update static resources go to the root of the buildout and run:
 
     npm i
-    npm build
-
+    npm run build
