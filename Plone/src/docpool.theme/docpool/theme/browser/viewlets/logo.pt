@@ -1,27 +1,23 @@
 <div id="portal-logo">
-<a metal:define-macro="portal_logo"
-   id="portal-logo-img"
-   title="Home"
-   accesskey="1"
-   tal:attributes="href string:${view/navigation_root_url};
-                   title string:DocPool"
-   i18n:domain="elan.esd"
-   i18n:attributes="title">
+    <a metal:define-macro="portal_logo"
+            id="portal-logo-img"
+            title="Home"
+            accesskey="1"
+             tal:attributes="href string:${view/navigation_root_url};
+                    title string:DocPool"
+             i18n:domain="elan.esd"
+             i18n:attributes="title">
 
-        <img src="logo.png" alt=""
-             tal:define="logo context/logoSrc|nothing;
-                         logo python:logo or view.img_src;"
-         tal:attributes="alt view/logo_title;
-                         title view/logo_title;
-                         src logo" /></a>
+        <img src="plone-logo.svg" alt=""
+                 tal:attributes="alt view/logo_title;
+                        title view/logo_title;
+                        src view/img_src" /></a>
+
     <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app.get('logo', False)">
 
-          <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
+        <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
 
     </tal:app_logo>
-        <p class="version">${context/dokpool_version}</p>
-
-
-
+    <p class="version">${context/dokpool_version}</p>
 
 </div>
