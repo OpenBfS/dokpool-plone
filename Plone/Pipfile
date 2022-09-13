@@ -4,10 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-setuptools = "==62.6.0"
+setuptools = "==63.2.0"
 pre-commit = "==2.19.0"
 "zc.buildout" = "==3.0.0rc3"
-pip = "==22.1.2"
+pip = "==22.2"
 wheel = "0.37.1"
 pyupgrade = "*"
 
