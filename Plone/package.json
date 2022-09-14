@@ -12,7 +12,7 @@
     "build:css": "npm-run-all css-compile-theme css-minify-theme",
     "css-compile-theme": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css src/docpool.theme/docpool/theme/resources/theme.scss:src/docpool.theme/docpool/theme/static/theme.css",
     "css-minify-theme": "cleancss --format breakWith=lf --source-map --source-map-inline-sources --output src/docpool.theme/docpool/theme/static/theme.min.css src/docpool.theme/docpool/theme/static/theme.css",
-    "watch": "nodemon --watch src/ --ext scss --exec \"npm run build\""
+    "watch": "nodemon --watch src/ --ext scss,js --exec \"npm run build\""
   },
   "repository": {
     "type": "git",
