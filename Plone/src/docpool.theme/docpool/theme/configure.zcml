@@ -16,12 +16,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <!-- The main theme -->
-  <plone:static
-    directory="theme"
-    type="theme"
-    name="docpooltheme"
-    />
 
   <!-- The static files-->
   <plone:static

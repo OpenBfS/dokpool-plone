@@ -37,16 +37,19 @@
         id="content-header"
         class="container d-flex pt-3 flex-column justify-content-between align-items-lg-start flex-lg-row"
       >
-        <div id="portal-top" class="mb-3 d-flex justify-content-end"></div>
+        <div id="scenario_box-wrapper">
+          <div id="scenario_box"></div>
+        </div>
+        <div id="portal-top" class="mb-3 d-flex flex-column"></div>
 
         <div
           id="portal-logo-wrapper"
           class="pb-3 d-flex justify-content-between align-items-center order-lg-first w-auto"
         >
           <div id="portal-logo" class="order-lg-0"></div>
-          <div class="navbar-expand-lg">
+          <div class="navbar navbar-expand-lg">
             <button
-              class="navbar-toggler navbar-light border-secondary"
+              class="navbar-toggler border-secondary"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasNavbar"
@@ -61,17 +64,15 @@
       <div id="mainnavigation-wrapper">
         <div id="mainnavigation">
           <nav
-            class="navbar navbar-expand-lg navbar-dark bg-primary pat-navigationmarker"
+            class="navbar navbar-expand-lg navbar-barceloneta pat-navigationmarker"
             id="portal-globalnav-wrapper"
           >
             <div class="container">
               <div
-                class="offcanvas offcanvas-end bg-primary"
+                class="offcanvas offcanvas-end"
                 tabindex="-1"
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
-                style="visibility: hidden"
-                aria-hidden="true"
               >
                 <div class="offcanvas-header justify-content-end">
                   <button

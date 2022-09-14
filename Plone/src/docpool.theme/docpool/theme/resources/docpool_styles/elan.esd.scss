@@ -1,0 +1,18 @@
+// Todo: Should maybe moved to elan.esd pkg
+
+.portletHeader .add_journal_entry {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  float: right;
+  display: inline-block;
+  padding: 2px 4px;
+  line-height: 15px;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+  :hover {
+    text-decoration: none;
+    background-color: #ddd;
+    color: #000 !important;
+  }
+}

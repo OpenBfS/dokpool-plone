@@ -1,13 +1,13 @@
 <tal:block i18n:domain="elan.esd">
-<section class="portlet portletRecent" role="section"
+<section class="card portlet portletRecent" role="section"
     i18n:domain="elan.esd">
 <div id="recent_content">
-    <header class="portletHeader">
+    <header class="card-header portletHeader">
         <a href="#"
             tal:attributes="href view/recently_modified_link"
             i18n:translate="label_recent">Recently Modified</a>
     </header>
-    <section class="portletContent"
+    <section class="card-body portletContent"
         tal:condition="view/recent_items">
       <ul>
         <tal:items tal:define="plone_layout context/@@plone_layout;
@@ -39,7 +39,7 @@
       </ul>
     </section>
 
-    <section class="portletContent"
+    <section class="card-body portletContent"
         tal:condition="not: view/recent_items">
         <p i18n:translate="box_recent_no_items">No items changed yet.</p>
     </section>
