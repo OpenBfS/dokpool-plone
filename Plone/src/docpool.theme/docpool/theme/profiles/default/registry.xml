@@ -7,7 +7,7 @@
            prefix="plone.bundles/docpool.theme">
     <value key="enabled">True</value>
     <value key="jscompilation">++plone++docpool/docpool.min.js</value>
-    <value key="csscompilation">++plone++docpool/docpool.min.css</value>
+    <value key="csscompilation">++plone++docpool/theme.min.css</value>
     <value key="expression">python: member is not None</value>
   </records>
 

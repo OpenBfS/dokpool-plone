@@ -1,0 +1,8 @@
+// Bootstrap - imported with --load-path=node_modules
+@import "bootstrap/scss/bootstrap";
+
+// Dokpool styles
+@import "docpool";
+
+// bfs specific styles
+@import "bfs";
