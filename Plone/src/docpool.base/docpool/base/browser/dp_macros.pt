@@ -48,7 +48,7 @@ buttons = view.dp_buttons(batch)
                 </tal:loop>
                 </div>
                 <table id="fctable"
-                       class="listing responsive"
+                       class="table table-striped"
                        summary="Content listing"
                        tal:condition="batch"
                        i18n:domain="docpool.base"
@@ -532,11 +532,11 @@ quoted_id = quote_plus(econtext["b"].getId());
             <tal:listing condition="batch">
 
                 <table id="sortable"
-                       class="listing responsive"
+                       class="table table-striped table-bordered"
                        summary="Content listing"
                        i18n:attributes="summary summary_content_listing;"
                        tal:define="isOverview python:here.getId()=='overview' and 1 or 0">
-                    <thead>
+                    <thead class="table-secondary">
                     <metal:header_slot metal:define-slot="listingheader">
                         <th class="nosort actions" tal:condition="python:False"></th>
                         <th class="nosort title" i18n:translate="">Title / Description / Text</th>
@@ -544,7 +544,7 @@ quoted_id = quote_plus(econtext["b"].getId());
                     </metal:header_slot>
                     </thead>
 
-                    <tbody>
+                    <tbody class="table-group-divider">
                     <tal:items tal:repeat="dpbrain batch">
                         <tr tal:define="oddrow  python:repeat['dpbrain'].index % 2 == 0;
                    				   item_id dpbrain/getId;

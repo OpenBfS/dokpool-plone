@@ -28,3 +28,5 @@ function go_to(url) {
     window.location.href = url;
   }
 }
+
+window.go_to = go_to;

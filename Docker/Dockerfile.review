@@ -27,7 +27,7 @@ LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
 
 # Todo: Cleanup - some deps are not needed
 RUN useradd --system -m -d /app -U -u 500 plone \
-    && runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make" \
+    && runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make nodejs npm" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $runDeps \
     && busybox --install -s
@@ -40,6 +40,8 @@ ADD . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
 
 RUN cd /opt/bfs/dokpool/Plone \
+    && npm ci \
+    && npm run build \
     && pip install pipenv \
     && pipenv install "setuptools==${SETUPTOOLS_VERSION}" \
     && pipenv install --python=$(whereis python2 | awk '{print $2}')

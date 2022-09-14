@@ -5,7 +5,7 @@
       i18n:domain="docpool.event">
 <body>
 
-<div id="scenario_box" metal:define-macro="scenario_table"
+<div id="scenario_box" class="d-flex justify-content-center" metal:define-macro="scenario_table"
      tal:define="possible_scenarios view/scenarios;"
      tal:condition="possible_scenarios">
     <form name="scenarios" method="post" class="scenario_selection"
@@ -13,7 +13,7 @@
                       readonly request/ajax_load|nothing"
          tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
         <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
-        <table class="scenario_table">
+        <table class="table table-sm table-bordered">
             <tal:loop tal:repeat="scenario possible_scenarios">
                 <tr tal:define="event_type python:scenario.EventType or '';
                                 exercise python:event_type in ['Exercise', 'Test'];
