@@ -12,8 +12,8 @@
           tal:define="selected_scenarios view/selected_scenarios;
                       readonly request/ajax_load|nothing"
          tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
-        <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
-        <table class="table table-sm table-bordered">
+        <div class="alert alert-warning" role="alert"  tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</div>
+        <table class="table table-sm table-bordered bg-info">
             <tal:loop tal:repeat="scenario possible_scenarios">
                 <tr tal:define="event_type python:scenario.EventType or '';
                                 exercise python:event_type in ['Exercise', 'Test'];

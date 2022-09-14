@@ -39,7 +39,10 @@
 
   <!-- Content header -->
   <replace css:theme="#portal-logo" css:content="#portal-logo" mode="raw" />
-   <drop css:content="#portal-logo"  />
+  <drop css:content="#portal-logo"  />
+
+  <replace css:theme="#scenario_box" css:content="#scenario_box" mode="raw" />
+  <drop css:content="#scenario_box"  />
 
   <replace css:theme-children="#portal-top" css:content-children="#portal-header" />
 
@@ -66,6 +69,10 @@
   <!-- Footer -->
   <xsl:variable name="footer_portlets" select="//footer[@id='portal-footer-wrapper']//div[@class='portletWrapper']/*[not(contains(@id,'portal-colophon')) and not(contains(@id,'portal-footer-signature')) and not(contains(@class,'portletActions'))]"></xsl:variable>
   <xsl:variable name="footer_portlets_count" select="count($footer_portlets)"></xsl:variable>
+
+  <!-- Footer cleanup as we dont use the doormate & portlets - see #4702-->
+  <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" method="raw" />
+  <drop css:content="#portal-siteactions"/>
 
   <!-- Replace footer information with Plone version. -->
   <replace
