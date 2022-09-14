@@ -36,9 +36,6 @@
   <replace css:theme-children="#portal-globalnav" css:content-children="#portal-globalnav" />
   <!-- set aria-label for toggler button -->
   <copy attributes="aria-label" css:theme=".navbar-toggler" css:content=".navbar-toggler" />
-  <!-- move searchbox into place -->
-  <replace css:theme="#portal-searchbox" css:content="#portal-searchbox" mode="raw" />
-  <drop css:content="#portal-header #portal-searchbox" />
 
   <!-- Content header -->
   <replace css:theme="#portal-logo" css:content="#portal-logo" mode="raw" />

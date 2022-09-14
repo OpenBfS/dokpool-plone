@@ -25,7 +25,7 @@
       tal:attributes="value request/form/SearchableText|nothing;"
       class="searchField form-control me-2" />
 
-    <button class="searchButton btn btn-outline-light"
+    <button class="searchButton btn btn-outline-primary"
       type="submit"
       i18n:translate="label_search">
       Search
