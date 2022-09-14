@@ -6,3 +6,7 @@
 
 // bfs specific styles
 @import "bfs";
+
+// Package includes
+// Todo: Should be moved and included by webpack
+@import "docpool_styles/elan.esd";
