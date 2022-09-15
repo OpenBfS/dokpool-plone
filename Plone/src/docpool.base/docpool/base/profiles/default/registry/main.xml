@@ -24,6 +24,8 @@
       <element>SimpleFolder</element>
       <element>DashboardsConfig</element>
       <element>Dashboard</element>
+      <element>DPTransfersArea</element>
+      <element>DPTransferFolder</element>
     </value>
   </record>
   <record name="plone.image_objects" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="image_objects">

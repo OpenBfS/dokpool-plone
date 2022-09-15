@@ -9,6 +9,12 @@
   <subscriber handler=".documentpool.docPoolModified" />
   <subscriber handler=".documentpool.docPoolRemoved" />
   <subscriber handler=".doctype.updated" />
+  <subscriber handler=".dptransferfolder.created" />
+  <subscriber handler=".dptransferfolder.updated" />
+  <subscriber handler=".dptransferfolder.deleted" />
+  <subscriber handler=".dptransferfolder.doctype_added" />
+  <subscriber handler=".dptransferfolder.doctype_will_be_removed" />
+
   <class class=".documentpool.DocumentPool">
       <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
       <implements interface="plone.app.content.interfaces.INameFromTitle" />

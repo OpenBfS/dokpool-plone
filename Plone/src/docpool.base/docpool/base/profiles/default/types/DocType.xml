@@ -35,6 +35,7 @@
      <element value="plone.allowdiscussion" />
      <element value="plone.excludefromnavigation" />
      <element value="docpool.localbehavior" />
+     <element value="docpool.transferstype" />
 </property>
 
  <!-- View information -->
