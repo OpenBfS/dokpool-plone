@@ -652,8 +652,7 @@ class DocpoolSetup(BrowserView):
             local_behaviors=["rei"],
             exclude_from_nav=False,
         )
-        # TODO: Enable facetednav when eea.facetednavigation works in Plone 6.
-        # _configure_faceted_view(search, import_file_path, "faceted-table-items")
+        _configure_faceted_view(search, import_file_path, "faceted-table-items")
 
         # Why we need to set to empty?
         # Todo: https://redmine-koala.bfs.de/issues/3951
