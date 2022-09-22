@@ -1,3 +1,4 @@
+from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.content.doctype import DocType
 from docpool.base.content.dpdocument import DPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
@@ -13,8 +14,6 @@ def allowed_targets(context):
     and, if context is a document,
         my current version must not have been transferred.
     """
-    from docpool.transfers.behaviors.transferable import ITransferable
-
     adapted = ITransferable(context, None)
     if not adapted:
         return []

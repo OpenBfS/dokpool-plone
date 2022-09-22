@@ -3,6 +3,7 @@
     <i18n:registerTranslations directory="locales"/>
       <include package="zope.annotation" />
 
+   <permission id="docpool.transfers.SendContent" title="Docpool: Send Content" />
     <!-- Include the sub-packages that use their own configure.zcml files. -->
 
     <include package=".browser" />
@@ -110,9 +111,8 @@
    <permission id="docpool.transfers.AddTransferable" title="Docpool: Add Transferable" />
    <permission id="docpool.transfers.AddTransfersType" title="Docpool: Add TransfersType" />
    <permission id="docpool.transfers.AddDPTransferFolder" title="Docpool: Add DPTransferFolder" />
-   <permission id="docpool.transfers.AddDPTransfers" title="Docpool: Add DPTransfers" />
+   <permission id="docpool.transfers.AddDPTransfersArea" title="Docpool: Add DPTransfersArea" />
    <permission id="docpool.transfers.ReceiveContent" title="Docpool: Receive Content" />
-   <permission id="docpool.transfers.SendContent" title="Docpool: Send Content" />
    <permission id="docpool.transfers.AccessTransfers" title="Docpool: Access Transfer Functions" />
 
   <utility

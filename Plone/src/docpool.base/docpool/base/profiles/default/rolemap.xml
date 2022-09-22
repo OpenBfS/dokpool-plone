@@ -251,7 +251,7 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
-    <permission name="Docpool: Add DPTransfers" acquire="True">
+    <permission name="Docpool: Add DPTransfersArea" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>

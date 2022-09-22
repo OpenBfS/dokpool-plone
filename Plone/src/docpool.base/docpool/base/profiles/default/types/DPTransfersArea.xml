@@ -15,10 +15,10 @@
     <element value="DPTransferFolder" />
  </property>
  <!-- schema interface -->
- <property name="schema">docpool.base.content.dptransfers.IDPTransfersArea</property>
+ <property name="schema">docpool.base.content.dptransfersarea.IDPTransfersArea</property>
 
  <!-- class used for content items -->
- <property name="klass">docpool.transfers.content.dptransfers.DPTransfersArea</property>
+ <property name="klass">docpool.base.content.dptransfersarea.DPTransfersArea</property>
 
  <!-- add permission -->
  <property name="add_permission">docpool.transfers.AddDPTransfersArea</property>

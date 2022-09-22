@@ -26,7 +26,7 @@
         <type type_id="DPTransferFolder">
             <bound-workflow workflow_id="dp_one_state_workflow"/>
         </type>
-        <type type_id="DPTransfers">
+        <type type_id="DPTransfersArea">
             <bound-workflow workflow_id="dp_one_state_workflow"/>
         </type>
     </bindings>

@@ -1,6 +1,6 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferable import ITransferable
-from docpool.transfers.config import TRANSFERS_APP
+from docpool.base.config import TRANSFERS_APP
 from plone import api
 from Products.CMFPlone.utils import log
 from Products.Five.browser import BrowserView

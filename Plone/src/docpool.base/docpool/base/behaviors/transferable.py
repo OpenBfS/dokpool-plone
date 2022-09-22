@@ -7,6 +7,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.browser.flexible_view import FlexibleView
+from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
@@ -18,7 +19,6 @@ from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from docpool.elan.content.transfers import ensureScenariosInTarget
 from docpool.elan.content.transfers import knowsScen
-from docpool.transfers.config import TRANSFERS_APP
 from logging import getLogger
 from plone import api
 from plone.autoform import directives

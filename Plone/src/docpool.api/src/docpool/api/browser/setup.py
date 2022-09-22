@@ -444,7 +444,7 @@ class DocpoolSetup(BrowserView):
 
         # configure reireport (disable transfer)
         reireport_dtype = docpool_bund["config"]["dtypes"]["reireport"]
-        from docpool.transfers.behaviors.transferstype import ITransfersType
+        from docpool.base.behaviors.transferstype import ITransfersType
 
         ITransfersType(reireport_dtype).allowTransfer = False
 
@@ -630,7 +630,7 @@ class DocpoolSetup(BrowserView):
         )
         log.info("Created test-event for hessen")
 
-        from docpool.transfers.behaviors.transferable import ITransferable
+        from docpool.base.behaviors.transferable import ITransferable
 
         # transfer a elan/doksys document from bund to hessen
         doc_to_transfer = docpool_bund["content"]["Groups"]["bund_group1"][
