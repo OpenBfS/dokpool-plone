@@ -1,0 +1,75 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="docpool.elan">
+<body>
+
+<div id="scenario_box" metal:define-macro="scenario_table"
+     tal:define="possible_scenarios view/scenarios;"
+     tal:condition="possible_scenarios">
+    <form name="scenarios" method="post" class="scenario_selection"
+          tal:define="selected_scenarios view/selected_scenarios;
+                      readonly request/ajax_load|nothing"
+         tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
+        <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
+        <table class="scenario_table">
+            <tal:loop tal:repeat="scenario possible_scenarios">
+                <tr tal:define="event_type python:scenario.EventType or '';
+                                exercise python:event_type in ['Exercise', 'Test'];
+                                inactive python:scenario.Status == 'inactive';
+                                selected python:scenario.getId() in selected_scenarios;
+                                intensive python:scenario.OperationMode == 'intensive';
+                                toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                                css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '') + (intensive and 'intensive' or '')"
+                    tal:attributes="class css_class">
+                    <tal:def define="mi python:scenario.modInfo();
+                                     date python:mi[0];
+                                     uinfo python:mi[1]">
+                        <td class="scenario_desc">
+
+                            <input type="checkbox" name="scnrs:list"
+                                   tal:attributes="value    scenario/getId;
+                                                   title    scenario/Title;
+                                                   disabled python:readonly and 'disabled' or None;
+                                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
+                                   onclick="this.form.submit();
+                                            $('.scenario_table input').prop('disabled', true)"
+                            />&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <tal:if condition="python: exercise">
+                            <span class="exerciseflag"
+                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))">
+                                +++
+                                <span tal:replace="python:scenario.event_type_title() or ''" i18n:translate=""></span>
+                                +++
+                            </span>&nbsp;&nbsp;
+                            </tal:if>
+
+                            <span class="scentitle"
+                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
+                                  tal:content="string:${scenario/Title}">Event1</span>
+                        </td>
+                        <td>
+                          <a class="pat-plone-modal scenario-info"
+                             href=""
+                             title="Klicken für Informationen zum Ereignis"
+                             tal:attributes="href python:scenario.absolute_url() + '?ajax_load=1'">
+                            Info
+                          </a>
+                        </td>
+                    </tal:def>
+                </tr>
+            </tal:loop>
+        </table>
+        <input tal:condition="not:readonly"
+               type="hidden"
+               name="form.button.Save"
+               class="context"
+               value="Filter"
+               i18n:attributes="value"/>
+    </form>
+
+</div>
+
+</body>
+</html>

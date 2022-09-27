@@ -1,8 +1,8 @@
 # For backward compatibility we need to have aliases for the former types
 # for transfers
 from docpool.base.content import dptransfersarea
-from docpool.event.content import dpevent
-from docpool.event.content import dpevents
+from docpool.elan.content import dpevent
+from docpool.elan.content import dpevents
 
 import sys
 

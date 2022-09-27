@@ -1,0 +1,6 @@
+<span i18n:domain="docpool.elan">
+
+<i18n:dummy translate="archive_confirm_msg"></i18n:dummy>
+<i18n:dummy translate="snapshot_confirm_msg"></i18n:dummy>
+
+</span>

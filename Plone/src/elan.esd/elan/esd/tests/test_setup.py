@@ -6,7 +6,7 @@ import unittest
 
 
 class TestSetup(unittest.TestCase):
-    """Test that docpool.event is properly installed."""
+    """Test that elan.esd is properly installed."""
 
     layer = ELAN_ESD_INTEGRATION_TESTING
 

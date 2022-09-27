@@ -2,7 +2,7 @@ from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
-from docpool.event.utils import getScenariosForCurrentUser
+from docpool.elan.utils import getScenariosForCurrentUser
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
 from plone.autoform import directives

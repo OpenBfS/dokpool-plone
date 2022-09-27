@@ -1,6 +1,6 @@
 from docpool.base.caching.etags import cacheTimes
 from docpool.base.caching.interfaces import IAppCaching
-from docpool.event.utils import getOpenScenarios
+from docpool.elan.utils import getOpenScenarios
 from plone import api
 from zope.component import adapter
 from zope.interface import implementer

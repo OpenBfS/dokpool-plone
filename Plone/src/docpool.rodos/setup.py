@@ -32,7 +32,6 @@ setup(
         # -*- Extra requirements: -*-
         "setuptools",
         "docpool.base",
-        "docpool.event",
     ],
     entry_points="""
       # -*- Entry points: -*-

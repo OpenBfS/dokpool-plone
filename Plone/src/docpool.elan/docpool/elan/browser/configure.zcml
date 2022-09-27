@@ -5,10 +5,42 @@
     i18n_domain="docpool.elan">
 
     <include package="plone.app.contentmenu" />
+    <include package=".viewlets"/>
 
     <plone:static
         directory="static"
         type="plone"
         name="docpool.elan" />
+
+    <browser:page
+        name="event.macros"
+        for="*"
+        template="event_macros.pt"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="view"
+        for="..interfaces.IDPEvents"
+        class=".dpevents.DPEventsView"
+        template="dpevents.pt"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="view"
+        for="..interfaces.IDPEvent"
+        class=".dpevent.DPEventView"
+        template="dpevent.pt"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="event_select_action"
+        for="*"
+        class=".dpevents.EventSelectAction"
+        permission="zope2.View"
+    />
+
 
 </configure>

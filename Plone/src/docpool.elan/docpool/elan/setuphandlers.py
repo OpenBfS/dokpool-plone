@@ -6,3 +6,8 @@ def post_install(context):
     from docpool.config.general.elan import install
 
     install(api.portal.get())
+
+
+def uninstall(context):
+    """Uninstall script"""
+    # Do something at the end of the uninstallation of this package.

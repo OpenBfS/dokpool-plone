@@ -8,3 +8,4 @@ from docpool.elan import appregistration  # noqa: F401
 
 
 allow_module("docpool.elan.config")
+allow_module("docpool.elan.utils")

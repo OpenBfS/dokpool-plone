@@ -26,7 +26,6 @@ class ElanESDLayer(PloneSandboxLayer):
         import docpool.config
         import docpool.doksys
         import docpool.elan
-        import docpool.event
         import docpool.theme
         import docpool.users
         import eea.facetednavigation
@@ -46,7 +45,6 @@ class ElanESDLayer(PloneSandboxLayer):
         self.loadZCML(package=elan.sitrep)
         self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.doksys)
-        self.loadZCML(package=docpool.event)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.base:default")
@@ -54,7 +52,7 @@ class ElanESDLayer(PloneSandboxLayer):
         applyProfile(portal, "elan.journal:default")
         applyProfile(portal, "elan.esd:default")
         applyProfile(portal, "docpool.doksys:default")
-        applyProfile(portal, "docpool.event:default")
+        applyProfile(portal, "docpool.elan:default")
         setRoles(portal, TEST_USER_ID, ["Manager"])
         # Create a docpool
         # Do it here because it takes a long time and creating a docpool

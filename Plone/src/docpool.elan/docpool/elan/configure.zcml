@@ -1,19 +1,21 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="docpool.elan">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.elan">
 
     <i18n:registerTranslations directory="locales"/>
-      <include package="zope.annotation" />
-
-    <!-- Include the sub-packages that use their own configure.zcml files. -->
+    <include package="zope.annotation" />
+    <include package="elan.journal" />
 
     <include package=".browser" />
     <include package=".content" />
-
+    <include package=".behaviors" />
 
     <include package="plone.app.relationfield" />
-    <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />
-
-    <!-- Register the installation GenericSetup extension profile -->
-
+    <include package="Products.CMFCore" file="permissions.zcml" />
 
     <genericsetup:registerProfile
         name="default"
@@ -23,9 +25,68 @@
         post_handler=".setuphandlers.post_install"
         />
 
-   <permission id="docpool.elan.AccessELAN" title="Docpool: Access ELAN Content" />
-   <include package=".behaviors" />
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="docpool.elan (uninstall)"
+        directory="profiles/uninstall"
+        description="Uninstalls the docpool.elan add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.uninstall"
+        />
 
-   <adapter factory=".caching.AppCaching" name="app_caching_elan" />
+    <permission id="docpool.elan.AccessELAN" title="Docpool: Access ELAN Content" />
+
+    <permission id="docpool.elan.AddDPEvent" title="Docpool: Add DPEvent" />
+    <permission id="docpool.elan.ManageDPEvents" title="Docpool: Manage DPEvent" />
+    <permission id="docpool.elan.AddDPEvents" title="Docpool: Add DPEvents" />
+    <permission id="docpool.elan.AddDPNetwork" title="Docpool: Add DPNetwork" />
+    <permission id="docpool.elan.AddDPNuclearPowerStation" title="Docpool: Add DPNuclearPowerStation" />
+
+    <adapter factory=".caching.AppCaching" name="app_caching_elan" />
+
+    <utility
+      component=".vocabularies.EventVocabularyFactory"
+      name="docpool.elan.vocabularies.Events"
+      />
+    <utility
+      component=".vocabularies.EventTypesVocabularyFactory"
+      name="docpool.elan.vocabularies.EventTypes"
+      />
+    <utility
+      component=".vocabularies.EventRefVocabularyFactory"
+      name="docpool.elan.vocabularies.EventRefs"
+      />
+    <utility
+      component=".vocabularies.EventSubstituteVocabularyFactory"
+      name="docpool.elan.vocabularies.EventSubstitutes"
+      />
+    <utility
+      component=".vocabularies.StatusVocabularyFactory"
+      name="docpool.elan.vocabularies.Status"
+      />
+    <utility
+      component=".vocabularies.PhasesVocabularyFactory"
+      name="docpool.elan.vocabularies.Phases"
+      />
+    <utility
+      component=".vocabularies.ModesVocabularyFactory"
+      name="docpool.elan.vocabularies.Modes"
+      />
+    <utility
+      component=".vocabularies.SampleTypeVocabularyFactory"
+      name="docpool.elan.vocabularies.SampleType"
+      />
+    <utility
+      component=".vocabularies.NetworksVocabularyFactory"
+      name="docpool.elan.vocabularies.Networks"
+      />
+    <utility
+      component=".vocabularies.PowerStationsVocabularyFactory"
+      name="docpool.elan.vocabularies.PowerStations"
+      />
+    <utility
+      component=".vocabularies.AlertingStatusVocabularyFactory"
+      name="docpool.elan.vocabularies.AlertingStatus"
+      />
 
 </configure>
