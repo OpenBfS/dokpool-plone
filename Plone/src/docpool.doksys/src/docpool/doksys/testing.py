@@ -18,7 +18,6 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         import docpool.base
         import docpool.config
         import docpool.elan
-        import docpool.transfers
         import docpool.users
         import eea.facetednavigation
         import Products.CMFFormController
@@ -26,7 +25,6 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.config)
         # required since we need to be able to add DBTranfers
-        self.loadZCML(package=docpool.transfers)
         self.loadZCML(package=docpool.users)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
@@ -34,7 +32,6 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.doksys:default")
-        applyProfile(portal, "docpool.transfers:default")
 
 
 DOCPOOL_DOKSYS_FIXTURE = DocpoolDoksysLayer()

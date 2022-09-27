@@ -15,7 +15,7 @@ def dpAdded(self):
     """ """
     annotations = IAnnotations(self)
     # prevent circular import
-    from docpool.transfers.config import TRANSFERS_APP
+    from docpool.base.config import TRANSFERS_APP
 
     fresh = TRANSFERS_APP not in annotations[APPLICATIONS_KEY]
     if fresh:
@@ -28,7 +28,7 @@ def dpAdded(self):
 
 
 TRANSFER_AREA = [
-    {TYPE: "DPTransfers", TITLE: "Transfers", ID: "Transfers", CHILDREN: []}
+    {TYPE: "DPTransfersArea", TITLE: "Transfers", ID: "Transfers", CHILDREN: []}
 ]
 
 

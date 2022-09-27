@@ -1,5 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
+from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -15,7 +16,6 @@ from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from docpool.event import DocpoolMessageFactory as _
 from docpool.event.utils import get_global_scenario_selection
-from docpool.transfers.config import TRANSFERS_APP
 from elan.journal.adapters import IJournalEntryContainer
 from logging import getLogger
 from plone import api

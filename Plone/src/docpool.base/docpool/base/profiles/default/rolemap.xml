@@ -7,6 +7,8 @@
     <role name="DocPoolAdmin"/>
     <role name="ContentAdmin"/>
     <role name="DocPoolUser"/>
+    <role name="ContentReceiver"/>
+    <role name="ContentSender"/>
     <role name="Editor"/>
     <role name="Manager"/>
     <role name="Member"/>
@@ -242,6 +244,29 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="ContentAdmin"/>
+    </permission>
+    <permission name="Docpool: Add DPTransferFolder" acquire="True">
+      <role name="Manager"/>
+      <role name="Reviewer"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add DPTransfersArea" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Receive Content" acquire="True">
+      <role name="ContentReceiver"/>
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Send Content" acquire="True">
+      <role name="ContentSender"/>
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
     </permission>
     <permission name="FTP access" acquire="True">
       <role name="Manager"/>

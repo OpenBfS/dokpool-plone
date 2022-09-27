@@ -3,7 +3,11 @@ from Acquisition import aq_inner
 from contextlib import contextmanager
 from datetime import datetime
 from DateTime import DateTime
+from docpool.base import DocpoolMessageFactory as _
+from docpool.base.behaviors.transferstype import ITransfersType
+from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.browser.flexible_view import FlexibleView
+from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
@@ -11,10 +15,10 @@ from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
-from docpool.transfers import DocpoolMessageFactory as _
-from docpool.transfers.config import TRANSFERS_APP
-from docpool.transfers.db.query import allowed_targets
-from docpool.transfers.utils import is_sender
+from docpool.elan.behaviors.elandocument import IELANDocument
+from docpool.elan.config import ELAN_APP
+from docpool.elan.content.transfers import ensureScenariosInTarget
+from docpool.elan.content.transfers import knowsScen
 from logging import getLogger
 from plone import api
 from plone.autoform import directives
@@ -33,16 +37,6 @@ from zope.interface import provider
 logger = getLogger(__name__)
 
 ANNOTATIONS_KEY = __name__
-
-
-HAS_ELAN = True
-try:
-    from docpool.elan.behaviors.elandocument import IELANDocument
-    from docpool.elan.config import ELAN_APP
-    from docpool.elan.content.transfers import ensureScenariosInTarget
-    from docpool.elan.content.transfers import knowsScen
-except BaseException:
-    HAS_ELAN = False
 
 
 @contextmanager
@@ -103,7 +97,7 @@ class Transferable(FlexibleView):
 
     security = ClassSecurityInfo()
 
-    appname = TRANSFERS_APP
+    appname = "transfers"
 
     def __init__(self, context):
         self.context = context
@@ -219,7 +213,7 @@ class Transferable(FlexibleView):
         if not self.context.allSubobjectsPublished():
             return False
         dto = self.context.docTypeObj()
-        if dto and dto.type_extension(TRANSFERS_APP).allowTransfer:
+        if dto and ITransfersType(dto).allowTransfer:
             return True
         return False
 
@@ -265,8 +259,7 @@ class Transferable(FlexibleView):
             timestamp = datetime.now()
             userinfo_string = self.context._getUserInfoString(plain=True)
             dto = self.context.docTypeObj()
-            if HAS_ELAN:
-                elanobj = IELANDocument(self.context)
+            elanobj = IELANDocument(self.context)
 
             for target in targets:
                 # 1) Determine target transfer folder object.
@@ -284,7 +277,7 @@ class Transferable(FlexibleView):
 
                 # b) Is my Scenario known, are unknown Scenarios accepted?
                 scen_ok = transfer_folder.unknownScenDefault != "block"
-                if not scen_ok and HAS_ELAN:
+                if not scen_ok:
                     # check my precise Scenario
                     # FIXME: ELAN dependency
                     # TODO The following is inefficient in that it creates a list of
@@ -315,8 +308,7 @@ class Transferable(FlexibleView):
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
                 behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
-                if HAS_ELAN:
-                    behaviors.add(ELAN_APP)  # FIXME: ELAN dependency
+                behaviors.add(ELAN_APP)
                 ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
 
                 # 3) Add transfer information to the copies.
@@ -324,7 +316,7 @@ class Transferable(FlexibleView):
                 my_copy.transferred_by = userinfo_string
 
                 # 4) Add entry to sender log.
-                scenario_ids = ", ".join(elanobj.scenarios or ()) if HAS_ELAN else ""
+                scenario_ids = ", ".join(elanobj.scenarios or ())
                 self.sender_log += (
                     dict(
                         timestamp=timestamp,
@@ -339,8 +331,7 @@ class Transferable(FlexibleView):
                 #    are in a suitable state.
                 transfer_folder.ensureDocTypeInTarget(dto)
 
-                if HAS_ELAN:
-                    ensureScenariosInTarget(self.context, my_copy)
+                ensureScenariosInTarget(self.context, my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
                 ITransferable(my_copy).ensureState()
@@ -348,7 +339,7 @@ class Transferable(FlexibleView):
 
                 # 7) Add entry to receiver log.
                 elancopy = IELANDocument(my_copy)
-                scenario_ids = ", ".join(elancopy.scenarios or ()) if HAS_ELAN else ""
+                scenario_ids = ", ".join(elancopy.scenarios or ())
                 self.receiver_log += (
                     dict(
                         timestamp=timestamp,
@@ -386,14 +377,13 @@ class Transferable(FlexibleView):
                     api.content.transition(self.context, "publish")
                 if dstate == "published" and perm == "confirm":
                     api.content.transition(self.context, "retract")
-            if HAS_ELAN:
-                uscn = IELANDocument(self.context).unknownScenario()
-                if uscn:
-                    # Documents with unknown scenarios must be private
-                    try:
-                        api.content.transition(self.context, "retract")
-                    except BaseException:
-                        pass
+            uscn = IELANDocument(self.context).unknownScenario()
+            if uscn:
+                # Documents with unknown scenarios must be private
+                try:
+                    api.content.transition(self.context, "retract")
+                except BaseException:
+                    pass
 
 
 @adapter(IDPDocument, IActionSucceededEvent)
@@ -431,3 +421,14 @@ def automatic_transfer(obj):
             return tObj.transferToAll()
         except BaseException:
             pass
+
+
+def is_sender(obj):
+    roles = api.user.get_roles(obj=obj)
+    if "Manager" in roles or "Site Administrator" in roles:
+        return True
+    groups = api.user.get_current().getGroups()
+    for group in groups:
+        if "Senders" in group:
+            return True
+    return False

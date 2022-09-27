@@ -1,11 +1,11 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
      xmlns:metal="http://xml.zope.org/namespaces/metal"
      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-     i18n:domain="docpool.transfers">
+     i18n:domain="docpool.base">
     <body>
 
 
-    <metal:macro define-macro="transfers_meta" i18n:domain="docpool.transfers">
+    <metal:macro define-macro="transfers_meta" i18n:domain="docpool.base">
           <span tal:define="transfers transfersobj/transferEvents" tal:condition="transfers">
           <tal:loop repeat="transfer transfers">
           <span class="transferlog" tal:attributes="title string:${transfer/by} ${transfer/time}"
@@ -15,14 +15,14 @@
           <br>
     </metal:macro>
 
-    <metal:macro define-macro="transfers_actions" i18n:domain="docpool.transfers">
+    <metal:macro define-macro="transfers_actions" i18n:domain="docpool.base">
          <tal:if condition="python: not context.isArchive() and transfersobj.transferable() and transfersobj.allowedTargets()">
           <a class="transfer action" tal:condition="python: not context.isIndividual()"
               href=""
               title="Transfer"
               tal:attributes="href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % ('/'.join(context.absolute_url().split('/')[:-1]), context.absolute_url_path())"
               i18n:attributes="title">
-              <img src="" tal:attributes="src string:${context/portal_url}/++plone++docpool.transfers/transfer.png"/>
+              <img src="" tal:attributes="src string:${context/portal_url}/++plone++docpool.base/transfer.png"/>
           </a>
         </tal:if>
     </metal:macro>

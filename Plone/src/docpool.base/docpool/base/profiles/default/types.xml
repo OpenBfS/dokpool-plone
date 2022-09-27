@@ -77,4 +77,8 @@
 
      <object name="Dashboard" meta_type="Dexterity FTI" />
 
+     <object name="DPTransferFolder" meta_type="Dexterity FTI" />
+
+     <object name="DPTransfersArea" meta_type="Dexterity FTI" />
+
 </object>

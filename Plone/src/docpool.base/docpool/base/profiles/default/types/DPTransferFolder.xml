@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.transfers" name="DPTransfers">
+<object meta_type="Dexterity FTI"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="docpool.base"
+    name="DPTransferFolder">
 
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Area for Transfer Folders</property>
+ <property name="title" i18n:translate="">Transfer Folder</property>
  <property name="description" i18n:translate=""></property>
  <property name="content_icon"></property>
  <property name="allow_discussion">False</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-
-
-             <element value="DPTransferFolder" />
-
-
+    <element value="SituationReport" />
+    <element value="DPDocument" />
+    <element value="SRModule" />
+    <element value="File" />
+    <element value="Image" />
  </property>
  <!-- schema interface -->
- <property name="schema">docpool.transfers.content.dptransfers.IDPTransfers</property>
+ <property name="schema">docpool.base.content.dptransferfolder.IDPTransferFolder</property>
 
  <!-- class used for content items -->
- <property name="klass">docpool.transfers.content.dptransfers.DPTransfers</property>
+ <property name="klass">docpool.base.content.dptransferfolder.DPTransferFolder</property>
 
  <!-- add permission -->
- <property name="add_permission">docpool.transfers.AddDPTransfers</property>
+ <property name="add_permission">docpool.transfers.AddDPTransferFolder</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">
@@ -34,7 +37,7 @@
 </property>
 
  <!-- View information -->
- <property name="default_view">tabular_view</property>
+ <property name="default_view">view</property>
  <property name="default_view_fallback">False</property>
  <property name="view_methods">
   <element value="view" />
@@ -57,5 +60,8 @@
   <permission value="Modify portal content" />
  </action>
 
+ <action i18n:attributes="title" title="Permissions" action_id="permissions" category="object" condition_expr="" url_expr="string:${object_url}/objekt_liste?typ=channelpermissions" visible="True">
+  <permission value="Modify portal content" />
+ </action>
 
 </object>

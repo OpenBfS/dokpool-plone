@@ -1,17 +1,3 @@
-#
-# File: dptransfers.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the DPTransfers content type. See dptransfers.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
 from logging import getLogger
 from plone.dexterity.content import Container
@@ -19,20 +5,20 @@ from plone.supermodel import model
 from zope.interface import implementer
 
 
-logger = getLogger("dptransfers")
+logger = getLogger(__name__)
 
 
-class IDPTransfers(model.Schema):
+class IDPTransfersArea(model.Schema):
     """ """
 
 
-@implementer(IDPTransfers)
-class DPTransfers(Container):
+@implementer(IDPTransfersArea)
+class DPTransfersArea(Container):
     """ """
 
     security = ClassSecurityInfo()
 
-    def myDPTransfers(self):
+    def myDPTransfersArea(self):
         """ """
         return self
 

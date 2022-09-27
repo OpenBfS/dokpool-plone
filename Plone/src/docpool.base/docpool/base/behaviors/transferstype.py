@@ -1,20 +1,6 @@
-#
-# File: transferstype.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the TransfersType content type. See transferstype.py for more
-explanation on the statements below.
-"""
 from Acquisition import aq_inner
-from docpool.transfers import DocpoolMessageFactory as _
-from docpool.transfers.db.query import allowed_targets
+from docpool.base import DocpoolMessageFactory as _
+from docpool.base.behaviors.utils import allowed_targets
 from plone import api
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider

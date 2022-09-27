@@ -1,18 +1,5 @@
-#
-# File: dptransferfolder.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the DPTransferFolder content type. See dptransferfolder.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
@@ -23,7 +10,7 @@ from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
-from docpool.transfers import DocpoolMessageFactory as _
+from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from persistent.mapping import PersistentMapping
 from plone import api
@@ -40,14 +27,7 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 
-logger = getLogger("dptransferfolder")
-
-
-HAS_ELAN = True
-try:
-    from docpool.elan.config import ELAN_APP
-except ImportError:
-    HAS_ELAN = False
+logger = getLogger(__name__)
 
 
 class IDPTransferFolder(model.Schema, IFolderBase):
@@ -151,20 +131,19 @@ class DPTransferFolder(FolderBase):
         Set it to private state.
 
         """
-        config = self.myDocumentPool().config.dtypes
-        if doctype.getId() in config:
+        config = self.myDocumentPool()["config"]["dtypes"]
+        if doctype.id in config:
             return
 
         copy_id = _copyPaste(doctype, config)
-        copy = config._getOb(copy_id)
+        copy_obj = config[copy_id]
 
-        if HAS_ELAN:
-            # Set intermediate category
-            copy.doc_extension(ELAN_APP).setCCategory("recent")
+        # Set intermediate category
+        copy_obj.doc_extension(ELAN_APP).setCCategory("recent")
 
-        api.content.transition(copy, transition="retract")
-        copy.reindexObject()
-        copy.reindexObjectSecurity()
+        api.content.transition(copy_obj, transition="retract")
+        copy_obj.reindexObject()
+        copy_obj.reindexObjectSecurity()
         config.reindexObject()
 
     def getSendingESD(self):

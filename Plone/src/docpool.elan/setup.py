@@ -33,7 +33,6 @@ setup(
         "setuptools",
         "docpool.base",
         "docpool.event",
-        "docpool.transfers",
         "elan.esd",
         "elan.sitrep",
     ],

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-02 12:34+0000\n"
+"POT-Creation-Date: 2022-09-22 11:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,10 @@ msgstr ""
 msgid "${count} item(s) cut."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+msgid "${transferred} Items transferred!"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dpdocument_transition_form.py
 msgid "${transitioned} Items transitioned!"
 msgstr ""
@@ -31,6 +35,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPTransfersArea.xml
+msgid "Area for Transfer Folders"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
@@ -78,6 +86,10 @@ msgstr ""
 msgid "Disallowed to paste item(s)."
 msgstr ""
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Doc type not accepted."
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/DPApplication.xml
 msgid "Docpool Application"
 msgstr ""
@@ -99,6 +111,10 @@ msgstr ""
 msgid "Document Types"
 msgstr ""
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document has no scenario."
+msgstr ""
+
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
 msgstr ""
@@ -113,6 +129,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "Edit Dashboard"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dptransferfolder.pt
+msgid "Edit Permissions"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
@@ -213,6 +233,10 @@ msgstr ""
 msgid "Local Behavior Support"
 msgstr ""
 
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Makes documents transferable between pools"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Metadata"
 msgstr ""
@@ -223,6 +247,14 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "No items deleted."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+msgid "No items or targets selected!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "No items or targets to transfer to!"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
@@ -239,6 +271,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/content/dpdocument.py
 msgid "No map image"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "No transfer to"
 msgstr ""
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
@@ -271,6 +307,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Pending review"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPTransferFolder.xml
+msgid "Permissions"
 msgstr ""
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
@@ -323,6 +363,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/sharing.py
 msgid "Search for user or group"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "Select"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -382,6 +426,10 @@ msgstr ""
 msgid "The document state has been changed."
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "The following items will be transferred:"
+msgstr ""
+
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
 msgstr ""
@@ -394,12 +442,54 @@ msgstr ""
 msgid "Title / Description / Text"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+#: docpool.base/docpool/base/browser/transfers_macros.pt
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Transfer"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Transfer DocType"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPTransferFolder.xml
+msgid "Transfer Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dptransferfolder.pt
+msgid "Transfer Folder: filter not active!"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "Transfer target"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "Transfer to<br>"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Transferable"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Transferred to ${target_title}"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Type extension for transferable types"
+msgstr ""
+
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Unauthorized to paste item(s)."
 msgstr ""
 
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "Unknown error occured. Please check your logs"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Unknown scenario not accepted."
 msgstr ""
 
 #: docpool.base/docpool/base/upgrades.zcml
@@ -482,6 +572,7 @@ msgstr ""
 msgid "alert_transition"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "back to"
 msgstr ""
@@ -519,8 +610,16 @@ msgstr ""
 msgid "description_doctype_alloweddoctypes"
 msgstr ""
 
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "description_doctype_allowtransfer"
+msgstr ""
+
 #: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_allowuploads"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "description_doctype_automatictransfertargets"
 msgstr ""
 
 #: docpool.base/docpool/base/content/doctype.py
@@ -571,6 +670,35 @@ msgstr ""
 msgid "description_dpdocument_text"
 msgstr ""
 
+#. Default: "Only used for archived documents."
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "description_dpdocument_transferlog"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "description_dpdocument_transferred"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "description_dpdocument_transferred_by"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_permlevel"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_sendingesd"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_unknowndtdefault"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_unknownscendefault"
+msgstr ""
+
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "description_elandoccollection_doctypes"
 msgstr ""
@@ -596,6 +724,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/configure.zcml
 msgid "docpool.base"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "don't accept"
 msgstr ""
 
 #. Default: "Select the transition to be used for modifying the items state."
@@ -659,9 +791,19 @@ msgstr ""
 msgid "label_doctype_alloweddoctypes"
 msgstr ""
 
+#. Default: "Can documents of this type be sent to other ESDs?"
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "label_doctype_allowtransfer"
+msgstr ""
+
 #. Default: "Can contain documents and images"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_allowuploads"
+msgstr ""
+
+#. Default: "Where are documents of this type transferred automatically?"
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "label_doctype_automatictransfertargets"
 msgstr ""
 
 #. Default: "Custom View Template"
@@ -719,6 +861,46 @@ msgstr ""
 msgid "label_dpdocument_text"
 msgstr ""
 
+#. Default: "Transfer log"
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "label_dpdocument_transferlog"
+msgstr ""
+
+#. Default: "Date of last transfer"
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "label_dpdocument_transferred"
+msgstr ""
+
+#. Default: "Transferred by"
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "label_dpdocument_transferred_by"
+msgstr ""
+
+#. Default: "Permissions by document type"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_doctypepermissions"
+msgstr ""
+
+#. Default: "Permission level"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_permlevel"
+msgstr ""
+
+#. Default: "The organisation sending content via this transfer folder"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_sendingesd"
+msgstr ""
+
+#. Default: "Default for unknown document types"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_unknowndtdefault"
+msgstr ""
+
+#. Default: "Default for unknown scenarios"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_unknownscendefault"
+msgstr ""
+
 #. Default: "Document Types"
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "label_elandoccollection_doctypes"
@@ -748,6 +930,10 @@ msgstr ""
 msgid "modified:"
 msgstr ""
 
+#: docpool.base/docpool/base/vocabularies.py
+msgid "needs confirmation"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending - Show document"
 msgstr ""
@@ -772,12 +958,20 @@ msgstr ""
 msgid "private - Show document"
 msgstr ""
 
+#: docpool.base/docpool/base/vocabularies.py
+msgid "publish immediately"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "read/write"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -793,6 +987,10 @@ msgstr ""
 msgid "summary_content_listing"
 msgstr ""
 
+#: docpool.base/docpool/base/vocabularies.py
+msgid "suspended"
+msgstr ""
+
 #. Default: "Move item down"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "title_move_item_down"
@@ -801,4 +999,8 @@ msgstr ""
 #. Default: "Move item up"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "title_move_item_up"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "write"
 msgstr ""

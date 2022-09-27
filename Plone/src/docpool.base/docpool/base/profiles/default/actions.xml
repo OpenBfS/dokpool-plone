@@ -153,7 +153,7 @@
    </property>
    <property name="visible">True</property>
   </object>
-  <object name="transfer" meta_type="CMF Action" i18n:domain="docpool.transfers">
+  <object name="transfer" meta_type="CMF Action" i18n:domain="docpool.base">
    <property name="title" i18n:translate="">Transfer</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:@@dpdocument_transfer_form:method</property>

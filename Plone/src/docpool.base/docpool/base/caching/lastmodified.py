@@ -1,4 +1,5 @@
 from datetime import timezone
+from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.dpdocument import IDPDocument
 from z3c.caching.interfaces import ILastModified
@@ -40,8 +41,6 @@ class DocumentLastModified(ContentBaseLastModified):
         # we need to consider date of last transfer
         transferred = None
         try:
-            from docpool.transfers.behaviors.transferable import ITransferable
-
             t = ITransferable(self.context)
         except Exception:
             pass

@@ -3,6 +3,7 @@
     <i18n:registerTranslations directory="locales"/>
       <include package="zope.annotation" />
 
+   <permission id="docpool.transfers.SendContent" title="Docpool: Send Content" />
     <!-- Include the sub-packages that use their own configure.zcml files. -->
 
     <include package=".browser" />
@@ -10,6 +11,7 @@
     <include package=".portlets" />
     <include package=".caching" />
     <include package=".localbehavior" />
+    <include package=".behaviors" />
     <include file="upgrades.zcml" />
 
     <include package="plone.app.relationfield" />
@@ -106,6 +108,12 @@
 
    <permission id="docpool.base.ManageAddableTypes" title="Docpool: Manage Addable Types" />
 
+   <permission id="docpool.transfers.AddTransferable" title="Docpool: Add Transferable" />
+   <permission id="docpool.transfers.AddTransfersType" title="Docpool: Add TransfersType" />
+   <permission id="docpool.transfers.AddDPTransferFolder" title="Docpool: Add DPTransferFolder" />
+   <permission id="docpool.transfers.AddDPTransfersArea" title="Docpool: Add DPTransfersArea" />
+   <permission id="docpool.transfers.ReceiveContent" title="Docpool: Receive Content" />
+   <permission id="docpool.transfers.AccessTransfers" title="Docpool: Access Transfer Functions" />
 
   <utility
     component=".vocabularies.SelectableAppsVocabularyFactory"
@@ -150,6 +158,18 @@
    <utility
     component=".vocabularies.DashboardCollectionsVocabularyFactory"
     name="docpool.base.vocabularies.DashboardCollections"
+    />
+  <utility
+    component=".vocabularies.PermissionsVocabularyFactory"
+    name="docpool.transfers.vocabularies.Permissions"
+    />
+  <utility
+    component=".vocabularies.UnknownOptionsVocabularyFactory"
+    name="docpool.transfers.vocabularies.UnknownOptions"
+    />
+  <utility
+    component=".vocabularies.DTPermOptionsVocabularyFactory"
+    name="docpool.transfers.vocabularies.DTPermOptions"
     />
 
     <subscriber handler=".events.delete_handler" />

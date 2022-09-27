@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="docpool.base" name="DocType">
- <property name="allowed_content_types" purge="False">
-             <element value="TransfersType" />
- </property>
- <property name="behaviors" purge="False">
-     <element value="docpool.transferstype" />
- </property>
-</object>
