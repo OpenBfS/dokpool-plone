@@ -8,7 +8,7 @@
 ##title=
 ##
 
-from docpool.event.utils import getActiveScenarios
+from docpool.elan.utils import getActiveScenarios
 
 
 return getActiveScenarios(context)

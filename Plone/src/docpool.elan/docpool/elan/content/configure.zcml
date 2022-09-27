@@ -1,6 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" i18n_domain="docpool.elan">
 
-
     <adapter
         factory=".indexer.scenarios_indexer"
         name="scenarios" />
@@ -12,5 +11,10 @@
     <adapter
         factory=".indexer.cat_path_indexer"
         name="cat_path" />
+
+    <subscriber handler=".dpevent.eventAdded" />
+    <subscriber handler=".dpevent.eventChanged" />
+    <subscriber handler=".dpevent.eventRemoved" />
+    <subscriber handler=".dpevent.eventPublished" />
 
 </configure>

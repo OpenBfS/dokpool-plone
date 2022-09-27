@@ -32,9 +32,9 @@ setup(
         # -*- Extra requirements: -*-
         "setuptools",
         "docpool.base",
-        "docpool.event",
         "elan.esd",
         "elan.sitrep",
+        "pygeoif",
     ],
     entry_points="""
       # -*- Entry points: -*-

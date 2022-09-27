@@ -42,7 +42,7 @@ class IELANDocument(IDocumentExtension):
         title=_("label_dpdocument_scenarios", default="Belongs to scenarios"),
         description=_("description_dpdocument_scenarios", default=""),
         required=True,
-        value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
+        value_type=schema.Choice(source="docpool.elan.vocabularies.Events"),
         defaultFactory=initializeScenarios,
     )
     read_permission(scenarios="docpool.elan.AccessELAN")

@@ -5,7 +5,7 @@ from docpool.base.browser.dpdocument import DPDocumentView
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import deleteMemberFolders
 from docpool.elan.config import ELAN_APP
-from docpool.event.utils import getScenariosForCurrentUser
+from docpool.elan.utils import getScenariosForCurrentUser
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
@@ -160,9 +160,6 @@ if not hasattr(CatalogTool, "original_searchResults"):
 
 def getUserSelectedScenarios(self):
     """ """
-    # FIXME
-    from docpool.event.utils import getScenariosForCurrentUser
-
     usc = getScenariosForCurrentUser(self)
     return usc
 

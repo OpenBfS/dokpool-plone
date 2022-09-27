@@ -20,7 +20,7 @@ from docpool.base.utils import back_references
 from docpool.base.utils import portalMessage
 from docpool.base.utils import queryForObject
 from docpool.elan.config import ELAN_APP
-from docpool.event.utils import getActiveScenarios
+from docpool.elan.utils import getActiveScenarios
 from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.content.situationoverview import _availableModules
 from plone.api import content

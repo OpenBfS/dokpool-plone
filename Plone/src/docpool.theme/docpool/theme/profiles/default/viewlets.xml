@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object>
  <order manager="plone.portalheader" skinname="docpool.theme">
-  <viewlet name="docpool.event.events"/>
+  <viewlet name="docpool.elan.events"/>
   <viewlet name="docpool.logo"/>
   <viewlet name="plone.logo"/>
   <viewlet name="docpool.time"/>

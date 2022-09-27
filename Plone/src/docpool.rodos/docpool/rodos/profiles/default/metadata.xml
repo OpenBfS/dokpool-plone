@@ -3,6 +3,6 @@
     <version>0.0.1</version>
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
-        <dependency>profile-docpool.event:default</dependency>
+        <dependency>profile-docpool.elan:default</dependency>
     </dependencies>
 </metadata>

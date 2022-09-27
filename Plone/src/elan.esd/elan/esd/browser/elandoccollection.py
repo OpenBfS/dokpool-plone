@@ -12,7 +12,7 @@ view of that content type.
 """
 
 
-from docpool.event.browser.viewlets.common import EventViewlet
+from docpool.elan.browser.viewlets.common import EventViewlet
 from elan.esd.utils import getAvailableCategories
 from elan.esd.utils import getCategoriesForCurrentUser
 from plone.base.utils import safe_text

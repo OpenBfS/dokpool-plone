@@ -29,7 +29,7 @@ class IELANDocument(ITransferable):
         description=_("description_dpdocument_scenarios", default=""),
         required=True,
         defaultFactory=initializeScenarios,
-        value_type=schema.Choice(source="docpool.event.vocabularies.Events"),
+        value_type=schema.Choice(source="docpool.elan.vocabularies.Events"),
     )
     read_permission(scenarios="docpool.elan.AccessELAN")
     directives.widget(scenarios=CheckBoxFieldWidget)

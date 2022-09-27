@@ -17,7 +17,7 @@ from DateTime import DateTime
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
 from docpool.elan.config import ELAN_APP
-from docpool.event.utils import getScenariosForCurrentUser
+from docpool.elan.utils import getScenariosForCurrentUser
 from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.base.utils import safe_text
