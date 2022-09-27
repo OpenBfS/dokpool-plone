@@ -26,7 +26,6 @@ class Fixture(PloneSandboxLayer):
         import docpool.doksys
         import docpool.elan
         import docpool.theme
-        import docpool.users
         import eea.facetednavigation
         import elan.esd
         import elan.journal
@@ -38,7 +37,6 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
-        self.loadZCML(package=docpool.users)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=elan.sitrep)

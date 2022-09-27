@@ -1,0 +1,161 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="docpool.base"
+    >
+
+  <include file="monkey.zcml" />
+
+  <browser:page
+      name="usergroup-controlpanel"
+      for="docpool.base.interfaces.IDocumentPool"
+      class="Products.CMFPlone.controlpanel.browser.usergroups.UserGroupsSettingsPanelView"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-userprefs"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups_usersoverview.UsersOverviewControlPanel"
+      template="templates/usergroups_usersoverview.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-groupprefs"
+      for="docpool.base.interfaces.IDocumentPool"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_groupsoverview.GroupsOverviewControlPanel"
+      template="templates/usergroups_groupsoverview.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-groupmembership"
+      for="docpool.base.interfaces.IDocumentPool"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_groupmembership.GroupMembershipControlPanel"
+      template="templates/usergroups_groupmembership.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-usermembership"
+      for="docpool.base.interfaces.IDocumentPool"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_usermembership.UserMembershipControlPanel"
+      template="templates/usergroups_usermembership.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-groupdetails"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".usergroups_groupdetails.GroupDetailsControlPanel"
+      template="templates/usergroups_groupdetails.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-groupdetails"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".usergroups_groupdetails.GroupDetailsControlPanel"
+      template="templates/usergroups_groupdetails.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:view
+      name="possibleDocTypes"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".group.PossibleDocTypes"
+      permission="zope2.Public"
+      />
+
+  <browser:view
+      name="possibleDocTypes"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".group.PossibleDocTypes"
+      permission="zope2.Public"
+      />
+
+  <browser:view
+      name="possibleDocumentPools"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".group.PossibleDocumentPools"
+      permission="zope2.Public"
+      />
+
+  <browser:view
+      name="possibleDocumentPools"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".group.PossibleDocumentPools"
+      permission="zope2.Public"
+      />
+
+  <browser:page
+      name="pas_search"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".search.PASSearchView"
+      allowed_interface="Products.PlonePAS.interfaces.browser.IPASSearchView"
+      permission="zope2.View"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="user-information"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".userdatapanel.UserDataConfiglet"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="overview-controlpanel"
+      for="docpool.base.interfaces.IDocumentPool"
+      class="Products.CMFPlone.controlpanel.browser.overview.OverviewControlPanel"
+      permission="plone.app.controlpanel.Overview"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <adapter
+      factory=".userdataschema.UserDataPanelExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      />
+
+  <adapter
+      factory=".userdataschema.RegistrationPanelExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      />
+
+  <adapter
+      factory=".userdataschema.AddUserFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      />
+
+  <adapter
+      factory=".userdataschema.EnhancedUserDataSchemaAdapter"
+      provides=".userdataschema.IEnhancedUserDataSchema"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      />
+
+  <adapter
+      factory=".personalpreferences.EnhancedPersonalPreferencesAdapter"
+      provides=".personalpreferences.IEnhancedPersonalPreferences"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      />
+
+  <adapter
+      factory=".personalpreferences.PersonalPreferencesPanelExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      />
+
+  <adapter
+      factory="Products.CMFPlone.controlpanel.bbb.usergroups.UserGroupsSettingsControlPanelAdapter"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      />
+
+</configure>

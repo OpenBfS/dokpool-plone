@@ -12,6 +12,7 @@
     <include package=".caching" />
     <include package=".localbehavior" />
     <include package=".behaviors" />
+    <include package=".users" />
     <include file="upgrades.zcml" />
 
     <include package="plone.app.relationfield" />

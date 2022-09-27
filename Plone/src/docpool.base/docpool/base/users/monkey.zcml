@@ -1,0 +1,53 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="docpool.base"
+    >
+
+  <include package="collective.monkeypatcher" />
+
+  <monkey:patch
+      original="email_as_username"
+      replacement=".monkey.email_as_username"
+      class="Products.CMFPlone.controlpanel.browser.usergroups.UsersGroupsControlPanelView"
+      preservedoc="true"
+      description="This enables access to ISecuritySchema"
+      />
+
+  <monkey:patch
+      original="applyProperties"
+      replacement=".monkey.applyProperties"
+      class="plone.app.users.browser.register.BaseRegistrationForm"
+      preservedoc="true"
+      description="Add DP information to users within a DocumentPool"
+      preserveOriginal="true"
+      />
+
+  <monkey:patch
+      original="addGroup"
+      replacement=".monkey.addGroup"
+      class="Products.PlonePAS.tools.groups.GroupsTool"
+      preservedoc="true"
+      description="Add GroupFolder when creating a group"
+      preserveOriginal="true"
+      />
+
+  <monkey:patch
+      original="removeGroup"
+      replacement=".monkey.removeGroup"
+      class="Products.PlonePAS.tools.groups.GroupsTool"
+      preservedoc="true"
+      description="Remove GroupFolder when removing a group"
+      preserveOriginal="true"
+      />
+
+  <monkey:patch
+      original="__init__"
+      replacement=".monkey.__csrfinit__"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
+      preservedoc="true"
+      description="Disable CSRF protection in global user management"
+      preserveOriginal="false"
+      />
+
+</configure>
