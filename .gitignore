@@ -30,6 +30,7 @@ Plone/etc/zodbpack.conf
 # node modules webpack theme
 node_modules/
 Plone/src/docpool.theme/docpool/theme/static/*.js
+Plone/src/docpool.theme/docpool/theme/static/*.txt
 Plone/src/docpool.theme/docpool/theme/static/*.css
 Plone/src/docpool.theme/docpool/theme/static/*.map
 .python-version
