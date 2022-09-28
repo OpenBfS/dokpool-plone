@@ -805,7 +805,7 @@ def _configure_faceted_view(obj, config_file_name, layout_id):
         )
     )
     subtyper = api.content.get_view("faceted_subtyper", obj, aq_get(obj, "REQUEST"))
-    if not subtyper.is_faceted:
+    if not subtyper.is_faceted():
         subtyper.enable()
         import_file_path = os.path.join(
             os.path.dirname(__file__), "../profiles/default/", config_file_name
@@ -815,5 +815,7 @@ def _configure_faceted_view(obj, config_file_name, layout_id):
             environ = SnapshotImportContext(obj, "utf-8")
             importer = queryMultiAdapter((obj, environ), IBody)
             importer.body = xml
-        IFacetedLayout(obj).update_layout(layout_id)
-        # noLongerProvides(obj, IHidePloneRightColumn)
+        obj.setLayout("facetednavigation_view")
+        # https://redmine-koala.bfs.de/issues/4944
+        # TODO: See ticket, should be working????
+        # IFacetedLayout(obj).update_layout(layout_id)
