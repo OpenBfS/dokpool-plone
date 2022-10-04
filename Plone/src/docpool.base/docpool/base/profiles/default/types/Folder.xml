@@ -7,5 +7,6 @@
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
      <element value="docpool.localbehavior" />
+     <element value="eea.faceted.navigable" />
   </property>
 </object>
