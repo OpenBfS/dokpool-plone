@@ -187,7 +187,7 @@ sub normalize_accept_encoding {
 
 # Keep auth/anon variants apart if "Vary: X-Anonymous" is in the response
 sub annotate_request {
-    if (!(req.http.Authorization || req.http.cookie ~ "(^|.*; )__ac=")) {
+    if (!(req.http.Authorization || req.http.cookie ~ "(^|.*; )__ac=" || req.http.X-SHIB-USER)) {
         set req.http.X-Anonymous = "True";
     }
 }
