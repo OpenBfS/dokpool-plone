@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_get
 from Acquisition import aq_inner
+from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.discussion.browser.conversation import ConversationView
 from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
@@ -30,10 +31,7 @@ def enabled(self):
 
     context = aq_inner(self.context)
     if IDPDocument.providedBy(context):
-        if not context.isArchive():
-            return True
-        else:
-            return False
+        return True
     else:
         return self.original_enabled()
 
@@ -41,6 +39,57 @@ def enabled(self):
 if not hasattr(ConversationView, "original_enabled"):
     ConversationView.original_enabled = ConversationView.enabled
     ConversationView.enabled = enabled
+
+
+def is_discussion_allowed(self):
+    return not self.context.isArchive() and self.original_is_discussion_allowed()
+
+
+if not hasattr(CommentsViewlet, "original_is_discussion_allowed"):
+    CommentsViewlet.original_is_discussion_allowed = (
+        CommentsViewlet.is_discussion_allowed
+    )
+    CommentsViewlet.is_discussion_allowed = is_discussion_allowed
+
+
+def edit_comment_allowed(self):
+    return not self.context.isArchive() and self.original_edit_comment_allowed()
+
+
+if not hasattr(CommentsViewlet, "original_edit_comment_allowed"):
+    CommentsViewlet.original_edit_comment_allowed = (
+        CommentsViewlet.edit_comment_allowed
+    )
+    CommentsViewlet.edit_comment_allowed = edit_comment_allowed
+
+
+def can_edit(self, reply):
+    return not self.context.isArchive() and self.original_can_edit(reply)
+
+
+if not hasattr(CommentsViewlet, "original_can_edit"):
+    CommentsViewlet.original_can_edit = CommentsViewlet.can_edit
+    CommentsViewlet.can_edit = can_edit
+
+
+def delete_own_comment_allowed(self):
+    return not self.context.isArchive() and self.original_delete_own_comment_allowed()
+
+
+if not hasattr(CommentsViewlet, "original_delete_own_comment_allowed"):
+    CommentsViewlet.original_delete_own_comment_allowed = (
+        CommentsViewlet.delete_own_comment_allowed
+    )
+    CommentsViewlet.delete_own_comment_allowed = delete_own_comment_allowed
+
+
+def can_delete(self, reply):
+    return not self.context.isArchive() and self.original_can_delete(reply)
+
+
+if not hasattr(CommentsViewlet, "original_can_delete"):
+    CommentsViewlet.original_can_delete = CommentsViewlet.can_delete
+    CommentsViewlet.can_delete = can_delete
 
 
 def getURL(self, relative=0, original=False):
