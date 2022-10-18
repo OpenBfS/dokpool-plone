@@ -1,5 +1,5 @@
 #!/bin/sh
 
-pipenv install setuptools==62.0.0
+pipenv install setuptools==65.4.1
 pipenv install
 pipenv run buildout -v -c buildout_jenkins.cfg
