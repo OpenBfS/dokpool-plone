@@ -691,14 +691,13 @@ def add_user(
         add_group(docpool, groupname)
 
     password = username
-    if len(password) < 8:
-        password = f"dp_{username}"
+    password = f"dp_{username}"
     # add the user
     user_fullname = f"{username} ({docpool_title})"
     user = api.user.create(
         email="tester@plone.org",
         username=username,
-        password=username,
+        password=password,
         roles=("Member",),
         properties={"fullname": user_fullname},
     )
