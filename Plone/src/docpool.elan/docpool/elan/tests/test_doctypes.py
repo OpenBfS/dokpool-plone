@@ -346,7 +346,9 @@ class TestDocTypes(unittest.TestCase):
         self.assertFalse(bool(getAllowedDocumentTypes(folder)))
 
         # add a user to test with
-        user = api.user.create(email="foo@plone.org", username="foo", password="secret")
+        user = api.user.create(
+            email="foo@plone.org", username="foo", password="verysecret"
+        )
 
         # add the user to the groups
         api.group.add_user(groupname="test_docpool_ContentAdministrators", user=user)
