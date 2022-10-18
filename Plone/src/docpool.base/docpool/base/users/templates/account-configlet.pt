@@ -4,14 +4,18 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="here/prefs_main_template/macros/master"
-      i18n:domain="plone">
-
-<div metal:fill-slot="prefs_configlet_main">
+      i18n:domain="docpool.users">
+<!--
+  Customized for docpool. Based on Plone 6.0.0b3
+  * links relative to docpool instead of portal
+  * hide user-preferences
+ -->
+<div metal:fill-slot="prefs_configlet_main" tal:define="dp_url context/dp_url;">
   <header>
     <h1 class="documentFirstHeading"
         i18n:translate="">User Details</h1>
     <div>
-      <a href="${portal_url}/@@usergroup-userprefs" i18n:translate="label_go_to_users" class="mt-n2">Up to List of Users</a>
+      <a href="${dp_url}/@@usergroup-userprefs" i18n:translate="label_go_to_users" class="mt-n2">Up to List of Users</a>
     </div>
     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
       Portal status message
@@ -23,17 +27,17 @@
       <nav class="nav nav-tabs mb-2"
             tal:define="userquery python:view.makeQuery()">
         <li class="nav-item">
-          <a href="${portal_url}/@@user-information${userquery}"
+          <a href="${dp_url}/@@user-information${userquery}"
               class="nav-link ${python:'active' if getattr(view, 'tab', None)=='userdata' else ''}"
               i18n:translate="title_personal_information_form">Personal Information</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" tal:replace="python: None">
           <a href="${portal_url}/@@user-preferences${userquery}"
               class="nav-link ${python:'active' if getattr(view, 'tab', None)=='userprefs' else ''}"
               i18n:translate="">Personal Preferences</a>
         </li>
         <li class="nav-item">
-          <a href="${portal_url}/@@usergroup-usermembership${userquery}"
+          <a href="${dp_url}/@@usergroup-usermembership${userquery}"
               class="nav-link"
               i18n:translate="label_group_memberships">Group Memberships</a>
         </li>
