@@ -62,3 +62,9 @@ Custom template usergroups_groupmembership.pt:
   * links relative to docpool instead of portal
   * hide controlpanel-dropdown-navigation
   * hide links to Group Portlets and Group Dashboard
+
+
+View @@usergroup-groupprefs
+Custom template usergroups_groupsoverview.pt:
+  * links relative to docpool instead of portal
+  * hide controlpanel-dropdown-navigation

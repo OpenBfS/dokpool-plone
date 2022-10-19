@@ -8,7 +8,7 @@
 
 <body>
 
-<metal:main fill-slot="prefs_configlet_main"
+<metal:main fill-slot="prefs_configlet_content"
             tal:define="template_id string:@@usergroup-groupprefs;
                         errors python:request.get('errors', {});
                         showAll python:request.get('showAll', '') and not view.newSearch and 'y';
@@ -19,7 +19,8 @@
                         b_size python:showAll and len(search_results) or 20;
                         batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;
                         batchformkeys python:['searchstring','_authenticator'];
-                        portal_url context/portal_url;">
+                        portal_url context/portal_url;
+                        dp_url context/dp_url;">
 
   <article id="content">
     <header>
@@ -73,7 +74,7 @@
 
             <div class="mb-3 input-group">
                 <a class="pat-plone-modal btn btn-success me-3" id="add-group"
-                    tal:attributes="href string:${portal_url}/@@usergroup-groupdetails"
+                    tal:attributes="href string:${dp_url}/@@usergroup-groupdetails"
                     i18n:translate="label_add_new_group">Add New Group</a>
                 <span class="input-group-text" id="quickSearchLabel" i18n:translate="label_group_search">Group Search</span>
                 <input class="form-control quickSearch"
@@ -124,7 +125,7 @@
                                    />
 
                             <a href="#"
-                               tal:attributes="href python:portal_url+'/@@usergroup-groupmembership?'+view.makeQuery(groupname=group_info['groupid']);
+                               tal:attributes="href python:dp_url+'/@@usergroup-groupmembership?'+view.makeQuery(groupname=group_info['groupid']);
                                                title group_info/description|string:''">
                                ${group_info/title} <span class="text-muted" tal:condition="python:group_info['groupid'] != group_info['title']">(${group_info/groupid})</span>
                            </a>
