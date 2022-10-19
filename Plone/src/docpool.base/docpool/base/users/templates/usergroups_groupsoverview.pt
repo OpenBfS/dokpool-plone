@@ -27,6 +27,15 @@
         <h1 class="documentFirstHeading"
             i18n:translate="">Groups</h1>
 
+        <div>
+          <a class="btn btn-outline-secondary"
+             href="${dp_url}/@@usergroup-userprefs"
+             i18n:translate="label_users">Users</a>
+          <a class="btn btn-outline-secondary active"
+             href="${dp_url}/@@usergroup-groupprefs"
+             i18n:translate="label_groups">Groups</a>
+        </div>
+
         <div metal:use-macro="context/global_statusmessage/macros/portal_message">
             Portal status message
         </div>
