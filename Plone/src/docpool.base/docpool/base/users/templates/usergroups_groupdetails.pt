@@ -45,7 +45,7 @@
   <article id="content" tal:condition="view/group | nothing">
     <metal:block define-macro="props">
 
-      <a href="${portal_url}/@@usergroup-groupprefs"
+      <a href="${dp_url}/@@usergroup-groupprefs"
          class="link-parent" tal:condition="view/group"
          i18n:translate="label_up_to_groups_overview">
          Up to Groups Overview
@@ -80,7 +80,7 @@
                 name="groups"
                 method="post"
                 class="pat-formunloadalert pat-formautofocus"
-                tal:attributes="action string:$portal_url/$template_id"
+                tal:attributes="action string:$dp_url/$template_id"
                 tal:define="targetobject context/portal_groupdata;">
 
               <fieldset>
