@@ -8,7 +8,7 @@ view @@user-information overridden only for IDocumentPool
 only changes are in template account-configlet.pt:
   * links relative to docpool instead of portal
   * hide user-preferences
-  * hide controlpanel-dropdown-navigation (TODO)
+  * hide controlpanel-dropdown-navigation
 registered in docpool.base.users.userdatapanel.UserDataConfiglet
 
 
@@ -24,7 +24,7 @@ view @@usergroup-userprefs overridden only for IDocumentPool
 Custom template usergroups_usersoverview.pt:
   * links relative to docpool instead of portal
   * hide controlpanel-dropdown-navigation
-Overrridden: UsersOverviewControlPanel.manageUser:
+Overridden: UsersOverviewControlPanel.manageUser:
   * manageUser in order to change password reset behavior: set password == userid
     and to delete user folders - if possible - when user is deleted
 
