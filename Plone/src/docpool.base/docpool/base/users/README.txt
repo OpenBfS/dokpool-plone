@@ -41,3 +41,8 @@ Custom template usergroups_groupdetails.pt
 TODO: Hide fields email, db from being editable (so far this is done in css):
 https://redmine-koala.bfs.de/issues/2219
 .portaltype-elanesd #formfield-form-esd, .portaltype-elanesd .field.esd, .template-user-information .field.portrait, .template-usergroup-groupdetails .field input[name="email:string"], .template-usergroup-groupdetails .field label[for="dp"], .template-usergroup-groupdetails .field label[for="email"], .template-usergroup-groupdetails .field select[name="dp:text"]
+
+View GroupDetailsControlPanel subclassed:
+  * set value of dp to content uuid (which is a DocumentPool)
+  * when adding a group while inside a docpool title, descr and dp are set
+  * Code unchanged since 5.0b1
