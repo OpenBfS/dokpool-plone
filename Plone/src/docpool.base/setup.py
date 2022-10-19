@@ -31,7 +31,6 @@ setup(
         # -*- Extra requirements: -*-
         "setuptools",
         "collective.monkeypatcher",
-        "docpool.users",
         "docpool.config",
         "PyPDF2",
         "xhtml2pdf",

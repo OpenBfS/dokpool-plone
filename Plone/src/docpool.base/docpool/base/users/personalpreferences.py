@@ -1,5 +1,5 @@
-from docpool.users import DocpoolMessageFactory as _
-from docpool.users.interfaces import IDocPoolUsersLayer
+from docpool.base import DocpoolMessageFactory as _
+from docpool.base.interfaces import IDocpoolBaseLayer
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
 from plone.app.users.browser.personalpreferences import PersonalPreferencesPanel
 from plone.autoform import directives
@@ -38,7 +38,7 @@ class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
     dp = property(get_apps, set_apps)
 
 
-@adapter(Interface, IDocPoolUsersLayer, PersonalPreferencesPanel)
+@adapter(Interface, IDocpoolBaseLayer, PersonalPreferencesPanel)
 class PersonalPreferencesPanelExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedPersonalPreferences)

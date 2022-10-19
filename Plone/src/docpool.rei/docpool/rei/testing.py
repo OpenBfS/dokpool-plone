@@ -18,13 +18,11 @@ class DocpoolReiLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import docpool.base
-        import docpool.users
         import eea.facetednavigation
         import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=Products.CMFFormController)
-        self.loadZCML(package=docpool.users)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=docpool.rei)
 

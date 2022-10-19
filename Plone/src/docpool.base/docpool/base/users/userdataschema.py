@@ -1,5 +1,5 @@
-from docpool.users import DocpoolMessageFactory as _
-from docpool.users.interfaces import IDocPoolUsersLayer
+from docpool.base import DocpoolMessageFactory as _
+from docpool.base.interfaces import IDocpoolBaseLayer
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
 from plone.app.users.browser.register import AddUserForm
 from plone.app.users.browser.register import RegistrationForm
@@ -37,7 +37,7 @@ class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     dp = property(get_dp, set_dp)
 
 
-@adapter(Interface, IDocPoolUsersLayer, UserDataPanel)
+@adapter(Interface, IDocpoolBaseLayer, UserDataPanel)
 class UserDataPanelExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
@@ -45,7 +45,7 @@ class UserDataPanelExtender(extensible.FormExtender):
         self.form.fields["email"].field.required = False
 
 
-@adapter(Interface, IDocPoolUsersLayer, RegistrationForm)
+@adapter(Interface, IDocpoolBaseLayer, RegistrationForm)
 class RegistrationPanelExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
@@ -53,7 +53,7 @@ class RegistrationPanelExtender(extensible.FormExtender):
         self.form.fields["email"].field.required = False
 
 
-@adapter(Interface, IDocPoolUsersLayer, AddUserForm)
+@adapter(Interface, IDocpoolBaseLayer, AddUserForm)
 class AddUserFormExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)

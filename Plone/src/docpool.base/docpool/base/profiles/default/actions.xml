@@ -101,6 +101,15 @@
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
+  <object name="plone_setup" meta_type="CMF Action" i18n:domain="docpool.base">
+   <property name="title" i18n:translate="">User Management</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${context/dp_url}/@@usergroup-userprefs</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">here/isAdmin</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
   <object name="ical_import_enable" meta_type="CMF Action" i18n:domain="plone.app.event">
