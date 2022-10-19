@@ -19,6 +19,7 @@ class UsersOverviewControlPanel(UOCP):
         """
         Override in order to change password reset behavior: set password == userid
         and to delete user folders - if possible - when user is deleted
+        Valid for Plone 6.0.0b3
         """
         CheckAuthenticator(self.request)
 
