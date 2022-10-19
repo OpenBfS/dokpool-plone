@@ -8,14 +8,15 @@
 
 <body>
 
-<metal:main fill-slot="prefs_configlet_main"
+<metal:main fill-slot="prefs_configlet_content"
     tal:define="template_id string:@@usergroup-userprefs;
                 showAll python:request.get('showAll', '') and not view.newSearch and 'y';
                 Batch python:modules['Products.CMFPlone'].Batch;
                 b_start python:0 if showAll or view.newSearch else request.get('b_start',0);
                 b_size python:showAll and len(view.searchResults) or 20;
                 portal_roles view/portal_roles;
-                portal_url context/portal_url;">
+                portal_url context/portal_url;
+                dp_url context/dp_url">
 
     <article id="content">
 
@@ -50,7 +51,7 @@
               class="pat-formautofocus"
               name="users_search"
               method="post"
-              tal:attributes="action string:$portal_url/$template_id"
+              tal:attributes="action string:$dp_url/$template_id"
               tal:define="findAll python:'form.button.FindAll' in request.keys();
                           portal_users view/searchResults;
                           batch python:Batch(portal_users, b_size, int(b_start), orphan=1);
@@ -64,10 +65,10 @@
              data-pat-plone-modal='{
                 "actionOptions": {
                   "redirectOnResponse": true,
-                  "redirectToUrl": "${portal_url}/@@usergroup-userprefs"
+                  "redirectToUrl": "${dp_url}/@@usergroup-userprefs"
                 }
               }'
-             tal:attributes="href string:${portal_url}/@@new-user"
+             tal:attributes="href string:${dp_url}/@@new-user"
              i18n:translate="label_add_new_user">Add New User</a>
           <span class="input-group-text" id="quickSearchLabel" i18n:translate="label_user_search">User Search</span>
           <input class="form-control quickSearch"
@@ -113,7 +114,7 @@
 
                         <td class="text-start">
                             <a href="@@user-i0nformation"
-                               tal:attributes="href string:$portal_url/@@user-information?${userquery};
+                               tal:attributes="href string:$dp_url/@@user-information?${userquery};
                                                title userid">
                                 ${user/fullname} <span class="text-muted">(${user/login})</span>
                             </a>

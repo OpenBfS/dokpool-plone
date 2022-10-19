@@ -23,7 +23,6 @@ registered in docpool.base.users.userdatapanel.UserDataConfiglet
 view @@usergroup-userprefs overridden only for IDocumentPool
 Custom template usergroups_usersoverview.pt:
   * links relative to docpool instead of portal
-  * hide user-preferences
   * hide controlpanel-dropdown-navigation
 Overrridden: UsersOverviewControlPanel.manageUser:
   * manageUser in order to change password reset behavior: set password == userid
