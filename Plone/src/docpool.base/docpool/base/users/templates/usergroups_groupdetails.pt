@@ -9,11 +9,12 @@
 
 <body>
 
-<metal:main fill-slot="prefs_configlet_main"
+<metal:main fill-slot="prefs_configlet_content"
      tal:define="template_id string:@@usergroup-groupdetails;
                  portal_roles view/portal_roles;
                  groupquery python:view.makeQuery(groupname=view.groupname);
-                 groupkeyquery python:view.makeQuery(key=view.groupname)">
+                 groupkeyquery python:view.makeQuery(key=view.groupname);
+                 dp_url context/dp_url;">
 
 
   <!-- When no group is specified, this gets used as the add group page page -->
@@ -63,14 +64,14 @@
         <div class="autotabs">
 
           <div tal:condition="view/group" class="nav nav-pills">
-            <a href="${portal_url}/@@usergroup-groupmembership?${groupquery}" class="nav-link"
+            <a href="${dp_url}/@@usergroup-groupmembership?${groupquery}" class="nav-link"
                i18n:translate="label_group_members">Group Members</a>
             <a class="nav-link active"
-               href="${portal_url}/@@usergroup-groupdetails?${groupquery}"
+               href="${dp_url}/@@usergroup-groupdetails?${groupquery}"
                i18n:translate="label_group_properties">Group Properties</a>
-            <a href="${portal_url}/@@manage-group-portlets?${groupkeyquery}&_authenticator=${token}" class="nav-link"
+            <a tal:replace="python: None" href="${portal_url}/@@manage-group-portlets?${groupkeyquery}&_authenticator=${token}" class="nav-link"
                i18n:translate="label_group_portlets">Group Portlets</a>
-            <a href="${portal_url}/@@manage-group-dashboard?${groupkeyquery}&_authenticator=${token}" class="nav-link"
+            <a tal:replace="python: None" href="${portal_url}/@@manage-group-dashboard?${groupkeyquery}&_authenticator=${token}" class="nav-link"
                i18n:translate="label_group_dashboard">Group Dashboard</a>
           </div>
 
@@ -83,6 +84,7 @@
                 tal:define="targetobject context/portal_groupdata;">
 
               <fieldset>
+                <tal:dp tal:condition="python:context.portal_type == 'DocumentPool'">
                   <div class="mb-3" metal:define-slot="name">
                      <label class="form-label" for="groupname" i18n:translate="label_name">Name</label>
                      <p>
@@ -171,12 +173,17 @@
                                       tal:define="select_variable python:property.get('select_variable','');
                                       select_value python:select_variable and path('context/%s' %select_variable) or [];">
 
-                      <select name="selection" tal:condition="python:type in ('selection',)"
+                      <select name="selection" class="form-select" tal:condition="python:type in ('selection',)"
                           tal:attributes="name string:$id:text;
                                           disabled disabled;">
                           <tal:values repeat="option select_value">
-                              <option tal:attributes="SELECTED python:'SELECTED' if propertyvalue==option else ''"
-                                  tal:content="option">value</option>
+              							<tal:var define="optval python:option.split('|');
+                                             value python:optval[0];
+                                             opt python:optval[1] if len(optval) > 1 else value;">
+                              <option tal:attributes="selected python:'selected' if propertyvalue==value else '';
+                              						  value value"
+                                  tal:content="opt">value</option>
+                            </tal:var>
                           </tal:values>
                       </select>
 
@@ -185,8 +192,13 @@
                                               size python:min(7, len(select_value));
                                               disabled disabled;">
                           <tal:values repeat="option select_value">
-                              <option tal:attributes="SELECTED python:'selected' if (propertyvalue and option in propertyvalue) else ''"
-                                      tal:content="option">value</option>
+              							<tal:var define="optval python:option.split('|');
+                                             value python:optval[0];
+                                             opt python:optval[1] if len(optval) > 1 else value;">
+                              <option tal:attributes="SELECTED python: propertyvalue and (value in propertyvalue) and 'selected' or None;
+                                                      value value;"
+                                      tal:content="opt">value</option>
+                            </tal:var>
                           </tal:values>
                       </select>
 
@@ -204,6 +216,7 @@
                           value="Save"
                           i18n:translate=""
                           i18n:attributes="value label_save;">Save</button>
+                </tal:dp>
               </fieldset>
 
               <input class="form-control" tal:replace="structure context/@@authenticator/authenticator" />
