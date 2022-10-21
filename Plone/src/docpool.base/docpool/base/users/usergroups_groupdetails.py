@@ -46,26 +46,17 @@ class GroupDetailsControlPanel(GDCP):
                 # BfS: modifications for local user management:
                 # Automatically change id and titel with prefix
                 # when we are inside a DocumentPool
+                props = {"title": title, "description": description}
                 if base_hasattr(self.context, "myDocumentPool"):
                     dp = self.context
                     prefix = dp.prefix or dp.getId()
-                    prefix = str(prefix)
                     dp_title = dp.Title()
-
                     addname = f"{prefix}_{addname}"
                     title = f"{title} ({dp_title})"
-                    isDP = True
-                else:
-                    isDP = False
-
-                if isDP:
                     # Add reference to DocumentPool here
-                    props = {"title": title, "description": description, "dp": dp.UID()}
+                    props["dp"] = dp.UID()
                     # Put it in the request for later processing (see below)
                     self.request.set("dp", dp.UID())
-                else:
-                    props = {"title": title, "description": description}
-
                 #######
 
                 success = self.gtool.addGroup(

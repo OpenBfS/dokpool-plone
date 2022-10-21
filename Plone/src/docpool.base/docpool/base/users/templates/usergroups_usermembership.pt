@@ -1,17 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="docpool.users">
+      metal:use-macro="context/prefs_main_template/macros/master"
+      i18n:domain="plone">
 
 <body>
-<metal:block fill-slot="column_one_slot" />
-<metal:block fill-slot="column_two_slot" />
+<!--
+  Customized for docpool. Based on Plone 6.0.0b3
+  * links relative to docpool instead of portal
+  * hide user-preferences
+  * hide controlpanel navigation
+ -->
 
-<metal:main fill-slot="content"
+<metal:main fill-slot="prefs_configlet_content"
      tal:define="template_id string:@@usergroup-usermembership;
                  portal context/@@plone_portal_state/portal;
                  userid view/userid;
@@ -20,7 +23,8 @@
                  gtool view/gtool;
                  errors python:request.get('errors', {});
                  userquery python:view.makeQuery(userid=userid);
-                 portal_url context/dp_url;
+                 portal_url context/portal_url;
+                 dp_url context/dp_url;
                  showAll python:request.get('showAll', '') and not view.newSearch and 'y';
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_size python:showAll and len(view.searchResults) or 20;
@@ -38,7 +42,7 @@
 
     <a href=""
        class="link-parent"
-       tal:attributes="href string:$portal_url/@@usergroup-userprefs"
+       tal:attributes="href string:$dp_url/@@usergroup-userprefs"
        i18n:translate="label_up_to_usersoverview">
       Up to Users Overview
     </a>
@@ -57,15 +61,17 @@
 
       <div class="autotabs">
         <nav class="autotoc-nav">
-          <a href="${portal_url}/@@user-information?${userquery}"
+          <a href="${dp_url}/@@user-information?${userquery}"
              i18n:translate="title_personal_information_form">Personal Information</a>
+          <a tal:replace="python: None" href="${portal_url}/@@user-preferences?${userquery}"
+             i18n:translate="">Personal Preferences</a>
           <a class="active"
-             href="${portal_url}/@@usergroup-usermembership?${userquery}"
+             href="${dp_url}/@@usergroup-usermembership?${userquery}"
              i18n:translate="label_group_memberships">Group Memberships</a>
         </nav>
 
         <form method="post"
-              tal:attributes="action string:$portal_url/$template_id?userid=${userid}">
+              tal:attributes="action string:$dp_url/$template_id?userid=${userid}">
 
           <h2 i18n:translate="heading_memberships_current">Current group memberships</h2>
           <table tal:condition="groups" class="listing" summary="Group Memberships Listing">
@@ -97,7 +103,7 @@
             </tal:block>
           </table>
           <p tal:condition="not:groups" i18n:translate="text_user_not_in_any_group">This user does not belong to any group.</p>
-          <input class="destructive"
+          <button class="btn btn-alert"
                  type="submit"
                  name="form.button.Delete"
                  value="Remove from selected groups"
@@ -107,7 +113,7 @@
           <h2 tal:condition="many_groups" i18n:translate="heading_search_groups">Search for groups</h2>
           <h2 tal:condition="not:many_groups" i18n:translate="heading_assign_to_groups">Assign to groups</h2>
 
-          <table class="listing" summary="Groups">
+          <table class="table overflow-auto table-bordered table-striped text-center" summary="Groups">
             <tr>
               <th colspan="2" tal:condition="many_groups">
                 <span tal:omit-tag="" i18n:translate="label_quick_search">Quick search</span>:
@@ -118,8 +124,8 @@
                              tal:attributes="value view/searchString;"
                              />
 
-                      <input type="submit"
-                             class="searchButton"
+                      <button type="submit"
+                             class="searchButton btn btn-primary"
                              name="form.button.search"
                              value="Search"
                              i18n:attributes="value label_search;" />
@@ -192,12 +198,13 @@
 
           <input type="hidden" name="form.submitted" value="1" />
 
-          <input class="context"
+          <button class="btn btn-primary"
                  type="submit"
                  name="form.button.Add"
                  value="Add user to selected groups"
                  tal:condition="batch"
-                 i18n:attributes="value label_add_user_to_group;" />
+                 i18n:translate=""
+                 i18n:attributes="value label_add_user_to_group;">Add user to selected groups</button>
           <input tal:replace="structure context/@@authenticator/authenticator" />
 
         </form>

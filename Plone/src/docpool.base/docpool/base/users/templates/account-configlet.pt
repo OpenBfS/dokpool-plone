@@ -3,41 +3,47 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="docpool.users">
-
-<div metal:fill-slot="content">
-
-  <article id="content" tal:define="portal_url context/dp_url;">
-
-    <a
-       href=""
-       class="link-parent"
-       tal:attributes="href string:$portal_url/@@usergroup-userprefs"
-       i18n:translate="label_up_to_usersoverview">
-      Up to Users Overview
-    </a>
-
-    <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
-
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="plone">
+<!--
+  Customized for docpool. Based on Plone 6.0.0b3
+  * links relative to docpool instead of portal
+  * hide user-preferences
+ -->
+<div metal:fill-slot="prefs_configlet_content" tal:define="dp_url context/dp_url;">
+  <header>
+    <h1 class="documentFirstHeading"
+        i18n:translate="">User Details</h1>
+    <div>
+      <a href="${dp_url}/@@usergroup-userprefs" i18n:translate="label_go_to_users" class="mt-n2">Up to List of Users</a>
+    </div>
     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
       Portal status message
     </div>
-
+  </header>
+  <article id="content">
     <div id="content-core">
-      <div class="autotabs">
-        <nav class="autotoc-nav"
-             tal:define="view_name view/__name__;
-                         userquery python:view.makeQuery()">
-          <a href="${portal_url}/@@user-information${userquery}"
-             tal:define="selected python:view_name=='user-information'"
-             tal:attributes="class python:'autotoc-level-1' + (' active' if selected else '')"
-             i18n:translate="title_personal_information_form">Personal Information</a>
-          <a href="${portal_url}/@@usergroup-usermembership${userquery}"
-             i18n:translate="label_group_memberships">Group Memberships</a>
-        </nav>
-        <metal:b use-macro="context/@@ploneform-macros/titlelessform" />
-      </div>
+      <p class="lead mt-4">${python:view.description}</p>
+      <nav class="nav nav-tabs mb-2"
+            tal:define="userquery python:view.makeQuery()">
+        <li class="nav-item">
+          <a href="${dp_url}/@@user-information${userquery}"
+              class="nav-link ${python:'active' if getattr(view, 'tab', None)=='userdata' else ''}"
+              i18n:translate="title_personal_information_form">Personal Information</a>
+        </li>
+        <li class="nav-item" tal:replace="python: None">
+          <a href="${portal_url}/@@user-preferences${userquery}"
+              class="nav-link ${python:'active' if getattr(view, 'tab', None)=='userprefs' else ''}"
+              i18n:translate="">Personal Preferences</a>
+        </li>
+        <li class="nav-item">
+          <a href="${dp_url}/@@usergroup-usermembership${userquery}"
+              class="nav-link"
+              i18n:translate="label_group_memberships">Group Memberships</a>
+        </li>
+      </nav>
+      <metal:b use-macro="context/@@ploneform-macros/titlelessform" />
+
     </div>
 
   </article>

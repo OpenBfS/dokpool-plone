@@ -5,6 +5,7 @@ from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import PloneMessageFactory as _
 from Products.PortalTransforms.Transform import make_config_persistent
 from Products.PythonScripts.PythonScript import PythonScript
 
@@ -263,5 +264,5 @@ def configureGroups(self):
     gdata = getToolByName(self, "portal_groupdata")
     prop = gdata.propdict().get("allowedDocTypes")
     if prop is not None:
-        prop["label"] = "Allowed document types"
+        prop["label"] = _("Allowed document types")
         gdata._p_changed = True
