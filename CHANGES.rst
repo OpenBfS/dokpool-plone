@@ -1,16 +1,25 @@
 Changelog
 =========
 
-1.9.3 (unreleased)
+1.9.4 (unreleased)
 ------------------
+
+
+1.9.3 (21.10.22)
+------------------
+
+Changed:
+
+- Limit blob-cache to 25GB #4739
+  [slindner]
 
 Fixed:
 
 - Move blob-cache setting to prod cfg #4739
   [slindner]
+
 - Show comments in archive. #4819
   [tlotze]
-
 
 
 1.9.2 (04.08.22)
