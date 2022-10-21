@@ -1,9 +1,14 @@
 Changelog
 =========
 
-1.9.2 (04.08.2022)
-1.9.3 (unreleased)
+1.9.3 (21.10.22)
 ------------------
+
+Changed:
+
+- Limit blob-cache to 25GB #4739
+  [slindner]
+
 
 Fixed:
 
