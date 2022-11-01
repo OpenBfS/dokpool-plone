@@ -10,7 +10,7 @@
         <metal:content-core fill-slot="content-core">
         <metal:content-core define-macro="content-core">
         <table style="width:65%;"
-               class="elanlisting"
+               class="elanlisting table table-striped table-bordered"
                tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
             <thead>
                 <tr>
