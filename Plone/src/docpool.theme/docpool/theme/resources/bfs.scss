@@ -5,12 +5,18 @@
   clear: right;
   float: right;
   font-size: 80%;
-
-  .zone {
-    padding-right: 1em;
+  table {
+    width: auto;
+    float: right;
+  };
+  td {
+    padding:0.2rem;
+    text-align: right;
   }
-
+  .zone {
+    padding-right: 0.2em;
+  }
   .time {
-    padding-right: 1em;
+    padding-right: 0.2em;
   }
 }
