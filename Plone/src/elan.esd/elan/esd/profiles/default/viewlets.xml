@@ -1,19 +1,15 @@
 <?xml version="1.0"?>
 <object>
-  <order manager="plone.portalheader" skinname="docpool.theme">
-    <viewlet name="plone.logo" />
-	<viewlet name="elan.esd.scenarios" />
-    <viewlet name="docpool.time" />
-    <viewlet name="plone.searchbox" />
-    <viewlet name="plone.anontools" />
-    <viewlet name="plone.app.i18n.locales.languageselector" />
-  </order>
-
-  <hidden skinname="docpool.theme" manager="plone.abovecontent">
-    <viewlet name="plone.path_bar" />
-  </hidden>
- <hidden manager="plone.belowcontenttitle"
-         skinname="docpool.theme">
-  <viewlet name="plone.belowcontenttitle.documentbyline" />
- </hidden>
+    <order manager="plone.portalheader" skinname="docpool.theme">
+        <viewlet name="plone.logo"/>
+        <viewlet name="elan.esd.scenarios"/>
+        <viewlet name="docpool.time"/>
+        <viewlet name="plone.searchbox"/>
+        <viewlet name="plone.anontools"/>
+        <viewlet name="plone.app.i18n.locales.languageselector"/>
+    </order>
+    <hidden manager="plone.belowcontenttitle"
+            skinname="docpool.theme">
+        <viewlet name="plone.belowcontenttitle.documentbyline"/>
+    </hidden>
 </object>

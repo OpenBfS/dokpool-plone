@@ -11,8 +11,12 @@
           tal:define="selected_scenarios view/selected_scenarios;
                       readonly request/ajax_load|nothing"
          tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
-        <p tal:condition="not:selected_scenarios" i18n:translate="">Please select at least one scenario!</p>
-        <table class="scenario_table">
+
+            <div tal:condition="not:selected_scenarios" class="alert alert-danger" role="alert" i18n:translate="">
+                Please select at least one scenario!
+            </div>
+
+            <table class="scenario_table table table-bordered table-info">
             <tal:loop tal:repeat="scenario possible_scenarios">
                 <tr tal:define="event_type python:scenario.EventType or '';
                                 exercise python:event_type in ['Exercise', 'Test'];
@@ -20,7 +24,7 @@
                                 selected python:scenario.getId() in selected_scenarios;
                                 intensive python:scenario.OperationMode == 'intensive';
                                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                                css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected  ' or '') + (inactive and 'inactive ' or '') + (intensive and 'intensive' or '')"
+                                css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected table-active' or '') + (inactive and 'inactive table-light' or '') + (intensive and 'intensive table-danger' or '')"
                     tal:attributes="class css_class">
                     <tal:def define="mi python:scenario.modInfo();
                                      date python:mi[0];

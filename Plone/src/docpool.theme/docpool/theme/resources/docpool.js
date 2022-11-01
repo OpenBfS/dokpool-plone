@@ -5,6 +5,9 @@ import { makePopUp } from "./window_functions";
 window.go_to = go_to;
 window.makePopUp = makePopUp;
 
+// Global styles
+import("./docpool_styles/header-timetable.scss");
+
 // Logged-In users
 if (document.querySelector(".userrole-anonymous") === null) {
   import("./theme.scss");

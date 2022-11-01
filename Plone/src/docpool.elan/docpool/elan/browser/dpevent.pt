@@ -10,9 +10,9 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 
-  <h4>Ereignisinformationen</h4>
+  <h4 i18n:translate="">Ereignisinformationen</h4>
 
-  <table class="listing">
+  <table class="listing table table-striped table-bordered ">
 
     <tr tal:define="widget python:view.widgets['Substitute']">
         <td tal:content="widget/label"></td>
@@ -58,9 +58,9 @@
 
   </table>
 
-  <h4>Betriebsart und Alarmierung</h4>
+  <h4 i18n:translate="">Betriebsart und Alarmierung</h4>
 
-  <table class="listing">
+  <table class="listing table table-striped table-bordered">
     <tr tal:define="widget python:view.widgets['OperationMode'];
                     intensive python: context.OperationMode == 'intensive'">
         <td tal:content="widget/label"></td>
@@ -107,7 +107,7 @@
   </div>
 
     <h4 i18n:translate="">Changelog</h4>
-    <table class="listing"
+    <table class="listing table table-striped table-bordered"
            tal:define="changelog python:view.changelog();">
       <thead>
         <tr>
