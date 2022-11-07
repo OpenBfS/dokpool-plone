@@ -110,26 +110,6 @@ StatusVocabularyFactory = StatusVocabulary()
 
 
 @implementer(IVocabularyFactory)
-class PhasesVocabulary:
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = sorted(
-            (t.getObject().getPhaseTitle(), t.getObject())
-            for t in cat({"portal_type": "SRPhase", "path": path})
-        )
-        items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-
-PhasesVocabularyFactory = PhasesVocabulary()
-
-
-@implementer(IVocabularyFactory)
 class ModesVocabulary:
     def __call__(self, context):
         terms = []

@@ -65,10 +65,6 @@
       name="docpool.elan.vocabularies.Status"
       />
     <utility
-      component=".vocabularies.PhasesVocabularyFactory"
-      name="docpool.elan.vocabularies.Phases"
-      />
-    <utility
       component=".vocabularies.ModesVocabularyFactory"
       name="docpool.elan.vocabularies.Modes"
       />
