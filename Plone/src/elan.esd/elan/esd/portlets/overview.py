@@ -63,7 +63,6 @@ class Renderer(base.Renderer):
             {
                 "portal_type": [
                     "Dashboard",
-                    "SituationOverview",
                 ]
             }
         )

@@ -94,7 +94,6 @@ class TestDocTypes(unittest.TestCase):
                 "overview",
                 "recent",
                 "dashboard",
-                "situationoverview",
             ],
         )
 
@@ -124,7 +123,6 @@ class TestDocTypes(unittest.TestCase):
                 "overview",
                 "recent",
                 "dashboard",
-                "situationoverview",
             ],
         )
 
@@ -210,7 +208,6 @@ class TestDocTypes(unittest.TestCase):
                 "overview",
                 "recent",
                 "dashboard",
-                "situationoverview",
             ],
         )
 

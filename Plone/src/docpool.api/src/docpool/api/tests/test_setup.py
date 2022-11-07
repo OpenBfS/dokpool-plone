@@ -127,7 +127,6 @@ class TestInstallComplex(unittest.TestCase):
         portal_types = portal_catalog.uniqueValuesFor("portal_type")
         ignore = [
             "DPDocument",
-            "SituationOverview",  # broken. See #4861
         ]
         for portal_type in portal_types:
             if portal_type in ignore:
