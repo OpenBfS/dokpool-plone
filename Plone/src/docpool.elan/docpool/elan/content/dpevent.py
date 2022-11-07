@@ -119,11 +119,8 @@ class IDPEvent(IContentBase):
         defaultFactory=initializeTimeOfEvent,
     )
 
-    # directives.widget(EventPhase=AutocompleteFieldWidget)
-    directives.widget(EventPhase="z3c.form.browser.select.SelectFieldWidget")
-    EventPhase = RelationChoice(
+    EventPhase = schema.TextLine(
         title=_("Scenario & Phase"),
-        vocabulary="docpool.elan.vocabularies.Phases",
         required=False,
     )
 

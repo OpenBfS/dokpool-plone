@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<tool-setup>
-  <required tool_id="sr_catalog"
-           class="elan.sitrep.catalog.SRCatalog"/>
-</tool-setup>

@@ -341,12 +341,6 @@ ESDCOLLECTIONS = [
         CHILDREN: [],
     },
     {TYPE: "Dashboard", TITLE: "Pinnwand", ID: "dashboard", "setExcludeFromNav": True},
-    {
-        TYPE: "SituationOverview",
-        TITLE: "Lageübersicht",
-        ID: "situationoverview",
-        "setExcludeFromNav": True,
-    },
 ]
 
 BASICSTRUCTURE2 = [
