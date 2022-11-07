@@ -1,7 +1,0 @@
-<tal:block i18n:domain="elan.sitrep">
-<tal:def define="elanobj view/elanobject;
-                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-   <h4><a target="_blank" href="${context/absolute_url}">${context/Title}</a></h4>
-   <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
-</tal:def>
-</tal:block>
