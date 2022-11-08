@@ -45,7 +45,8 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return self.context.isCurrentSituation() and not self.isEditMode()
+        has_current_situation = hasattr(self.context, "myELANCurrentSituation")
+        return has_current_situation and not self.isEditMode()
 
     def isEditMode(self):
         """ """

@@ -18,7 +18,7 @@ class EventViewlet(ViewletBase):
 
     @property
     def available(self):
-        return self.context.isSituationDisplay() and self.isSupported()
+        return hasattr(self.context, "myDocumentPool") and self.isSupported()
 
     def update(self):
         scs = getOpenScenarios(self.context)

@@ -9,7 +9,7 @@
           tal:attributes="action string:selectCategories">
         <!-- label for="scnrs" i18n:translate="">Show content only for:</label-->
         <div class="multiselection">
-            <select multiple="multiple" id="cat_select" name="cats" size="5">
+            <select multiple="multiple" id="cat_select" name="cats:list" size="5">
                 <tal:loop tal:repeat="category python:view.available_categories()">
                     <option tal:attributes="selected python:'selected' if category in selected_categories else None;"
                             tal:content="python: category">Category

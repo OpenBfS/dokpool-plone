@@ -1,5 +1,5 @@
 <tal:block i18n:domain="elan.esd">
-<dl class="portlet portletRecent kssPortletRefresh" tal:condition="python: (context.isSituationDisplay()) and (not context.isArchive())">
+<dl class="portlet portletRecent kssPortletRefresh" tal:condition="python: hasattr(context, 'myDocumentPool') and not context.isArchive()">
 <div id="recent_content">
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>

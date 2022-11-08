@@ -31,12 +31,6 @@ class ELANArchive(Container):
 
     APP = ELAN_APP
 
-    def isSituationDisplay(self):
-        """
-        Marker for portlets
-        """
-        return 1
-
     def myELANArchive(self):
         """ """
         return self

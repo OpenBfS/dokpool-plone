@@ -26,6 +26,6 @@ class TickerViewlet(ELANViewlet):
     def available(self):
         return (
             not IArchiving(self.context).is_archive
-            and self.context.isSituationDisplay()
+            and hasattr(self.context, "myDocumentPool")
             and self.isSupported()
         )

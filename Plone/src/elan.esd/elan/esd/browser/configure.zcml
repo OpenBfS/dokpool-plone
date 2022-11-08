@@ -34,4 +34,18 @@
         for="..content.elanarchive.IELANArchive"
         class=".elanarchive.ELANArchiveView" />
 
+    <browser:page
+        name="refresh_recent"
+        for="*"
+        class=".refresh.RefreshRecent"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="selectCategories"
+        for="*"
+        class=".popup.SelectCategories"
+        permission="zope2.View"
+        />
+
 </configure>

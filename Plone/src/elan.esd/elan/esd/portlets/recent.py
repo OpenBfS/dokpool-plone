@@ -58,7 +58,7 @@ class Renderer(base.Renderer):
         return (
             self.collection is not None
             and not IArchiving(self.context).is_archive
-            and self.context.isCurrentSituation()
+            and hasattr(self.context, "myELANCurrentSituation")
             and not self.isEditMode()
         )
 
