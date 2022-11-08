@@ -459,8 +459,8 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition="publish")
         modified(new)
         # Test setting event/scenario
-        setScenariosForCurrentUser(self.portal, scenarios=[event.id])
-        scenarios = getScenariosForCurrentUser(self.portal)
+        setScenariosForCurrentUser(scenarios=[event.id])
+        scenarios = getScenariosForCurrentUser()
         self.assertEqual(scenarios, [event.id])
         # Test search in catalog
         brains = api.content.find(SearchableText="willbefound")

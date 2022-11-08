@@ -76,7 +76,7 @@ class Renderer(base.Renderer):
             return
 
         # Get the active journals for this scenario and document pool
-        scenarios = getScenariosForCurrentUser(self.context)
+        scenarios = getScenariosForCurrentUser()
         dp = self.context.myDocumentPool()
         # User could select more than one scenario
         for scenario in scenarios:

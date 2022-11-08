@@ -139,7 +139,7 @@ def searchResults(self, REQUEST=None, **kw):
             kw["path"] = "%s/content" % path
         if has_search_text[-1] != "*":
             kw["SearchableText"] = has_search_text + "*"
-        scns = getScenariosForCurrentUser(self)
+        scns = getScenariosForCurrentUser()
         rqurl = ""
         if hasattr(self.REQUEST, "URL"):
             rqurl = self.REQUEST["URL"]
@@ -156,17 +156,6 @@ if not hasattr(CatalogTool, "original_searchResults"):
     CatalogTool.original_searchResults = CatalogTool.searchResults
     CatalogTool.searchResults = searchResults
     CatalogTool.__call__ = searchResults
-
-
-def getUserSelectedScenarios(self):
-    """ """
-    usc = getScenariosForCurrentUser(self)
-    return usc
-
-
-# The folder needs an extension to determine the currently selected scenario.
-if not hasattr(SimpleFolder, "getUserSelectedScenarios"):
-    SimpleFolder.getUserSelectedScenarios = getUserSelectedScenarios
 
 
 def elanobject(self):

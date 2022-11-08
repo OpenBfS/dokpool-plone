@@ -18,6 +18,6 @@ class EventSelectAction(BrowserView):
         scnrs = self.request.get("scnrs", [])
         if not scnrs:
             pass
-        setScenariosForCurrentUser(self.context, scnrs)
+        setScenariosForCurrentUser(scnrs)
         self.context.REQUEST.response.setHeader("Pragma", "no-cache")
         self.context.redirectToReferrerWithParameters("Set filter")

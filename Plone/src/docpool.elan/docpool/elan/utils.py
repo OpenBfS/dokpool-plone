@@ -34,15 +34,15 @@ def getOpenScenarios(self):
     return res
 
 
-def getScenariosForCurrentUser(self):
+def getScenariosForCurrentUser():
     """ """
-    mtool = getToolByName(self, "portal_membership")
+    mtool = api.portal.get_tool("portal_membership")
     user = mtool.getAuthenticatedMember()
-    sc = get_scenarios_for_user(self, user)
+    sc = get_scenarios_for_user(user)
     return list(sc)
 
 
-def get_scenarios_for_user(self, user):
+def get_scenarios_for_user(user):
     selections_prop = user.getProperty("scenarios", [])
     global_scenarios = get_global_scenario_selection()
 
@@ -72,13 +72,13 @@ def get_scenarios_for_user(self, user):
     return scenarios
 
 
-def setScenariosForCurrentUser(self, scenarios):
+def setScenariosForCurrentUser(scenarios):
     """ """
     user = api.user.get_current()
-    set_scenarios_for_user(self, user, scenarios)
+    set_scenarios_for_user(user, scenarios)
 
 
-def set_scenarios_for_user(self, user, scenarios):
+def set_scenarios_for_user(user, scenarios):
     global_scenarios = get_global_scenario_selection()
     user.setMemberProperties(
         {

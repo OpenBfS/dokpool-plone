@@ -2,6 +2,7 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.elan.config import ELAN_APP
+from docpool.elan.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
@@ -14,10 +15,7 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 @provider(IContextAwareDefaultFactory)
 def initializeScenarios(context):
-    if hasattr(context, "getUserSelectedScenarios"):
-        return context.getUserSelectedScenarios()
-    else:
-        return []
+    return getScenariosForCurrentUser()
 
 
 @provider(IFormFieldProvider)
