@@ -1,0 +1,64 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="elan.esd">
+<body>
+
+<div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected_categories python:view.selected_categories()">
+    <form name="categories" method="post" class="category_selection"
+          tal:attributes="action string:selectCategories">
+        <!-- label for="scnrs" i18n:translate="">Show content only for:</label-->
+        <div class="multiselection">
+            <select multiple="multiple" id="cat_select" name="cats:list" size="5">
+                <tal:loop tal:repeat="category python:view.available_categories()">
+                    <option tal:attributes="selected python:'selected' if category in selected_categories else None;"
+                            tal:content="python: category">Category
+                    </option>
+                </tal:loop>
+            </select>
+        </div>
+        <input
+                type="submit"
+                name="form.button.Save"
+                class="context"
+                value="Filter"
+                i18n:attributes="value"/>
+        <input onclick="jQuery('#cat_select option').removeAttr('selected');"
+               type="submit"
+               name="form.button.Save"
+               class="context"
+               value="All"
+               i18n:attributes="value"/>
+    </form>
+    <div class="cat_info">
+        <span><i18n:text translate="">Current filter:</i18n:text> <tal:var replace="python:', '.join(selected_categories)"/></span>
+    </div>
+</div>
+
+<metal:macro define-macro="elan_actions" i18n:domain="elan.esd">
+    <tal:cond condition="python: not (isCollection or context.isArchive())">
+        <a tal:condition="nocall:unknown_scen" tal:define="unknown_scen python:elanobj.unknownScenario()" href=""
+           title="Edit unknown scenario"
+           tal:attributes="href unknown_scen/absolute_url"
+           i18n:attributes="title">
+            <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
+        </a>
+    </tal:cond>
+</metal:macro>
+
+<metal:macro define-macro="elan_meta" i18n:domain="elan.esd">
+
+    <span tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
+        <label i18n:translate="">Belongs to scenario:</label>
+        <span tal:content="python:', '.join(scns)"/>
+    </span>
+    <div style="margin-top:3px;" tal:condition="cat" tal:define="cat elanobj/category">
+        <label i18n:translate="">Content from:</label>
+        <span tal:content="string:${item_type}" />
+        <span tal:content="python:elanobj.cat_convert()" />
+    </div>
+</metal:macro>
+
+
+</body>
+</html>

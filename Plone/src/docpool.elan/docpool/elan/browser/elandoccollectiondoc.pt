@@ -1,0 +1,27 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="elan.esd" xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+
+<tal:def define="doc view/doc" condition="doc">
+    <h1 class="documentFirstHeading" tal:content="doc/Title"></h1>
+    <div class="documentDescription" tal:content="doc/Description"></div>
+    <tal:if condition="doc/isInOneOfMyFolders">
+    <br>
+    <a href="" tal:attributes="href string:${doc/absolute_url}/edit" class="docref" i18n:translate="">Edit the document</a>
+    <br><br>
+    </tal:if>
+
+    <div tal:replace="structure view/doc_inline" />
+
+</tal:def>
+
+</metal:content-core>
+</metal:content-core>
+</body>
+</html>

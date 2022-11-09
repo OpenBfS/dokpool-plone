@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="elan-archive" meta_type="WorkflowPolicy">
+ <property name="title">ELAN Archive</property>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="elan_archive_workflow"/>
+  </default>
+  <type type_id="DPDocument">
+   <bound-workflow workflow_id="elan_archive_workflow"/>
+  </type>
+ </bindings>
+</object>

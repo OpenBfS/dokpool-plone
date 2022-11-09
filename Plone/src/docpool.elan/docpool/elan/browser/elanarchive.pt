@@ -1,0 +1,11 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="elan.esd" xml:lang="en" metal:use-macro="context/main_template/macros/master" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core">
+<tal:redirect define="dummy python:request.RESPONSE.redirect(context.absolute_url()+'/esd')"/>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

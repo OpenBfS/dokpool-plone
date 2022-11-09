@@ -61,6 +61,9 @@ class DocpoolEventLayer(PloneSandboxLayer):
             supportedApps=("elan",),
         )
         notify(EditFinishedEvent(docpool))
+        portal.acl_users.userFolderAddUser(
+            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
+        )
 
 
 DOCPOOL_EVENT_FIXTURE = DocpoolEventLayer()

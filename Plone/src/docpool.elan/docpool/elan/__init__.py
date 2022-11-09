@@ -1,4 +1,5 @@
 from AccessControl import allow_module
+from docpool.elan import monkey  # noqa: F401
 from zope.i18nmessageid import MessageFactory
 
 

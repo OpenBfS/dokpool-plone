@@ -1,0 +1,50 @@
+<tal:block i18n:domain="elan.esd">
+<section class="card portlet portletRecent" role="section"
+    i18n:domain="elan.esd">
+<div id="recent_content">
+    <header class="card-header portletHeader">
+        <a href="#"
+            tal:attributes="href view/recently_modified_link"
+            i18n:translate="label_recent">Recently Modified</a>
+    </header>
+    <section class="card-body portletContent"
+        tal:condition="view/recent_items">
+      <ul>
+        <tal:items tal:define="plone_layout context/@@plone_layout;
+                           plone_view context/@@plone;
+                           normalizeString nocall:plone_view/normalizeString;
+                           toLocalizedTime nocall:plone_view/toLocalizedTime;"
+               tal:repeat="obj view/recent_items">
+
+          <li class="portletItem"
+            tal:define="oddrow repeat/obj/odd;
+                        item_wf_state obj/review_state;
+                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                        item_class python:'contenttype-' + normalizeString(obj.portal_type);
+                        obj_url obj/getURL;"
+            tal:attributes="class python:oddrow and  'portletItem even' or 'portletItem odd'">
+            <a href=""
+                tal:attributes="href python:obj_url.startswith('http') and obj_url or '%s/esd/%s' % (obj.dp_url(), obj.getURL());
+                                class string:$item_wf_state_class tile $item_class">
+                 <tal:title content="obj/pretty_title_or_id">
+                     Title
+                 </tal:title>
+
+             </a>
+             <time class="portletItemDetails"
+                       tal:content="python: str(obj.getMdate)[:-10]"
+                       >May 5</time>
+          </li>
+        </tal:items>
+      </ul>
+    </section>
+
+    <section class="card-body portletContent"
+        tal:condition="not: view/recent_items">
+        <p i18n:translate="box_recent_no_items">No items changed yet.</p>
+    </section>
+
+</div>
+</section>
+
+</tal:block>

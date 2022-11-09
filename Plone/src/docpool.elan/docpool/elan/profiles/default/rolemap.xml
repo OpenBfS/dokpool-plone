@@ -2,6 +2,7 @@
 <rolemap>
   <roles>
     <role name="EventEditor"/>
+    <role name="ELANUser"/>
   </roles>
   <permissions>
     <permission name="Docpool: Manage DPEvent" acquire="True">
@@ -29,6 +30,44 @@
       <role name="Site Administrator"/>
       <role name="ContentAdmin"/>
       <role name="EventEditor"/>
+    </permission>
+    <permission name="Docpool: Add ELANArchive" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANArchives" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANContentConfig" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANCurrentSituation" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANDocCollection" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Access ELAN Content" acquire="True">
+      <role name="ELANUser"/>
+    </permission>
+    <permission name="Docpool: Add ELANInfos" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
+    <permission name="Docpool: Add ELANSection" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
     </permission>
   </permissions>
 </rolemap>

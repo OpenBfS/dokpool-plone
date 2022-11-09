@@ -13,6 +13,7 @@
     <include package=".browser" />
     <include package=".content" />
     <include package=".behaviors" />
+    <include package=".portlets" />
 
     <include package="plone.app.relationfield" />
     <include package="Products.CMFCore" file="permissions.zcml" />
@@ -41,6 +42,14 @@
     <permission id="docpool.elan.AddDPEvents" title="Docpool: Add DPEvents" />
     <permission id="docpool.elan.AddDPNetwork" title="Docpool: Add DPNetwork" />
     <permission id="docpool.elan.AddDPNuclearPowerStation" title="Docpool: Add DPNuclearPowerStation" />
+
+   <permission id="elan.esd.AddELANInfos" title="Docpool: Add ELANInfos" />
+   <permission id="elan.esd.AddELANDocCollection" title="Docpool: Add ELANDocCollection" />
+   <permission id="elan.esd.AddELANArchive" title="Docpool: Add ELANArchive" />
+   <permission id="elan.esd.AddELANCurrentSituation" title="Docpool: Add ELANCurrentSituation" />
+   <permission id="elan.esd.AddELANSection" title="Docpool: Add ELANSection" />
+   <permission id="elan.esd.AddELANContentConfig" title="Docpool: Add ELANContentConfig" />
+   <permission id="elan.esd.AddELANArchives" title="Docpool: Add ELANArchives" />
 
     <adapter factory=".caching.AppCaching" name="app_caching_elan" />
 
@@ -84,5 +93,11 @@
       component=".vocabularies.AlertingStatusVocabularyFactory"
       name="docpool.elan.vocabularies.AlertingStatus"
       />
+  <utility
+    component=".vocabularies.CategoriesVocabularyFactory"
+    name="elan.esd.vocabularies.Categories" />
+  <utility
+    component=".vocabularies.CategoryVocabularyFactory"
+    name="elan.esd.vocabularies.Category" />
 
 </configure>
