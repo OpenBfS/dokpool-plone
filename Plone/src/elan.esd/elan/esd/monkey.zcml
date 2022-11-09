@@ -1,9 +1,0 @@
-<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:monkey="http://namespaces.plone.org/monkey"
-    i18n_domain="elan.esd">
-
-    <include package="collective.monkeypatcher" />
-
-
-</configure>
