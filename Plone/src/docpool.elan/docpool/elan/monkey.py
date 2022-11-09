@@ -1,10 +1,4 @@
-from docpool.base.browser.dpdocument import DPDocumentinlineView
-from docpool.base.browser.dpdocument import DPDocumentlistitemView
-from docpool.base.browser.dpdocument import DPDocumentprintView
-from docpool.base.browser.dpdocument import DPDocumentView
-from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import deleteMemberFolders
-from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
@@ -156,13 +150,3 @@ if not hasattr(CatalogTool, "original_searchResults"):
     CatalogTool.original_searchResults = CatalogTool.searchResults
     CatalogTool.searchResults = searchResults
     CatalogTool.__call__ = searchResults
-
-
-def elanobject(self):
-    return self.context.doc_extension(ELAN_APP)
-
-
-DPDocumentView.elanobject = elanobject
-DPDocumentlistitemView.elanobject = elanobject
-DPDocumentinlineView.elanobject = elanobject
-DPDocumentprintView.elanobject = elanobject
