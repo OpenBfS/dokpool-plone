@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2022-08-05 12:46+0000\n"
+"POT-Creation-Date: 2022-11-09 13:56+0000\n"
 "PO-Revision-Date: 2018-11-16 10:37+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -84,10 +84,6 @@ msgstr "Daten"
 #: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
-
-#: elan.esd/elan/esd/content/elandoccollection.py
-msgid "Document Types"
-msgstr "Dokumenttypen"
 
 #: elan.esd/elan/esd/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
@@ -199,10 +195,6 @@ msgstr "Noch keine Änderungen"
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py
-msgid "description_elandoccollection_doctypes"
-msgstr ""
-
 #: elan.esd/elan/esd/portlets/collection.py
 msgid "description_elandocument_doctype"
 msgstr ""
@@ -220,11 +212,6 @@ msgstr "Nicht erforderlich."
 #: elan.esd/elan/esd/behaviors/elandocument.py
 msgid "label_dpdocument_scenarios"
 msgstr "Gehört zu folgenden Ereignissen"
-
-#. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py
-msgid "label_elandoccollection_doctypes"
-msgstr "Dokumenttypen"
 
 #. Default: "Document Type"
 #: elan.esd/elan/esd/portlets/collection.py

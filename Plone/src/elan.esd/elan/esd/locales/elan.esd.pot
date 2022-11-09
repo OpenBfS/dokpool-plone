@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-05 12:46+0000\n"
+"POT-Creation-Date: 2022-11-09 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,10 +84,6 @@ msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/actions.xml
 msgid "Delete Ticker"
-msgstr ""
-
-#: elan.esd/elan/esd/content/elandoccollection.py
-msgid "Document Types"
 msgstr ""
 
 #: elan.esd/elan/esd/profiles/default/types/ELANDocCollection.xml
@@ -200,10 +196,6 @@ msgstr ""
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
-#: elan.esd/elan/esd/content/elandoccollection.py
-msgid "description_elandoccollection_doctypes"
-msgstr ""
-
 #: elan.esd/elan/esd/portlets/collection.py
 msgid "description_elandocument_doctype"
 msgstr ""
@@ -220,11 +212,6 @@ msgstr ""
 #. Default: "Belongs to scenarios"
 #: elan.esd/elan/esd/behaviors/elandocument.py
 msgid "label_dpdocument_scenarios"
-msgstr ""
-
-#. Default: "Document Types"
-#: elan.esd/elan/esd/content/elandoccollection.py
-msgid "label_elandoccollection_doctypes"
 msgstr ""
 
 #. Default: "Document Type"

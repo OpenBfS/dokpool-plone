@@ -28,9 +28,6 @@
         post_handler=".setuphandlers.post_install"
         />
 
-   <include file="skins.zcml" />
-
-
    <permission id="elan.esd.AddELANInfos" title="Docpool: Add ELANInfos" />
 
 
