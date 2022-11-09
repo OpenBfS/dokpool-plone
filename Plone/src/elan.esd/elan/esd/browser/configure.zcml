@@ -48,4 +48,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="deleteTicker"
+        for="*"
+        class=".ticker.DeleteTicker"
+        permission="zope2.View"
+        />
+
 </configure>
