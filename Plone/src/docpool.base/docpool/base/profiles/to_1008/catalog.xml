@@ -1,5 +1,0 @@
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
-    <index name="report_year" meta_type="FieldIndex">
-        <indexed_attr value="report_year"/>
-    </index>
-</object>
