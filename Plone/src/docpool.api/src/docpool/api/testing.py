@@ -41,6 +41,7 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         import docpool.rei
         import docpool.theme
         import eea.facetednavigation
+        import elan.journal
         import plone.restapi
         import Products.CMFFormController
 
