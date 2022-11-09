@@ -42,5 +42,55 @@
         permission="zope2.View"
     />
 
+    <browser:page permission="zope2.View"
+                  name="elan.macros"
+                  for="*"
+                  template="elan_macros.pt"
+    />
+
+    <browser:page
+        permission="zope2.View"
+        name="dview"
+        for="..content.elandoccollection.IELANDocCollection"
+        class=".elandoccollection.ELANDocCollectionDocView" />
+
+    <browser:page
+        permission="zope2.View"
+        name="view"
+        for="..content.elandoccollection.IELANDocCollection"
+        class=".elandoccollection.ELANDocCollectionView" />
+
+    <browser:page
+        permission="zope2.View"
+        name="rpopup"
+        for="..content.elandoccollection.IELANDocCollection"
+        class=".elandoccollection.ELANDocCollectionrpopupView" />
+
+    <browser:page
+        permission="zope2.View"
+        name="view"
+        for="..content.elanarchive.IELANArchive"
+        class=".elanarchive.ELANArchiveView" />
+
+    <browser:page
+        name="refresh_recent"
+        for="*"
+        class=".refresh.RefreshRecent"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="selectCategories"
+        for="*"
+        class=".popup.SelectCategories"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="deleteTicker"
+        for="*"
+        class=".ticker.DeleteTicker"
+        permission="zope2.View"
+        />
 
 </configure>

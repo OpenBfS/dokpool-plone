@@ -1,0 +1,35 @@
+<tal:block i18n:domain="docpool.elan"
+           tal:define="portal_state context/@@plone_portal_state;
+                       member portal_state/member;
+                       checkPermission nocall: context/portal_membership/checkPermission;">
+    <dl class="card portlet bg-light" id="overviewportlet">
+        <dt class="card-header portletHeader">
+            <a href="#"
+               onclick="makePopUp(800, 1000, this.href, 'Overview', 200, 200, 1, 1); return false;"
+               tal:attributes="href string:${context/esd/absolute_url}/overview/@@rpopup?popup_load=1"
+               i18n:translate="">
+               Chronological Overview
+            </a>
+        </dt>
+        <dt class="card-header portletHeader"
+            tal:repeat="brain python:view.specialObjects()">
+            <tal:item tal:define="is_journal python: brain.portal_type == 'Journal'">
+                <a href="#"
+                   tal:attributes="href string:${brain/getURL}?popup_load=1;
+                                   onclick string:makePopUp(1200, 800, this.href, '${brain/Title}', 200, 200, 1, 1);;return false;"
+                   tal:content="python: brain.Title">
+                </a>
+                <tal:journal condition="is_journal">
+                    <a class="add_journal_entry"
+                       href=""
+                       i18n:attributes="title"
+                       title="Add journal entry"
+                       tal:condition="python: brain.getObject().can_add_journalentries()"
+                       tal:attributes="href python: brain.getURL() + '/update';">
+                       +
+                    </a>
+                </tal:journal>
+            </tal:item>
+        </dt>
+    </dl>
+</tal:block>

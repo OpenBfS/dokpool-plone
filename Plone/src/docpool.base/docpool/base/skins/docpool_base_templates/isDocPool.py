@@ -1,4 +1,4 @@
-## Python Script "isSituationDisplay"
+## Python Script "isDocPool"
 ##bind container=container
 ##bind context=context
 ##bind namespace=

@@ -32,7 +32,6 @@ setup(
         # -*- Extra requirements: -*-
         "setuptools",
         "docpool.base",
-        "elan.esd",
         "pygeoif",
     ],
     entry_points="""

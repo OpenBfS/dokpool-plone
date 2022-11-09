@@ -29,7 +29,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.elan
         import docpool.theme
         import eea.facetednavigation
-        import elan.esd
         import elan.journal
         import Products.CMFFormController
 
@@ -37,14 +36,15 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.config)
+        self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.doksys)
-        self.loadZCML(package=elan.esd)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.base:default")
+        applyProfile(portal, "docpool.config:default")
         applyProfile(portal, "elan.journal:default")
         applyProfile(portal, "docpool.doksys:default")
         applyProfile(portal, "docpool.elan:default")
@@ -61,6 +61,9 @@ class DocpoolEventLayer(PloneSandboxLayer):
             supportedApps=("elan",),
         )
         notify(EditFinishedEvent(docpool))
+        portal.acl_users.userFolderAddUser(
+            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
+        )
 
 
 DOCPOOL_EVENT_FIXTURE = DocpoolEventLayer()

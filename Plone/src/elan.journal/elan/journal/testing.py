@@ -27,7 +27,6 @@ class Fixture(PloneSandboxLayer):
         import docpool.elan
         import docpool.theme
         import eea.facetednavigation
-        import elan.esd
         import elan.journal
         import Products.CMFFormController
 
@@ -38,7 +37,6 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
-        self.loadZCML(package=elan.esd)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML("testing.zcml", package=elan.journal)
 
@@ -46,7 +44,6 @@ class Fixture(PloneSandboxLayer):
         # required because the templates in elan.journal use skin-scripts from docpool.base
         applyProfile(portal, "docpool.base:default")
         applyProfile(portal, "elan.journal:default")
-        applyProfile(portal, "elan.esd:default")
         applyProfile(portal, "docpool.doksys:default")
         applyProfile(portal, "docpool.elan:default")
         setRoles(portal, TEST_USER_ID, ["Manager"])

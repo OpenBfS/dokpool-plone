@@ -17,4 +17,17 @@
     <subscriber handler=".dpevent.eventRemoved" />
     <subscriber handler=".dpevent.eventPublished" />
 
+  <subscriber handler=".elaninfos.infosAdded" />
+  <class class=".elanarchive.ELANArchive">
+      <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
+      <implements interface="plone.app.content.interfaces.INameFromTitle" />
+      <implements interface="zope.component.interfaces.IPossibleSite" />
+  </class>
+  <class class=".elansection.ELANSection">
+      <implements interface="Products.CMFPlone.interfaces.breadcrumbs.IHideFromBreadcrumbs" />
+  </class>
+
+  <subscriber handler=".elandoccollection.update_docTypes" />
+  <subscriber handler=".elandoccollection.enableSyndication" />
+
 </configure>

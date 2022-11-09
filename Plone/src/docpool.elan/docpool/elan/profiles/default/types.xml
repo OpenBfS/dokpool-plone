@@ -7,4 +7,12 @@
      <object name="DPNetwork" meta_type="Dexterity FTI" />
      <object name="DPNuclearPowerStation" meta_type="Dexterity FTI" />
 
+     <object name="ELANInfos" meta_type="Dexterity FTI" />
+     <object name="ELANDocCollection" meta_type="Dexterity FTI" />
+     <object name="ELANArchive" meta_type="Dexterity FTI" />
+     <object name="ELANCurrentSituation" meta_type="Dexterity FTI" />
+     <object name="ELANSection" meta_type="Dexterity FTI" />
+     <object name="ELANContentConfig" meta_type="Dexterity FTI" />
+     <object name="ELANArchives" meta_type="Dexterity FTI" />
+
 </object>

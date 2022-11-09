@@ -22,13 +22,13 @@ class TestEvent(unittest.TestCase):
     def _get_user_scenarios(self):
         pm = api.portal.get_tool("portal_membership")
         test_user = pm.getMemberById(TEST_USER_ID)
-        scenarios = get_scenarios_for_user(self.portal, test_user)
+        scenarios = get_scenarios_for_user(test_user)
         return scenarios
 
     def _set_user_scenarios(self, scenarios):
         pm = api.portal.get_tool("portal_membership")
         test_user = pm.getMemberById(TEST_USER_ID)
-        scenarios = set_scenarios_for_user(self.portal, test_user, scenarios)
+        scenarios = set_scenarios_for_user(test_user, scenarios)
 
     def test_types_available(self):
         portal_types = api.portal.get_tool("portal_types")

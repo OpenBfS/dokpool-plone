@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<!-- This file is used to register new types of portlets. It can also
+     be used to register completely new column types. See CMFPlone's version
+     of this file for more information.
+  -->
+<portlets>
+
+        <portlet description="" addview="docpool.elan.Overview" title="Overview" />
+
+
+
+
+       <assignment name="Overview" category="context" key="/" manager="plone.leftcolumn" type="docpool.elan.Overview" />
+
+
+
+
+        <portlet description="" addview="docpool.elan.Recent" title="Recent" />
+
+
+
+
+       <assignment name="Recent" category="context" key="/" manager="plone.leftcolumn" type="docpool.elan.Recent" />
+
+
+
+
+        <portlet description="" addview="docpool.elan.Collection" title="Collection" />
+
+
+
+
+
+
+
+
+</portlets>

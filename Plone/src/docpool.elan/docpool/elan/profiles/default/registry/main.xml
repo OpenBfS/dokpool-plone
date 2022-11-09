@@ -1,0 +1,23 @@
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.elan">
+
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="False">
+      <element>DPEvents</element>
+      <element>ELANSection</element>
+      <element>ELANCurrentSituation</element>
+      <element>ELANArchive</element>
+      <element>ELANArchives</element>
+      <element>ELANInfos</element>
+      <element>ELANDocCollection</element>
+      <element>ELANContentConfig</element>
+    </value>
+  </record>
+
+  <record name="plone.default_page_types">
+    <value purge="false">
+      <element>ELANDocCollection</element>
+    </value>
+  </record>
+
+</registry>

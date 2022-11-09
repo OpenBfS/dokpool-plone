@@ -55,15 +55,9 @@ class DashboardCollection(Collection):
         for r in res:
             print(r.Title)
 
-    def getUserSelectedScenarios(self):
-        """ """
-        uss = getScenariosForCurrentUser(self)
-        # print usc
-        return uss
-
     def getUserSelectedCategories(self):
         """ """
-        from elan.esd.utils import getCategoriesForCurrentUser
+        from docpool.elan.utils import getCategoriesForCurrentUser
 
         usc = getCategoriesForCurrentUser(self)
         # print usc
@@ -193,7 +187,7 @@ class DashboardCollection(Collection):
             if not IArchiving(self).is_archive:
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
-                uss = self.getUserSelectedScenarios()
+                uss = getScenariosForCurrentUser()
                 if uss:
                     # This is THE modification: append the implicit criterion
                     # for the scenario(s)
