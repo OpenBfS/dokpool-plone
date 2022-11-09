@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2022-11-09 16:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,6 +14,393 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "++++ Exercise ++++"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "++++ Test ++++"
+msgstr ""
+
+#: docpool.elan/docpool/elan/portlets/collection.py
+msgid "Add Collection Portlet"
+msgstr "Portlet für Collection zufügen"
+
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Add New Scenario"
+msgstr ""
+
+#: docpool.elan/docpool/elan/portlets/overview.pt
+msgid "Add journal entry"
+msgstr "Tagebucheintrag hinzufügen"
+
+#: docpool.elan/docpool/elan/behaviors/configure.zcml
+msgid "Adds ELAN attributes to DPDocuments"
+msgstr ""
+
+#: docpool.elan/docpool/elan/behaviors/configure.zcml
+msgid "Adds the ability to choose categories to DocTypes"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Alerting note"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Alerting status"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elan_macros.pt
+msgid "All"
+msgstr "Alle"
+
+#: docpool.elan/docpool/elan/browser/viewlets/events.pt
+msgid "All Archives"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elandoccollectionrpopup.pt
+#: docpool.elan/docpool/elan/browser/viewlets/events.pt
+#: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
+msgid "Archive"
+msgstr "Archiv"
+
+#: docpool.elan/docpool/elan/profiles/default/types/ELANArchives.xml
+msgid "Archives"
+msgstr "Archive"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Archiving"
+msgstr "Archivieren"
+
+#: docpool.elan/docpool/elan/content/dpnetwork.py
+msgid "Area coordinates"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/types/ELANInfos.xml
+msgid "Area for general information"
+msgstr "Bereich für allgemeine Informationen"
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Area of interest"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elan_macros.pt
+msgid "Belongs to scenario:"
+msgstr "Zu Ereignis:"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Betriebsart und Alarmierung"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Changelog"
+msgstr ""
+
+#: docpool.elan/docpool/elan/monkey.py
+msgid "Changes applied."
+msgstr "Änderungen angewandt."
+
+#: docpool.elan/docpool/elan/portlets/overview.pt
+msgid "Chronological Overview"
+msgstr "Chronologie"
+
+#: docpool.elan/docpool/elan/portlets/collection.py
+msgid "Collection"
+msgstr "ELAN Collection"
+
+#: docpool.elan/docpool/elan/browser/elan_macros.pt
+msgid "Content from:"
+msgstr "Kategorie:"
+
+#: docpool.elan/docpool/elan/content/dpnuclearpowerstation.py
+msgid "Coordinates"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Create Archive Folder"
+msgstr "Archivordner anlegen"
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Created"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Created snapshot of event."
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elan_macros.pt
+msgid "Current filter:"
+msgstr "Aktueller Filter:"
+
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
+msgid "DP Event"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
+msgid "DP Events"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+msgid "DP Network"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/types/DPNuclearPowerStation.xml
+msgid "DP Nuclear Power Station"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
+msgid "Date of last user action"
+msgstr "Zeitpunkt der letzten Nutzeraktion"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Date/User"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
+msgid "Dates"
+msgstr "Daten"
+
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Delete Ticker"
+msgstr "Ticker löschen"
+
+#: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
+msgid "ELAN Collection"
+msgstr "Dokumentsammlung"
+
+#: docpool.elan/docpool/elan/profiles/default/types/ELANContentConfig.xml
+msgid "ELAN Content Configuration"
+msgstr "Inhaltskonfiguration"
+
+#: docpool.elan/docpool/elan/behaviors/configure.zcml
+msgid "ELAN DocType"
+msgstr ""
+
+#: docpool.elan/docpool/elan/behaviors/configure.zcml
+msgid "ELAN Document"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/types/ELANSection.xml
+msgid "ELAN Section"
+msgstr "Abschnitt"
+
+#: docpool.elan/docpool/elan/profiles/default/types/ELANCurrentSituation.xml
+msgid "ELANCurrentSituation"
+msgstr "Aktuelle Lage"
+
+#: docpool.elan/docpool/elan/portlets/collection.py
+msgid "Edit Collection Portlet"
+msgstr "Portlet für Collection bearbeiten"
+
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Edit Scenarios"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Edit Ticker"
+msgstr "Ticker bearbeiten"
+
+#: docpool.elan/docpool/elan/browser/elandoccollectiondoc.pt
+msgid "Edit the document"
+msgstr "Das Dokument bearbeiten"
+
+#: docpool.elan/docpool/elan/browser/elan_macros.pt
+msgid "Edit unknown scenario"
+msgstr "Unbekanntes Ereignis bearbeiten"
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Emergency"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Ereignisinformationen"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Event coordinates"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Event location"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Example: POINT(12.293121814727781 48.60338936478996)"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
+msgstr ""
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Exercise"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elan_macros.pt
+#: docpool.elan/docpool/elan/browser/event_macros.pt
+msgid "Filter"
+msgstr "Filter"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "Home"
+msgstr "Home"
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Intensive mode"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Journals"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "LT"
+msgstr ""
+
+#: docpool.elan/docpool/elan/portlets/collection.pt
+msgid "Latest from"
+msgstr "Neuste aus"
+
+#: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
+msgid "Location"
+msgstr "Ort"
+
+#: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
+msgid "Metadata"
+msgstr "Metadaten"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Operation mode"
+msgstr ""
+
+#: docpool.elan/docpool/elan/portlets/overview.py
+msgid "Overview"
+msgstr "Übersicht"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Phase"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/event_macros.pt
+msgid "Please select at least one scenario!"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "Purge"
+msgstr "Inhalte des Ereignisses löschen"
+
+#: docpool.elan/docpool/elan/portlets/recent.py
+msgid "Recent"
+msgstr "Letzte Änderungen"
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Routine"
+msgstr ""
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Routine mode"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Scenario & Phase"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Scenario archived"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Sectorizing networks"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Sectorizing sample types"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+#: docpool.elan/docpool/elan/profiles/default/actions.xml
+msgid "Snapshot"
+msgstr "Kopie des aktuellen Standes"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "State"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Status"
+msgstr ""
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Test"
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
+msgid "The location of an item"
+msgstr "Der Ortsbezug eines Inhalts"
+
+#: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
+msgid "The time and date an item was last modified by a user"
+msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
+
+#: docpool.elan/docpool/elan/portlets/collection.py
+msgid "This portlet displays recently modified content from a collection."
+msgstr "Dieses Portlet zeigt die neusten Inhalte einer Collection an."
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Title/Description"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Type of event"
+msgstr ""
+
+#: docpool.elan/docpool/elan/configure.zcml
+msgid "Uninstalls the docpool.elan add-on."
+msgstr ""
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "active"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "alert_delete_popup"
+msgstr "Wollen Sie dieses Objekt wirklich löschen?"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "alert_publish_popup"
+msgstr "Wollen Sie das Dokument veröffentlichen?"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "alert_reject_popup"
+msgstr "Wollen Sie dieses Dokument wirklich zurückweisen?"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "alert_retract_popup"
+msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "alert_submit_popup"
+msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "archive_confirm_msg"
+msgstr ""
+
+#. Default: "No items changed yet."
+#: docpool.elan/docpool/elan/portlets/collection.pt
+#: docpool.elan/docpool/elan/portlets/recent.pt
+msgid "box_recent_no_items"
+msgstr "Noch keine Änderungen"
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "closed"
+msgstr ""
+
 #: docpool.elan/docpool/elan/behaviors/elandoctype.py
 msgid "description_doctype_contentcategory"
 msgstr ""
@@ -22,8 +409,51 @@ msgstr ""
 msgid "description_dpdocument_scenarios"
 msgstr ""
 
+#. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_alert_note"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_alerting_status"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_status"
+msgstr ""
+
+#. Default: "Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events."
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_substitute"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_timeofevent"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_type"
+msgstr ""
+
+#: docpool.elan/docpool/elan/portlets/collection.py
+msgid "description_elandocument_doctype"
+msgstr ""
+
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "docpool.elan"
+msgstr ""
+
+#: docpool.elan/docpool/elan/configure.zcml
+msgid "docpool.elan (uninstall)"
+msgstr ""
+
+#. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
+#: docpool.elan/docpool/elan/monkey.py
+msgid "failed_passwords_msg"
+msgstr "Nicht erforderlich."
+
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "inactive"
 msgstr ""
 
 #. Default: "Choose category for this type "
@@ -36,222 +466,64 @@ msgstr "Kategorie für diesen Typ"
 msgid "label_dpdocument_scenarios"
 msgstr "Gehört zu folgenden Ereignissen"
 
-#: elan.esd/elan/esd/portlets/collection.py
-msgid "Add Collection Portlet"
-msgstr "Portlet für Collection zufügen"
-
-#: elan.esd/elan/esd/portlets/overview.pt
-msgid "Add journal entry"
-msgstr "Tagebucheintrag hinzufügen"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt
-msgid "All"
-msgstr "Alle"
-
-#: elan.esd/elan/esd/browser/elandoccollectionrpopup.pt
-#: elan.esd/elan/esd/profiles/default/types/ELANArchive.xml
-msgid "Archive"
-msgstr "Archiv"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANArchives.xml
-msgid "Archives"
-msgstr "Archive"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "Archiving"
-msgstr "Archivieren"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANInfos.xml
-msgid "Area for general information"
-msgstr "Bereich für allgemeine Informationen"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt
-msgid "Belongs to scenario:"
-msgstr "Zu Ereignis:"
-
-#: elan.esd/elan/esd/monkey.py
-msgid "Changes applied."
-msgstr "Änderungen angewandt."
-
-#: elan.esd/elan/esd/portlets/overview.pt
-msgid "Chronological Overview"
-msgstr "Chronologie"
-
-#: elan.esd/elan/esd/portlets/collection.py
-msgid "Collection"
-msgstr "ELAN Collection"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt
-msgid "Content from:"
-msgstr "Kategorie:"
-
-#: elan.esd/elan/esd/profiles/default/actions.xml
-msgid "Create Archive Folder"
-msgstr "Archivordner anlegen"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt
-msgid "Current filter:"
-msgstr "Aktueller Filter:"
-
-#: elan.esd/elan/esd/profiles/default/registry.xml
-msgid "Date of last user action"
-msgstr "Zeitpunkt der letzten Nutzeraktion"
-
-#: elan.esd/elan/esd/profiles/default/registry.xml
-msgid "Dates"
-msgstr "Daten"
-
-#: elan.esd/elan/esd/profiles/default/actions.xml
-msgid "Delete Ticker"
-msgstr "Ticker löschen"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANDocCollection.xml
-msgid "ELAN Collection"
-msgstr "Dokumentsammlung"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANContentConfig.xml
-msgid "ELAN Content Configuration"
-msgstr "Inhaltskonfiguration"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANSection.xml
-msgid "ELAN Section"
-msgstr "Abschnitt"
-
-#: elan.esd/elan/esd/profiles/default/types/ELANCurrentSituation.xml
-msgid "ELANCurrentSituation"
-msgstr "Aktuelle Lage"
-
-#: elan.esd/elan/esd/portlets/collection.py
-msgid "Edit Collection Portlet"
-msgstr "Portlet für Collection bearbeiten"
-
-#: elan.esd/elan/esd/profiles/default/actions.xml
-msgid "Edit Ticker"
-msgstr "Ticker bearbeiten"
-
-#: elan.esd/elan/esd/browser/elandoccollectiondoc.pt
-msgid "Edit the document"
-msgstr "Das Dokument bearbeiten"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt
-msgid "Edit unknown scenario"
-msgstr "Unbekanntes Ereignis bearbeiten"
-
-#: elan.esd/elan/esd/browser/elan_macros.pt
-msgid "Filter"
-msgstr "Filter"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "Home"
-msgstr "Home"
-
-#: elan.esd/elan/esd/portlets/collection.pt
-msgid "Latest from"
-msgstr "Neuste aus"
-
-#: elan.esd/elan/esd/profiles/default/registry.xml
-msgid "Location"
-msgstr "Ort"
-
-#: elan.esd/elan/esd/profiles/default/registry.xml
-msgid "Metadata"
-msgstr "Metadaten"
-
-#: elan.esd/elan/esd/portlets/overview.py
-msgid "Overview"
-msgstr "Übersicht"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "Purge"
-msgstr "Inhalte des Ereignisses löschen"
-
-#: elan.esd/elan/esd/portlets/recent.py
-msgid "Recent"
-msgstr "Letzte Änderungen"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "Snapshot"
-msgstr "Kopie des aktuellen Standes"
-
-#: elan.esd/elan/esd/profiles/default/registry.xml
-msgid "The location of an item"
-msgstr "Der Ortsbezug eines Inhalts"
-
-#: elan.esd/elan/esd/profiles/default/registry.xml
-msgid "The time and date an item was last modified by a user"
-msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
-
-#: elan.esd/elan/esd/portlets/collection.py
-msgid "This portlet displays recently modified content from a collection."
-msgstr "Dieses Portlet zeigt die neusten Inhalte einer Collection an."
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "alert_delete_popup"
-msgstr "Wollen Sie dieses Objekt wirklich löschen?"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "alert_publish_popup"
-msgstr "Wollen Sie das Dokument veröffentlichen?"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "alert_reject_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zurückweisen?"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "alert_retract_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
-
-#: elan.esd/elan/esd/browser/i18ndummy.pt
-msgid "alert_submit_popup"
-msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
-
-#. Default: "No items changed yet."
-#: elan.esd/elan/esd/portlets/collection.pt
-#: elan.esd/elan/esd/portlets/recent.pt
-msgid "box_recent_no_items"
-msgstr "Noch keine Änderungen"
-
-#: elan.esd/elan/esd/behaviors/elandocument.py
-msgid "description_dpdocument_scenarios"
+#. Default: "Status of Alerting"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_alerting_status"
 msgstr ""
 
-#: elan.esd/elan/esd/portlets/collection.py
-msgid "description_elandocument_doctype"
+#. Default: "Alert Note"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_alteringnote"
 msgstr ""
 
-#: elan.esd/elan/esd/configure.zcml
-msgid "elan.esd"
+#. Default: "Changelog"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_changelog"
 msgstr ""
 
-#. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py
-msgid "failed_passwords_msg"
-msgstr "Nicht erforderlich."
+#. Default: "Status of the event"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_status"
+msgstr ""
 
-#. Default: "Belongs to scenarios"
-#: elan.esd/elan/esd/behaviors/elandocument.py
-msgid "label_dpdocument_scenarios"
-msgstr "Gehört zu folgenden Ereignissen"
+#. Default: "Substitute event"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_substitute"
+msgstr ""
+
+#. Default: "Time of event"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_timeofevent"
+msgstr ""
+
+#. Default: "Type of event"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_type"
+msgstr ""
 
 #. Default: "Document Type"
-#: elan.esd/elan/esd/portlets/collection.py
+#: docpool.elan/docpool/elan/portlets/collection.py
 msgid "label_elandocument_doctype"
 msgstr "Dokumenttyp"
 
 #. Default: "Recently Modified"
-#: elan.esd/elan/esd/portlets/recent.pt
+#: docpool.elan/docpool/elan/portlets/recent.pt
 msgid "label_recent"
 msgstr "Aktuelle Einträge"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "private"
 msgstr "privat"
 
-#: elan.esd/elan/esd/browser/i18ndummy.pt
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "published"
 msgstr "Veröffentlicht"
 
 #. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
-#: elan.esd/elan/esd/monkey.py
+#: docpool.elan/docpool/elan/monkey.py
 msgid "reset_passwords_msg"
 msgstr "Nicht erforderlich"
+
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "snapshot_confirm_msg"
+msgstr ""
