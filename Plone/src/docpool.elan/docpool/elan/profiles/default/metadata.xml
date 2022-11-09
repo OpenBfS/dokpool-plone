@@ -3,6 +3,5 @@
     <version>0.0.7</version>
     <dependencies>
         <dependency>profile-docpool.base:default</dependency>
-        <dependency>profile-elan.esd:default</dependency>
     </dependencies>
 </metadata>

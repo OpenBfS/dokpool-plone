@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="elan.esd" name="ELANSection">
+<object meta_type="Dexterity FTI"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="docpool.elan" name="ELANSection">
 
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">ELAN Section</property>
@@ -16,13 +18,13 @@
 
  </property>
  <!-- schema interface -->
- <property name="schema">elan.esd.content.elansection.IELANSection</property>
+ <property name="schema">docpool.elan.content.elansection.IELANSection</property>
 
  <!-- class used for content items -->
- <property name="klass">elan.esd.content.elansection.ELANSection</property>
+ <property name="klass">docpool.elan.content.elansection.ELANSection</property>
 
  <!-- add permission -->
- <property name="add_permission">elan.esd.AddELANSection</property>
+ <property name="add_permission">docpool.elan.AddELANSection</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">

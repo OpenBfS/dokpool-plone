@@ -29,7 +29,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.elan
         import docpool.theme
         import eea.facetednavigation
-        import elan.esd
         import elan.journal
         import Products.CMFFormController
 
@@ -39,7 +38,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.doksys)
-        self.loadZCML(package=elan.esd)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
 

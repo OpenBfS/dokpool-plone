@@ -1,4 +1,4 @@
-from elan.esd.testing import ELAN_ESD_FUNCTIONAL_TESTING
+from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from plone.app.testing import login
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
@@ -9,7 +9,7 @@ import unittest
 
 class TestTickerFunctional(unittest.TestCase):
 
-    layer = ELAN_ESD_FUNCTIONAL_TESTING
+    layer = DOCPOOL_EVENT_FUNCTIONAL_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""

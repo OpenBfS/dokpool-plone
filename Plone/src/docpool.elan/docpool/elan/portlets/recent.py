@@ -2,7 +2,7 @@ from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
-from elan.esd import DocpoolMessageFactory as _
+from docpool.elan import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider

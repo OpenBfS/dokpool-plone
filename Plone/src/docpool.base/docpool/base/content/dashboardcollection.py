@@ -57,7 +57,7 @@ class DashboardCollection(Collection):
 
     def getUserSelectedCategories(self):
         """ """
-        from elan.esd.utils import getCategoriesForCurrentUser
+        from docpool.elan.utils import getCategoriesForCurrentUser
 
         usc = getCategoriesForCurrentUser(self)
         # print usc

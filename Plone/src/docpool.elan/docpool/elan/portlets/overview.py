@@ -1,8 +1,8 @@
 from Acquisition import aq_chain
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
+from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.utils import getScenariosForCurrentUser
-from elan.esd import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile

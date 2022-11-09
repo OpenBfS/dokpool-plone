@@ -1,4 +1,4 @@
-from elan.esd.portlets.recent import Renderer
+from docpool.elan.portlets.recent import Renderer
 from Products.Five.browser import BrowserView
 
 

@@ -1,6 +1,6 @@
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import getDocumentPoolSite
-from elan.esd import DocpoolMessageFactory as _
+from docpool.elan import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
@@ -21,7 +21,7 @@ class ICollectionPortlet(IPortletDataProvider):
         title=_("label_elandocument_doctype", default="Document Type"),
         description=_("description_elandocument_doctype", default=""),
         required=True,
-        vocabulary="elan.esd.vocabularies.Category",
+        vocabulary="docpool.elan.vocabularies.Category",
     )
 
 

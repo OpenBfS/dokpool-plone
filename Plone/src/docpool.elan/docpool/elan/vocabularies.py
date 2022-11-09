@@ -260,7 +260,7 @@ AlertingStatusVocabularyFactory = AlertingStatusVocabulary()
 @provider(IVocabularyFactory)
 def CategoryVocabularyFactory(context=None):
     """Used for Relationfield docpool.elan.behaviors.elandoctype.IELANDocType.contentCategory
-    and elan.esd.portlets.collection.ICollectionPortlet.collection
+    and docpool.elan.portlets.collection.ICollectionPortlet.collection
     """
     esd = getDocumentPoolSite(context)
     path = "/".join(esd.getPhysicalPath()) + "/esd"

@@ -1,4 +1,4 @@
-from elan.esd.utils import setCategoriesForCurrentUser
+from docpool.elan.utils import setCategoriesForCurrentUser
 from Products.Five.browser import BrowserView
 
 

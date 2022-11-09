@@ -37,7 +37,7 @@ class IELANDocType(IDocTypeExtension):
         required=False,
         # TODO: Why would we want a defaultFactory?
         # defaultFactory=getDefaultCategory,
-        vocabulary="elan.esd.vocabularies.Category",
+        vocabulary="docpool.elan.vocabularies.Category",
     )
     directives.widget(
         "contentCategory",

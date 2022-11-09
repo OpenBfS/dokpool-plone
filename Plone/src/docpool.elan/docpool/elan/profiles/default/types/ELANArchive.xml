@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-        i18n:domain="elan.esd" name="ELANArchive">
+        i18n:domain="docpool.elan" name="ELANArchive">
 
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">Archive</property>
@@ -19,13 +19,13 @@
 
  </property>
  <!-- schema interface -->
- <property name="schema">elan.esd.content.elanarchive.IELANArchive</property>
+ <property name="schema">docpool.elan.content.elanarchive.IELANArchive</property>
 
  <!-- class used for content items -->
- <property name="klass">elan.esd.content.elanarchive.ELANArchive</property>
+ <property name="klass">docpool.elan.content.elanarchive.ELANArchive</property>
 
  <!-- add permission -->
- <property name="add_permission">elan.esd.AddELANArchive</property>
+ <property name="add_permission">docpool.elan.AddELANArchive</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">

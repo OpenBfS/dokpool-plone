@@ -1,4 +1,4 @@
-<tal:block i18n:domain="elan.esd">
+<tal:block i18n:domain="docpool.elan">
 <tal:def define="dummy python:request.set('ajax_load',1);
                  dummy python:request.set('ajax_include_head',1);">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
@@ -7,7 +7,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="elan.esd">
+      i18n:domain="docpool.elan">
 
 <head>
   <metal:block metal:fill-slot="head_slot">

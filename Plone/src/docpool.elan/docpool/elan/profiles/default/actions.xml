@@ -49,7 +49,7 @@
    <property name="permissions" />
    <property name="visible">True</property>
   </object>
-  <object name="edit_ticker" meta_type="CMF Action" i18n:domain="elan.esd">
+  <object name="edit_ticker" meta_type="CMF Action" i18n:domain="docpool.elan">
    <property name="title" i18n:translate="">Edit Ticker</property>
    <property name="description" i18n:translate=""></property>
    <property
@@ -60,7 +60,7 @@
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
-  <object name="delete_ticker" meta_type="CMF Action" i18n:domain="elan.esd">
+  <object name="delete_ticker" meta_type="CMF Action" i18n:domain="docpool.elan">
    <property name="title" i18n:translate="">Delete Ticker</property>
    <property name="description" i18n:translate=""></property>
    <property
@@ -71,7 +71,7 @@
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
-  <object name="create_archive_folder" meta_type="CMF Action" i18n:domain="elan.esd">
+  <object name="create_archive_folder" meta_type="CMF Action" i18n:domain="docpool.elan">
    <property name="title" i18n:translate="">Create Archive Folder</property>
    <property name="url_expr">string:${context/dp_url}/archive/++add++Folder</property>
    <property name="link_target"></property>

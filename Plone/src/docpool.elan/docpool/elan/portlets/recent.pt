@@ -1,6 +1,6 @@
-<tal:block i18n:domain="elan.esd">
+<tal:block i18n:domain="docpool.elan">
 <section class="card portlet portletRecent" role="section"
-    i18n:domain="elan.esd">
+    i18n:domain="docpool.elan">
 <div id="recent_content">
     <header class="card-header portletHeader">
         <a href="#"

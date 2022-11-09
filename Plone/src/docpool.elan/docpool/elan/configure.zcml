@@ -43,13 +43,13 @@
     <permission id="docpool.elan.AddDPNetwork" title="Docpool: Add DPNetwork" />
     <permission id="docpool.elan.AddDPNuclearPowerStation" title="Docpool: Add DPNuclearPowerStation" />
 
-   <permission id="elan.esd.AddELANInfos" title="Docpool: Add ELANInfos" />
-   <permission id="elan.esd.AddELANDocCollection" title="Docpool: Add ELANDocCollection" />
-   <permission id="elan.esd.AddELANArchive" title="Docpool: Add ELANArchive" />
-   <permission id="elan.esd.AddELANCurrentSituation" title="Docpool: Add ELANCurrentSituation" />
-   <permission id="elan.esd.AddELANSection" title="Docpool: Add ELANSection" />
-   <permission id="elan.esd.AddELANContentConfig" title="Docpool: Add ELANContentConfig" />
-   <permission id="elan.esd.AddELANArchives" title="Docpool: Add ELANArchives" />
+   <permission id="docpool.elan.AddELANInfos" title="Docpool: Add ELANInfos" />
+   <permission id="docpool.elan.AddELANDocCollection" title="Docpool: Add ELANDocCollection" />
+   <permission id="docpool.elan.AddELANArchive" title="Docpool: Add ELANArchive" />
+   <permission id="docpool.elan.AddELANCurrentSituation" title="Docpool: Add ELANCurrentSituation" />
+   <permission id="docpool.elan.AddELANSection" title="Docpool: Add ELANSection" />
+   <permission id="docpool.elan.AddELANContentConfig" title="Docpool: Add ELANContentConfig" />
+   <permission id="docpool.elan.AddELANArchives" title="Docpool: Add ELANArchives" />
 
     <adapter factory=".caching.AppCaching" name="app_caching_elan" />
 
@@ -95,9 +95,9 @@
       />
   <utility
     component=".vocabularies.CategoriesVocabularyFactory"
-    name="elan.esd.vocabularies.Categories" />
+    name="docpool.elan.vocabularies.Categories" />
   <utility
     component=".vocabularies.CategoryVocabularyFactory"
-    name="elan.esd.vocabularies.Category" />
+    name="docpool.elan.vocabularies.Category" />
 
 </configure>

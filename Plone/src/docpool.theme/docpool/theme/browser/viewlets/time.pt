@@ -1,4 +1,4 @@
-<tal:block i18n:domain="elan.esd">
+<tal:block i18n:domain="docpool.elan">
        <div id="mesz" tal:define="DateTime python:modules['DateTime'].DateTime;
                                   toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
        <table class="table table-bordered" id="time_table" tal:define="now python:DateTime();

@@ -11,9 +11,6 @@ from zope.component import getMultiAdapter
 allow_module("docpool.elan.browser")
 allow_module("docpool.elan.browser.viewlets")
 allow_module("docpool.elan.browser.viewlets.common")
-allow_module("elan.esd.browser")
-allow_module("elan.esd.browser.viewlets")
-allow_module("elan.esd.browser.viewlets.common")
 
 
 class EventViewlet(ViewletBase):

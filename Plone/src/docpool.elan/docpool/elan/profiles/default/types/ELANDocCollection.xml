@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<object meta_type="Dexterity FTI" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="elan.esd" name="ELANDocCollection">
+<object meta_type="Dexterity FTI"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="docpool.elan" name="ELANDocCollection">
 
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">ELAN Collection</property>
@@ -12,13 +14,13 @@
 
  </property>
  <!-- schema interface -->
- <property name="schema">elan.esd.content.elandoccollection.IELANDocCollection</property>
+ <property name="schema">docpool.elan.content.elandoccollection.IELANDocCollection</property>
 
  <!-- class used for content items -->
- <property name="klass">elan.esd.content.elandoccollection.ELANDocCollection</property>
+ <property name="klass">docpool.elan.content.elandoccollection.ELANDocCollection</property>
 
  <!-- add permission -->
- <property name="add_permission">elan.esd.AddELANDocCollection</property>
+ <property name="add_permission">docpool.elan.AddELANDocCollection</property>
 
  <!-- enabled behaviors -->
  <property name="behaviors">

@@ -5,7 +5,7 @@
             accesskey="1"
              tal:attributes="href string:${view/navigation_root_url};
                     title string:DocPool"
-             i18n:domain="elan.esd"
+             i18n:domain="docpool.elan"
              i18n:attributes="title">
 
         <img src="plone-logo.svg" alt=""

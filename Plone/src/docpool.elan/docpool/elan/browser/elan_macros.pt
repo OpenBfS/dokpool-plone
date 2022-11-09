@@ -1,7 +1,7 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="elan.esd">
+      i18n:domain="docpool.elan">
 <body>
 
 <div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected_categories python:view.selected_categories()">
@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<metal:macro define-macro="elan_actions" i18n:domain="elan.esd">
+<metal:macro define-macro="elan_actions" i18n:domain="docpool.elan">
     <tal:cond condition="python: not (isCollection or context.isArchive())">
         <a tal:condition="nocall:unknown_scen" tal:define="unknown_scen python:elanobj.unknownScenario()" href=""
            title="Edit unknown scenario"
@@ -46,7 +46,7 @@
     </tal:cond>
 </metal:macro>
 
-<metal:macro define-macro="elan_meta" i18n:domain="elan.esd">
+<metal:macro define-macro="elan_meta" i18n:domain="docpool.elan">
 
     <span tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
         <label i18n:translate="">Belongs to scenario:</label>

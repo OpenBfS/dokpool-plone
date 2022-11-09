@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="elan.esd">
+    i18n_domain="docpool.elan">
 
   <include package="plone.app.portlets" />
 
@@ -9,7 +9,7 @@
       interface=".overview.IOverviewPortlet"
       assignment=".overview.Assignment"
       addview=".overview.AddForm"
-      name="elan.esd.Overview"
+      name="docpool.elan.Overview"
       renderer=".overview.Renderer"
       />
 
@@ -17,7 +17,7 @@
       interface=".recent.IRecentPortlet"
       assignment=".recent.Assignment"
       addview=".recent.AddForm"
-      name="elan.esd.Recent"
+      name="docpool.elan.Recent"
       renderer=".recent.Renderer"
       />
 
@@ -25,7 +25,7 @@
       interface=".collection.ICollectionPortlet"
       assignment=".collection.Assignment"
       addview=".collection.AddForm"
-      name="elan.esd.Collection"
+      name="docpool.elan.Collection"
       renderer=".collection.Renderer"
       />
 

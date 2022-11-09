@@ -9,7 +9,7 @@
                      class=".common.EventViewlet" />
 
     <browser:viewlet
-        name="elan.esd.ticker"
+        name="docpool.elan.ticker"
         manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
         class=".common.TickerViewlet"
         permission="zope2.View"

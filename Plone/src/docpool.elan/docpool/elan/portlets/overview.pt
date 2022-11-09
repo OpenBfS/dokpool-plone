@@ -1,4 +1,4 @@
-<tal:block i18n:domain="elan.esd"
+<tal:block i18n:domain="docpool.elan"
            tal:define="portal_state context/@@plone_portal_state;
                        member portal_state/member;
                        checkPermission nocall: context/portal_membership/checkPermission;">

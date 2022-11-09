@@ -13,8 +13,8 @@ view of that content type.
 
 
 from docpool.elan.browser.viewlets.common import EventViewlet
-from elan.esd.utils import getAvailableCategories
-from elan.esd.utils import getCategoriesForCurrentUser
+from docpool.elan.utils import getAvailableCategories
+from docpool.elan.utils import getCategoriesForCurrentUser
 from plone.base.utils import safe_text
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView

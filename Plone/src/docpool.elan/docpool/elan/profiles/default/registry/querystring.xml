@@ -150,7 +150,7 @@
     <field type="plone.registry.field.TextLine">
       <title>Vocabulary</title>
     </field>
-    <value>elan.esd.vocabularies.Categories</value>
+    <value>docpool.elan.vocabularies.Categories</value>
   </record>
   <records interface="plone.app.querystring.interfaces.IQueryField"
          prefix="plone.app.querystring.field.mdate">

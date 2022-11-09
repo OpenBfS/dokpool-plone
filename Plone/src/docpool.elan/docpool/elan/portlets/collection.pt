@@ -1,4 +1,4 @@
-<tal:block i18n:domain="elan.esd">
+<tal:block i18n:domain="docpool.elan">
 <dl class="portlet portletRecent kssPortletRefresh" tal:condition="python: hasattr(context, 'myDocumentPool') and not context.isArchive()">
 <div id="recent_content">
     <dt class="portletHeader">
