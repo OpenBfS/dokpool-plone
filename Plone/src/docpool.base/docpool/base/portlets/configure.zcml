@@ -9,8 +9,4 @@
       -->
   <include package="plone.app.portlets" />
 
-
-
-
-
 </configure>

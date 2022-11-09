@@ -12,7 +12,6 @@
       file="meta.zcml"
       />
 
-
   <plone:behavior
       name="docpool.elandocument"
       title="ELAN Document"
@@ -30,6 +29,5 @@
       provides=".elandoctype.IELANDocType"
       for="docpool.base.interfaces.IDocType"
       />
-
 
 </configure>

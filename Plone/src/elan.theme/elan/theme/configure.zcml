@@ -6,7 +6,6 @@
     i18n_domain="elan.theme"
     >
 
-
   <include package=".browser" />
   <include file="jbot.zcml" />
   <include file="skins.zcml" />

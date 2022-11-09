@@ -45,156 +45,130 @@
 
   <include file="skins.zcml" />
 
-
   <permission
       id="docpool.base.AddInfoFolder"
       title="Docpool: Add InfoFolder"
       />
-
 
   <permission
       id="docpool.base.AddInfoDocument"
       title="Docpool: Add InfoDocument"
       />
 
-
   <permission
       id="docpool.base.AddInfoLink"
       title="Docpool: Add InfoLink"
       />
-
 
   <permission
       id="docpool.base.AddExtendable"
       title="Docpool: Add Extendable"
       />
 
-
   <permission
       id="docpool.base.AddDPDocument"
       title="Docpool: Add DPDocument"
       />
-
 
   <permission
       id="docpool.base.AddDocType"
       title="Docpool: Add DocType"
       />
 
-
   <permission
       id="docpool.base.AddSimpleFolder"
       title="Docpool: Add SimpleFolder"
       />
-
 
   <permission
       id="docpool.base.AddContentBase"
       title="Docpool: Add ContentBase"
       />
 
-
   <permission
       id="docpool.base.AddDocTypes"
       title="Docpool: Add DocTypes"
       />
-
 
   <permission
       id="docpool.base.AddText"
       title="Docpool: Add Text"
       />
 
-
   <permission
       id="docpool.base.AddFolderBase"
       title="Docpool: Add FolderBase"
       />
-
 
   <permission
       id="docpool.base.AddGroupFolder"
       title="Docpool: Add GroupFolder"
       />
 
-
   <permission
       id="docpool.base.AddUserFolder"
       title="Docpool: Add UserFolder"
       />
-
 
   <permission
       id="docpool.base.AddGroups"
       title="Docpool: Add Groups"
       />
 
-
   <permission
       id="docpool.base.AddUsers"
       title="Docpool: Add Users"
       />
-
 
   <permission
       id="docpool.base.AddReviewFolder"
       title="Docpool: Add ReviewFolder"
       />
 
-
   <permission
       id="docpool.base.AddCollaborationFolder"
       title="Docpool: Add CollaborationFolder"
       />
-
 
   <permission
       id="docpool.base.AddPrivateFolder"
       title="Docpool: Add PrivateFolder"
       />
 
-
   <permission
       id="docpool.base.AddDocumentPool"
       title="Docpool: Add DocumentPool"
       />
-
 
   <permission
       id="docpool.base.AddContentArea"
       title="Docpool: Add ContentArea"
       />
 
-
   <permission
       id="docpool.base.AddDPApplication"
       title="Docpool: Add DPApplication"
       />
-
 
   <permission
       id="docpool.base.AddDPConfig"
       title="Docpool: Add DPConfig"
       />
 
-
   <permission
       id="docpool.base.AddDashboardCollection"
       title="Docpool: Add DashboardCollection"
       />
-
 
   <permission
       id="docpool.base.AddDashboardsConfig"
       title="Docpool: Add DashboardsConfig"
       />
 
-
   <permission
       id="docpool.base.AddDashboard"
       title="Docpool: Add Dashboard"
       />
-
 
   <permission
       id="docpool.base.ManageAddableTypes"
