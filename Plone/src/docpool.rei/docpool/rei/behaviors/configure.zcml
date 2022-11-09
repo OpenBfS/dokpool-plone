@@ -1,27 +1,37 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="docpool.rei">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.rei"
+    >
 
-    <include package="plone.behavior" file="meta.zcml" />
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
 
-    <plone:behavior
-        title="REIDoc"
-        description="Makes documents support REI functions"
-        name="docpool.reidoc"
-        provides=".reidoc.IREIDoc"
-        factory=".reidoc.REIDoc"
-        for="docpool.base.interfaces.IDPDocument"
-        />
+  <plone:behavior
+      name="docpool.reidoc"
+      title="REIDoc"
+      description="Makes documents support REI functions"
+      factory=".reidoc.REIDoc"
+      provides=".reidoc.IREIDoc"
+      for="docpool.base.interfaces.IDPDocument"
+      />
 
-    <plone:behavior
-        title="REI DocType"
-        description="Type extension for REI types"
-        name="docpool.reidoctype"
-        provides=".reitype.IREIType"
-        factory=".reitype.REIType"
-        for="docpool.base.interfaces.IDocType"
-        />
+  <plone:behavior
+      name="docpool.reidoctype"
+      title="REI DocType"
+      description="Type extension for REI types"
+      factory=".reitype.REIType"
+      provides=".reitype.IREIType"
+      for="docpool.base.interfaces.IDocType"
+      />
 
-    <subscriber handler=".reidoc.set_title" />
-    <subscriber handler=".reidoc.save_mstid_added" />
-    <subscriber handler=".reidoc.save_mstid_modified" />
+  <subscriber handler=".reidoc.set_title" />
+  <subscriber handler=".reidoc.save_mstid_added" />
+  <subscriber handler=".reidoc.save_mstid_modified" />
 
 </configure>

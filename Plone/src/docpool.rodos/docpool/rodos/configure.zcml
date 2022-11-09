@@ -1,42 +1,56 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="docpool.rodos">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.rodos"
+    >
 
-    <i18n:registerTranslations directory="locales"/>
-      <include package="zope.annotation" />
+  <i18n:registerTranslations directory="locales" />
+  <include package="zope.annotation" />
 
-    <!-- Include the sub-packages that use their own configure.zcml files. -->
+  <!-- Include the sub-packages that use their own configure.zcml files. -->
 
-    <include package=".browser" />
+  <include package=".browser" />
 
-    <include package="plone.app.relationfield" />
-    <include package="Products.CMFCore" file="permissions.zcml" xmlns:zcml="http://namespaces.zope.org/zcml" />
+  <include package="plone.app.relationfield" />
+  <include
+      xmlns:zcml="http://namespaces.zope.org/zcml"
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
 
-    <!-- Register the installation GenericSetup extension profile -->
-    <genericsetup:registerProfile
-        name="default"
-        title="docpool.rodos"
-        directory="profiles/default"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        post_handler=".setuphandlers.post_install"
-        />
+  <!-- Register the installation GenericSetup extension profile -->
+  <genericsetup:registerProfile
+      name="default"
+      title="docpool.rodos"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      post_handler=".setuphandlers.post_install"
+      />
 
-    <!-- TODO -->
-   <permission id="docpool.rodos.AccessRodos" title="Docpool: Access Rodos Content" />
-   <include package=".behaviors" />
+  <!-- TODO -->
+  <permission
+      id="docpool.rodos.AccessRodos"
+      title="Docpool: Access Rodos Content"
+      />
+  <include package=".behaviors" />
 
-   <utility
-    component=".vocabularies.PrognosisTypesVocabularyFactory"
-    name="docpool.rodos.vocabularies.PrognosisTypes"
-    />
+  <utility
+      name="docpool.rodos.vocabularies.PrognosisTypes"
+      component=".vocabularies.PrognosisTypesVocabularyFactory"
+      />
 
-   <utility
-    component=".vocabularies.PrognosisFormsVocabularyFactory"
-    name="docpool.rodos.vocabularies.PrognosisForms"
-    />
+  <utility
+      name="docpool.rodos.vocabularies.PrognosisForms"
+      component=".vocabularies.PrognosisFormsVocabularyFactory"
+      />
 
-   <utility
-    component=".vocabularies.ReleaseSitesVocabularyFactory"
-    name="docpool.rodos.vocabularies.ReleaseSites"
-    />
+  <utility
+      name="docpool.rodos.vocabularies.ReleaseSites"
+      component=".vocabularies.ReleaseSitesVocabularyFactory"
+      />
 
 
 </configure>

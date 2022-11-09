@@ -1,72 +1,73 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    i18n_domain="docpool.doksys">
+    i18n_domain="docpool.doksys"
+    >
 
-    <!-- -*- extra stuff goes here -*- -->
+  <!-- -*- extra stuff goes here -*- -->
 
-    <utility
-        component=".network_operators.NetworkOperatorsFactory"
-        name="docpool.doksys.NetworkOperators"
-    />
+  <utility
+      name="docpool.doksys.NetworkOperators"
+      component=".network_operators.NetworkOperatorsFactory"
+      />
 
-    <utility
-        component=".dom.DomFactory"
-        name="docpool.doksys.Dom"
-     />
+  <utility
+      name="docpool.doksys.Dom"
+      component=".dom.DomFactory"
+      />
 
-     <utility
-        component=".legal_base.LegalBaseFactory"
-        name="docpool.doksys.LegalBase"
-    />
+  <utility
+      name="docpool.doksys.LegalBase"
+      component=".legal_base.LegalBaseFactory"
+      />
 
-    <utility
-        component=".measuring_program.MeasuringProgramFactory"
-        name="docpool.doksys.MeasuringProgram"
-    />
-    <utility
-        component=".purpose.PurposeFactory"
-        name="docpool.doksys.Purpose"
-    />
+  <utility
+      name="docpool.doksys.MeasuringProgram"
+      component=".measuring_program.MeasuringProgramFactory"
+      />
+  <utility
+      name="docpool.doksys.Purpose"
+      component=".purpose.PurposeFactory"
+      />
 
-    <utility
-        component=".status.StatusFactory"
-        name="docpool.doksys.Status"
-    />
+  <utility
+      name="docpool.doksys.Status"
+      component=".status.StatusFactory"
+      />
 
-    <utility
-        component=".operation_mode.OperationModeFactory"
-        name="docpool.doksys.OperationMode"
-    />
+  <utility
+      name="docpool.doksys.OperationMode"
+      component=".operation_mode.OperationModeFactory"
+      />
 
-    <utility
-        component=".data_type.DataTypeFactory"
-        name="docpool.doksys.DataType"
-    />
+  <utility
+      name="docpool.doksys.DataType"
+      component=".data_type.DataTypeFactory"
+      />
 
-    <utility
-        component=".sample_type.SampleTypeFactory"
-        name="docpool.doksys.SampleType"
-    />
+  <utility
+      name="docpool.doksys.SampleType"
+      component=".sample_type.SampleTypeFactory"
+      />
 
-    <utility
-        component=".measurement_category.MeasurementCategoryFactory"
-        name="docpool.doksys.MeasurementCategory"
-    />
+  <utility
+      name="docpool.doksys.MeasurementCategory"
+      component=".measurement_category.MeasurementCategoryFactory"
+      />
 
-    <utility
-        component=".duration.DurationFactory"
-        name="docpool.doksys.Duration"
-    />
+  <utility
+      name="docpool.doksys.Duration"
+      component=".duration.DurationFactory"
+      />
 
-    <utility
-        component=".infotype.InfoTypeFactory"
-        name="docpool.doksys.InfoType"
-    />
+  <utility
+      name="docpool.doksys.InfoType"
+      component=".infotype.InfoTypeFactory"
+      />
 
-    <utility
-        component=".area.AreaFactory"
-        name="docpool.doksys.Area"
-    />
+  <utility
+      name="docpool.doksys.Area"
+      component=".area.AreaFactory"
+      />
 
 
 </configure>

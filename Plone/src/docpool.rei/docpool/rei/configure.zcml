@@ -4,81 +4,88 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.rei">
+    i18n_domain="docpool.rei"
+    >
 
-    <i18n:registerTranslations directory="locales"/>
+  <i18n:registerTranslations directory="locales" />
 
-    <include package="zope.annotation" />
-    <include package="plone.app.relationfield" />
-    <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="zope.annotation" />
+  <include package="plone.app.relationfield" />
+  <include
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
 
-    <include package=".behaviors" />
-    <include package=".browser" />
-    <include file="skins.zcml" />
+  <include package=".behaviors" />
+  <include package=".browser" />
+  <include file="skins.zcml" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="docpool.rei"
-        directory="profiles/default"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        post_handler=".setuphandlers.post_install"
-        />
+  <genericsetup:registerProfile
+      name="default"
+      title="docpool.rei"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      post_handler=".setuphandlers.post_install"
+      />
 
-    <permission
-        id="docpool.rei.AccessREI"
-        title="Docpool: Access REI Content" />
+  <permission
+      id="docpool.rei.AccessREI"
+      title="Docpool: Access REI Content"
+      />
 
-    <utility
-        component=".vocabularies.AuthorityVocabularyFactory"
-        name="docpool.rei.vocabularies.AuthorityVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.AuthorityVocabulary"
+      component=".vocabularies.AuthorityVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.MStIDVocabularyFactory"
-        name="docpool.rei.vocabularies.MStIDVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.MStIDVocabulary"
+      component=".vocabularies.MStIDVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.ReiLegalBaseVocabularyFactory"
-        name="docpool.rei.vocabularies.ReiLegalBaseVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.ReiLegalBaseVocabulary"
+      component=".vocabularies.ReiLegalBaseVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.MediumVocabularyFactory"
-        name="docpool.rei.vocabularies.MediumVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.MediumVocabulary"
+      component=".vocabularies.MediumVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.PeriodVocabularyFactory"
-        name="docpool.rei.vocabularies.PeriodVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.PeriodVocabulary"
+      component=".vocabularies.PeriodVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.PDFVersionVocabularyFactory"
-        name="docpool.rei.vocabularies.PDFVersionVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.PDFVersionVocabulary"
+      component=".vocabularies.PDFVersionVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.OriginVocabularyFactory"
-        name="docpool.rei.vocabularies.OriginVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.OriginVocabulary"
+      component=".vocabularies.OriginVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.YearVocabularyFactory"
-        name="docpool.rei.vocabularies.YearVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.YearVocabulary"
+      component=".vocabularies.YearVocabularyFactory"
+      />
 
-    <utility
-        component=".vocabularies.NuclearInstallationVocabularyFactory"
-        name="docpool.rei.vocabularies.NuclearInstallationVocabulary"
-        />
+  <utility
+      name="docpool.rei.vocabularies.NuclearInstallationVocabulary"
+      component=".vocabularies.NuclearInstallationVocabularyFactory"
+      />
 
-   <adapter
-        factory=".indexers.report_year"
-        name="report_year"/>
+  <adapter
+      factory=".indexers.report_year"
+      name="report_year"
+      />
 
-    <adapter
-        factory=".indexer.Origins"
-        name="Origins" />
+  <adapter
+      factory=".indexer.Origins"
+      name="Origins"
+      />
 
 </configure>

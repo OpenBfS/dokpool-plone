@@ -1,9 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:cache="http://namespaces.zope.org/cache">
+    xmlns:cache="http://namespaces.zope.org/cache"
+    >
 
   <include package="z3c.caching" />
-  <include package="z3c.caching" file="meta.zcml" />
+  <include
+      package="z3c.caching"
+      file="meta.zcml"
+      />
 
   <cache:rulesetType
       name="elan.journal.default"
@@ -18,16 +22,19 @@
       />
 
   <cache:ruleset
-      ruleset="elan.journal.default"
       for="elan.journal.browser.view.View"
+      ruleset="elan.journal.default"
       />
 
   <cache:ruleset
-      ruleset="elan.journal.recentUpdates"
       for="elan.journal.browser.recent_updates.RecentUpdates"
+      ruleset="elan.journal.recentUpdates"
       />
 
   <!-- Purge paths for LiveBlog -->
-  <adapter factory=".purge.LiveBlogPurgePaths" name="journal" />
+  <adapter
+      factory=".purge.LiveBlogPurgePaths"
+      name="journal"
+      />
 
 </configure>

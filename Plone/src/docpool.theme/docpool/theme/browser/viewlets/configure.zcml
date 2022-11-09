@@ -1,20 +1,23 @@
 <configure
-	xmlns="http://namespaces.zope.org/zope"
-	xmlns:browser="http://namespaces.zope.org/browser">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
 
-    <browser:viewlet permission="zope2.View"
-                     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-                     name="docpool.time"
-                     layer="docpool.theme.interfaces.ICustomTheme"
-                     class=".common.TimeViewlet" />
+  <browser:viewlet
+      name="docpool.time"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".common.TimeViewlet"
+      permission="zope2.View"
+      layer="docpool.theme.interfaces.ICustomTheme"
+      />
 
-    <!-- The logo -->
-    <browser:viewlet
-        name="docpool.logo"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        layer="docpool.theme.interfaces.ICustomTheme"
-        class=".common.LogoDocpoolViewlet"
-        permission="zope2.View"
-        />
+  <!-- The logo -->
+  <browser:viewlet
+      name="docpool.logo"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".common.LogoDocpoolViewlet"
+      permission="zope2.View"
+      layer="docpool.theme.interfaces.ICustomTheme"
+      />
 
 </configure>

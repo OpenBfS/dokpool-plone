@@ -1,7 +1,8 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="elan.theme">
+    i18n_domain="elan.theme"
+    >
 
   <!-- 'elantheme' Zope 3 browser layer -->
   <interface
@@ -34,11 +35,11 @@
       />
 
   <browser:page
-      for="*"
       name="main_template"
+      for="*"
       class=".main_template.MainTemplate"
-      layer=".interfaces.IThemeSpecific"
       permission="zope.Public"
+      layer=".interfaces.IThemeSpecific"
       />
 
 </configure>

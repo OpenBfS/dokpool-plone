@@ -1,10 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser">
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
 
   <browser:page
-      for="elan.journal.interfaces.IJournal"
       name="base-journalentry"
+      for="elan.journal.interfaces.IJournal"
       class="elan.journal.browser.journalentries.BaseJournalEntryView"
       permission="zope2.Public"
       layer="elan.journal.interfaces.IBrowserLayer"

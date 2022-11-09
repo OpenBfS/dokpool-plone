@@ -1,28 +1,33 @@
-<configure xmlns="http://namespaces.zope.org/zope"
+<configure
+    xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.base">
+    i18n_domain="docpool.base"
+    >
 
-    <include package="plone.behavior" file="meta.zcml" />
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
 
-    <plone:behavior
-        title="Transferable"
-        description="Makes documents transferable between pools"
-        name="docpool.transferable"
-        provides=".transferable.ITransferable"
-        factory=".transferable.Transferable"
-        for="docpool.base.interfaces.IDPDocument"
-    />
-    <plone:behavior
-        title="Transfer DocType"
-        description="Type extension for transferable types"
-        name="docpool.transferstype"
-        provides=".transferstype.ITransfersType"
-        factory=".transferstype.TransfersType"
-        for="docpool.base.interfaces.IDocType"
-    />
+  <plone:behavior
+      name="docpool.transferable"
+      title="Transferable"
+      description="Makes documents transferable between pools"
+      factory=".transferable.Transferable"
+      provides=".transferable.ITransferable"
+      for="docpool.base.interfaces.IDPDocument"
+      />
+  <plone:behavior
+      name="docpool.transferstype"
+      title="Transfer DocType"
+      description="Type extension for transferable types"
+      factory=".transferstype.TransfersType"
+      provides=".transferstype.ITransfersType"
+      for="docpool.base.interfaces.IDocType"
+      />
 
-    <subscriber handler=".transferable.automatic_transfer_on_publish" />
+  <subscriber handler=".transferable.automatic_transfer_on_publish" />
 
 </configure>

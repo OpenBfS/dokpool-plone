@@ -1,18 +1,19 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  i18n_domain="plone">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="plone"
+    >
 
-   <browser:menu
-    id="plone_contentmenu_factory"
-    title="The 'add' menu - allows the user to add new content items in the context"
-    class=".menu.DPFactoriesMenu"
-    />
+  <browser:menu
+      id="plone_contentmenu_factory"
+      title="The 'add' menu - allows the user to add new content items in the context"
+      class=".menu.DPFactoriesMenu"
+      />
 
-   <browser:menu
-    id="plone_contentmenu_workflow"
-    title="The 'workflow' menu - allows the user to execute workflow transitions"
-    class=".menu.DPWorkflowMenu"
-    />
+  <browser:menu
+      id="plone_contentmenu_workflow"
+      title="The 'workflow' menu - allows the user to execute workflow transitions"
+      class=".menu.DPWorkflowMenu"
+      />
 
 </configure>

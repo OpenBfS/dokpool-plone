@@ -1,38 +1,39 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.elan">
+    i18n_domain="docpool.elan"
+    >
 
   <include package="plone.app.portlets" />
 
   <plone:portlet
+      name="docpool.elan.Overview"
       interface=".overview.IOverviewPortlet"
       assignment=".overview.Assignment"
-      addview=".overview.AddForm"
-      name="docpool.elan.Overview"
       renderer=".overview.Renderer"
+      addview=".overview.AddForm"
       />
 
   <plone:portlet
+      name="docpool.elan.Recent"
       interface=".recent.IRecentPortlet"
       assignment=".recent.Assignment"
-      addview=".recent.AddForm"
-      name="docpool.elan.Recent"
       renderer=".recent.Renderer"
+      addview=".recent.AddForm"
       />
 
   <plone:portlet
+      name="docpool.elan.Collection"
       interface=".collection.ICollectionPortlet"
       assignment=".collection.Assignment"
-      addview=".collection.AddForm"
-      name="docpool.elan.Collection"
       renderer=".collection.Renderer"
+      addview=".collection.AddForm"
       />
 
   <plone:portletRenderer
       portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
-      layer="docpool.theme.interfaces.ICustomTheme"
       class=".navigation.Renderer"
+      layer="docpool.theme.interfaces.ICustomTheme"
       />
 
 </configure>

@@ -1,8 +1,12 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" i18n_domain="docpool.theme">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="docpool.theme"
+    >
 
-    <include package="plone.app.contentmenu" />
+  <include package="plone.app.contentmenu" />
 
-    <include package=".viewlets" />
+  <include package=".viewlets" />
 
 
 </configure>

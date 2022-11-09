@@ -1,4 +1,8 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" i18n_domain="docpool.base">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="docpool.base"
+    >
 
   <subscriber handler=".contentbase.markCreateEvent" />
   <subscriber handler=".contentbase.updateCreated" />
@@ -16,31 +20,36 @@
   <subscriber handler=".dptransferfolder.doctype_will_be_removed" />
 
   <class class=".documentpool.DocumentPool">
-      <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
-      <implements interface="plone.app.content.interfaces.INameFromTitle" />
-      <implements interface="zope.component.interfaces.IPossibleSite" />
+    <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
+    <implements interface="plone.app.content.interfaces.INameFromTitle" />
+    <implements interface="zope.component.interfaces.IPossibleSite" />
   </class>
 
   <adapter factory=".archiving.Archiving" />
 
   <adapter
-    factory=".indexer.doc_apps_indexer"
-    name="apps_supported" />
+      factory=".indexer.doc_apps_indexer"
+      name="apps_supported"
+      />
 
   <adapter
-    factory=".indexer.docpool_apps_indexer"
-    name="apps_supported" />
+      factory=".indexer.docpool_apps_indexer"
+      name="apps_supported"
+      />
 
   <adapter
-    factory=".indexer.base_apps_indexer"
-    name="apps_supported" />
+      factory=".indexer.base_apps_indexer"
+      name="apps_supported"
+      />
 
   <adapter
-    factory=".indexer.container_apps_indexer"
-    name="apps_supported" />
+      factory=".indexer.container_apps_indexer"
+      name="apps_supported"
+      />
 
   <adapter
-    factory=".indexer.infodoc_getIcon"
-    name="getIcon" />
+      factory=".indexer.infodoc_getIcon"
+      name="getIcon"
+      />
 
 </configure>

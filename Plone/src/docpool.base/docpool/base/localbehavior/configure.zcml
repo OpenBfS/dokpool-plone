@@ -1,28 +1,31 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-
+    xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.base">
+    i18n_domain="docpool.base"
+    >
 
-    <include package="plone.behavior" file="meta.zcml" />
-    <plone:behavior
-        title="Local Behavior Support"
-        description="Add local behavior support"
-        name="docpool.localbehavior"
-        provides=".localbehavior.ILocalBehaviorSupport"
-        factory=".localbehavior.LocalBehaviorSupport"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        marker=".localbehavior.ILocalBehaviorSupporting"
-        />
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
+  <plone:behavior
+      name="docpool.localbehavior"
+      title="Local Behavior Support"
+      description="Add local behavior support"
+      factory=".localbehavior.LocalBehaviorSupport"
+      provides=".localbehavior.ILocalBehaviorSupport"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".localbehavior.ILocalBehaviorSupporting"
+      />
 
-    <adapter factory=".adapter.DexterityLocalBehaviorAssignable"/>
+  <adapter factory=".adapter.DexterityLocalBehaviorAssignable" />
 
-    <utility
-        component=".vocabulary.LocalBehaviorsVocabularyFactory"
-        name="LocalBehaviors"
-        />
+  <utility
+      name="LocalBehaviors"
+      component=".vocabulary.LocalBehaviorsVocabularyFactory"
+      />
 
 </configure>

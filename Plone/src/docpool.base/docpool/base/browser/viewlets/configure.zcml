@@ -2,19 +2,22 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.base">
+    i18n_domain="docpool.base"
+    >
 
   <browser:viewlet
       name="plone.global_sections"
       manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
       class=".menu.GlobalSectionsViewlet"
-      layer="docpool.base.interfaces.IDocpoolBaseLayer"
       permission="zope2.View"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
       />
 
   <adapter
-      for="* *"
       factory=".menu.DropDownMenuStrategy"
-      provides="plone.app.layout.navigation.interfaces.INavtreeStrategy" />
+      provides="plone.app.layout.navigation.interfaces.INavtreeStrategy"
+      for="*
+           *"
+      />
 
 </configure>

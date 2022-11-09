@@ -1,14 +1,24 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:five="http://namespaces.zope.org/five" xmlns:genericsetup="http://namespaces.zope.org/genericsetup" xmlns:i18n="http://namespaces.zope.org/i18n" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="docpool.doksys">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.doksys"
+    >
 
-    <include package="plone.behavior" file="meta.zcml" />
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
 
-    <plone:behavior
-        title="DoksysDoc"
-        description="Makes documents support doksys functions"
-        name="docpool.doksysdoc"
-        provides=".doksysdoc.IDoksysDoc"
-        factory=".doksysdoc.DoksysDoc"
-        for="docpool.base.interfaces.IDPDocument"
-    />
+  <plone:behavior
+      name="docpool.doksysdoc"
+      title="DoksysDoc"
+      description="Makes documents support doksys functions"
+      factory=".doksysdoc.DoksysDoc"
+      provides=".doksysdoc.IDoksysDoc"
+      for="docpool.base.interfaces.IDPDocument"
+      />
 
 </configure>

@@ -1,22 +1,24 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="elan.theme">
+    i18n_domain="elan.theme"
+    >
 
   <genericsetup:registerProfile
       name="default"
       title="ELAN-E Theme"
-      directory="profiles/default"
-      description='Extension profile for the "ELAN-E" Plone theme.'
+      description="Extension profile for the ELAN-E Plone theme."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
       />
 
   <genericsetup:importStep
       name="elan.theme.various"
       title="ELAN-E Theme: miscellaneous import steps"
       description="Various import steps that are not handled by GS import/export handlers."
-      handler="elan.theme.setuphandlers.setupVarious">
-    <depends name="skins"/>
+      handler="elan.theme.setuphandlers.setupVarious"
+      >
+    <depends name="skins" />
   </genericsetup:importStep>
 
 </configure>

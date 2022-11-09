@@ -2,111 +2,115 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.config">
+    i18n_domain="docpool.config"
+    >
 
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <include package="z3c.jbot" file="meta.zcml" />
+  <include
+      package="z3c.jbot"
+      file="meta.zcml"
+      />
   <browser:jbot
       directory="overrides"
       layer="docpool.config.interfaces.IDocpoolConfigLayer"
       />
 
-   <browser:page
-        name="doc_listitem"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/doc_listitem.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="doc_listitem"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/doc_listitem.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="doc_full"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/doc_full.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="doc_full"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/doc_full.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="doc_inline"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/doc_inline.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="doc_inline"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/doc_inline.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="doc_print"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/doc_print.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="doc_print"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/doc_print.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="doc_dashboard"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/doc_dashboard.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="doc_dashboard"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/doc_dashboard.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="elan_meta"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/elan_meta.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="elan_meta"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/elan_meta.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="elan_actions"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/elan_actions.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="elan_actions"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/elan_actions.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="transfers_meta"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/transfers_meta.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="transfers_meta"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/transfers_meta.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="transfers_actions"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/transfers_actions.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="transfers_actions"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/transfers_actions.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="simpleviz_listitem"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/simpleviz_listitem.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="simpleviz_listitem"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/simpleviz_listitem.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="simpleviz_full"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/simpleviz_full.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="simpleviz_full"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/simpleviz_full.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="simpleviz_inline"
-        for="docpool.base.interfaces.IDPDocument"
-        template="templates/simpleviz_inline.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="simpleviz_inline"
+      for="docpool.base.interfaces.IDPDocument"
+      template="templates/simpleviz_inline.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="infodocument_listitem"
-        for="docpool.base.interfaces.IInfoDocument"
-        template="templates/infodocument_listitem.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="infodocument_listitem"
+      for="docpool.base.interfaces.IInfoDocument"
+      template="templates/infodocument_listitem.pt"
+      permission="zope2.View"
+      />
 
-   <browser:page
-        name="infodocument_full"
-        for="docpool.base.interfaces.IInfoDocument"
-        template="templates/infodocument_full.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="infodocument_full"
+      for="docpool.base.interfaces.IInfoDocument"
+      template="templates/infodocument_full.pt"
+      permission="zope2.View"
+      />
 
 </configure>

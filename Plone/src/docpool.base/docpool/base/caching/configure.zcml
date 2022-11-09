@@ -1,8 +1,14 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
-    <adapter factory=".etags.DokPoolApps" name="dokpool_apps" />
-    <adapter factory=".etags.DokPoolCacheTime" name="dokpool_cachetime" />
-    <adapter factory=".lastmodified.ContentBaseLastModified" />
-    <adapter factory=".lastmodified.DocumentLastModified" />
+  <adapter
+      factory=".etags.DokPoolApps"
+      name="dokpool_apps"
+      />
+  <adapter
+      factory=".etags.DokPoolCacheTime"
+      name="dokpool_cachetime"
+      />
+  <adapter factory=".lastmodified.ContentBaseLastModified" />
+  <adapter factory=".lastmodified.DocumentLastModified" />
 
 </configure>

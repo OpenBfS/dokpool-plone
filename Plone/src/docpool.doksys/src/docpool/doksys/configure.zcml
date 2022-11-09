@@ -1,131 +1,158 @@
 <configure
-        xmlns="http://namespaces.zope.org/zope"
-        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-        xmlns:i18n="http://namespaces.zope.org/i18n"
-        xmlns:plone="http://namespaces.plone.org/plone"
-        i18n_domain="docpool.doksys">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="docpool.doksys"
+    >
 
-    <i18n:registerTranslations directory="locales"/>
+  <i18n:registerTranslations directory="locales" />
 
-    <!--
+  <!--
       Be careful if you use general includeDependencies, it can have sideffects!
       Better import explicite packages or configurations ;)
     -->
-    <!--<includeDependencies package="." />-->
+  <!--<includeDependencies package="." />-->
 
-    <include package=".browser"/>
+  <include package=".browser" />
 
-    <include file="permissions.zcml"/>
+  <include file="permissions.zcml" />
 
-    <genericsetup:registerProfile
-            name="default"
-            title="docpool.doksys"
-            directory="profiles/default"
-            description="Installs the docpool.doksys add-on."
-            provides="Products.GenericSetup.interfaces.EXTENSION"
-            post_handler=".setuphandlers.post_install"
-    />
+  <genericsetup:registerProfile
+      name="default"
+      title="docpool.doksys"
+      description="Installs the docpool.doksys add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      post_handler=".setuphandlers.post_install"
+      />
 
-    <genericsetup:registerProfile
-            name="uninstall"
-            title="docpool.doksys (uninstall)"
-            directory="profiles/uninstall"
-            description="Uninstalls the docpool.doksys add-on."
-            provides="Products.GenericSetup.interfaces.EXTENSION"
-            post_handler=".setuphandlers.uninstall"
-    />
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="docpool.doksys (uninstall)"
+      description="Uninstalls the docpool.doksys add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      post_handler=".setuphandlers.uninstall"
+      />
 
-    <utility
-            factory=".setuphandlers.HiddenProfiles"
-            name="docpool.doksys-hiddenprofiles"
-    />
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="docpool.doksys-hiddenprofiles"
+      />
 
-    <!-- -*- extra stuff goes here -*- -->
+  <!-- -*- extra stuff goes here -*- -->
 
-    <include package=".vocabularies" />
+  <include package=".vocabularies" />
 
-            <permission id="docpool.doksys.AccessDoksys" title="Docpool: Access Doksys Content"/>
-            <permission id="docpool.doksys.AccessDoksysDOM" title="Docpool: Access Doksys DOM" />
+  <permission
+      id="docpool.doksys.AccessDoksys"
+      title="Docpool: Access Doksys Content"
+      />
+  <permission
+      id="docpool.doksys.AccessDoksysDOM"
+      title="Docpool: Access Doksys DOM"
+      />
 
-    <include package=".behaviors"/>
+  <include package=".behaviors" />
 
-    <adapter
-            factory=".indexer.network_operator_indexer"
-            name="NetworkOperator"/>
+  <adapter
+      factory=".indexer.network_operator_indexer"
+      name="NetworkOperator"
+      />
 
-    <adapter
-            factory=".indexer.dom_indexer"
-            name="Dom"/>
+  <adapter
+      factory=".indexer.dom_indexer"
+      name="Dom"
+      />
 
-    <adapter
-            factory=".indexer.legal_base_indexer"
-            name="LegalBase"/>
+  <adapter
+      factory=".indexer.legal_base_indexer"
+      name="LegalBase"
+      />
 
-    <adapter
-            factory=".indexer.measuring_program_indexer"
-            name="MeasuringProgram"/>
+  <adapter
+      factory=".indexer.measuring_program_indexer"
+      name="MeasuringProgram"
+      />
 
-    <adapter
-            factory=".indexer.sampling_begin_indexer"
-            name="SamplingBegin"/>
+  <adapter
+      factory=".indexer.sampling_begin_indexer"
+      name="SamplingBegin"
+      />
 
-    <adapter
-            factory=".indexer.sampling_end_indexer"
-            name="SamplingEnd"/>
+  <adapter
+      factory=".indexer.sampling_end_indexer"
+      name="SamplingEnd"
+      />
 
-    <adapter
-            factory=".indexer.purpose_indexer"
-            name="Purpose"/>
+  <adapter
+      factory=".indexer.purpose_indexer"
+      name="Purpose"
+      />
 
-    <adapter
-            factory=".indexer.trajectory_start_location_indexer"
-            name="TrajectoryStartLocation"/>
+  <adapter
+      factory=".indexer.trajectory_start_location_indexer"
+      name="TrajectoryStartLocation"
+      />
 
-    <adapter
-            factory=".indexer.trajectory_end_location_indexer"
-            name="TrajectoryEndLocation"/>
+  <adapter
+      factory=".indexer.trajectory_end_location_indexer"
+      name="TrajectoryEndLocation"
+      />
 
-    <adapter
-            factory=".indexer.trajectory_start_time_indexer"
-            name="TrajectoryStartTime"/>
+  <adapter
+      factory=".indexer.trajectory_start_time_indexer"
+      name="TrajectoryStartTime"
+      />
 
-    <adapter
-            factory=".indexer.trajectory_end_time_indexer"
-            name="TrajectoryEndTime"/>
+  <adapter
+      factory=".indexer.trajectory_end_time_indexer"
+      name="TrajectoryEndTime"
+      />
 
-    <adapter
-            factory=".indexer.status_indexer"
-            name="Status"/>
+  <adapter
+      factory=".indexer.status_indexer"
+      name="Status"
+      />
 
-    <adapter
-            factory=".indexer.operation_mode_indexer"
-            name="OperationMode"/>
+  <adapter
+      factory=".indexer.operation_mode_indexer"
+      name="OperationMode"
+      />
 
-    <adapter
-            factory=".indexer.data_type_indexer"
-            name="DataType"/>
+  <adapter
+      factory=".indexer.data_type_indexer"
+      name="DataType"
+      />
 
-    <adapter
-            factory=".indexer.sample_type_id_indexer"
-            name="SampleTypeId"/>
+  <adapter
+      factory=".indexer.sample_type_id_indexer"
+      name="SampleTypeId"
+      />
 
-    <adapter
-            factory=".indexer.sample_type_indexer"
-            name="SampleType"/>
+  <adapter
+      factory=".indexer.sample_type_indexer"
+      name="SampleType"
+      />
 
-    <adapter
-            factory=".indexer.measurement_category_indexer"
-            name="MeasurementCategory"/>
+  <adapter
+      factory=".indexer.measurement_category_indexer"
+      name="MeasurementCategory"
+      />
 
-    <adapter
-            factory=".indexer.duration_indexer"
-            name="Duration"/>
+  <adapter
+      factory=".indexer.duration_indexer"
+      name="Duration"
+      />
 
-    <adapter
-            factory=".indexer.type_indexer"
-            name="Type"/>
+  <adapter
+      factory=".indexer.type_indexer"
+      name="Type"
+      />
 
-    <adapter
-            factory=".indexer.area_indexer"
-            name="Area"/>
+  <adapter
+      factory=".indexer.area_indexer"
+      name="Area"
+      />
 </configure>

@@ -7,26 +7,29 @@
     i18n_domain="docpool.elan"
     >
 
-    <include package="plone.behavior" file="meta.zcml" />
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
 
 
-    <plone:behavior
-        title="ELAN Document"
-        description="Adds ELAN attributes to DPDocuments"
-        name="docpool.elandocument"
-        provides=".elandocument.IELANDocument"
-        factory=".elandocument.ELANDocument"
-        for="docpool.base.interfaces.IDPDocument"
-    />
+  <plone:behavior
+      name="docpool.elandocument"
+      title="ELAN Document"
+      description="Adds ELAN attributes to DPDocuments"
+      factory=".elandocument.ELANDocument"
+      provides=".elandocument.IELANDocument"
+      for="docpool.base.interfaces.IDPDocument"
+      />
 
-    <plone:behavior
-        title="ELAN DocType"
-        description="Adds the ability to choose categories to DocTypes"
-        name="docpool.elandoctype"
-        provides=".elandoctype.IELANDocType"
-        factory=".elandoctype.ELANDocType"
-        for="docpool.base.interfaces.IDocType"
-    />
+  <plone:behavior
+      name="docpool.elandoctype"
+      title="ELAN DocType"
+      description="Adds the ability to choose categories to DocTypes"
+      factory=".elandoctype.ELANDocType"
+      provides=".elandoctype.IELANDocType"
+      for="docpool.base.interfaces.IDocType"
+      />
 
 
 </configure>

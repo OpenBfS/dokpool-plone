@@ -1,18 +1,21 @@
 <configure
-	xmlns="http://namespaces.zope.org/zope"
-	xmlns:browser="http://namespaces.zope.org/browser">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
 
-    <browser:viewlet permission="zope2.View"
-                     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-                     name="docpool.elan.events"
-                     layer="docpool.theme.interfaces.ICustomTheme"
-                     class=".common.EventViewlet" />
+  <browser:viewlet
+      name="docpool.elan.events"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".common.EventViewlet"
+      permission="zope2.View"
+      layer="docpool.theme.interfaces.ICustomTheme"
+      />
 
-    <browser:viewlet
-        name="docpool.elan.ticker"
-        manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
-        class=".common.TickerViewlet"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="docpool.elan.ticker"
+      manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
+      class=".common.TickerViewlet"
+      permission="zope2.View"
+      />
 
 </configure>

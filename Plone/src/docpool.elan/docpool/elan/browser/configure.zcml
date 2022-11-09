@@ -2,95 +2,102 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.elan">
+    i18n_domain="docpool.elan"
+    >
 
-    <include package="plone.app.contentmenu" />
-    <include package=".viewlets"/>
+  <include package="plone.app.contentmenu" />
+  <include package=".viewlets" />
 
-    <plone:static
-        directory="static"
-        type="plone"
-        name="docpool.elan" />
+  <plone:static
+      directory="static"
+      name="docpool.elan"
+      type="plone"
+      />
 
-    <browser:page
-        name="event.macros"
-        for="*"
-        template="event_macros.pt"
-        permission="zope2.View"
-    />
+  <browser:page
+      name="event.macros"
+      for="*"
+      template="event_macros.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="..interfaces.IDPEvents"
-        class=".dpevents.DPEventsView"
-        template="dpevents.pt"
-        permission="zope2.View"
-    />
+  <browser:page
+      name="view"
+      for="..interfaces.IDPEvents"
+      class=".dpevents.DPEventsView"
+      template="dpevents.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="..interfaces.IDPEvent"
-        class=".dpevent.DPEventView"
-        template="dpevent.pt"
-        permission="zope2.View"
-    />
+  <browser:page
+      name="view"
+      for="..interfaces.IDPEvent"
+      class=".dpevent.DPEventView"
+      template="dpevent.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="event_select_action"
-        for="*"
-        class=".dpevents.EventSelectAction"
-        permission="zope2.View"
-    />
+  <browser:page
+      name="event_select_action"
+      for="*"
+      class=".dpevents.EventSelectAction"
+      permission="zope2.View"
+      />
 
-    <browser:page permission="zope2.View"
-                  name="elan.macros"
-                  for="*"
-                  template="elan_macros.pt"
-    />
+  <browser:page
+      name="elan.macros"
+      for="*"
+      template="elan_macros.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        permission="zope2.View"
-        name="dview"
-        for="..content.elandoccollection.IELANDocCollection"
-        class=".elandoccollection.ELANDocCollectionDocView" />
+  <browser:page
+      name="dview"
+      for="..content.elandoccollection.IELANDocCollection"
+      class=".elandoccollection.ELANDocCollectionDocView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        permission="zope2.View"
-        name="view"
-        for="..content.elandoccollection.IELANDocCollection"
-        class=".elandoccollection.ELANDocCollectionView" />
+  <browser:page
+      name="view"
+      for="..content.elandoccollection.IELANDocCollection"
+      class=".elandoccollection.ELANDocCollectionView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        permission="zope2.View"
-        name="rpopup"
-        for="..content.elandoccollection.IELANDocCollection"
-        class=".elandoccollection.ELANDocCollectionrpopupView" />
+  <browser:page
+      name="rpopup"
+      for="..content.elandoccollection.IELANDocCollection"
+      class=".elandoccollection.ELANDocCollectionrpopupView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        permission="zope2.View"
-        name="view"
-        for="..content.elanarchive.IELANArchive"
-        class=".elanarchive.ELANArchiveView" />
+  <browser:page
+      name="view"
+      for="..content.elanarchive.IELANArchive"
+      class=".elanarchive.ELANArchiveView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="refresh_recent"
-        for="*"
-        class=".refresh.RefreshRecent"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="refresh_recent"
+      for="*"
+      class=".refresh.RefreshRecent"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="selectCategories"
-        for="*"
-        class=".popup.SelectCategories"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="selectCategories"
+      for="*"
+      class=".popup.SelectCategories"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="deleteTicker"
-        for="*"
-        class=".ticker.DeleteTicker"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="deleteTicker"
+      for="*"
+      class=".ticker.DeleteTicker"
+      permission="zope2.View"
+      />
 
 </configure>

@@ -1,17 +1,19 @@
 <configure
-    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="docpool.base">
+    i18n_domain="docpool.base"
+    >
 
   <include package="plone.app.contentmenu" />
-  <include package=".search"/>
-  <include package=".viewlets"/>
+  <include package=".search" />
+  <include package=".viewlets" />
 
   <plone:static
-           directory="static"
-           type="plone"
-           name="docpool.base" />
+      directory="static"
+      name="docpool.base"
+      type="plone"
+      />
 
   <browser:page
       name="actionhelpers"
@@ -44,8 +46,8 @@
   <browser:page
       name="view"
       for="..interfaces.IFolderBase"
-      template="folderbase.pt"
       class=".folderbase.FolderBaseView"
+      template="folderbase.pt"
       permission="zope2.View"
       />
 
@@ -95,8 +97,8 @@
       name="commenting"
       for="..interfaces.IDPDocument"
       class=".dpdocument.DPDocumentcommentingView"
-      layer="plone.app.discussion.interfaces.IDiscussionLayer"
       permission="zope2.View"
+      layer="plone.app.discussion.interfaces.IDiscussionLayer"
       />
 
   <browser:page
@@ -157,21 +159,21 @@
   <browser:page
       name="docpool_collection_view"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
-      template="docpool_collection_view.pt"
       class="plone.app.contenttypes.browser.collection.CollectionView"
+      template="docpool_collection_view.pt"
+      permission="zope2.View"
       menu="plone_displayviews"
       title="Docpool view"
-      permission="zope2.View"
       />
 
   <browser:page
       name="docpool_collection_view_with_actions"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
-      template="docpool_collection_view_with_actions.pt"
       class=".collection.CollectionView"
+      template="docpool_collection_view_with_actions.pt"
+      permission="zope2.View"
       menu="plone_displayviews"
       title="Docpool view with bulk actions"
-      permission="zope2.View"
       />
 
   <browser:page
@@ -217,71 +219,71 @@
       />
 
   <browser:page
-      for="*"
       name="review_history"
+      for="*"
       class=".review_history.ReviewHistoryView"
       template="templates/review_history.pt"
       permission="zope2.View"
       />
 
   <browser:page
-      for="*"
       name="dpdocument_transition_form"
+      for="*"
       class=".dpdocument_transition_form.WorkflowActionView"
       template="templates/dpdocument_transition_form.pt"
       permission="zope2.View"
       />
 
   <adapter
+      factory=".dpdocument.AddView"
+      provides="zope.publisher.interfaces.browser.IBrowserPage"
       for="Products.CMFCore.interfaces.IFolderish
            *
            plone.dexterity.interfaces.IDexterityFTI"
-      provides="zope.publisher.interfaces.browser.IBrowserPage"
-      factory=".dpdocument.AddView"
       name="DPDocument"
       />
   <class class=".dpdocument.AddView">
-      <require
-          permission="cmf.AddPortalContent"
-          interface="zope.publisher.interfaces.browser.IBrowserPage"
-          />
+    <require
+        permission="cmf.AddPortalContent"
+        interface="zope.publisher.interfaces.browser.IBrowserPage"
+        />
   </class>
 
-    <browser:page
-            permission="zope2.View"
-            name="dashboard"
-            for="..interfaces.IDPDocument"
-            class=".dpdocument.DPDocumentdashboardView"
-    />
+  <browser:page
+      name="dashboard"
+      for="..interfaces.IDPDocument"
+      class=".dpdocument.DPDocumentdashboardView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-            permission="zope2.View"
-            name="view"
-            for="..content.dashboard.IDashboard"
-            class=".dashboard.DashboardView"
-    />
+  <browser:page
+      name="view"
+      for="..content.dashboard.IDashboard"
+      class=".dashboard.DashboardView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        for="*"
-        name="transfers.macros"
-        template="transfers_macros.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="transfers.macros"
+      for="*"
+      template="transfers_macros.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="..content.dptransferfolder.IDPTransferFolder"
-        template="dptransferfolder.pt"
-        class="docpool.base.browser.folderbase.FolderBaseView"
-        permission="docpool.transfers.SendContent"
-        />
+  <browser:page
+      name="view"
+      for="..content.dptransferfolder.IDPTransferFolder"
+      class="docpool.base.browser.folderbase.FolderBaseView"
+      template="dptransferfolder.pt"
+      permission="docpool.transfers.SendContent"
+      />
 
-    <browser:page
-        name="dpdocument_transfer_form"
-        for="*"
-        class=".dpdocument_transfer_form.TransferForm"
-        template="dpdocument_transfer_form.pt"
-        permission="docpool.transfers.SendContent"
-        />
+  <browser:page
+      name="dpdocument_transfer_form"
+      for="*"
+      class=".dpdocument_transfer_form.TransferForm"
+      template="dpdocument_transfer_form.pt"
+      permission="docpool.transfers.SendContent"
+      />
 
 </configure>
