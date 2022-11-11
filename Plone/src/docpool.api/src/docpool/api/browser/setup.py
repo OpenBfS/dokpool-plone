@@ -77,10 +77,6 @@ class DocpoolSetup(BrowserView):
             return self.index()
 
         alsoProvides(self.request, IDisableCSRFProtection)
-        # disable queued indexing because for unclread resons the
-        # index 'scenarios' is empty
-        queue_indexing = os.environ.get("CATALOG_OPTIMIZATION_DISABLED", "None")
-        os.environ["CATALOG_OPTIMIZATION_DISABLED"] = "1"
 
         # install addons
         installer = get_installer(self.context, self.request)
@@ -659,13 +655,6 @@ class DocpoolSetup(BrowserView):
         search.relatedItems = []
         modified(search)
 
-        # Workaround for broken indexes (See #3502)
-        log.info("Rebuilding catalog")
-        catalog = api.portal.get_tool("portal_catalog")
-        catalog.clearFindAndRebuild()
-        # FIXME: Why do we need this? Argh!
-        catalog.reindexIndex("scenarios", self.request)
-        os.environ["CATALOG_OPTIMIZATION_DISABLED"] = queue_indexing
         return self.request.response.redirect(self.context.absolute_url())
 
 
