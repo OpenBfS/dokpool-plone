@@ -92,18 +92,21 @@ class TestInstallComplex(unittest.TestCase):
         portal.clearCurrentSkin()
         portal.setupCurrentSkin(self.request)
 
+        # Check that scenarios index is correctly populated!
+        self.assertEqual(portal_catalog.uniqueValuesFor("scenarios"), ("test-event",))
+        dp_type = ["estimation", "instructions", "protectiveactions"]
+        self.assertEqual(
+            len(portal_catalog(scenarios="test-event", dp_type=dp_type)), 3
+        )
+
+        # render all views for all dp_types
         views = [
             "view",
             "listitem",
             "meta",
         ]
         dp_types = portal_catalog.uniqueValuesFor("dp_type")
-        ignore = [
-            "sitrep",  # sitrep is broken. See #4861
-        ]
         for dp_type in dp_types:
-            if dp_type in ignore:
-                continue
             brains = api.content.find(portal_type="DPDocument", dp_type=dp_type)
             print(f"Found {len(brains)} DPDocument of type {dp_type}")
             for brain in brains:
