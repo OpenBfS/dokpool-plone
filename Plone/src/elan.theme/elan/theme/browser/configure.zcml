@@ -21,13 +21,6 @@
       layer=".interfaces.IThemeSpecific"
       />
 
-  <!-- Resource directory for stylesheets -->
-  <browser:resourceDirectory
-      name="elan.theme.stylesheets"
-      directory="stylesheets"
-      layer=".interfaces.IThemeSpecific"
-      />
-
   <browser:resourceDirectory
       name="elan.theme.javascripts"
       directory="scripts"
