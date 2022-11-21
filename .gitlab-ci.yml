@@ -152,7 +152,7 @@ unit_tests:
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
     - mkdir -p .venv
-    - pipenv install
+    - pipenv --python 3.11.0 install
     # Pin setuptools
     - pipenv install setuptools==65.5.1
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
