@@ -17,7 +17,6 @@ cache:
   paths:
     - Plone/eggs/
     - Plone/downloads/
-    - Plone/.venv/
     - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
 
@@ -126,12 +125,7 @@ lint_tests:
     - cd Plone
     # lint test
     - mkdir -p .venv
-    - pwd
-    - pipenv install -v || true
-    - ls -alh .venv
-    - ls -alh .venv/bin
-    - ls -alh /builds/bfs/dokpool/Plone/.venv/bin
-    - /builds/bfs/dokpool/Plone/.venv/bin/python -V
+    - pipenv install
     - pipenv run pre-commit run -a
 
 unit_tests:
@@ -152,7 +146,7 @@ unit_tests:
     - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
     # build
     - mkdir -p .venv
-    - pipenv --python 3.11.0 install
+    - pipenv install
     # Pin setuptools
     - pipenv install setuptools==65.5.1
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
