@@ -1,5 +1,5 @@
 # Official Python Image
-image: python:3.9.13-bullseye
+image: python:3.11.0-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
@@ -148,7 +148,7 @@ unit_tests:
     - mkdir -p .venv
     - pipenv install
     # Pin setuptools
-    - pipenv install setuptools==65.4.1
+    - pipenv install setuptools==65.5.1
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
     - pipenv run ./bin/coverage erase
