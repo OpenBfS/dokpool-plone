@@ -129,6 +129,7 @@ lint_tests:
     - pwd
     - pipenv install -v || true
     - ls -alh .venv
+    - ls -alh .venv/bin
     - pipenv run pre-commit run -a
 
 unit_tests:
