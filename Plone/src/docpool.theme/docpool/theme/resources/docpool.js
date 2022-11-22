@@ -11,13 +11,14 @@ window.makePopUp = makePopUp;
 // Global styles
 import("./docpool_styles/header-timetable.scss");
 
+const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
-if (document.querySelector(".userrole-anonymous") === null) {
+if (isAnonymous === null) {
   import("./theme.scss");
 }
 
 // Anonymous users
-if (document.querySelector(".userrole-anonymous") !== null) {
+if (isAnonymous !== null) {
   import("./docpool_styles/anonymous.scss");
 }
 

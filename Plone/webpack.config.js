@@ -7,7 +7,7 @@ module.exports = [
     entry: "./src/docpool.theme/docpool/theme/resources/docpool.js",
     // Disable for debugging and development
     optimization: {
-         minimize: true,
+      minimize: true,
     },
     output: {
       path: path.resolve(__dirname, "src/docpool.theme/docpool/theme/static/"),
