@@ -53,12 +53,28 @@
  <alias from="view" to="(selected layout)" />
 
  <!-- Actions -->
- <action title="View" action_id="view" category="object" condition_expr="" url_expr="string:${object_url}" visible="True">
-  <permission value="View" />
- </action>
- <action title="Edit" action_id="edit" category="object" condition_expr="" url_expr="string:${object_url}/edit" visible="True">
-  <permission value="Modify portal content" />
- </action>
+  <action
+      action_id="view"
+      category="object"
+      condition_expr=""
+      i18n:attributes="title"
+      title="View"
+      url_expr="string:${object_url}"
+      icon_expr="string:toolbar-action/view"
+      visible="True">
+    <permission value="View"/>
+  </action>
+  <action
+      action_id="edit"
+      category="object"
+      condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
+      i18n:attributes="title"
+      title="Edit"
+      url_expr="string:${object_url}/edit"
+      icon_expr="string:toolbar-action/edit"
+      visible="True">
+    <permission value="Modify portal content"/>
+  </action>
 
  <action i18n:attributes="title" title="Permissions" action_id="permissions" category="object" condition_expr="" url_expr="string:${object_url}/objekt_liste?typ=channelpermissions" visible="True">
   <permission value="Modify portal content" />
