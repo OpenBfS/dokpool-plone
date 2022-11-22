@@ -2,7 +2,7 @@ import $ from "jquery";
 import Base from "@patternslib/patternslib/src/core/base";
 import logger from "@patternslib/patternslib/src/core/logging";
 import registry from "@patternslib/patternslib/src/core/registry";
-import utils from "@patternslib/patternslib/src/core/utils";
+import parseBodyTag from "../utils";
 import _ from "underscore";
 
 const log = logger.getLogger("pat-contentloader-bfs");
@@ -71,7 +71,7 @@ export default Base.extend({
         var $el;
         if (that.options.dataType === "html") {
           if (data.indexOf("<html") !== -1) {
-            data = utils.parseBodyTag(data);
+            data = parseBodyTag(data);
           }
           $el = $(
             '<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3">' +
