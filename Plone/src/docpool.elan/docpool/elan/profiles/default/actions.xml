@@ -5,10 +5,9 @@
   <object name="edit_scenarios" meta_type="CMF Action" i18n:domain="docpool.elan">
    <property name="title" i18n:translate="">Edit Scenarios</property>
    <property name="description" i18n:translate=""></property>
-   <property
-      name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
+   <property name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
    <property name="link_target"></property>
-   <property name="icon_expr"></property>
+   <property name="icon_expr">string:plone-edit</property>
    <property name="available_expr">python:here.isAdmin() or here.isContentAdmin() or (member and member.has_role('EventEditor'))</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
@@ -19,7 +18,7 @@
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++DPEvent</property>
    <property name="link_target"></property>
-   <property name="icon_expr"></property>
+   <property name="icon_expr">string:calendar-fill</property>
    <property name="available_expr">python: 'esd' in here.absolute_url() and (here.isAdmin() or here.isContentAdmin() or (member and member.has_role('EventEditor')))</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
@@ -29,6 +28,7 @@
   <object name="snapshot" meta_type="CMF Action" i18n:domain="docpool.elan">
    <property name="title" i18n:translate="">Snapshot</property>
    <property name="description" i18n:translate=""></property>
+   <property name="icon_expr">string:clipboard2-plus</property>
    <property name="url_expr">string:javascript: if (confirm('${object/snapshot_confirm_msg}')) window.location.href='${object/absolute_url}/snapshot'</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
