@@ -37,5 +37,9 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.0"
+  },
+  "dependencies": {
+    "@patternslib/patternslib": "9.6.0",
+    "underscore": "^1.13.6"
   }
 }
