@@ -3,6 +3,7 @@ from docpool.base import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.supermodel import model
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope.interface import implementer
@@ -23,10 +24,7 @@ class IDashboard(model.Schema):
             source="docpool.base.vocabularies.DashboardCollections",
         ),
     )
-
-    directives.widget(
-        dbCollections="z3c.form.browser.select.CollectionSelectFieldWidget"
-    )
+    directives.widget("dbCollections", CheckBoxFieldWidget)
 
 
 @implementer(IDashboard)

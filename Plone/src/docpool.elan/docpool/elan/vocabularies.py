@@ -70,26 +70,19 @@ class EventRefVocabulary:
 EventRefVocabularyFactory = EventRefVocabulary()
 
 
-@implementer(IVocabularyFactory)
-class EventSubstituteVocabulary:
-    """ """
-
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = sorted(
-            (t.Title, t.getObject())
-            for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
-        )
-        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-
-EventSubstituteVocabularyFactory = EventSubstituteVocabulary()
+@provider(IVocabularyFactory)
+def EventSubstituteVocabularyFactory(context=None):
+    esd = getDocumentPoolSite(context)
+    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
+    return StaticCatalogVocabulary(
+        {
+            "portal_type": "DPEvent",
+            "sort_on": "sortable_title",
+            "dp_type": "active",
+            "path": path,
+        },
+        title_template="{brain.Title}",
+    )
 
 
 @implementer(IVocabularyFactory)
@@ -198,44 +191,32 @@ class SampleType:
 SampleTypeVocabularyFactory = SampleType()
 
 
-@implementer(IVocabularyFactory)
-class NetworksVocabulary:
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = sorted(
-            (t.Title, t.getObject())
-            for t in cat({"portal_type": "DPNetwork", "path": path})
-        )
-        items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
-        return SimpleVocabulary(items)
+@provider(IVocabularyFactory)
+def NetworksVocabularyFactory(context=None):
+    esd = getDocumentPoolSite(context)
+    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
+    return StaticCatalogVocabulary(
+        {
+            "portal_type": "DPNetwork",
+            "sort_on": "sortable_title",
+            "path": path,
+        },
+        title_template="{brain.Title}",
+    )
 
 
-NetworksVocabularyFactory = NetworksVocabulary()
-
-
-@implementer(IVocabularyFactory)
-class PowerStationsVocabulary:
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = sorted(
-            (t.Title, t.getObject())
-            for t in cat({"portal_type": "DPNuclearPowerStation", "path": path})
-        )
-        items = [SimpleTerm(i[1], i[1].UID(), i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-
-PowerStationsVocabularyFactory = PowerStationsVocabulary()
+@provider(IVocabularyFactory)
+def PowerStationsVocabularyFactory(context=None):
+    esd = getDocumentPoolSite(context)
+    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
+    return StaticCatalogVocabulary(
+        {
+            "portal_type": "DPNuclearPowerStation",
+            "sort_on": "sortable_title",
+            "path": path,
+        },
+        title_template="{brain.Title}",
+    )
 
 
 allow_module("docpool.elan.vocabularies")
