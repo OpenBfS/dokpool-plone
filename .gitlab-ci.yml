@@ -151,6 +151,7 @@ unit_tests:
     - pipenv install setuptools==65.5.1
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
+    - export PYTHONWARNINGS=ignore
     - pipenv run ./bin/coverage erase
     - pipenv run ./bin/coverage run ./bin/test || exit 1
     ## Tests only docpool_setup (without robot)
