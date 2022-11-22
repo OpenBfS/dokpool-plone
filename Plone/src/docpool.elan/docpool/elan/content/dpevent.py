@@ -220,9 +220,7 @@ class DPEvent(Container, ContentBase):
         """
         :return:
         """
-        if self.EventPhase:
-            return self.EventPhase.to_object.getPhaseTitle()
-        return ""
+        return self.EventPhase
 
     def dp_type(self):
         """
