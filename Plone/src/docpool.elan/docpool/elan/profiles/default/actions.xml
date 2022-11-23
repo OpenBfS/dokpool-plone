@@ -55,7 +55,7 @@
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/ticker/edit</property>
    <property name="link_target"></property>
-   <property name="icon_expr"></property>
+   <property name="icon_expr">string:pen</property>
    <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
@@ -66,7 +66,7 @@
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/ticker/deleteTicker</property>
    <property name="link_target"></property>
-   <property name="icon_expr"></property>
+   <property name="icon_expr">string:pen</property>
    <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>

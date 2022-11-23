@@ -40,7 +40,7 @@
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:${context/dp_url}/help?popup_load=1</property>
    <property name="link_target"></property>
-   <property name="icon_expr">string:plone-info</property>
+   <property name="icon_expr">string:person-exclamation</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="View"/>
@@ -54,6 +54,9 @@
   </object>
  </object>
  <object name="user" meta_type="CMF Action Category">
+  <object name="mystuff" meta_type="CMF Action" i18n:domain="plone">
+   <property name="visible">False</property>
+  </object>
   <object name="dashboard" meta_type="CMF Action" i18n:domain="plone">
    <property name="visible">False</property>
   </object>
@@ -87,6 +90,9 @@
    <property name="available_expr">python:context.isAdmin()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
+  </object>
+  <object name="impersonate" meta_type="CMF Action" i18n:domain="plone">
+   <property name="icon_expr">string:plone-group</property>
   </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
