@@ -8,7 +8,7 @@ import registry from "@patternslib/patternslib/src/core/registry";
 const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
 if (isAnonymous === null) {
-    import("./styles.scss");
+  import("./styles.scss");
 }
 
 registry.init();

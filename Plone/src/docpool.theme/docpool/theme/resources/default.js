@@ -19,5 +19,3 @@ if (isAnonymous === null) {
 if (isAnonymous !== null) {
   import("./docpool_styles/anonymous.scss");
 }
-
-
