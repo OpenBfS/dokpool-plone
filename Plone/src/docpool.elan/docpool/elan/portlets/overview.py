@@ -76,6 +76,10 @@ class Renderer(base.Renderer):
                     return
             return
 
+        if getattr(self.context, "myDocumentPool", None) is None:
+            # Not within a docpool
+            return
+
         # Get the active journals for this scenario and document pool
         scenarios = getScenariosForCurrentUser()
         dp = self.context.myDocumentPool()
