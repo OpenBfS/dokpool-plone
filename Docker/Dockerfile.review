@@ -1,5 +1,11 @@
-FROM python:3.9.13-bullseye as base
+FROM python:3.11.0-bullseye as base
 FROM base as builder
+
+ENV PIP_PARAMS=""
+ENV PIP_VERSION=22.3.1
+ENV SETUPTOOLS_VERSION=65.5.1
+# set timezone ME(S)Z
+ENV TZ=Europe/Berlin
 
 RUN apt-get update \
     && buildDeps="dpkg-dev gcc libbz2-dev libc6-dev libffi-dev libjpeg62-turbo-dev libsasl2-dev libldap2-dev libopenjp2-7-dev libpcre3-dev libpq-dev libsasl2-dev libssl-dev libtiff5-dev libxml2-dev libxslt1-dev wget zlib1g-dev python3-dev build-essential" \
@@ -9,15 +15,9 @@ RUN apt-get update \
 
 FROM base
 
-ENV PIP_PARAMS=""
-ENV PIP_VERSION=22.3.1
-ENV SETUPTOOLS_VERSION=65.5.1
-# set timezone ME(S)Z
-ENV TZ=Europe/Berlin
-
 LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
       org.label-schema.name="plone-bfs" \
-      org.label-schema.description="Plone image using Python 3.9" \
+      org.label-schema.description="Plone image using Python 3.11" \
       org.label-schema.vendor="Bfs"
 
 # Todo: Cleanup - some deps are not needed
@@ -39,7 +39,7 @@ RUN cd /opt/bfs/dokpool/Plone \
     && npm run build \
     && pip install pipenv \
     && pipenv install "setuptools==${SETUPTOOLS_VERSION}" \
-    && pipenv install --python=$(whereis python2 | awk '{print $2}')
+    && pipenv install --python=$(whereis python3 | awk '{print $2}')
 
 RUN pipenv run buildout -Nvc buildout_docker_so.cfg
 
