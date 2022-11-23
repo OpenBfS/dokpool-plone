@@ -1,10 +1,8 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="elan.journal"
     >
 
@@ -33,12 +31,6 @@
       description="Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling texutal coverage of an ongoing event. Code adapted from collective.liveblog"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/default"
-      />
-
-  <plone:static
-      directory="static"
-      name="elan.journal"
-      type="plone"
       />
 
   <include package=".browser" />
