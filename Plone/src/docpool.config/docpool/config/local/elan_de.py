@@ -98,6 +98,9 @@ ADMINSTRUCTURE = [
                         ID: "routinemode",
                         "Status": "active",
                         "TimeOfEvent": datetime.now(),
+                        "EventType": "Emergency",
+                        "OperationMode": "routine",
+                        "AlertingStatus": "none",
                         CHILDREN: [],
                     }
                 ],
