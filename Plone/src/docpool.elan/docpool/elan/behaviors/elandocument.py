@@ -71,7 +71,7 @@ class ELANDocument(FlexibleView):
 
     @property
     def scenarios(self):
-        return self.context.scenarios
+        return getattr(self.context, "scenarios", [])
 
     @scenarios.setter
     def scenarios(self, value):
