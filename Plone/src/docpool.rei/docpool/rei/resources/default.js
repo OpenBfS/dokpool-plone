@@ -1,25 +1,14 @@
-import "@patternslib/patternslib/src/globals";
-import { go_to } from "./window_functions";
-import { makePopUp } from "./window_functions";
-import registry from "@patternslib/patternslib/src/core/registry";
+// docpool.rei js/scss entry
+
 import jQuery from "jquery";
-
-// Global functions needed in window
-window.go_to = go_to;
-window.makePopUp = makePopUp;
-
-// Global styles
-import("./docpool_styles/header-timetable.scss");
+import $ from "jquery";
+import "@patternslib/patternslib/src/globals";
+import registry from "@patternslib/patternslib/src/core/registry";
 
 const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
 if (isAnonymous === null) {
-  import("./theme.scss");
-}
-
-// Anonymous users
-if (isAnonymous !== null) {
-  import("./docpool_styles/anonymous.scss");
+    import("./styles.scss");
 }
 
 registry.init();
@@ -30,7 +19,7 @@ jQuery(document).ready(function (evt) {
       // Async import the contentloader and do a mockup registry scan
       Promise.all([
         import(
-          /* webpackChunkName: "pat-contentloader-bfs" */ "./docpool.rei/pat-contentloader-bfs"
+          /* webpackChunkName: "pat-contentloader-bfs" */ "./pat-contentloader-bfs"
         ),
       ]).then((args) => {
         registry.scan($("#content-core"));
