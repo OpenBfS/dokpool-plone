@@ -28,7 +28,7 @@ from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
-from pygeoif import geometry
+from pygeoif import from_wkt
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice
@@ -60,7 +60,7 @@ def initializeTimeOfEvent():
 def is_coordinate(value):
     if value:
         try:
-            wkt = geometry.from_wkt(value)
+            wkt = from_wkt(value)
         except Exception:
             raise Invalid("Value is no a valid WKT.")
         if not wkt.geom_type == "Point":
@@ -71,7 +71,7 @@ def is_coordinate(value):
 def is_point_or_polygon(value):
     if value:
         try:
-            wkt = geometry.from_wkt(value)
+            wkt = from_wkt(value)
         except Exception:
             raise Invalid("Value is not a valid WKT.")
         if not wkt.geom_type in ["Point", "Polygon"]:
@@ -607,7 +607,7 @@ class DPEvent(Container, ContentBase):
         wkt = getattr(self, fieldname, None)
         if not wkt:
             return
-        return geometry.from_wkt(wkt)
+        return from_wkt(wkt)
 
     def event_type_title(self):
         vocab = getUtility(Interface, name="docpool.elan.vocabularies.EventTypes")
