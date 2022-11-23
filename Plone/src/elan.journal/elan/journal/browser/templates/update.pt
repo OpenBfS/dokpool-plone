@@ -13,10 +13,9 @@
     <article itemscope="" itemtype="http://schema.org/BlogPosting">
       <header>
         <div id="parent-fieldname-text" class=""
-            tal:define="text context/text/output|nothing"
-            tal:condition="text">
+             tal:condition="python: getattr(context.aq_base, 'text', None)">
           <div itemprop="articleBody"
-              tal:content="structure text">The body</div>
+               tal:content="structure context/text/output|nothing">The body</div>
         </div>
       </header>
 
