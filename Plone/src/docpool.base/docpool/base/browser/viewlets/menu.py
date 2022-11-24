@@ -63,6 +63,11 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
 
         return tree
 
+    portal_tabs = ()
+
+    def customize_query(self, query):
+        adaptQuery(query, self.context)
+
     def navtree_add_apps_menu(self, tree):
         current_dp, current_app, dp_apps = getApplicationDocPoolsForCurrentUser(
             self.context
