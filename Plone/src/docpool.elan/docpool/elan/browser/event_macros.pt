@@ -16,7 +16,7 @@
                 Please select at least one scenario!
             </div>
 
-            <table class="scenario_table table table-bordered table-info">
+            <table class="scenario_table table table-bordered table-info table-sm small">
             <tal:loop tal:repeat="scenario possible_scenarios">
                 <tr tal:define="event_type python:scenario.EventType or '';
                                 exercise python:event_type in ['Exercise', 'Test'];
@@ -32,6 +32,7 @@
                         <td class="scenario_desc">
 
                             <input type="checkbox" name="scnrs:list"
+                                   class="form-check-input"
                                    tal:attributes="value    scenario/getId;
                                                    title    scenario/Title;
                                                    disabled python:readonly and 'disabled' or None;
