@@ -4,7 +4,14 @@ const path = require("path");
 module.exports = [
   {
     // Main bundle
-    entry: "./src/docpool.theme/docpool/theme/resources/docpool.js",
+    entry: [
+      "./src/docpool.theme/docpool/theme/resources/default.js",
+      "./src/elan.journal/elan/journal/resources/default.js",
+      "./src/docpool.config/docpool/config/resources/default.js",
+      "./src/docpool.base/docpool/base/resources/default.js",
+      "./src/docpool.elan/docpool/elan/resources/default.js",
+      "./src/docpool.rei/docpool/rei/resources/default.js",
+    ],
     // Disable for debugging and development
     optimization: {
       minimize: true,

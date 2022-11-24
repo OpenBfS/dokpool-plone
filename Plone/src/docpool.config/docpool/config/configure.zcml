@@ -11,12 +11,6 @@
 
   <include package=".browser" />
 
-  <plone:static
-      directory="static"
-      name="docpool.config"
-      type="plone"
-      />
-
   <genericsetup:registerProfile
       name="default"
       title="docpool.config"

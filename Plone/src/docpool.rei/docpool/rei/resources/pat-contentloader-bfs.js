@@ -1,8 +1,7 @@
-import $ from "jquery";
 import Base from "@patternslib/patternslib/src/core/base";
 import logger from "@patternslib/patternslib/src/core/logging";
 import registry from "@patternslib/patternslib/src/core/registry";
-import parseBodyTag from "../utils";
+import parseBodyTag from "./utils";
 import _ from "underscore";
 
 const log = logger.getLogger("pat-contentloader-bfs");

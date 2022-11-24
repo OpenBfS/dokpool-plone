@@ -1,4 +1,9 @@
-@import "++theme++barceloneta/less/variables.plone.less";
+// Needed imports for breakpoint mixins
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/maps";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/root";
 
 .visualization {
   .pdflink {
@@ -20,9 +25,7 @@
   }
 }
 
-@media (min-width: @plone-screen-sm-min) {
-}
-@media (min-width: @plone-screen-md-min) {
+@include media-breakpoint-up(md) {
   .visualization {
     .map {
       img {
@@ -39,7 +42,7 @@
     }
   }
 }
-@media (min-width: @plone-screen-lg-min) {
+@include media-breakpoint-up(lg) {
   .visualization {
     .map {
       img {
