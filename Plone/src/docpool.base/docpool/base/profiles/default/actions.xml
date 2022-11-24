@@ -40,7 +40,7 @@
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:${context/dp_url}/help?popup_load=1</property>
    <property name="link_target"></property>
-   <property name="icon_expr">string:person-exclamation</property>
+   <property name="icon_expr"></property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="View"/>
@@ -74,6 +74,7 @@
   </object>
   <object name="logout" meta_type="CMF Action" i18n:domain="plone">
    <property name="url_expr">string:javascript:close_overview()</property>
+   <property name="icon_expr">string:plone-logout</property>
    <property name="permissions">
     <element value="View"/>
    </property>
@@ -92,7 +93,7 @@
    <property name="visible">True</property>
   </object>
   <object name="impersonate" meta_type="CMF Action" i18n:domain="plone">
-   <property name="icon_expr">string:plone-group</property>
+   <property name="icon_expr">string:person-exclamation</property>
   </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
