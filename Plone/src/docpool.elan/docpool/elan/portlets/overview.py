@@ -72,11 +72,16 @@ class Renderer(base.Renderer):
                 context=dp,
                 id=scenario,
             )
-            if event_brain:
+            # Since we reference scenarios by id, which may be shared, our best
+            # guess is to use the first one found that is not archived.
+            for brain in event_brain:
+                if IArchiving(brain).is_archive:
+                    continue
                 yield from api.content.find(
                     portal_type="Journal",
-                    path=event_brain[0].getPath(),
+                    path=brain.getPath(),
                 )
+                break
 
 
 class AddForm(base.NullAddForm):
