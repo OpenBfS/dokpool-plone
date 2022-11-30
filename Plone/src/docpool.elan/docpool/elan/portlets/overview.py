@@ -3,25 +3,15 @@ from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.utils import getScenariosForCurrentUser
+from plone import api
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
 
-import plone.api as api
-
-
-# This interface defines the configurable options (if any) for the portlet.
-# It will be used to generate add and edit forms. In this case, we don't
-# have an edit form, since there are no editable options.
-
 
 class IOverviewPortlet(IPortletDataProvider):
     pass
-
-
-# The assignment is a persistent object used to store the configuration of
-# a particular instantiation of the portlet.
 
 
 @implementer(IOverviewPortlet)
@@ -31,15 +21,7 @@ class Assignment(base.Assignment):
         return _("Overview")
 
 
-# The renderer is like a view (in fact, like a content provider/viewlet). The
-# item self.data will typically be the assignment (although it is possible
-# that the assignment chooses to return a different object - see
-# base.Assignment).
-
-
 class Renderer(base.Renderer):
-
-    # render() will be called to render the portlet
 
     render = ViewPageTemplateFile("overview.pt")
 
@@ -98,8 +80,5 @@ class Renderer(base.Renderer):
 
 
 class AddForm(base.NullAddForm):
-
-    # This method must be implemented to actually construct the object.
-
     def create(self):
         return Assignment()
