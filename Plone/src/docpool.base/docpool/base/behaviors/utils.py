@@ -1,5 +1,4 @@
 from docpool.base.content.doctype import DocType
-from docpool.base.content.dpdocument import DPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from plone import api
 
@@ -15,9 +14,6 @@ def allowed_targets(context):
     """
     from docpool.base.behaviors.transferable import ITransferable
 
-    adapted = ITransferable(context, None)
-    if not adapted:
-        return []
     try:
         esd = context.myDocumentPool()
     except AttributeError:
@@ -41,11 +37,12 @@ def allowed_targets(context):
         brain.UID for brain in brains if not (perm := dt_perm(brain)) or perm != "block"
     ]
 
-    if isinstance(context, DPDocument):
+    transferable = ITransferable(context, None)
+    if transferable is not None:
         mdate = context.getMdate()
         sent_to_since_last_modified = {
             entry["transferfolder_uid"]
-            for entry in adapted.sender_log
+            for entry in transferable.sender_log
             if entry["timestamp"] > mdate
         }
         targets = [t for t in targets if t not in sent_to_since_last_modified]
