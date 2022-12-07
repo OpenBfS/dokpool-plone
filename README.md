@@ -1,5 +1,5 @@
 # Dokpool
-**Dokpool** is a CMS based on Plone 5, a website developed for handling documents in multiple contexts, using several editorial roles and workflows. The main application for **Dokpool** is ELAN5, an Electronic Situation Display for the emergency management. 
+**Dokpool** is a CMS based on Plone 5, a website developed for handling documents in multiple contexts, using several editorial roles and workflows. The main application for **Dokpool** is ELAN5, an Electronic Situation Display for the emergency management. [This change is a test.]
 
 #### Contact
 
