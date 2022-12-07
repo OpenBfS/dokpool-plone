@@ -76,42 +76,52 @@ To build **Dokpool** on a current Linux Distribution you simply have to clone th
 
 #### Requirements:
 
-- system account (e.g. `elan`) which can be used to run Dokpool.
-- Git (to clone the Repo).
-- Python2.7
 - Libraries:
 
 ```sh
-$ apt-get install git python libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev python-virtualenv tar libjpeg-turbo8-dev python-dev gcc make g++ ghostscript libav-tools apt-utils tzdata locales pipenv
+$ apt install build-essential sudo cron curl git libffi-dev libjpeg-dev libssl-dev libxslt1-dev libz-dev lynx poppler-utils socat unzip wv libldap2-dev libsasl2-dev libssl-dev pipenv
 ```
 
-#### Additional requirements for varnish
+- System account (e.g. `elan`) which can be used to run Dokpool:
 
 ```sh
-$ apt-get install libncurses-dev python-docutils autoconf automake libjemalloc-devel libtool libpcre3-devel pkg-config python-sphinx graphviz
+$ addgroup --gid 1005 elan
+$ adduser --gid 1005 --disabled-login --disabled-password --home /srv/elan elan
+$ sudo su - elan
+```
+
+- Git (to clone the Repo).
+- Python 3.11
+- Pipenv (min. version 2022.11.30)
+
+```sh
+$ sudo pip install --upgrade pipenv
+```
+
+- Node/npm (min. version 18.12.1/ 8.19.2)
+
+```sh
+$ sudo curl -sL https://deb.nodesource.com/setup_18.x | bash -
+$ sudo apt-get install -y nodejs
 ```
 
 #### (a) Dokpool with sqlite:
 
-#### Build:
+#### Build Plone:
 
 ```sh
 $ git clone https://github.com/OpenBfS/dokpool-plone.git
 $ cd dokpool-plone/Plone
-# you can do all the following steps in a virtual python environment
+$ git checkout python3
+# Create a virtualenv and install dependencies
 $ pipenv install
-# go on whether you have a virtual python env or not
-$ pipenv shell
-$ buildout -vc buildout.cfg
+$ pipenv run buildout
 ```
 
-#### Rebuild:
+#### Build JS/CSS:
 
 ```sh
-# first activate python virtual env, if your installation runs within a virtualenv
-$ cd dokpool-plone/Plone
-$ export ELANENGINE=sqlite:////tmp/elan5db
-$ ./bin/buildout -Nvc buildout.cfg
+$ npm run build
 ```
 
 #### Run / Start instance:
@@ -119,7 +129,6 @@ $ ./bin/buildout -Nvc buildout.cfg
 ```sh
 # first activate python virtual env, if your installation runs within a virtualenv
 $ cd dokpool-plone/Plone
-$ export ELANENGINE=sqlite:////tmp/elan5db
 $ ./bin/instance fg
 ```
 
