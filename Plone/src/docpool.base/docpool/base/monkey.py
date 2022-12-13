@@ -1,5 +1,6 @@
 from Acquisition import aq_get
 from Acquisition import aq_inner
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import possibleDocTypes
 from docpool.base.utils import possibleDocumentPools
 from plone.app.discussion.browser.conversation import ConversationView
@@ -32,6 +33,9 @@ def enabled(self):
 
     context = aq_inner(self.context)
     if IDPDocument.providedBy(context):
+        if IImportingMarker.providedBy(self.request):
+            # allow to import comments to archived docs
+            return True
         return not IArchiving(context).is_archive
     else:
         return self.original_enabled()
