@@ -4014,7 +4014,6 @@ msgstr ""
 
 #. Default: "Description of Measurement"
 #: docpool/doksys/behaviors/doksysdoc.py
-#, fuzzy
 msgid "label_doksys_Dom"
 msgstr "Beschreibung der Messung"
 

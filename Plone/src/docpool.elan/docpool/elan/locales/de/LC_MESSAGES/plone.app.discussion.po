@@ -217,7 +217,6 @@ msgstr ""
 
 #. Default: "Use this setting to enable or disable Captcha validation for comments. Install plone.formwidget.captcha, plone.formwidget.recaptcha, collective.akismet, or collective.z3cform.norobots if there are no options available."
 #: ../interfaces.py:82
-#, fuzzy
 msgid "help_captcha"
 msgstr ""
 "Wenn Sie diese Einstellung aktivieren, wird mit Hilfe der Captcha-"
@@ -229,7 +228,6 @@ msgstr ""
 
 #. Default: "Some discussion related settings are not located in the Discussion Control Panel.\nTo enable comments for a specific content type, go to the Types Control Panel of this type and choose \"Allow comments\".\nTo enable the moderation workflow for comments, go to the Types Control Panel, choose \"Comment\" and set workflow to \"Comment Review Workflow\"."
 #: ../browser/controlpanel.py:33
-#, fuzzy
 msgid "help_discussion_settings_editform"
 msgstr ""
 "Einige Kommentierungseinstellungen müssen an anderer Stelle vorgenommen "
@@ -243,7 +241,6 @@ msgstr ""
 
 #. Default: "If selected, users are able to post comments on the site. Though, you have to enable comments for specific content types, folders or content objects before users will be able to post comments."
 #: ../interfaces.py:26
-#, fuzzy
 msgid "help_globally_enabled"
 msgstr ""
 "Wenn Sie diese Einstellung aktivieren, können Artikel generell kommentiert "

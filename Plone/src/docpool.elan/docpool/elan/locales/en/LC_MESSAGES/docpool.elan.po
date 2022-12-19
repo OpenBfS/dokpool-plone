@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-09 16:15+0000\n"
+"POT-Creation-Date: 2022-12-19 13:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,10 +88,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "Belongs to scenario:"
 msgstr "Belongs to event:"
-
-#: docpool.elan/docpool/elan/browser/dpevent.pt
-msgid "Betriebsart und Alarmierung"
-msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
@@ -190,6 +186,12 @@ msgstr "Section"
 msgid "ELANCurrentSituation"
 msgstr "Current Situation"
 
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+msgid "Edit"
+msgstr ""
+
 #: docpool.elan/docpool/elan/portlets/collection.py
 msgid "Edit Collection Portlet"
 msgstr ""
@@ -215,7 +217,7 @@ msgid "Emergency"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
-msgid "Ereignisinformationen"
+msgid "Event Information"
 msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
@@ -274,6 +276,10 @@ msgstr ""
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Operation mode and Alerting"
 msgstr ""
 
 #: docpool.elan/docpool/elan/portlets/overview.py
@@ -361,6 +367,12 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "Uninstalls the docpool.elan add-on."
+msgstr ""
+
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+msgid "View"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py

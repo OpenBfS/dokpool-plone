@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-09 16:15+0000\n"
+"POT-Creation-Date: 2022-12-19 13:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "++++ Exercise ++++"
-msgstr ""
+msgstr "++++ Übung ++++"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "++++ Test ++++"
@@ -28,7 +28,7 @@ msgstr "Portlet für Collection zufügen"
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Add New Scenario"
-msgstr ""
+msgstr "Neues Ereignis anlegen"
 
 #: docpool.elan/docpool/elan/portlets/overview.pt
 msgid "Add journal entry"
@@ -44,11 +44,11 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Alerting note"
-msgstr ""
+msgstr "Hinweistext"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Alerting status"
-msgstr ""
+msgstr "Status der Alarmierung"
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "All"
@@ -56,7 +56,7 @@ msgstr "Alle"
 
 #: docpool.elan/docpool/elan/browser/viewlets/events.pt
 msgid "All Archives"
-msgstr ""
+msgstr "Alle Archive"
 
 #: docpool.elan/docpool/elan/browser/elandoccollectionrpopup.pt
 #: docpool.elan/docpool/elan/browser/viewlets/events.pt
@@ -75,7 +75,7 @@ msgstr "Archivieren"
 
 #: docpool.elan/docpool/elan/content/dpnetwork.py
 msgid "Area coordinates"
-msgstr ""
+msgstr "Koordinaten"
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANInfos.xml
 msgid "Area for general information"
@@ -83,20 +83,16 @@ msgstr "Bereich für allgemeine Informationen"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Area of interest"
-msgstr ""
+msgstr "Kartenausschnitt"
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "Belongs to scenario:"
 msgstr "Zu Ereignis:"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
-msgid "Betriebsart und Alarmierung"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Changelog"
-msgstr ""
+msgstr "Ereignis-Historie"
 
 #: docpool.elan/docpool/elan/monkey.py
 msgid "Changes applied."
@@ -116,7 +112,7 @@ msgstr "Kategorie:"
 
 #: docpool.elan/docpool/elan/content/dpnuclearpowerstation.py
 msgid "Coordinates"
-msgstr ""
+msgstr "Koordinaten"
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Create Archive Folder"
@@ -124,11 +120,11 @@ msgstr "Archivordner anlegen"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Created"
-msgstr ""
+msgstr "Erzeugt"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Created snapshot of event."
-msgstr ""
+msgstr "Teilarchiv des Ereignisses erstellt."
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "Current filter:"
@@ -136,19 +132,19 @@ msgstr "Aktueller Filter:"
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
 msgid "DP Event"
-msgstr ""
+msgstr "Ereignis"
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
 msgid "DP Events"
-msgstr ""
+msgstr "Ereignisse"
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
 msgid "DP Network"
-msgstr ""
+msgstr "Netz"
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPNuclearPowerStation.xml
 msgid "DP Nuclear Power Station"
-msgstr ""
+msgstr "Kernkraftwerk"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Date of last user action"
@@ -156,7 +152,7 @@ msgstr "Zeitpunkt der letzten Nutzeraktion"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Date/User"
-msgstr ""
+msgstr "Datum/Uhrzeit (durchgeführt von)"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Dates"
@@ -190,13 +186,19 @@ msgstr "Abschnitt"
 msgid "ELANCurrentSituation"
 msgstr "Aktuelle Lage"
 
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+msgid "Edit"
+msgstr ""
+
 #: docpool.elan/docpool/elan/portlets/collection.py
 msgid "Edit Collection Portlet"
 msgstr "Portlet für Collection bearbeiten"
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Edit Scenarios"
-msgstr ""
+msgstr "Ereignisse bearbeiten"
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Edit Ticker"
@@ -212,31 +214,31 @@ msgstr "Unbekanntes Ereignis bearbeiten"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Emergency"
-msgstr ""
+msgstr "Notfall"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
-msgid "Ereignisinformationen"
-msgstr ""
+msgid "Event Information"
+msgstr "Ereignisinformationen"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Event coordinates"
-msgstr ""
+msgstr "Ereignis Koordinaten"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Event location"
-msgstr ""
+msgstr "Ereignisort"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Example: POINT(12.293121814727781 48.60338936478996)"
-msgstr ""
+msgstr "Beispiel: POINT(12.293121814727781 48.60338936478996)"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
-msgstr ""
+msgstr "Beispiel: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Exercise"
-msgstr ""
+msgstr "Übung"
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 #: docpool.elan/docpool/elan/browser/event_macros.pt
@@ -249,7 +251,7 @@ msgstr "Home"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Intensive mode"
-msgstr ""
+msgstr "Intensivbetrieb"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Journals"
@@ -257,7 +259,7 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "LT"
-msgstr ""
+msgstr "Ortszeit"
 
 #: docpool.elan/docpool/elan/portlets/collection.pt
 msgid "Latest from"
@@ -274,7 +276,11 @@ msgstr "Metadaten"
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
-msgstr ""
+msgstr "Betriebsart"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+msgid "Operation mode and Alerting"
+msgstr "Betriebsart und Alarmierung"
 
 #: docpool.elan/docpool/elan/portlets/overview.py
 msgid "Overview"
@@ -282,11 +288,11 @@ msgstr "Übersicht"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Phase"
-msgstr ""
+msgstr "Szenario & Phase"
 
 #: docpool.elan/docpool/elan/browser/event_macros.pt
 msgid "Please select at least one scenario!"
-msgstr ""
+msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
@@ -298,29 +304,29 @@ msgstr "Letzte Änderungen"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
-msgstr ""
+msgstr "Kleine Lage"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"
-msgstr ""
+msgstr "Routinebetrieb"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Scenario & Phase"
-msgstr ""
+msgstr "Szenario & Phase"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Scenario archived"
-msgstr ""
+msgstr "Ereignis archiviert"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Sectorizing networks"
-msgstr ""
+msgstr "Sektorierung Netze"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Sectorizing sample types"
-msgstr ""
+msgstr "Sektorierung Umweltbereiche"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
@@ -329,11 +335,11 @@ msgstr "Kopie des aktuellen Standes"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "State"
-msgstr ""
+msgstr "Status des Ereignisses"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Test"
@@ -353,19 +359,25 @@ msgstr "Dieses Portlet zeigt die neusten Inhalte einer Collection an."
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Title/Description"
-msgstr ""
+msgstr "Titel/Beschreibung"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Type of event"
-msgstr ""
+msgstr "Art des Ereignisses"
 
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "Uninstalls the docpool.elan add-on."
 msgstr ""
 
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
+#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+msgid "View"
+msgstr ""
+
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "active"
-msgstr ""
+msgstr "Aktiv"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "alert_delete_popup"
@@ -389,7 +401,7 @@ msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "archive_confirm_msg"
-msgstr ""
+msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
 #. Default: "No items changed yet."
 #: docpool.elan/docpool/elan/portlets/collection.pt
@@ -399,7 +411,7 @@ msgstr "Noch keine Änderungen"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "closed"
-msgstr ""
+msgstr "Geschlossen"
 
 #: docpool.elan/docpool/elan/behaviors/elandoctype.py
 msgid "description_doctype_contentcategory"
@@ -412,7 +424,7 @@ msgstr ""
 #. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_alert_note"
-msgstr ""
+msgstr "Inhalt der E-Mail und/oder SMS an die IMIS-Benutzer.  Der letzte Hinweistext wird angezeigt und muss überschrieben werden. Zum Versenden muss ‚Alarmierung‘ auf ‘ausgelöst‘ stehen."
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_alerting_status"
@@ -454,7 +466,7 @@ msgstr "Nicht erforderlich."
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "inactive"
-msgstr ""
+msgstr "Inaktiv"
 
 #. Default: "Choose category for this type "
 #: docpool.elan/docpool/elan/behaviors/elandoctype.py
@@ -469,12 +481,12 @@ msgstr "Gehört zu folgenden Ereignissen"
 #. Default: "Status of Alerting"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_alerting_status"
-msgstr ""
+msgstr "Status der Alarmierung"
 
 #. Default: "Alert Note"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_alteringnote"
-msgstr ""
+msgstr "Hinweistext"
 
 #. Default: "Changelog"
 #: docpool.elan/docpool/elan/content/dpevent.py
@@ -484,22 +496,22 @@ msgstr ""
 #. Default: "Status of the event"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_status"
-msgstr ""
+msgstr "Status des Ereignisses"
 
 #. Default: "Substitute event"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_substitute"
-msgstr ""
+msgstr "Ersatzereignis"
 
 #. Default: "Time of event"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_timeofevent"
-msgstr ""
+msgstr "Ereigniszeit"
 
 #. Default: "Type of event"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_type"
-msgstr ""
+msgstr "Art des Ereignisses"
 
 #. Default: "Document Type"
 #: docpool.elan/docpool/elan/portlets/collection.py
@@ -526,4 +538,4 @@ msgstr "Nicht erforderlich"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "snapshot_confirm_msg"
-msgstr ""
+msgstr "Wollen Sie wirklich dieses Ereignis teilarchivieren? Das Ereignis bleibt dabei erhalten, alle Dokumente werden in ein Archiv verschoben."
