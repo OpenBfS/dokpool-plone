@@ -22,3 +22,4 @@ virtualenv==20.0.7
 zc.buildout==2.13.3
 zipp==1.2.0
 setuptools-scm==5.0.2
+wheel==0.37.1
