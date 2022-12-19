@@ -448,22 +448,20 @@ class DPEvent(Container, ContentBase):
 
         mdate = obj.modified()
         transfer_events = obj.doc_extension(TRANSFERS_APP).transferEvents()
-        wftool = api.portal.get_tool("portal_workflow")
         old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
         new_state = api.content.get_state(moved_obj)
 
-        # We directly transition for speed
         if old_state != new_state:
+            # We directly transition for speed
+            wftool = api.portal.get_tool("portal_workflow")
             if old_state == "published" and new_state in ["private", "pending"]:
                 wftool.doActionFor(moved_obj, "publish")
             elif old_state == "pending" and new_state in ["private"]:
                 wftool.doActionFor(moved_obj, "submit")
             elif old_state == "pending" and new_state in ["published"]:
                 wftool.doActionFor(moved_obj, "retract")
-
-            new_state = api.content.get_state(moved_obj)
-            if old_state != new_state:
+            else:
                 # See https://redmine-koala.bfs.de/issues/5007
                 api.content.transition(moved_obj, to_state=old_state)
 
@@ -487,12 +485,21 @@ class DPEvent(Container, ContentBase):
         mdate = obj.modified()
         copied_obj.scenarios = []
 
-        wftool = api.portal.get_tool("portal_workflow")
         old_state = api.content.get_state(obj)
-        if old_state == "published":
-            wftool.doActionFor(copied_obj, "publish")
-        elif old_state == "pending":
-            wftool.doActionFor(copied_obj, "submit")
+        new_state = api.content.get_state(copied_obj)
+
+        if old_state != new_state:
+            # We directly transition for speed
+            wftool = api.portal.get_tool("portal_workflow")
+            if old_state == "published" and new_state in ["private", "pending"]:
+                wftool.doActionFor(copied_obj, "publish")
+            elif old_state == "pending" and new_state in ["private"]:
+                wftool.doActionFor(copied_obj, "submit")
+            elif old_state == "pending" and new_state in ["published"]:
+                wftool.doActionFor(copied_obj, "retract")
+            else:
+                # See https://redmine-koala.bfs.de/issues/5007
+                api.content.transition(copied_obj, to_state=old_state)
 
         copied_obj.setModificationDate(mdate)
         # transferLog for archived items needs to be a string
