@@ -28,7 +28,6 @@ from docpool.event.utils import get_global_scenario_selection
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
 from elan.journal.adapters import IJournalEntryContainer
-from elan.journal.adapters import JournalEntry
 from logging import getLogger
 from plone import api
 from plone.autoform import directives
@@ -452,11 +451,21 @@ class DPEvent(Container, ContentBase):
         wftool = api.portal.get_tool("portal_workflow")
         old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
+        new_state = api.content.get_state(moved_obj)
 
-        if old_state == "published":
-            wftool.doActionFor(moved_obj, "publish")
-        elif old_state == "pending":
-            wftool.doActionFor(moved_obj, "submit")
+        # We directly transition for speed
+        if old_state != new_state:
+            if old_state == "published" and new_state in ["private", "pending"]:
+                wftool.doActionFor(moved_obj, "publish")
+            elif old_state == "pending" and new_state in ["private"]:
+                wftool.doActionFor(moved_obj, "submit")
+            elif old_state == "pending" and new_state in ["published"]:
+                wftool.doActionFor(moved_obj, "retract")
+
+            new_state = api.content.get_state(moved_obj)
+            if old_state != new_state:
+                # See https://redmine-koala.bfs.de/issues/5007
+                api.content.transition(moved_obj, to_state=old_state)
 
         # Now do some repairs
         moved_obj.scenarios = []
