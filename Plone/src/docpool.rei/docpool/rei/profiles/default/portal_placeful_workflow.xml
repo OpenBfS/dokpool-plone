@@ -5,17 +5,25 @@
  <object name="rei_bw" meta_type="WorkflowPolicy"/>
  <object name="rei_rp" meta_type="WorkflowPolicy"/>
  <object name="rei_bb" meta_type="WorkflowPolicy"/>
+ <object name="rei_bb2" meta_type="WorkflowPolicy"/>
  <object name="rei_be" meta_type="WorkflowPolicy"/>
  <object name="rei_by" meta_type="WorkflowPolicy"/>
  <object name="rei_he1" meta_type="WorkflowPolicy"/>
  <object name="rei_he2" meta_type="WorkflowPolicy"/>
  <object name="rei_mv" meta_type="WorkflowPolicy"/>
  <object name="rei_ni" meta_type="WorkflowPolicy"/>
+ <object name="rei_ni1" meta_type="WorkflowPolicy"/>
  <object name="rei_nw" meta_type="WorkflowPolicy"/>
+ <object name="rei_nw1" meta_type="WorkflowPolicy"/>
+ <object name="rei_nw2" meta_type="WorkflowPolicy"/>
  <object name="rei_sh1" meta_type="WorkflowPolicy"/>
  <object name="rei_sh2" meta_type="WorkflowPolicy"/>
  <object name="rei_BfE1" meta_type="WorkflowPolicy"/>
  <object name="rei_BfE2" meta_type="WorkflowPolicy"/>
  <object name="rei_sl" meta_type="WorkflowPolicy"/>
  <object name="rei_sn" meta_type="WorkflowPolicy"/>
+ <object name="rei_sn1" meta_type="WorkflowPolicy"/>
+ <object name="rei_sn2" meta_type="WorkflowPolicy"/>
+ <object name="rei_zdbtest_standard" meta_type="WorkflowPolicy"/>
+ <object name="rei_zdbtest" meta_type="WorkflowPolicy"/>
 </object>
