@@ -124,6 +124,7 @@ ModesVocabularyFactory = ModesVocabulary()
 class SampleType:
     def __call__(self, context=None):
         items = [
+            ("-", "noch nicht festgelegt"),
             ("A", "Abwasser, Reststoffe und Abfälle"),
             ("A1", "Kläranlage"),
             ("A2", "Verbrennungsanlage"),
