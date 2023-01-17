@@ -1,5 +1,5 @@
 # Official Python Image
-image: python:3.11.0-bullseye
+image: python:3.11.0-slim-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
