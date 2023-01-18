@@ -1,1 +1,24 @@
 /* docpool specific styles css */
+
+#meta_items {
+  img {
+    background-color: #ffffff;
+    background-image: url("/++plone++docpool/images/bfs-plus-icon.png");
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    margin-top: 10px;
+    height: 24px !important;
+    margin-bottom: 10px;
+  }
+
+  > img.active {
+    background-image: url("/++plone++docpool/images/bfs-minus-icon.png");
+  }
+
+  .content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+}
