@@ -4,4 +4,5 @@
  <property name="max_chain_length" type="int">1</property>
  <object name="elan-archive" meta_type="WorkflowPolicy"/>
  <object name="elan-transfer" meta_type="WorkflowPolicy"/>
+ <object name="minor-event" meta_type="WorkflowPolicy"/>
 </object>
