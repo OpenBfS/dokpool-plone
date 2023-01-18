@@ -19,6 +19,7 @@ six==1.14.0
 toml==0.10.0
 typing==3.7.4.1
 virtualenv==20.0.7
+wheel==0.37.1
 zc.buildout==2.13.3
 zipp==1.2.0
 setuptools-scm==5.0.2
