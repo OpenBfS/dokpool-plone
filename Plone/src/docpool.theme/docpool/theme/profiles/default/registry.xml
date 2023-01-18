@@ -6,7 +6,7 @@
   <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
            prefix="plone.bundles/docpool.theme">
     <value key="enabled">True</value>
-    <value key="jscompilation">++plone++docpool/docpool.min.js</value>
+    <value key="jscompilation">++plone++docpool/build/docpool.min.js</value>
     <value key="load_defer">True</value>
   </records>
 

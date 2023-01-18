@@ -17,7 +17,10 @@ module.exports = [
       minimize: true,
     },
     output: {
-      path: path.resolve(__dirname, "src/docpool.theme/docpool/theme/static/"),
+      path: path.resolve(
+        __dirname,
+        "src/docpool.theme/docpool/theme/static/build"
+      ),
       filename: "docpool.min.js",
     },
     module: {
