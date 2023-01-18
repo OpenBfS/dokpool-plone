@@ -1,44 +1,51 @@
-FROM python:3.11.0-bullseye as base
+# syntax=docker/dockerfile:1
+ARG PYTHON_VERSION=3.11
+FROM python:${PYTHON_VERSION}-slim-bullseye as base
 FROM base as builder
 
 ENV PIP_PARAMS=""
 ENV PIP_VERSION=22.3.1
 
-RUN apt-get update \
-    && buildDeps="dpkg-dev gcc libbz2-dev libc6-dev libffi-dev libjpeg62-turbo-dev libsasl2-dev libldap2-dev libopenjp2-7-dev libpcre3-dev libpq-dev libsasl2-dev libssl-dev libtiff5-dev libxml2-dev libxslt1-dev wget zlib1g-dev python3-dev build-essential" \
-    && apt-get install -y --no-install-recommends $buildDeps\
-    && pip install -U "pip==${PIP_VERSION}" \
-    && rm -rf /var/lib/apt/lists/* /usr/share/doc
+RUN <<EOT
+    apt-get update
+    buildDeps="build-essential libbz2-dev libffi-dev libjpeg62-turbo-dev libldap2-dev libopenjp2-7-dev libpcre3-dev libpq-dev libsasl2-dev libssl-dev libtiff5-dev libxml2-dev libxslt1-dev wget zlib1g-dev"
+    apt-get install -y --no-install-recommends $buildDeps
+    pip install -U "pip==${PIP_VERSION}"
+    rm -rf /var/lib/apt/lists/* /usr/share/doc
+EOT
 
 FROM base
 
 ENV SETUPTOOLS_VERSION=65.5.1
 
 LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
-      org.label-schema.name="plone-bfs" \
-      org.label-schema.description="Plone image using Python 3.11" \
-      org.label-schema.vendor="Bfs"
+    org.label-schema.name="plone-bfs" \
+    org.label-schema.description="Plone image using Python 3.11" \
+    org.label-schema.vendor="BfS"
 
 # Todo: Cleanup - some deps are not needed
-RUN useradd --system -m -d /app -U -u 500 plone \
-    && runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make nodejs npm" \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends $runDeps \
-    && busybox --install -s
+RUN  <<EOT
+    useradd --system -m -d /app -U -u 500 plone
+    runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make nodejs npm"
+    apt-get update
+    apt-get install -y --no-install-recommends $runDeps
+    busybox --install -s
+EOT
 
 # Todo: Cleanup - some deps are not needed
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install git python3 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev tar python3-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python3-pip && apt-get autoclean
 
-RUN mkdir -p /opt/bfs/dokpool
-ADD . /opt/bfs/dokpool/
+
+COPY . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
 
-RUN cd /opt/bfs/dokpool/Plone \
-    && npm ci \
-    && npm run build \
-    && pip install pipenv \
-    && pipenv install "setuptools==${SETUPTOOLS_VERSION}" \
-    && pipenv install --python=$(whereis python3 | awk '{print $2}')
+RUN <<EOT
+    npm ci
+    npm run build
+    pip install pipenv
+    pipenv install "setuptools==${SETUPTOOLS_VERSION}"
+    pipenv install --python=$(whereis python3 | awk '{print $2}')
+EOT
 
 RUN pipenv run buildout -Nvc buildout_docker_so.cfg
 
