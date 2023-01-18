@@ -29,8 +29,8 @@ Plone/etc/zodbpack.conf
 .plone.versioncheck.tracked.json
 # node modules webpack theme
 node_modules/
-Plone/src/docpool.theme/docpool/theme/static/*.js
-Plone/src/docpool.theme/docpool/theme/static/*.txt
-Plone/src/docpool.theme/docpool/theme/static/*.css
-Plone/src/docpool.theme/docpool/theme/static/*.map
+Plone/src/docpool.theme/docpool/theme/static/build/*.js
+Plone/src/docpool.theme/docpool/theme/static/build/*.txt
+Plone/src/docpool.theme/docpool/theme/static/build/*.css
+Plone/src/docpool.theme/docpool/theme/static/build/*.map
 .python-version
