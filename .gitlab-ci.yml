@@ -65,7 +65,7 @@ build:
   script:
     # build docker
     - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
-    - docker build -t bfs/dokpool/py3 -f ./Docker/Dockerfile.review .
+    - docker buildx build -t bfs/dokpool/py3 -f ./Docker/Dockerfile.review .
     - docker tag bfs/dokpool/py3:latest git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     - docker push git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
   only:
