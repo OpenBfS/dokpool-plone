@@ -98,7 +98,8 @@ class DPTransferFolder(FolderBase):
 
     # TODO should be indexed
     def from_to_title(self):
-        from_title = self.getSendingESD().Title()
+        sending_esd = self.getSendingESD()
+        from_title = sending_esd.Title() if sending_esd else "N/A"
         to_title = self.myDocumentPool().Title()
         return f"{from_title} --> {to_title} ({self.title})"
 
@@ -113,7 +114,9 @@ class DPTransferFolder(FolderBase):
         """ """
 
         def doIt():
-            esd = self.getSendingESD()
+            if not (esd := self.getSendingESD()):
+                return []
+
             theirDts = esd.myDocumentTypes(ids_only=True)
             myDts = self.myDocumentTypes()
             # print theirDts
@@ -159,7 +162,9 @@ class DPTransferFolder(FolderBase):
         """ """
 
         def grantRead():
-            esd = self.getSendingESD()
+            if not (esd := self.getSendingESD()):
+                return
+
             prefix = esd.myPrefix()
             esd_members = "%s_Senders" % prefix
             self.myDocumentPool().manage_setLocalRoles(esd_members, ["Reader"])
