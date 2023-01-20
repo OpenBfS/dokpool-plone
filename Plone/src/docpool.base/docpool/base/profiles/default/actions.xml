@@ -54,9 +54,6 @@
   </object>
  </object>
  <object name="user" meta_type="CMF Action Category">
-  <object name="mystuff" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
-  </object>
   <object name="dashboard" meta_type="CMF Action" i18n:domain="plone">
    <property name="visible">False</property>
   </object>
@@ -91,9 +88,6 @@
    <property name="available_expr">python:context.isAdmin()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
-  </object>
-  <object name="impersonate" meta_type="CMF Action" i18n:domain="plone">
-   <property name="icon_expr">string:person-exclamation</property>
   </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
