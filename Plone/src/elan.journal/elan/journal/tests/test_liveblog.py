@@ -15,6 +15,7 @@ class ContentTypeTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer["portal"]
+        self.portal.portal_types["Journal"].global_allow = True
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.portal, "Journal", "journal")
 

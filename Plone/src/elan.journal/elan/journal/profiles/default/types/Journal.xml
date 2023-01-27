@@ -7,8 +7,8 @@
   <property name="title" i18n:translate="">Journal</property>
   <property name="description" i18n:translate="">A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event.</property>
   <property name="content_icon">++resource++elan.journal/journal_icon.png</property>
-  <property name="allow_discussion">True</property>
-  <property name="global_allow">True</property>
+  <property name="allow_discussion">False</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
     <element value="Image" />
