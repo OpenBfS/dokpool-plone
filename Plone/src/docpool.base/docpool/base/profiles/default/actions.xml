@@ -89,6 +89,9 @@
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
+  <object name="impersonate" meta_type="CMF Action" i18n:domain="plone">
+   <property name="icon_expr">string:person-exclamation</property>
+  </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
   <object name="ical_import_enable" meta_type="CMF Action" i18n:domain="plone.app.event">
