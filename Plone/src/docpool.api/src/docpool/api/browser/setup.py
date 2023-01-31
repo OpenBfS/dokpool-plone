@@ -62,17 +62,6 @@ class DocpoolSetup(BrowserView):
 
     def __call__(self):
 
-        # TODO: Re-add or completely remove this check
-        # This is only relevant for the old webpack theme which is not used so far in Plone 6
-        # portal = api.portal.get()
-        # if portal.id != "dokpool" and not api.env.test_mode():
-        #     api.portal.show_message(
-        #         f'The instance needs to be called "dokpool", not "{portal.id}"!',
-        #         self.request,
-        #         type="error",
-        #     )
-        #     return self.index()
-
         if not self.request.form.get("submit", None):
             return self.index()
 
@@ -651,12 +640,6 @@ class DocpoolSetup(BrowserView):
             exclude_from_nav=False,
         )
         _configure_faceted_view(search, import_file_path, "faceted-table-items")
-
-        # Why we need to set to empty?
-        # Todo: https://redmine-koala.bfs.de/issues/3951
-        search.relatedItems = []
-        modified(search)
-
         return self.request.response.redirect(self.context.absolute_url())
 
 
