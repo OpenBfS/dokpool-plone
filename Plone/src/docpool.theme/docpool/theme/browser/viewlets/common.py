@@ -5,6 +5,7 @@ from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from subprocess import check_output
 
+import os
 import plone.api as api
 import shlex
 
@@ -37,11 +38,17 @@ class LogoDocpoolViewlet(LogoViewlet):
 
     def get_git_rev(self):
         # Git Revision
+        commit_hash = os.getenv("GIT_COMMIT")
+        if commit_hash:
+            return commit_hash
         git_head_rev = check_output(shlex.split("git rev-parse --short HEAD")).strip()
         return git_head_rev.decode()
 
     def get_git_branch(self):
         # Git Branch
+        commit_name = os.getenv("GIT_REF_NAME")
+        if commit_name:
+            return commit_name
         git_branch = check_output(
             shlex.split("git rev-parse --abbrev-ref HEAD")
         ).strip()
