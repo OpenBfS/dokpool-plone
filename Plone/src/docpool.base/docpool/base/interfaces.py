@@ -1,6 +1,5 @@
 from docpool.base.content.doctype import IDocType  # noqa: F401
 from docpool.base.content.documentpool import IDocumentPool  # noqa: F401
-from docpool.base.content.dpapplication import IDPApplication  # noqa: F401
 from docpool.base.content.dpdocument import IDPDocument  # noqa: F401
 from docpool.base.content.folderbase import IFolderBase  # noqa: F401
 from docpool.base.content.infodocument import IInfoDocument  # noqa: F401

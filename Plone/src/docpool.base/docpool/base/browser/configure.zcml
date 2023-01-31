@@ -212,13 +212,6 @@
       />
 
   <browser:page
-      name="view"
-      for="..interfaces.IDPApplication"
-      class=".dpapplication.DPApplicationView"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="review_history"
       for="*"
       class=".review_history.ReviewHistoryView"
