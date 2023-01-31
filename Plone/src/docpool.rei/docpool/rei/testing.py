@@ -17,6 +17,7 @@ class DocpoolReiLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import collective.impersonate
         import docpool.base
         import eea.facetednavigation
         import Products.CMFFormController
@@ -25,6 +26,7 @@ class DocpoolReiLayer(PloneSandboxLayer):
         self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=docpool.rei)
+        self.loadZCML(package=collective.impersonate)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.rei:default")

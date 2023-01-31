@@ -21,6 +21,7 @@ class Fixture(PloneSandboxLayer):
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
+        import collective.impersonate
         import docpool.base
         import docpool.config
         import docpool.doksys
@@ -38,6 +39,7 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=docpool.doksys)
+        self.loadZCML(package=collective.impersonate)
         self.loadZCML("testing.zcml", package=elan.journal)
 
     def setUpPloneSite(self, portal):

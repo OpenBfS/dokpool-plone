@@ -36,7 +36,9 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import collective.impersonate
         import docpool.base
+        import docpool.doksys
         import docpool.elan
         import docpool.rei
         import docpool.theme
@@ -56,6 +58,7 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.rei)
+        self.loadZCML(package=collective.impersonate)
 
     def setUpPloneSite(self, portal):
         portal.acl_users.userFolderAddUser(
