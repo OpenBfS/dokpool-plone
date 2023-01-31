@@ -40,21 +40,6 @@ class DashboardCollection(Collection):
 
     security = ClassSecurityInfo()
 
-    def testSearch(self):
-        """ """
-        kw = {
-            "portal_type": {"query": ["DPDocument"]},
-            "sort_on": "mdate",
-            "dp_type": {"query": ["eventinformation", "nppinformation"]},
-            "scenarios": {"query": ["scenario2", "scenario1"]},
-            "sort_order": "reverse",
-            "path": {"query": "/Plone/Members"},
-        }
-        res = self.portal_catalog(**kw)
-        # print len(res)
-        for r in res:
-            print(r.Title)
-
     def getUserSelectedCategories(self):
         """ """
         from docpool.elan.utils import getCategoriesForCurrentUser

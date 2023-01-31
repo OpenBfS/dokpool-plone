@@ -1,18 +1,3 @@
-#
-# File: documentpool.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the DocumentPool content type. See documentpool.py for more
-explanation on the statements below.
-"""
-from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.appregistry import implicitApps
@@ -81,8 +66,6 @@ class IDocumentPool(model.Schema):
 @implementer(IDocumentPool)
 class DocumentPool(Container):
     """ """
-
-    security = ClassSecurityInfo()
 
     def logoSrc(self):
         if self.customLogo:

@@ -1,17 +1,3 @@
-#
-# File: contentbase.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the ContentBase content type. See contentbase.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from Acquisition import aq_get
@@ -83,9 +69,7 @@ class IContentBase(model.Schema):
 
 @implementer(IContentBase)
 class ContentBase:
-    """Mixin class used by DPDocument, FolderBase, InfoLink, Text, DPEvent and SRTextBlock."""
-
-    security = ClassSecurityInfo()
+    """Mixin used by DPDocument, FolderBase, InfoLink, Text, DPEvent and SRTextBlock."""
 
     def _getUserInfoString(self, plain=False):
         from docpool.base.utils import getUserInfo

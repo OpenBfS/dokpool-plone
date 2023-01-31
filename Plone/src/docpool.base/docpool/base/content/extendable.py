@@ -1,17 +1,3 @@
-#
-# File: extendable.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the Extendable content type. See extendable.py for more
-explanation on the statements below.
-"""
 from AccessControl import ClassSecurityInfo
 from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.appregistry import appIcon
@@ -20,8 +6,6 @@ from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument
 
 class Extendable:
     """Mixin class used by DPDocument and DocType."""
-
-    security = ClassSecurityInfo()
 
     def doc_extension(self, applicationName):
         """

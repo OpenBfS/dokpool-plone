@@ -1,18 +1,3 @@
-#
-# File: doctype.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the DocType content type. See doctype.py for more
-explanation on the statements below.
-"""
-from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
@@ -120,36 +105,6 @@ class IDocType(model.Schema):
 @implementer(IDocType)
 class DocType(Container, Extendable):
     """ """
-
-    security = ClassSecurityInfo()
-
-    def myDocType(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getFiles(self, **kwargs):
-        """ """
-        args = {"portal_type": "File"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getImages(self, **kwargs):
-        """ """
-        args = {"portal_type": "Image"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
 
 
 @adapter(IDocType, IEditFinishedEvent)

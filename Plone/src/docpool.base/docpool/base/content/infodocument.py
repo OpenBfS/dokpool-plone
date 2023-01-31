@@ -1,18 +1,3 @@
-#
-# File: infodocument.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the InfoDocument content type. See infodocument.py for more
-explanation on the statements below.
-"""
-from AccessControl import ClassSecurityInfo
 from docpool.base.content.dpdocument import DPDocument
 from docpool.base.content.dpdocument import IDPDocument
 from plone.autoform import directives
@@ -36,8 +21,6 @@ class IInfoDocument(model.Schema, IDPDocument):
 class InfoDocument(DPDocument):
     """ """
 
-    security = ClassSecurityInfo()
-
     def dp_type(self):
         return "General"
 
@@ -56,37 +39,3 @@ class InfoDocument(DPDocument):
 
     def getScenarios(self):
         return []
-
-    def myInfoDocument(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getFiles(self, **kwargs):
-        """ """
-        args = {"portal_type": "File"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getImages(self, **kwargs):
-        """ """
-        args = {"portal_type": "Image"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]

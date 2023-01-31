@@ -1,18 +1,3 @@
-#
-# File: userfolder.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the UserFolder content type. See userfolder.py for more
-explanation on the statements below.
-"""
-from AccessControl import ClassSecurityInfo
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import _cutPaste
@@ -29,8 +14,6 @@ class IUserFolder(model.Schema, ISimpleFolder):
 @implementer(IUserFolder)
 class UserFolder(SimpleFolder):
     """ """
-
-    security = ClassSecurityInfo()
 
     def notifyMemberAreaCreated(self):
         """
@@ -53,31 +36,3 @@ class UserFolder(SimpleFolder):
                         _cutPaste(self, members, unique=True)
 
         execute_under_special_role(self, "Manager", moveFolder)
-
-    def myUserFolder(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getSimpleFolders(self, **kwargs):
-        """ """
-        args = {"portal_type": "SimpleFolder"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
