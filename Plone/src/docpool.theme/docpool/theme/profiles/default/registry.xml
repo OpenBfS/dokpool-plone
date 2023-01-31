@@ -1,13 +1,20 @@
- <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.theme">
 
-  <!-- javascript/less ====================================================== -->
+    <!-- javascript/less ====================================================== -->
 
-  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
-           prefix="plone.bundles/docpool.theme">
-    <value key="enabled">True</value>
-    <value key="jscompilation">++plone++docpool/build/docpool.min.js</value>
-    <value key="load_defer">True</value>
-  </records>
+    <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+             prefix="plone.bundles/docpool.theme">
+        <value key="enabled">True</value>
+        <value key="jscompilation">++plone++docpool/build/docpool.min.js</value>
+        <value key="load_defer">True</value>
+    </records>
 
+    <record name="docpool.show_debug_info">
+        <field type="plone.registry.field.Bool">
+            <title>Show docpool debug info</title>
+            <required>False</required>
+        </field>
+        <value>False</value>
+    </record>
 </registry>
