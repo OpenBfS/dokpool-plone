@@ -29,11 +29,8 @@
 
  <!-- enabled behaviors -->
  <property name="behaviors">
-     <element value="plone.dublincore" />
+     <element value="plone.basic" />
      <element value="plone.namefromtitle" />
-     <element value="plone.textindexer" />
-     <element value="plone.allowdiscussion" />
-     <element value="plone.excludefromnavigation" />
      <element value="docpool.localbehavior" />
      <element value="docpool.transferstype" />
 </property>
