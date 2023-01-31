@@ -85,6 +85,8 @@ class DocpoolSetup(BrowserView):
         installer.install_product("elan.journal")
         installer.install_product("docpool.rei")
 
+        api.portal.set_registry_record("docpool.show_debug_info", True)
+
         # create docpool 1 (with rei)
         docpool_bund = api.content.create(
             container=self.context,

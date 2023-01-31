@@ -68,8 +68,9 @@ build:
     - docker buildx build -t bfs/dokpool/py3 -f ./Docker/Dockerfile.review .
     - docker tag bfs/dokpool/py3:latest git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     - docker push git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
-  only:
-    - review_py3
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_dev:
   tags:
@@ -85,7 +86,7 @@ deploy_dev:
     - docker stop dokpool-review-py3 || true
     - docker rm dokpool-review-py3 || true
     # Start instance and build demo data
-    - docker run --detach --publish 8082:8082 --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
+    - docker run --detach --publish 8082:8082 -e GIT_COMMIT=$CI_COMMIT_SHORT_SHA -e GIT_REF_NAME=$CI_COMMIT_REF_NAME --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Create the vanilla plone site
     - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8082/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
@@ -94,8 +95,9 @@ deploy_dev:
   environment:
     name: dev
     url: https://review-two-bfs.starzel.de/
-  only:
-    - review_py3
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$NIGHTLY_UPDATE == "True"'
 
 undeploy_dev:
   tags:

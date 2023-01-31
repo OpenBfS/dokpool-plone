@@ -18,6 +18,22 @@
         <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
 
     </tal:app_logo>
-    <p class="version">${context/dokpool_version}</p>
+    <p class="version">${context/dokpool_version}
+        <tal:debug tal:condition="python: view.available()">
+            <span class="debug-item" style="font-size: 80%">
+               <span class="debug-label" i18n:translate="debug_viewlet_git_commit">(Git Commit</span>
+               <span class="debug-value"><a
+                       class="git_rev" i18n:translate="" tal:content="python: view.get_git_rev()" tal:attributes="href python: 'https://git.starzel.de/bfs/dokpool/commit/' + view.get_git_rev()">Git Rev</a></span>
+            </span>
+
+            <span class="debug-item" style="font-size: 80%">
+               <span class="debug-label" i18n:translate="debug_viewlet_git_branch">Git Branch</span>
+               <span class="debug-value"><a
+                       class="git_branch" i18n:translate="" tal:content="python:view.get_git_branch()" tal:attributes="href python: 'https://git.starzel.de/bfs/dokpool/tree/' + view.get_git_branch()">Git Branch</a>)</span>
+           </span>
+        </tal:debug>
+
+    </p>
+
 
 </div>
