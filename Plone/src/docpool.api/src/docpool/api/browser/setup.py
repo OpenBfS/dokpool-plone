@@ -1,6 +1,7 @@
 from Acquisition import aq_get
 from datetime import datetime
 from datetime import timedelta
+from eea.facetednavigation.config import ANNO_FACETED_LAYOUT
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from elan.journal.tests.utils import _create_journalentries
 from plone import api
@@ -17,6 +18,7 @@ from Products.Five.browser import BrowserView
 from Products.GenericSetup.context import SnapshotImportContext
 from Products.GenericSetup.interfaces import IBody
 from z3c.relationfield.relation import RelationValue
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.component import queryUtility
 from zope.component._api import queryMultiAdapter
@@ -809,6 +811,4 @@ def _configure_faceted_view(obj, config_file_name, layout_id):
             importer = queryMultiAdapter((obj, environ), IBody)
             importer.body = xml
         obj.setLayout("facetednavigation_view")
-        # https://redmine-koala.bfs.de/issues/4944
-        # TODO: See ticket, should be working????
-        # IFacetedLayout(obj).update_layout(layout_id)
+        IAnnotations(obj)[ANNO_FACETED_LAYOUT] = layout_id
