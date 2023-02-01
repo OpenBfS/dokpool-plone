@@ -1,17 +1,3 @@
-#
-# File: elandoccollection.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-"""Define a browser view for the content type. In the FTI
-configured in profiles/default/types/*.xml, this is being set as the default
-view of that content type.
-"""
-
-
 from docpool.elan.browser.viewlets.common import EventViewlet
 from docpool.elan.utils import getAvailableCategories
 from docpool.elan.utils import getCategoriesForCurrentUser
