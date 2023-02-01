@@ -8,6 +8,7 @@
         <value key="enabled">True</value>
         <value key="jscompilation">++plone++docpool/build/docpool.min.js</value>
         <value key="load_defer">True</value>
+        <value key="load_async">True</value>
     </records>
 
     <record name="docpool.show_debug_info">
