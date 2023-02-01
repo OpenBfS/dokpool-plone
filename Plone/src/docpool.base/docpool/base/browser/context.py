@@ -36,7 +36,7 @@ class ApplicationState(BrowserView):
             if dt:
                 try:
                     dto = self.context.config.dtypes[dt]
-                except Exception as e:
+                except Exception:
                     # print "no doctype %s available to check specific app support" % dt
                     pass
 

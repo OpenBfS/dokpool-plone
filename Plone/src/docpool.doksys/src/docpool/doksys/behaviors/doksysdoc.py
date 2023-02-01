@@ -2,7 +2,6 @@
 """
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.doksys import DocpoolMessageFactory as _
