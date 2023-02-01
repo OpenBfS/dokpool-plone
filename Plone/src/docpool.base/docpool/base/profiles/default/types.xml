@@ -60,9 +60,6 @@
      <object name="ContentArea" meta_type="Dexterity FTI" />
 
 
-     <object name="DPApplication" meta_type="Dexterity FTI" />
-
-
      <object name="DPConfig" meta_type="Dexterity FTI" />
 
 

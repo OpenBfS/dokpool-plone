@@ -146,11 +146,6 @@
       />
 
   <permission
-      id="docpool.base.AddDPApplication"
-      title="Docpool: Add DPApplication"
-      />
-
-  <permission
       id="docpool.base.AddDPConfig"
       title="Docpool: Add DPConfig"
       />

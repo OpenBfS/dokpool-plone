@@ -18,7 +18,6 @@ from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import parent
 from zope import schema
 from zope.component import adapter
 from zope.globalrequest import getRequest

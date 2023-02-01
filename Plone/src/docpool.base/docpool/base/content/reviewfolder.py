@@ -1,18 +1,3 @@
-#
-# File: reviewfolder.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the ReviewFolder content type. See reviewfolder.py for more
-explanation on the statements below.
-"""
-from AccessControl import ClassSecurityInfo
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from plone.supermodel import model
@@ -31,8 +16,6 @@ class IReviewFolder(model.Schema, ISimpleFolder):
 class ReviewFolder(SimpleFolder):
     """ """
 
-    security = ClassSecurityInfo()
-
     def createActions(self):
         """ """
         log("Creating Review Folder")
@@ -50,31 +33,3 @@ class ReviewFolder(SimpleFolder):
         self.reindexObject()
         self.updateSecurity()
         self.reindexObjectSecurity()
-
-    def myReviewFolder(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getReviewFolders(self, **kwargs):
-        """ """
-        args = {"portal_type": "ReviewFolder"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]

@@ -128,8 +128,8 @@ def getGroupsForCurrentUser(obj):
             if etypes:
                 title = grp.getProperty("title", "")
                 results.append({"id": item.id, "title": title, "etypes": etypes})
-        except Exception as e:
-            log_exc(e)
+        except Exception:
+            log.info("Error getting group for %s", item.id, exc_info=True)
     return results
 
 

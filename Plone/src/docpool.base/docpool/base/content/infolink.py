@@ -1,17 +1,3 @@
-#
-# File: infolink.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the InfoLink content type. See infolink.py for more
-explanation on the statements below.
-"""
 from docpool.base.content.contentbase import ContentBase
 from plone.app.contenttypes.content import ILink
 from plone.app.contenttypes.content import Link

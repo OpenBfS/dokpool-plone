@@ -89,10 +89,6 @@ msgstr ""
 msgid "Doc type not accepted."
 msgstr ""
 
-#: docpool.base/docpool/base/profiles/default/types/DPApplication.xml
-msgid "Docpool Application"
-msgstr ""
-
 #: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
 msgid "Docpool Configuration Area"
 msgstr ""

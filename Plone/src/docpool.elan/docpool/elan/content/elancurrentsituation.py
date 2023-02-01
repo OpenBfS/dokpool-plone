@@ -1,4 +1,3 @@
-from AccessControl import ClassSecurityInfo
 from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Container
 from plone.supermodel import model
@@ -11,8 +10,6 @@ class IELANCurrentSituation(model.Schema):
 
 @implementer(IELANCurrentSituation)
 class ELANCurrentSituation(Container):
-
-    security = ClassSecurityInfo()
 
     APP = ELAN_APP
 
@@ -27,13 +24,3 @@ class ELANCurrentSituation(Container):
 
     def myELANCurrentSituation(self):
         return self
-
-    def getFirstChild(self):
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        return [obj.getObject() for obj in self.getFolderContents()]

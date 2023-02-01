@@ -1,18 +1,3 @@
-#
-# File: dpdocument.py
-#
-# Copyright (c) 2016 by Bundesamt für Strahlenschutz
-# Generator: ConPD2
-#            http://www.condat.de
-#
-
-__author__ = ""
-__docformat__ = "plaintext"
-
-"""Definition of the DPDocument content type. See dpdocument.py for more
-explanation on the statements below.
-"""
-from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
@@ -91,9 +76,6 @@ class IDPDocument(IContentBase):
 
 @implementer(IDPDocument)
 class DPDocument(Container, Extendable, ContentBase):
-
-    security = ClassSecurityInfo()
-
     def change_state(self, id, action, REQUEST=None):
         """ """
         if REQUEST:

@@ -1,5 +1,3 @@
-"""Common configuration constants
-"""
 from AccessControl import ClassSecurityInfo
 from datetime import date
 from docpool.base.browser.flexible_view import FlexibleView
