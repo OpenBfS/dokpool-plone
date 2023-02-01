@@ -90,7 +90,10 @@ def setAttributes(obj, objdef):
                 else:
                     setattr(obj, method, values)
             else:
-                if attr == "setExcludeFromNav":
+                if (
+                    attr == "setExcludeFromNav"
+                    and IExcludeFromNavigation(obj, None) is not None
+                ):
                     IExcludeFromNavigation(obj).exclude_from_nav = objdef[attr]
                 elif attr == "local_behaviors":
                     lbs = ILocalBehaviorSupport(obj)
@@ -98,7 +101,10 @@ def setAttributes(obj, objdef):
                 else:
                     # Dexterity based
                     setattr(obj, attr, objdef[attr])
-    if "setExcludeFromNav" not in objdef:
+    if (
+        "setExcludeFromNav" not in objdef
+        and IExcludeFromNavigation(obj, None) is not None
+    ):
         # Workaround issue in folder_contents of Plone 6.0.0a6
         IExcludeFromNavigation(obj).exclude_from_nav = False
 
