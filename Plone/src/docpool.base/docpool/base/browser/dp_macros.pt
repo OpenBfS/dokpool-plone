@@ -367,11 +367,11 @@ quoted_id = quote_plus(econtext["d"].getId());
 
           <span tal:define="images context/getImages">
             <label i18n:translate="">Images:</label>
-            <table border="0">
+            <table class="table table-borderless">
             <tr tal:define="multiple_images python:len(images) > 1">
             <span tal:repeat="b images">
               <span tal:condition="python:b.getId() != 'icpdf.gif'">
-              <td width="120" valign="top">
+              <td>
               <span tal:content="structure python:b.title_or_id()">images</span>&nbsp;&nbsp;<br><br>
               <a href="" tal:attributes="href python:b.absolute_url(); title python:b.title_or_id()" target="_blank">
                  <img tal:condition="multiple_images"

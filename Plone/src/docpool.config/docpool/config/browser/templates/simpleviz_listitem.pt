@@ -32,44 +32,56 @@
                  item_wf_state_class python:'state-' + normalizeString(rs);
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
-                <td class="actions" tal:condition="python:not isOverview and not isCollection">
-                    <div metal:use-macro="here/@@dp.macros/macros/cb"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/delete"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
-                    <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
-                </td>
-                <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
-                    <span tal:condition="python:(context.getMapImageObj != None) and (context.getLegendImageObj() != None)">
-                       <div class="map" tal:define="big python:context.getImages()[0]" tal:condition="nocall:big">
-                           <a href="${big/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">
-                                 <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')"/>
-                           </a>
-                       </div>
-                    </span>
-                    <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
-                       <div class="images" tal:define="images python:context.getImages()" tal:condition="images">
-                          <div tal:repeat="b images" class="image">
-                             <a href="${context/absolute_url}" i18n:domain="docpool.config" i18n:translate="">
-                                <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
-                             </a>
-                          </div>
-                       </div>
-                    </span>
-                    <span tal:condition="python:context.getFiles()">
-                      <div class="pdflink" tal:define="pdf python:context.getFiles()[0]" tal:condition="nocall:pdf">
-                         <span tal:condition="python:((context.getMapImageObj() != None) or (context.getLegendImageObj() != None))">
-                             <br><a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
-                         </span>
-                         <span tal:condition="python:((context.getMapImageObj() == None) or (context.getLegendImageObj() == None))">
-                             <a href="${pdf/absolute_url}" target="_blank" i18n:domain="docpool.config"><span tal:content="python:pdf.Title()"/></a>
-                         </span>
-                      </div>
-                    </span>
-                </td>
-                <td class="metadata">
-                    <div metal:use-macro="here/@@dp.macros/macros/doc_meta_listitem"/>
-                </td>
+        <td class="actions" tal:condition="python:not isOverview and not isCollection">
+            <div metal:use-macro="here/@@dp.macros/macros/cb"/>
+            <div metal:use-macro="here/@@dp.macros/macros/delete"/>
+            <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+            <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
+        </td>
+
+        <td class="title"
+            tal:define="mi python: context.getMapImageObj();
+                        li python: context.getLegendImageObj();
+                        files python: context.getFiles()">
+
+            <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
+
+            <tal:block tal:condition="python: mi and li">
+                <div class="map" tal:define="big python:context.getImages()[0]" tal:condition="nocall:big">
+                    <a href="${big/absolute_url}" target="_blank" i18n:domain="docpool.config" i18n:translate="">
+                        <tal:insert replace="structure python:context.getMapImage(scale='/@@images/image/thumb')"/>
+                    </a>
+                </div>
+            </tal:block>
+
+            <tal:block tal:condition="python: not mi or not li">
+                <div class="images" tal:define="images python:context.getImages()" tal:condition="images">
+                    <div tal:repeat="b images" class="image">
+                        <a href="${python: context.absolute_url()}" i18n:domain="docpool.config" i18n:translate="">
+                            <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
+                        </a>
+                    </div>
+                </div>
+            </tal:block>
+
+            <tal:block tal:condition="python: files"
+                       tal:repeat="pdf python: files">
+                <tal:block tal:condition="python: mi or li">
+                    <a href="${python: pdf.absolute_url()}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
+                </tal:block>
+                <tal:block tal:condition="python: not mi or not li">
+                    <a href="${python: pdf.absolute_url()}" target="_blank" i18n:domain="docpool.config">
+                        <span tal:content="python: pdf.Title()"/>
+                    </a>
+                </tal:block>
+                <br>
+            </tal:block>
+
+        </td>
+
+        <td class="metadata">
+            <div metal:use-macro="context/@@dp.macros/macros/doc_meta_listitem"/>
+        </td>
     </tal:def>
 </tr>
 </table>
