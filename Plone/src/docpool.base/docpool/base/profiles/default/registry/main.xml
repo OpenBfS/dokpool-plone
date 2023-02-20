@@ -29,6 +29,11 @@
     </value>
   </record>
   <record name="plone.image_objects" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="image_objects">
+  <record name="plone.default_page_types" interface="Products.CMFPlone.interfaces.controlpanel.ITypesSchema">
+    <value purge="false">
+      <element>InfoDocument</element>
+    </value>
+  </record>
     <value>
       <element>Image</element>
       <element>DPDocument</element>
