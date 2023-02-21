@@ -4,6 +4,11 @@ Changelog
 1.9.4 (unreleased)
 ------------------
 
+Fixed:
+
+- make authentication condition configurable for varnish #4539
+  [tlotze]
+
 
 1.9.3 (21.10.22)
 ------------------
