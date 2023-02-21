@@ -4,6 +4,10 @@ Changelog
 1.9.4 (unreleased)
 ------------------
 
+Fixed:
+
+- Blob-cache should be bytes #5096
+  [slindner]
 
 1.9.3 (21.10.22)
 ------------------
