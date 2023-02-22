@@ -24,6 +24,5 @@ class EventViewlet(ViewletBase):
         scs = getOpenScenarios(self.context)
         self.scenarios = [s.getObject()
                           for s in scs if s.review_state == 'published']
-        self.open_scenarios = [s.getObject() for s in scs]
         scs = getScenariosForCurrentUser(self.context)
         self.selected_scenarios = scs
