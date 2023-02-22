@@ -26,7 +26,8 @@
                                      date python:mi[0];
                                      uinfo python:mi[1]">
                         <td class="scenario_desc">
-
+                            <input type="hidden" name="pscnrs:list"
+                                   tal:attributes="value scenario/getId" />
                             <input type="checkbox" name="scnrs:list"
                                    tal:attributes="value    scenario/getId;
                                                    title    scenario/Title;

@@ -108,7 +108,7 @@ class TestEvent(unittest.TestCase):
             )
         scenarios = self._get_user_scenarios()
         assert 'test_event' in scenarios
-        self._set_user_scenarios([])
+        self._set_user_scenarios({'test_event': False})
         scenarios = self._get_user_scenarios()
         self.assertNotIn('test_event', scenarios)
 
@@ -119,7 +119,7 @@ class TestEvent(unittest.TestCase):
             id='test_event',
             title=u'Test Event',
             )
-        self._set_user_scenarios(['test_event'])
+        self._set_user_scenarios({'test_event': True})
         scenarios = self._get_user_scenarios()
         self.assertEqual(1, scenarios.count('test_event'))
 

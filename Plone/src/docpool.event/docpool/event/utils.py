@@ -35,6 +35,11 @@ def getOpenScenarios(self):
     return res
 
 
+def _get_selected_scenarios_for_user(user):
+    selections_prop = user.getProperty("scenarios", [])
+    return dict(line.strip().rsplit(':', 1) for line in selections_prop)
+
+
 def getScenariosForCurrentUser(self):
     """
     """
@@ -45,10 +50,8 @@ def getScenariosForCurrentUser(self):
 
 
 def get_scenarios_for_user(self, user):
-    selections_prop = user.getProperty("scenarios", [])
+    selections = _get_selected_scenarios_for_user(user)
     global_scenarios = get_global_scenario_selection()
-
-    selections = dict(line.strip().rsplit(':', 1) for line in selections_prop)
 
     scenarios = [scen for scen, selected in selections.items() if selected == 'selected']
     for scen, state in global_scenarios.items():
@@ -70,12 +73,18 @@ def setScenariosForCurrentUser(self, scenarios):
 
 
 def set_scenarios_for_user(self, user, scenarios):
+    selections = _get_selected_scenarios_for_user(user)
     global_scenarios = get_global_scenario_selection()
+
+    selections.update(
+        (scen, 'selected' if selected else 'deselected')
+        for scen, selected in scenarios.items()
+    )
     user.setMemberProperties(
         {
             "scenarios": [
-                '{}:{}'.format(scen, 'selected' if scen in scenarios else 'deselected')
-                for scen in set(scenarios) | set(global_scenarios)
+                '{}:{}'.format(scen, selected)
+                for scen, selected in selections.items()
                 if global_scenarios.get(scen) != 'removed'
             ]
         }

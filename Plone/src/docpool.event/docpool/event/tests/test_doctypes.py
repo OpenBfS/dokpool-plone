@@ -470,7 +470,9 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition='publish')
         modified(new)
         # Test setting event/scenario
-        setScenariosForCurrentUser(self.portal, scenarios=[event.id])
+        setScenariosForCurrentUser(
+            self.portal, scenarios={event.id: True, 'routinemode': False}
+        )
         scenarios = getScenariosForCurrentUser(self.portal)
         self.assertEqual(scenarios, [event.id])
         # Test search in catalog
