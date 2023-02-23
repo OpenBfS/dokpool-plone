@@ -53,15 +53,15 @@ def get_scenarios_for_user(self, user):
     selections = _get_selected_scenarios_for_user(user)
     global_scenarios = get_global_scenario_selection()
 
-    scenarios = [scen for scen, selected in selections.items() if selected == 'selected']
     for scen, state in global_scenarios.items():
-        selected = selections.get(scen)
-        if ((state == 'selected' or selected == 'selected')
-            and not (state in ('closed', 'removed') or selected == 'deselected')
-        ):
-            scenarios.append(scen)
-    # remove duplicates (events that are selected globally and by user)
-    scenarios = list(set(scenarios))
+        if state in ('closed', 'removed'):
+            selections.pop(scen, None)
+        else:
+            selections.setdefault(scen, state)
+
+    scenarios = [
+        scen for scen, selected in selections.items() if selected == 'selected'
+    ]
     return scenarios
 
 
