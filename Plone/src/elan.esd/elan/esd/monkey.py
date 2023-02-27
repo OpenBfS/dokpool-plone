@@ -6,6 +6,7 @@ from docpool.base.browser.dpdocument import DPDocumentView
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import deleteMemberFolders
 from docpool.elan.config import ELAN_APP
+from docpool.event.utils import getScenarioIdsForCurrentUser
 from docpool.event.utils import getScenariosForCurrentUser
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
@@ -140,7 +141,7 @@ def searchResults(self, REQUEST=None, **kw):
             kw['path'] = "%s/content" % path
         if has_search_text[-1] != "*":
             kw['SearchableText'] = has_search_text + "*"
-        scns = getScenariosForCurrentUser(self)
+        scns = getScenarioIdsForCurrentUser(self)
         rqurl = ""
         if hasattr(self.REQUEST, 'URL'):
             rqurl = self.REQUEST['URL']
@@ -160,6 +161,8 @@ if not hasattr(CatalogTool, "original_searchResults"):
 
 
 # The folder needs an extension to determine the currently selected scenario.
+if not hasattr(SimpleFolder, "getScenarioIdsForCurrentUser"):
+    SimpleFolder.getScenarioIdsForCurrentUser = getScenarioIdsForCurrentUser
 if not hasattr(SimpleFolder, "getScenariosForCurrentUser"):
     SimpleFolder.getScenariosForCurrentUser = getScenariosForCurrentUser
 

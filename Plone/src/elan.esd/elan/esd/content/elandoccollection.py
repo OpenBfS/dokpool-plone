@@ -16,6 +16,7 @@ explanation on the statements below.
 """
 from AccessControl import ClassSecurityInfo
 from docpool.elan.config import ELAN_APP
+from docpool.event.utils import getScenarioIdsForCurrentUser
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
 from elan.esd.utils import getCategoriesForCurrentUser
@@ -70,6 +71,7 @@ class ELANDocCollection(Item, Collection):
     security = ClassSecurityInfo()
 
     getScenariosForCurrentUser = getScenariosForCurrentUser
+    getScenarioIdsForCurrentUser = getScenarioIdsForCurrentUser
 
     def testSearch(self):
         """
@@ -213,7 +215,7 @@ class ELANDocCollection(Item, Collection):
             if not self.isArchive():
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
-                uss = self.getScenariosForCurrentUser()
+                uss = self.getScenarioIdsForCurrentUser()
                 if uss:
                     # This is THE modification: append the implicit criterion
                     # for the scenario(s)
