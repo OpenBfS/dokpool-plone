@@ -257,7 +257,7 @@ class DPEvent(Container, ContentBase):
 
         # 1. Disable scenario to prevent new data from being added for it
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.id] = "closed"
+        global_scenarios[api.content.get_uuid(self)] = "closed"
         self.Status = "closed"
         transaction.savepoint(optimistic=True)
 
@@ -564,7 +564,7 @@ class DPEvent(Container, ContentBase):
 
     def selectGlobally(self):
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.getId()] = "selected"
+        global_scenarios[api.content.get_uuid(self)] = "selected"
 
     def createDefaultJournals(self):
         """
@@ -730,7 +730,7 @@ def eventRemoved(obj, event=None):
         raise RuntimeError('The "routinemode" event cannot be removed.')
 
     global_scenarios = get_global_scenario_selection()
-    global_scenarios[obj.getId()] = "removed"
+    global_scenarios[api.content.get_uuid(obj)] = "removed"
 
 
 @adapter(IDPEvent, IActionSucceededEvent)

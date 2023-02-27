@@ -69,7 +69,7 @@ class Renderer(base.Renderer):
             event_brain = api.content.find(
                 portal_type="DPEvent",
                 context=dp,
-                id=scenario,
+                UID=scenario,
             )
             # Since we reference scenarios by id, which may be shared, our best
             # guess is to use the first one found that is not archived.
