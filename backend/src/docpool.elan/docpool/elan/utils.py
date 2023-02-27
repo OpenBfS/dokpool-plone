@@ -62,6 +62,14 @@ def get_scenarios_for_user(user):
     return scenarios
 
 
+def getScenarioIdsForCurrentUser():
+    scns = getScenariosForCurrentUser()
+    # Historically, these used to be object ids, not uids. When switching to uids for
+    # #5044, the scenarios attribute of documents and the corresponding catalog index
+    # aren't touched, so we'll need to convert uids to ids for that use case.
+    return scns
+
+
 def setScenariosForCurrentUser(scenarios):
     """ """
     user = api.user.get_current()

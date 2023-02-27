@@ -4,7 +4,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getCategoriesForCurrentUser
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import getScenarioIdsForCurrentUser
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
 from plone.autoform import directives
@@ -169,7 +169,7 @@ class DashboardCollection(Collection):
             if not IArchiving(self).is_archive:
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
-                uss = getScenariosForCurrentUser()
+                uss = getScenarioIdsForCurrentUser()
                 if uss:
                     # This is THE modification: append the implicit criterion
                     # for the scenario(s)
