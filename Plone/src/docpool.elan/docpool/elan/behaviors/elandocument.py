@@ -32,7 +32,7 @@ def initializeScenarios(context):
     scenarios = catalog(
         path=context.dpSearchPath(),
         portal_type='DPEvent',
-        getId=context.getScenariosForCurrentUser(),
+        UID=context.getScenariosForCurrentUser(),
         Status='active')
     return [scen.id for scen in scenarios]
 
