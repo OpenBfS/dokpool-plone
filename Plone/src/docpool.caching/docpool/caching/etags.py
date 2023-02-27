@@ -25,8 +25,8 @@ class DokPoolApps(object):
         apps = ";".join(dp_app_state.effectiveAppsHere())
 
         scenarios = ""
-        if hasattr(context, "getUserSelectedScenarios"):
-            scenarios = context.getUserSelectedScenarios()
+        if hasattr(context, "getScenariosForCurrentUser"):
+            scenarios = context.getScenariosForCurrentUser()
             scenarios = ";".join(scenarios)
 
         scs = getOpenScenarios(context)

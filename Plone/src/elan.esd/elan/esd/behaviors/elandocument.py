@@ -15,8 +15,8 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 @provider(IContextAwareDefaultFactory)
 def initializeScenarios(context):
-    if hasattr(context, "getUserSelectedScenarios"):
-        return context.getUserSelectedScenarios()
+    if hasattr(context, "getScenariosForCurrentUser"):
+        return context.getScenariosForCurrentUser()
     else:
         return []
 

@@ -159,19 +159,9 @@ if not hasattr(CatalogTool, "original_searchResults"):
     CatalogTool.__call__ = searchResults
 
 
-def getUserSelectedScenarios(self):
-    """
-    """
-    # FIXME
-    from docpool.event.utils import getScenariosForCurrentUser
-
-    usc = getScenariosForCurrentUser(self)
-    return usc
-
-
 # The folder needs an extension to determine the currently selected scenario.
-if not hasattr(SimpleFolder, "getUserSelectedScenarios"):
-    SimpleFolder.getUserSelectedScenarios = getUserSelectedScenarios
+if not hasattr(SimpleFolder, "getScenariosForCurrentUser"):
+    SimpleFolder.getScenariosForCurrentUser = getScenariosForCurrentUser
 
 
 def elanobject(self):

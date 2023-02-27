@@ -69,6 +69,8 @@ class ELANDocCollection(Item, Collection):
 
     security = ClassSecurityInfo()
 
+    getScenariosForCurrentUser = getScenariosForCurrentUser
+
     def testSearch(self):
         """
         """
@@ -84,20 +86,6 @@ class ELANDocCollection(Item, Collection):
         # print len(res)
         for r in res:
             print(r.Title)
-
-    def getUserSelectedScenarios(self):
-        """
-        """
-        uss = getScenariosForCurrentUser(self)
-        # print usc
-        return uss
-
-    def getUserSelectedCategories(self):
-        """
-        """
-        usc = getCategoriesForCurrentUser(self)
-        # print usc
-        return usc
 
     def results(self, batch=True, b_start=0,
                 b_size=10, sort_on=None, brains=False):
@@ -225,7 +213,7 @@ class ELANDocCollection(Item, Collection):
             if not self.isArchive():
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
-                uss = self.getUserSelectedScenarios()
+                uss = self.getScenariosForCurrentUser()
                 if uss:
                     # This is THE modification: append the implicit criterion
                     # for the scenario(s)
@@ -248,7 +236,7 @@ class ELANDocCollection(Item, Collection):
             # Second implicit filter: the user has selected categories as a filter
             # Used for the chronological overview
             if self.isOverview():
-                usc = self.getUserSelectedCategories()
+                usc = getCategoriesForCurrentUser(self)
                 if usc:
                     value.append(
                         {
