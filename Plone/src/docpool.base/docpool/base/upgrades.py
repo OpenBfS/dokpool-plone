@@ -483,11 +483,9 @@ def to_1009_update_dp_folder_workflow(context=None):
     log.info('Upgrading to 1009: Reload dp_folder_workflow')
     portal_setup = api.portal.get_tool('portal_setup')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:default', steps=['workflow', 'actions'])
-    log.info('Reindexing permissions on content with dp_folder_workflow...')
-    for brain in api.content.find(portal_type=["SimpleFolder", "SRFolder"]):
-        obj = brain.getObject()
-        obj.reindexObjectSecurity()
-    log.info('Reindexed permissions on content with dp_folder_workflow')
+    portal_workflow = api.portal.get_tool("portal_workflow")
+    log.info('Upgrading permissions')
+    portal_workflow.updateRoleMappings()
 
 
 def to_1009_archive_closed_events(context=None):
@@ -630,3 +628,13 @@ def to_1009_archive_closed_events(context=None):
 def to_1010(context=None):
     portal_setup = api.portal.get_tool('portal_setup')
     loadMigrationProfile(portal_setup, 'profile-docpool.base:to_1010')
+
+
+def to_1011_update_rolemappings(context=None):
+    """to_1009_update_dp_folder_workflow previously only reindexed security
+    It needs to update the rolemappings to have the managed permission 'Delete objects'
+    set on the objects. See #4560
+    """
+    portal_workflow = api.portal.get_tool("portal_workflow")
+    log.info('Upgrading permissions')
+    portal_workflow.updateRoleMappings()
