@@ -116,7 +116,7 @@ sub vcl_hit {
 sub vcl_recv {
     set req.http.grace = "none";
     set req.backend_hint = cluster1.backend();
-    
+
     if (req.method == "PURGE") {
         if (!client.ip ~ purge) {
             return(synth(405,"Not allowed."));
@@ -187,7 +187,7 @@ sub normalize_accept_encoding {
 
 # Keep auth/anon variants apart if "Vary: X-Anonymous" is in the response
 sub annotate_request {
-    if (!(req.http.Authorization || req.http.cookie ~ "(^|.*; )__ac=" || req.http.X-SHIB-USER)) {
+    if (!(${authenticated_condition})) {
         set req.http.X-Anonymous = "True";
     }
 }
@@ -214,4 +214,3 @@ sub compress_content {
         set beresp.do_gzip = true;
     }
 }
-
