@@ -82,12 +82,10 @@ class FolderBaseView(BrowserView):
 
         delete_action = [i for i in button_actions if i['id'] == 'delete']
         delete_action = delete_action[0] if delete_action else None
-        if delete_action:
-            show_delete_action = any(
-                api.user.has_permission('Delete objects', obj=item.getObject())
-                for item in items
-            )
-        if not show_delete_action:
+        if delete_action and not any(
+            api.user.has_permission('Delete objects', obj=item.getObject())
+            for item in items
+        ):
             button_actions.remove(delete_action)
 
         for button in button_actions:
