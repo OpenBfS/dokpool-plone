@@ -206,75 +206,22 @@ Yarn (eine Alternative zu npm) funktioniert nicht mit diesem Webpack Theme.
 
 #### Installation in Plone
 
-Das Webpack Theme ist nur in einer Plone Seite aktiv die "dokpool" heißt. Die URL muss
-also so aussehen: "http://localhost:8080/dokpool/"
-Beim Aufruf von "/@@docpool_setup" wird das neue Theme wird automatisch aktiviert.
-
 #### Entwicklung mit Webpack
 
-Das Theme befindet sich in `Plone/src/docpool.theme/docpool/theme/webpack_resources`,
-erst müssen die dort die Javascript Abhängigkeiten installiert werden:
+Javascript Abhängigkeiten installieren:
 
 .. code-block:: bash
 
-    $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
+    $ cd Plone
     $ npm install
 
-Jetzt kann hot-reloading verwendet werden, bedeutet bei Änderungen im
-`webpack_resources` Verzeichnis wird automatisch die Seite neu geladen.
-Die Plone Instanz muss dazu laufen:
+Instanzen starten:
 
 .. code-block:: bash
 
     $ bin/instance fg
-    $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
+    # In einem anderen Terminal
     $ npm run watch
-
-#### Neue Bundle-Files erstellen
-
-Damit aktualisierte CSS/JS Dateien direkt von Plone ausgeliefert werden, müssen diese
-erstellt und eingecheckt werden:
-
-.. code-block:: bash
-
-    $ bin/instance fg
-    $ cd Plone/src/docpool.theme/docpool/theme/webpack_resources
-    # Wir löschen den Cache der aus dem Plone gezogenen Ressourcen,
-    # damit unsere letzten Änderungen sichtbar werden.
-    $ rm -Rf .plone
-    # Wir löschen die alten bundle Dateien, so behalten wir keine unnötigen Dateien
-    $ rm -Rf theme
-    # Wir lassen das theme Verzeichnis mit allen bundle Dateien neu erstellen.
-    $ npm run build
-    # Wir commiten die Source Dateien extra, damit ist der Merge-Request besser zu lesen
-    $ git add src/
-    $ git commit -m "Update xyz styling"
-    $ Jetzt commiten wir die Webpack bundle Dateien
-    $ git add theme/
-    $ git commit -m "Update bundle files"
-
-Haben sich CSS/LESS/JS Dateien von Plone oder in unseren bestehenden
-Resources (z.B in: `Plone/src/docpool.theme/docpool/theme/diazo_resources/static`)
-geändert, muss das `.plone` Verzeichins in `webpack_resources` gelöscht werden. Beim
-nächsten `npm run build/watch` werden diese Dateien dann neu von Plone geladen.
-
-#### Bundle-Files rebase / update
-
-Oft entstehen durch ein rebase conflicts an den bundle files. Kurze Anleitung wie damit umzugehen ist:
-
-1. git checkout develop
-2. git pull
-3. git checkout own_local_branch
-4. git rebase develop
-
-Wenn es bei den bundle files ein conflict gibt:
-
-git add src/docpool.theme/docpool/theme/webpack_resources/theme/
-git rebase --continue
-
-ggf. wiederholen.
-
-Nach dem rebase die bundle files nochmal neu erstellen, siehe "Neu Bundle-files erstellen"
 
 ### Review App
 
