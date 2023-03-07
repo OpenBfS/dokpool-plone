@@ -69,24 +69,22 @@ class FolderBaseView(BrowserView):
         button_actions = portal_actions.listActionInfos(
             object=context, categories=('folder_buttons',)
         )
+        actions_by_id = {action['id']: action for action in button_actions}
 
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
         if not len(items):
             if self.context.cb_dataValid():
-                for button in button_actions:
-                    if button['id'] == 'paste':
-                        return [self.setbuttonclass(button)]
+                if 'paste' in actions_by_id:
+                    return [self.setbuttonclass(actions_by_id['paste'])]
             else:
                 return []
 
-        delete_action = [i for i in button_actions if i['id'] == 'delete']
-        delete_action = delete_action[0] if delete_action else None
-        if delete_action and not any(
+        if 'delete' in actions_by_id and not any(
             api.user.has_permission('Delete objects', obj=item.getObject())
             for item in items
         ):
-            button_actions.remove(delete_action)
+            button_actions.remove(actions_by_id['delete'])
 
         for button in button_actions:
             # Make proper classes for our buttons
