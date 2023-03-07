@@ -63,7 +63,6 @@ class FolderBaseView(BrowserView):
         return self.buttons(items)
 
     def buttons(self, items):
-        buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
         button_actions = portal_actions.listActionInfos(
@@ -73,7 +72,7 @@ class FolderBaseView(BrowserView):
 
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
-        if not len(items):
+        if not items:
             if 'paste' in actions_by_id and self.context.cb_dataValid():
                 return [self.setbuttonclass(actions_by_id['paste'])]
             else:
@@ -85,9 +84,8 @@ class FolderBaseView(BrowserView):
         ):
             button_actions.remove(actions_by_id['delete'])
 
-        for button in button_actions:
-            # Make proper classes for our buttons
-            buttons.append(self.setbuttonclass(button))
+        # Make proper classes for our buttons
+        buttons = [self.setbuttonclass(action) for action in button_actions]
         return buttons
 
     def setbuttonclass(self, button):
