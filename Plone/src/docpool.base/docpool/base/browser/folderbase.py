@@ -74,9 +74,8 @@ class FolderBaseView(BrowserView):
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
         if not len(items):
-            if self.context.cb_dataValid():
-                if 'paste' in actions_by_id:
-                    return [self.setbuttonclass(actions_by_id['paste'])]
+            if 'paste' in actions_by_id and self.context.cb_dataValid():
+                return [self.setbuttonclass(actions_by_id['paste'])]
             else:
                 return []
 
