@@ -10,6 +10,8 @@ Fixed:
   [slindner]
 - make authentication condition configurable for varnish #4539
   [tlotze]
+- fix logic for selecting folder action buttons #5135
+  [tlotze]
 
 
 1.9.3 (21.10.22)
