@@ -73,10 +73,9 @@ class FolderBaseView(BrowserView):
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
         if not items:
+            del button_actions[:]
             if 'paste' in actions_by_id and self.context.cb_dataValid():
-                return [self.setbuttonclass(actions_by_id['paste'])]
-            else:
-                return []
+                button_actions.append(actions_by_id['paste'])
 
         if 'delete' in actions_by_id and not any(
             api.user.has_permission('Delete objects', obj=item.getObject())
