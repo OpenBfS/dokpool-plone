@@ -4,12 +4,38 @@ Changelog
 1.9.4 (unreleased)
 ------------------
 
-Fixed:
+Changed:
+
+- make authentication condition configurable for varnish #4539
+  [tlotze]
 
 - Blob-cache should be bytes #5096
   [slindner]
-- make authentication condition configurable for varnish #4539
+
+Fixed:
+
+- Disable direct role-assignment to Users and Groups in docpools for non-managers #4391
+  [pbauer]
+
+- ugrade-step to update rolemappings #4560
+  [pbauer]
+
+- remove the workaround for SQLAlchemyError #4830
   [tlotze]
+
+- do not show journals from archived events #4993
+  [tlotze]
+
+- fix archiving event GNU-2022-Tyche #5007
+  [pbauer]
+
+- fix printable version for simpleviz_inline.pt #5045
+  [kprobst]
+
+Added:
+
+- allow infodocument as defaultpage #4643
+  [pbauer]
 
 
 1.9.3 (21.10.22)
