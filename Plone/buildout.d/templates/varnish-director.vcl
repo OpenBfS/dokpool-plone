@@ -162,6 +162,17 @@ sub vcl_backend_response {
     return(deliver);
 }
 
+sub vcl_backend_error {
+    set beresp.http.Content-Type = "text/html; charset=utf-8";
+    set beresp.http.Retry-After = "5";
+    set beresp.body = regsuball(
+        std.fileread("${varnish-config:error-template}"),
+        "<<REASON>>",
+        beresp.reason
+    );
+    return (deliver);
+}
+
 sub vcl_deliver {
     call rewrite_age;
     set resp.http.grace = req.http.grace;

@@ -9,6 +9,9 @@ Changed:
 - make authentication condition configurable for varnish #4539
   [tlotze]
 
+- customize varnish backend error page #4904
+  [tlotze]
+
 - Blob-cache should be bytes #5096
   [slindner]
 
