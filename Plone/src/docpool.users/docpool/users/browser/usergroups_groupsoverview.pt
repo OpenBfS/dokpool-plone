@@ -22,7 +22,8 @@
                  batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;
                  batchformkeys python:['searchstring','_authenticator'];
                  portal_url context/dp_url;
-                 pportal_url context/portal_url">
+                 pportal_url context/portal_url;
+                 is_manager python:checkPermission('Manage portal', context);">
 
   <article id="content">
     <a href=""
@@ -182,7 +183,8 @@
                             tal:repeat="portal_role portal_roles">
                           <tal:block tal:define="inherited python:group_info['roles'][portal_role]['inherited'];
                                                  explicit python:group_info['roles'][portal_role]['explicit'];
-                                                 enabled python:group_info['roles'][portal_role]['canAssign']">
+                                                 enabled python:group_info['roles'][portal_role]['canAssign'];
+                                                 enabled python:is_manager if enabled else enabled;">
                             <input type="checkbox"
                                    class="noborder"
                                    name="name"
@@ -209,7 +211,7 @@
                                    name="delete:list"
                                    value="value"
                                    tal:attributes="value group_info/groupid;
-                                                   disabled python:default if group_info['can_delete'] else 'disabled'"
+                                                   disabled python:is_manager and group_info['can_delete'] and default or 'disabled'"
                                    />
                         </td>
                     </tr>
