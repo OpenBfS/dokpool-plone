@@ -10,6 +10,8 @@ Fixed:
   [slindner]
 - make authentication condition configurable for varnish #4539
   [tlotze]
+- prevent varnish from timing out event archival #3792
+  [tlotze]
 
 
 1.9.3 (21.10.22)

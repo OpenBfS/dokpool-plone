@@ -88,6 +88,12 @@ sub vcl_deliver {
     call rewrite_age;
 }
 
+sub vcl_miss {
+    if (req.url ~ "/archiveAndClose($|\?)") {
+        set bereq.first_byte_timeout = 0;
+    }
+}
+
 
 ##########################
 #  Helper Subroutines
