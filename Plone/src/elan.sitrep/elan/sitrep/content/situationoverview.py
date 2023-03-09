@@ -18,7 +18,7 @@ from DateTime import DateTime
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
 from docpool.elan.config import ELAN_APP
-from docpool.event.utils import getScenariosForCurrentUser
+from docpool.event.utils import getScenarioIdsForCurrentUser
 from elan.sitrep import DocpoolMessageFactory as _
 from elan.sitrep.vocabularies import ModuleTypesVocabularyFactory
 from plone.dexterity.content import Item
@@ -52,7 +52,7 @@ class SituationOverview(Item):
         * Get all modules that belong to it
         * Determine "missing" modules
         """
-        uss = getScenariosForCurrentUser(self)
+        uss = getScenarioIdsForCurrentUser(self)
         path = self.dpSearchPath()
         reports = queryForObjects(
             self,
@@ -120,7 +120,7 @@ class SituationOverview(Item):
 def _availableModules(self, reportUID=None):
     res = {}
     moduids = {}
-    uss = getScenariosForCurrentUser(self)
+    uss = getScenarioIdsForCurrentUser(self)
     path = self.dpSearchPath()
 
     for mt in self.modTypes():

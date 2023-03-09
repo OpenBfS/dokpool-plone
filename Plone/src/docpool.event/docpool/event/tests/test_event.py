@@ -56,7 +56,7 @@ class TestEvent(unittest.TestCase):
             title=u'Test Event',
             )
         scenarios = self._get_user_scenarios()
-        self.assertIn('test_event', scenarios)
+        self.assertIn(api.content.get_uuid(event), scenarios)
 
     def test_archived_event_is_moved(self):
         event = api.content.create(
@@ -81,10 +81,10 @@ class TestEvent(unittest.TestCase):
             title=u'Test Event',
             )
         scenarios = self._get_user_scenarios()
-        assert 'test_event' in scenarios
+        self.assertIn(api.content.get_uuid(event), scenarios)
         event.archiveAndClose(self.layer['request'])
         scenarios = self._get_user_scenarios()
-        self.assertNotIn('test_event', scenarios)
+        self.assertNotIn(api.content.get_uuid(event), scenarios)
 
     def test_removed_event_is_not_active_for_users(self):
         event = api.content.create(
@@ -94,10 +94,10 @@ class TestEvent(unittest.TestCase):
             title=u'Test Event',
             )
         scenarios = self._get_user_scenarios()
-        assert 'test_event' in scenarios
+        self.assertIn(api.content.get_uuid(event), scenarios)
         api.content.delete(event)
         scenarios = self._get_user_scenarios()
-        self.assertNotIn('test_event', scenarios)
+        self.assertNotIn(api.content.get_uuid(event), scenarios)
 
     def test_added_event_can_be_deactivated_by_user(self):
         event = api.content.create(
@@ -106,11 +106,12 @@ class TestEvent(unittest.TestCase):
             id='test_event',
             title=u'Test Event',
             )
+        event_uid = api.content.get_uuid(event)
         scenarios = self._get_user_scenarios()
-        assert 'test_event' in scenarios
-        self._set_user_scenarios([])
+        self.assertIn(event_uid, scenarios)
+        self._set_user_scenarios({event_uid: False})
         scenarios = self._get_user_scenarios()
-        self.assertNotIn('test_event', scenarios)
+        self.assertNotIn(event_uid, scenarios)
 
     def test_added_and_activated_event_is_listed_only_once(self):
         event = api.content.create(
@@ -119,9 +120,9 @@ class TestEvent(unittest.TestCase):
             id='test_event',
             title=u'Test Event',
             )
-        self._set_user_scenarios(['test_event'])
+        self._set_user_scenarios({'test_event': True})
         scenarios = self._get_user_scenarios()
-        self.assertEqual(1, scenarios.count('test_event'))
+        self.assertEqual(1, scenarios.count(api.content.get_uuid(event)))
 
     def test_removal_keeps_working_for_arbitrary_dpevents(self):
         event = api.content.create(

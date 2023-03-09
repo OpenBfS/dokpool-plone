@@ -17,9 +17,10 @@ class EventSelectAction(BrowserView):
     """
 
     def __call__(self):
+        pscnrs = self.request.get("pscnrs", [])
         scnrs = self.request.get("scnrs", [])
-        if not scnrs:
-            pass
-        setScenariosForCurrentUser(self.context, scnrs)
+        scenarios = dict.fromkeys(pscnrs, False)
+        scenarios.update(dict.fromkeys(scnrs, True))
+        setScenariosForCurrentUser(self.context, scenarios)
         self.context.REQUEST.response.setHeader("Pragma", "no-cache")
         self.context.redirectToReferrerWithParameters("Set filter")

@@ -32,6 +32,9 @@ Fixed:
 - fix archiving event GNU-2022-Tyche #5007
   [pbauer]
 
+- fix event selection: per docpool, distinguish events with same id #5044
+  [tlotze]
+
 - fix printable version for simpleviz_inline.pt #5045
   [kprobst]
 
