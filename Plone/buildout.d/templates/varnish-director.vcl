@@ -178,6 +178,11 @@ sub vcl_deliver {
     set resp.http.grace = req.http.grace;
 }
 
+sub vcl_backend_fetch {
+    if (bereq.url ~ "/archiveAndClose($|\?)") {
+        set bereq.first_byte_timeout = 60m;
+    }
+}
 
 ##########################
 #  Helper Subroutines

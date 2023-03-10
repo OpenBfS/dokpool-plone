@@ -100,6 +100,11 @@ sub vcl_deliver {
     call rewrite_age;
 }
 
+sub vcl_backend_fetch {
+    if (bereq.url ~ "/archiveAndClose($|\?)") {
+        set bereq.first_byte_timeout = 60m;
+    }
+}
 
 ##########################
 #  Helper Subroutines

@@ -17,6 +17,9 @@ Changed:
 
 Fixed:
 
+- prevent varnish from timing out event archival #3792
+  [tlotze,kprobst]
+
 - Disable direct role-assignment to Users and Groups in docpools for non-managers #4391
   [pbauer]
 
