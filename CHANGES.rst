@@ -15,6 +15,9 @@ Changed:
 - Blob-cache should be bytes #5096
   [slindner]
 
+- Update REI vocabularies #5137
+  [kprobst]
+
 Fixed:
 
 - prevent varnish from timing out event archival #3792
