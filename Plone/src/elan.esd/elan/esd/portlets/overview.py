@@ -4,10 +4,10 @@ from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from docpool.event.utils import getScenariosForCurrentUser
 from elan.esd import DocpoolMessageFactory as _
+from plone import api
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from zope.interface import implementer
-import plone.api as api
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms. In this case, we don't
@@ -84,17 +84,19 @@ class Renderer(base.Renderer):
         dp = self.context.myDocumentPool()
         # User could select more than one scenario
         for scenario in scenarios:
-            event_brain = api.content.find(
+            event_brains = api.content.find(
                 portal_type='DPEvent',
                 context=dp,
-                id=scenario,
+                UID=scenario,
             )
-            if event_brain:
-                for journal in api.content.find(
-                        portal_type='Journal',
-                        path=event_brain[0].getPath(),
-                    ):
-                    yield journal
+            # Since we reference scenarios by id, which may be shared, our best
+            # guess is to use the first one found that is not archived.
+            for brain in event_brains:
+                if "archive" in brain.getPath().split("/"):
+                    continue
+                for brain in api.content.find(portal_type="Journal", path=brain.getPath()):
+                    yield brain
+                break
 
 
 class AddForm(base.NullAddForm):

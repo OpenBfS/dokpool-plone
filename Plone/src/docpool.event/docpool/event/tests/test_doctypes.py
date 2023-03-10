@@ -4,6 +4,7 @@ from docpool.event.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.event.utils import getScenariosForCurrentUser
 from docpool.event.utils import setScenariosForCurrentUser
 from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import login
 from plone.app.testing import logout
@@ -455,6 +456,7 @@ class TestDocTypes(unittest.TestCase):
             id='test_event',
             title=u'Test Event',
         )
+        event_uid = api.content.get_uuid(event)
         folder = docpool['content']['Groups']['test_docpool_ELANUsers']
         new = api.content.create(
             container=folder,
@@ -469,9 +471,13 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition='publish')
         modified(new)
         # Test setting event/scenario
-        setScenariosForCurrentUser(self.portal, scenarios=[event.id])
+        scenarios = {
+            b.UID: False for b in api.content.find(portal_type='DPEvent', id='routinemode')
+        }
+        scenarios[event_uid] = True
+        setScenariosForCurrentUser(self.portal, scenarios=scenarios)
         scenarios = getScenariosForCurrentUser(self.portal)
-        self.assertEqual(scenarios, [event.id])
+        self.assertEqual(scenarios, [event_uid])
         # Test search in catalog
         brains = api.content.find(SearchableText='willbefound')
         self.assertEqual(brains[0].getObject().description, u'willbefound')
@@ -491,3 +497,43 @@ class TestDocTypes(unittest.TestCase):
         # Check the catalog_path
         catalog_path = IELANDocument(new).cat_path()
         self.assertEqual(catalog_path, 'esd/meteorology/weather-information')
+
+    def test_commenting(self):
+        docpool = self.portal['test_docpool']
+        groups = docpool['content']['Groups']
+        folder = groups['test_docpool_ContentAdministrators']
+
+        weatherinfo = api.content.create(
+            container=folder,
+            type='DPDocument',
+            title=u'Some Document',
+            description=u'foo',
+            docType='weatherinformation',
+        )
+
+        # check that commenting is enabled globally, per fti and per item
+        self.assertTrue(weatherinfo.restrictedTraverse("@@conversation_view").enabled())
+        self.assertIsNone(weatherinfo.allow_discussion)
+        fti = getUtility(IDexterityFTI, name="DPDocument")
+        self.assertTrue(fti.allow_discussion)
+        # Discussion is disabled globally but allowed via a patch. Duh.
+        self.assertFalse(api.portal.get_registry_record("plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled"))
+
+        view = weatherinfo.restrictedTraverse("view")
+        from zope.interface import alsoProvides
+        from plone.app.layout.globals.interfaces import IViewView
+        alsoProvides(view, IViewView)
+
+        # admins cannot see comments
+        view_html = view()
+        self.assertNotIn("form.buttons.comment", view_html)
+
+        # login as a member
+        user = api.user.create(email=u'foo@plone.org', username=u'foo', password=u'secret', roles=["Member", "Reviewer"])
+        api.group.add_user(groupname='test_docpool_ContentAdministrators', user=user)
+        logout()
+        login(self.portal, 'foo')
+
+        # Members can see comments
+        view_html = view()
+        self.assertIn("form.buttons.comment", view_html)

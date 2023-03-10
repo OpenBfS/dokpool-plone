@@ -1,6 +1,7 @@
 # VCL file optimized for plone.app.caching.  See vcl(7) for details
 vcl 4.0;
 import directors;
+impoprt std;
 # This is an example of a split view caching setup with another proxy
 # like Apache in front of Varnish to rewrite urls into the VHM style.
 
@@ -84,10 +85,26 @@ sub vcl_backend_response {
     return(deliver);
 }
 
+sub vcl_backend_error {
+    set beresp.http.Content-Type = "text/html; charset=utf-8";
+    set beresp.http.Retry-After = "5";
+    set beresp.body = regsuball(
+        std.fileread("${varnish-config:error-template}"),
+        "<<REASON>>",
+        beresp.reason
+    );
+    return (deliver);
+}
+
 sub vcl_deliver {
     call rewrite_age;
 }
 
+sub vcl_backend_fetch {
+    if (bereq.url ~ "/archiveAndClose($|\?)") {
+        set bereq.first_byte_timeout = 60m;
+    }
+}
 
 ##########################
 #  Helper Subroutines
@@ -108,7 +125,7 @@ sub normalize_accept_encoding {
 
 # Keep auth/anon variants apart if "Vary: X-Anonymous" is in the response
 sub annotate_request {
-    if (!(req.http.Authorization || req.http.cookie ~ "(^|.*; )__ac=" || req.http.X-SHIB-USER)) {
+    if (!(${authenticated_condition})) {
         set req.http.X-Anonymous = "True";
     }
 }

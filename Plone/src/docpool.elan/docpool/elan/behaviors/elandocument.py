@@ -25,14 +25,14 @@ import string
 
 @provider(IContextAwareDefaultFactory)
 def initializeScenarios(context):
-    if not hasattr(context, "getUserSelectedScenarios"):
+    if not hasattr(context, "getScenariosForCurrentUser"):
         return []
 
     catalog = getToolByName(context, "portal_catalog")
     scenarios = catalog(
         path=context.dpSearchPath(),
         portal_type='DPEvent',
-        getId=context.getUserSelectedScenarios(),
+        UID=context.getScenariosForCurrentUser(),
         Status='active')
     return [scen.id for scen in scenarios]
 

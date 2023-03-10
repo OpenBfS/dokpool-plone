@@ -264,5 +264,18 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1010"
+      destination="1011"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Update Role Mapping"
+        handler="docpool.base.upgrades.to_1011_update_rolemappings"
+        />
+    <genericsetup:upgradeStep
+        title="Store UUIDs for event selection"
+        handler="docpool.base.upgrades.to_1011_uuids_for_event_selection"
+        />
+  </genericsetup:upgradeSteps>
 
 </configure>

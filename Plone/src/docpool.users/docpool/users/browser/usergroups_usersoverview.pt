@@ -18,7 +18,8 @@
                 b_size python:showAll and len(view.searchResults) or 20;
                 portal_roles view/portal_roles;
                  portal_url context/dp_url;
-                 pportal_url context/portal_url">
+                 pportal_url context/portal_url;
+                 is_manager python:checkPermission('Manage portal', context);">
 
   <article id="content">
     <a href=""
@@ -141,7 +142,8 @@
                             tal:repeat="portal_role portal_roles">
                           <tal:block tal:define="inherited python:user['roles'][portal_role]['inherited'];
                                                  explicit python:user['roles'][portal_role]['explicit'];
-                                                 enabled python:user['roles'][portal_role]['canAssign']">
+                                                 enabled python:user['roles'][portal_role]['canAssign'];
+                                                 enabled python:is_manager if enabled else enabled;">
                             <input type="checkbox"
                                class="noborder"
                                name="users.roles:list:records"
@@ -166,7 +168,7 @@
                              name="users.resetpassword:records"
                                          value=""
                                          tal:attributes="value userid;
-                                                         disabled python:user['can_set_password'] and default or 'disabled'" />
+                                                         disabled python:is_manager and user['can_set_password'] and default or 'disabled'" />
                         </td>
 
                         <td class="listingCheckbox">
@@ -175,7 +177,7 @@
                                          name="delete:list"
                                          value=""
                                          tal:attributes="value userid;
-                                                         disabled python:user['can_delete'] and default or 'disabled'" />
+                                                         disabled python:is_manager and user['can_delete'] and default or 'disabled'" />
                         </td>
                     </tr>
                   </tal:block>

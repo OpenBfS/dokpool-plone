@@ -2,6 +2,7 @@ Changelog
 =========
 
 1.9.3 (21.10.22)
+1.9.4 (10.03.23)
 ------------------
 
 Changed:
@@ -9,14 +10,65 @@ Changed:
 - Limit blob-cache to 25GB #4739
   [slindner]
 
+- make authentication condition configurable for varnish #4539
+  [tlotze]
+
+- customize varnish backend error page #4904
+  [tlotze]
+
+- Blob-cache should be bytes #5096
+  [slindner]
+
+- Update REI vocabularies #5137
+  [kprobst]
+
+Fixed:
+
+- prevent varnish from timing out event archival #3792
+  [tlotze,kprobst]
+
+- Disable direct role-assignment to Users and Groups in docpools for non-managers #4391
+  [pbauer]
+
+- ugrade-step to update rolemappings #4560
+  [pbauer]
+
+- remove the workaround for SQLAlchemyError #4830
+  [tlotze]
+
+- do not show journals from archived events #4993
+  [tlotze]
+
+- fix archiving event GNU-2022-Tyche #5007
+  [pbauer]
+
+- fix event selection: per docpool, distinguish events with same id #5044
+  [tlotze]
+
+- fix printable version for simpleviz_inline.pt #5045
+  [kprobst]
+
+Added:
+
+- allow infodocument as defaultpage #4643
+  [pbauer]
+
+
+1.9.3 (21.10.22)
+------------------
+
+Changed:
+
+- Limit blob-cache to 25GB #4739
+  [slindner]
 
 Fixed:
 
 - Move blob-cache setting to prod cfg #4739
   [slindner]
+
 - Show comments in archive. #4819
   [tlotze]
-
 
 
 1.9.2 (04.08.22)

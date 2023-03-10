@@ -28,7 +28,6 @@ from docpool.event.utils import get_global_scenario_selection
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.transfers.config import TRANSFERS_APP
 from elan.journal.adapters import IJournalEntryContainer
-from elan.journal.adapters import JournalEntry
 from logging import getLogger
 from plone import api
 from plone.autoform import directives
@@ -281,7 +280,7 @@ class DPEvent(Container, ContentBase):
 
         # 1. Disable scenario to prevent new data from being added for it
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.id] = 'closed'
+        global_scenarios[api.content.get_uuid(self)] = 'closed'
         self.Status = 'closed'
         transaction.savepoint(optimistic=True)
 
@@ -449,14 +448,22 @@ class DPEvent(Container, ContentBase):
 
         mdate = obj.modified()
         transfer_events = obj.doc_extension(TRANSFERS_APP).transferEvents()
-        wftool = api.portal.get_tool("portal_workflow")
         old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
+        new_state = api.content.get_state(moved_obj)
 
-        if old_state == "published":
-            wftool.doActionFor(moved_obj, "publish")
-        elif old_state == "pending":
-            wftool.doActionFor(moved_obj, "submit")
+        if old_state != new_state:
+            # We directly transition for speed
+            wftool = api.portal.get_tool("portal_workflow")
+            if old_state == "published" and new_state in ["private", "pending"]:
+                wftool.doActionFor(moved_obj, "publish")
+            elif old_state == "pending" and new_state in ["private"]:
+                wftool.doActionFor(moved_obj, "submit")
+            elif old_state == "pending" and new_state in ["published"]:
+                wftool.doActionFor(moved_obj, "retract")
+            else:
+                # See https://redmine-koala.bfs.de/issues/5007
+                api.content.transition(moved_obj, to_state=old_state)
 
         # Now do some repairs
         moved_obj.scenarios = []
@@ -478,12 +485,21 @@ class DPEvent(Container, ContentBase):
         mdate = obj.modified()
         copied_obj.scenarios = []
 
-        wftool = api.portal.get_tool("portal_workflow")
         old_state = api.content.get_state(obj)
-        if old_state == "published":
-            wftool.doActionFor(copied_obj, "publish")
-        elif old_state == "pending":
-            wftool.doActionFor(copied_obj, "submit")
+        new_state = api.content.get_state(copied_obj)
+
+        if old_state != new_state:
+            # We directly transition for speed
+            wftool = api.portal.get_tool("portal_workflow")
+            if old_state == "published" and new_state in ["private", "pending"]:
+                wftool.doActionFor(copied_obj, "publish")
+            elif old_state == "pending" and new_state in ["private"]:
+                wftool.doActionFor(copied_obj, "submit")
+            elif old_state == "pending" and new_state in ["published"]:
+                wftool.doActionFor(copied_obj, "retract")
+            else:
+                # See https://redmine-koala.bfs.de/issues/5007
+                api.content.transition(copied_obj, to_state=old_state)
 
         copied_obj.setModificationDate(mdate)
         # transferLog for archived items needs to be a string
@@ -553,7 +569,7 @@ class DPEvent(Container, ContentBase):
 
     def selectGlobally(self):
         global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.getId()] = 'selected'
+        global_scenarios[api.content.get_uuid(self)] = 'selected'
 
     def createDefaultJournals(self):
         """
@@ -717,7 +733,7 @@ def eventRemoved(obj, event=None):
         raise RuntimeError(u'The "routinemode" event cannot be removed.')
 
     global_scenarios = get_global_scenario_selection()
-    global_scenarios[obj.getId()] = 'removed'
+    global_scenarios[api.content.get_uuid(obj)] = 'removed'
 
 
 @adapter(IDPEvent, IActionSucceededEvent)

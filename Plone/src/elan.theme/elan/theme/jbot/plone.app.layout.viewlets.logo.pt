@@ -11,8 +11,7 @@
         <img src="logo.png" alt=""
          tal:attributes="alt view/logo_title;
                          title view/logo_title;
-                         src view/img_src" /></a><!--<p class="version" tal:content="context/docpoolversion">1.0</p>--><p class="version">1.9.3</p>
-
+                         src view/img_src" /></a><!--<p class="version" tal:content="context/docpoolversion">1.0</p>--><p class="version">1.9.4</p>
     <tal:esdselect define="esds python:[('','---')] + context.myDocumentPools();
                            currentEsd context/myDocumentPool|nothing;
                            currentEsdUrl python:currentEsd and currentEsd.absolute_url() or None"
