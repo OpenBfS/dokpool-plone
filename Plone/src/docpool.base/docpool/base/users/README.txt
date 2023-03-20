@@ -24,6 +24,8 @@ view @@usergroup-userprefs overridden only for IDocumentPool
 Custom template usergroups_usersoverview.pt:
   * links relative to docpool instead of portal
   * hide controlpanel-dropdown-navigation
+  * prevent non-managers to assign roles, reset passwords and delete users (#4391)
+
 Overridden: UsersOverviewControlPanel.manageUser:
   * manageUser in order to change password reset behavior: set password == userid
     and to delete user folders - if possible - when user is deleted
@@ -46,7 +48,7 @@ Custom template usergroups_groupdetails.pt
   * Only show if content is a DocumentPool
   * Allow value|title options in select and multiple select fields
 
-TODO: Hide fields email, db from being editable when viewsing or adding a group (so far this is done in css):
+TODO: Hide fields email, db from being editable when viewing or adding a group (so far this is done in css):
 https://redmine-koala.bfs.de/issues/2219
 .portaltype-elanesd #formfield-form-esd, .portaltype-elanesd .field.esd, .template-user-information .field.portrait, .template-usergroup-groupdetails .field input[name="email:string"], .template-usergroup-groupdetails .field label[for="dp"], .template-usergroup-groupdetails .field label[for="email"], .template-usergroup-groupdetails .field select[name="dp:text"]
 
@@ -64,6 +66,7 @@ Custom template usergroups_groupmembership.pt:
 
 
 View @@usergroup-groupprefs
-Custom template usergroups_groupsoverview.pt:
+Custom template usergroups_groupsoverview.pt overridden only for IDocumentPool:
   * links relative to docpool instead of portal
   * hide controlpanel-dropdown-navigation
+  * prevent non-managers to assign roles and delete groups (#4391)
