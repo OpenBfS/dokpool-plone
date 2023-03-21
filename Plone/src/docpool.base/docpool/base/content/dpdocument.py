@@ -706,7 +706,7 @@ class DPDocument(Container, Extendable, ContentBase):
         """
         obj = api.content.get(UID=self.UID())
         if IArchiving(obj).is_archive:
-            return
+            return False
         doc_type = obj.docTypeObj()
         return doc_type and doc_type.allow_discussion_on_dpdocument or False
 
