@@ -332,9 +332,6 @@
     <permission name="Portlets: View dashboard" acquire="True">
       <role name="Manager"/>
     </permission>
-    <permission name="Reply to item" acquire="False">
-      <role name="Member"/>
-    </permission>
     <permission name="Request review" acquire="True">
       <role name="Editor"/>
       <role name="Manager"/>

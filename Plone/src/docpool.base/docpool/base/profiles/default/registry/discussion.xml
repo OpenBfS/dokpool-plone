@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<registry>
+  <records interface="plone.app.discussion.interfaces.IDiscussionSettings" prefix="plone.app.discussion.interfaces.IDiscussionSettings">
+    <value key="delete_own_comment_enabled">False</value>
+    <value key="edit_comment_enabled">False</value>
+    <value key="globally_enabled">True</value>
+  </records>
+</registry>

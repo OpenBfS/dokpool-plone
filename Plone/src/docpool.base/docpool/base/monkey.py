@@ -1,9 +1,6 @@
 from Acquisition import aq_get
-from Acquisition import aq_inner
-from docpool.base.marker import IImportingMarker
 from docpool.base.utils import possibleDocTypes
 from docpool.base.utils import possibleDocumentPools
-from plone.app.discussion.browser.conversation import ConversationView
 from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
@@ -14,36 +11,6 @@ import traceback
 
 
 log = logging.getLogger(__name__)
-
-
-# from Products.PlonePAS.tools.memberdata import MemberData
-
-
-# Patches for the automatic creation of group folders
-
-
-def enabled(self):
-    """
-    Needs to be patched, so that comments are enabled for the DPDocument type.
-    Normally, they cannot be enabled for a folderish type.
-    """
-    # print "enabled"
-    from docpool.base.content.archiving import IArchiving
-    from docpool.base.content.dpdocument import IDPDocument
-
-    context = aq_inner(self.context)
-    if IDPDocument.providedBy(context):
-        if IImportingMarker.providedBy(self.request):
-            # allow to import comments to archived docs
-            return True
-        return not IArchiving(context).is_archive
-    else:
-        return self.original_enabled()
-
-
-if not hasattr(ConversationView, "original_enabled"):
-    ConversationView.original_enabled = ConversationView.enabled
-    ConversationView.enabled = enabled
 
 
 def getURL(self, relative=0, original=False):
