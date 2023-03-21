@@ -17,11 +17,18 @@
       directory="profiles/default"
       />
 
-  <!-- The static files-->
+  <!-- The static bundle files -->
   <plone:static
       directory="static"
       name="docpool"
       type="plone"
+      />
+
+  <!-- The static theme files -->
+  <plone:static
+      directory="theme"
+      name="docpooltheme"
+      type="theme"
       />
 
   <include

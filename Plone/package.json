@@ -39,7 +39,8 @@
     "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
-    "@patternslib/patternslib": "9.6.0",
+    "@patternslib/patternslib": "^9.0.0",
+    "@plone/plonetheme-barceloneta-base": "^3.0.0",
     "underscore": "^1.13.6"
   }
 }
