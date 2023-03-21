@@ -48,9 +48,9 @@ class IDocType(model.Schema):
     allow_discussion_on_dpdocument = schema.Bool(
         title=_(
             "label_doctype_allow_discussion",
-            default="Commenting is enabled",
+            default="Allow commenting on this type",
         ),
-        description=_("description_doctype_allow_discussion", default=""),
+        description="",
         required=False,
         default=False,
     )
