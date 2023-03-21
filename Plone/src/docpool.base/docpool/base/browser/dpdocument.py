@@ -192,6 +192,9 @@ class FileUploadView(BaseFileUploadView):
 class AddForm(add.DefaultAddForm):
     portal_type = "DPDocument"
 
+    # Allow to set the docType from a query-string
+    allow_prefill_from_GET_request = True
+
     def updateWidgets(self):
         super().updateWidgets()
         if "reireport" in self.request.get("form.widgets.docType", []):
