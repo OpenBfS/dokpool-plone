@@ -25,6 +25,7 @@ from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
+from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
@@ -265,26 +266,30 @@ class DPDocument(Container, Extendable, ContentBase):
         return self.docType
 
     def _docTypeObj_cachekey(method, self):
-        return (self.absolute_url_path(), self.modified)
+        if not self.id:
+            # The object is being initialized
+            return
+        return (self.absolute_url_path(), self.modified())
 
-    # @ram.cache(_docTypeObj_cachekey)
+    @ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """ """
+        if not self.id:
+            # The object is being initialized
+            return
         et = self.docType
         if not et:
-            # The object might just be initialized and the attributes have not yet been
-            # saved
-            request = getRequest()
-            et = request.get("docType", "")
-            if not et:
-                return
-        dto = None
-        try:
-            dto = self.config.dtypes[et]
-        except Exception:
-            pass
+            # The object is being saved and the attributes have not yet been saved
+            et = self.REQUEST.get("form.widgets.docType", None)
+            if et and isinstance(et, list):
+                et = et[0]
+        if not et:
+            return
+        # Uses Acquisition. Meh.
+        dto = self.config.dtypes.get(et, None)
+
         if not dto:
-            logger.debug("No DocType Object for type name '%s'", et)
+            log("No DocType Object for type name '%s'", et)
         return dto
 
     def dp_type_name(self):
