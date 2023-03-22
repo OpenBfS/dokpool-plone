@@ -4,6 +4,11 @@ Changelog
 1.9.5 (unreleased)
 ------------------
 
+Fixed:
+
+- fix upgrade step for event selection by uid #5044
+  [tlotze]
+
 
 1.9.4 (10.03.23)
 ------------------
