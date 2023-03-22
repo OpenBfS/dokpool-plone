@@ -9,6 +9,7 @@ window.makePopUp = makePopUp;
 // Global styles
 import("./docpool_styles/header-timetable.scss");
 
+// TODO: Find other way, this does not work!
 const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
 if (isAnonymous === null) {
