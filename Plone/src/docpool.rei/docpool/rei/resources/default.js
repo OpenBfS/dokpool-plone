@@ -2,7 +2,6 @@
 
 import jQuery from "jquery";
 import $ from "jquery";
-import "@patternslib/patternslib/src/globals";
 import registry from "@patternslib/patternslib/src/core/registry";
 
 const isAnonymous = document.querySelector(".userrole-anonymous");

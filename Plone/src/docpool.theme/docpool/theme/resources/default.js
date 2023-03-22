@@ -1,6 +1,6 @@
-import "@patternslib/patternslib/src/globals";
 import { go_to } from "./window_functions";
 import { makePopUp } from "./window_functions";
+import $ from "jquery";
 
 // Global functions needed in window
 window.go_to = go_to;
@@ -9,6 +9,7 @@ window.makePopUp = makePopUp;
 // Global styles
 import("./docpool_styles/header-timetable.scss");
 
+// TODO: Find other way, this does not work!
 const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
 if (isAnonymous === null) {
