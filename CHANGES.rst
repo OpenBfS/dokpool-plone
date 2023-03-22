@@ -4,6 +4,11 @@ Changelog
 1.9.5 (unreleased)
 ------------------
 
+Fixed:
+
+- fix access to DPDocument method in #4819-related patches on all portal objects #5150
+  [tlotze]
+
 
 1.9.4 (10.03.23)
 ------------------

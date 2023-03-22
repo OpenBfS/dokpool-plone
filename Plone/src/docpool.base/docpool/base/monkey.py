@@ -41,8 +41,13 @@ if not hasattr(ConversationView, "original_enabled"):
     ConversationView.enabled = enabled
 
 
+def is_archive(context):
+    from docpool.base.content.dpdocument import IDPDocument
+    return IDPDocument.providedBy(aq_inner(context)) and context.isArchive()
+
+
 def is_discussion_allowed(self):
-    return not self.context.isArchive() and self.original_is_discussion_allowed()
+    return not is_archive(self.context) and self.original_is_discussion_allowed()
 
 
 if not hasattr(CommentsViewlet, "original_is_discussion_allowed"):
@@ -53,7 +58,7 @@ if not hasattr(CommentsViewlet, "original_is_discussion_allowed"):
 
 
 def edit_comment_allowed(self):
-    return not self.context.isArchive() and self.original_edit_comment_allowed()
+    return not is_archive(self.context) and self.original_edit_comment_allowed()
 
 
 if not hasattr(CommentsViewlet, "original_edit_comment_allowed"):
@@ -64,7 +69,7 @@ if not hasattr(CommentsViewlet, "original_edit_comment_allowed"):
 
 
 def can_edit(self, reply):
-    return not self.context.isArchive() and self.original_can_edit(reply)
+    return not is_archive(self.context) and self.original_can_edit(reply)
 
 
 if not hasattr(CommentsViewlet, "original_can_edit"):
@@ -73,7 +78,7 @@ if not hasattr(CommentsViewlet, "original_can_edit"):
 
 
 def delete_own_comment_allowed(self):
-    return not self.context.isArchive() and self.original_delete_own_comment_allowed()
+    return not is_archive(self.context) and self.original_delete_own_comment_allowed()
 
 
 if not hasattr(CommentsViewlet, "original_delete_own_comment_allowed"):
@@ -84,7 +89,7 @@ if not hasattr(CommentsViewlet, "original_delete_own_comment_allowed"):
 
 
 def can_delete(self, reply):
-    return not self.context.isArchive() and self.original_can_delete(reply)
+    return not is_archive(self.context) and self.original_can_delete(reply)
 
 
 if not hasattr(CommentsViewlet, "original_can_delete"):
