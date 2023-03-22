@@ -1,4 +1,3 @@
-import "@patternslib/patternslib/src/globals";
 import { go_to } from "./window_functions";
 import { makePopUp } from "./window_functions";
 
