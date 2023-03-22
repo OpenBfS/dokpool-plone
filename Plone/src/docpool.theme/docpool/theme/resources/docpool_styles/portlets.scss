@@ -11,10 +11,29 @@
     > ul time.portletItemDetails {
       margin-top: -24px;
       padding: 6px 16px 0 38px;
+      font-weight: 400;
     }
   }
 
-  &.portletNavigationTree .card-body ul li a {
+  a {
+    text-decoration: none;
+
+    /* Other styling for invalid links */
+    &:not([href]) {
+      color: unset;
+    }
+  }
+
+  .card-body ul li a {
     padding: 2px 15px;
+  }
+
+  &.portletRecent ul li {
+    padding: 2px 15px;
+  }
+
+  &#overviewportlet a {
+    color: #656565;
+    font-size: 18px;
   }
 }
