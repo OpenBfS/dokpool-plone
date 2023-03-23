@@ -7,6 +7,7 @@ Changelog
 Fixed:
 
 - fix access to DPDocument method in #4819-related patches on all portal objects #5150
+- fix upgrade step for event selection by uid #5044
   [tlotze]
 
 

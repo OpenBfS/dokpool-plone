@@ -4,7 +4,6 @@ from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
 from Products.CMFPlone.utils import safe_unicode
 from bs4 import BeautifulSoup
-from collections import defaultdict
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
 from docpool.config.general.base import configureGroups
@@ -643,24 +642,12 @@ def to_1011_update_rolemappings(context=None):
 
 
 def to_1011_uuids_for_event_selection(context=None):
-    scen_map = defaultdict(list)
-    for scen in api.content.find(portal_type='DPEvent'):
-        scen_map[scen.getId].append(scen.UID)
-
     global_scenarios = get_global_scenario_selection()
-    from pprint import pprint
-    pprint(global_scenarios)
-    for scen_id, status in global_scenarios.items():
-        global_scenarios.update((scen_uid, status) for scen_uid in scen_map[scen_id])
-        del global_scenarios[scen_id]
-    pprint(global_scenarios)
+    global_scenarios.clear()
 
-    for user in api.user.get_users():
-        selections = user.getProperty('scenarios', [])
-        new_selections = []
-        for line in selections:
-            scen, selected = line.strip().rsplit(':', 1)
-            new_selections.extend(
-                '{}:{}'.format(scen_uid, selected) for scen_uid in scen_map[scen]
-            )
-        user.setMemberProperties({'scenarios': new_selections})
+    zope_userfolder = api.portal.get().__parent__['acl_users']
+    zope_userids = list(set(item['userid'] for item in zope_userfolder.searchUsers()))
+    zope_users = [api.user.get(userid) for userid in zope_userids]
+
+    for user in zope_users + api.user.get_users():
+        user.setMemberProperties({'scenarios': []})
