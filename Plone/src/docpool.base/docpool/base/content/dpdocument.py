@@ -708,7 +708,7 @@ class DPDocument(Container, Extendable, ContentBase):
         if IArchiving(obj).is_archive:
             return False
         doc_type = obj.docTypeObj()
-        return doc_type and doc_type.allow_discussion_on_dpdocument or False
+        return doc_type.allow_discussion_on_dpdocument if doc_type else False
 
 
 @adapter(IDPDocument, IContainerModifiedEvent)
