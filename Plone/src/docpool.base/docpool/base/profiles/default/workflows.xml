@@ -12,6 +12,9 @@
  <object name="dp_collaboration_workflow" meta_type="Workflow"/>
  <object name="dp_guest_workflow" meta_type="Workflow"/>
  <object name="dp_review_workflow" meta_type="Workflow"/>
+ <object name="dp_double_review_bayern_workflow" meta_type="Workflow"/>
+ <object name="dp_private_bayern_workflow" meta_type="Workflow"/>
+ <object name="dp_review_bayern_workflow" meta_type="Workflow"/>
  <bindings>
   <default>
    <bound-workflow workflow_id="dp_one_state_workflow"/>

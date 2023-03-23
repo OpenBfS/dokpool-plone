@@ -7,4 +7,6 @@
  <object name="dp-guest-document" meta_type="WorkflowPolicy"/>
  <object name="dp-private-folder" meta_type="WorkflowPolicy"/>
  <object name="dp-private-infofolder" meta_type="WorkflowPolicy"/>
+ <object name="dp-private-bayern-folder" meta_type="WorkflowPolicy"/>
+ <object name="dp-double-review-bayern-folder" meta_type="WorkflowPolicy"/>
 </object>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
  <object name="dp_event_workflow" meta_type="Workflow"/>
+    <object name="dp_minor_event_workflow" meta_type="Workflow"/>
     <object name="elan_transfer_workflow" meta_type="Workflow"/>
-    <object name="elan_scenario_workflow" meta_type="Workflow"/>
     <object name="elan_archive_workflow" meta_type="Workflow"/>
  <bindings>
    <type type_id="DPEvent">
