@@ -645,5 +645,9 @@ def to_1011_uuids_for_event_selection(context=None):
     global_scenarios = get_global_scenario_selection()
     global_scenarios.clear()
 
-    for user in api.user.get_users():
+    zope_userfolder = api.portal.get().__parent__['acl_users']
+    zope_userids = list(set(item['userid'] for item in zope_userfolder.searchUsers()))
+    zope_users = [api.user.get(userid) for userid in zope_userids]
+
+    for user in zope_users + api.user.get_users():
         user.setMemberProperties({'scenarios': []})
