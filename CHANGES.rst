@@ -40,6 +40,8 @@ Fixed:
 
 - remove the workaround for SQLAlchemyError #4830
   [tlotze]
+- fix logic for selecting folder action buttons #5135
+  [tlotze]
 
 - do not show journals from archived events #4993
   [tlotze]

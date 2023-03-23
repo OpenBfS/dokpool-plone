@@ -63,39 +63,28 @@ class FolderBaseView(BrowserView):
         return self.buttons(items)
 
     def buttons(self, items):
-        buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
         button_actions = portal_actions.listActionInfos(
             object=context, categories=('folder_buttons',)
         )
+        actions_by_id = {action['id']: action for action in button_actions}
 
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
-        if not len(items):
-            if self.context.cb_dataValid():
-                for button in button_actions:
-                    if button['id'] == 'paste':
-                        return [self.setbuttonclass(button)]
-            else:
-                return []
+        if not items:
+            del button_actions[:]
+            if 'paste' in actions_by_id and self.context.cb_dataValid():
+                button_actions.append(actions_by_id['paste'])
 
-        show_delete_action = False
-        delete_action = [i for i in button_actions if i['id'] == 'delete']
-        delete_action = delete_action[0] if delete_action else None
-        if delete_action:
-            for item in items:
-                obj = item.getObject()
-                if api.user.has_permission('Delete objects', obj=obj):
-                    show_delete_action = True
-                    # shortcut
-                    break
-        if not show_delete_action:
-            button_actions.remove(delete_action)
+        if 'delete' in actions_by_id and not any(
+            api.user.has_permission('Delete objects', obj=item.getObject())
+            for item in items
+        ):
+            button_actions.remove(actions_by_id['delete'])
 
-        for button in button_actions:
-            # Make proper classes for our buttons
-            buttons.append(self.setbuttonclass(button))
+        # Make proper classes for our buttons
+        buttons = [self.setbuttonclass(action) for action in button_actions]
         return buttons
 
     def setbuttonclass(self, button):
