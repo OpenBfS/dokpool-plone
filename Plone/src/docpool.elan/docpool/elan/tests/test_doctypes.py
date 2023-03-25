@@ -3,12 +3,14 @@ from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.elan.utils import setScenariosForCurrentUser
 from plone import api
+from plone.app.layout.globals.interfaces import IViewView
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
+from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified
@@ -482,3 +484,45 @@ class TestDocTypes(unittest.TestCase):
         # Check the catalog_path
         catalog_path = IELANDocument(new).cat_path()
         self.assertEqual(catalog_path, "esd/meteorology/weather-information")
+
+    def test_commenting(self):
+        docpool = self.portal["test_docpool"]
+        groups = docpool["content"]["Groups"]
+        folder = groups["test_docpool_ContentAdministrators"]
+        weatherinfo = api.content.create(
+            container=folder,
+            type="DPDocument",
+            title="Some Document",
+            description="foo",
+            docType="weatherinformation",
+        )
+
+        # check that commenting is enabled globally, per fti and per item
+        self.assertTrue(
+            api.portal.get_registry_record(
+                "plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled"
+            )
+        )
+        self.assertFalse(
+            weatherinfo.restrictedTraverse("@@conversation_view").enabled()
+        )
+        # inherited from doctype
+        doctype = weatherinfo.docTypeObj()
+        self.assertFalse(doctype.allow_discussion_on_dpdocument)
+        self.assertFalse(weatherinfo.allow_discussion)
+
+        fti = getUtility(IDexterityFTI, name="DPDocument")
+        self.assertTrue(fti.allow_discussion)
+
+        view = weatherinfo.restrictedTraverse("view")
+
+        # The view needs IViewView to render the commenting Viewlet!
+        self.assertTrue(IViewView.providedBy(view))
+
+        view_html = view()
+        self.assertNotIn("pat-discussion", view_html)
+
+        # Change DocType and commenting is enabled
+        doctype.allow_discussion_on_dpdocument = True
+        view_html = view()
+        self.assertIn("pat-discussion", view_html)

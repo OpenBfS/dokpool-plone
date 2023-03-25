@@ -25,7 +25,6 @@
      <element value="plone.dublincore" />
      <element value="plone.namefromtitle" />
      <element value="plone.textindexer" />
-     <element value="plone.allowdiscussion" />
      <element value="plone.excludefromnavigation" />
      <element value="plone.collection"/>
      <element value="plone.richtext"/>

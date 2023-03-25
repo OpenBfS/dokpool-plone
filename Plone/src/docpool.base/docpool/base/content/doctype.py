@@ -45,6 +45,16 @@ class IDocType(model.Schema):
         default=True,
     )
 
+    allow_discussion_on_dpdocument = schema.Bool(
+        title=_(
+            "label_doctype_allow_discussion",
+            default="Allow commenting on this type",
+        ),
+        description="",
+        required=False,
+        default=False,
+    )
+
     # TODO: This pattern allows to create relations to itself
     # Would it be better to not use relations here?
     allowedDocTypes = RelationList(

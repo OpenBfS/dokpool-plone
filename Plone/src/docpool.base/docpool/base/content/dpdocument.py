@@ -703,6 +703,18 @@ class DPDocument(Container, Extendable, ContentBase):
         args.update(kwargs)
         return [obj.getObject() for obj in self.getFolderContents(args)]
 
+    @property
+    def allow_discussion(self):
+        """Return commenting-setting of the docType unless archived.
+        Uses a hack to re-add Acquisition since
+        is_archive and docTypeObj both require it.
+        """
+        obj = api.content.get(UID=self.UID())
+        if IArchiving(obj).is_archive:
+            return False
+        doc_type = obj.docTypeObj()
+        return doc_type.allow_discussion_on_dpdocument if doc_type else False
+
 
 @adapter(IDPDocument, IContainerModifiedEvent)
 def updateContainerModified(obj, event=None):

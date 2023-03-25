@@ -19,6 +19,7 @@ import mimetypes
 import uuid
 
 
+@implementer(IViewView)
 class DPDocumentView(FlexibleView):
     """Default view"""
 

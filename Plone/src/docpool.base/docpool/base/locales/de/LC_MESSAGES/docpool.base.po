@@ -781,6 +781,11 @@ msgstr "Pinnwand"
 msgid "label_dashboard_dbcollections"
 msgstr "Pinnwand Dokumentsammlungen"
 
+#. Default: "Allow commenting on this type"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_allow_discussion"
+msgstr "Kommentare auf Inhalten dieses Typs erlauben"
+
 #. Default: "Types are allowed as part of this type"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_alloweddoctypes"
