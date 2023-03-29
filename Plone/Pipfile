@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-setuptools = "==65.5.1"
+setuptools = "==65.7.0"
 pre-commit = "==2.19.0"
 "zc.buildout" = "==3.0.1"
 pip = "==22.3.1"
