@@ -14,10 +14,22 @@ module.exports = () => {
         __dirname,
         "./src/docpool.theme/docpool/theme/resources/index.js"
       ),
-      //  "elan.journal.min": path.resolve(__dirname, "./src/elan.journal/elan/journal/resources/default.js"),
-      //   "docpool.config.min": path.resolve(__dirname, "./src/docpool.config/docpool/config/resources/default.js"),
-      //  "docpool.base.min": path.resolve(__dirname, "./src/docpool.base/docpool/base/resources/default.js"),
-      //   "docpool.elan.min": path.resolve(__dirname, "./src/docpool.elan/docpool/elan/resources/default.js"),
+      "elan.journal.min": path.resolve(
+        __dirname,
+        "./src/elan.journal/elan/journal/resources/index.js"
+      ),
+      "docpool.config.min": path.resolve(
+        __dirname,
+        "./src/docpool.config/docpool/config/resources/index.js"
+      ),
+      "docpool.base.min": path.resolve(
+        __dirname,
+        "./src/docpool.base/docpool/base/resources/index.js"
+      ),
+      "docpool.elan.min": path.resolve(
+        __dirname,
+        "./src/docpool.elan/docpool/elan/resources/index.js"
+      ),
       "docpool.rei.min": path.resolve(
         __dirname,
         "./src/docpool.rei/docpool/rei/resources/index.js"
@@ -47,31 +59,57 @@ module.exports = () => {
     })
   );
 
-  // config.plugins.push(
-  //     mf_config({
-  //         name: "elan.journal.min",
-  //         filename: "elan.journal-remote.min.js",
-  //         remote_entry: config.entry["elan.journal.min"],
-  //         dependencies: {
-  //             ...package_json_patternslib.dependencies,
-  //             ...package_json_mockup.dependencies,
-  //             ...package_json.dependencies,
-  //         },
-  //     })
-  // );
+  config.plugins.push(
+    mf_config({
+      name: "elan.journal.min",
+      filename: "elan.journal-remote.min.js",
+      remote_entry: config.entry["elan.journal.min"],
+      dependencies: {
+        ...package_json_patternslib.dependencies,
+        ...package_json_mockup.dependencies,
+        ...package_json.dependencies,
+      },
+    })
+  );
 
-  // config.plugins.push(
-  //     mf_config({
-  //         name: "docpool.config",
-  //         filename: "docpool.config-remote.min.js",
-  //         remote_entry: config.entry["docpool.config.min"],
-  //         dependencies: {
-  //             ...package_json_patternslib.dependencies,
-  //             ...package_json_mockup.dependencies,
-  //             ...package_json.dependencies,
-  //         },
-  //     })
-  // );
+  config.plugins.push(
+    mf_config({
+      name: "docpool.config",
+      filename: "docpool.config-remote.min.js",
+      remote_entry: config.entry["docpool.config.min"],
+      dependencies: {
+        ...package_json_patternslib.dependencies,
+        ...package_json_mockup.dependencies,
+        ...package_json.dependencies,
+      },
+    })
+  );
+
+  config.plugins.push(
+    mf_config({
+      name: "docpool.base",
+      filename: "docpool.base-remote.min.js",
+      remote_entry: config.entry["docpool.base.min"],
+      dependencies: {
+        ...package_json_patternslib.dependencies,
+        ...package_json_mockup.dependencies,
+        ...package_json.dependencies,
+      },
+    })
+  );
+
+  config.plugins.push(
+    mf_config({
+      name: "docpool.elan",
+      filename: "docpool.elan-remote.min.js",
+      remote_entry: config.entry["docpool.elan.min"],
+      dependencies: {
+        ...package_json_patternslib.dependencies,
+        ...package_json_mockup.dependencies,
+        ...package_json.dependencies,
+      },
+    })
+  );
 
   config.plugins.push(
     mf_config({

@@ -41,7 +41,7 @@
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/elan.journal">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/elan.journa.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/elan.journal.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
     </records>
