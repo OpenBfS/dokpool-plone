@@ -1,10 +1,15 @@
 import $ from "jquery";
 import { go_to } from "./window_functions";
+import { close_popups } from "./window_functions";
 import { makePopUp } from "./window_functions";
+import jQuery from "jquery";
 
 // Global functions needed in window
 window.go_to = go_to;
 window.makePopUp = makePopUp;
+window.close_overview = close_popups;
+window.jQuery = jQuery;
+window.$ = jQuery;
 
 // Global styles
 import("./docpool_styles/header-timetable.scss");
@@ -21,7 +26,7 @@ if (isAnonymous !== null) {
   import("./docpool_styles/anonymous.scss");
 }
 
-$(document).on("click", ".collapsible", function (event) {
+jQuery(document).on("click", ".collapsible", function (event) {
   this.classList.toggle("active");
   var content = this.nextElementSibling;
   if (content.style.maxHeight) {
