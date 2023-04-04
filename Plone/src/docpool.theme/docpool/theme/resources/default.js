@@ -10,10 +10,6 @@ window.close_overview = close_popups;
 window.jQuery = jQuery;
 window.$ = jQuery;
 
-// Global styles
-import("./docpool_styles/header-timetable.scss");
-
-// TODO: Find other way, this does not work!
 const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
 if (isAnonymous === null) {
@@ -24,6 +20,9 @@ if (isAnonymous === null) {
 if (isAnonymous !== null) {
   import("./docpool_styles/anonymous.scss");
 }
+
+// Global styles
+import("./docpool_styles/header-timetable.scss");
 
 jQuery(document).on("click", ".collapsible", function (event) {
   this.classList.toggle("active");
