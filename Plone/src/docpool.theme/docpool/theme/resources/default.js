@@ -1,4 +1,3 @@
-import $ from "jquery";
 import { go_to } from "./window_functions";
 import { close_popups } from "./window_functions";
 import { makePopUp } from "./window_functions";
