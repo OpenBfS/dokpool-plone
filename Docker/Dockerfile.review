@@ -16,7 +16,7 @@ EOT
 
 FROM base
 
-ENV SETUPTOOLS_VERSION=65.5.1
+ENV SETUPTOOLS_VERSION=65.7.0
 
 LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
     org.label-schema.name="plone-bfs" \
@@ -40,8 +40,11 @@ COPY . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
 
 RUN <<EOT
-    npm ci
+    npm ci --omit=dev
     npm run build
+    # Make sure we use a fresh python venv
+    rm -Rf /opt/bfs/dokpool/Plone/.venv
+    mkdir -p /opt/bfs/dokpool/Plone/.venv
     pip install pipenv
     pipenv install "setuptools==${SETUPTOOLS_VERSION}"
     pipenv install --python=$(whereis python3 | awk '{print $2}')
