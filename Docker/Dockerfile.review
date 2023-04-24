@@ -40,7 +40,7 @@ COPY . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
 
 RUN <<EOT
-    npm ci --omit=dev
+    npm ci
     npm run build
     # Make sure we use a fresh python venv
     rm -Rf /opt/bfs/dokpool/Plone/.venv
