@@ -7,8 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "npm-run-all build:webpack",
-    "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.js",
     "watch": "nodemon --watch src/ --ext scss,js --exec \"npm run build\""
   },
   "repository": {
