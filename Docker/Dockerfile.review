@@ -4,7 +4,7 @@ FROM python:${PYTHON_VERSION}-slim-bullseye as base
 FROM base as builder
 
 ENV PIP_PARAMS=""
-ENV PIP_VERSION=22.3.1
+ENV PIP_VERSION=23.0.1
 
 RUN <<EOT
     apt-get update
@@ -16,7 +16,7 @@ EOT
 
 FROM base
 
-ENV SETUPTOOLS_VERSION=65.7.0
+ENV SETUPTOOLS_VERSION=67.6.1
 
 LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
     org.label-schema.name="plone-bfs" \
