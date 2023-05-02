@@ -77,7 +77,7 @@ class FolderBaseView(BrowserView):
             if 'paste' in actions_by_id and self.context.cb_dataValid():
                 button_actions.append(actions_by_id['paste'])
 
-        if 'delete' in actions_by_id and not any(
+        elif 'delete' in actions_by_id and not any(
             api.user.has_permission('Delete objects', obj=item.getObject())
             for item in items
         ):
