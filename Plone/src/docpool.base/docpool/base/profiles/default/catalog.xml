@@ -3,17 +3,21 @@
     <index name="dp_type" meta_type="FieldIndex">
         <indexed_attr value="dp_type"/>
     </index>
-    <column value="dp_type_name"/>
     <index name="mdate" meta_type="FieldIndex">
         <indexed_attr value="getMdate"/>
     </index>
-    <column value="getMdate"/>
     <index name="changed" meta_type="FieldIndex">
         <indexed_attr value="changed"/>
     </index>
-    <column value="changed"/>
     <index name="apps_supported" meta_type="KeywordIndex">
         <indexed_attr value="apps_supported"/>
     </index>
+    <index name="sendingESD" meta_type="FieldIndex">
+        <indexed_attr value="sendingESD"/>
+    </index>
+
+    <column value="dp_type_name"/>
+    <column value="getMdate"/>
+    <column value="changed"/>
     <column value="apps_supported"/>
 </object>
