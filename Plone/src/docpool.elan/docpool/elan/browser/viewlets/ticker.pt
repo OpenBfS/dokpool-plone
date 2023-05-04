@@ -1,11 +1,12 @@
-<tal:block i18n:domain="docpool.base" tal:condition="view/available|nothing">
+<tal:block i18n:domain="docpool.base"
+           tal:condition="python: view.available">
 <aside class="marquee"
-	tal:define="t nocall: python:context.restrictedTraverse('contentconfig').ticker;
-				toLocalizedTime nocall: context/@@plone/toLocalizedTime;"
-	tal:condition="python:t is not None and t.text and len(t.text.output) > 10 or False">
-	<tal:def define="ttext t/text/output;
-					 ttext python:' - ' + ttext[3:-4]">
-		<i><span tal:replace="python:t.modified_by or t.created_by"/> <span tal:replace="python: toLocalizedTime(t.modified(), long_format=1)"></span><span tal:replace="python:' '"></span><tal:var i18n:translate="">LT</tal:var>:</i> <span tal:replace="structure ttext" />
-	</tal:def>
+       tal:define="ticker python: view.ticker()"
+       tal:condition="python: ticker is not None and ticker.text and len(ticker.text.output) > 10 or False">
+    <tal:def define="ttext python: ticker.text.output;
+                     ttext python:' - ' + ttext[3:-4];
+                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+        <i><span tal:replace="python:t.modified_by or ticker.created_by"/> <span tal:replace="python: toLocalizedTime(ticker.modified(), long_format=1)"></span><span tal:replace="python:' '"></span><tal:var i18n:translate="">LT</tal:var>:</i> <span tal:replace="structure ttext" />
+    </tal:def>
 </aside>
 </tal:block>

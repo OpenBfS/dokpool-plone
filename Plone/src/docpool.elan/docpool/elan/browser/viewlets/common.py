@@ -49,3 +49,9 @@ class TickerViewlet(ELANViewlet):
             and hasattr(self.context, "myDocumentPool")
             and self.isSupported()
         )
+
+    def ticker(self):
+        # Contentconfig not not accessible to Reader role but we need to access the ticker
+        contentconfig = self.context.unrestrictedTraverse("contentconfig")
+        if contentconfig and "ticker" in contentconfig:
+            return contentconfig["ticker"]
