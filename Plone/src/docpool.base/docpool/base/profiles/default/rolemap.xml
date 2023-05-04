@@ -22,10 +22,10 @@
       <role name="Contributor"/>
       <role name="Editor"/>
       <role name="Member"/>
-      <role name="Owner"/>
       <role name="Reader"/>
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
+      <role name="ContentAdmin"/>
     </permission>
     <permission name="Access inactive portal content" acquire="True">
       <role name="Manager"/>
