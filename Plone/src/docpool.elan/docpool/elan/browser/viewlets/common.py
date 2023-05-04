@@ -17,7 +17,10 @@ class EventViewlet(ViewletBase):
     index = ViewPageTemplateFile("events.pt")
 
     def isSupported(self):
-        return True
+        dp_app_state = getMultiAdapter(
+            (self.context, self.request), name="dp_app_state"
+        )
+        return dp_app_state.isCurrentlyActive(ELAN_APP)
 
     @property
     def available(self):
