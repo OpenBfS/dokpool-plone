@@ -6,7 +6,7 @@
     <tal:def define="ttext python: ticker.text.output;
                      ttext python:' - ' + ttext[3:-4];
                      toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-        <i><span tal:replace="python:t.modified_by or ticker.created_by"/> <span tal:replace="python: toLocalizedTime(ticker.modified(), long_format=1)"></span><span tal:replace="python:' '"></span><tal:var i18n:translate="">LT</tal:var>:</i> <span tal:replace="structure ttext" />
+        <i><span tal:replace="python:ticker.modified_by or ticker.created_by"/> <span tal:replace="python: toLocalizedTime(ticker.modified(), long_format=1)"></span><span tal:replace="python:' '"></span><tal:var i18n:translate="">LT</tal:var>:</i> <span tal:replace="structure ttext" />
     </tal:def>
 </aside>
 </tal:block>
