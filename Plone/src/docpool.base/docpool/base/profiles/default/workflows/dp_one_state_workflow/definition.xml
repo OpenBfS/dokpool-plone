@@ -22,6 +22,7 @@
    <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
+   <permission-role>Anonymous</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>
    <permission-role>Owner</permission-role>

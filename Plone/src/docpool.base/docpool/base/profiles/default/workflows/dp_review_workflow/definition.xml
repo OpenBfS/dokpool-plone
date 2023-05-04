@@ -33,7 +33,8 @@
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Owner</permission-role>
-  </permission-map> </state>
+  </permission-map>
+ </state>
  <state state_id="private" title="Private">
   <description>Can only be seen and edited by the owner.</description>
   <exit-transition transition_id="publish"/>

@@ -24,9 +24,11 @@
         <exit-transition transition_id="retract_to_npp_operator"/>
         <exit-transition transition_id="submit_bfs"/>
         <permission-map name="Access contents information" acquired="False">
+            <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
@@ -61,7 +63,12 @@
         <exit-transition transition_id="reject_to_authority"/>
         <exit-transition transition_id="retract_to_authority"/>
         <exit-transition transition_id="submit_bmu"/>
-        <permission-map name="Access contents information" acquired="True">
+        <permission-map name="Access contents information" acquired="False">
+            <permission-role>Contributor</permission-role>
+            <permission-role>Editor</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
@@ -100,7 +107,12 @@
         <exit-transition transition_id="publish"/>
         <exit-transition transition_id="reject_to_bfs"/>
         <exit-transition transition_id="retract_to_bfs"/>
-        <permission-map name="Access contents information" acquired="True">
+        <permission-map name="Access contents information" acquired="False">
+            <permission-role>Contributor</permission-role>
+            <permission-role>DocPoolAdmin</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="False">
             <permission-role>DocPoolAdmin</permission-role>
@@ -179,8 +191,10 @@
         <description>Visible to everyone, editable by the owner.</description>
         <exit-transition transition_id="retract_for_revision"/>
         <permission-map name="Access contents information" acquired="False">
+            <permission-role>Contributor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
+            <permission-role>REIUser</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Reviewer</permission-role>
             <permission-role>Site Administrator</permission-role>
@@ -217,7 +231,14 @@
         </group-map>
     </state>
     <state state_id="revised" title="Revised">
-        <permission-map name="Access contents information" acquired="True">
+        <permission-map name="Access contents information" acquired="False">
+            <permission-role>Contributor</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>REIUser</permission-role>
+            <permission-role>Reader</permission-role>
+            <permission-role>Reviewer</permission-role>
+            <permission-role>Site Administrator</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="False">
         </permission-map>
