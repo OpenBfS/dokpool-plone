@@ -27,4 +27,8 @@
          skinname="docpool.theme">
   <viewlet name="plone.logo"/>
  </hidden>
+ <hidden manager="plone.belowcontenttitle"
+         skinname="docpool.theme">
+  <viewlet name="plone.documentbyline"/>
+ </hidden>
 </object>
