@@ -5,6 +5,11 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
+import logging
+
+
+log = logging.getLogger(__name__)
+
 
 ANN_KEY_SCENARIO_SELECTION = 'SCENARIO_SELECTION'
 
@@ -49,7 +54,14 @@ def getScenarioIdsForCurrentUser(self):
     # uids. This will conflate events from different docpools that happen to have the
     # same id (which likely wasn't a considered a use case at the time the attribute was
     # first created). Search results should thus remain the same as previously.
-    return list(set(api.content.get(UID=uid).getId() for uid in scns))
+    ids = set()
+    for uid in scns:
+        obj = api.content.get(UID=uid)
+        if obj is None:
+            log.error('Scenario with UID {} not found in catalog.'.format(uid))
+            continue
+        ids.add(obj.getId())
+    return list(ids)
 
 
 def getScenariosForCurrentUser(self):
