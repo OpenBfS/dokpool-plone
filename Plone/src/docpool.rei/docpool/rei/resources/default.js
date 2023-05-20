@@ -1,27 +1,26 @@
 // docpool.rei js/scss entry
-
-import jQuery from "jquery";
 import $ from "jquery";
-import registry from "@patternslib/patternslib/src/core/registry";
+import Registry from "@patternslib/patternslib/src/core/registry";
 
-const isAnonymous = document.querySelector(".userrole-anonymous");
+//const isAnonymous = document.querySelector(".userrole-anonymous");
 // Logged-In users
-if (isAnonymous === null) {
+//if (isAnonymous === null) {
   import("./styles.scss");
-}
+//}
 
-registry.init();
-
-jQuery(document).ready(function (evt) {
-  if (typeof Faceted !== "undefined") {
-    $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function () {
-      // Async import the contentloader and do a mockup registry scan
+$(function () {
+    console.log("document ready")
+  if (typeof window.Faceted !== "undefined") {
+      console.log("faceted loaded")
+    $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS, function () {
+      // Async import the contentloader and do a mockup Registry scan
+        console.log("faceted fired")
       Promise.all([
         import(
           /* webpackChunkName: "pat-contentloader-bfs" */ "./pat-contentloader-bfs"
         ),
       ]).then((args) => {
-        registry.scan($("#content-core"));
+        Registry.scan($("#content-core"));
       });
       // Open all metatitle
       $("#z3ctabel-toggles .z3ctable-toggle-metatitle").on(
