@@ -1,49 +1,52 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.theme">
-
-    <!-- javascript/less ====================================================== -->
-
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/docpool.theme">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/docpool.theme.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/docpool.theme-remote.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
+        <value key="depends">plone</value>
     </records>
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/docpool.elan">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/docpool.elan.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/docpool.elan-remote.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
+        <value key="depends">plone</value>
     </records>
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/docpool.rei">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/docpool.rei.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/docpool.rei-remote.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
+        <value key="depends">faceted.jquery</value>
     </records>
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/docpool.base">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/docpool.base.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/docpool.base-remote.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
+        <value key="depends">plone</value>
     </records>
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/docpool.config">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/docpool.config.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/docpool.config-remote.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
+        <value key="depends">plone</value>
     </records>
     <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
              prefix="plone.bundles/elan.journal">
         <value key="enabled">True</value>
-        <value key="jscompilation">++plone++docpool/build/elan.journal.min.js</value>
+        <value key="jscompilation">++plone++docpool/build/elan.journal-remote.min.js</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
+        <value key="depends">plone</value>
     </records>
     <record name="docpool.show_debug_info">
         <field type="plone.registry.field.Bool">
