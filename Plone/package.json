@@ -33,9 +33,9 @@
     "bootstrap": "^5.2.3"
   },
   "dependencies": {
-    "@patternslib/patternslib": ">=9.8.3-alpha.2",
+    "@patternslib/patternslib": ">=9.8.3",
     "@plone/mockup": ">=5.1.0-alpha.0",
-    "@plone/plonetheme-barceloneta-base": "^3.0.0",
+    "@plone/plonetheme-barceloneta-base": "^3.0.2",
     "jquery": "^3.6.4",
     "svg-url-loader": "^8.0.0",
     "underscore": "^1.13.6",
