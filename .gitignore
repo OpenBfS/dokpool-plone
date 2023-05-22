@@ -12,6 +12,7 @@ Plone/\.mr\.developer\.cfg
 Plone/etc/varnish.vcl
 Plone/var
 Plone/venv
+Plone/.venv
 Plone/src-mrd/
 *.egg-info
 *.pyc
@@ -29,8 +30,5 @@ Plone/etc/zodbpack.conf
 .plone.versioncheck.tracked.json
 # node modules webpack theme
 node_modules/
-Plone/src/docpool.theme/docpool/theme/static/build/*.js
-Plone/src/docpool.theme/docpool/theme/static/build/*.txt
-Plone/src/docpool.theme/docpool/theme/static/build/*.css
-Plone/src/docpool.theme/docpool/theme/static/build/*.map
+Plone/src/docpool.theme/docpool/theme/static/build/*
 .python-version

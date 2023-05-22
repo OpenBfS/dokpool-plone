@@ -43,7 +43,7 @@
 a.rei-eea-search {
   &.metadata {
     div {
-      background-image: url("/++plone++docpool.rei/metainfos.svg");
+      background-image: url("../browser/static/metainfos.png");
       background-repeat: no-repeat;
       background-size: cover;
       height: 20px;
@@ -58,7 +58,7 @@ a.rei-eea-search {
 
   &.metatitle {
     div {
-      background-image: url("/++plone++docpool.rei/title.svg");
+      background-image: url("../browser/static/title.png");
       background-repeat: no-repeat;
       background-size: cover;
       height: 20px;

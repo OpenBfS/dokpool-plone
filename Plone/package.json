@@ -6,9 +6,13 @@
   "directories": {
     "doc": "docs"
   },
+  "engines": {
+    "node": ">=12.20.0"
+  },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "watch": "nodemon --watch src/ --ext scss,js --exec \"npm run build\""
+    "start": "NODE_ENV=development webpack serve --config webpack.config.js",
+    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
   },
   "repository": {
     "type": "git",
@@ -18,28 +22,27 @@
     "Plone",
     "bfs"
   ],
-  "author": "",
+  "author": "Steffen Lindner",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/OpenBfS/dokpool-plone/issues"
   },
   "homepage": "https://github.com/OpenBfS/dokpool-plone#readme",
   "devDependencies": {
-    "bootstrap": "^5.2.3",
-    "clean-css-cli": "^5.6.2",
-    "css-loader": "^6.7.3",
-    "nodemon": "^2.0.21",
-    "npm-run-all": "^4.1.5",
-    "sass": "^1.59.3",
-    "sass-loader": "^13.2.1",
-    "style-loader": "^3.3.2",
-    "webpack": "^5.76.2",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.13.1"
+    "@patternslib/dev": "<4",
+    "bootstrap": "^5.2.3"
   },
   "dependencies": {
-    "@patternslib/patternslib": "^9.8.2",
-    "@plone/plonetheme-barceloneta-base": "^3.0.0",
-    "underscore": "^1.13.6"
+    "@patternslib/patternslib": ">=9.8.3",
+    "@plone/mockup": ">=5.1.0-alpha.0",
+    "@plone/plonetheme-barceloneta-base": "^3.0.2",
+    "jquery": "^3.6.4",
+    "svg-url-loader": "^8.0.0",
+    "underscore": "^1.13.6",
+    "url-loader": "^4.1.1"
+  },
+  "resolutions": {
+    "@patternslib/patternslib": "<10",
+    "jquery": "<4"
   }
 }

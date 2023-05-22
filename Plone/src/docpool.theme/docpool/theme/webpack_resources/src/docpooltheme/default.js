@@ -121,23 +121,6 @@ if (jQuery("body.template-configure_faceted-html").length) {
   })();
 }
 
-// Todo Needs a place to stay (own file)
-function close_popups() {
-  let open_popups = JSON.parse(localStorage.getItem("open_popups"));
-  if (open_popups !== null) {
-    open_popups.forEach(function (item) {
-      let popup = window.open("", item, "");
-      if (popup) {
-        popup.close();
-      }
-      delete window["popup_" + item];
-    });
-    localStorage.removeItem("open_popups");
-  }
-  var portal_root = $("body").data("portal-url");
-  window.location.href = portal_root + "/logout";
-}
-
 // More on magic comments
 // https://webpack.js.org/api/module-methods/#magic-comments
 // Imports the js for logged-in users

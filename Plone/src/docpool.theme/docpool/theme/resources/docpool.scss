@@ -3,7 +3,7 @@
 #meta_items {
   img {
     background-color: #ffffff;
-    background-image: url("/++plone++docpool/images/bfs-plus-icon.png");
+    background-image: url("../static/images/bfs-plus-icon.png");
     background-repeat: no-repeat;
     padding-left: 30px;
     margin-top: 10px;
@@ -12,7 +12,7 @@
   }
 
   > img.active {
-    background-image: url("/++plone++docpool/images/bfs-minus-icon.png");
+    background-image: url("../static/images/bfs-minus-icon.png");
   }
 
   .content {
