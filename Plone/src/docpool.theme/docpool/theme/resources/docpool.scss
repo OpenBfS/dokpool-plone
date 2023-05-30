@@ -1,5 +1,10 @@
 /* docpool specific styles css */
 
+// Highlight app chooser: https://redmine-koala.bfs.de/issues/5279
+#portal-globalnav .apps > a:first-child {
+  background-color: #92c2e4;
+}
+
 // Different from bootstrap, we have labels under the heading:
 .form-label {
   margin-bottom: 0;
