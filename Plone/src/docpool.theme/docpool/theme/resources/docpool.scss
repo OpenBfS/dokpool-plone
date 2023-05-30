@@ -1,5 +1,13 @@
 /* docpool specific styles css */
 
+// Different from bootstrap, we have labels under the heading:
+.form-label {
+  margin-bottom: 0;
+}
+.form-text {
+  margin-bottom: 0.6em;
+}
+
 #meta_items {
   img {
     background-color: #ffffff;
