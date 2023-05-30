@@ -309,7 +309,8 @@ dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', dom
     </tal:if>
 </metal:macro>
 
-<metal:macro define-macro="doc_files" i18n:domain="docpool.base">
+<metal:macro define-macro="doc_files" i18n:domain="docpool.base"
+       tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
           <span tal:define="files context/getFiles" tal:condition="python: files">
             <label i18n:translate="">Files:</label>
             <ul tal:define="multiple_files python:len(files) > 1">
@@ -334,7 +335,7 @@ size = human_readable_size(econtext["d"].get_size())
                           target="_top"
                           aria-label="Delete"
                           data-original-title="Delete">
-                      <span class="glyphicon glyphicon-trash"></span>
+                    <tal:icon tal:replace="structure python:icons.tag('trash')" />
                   </a>
                 <tal:if condition="python:multiple_files and edit_allowed">
 <?python
@@ -363,7 +364,8 @@ quoted_id = quote_plus(econtext["d"].getId());
           </span>
 </metal:macro>
 
-<metal:macro define-macro="doc_images" i18n:domain="docpool.base">
+<metal:macro define-macro="doc_images" i18n:domain="docpool.base"
+        tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
 
           <span tal:define="images context/getImages">
             <label i18n:translate="">Images:</label>
@@ -407,7 +409,7 @@ size = human_readable_size(econtext["b"].get_size())
                           target="_top"
                           aria-label="Delete"
                           data-original-title="Delete">
-                      <span class="glyphicon glyphicon-trash"></span>
+                    <tal:icon tal:replace="structure python:icons.tag('trash')" />
                   </a>
 
               <tal:if condition="python:multiple_images and edit_allowed">
