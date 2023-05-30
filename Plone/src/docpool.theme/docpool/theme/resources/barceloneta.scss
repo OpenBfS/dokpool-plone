@@ -17,6 +17,14 @@ $enable-roboto-webfont: false !default;
 @import "@plone/plonetheme-barceloneta-base/scss/variables.barceloneta";
 @import "bootstrap/scss/variables";
 
+// Override default heading size for docpool
+$h1-font-size: $font-size-base * 2;
+$h2-font-size: $font-size-base * 1.75;
+$h3-font-size: $font-size-base * 1.5;
+$h4-font-size: $font-size-base * 1.25;
+$h5-font-size: $font-size-base * 1.1;
+$h6-font-size: $font-size-base;
+
 // 4. Include any default map overrides here
 
 // 5. Include remainder of required parts
