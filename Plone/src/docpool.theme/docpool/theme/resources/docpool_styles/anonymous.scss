@@ -1,7 +1,13 @@
 @import "../barceloneta";
 
 #portal-searchbox,
+ul.list-inline,
 #portal-breadcrumbs,
 #portal-anontools {
   display: none !important;
+}
+#login-form {
+  .footer {
+    display: none !important;
+  }
 }
