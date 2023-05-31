@@ -106,6 +106,9 @@
   <object name="rename" meta_type="CMF Action" i18n:domain="plone">
    <property name="visible">False</property>
   </object>
+  <object name="redirection" meta_type="CMF Action" i18n:domain="plone">
+    <property name="visible">False</property>
+  </object>
  </object>
  <object name="folder_buttons" meta_type="CMF Action Category">
   <property name="title"></property>
