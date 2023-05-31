@@ -12,11 +12,10 @@ $enable-roboto-webfont: false !default;
 // 2. Include any default variable overrides here
 
 // 3. Include remainder of required Barceloneta and Bootstrap stylesheets
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/variables-dark";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.colors.plone";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.properties";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.barceloneta";
+@import "bootstrap/scss/variables";
 
 // Override default heading size for docpool
 $h1-font-size: $font-size-base * 2;
