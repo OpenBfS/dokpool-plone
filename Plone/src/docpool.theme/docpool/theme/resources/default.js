@@ -12,14 +12,22 @@ window.close_overview = close_popups;
 window.jQuery = jQuery;
 window.$ = jQuery;
 
+// Default Plone barceloneta bootstrap styles
+import("./barceloneta.scss");
+// Global styles
+import("./docpool_styles/header-timetable.scss");
+import("./docpool_styles/footer.scss");
+
+// Test for the first css selectors, returns null if not found otherwise returns the element
 const isAnonymous = document.querySelector(".userrole-anonymous");
+
 // Logged-In users
-if (isAnonymous === null) {
+if (isAnonymous == null) {
   import("./theme.scss");
 }
 
 // Anonymous users
-if (isAnonymous !== null) {
+if (isAnonymous != null) {
   import("./docpool_styles/anonymous.scss");
 }
 
@@ -30,10 +38,7 @@ if (isMember !== null) {
   import("./docpool_styles/nonadmin.scss");
 }
 
-// Global styles
-import("./docpool_styles/header-timetable.scss");
-
-jQuery(document).on("click", ".collapsible", function (event) {
+jQuery(document).on("click", ".collapsible", function () {
   this.classList.toggle("active");
   var content = this.nextElementSibling;
   if (content.style.maxHeight) {
