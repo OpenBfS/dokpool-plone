@@ -32,3 +32,5 @@ Plone/etc/zodbpack.conf
 node_modules/
 Plone/src/docpool.theme/docpool/theme/static/build/*
 .python-version
+.plone.versioncheck.cache/
+Plone/.vscode/
