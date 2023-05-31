@@ -37,6 +37,7 @@
     "@plone/mockup": ">=5.1.0-alpha.0",
     "@plone/plonetheme-barceloneta-base": "^3.0.2",
     "jquery": "^3.6.4",
+    "jquery.marquee": "^1.6.0",
     "svg-url-loader": "^8.0.0",
     "underscore": "^1.13.6",
     "url-loader": "^4.1.1"
