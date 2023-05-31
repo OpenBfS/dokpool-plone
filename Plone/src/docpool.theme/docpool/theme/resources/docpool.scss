@@ -1,5 +1,10 @@
 /* docpool specific styles css */
 
+// Hide svg icons in the toolbar add menu
+#edit-zone .plonetoolbar-contenttype ul.dropdown-menu a > .plone-icon {
+  display: none;
+}
+
 // Highlight app chooser: https://redmine-koala.bfs.de/issues/5279
 #portal-globalnav .apps > a:first-child {
   background-color: #92c2e4;
@@ -9,6 +14,7 @@
 .form-label {
   margin-bottom: 0;
 }
+
 .form-text {
   margin-bottom: 0.6em;
 }
