@@ -10,6 +10,7 @@ $enable-roboto-webfont: false !default;
 @import "bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+$blue: #157fcc !default;
 
 // 3. Include remainder of required Barceloneta and Bootstrap stylesheets
 @import "@plone/plonetheme-barceloneta-base/scss/variables.colors.plone";
