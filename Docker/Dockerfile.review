@@ -26,7 +26,7 @@ LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
 # Todo: Cleanup - some deps are not needed
 RUN  <<EOT
     useradd --system -m -d /app -U -u 500 plone
-    runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make nodejs npm"
+    runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make curl"
     apt-get update
     apt-get install -y --no-install-recommends $runDeps
     busybox --install -s
@@ -35,6 +35,9 @@ EOT
 # Todo: Cleanup - some deps are not needed
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install git python3 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev tar python3-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python3-pip && apt-get autoclean
 
+# Install current node/npm
+RUN curl -sL https://deb.nodesource.com/setup_18.x  | bash -
+RUN apt-get install nodejs -yq
 
 COPY . /opt/bfs/dokpool/
 WORKDIR /opt/bfs/dokpool/Plone
