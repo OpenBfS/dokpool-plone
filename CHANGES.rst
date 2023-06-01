@@ -4,6 +4,10 @@ Changelog
 1.9.5 (unreleased)
 ------------------
 
+Changed:
+
+- log errors for events not found in UID index (while working on #5260)
+
 Fixed:
 
 - fix access to DPDocument method in #4819-related patches on all portal objects #5150
