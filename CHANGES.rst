@@ -13,6 +13,9 @@ Fixed:
 - fix access to DPDocument method in #4819-related patches on all portal objects #5150
 - fix upgrade step for event selection by uid #5044
   [tlotze]
+- uniquify displayed event titles for a document that is associated with
+  multiple events by the same id (e.g., partly archived) #5260
+  [tlotze]
 
 
 1.9.4 (10.03.23)

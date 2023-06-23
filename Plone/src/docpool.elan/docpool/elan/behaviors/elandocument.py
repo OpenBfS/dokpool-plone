@@ -2,6 +2,7 @@
 from __future__ import print_function
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
+from collections import defaultdict
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
@@ -138,12 +139,21 @@ class ELANDocument(FlexibleView):
         """
         cat = getToolByName(self.context, "portal_catalog")
         scns = self.scenarios
-        return [
-            s.Title
-            for s in cat(
-                path=self.context.dpSearchPath(), portal_type='DPEvent', getId=scns
-            )
-        ]
+        # FIXME: As long as events are referenced by id, which may not be unique,
+        # uniquify titles: for each id, use distinct titles of non-archived events
+        # or, failing that, of archived events. Sounds like a reasonable compromise
+        # between general applicability and catering to the most likely use case of
+        # a single partly archived event.
+        brains_by_id = defaultdict(list)
+        for b in cat(
+            path=self.context.dpSearchPath(), portal_type='DPEvent', getId=scns
+        ):
+            brains_by_id[b.getId].append(b)
+        titles = []
+        for id, brains in brains_by_id.items():
+            active = [b for b in brains if '/archive' not in b.getPath()]
+            titles.extend(set(b.Title for b in active or brains))
+        return titles
 
     def unknownScenario(self):
         """
