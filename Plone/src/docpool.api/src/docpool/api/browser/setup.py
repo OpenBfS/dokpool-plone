@@ -498,7 +498,7 @@ class DocpoolSetup(BrowserView):
                 Year=2019,
                 Period="M1",
                 NuclearInstallations=["U13A"],
-                Medium="Abwasser",
+                Medium="",
                 ReiLegalBases=["REI-I"],
                 Origins=["Genehmigungsinhaber"],
                 MStIDs=["09121"],
