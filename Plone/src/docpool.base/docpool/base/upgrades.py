@@ -651,3 +651,16 @@ def to_1011_uuids_for_event_selection(context=None):
 
     for user in zope_users + api.user.get_users():
         user.setMemberProperties({'scenarios': []})
+
+
+def to_1011_remove_reii_medium(context=None):
+    log.info('Start remove REI-I Medium')
+    for brain in api.content.find(portal_type='DPDocument', dp_type='reireport'):
+        rei_report = brain.getObject()
+        if 'REI-I' in rei_report.ReiLegalBases:
+            if rei_report.Medium:
+                log.info('Found REI-I DPDocument with Medium {}'.format(rei_report.Medium))
+                log.info('Path: {}'.format(rei_report.absolute_url()))
+                rei_report.Medium = ''
+                rei_report.reindexObject()
+                log.info('Removed the Medium')

@@ -16,6 +16,8 @@ Fixed:
 - uniquify displayed event titles for a document that is associated with
   multiple events by the same id (e.g., partly archived) #5260
   [tlotze]
+- Remove old REI-I Medium values #5302
+  [slindner]
 
 
 1.9.4 (10.03.23)
