@@ -276,6 +276,10 @@
         title="Store UUIDs for event selection"
         handler="docpool.base.upgrades.to_1011_uuids_for_event_selection"
         />
+      <genericsetup:upgradeStep
+              title="Remove REI-I Medium"
+              handler="docpool.base.upgrades.to_1011_remove_reii_medium"
+      />
   </genericsetup:upgradeSteps>
 
 </configure>
