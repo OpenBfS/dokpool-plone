@@ -652,6 +652,13 @@ def to_1011_uuids_for_event_selection(context=None):
     for user in zope_users + api.user.get_users():
         user.setMemberProperties({'scenarios': []})
 
+    # fix uuid index (#5164)
+    log.info('Rebuilding index UID ...')
+    catalog = api.portal.get_tool('portal_catalog')
+    catalog.manage_clearIndex(ids=['UID'])
+    catalog.manage_reindexIndex(ids=['UID'])
+    log.info('Finished rebuilding index UID.')
+
 
 def to_1011_remove_reii_medium(context=None):
     log.info('Start remove REI-I Medium')
