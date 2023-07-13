@@ -671,3 +671,21 @@ def to_1011_remove_reii_medium(context=None):
                 delattr(rei_report, "Medium")
                 rei_report.reindexObject()
                 log.info('Removed the Medium')
+
+
+def to_1011_fix_duplicate_scenarios(context=None):
+    log.info('Start removing duplicate entries in elandocument scenarios')
+    from docpool.elan.behaviors.elandocument import IELANDocument
+    from Products.CMFPlone.utils import safe_encode
+    for brain in api.content.find(portal_type='DPDocument', sort_on='path'):
+        obj = brain.getObject()
+        if IELANDocument(obj, None) is None:
+            continue
+        old = getattr(obj, "scenarios", [])
+        if not old:
+            continue
+        new = list(set([safe_encode(i) for i in old]))
+        if sorted(old) != sorted(new):
+            log.info("Changed scenarios for %s from %s to %s", obj.absolute_url(), old, new)
+            obj.scenarios = new
+    log.info('Finished removing duplicate entries in elandocument scenarios')
