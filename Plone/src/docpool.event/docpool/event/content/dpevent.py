@@ -42,6 +42,7 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import parent
+from Products.CMFPlone.utils import safe_encode
 from pygeoif import geometry
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.form.interfaces import IEditForm
@@ -434,7 +435,8 @@ class DPEvent(Container, ContentBase):
             # Object could have lost its ELAN behavior but that means we can
             # potentially delete it
             scns = ['dummy']
-        apps = ILocalBehaviorSupport(obj).local_behaviors
+        # Ignore duplicates!
+        apps = set(ILocalBehaviorSupport(obj).local_behaviors)
         if len(scns) == 1 and len(apps) == 1:
             return True
         return False
@@ -510,6 +512,8 @@ class DPEvent(Container, ContentBase):
         # Cleanup original DPDocument
         # 1. Remove current scenario
         scns = IELANDocument(obj).scenarios
+        # Drop duplicates and fix unicode ids (see #5309)
+        scns = list(set([safe_encode(i) for i in scns]))
         scns.remove(self.id)
         obj.scenarios = scns
 

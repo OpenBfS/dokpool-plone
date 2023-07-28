@@ -652,6 +652,13 @@ def to_1011_uuids_for_event_selection(context=None):
     for user in zope_users + api.user.get_users():
         user.setMemberProperties({'scenarios': []})
 
+    # fix uuid index (#5164)
+    log.info('Rebuilding index UID ...')
+    catalog = api.portal.get_tool('portal_catalog')
+    catalog.manage_clearIndex(ids=['UID'])
+    catalog.manage_reindexIndex(ids=['UID'])
+    log.info('Finished rebuilding index UID.')
+
 
 def to_1011_remove_reii_medium(context=None):
     log.info('Start remove REI-I Medium')
@@ -664,3 +671,21 @@ def to_1011_remove_reii_medium(context=None):
                 delattr(rei_report, "Medium")
                 rei_report.reindexObject()
                 log.info('Removed the Medium')
+
+
+def to_1011_fix_duplicate_scenarios(context=None):
+    log.info('Start removing duplicate entries in elandocument scenarios')
+    from docpool.elan.behaviors.elandocument import IELANDocument
+    from Products.CMFPlone.utils import safe_encode
+    for brain in api.content.find(portal_type='DPDocument', sort_on='path'):
+        obj = brain.getObject()
+        if IELANDocument(obj, None) is None:
+            continue
+        old = getattr(obj, "scenarios", [])
+        if not old:
+            continue
+        new = list(set([safe_encode(i) for i in old]))
+        if sorted(old) != sorted(new):
+            log.info("Changed scenarios for %s from %s to %s", obj.absolute_url(), old, new)
+            obj.scenarios = new
+    log.info('Finished removing duplicate entries in elandocument scenarios')
