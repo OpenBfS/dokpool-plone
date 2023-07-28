@@ -168,7 +168,13 @@ class Transferable(FlexibleView):
         return self.context.transferLog
 
     def transferEvents(self):
-        """Query metadata of past transfers ("transfer events") of the context object.
+        try:
+            return self._transferEvents()
+        except SQLAlchemyError:
+            return ()
+
+    def _transferEvents(self):
+        """Query metadata of past transfers ("transfer events") of the context object
         """
         if self.context.isArchive():
             logRaw = self.context.transferLog
