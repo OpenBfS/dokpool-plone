@@ -163,7 +163,7 @@
                                  value=""
                                  tal:attributes="value userid;
                                                  title string:Reset password of user ${user/fullname};
-                                                 disabled python:is_manager and user['can_set_password'] and default or 'disabled'" />
+                                                 disabled python:user['can_set_password'] and default or 'disabled'" />
                         </td>
 
                         <td class="listingCheckbox table-danger">
@@ -173,7 +173,7 @@
                                          value=""
                                          tal:attributes="value userid;
                                                          title string:Remove user ${user/fullname};
-                                                         disabled python:is_manager and user['can_delete'] and default or 'disabled'" />
+                                                         disabled python:user['can_delete'] and default or 'disabled'" />
                         </td>
                     </tr>
                   </tal:loop>

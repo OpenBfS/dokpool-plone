@@ -422,7 +422,8 @@ class DPEvent(Container, ContentBase):
             # Object could have lost its ELAN behavior but that means we can
             # potentially delete it
             scns = ["dummy"]
-        apps = ILocalBehaviorSupport(obj).local_behaviors
+        # Ignore duplicates!
+        apps = set(ILocalBehaviorSupport(obj).local_behaviors)
         if len(scns) == 1 and len(apps) == 1:
             return True
         return False
@@ -500,6 +501,8 @@ class DPEvent(Container, ContentBase):
         # Cleanup original DPDocument
         # 1. Remove current scenario
         scns = IELANDocument(obj).scenarios
+        # Drop duplicates
+        scns = list(set(scns))
         scns.remove(self.id)
         obj.scenarios = scns
 
