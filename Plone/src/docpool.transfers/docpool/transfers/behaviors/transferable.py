@@ -37,6 +37,7 @@ from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.statusmessages.interfaces import IStatusMessage
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql.expression import desc
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
