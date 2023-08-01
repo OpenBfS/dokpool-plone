@@ -1,40 +1,24 @@
 Changelog
 =========
 
-1.9.3 (21.10.22)
-1.9.4 (10.03.23)
+1.9.4 (01.08.23)
 ------------------
 
 Changed:
 
-- Limit blob-cache to 25GB #4739
-  [slindner]
-
-- make authentication condition configurable for varnish #4539
-  [tlotze]
-
-- customize varnish backend error page #4904
-  [tlotze]
-
-- Blob-cache should be bytes #5096
-  [slindner]
-
 - Update REI vocabularies #5137
   [kprobst]
 
-Fixed:
+- log errors for events not found in UID index (while working on #5260)
+  [tlotze]
 
-- prevent varnish from timing out event archival #3792
-  [tlotze,kprobst]
+Fixed:
 
 - Disable direct role-assignment to Users and Groups in docpools for non-managers #4391
   [pbauer]
 
 - ugrade-step to update rolemappings #4560
   [pbauer]
-
-- remove the workaround for SQLAlchemyError #4830
-  [tlotze]
 
 - do not show journals from archived events #4993
   [tlotze]
@@ -45,14 +29,46 @@ Fixed:
 - fix event selection: per docpool, distinguish events with same id #5044
   [tlotze]
 
+- fix upgrade step for event selection by uid #5044
+  [tlotze]
+
 - fix printable version for simpleviz_inline.pt #5045
   [kprobst]
+
+- fix logic for selecting folder action buttons #5135
+  [tlotze]
+
+- fix access to DPDocument method in #4819-related patches on all portal objects #5150
+  [slindner]
+
+- uniquify displayed event titles for a document that is associated with
+  multiple events by the same id (e.g., partly archived) #5260
+  [tlotze]
+
+- Remove old REI-I Medium values #5302
+  [slindner]
 
 Added:
 
 - allow infodocument as defaultpage #4643
   [pbauer]
 
+Technical:
+
+- prevent varnish from timing out event archival #3792
+  [tlotze,kprobst]
+
+- make authentication condition configurable for varnish #4539
+  [tlotze]
+
+- remove the workaround for SQLAlchemyError #4830
+  [tlotze]
+
+- customize varnish backend error page #4904
+  [tlotze]
+
+- Blob-cache should be bytes #5096
+  [slindner]
 
 1.9.3 (21.10.22)
 ------------------
