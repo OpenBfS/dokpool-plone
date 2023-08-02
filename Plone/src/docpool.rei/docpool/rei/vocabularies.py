@@ -145,7 +145,7 @@ class MStIDVocabulary(object):
             (u'01051', u'Kernkraftwerk Krümmel (KKK)'),
             (u'01071', u'Kernkraftwerk Brunsbüttel(KKB)'),
             (u'01081', u'Kernkraftwerk Brokdorf (KBR)'),
-            (u'01181', u'SH-BZL-Brokdof_BZF'),
+            (u'01181', u'SH-BZL-Brokdorf_BZF'),
             (u'01551', u'SH-BZL-Krümmel_BZK'),
             (u'03020', u'Universität Göttingen'),
             (u'03040', u'Landesmessstelle Niedersachsen - LMst 1 Hildesheim'),
