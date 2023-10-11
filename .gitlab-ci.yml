@@ -150,7 +150,7 @@ unit_tests:
     - mkdir -p .venv
     - pipenv install
     # Pin setuptools
-    - pipenv install setuptools==67.8.0
+    - pipenv install setuptools==68.0.0
     - pipenv run buildout -N -t 3 -c test_ci_server.cfg
     # Run tests
     - export PYTHONWARNINGS=ignore
