@@ -6,6 +6,7 @@
   -->
 <portlets>
 
+<assignment remove="true" name="navigation" category="context" key="/" manager="plone.leftcolumn" type="portlets.Navigation" />
 <assignment remove="true" name="calendar" category="context" key="/" manager="plone.rightcolumn" type="portlets.Calendar" />
 <assignment remove="true" name="events" category="context" key="/" manager="plone.rightcolumn" type="portlets.Events" />
 <assignment remove="true" name="news" category="context" key="/" manager="plone.rightcolumn" type="portlets.News" />
