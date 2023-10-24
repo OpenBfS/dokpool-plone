@@ -1,8 +1,11 @@
+from docpool.base.marker import IImportingMarker
 from plone import api
 from zope.globalrequest import getRequest
 
 
 def post_install(context):
+    if IImportingMarker.providedBy(getRequest()):
+        return
     # Add additional setup code here
     from docpool.config.general.elan import install
 

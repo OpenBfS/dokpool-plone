@@ -1,3 +1,4 @@
+from docpool.base.marker import IImportingMarker
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -8,6 +9,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.PortalTransforms.Transform import make_config_persistent
 from Products.PythonScripts.PythonScript import PythonScript
+from zope.globalrequest import getRequest
 
 import transaction
 
@@ -17,12 +19,15 @@ def install(self):
     fresh = True
     if self.hasObject("config"):
         fresh = False  # It's a reinstall
-    configUserFolders(self, fresh)
-    createStructure(self, fresh)
-    navSettings(self)
     createGroups(self)
     configureFiltering(self)
     setFrontpage(self)
+    if IImportingMarker.providedBy(getRequest()):
+        return
+
+    configUserFolders(self, fresh)
+    createStructure(self, fresh)
+    navSettings(self)
 
 
 # Further base structures
@@ -265,4 +270,4 @@ def configureGroups(self):
     prop = gdata.propdict().get("allowedDocTypes")
     if prop is not None:
         prop["label"] = _("Allowed document types")
-        gdata._p_changed = True
+    gdata._p_changed = True

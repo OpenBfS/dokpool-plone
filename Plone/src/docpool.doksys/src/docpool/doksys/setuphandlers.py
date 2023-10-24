@@ -1,3 +1,4 @@
+from docpool.base.marker import IImportingMarker
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -8,6 +9,7 @@ from plone.app.textfield.value import RichTextValue
 from Products.CMFPlone.interfaces import INonInstallable
 from Products.CMFPlone.utils import _createObjectByType
 from zope.component.hooks import getSite
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 
 import logging
@@ -27,6 +29,8 @@ class HiddenProfiles:
 def post_install(context):
     """Post install script"""
     # Do something at the end of the installation of this package.
+    if IImportingMarker.providedBy(getRequest()):
+        return
     fresh = True
     createStructure(context, getSite(), fresh)
 
