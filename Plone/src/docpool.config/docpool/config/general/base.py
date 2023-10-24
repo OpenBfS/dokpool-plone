@@ -261,13 +261,8 @@ def createGroups(self):
     gdata.manage_addProperty(
         "allowedDocTypes", "possibleDocTypes", "multiple selection"
     )
-    configureGroups(self)
+    allowedDocTypes = gdata.propdict().get("allowedDocTypes")
+    allowedDocTypes["label"] = _("Allowed document types")
+
     gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
-
-
-def configureGroups(self):
-    gdata = getToolByName(self, "portal_groupdata")
-    prop = gdata.propdict().get("allowedDocTypes")
-    if prop is not None:
-        prop["label"] = _("Allowed document types")
     gdata._p_changed = True
