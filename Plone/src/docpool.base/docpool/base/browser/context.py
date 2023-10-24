@@ -1,3 +1,4 @@
+from Acquisition import aq_get
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import implicitApps
 from docpool.base.config import BASE_APP
@@ -35,7 +36,8 @@ class ApplicationState(BrowserView):
             dt = request.get("docType", dtFromRequest[0])
             if dt:
                 try:
-                    dto = self.context.config.dtypes[dt]
+                    config_folder = aq_get(self.context, "config")
+                    dto = config_folder["dtypes"][dt]
                 except Exception:
                     # print "no doctype %s available to check specific app support" % dt
                     pass

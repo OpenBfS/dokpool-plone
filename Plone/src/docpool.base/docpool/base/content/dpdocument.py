@@ -1,3 +1,4 @@
+from Acquisition import aq_get
 from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
@@ -286,7 +287,11 @@ class DPDocument(Container, Extendable, ContentBase):
         if not et:
             return
         # Uses Acquisition. Meh.
-        dto = self.config.dtypes.get(et, None)
+        config_folder = aq_get(self, "config", None)
+        if not config_folder:
+            logger.debug("No config folder for %s", self.absolute_url())
+            return
+        dto = config_folder["dtypes"].get(et, None)
 
         if not dto:
             log("No DocType Object for type name '%s'", et)

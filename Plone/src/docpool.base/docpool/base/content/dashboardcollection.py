@@ -1,4 +1,5 @@
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
@@ -77,7 +78,8 @@ class DashboardCollection(Collection):
                 if t:
                     tid = t.getId()
                     try:
-                        new = self.config.dtypes[tid]
+                        config_folder = aq_get(self, "config").dtypes[tid]
+                        new = config_folder["dtypes"][tid]
                     except BaseException:
                         pass
                     if new:
