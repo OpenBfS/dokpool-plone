@@ -19,16 +19,17 @@ class Renderer(navigation.Renderer):
     @memoize
     def getNavTree(self, _marker=[]):
         context = aq_inner(self.context)
-        # Override by using a SitemapQueryBuilder so we get all nodes expanded
-        queryBuilder = SitemapQueryBuilder(context)
-        strategy = getMultiAdapter((context, self.data), INavtreeStrategy)
 
         if context.isPersonal():
             # Special treatment for the user's personal folders
             pfs = getFoldersForCurrentUser(context)
-            return {"children": pfs}
+            return {"children": pfs or []}
+
+        # Override by using a SitemapQueryBuilder so we get all nodes expanded
+        queryBuilder = SitemapQueryBuilder(context)
 
         # Otherwise build the normal navigation
+        strategy = getMultiAdapter((context, self.data), INavtreeStrategy)
         ft = buildFolderTree(
             context, obj=context, query=queryBuilder(), strategy=strategy
         )
