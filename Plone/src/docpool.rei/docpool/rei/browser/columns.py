@@ -17,6 +17,7 @@ class ReiReport(BaseColumn):
     header = _("header_Title_ReiReport")
     sort_index = -1
     weight = 10
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -41,6 +42,7 @@ class ReiLegalBases(BaseColumn):
     header = _("header_Title_ReiLegalBases")
     sort_index = -1
     weight = 20
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -54,6 +56,7 @@ class Medium(BaseColumn):
     header = _("header_Title_Medium")
     sort_index = -1
     weight = 30
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -73,6 +76,7 @@ class Period(BaseColumn):
     header = _("header_Title_Period")
     sort_index = -1
     weight = 40
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -92,6 +96,7 @@ class Authority(BaseColumn):
     header = _("header_Title_Authority")
     sort_index = -1
     weight = 50
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -108,6 +113,7 @@ class NuclearInstallation(BaseColumn):
     header = _("header_Title_NuclearInstallation")
     sort_index = -1
     weight = 60
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -127,6 +133,7 @@ class Origin(BaseColumn):
     header = _("header_Title_Origin")
     sort_index = -1
     weight = 70
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
@@ -140,6 +147,7 @@ class Metadata(BaseColumn):
     header = _("header_Title_Metadata")
     sort_index = -1
     weight = 80
+    escape = False
 
     def renderCell(self, item):
         obj = self._getObject(item)
