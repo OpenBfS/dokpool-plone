@@ -107,7 +107,7 @@
   </div>
 
     <h4 i18n:translate="">Changelog</h4>
-    <table class="listing table table-striped table-bordered"
+    <table class="listing responsive table table-striped table-bordered"
            tal:define="changelog python:view.changelog();">
       <thead>
         <tr>
@@ -124,15 +124,15 @@
       </thead>
       <tbody>
         <tr tal:repeat="item python:changelog">
-          <td tal:content="python: u'{} ({})'.format(item.get('Date', ''), item.get('User', ''))"></td>
-          <td i18n:translate="" tal:content="python: item.get('EventType', '')"></td>
-          <td tal:content="python: item.get('Phase', '')"></td>
-          <td i18n:translate="" tal:content="python: item.get('Status', '')"></td>
-          <td i18n:translate="" tal:content="python: item.get('Operation mode', '')"></td>
-          <td i18n:translate="" tal:content="python: item.get('Alerting status', '')"></td>
-          <td tal:content="python: item.get('Alerting note', '')"></td>
-          <td tal:content="python: item.get('Sectorizing sample types', '')"></td>
-          <td tal:content="python: item.get('Sectorizing networks', '')"></td>
+          <td i18n:attributes="data-title" data-title="Date/User" tal:content="python: u'{} ({})'.format(item.get('Date', ''), item.get('User', ''))"></td>
+          <td i18n:attributes="data-title" data-title="Type of event" i18n:translate="" tal:content="python: item.get('EventType', '')"></td>
+          <td i18n:attributes="data-title" data-title="Phase" tal:content="python: item.get('Phase', '')"></td>
+          <td i18n:attributes="data-title" data-title="State" i18n:translate="" tal:content="python: item.get('Status', '')"></td>
+          <td i18n:attributes="data-title" data-title="Operation mode" i18n:translate="" tal:content="python: item.get('Operation mode', '')"></td>
+          <td i18n:attributes="data-title" data-title="Alerting status" i18n:translate="" tal:content="python: item.get('Alerting status', '')"></td>
+          <td i18n:attributes="data-title" data-title="Alerting note" tal:content="python: item.get('Alerting note', '')"></td>
+          <td i18n:attributes="data-title" data-title="Sectorizing sample types" tal:content="python: item.get('Sectorizing sample types', '')"></td>
+          <td i18n:attributes="data-title" data-title="Sectorizing networks" tal:content="python: item.get('Sectorizing networks', '')"></td>
         </tr>
       </tbody>
     </table>
