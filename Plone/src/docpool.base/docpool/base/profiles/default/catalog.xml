@@ -16,7 +16,6 @@
         <indexed_attr value="sendingESD"/>
     </index>
 
-    <column value="dp_type_name"/>
     <column value="getMdate"/>
     <column value="changed"/>
     <column value="apps_supported"/>

@@ -292,14 +292,6 @@ class DPDocument(Container, Extendable, ContentBase):
             log("No DocType Object for type name '%s'", et)
         return dto
 
-    def dp_type_name(self):
-        """ """
-        dto = self.docTypeObj()
-        if dto:
-            return dto.title
-        else:
-            return ""
-
     def publishedImmediately(self, raw=False):
         """ """
         dto = self.docTypeObj()

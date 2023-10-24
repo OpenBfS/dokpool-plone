@@ -22,14 +22,6 @@
       addview=".recent.AddForm"
       />
 
-  <plone:portlet
-      name="docpool.elan.Collection"
-      interface=".collection.ICollectionPortlet"
-      assignment=".collection.Assignment"
-      renderer=".collection.Renderer"
-      addview=".collection.AddForm"
-      />
-
   <plone:portletRenderer
       portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
       class=".navigation.Renderer"
