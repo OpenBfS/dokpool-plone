@@ -26,7 +26,7 @@ LABEL maintainer="Marco Lechner<mlechner@bfs.de>" \
 # Todo: Cleanup - some deps are not needed
 RUN  <<EOT
     useradd --system -m -d /app -U -u 500 plone
-    runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make curl"
+    runDeps="git libjpeg62 python3-dev libopenjp2-7 libpq5 libtiff5 libxml2 libxslt1.1 lynx netcat poppler-utils rsync wv busybox gosu libmagic1 make curl ca-certificates gnupg"
     apt-get update
     apt-get install -y --no-install-recommends $runDeps
     busybox --install -s
