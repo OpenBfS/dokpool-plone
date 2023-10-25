@@ -14,9 +14,11 @@ $blue: #157fcc !default;
 
 // 3. Include remainder of required Barceloneta and Bootstrap stylesheets
 @import "@plone/plonetheme-barceloneta-base/scss/variables.colors.plone";
+@import "@plone/plonetheme-barceloneta-base/scss/variables.colors.dark.plone";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.properties";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.barceloneta";
 @import "bootstrap/scss/variables";
+ @import "bootstrap/scss/variables-dark";
 
 // Override default heading size for docpool
 $h1-font-size: $font-size-base * 2;
