@@ -18,7 +18,7 @@ $blue: #157fcc !default;
 @import "@plone/plonetheme-barceloneta-base/scss/variables.properties";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.barceloneta";
 @import "bootstrap/scss/variables";
- @import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/variables-dark";
 
 // Override default heading size for docpool
 $h1-font-size: $font-size-base * 2;
