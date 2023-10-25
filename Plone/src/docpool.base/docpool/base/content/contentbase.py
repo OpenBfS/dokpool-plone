@@ -134,11 +134,14 @@ class ContentBase:
         )
 
     def myGroup(self):
-        """ """
+        """Return the title of nearest group-folder.
+        It's ok to use unrestrictedTraverse here, because we only return the title.
+        TODO: The name and logic of this is not very clear.
+        """
         pp = self.getPhysicalPath()
         if "Groups" in pp:
             i = pp.index("Groups")
-            return self.restrictedTraverse("/".join(pp[: i + 2])).title
+            return self.unrestrictedTraverse("/".join(pp[: i + 2])).title
         else:
             return "Transfers"
 
