@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PYTHON_VERSION=3.11
+ARG PYTHON_VERSION=3.11.6
 FROM python:${PYTHON_VERSION}-slim-bullseye as base
 FROM base as builder
 
@@ -30,7 +30,12 @@ RUN  <<EOT
     apt-get update
     apt-get install -y --no-install-recommends $runDeps
     busybox --install -s
+    bash -c 'mkdir -p /data/{filestorage,blobstorage,cache,logs}'
+    chown -R 500:500 /data
 EOT
+
+# Expose /data as a volume
+VOLUME /data
 
 # Todo: Cleanup - some deps are not needed
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install git python3 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev tar python3-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python3-pip && apt-get autoclean
@@ -58,9 +63,15 @@ EOT
 
 RUN pipenv run buildout -Nvc buildout_docker_so.cfg
 
+# Delete var dir so it can be linked with our /data voluem
+RUN rm -Rf /opt/bfs/dokpool/Plone/var
+
 RUN find . \( -type f -a -name '*.pyc' -o -name '*.pyo' \) -exec rm -rf '{}' + \
     && rm -rf .cache
 
+# Link /data (the exposed volume) into /cms/var
+RUN ln -s /data /opt/bfs/dokpool/Plone/var
+
 WORKDIR /opt/bfs/dokpool/Plone
 EXPOSE 8082
-CMD [ "/opt/bfs/dokpool/Plone/bin/instance", "fg"]
+ENTRYPOINT [ "/opt/bfs/dokpool/Docker/docker-entrypoint.sh" ]
