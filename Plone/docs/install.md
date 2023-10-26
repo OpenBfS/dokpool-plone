@@ -240,3 +240,17 @@ Durch ein Push auf den "review" branch kann eine komplette Installation zum Revi
 
 In Gitlab den MR richtig benamen: "Draft: Review App von ticket-2634-facetednavigation-webpack"
 Das Label "review" setzen.
+
+### Test with own (prod) database
+
+    $ mkdir bfs-test
+    $ cd bfs-test
+    $ mkdir data
+    $ cd data
+    $ tar xf <path to db>/db.tar .
+    $ mkdir log instance cache
+    $ cd ..
+    $ docker login git.starzel.de:5050 -u bfs_docker_test -p <access token>
+    $ docker pull docker pull git.starzel.de:5050/bfs/dokpool/py3:review_py3
+    $ docker run --publish 8082:8082 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool/py3:review_py3
+    # Open localhost:8082
