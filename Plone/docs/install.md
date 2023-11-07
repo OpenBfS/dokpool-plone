@@ -243,14 +243,12 @@ Das Label "review" setzen.
 
 ### Test with own (prod) database
 
-    $ mkdir bfs-test
-    $ cd bfs-test
-    $ mkdir data
-    $ cd data
+    $ mkdir bfs-test && cd bfs-test
+    $ mkdir data && cd data
     $ tar xf <path to db>/db.tar -C .
     $ mkdir log instance cache
     $ cd ..
     $ docker login git.starzel.de:5050 -u bfs_docker_test -p <access token>
     $ docker pull git.starzel.de:5050/bfs/dokpool/py3:review_py3
     $ docker run --publish 8082:8082 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool/py3:review_py3
-    # Open localhost:8082
+    # Open http://localhost:8082
