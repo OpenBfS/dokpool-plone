@@ -1,9 +1,8 @@
-from io import StringIO
+from io import BytesIO
 from OFS.Image import Image as OFSImage
 from PIL import Image
 from plone.rfc822.interfaces import IPrimaryFieldInfo
-from PyPDF2 import PdfFileReader
-from PyPDF2.errors import PdfReadError
+from pypdf import PdfReader
 from zope.annotation.interfaces import IAnnotations
 
 import logging
@@ -54,18 +53,18 @@ def _fixPdf(string):
 def pdfobj(doc):
     pdf = None
     try:
-        pdf = PdfFileReader(StringIO(data(doc)))
+        pdf = PdfReader(BytesIO(data(doc)))
     except BaseException:
         logger.warn("Error opening pdf file, trying to fix it...")
         fixed_data = _fixPdf(data(doc))
 
         # try to reopen the pdf file again
         try:
-            pdf = PdfFileReader(StringIO(fixed_data))
+            pdf = PdfReader(BytesIO(fixed_data))
         except BaseException:
             logger.warn("This pdf file cannot be fixed.")
 
-    if pdf and pdf.isEncrypted:
+    if pdf and pdf.is_encrypted:
         try:
             decrypt = pdf.decrypt("")
             if decrypt == 0:
@@ -77,20 +76,14 @@ def pdfobj(doc):
 
 
 def pages(pdf):
-    return pdf.getNumPages()
+    return len(pdf.pages)
 
 
 def metadata(pdf):
     data = {}
-    try:
-        data = dict(pdf.getDocumentInfo())
-    except (TypeError, PdfReadError) as e:
-        logger.error(f"{e.__class__}: {e}")
-
-    data["width"] = float(pdf.getPage(0).mediaBox.getWidth())
-    data["height"] = float(pdf.getPage(0).mediaBox.getHeight())
-    data["pages"] = pdf.getNumPages()
-
+    data["width"] = pdf.pages[0].mediabox.width
+    data["height"] = pdf.pages[0].mediabox.height
+    data["pages"] = len(pdf.pages)
     return data
 
 
@@ -114,13 +107,13 @@ def get_images(doc, page_start=0, pages=1):
         image_thumb_id = "%d_thumb" % page_number
         image_thumb_title = "Page %d Thumbnail" % page_number
         # create a file object to store the thumbnail and preview in
-        raw_image_thumb = StringIO()
-        raw_image_preview = StringIO()
+        raw_image_thumb = BytesIO()
+        raw_image_preview = BytesIO()
         # run ghostscript, convert pdf page into image
         raw_image = ghostscript_transform(doc, page_number)
         # use PIL to generate thumbnail from image_result
         try:
-            img_thumb = Image.open(StringIO(raw_image))
+            img_thumb = Image.open(BytesIO(raw_image))
         except OSError:
             logger.error(f"This is not an image: {raw_image}")
             break
@@ -135,7 +128,7 @@ def get_images(doc, page_start=0, pages=1):
             progressive=img_thumb_progressive,
         )
         # use PIL to generate preview from image_result
-        img_preview = Image.open(StringIO(raw_image))
+        img_preview = Image.open(BytesIO(raw_image))
         img_preview.thumbnail(preview_size, Image.ANTIALIAS)
         # save the resulting thumbnail in the file object
         img_preview.save(

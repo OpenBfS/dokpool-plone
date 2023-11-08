@@ -32,7 +32,7 @@ setup(
         "setuptools",
         "collective.monkeypatcher",
         "docpool.config",
-        "PyPDF2",
+        "pypdf",
         "eea.facetednavigation",
         "collective.eeafaceted.z3ctable",
         "z3c.unconfigure",

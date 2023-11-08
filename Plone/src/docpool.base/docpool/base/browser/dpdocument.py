@@ -76,7 +76,7 @@ class DPDocumentinlineView(DPDocumentView):
 
 
 @implementer(IViewView)
-class DPDocumentprintView(FlexibleView):
+class DPDocumentprintView(DPDocumentView):
     """Additional View"""
 
     __call__ = ViewPageTemplateFile("dpdocumentprint.pt")
