@@ -23,13 +23,6 @@
       />
 
   <browser:page
-      name="pdfprint"
-      for="..interfaces.IDPDocument"
-      class=".printview.PrintView"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="dp.macros"
       for="*"
       template="dp_macros.pt"
