@@ -33,7 +33,6 @@ setup(
         "collective.monkeypatcher",
         "docpool.config",
         "PyPDF2",
-        "xhtml2pdf",
         "eea.facetednavigation",
         "collective.eeafaceted.z3ctable",
         "z3c.unconfigure",
