@@ -5,7 +5,7 @@ FROM base as builder
 
 ENV PIP_PARAMS=""
 ENV PIP_VERSION=23.0.1
-ENV TZ="Europe/Berlin"
+ENV TZ=Europe/Berlin
 
 RUN <<EOT
     apt-get update
@@ -40,6 +40,8 @@ VOLUME /data
 
 # Todo: Cleanup - some deps are not needed
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && apt-get -y install git python3 libxml2-dev libxslt-dev libssl-dev libsasl2-dev libldap2-dev libffi-dev tar python3-dev gcc make g++ ghostscript ffmpeg apt-utils tzdata locales libncurses-dev libedit-dev autoconf automake libjemalloc-dev libtool libpcre3-dev pkg-config graphviz python3-pip && apt-get autoclean
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install current node/npm
 RUN mkdir -p /etc/apt/keyrings
