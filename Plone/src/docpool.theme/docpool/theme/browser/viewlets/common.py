@@ -42,29 +42,31 @@ class LogoDocpoolViewlet(LogoViewlet):
         commit_hash = os.getenv("GIT_COMMIT")
         if commit_hash:
             return commit_hash
-        git_installed = subprocess.run(
-            ["git", "--version"], stdout=subprocess.DEVNULL, check=True
-        )
-        if git_installed.returncode == 0:
-            git_head_rev = check_output(
-                shlex.split("git rev-parse --short HEAD")
-            ).strip()
-            return git_head_rev.decode()
 
-        return "Not detected"
+        result = subprocess.run(
+            shlex.split("git rev-parse --short HEAD"),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode == 128:
+            return "Not detected"
+
+        return result.stdout.strip()
 
     def get_git_branch(self):
         # Git Branch
         commit_name = os.getenv("GIT_REF_NAME")
         if commit_name:
             return commit_name
-        git_installed = subprocess.run(
-            ["git", "--version"], stdout=subprocess.DEVNULL, check=True
-        )
-        if git_installed.returncode == 0:
-            git_branch = check_output(
-                shlex.split("git rev-parse --abbrev-ref HEAD")
-            ).strip()
-            return git_branch.decode()
 
-        return "Not detected"
+        result = subprocess.run(
+            shlex.split("git rev-parse --abbrev-ref HEAD"),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode == 128:
+            return "Not detected"
+
+        return result.stdout.strip()
