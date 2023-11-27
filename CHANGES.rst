@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.9.5 (27.11.23)
+-----------------
+
+Fixed:
+
+- Add upgrade-steps to fix rebuild catalog and fix intid-catalog(#5413
+  [pbauer]
+
+
 1.9.4 (01.08.23)
 ------------------
 
