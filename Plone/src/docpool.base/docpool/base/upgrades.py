@@ -2,7 +2,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import get_installer
-from Products.CMFPlone.utils import safe_unicode
 from bs4 import BeautifulSoup
 from docpool.base.content.documentpool import DocumentPool
 from docpool.base.content.documentpool import docPoolModified
@@ -689,3 +688,20 @@ def to_1011_fix_duplicate_scenarios(context=None):
             log.info("Changed scenarios for %s from %s to %s", obj.absolute_url(), old, new)
             obj.scenarios = new
     log.info('Finished removing duplicate entries in elandocument scenarios')
+
+
+def to_1012_rebuild_catalog(context=None):
+    log.info("Rebuilding catalog...")
+    catalog = api.portal.get_tool("portal_catalog")
+    catalog.clearFindAndRebuild()
+    log.info("Finished rebuilding catalog")
+
+
+def to_1012_fix_intids_and_relations(context=None):
+    try:
+        from collective.relationhelpers.api import rebuild_relations
+    except ImportError:
+        log.info("collective.relationhelpers not available")
+        return
+    else:
+        rebuild_relations(flush_and_rebuild_intids=True)
