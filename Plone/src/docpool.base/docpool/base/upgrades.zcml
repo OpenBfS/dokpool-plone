@@ -286,4 +286,18 @@
       />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1011"
+      destination="1012"
+      profile="docpool.base:default">
+    <genericsetup:upgradeStep
+        title="Fix broken catalog"
+        handler="docpool.base.upgrades.to_1012_rebuild_catalog"
+        />
+    <genericsetup:upgradeStep
+        title="Rebuild relations and intid-catalog"
+        handler="docpool.base.upgrades.to_1012_fix_intids_and_relations"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
