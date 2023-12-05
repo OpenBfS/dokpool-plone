@@ -6,6 +6,7 @@
     <index name="mdate" meta_type="FieldIndex">
         <indexed_attr value="getMdate"/>
     </index>
+    <!-- changed is the index as mdate expect for transferred content  -->
     <index name="changed" meta_type="FieldIndex">
         <indexed_attr value="changed"/>
     </index>

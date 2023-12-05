@@ -246,10 +246,6 @@ class DPDocument(Container, Extendable, ContentBase):
                 return dt
         return None
 
-    def changed(self):
-        """ """
-        return self.getMdate()
-
     def vocabDocType(self):
         """ """
         cat = getToolByName(self, "portal_catalog")
@@ -345,10 +341,6 @@ class DPDocument(Container, Extendable, ContentBase):
         return mtool.getAuthenticatedMember().has_role(
             "Owner", self
         ) or mtool.getAuthenticatedMember().has_role("Reviewer", self)
-
-    def testMethod(self):
-        """ """
-        return queryForObject(self, UID="efae65b42664424e8f3eaacc744ad4b2")
 
     def change_position(self, position, id, ptype):
         """

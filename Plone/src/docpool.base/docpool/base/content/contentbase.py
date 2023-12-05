@@ -99,7 +99,7 @@ class ContentBase:
         ) or self.created().asdatetime().replace(tzinfo=None)
 
     def changed(self):
-        """ """
+        """Overridden for transferable content."""
         return self.getMdate()
 
     def update_modified(self):
