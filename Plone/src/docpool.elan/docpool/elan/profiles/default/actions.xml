@@ -18,8 +18,30 @@
    <property
       name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++DPEvent</property>
    <property name="link_target"></property>
-   <property name="icon_expr">string:calendar-fill</property>
+   <property name="icon_expr">string:calendar-plus</property>
    <property name="available_expr">python: 'esd' in here.absolute_url() and (here.isAdmin() or here.isContentAdmin() or (member and member.has_role('EventEditor')))</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="edit_ticker" meta_type="CMF Action" i18n:domain="docpool.elan">
+   <property name="title" i18n:translate="">Edit Ticker</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/ticker/edit</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:pen</property>
+   <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
+   <property name="permissions"></property>
+   <property name="visible">True</property>
+  </object>
+  <object name="delete_ticker" meta_type="CMF Action" i18n:domain="docpool.elan">
+   <property name="title" i18n:translate="">Delete Ticker</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${context/dp_url}/contentconfig/ticker/deleteTicker</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:trash</property>
+   <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -47,37 +69,6 @@
    <property
       name="available_expr">python:object.getPortalTypeName() == 'DPEvent' and object.Status == 'inactive' and (here.isAdmin() or here.isContentAdmin())</property>
    <property name="permissions" />
-   <property name="visible">True</property>
-  </object>
-  <object name="edit_ticker" meta_type="CMF Action" i18n:domain="docpool.elan">
-   <property name="title" i18n:translate="">Edit Ticker</property>
-   <property name="description" i18n:translate=""></property>
-   <property
-      name="url_expr">string:${context/dp_url}/contentconfig/ticker/edit</property>
-   <property name="link_target"></property>
-   <property name="icon_expr">string:pen</property>
-   <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
-   <property name="permissions"></property>
-   <property name="visible">True</property>
-  </object>
-  <object name="delete_ticker" meta_type="CMF Action" i18n:domain="docpool.elan">
-   <property name="title" i18n:translate="">Delete Ticker</property>
-   <property name="description" i18n:translate=""></property>
-   <property
-      name="url_expr">string:${context/dp_url}/contentconfig/ticker/deleteTicker</property>
-   <property name="link_target"></property>
-   <property name="icon_expr">string:pen</property>
-   <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
-   <property name="permissions"></property>
-   <property name="visible">True</property>
-  </object>
-  <object name="create_archive_folder" meta_type="CMF Action" i18n:domain="docpool.elan">
-   <property name="title" i18n:translate="">Create Archive Folder</property>
-   <property name="url_expr">string:${context/dp_url}/archive/++add++Folder</property>
-   <property name="link_target"></property>
-   <property name="icon_expr"></property>
-   <property name="available_expr">python:here.isAdmin() and 'esd' in here.absolute_url()</property>
-   <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
  </object>
