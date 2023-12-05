@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 11:38+0000\n"
+"POT-Creation-Date: 2023-12-05 17:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,6 +123,12 @@ msgstr ""
 msgid "DocumentType"
 msgstr ""
 
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "Edit"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "Edit Dashboard"
 msgstr ""
@@ -188,7 +194,6 @@ msgid "Groups Area"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Help"
 msgstr ""
 
@@ -197,7 +202,6 @@ msgid "Images:"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Imprint"
 msgstr ""
 
@@ -426,12 +430,20 @@ msgstr ""
 msgid "The following items will be transferred:"
 msgstr ""
 
+#: docpool.base/docpool/base/users/monkey.py
+msgid "The group folder could not be deleted because of protected documents. Please check!"
+msgstr ""
+
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "There are comments."
+msgstr ""
+
+#: docpool.base/docpool/base/users/monkey.py
+msgid "There was an existing group folder of the same name. Please check!"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
@@ -488,20 +500,22 @@ msgstr ""
 msgid "Unknown scenario not accepted."
 msgstr ""
 
-#: docpool.base/docpool/base/upgrades.zcml
-msgid "Upgrade profile for docpool.base"
-msgstr ""
-
-#: docpool.base/docpool/base/upgrades.zcml
-msgid "Upgrade profile for docpool.base 1.3.28 to 1.4.00"
-msgstr ""
-
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
 msgstr ""
 
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "User Management"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/Users.xml
 msgid "Users Area"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "View"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -718,6 +732,14 @@ msgstr ""
 msgid "description_text_text"
 msgstr ""
 
+#: docpool.base/docpool/base/users/personalpreferences.py
+msgid "description_user_apps"
+msgstr ""
+
+#: docpool.base/docpool/base/users/userdataschema.py
+msgid "description_user_dp"
+msgstr ""
+
 #: docpool.base/docpool/base/configure.zcml
 msgid "docpool.base"
 msgstr ""
@@ -925,6 +947,16 @@ msgstr ""
 #. Default: "Toggle all"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "label_toggle"
+msgstr ""
+
+#. Default: "Applications"
+#: docpool.base/docpool/base/users/personalpreferences.py
+msgid "label_user_apps"
+msgstr ""
+
+#. Default: "DocPool"
+#: docpool.base/docpool/base/users/userdataschema.py
+msgid "label_user_dp"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt

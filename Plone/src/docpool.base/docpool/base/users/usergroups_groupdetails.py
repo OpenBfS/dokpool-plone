@@ -1,7 +1,7 @@
 from Acquisition import aq_inner
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import (
     GroupDetailsControlPanel as GDCP,
 )
@@ -29,7 +29,7 @@ class GroupDetailsControlPanel(GDCP):
         if submitted:
             CheckAuthenticator(self.request)
 
-            msg = _("No changes made.")
+            msg = PMF("No changes made.")
             self.group = None
 
             title = self.request.form.get("title", None)
@@ -38,7 +38,7 @@ class GroupDetailsControlPanel(GDCP):
 
             if addname:
                 if not self.regtool.isMemberIdAllowed(addname):
-                    msg = _("The group name you entered is not valid.")
+                    msg = PMF("The group name you entered is not valid.")
                     IStatusMessage(self.request).add(msg, "error")
                     return self.index()
 
@@ -69,7 +69,7 @@ class GroupDetailsControlPanel(GDCP):
                     REQUEST=self.request,
                 )
                 if not success:
-                    msg = _(
+                    msg = PMF(
                         "Could not add group ${name}, perhaps a user or group with "
                         "this name already exists.",
                         mapping={"name": addname},
@@ -78,7 +78,7 @@ class GroupDetailsControlPanel(GDCP):
                     return self.index()
 
                 self.group = self.gtool.getGroupById(addname)
-                msg = _("Group ${name} has been added.", mapping={"name": addname})
+                msg = PMF("Group ${name} has been added.", mapping={"name": addname})
 
             elif self.groupname:
                 self.gtool.editGroup(
@@ -90,10 +90,10 @@ class GroupDetailsControlPanel(GDCP):
                     REQUEST=context.REQUEST,
                 )
                 self.group = self.gtool.getGroupById(self.groupname)
-                msg = _("Changes saved.")
+                msg = PMF("Changes saved.")
 
             else:
-                msg = _("Group name required.")
+                msg = PMF("Group name required.")
 
             processed = {}
             for id, property in self.gdtool.propertyItems():

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2022-09-22 11:38+0000\n"
+"POT-Creation-Date: 2023-12-05 17:37+0000\n"
 "PO-Revision-Date: 2019-02-08 08:11+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -122,6 +122,12 @@ msgstr "Dokument Workflow:"
 msgid "DocumentType"
 msgstr "Dokumenttyp"
 
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "Edit"
+msgstr "Bearbeiten"
+
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "Edit Dashboard"
 msgstr "Pinnwand bearbeiten"
@@ -187,7 +193,6 @@ msgid "Groups Area"
 msgstr "Gruppenbereich"
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Help"
 msgstr "Hilfe"
 
@@ -196,7 +201,6 @@ msgid "Images:"
 msgstr "Bilder:"
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
-#: docpool.base/docpool/base/profiles/to_1007/actions.xml
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -425,6 +429,10 @@ msgstr "Der Dokumentstatus wurde geändert."
 msgid "The following items will be transferred:"
 msgstr "Folgende Inhalte werden übertragen:"
 
+#: docpool.base/docpool/base/users/monkey.py
+msgid "The group folder could not be deleted because of protected documents. Please check!"
+msgstr "Der Gruppenordner konnte wegen geschützter Dokumente nicht gelöscht werden. Bitte prüfen!"
+
 #: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
 msgstr "Das Objekt, welches Sie einfügen wollen, konnte nicht gefunden werden. Es wurde möglicherweise verschoben oder gelöscht."
@@ -432,6 +440,10 @@ msgstr "Das Objekt, welches Sie einfügen wollen, konnte nicht gefunden werden. 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "There are comments."
 msgstr "Es gibt Kommentare."
+
+#: docpool.base/docpool/base/users/monkey.py
+msgid "There was an existing group folder of the same name. Please check!"
+msgstr "Es gibt bereits einen Gruppenordner desselben Namens. Bitte prüfen!"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Title / Description / Text"
@@ -487,21 +499,23 @@ msgstr "Unbekannter Fehler. Bitte prüfen Sie das Log."
 msgid "Unknown scenario not accepted."
 msgstr "Unbekanntes Ereignis wurde nicht akzeptiert"
 
-#: docpool.base/docpool/base/upgrades.zcml
-msgid "Upgrade profile for docpool.base"
-msgstr ""
-
-#: docpool.base/docpool/base/upgrades.zcml
-msgid "Upgrade profile for docpool.base 1.3.28 to 1.4.00"
-msgstr ""
-
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
 msgstr "Nutzerordner"
 
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "User Management"
+msgstr "Nutzerverwaltung"
+
 #: docpool.base/docpool/base/profiles/default/types/Users.xml
 msgid "Users Area"
 msgstr "Nutzerbereich"
+
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "View"
+msgstr "Anzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
@@ -717,6 +731,14 @@ msgstr "Frei lassen, um alle Typen zuzulassen, welche für die Gruppe erlaubt si
 msgid "description_text_text"
 msgstr ""
 
+#: docpool.base/docpool/base/users/personalpreferences.py
+msgid "description_user_apps"
+msgstr ""
+
+#: docpool.base/docpool/base/users/userdataschema.py
+msgid "description_user_dp"
+msgstr ""
+
 #: docpool.base/docpool/base/configure.zcml
 msgid "docpool.base"
 msgstr "docpool.base"
@@ -925,6 +947,16 @@ msgstr "Text"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "label_toggle"
 msgstr "Alle umschalten"
+
+#. Default: "Applications"
+#: docpool.base/docpool/base/users/personalpreferences.py
+msgid "label_user_apps"
+msgstr "Anwendungen des Nutzers"
+
+#. Default: "DocPool"
+#: docpool.base/docpool/base/users/userdataschema.py
+msgid "label_user_dp"
+msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "modified:"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-19 13:52+0000\n"
+"POT-Creation-Date: 2023-12-05 17:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,10 +23,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "++++ Test ++++"
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/collection.py
-msgid "Add Collection Portlet"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
@@ -103,10 +99,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/portlets/overview.pt
 msgid "Chronological Overview"
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/collection.py
-msgid "Collection"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
@@ -195,10 +187,6 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: docpool.elan/docpool/elan/portlets/collection.py
-msgid "Edit Collection Portlet"
-msgstr ""
-
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Edit Scenarios"
 msgstr ""
@@ -262,10 +250,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "LT"
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/collection.pt
-msgid "Latest from"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
@@ -356,10 +340,6 @@ msgstr ""
 msgid "The time and date an item was last modified by a user"
 msgstr ""
 
-#: docpool.elan/docpool/elan/portlets/collection.py
-msgid "This portlet displays recently modified content from a collection."
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Title/Description"
 msgstr ""
@@ -407,7 +387,6 @@ msgid "archive_confirm_msg"
 msgstr ""
 
 #. Default: "No items changed yet."
-#: docpool.elan/docpool/elan/portlets/collection.pt
 #: docpool.elan/docpool/elan/portlets/recent.pt
 msgid "box_recent_no_items"
 msgstr ""
@@ -448,10 +427,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_type"
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/collection.py
-msgid "description_elandocument_doctype"
 msgstr ""
 
 #: docpool.elan/docpool/elan/configure.zcml
@@ -514,11 +489,6 @@ msgstr ""
 #. Default: "Type of event"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_type"
-msgstr ""
-
-#. Default: "Document Type"
-#: docpool.elan/docpool/elan/portlets/collection.py
-msgid "label_elandocument_doctype"
 msgstr ""
 
 #. Default: "Recently Modified"

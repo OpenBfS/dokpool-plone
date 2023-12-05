@@ -2,7 +2,7 @@ from Acquisition import aq_inner
 from docpool.base.utils import deleteMemberFolders
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import (
     UsersOverviewControlPanel as UOCP,
 )
@@ -48,7 +48,7 @@ class UsersOverviewControlPanel(UOCP):
                         utils.setMemberProperties(
                             member, REQUEST=context.REQUEST, email=user.email
                         )
-                        utils.addPortalMessage(_("Changes applied."))
+                        utils.addPortalMessage(PMF("Changes applied."))
 
                 # If reset password has been checked email user a new password
                 pw = None
@@ -83,10 +83,10 @@ class UsersOverviewControlPanel(UOCP):
                 deleteMemberFolders(context, delete)
 
             if users_with_reset_passwords:
-                reset_passwords_message = _(
+                reset_passwords_message = PMF(
                     "reset_passwords_msg",
                     default="The following users have been sent an e-mail with link to reset their password: ${user_ids}",
                     mapping={"user_ids": ", ".join(users_with_reset_passwords)},
                 )
                 utils.addPortalMessage(reset_passwords_message)
-            utils.addPortalMessage(_("Changes applied."))
+            utils.addPortalMessage(PMF("Changes applied."))

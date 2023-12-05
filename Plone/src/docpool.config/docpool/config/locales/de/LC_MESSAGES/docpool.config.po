@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ELAN-E\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2023-12-05 17:23+0000\n"
 "PO-Revision-Date: 2015-09-17 13:15+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -23,6 +23,10 @@ msgstr ""
 #: docpool.config/docpool/config/local/elan_de.py
 msgid "Aktuelle Lage"
 msgstr ""
+
+#: docpool.config/docpool/config/general/base.py
+msgid "Allowed document types"
+msgstr "Erlaubte Dokumenttypen"
 
 #: docpool.config/docpool/config/local/base_en.py
 #: docpool.config/docpool/config/local/base_ro.py

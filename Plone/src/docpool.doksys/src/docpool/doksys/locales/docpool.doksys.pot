@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 14:13+0000\n"
+"POT-Creation-Date: 2023-12-05 17:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -879,6 +879,10 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
 msgid "Data Type"
+msgstr ""
+
+#: docpool.doksys/src/docpool/doksys/behaviors/configure.zcml
+msgid "DoksysDoc"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/profiles/default/registry.xml
@@ -1879,6 +1883,10 @@ msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/network_operators.py
 msgid "MRI"
+msgstr ""
+
+#: docpool.doksys/src/docpool/doksys/behaviors/configure.zcml
+msgid "Makes documents support doksys functions"
 msgstr ""
 
 #: docpool.doksys/src/docpool/doksys/vocabularies/measurement_category.py
