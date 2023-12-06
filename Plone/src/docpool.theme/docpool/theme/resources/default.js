@@ -12,8 +12,6 @@ window.close_overview = close_popups;
 window.jQuery = jQuery;
 window.$ = jQuery;
 
-// Default Plone barceloneta bootstrap styles
-import("./barceloneta.scss");
 // Global styles
 import("./docpool_styles/header-timetable.scss");
 import("./docpool_styles/footer.scss");
