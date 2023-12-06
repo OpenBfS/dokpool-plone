@@ -1,5 +1,6 @@
 process.traceDeprecation = true;
 const mf_config = require("@patternslib/dev/webpack/webpack.mf");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const package_json = require("./package.json");
 const package_json_mockup = require("@plone/mockup/package.json");
 const package_json_patternslib = require("@patternslib/patternslib/package.json");
@@ -33,6 +34,10 @@ module.exports = () => {
       "docpool.rei.min": path.resolve(
         __dirname,
         "./src/docpool.rei/docpool/rei/resources/index.js"
+      ),
+      barceloneta: path.resolve(
+        __dirname,
+        "./src/docpool.theme/docpool/theme/resources/barceloneta.scss"
       ),
     },
   };
@@ -124,6 +129,17 @@ module.exports = () => {
     })
   );
 
+  // Compile our base barceloneta separate from the other files
+  config.plugins.push(new MiniCssExtractPlugin());
+  config.module.rules.push({
+    test: /barceloneta\.scss$/,
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      "postcss-loader",
+      "sass-loader",
+    ],
+  });
   if (process.env.NODE_ENV === "development") {
     config.devServer.port = "3001";
     config.devServer.static.directory = path.resolve(__dirname, "./resources/");
