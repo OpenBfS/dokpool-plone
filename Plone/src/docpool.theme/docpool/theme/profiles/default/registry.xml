@@ -4,6 +4,7 @@
              prefix="plone.bundles/docpool.theme">
         <value key="enabled">True</value>
         <value key="jscompilation">++plone++docpool/build/docpool.theme-remote.min.js</value>
+        <value key="csscompilation">++plone++docpool/build/barceloneta.css</value>
         <value key="load_defer">False</value>
         <value key="load_async">False</value>
         <value key="depends">plone</value>
