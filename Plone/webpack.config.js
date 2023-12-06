@@ -35,6 +35,10 @@ module.exports = () => {
         __dirname,
         "./src/docpool.rei/docpool/rei/resources/index.js"
       ),
+      barceloneta: path.resolve(
+        __dirname,
+        "./src/docpool.theme/docpool/theme/resources/barceloneta.scss"
+      ),
     },
   };
 
@@ -125,9 +129,10 @@ module.exports = () => {
     })
   );
 
+  // Compile our base barceloneta separate from the other files
   config.plugins.push(new MiniCssExtractPlugin());
   config.module.rules.push({
-    test: /\.(sa|sc|c)ss$/,
+    test: /barceloneta\.scss$/,
     use: [
       MiniCssExtractPlugin.loader,
       "css-loader",
