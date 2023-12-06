@@ -35,7 +35,7 @@
     "postcss-loader": "^7.3.3"
   },
   "dependencies": {
-    "@patternslib/patternslib": ">=9.9.8",
+    "@patternslib/patternslib": ">=9.9.10",
     "@plone/mockup": ">=5.1.6",
     "@plone/plonetheme-barceloneta-base": "^3.1.4",
     "jquery": "^3.7.1",
