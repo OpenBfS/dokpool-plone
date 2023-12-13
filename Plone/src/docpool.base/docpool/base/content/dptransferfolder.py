@@ -1,5 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
@@ -88,6 +89,8 @@ class IDPTransferFolder(model.Schema, IFolderBase):
 @implementer(IDPTransferFolder)
 class DPTransferFolder(FolderBase):
     """ """
+
+    APP = TRANSFERS_APP
 
     security = ClassSecurityInfo()
 

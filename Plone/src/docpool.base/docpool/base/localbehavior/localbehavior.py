@@ -20,7 +20,6 @@ def initializeLocalBehaviors(context):
 
 @provider(IFormFieldProvider)
 class ILocalBehaviorSupport(model.Schema):
-
     directives.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(
         title="Behaviors",
@@ -31,6 +30,7 @@ class ILocalBehaviorSupport(model.Schema):
         ),
         required=False,
         defaultFactory=initializeLocalBehaviors,
+        missing_value=[],
         value_type=schema.Choice(title="Applications", vocabulary="LocalBehaviors"),
     )
 
@@ -44,10 +44,11 @@ class LocalBehaviorSupport:
         self.context = context
 
     def _get_local_behaviors(self):
-        return list(set(self.context.local_behaviors))
+        local_behaviors = getattr(self.context, "local_behaviors", [])
+        return list(set(local_behaviors))
 
     def _set_local_behaviors(self, value):
-        if isinstance(value, type([])) or (isinstance(value, type(tuple))):
+        if isinstance(value, (list, tuple)):
             value = list(set(value))
         context = aq_inner(self.context)
         if value is not None:
