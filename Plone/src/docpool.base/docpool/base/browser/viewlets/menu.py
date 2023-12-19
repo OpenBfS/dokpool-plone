@@ -110,7 +110,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     # item_class=app_title,
                 )
             )
-            for app_name in app_names:
+            for app_name in sorted(app_names):
                 app_title = (
                     utranslate("docpool.base", "Docpool Base", context=self.context)
                     if app_name == BASE_APP
@@ -204,8 +204,6 @@ def getApplicationDocPoolsForCurrentUser(context):
     for dp in sorted(dps, key=sort_key):
         dp_app_state = getMultiAdapter((dp, request), name="dp_app_state")
         app_names = dp_app_state.appsAvailableToCurrentUser()
-        if context.isAdmin():
-            app_names.insert(0, BASE_APP)
 
         if app_names:
             pools.append((dp, app_names))
