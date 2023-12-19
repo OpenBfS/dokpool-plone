@@ -15,10 +15,13 @@ class IUserFolder(model.Schema, ISimpleFolder):
 class UserFolder(SimpleFolder):
     """ """
 
+    APP = "base"
+
     def notifyMemberAreaCreated(self):
         """
         Move the member area to the proper location.
         """
+
         # print "notifyMemberAreaCreated"
         def moveFolder():
             # Determine the owner
