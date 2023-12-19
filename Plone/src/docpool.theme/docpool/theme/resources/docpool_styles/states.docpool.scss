@@ -6,6 +6,19 @@ $plone-default-pending_bmu-color: #75a30a;
 $plone-default-published-color: #007bb1;
 $plone-default-revised-color: #7a561f;
 
+// Exclude elements under #portal-globalnav
+#portal-globalnav {
+  a.state-private,
+  a.state-pending,
+  a.state-pending_bfs,
+  a.state-pending_authority,
+  a.state-pending_bmu,
+  a.state-published,
+  a.state-revised {
+    color: #fff !important;
+  }
+}
+
 .plone-toolbar #edit-zone nav > ul ul {
   .state-private::after {
     color: $plone-default-private-color !important;
@@ -16,18 +29,23 @@ $plone-default-revised-color: #7a561f;
   a.label-state-private > span::before {
     color: $plone-default-private-color !important;
   }
+
   a.label-state-pending_bfs > span::before {
     color: $plone-default-pending_bfs-color !important;
   }
+
   a.label-state-pending_authority > span::before {
     color: $plone-default-pending_authority-color !important;
   }
+
   a.label-state-pending_bmu > span::before {
     color: $plone-default-pending_bmu-color !important;
   }
+
   a.label-state-publised > span::before {
     color: $plone-default-published-color !important;
   }
+
   a.label-state-revised > span::before {
     color: $plone-default-revised-color !important;
   }
