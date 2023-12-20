@@ -56,6 +56,7 @@
                         </td>
                         <td>
                           <a class="pat-plone-modal scenario-info"
+                             data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
                              href=""
                              title="Klicken für Informationen zum Ereignis"
                              tal:attributes="href python:scenario.absolute_url() + '?ajax_load=1'">
