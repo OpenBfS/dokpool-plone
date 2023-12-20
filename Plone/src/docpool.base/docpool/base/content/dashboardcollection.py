@@ -80,7 +80,7 @@ class DashboardCollection(Collection):
                 if t:
                     tid = t.getId()
                     try:
-                        config_folder = aq_get(self, "config").dtypes[tid]
+                        config_folder = aq_get(self, "config")
                         new = config_folder["dtypes"][tid]
                     except BaseException:
                         pass
