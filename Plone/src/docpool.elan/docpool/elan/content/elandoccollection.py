@@ -1,6 +1,7 @@
 from docpool.base.content.dashboardcollection import DashboardCollection
 from docpool.base.content.dashboardcollection import IDashboardCollection
 from docpool.base.marker import IImportingMarker
+from docpool.elan.config import ELAN_APP
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.component import adapter
@@ -17,6 +18,8 @@ class IELANDocCollection(model.Schema, IDashboardCollection):
 @implementer(IELANDocCollection)
 class ELANDocCollection(DashboardCollection):
     """DashboardCollection with a different portal_type"""
+
+    APP = ELAN_APP
 
 
 @adapter(IELANDocCollection, IObjectModifiedEvent)

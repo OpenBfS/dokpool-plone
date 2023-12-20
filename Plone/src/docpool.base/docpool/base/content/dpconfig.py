@@ -10,3 +10,5 @@ class IDPConfig(model.Schema):
 @implementer(IDPConfig)
 class DPConfig(Container):
     """ """
+
+    APP = "base"

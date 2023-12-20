@@ -39,6 +39,8 @@ class IDashboardCollection(ICollection):
 class DashboardCollection(Collection):
     """ """
 
+    APP = "base"
+
     security = ClassSecurityInfo()
 
     def getUserSelectedCategories(self):

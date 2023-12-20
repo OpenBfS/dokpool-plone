@@ -214,6 +214,8 @@ class IDPEvent(IContentBase):
 class DPEvent(Container, ContentBase):
     """ """
 
+    APP = ELAN_APP
+
     security = ClassSecurityInfo()
 
     def phaseInfo(self):

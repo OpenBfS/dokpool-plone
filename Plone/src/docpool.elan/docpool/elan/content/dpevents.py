@@ -1,3 +1,4 @@
+from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from plone.dexterity.content import Container
 from plone.supermodel import model
@@ -14,6 +15,8 @@ class IDPEvents(model.Schema):
 @implementer(IDPEvents)
 class DPEvents(Container):
     """ """
+
+    APP = ELAN_APP
 
     def getDPEvents(self, **kwargs):
         """ """

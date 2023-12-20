@@ -15,3 +15,5 @@ class IInfoLink(model.Schema, ILink):
 @implementer(IInfoLink)
 class InfoLink(Link, ContentBase):
     """ """
+
+    APP = "base"

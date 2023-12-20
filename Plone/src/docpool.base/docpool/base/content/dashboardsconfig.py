@@ -10,3 +10,5 @@ class IDashboardsConfig(model.Schema):
 @implementer(IDashboardsConfig)
 class DashboardsConfig(Container):
     """ """
+
+    APP = "base"

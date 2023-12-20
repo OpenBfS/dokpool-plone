@@ -17,6 +17,8 @@ class IInfoFolder(model.Schema, IFolderBase):
 class InfoFolder(FolderBase):
     """ """
 
+    APP = "base"
+
     def createActions(self):
         """ """
         if base_hasattr(self, "myGroupFolder"):

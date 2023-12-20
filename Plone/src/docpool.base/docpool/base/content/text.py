@@ -21,3 +21,5 @@ class IText(IContentBase):
 @implementer(IText)
 class Text(Item, ContentBase):
     """ """
+
+    APP = "base"

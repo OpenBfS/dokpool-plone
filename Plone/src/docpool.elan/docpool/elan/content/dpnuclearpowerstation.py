@@ -1,4 +1,5 @@
 from docpool.elan import DocpoolMessageFactory as _
+from docpool.elan.config import ELAN_APP
 from plone.dexterity.content import Item
 from plone.supermodel import model
 from zope import schema
@@ -14,3 +15,5 @@ class IDPNuclearPowerStation(model.Schema):
 @implementer(IDPNuclearPowerStation)
 class DPNuclearPowerStation(Item):
     """ """
+
+    APP = ELAN_APP
