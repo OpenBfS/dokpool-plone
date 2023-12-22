@@ -99,19 +99,7 @@ def createAdminstructure(plonesite, fresh):
 
 def setFrontpage(self):
     """ """
-    script_name = "redirect"
-    if script_name not in self.keys():
-        self._setObject(script_name, PythonScript(script_name))
-    ps = self._getOb(script_name)
-    ps.write(
-        """
-if not context.isAdmin():
-    container.REQUEST.RESPONSE.redirect(context.myFirstDocumentPool())
-else:
-    container.REQUEST.RESPONSE.redirect(context.absolute_url() + "/folder_contents")
-"""
-    )
-    self.setLayout(script_name)
+    self.setLayout("@@redirect")
 
 
 def configureFiltering(self):

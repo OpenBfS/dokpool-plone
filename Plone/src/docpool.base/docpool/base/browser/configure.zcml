@@ -143,6 +143,13 @@
       />
 
   <browser:page
+      name="redirect"
+      for="*"
+      class=".helpers.RootRedirectView"
+      permission="zope.Public"
+      />
+
+  <browser:page
       name="dview"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       class=".collection.CollectionDocView"
