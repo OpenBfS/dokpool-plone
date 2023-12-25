@@ -1,9 +1,11 @@
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
+from docpool.doksys.config import DOKSYS_APP
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from Products.CMFPlone.interfaces import INonInstallable
@@ -76,15 +78,16 @@ def create_today_collection(plonesite):
     _createObjectByType(
         "Collection", container, id="today", title=title, description=description
     )
-    today = container["today"]
+    new = container["today"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    today.sort_on = "changed"
-    today.sort_reversed = True
-    today.relatedItems = []
+    new.sort_on = "changed"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    today.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -92,7 +95,7 @@ def create_today_collection(plonesite):
         },
         {
             "i": "created",
-            "o": "plone.app.querystring.operation.date.today",
+            "o": "plone.app.querystring.operation.date.new",
             "v": "",
         },
         {
@@ -101,10 +104,10 @@ def create_today_collection(plonesite):
             "v": ["Intensiv", "Routine"],
         },
     ]
-    today.text = RichTextValue("", "text/html", "text/x-html-safe")
-    today.setLayout("docpool_collection_view")
+    new.text = RichTextValue("", "text/html", "text/x-html-safe")
+    new.setLayout("docpool_collection_view")
     log.info('Collection "Dokumente von Heute" angelegt')
-    return today
+    return new
 
 
 def create_since_yesterday_collection(plonesite):
@@ -117,15 +120,16 @@ def create_since_yesterday_collection(plonesite):
     _createObjectByType(
         "Collection", container, id="yesterday", title=title, description=description
     )
-    yesterday = container["yesterday"]
+    new = container["yesterday"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    yesterday.sort_on = "changed"
-    yesterday.sort_reversed = True
-    yesterday.relatedItems = []
+    new.sort_on = "changed"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    yesterday.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -142,10 +146,10 @@ def create_since_yesterday_collection(plonesite):
             "v": ["Intensiv", "Routine"],
         },
     ]
-    yesterday.text = RichTextValue("", "text/html", "text/x-html-safe")
-    yesterday.setLayout("docpool_collection_view")
+    new.text = RichTextValue("", "text/html", "text/x-html-safe")
+    new.setLayout("docpool_collection_view")
     log.info('Collection "Dokumente seit Gestern" angelegt')
-    return yesterday
+    return new
 
 
 def create_purpose_collections(plonesite):
@@ -161,15 +165,16 @@ def create_purpose_collections(plonesite):
         title=title,
         description=description,
     )
-    iwas = container["bundesmessnetze"]
+    new = container["bundesmessnetze"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -181,25 +186,26 @@ def create_purpose_collections(plonesite):
             "v": "Standard-Info Bundesmessnetze",
         },
     ]
-    iwas.text = RichTextValue(
+    new.text = RichTextValue(
         "<p>Standard-Info Bundesmessnetze<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout("docpool_collection_view")
+    new.setLayout("docpool_collection_view")
 
     title = "Standard-Info DWD"
     description = "Standard-Info DWD"
     _createObjectByType(
         "Collection", container, id="dwd", title=title, description=description
     )
-    iwas = container["dwd"]
+    new = container["dwd"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -211,10 +217,8 @@ def create_purpose_collections(plonesite):
             "v": "Standard-Info Bundesmessnetze",
         },
     ]
-    iwas.text = RichTextValue(
-        "<p>Standard-Info DWD<p>", "text/html", "text/x-html-safe"
-    )
-    iwas.setLayout("docpool_collection_view")
+    new.text = RichTextValue("<p>Standard-Info DWD<p>", "text/html", "text/x-html-safe")
+    new.setLayout("docpool_collection_view")
     #
 
     print("Purpose Collection angelegt")
@@ -229,15 +233,16 @@ def create_sample_collections(plonesite):
     _createObjectByType(
         "Collection", container, id="boden", title=title, description=description
     )
-    iwas = container["boden"]
+    new = container["boden"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -249,23 +254,24 @@ def create_sample_collections(plonesite):
             "v": "B*",
         },
     ]
-    iwas.text = RichTextValue("<p>Ergebnisse Boden<p>", "text/html", "text/x-html-safe")
-    iwas.setLayout("docpool_collection_view")
+    new.text = RichTextValue("<p>Ergebnisse Boden<p>", "text/html", "text/x-html-safe")
+    new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Futtermittel"
     description = "Ergebnisse Futtermittel"
     _createObjectByType(
         "Collection", container, id="futter", title=title, description=description
     )
-    iwas = container["futter"]
+    new = container["futter"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -277,25 +283,26 @@ def create_sample_collections(plonesite):
             "v": "F*",
         },
     ]
-    iwas.text = RichTextValue(
+    new.text = RichTextValue(
         "<p>Ergebnisse Futtermittel<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout("docpool_collection_view")
+    new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Gewaesser"
     description = "Ergebnisse Gewaesser"
     _createObjectByType(
         "Collection", container, id="wasser", title=title, description=description
     )
-    iwas = container["wasser"]
+    new = container["wasser"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -307,25 +314,26 @@ def create_sample_collections(plonesite):
             "v": "G*",
         },
     ]
-    iwas.text = RichTextValue(
+    new.text = RichTextValue(
         "<p>Ergebnisse Gewaesser<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout("docpool_collection_view")
+    new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Luft"
     description = "Ergebnisse Luft"
     _createObjectByType(
         "Collection", container, id="luft", title=title, description=description
     )
-    iwas = container["luft"]
+    new = container["luft"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -337,23 +345,24 @@ def create_sample_collections(plonesite):
             "v": "L*",
         },
     ]
-    iwas.text = RichTextValue("<p>Ergebnisse Luft<p>", "text/html", "text/x-html-safe")
-    iwas.setLayout("docpool_collection_view")
+    new.text = RichTextValue("<p>Ergebnisse Luft<p>", "text/html", "text/x-html-safe")
+    new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Nahrungsmittel"
     description = "Ergebnisse Nahrungsmittel"
     _createObjectByType(
         "Collection", container, id="nahrung", title=title, description=description
     )
-    iwas = container["nahrung"]
+    new = container["nahrung"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -365,25 +374,26 @@ def create_sample_collections(plonesite):
             "v": "N*",
         },
     ]
-    iwas.text = RichTextValue(
+    new.text = RichTextValue(
         "<p>Ergebnisse Nahrungsmittel<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout("docpool_collection_view")
+    new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Stoerfall"
     description = "Ergebnisse Stoerfall"
     _createObjectByType(
         "Collection", container, id="stoer", title=title, description=description
     )
-    iwas = container["stoer"]
+    new = container["stoer"]
+    ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
     # Set the Collection criteria.
     #: Sort on the Effective date
-    iwas.sort_on = "effective"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "effective"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "portal_type",
             "o": "plone.app.querystring.operation.selection.any",
@@ -395,10 +405,10 @@ def create_sample_collections(plonesite):
             "v": "S*",
         },
     ]
-    iwas.text = RichTextValue(
+    new.text = RichTextValue(
         "<p>Ergebnisse Stoerfall<p>", "text/html", "text/x-html-safe"
     )
-    iwas.setLayout("docpool_collection_view")
+    new.setLayout("docpool_collection_view")
 
     print("Sample Type Collection angelegt")
 

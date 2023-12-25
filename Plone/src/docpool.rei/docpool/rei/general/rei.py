@@ -1,8 +1,10 @@
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
+from docpool.rei.config import REI_APP
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from Products.CMFCore.utils import getToolByName
@@ -85,15 +87,16 @@ def create_all_collection(plonesite):
     _createObjectByType(
         "Collection", container, id="all", title=title, description=description
     )
-    iwas = container["all"]
+    new = container["all"]
+    ILocalBehaviorSupport(new).local_behaviors = [REI_APP]
 
     # Set the Collection criteria.
     #: Sort on the Modification date
-    iwas.sort_on = "modified"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "modified"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type
-    iwas.query = [
+    new.query = [
         {
             "i": "dp_type",
             "o": "plone.app.querystring.operation.selection.is",
@@ -111,9 +114,9 @@ def create_all_collection(plonesite):
             ],
         },
     ]
-    iwas.text = RichTextValue("<p>Alle Reiberichte<p>", "text/html", "text/x-html-safe")
+    new.text = RichTextValue("<p>Alle Reiberichte<p>", "text/html", "text/x-html-safe")
 
-    iwas.setLayout("docpool_collection_view")
+    new.setLayout("docpool_collection_view")
 
     print("Collection Alle angelegt")
 
@@ -126,15 +129,16 @@ def create_all_private_collection(plonesite):
     _createObjectByType(
         "Collection", container, id="allprivate", title=title, description=description
     )
-    iwas = container["allprivate"]
+    new = container["allprivate"]
+    ILocalBehaviorSupport(new).local_behaviors = [REI_APP]
 
     # Set the Collection criteria.
     #: Sort on the Modification date
-    iwas.sort_on = "modified"
-    iwas.sort_reversed = True
-    iwas.relatedItems = []
+    new.sort_on = "modified"
+    new.sort_reversed = True
+    new.relatedItems = []
     #: Query by Type and Review State
-    iwas.query = [
+    new.query = [
         {
             "i": "dp_type",
             "o": "plone.app.querystring.operation.selection.is",
@@ -146,9 +150,9 @@ def create_all_private_collection(plonesite):
             "v": ["pending_bfs", "pending_bmu", "pending_authority", "private"],
         },
     ]
-    iwas.text = RichTextValue("<p>Noch freizugeben<p>", "text/html", "text/x-html-safe")
+    new.text = RichTextValue("<p>Noch freizugeben<p>", "text/html", "text/x-html-safe")
 
-    iwas.setLayout("docpool_collection_view_with_actions")
+    new.setLayout("docpool_collection_view_with_actions")
 
     print("Collection Alle eingereicht angelegt")
 
