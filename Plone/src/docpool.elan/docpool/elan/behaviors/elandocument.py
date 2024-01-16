@@ -58,7 +58,6 @@ class IELANDocument(IDocumentExtension):
 
 
 class ELANDocument(FlexibleView):
-
     __allow_access_to_unprotected_subobjects__ = 1
 
     security = ClassSecurityInfo()

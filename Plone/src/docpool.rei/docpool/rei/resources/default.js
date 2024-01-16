@@ -43,7 +43,7 @@ $(function () {
             if (open_state_title) {
               $("#faceted_table .metatitle").click();
             }
-          }
+          },
         );
         // Open all metainfos
         $("#z3ctabel-toggles .z3ctable-toggle-metadata").on(
@@ -67,9 +67,9 @@ $(function () {
             if (open_state_data) {
               $("#faceted_table .metadata").click();
             }
-          }
+          },
         );
-      }
+      },
     );
   }
 });

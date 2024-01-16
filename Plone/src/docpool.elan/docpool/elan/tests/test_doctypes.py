@@ -20,7 +20,6 @@ import unittest
 
 
 class TestDocTypes(unittest.TestCase):
-
     layer = DOCPOOL_EVENT_FUNCTIONAL_TESTING
 
     def setUp(self):

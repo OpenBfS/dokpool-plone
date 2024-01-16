@@ -12,7 +12,6 @@ import docpool.api
 
 
 class DocpoolApiLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -29,7 +28,6 @@ class DocpoolApiLayer(PloneSandboxLayer):
 
 
 class DocpoolApiCleanLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

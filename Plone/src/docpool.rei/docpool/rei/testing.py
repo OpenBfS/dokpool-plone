@@ -10,7 +10,6 @@ from plone.testing.zope import WSGI_SERVER_FIXTURE
 
 
 class DocpoolReiLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -33,7 +32,6 @@ class DocpoolReiLayer(PloneSandboxLayer):
 
 
 class DocpoolReiCleanLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

@@ -82,7 +82,7 @@ require([
             $el = $(
               '<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3">' +
                 data +
-                "</td> <td>&nbsp</td> <td>&nbsp</td></tr>"
+                "</td> <td>&nbsp</td> <td>&nbsp</td></tr>",
             ); // jQuery starts to search at the first child element.
           } else if (that.options.dataType.indexOf("json") !== -1) {
             // must have template defined with json
@@ -96,7 +96,7 @@ require([
               that.$el.removeClass("loading-content");
               that.$el.addClass("content-load-error");
               log.warn(
-                "error rendering template. pat-contentloader will not work"
+                "error rendering template. pat-contentloader will not work",
               );
               return;
             }
@@ -136,7 +136,7 @@ require([
         $content = $(
           '<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3"><h4>' +
             $content_raw.text() +
-            "</h4></td> <td>&nbsp</td> <td>&nbsp</td></tr>"
+            "</h4></td> <td>&nbsp</td> <td>&nbsp</td></tr>",
         ); // jQuery starts to search at the first child element.
       }
       $target = $target.closest("tr");

@@ -13,7 +13,6 @@ import unittest
 
 
 class ViewTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):

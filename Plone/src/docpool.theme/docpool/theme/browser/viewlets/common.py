@@ -19,7 +19,6 @@ allow_class(TimeViewlet)
 
 
 class LogoDocpoolViewlet(LogoViewlet):
-
     index = ViewPageTemplateFile("logo.pt")
 
     def getActiveApp(self):

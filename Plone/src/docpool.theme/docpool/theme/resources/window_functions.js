@@ -37,7 +37,7 @@ export function makePopUp(
   thisXPosition,
   thisYPosition,
   thisScrollbar,
-  thisResize
+  thisResize,
 ) {
   "use strict";
   var myProperty =
@@ -74,7 +74,7 @@ export function makePopUp(
     window["popup_" + generic_window_name] = window.open(
       thisDocument,
       generic_window_name,
-      myProperty
+      myProperty,
     );
   }
   window["popup_" + generic_window_name].focus();

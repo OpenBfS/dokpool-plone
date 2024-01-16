@@ -36,7 +36,6 @@ class IJournalEntry(Interface):
 @implementer(IJournalEntryContainer)
 @adapter(IJournal)
 class JournalEntryContainer(Persistent):
-
     ANNO_KEY = "journal.journalentries"
 
     def __init__(self, context):

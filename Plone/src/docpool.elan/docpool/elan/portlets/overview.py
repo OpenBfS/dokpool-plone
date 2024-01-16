@@ -22,7 +22,6 @@ class Assignment(base.Assignment):
 
 
 class Renderer(base.Renderer):
-
     render = ViewPageTemplateFile("overview.pt")
 
     @property

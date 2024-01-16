@@ -44,7 +44,7 @@ jQuery(function ($) {
 
   if ($.datepicker) {
     $.datepicker.setDefaults(
-      $.datepicker.regional[$("html").attr("lang") || "de"]
+      $.datepicker.regional[$("html").attr("lang") || "de"],
     );
   }
 });

@@ -258,7 +258,6 @@ def execute_under_special_role(context, role, function, *args, **kwargs):
 
     try:
         try:
-
             # Clone the current access control user and assign a new role for him/her
             # Note that the username (getId()) is left in exception tracebacks in error_log
             # so it is important thing to store

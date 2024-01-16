@@ -10,7 +10,6 @@ class IELANCurrentSituation(model.Schema):
 
 @implementer(IELANCurrentSituation)
 class ELANCurrentSituation(Container):
-
     APP = ELAN_APP
 
     def correctAllDocTypes(self):

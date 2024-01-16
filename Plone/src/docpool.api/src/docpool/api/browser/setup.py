@@ -63,7 +63,6 @@ class DocpoolSetup(BrowserView):
     """
 
     def __call__(self):
-
         if not self.request.form.get("submit", None):
             return self.index()
 
