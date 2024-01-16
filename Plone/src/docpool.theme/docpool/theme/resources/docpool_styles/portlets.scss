@@ -15,12 +15,19 @@
     }
   }
 
-  a {
-    text-decoration: none;
+  .navTree {
+    a {
+      text-decoration: none;
+      padding: 0.6rem;
 
-    /* Other styling for invalid links */
-    &:not([href]) {
-      color: unset;
+      /* Other styling for invalid links */
+      &:not([href]) {
+        color: unset;
+      }
+
+      span {
+        font-size: 0.875rem;
+      }
     }
   }
 
