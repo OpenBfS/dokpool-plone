@@ -162,12 +162,14 @@ buttons = view.dp_buttons(batch)
 <metal:delmacro define-macro="delete">
     <tal:if condition="dpbrainobj/canBeDeleted">
         <a href=""
+           tal:define="icons python:context.restrictedTraverse('@@iconresolver');"
            class="link-overlay action pat-plone-modal"
            data-pat-plone-modal='{"actionOptions": {"reloadWindowOnClose": false, "redirectOnResponse":true, "timeout":10000}, "width": "80%", "buttons": ".formControls > button"}'
            title="Delete"
            tal:attributes="href python:'%s/delete_confirmation' % dpbrainobj.absolute_url()"
            i18n:attributes="title"
-        ><img src="" tal:attributes="src string:${context/portal_url}/delete_icon.gif"/> </a>
+        ><img src="${python:icons.url('trash')}"/>
+        </a>
     </tal:if>
 </metal:delmacro>
 
