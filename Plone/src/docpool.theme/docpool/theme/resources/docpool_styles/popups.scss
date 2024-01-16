@@ -1,0 +1,10 @@
+// No toolbar in popups - ignore padding
+body.plone-toolbar-left.plone-toolbar-left-expanded {
+  padding-left: unset !important;
+}
+
+body > article.bfs_popup {
+  margin: 2% !important;
+  width: unset !important;
+  max-width: unset !important;
+}
