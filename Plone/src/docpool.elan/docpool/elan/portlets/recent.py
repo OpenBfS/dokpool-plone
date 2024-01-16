@@ -37,7 +37,6 @@ class Assignment(base.Assignment):
 
 
 class Renderer(base.Renderer):
-
     # render() will be called to render the portlet
 
     render = ViewPageTemplateFile("recent.pt")
@@ -85,7 +84,6 @@ class Renderer(base.Renderer):
 
 
 class AddForm(base.NullAddForm):
-
     # This method must be implemented to actually construct the object.
 
     def create(self):

@@ -10,7 +10,6 @@ import unittest
 
 
 class NetworkOperatorsIntegrationTest(unittest.TestCase):
-
     layer = DOCPOOL_DOKSYS_INTEGRATION_TESTING
 
     def setUp(self):

@@ -17,7 +17,6 @@ PMF = MessageFactory("plone")
 
 
 class WorkflowActionView(BrowserView):
-
     template = ViewPageTemplateFile("templates/dpdocument_transition_form.pt")
 
     TRANSITION_SORTKEYS = {

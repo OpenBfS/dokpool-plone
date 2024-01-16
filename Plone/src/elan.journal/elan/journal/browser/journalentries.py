@@ -108,7 +108,6 @@ class EditJournalEntryView(BaseJournalEntryView):
     """Edit an entry in the Journal."""
 
     def __call__(self):
-
         if "form.buttons.save" in self.request.form:  # Save changes
             return self.save()
 

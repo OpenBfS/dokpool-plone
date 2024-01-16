@@ -76,7 +76,6 @@ STOP_SAMPLING_MAPPING = {
 
 @provider(IFormFieldProvider)
 class IREIDoc(IDocumentExtension):
-
     directives.widget(NuclearInstallations=SelectFieldWidget)
     NuclearInstallations = schema.List(
         title=_("label_rei_NuclearInstallations", default="NuclearInstallations"),

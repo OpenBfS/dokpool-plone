@@ -8,7 +8,6 @@ import unittest
 
 
 class ContentTypeTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):

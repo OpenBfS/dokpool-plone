@@ -31,7 +31,6 @@ class TestSetup(unittest.TestCase):
 
 
 class TestUninstall(unittest.TestCase):
-
     layer = DOCPOOL_EVENT_FUNCTIONAL_TESTING
 
     def setUp(self):

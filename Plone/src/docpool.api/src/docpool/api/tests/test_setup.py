@@ -37,7 +37,6 @@ class TestSetup(unittest.TestCase):
 
 
 class TestUninstall(unittest.TestCase):
-
     layer = DOCPOOL_API_INTEGRATION_TESTING
 
     def setUp(self):

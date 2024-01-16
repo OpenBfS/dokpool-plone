@@ -10,7 +10,6 @@ import unittest
 
 
 class BaseJournalEntryViewTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):
@@ -60,7 +59,6 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
 
 
 class AddJournalEtnryViewTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):
@@ -102,7 +100,6 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
 
 
 class EditJournalEntryViewTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):
@@ -139,7 +136,6 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
 
 
 class DeleteJournalEntryViewTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):

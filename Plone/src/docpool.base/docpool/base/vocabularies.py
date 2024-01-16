@@ -43,7 +43,6 @@ class ActiveAppsVocabulary:
     """ """
 
     def __call__(self, context):
-
         return SimpleVocabulary(
             [SimpleTerm(app[0], title=_(app[1])) for app in activeApps()]
         )
@@ -57,7 +56,6 @@ class ExtendingAppsVocabulary:
     """ """
 
     def __call__(self, context):
-
         return SimpleVocabulary(
             [SimpleTerm(app[0], title=_(app[1])) for app in extendingApps()]
         )
@@ -71,7 +69,6 @@ class SelectableAppsVocabulary:
     """ """
 
     def __call__(self, context):
-
         return SimpleVocabulary(
             [SimpleTerm(app[0], title=_(app[1])) for app in selectableApps()]
         )
@@ -195,7 +192,6 @@ class UserDocumentPoolVocabulary:
     """ """
 
     def __call__(self, context, raw=False):
-
         site = getSite()
         cat = getToolByName(site, "portal_catalog", None)
         if cat is None:

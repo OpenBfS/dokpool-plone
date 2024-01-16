@@ -6,7 +6,7 @@ var parseBodyTag = function (txt) {
     /<body[^>]*>[^]*<\/body>/im
       .exec(txt)[0]
       .replace("<body", "<div")
-      .replace("</body>", "</div>")
+      .replace("</body>", "</div>"),
   )
     .eq(0)
     .html();

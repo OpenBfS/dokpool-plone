@@ -5,7 +5,6 @@ from zope.interface import Interface
 
 
 class IArchiving(Interface):
-
     is_archive: bool
 
 

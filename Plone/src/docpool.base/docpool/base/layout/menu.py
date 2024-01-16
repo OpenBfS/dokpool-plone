@@ -34,10 +34,8 @@ class DPWorkflowMenu(WorkflowMenu):
     """Overrides display menu"""
 
     def getMenuItems(self, context, request):
-
         results = super().getMenuItems(context, request)
         if len(results) > 0:
-
             # Remove status history menu item ('Advanced...')
 
             results = [

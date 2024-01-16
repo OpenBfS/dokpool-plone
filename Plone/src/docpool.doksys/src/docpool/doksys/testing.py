@@ -8,7 +8,6 @@ from plone.testing.zope import WSGI_SERVER_FIXTURE
 
 
 class DocpoolDoksysLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

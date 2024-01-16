@@ -52,7 +52,6 @@ class ReiLegalBases(BaseColumn):
 
 
 class Medium(BaseColumn):
-
     header = _("header_Title_Medium")
     sort_index = -1
     weight = 30
@@ -72,7 +71,6 @@ class Medium(BaseColumn):
 
 
 class Period(BaseColumn):
-
     header = _("header_Title_Period")
     sort_index = -1
     weight = 40
@@ -109,7 +107,6 @@ class Authority(BaseColumn):
 
 
 class NuclearInstallation(BaseColumn):
-
     header = _("header_Title_NuclearInstallation")
     sort_index = -1
     weight = 60
@@ -129,7 +126,6 @@ class NuclearInstallation(BaseColumn):
 
 
 class Origin(BaseColumn):
-
     header = _("header_Title_Origin")
     sort_index = -1
     weight = 70
@@ -143,7 +139,6 @@ class Origin(BaseColumn):
 
 
 class Metadata(BaseColumn):
-
     header = _("header_Title_Metadata")
     sort_index = -1
     weight = 80

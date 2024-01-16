@@ -13,31 +13,31 @@ module.exports = () => {
     entry: {
       "docpool.theme.min": path.resolve(
         __dirname,
-        "./src/docpool.theme/docpool/theme/resources/index.js"
+        "./src/docpool.theme/docpool/theme/resources/index.js",
       ),
       "elan.journal.min": path.resolve(
         __dirname,
-        "./src/elan.journal/elan/journal/resources/index.js"
+        "./src/elan.journal/elan/journal/resources/index.js",
       ),
       "docpool.config.min": path.resolve(
         __dirname,
-        "./src/docpool.config/docpool/config/resources/index.js"
+        "./src/docpool.config/docpool/config/resources/index.js",
       ),
       "docpool.base.min": path.resolve(
         __dirname,
-        "./src/docpool.base/docpool/base/resources/index.js"
+        "./src/docpool.base/docpool/base/resources/index.js",
       ),
       "docpool.elan.min": path.resolve(
         __dirname,
-        "./src/docpool.elan/docpool/elan/resources/index.js"
+        "./src/docpool.elan/docpool/elan/resources/index.js",
       ),
       "docpool.rei.min": path.resolve(
         __dirname,
-        "./src/docpool.rei/docpool/rei/resources/index.js"
+        "./src/docpool.rei/docpool/rei/resources/index.js",
       ),
       barceloneta: path.resolve(
         __dirname,
-        "./src/docpool.theme/docpool/theme/resources/barceloneta.scss"
+        "./src/docpool.theme/docpool/theme/resources/barceloneta.scss",
       ),
     },
   };
@@ -48,7 +48,7 @@ module.exports = () => {
   });
   config.output.path = path.resolve(
     __dirname,
-    "src/docpool.theme/docpool/theme/static/build"
+    "src/docpool.theme/docpool/theme/static/build",
   );
 
   config.plugins.push(
@@ -61,7 +61,7 @@ module.exports = () => {
         ...package_json_mockup.dependencies,
         ...package_json.dependencies,
       },
-    })
+    }),
   );
 
   config.plugins.push(
@@ -74,7 +74,7 @@ module.exports = () => {
         ...package_json_mockup.dependencies,
         ...package_json.dependencies,
       },
-    })
+    }),
   );
 
   config.plugins.push(
@@ -87,7 +87,7 @@ module.exports = () => {
         ...package_json_mockup.dependencies,
         ...package_json.dependencies,
       },
-    })
+    }),
   );
 
   config.plugins.push(
@@ -100,7 +100,7 @@ module.exports = () => {
         ...package_json_mockup.dependencies,
         ...package_json.dependencies,
       },
-    })
+    }),
   );
 
   config.plugins.push(
@@ -113,7 +113,7 @@ module.exports = () => {
         ...package_json_mockup.dependencies,
         ...package_json.dependencies,
       },
-    })
+    }),
   );
 
   config.plugins.push(
@@ -126,7 +126,7 @@ module.exports = () => {
         ...package_json_mockup.dependencies,
         ...package_json.dependencies,
       },
-    })
+    }),
   );
 
   // Compile our base barceloneta separate from the other files

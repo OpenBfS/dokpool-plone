@@ -10,7 +10,7 @@ import registry from "pat-registry";
 /* facetednavigation */
 if (
   jQuery(
-    "body.template-facetednavigation_view,body.template-configure_faceted-html"
+    "body.template-facetednavigation_view,body.template-configure_faceted-html",
   ).length
 ) {
   (function () {
@@ -64,7 +64,7 @@ if (
                   if (open_state_title) {
                     $("#faceted_table .metatitle").click();
                   }
-                }
+                },
               );
               // Open all metainfos
               $("#z3ctabel-toggles .z3ctable-toggle-metadata").on(
@@ -88,9 +88,9 @@ if (
                   if (open_state_data) {
                     $("#faceted_table .metadata").click();
                   }
-                }
+                },
               );
-            }
+            },
           );
         }
       });
