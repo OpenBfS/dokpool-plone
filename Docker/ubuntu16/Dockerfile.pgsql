@@ -22,7 +22,6 @@ FROM postgres
 RUN apt-get update
 RUN apt-get install -y postgresql-12-postgis-3 postgis \
     postgresql-plpython3-12
-COPY pg-setup-scripts/init.sql /docker-entrypoint-initdb.d
 
 #
 # Use user postgres to run the next commands
@@ -65,7 +64,6 @@ RUN /usr/lib/postgresql/12/bin/pg_ctl start -wD /etc/postgresql/12/main/ && \
 #
 # Start Postgres-Server
 
-CMD ["create extension plpython3u;" \ 
-     "/usr/lib/postgresql/12/bin/postgres", "-D", \
+CMD ["/usr/lib/postgresql/12/bin/postgres", "-D", \
      "/var/lib/postgresql/12/main", "-c", \
      "config_file=/etc/postgresql/12/main/postgresql.conf"]
