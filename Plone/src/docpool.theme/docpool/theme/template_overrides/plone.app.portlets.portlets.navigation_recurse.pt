@@ -18,7 +18,9 @@
                 li_class        python:is_current and ' navTreeCurrentNode' or '';
                 li_extr_class   python:is_in_path and ' navTreeItemInPath' or '';
                 li_folder_class python:show_children and ' navTreeFolderish' or '';
-                normalizeString nocall: context/plone_utils/normalizeString;"
+                normalizeString nocall: context/plone_utils/normalizeString;
+                is_section      python: item_type == 'ELANSection';
+                nav_helper      python: context.restrictedTraverse('@@navigation_helper');"
     tal:attributes="class string:navTreeItem visualNoMarker${li_class}${li_extr_class}${li_folder_class} section-${node/normalized_id} ${personal_class}"
     tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel">
 
@@ -27,11 +29,19 @@
                        item_class python:is_current and item_class + ' navTreeCurrentItem' or item_class;">
 
 
-        <a tal:attributes="href python:use_remote_url and item_remote_url or (item_type != 'ELANSection') and item_url or None;
+        <a tal:attributes="href python:use_remote_url and item_remote_url or not is_section and item_url or None;
                            title node/Description;
                            class string:$item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class">
             <img tal:condition="nocall:item_icon" tal:replace="structure item_icon/html_tag" />
             <span tal:content="node/Title">Selected Item Title</span>
+            <span class="badge text-bg-primary"
+                  tal:define="number_of_children python: nav_helper.number_of_children(node)"
+                  tal:condition="python: number_of_children"
+                  tal:content="python: number_of_children"
+                  title="Anzahl der Inhalte"
+                  i18n:attributes="title">
+                5
+            </span>
         </a>
 
     <ul tal:attributes="class python:'navTree navTreeLevel'+str(level)"
