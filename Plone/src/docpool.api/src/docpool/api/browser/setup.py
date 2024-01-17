@@ -77,6 +77,12 @@ class DocpoolSetup(BrowserView):
 
         api.portal.set_registry_record("docpool.show_debug_info", True)
 
+        # remove My Folder action added by set_enable_user_folders of addons
+        portal_actions = api.portal.get_tool("portal_actions")
+        user_actions = getattr(portal_actions, "user")
+        if "mystuff" in user_actions:
+            user_actions.manage_delObjects(["mystuff"])
+
         # create docpool 1 (with rei)
         docpool_bund = api.content.create(
             container=self.context,
