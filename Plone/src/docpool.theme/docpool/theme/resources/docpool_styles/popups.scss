@@ -1,5 +1,5 @@
 // No toolbar in popups - ignore padding
-body.plone-toolbar-left.plone-toolbar-left-expanded {
+body.plone-toolbar-left.plone-toolbar-left-expanded.template-rpopup {
   padding-left: unset !important;
 }
 
