@@ -30,7 +30,6 @@ USER postgres
 #
 # Add superuser for remote access
 #
-#RUN /usr/lib/postgresql/12/bin/pg_ctl start -wD /etc/postgresql/12/main/ && \
 RUN /etc/init.d/postgresql start && \
     psql --command "CREATE USER zodbuser WITH SUPERUSER PASSWORD 'zodbuser';" && \
     psql --command "CREATE USER elan WITH SUPERUSER PASSWORD 'elan';"
