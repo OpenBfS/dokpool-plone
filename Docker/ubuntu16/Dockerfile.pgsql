@@ -16,12 +16,11 @@ RUN apt-get update && apt-get install -y apt-utils tzdata locales
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 #
-# Install postgres 12 + postgis 3
+# Install postgres 14 + postgis 3
 #
-FROM postgres
 RUN apt-get update
-RUN apt-get install -y postgresql-12-postgis-3 postgis \
-    postgresql-plpython3-12
+RUN apt-get install -y postgresql-14-postgis-3 postgis \
+    postgresql-plpython3-14
 
 #
 # Use user postgres to run the next commands
@@ -31,8 +30,9 @@ USER postgres
 #
 # Add superuser for remote access
 #
-RUN /etc/init.d/postgresql start &&\
-    psql --command "CREATE USER zodbuser WITH SUPERUSER PASSWORD 'zodbuser';" &&\
+#RUN /usr/lib/postgresql/12/bin/pg_ctl start -wD /etc/postgresql/12/main/ && \
+RUN /etc/init.d/postgresql start && \
+    psql --command "CREATE USER zodbuser WITH SUPERUSER PASSWORD 'zodbuser';" && \
     psql --command "CREATE USER elan WITH SUPERUSER PASSWORD 'elan';"
 
 #
@@ -40,9 +40,9 @@ RUN /etc/init.d/postgresql start &&\
 # database are possible.
 #
 RUN echo "host all  all    0.0.0.0/0  md5" \
-    >> /etc/postgresql/12/main/pg_hba.conf
+    >> /etc/postgresql/14/main/pg_hba.conf
 
-RUN echo "listen_addresses='*'" >> /etc/postgresql/12/main/postgresql.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/14/main/postgresql.conf
 
 #
 # Expose the PostgreSQL port
@@ -57,13 +57,13 @@ EXPOSE 5432
 # It's because of the -w
 #
 # ADD pgsql elan_pgsql/
-RUN /usr/lib/postgresql/12/bin/pg_ctl start -wD /etc/postgresql/12/main/ && \
+RUN /usr/lib/postgresql/14/bin/pg_ctl start -wD /etc/postgresql/14/main/ && \
     createdb -E UTF-8 -O zodbuser zodb && \
     createdb -E UTF-8 -O elan elan 
 
 #
 # Start Postgres-Server
 
-CMD ["/usr/lib/postgresql/12/bin/postgres", "-D", \
-     "/var/lib/postgresql/12/main", "-c", \
-     "config_file=/etc/postgresql/12/main/postgresql.conf"]
+CMD ["/usr/lib/postgresql/14/bin/postgres", "-D", \
+     "/var/lib/postgresql/14/main", "-c", \
+     "config_file=/etc/postgresql/14/main/postgresql.conf"]
