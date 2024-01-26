@@ -2,6 +2,7 @@ from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import _cutPaste
 from docpool.base.utils import execute_under_special_role
+from docpool.doksys.config import DOKSYS_APP
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
@@ -15,7 +16,7 @@ class IUserFolder(model.Schema, ISimpleFolder):
 class UserFolder(SimpleFolder):
     """ """
 
-    APP = "base"
+    APP = DOKSYS_APP
 
     def notifyMemberAreaCreated(self):
         """
