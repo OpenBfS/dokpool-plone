@@ -111,11 +111,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                 )
             )
             for app_name in sorted(app_names):
-                app_title = (
-                    utranslate("docpool.base", "Docpool Base", context=self.context)
-                    if app_name == BASE_APP
-                    else appName(app_name)
-                )
+                app_title = appName(app_name)
                 app_id = f"{dp_id}-{app_name}"
                 tree[dp_path].append(
                     dict(
