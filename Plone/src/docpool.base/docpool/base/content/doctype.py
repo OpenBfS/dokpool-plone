@@ -8,7 +8,7 @@ from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import safe_hasattr
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.orderedselect import OrderedSelectFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -68,7 +68,7 @@ class IDocType(model.Schema):
             vocabulary="docpool.base.vocabularies.DocType",
         ),
     )
-    directives.widget("allowedDocTypes", CheckBoxFieldWidget)
+    directives.widget("allowedDocTypes", OrderedSelectFieldWidget)
 
     partsPattern = schema.TextLine(
         title=_(
