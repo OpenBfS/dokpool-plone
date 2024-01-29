@@ -83,6 +83,22 @@ class DocpoolSetup(BrowserView):
         if "mystuff" in user_actions:
             user_actions.manage_delObjects(["mystuff"])
 
+        # Sort actions
+        actions = [
+            "add_scenario",
+            "edit_scenarios",
+            "edit_ticker",
+            "delete_ticker",
+            "edit_dashboard",
+            "plone_setup",
+            "usermanagement",
+            "impersonate",
+            "preferences",
+            "logout",
+        ]
+        for action in actions:
+            user_actions.moveObjectsToBottom([action])
+
         # create docpool 1 (with rei)
         docpool_bund = api.content.create(
             container=self.context,
