@@ -359,7 +359,7 @@ quoted_id = quote_plus(econtext["d"].getId());
 <metal:macro define-macro="doc_images" i18n:domain="docpool.base"
         tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
 
-          <span tal:define="images context/getImages">
+          <span tal:define="images context/getImages" tal:condition="images">
             <label i18n:translate="">Images:</label>
             <table class="table table-borderless">
             <tr tal:define="multiple_images python:len(images) > 1">
@@ -383,8 +383,8 @@ c_type = econtext["b"].content_type()
 size = human_readable_size(econtext["b"].get_size())
 ?>
 
-                 <span tal:content="python:c_type"/><br>
-                 (<span tal:content="python:size"/>)<br><br>
+                 (<span tal:content="python:c_type"/>
+                 <span tal:content="python:size"/>)
 
                 <span tal:condition="python:b.Description()"
                       tal:content="python:b.Description()"/>
