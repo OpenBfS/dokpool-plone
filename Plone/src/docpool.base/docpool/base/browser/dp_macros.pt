@@ -311,7 +311,6 @@ dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', dom
              <span tal:repeat="d files">
               <li><a href="" target="_blank" tal:attributes="href python:d.absolute_url()"
                      tal:content="structure python:d.title_or_id()">documents</a>
-                <font size="1">
 <?python
 from Products.CMFPlone.utils import human_readable_size
 c_type = econtext["d"].content_type()
@@ -319,7 +318,6 @@ size = human_readable_size(econtext["d"].get_size())
 ?>
                   (<span tal:content="python:c_type"/>,&nbsp;<span
                         tal:content="python:size"/>)
-                </font>
                   <a tal:attributes="href python: d.absolute_url() + '/delete_confirmation'"
                      tal:condition="python: edit_allowed"
                           href="#"
@@ -378,7 +376,6 @@ quoted_id = quote_plus(econtext["d"].getId());
                       width="100%" height="auto"/>
                   <br/>
               </a>
-              <font size="1">
 
 <?python
 from Products.CMFPlone.utils import human_readable_size
@@ -388,12 +385,9 @@ size = human_readable_size(econtext["b"].get_size())
 
                  <span tal:content="python:c_type"/><br>
                  (<span tal:content="python:size"/>)<br><br>
-              </font>
 
-              <font size="1">
                 <span tal:condition="python:b.Description()"
                       tal:content="python:b.Description()"/>
-              </font>
                   <a tal:attributes="href python: b.absolute_url() + '/delete_confirmation'"
                      tal:condition="python: edit_allowed"
                           href="#"
