@@ -34,7 +34,7 @@
                            class string:$item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class">
             <img tal:condition="nocall:item_icon" tal:replace="structure item_icon/html_tag" />
             <span tal:content="node/Title">Selected Item Title</span>
-            <span class="badge text-bg-primary"
+            <span class="number_of_children badge text-bg-secondary"
                   tal:define="number_of_children python: nav_helper.number_of_children(node)"
                   tal:condition="python: number_of_children"
                   tal:content="python: number_of_children"

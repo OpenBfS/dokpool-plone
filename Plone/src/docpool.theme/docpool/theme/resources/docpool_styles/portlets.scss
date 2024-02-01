@@ -18,7 +18,8 @@
   .navTree {
     a {
       text-decoration: none;
-      padding: 0.6rem;
+      padding-top: 0.3rem !important;
+      padding-bottom: 0.3rem !important;
 
       /* Other styling for invalid links */
       &:not([href]) {
@@ -28,11 +29,18 @@
       span {
         font-size: 0.875rem;
       }
+
       &.contenttype-elansection {
         span {
           color: #000;
         }
       }
+    }
+
+    .number_of_children.text-bg-secondary {
+      font-size: 0.75rem;
+      background-color: #ccc;
+      color: #666;
     }
   }
 
