@@ -1,5 +1,5 @@
 from AccessControl import ModuleSecurityInfo
-from docpool.base import _
+from docpool.base import DocpoolMessageFactory as _
 from plone.app.workflow.interfaces import ISharingPageRole
 from Products.CMFCore.permissions import setDefaultRoles
 from zope.interface import implementer
