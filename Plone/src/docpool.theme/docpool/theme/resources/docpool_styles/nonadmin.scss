@@ -54,11 +54,13 @@ a#advanced {
 #contentview-history {
   display: none !important;
 }
+
 .portaltype-plone-site {
   #contentview-local_roles {
     display: none !important;
   }
 }
+
 /*
 #portal-globalnav li.config {
 	display: none !important;
@@ -79,9 +81,4 @@ a#advanced {
 .template-edit.portaltype-dpdocument.docstate-published
   #formfield-form-widgets-IELANDocument-scenarios {
   display: block;
-}
-
-.viewpermission-modify-portal-content
-  #formfield-form-widgets-ILocalBehaviorSupport-local_behaviors {
-  display: none;
 }
