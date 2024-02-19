@@ -1,0 +1,12 @@
+-c constraints.txt
+
+zope.testrunner
+Products.PloneKeywordManager
+pas.plugins.ldap
+eea.facetednavigation
+collective.impersonate
+waitress_fastlisten
+
+# We use the same requirements.txt for filestorage and relstorage
+RelStorage
+psycopg2
