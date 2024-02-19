@@ -7,4 +7,28 @@
       package=".layout"
       file="overrides.zcml"
       />
+
+  <include package="plone.dexterity" />
+  <adapter
+      factory="docpool.base.browser.forms.AddView"
+      provides="zope.publisher.interfaces.browser.IBrowserPage"
+      for="Products.CMFCore.interfaces.IFolderish
+           plone.app.z3cform.interfaces.IPloneFormLayer
+           plone.dexterity.interfaces.IDexterityFTI"
+      />
+  <class class="docpool.base.browser.forms.AddView">
+    <require
+        permission="cmf.AddPortalContent"
+        interface="zope.publisher.interfaces.browser.IBrowserPage"
+        />
+  </class>
+
+  <browser:page
+      name="edit"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      class="docpool.base.browser.forms.EditView"
+      permission="cmf.ModifyPortalContent"
+      layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+      />
+
 </configure>

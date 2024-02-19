@@ -97,7 +97,7 @@ def setAttributes(obj, objdef):
                     IExcludeFromNavigation(obj).exclude_from_nav = objdef[attr]
                 elif attr == "local_behaviors":
                     lbs = ILocalBehaviorSupport(obj)
-                    lbs._set_local_behaviors(objdef[attr])
+                    lbs.local_behaviors = objdef[attr]
                 else:
                     # Dexterity based
                     setattr(obj, attr, objdef[attr])
