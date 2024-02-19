@@ -41,5 +41,5 @@ pyflakes = ["+*"]
 "flake8-*" = ["+*"]
 
 [tool.plone-code-analysis]
-paths = "src/dokpool/setup.py src/dokpool/src/ scripts/"
-paths_pyroma = "src/dokpool"
+paths = "src/ scripts/"
+paths_pyroma = "src/"
