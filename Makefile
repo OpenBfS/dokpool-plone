@@ -19,7 +19,7 @@ help: ## This help message
 
 # Project vars
 project_dir=$(CURDIR)
-webpack_dir=$(CURDIR)/Plone/src/docpool.theme/docpool/theme/webpack_resources
+webpack_dir=$(CURDIR)/backend/src/docpool.theme/docpool/theme/webpack_resources
 build_dir=$(webpack_dir)/theme/docpooltheme
 
 all: purge install-deps update-bundle

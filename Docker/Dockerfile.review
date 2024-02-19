@@ -51,14 +51,14 @@ RUN apt-get update
 RUN apt-get install nodejs -yq
 
 COPY . /opt/bfs/dokpool/
-WORKDIR /opt/bfs/dokpool/Plone
+WORKDIR /opt/bfs/dokpool/backend
 
 RUN <<EOT
     npm ci
     npm run build
     # Make sure we use a fresh python venv
-    rm -Rf /opt/bfs/dokpool/Plone/.venv
-    mkdir -p /opt/bfs/dokpool/Plone/.venv
+    rm -Rf /opt/bfs/dokpool/backend/.venv
+    mkdir -p /opt/bfs/dokpool/backend/.venv
     pip install pipenv
     pipenv install "setuptools==${SETUPTOOLS_VERSION}"
     pipenv install --python=$(whereis python3 | awk '{print $2}')
@@ -67,14 +67,14 @@ EOT
 RUN pipenv run buildout -Nvc buildout_docker_so.cfg
 
 # Delete var dir so it can be linked with our /data voluem
-RUN rm -Rf /opt/bfs/dokpool/Plone/var
+RUN rm -Rf /opt/bfs/dokpool/backend/var
 
 RUN find . \( -type f -a -name '*.pyc' -o -name '*.pyo' \) -exec rm -rf '{}' + \
     && rm -rf .cache
 
 # Link /data (the exposed volume) into /cms/var
-RUN ln -s /data /opt/bfs/dokpool/Plone/var
+RUN ln -s /data /opt/bfs/dokpool/backend/var
 
-WORKDIR /opt/bfs/dokpool/Plone
+WORKDIR /opt/bfs/dokpool/backend
 EXPOSE 8082
 ENTRYPOINT [ "/opt/bfs/dokpool/Docker/docker-entrypoint.sh" ]

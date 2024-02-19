@@ -15,8 +15,8 @@ variables:
 cache:
   key: one-cache-for-everything
   paths:
-    - Plone/eggs/
-    - Plone/downloads/
+    - backend/eggs/
+    - backend/downloads/
     - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
 
@@ -164,9 +164,9 @@ unit_tests:
   cache:
     key: one-cache-for-everything
     paths:
-      - Plone/.venv/
-      - Plone/downloads/
-      - Plone/eggs/
+      - backend/.venv/
+      - backend/downloads/
+      - backend/eggs/
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:
