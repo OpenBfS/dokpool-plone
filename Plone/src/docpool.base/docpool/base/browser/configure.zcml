@@ -29,6 +29,11 @@
       permission="zope2.View"
       />
 
+  <include
+      package="plone.app.workflow"
+      file="permissions.zcml"
+      />
+
   <browser:page
       name="sharing"
       for="..interfaces.IDocumentPool"

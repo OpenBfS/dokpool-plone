@@ -22,6 +22,11 @@
       type="plone"
       />
 
+  <include
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
+
   <browser:page
       name="docpool_setup"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"

@@ -6,6 +6,11 @@
 
   <include file="monkey.zcml" />
 
+  <include
+      package="Products.CMFPlone.controlpanel"
+      file="permissions.zcml"
+      />
+
   <browser:page
       name="usergroup-controlpanel"
       for="docpool.base.interfaces.IDocumentPool"
