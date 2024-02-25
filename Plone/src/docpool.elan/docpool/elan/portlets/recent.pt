@@ -21,10 +21,10 @@
                         item_wf_state obj/review_state;
                         item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                         item_class python:'contenttype-' + normalizeString(obj.portal_type);
-                        obj_url obj/getURL;"
+                        obj_url python: view.get_obj_url(obj);"
             tal:attributes="class python:oddrow and  'portletItem even' or 'portletItem odd'">
             <a href=""
-                tal:attributes="href python:obj_url.startswith('http') and obj_url or '%s/esd/%s' % (obj.dp_url(), obj.getURL());
+                tal:attributes="href python:obj_url;
                                 class string:$item_wf_state_class tile $item_class">
                  <tal:title content="obj/pretty_title_or_id">
                      Title

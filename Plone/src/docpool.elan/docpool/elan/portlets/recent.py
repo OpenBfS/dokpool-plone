@@ -73,6 +73,13 @@ class Renderer(base.Renderer):
         if path.endswith("/edit") or path.endswith("/@@edit"):
             return True
 
+    def get_obj_url(self, brain):
+        url = brain.getURL()
+        if url.startswith("http"):
+            return url
+        dp_url = self.context.myDocumentPool().absolute_url()
+        return f"{dp_url}/{url}"
+
     @memoize
     def _data(self):
         try:
