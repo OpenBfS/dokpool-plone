@@ -1,3 +1,5 @@
+<tal:comments define="viewlet_html python:view.viewlet_html()"
+ condition="python: viewlet_html">
 <html
   i18n:domain="docpool.base"
   lang="en"
@@ -10,8 +12,9 @@
 <body>
 
   <div metal:fill-slot="content">
-    <tal:replace content="structure provider:plone.belowcontent" />
+    <tal:replace content="structure python:viewlet_html" />
   </div>
 
 </body>
 </html>
+</tal:comments>

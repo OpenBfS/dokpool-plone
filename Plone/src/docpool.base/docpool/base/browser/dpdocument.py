@@ -11,8 +11,10 @@ from plone.uuid.interfaces import IUUID
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from urllib.parse import quote_plus
+from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import implementer
+from zope.viewlet.interfaces import IViewletManager
 
 import json
 import mimetypes
@@ -95,6 +97,15 @@ class DPDocumentcommentingView(BrowserView):
     def __call__(self):
         self.request.form.setdefault("popup_load", "1")
         return ViewPageTemplateFile("dpdocumentcommenting.pt")(self)
+
+    def viewlet_html(self):
+        manager = queryMultiAdapter(
+            (self.context, self.request, self), IViewletManager, "plone.belowcontent"
+        )
+        if manager:
+            manager.update()
+            if viewlet := manager.get("plone.comments"):
+                return viewlet.render()
 
 
 class DPDocumentdocimageView(BrowserView):
