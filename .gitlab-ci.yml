@@ -65,7 +65,7 @@ build:
   script:
     # build docker
     - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
-    - docker buildx build --push -t git.starzel.de:5050/bfs/dokpool/py3:review_py3 .
+    - docker buildx build --push -f ./Docker/Dockerfile.review -t git.starzel.de:5050/bfs/dokpool/py3:review_py3 .
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
     - if: '$NIGHTLY_UPDATE == "True"'
