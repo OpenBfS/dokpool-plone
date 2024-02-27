@@ -43,8 +43,6 @@ jQuery(function ($) {
   "use strict";
 
   if ($.datepicker) {
-    $.datepicker.setDefaults(
-      $.datepicker.regional[$("html").attr("lang") || "de"],
-    );
+    $.datepicker.setDefaults($.datepicker.regional[$("html").attr("lang") || "de"]);
   }
 });

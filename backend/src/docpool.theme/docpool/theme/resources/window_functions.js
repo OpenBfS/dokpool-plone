@@ -10,10 +10,7 @@ export function go_to(url) {
   if (opener != null) {
     while (valid_urls[i]) {
       // Check if we are inside dokpool
-      if (
-        opener.document.location.href &&
-        opener.document.location.href.indexOf(valid_urls[i]) > -1
-      ) {
+      if (opener.document.location.href && opener.document.location.href.indexOf(valid_urls[i]) > -1) {
         from_popup = true;
         opener.focus();
         opener.document.location = url;
@@ -29,30 +26,9 @@ export function go_to(url) {
   }
 }
 
-export function makePopUp(
-  thiswidth,
-  thisheight,
-  thisDocument,
-  thisWindowName,
-  thisXPosition,
-  thisYPosition,
-  thisScrollbar,
-  thisResize,
-) {
+export function makePopUp(thiswidth, thisheight, thisDocument, thisWindowName, thisXPosition, thisYPosition, thisScrollbar, thisResize) {
   "use strict";
-  var myProperty =
-    "toolbar=0,location=0,directories=0,status=0,scrollbars=" +
-    thisScrollbar +
-    ",resizable=" +
-    thisResize +
-    ",width=" +
-    thiswidth +
-    ",height=" +
-    thisheight +
-    ",top=" +
-    0 +
-    ",left=" +
-    0;
+  var myProperty = "toolbar=0,location=0,directories=0,status=0,scrollbars=" + thisScrollbar + ",resizable=" + thisResize + ",width=" + thiswidth + ",height=" + thisheight + ",top=" + 0 + ",left=" + 0;
   var portal_root = $("body").data("portal-url");
   // Removes the host - shows only path
   var path_names = window.location.href.replace(portal_root, "");
@@ -67,15 +43,8 @@ export function makePopUp(
   open_popups.push(generic_window_name);
   localStorage.setItem("open_popups", JSON.stringify(open_popups));
   // Open popup if it doesn't yet exist, or reopen if it was closed
-  if (
-    !window["popup_" + generic_window_name] ||
-    window["popup_" + generic_window_name].closed === true
-  ) {
-    window["popup_" + generic_window_name] = window.open(
-      thisDocument,
-      generic_window_name,
-      myProperty,
-    );
+  if (!window["popup_" + generic_window_name] || window["popup_" + generic_window_name].closed === true) {
+    window["popup_" + generic_window_name] = window.open(thisDocument, generic_window_name, myProperty);
   }
   window["popup_" + generic_window_name].focus();
 }

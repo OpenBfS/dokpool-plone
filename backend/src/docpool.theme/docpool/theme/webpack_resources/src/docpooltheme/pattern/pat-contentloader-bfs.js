@@ -2,14 +2,7 @@
 
 // This is a custimized copy to contentloader mockup pattern.
 
-require([
-  "jquery",
-  "pat-base",
-  "pat-logger",
-  "pat-registry",
-  "mockup-utils",
-  "underscore",
-], function ($, Base, logger, Registry, utils, _) {
+require(["jquery", "pat-base", "pat-logger", "pat-registry", "mockup-utils", "underscore"], function ($, Base, logger, Registry, utils, _) {
   "use strict";
   var log = logger.getLogger("pat-contentloader-bfs");
 
@@ -79,11 +72,7 @@ require([
             if (data.indexOf("<html") !== -1) {
               data = utils.parseBodyTag(data);
             }
-            $el = $(
-              '<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3">' +
-                data +
-                "</td> <td>&nbsp</td> <td>&nbsp</td></tr>",
-            ); // jQuery starts to search at the first child element.
+            $el = $('<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3">' + data + "</td> <td>&nbsp</td> <td>&nbsp</td></tr>"); // jQuery starts to search at the first child element.
           } else if (that.options.dataType.indexOf("json") !== -1) {
             // must have template defined with json
             if (data.constructor === Array && data.length === 1) {
@@ -95,9 +84,7 @@ require([
             } catch (e) {
               that.$el.removeClass("loading-content");
               that.$el.addClass("content-load-error");
-              log.warn(
-                "error rendering template. pat-contentloader will not work",
-              );
+              log.warn("error rendering template. pat-contentloader will not work");
               return;
             }
           }
@@ -133,11 +120,7 @@ require([
 
       if (!$content) {
         var $content_raw = $(that.options.content).clone();
-        $content = $(
-          '<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3"><h4>' +
-            $content_raw.text() +
-            "</h4></td> <td>&nbsp</td> <td>&nbsp</td></tr>",
-        ); // jQuery starts to search at the first child element.
+        $content = $('<tr class="target_open"><td>&nbsp</td><td>&nbsp</td> <td>&nbsp</td><td colspan="3"><h4>' + $content_raw.text() + "</h4></td> <td>&nbsp</td> <td>&nbsp</td></tr>"); // jQuery starts to search at the first child element.
       }
       $target = $target.closest("tr");
       if ($content.length) {

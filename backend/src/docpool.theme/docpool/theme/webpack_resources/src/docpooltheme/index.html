@@ -2,18 +2,9 @@
 <html>
   <head>
     <title>Plone Theme</title>
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="/++theme++docpooltheme/images/favicon.ico"
-    />
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %> <% if
-    (htmlWebpackPlugin.files.chunks[chunk].css[0]) { %>
-    <link
-      rel="stylesheet"
-      data-name="bundle-<%= chunk %>"
-      href="<%= htmlWebpackPlugin.files.chunks[chunk].css[0] %>"
-    />
+    <link rel="shortcut icon" type="image/x-icon" href="/++theme++docpooltheme/images/favicon.ico" />
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %> <% if (htmlWebpackPlugin.files.chunks[chunk].css[0]) { %>
+    <link rel="stylesheet" data-name="bundle-<%= chunk %>" href="<%= htmlWebpackPlugin.files.chunks[chunk].css[0] %>" />
     <% }} %>
   </head>
   <body>
@@ -64,15 +55,9 @@
         </div>
       </div>
     </footer>
-    <script
-      data-name="bundle-promise"
-      src="<%= webpackConfig.output.publicPath.replace(/\/+$/, '')%>/polyfills/es6-promise.auto.min.js"
-    ></script>
+    <script data-name="bundle-promise" src="<%= webpackConfig.output.publicPath.replace(/\/+$/, '')%>/polyfills/es6-promise.auto.min.js"></script>
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script
-      data-name="bundle-<%= chunk %>"
-      src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"
-    ></script>
+    <script data-name="bundle-<%= chunk %>" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
   </body>
 </html>
