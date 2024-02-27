@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2023-12-05 17:37+0000\n"
+"POT-Creation-Date: 2024-02-27 14:06+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -1021,6 +1021,11 @@ msgstr "Content listing"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "suspended"
+msgstr ""
+
+#. Default: "Can manage site"
+#: docpool.base/docpool/base/permissions.py
+msgid "title_can_manage_site"
 msgstr ""
 
 #. Default: "Move item down"

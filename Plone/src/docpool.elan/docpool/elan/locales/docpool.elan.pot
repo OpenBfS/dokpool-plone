@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-12-05 17:23+0000\n"
+"POT-Creation-Date: 2024-02-27 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,10 +107,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpnuclearpowerstation.py
 msgid "Coordinates"
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Create Archive Folder"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
