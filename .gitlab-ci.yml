@@ -118,16 +118,15 @@ lint_tests:
     - docker
   stage: test
   script:
-    # Install pipenv
+    # Install pre-commit
     - pip install --upgrade pip
-    - pip install pipenv
-    - pipenv --version
-    # Buildout configuration
-    - cd Plone
+    - pip install pipx
+    - pipx ensurepath
+    - pipx install pre-commit==3.6.0
+    # Install backend
+    - cd backend
     # lint test
-    - mkdir -p .venv
-    - pipenv install
-    - pipenv run pre-commit run -a
+    - pipx run -- pre-commit run --a
 
 unit_tests:
   tags:
