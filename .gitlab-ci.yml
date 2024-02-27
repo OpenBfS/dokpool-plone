@@ -13,10 +13,7 @@ variables:
 # If you want to also cache the installed packages, you have to install
 # them in a virtualenv and cache it as well.
 cache:
-  key: one-cache-for-everything
   paths:
-    - backend/eggs/
-    - backend/downloads/
     - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
 
@@ -130,40 +127,13 @@ unit_tests:
   tags:
     - docker
   stage: test
-  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
-  # success_with_warnings: True
   script:
     - apt update
     # LDAP client dependencies
-    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
-    # Install pipenv
-    - pip install pipenv
-    - pipenv --version
-    - cd Plone
-    - cp config-template.cfg.tmpl config.cfg
-    - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
     # build
-    - mkdir -p .venv
-    - pipenv install
-    # Pin setuptools
-    - pipenv install setuptools==69.0.2
-    - pipenv run buildout -N -t 3 -c test_ci_server.cfg
-    # Run tests
-    - export PYTHONWARNINGS=ignore
-    - pipenv run ./bin/coverage erase
-    - pipenv run ./bin/coverage run ./bin/test || exit 1
-    ## Tests only docpool_setup (without robot)
-    - pipenv run ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
-    ## Combines the previous two runs as parallel run is set
-    - pipenv run ./bin/coverage combine
-    - pipenv run ./bin/coverage html
-    - pipenv run ./bin/coverage report
-  cache:
-    key: one-cache-for-everything
-    paths:
-      - backend/.venv/
-      - backend/downloads/
-      - backend/eggs/
+    - make install
+    - make test
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:
