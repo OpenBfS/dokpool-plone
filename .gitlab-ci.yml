@@ -95,6 +95,7 @@ deploy_dev:
     url: https://review-two-bfs.starzel.de/
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$CI_COMMIT_BRANCH == "pip"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 undeploy_dev:
