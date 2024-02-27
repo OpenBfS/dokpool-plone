@@ -123,8 +123,6 @@ lint_tests:
     - pip install pipx
     - pipx ensurepath
     - pipx install pre-commit==3.6.0
-    # Install backend
-    - cd backend
     # lint test
     - pipx run -- pre-commit run --a
 
