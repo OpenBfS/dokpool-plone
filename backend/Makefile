@@ -156,7 +156,7 @@ test: ## run tests
 
 .PHONY: test_quiet
 test_quiet: ## run tests removing deprecation warnings
-	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/dokpool/src/
+	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src
 
 .PHONY: create-site
 create-site: instance/etc/zope.ini ## Create a new site from scratch
