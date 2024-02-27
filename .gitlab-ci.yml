@@ -134,7 +134,7 @@ unit_tests:
     - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
     # build
     - make install
-    - make test
+    - make test_quiet
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:
