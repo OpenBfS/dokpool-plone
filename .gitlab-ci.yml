@@ -86,9 +86,9 @@ deploy_dev:
     # Start instance and build demo data
     - docker run --detach --publish 8080:8080 -e GIT_COMMIT=$CI_COMMIT_SHORT_SHA -e GIT_REF_NAME=$CI_COMMIT_REF_NAME --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Create the vanilla plone site
-    - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8080/@@plone-addsite
+    - /usr/bin/wget -O- --user=admin --password=admin --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8080/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
-    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True&buttons.login=Anmelden' --delete-after http://127.0.0.1:8080/Plone/login
+    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=admin&form.submitted=True&buttons.login=Anmelden' --delete-after http://127.0.0.1:8080/Plone/login
     - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8080/Plone/docpool_setup
   environment:
     name: dev
