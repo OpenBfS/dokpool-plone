@@ -63,9 +63,10 @@ build:
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
-    - docker buildx build --push --provenance=false -f ./Docker/Dockerfile.review -t git.starzel.de:5050/bfs/dokpool/py3:review_py3 .
+    - docker buildx build --push --provenance=false -f ./backend/Dockerfile -t git.starzel.de:5050/bfs/dokpool/py3:pip .
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$CI_COMMIT_BRANCH == "pip"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_dev:
