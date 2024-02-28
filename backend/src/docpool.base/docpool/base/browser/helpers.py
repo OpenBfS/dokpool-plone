@@ -1,3 +1,4 @@
+from docpool.base.utils import activateAppFilter
 from pkg_resources import get_distribution
 from plone import api
 from Products.Five import BrowserView
@@ -34,3 +35,10 @@ class RootRedirectView(BrowserView):
                 if obj.myPrefix() == dokpool_prefix:
                     return response.redirect(obj.absolute_url())
         return response.redirect(brains[0].getPath())
+
+
+class ActivateAppFilter(BrowserView):
+    def __call__(self):
+        activate = self.request.get("activateFilter", False)
+        activateAppFilter(self.context, activate)
+        return self.request.response.redirect(self.context.absolute_url())
