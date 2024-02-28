@@ -1,2 +1,2 @@
 # Exclude the build files
-Plone/src/docpool.theme/docpool/theme/webpack_resources/theme
+backend/src/docpool.theme/docpool/theme/webpack_resources/theme

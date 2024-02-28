@@ -13,10 +13,7 @@ variables:
 # If you want to also cache the installed packages, you have to install
 # them in a virtualenv and cache it as well.
 cache:
-  key: one-cache-for-everything
   paths:
-    - Plone/eggs/
-    - Plone/downloads/
     - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
 
@@ -66,9 +63,11 @@ build:
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
-    - docker buildx build --push --provenance=false -f ./Docker/Dockerfile.review -t git.starzel.de:5050/bfs/dokpool/py3:review_py3 .
+    - cd backend
+    - docker buildx build --push --provenance=false -t git.starzel.de:5050/bfs/dokpool/py3:pip .
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$CI_COMMIT_BRANCH == "pip"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_dev:
@@ -85,17 +84,18 @@ deploy_dev:
     - docker stop dokpool-review-py3 || true
     - docker rm dokpool-review-py3 || true
     # Start instance and build demo data
-    - docker run --detach --publish 8082:8082 -e GIT_COMMIT=$CI_COMMIT_SHORT_SHA -e GIT_REF_NAME=$CI_COMMIT_REF_NAME --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
+    - docker run --detach --publish 8080:8080 -e GIT_COMMIT=$CI_COMMIT_SHORT_SHA -e GIT_REF_NAME=$CI_COMMIT_REF_NAME --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
     # Create the vanilla plone site
-    - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8082/@@plone-addsite
+    - /usr/bin/wget -O- --user=admin --password=admin --post-data='site_id=Plone&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8080/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
-    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=istrator&form.submitted=True&buttons.login=Anmelden' --delete-after http://127.0.0.1:8082/Plone/login
-    - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8082/Plone/docpool_setup
+    - /usr/bin/wget --save-cookies cookies.txt --keep-session-cookies --post-data '__ac_name=admin&__ac_password=admin&form.submitted=True&buttons.login=Anmelden' --delete-after http://127.0.0.1:8080/Plone/login
+    - /usr/bin/wget -O- --load-cookies cookies.txt --post-data='form.submitted=True&submit=True' http://127.0.0.1:8080/Plone/docpool_setup
   environment:
     name: dev
     url: https://review-two-bfs.starzel.de/
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$CI_COMMIT_BRANCH == "pip"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 undeploy_dev:
@@ -118,55 +118,26 @@ lint_tests:
     - docker
   stage: test
   script:
-    # Install pipenv
+    # Install pre-commit
     - pip install --upgrade pip
-    - pip install pipenv
-    - pipenv --version
-    # Buildout configuration
-    - cd Plone
+    - pip install pipx
+    - pipx ensurepath
+    - pipx install pre-commit==3.6.0
     # lint test
-    - mkdir -p .venv
-    - pipenv install
-    - pipenv run pre-commit run -a
+    - pipx run -- pre-commit run --a
 
 unit_tests:
   tags:
     - docker
   stage: test
-  # still not available, see: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5004
-  # success_with_warnings: True
   script:
     - apt update
     # LDAP client dependencies
-    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev python3-dev
-    # Install pipenv
-    - pip install pipenv
-    - pipenv --version
-    - cd Plone
-    - cp config-template.cfg.tmpl config.cfg
-    - echo -e "[buildout]\nlogin = admin\npassword = admin" > secret.cfg
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
     # build
-    - mkdir -p .venv
-    - pipenv install
-    # Pin setuptools
-    - pipenv install setuptools==69.0.2
-    - pipenv run buildout -N -t 3 -c test_ci_server.cfg
-    # Run tests
-    - export PYTHONWARNINGS=ignore
-    - pipenv run ./bin/coverage erase
-    - pipenv run ./bin/coverage run ./bin/test || exit 1
-    ## Tests only docpool_setup (without robot)
-    - pipenv run ./bin/coverage run ./bin/test -t test_demo_setup --all || exit 1
-    ## Combines the previous two runs as parallel run is set
-    - pipenv run ./bin/coverage combine
-    - pipenv run ./bin/coverage html
-    - pipenv run ./bin/coverage report
-  cache:
-    key: one-cache-for-everything
-    paths:
-      - Plone/.venv/
-      - Plone/downloads/
-      - Plone/eggs/
+    - make install
+    - cd backend
+    - make test_quiet
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:

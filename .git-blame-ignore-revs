@@ -33,3 +33,8 @@ baf67076ffc37814be3b80d6d9ea289a9b29eb44
 # Date:   Fri Aug 26 17:49:16 2022 +0200
 # coding style: fix non-Unix-style line endings
 da64389d65ded9c5714734c1e8dbc70b0b8c5616
+
+# Author: Philip Bauer <bauer@starzel.de>
+# Date:   Mon Feb 19 16:37:57 2024 +0100
+# move Plone to backend (to sync with Plone default setup)
+7aff5e55958da42b1bee45a1b6ffce7e9163d29f
