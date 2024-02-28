@@ -1,4 +1,5 @@
 from docpool.base.utils import activateAppFilter
+from docpool.base.utils import setApplicationsForCurrentUser
 from pkg_resources import get_distribution
 from plone import api
 from Products.Five import BrowserView
@@ -42,3 +43,23 @@ class ActivateAppFilter(BrowserView):
         activate = self.request.get("activateFilter", False)
         activateAppFilter(self.context, activate)
         return self.request.response.redirect(self.context.absolute_url())
+
+
+class SetActiveApp(BrowserView):
+    def __call__(self):
+        context = self.context
+        app = self.request.get("app")
+        setApplicationsForCurrentUser(context, [app])
+        activateAppFilter(context, True)
+        absurl = context.absolute_url()
+        if "content" not in absurl:
+            suffixes = {
+                "base": "",
+                "elan": "/esd",
+                "doksys": "/searches",
+                "rei": "/berichte",
+                "rodos": "/rodos",
+            }
+            if (suffix := suffixes.get(app)) is not None:
+                absurl = context.myDocumentPool().absolute_url() + suffix
+        return self.request.response.redirect(absurl)
