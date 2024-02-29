@@ -2,7 +2,9 @@ from docpool.base.utils import activateAppFilter
 from docpool.base.utils import setApplicationsForCurrentUser
 from pkg_resources import get_distribution
 from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five import BrowserView
+from zope.interface import alsoProvides
 
 
 class DokpoolVersion(BrowserView):
@@ -40,6 +42,7 @@ class RootRedirectView(BrowserView):
 
 class ActivateAppFilter(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         activate = self.request.get("activateFilter", False)
         activateAppFilter(self.context, activate)
         return self.request.response.redirect(self.context.absolute_url())
@@ -47,6 +50,7 @@ class ActivateAppFilter(BrowserView):
 
 class SetActiveApp(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         context = self.context
         app = self.request.get("app")
         setApplicationsForCurrentUser(context, [app])

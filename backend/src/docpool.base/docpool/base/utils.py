@@ -6,7 +6,6 @@ from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone import api
 from plone.api.exc import CannotGetPortalError
-from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import base_hasattr
@@ -15,7 +14,6 @@ from zc.relation.interfaces import ICatalog
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.hooks import getSite
-from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 
@@ -324,8 +322,6 @@ def setApplicationsForCurrentUser(self, apps):
     @param apps:
     @return:
     """
-    request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)
     user = api.user.get_current()
     #    id = self.myDocumentPool().getId()
     # get currently activated apps
@@ -353,8 +349,6 @@ def activateAppFilter(self, activate=False):
     @param activate:
     @return:
     """
-    request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)
     user = api.user.get_current()
     user.setMemberProperties({"filter_active": activate})
 
