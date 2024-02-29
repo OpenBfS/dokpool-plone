@@ -40,6 +40,14 @@ class RootRedirectView(BrowserView):
         return response.redirect(brains[0].getPath())
 
 
+class DocPoolURL(BrowserView):
+    def __call__(self):
+        if (dp := getattr(self.context, "myDocumentPool", None)) is not None:
+            return dp().absolute_url()
+        else:
+            return self.context.portal_url()
+
+
 class ActivateAppFilter(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
