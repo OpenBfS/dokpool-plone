@@ -40,9 +40,9 @@ ifeq (, $(shell which $(PYTHON) ))
 endif
 
 # version ok?
-PYTHON_VERSION_MIN=3.8
+PYTHON_VERSION_MIN=3.11
 PYTHON_VERSION_OK=$(shell $(PYTHON) -c "import sys; print((int(sys.version_info[0]), int(sys.version_info[1])) >= tuple(map(int, '$(PYTHON_VERSION_MIN)'.split('.'))))")
-ifeq ($(PYTHON_VERSION_OK),0)
+ifeq ($(PYTHON_VERSION_OK),False)
   $(error "Need python $(PYTHON_VERSION) >= $(PYTHON_VERSION_MIN)")
 endif
 
@@ -87,7 +87,7 @@ clean-test: ## remove test and coverage artifacts
 bin/pip:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev"
+	bin/pip install -U "setuptools==69.0.3" "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.0"
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
