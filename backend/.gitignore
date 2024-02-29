@@ -22,6 +22,8 @@ parts/
 dist/*
 test.plone_addon/
 var/
+sources/
+data/
 # files
 .installed.cfg
 .mr.developer.cfg
