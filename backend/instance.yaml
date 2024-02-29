@@ -1,12 +1,11 @@
 default_context:
   initial_user_name: "admin"
   initial_user_password: "istrator"
-  debug_mode: "True"
-  verbose_security: "True"
+  debug_mode: true
+  verbose_security: true
 
-  load_zcml:
-    package_includes: ["docpool.api", "docpool.base", "docpool.config", "docpool.theme", "docpool.elan", "docpool.rei", "docpool.doksys", "docpool.rodos", "elan.journal", "eea.facetednavigation", "collective.eeafaceted.z3ctable", "collective.impersonate", "Products.PloneKeywordManager"]
-    package_overrides: ["docpool.base", "docpool.theme"]
+  zcml_package_includes: "docpool.api, docpool.base, docpool.config, docpool.theme, docpool.elan, docpool.rei, docpool.doksys, docpool.rodos, elan.journal, eea.facetednavigation, collective.eeafaceted.z3ctable, collective.impersonate, Products.PloneKeywordManager"
+  zcml_package_overrides: "docpool.base, docpool.theme"
 
   environment:
     zope_i18n_compile_mo_files: true

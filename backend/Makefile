@@ -87,13 +87,13 @@ clean-test: ## remove test and coverage artifacts
 bin/pip:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter==2.1.1" "mxdev"
+	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev"
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
-	./bin/cookiecutter -f --no-input --config-file ./instance.yaml gh:plone/cookiecutter-zope-instance
-	./bin/cookiecutter -f --no-input --config-file ./instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
+	./bin/cookiecutter -f --no-input --config-file ./instance.yaml -c 2.0.0 gh:plone/cookiecutter-zope-instance
+	./bin/cookiecutter -f --no-input --config-file ./instance_relstorage.yaml -c 2.0.0 gh:plone/cookiecutter-zope-instance
 
 # i18n
 bin/i18ndude: bin/pip
