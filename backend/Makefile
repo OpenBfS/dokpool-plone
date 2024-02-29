@@ -87,11 +87,7 @@ clean-test: ## remove test and coverage artifacts
 bin/pip:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-<<<<<<< Updated upstream
-	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev"
-=======
 	bin/pip install -U "setuptools==69.0.3" "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.0"
->>>>>>> Stashed changes
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
