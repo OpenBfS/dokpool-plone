@@ -1,4 +1,5 @@
 from AccessControl import Unauthorized
+from docpool.base.utils import is_admin
 from OFS.interfaces import IObjectWillBeRemovedEvent
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import log
@@ -23,7 +24,7 @@ def delete_handler(object, event):
 
     log("Deleting protected object " + object.getId())
     try:
-        if not object.isAdmin():
+        if not is_admin(object):
             raise Unauthorized
     except Exception as e:
         log_exc(e)

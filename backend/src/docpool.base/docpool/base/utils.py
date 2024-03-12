@@ -391,3 +391,8 @@ def possibleDocumentPools(self):
     res = [""]
     res.extend([f"{dp.UID}|{dp.Title}" for dp in dps])
     return res
+
+
+def is_admin(context):
+    roles = api.user.get_roles(obj=context)
+    return "Manager" in roles or "Site Administrator" in roles
