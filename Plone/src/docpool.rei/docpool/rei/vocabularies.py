@@ -2,6 +2,7 @@
 from AccessControl.SecurityInfo import allow_module
 from collections import OrderedDict
 from datetime import date
+from docpool.base.utils import safe_value
 from docpool.base.utils import simplevoc_from_dict
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
@@ -265,11 +266,12 @@ class OriginVocabulary(object):
     """
 
     def __call__(self, context=None):
-        return safe_simplevocabulary_from_values([
-            u'Genehmigungsinhaber',
-            u'unabhängige Messstelle',
-        ])
-
+        items = [
+            (u'Genehmigungsinhaber', u'Strahlenschutzverantwortlicher'),
+            (u'unabhängige Messstelle', u'unabhängige Messstelle'),
+        ]
+        terms = [SimpleTerm(value, safe_value(value), title) for value, title in items]
+        return SimpleVocabulary(terms)
 
 OriginVocabularyFactory = OriginVocabulary()
 
