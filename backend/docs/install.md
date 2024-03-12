@@ -249,6 +249,6 @@ Das Label "review" setzen.
     $ mkdir log instance cache
     $ cd ..
     $ docker login git.starzel.de:5050 -u <gitlab-login> -p <password>
-    $ docker pull git.starzel.de:5050/bfs/dokpool/py3:review_py3
-    $ docker run --publish 8082:8082 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool/py3:review_py3
-    # Open http://localhost:8082
+    $ docker pull git.starzel.de:5050/bfs/dokpool/py3:python3
+    $ docker run --publish 8080:8080 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool/py3:python3
+    # Open http://localhost:8080
