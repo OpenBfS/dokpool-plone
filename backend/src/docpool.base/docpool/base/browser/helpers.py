@@ -89,3 +89,6 @@ class Is(BrowserView):
     def admin_or_contentadmin(self):
         # TODO re #5547: check whether this is still useful after cleaning up conditions
         return is_admin(self.context) or is_contentadmin(self.context)
+
+    def archive(self):
+        return "archive" in self.context.getPhysicalPath()
