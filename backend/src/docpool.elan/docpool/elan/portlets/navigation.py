@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from docpool.base.browser.viewlets.menu import adaptQuery
 from docpool.base.browser.viewlets.menu import getFoldersForCurrentUser
 from docpool.base.content.archiving import IArchiving
+from docpool.base.utils import is_personal
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
@@ -20,7 +21,7 @@ class Renderer(navigation.Renderer):
     def getNavTree(self, _marker=[]):
         context = aq_inner(self.context)
 
-        if context.isPersonal():
+        if is_personal(context):
             # Special treatment for the user's personal folders
             pfs = getFoldersForCurrentUser(context)
             return {"children": pfs or []}

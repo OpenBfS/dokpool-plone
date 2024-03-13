@@ -2,6 +2,7 @@ from docpool.base.utils import activateAppFilter
 from docpool.base.utils import is_admin
 from docpool.base.utils import is_contentadmin
 from docpool.base.utils import is_individual
+from docpool.base.utils import is_personal
 from docpool.base.utils import setApplicationsForCurrentUser
 from pkg_resources import get_distribution
 from plone import api
@@ -96,3 +97,6 @@ class Is(BrowserView):
 
     def individual(self):
         return is_individual(self.context)
+
+    def personal(self):
+        return is_personal(self.context)
