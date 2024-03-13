@@ -40,7 +40,10 @@ LABEL maintainer="Philip Bauer <bauer@starzel.de>" \
     org.label-schema.vendor="Philip Bauer"
 
 # Copy /app from builder
-COPY --from=builder /app /app
+COPY --from=builder --chown=500:500 /app /app
+
+# Compile our mo files
+ENV zope_i18n_compile_mo_files=true
 
 RUN <<EOT
     set -e
