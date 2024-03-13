@@ -409,3 +409,7 @@ def is_contentadmin(context):
         return True
     groups = api.user.get_current().getGroups()
     return any("ContentAdministrators" in g for g in groups)
+
+
+def is_individual(context):
+    return "Members" in context.getPhysicalPath() and context.getId() != "Members"

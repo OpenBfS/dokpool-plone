@@ -11,6 +11,7 @@ from docpool.base.pdfconversion import get_images
 from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
 from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import is_individual
 from docpool.base.utils import portalMessage
 from docpool.base.utils import queryForObject
 from io import StringIO
@@ -300,11 +301,10 @@ class DPDocument(Container, Extendable, ContentBase):
             if not raw:
                 # We only publish immediately when uploads are not allowed
                 # and if we are not in a personal folder
-                # print dto.publishImmediately, dto.allowUploads, self.isIndividual()
                 return (
                     dto.publishImmediately
                     and not dto.allowUploads
-                    and not self.isIndividual()
+                    and not is_individual(self)
                 )
             else:
                 return dto.publishImmediately

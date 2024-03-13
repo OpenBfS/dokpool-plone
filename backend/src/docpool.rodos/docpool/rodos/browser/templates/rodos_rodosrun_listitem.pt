@@ -13,7 +13,7 @@
                  dpbrainobj dpbrain/getObject;
                  isOverview options/isOverview;
                  isCollection options/isCollection;
-                 individual context/isIndividual;
+                 individual context/@@is/individual;
                  myfolder_url nocall:options/myfolder_url;
                  item_description dpbrain/Description;
                  item_url python:isCollection and '%s/@@dview?d=%s&disable_border=1' % (myfolder_url, euid) or dpbrain.getURL(original=True);
