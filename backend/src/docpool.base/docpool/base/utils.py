@@ -53,12 +53,16 @@ def queryForObjects(self, **kwa):
     return res
 
 
+def is_group_folder(context):
+    return "Groups" in context.getPhysicalPath() and context.getId() != "Groups"
+
+
 def getAllowedDocumentTypes(self):
     """
     Determine the document types allowed for the current user in the current context
     """
     # if in a group folder, only allow the types for this group
-    isGF = self.isGroupFolder()
+    isGF = is_group_folder(self)
 
     grps = getGroupsForCurrentUser(self)
     dts = []
@@ -85,7 +89,7 @@ def getAllowedDocumentTypes(self):
 
 def getAllowedDocumentTypesForGroup(self):
     """ """
-    isGF = self.isGroupFolder()
+    isGF = is_group_folder(self)
     dts = []
     if isGF:
         grp = self.getGroupOfFolder()
