@@ -1,4 +1,6 @@
 from docpool.base.utils import activateAppFilter
+from docpool.base.utils import is_admin
+from docpool.base.utils import is_contentadmin
 from docpool.base.utils import setApplicationsForCurrentUser
 from pkg_resources import get_distribution
 from plone import api
@@ -75,3 +77,15 @@ class SetActiveApp(BrowserView):
             if (suffix := suffixes.get(app)) is not None:
                 absurl = context.myDocumentPool().absolute_url() + suffix
         return self.request.response.redirect(absurl)
+
+
+class Is(BrowserView):
+    def admin(self):
+        return is_admin(self.context)
+
+    def contentadmin(self):
+        return is_contentadmin(self.context)
+
+    def admin_or_contentadmin(self):
+        # TODO re #5547: check whether this is still useful after cleaning up conditions
+        return is_admin(self.context) or is_contentadmin(self.context)

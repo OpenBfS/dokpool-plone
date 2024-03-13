@@ -396,3 +396,12 @@ def possibleDocumentPools(self):
 def is_admin(context):
     roles = api.user.get_roles(obj=context)
     return "Manager" in roles or "Site Administrator" in roles
+
+
+def is_contentadmin(context):
+    if not hasattr(context, "myDocumentPool"):
+        return False
+    if is_admin(context):
+        return True
+    groups = api.user.get_current().getGroups()
+    return any("ContentAdministrators" in g for g in groups)

@@ -176,6 +176,13 @@
       />
 
   <browser:page
+      name="is"
+      for="*"
+      class=".helpers.Is"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="dview"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       class=".collection.CollectionDocView"

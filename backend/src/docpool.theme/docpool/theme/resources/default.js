@@ -30,7 +30,7 @@ if (isAnonymous != null) {
 }
 
 // Imports the scss for docpool-nonadmin bundle / simplify.less
-// Replaces expression: python:not object.isAdmin() and not object.isContentAdmin()
+// Replaces expression: not:object/@@is/admin_or_contentadmin
 const isMember = document.querySelector(".userrole-member");
 if (isMember !== null) {
   import("./docpool_styles/nonadmin.scss");

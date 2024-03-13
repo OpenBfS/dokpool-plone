@@ -114,7 +114,7 @@ if (jQuery("#portal-column-content.bfs_popup").length === 1 || jQuery("body.view
 }
 
 // Imports the less for docpool-nonadmin bundle / simplify.less
-// Replaces expression: python:not object.isAdmin() and not object.isContentAdmin()
+// Replaces expression: not:object/@@is/admin_or_contentadmin
 if (jQuery("body.userrole-member").length === 1) {
   import("./nonadmin.less");
 }
