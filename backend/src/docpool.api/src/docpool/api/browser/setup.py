@@ -38,15 +38,15 @@ log = logging.getLogger(__name__)
 
 
 def dummy_image(filename="image.png"):
-    filename = os.path.join(os.path.dirname(__file__), filename)
-    with open(filename, "rb") as fd:
+    file_ = os.path.join(os.path.dirname(__file__), filename)
+    with open(file_, "rb") as fd:
         data = fd.read()
     return NamedBlobImage(data=data, filename=filename)
 
 
 def dummy_file(filename="file.pdf"):
-    filename = os.path.join(os.path.dirname(__file__), filename)
-    with open(filename, "rb") as fd:
+    file_ = os.path.join(os.path.dirname(__file__), filename)
+    with open(file_, "rb") as fd:
         data = fd.read()
     return NamedBlobFile(data=data, filename=filename)
 
