@@ -259,12 +259,12 @@ class REIDoc(FlexibleView):
 
     @property
     def Medium(self):
-        if "REI-E" in self.context.ReiLegalBases:
+        if self.context.ReiLegalBases and "REI-E" in self.context.ReiLegalBases:
             return self.context.Medium
 
     @Medium.setter
     def Medium(self, value):
-        if "REI-E" in self.context.ReiLegalBases:
+        if self.context.ReiLegalBases and "REI-E" in self.context.ReiLegalBases:
             self.context.Medium = value
 
     @property
