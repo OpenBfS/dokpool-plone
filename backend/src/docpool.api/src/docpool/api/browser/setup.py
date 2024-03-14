@@ -239,18 +239,8 @@ class DocpoolSetup(BrowserView):
             SectorizingSampleTypes=[
                 "A",
                 "A1",
-                "A11",
-                "A12",
-                "A13",
                 "A2",
-                "A21",
-                "A22",
-                "A23",
-                "A24",
                 "A3",
-                "A31",
-                "A32",
-                "B11",
             ],
             exclude_from_nav=False,
         )
@@ -285,18 +275,8 @@ class DocpoolSetup(BrowserView):
             SectorizingSampleTypes=[
                 "A",
                 "A1",
-                "A11",
-                "A12",
-                "A13",
                 "A2",
-                "A21",
-                "A22",
-                "A23",
-                "A24",
                 "A3",
-                "A31",
-                "A32",
-                "B11",
             ],
             exclude_from_nav=False,
         )
@@ -318,10 +298,9 @@ class DocpoolSetup(BrowserView):
         # Add modulkonfiguration
 
         with api.env.adopt_user(user=user1):
-            sampletype_ids = ["A", "B", "F", "G", "I", "L", "M", "N", "S", "Z"]
             # add one dpdocument for each type (except reireport)
             for doctype in doctypes:
-                if doctype[0] == "reireport":
+                if doctype[0] in ["reireport", "doksysdokument"]:
                     # Do not create reireports here
                     continue
                 new = api.content.create(
@@ -335,24 +314,8 @@ class DocpoolSetup(BrowserView):
                         "text/html",
                         "text/x-html-safe",
                     ),
-                    local_behaviors=["elan", "doksys"],
+                    local_behaviors=["elan"],
                     scenarios=[dpevent.id],
-                    SampleType=[random.choice(sampletype_ids)],
-                    Area="D",
-                    DataType=["ONMON"],
-                    Dom=["84 _deposition_ground_beta surface activity_2 h"],
-                    Duration="1d",
-                    LegalBase=["IRMIS"],
-                    MeasurementCategory=["Si-31"],
-                    MeasuringProgram="Intensivmessprogramm",
-                    NetworkOperator=["Bremen"],
-                    OperationMode="Routine",
-                    Purpose="Standard-Info Bundesmessnetze",
-                    SamplingBegin=datetime.now(),
-                    SamplingEnd=datetime.now() + timedelta(hours=1),
-                    Status="geprueft",
-                    TrajectoryEndTime=datetime.now() + timedelta(hours=1),
-                    TrajectoryStartTime=datetime.now(),
                     exclude_from_nav=False,
                 )
                 api.content.create(
@@ -369,7 +332,7 @@ class DocpoolSetup(BrowserView):
                 modified(new)
                 log.info(f"Created dpdocument of type {doctype[0]}")
 
-            # add one full DPDocument
+            # add full elan DPDocument
             new = api.content.create(
                 container=folder,
                 type="DPDocument",
@@ -380,23 +343,7 @@ class DocpoolSetup(BrowserView):
                 ),
                 docType="groundcontamination",
                 scenarios=[dpevent.id],
-                local_behaviors=["elan", "doksys"],
-                Area="D",
-                DataType=["ONMON"],
-                Dom=["84 _deposition_ground_beta surface activity_2 h"],
-                Duration="1d",
-                LegalBase=["IRMIS"],
-                MeasurementCategory=["Si-31"],
-                MeasuringProgram="Intensivmessprogramm",
-                NetworkOperator=["Bremen"],
-                OperationMode="Routine",
-                Purpose="Standard-Info Bundesmessnetze",
-                SampleType=["B2"],
-                SamplingBegin=datetime.now(),
-                SamplingEnd=datetime.now() + timedelta(hours=1),
-                Status="geprueft",
-                TrajectoryEndTime=datetime.now() + timedelta(hours=1),
-                TrajectoryStartTime=datetime.now(),
+                local_behaviors=["elan"],
                 exclude_from_nav=False,
             )
             modified(new)
@@ -623,18 +570,8 @@ class DocpoolSetup(BrowserView):
             SectorizingSampleTypes=[
                 "A",
                 "A1",
-                "A11",
-                "A12",
-                "A13",
                 "A2",
-                "A21",
-                "A22",
-                "A23",
-                "A24",
                 "A3",
-                "A31",
-                "A32",
-                "B11",
             ],
             exclude_from_nav=False,
         )
@@ -642,7 +579,7 @@ class DocpoolSetup(BrowserView):
 
         from docpool.base.behaviors.transferable import ITransferable
 
-        # transfer a elan/doksys document from bund to hessen
+        # transfer a elan document from bund to hessen
         doc_to_transfer = docpool_bund["content"]["Groups"]["bund_group1"][
             "eine-bodenprobe"
         ]
