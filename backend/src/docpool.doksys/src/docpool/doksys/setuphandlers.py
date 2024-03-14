@@ -95,7 +95,7 @@ def create_today_collection(plonesite):
         },
         {
             "i": "created",
-            "o": "plone.app.querystring.operation.date.new",
+            "o": "plone.app.querystring.operation.date.today",
             "v": "",
         },
         {
