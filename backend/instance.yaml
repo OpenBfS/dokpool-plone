@@ -3,6 +3,7 @@ default_context:
   initial_user_password: "istrator"
   debug_mode: true
   verbose_security: true
+  wsgi_fast_listen: localhost:8080
 
   zcml_package_includes: "docpool.api, docpool.base, docpool.config, docpool.theme, docpool.elan, docpool.rei, docpool.doksys, docpool.rodos, elan.journal, eea.facetednavigation, collective.eeafaceted.z3ctable, collective.impersonate, Products.PloneKeywordManager"
   zcml_package_overrides: "docpool.base, docpool.theme"
