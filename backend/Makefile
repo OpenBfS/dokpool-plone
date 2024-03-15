@@ -15,6 +15,10 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
+# Set distributions still in development
+DISTRIBUTIONS="docpooldemo"
+ALLOWED_DISTRIBUTIONS="docpooldemo"
+
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 PLONE_VERSION=$$(cat version.txt)
@@ -159,8 +163,8 @@ test_quiet: ## run tests removing deprecation warnings
 	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src
 
 .PHONY: create-site
-create-site: instance/etc/zope.ini ## Create a new site from scratch
-	PYTHONWARNINGS=ignore ./bin/zconsole run instance/etc/zope.conf ./scripts/create_site.py
+create-site: ## Create a new site from scratch
+	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) ALLOWED_DISTRIBUTIONS=$(DISTRIBUTIONS) PYTHONWARNINGS=ignore ./bin/zconsole run instance/etc/zope.conf scripts/create_site.py
 
 .PHONY: start
 start: ## Start a Plone instance on localhost:8080
