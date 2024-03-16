@@ -26,4 +26,11 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="json"
+      for="*"
+      class=".views.JSONView"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
