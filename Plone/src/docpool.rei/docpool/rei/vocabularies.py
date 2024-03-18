@@ -267,10 +267,15 @@ class OriginVocabulary(object):
 
     def __call__(self, context=None):
         items = [
-            (u'Genehmigungsinhaber', u'Strahlenschutzverantwortlicher'),
-            (u'unabhängige Messstelle', u'unabhängige Messstelle'),
+            u'Strahlenschutzverantwortlicher',
+            u'unabhängige Messstelle',
         ]
-        terms = [SimpleTerm(value, safe_value(value), title) for value, title in items]
+        # Already existing Reports that have the now obsolete value "Genehmigungsinhaber"
+        # need to find that in the vocabulary as well.
+        if u"Genehmigungsinhaber" in getattr(context, "Origins", []):
+            items.append(u'Genehmigungsinhaber')
+
+        terms = [SimpleTerm(i, safe_value(i), i) for i in items]
         return SimpleVocabulary(terms)
 
 OriginVocabularyFactory = OriginVocabulary()
