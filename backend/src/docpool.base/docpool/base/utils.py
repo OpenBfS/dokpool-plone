@@ -173,28 +173,12 @@ def portalMessage(self, msg, type="info"):
     ptool.addPortalMessage(msg, type)
 
 
-def back_references(source_object, attribute_name):
+def back_references(target, relationship):
     """Return back references from source object on specified attribute_name"""
-    try:
-        catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
-        result = []
-        # print 'back_reference ',  intids.getId(aq_inner(source_object))
-        for rel in catalog.findRelations(
-            dict(
-                to_id=intids.getId(aq_inner(source_object)),
-                from_attribute=attribute_name,
-            )
-        ):
-            # print rel
-            obj = intids.queryObject(rel.from_id)
-            # print 'treffer ',  obj
-            if obj is not None and checkPermission("zope2.View", obj):
-                result.append(obj)
-        return result
-    except Exception as e:
-        log_exc(e)
-        return []
+    return [
+        i.from_object
+        for i in api.relations.get(target=target, relationship=relationship)
+    ]
 
 
 def _copyPaste(source_obj, target_folder_obj, safe=True):
