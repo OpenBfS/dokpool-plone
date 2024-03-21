@@ -57,6 +57,20 @@
       />
 
   <browser:page
+      name="folder_cut"
+      for="*"
+      class=".folderbase.FolderCutForm"
+      permission="zope2.CopyOrMove"
+      />
+
+  <browser:page
+      name="folder_paste"
+      for="*"
+      class=".folderbase.FolderPasteForm"
+      permission="cmf.AddPortalContent"
+      />
+
+  <browser:page
       name="upload"
       for="..interfaces.IDPDocument"
       class=".dpdocument.FileUploadView"

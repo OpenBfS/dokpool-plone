@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-02-27 14:08+0000\n"
+"POT-Creation-Date: 2024-03-25 19:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.base\n"
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "${count} item(s) cut."
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Content:"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Copy or cut one or more items to paste."
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Disallowed to paste item(s)."
 msgstr ""
 
@@ -213,7 +213,7 @@ msgstr ""
 msgid "Installs the docpool.base add-on."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Item(s) pasted."
 msgstr ""
 
@@ -277,19 +277,19 @@ msgstr ""
 msgid "No transfer to"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more items not moveable."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more selected items is locked."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more selected items is no longer available."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Paste could not find clipboard content."
 msgstr ""
 
@@ -313,7 +313,7 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Please select one or more items to cut."
 msgstr ""
 
@@ -434,7 +434,7 @@ msgstr ""
 msgid "The group folder could not be deleted because of protected documents. Please check!"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
 msgstr ""
 
@@ -488,11 +488,11 @@ msgstr ""
 msgid "Type extension for transferable types"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unauthorized to paste item(s)."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unknown error occured. Please check your logs"
 msgstr ""
 
