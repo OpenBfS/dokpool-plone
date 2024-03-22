@@ -2,6 +2,7 @@
 from AccessControl.SecurityInfo import allow_module
 from collections import OrderedDict
 from datetime import date
+from docpool.base.utils import safe_value
 from docpool.base.utils import simplevoc_from_dict
 from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
@@ -265,11 +266,17 @@ class OriginVocabulary(object):
     """
 
     def __call__(self, context=None):
-        return safe_simplevocabulary_from_values([
-            u'Genehmigungsinhaber',
+        items = [
+            u'Strahlenschutzverantwortlicher',
             u'unabhängige Messstelle',
-        ])
+        ]
+        # Already existing Reports that have the now obsolete value "Genehmigungsinhaber"
+        # need to find that in the vocabulary as well.
+        if u"Genehmigungsinhaber" in getattr(context, "Origins", []):
+            items.append(u'Genehmigungsinhaber')
 
+        terms = [SimpleTerm(i, safe_value(i), i) for i in items]
+        return SimpleVocabulary(terms)
 
 OriginVocabularyFactory = OriginVocabulary()
 
