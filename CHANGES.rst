@@ -1,8 +1,27 @@
 Changelog
 =========
 
-1.9.6 (unreleased)
+1.9.7 (unreleased)
 ------------------
+
+
+1.9.6 (22.03.24)
+------------------
+
+Changed:
+
+- Change originvocab for REI (#5479)
+  [pbauer]
+
+Added:
+
+- add json view for admins for debugging (#5551)
+  [pbauer]
+
+Technical:
+
+- upgrade postgresql to 14 in Dockerfile.pgsql to fit ubuntu:latest
+  [mlechner]
 
 
 1.9.5 (27.11.23)
