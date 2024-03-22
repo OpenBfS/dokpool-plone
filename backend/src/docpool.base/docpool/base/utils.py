@@ -177,7 +177,7 @@ def back_references(target, relationship):
     """Return back references from source object on specified attribute_name"""
     return [
         i.from_object
-        for i in api.relations.get(target=target, relationship=relationship)
+        for i in api.relation.get(target=target, relationship=relationship)
     ]
 
 
