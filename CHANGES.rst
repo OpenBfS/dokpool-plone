@@ -1,15 +1,13 @@
 Changelog
 =========
 
-1.9.5 (27.11.23)
------------------
-
-Fixed:
-
-- Add upgrade-steps to fix rebuild catalog and fix intid-catalog(#5413
-  [pbauer]
-1.9.6 (unreleased)
+1.9.6 (22.03.24)
 ------------------
+
+Changed:
+
+- Change originvocab for REI (#5479)
+  [pbauer]
 
 
 1.9.5 (27.11.23)
