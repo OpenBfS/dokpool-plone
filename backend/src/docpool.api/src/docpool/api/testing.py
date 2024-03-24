@@ -43,7 +43,6 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         import eea.facetednavigation
         import elan.journal
         import plone.restapi
-        import Products.CMFFormController
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.api)
@@ -53,7 +52,6 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=eea.facetednavigation)
-        self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=elan.journal)
         self.loadZCML(package=docpool.rei)
         self.loadZCML(package=collective.impersonate)

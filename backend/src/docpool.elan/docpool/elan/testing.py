@@ -30,7 +30,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.theme
         import eea.facetednavigation
         import elan.journal
-        import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=elan.journal)
@@ -40,7 +39,6 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=eea.facetednavigation)
-        self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=collective.impersonate)
 
     def setUpPloneSite(self, portal):

@@ -1,7 +1,6 @@
 -c https://dist.plone.org/release/6.0.10.1/constraints.txt
 
 collective.impersonate == 1.4
-Products.CMFFormController == 4.1.4
 Products.PloneKeywordManager == 6.0.0
 pygeoif == 1.2.0
 pypdf == 3.17.1
