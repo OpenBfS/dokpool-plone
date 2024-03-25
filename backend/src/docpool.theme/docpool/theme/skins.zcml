@@ -5,6 +5,5 @@
     >
 
   <!-- File System Directory Views registration -->
-  <cmf:registerDirectory name="docpooltheme_images" />
   <cmf:registerDirectory name="docpooltheme_templates" />
 </configure>

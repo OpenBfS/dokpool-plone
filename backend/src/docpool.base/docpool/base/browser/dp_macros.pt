@@ -106,7 +106,7 @@ buttons = view.dp_buttons(batch)
                                 <tal:if condition="nocall:item_obj">
                                     <!-- Image is in Products.CMFPlone/skins/plone_images -->
                                     <td class="loading_indicator" colspan="3">
-                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
+                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
                                         jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
@@ -548,7 +548,7 @@ quoted_id = quote_plus(econtext["b"].getId());
                                 <tal:if condition="nocall:item_obj">
                                     <!-- Image is in Products.CMFPlone/skins/plone_images -->
                                     <td class="loading_indicator" colspan="3">
-                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/spinner_small.gif" />
+                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif" />
                                     </td>
                                     <script type="text/javascript">
                                         jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
