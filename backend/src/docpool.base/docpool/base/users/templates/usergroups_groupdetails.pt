@@ -69,10 +69,6 @@
             <a class="nav-link active"
                href="${dp_url}/@@usergroup-groupdetails?${groupquery}"
                i18n:translate="label_group_properties">Group Properties</a>
-            <a tal:replace="python: None" href="${portal_url}/@@manage-group-portlets?${groupkeyquery}&_authenticator=${token}" class="nav-link"
-               i18n:translate="label_group_portlets">Group Portlets</a>
-            <a tal:replace="python: None" href="${portal_url}/@@manage-group-dashboard?${groupkeyquery}&_authenticator=${token}" class="nav-link"
-               i18n:translate="label_group_dashboard">Group Dashboard</a>
           </div>
 
           <form action=""
