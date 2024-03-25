@@ -20,4 +20,4 @@ class EventSelectAction(BrowserView):
             pass
         setScenariosForCurrentUser(scnrs)
         self.request.response.setHeader("Pragma", "no-cache")
-        self.context.redirectToReferrerWithParameters("Set filter")
+        return self.request.response.redirect(self.request.get("HTTP_REFERER", ""))
