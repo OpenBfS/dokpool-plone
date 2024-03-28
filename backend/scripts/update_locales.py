@@ -1,3 +1,4 @@
+import contextlib
 import pathlib
 import pkg_resources
 import subprocess
@@ -12,6 +13,24 @@ msgattrib = "msgattrib"
 
 # ignore node_modules files resulting in errors
 excludes = '"*.html *json-schema*.xml"'
+
+
+POT_PREFIX = '"POT-Creation-Date: '
+
+
+@contextlib.contextmanager
+def reset_pot_creation_date(path):
+    if not path.is_file():
+        yield
+        return
+    old_text = path.read_text()
+    old_lines = [l for l in old_text.splitlines() if not l.startswith(POT_PREFIX)]
+    yield
+    if path.is_file():
+        new_text = path.read_text()
+        new_lines = [l for l in new_text.splitlines() if not l.startswith(POT_PREFIX)]
+        if old_lines == new_lines:
+            path.write_text(old_text)
 
 
 def rebuild_pot(domain, pot, target_path):
@@ -40,7 +59,8 @@ def update_lang(domain, pot, locale_path, lang):
             ["msginit", f"--locale={lang}", f"--input={pot}", f"--output={po}"]
         )
 
-    subprocess.call([i18ndude, "sync", "--pot", pot, po])
+    with reset_pot_creation_date(po):
+        subprocess.call([i18ndude, "sync", "--pot", pot, po])
     subprocess.call([msgattrib, "--no-wrap", "--add-location=file", "-o", po, po])
 
 
@@ -49,7 +69,8 @@ def update_pkg(pkg):
     domain = pkg
     pot = locale_path / f"{domain}.pot"
     target_path = locale_path.parent
-    rebuild_pot(domain, pot, target_path)
+    with reset_pot_creation_date(pot):
+        rebuild_pot(domain, pot, target_path)
     for lang in languages:
         update_lang(domain, pot, locale_path, lang)
 
