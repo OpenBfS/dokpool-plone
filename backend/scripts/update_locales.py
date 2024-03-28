@@ -9,6 +9,8 @@ locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
 domain = pkg
 pot = locale_path / f"{domain}.pot"
 target_path = locale_path.parent
+languages = ["de", "en"]
+
 i18ndude = "i18ndude"
 msgattrib = "msgattrib"
 
@@ -33,10 +35,11 @@ def rebuild_pot():
     subprocess.call([msgattrib, "--no-wrap", "--add-location=file", "-o", pot, pot])
 
 
-def update_lang(lang, lc_messages_path):
+def update_lang(lang):
+    lc_messages_path = locale_path / lang / "LC_MESSAGES"
     po = lc_messages_path / f"{domain}.po"
     if not lc_messages_path.is_dir():
-        lc_messages_path.mkdir()
+        lc_messages_path.mkdir(parents=True)
         subprocess.call(
             ["msginit", f"--locale={lang}", f"--input={pot}", f"--output={po}"]
         )
@@ -47,10 +50,5 @@ def update_lang(lang, lc_messages_path):
 
 def update_locale():
     rebuild_pot()
-    for path in locale_path.iterdir():
-        if path.name == "__pycache__":
-            continue
-        if not path.is_dir():
-            continue
-        lc_messages_path = path / "LC_MESSAGES"
-        update_lang(path.name, lc_messages_path)
+    for lang in languages:
+        update_lang(lang)
