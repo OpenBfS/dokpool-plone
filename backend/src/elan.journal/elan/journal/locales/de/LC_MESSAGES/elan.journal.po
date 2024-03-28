@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-05-09 21:56+0000\n"
+"POT-Creation-Date: 2024-03-28 08:05+0000\n"
 "PO-Revision-Date: 2018-03-07 13:21+0100\n"
 "Last-Translator: Kathrin Probst <kprobst@bfs.de>\n"
 "Language-Team: German\n"
@@ -15,127 +15,101 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Language: de\n"
 
-#: elan/journal/profiles/default/types/Journal.xml
-msgid ""
-"A journal is a blog post which is intended to provide a rolling textual "
-"coverage of an ongoing event."
+#: elan.journal/elan/journal/profiles/default/types/Journal.xml
+msgid "A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event."
 msgstr "Tagebuch zur fortlaufenden Dokumentation von Tätigkeiten, z.B. Einsatztagebuch"
 
-#: elan/journal/browser/templates/update.pt:35
+#: elan.journal/elan/journal/browser/templates/update.pt
 msgid "Add journal entry"
 msgstr "Tagebucheintrag hinzufügen"
 
-#: elan/journal/profiles.zcml:12
-msgid ""
-"Adds a Journal content type to the site. A journal is a blog post which is "
-"intended to provide a rolling textual coverage of an ongoing event."
-msgstr "Fügt ein Tagebuch zur fortlaufenden Dokumentation von Tätigkeiten hinzu (z.B. Einsatztagebuch)."
+#: elan.journal/elan/journal/profiles.zcml
+msgid "Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event. Code adapted from collective.liveblog"
+msgstr ""
 
-#: elan/journal/browser/templates/recent_updates.pt:19
-#: elan/journal/browser/templates/update.pt:83
-#: elan/journal/browser/templates/view.pt:44
+#: elan.journal/elan/journal/configure.zcml
+msgid "Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling texutal coverage of an ongoing event. Code adapted from collective.liveblog"
+msgstr ""
+
+#: elan.journal/elan/journal/browser/templates/recent_updates.pt
+#: elan.journal/elan/journal/browser/templates/update.pt
+#: elan.journal/elan/journal/browser/templates/view.pt
 msgid "By ${byline}"
 msgstr "(${byline})"
 
-#: elan/journal/browser/update.py:28
+#: elan.journal/elan/journal/browser/update.py
 msgid "Do you really want to delete this item?"
 msgstr "Eintrag wirklich löschen?"
 
-#: elan/journal/browser/journalentries.py:148
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Edit cancelled."
 msgstr "Abbruch."
 
-#: elan/journal/browser/templates/edit.pt:11
-msgid "Edit journal entry"
-msgstr "Tagebucheintrag bearbeiten"
+#: elan.journal/elan/journal/browser/templates/edit.pt
+msgid "Edit journalentry"
+msgstr ""
 
-#: elan/journal/browser/templates/journalentry.pt:81
+#: elan.journal/elan/journal/browser/templates/journalentry.pt
 msgid "Extracted from:"
 msgstr "Auszug aus:"
 
-#: elan/journal/interfaces.py:20
-msgid "Image"
-msgstr "Bild"
-
-#: elan/journal/browser/journalentries.py:177
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Item deleted."
 msgstr "Eintrag gelöscht"
 
-#: elan/journal/browser/journalentries.py:99
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Item published."
 msgstr "Eintrag veröffentlicht"
 
-#: elan/journal/browser/journalentries.py:144
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Item saved."
 msgstr "Eintrag gespeichert"
 
-#: elan/journal/browser/templates/update.pt:9
-#: elan/journal/browser/templates/view.pt:9
-msgid "Live updating"
-msgstr "Live update"
-
-#: elan/journal/profiles.zcml:15
-#: elan/journal/profiles/default/types/Journal.xml
+#: elan.journal/elan/journal/profiles/default/types/Journal.xml
 msgid "Journal"
 msgstr "Tagebuch"
 
-#: elan/journal/browser/journalentries.py:71
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Journalentry id does not exist."
 msgstr "Die Eintrags-ID existiert nicht."
 
-#: elan/journal/browser/journalentries.py:66
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Journalentry id is not an integer."
 msgstr "Die Eintrags-ID ist kein Integer."
 
-#: elan/journal/browser/journalentries.py:59
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "No entry selected."
 msgstr "Kein Eintrag ausgewählt."
 
-#: elan/journal/browser/templates/update.pt:88
-#: elan/journal/browser/templates/view.pt:64
-msgid "No entries yet for this Journal."
-msgstr "Dieses Tagebuch enthält noch keine Einträge"
-
-#: elan/journal/browser/templates/update.pt:43
+#: elan.journal/elan/journal/browser/templates/update.pt
 msgid "Publish"
 msgstr "Ins Tagebuch eintragen"
 
-#: elan/journal/profiles.zcml:19
+#: elan.journal/elan/journal/profiles.zcml
 msgid "Remove Journal"
 msgstr "elan.journal deinstallieren"
 
-#: elan/journal/profiles.zcml:21
+#: elan.journal/elan/journal/profiles.zcml
 msgid "Removes the Journal content type from the site."
 msgstr "Entfernt den Inhaltstyp Tagebuch von der Plone Site."
 
-#: elan/journal/browser/journalentries.py:89
+#: elan.journal/elan/journal/browser/journalentries.py
 msgid "Required text input is missing."
 msgstr "Fehlende Texteingabe!"
 
-#: elan/journal/profiles/default/types/Journal.xml
-msgid "Wasauchimmer"
-msgstr "Tagebucheintrag hinzufügen"
+#: elan.journal/elan/journal/browser/templates/update.pt
+msgid "Some entries were edited or excluded from this Journal. <a href=\"update\">Refresh</a> to update it."
+msgstr ""
 
-#: elan/journal/browser/update.py:43
-msgid "You must be on the first page of the batch to add journal-entries."
-msgstr "Neue Einträge können nur auf der ersten Seite hinzugefügt werden."
+#: elan.journal/elan/journal/profiles/default/types/Journal.xml
+msgid "Update"
+msgstr ""
 
-#: elan/journal/browser/templates/update.pt:103
-msgid "Some journal-entries were edited or excluded from this journal."
-msgstr "Einige Einträge wurden bearbeitet oder aus diesem Tagebuch entfernt."
+#: elan.journal/elan/journal/browser/update.py
+msgid "You must be on the first page of the batch to add journal entries."
+msgstr ""
 
-#: elan/journal/browser/templates/update.pt:103
-msgid "Refresh"
-msgstr "Neu Laden"
-
-#: elan/journal/browser/templates/update.pt:103
-msgid "to update it."
-msgstr "um neuen Stand anzuzeigen"
-
-#: /elan/journal/profiles/default/actions.xml
-msgid "Add Journal1 Entry"
-msgstr "Tagebuch1-Eintrag hinzufügen"
-
-#: /elan/journal/profiles/default/actions.xml
-msgid "Add Journal2 Entry"
-msgstr "Tagebuch2-Eintrag hinzufügen"
+#: elan.journal/elan/journal/configure.zcml
+#: elan.journal/elan/journal/profiles.zcml
+msgid "elan.journal"
+msgstr ""

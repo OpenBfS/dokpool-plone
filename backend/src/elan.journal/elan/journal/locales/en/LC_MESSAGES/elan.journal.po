@@ -1,117 +1,118 @@
 # --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# English translations for PACKAGE package.
+# Thomas Lotze <lotze@starzel.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2024-03-28 08:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2024-03-28 09:05+0100\n"
+"Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: elan.journal\n"
+"Language: en\n"
 
 #: elan.journal/elan/journal/profiles/default/types/Journal.xml
 msgid "A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event."
-msgstr ""
+msgstr "A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event."
 
 #: elan.journal/elan/journal/browser/templates/update.pt
 msgid "Add journal entry"
-msgstr ""
+msgstr "Add journal entry"
 
 #: elan.journal/elan/journal/profiles.zcml
 msgid "Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event. Code adapted from collective.liveblog"
-msgstr ""
+msgstr "Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling textual coverage of an ongoing event. Code adapted from collective.liveblog"
 
 #: elan.journal/elan/journal/configure.zcml
 msgid "Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling texutal coverage of an ongoing event. Code adapted from collective.liveblog"
-msgstr ""
+msgstr "Adds a Journal content type to the site. A journal is a blog post which is intended to provide a rolling texutal coverage of an ongoing event. Code adapted from collective.liveblog"
 
 #: elan.journal/elan/journal/browser/templates/recent_updates.pt
 #: elan.journal/elan/journal/browser/templates/update.pt
 #: elan.journal/elan/journal/browser/templates/view.pt
 msgid "By ${byline}"
-msgstr ""
+msgstr "By ${byline}"
 
 #: elan.journal/elan/journal/browser/update.py
 msgid "Do you really want to delete this item?"
-msgstr ""
+msgstr "Do you really want to delete this item?"
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Edit cancelled."
-msgstr ""
+msgstr "Edit cancelled."
 
 #: elan.journal/elan/journal/browser/templates/edit.pt
 msgid "Edit journalentry"
-msgstr ""
+msgstr "Edit journalentry"
 
 #: elan.journal/elan/journal/browser/templates/journalentry.pt
 msgid "Extracted from:"
-msgstr ""
+msgstr "Extracted from:"
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Item deleted."
-msgstr ""
+msgstr "Item deleted."
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Item published."
-msgstr ""
+msgstr "Item published."
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Item saved."
-msgstr ""
+msgstr "Item saved."
 
 #: elan.journal/elan/journal/profiles/default/types/Journal.xml
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Journalentry id does not exist."
-msgstr ""
+msgstr "Journalentry id does not exist."
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Journalentry id is not an integer."
-msgstr ""
+msgstr "Journalentry id is not an integer."
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "No entry selected."
-msgstr ""
+msgstr "No entry selected."
 
 #: elan.journal/elan/journal/browser/templates/update.pt
 msgid "Publish"
-msgstr ""
+msgstr "Publish"
 
 #: elan.journal/elan/journal/profiles.zcml
 msgid "Remove Journal"
-msgstr ""
+msgstr "Remove Journal"
 
 #: elan.journal/elan/journal/profiles.zcml
 msgid "Removes the Journal content type from the site."
-msgstr ""
+msgstr "Removes the Journal content type from the site."
 
 #: elan.journal/elan/journal/browser/journalentries.py
 msgid "Required text input is missing."
-msgstr ""
+msgstr "Required text input is missing."
 
 #: elan.journal/elan/journal/browser/templates/update.pt
 msgid "Some entries were edited or excluded from this Journal. <a href=\"update\">Refresh</a> to update it."
-msgstr ""
+msgstr "Some entries were edited or excluded from this Journal. <a href=\"update\">Refresh</a> to update it."
 
 #: elan.journal/elan/journal/profiles/default/types/Journal.xml
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 #: elan.journal/elan/journal/browser/update.py
 msgid "You must be on the first page of the batch to add journal entries."
-msgstr ""
+msgstr "You must be on the first page of the batch to add journal entries."
 
 #: elan.journal/elan/journal/configure.zcml
 #: elan.journal/elan/journal/profiles.zcml
 msgid "elan.journal"
-msgstr ""
+msgstr "elan.journal"
