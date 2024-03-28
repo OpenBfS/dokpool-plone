@@ -1,9 +1,12 @@
 import pathlib
+import pkg_resources
 import subprocess
+import sys
 
 
-domain = "docpool.base"
-locale_path = pathlib.Path(__file__).parent
+pkg = sys.argv[1]
+locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
+domain = pkg
 pot = locale_path / f"{domain}.pot"
 target_path = locale_path.parent
 i18ndude = "i18ndude"
