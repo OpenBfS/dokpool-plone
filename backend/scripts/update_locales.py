@@ -4,11 +4,7 @@ import subprocess
 import sys
 
 
-pkg = sys.argv[1]
-locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
-domain = pkg
-pot = locale_path / f"{domain}.pot"
-target_path = locale_path.parent
+packages = sys.argv[1:]
 languages = ["de", "en"]
 
 i18ndude = "i18ndude"
@@ -18,7 +14,7 @@ msgattrib = "msgattrib"
 excludes = '"*.html *json-schema*.xml"'
 
 
-def rebuild_pot():
+def rebuild_pot(domain, pot, target_path):
     subprocess.call(
         [
             i18ndude,
@@ -35,7 +31,7 @@ def rebuild_pot():
     subprocess.call([msgattrib, "--no-wrap", "--add-location=file", "-o", pot, pot])
 
 
-def update_lang(lang):
+def update_lang(domain, pot, locale_path, lang):
     lc_messages_path = locale_path / lang / "LC_MESSAGES"
     po = lc_messages_path / f"{domain}.po"
     if not lc_messages_path.is_dir():
@@ -48,7 +44,15 @@ def update_lang(lang):
     subprocess.call([msgattrib, "--no-wrap", "--add-location=file", "-o", po, po])
 
 
-def update_locale():
-    rebuild_pot()
+def update_pkg(pkg):
+    locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
+    domain = pkg
+    pot = locale_path / f"{domain}.pot"
+    target_path = locale_path.parent
+    rebuild_pot(domain, pot, target_path)
     for lang in languages:
-        update_lang(lang)
+        update_lang(domain, pot, locale_path, lang)
+
+
+for pkg in packages:
+    update_pkg(pkg)

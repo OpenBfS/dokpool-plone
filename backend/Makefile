@@ -103,7 +103,7 @@ bin/i18ndude: bin/pip
 .PHONY: i18n
 i18n: bin/i18ndude ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	./bin/python ./scripts/update_locales.py docpool.base
+	ls src |xargs ./bin/python ./scripts/update_locales.py
 
 # TODO `make build`
 # build:
