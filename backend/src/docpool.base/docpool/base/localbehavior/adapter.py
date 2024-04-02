@@ -29,7 +29,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         cachekey = f"savedLocalBehaviors_for_{uuid}"
         saved_behaviors = request.get(cachekey, [])
         if uuid and not saved_behaviors:
-            saved_behaviors = getattr(self.context, 'local_behaviors', [])[:]
+            saved_behaviors = getattr(self.context, "local_behaviors", [])[:]
             request.set(cachekey, saved_behaviors)
         edited_behaviors.update(saved_behaviors)
 
