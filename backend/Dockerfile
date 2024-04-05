@@ -48,4 +48,5 @@ ENV zope_i18n_compile_mo_files=true
 RUN <<EOT
     set -e
     ln -s /data /app/var
+    ./docker-entrypoint.sh create-site
 EOT

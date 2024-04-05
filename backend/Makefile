@@ -119,7 +119,7 @@ build-dev: config ## pip install Plone packages
 	bin/pip install -r requirements-mxdev.txt
 
 .PHONY: build-dev-develop
-build-dev-develop: config ## pip install Plone packages
+build-dev-develop: config ## pip install Plone packages with debug-tools
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	bin/mxdev -c mx_develop.ini
 	bin/pip install -r requirements-mxdev.txt
