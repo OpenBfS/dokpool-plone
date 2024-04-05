@@ -8,9 +8,8 @@ import json
 
 
 class JSONView(BrowserView):
-
     def __call__(self):
-        self.request.response.setHeader('Content-Type', 'application/json')
+        self.request.response.setHeader("Content-Type", "application/json")
         serializer = getMultiAdapter((self.context, self.request), ISerializeToJson)
         if IPloneSiteRoot.providedBy(self.context):
             item = serializer()
