@@ -83,7 +83,7 @@ if site_id in app.objectIds() and DELETE_EXISTING:
     transaction.commit()
     app._p_jar.sync()
     logger.info(f" - Deleted existing site with id {site_id}")
-else:
+elif site_id in app.objectIds() and not DELETE_EXISTING:
     logger.info(
         f" - Stopping site creation, as there is already a site with id {site_id} at the instance. "
         "Set DELETE_EXISTING=1 to delete the existing site before creating a new one."
