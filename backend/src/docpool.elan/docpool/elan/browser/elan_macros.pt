@@ -36,7 +36,8 @@
 </div>
 
 <metal:macro define-macro="elan_actions" i18n:domain="docpool.elan">
-    <tal:cond condition="python: not (isCollection or path('context/@@is/archive'))">
+    <tal:cond define="_is nocall:context/@@is"
+              condition="python: not (isCollection or _is.archive)">
         <a tal:condition="nocall:unknown_scen" tal:define="unknown_scen python:elanobj.unknownScenario()" href=""
            title="Edit unknown scenario"
            tal:attributes="href unknown_scen/absolute_url"

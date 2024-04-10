@@ -42,7 +42,8 @@
              type="submit"
              name="form.button.save"
              value="Finish uploads and publish"
-             tal:condition="python:context.publishedImmediately(raw=True) and not path('context/@@is/individual')"
+             tal:define="_is nocall:context/@@is"
+             tal:condition="python:context.publishedImmediately(raw=True) and not _is.individual"
              i18n:attributes="value"
              onclick="window.location.href='content_status_modify?workflow_action=publish';return false;"
              />

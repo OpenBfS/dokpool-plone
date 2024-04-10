@@ -82,21 +82,27 @@ class SetActiveApp(BrowserView):
 
 
 class Is(BrowserView):
+    @property
     def admin(self):
         return is_admin(self.context)
 
+    @property
     def contentadmin(self):
         return is_contentadmin(self.context)
 
+    @property
     def admin_or_contentadmin(self):
         # TODO re #5547: check whether this is still useful after cleaning up conditions
         return is_admin(self.context) or is_contentadmin(self.context)
 
+    @property
     def archive(self):
         return "archive" in self.context.getPhysicalPath()
 
+    @property
     def individual(self):
         return is_individual(self.context)
 
+    @property
     def personal(self):
         return is_personal(self.context)
