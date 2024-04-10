@@ -9,7 +9,6 @@ packages = sys.argv[1:]
 languages = ["de", "en"]
 
 i18ndude = "i18ndude"
-msgattrib = "msgattrib"
 
 # ignore node_modules files resulting in errors
 excludes = '"*.html *json-schema*.xml"'
@@ -43,12 +42,12 @@ def rebuild_pot(domain, pot, target_path):
             pot,
             "--exclude",
             excludes,
+            "--no-line-numbers",
             "--create",
             domain,
             target_path,
         ]
     )
-    subprocess.call([msgattrib, "--no-wrap", "--add-location=file", "-o", pot, pot])
 
 
 def update_lang(domain, pot, locale_path, lang):
@@ -62,7 +61,6 @@ def update_lang(domain, pot, locale_path, lang):
 
     with reset_pot_creation_date(po):
         subprocess.call([i18ndude, "sync", "--pot", pot, po])
-    subprocess.call([msgattrib, "--no-wrap", "--add-location=file", "-o", po, po])
 
 
 def update_pkg(pkg):
