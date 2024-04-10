@@ -397,7 +397,7 @@ def possibleDocumentPools(self):
     return res
 
 
-def is_admin(context):
+def is_admin(context=None):
     roles = api.user.get_roles(obj=context)
     return "Manager" in roles or "Site Administrator" in roles
 
