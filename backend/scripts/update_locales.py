@@ -20,6 +20,7 @@ POT_PREFIX = '"POT-Creation-Date: '
 
 @contextlib.contextmanager
 def reset_pot_creation_date(path):
+    """Write back old po(t) file if the POT Creation Date is the only change."""
     if not path.is_file():
         yield
         return
