@@ -1,0 +1,35 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# English translations for PACKAGE package.
+# Thomas Lotze <lotze@starzel.de>, 2024.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-03-28 08:05+0000\n"
+"PO-Revision-Date: 2024-03-28 09:05+0100\n"
+"Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.api\n"
+"Language: en\n"
+
+#: docpool/api/configure.zcml
+msgid "Installs the docpool.api add-on."
+msgstr "Installs the docpool.api add-on."
+
+#: docpool/api/configure.zcml
+msgid "Uninstalls the docpool.api add-on."
+msgstr "Uninstalls the docpool.api add-on."
+
+#: docpool/api/configure.zcml
+msgid "docpool.api"
+msgstr "docpool.api"
+
+#: docpool/api/configure.zcml
+msgid "docpool.api (uninstall)"
+msgstr "docpool.api (uninstall)"

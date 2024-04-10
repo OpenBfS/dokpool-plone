@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-05-09 21:56+0000\n"
+"POT-Creation-Date: 2024-03-28 08:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,4 +15,20 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: plone\n"
+"Domain: docpool.api\n"
+
+#: docpool.api/src/docpool/api/configure.zcml
+msgid "Installs the docpool.api add-on."
+msgstr ""
+
+#: docpool.api/src/docpool/api/configure.zcml
+msgid "Uninstalls the docpool.api add-on."
+msgstr ""
+
+#: docpool.api/src/docpool/api/configure.zcml
+msgid "docpool.api"
+msgstr ""
+
+#: docpool.api/src/docpool/api/configure.zcml
+msgid "docpool.api (uninstall)"
+msgstr ""
