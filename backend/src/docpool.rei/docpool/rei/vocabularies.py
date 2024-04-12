@@ -307,7 +307,7 @@ class OriginVocabulary:
         origins = getattr(context, "Origins", []) or []
         if "Genehmigungsinhaber" in origins:
             items.append("Genehmigungsinhaber")
-        terms = safe_simplevocabulary_from_values(items)
+        return safe_simplevocabulary_from_values(items)
 
 
 OriginVocabularyFactory = OriginVocabulary()
