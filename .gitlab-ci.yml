@@ -32,8 +32,6 @@ before_script:
   ## Install ssh-agent if not already installed, it is required by Docker.
   - "command -v ssh-agent >/dev/null || ( sudo apt-get update -y && sudo apt-get install openssh-client -y )"
 
-
-
   # Check Python version
   - python -V
   - python3 -V
