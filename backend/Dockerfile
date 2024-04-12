@@ -39,6 +39,7 @@ COPY . .
 # Install local requirements and pre-compile mo files
 RUN <<EOT
     set -e
+    apt install -y --no-install-recommends openssh-client ca-certificates
     bin/pip install mxdev
     mv requirements-docker.txt requirements.txt
     # remove all test-extras from mx.ini
