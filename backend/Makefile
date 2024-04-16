@@ -32,8 +32,8 @@ USER_INFO=$$(id -u ${CURRENT_USER})
 LINT=docker run --rm -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} check
 FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} format
 
-IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
-IMAGE_TAG=latest
+IMAGE_NAME=git.starzel.de:5050/bfs/dokpool/python3
+IMAGE_TAG=${CI_COMMIT_REF_NAME}
 
 # Python checks
 PYTHON?=python3
