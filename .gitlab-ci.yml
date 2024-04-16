@@ -67,6 +67,7 @@ build:
     - make build-image-ci
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$CI_COMMIT_BRANCH == "distribution"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_dev:
@@ -89,6 +90,7 @@ deploy_dev:
     url: https://review-two-bfs.starzel.de/
   rules:
     - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$CI_COMMIT_BRANCH == "distribution"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 undeploy_dev:
