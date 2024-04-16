@@ -16,7 +16,7 @@ COPY src/docpool.theme/docpool/theme/resources src/docpool.theme/docpool/theme/r
 COPY src/elan.journal/elan/journal/resources src/elan.journal/elan/journal/resources
 
 COPY src/docpool.rei/docpool/rei/browser/static src/docpool.rei/docpool/rei/browser/static
-COPY src/docpool.theme/docpool/theme/static/images src/docpool.theme/docpool/theme/static/images
+COPY src/docpool.theme/docpool/theme/static src/docpool.theme/docpool/theme/static
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
