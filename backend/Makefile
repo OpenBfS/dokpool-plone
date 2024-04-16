@@ -113,7 +113,7 @@ i18n: bin/i18ndude ## Update locales
 # build:
 
 sources/contentimport:  ## checkout contentimport
-	git clone gitlab@git.starzel.de:bfs/contentimport.git sources/contentimport branch=distribution
+	git clone --branch=distribution gitlab@git.starzel.de:bfs/contentimport.git sources/contentimport
 
 .PHONY: build-dev
 build-dev: config sources/contentimport ## pip install Plone packages
