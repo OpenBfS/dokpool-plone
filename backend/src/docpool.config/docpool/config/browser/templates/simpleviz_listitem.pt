@@ -12,7 +12,7 @@
                  dpbrainobj dpbrain/getObject;
                  isOverview options/isOverview;
                  isCollection options/isCollection;
-                 individual context/isIndividual;
+                 individual context/@@is/individual;
                  myfolder_url nocall:options/myfolder_url;
                  item_description dpbrain/Description;
                  eurl dpbrain/getURL;

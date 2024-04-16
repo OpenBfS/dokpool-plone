@@ -189,9 +189,6 @@ class DPTransferFolder(FolderBase):
 
         execute_under_special_role(self, "Manager", revokeRead)
 
-    def isArchive(self):
-        return "archive" in self.getPhysicalPath()
-
     def myDPTransferFolder(self):
         """ """
         return self

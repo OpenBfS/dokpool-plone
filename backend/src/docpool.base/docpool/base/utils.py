@@ -6,7 +6,6 @@ from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone import api
 from plone.api.exc import CannotGetPortalError
-from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import base_hasattr
@@ -15,7 +14,6 @@ from zc.relation.interfaces import ICatalog
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.hooks import getSite
-from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 
@@ -55,12 +53,16 @@ def queryForObjects(self, **kwa):
     return res
 
 
+def is_group_folder(context):
+    return "Groups" in context.getPhysicalPath() and context.getId() != "Groups"
+
+
 def getAllowedDocumentTypes(self):
     """
     Determine the document types allowed for the current user in the current context
     """
     # if in a group folder, only allow the types for this group
-    isGF = self.isGroupFolder()
+    isGF = is_group_folder(self)
 
     grps = getGroupsForCurrentUser(self)
     dts = []
@@ -87,7 +89,7 @@ def getAllowedDocumentTypes(self):
 
 def getAllowedDocumentTypesForGroup(self):
     """ """
-    isGF = self.isGroupFolder()
+    isGF = is_group_folder(self)
     dts = []
     if isGF:
         grp = self.getGroupOfFolder()
@@ -303,7 +305,7 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     """
     try:
         dp_app_state = getMultiAdapter((doc, request), name="dp_app_state")
-        if doc.isPersonal():  # no personal filtering in the content area
+        if is_personal(doc):  # no personal filtering in the content area
             permitted_apps = dp_app_state.appsEffectiveForObject(
                 request, filtered=False
             )
@@ -324,8 +326,6 @@ def setApplicationsForCurrentUser(self, apps):
     @param apps:
     @return:
     """
-    request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)
     user = api.user.get_current()
     #    id = self.myDocumentPool().getId()
     # get currently activated apps
@@ -353,8 +353,6 @@ def activateAppFilter(self, activate=False):
     @param activate:
     @return:
     """
-    request = self.REQUEST
-    alsoProvides(request, IDisableCSRFProtection)
     user = api.user.get_current()
     user.setMemberProperties({"filter_active": activate})
 
@@ -397,3 +395,25 @@ def possibleDocumentPools(self):
     res = [""]
     res.extend([f"{dp.UID}|{dp.Title}" for dp in dps])
     return res
+
+
+def is_admin(context=None):
+    roles = api.user.get_roles(obj=context)
+    return "Manager" in roles or "Site Administrator" in roles
+
+
+def is_contentadmin(context):
+    if not hasattr(context, "myDocumentPool"):
+        return False
+    if is_admin(context):
+        return True
+    groups = api.user.get_current().getGroups()
+    return any("ContentAdministrators" in g for g in groups)
+
+
+def is_individual(context):
+    return "Members" in context.getPhysicalPath() and context.getId() != "Members"
+
+
+def is_personal(context):
+    return "content" in context.getPhysicalPath() and context.getId() != "content"

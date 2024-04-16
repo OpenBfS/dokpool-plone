@@ -19,10 +19,8 @@ class DocpoolReiLayer(PloneSandboxLayer):
         import collective.impersonate
         import docpool.base
         import eea.facetednavigation
-        import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
-        self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=docpool.rei)
         self.loadZCML(package=collective.impersonate)

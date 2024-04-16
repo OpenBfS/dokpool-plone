@@ -43,8 +43,6 @@
       post_handler=".setuphandlers.post_install"
       />
 
-  <include file="skins.zcml" />
-
   <permission
       id="docpool.base.AddInfoFolder"
       title="Docpool: Add InfoFolder"

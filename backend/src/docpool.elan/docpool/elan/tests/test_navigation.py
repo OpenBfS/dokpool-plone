@@ -47,7 +47,9 @@ class TestNavigation(unittest.TestCase):
 
         # enable base or doksys (= not elan)
         # result: personal folder is in navigation
-        url = docpool.setActiveApp("doksys")
+        view = docpool.restrictedTraverse("setActiveApp")
+        view.request.form.update(app="doksys")
+        url = view()
         dp_app_state = docpool.restrictedTraverse("dp_app_state")
         self.assertFalse(dp_app_state.isCurrentlyActive("elan"))
 
@@ -63,7 +65,9 @@ class TestNavigation(unittest.TestCase):
 
         # enable elan
         # result: personal folder is not in navigation
-        url = docpool.setActiveApp("elan")
+        view = docpool.restrictedTraverse("setActiveApp")
+        view.request.form.update(app="elan")
+        url = view()
         self.assertEqual(url, "http://nohost/plone/bund/esd")
         esd = docpool.esd
         dp_app_state = esd.restrictedTraverse("dp_app_state")

@@ -57,6 +57,20 @@
       />
 
   <browser:page
+      name="folder_cut"
+      for="*"
+      class=".folderbase.FolderCutForm"
+      permission="zope2.CopyOrMove"
+      />
+
+  <browser:page
+      name="folder_paste"
+      for="*"
+      class=".folderbase.FolderPasteForm"
+      permission="cmf.AddPortalContent"
+      />
+
+  <browser:page
       name="upload"
       for="..interfaces.IDPDocument"
       class=".dpdocument.FileUploadView"
@@ -152,6 +166,34 @@
       for="*"
       class=".helpers.RootRedirectView"
       permission="zope.Public"
+      />
+
+  <browser:page
+      name="dp_url"
+      for="*"
+      class=".helpers.DocPoolURL"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="activateAppFilter"
+      for="*"
+      class=".helpers.ActivateAppFilter"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="setActiveApp"
+      for="*"
+      class=".helpers.SetActiveApp"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="is"
+      for="*"
+      class=".helpers.Is"
+      permission="zope2.View"
       />
 
   <browser:page

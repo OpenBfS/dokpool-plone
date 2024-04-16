@@ -1,20 +1,32 @@
+from AccessControl import Unauthorized
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
 from docpool.base.utils import extendOptions
+from OFS.CopySupport import CopyError
 from plone import api
 from plone.app.content.browser.interfaces import IFolderContentsView
 from plone.app.contenttypes.interfaces import ICollection
 from plone.memoize import view
+from Products.CMFCore.exceptions import ResourceLockedError
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import transaction_note
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import button
 from z3c.form import field
 from z3c.form import form
+from ZODB.POSException import ConflictError
 from zope.interface import implementer
+
+import logging
+import traceback
+import transaction
+
+
+log = logging.getLogger(__name__)
 
 
 class FolderBaselistitemView(BrowserView):
@@ -118,7 +130,26 @@ class FolderBaseView(BrowserView):
         return res
 
 
-class FolderDeleteForm(form.Form):
+class FolderAction:
+    def view_url(self):
+        context_state = api.content.get_view(
+            "plone_context_state", self.context, self.request
+        )
+        return context_state.view_url()
+
+    def redirect(self):
+        return self.request.response.redirect(self.view_url())
+
+    def redirect_info(self, msg):
+        api.portal.show_message(msg, self.request)
+        self.redirect()
+
+    def redirect_error(self, msg):
+        api.portal.show_message(msg, self.request, "error")
+        self.redirect()
+
+
+class FolderDeleteForm(form.Form, FolderAction):
     """Delete multiple items by path
     Modernized version of folder_delete.cpy (of Plone 4).
     Called from a folder or collection with actions using a folder_button with string:@@folder_delete:method
@@ -129,20 +160,13 @@ class FolderDeleteForm(form.Form):
     template = ViewPageTemplateFile("templates/delete_confirmation.pt")
     enableCSRFProtection = True
 
-    def view_url(self):
-        context_state = api.content.get_view(
-            "plone_context_state", self.context, self.request
-        )
-        return context_state.view_url()
-
     def more_info(self):
         """Render linkintegrity-info for all items that are to be deleted."""
         paths = self.request.get("paths", [])
         objects = [api.content.get(path=str(path)) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if not objects:
-            api.portal.show_message(_("No items to delete."), self.request)
-            return self.request.response.redirect(self.view_url())
+            return self.redirect_info(_("No items to delete."))
         adapter = api.content.get_view(
             "delete_confirmation_info", self.context, self.request
         )
@@ -158,16 +182,13 @@ class FolderDeleteForm(form.Form):
         if objects:
             # linkintegrity was already checked and maybe ignored!
             api.content.delete(objects=objects, check_linkintegrity=False)
-            api.portal.show_message(_("Items deleted."), self.request)
+            return self.redirect_info(_("Items deleted."))
         else:
-            api.portal.show_message(_("No items deleted."), self.request)
-        target = self.view_url()
-        return self.request.response.redirect(target)
+            return self.redirect_info(_("No items deleted."))
 
     @button.buttonAndHandler(_("label_cancel", default="Cancel"), name="Cancel")
     def handle_cancel(self, action):
-        target = self.view_url()
-        return self.request.response.redirect(target)
+        return self.redirect()
 
     def updateActions(self):
         super().updateActions()
@@ -178,3 +199,62 @@ class FolderDeleteForm(form.Form):
 
     def check_delete_permission(self, obj):
         return api.user.has_permission("Delete objects", obj=obj)
+
+
+class FolderCutForm(BrowserView, FolderAction):
+    def __call__(self):
+        if not (paths := self.request.get("paths", [])):
+            return self.redirect_error(_("Please select one or more items to cut."))
+
+        ids = [p.removesuffix("/").rpartition("/")[-1] for p in paths]
+        try:
+            self.context.manage_cutObjects(ids, self.request)
+        except CopyError:
+            msg = _("One or more items not moveable.")
+        except AttributeError:
+            msg = _("One or more selected items is no longer available.")
+        except ResourceLockedError:
+            msg = _("One or more selected items is locked.")
+        else:
+            transaction_note(f"Cut {ids} from {self.context.absolute_url()}")
+            return self.redirect_info(
+                _("${count} item(s) cut.", mapping={"count": len(ids)})
+            )
+
+        return self.redirect_error(msg)
+
+
+class FolderPasteForm(BrowserView, FolderAction):
+    def __call__(self):
+        if not self.context.cb_dataValid:
+            transaction.abort()
+            return self.redirect_error(_("Copy or cut one or more items to paste."))
+
+        if "__cp" not in self.request:
+            transaction.abort()
+            return self.redirect__error(_("Paste could not find clipboard content."))
+
+        try:
+            self.context.manage_pasteObjects(self.request["__cp"])
+        except ConflictError:
+            raise
+        except ValueError:
+            msg = _("Disallowed to paste item(s).")
+        except Unauthorized:
+            msg = _("Unauthorized to paste item(s).")
+        except Exception as e:
+            if isinstance(e, CopyError) and "Item Not Found" in str(e):
+                msg = _(
+                    "The item you are trying to paste could not be found. "
+                    "It may have been moved or deleted after you copied or cut it. "
+                )
+            else:
+                msg = _("Unknown error occured. Please check your logs")
+                log.exception("Exception during pasting")
+                log.exception(traceback.format_exception(e))
+        else:
+            transaction_note("Pasted content to %s" % (self.context.absolute_url()))
+            return self.redirect_info(_("Item(s) pasted."))
+
+        transaction.abort()
+        return self.redirect_error(msg)

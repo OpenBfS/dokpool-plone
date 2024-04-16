@@ -66,7 +66,7 @@
    <property name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
    <property name="link_target"></property>
    <property name="icon_expr">string:pin-angle</property>
-   <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
+   <property name="available_expr">python:path('here/@@is/contentadmin') and 'esd' in here.absolute_url()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -91,14 +91,14 @@
   </object>
   <object name="dashboard" meta_type="CMF Action" i18n:domain="docpool.base">
    <property name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
-   <property name="available_expr">python:here.isContentAdmin() and 'esd' in here.absolute_url()</property>
+   <property name="available_expr">python:path('here/@@is/contentadmin') and 'esd' in here.absolute_url()</property>
    <property name="permissions"></property>
   </object>
   <object name="usermanagement" meta_type="CMF Action" i18n:domain="docpool.base">
    <property name="title" i18n:translate="">User Management</property>
    <property name="url_expr">string:${context/dp_url}/@@usergroup-userprefs</property>
    <property name="icon_expr">string:plone-group</property>
-   <property name="available_expr">python:context.isAdmin()</property>
+   <property name="available_expr">context/@@is/admin</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -141,7 +141,7 @@
   <object name="cut" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Cut</property>
    <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:folder_cut:method</property>
+   <property name="url_expr">string:@@folder_cut:method</property>
    <property name="available_expr">python:checkPermission("Delete objects", object)</property>
    <property name="permissions">
     <element value="Copy or Move"/>
@@ -151,7 +151,7 @@
   <object name="paste" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Paste</property>
    <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:folder_paste:method</property>
+   <property name="url_expr">string:@@folder_paste:method</property>
    <property name="available_expr">folder/cb_dataValid</property>
    <property name="permissions">
     <element value="Add portal content"/>
@@ -162,7 +162,7 @@
    <property name="title" i18n:translate="">Transfer</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
-   <property name="available_expr">python:not context.isIndividual() and checkPermission("Docpool: Send Content", object)</property>
+   <property name="available_expr">python:not path('context/@@is/individual') and checkPermission("Docpool: Send Content", object)</property>
    <property name="permissions">
     <element value="Docpool: Send Content"/>
    </property>
@@ -184,7 +184,7 @@
    <property name="available_expr">python:context.portal_type != "DPDocument"</property>
   </object>
   <object name="local_roles" meta_type="CMF Action" i18n:domain="plone">
-   <property name="available_expr">python:context.isAdmin() or context.isContentAdmin()</property>
+   <property name="available_expr">context/@@is/admin_or_contentadmin</property>
   </object>
  </object>
 </object>

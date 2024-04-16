@@ -14,7 +14,7 @@
                  isOverview options/isOverview;
                  isCollection options/isCollection;
                  container_type options/container_type | nothing;
-                 individual context/isIndividual;
+                 individual context/@@is/individual;
                  myfolder_url nocall:options/myfolder_url;
                  item_description dpbrain/Description;
                  dview_url python:'%s/@@dview?d=%s&disable_border=1' % (myfolder_url, euid);

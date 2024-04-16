@@ -6,9 +6,7 @@
 
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
-        <tal:if define="personal context/isPersonal;
-                        individual python:personal and context.isIndividual()"
-                condition="personal">
+        <tal:if condition="context/@@is/personal">
             <form name="appfilter" method="post" class="app_filter" tal:define="isFiltered view/isFilteredBy"
                   tal:attributes="action string:${context/absolute_url}/activateAppFilter">
                 <tal:if condition="isFiltered">

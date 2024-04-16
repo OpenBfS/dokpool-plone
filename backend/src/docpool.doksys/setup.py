@@ -43,7 +43,6 @@ setup(
         # -*- Extra requirements: -*-
         "setuptools",
         "z3c.jbot",
-        "Products.CMFFormController",
     ],
     extras_require={
         "test": [

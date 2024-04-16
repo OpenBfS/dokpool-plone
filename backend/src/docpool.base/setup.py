@@ -36,7 +36,6 @@ setup(
         "eea.facetednavigation",
         "collective.eeafaceted.z3ctable",
         "z3c.unconfigure",
-        "Products.CMFFormController",
         "collective.impersonate",
     ],
     entry_points="""

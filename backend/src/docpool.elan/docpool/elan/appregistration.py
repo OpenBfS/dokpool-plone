@@ -14,6 +14,5 @@ registerApp(
     dpAdded,
     dpRemoved,
     icon="++plone++docpool.elan/elan_app_icon.png",
-    # ./src/docpool.theme/docpool/theme/skins/docpooltheme_images/elanlogo.png
-    logo="elanlogo.png",
+    logo="++plone++docpool/elanlogo.png",
 )

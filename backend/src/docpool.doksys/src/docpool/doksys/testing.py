@@ -19,13 +19,11 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
         import docpool.config
         import docpool.elan
         import eea.facetednavigation
-        import Products.CMFFormController
 
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.config)
         # required since we need to be able to add DBTranfers
         self.loadZCML(package=eea.facetednavigation)
-        self.loadZCML(package=Products.CMFFormController)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=collective.impersonate)
 

@@ -11,6 +11,7 @@ from docpool.base.pdfconversion import get_images
 from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
 from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import is_individual
 from docpool.base.utils import portalMessage
 from docpool.base.utils import queryForObject
 from io import StringIO
@@ -28,6 +29,7 @@ from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
+from plone.resource.interfaces import IResourceDirectory
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -36,6 +38,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
+from zope.component import getUtilitiesFor
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
@@ -214,6 +217,8 @@ class DPDocument(Container, Extendable, ContentBase):
         wf_tool = getToolByName(self, "portal_workflow")
         workflowActions = wf_tool.listActionInfos(object=self)
         results = []
+        resource_dirs = list(getUtilitiesFor(IResourceDirectory))
+
         for action in workflowActions:
             if action["category"] != "workflow":
                 continue
@@ -225,12 +230,19 @@ class DPDocument(Container, Extendable, ContentBase):
                 description = transition.description
 
             if action["allowed"]:
+                filename = f"{action['id']}.png"
+                for dirname, rd in resource_dirs:
+                    if rd.isFile(filename):
+                        icon = f"{dirname}/{filename}"
+                        break
+                else:
+                    icon = ""
                 results.append(
                     {
                         "id": action["id"],
                         "title": action["title"],
                         "description": description,
-                        "icon": action["id"] + ".png",
+                        "icon": icon,
                     }
                 )
         return results
@@ -300,11 +312,10 @@ class DPDocument(Container, Extendable, ContentBase):
             if not raw:
                 # We only publish immediately when uploads are not allowed
                 # and if we are not in a personal folder
-                # print dto.publishImmediately, dto.allowUploads, self.isIndividual()
                 return (
                     dto.publishImmediately
                     and not dto.allowUploads
-                    and not self.isIndividual()
+                    and not is_individual(self)
                 )
             else:
                 return dto.publishImmediately

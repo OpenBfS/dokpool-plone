@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2024-02-27 14:06+0000\n"
+"POT-Creation-Date: 2024-03-25 19:10+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Language: en\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "${count} item(s) cut."
 msgstr ""
 
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Content:"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Copy or cut one or more items to paste."
 msgstr ""
 
@@ -81,7 +81,7 @@ msgstr ""
 msgid "Delete"
 msgstr "Delete"
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Disallowed to paste item(s)."
 msgstr ""
 
@@ -212,7 +212,7 @@ msgstr "Info-Folder"
 msgid "Installs the docpool.base add-on."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Item(s) pasted."
 msgstr ""
 
@@ -276,19 +276,19 @@ msgstr ""
 msgid "No transfer to"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more items not moveable."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more selected items is locked."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more selected items is no longer available."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Paste could not find clipboard content."
 msgstr ""
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_cut.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Please select one or more items to cut."
 msgstr ""
 
@@ -433,7 +433,7 @@ msgstr ""
 msgid "The group folder could not be deleted because of protected documents. Please check!"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
 msgstr ""
 
@@ -487,11 +487,11 @@ msgstr ""
 msgid "Type extension for transferable types"
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unauthorized to paste item(s)."
 msgstr ""
 
-#: docpool.base/docpool/base/skins/docpool_base_templates/folder_paste.cpy
+#: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unknown error occured. Please check your logs"
 msgstr ""
 
@@ -759,7 +759,6 @@ msgstr ""
 
 #. Default: "Cancel"
 #: docpool.base/docpool/base/browser/folderbase.py
-#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
 msgid "label_cancel"
 msgstr "Cancel"
 
@@ -787,11 +786,6 @@ msgstr "Modified by"
 #: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_wdate"
 msgstr "Date of last workflow action"
-
-#. Default: "Continue with files & images"
-#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
-msgid "label_continue"
-msgstr "Continue with files & images"
 
 #. Default: "Dashboard"
 #: docpool.base/docpool/base/profiles/default/types/Dashboard.xml
@@ -927,11 +921,6 @@ msgstr ""
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "label_elandoccollection_doctypes"
 msgstr ""
-
-#. Default: "Save"
-#: docpool.base/docpool/base/skins/docpool_base_templates/dpdocument_edit.pt
-msgid "label_save"
-msgstr "Save"
 
 #. Default: "Document types allowed in this folder"
 #: docpool.base/docpool/base/content/simplefolder.py

@@ -41,7 +41,6 @@
       />
 
   <include package=".browser" />
-  <include file="skins.zcml" />
 
   <browser:page
       name="main_template"
