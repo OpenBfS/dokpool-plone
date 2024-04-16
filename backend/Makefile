@@ -187,7 +187,7 @@ fg: ## Start a Plone instance in debug-mode on localhost:8080
 
 .PHONY: build-image
 build-image: sources/contentimport  ## Build Docker Image
-	@DOCKER_BUILDKIT=1 docker buildx build --provenance=false -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) .
+	@DOCKER_BUILDKIT=1 docker buildx build --load --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) .
 
 .PHONY: build-image-ci
 build-image-ci: sources/contentimport build-image ## Build Docker Image
