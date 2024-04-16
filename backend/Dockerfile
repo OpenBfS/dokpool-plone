@@ -32,11 +32,6 @@ EOT
 # Stage to build dokpool
 FROM plone/server-builder:${PLONE_VERSION} as builder
 
-ARG SSH_PRIVATE_KEY
-ENV SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}
-ARG SSH_KNOWN_HOSTS
-ENV SSH_KNOWN_HOST=${SSH_KNOWN_HOSTS}
-
 WORKDIR /app
 
 # Add local code
@@ -46,24 +41,6 @@ COPY . .
 RUN <<EOT
     set -e
     apt install -y --no-install-recommends openssh-client ca-certificates
-    ## Run ssh-agent (inside the build environment)
-    eval $(ssh-agent -s)
-
-    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-    ## We're using tr to fix line endings which makes ed25519 keys work
-    ## without extra base64 encoding.
-    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
-    echo ${SSH_PRIVATE_KEY} | tr -d '\r' | ssh-add -
-
-    ## Create the SSH directory and give it the right permissions
-    mkdir -p ~/.ssh
-    chmod 700 ~/.ssh
-
-    ## Assuming you created the SSH_KNOWN_HOSTS variable, uncomment the
-    ## following two lines.
-    echo ${SSH_KNOWN_HOSTS} >> ~/.ssh/known_hosts
-    chmod 644 ~/.ssh/known_hosts
-
     bin/pip install mxdev
     mv requirements-docker.txt requirements.txt
     # remove all test-extras from mx.ini
@@ -93,6 +70,3 @@ RUN <<EOT
     set -e
     ln -s /data /app/var
 EOT
-
-# Trigger shell-script to add site, create demo-content and start the site
-CMD ["/app/scripts/build_demo_site.sh"]

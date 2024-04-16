@@ -32,7 +32,7 @@ USER_INFO=$$(id -u ${CURRENT_USER})
 LINT=docker run --rm -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} check
 FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} format
 
-IMAGE_NAME=ghcr.io/starzel/dokpool
+IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
 IMAGE_TAG=latest
 
 # Python checks
@@ -112,8 +112,11 @@ i18n: bin/i18ndude ## Update locales
 # TODO `make build`
 # build:
 
+sources/contentimport:  ## checkout contentimport
+	git clone gitlab@git.starzel.de:bfs/contentimport.git sources/contentimport branch=distribution
+
 .PHONY: build-dev
-build-dev: config ## pip install Plone packages
+build-dev: config sources/contentimport ## pip install Plone packages
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	bin/mxdev -c mx.ini
 	bin/pip install -r requirements-mxdev.txt
@@ -183,8 +186,12 @@ fg: ## Start a Plone instance in debug-mode on localhost:8080
 	PYTHONWARNINGS=ignore ./bin/runwsgi -d instance/etc/zope.ini
 
 .PHONY: build-image
-build-image:  ## Build Docker Image
-	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION)
+build-image: sources/contentimport  ## Build Docker Image
+	@DOCKER_BUILDKIT=1 docker buildx build --provenance=false -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) .
+
+.PHONY: build-image-ci
+build-image-ci: sources/contentimport build-image ## Build Docker Image
+	@DOCKER_BUILDKIT=1 docker push $(IMAGE_NAME):$(IMAGE_TAG)
 
 # Theme and Webpack stuff
 # theme vars
