@@ -81,12 +81,12 @@ deploy_dev:
   script:
     # Remove all unused images
     - docker system prune -a -f
-    - docker pull git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME
+    - docker pull git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
     # Stop if it is running
     - docker stop dokpool-review-py3 || true
     - docker rm dokpool-review-py3 || true
     # Create site with demo data and start site
-    - docker run --detach --publish 8080:8080 -e GIT_COMMIT=$CI_COMMIT_SHORT_SHA -e GIT_REF_NAME=$CI_COMMIT_REF_NAME --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool/py3:$CI_COMMIT_REF_NAME /app/scripts/build_demo_site.sh
+    - docker run --detach --publish 8080:8080 -e GIT_COMMIT=$CI_COMMIT_SHORT_SHA -e GIT_REF_NAME=$CI_COMMIT_REF_NAME --name dokpool-review-py3 git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME /app/scripts/build_demo_site.sh
   environment:
     name: dev
     url: https://review-two-bfs.starzel.de/
