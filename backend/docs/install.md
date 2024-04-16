@@ -246,9 +246,10 @@ Das Label "review" setzen.
     $ mkdir bfs-test && cd bfs-test
     $ mkdir data && cd data
     $ tar xf <path to db>/db.tar -C .
-    $ mkdir log instance cache
+    $ mv blobs blobstorage
+    $ find blobstorage -type f -name "*.blob" -print -exec chmod 666 {} \;
     $ cd ..
     $ docker login git.starzel.de:5050 -u <gitlab-login> -p <password>
-    $ docker pull git.starzel.de:5050/bfs/dokpool/py3:python3
-    $ docker run --publish 8080:8080 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool/py3:python3
+    $ docker pull git.starzel.de:5050/bfs/dokpool:python3
+    $ docker run --publish 8080:8080 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool:python3
     # Open http://localhost:8080

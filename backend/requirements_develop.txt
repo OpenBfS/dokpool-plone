@@ -4,6 +4,3 @@
 # Extend with some Dev tools for local development
 Products.PDBDebugMode
 pdbpp
-
-# custom exportimport for dokpool
-contentimport

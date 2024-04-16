@@ -15,6 +15,10 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
+# Set distributions still in development
+DISTRIBUTIONS="docpooldemo"
+ALLOWED_DISTRIBUTIONS="docpooldemo"
+
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 PLONE_VERSION=$$(cat version.txt)
@@ -28,8 +32,8 @@ USER_INFO=$$(id -u ${CURRENT_USER})
 LINT=docker run --rm -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} check
 FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} format
 
-IMAGE_NAME=ghcr.io/starzel/dokpool
-IMAGE_TAG=latest
+IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
+IMAGE_TAG=${CI_COMMIT_REF_NAME}
 
 # Python checks
 PYTHON?=python3
@@ -87,7 +91,7 @@ clean-test: ## remove test and coverage artifacts
 bin/pip:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-	bin/pip install -U "setuptools==69.0.3" "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.0"
+	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.2"
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
@@ -108,14 +112,17 @@ i18n: bin/i18ndude ## Update locales
 # TODO `make build`
 # build:
 
+sources/contentimport:  ## checkout contentimport
+	git clone --branch=distribution gitlab@git.starzel.de:bfs/contentimport.git sources/contentimport
+
 .PHONY: build-dev
-build-dev: config ## pip install Plone packages
+build-dev: config sources/contentimport ## pip install Plone packages
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	bin/mxdev -c mx.ini
 	bin/pip install -r requirements-mxdev.txt
 
 .PHONY: build-dev-develop
-build-dev-develop: config ## pip install Plone packages
+build-dev-develop: config ## pip install Plone packages with debug-tools
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	bin/mxdev -c mx_develop.ini
 	bin/pip install -r requirements-mxdev.txt
@@ -159,8 +166,8 @@ test_quiet: ## run tests removing deprecation warnings
 	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src
 
 .PHONY: create-site
-create-site: instance/etc/zope.ini ## Create a new site from scratch
-	PYTHONWARNINGS=ignore ./bin/zconsole run instance/etc/zope.conf ./scripts/create_site.py
+create-site: ## Create a new site from scratch
+	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) ALLOWED_DISTRIBUTIONS=$(DISTRIBUTIONS) PYTHONWARNINGS=ignore ./bin/zconsole run instance/etc/zope.conf scripts/create_site.py
 
 .PHONY: start
 start: ## Start a Plone instance on localhost:8080
@@ -179,8 +186,12 @@ fg: ## Start a Plone instance in debug-mode on localhost:8080
 	PYTHONWARNINGS=ignore ./bin/runwsgi -d instance/etc/zope.ini
 
 .PHONY: build-image
-build-image:  ## Build Docker Image
-	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION)
+build-image: sources/contentimport  ## Build Docker Image
+	@DOCKER_BUILDKIT=1 docker buildx build --load --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) .
+
+.PHONY: build-image-ci
+build-image-ci: sources/contentimport build-image ## Build Docker Image
+	@DOCKER_BUILDKIT=1 docker push $(IMAGE_NAME):$(IMAGE_TAG)
 
 # Theme and Webpack stuff
 # theme vars

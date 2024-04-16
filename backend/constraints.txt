@@ -5,6 +5,10 @@ Products.PloneKeywordManager == 6.0.0
 pygeoif == 1.2.0
 pypdf == 3.17.1
 
+# Migration and Demo content
+collective.exportimport == 1.12
+plone.distribution == 1.0.0b4
+
 # Relstorage
 RelStorage == 4.0.0
 perfmetrics == 4.0.0

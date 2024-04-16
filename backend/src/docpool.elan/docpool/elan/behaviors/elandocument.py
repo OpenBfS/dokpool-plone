@@ -181,11 +181,9 @@ class ELANDocument(FlexibleView):
 
     def typeAndCat(self):
         """ """
-        #        print self
         dto = self.context.docTypeObj()
         if dto:
-            #            print dto
-            if IDocType.providedBy(dto):
+            if IDocType.providedBy(dto) and IELANDocType.providedBy(dto):
                 return dto.title, IELANDocType(dto).categories()
             else:
                 return dto.title, []

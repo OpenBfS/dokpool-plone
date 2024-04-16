@@ -302,7 +302,7 @@ class DPDocument(Container, Extendable, ContentBase):
         dto = config_folder["dtypes"].get(et, None)
 
         if not dto:
-            log("No DocType Object for type name '%s'", et)
+            logger.info("No DocType Object for type name '%s'", et)
         return dto
 
     def publishedImmediately(self, raw=False):

@@ -23,7 +23,7 @@
       <p>Available Users after this has run:</p>
       <ul>
         <li>user1 (password: dp_user1): User in Bund with access to Elan, Doksys and REI and in the bund_Senders (ContentSender) group</li>
-        <li>user2 (password: dp_user1): User in Hessen with access to Elan and Doksys and in the hessen_Receivers (ContentReceiver) group</li>
+        <li>user2 (password: dp_user2): User in Hessen with access to Elan and Doksys and in the hessen_Receivers (ContentReceiver) group</li>
         <li>aufsicht_he (password: dp_aufsicht_he): REI User in bund that can add reireports</li>
         <li>betreiber_he (password: dp_betreiber_he): REI User in bund that can add reireports</li>
         <li>aufsicht_by (password: dp_aufsicht_by): REI User in bund that can add reireports</li>
