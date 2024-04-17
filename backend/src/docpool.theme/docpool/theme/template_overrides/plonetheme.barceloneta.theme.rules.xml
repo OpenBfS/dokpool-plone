@@ -41,8 +41,8 @@
   <replace css:theme="#portal-logo" css:content="#portal-logo" mode="raw" />
   <drop css:content="#portal-logo"  />
 
-  <replace css:theme="#scenario_box" css:content="#scenario_box" mode="raw" />
-  <drop css:content="#scenario_box"  />
+  <replace css:theme="#scenario_box" css:content="#portal-top #scenario_box" mode="raw" />
+  <drop css:content="#portal-top #scenario_box"  />
 
   <replace css:theme-children="#portal-top" css:content-children="#portal-header" />
 
