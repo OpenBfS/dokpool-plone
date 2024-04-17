@@ -217,4 +217,3 @@ watch-theme: ## Develop the theme
 .PHONY: build-theme
 build-theme: ## Build the theme
 	cd $(BACKEND_FOLDER) && npm run build
-
