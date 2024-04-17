@@ -195,8 +195,7 @@ build-image-ci: sources/contentimport build-image ## Build Docker Image
 
 # Theme and Webpack stuff
 # theme vars
-webpack_dir=$(BACKEND_FOLDER)/src/docpool.theme/docpool/theme/webpack_resources
-build_dir=$(webpack_dir)/theme/docpooltheme
+build_dir=$(BACKEND_FOLDER)/src/docpool.theme/docpool/theme/static/build
 
 .PHONY: clean-theme
 clean-theme: ## remove theme build
@@ -204,28 +203,18 @@ clean-theme: ## remove theme build
 	mkdir -p $(build_dir)
 
 .PHONY: purge-theme
-purge-theme:  ## Purge build files/node_modules/.plone cache
-	rm -rf $(build_dir)
-	mkdir -p $(build_dir)
-	rm -rf $(webpack_dir)/node_modules
-	rm -rf $(webpack_dir)/.plone
+purge-theme: clean-theme ## Purge build files/node_modules/.plone cache
+	rm -rf $(BACKEND_FOLDER)/node_modules
 
 .PHONY: install-theme
 install-theme: ## Install js dependencies for webpack
-	cd $(webpack_dir) && npm install
+	cd $(BACKEND_FOLDER) && npm install
 
 .PHONY: watch-theme
 watch-theme: ## Develop the theme
-	cd $(webpack_dir) && npm run watch
-
-.PHONY: update-bundle
-update-bundle: clean-theme  ## Update bundle files
-	cd $(webpack_dir) && npm run build
+	cd $(BACKEND_FOLDER) && npm run watch
 
 .PHONY: build-theme
 build-theme: ## Build the theme
-	cd $(webpack_dir) && npm run build
+	cd $(BACKEND_FOLDER) && npm run build
 
-commit-bundle: update-bundle  ## Update and commit bundle
-	git add $(build_dir)
-	git commit -m 'Update bundle files' $(build_dir)
