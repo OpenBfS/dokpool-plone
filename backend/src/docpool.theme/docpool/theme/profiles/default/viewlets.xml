@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object>
- <order manager="plone.portalheader" skinname="docpool.theme">
+ <order manager="plone.portalheader">
   <viewlet name="docpool.elan.events"/>
   <viewlet name="docpool.logo"/>
   <viewlet name="plone.logo"/>
@@ -10,25 +10,22 @@
   <viewlet name="plone.app.i18n.locales.languageselector"/>
   <viewlet name="plone.membertools"/>
  </order>
- <order manager="plone.portalheader" skinname="docpool.theme">
+ <order manager="plone.portalheader">
   <viewlet name="plone.logo" />
   <viewlet name="docpool.time" />
   <viewlet name="plone.searchbox" />
   <viewlet name="plone.anontools" />
   <viewlet name="plone.app.i18n.locales.languageselector" />
  </order>
- <hidden manager="plone.portalfooter"
-         skinname="docpool.theme">
+ <hidden manager="plone.portalfooter">
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.analytics"/>
  </hidden>
- <hidden manager="plone.portalheader"
-         skinname="docpool.theme">
+ <hidden manager="plone.portalheader">
   <viewlet name="plone.logo"/>
  </hidden>
- <hidden manager="plone.belowcontenttitle"
-         skinname="docpool.theme">
+ <hidden manager="plone.belowcontenttitle">
   <viewlet name="plone.documentbyline"/>
  </hidden>
 </object>
