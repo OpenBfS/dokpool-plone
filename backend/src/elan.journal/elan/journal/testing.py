@@ -40,8 +40,6 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML("testing.zcml", package=elan.journal)
 
     def setUpPloneSite(self, portal):
-        # required because the templates in elan.journal use skin-scripts from docpool.base
-        applyProfile(portal, "docpool.base:default")
         applyProfile(portal, "elan.journal:default")
         applyProfile(portal, "docpool.doksys:default")
         applyProfile(portal, "docpool.elan:default")

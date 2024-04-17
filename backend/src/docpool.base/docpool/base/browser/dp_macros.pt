@@ -104,7 +104,6 @@ buttons = view.dp_buttons(batch)
 
                             <metal:block define-slot="entry">
                                 <tal:if condition="nocall:item_obj">
-                                    <!-- Image is in Products.CMFPlone/skins/plone_images -->
                                     <td class="loading_indicator" colspan="3">
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif" />
                                     </td>
@@ -547,7 +546,6 @@ quoted_id = quote_plus(econtext["b"].getId());
 
                             <metal:block define-slot="entry">
                                 <tal:if condition="nocall:item_obj">
-                                    <!-- Image is in Products.CMFPlone/skins/plone_images -->
                                     <td class="loading_indicator" colspan="3">
                                     <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif" />
                                     </td>
