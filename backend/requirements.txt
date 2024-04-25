@@ -7,6 +7,7 @@ pas.plugins.ldap
 eea.facetednavigation
 collective.impersonate
 waitress_fastlisten
+coverage
 
 # We use the same requirements.txt for filestorage and relstorage
 RelStorage

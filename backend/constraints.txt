@@ -48,3 +48,6 @@ zope.dublincore == 5.0
 
 # collective.excelexport
 xlwt == 1.3.0
+
+# coverage
+coverage == 7.5.0

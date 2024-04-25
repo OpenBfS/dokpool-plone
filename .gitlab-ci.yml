@@ -132,7 +132,7 @@ unit_tests:
     # build
     - cd backend
     - make build-dev
-    - make test_quiet
+    - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
     paths:

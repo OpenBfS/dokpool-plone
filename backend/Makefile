@@ -158,8 +158,18 @@ lint-zpretty: ## validate ZCML/XML using zpretty
 
 .PHONY: test
 test: ## run tests
-	./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src -D
+	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src -D
 
+.PHONY: coverage
+coverage: ## generate test-coverage report
+	@echo "$(GREEN)==> Erasing old coverage results$(RESET)"
+	./bin/coverage erase
+	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
+	./bin/coverage run -p --source=src ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src || exit 1
+	@echo "$(GREEN)==> Creating test coverage report$(RESET)"
+	./bin/coverage combine
+	./bin/coverage report
+	./bin/coverage html
 
 .PHONY: test_quiet
 test_quiet: ## run tests removing deprecation warnings
