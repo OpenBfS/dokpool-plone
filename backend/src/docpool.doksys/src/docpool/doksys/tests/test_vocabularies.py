@@ -9,7 +9,7 @@ from zope.schema.interfaces import IVocabularyTokenized
 import unittest
 
 
-class NetworkOperatorsIntegrationTest(unittest.TestCase):
+class TestVocabularies(unittest.TestCase):
     layer = DOCPOOL_DOKSYS_INTEGRATION_TESTING
 
     def setUp(self):
@@ -27,3 +27,25 @@ class NetworkOperatorsIntegrationTest(unittest.TestCase):
         self.assertEqual(
             vocabulary.getTerm("Schleswig-Holstein").title, _("Schleswig-Holstein")
         )
+
+    def test_all_vocabularies(self):
+        vocabularies = [
+            "docpool.doksys.NetworkOperators",
+            "docpool.doksys.Dom",
+            "docpool.doksys.LegalBase",
+            "docpool.doksys.MeasuringProgram",
+            "docpool.doksys.Purpose",
+            "docpool.doksys.Status",
+            "docpool.doksys.OperationMode",
+            "docpool.doksys.DataType",
+            "docpool.doksys.SampleType",
+            "docpool.doksys.MeasurementCategory",
+            "docpool.doksys.Duration",
+            "docpool.doksys.InfoType",
+            "docpool.doksys.Area",
+        ]
+        for name in vocabularies:
+            factory = getUtility(IVocabularyFactory, name)
+            self.assertTrue(IVocabularyFactory.providedBy(factory))
+            vocabulary = factory(self.portal)
+            self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
