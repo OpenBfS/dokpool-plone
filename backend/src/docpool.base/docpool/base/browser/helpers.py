@@ -1,4 +1,5 @@
 from docpool.base.utils import activateAppFilter
+from docpool.base.utils import get_docpool_for_user
 from docpool.base.utils import is_admin
 from docpool.base.utils import is_contentadmin
 from docpool.base.utils import is_individual
@@ -32,29 +33,11 @@ class RootRedirectView(BrowserView):
         if is_admin:
             return response.redirect(self.context.absolute_url() + "/folder_contents")
 
-        # 3. Normal users have a dp assigned to them. Redirect to it.
-        current_user = api.user.get_current()
-        if dp_uid := current_user.getProperty("dp"):
-            if obj := api.content.get(UID=dp_uid):
-                return response.redirect(obj.absolute_url())
+        # 3. Redirect to users dokpool
+        if obj := get_docpool_for_user(api.user.get_current()):
+            return response.redirect(obj.absolute_url())
 
-        # 4. No dp's or user without access to any dp.
-        brains = api.content.find(portal_type="DocumentPool", sort_on="sortable_title")
-        if not brains:
-            return "No dokpool found."
-
-        # 5. Some users have the id of a dp as prefix. Redirect to that.
-        username = current_user.getUserName()
-        user_prefix = username.split("_")[0]
-        dokpool_prefix = user_prefix if username != user_prefix else None
-        if dokpool_prefix:
-            for brain in brains:
-                obj = brain.getObject()
-                if obj.myPrefix() == dokpool_prefix:
-                    return response.redirect(obj.absolute_url())
-
-        # 6. Fallback to first available dp
-        return response.redirect(brains[0].getPath())
+        return "No dokpool found."
 
 
 class DocPoolURL(BrowserView):
