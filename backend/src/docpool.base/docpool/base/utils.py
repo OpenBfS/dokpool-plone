@@ -121,9 +121,13 @@ def getGroupsForCurrentUser(obj):
     if not content:
         return results
 
-    gtool = getToolByName(obj, "portal_groups")
     # find folder "Groups" through acquisition  - duh...
-    for item in content.Groups.getFolderContents():
+    groups_folder = aq_get(content, "Groups", None)
+    if not groups_folder:
+        return results
+
+    gtool = getToolByName(obj, "portal_groups")
+    for item in groups_folder.restrictedTraverse("@@contentlisting")():
         try:
             grp = gtool.getGroupById(item.id)
             etypes = grp.getProperty("allowedDocTypes", [])
