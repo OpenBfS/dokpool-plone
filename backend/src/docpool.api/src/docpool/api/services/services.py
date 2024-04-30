@@ -8,6 +8,8 @@ from zope.component import queryMultiAdapter
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
+import json
+
 
 @implementer(IPublishTraverse)
 class GetPrimaryDocumentpool(Service):
@@ -172,3 +174,8 @@ class GetGroupFolders(Service):
             "getId": ids,
         }
         return SearchHandler(self.context, self.request).search(query)
+
+
+class GetScenarioHistory(Service):
+    def reply(self):
+        return json.loads(self.context.changelog or "[]")

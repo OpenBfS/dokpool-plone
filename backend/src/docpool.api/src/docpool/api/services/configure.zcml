@@ -36,4 +36,12 @@
     permission="zope2.View"
     />
 
+  <plone:service
+    method="GET"
+    name="@scenario-history"
+    for="docpool.elan.content.dpevent.IDPEvent"
+    factory=".services.GetScenarioHistory"
+    permission="zope2.View"
+    />
+
 </configure>
