@@ -48,6 +48,45 @@ class GetPrimaryDocumentpool(Service):
 
 
 @implementer(IPublishTraverse)
+class GetDocumentpools(Service):
+    """
+    Return the ids of all dokpools the current user belongs to
+
+    curl -i -X GET http://localhost:8081/dokpool/@get_documentpools/user1
+        -H "Accept: application/json" --user admin:secret
+
+    """
+
+    def __init__(self, context, request):
+        super().__init__(context, request)
+        self.params = []
+
+    def publishTraverse(self, request, name):
+        # Consume any path segments after /@addons as parameters
+        self.params.append(name)
+        return self
+
+    def reply(self):
+        if self.params:
+            try:
+                with api.env.adopt_user(self.params[0]):
+                    brains = api.content.find(
+                        portal_type="DocumentPool", sort_on="path"
+                    )
+            except api.exc.UserNotFoundError:
+                self.request.response.setStatus(404)
+                return {
+                    "error": {
+                        "type": "Not Found",
+                        "message": "No such user: %r" % self.params[0],
+                    }
+                }
+        else:
+            brains = api.content.find(portal_type="DocumentPool", sort_on="path")
+        return [i.id for i in brains]
+
+
+@implementer(IPublishTraverse)
 class GetUserFolder(Service):
     """
     Return the user folder object within the ESD.

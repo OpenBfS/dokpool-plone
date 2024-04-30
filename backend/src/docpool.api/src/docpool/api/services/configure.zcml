@@ -14,6 +14,14 @@
 
   <plone:service
     method="GET"
+    name="@get_documentpools"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".services.GetDocumentpools"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="GET"
     name="@get_user_folder"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     factory=".services.GetUserFolder"
