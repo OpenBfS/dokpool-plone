@@ -34,7 +34,7 @@ class GetUserFolder(Service):
     """
 
     def __init__(self, context, request):
-        super(GetUserFolder, self).__init__(context, request)
+        super().__init__(context, request)
         self.esdname = None
 
     def publishTraverse(self, request, name):
@@ -55,7 +55,7 @@ class GetUserFolder(Service):
                 esdpath = brains[0].getPath()
         if not esdpath:
             return
-        userfolder_path = "{}/content/Members/{}".format(esdpath, username)
+        userfolder_path = f"{esdpath}/content/Members/{username}"
         obj = api.content.get(path=userfolder_path)
         if obj:
             serializer = queryMultiAdapter((obj, self.request), ISerializeToJson)
@@ -73,7 +73,7 @@ class GetGroupFolders(Service):
     """
 
     def __init__(self, context, request):
-        super(GetGroupFolders, self).__init__(context, request)
+        super().__init__(context, request)
         self.esdname = None
 
     def publishTraverse(self, request, name):
