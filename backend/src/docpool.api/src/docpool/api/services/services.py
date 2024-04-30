@@ -9,16 +9,40 @@ from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
 
+@implementer(IPublishTraverse)
 class GetPrimaryDocumentpool(Service):
     """
-    Return the ESD the user belongs to - or the first one he has access to if he is a global user.
+    Return the ESD the current user belongs to - or the first one he has access to if he is a global user.
+    Optionally specify a userid.
 
-    curl -i -X GET http://localhost:8081/dokpool/@get_primary_documentpool
+    curl -i -X GET http://localhost:8081/dokpool/@get_primary_documentpool/user1
         -H "Accept: application/json" --user admin:secret
+
     """
 
+    def __init__(self, context, request):
+        super().__init__(context, request)
+        self.params = []
+
+    def publishTraverse(self, request, name):
+        # Consume any path segments after /@addons as parameters
+        self.params.append(name)
+        return self
+
     def reply(self):
-        obj = get_docpool_for_user()
+        if self.params:
+            user = api.user.get(self.params[0])
+            if user is None:
+                self.request.response.setStatus(404)
+                return {
+                    "error": {
+                        "type": "Not Found",
+                        "message": "No such user: %r" % self.userid,
+                    }
+                }
+        else:
+            user = api.user.get_current()
+        obj = get_docpool_for_user(user)
         serializer = queryMultiAdapter((obj, self.request), ISerializeToJson)
         return serializer(include_items=False)
 
@@ -35,24 +59,24 @@ class GetUserFolder(Service):
 
     def __init__(self, context, request):
         super().__init__(context, request)
-        self.esdname = None
+        self.params = []
 
     def publishTraverse(self, request, name):
-        if self.esdname is None:
-            self.esdname = name
+        # Consume any path segments after /@addons as parameters
+        self.params.append(name)
         return self
 
     def reply(self):
         esdpath = None
         user = api.user.get_current()
         username = user.getUserName().replace("-", "--")
-        if not self.esdname:
-            esd = get_docpool_for_user(user)
-            esdpath = "/".join(esd.getPhysicalPath())
-        else:
-            brains = api.content.find(portal_type="DocumentPool", getId=self.esdname)
+        if self.params:
+            brains = api.content.find(portal_type="DocumentPool", getId=self.params[0])
             if brains and len(brains) == 1:
                 esdpath = brains[0].getPath()
+        else:
+            esd = get_docpool_for_user(user)
+            esdpath = "/".join(esd.getPhysicalPath())
         if not esdpath:
             return
         userfolder_path = f"{esdpath}/content/Members/{username}"
@@ -74,20 +98,20 @@ class GetGroupFolders(Service):
 
     def __init__(self, context, request):
         super().__init__(context, request)
-        self.esdname = None
+        self.params = []
 
     def publishTraverse(self, request, name):
-        if self.esdname is None:
-            self.esdname = name
+        # Consume any path segments after /@addons as parameters
+        self.params.append(name)
         return self
 
     def reply(self):
         esdpath = None
-        if not self.esdname:
+        if not self.params:
             esd = get_docpool_for_user()
             esdpath = "/".join(esd.getPhysicalPath())
         else:
-            brains = api.content.find(portal_type="DocumentPool", getId=self.esdname)
+            brains = api.content.find(portal_type="DocumentPool", getId=self.params[0])
             if brains and len(brains) == 1:
                 esd = brains[0].getObject()
                 esdpath = brains[0].getPath()
