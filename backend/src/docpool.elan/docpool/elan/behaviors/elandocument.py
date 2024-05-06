@@ -193,7 +193,7 @@ class ELANDocument(FlexibleView):
         """ """
         dto = self.context.docTypeObj()
         if dto:
-            if IDocType.providedBy(dto) and IELANDocType.providedBy(dto):
+            if IDocType.providedBy(dto) and IELANDocType(dto, None) is not None:
                 return dto.title, IELANDocType(dto).categories()
             else:
                 return dto.title, []
