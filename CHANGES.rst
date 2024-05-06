@@ -2,6 +2,24 @@ Changelog
 =========
 
 1.9.6 (22.03.24)
+1.9.7 (06.05.24)
+------------------
+
+Changed:
+
+- Prevent leaking local behaviors of parent to newly created object (#5565)
+  [pbauer]
+
+- Fix docpool_setup
+  [pbauer]
+  
+Technical:
+
+- Log all wsapi calls to find out what is used (#5597, #4626)
+  [pbauer] 
+
+
+1.9.6 (22.03.24)
 ------------------
 
 Changed:

@@ -4,6 +4,7 @@ from docpool.base.interfaces import IExtension
 from docpool.localbehavior.localbehavior import ILocalBehaviorSupporting
 from plone.dexterity.behavior import DexterityBehaviorAssignable
 from plone.dexterity.schema import SCHEMA_CACHE
+from plone.uuid.interfaces import IUUID
 from zope.component import adapter
 from zope.component import getMultiAdapter
 
@@ -26,10 +27,12 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         # Here we save the behaviors saved previously in the context in the request,
         # because we will need to check this list later
         # and it might be changed during a "save"
-        saved_behaviors = request.get("savedLocalBehaviors", [])
-        if not saved_behaviors:
+        uuid = IUUID(self.context, None)
+        cachekey = "savedLocalBehaviors_for_{}".format(uuid)
+        saved_behaviors = request.get(cachekey, [])
+        if uuid and not saved_behaviors:
             saved_behaviors = getattr(self.context, 'local_behaviors', [])[:]
-            request.set("savedLocalBehaviors", saved_behaviors)
+            request.set(cachekey, saved_behaviors)
         edited_behaviors.update(saved_behaviors)
 
         if IDPDocument.providedBy(self.context):

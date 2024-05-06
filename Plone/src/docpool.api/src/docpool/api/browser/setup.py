@@ -216,7 +216,7 @@ class DocpoolSetup(BrowserView):
             Exercise=True,
             TimeOfEvent=datetime.now(),
             OperationMode='routine',
-            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            SectorizingSampleTypes=[u'A', u'A1', u'A2', u'A3'],
             )
         log.info(u'Created dpevent')
 
@@ -246,7 +246,7 @@ class DocpoolSetup(BrowserView):
             Exercise=True,
             TimeOfEvent=datetime.now(),
             OperationMode='routine',
-            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            SectorizingSampleTypes=[u'A', u'A1', u'A2', u'A3'],
             )
         log.info(u'Created dpevent')
 
@@ -269,8 +269,8 @@ class DocpoolSetup(BrowserView):
             sampletype_ids = [u'A', u'B', u'F', u'G', u'I', u'L', u'M', u'N', u'S', u'Z']
             # add one dpdocument for each type (except reireport)
             for doctype in doctypes:
-                if doctype.id == 'reireport':
-                    # Do not create reireports here
+                if doctype.id in ["reireport", "doksysdok"]:
+                    # Do not create rei and doksys here
                     continue
                 new = api.content.create(
                     container=folder,
@@ -282,24 +282,8 @@ class DocpoolSetup(BrowserView):
                         u'<p>Text für {}</p>'.format(doctype.title),
                         'text/html',
                         'text/x-html-safe'),
-                    local_behaviors=['elan', 'doksys'],
+                    local_behaviors=['elan'],
                     scenarios=[dpevent.id],
-                    SampleType=[random.choice(sampletype_ids)],
-                    Area=u'D',
-                    DataType=[u'ONMON'],
-                    Dom=[u'84 _deposition_ground_beta surface activity_2 h'],
-                    Duration=u'1d',
-                    LegalBase=[u'IRMIS'],
-                    MeasurementCategory=[u'Si-31'],
-                    MeasuringProgram=u'Intensivmessprogramm',
-                    NetworkOperator=[u'Bremen'],
-                    OperationMode=u'Routine',
-                    Purpose=u'Standard-Info Bundesmessnetze',
-                    SamplingBegin=datetime.now(),
-                    SamplingEnd=datetime.now() + timedelta(hours=1),
-                    Status=u'geprueft',
-                    TrajectoryEndTime=datetime.now() + timedelta(hours=1),
-                    TrajectoryStartTime=datetime.now(),
                 )
                 api.content.create(
                     container=new,
@@ -323,23 +307,7 @@ class DocpoolSetup(BrowserView):
                 text=RichTextValue(u'<p>Bodenprobe!</p>', 'text/html', 'text/x-html-safe'),
                 docType='groundcontamination',
                 scenarios=[dpevent.id],
-                local_behaviors=['elan', 'doksys'],
-                Area=u'D',
-                DataType=[u'ONMON'],
-                Dom=[u'84 _deposition_ground_beta surface activity_2 h'],
-                Duration=u'1d',
-                LegalBase=[u'IRMIS'],
-                MeasurementCategory=[u'Si-31'],
-                MeasuringProgram=u'Intensivmessprogramm',
-                NetworkOperator=[u'Bremen'],
-                OperationMode=u'Routine',
-                Purpose=u'Standard-Info Bundesmessnetze',
-                SampleType=[u'B2'],
-                SamplingBegin=datetime.now(),
-                SamplingEnd=datetime.now() + timedelta(hours=1),
-                Status=u'geprueft',
-                TrajectoryEndTime=datetime.now() + timedelta(hours=1),
-                TrajectoryStartTime=datetime.now(),
+                local_behaviors=["elan"],
             )
             modified(new)
             api.content.create(
@@ -538,7 +506,7 @@ class DocpoolSetup(BrowserView):
             Exercise=True,
             TimeOfEvent=datetime.now(),
             OperationMode='routine',
-            SectorizingSampleTypes=[u'A', u'A1', u'A11', u'A12', u'A13', u'A2', u'A21', u'A22', u'A23', u'A24', u'A3', u'A31', u'A32', u'B11'],
+            SectorizingSampleTypes=[u'A', u'A1', u'A2', u'A3'],
             )
         log.info(u'Created test-event for hessen')
 
