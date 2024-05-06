@@ -110,8 +110,9 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     # item_class=app_title,
                 )
             )
-            for app_name in sorted(app_names):
-                app_title = appName(app_name)
+            for app_title, app_name in sorted(
+                {appName(i): i for i in app_names}.items()
+            ):
                 app_id = f"{dp_id}-{app_name}"
                 tree[dp_path].append(
                     dict(
