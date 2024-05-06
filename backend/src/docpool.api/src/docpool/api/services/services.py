@@ -17,7 +17,7 @@ class GetPrimaryDocumentpool(Service):
     Return the ESD the current user belongs to - or the first one he has access to if he is a global user.
     Optionally specify a userid.
 
-    curl -i -X GET http://localhost:8081/dokpool/@get_primary_documentpool/user1
+    curl -i -X GET http://localhost:8080/dokpool/@get_primary_documentpool/user1
         -H "Accept: application/json" --user admin:secret
 
     """
@@ -27,7 +27,7 @@ class GetPrimaryDocumentpool(Service):
         self.params = []
 
     def publishTraverse(self, request, name):
-        # Consume any path segments after /@addons as parameters
+        # Consume any path segments after /@<name> as parameters
         self.params.append(name)
         return self
 
@@ -39,7 +39,7 @@ class GetPrimaryDocumentpool(Service):
                 return {
                     "error": {
                         "type": "Not Found",
-                        "message": "No such user: %r" % self.userid,
+                        "message": "No such user: %r" % self.params[0],
                     }
                 }
         else:
@@ -54,7 +54,7 @@ class GetDocumentpools(Service):
     """
     Return the ids of all dokpools the current user belongs to
 
-    curl -i -X GET http://localhost:8081/dokpool/@get_documentpools/user1
+    curl -i -X GET http://localhost:8080/dokpool/@get_documentpools/user1
         -H "Accept: application/json" --user admin:secret
 
     """
@@ -64,7 +64,7 @@ class GetDocumentpools(Service):
         self.params = []
 
     def publishTraverse(self, request, name):
-        # Consume any path segments after /@addons as parameters
+        # Consume any path segments after /@<name> as parameters
         self.params.append(name)
         return self
 
@@ -95,7 +95,7 @@ class GetUserFolder(Service):
     By default the primary docpool is used.
     Optionally specify the id of a specific docpool.
 
-    curl -i -X GET http://localhost:8081/dokpool/@get_user_folder/bund -H "Accept: application/json" --user admin:secret
+    curl -i -X GET http://localhost:8080/dokpool/@get_user_folder/bund -H "Accept: application/json" --user admin:secret
     """
 
     def __init__(self, context, request):
@@ -103,7 +103,7 @@ class GetUserFolder(Service):
         self.params = []
 
     def publishTraverse(self, request, name):
-        # Consume any path segments after /@addons as parameters
+        # Consume any path segments after /@<name> as parameters
         self.params.append(name)
         return self
 
@@ -134,7 +134,7 @@ class GetGroupFolders(Service):
     By default the primary docpool is used.
     Optionally specify the id of a specific docpool.
 
-    curl -i -X GET http://localhost:8081/dokpool/@get_group_folders/bund -H "Accept: application/json" --user admin:secret
+    curl -i -X GET http://localhost:8080/dokpool/@get_group_folders/bund -H "Accept: application/json" --user admin:secret
     """
 
     def __init__(self, context, request):
@@ -142,7 +142,7 @@ class GetGroupFolders(Service):
         self.params = []
 
     def publishTraverse(self, request, name):
-        # Consume any path segments after /@addons as parameters
+        # Consume any path segments after /@<name> as parameters
         self.params.append(name)
         return self
 
