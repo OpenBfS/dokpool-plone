@@ -103,8 +103,8 @@ class DPDocumentcommentingView(BrowserView):
             (self.context, self.request, self), IViewletManager, "plone.belowcontent"
         )
         if manager:
-            manager.update()
             if viewlet := manager.get("plone.comments"):
+                viewlet.update()
                 return viewlet.render()
 
 
