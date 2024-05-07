@@ -22,18 +22,29 @@ class RootRedirectView(BrowserView):
 
     def __call__(self):
         response = self.request.response
+
+        # 1. Anonymous users must login
         if api.user.is_anonymous():
             return response.redirect(self.context.absolute_url() + "/login")
 
+        # 2. Admins get folder_contents
         is_admin = {"Manager", "Site Administrator"} & set(api.user.get_roles())
         if is_admin:
             return response.redirect(self.context.absolute_url() + "/folder_contents")
 
+        # 3. Normal users have a dp assigned to them. Redirect to it.
+        current_user = api.user.get_current()
+        if dp_uid := current_user.getProperty("dp"):
+            if obj := api.content.get(UID=dp_uid):
+                return response.redirect(obj.absolute_url())
+
+        # 4. No dp's or user without access to any dp.
         brains = api.content.find(portal_type="DocumentPool", sort_on="sortable_title")
         if not brains:
             return "No dokpool found."
 
-        username = api.user.get_current().getUserName()
+        # 5. Some users have the id of a dp as prefix. Redirect to that.
+        username = current_user.getUserName()
         user_prefix = username.split("_")[0]
         dokpool_prefix = user_prefix if username != user_prefix else None
         if dokpool_prefix:
@@ -41,6 +52,8 @@ class RootRedirectView(BrowserView):
                 obj = brain.getObject()
                 if obj.myPrefix() == dokpool_prefix:
                     return response.redirect(obj.absolute_url())
+
+        # 6. Fallback to first available dp
         return response.redirect(brains[0].getPath())
 
 
