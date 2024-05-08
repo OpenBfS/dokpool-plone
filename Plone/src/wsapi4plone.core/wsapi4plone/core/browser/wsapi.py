@@ -17,4 +17,5 @@ class WSAPI(object):
         self.builder = getUtility(IContextBuilder)
 
         self.logger.info('WSAPI request ACTUAL_URL: %s', self.request.ACTUAL_URL)
+        self.logger.info('WSAPI request args: %s', self.request.args)
         self.logger.info('WSAPI request form: %s', self.request.form)
