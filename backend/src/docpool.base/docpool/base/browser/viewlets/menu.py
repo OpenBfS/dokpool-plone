@@ -98,7 +98,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
 
         for dp, app_names in dp_apps:
             dp_id = dp.getId()
-            here = (self.context if current_dp_id == dp_id else dp).absolute_url()
+            url = (self.context if current_dp_id == dp_id else dp).absolute_url()
             dp_path = f"{self.navtree_path}/apps/{dp_id}"
             tree[apps_path].append(
                 dict(
@@ -106,7 +106,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     path=dp_path,
                     uid=dp_id,
                     title=f"{dp.title}",
-                    url=here,
+                    url=url,
                     review_state="visible",
                     # item_class=app_title,
                 )
@@ -121,7 +121,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                         path=f"{dp_path}/{app_name}",
                         uid=app_id,
                         title=f"{app_title}",
-                        url=f"{here}/setActiveApp?app={app_name}",
+                        url=f"{url}/setActiveApp?app={app_name}",
                         review_state="visible",
                         # item_class=app_title,
                     )
