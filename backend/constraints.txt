@@ -37,7 +37,7 @@ yafowil.yaml == 2.0
 
 # eea.facetednavigation and collective.eeafaceted.z3ctable
 collective.fingerpointing == 1.8.3
-eea.facetednavigation == 16.2
+eea.facetednavigation == 16.4
 file-read-backwards == 3.0.0
 imio.helpers == 0.80
 imio.pyutils == 0.31
