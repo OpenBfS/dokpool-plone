@@ -17,43 +17,21 @@ $(function () {
       });
       // Open all metatitle
       $("#z3ctabel-toggles .z3ctable-toggle-metatitle").on("click", function (e) {
-        var open_state_title = false;
-        if ($(this).hasClass("state_open")) {
-          open_state_title = true;
-          $(this).removeClass("state_open");
-        } else {
-          open_state_title = false;
-          $(this).addClass("state_open");
-        }
+        var isOpen = $(this).hasClass("state_open");
+        $(this).toggleClass("state_open");
         e.preventDefault();
-        $("#faceted_table .metatitle").each(function () {
-          // Its already open -> dont toggle
-          if (!$(this).hasClass("close")) {
-            $(this).click();
-          }
-        });
-        if (open_state_title) {
+        $("#faceted_table .metatitle.close").click();
+        if (!isOpen) {
           $("#faceted_table .metatitle").click();
         }
       });
       // Open all metainfos
       $("#z3ctabel-toggles .z3ctable-toggle-metadata").on("click", function (e) {
-        var open_state_data = false;
-        if ($(this).hasClass("state_open")) {
-          open_state_data = true;
-          $(this).removeClass("state_open");
-        } else {
-          open_state_data = false;
-          $(this).addClass("state_open");
-        }
+        var isOpen = $(this).hasClass("state_open");
+        $(this).toggleClass("state_open");
         e.preventDefault();
-        $("#faceted_table .metadata").each(function () {
-          // Its already open -> dont toggle
-          if (!$(this).hasClass("close")) {
-            $(this).click();
-          }
-        });
-        if (open_state_data) {
+        $("#faceted_table .metadata.close").click();
+        if (!isOpen) {
           $("#faceted_table .metadata").click();
         }
       });
