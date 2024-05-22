@@ -41,12 +41,13 @@ COPY . .
 RUN <<EOT
     set -e
     apt install -y --no-install-recommends openssh-client ca-certificates
-    bin/pip install mxdev
+    bin/pip install uv==0.1.45
+    bin/uv pip install mxdev
     mv requirements-docker.txt requirements.txt
     # remove all test-extras from mx.ini
     sed -i'' -e '/extras \= test/d' mx.ini
     bin/mxdev -c mx.ini
-    bin/pip install -r requirements-mxdev.txt
+    bin/uv pip install -r requirements-mxdev.txt
     bin/python /compile_mo.py
 EOT
 
