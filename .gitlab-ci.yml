@@ -131,6 +131,7 @@ unit_tests:
     - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev
     # build
     - cd backend
+    - export VIRTUAL_ENV=$(pwd)
     - make build-dev
     - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'

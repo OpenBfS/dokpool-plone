@@ -91,7 +91,7 @@ clean-test: ## remove test and coverage artifacts
 bin/pip:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.2"
+	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.2" "uv"
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
@@ -102,7 +102,7 @@ config: bin/pip  ## Create instance configuration
 # i18n
 bin/i18ndude: bin/pip
 	@echo "$(GREEN)==> Install translation tools$(RESET)"
-	bin/pip install i18ndude
+	bin/uv pip install i18ndude
 
 .PHONY: i18n
 i18n: bin/i18ndude ## Update locales
@@ -119,13 +119,13 @@ sources/contentimport:  ## checkout contentimport
 build-dev: config sources/contentimport ## pip install Plone packages
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	bin/mxdev -c mx.ini
-	bin/pip install -r requirements-mxdev.txt
+	bin/uv pip install -r requirements-mxdev.txt
 
 .PHONY: build-dev-develop
 build-dev-develop: config ## pip install Plone packages with debug-tools
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	bin/mxdev -c mx_develop.ini
-	bin/pip install -r requirements-mxdev.txt
+	bin/uv pip install -r requirements-mxdev.txt
 
 
 .PHONY: format
