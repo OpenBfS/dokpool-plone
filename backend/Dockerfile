@@ -1,7 +1,6 @@
 # syntax=docker/dockerfile:1
 ARG PLONE_VERSION=6.0.10.1
 
-
 # Stage to only build the theme
 FROM node:20-slim as node
 
@@ -31,6 +30,7 @@ EOT
 
 # Stage to build dokpool
 FROM plone/server-builder:${PLONE_VERSION} as builder
+ARG GIT_COMMIT='Not detected'
 
 WORKDIR /app
 
@@ -49,6 +49,7 @@ RUN <<EOT
     bin/mxdev -c mx.ini
     bin/uv pip install -r requirements-mxdev.txt
     bin/python /compile_mo.py
+    echo ${GIT_COMMIT} > GIT_COMMIT
 EOT
 
 # New layer that has all code so the site can run
