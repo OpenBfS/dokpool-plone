@@ -121,9 +121,13 @@ def getGroupsForCurrentUser(obj):
     if not content:
         return results
 
-    gtool = getToolByName(obj, "portal_groups")
     # find folder "Groups" through acquisition  - duh...
-    for item in content.Groups.getFolderContents():
+    groups_folder = aq_get(content, "Groups", None)
+    if not groups_folder:
+        return results
+
+    gtool = getToolByName(obj, "portal_groups")
+    for item in groups_folder.restrictedTraverse("@@contentlisting")():
         try:
             grp = gtool.getGroupById(item.id)
             etypes = grp.getProperty("allowedDocTypes", [])
@@ -401,3 +405,31 @@ def is_individual(context):
 
 def is_personal(context):
     return "content" in context.getPhysicalPath() and context.getId() != "content"
+
+
+def get_docpool_for_user(user=None):
+    if user is None:
+        user = api.user.get_current()
+
+    # 1. Normal users have a dp assigned to them.
+    if dp_uid := user.getProperty("dp"):
+        if obj := api.content.get(UID=dp_uid):
+            return obj
+
+    # 2. No dp's or user without access to any dp.
+    brains = api.content.find(portal_type="DocumentPool", sort_on="sortable_title")
+    if not brains:
+        return
+
+    # 3. Some users have the id of a dp as prefix. Redirect to that.
+    username = user.getUserName()
+    user_prefix = username.split("_")[0]
+    dokpool_prefix = user_prefix if username != user_prefix else None
+    if dokpool_prefix:
+        for brain in brains:
+            obj = brain.getObject()
+            if obj.myPrefix() == dokpool_prefix:
+                return obj
+
+    # 4. Fallback to first available dp
+    return brains[0].getObject()

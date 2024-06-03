@@ -1,0 +1,47 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="docpool.api">
+
+  <plone:service
+    method="GET"
+    name="@get_primary_documentpool"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".services.GetPrimaryDocumentpool"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="GET"
+    name="@get_documentpools"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".services.GetDocumentpools"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="GET"
+    name="@get_user_folder"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".services.GetUserFolder"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="GET"
+    name="@get_group_folders"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".services.GetGroupFolders"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="GET"
+    name="@scenario-history"
+    for="docpool.elan.content.dpevent.IDPEvent"
+    factory=".services.GetScenarioHistory"
+    permission="zope2.View"
+    />
+
+</configure>
