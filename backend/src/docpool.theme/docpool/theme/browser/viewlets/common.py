@@ -38,9 +38,13 @@ class LogoDocpoolViewlet(LogoViewlet):
 
     def read_git_version_file(self, filename):
         # Get the path to the pid file :)
-        varbase = os.path.dirname(getConfiguration().pid_filename)
-        project_root = os.path.abspath(os.path.join(varbase, ".."))
-        file_path = os.path.join(project_root, filename)
+        try:
+            varbase = os.path.dirname(getConfiguration().pid_filename)
+            project_root = os.path.abspath(os.path.join(varbase, ".."))
+            file_path = os.path.join(project_root, filename)
+        except AttributeError:
+            # Ignore if we have no access to file
+            return
         if not os.path.isfile(file_path):
             return
 
