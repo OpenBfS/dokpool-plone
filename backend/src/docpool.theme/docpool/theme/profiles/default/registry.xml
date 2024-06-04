@@ -49,11 +49,4 @@
         <value key="load_async">False</value>
         <value key="depends">plone</value>
     </records>
-    <record name="docpool.show_debug_info">
-        <field type="plone.registry.field.Bool">
-            <title>Show docpool debug info</title>
-            <required>False</required>
-        </field>
-        <value>False</value>
-    </record>
 </registry>

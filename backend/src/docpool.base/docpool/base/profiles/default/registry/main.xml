@@ -100,4 +100,11 @@
   <record name="plone.base.interfaces.syndication.ISiteSyndicationSettings.show_syndication_link">
     <value>True</value>
   </record>
+  <record name="docpool.show_debug_info">
+    <field type="plone.registry.field.Bool">
+      <title>Show docpool debug info</title>
+      <required>False</required>
+    </field>
+    <value>False</value>
+  </record>
 </registry>
