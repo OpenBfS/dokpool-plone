@@ -124,7 +124,10 @@
       </thead>
       <tbody>
         <tr tal:repeat="item python:changelog">
-          <td i18n:attributes="data-title" data-title="Date/User" tal:content="python: u'{} ({})'.format(item.get('Date', ''), item.get('User', ''))"></td>
+          <td i18n:attributes="data-title" data-title="Date/User">
+            <span style="white-space: nowrap">${python: item.get('Date', '')}</span><br/>
+            <span style="white-space: nowrap">${python: item.get('User', '')}</span>
+          </td>
           <td i18n:attributes="data-title" data-title="Type of event" i18n:translate="" tal:content="python: item.get('EventType', '')"></td>
           <td i18n:attributes="data-title" data-title="Phase" tal:content="python: item.get('Phase', '')"></td>
           <td i18n:attributes="data-title" data-title="State" i18n:translate="" tal:content="python: item.get('Status', '')"></td>
