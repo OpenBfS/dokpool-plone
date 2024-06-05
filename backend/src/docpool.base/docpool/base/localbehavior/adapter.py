@@ -28,11 +28,14 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         # because we will need to check this list later
         # and it might be changed during a "save"
         uuid = IUUID(self.context, None)
-        cachekey = f"savedLocalBehaviors_for_{uuid}"
-        saved_behaviors = request.get(cachekey, [])
-        if uuid and not saved_behaviors:
-            saved_behaviors = local_behaviors[:]
-            request.set(cachekey, saved_behaviors)
+        if uuid:
+            cachekey = "savedLocalBehaviors"
+            cache = request.get(cachekey, {})
+            if not cache:
+                request.set(cachekey, cache)
+            saved_behaviors = cache.setdefault(uuid, local_behaviors[:])
+        else:
+            saved_behaviors = local_behaviors
         edited_behaviors.update(saved_behaviors)
 
         if IDPDocument.providedBy(self.context):
