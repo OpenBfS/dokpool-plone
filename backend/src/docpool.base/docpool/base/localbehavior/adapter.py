@@ -22,6 +22,8 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         )
         edited_behaviors = set(edited_behaviors)
 
+        local_behaviors = getattr(self.context, "local_behaviors", [])
+
         # Here we save the behaviors saved previously in the context in the request,
         # because we will need to check this list later
         # and it might be changed during a "save"
@@ -29,7 +31,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         cachekey = f"savedLocalBehaviors_for_{uuid}"
         saved_behaviors = request.get(cachekey, [])
         if uuid and not saved_behaviors:
-            saved_behaviors = getattr(self.context, "local_behaviors", [])[:]
+            saved_behaviors = local_behaviors[:]
             request.set(cachekey, saved_behaviors)
         edited_behaviors.update(saved_behaviors)
 
@@ -37,7 +39,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
             dp_app_state = getMultiAdapter((self.context, request), name="dp_app_state")
             available_apps = dp_app_state.appsEffectiveForObject(request)
         else:
-            available_apps = getattr(self.context, "local_behaviors", [])
+            available_apps = local_behaviors
         edited_behaviors.update(available_apps)
 
         for behavior in SCHEMA_CACHE.behavior_registrations(self.context.portal_type):
