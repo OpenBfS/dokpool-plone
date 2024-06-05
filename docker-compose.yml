@@ -3,110 +3,60 @@ version: "3.8"
 name: dokpool
 
 services:
-  traefik:
-    image: traefik:v2.10
-
+  dokpool-zeoclient1:
+    profiles:
+      - dokpool_review
+    image: ${REGISTRY_HOST}imis3/dokpool:${DOKPOOL_VERSION}
     ports:
-      - 80:80
-
-    labels:
-      - traefik.enable=true
-      - traefik.constraint-label=public
-      - traefik.http.routers.traefik-public-http.rule=Host(`traefik.dokpool.localhost`)
-      - traefik.http.routers.traefik-public-http.entrypoints=http
-      - traefik.http.routers.traefik-public-http.service=api@internal
-      - traefik.http.services.traefik-public.loadbalancer.server.port=8000
-
-      # GENERIC MIDDLEWARES
-      - traefik.http.middlewares.gzip.compress=true
-      - traefik.http.middlewares.gzip.compress.excludedcontenttypes=image/png, image/jpeg, font/woff2
-
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-
-    command:
-      - --providers.docker
-      - --providers.docker.constraints=Label(`traefik.constraint-label`, `public`)
-      - --providers.docker.exposedbydefault=false
-      - --entrypoints.http.address=:80
-      - --accesslog
-      - --log
-      - --api
-  purger:
-    image: ghcr.io/kitconcept/cluster-purger:latest
-    platform: linux/amd64
+      - 8081:8081
     environment:
-      PURGER_SERVICE_NAME: varnish
-      PURGER_SERVICE_PORT: 80
-      PURGER_MODE: "compose"
-      PURGER_PUBLIC_SITES: "['dokpool.localhost']"
+      LISTEN_PORT: 8081
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
+    networks:
+      - dokpool-backend
 
-  varnish:
-    build:
-      context: devops/varnish
-    labels:
-      - traefik.enable=true
-      - traefik.constraint-label=public
-      # SERVICE
-      - traefik.http.services.svc-varnish.loadbalancer.server.port=80
-    depends_on:
-      - backend
-
-  backend:
-    build:
-      context: ./backend
+  dokpool-zeoclient2:
+    profiles:
+      - dokpool_review
+    image: ${REGISTRY_HOST}imis3/dokpool:${DOKPOOL_VERSION}
+    ports:
+      - 8082:8082
     environment:
-      RELSTORAGE_DSN: "dbname='${DB_NAME:-plone}' user='${DB_NAME:-plone}' host='${DB_HOST:-db}' password='${DB_PASSWORD:-VyovfrIWQMjT}' port='${DB_PORT:-5432}'"
-    depends_on:
-      - db
-    labels:
-      - traefik.enable=true
-      - traefik.constraint-label=public
-      # Services
-      - traefik.http.services.svc-backend.loadbalancer.server.port=8080
+      LISTEN_PORT: 8082
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
+    networks:
+      - dokpool-backend
 
-      # Middlewares
-      ## VHM rewrite /++api++/
-      - "traefik.http.middlewares.mw-backend-vhm-api.replacepathregex.regex=^/\\+\\+api\\+\\+($$|/.*)"
-      - "traefik.http.middlewares.mw-backend-vhm-api.replacepathregex.replacement=/VirtualHostBase/http/dokpool.localhost/Plone/++api++/VirtualHostRoot$$1"
-
-      ## VHM rewrite /ClassicUI/
-      - "traefik.http.middlewares.mw-backend-vhm-classic.replacepathregex.regex=^/ClassicUI($$|/.*)"
-      - "traefik.http.middlewares.mw-backend-vhm-classic.replacepathregex.replacement=/VirtualHostBase/http/dokpool.localhost/Plone/VirtualHostRoot/_vh_ClassicUI$$1"
-
-      ## Basic Authentication
-      ### Note: all dollar signs in the hash need to be doubled for escaping.
-      ### To create user:password pair, it's possible to use this command:
-      ### echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
-      ### Defaults to admin:admin
-      - traefik.http.middlewares.mw-backend-auth.basicauth.users=admin:$$apr1$$uZPT5Fgu$$AmlIdamxT5ipBvPlsdfD70
-      # Routers
-      ## /++api++/
-      ### Router: Varnish Public
-      - traefik.http.routers.rt-backend-api-public.rule=Host(`dokpool.localhost`) && PathPrefix(`/++api++`)
-      - traefik.http.routers.rt-backend-api-public.entrypoints=http
-      - traefik.http.routers.rt-backend-api-public.service=svc-varnish
-      - traefik.http.routers.rt-backend-api-public.middlewares=gzip
-
-      ### Router: Internal
-      - traefik.http.routers.rt-backend-api-internal.rule=Host(`dokpool.localhost`) && PathPrefix(`/++api++`) && Headers(`X-Varnish-Routed`, `1`)
-      - traefik.http.routers.rt-backend-api-internal.entrypoints=http
-      - traefik.http.routers.rt-backend-api-internal.service=svc-backend
-      - traefik.http.routers.rt-backend-api-internal.middlewares=gzip,mw-backend-vhm-api
-      ## /ClassicUI
-      - traefik.http.routers.rt-backend-classic.rule=Host(`dokpool.localhost`) && PathPrefix(`/ClassicUI`)
-      - traefik.http.routers.rt-backend-classic.entrypoints=http
-      - traefik.http.routers.rt-backend-classic.service=svc-backend
-      - traefik.http.routers.rt-backend-classic.middlewares=gzip,mw-backend-auth,mw-backend-vhm-classic
-
-  db:
-    image: postgres:14
+  # Only for development & test
+  # On production, we use the central patroni postgres
+  dokpool-postgres:
+    profiles:
+      - dokpool_review
+    image: postgres
     environment:
       POSTGRES_USER: plone
-      POSTGRES_PASSWORD: VyovfrIWQMjT
+      POSTGRES_PASSWORD: plone
       POSTGRES_DB: plone
-    volumes:
-      - vol-site-data:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
+    networks:
+      - dokpool-backend
 
-volumes:
-  vol-site-data: {}
+  dokpool-varnish:
+    profiles:
+      - dokpool_review
+    image: varnish
+    volumes:
+     - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
+    environment:
+      - VARNISH_BACKEND_HOST=dokpool-zeoclient2
+      - VARNISH_BACKEND_PORT=8081
+    ports:
+      - 80:80
+    networks:
+      - dokpool-backend
+      - traefik_frontend
+
+networks:
+  traefik_frontend:
+  dokpool-backend:
