@@ -38,7 +38,7 @@ services:
       POSTGRES_PASSWORD: plone
       POSTGRES_DB: plone
     ports:
-    - "5432:5432"
+      - "5432:5432"
     networks:
       - dokpool-backend
 
@@ -47,7 +47,7 @@ services:
       - dokpool_review
     image: varnish
     volumes:
-     - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
+      - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
     environment:
       - VARNISH_BACKEND_HOST=dokpool-zeoclient2
       - VARNISH_BACKEND_PORT=8081
