@@ -54,6 +54,7 @@ EOT
 
 # New layer that has all code so the site can run
 FROM plone/server-prod-config:${PLONE_VERSION}
+ENV TZ="Europe/Berlin"
 
 LABEL maintainer="Philip Bauer <bauer@starzel.de>" \
     org.label-schema.name="dokpool" \
