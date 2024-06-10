@@ -1,18 +1,25 @@
 from AccessControl.SecurityInfo import allow_class
 from App.config import getConfiguration
 from docpool.base.appregistry import APP_REGISTRY
+from plone import api
 from plone.app.layout.viewlets.common import LogoViewlet
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+import datetime
 import os
-import plone.api as api
 import shlex
 import subprocess
 
 
 class TimeViewlet(ViewletBase):
     index = ViewPageTemplateFile("time.pt")
+
+    def get_local_time(self):
+        return datetime.datetime.now()
+
+    def get_utc_time(self):
+        return datetime.datetime.now(datetime.UTC)
 
 
 allow_class(TimeViewlet)

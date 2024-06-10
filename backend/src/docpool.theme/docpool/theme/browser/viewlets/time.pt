@@ -1,18 +1,15 @@
 <tal:block i18n:domain="docpool.elan">
-  <div id="mesz" tal:define="DateTime python:modules['DateTime'].DateTime;">
-    <table class="table table-bordered" id="time_table" tal:define="now python:DateTime();
-      nowUTC python: DateTime().toZone('UTC').asdatetime();">
+  <div id="mesz"
+       tal:define="local_time python: view.get_local_time();
+                   utc_time python: view.get_utc_time();">
+    <table class="table table-bordered" id="time_table">
       <tr class="times">
         <td class="zone">
           <tal:var i18n:translate="">LT</tal:var>
           :
         </td>
         <td class="time">
-          <time class="pat-display-time"
-                datetime="${now}"
-                data-pat-display-time="output-format:L LT"
-             tal:content=""
-          >${now}</time>
+          <time datetime="${python: local_time}">${python: local_time.strftime('%d.%m.%Y %H:%M')}</time>
         </td>
       </tr>
       <tr class="times">
@@ -21,9 +18,7 @@
           :
         </td>
         <td class="time">
-          <time datetime="${nowUTC}"
-             tal:content="python: nowUTC.strftime('%d.%m.%Y %H:%M')"
-          ></time>
+          <time datetime="${python: utc_time}">${python: utc_time.strftime('%d.%m.%Y %H:%M')}</time>
         </td>
       </tr>
     </table>
