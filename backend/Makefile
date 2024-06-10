@@ -33,7 +33,17 @@ LINT=docker run --rm -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/
 FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} format
 
 IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
+
+# get branch name if not running in CI
+ifndef CI_COMMIT_REF_NAME
+	CI_COMMIT_REF_NAME=$$(git rev-parse --abbrev-ref HEAD)
+endif
 IMAGE_TAG=${CI_COMMIT_REF_NAME}
+
+# get rev if not running in CI
+ifndef CI_COMMIT_SHORT_SHA
+	CI_COMMIT_SHORT_SHA=$$(git rev-parse --short HEAD)
+endif
 
 # Python checks
 PYTHON?=python3
