@@ -35,57 +35,6 @@ class FlexibleView(BrowserView):
             return active_apps[0]
         return None
 
-    def find_view(self, vtype):
-        """Find correct view for that doc of that type with that view-type
-
-        For that we need:
-        * obj: the context obj, either a DPDocument or something else like a
-               SituationReport
-        * doctype: the doctype/template for that DPDocument (usually in
-                   /config/dtypes/xxx) or nothing
-        * vtype: the view-type, usually "meta" or "listitem"
-        * app: the currently active app (elan/rei/doksys) or nothing
-        """
-        document = self.context
-        app = self.currentApplication()
-        doctype = document.docTypeObj()
-
-        if doctype:
-            typename = doctype.customViewTemplate or doctype.id
-        elif base_hasattr(document, "typeName"):
-            # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is
-            # called "sitrep"
-            typename = document.typeName()
-        else:
-            typename = document.portal_type.lower()
-
-        # Check view by order of specification
-        if app:
-            names = [
-                f"{app}_{typename}_{vtype}",
-                f"{app}_{vtype}",
-                f"{typename}_{vtype}",
-                f"doc_{vtype}",
-            ]
-        else:
-            names = [
-                f"{typename}_{vtype}",
-                f"doc_{vtype}",
-            ]
-
-        for name in names:
-            # Look for a BrowserView first (see #4840)
-            view = queryMultiAdapter((document, self.request), name=name)
-            if view is not None:
-                logger.info(
-                    "Rendering view %s (%s) for %r (%s)",
-                    name,
-                    view.index.filename,
-                    document,
-                    typename,
-                )
-                return view
-
     def render_view_or_template(self, vtype, **options):
         """
         Collects suitable macros/templates from apps, types, docs
