@@ -42,6 +42,16 @@ services:
     networks:
       - dokpool-backend
 
+  dokpool-purger:
+    profiles:
+      - dokpool_review
+    image: ghcr.io/kitconcept/cluster-purger:latest
+    environment:
+      PURGER_SERVICE_NAME: varnish
+      PURGER_SERVICE_PORT: 80
+      PURGER_MODE: "compose"
+      PURGER_PUBLIC_SITES: "['plone.localhost']"
+
   dokpool-varnish:
     profiles:
       - dokpool_review
