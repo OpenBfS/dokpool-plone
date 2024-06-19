@@ -12,12 +12,26 @@ services:
     environment:
       LISTEN_PORT: 8081
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
+      RELSTORAGE_CREATE_SCHEMA: false
     networks:
       - dokpool-backend
 
   dokpool-zeoclient2:
     profiles:
       - dokpool_review
+    image: git.starzel.de:5050/bfs/dokpool:python3
+    ports:
+      - 8082:8082
+    environment:
+      LISTEN_PORT: 8082
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
+      RELSTORAGE_CREATE_SCHEMA: false
+    networks:
+      - dokpool-backend
+
+  dokpool-zeoclient-init:
+    profiles:
+      - dokpool_init
     image: git.starzel.de:5050/bfs/dokpool:python3
     ports:
       - 8082:8082
