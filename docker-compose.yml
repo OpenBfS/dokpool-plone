@@ -34,6 +34,7 @@ services:
   dokpool-postgres:
     profiles:
       - dokpool_review
+      - dokpool_init
     image: postgres
     environment:
       POSTGRES_USER: plone
