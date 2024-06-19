@@ -27,12 +27,12 @@ RUN mkdir -p /opt/bfs/dokpool/Plone/var/log
 RUN chown -R zope.zope /opt/bfs/dokpool/blobs
 RUN chown -R zope.zope /opt/bfs/dokpool/Plone/var/log
 
-WORKDIR /opt/bfs/
-COPY . .
+WORKDIR /opt/bfs/dokpool
+ADD . /opt/bfs/dokpool/
 
 WORKDIR /opt/bfs/dokpool/Plone
 #ADD ./docker-compose-buildout.cfg ./
-ADD ./dokpool/Docker/stack/dokpool/docker-entrypoint.sh /usr/local/bin
+ADD ./Docker/stack/dokpool/docker-entrypoint.sh /usr/local/bin
 RUN cd /opt/bfs/dokpool/Plone && pip install --upgrade pip setuptools && pip install docutils && pip install -r requirements.txt
 RUN cp config-template.cfg.tmpl config.cfg
 # TODO: REMOVE THE -N FLAG WHEN GOING PRODUCTIVE!

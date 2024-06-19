@@ -6,8 +6,8 @@ services:
     profiles:
       - dokpool_review
     build:
-      context: ../../../
-      dockerfile: dokpool/Docker/stack/dokpool/Dockerfile
+      context: ../../
+      dockerfile: ./Docker/stack/dokpool/Dockerfile
     depends_on:
       - dokpool-postgres
       - dokpool-transfer
