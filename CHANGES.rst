@@ -1,9 +1,19 @@
 Changelog
 =========
 
-1.9.8 (unreleased)
+1.9.8 (20.06.23)
 ------------------
 
+Technical:
+
+- Update journal print styling
+  [pbauer]
+
+- Update bundle files
+  [slindner]
+
+- revert logging of wsapi calls (#4626)
+  [kprobst]
 
 
 1.9.7 (06.05.24)
