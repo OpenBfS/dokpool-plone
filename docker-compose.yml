@@ -3,13 +3,13 @@ version: "3.8"
 name: dokpool
 
 services:
-  dokpool-zeoclient1:
+  dokpool-zeoclient:
     profiles:
       - dokpool_review
     image: git.starzel.de:5050/bfs/dokpool:python3
     deploy:
       mode: replicated
-      replicas: 4
+      replicas: 2
     environment:
       LISTEN_PORT: 8081
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
