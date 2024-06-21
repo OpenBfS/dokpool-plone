@@ -26,6 +26,31 @@ services:
       - TRANSFER_DB_USER=plone
       - TRANSFER_DB_PASS=plone
       - DOKPOOL_INSTANCE_PORT=9091
+      - RELSTORAGE_SKIP_CREATE_SCHEMA=true
+    networks:
+      - dokpool_backend
+
+  dokpool-instance-init:
+    profiles:
+      - dokpool_init
+    build:
+      context: ../../
+      dockerfile: ./Docker/stack/dokpool/Dockerfile
+    depends_on:
+      - dokpool-postgres
+      - dokpool-transfer
+    environment:
+      - DB_HOST=dokpool-postgres
+      - DB_PORT=5432
+      - DB_NAME=plone
+      - DB_USER=plone
+      - DB_PASS=plone
+      - TRANSFER_DB_HOST=dokpool-transfer
+      - TRANSFER_DB_PORT=5432
+      - TRANSFER_DB_NAME=plone
+      - TRANSFER_DB_USER=plone
+      - TRANSFER_DB_PASS=plone
+      - DOKPOOL_INSTANCE_PORT=9091
     networks:
       - dokpool_backend
 
@@ -34,6 +59,7 @@ services:
   dokpool-postgres:
     profiles:
       - dokpool_review
+      - dokpool_init
     image: postgres
     environment:
       POSTGRES_USER: plone
@@ -47,6 +73,7 @@ services:
   dokpool-transfer:
     profiles:
       - dokpool_review
+      - dokpool_init
     image: postgres
     environment:
       POSTGRES_USER: plone
@@ -74,7 +101,7 @@ services:
     build:
       context: dokpool-varnish
     environment:
-      - VARNISH_BACKEND_HOST=stack_dokpool-instance
+      - VARNISH_BACKEND_HOST=stack-dokpool-instance
       - VARNISH_BACKEND_PORT=9091
       - VARNISH_HTTP_PORT=8100
       - VARNISH_BACKEND_COUNT=8
