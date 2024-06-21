@@ -6,7 +6,7 @@ for i in $(seq 1 ${VARNISH_BACKEND_COUNT});
 do
   cat << EOF >> /usr/local/varnish/backend.cfg
     backend dokpool${i} {
-    .host = "${VARNISH_BACKEND_HOST}_${i}";
+    .host = "${VARNISH_BACKEND_HOST}-${i}";
     .port = "${VARNISH_BACKEND_PORT}";
     .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
     .connect_timeout = 6s;
