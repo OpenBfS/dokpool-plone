@@ -4,12 +4,20 @@ vcl 4.0;
 import std;
 import directors;
 
-backend traefik_loadbalancer {
-    .host = "dokpool-zeoclient1";
+backend dokpool_backend1 {
+    .host = "dokpool-dokpool-zeoclient-1";
     .port = "8081";
-    .connect_timeout = 2s;
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
     .first_byte_timeout = 300s;
-    .between_bytes_timeout  = 60s;
+}
+
+backend dokpool_backend2 {
+    .host = "dokpool-dokpool-zeoclient-2";
+    .port = "8081";
+    .probe = { .url = "/"; .interval = 30s; .timeout = 20s; .window = 6; .threshold = 6; }
+    .connect_timeout = 6s;
+    .first_byte_timeout = 300s;
 }
 
 /* Only allow PURGE from localhost and API-Server */
@@ -75,7 +83,8 @@ sub process_redirects{
 
 sub vcl_init {
   new cluster_loadbalancer = directors.round_robin();
-  cluster_loadbalancer.add_backend(traefik_loadbalancer);
+  cluster_loadbalancer.add_backend(dokpool_backend1);
+  cluster_loadbalancer.add_backend(dokpool_backend2);
 }
 
 sub vcl_recv {
