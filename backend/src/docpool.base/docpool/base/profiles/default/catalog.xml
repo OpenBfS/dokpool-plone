@@ -3,11 +3,11 @@
     <index name="dp_type" meta_type="FieldIndex">
         <indexed_attr value="dp_type"/>
     </index>
-    <index name="mdate" meta_type="FieldIndex">
+    <index name="mdate" meta_type="DateIndex">
         <indexed_attr value="getMdate"/>
     </index>
-    <!-- changed is the index as mdate expect for transferred content  -->
-    <index name="changed" meta_type="FieldIndex">
+    <!-- changed is the same index as mdate except for transferred content where it holds the transfer-date -->
+    <index name="changed" meta_type="DateIndex">
         <indexed_attr value="changed"/>
     </index>
     <index name="apps_supported" meta_type="KeywordIndex">
