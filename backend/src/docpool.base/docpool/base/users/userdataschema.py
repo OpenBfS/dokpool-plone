@@ -10,6 +10,14 @@ from z3c.form import field
 from zope import schema
 from zope.component import adapter
 from zope.interface import Interface
+from zope.interface import provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
+
+
+@provider(IContextAwareDefaultFactory)
+def current_dp_uid(context):
+    if context.portal_type == "DocumentPool":
+        return context.UID()
 
 
 class IEnhancedUserDataSchema(model.Schema):
@@ -22,6 +30,7 @@ class IEnhancedUserDataSchema(model.Schema):
         description=_("description_user_dp", default=""),
         required=False,
         source="docpool.base.vocabularies.UserDocumentPools",
+        defaultFactory=current_dp_uid,
     )
 
 
