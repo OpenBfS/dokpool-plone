@@ -8,7 +8,7 @@
    <property name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
    <property name="link_target"></property>
    <property name="icon_expr">string:plone-edit</property>
-   <property name="available_expr">python:path('here/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor'))</property>
+   <property name="available_expr">python: 'esd' in context.absolute_url() and (path('context/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor')))</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -19,7 +19,7 @@
       name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++DPEvent</property>
    <property name="link_target"></property>
    <property name="icon_expr">string:calendar-plus</property>
-   <property name="available_expr">python: 'esd' in here.absolute_url() and (path('here/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor')))</property>
+   <property name="available_expr">python: 'esd' in context.absolute_url() and (path('context/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor')))</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -30,7 +30,7 @@
       name="url_expr">string:${context/dp_url}/contentconfig/ticker/edit</property>
    <property name="link_target"></property>
    <property name="icon_expr">string:pen</property>
-   <property name="available_expr">python:path('here/@@is/contentadmin') and 'esd' in here.absolute_url()</property>
+   <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -41,7 +41,7 @@
       name="url_expr">string:${context/dp_url}/contentconfig/ticker/deleteTicker</property>
    <property name="link_target"></property>
    <property name="icon_expr">string:trash</property>
-   <property name="available_expr">python:path('here/@@is/contentadmin') and 'esd' in here.absolute_url()</property>
+   <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
    <property name="permissions"></property>
    <property name="visible">True</property>
   </object>
@@ -55,7 +55,7 @@
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property
-      name="available_expr">python:object.getPortalTypeName() == 'DPEvent' and object.Status != 'closed' and path('here/@@is/admin_or_contentadmin')</property>
+      name="available_expr">python:object.getPortalTypeName() == 'DPEvent' and object.Status != 'closed' and path('context/@@is/admin_or_contentadmin')</property>
    <property name="permissions" />
    <property name="visible">True</property>
   </object>
@@ -67,7 +67,7 @@
    <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property
-      name="available_expr">python:object.getPortalTypeName() == 'DPEvent' and object.Status == 'inactive' and path('here/@@is/admin_or_contentadmin')</property>
+      name="available_expr">python:object.getPortalTypeName() == 'DPEvent' and object.Status == 'inactive' and path('context/@@is/admin_or_contentadmin')</property>
    <property name="permissions" />
    <property name="visible">True</property>
   </object>
