@@ -179,3 +179,42 @@ class GetGroupFolders(Service):
 class GetScenarioHistory(Service):
     def reply(self):
         return json.loads(self.context.changelog or "[]")
+
+
+@implementer(IPublishTraverse)
+class GetTransferFolders(Service):
+    """
+    Return the groups folder objects within the ESD.
+    By default the primary docpool is used.
+    Optionally specify the id of a specific docpool.
+
+    curl -i -X GET http://localhost:8080/dokpool/@get_transfer_folders/bund -H "Accept: application/json" --user admin:secret
+    """
+
+    def __init__(self, context, request):
+        super().__init__(context, request)
+        self.params = []
+
+    def publishTraverse(self, request, name):
+        # Consume any path segments after /@<name> as parameters
+        self.params.append(name)
+        return self
+
+    def reply(self):
+        esdpath = None
+        if not self.params:
+            esd = get_docpool_for_user()
+            esdpath = "/".join(esd.getPhysicalPath())
+        else:
+            brains = api.content.find(portal_type="DocumentPool", getId=self.params[0])
+            if brains and len(brains) == 1:
+                esd = brains[0].getObject()
+                esdpath = brains[0].getPath()
+        if not esdpath:
+            return
+
+        query = {
+            "portal_type": "DPTransferFolder",
+            "path": esdpath + "/content/Transfers",
+        }
+        return SearchHandler(self.context, self.request).search(query)
