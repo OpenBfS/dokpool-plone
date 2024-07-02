@@ -6,6 +6,7 @@ from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone import api
 from plone.api.exc import CannotGetPortalError
+from plone.base.utils import safe_hasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import base_hasattr
@@ -112,30 +113,25 @@ def getAllowedDocumentTypesForGroup(self):
 
 
 def getGroupsForCurrentUser(obj):
-    """ """
+    """Return groups that can create content based on GroupFolders."""
     results = []
-
-    # TODO: Make this method saner
-    # find content-area through acquisition - duh...
-    content = aq_get(obj, "content", None)
-    if not content:
-        return results
-
-    # find folder "Groups" through acquisition  - duh...
-    groups_folder = aq_get(content, "Groups", None)
-    if not groups_folder:
-        return results
-
+    if obj.portal_type == "DocumentPool":
+        context = obj
+    else:
+        if safe_hasattr(obj, "myDocumentPool"):
+            context = obj.myDocumentPool()
+        else:
+            return results
     gtool = getToolByName(obj, "portal_groups")
-    for item in groups_folder.restrictedTraverse("@@contentlisting")():
+    for brain in api.content.find(context=context, portal_type="GroupFolder"):
         try:
-            grp = gtool.getGroupById(item.id)
+            grp = gtool.getGroupById(brain.id)
             etypes = grp.getProperty("allowedDocTypes", [])
             if etypes:
                 title = grp.getProperty("title", "")
-                results.append({"id": item.id, "title": title, "etypes": etypes})
+                results.append({"id": brain.id, "title": title, "etypes": etypes})
         except Exception:
-            log.info("Error getting group for %s", item.id, exc_info=True)
+            log.info("Error getting group for %s", brain.id, exc_info=True)
     return results
 
 
