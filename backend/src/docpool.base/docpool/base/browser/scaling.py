@@ -1,5 +1,6 @@
 from Acquisition import aq_base
 from logging import exception
+from plone.base.utils import safe_callable
 from plone.namedfile.file import FileChunk
 from plone.namedfile.interfaces import IStableImageScale
 from plone.namedfile.scaling import (
@@ -9,7 +10,6 @@ from plone.namedfile.scaling import ImageScale
 from plone.namedfile.scaling import ImageScaling as OriginalImageScaling
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
-from Products.CMFPlone.utils import safe_callable
 from ZODB.POSException import ConflictError
 from zope.interface import alsoProvides
 from zope.publisher.interfaces import NotFound

@@ -10,11 +10,11 @@ from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.viewlets import common
+from plone.base.i18nl10n import utranslate
+from plone.base.utils import safe_hasattr
 from plone.memoize.view import memoize
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
-from Products.CMFPlone.i18nl10n import utranslate
-from Products.CMFPlone.utils import safe_hasattr
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer

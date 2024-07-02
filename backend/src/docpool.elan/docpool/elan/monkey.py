@@ -1,8 +1,8 @@
 from docpool.base.utils import deleteMemberFolders
 from docpool.elan.utils import getScenariosForCurrentUser
+from plone.base import PloneMessageFactory as _
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.CatalogTool import CatalogTool
 from Products.CMFPlone.utils import aq_inner
 from zExceptions import Forbidden

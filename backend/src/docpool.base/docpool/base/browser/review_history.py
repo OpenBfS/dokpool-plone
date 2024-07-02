@@ -1,9 +1,9 @@
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from plone import api
+from plone.base import PloneMessageFactory as _
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.WorkflowCore import WorkflowException
-from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.utils import log
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile

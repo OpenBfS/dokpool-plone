@@ -3,11 +3,11 @@ from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
 from plone.autoform import directives
+from plone.base.utils import safe_hasattr
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFPlone.utils import log
-from Products.CMFPlone.utils import safe_hasattr
 from z3c.form.browser.orderedselect import OrderedSelectFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList

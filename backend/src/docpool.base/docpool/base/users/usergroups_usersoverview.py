@@ -1,8 +1,8 @@
 from Acquisition import aq_inner
 from docpool.base.utils import deleteMemberFolders
+from plone.base import PloneMessageFactory as PMF
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import (
     UsersOverviewControlPanel as UOCP,
 )

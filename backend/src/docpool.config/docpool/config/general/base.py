@@ -5,8 +5,8 @@ from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+from plone.base import PloneMessageFactory as _
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
 from Products.PortalTransforms.Transform import make_config_persistent
 from Products.PythonScripts.PythonScript import PythonScript
 from zope.globalrequest import getRequest

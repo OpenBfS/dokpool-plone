@@ -7,6 +7,7 @@ from plone.app.users.browser.schemaeditor import getFromBaseSchema
 from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
 from plone.app.users.schema import IUserDataSchema
 from plone.app.users.vocabularies import GroupIdVocabulary
+from plone.base.interfaces import ISecuritySchema
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -15,7 +16,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups import (
     UsersGroupsControlPanelView,
 )
-from Products.CMFPlone.interfaces import ISecuritySchema
 from Products.CMFPlone.log import log
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import normalizeString
