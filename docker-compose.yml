@@ -3,6 +3,45 @@ version: "3.8"
 name: dokpool
 
 services:
+  dokpool-loadbalancer:
+    # Use the latest Traefik image
+    image: traefik
+    profiles:
+      - dokpool_review
+
+    labels:
+      - traefik.enable=true
+      - traefik.constraint-label=public
+
+      # GENERIC MIDDLEWARES
+      # - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+      # - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+      - traefik.http.middlewares.gzip.compress=true
+      - traefik.http.middlewares.gzip.compress.excludedcontenttypes=image/png, image/jpeg, font/woff2
+
+      # GENERIC ROUTERS
+      # - traefik.http.routers.generic-https-redirect.entrypoints=http
+      # - traefik.http.routers.generic-https-redirect.rule=HostRegexp(`{host:.*}`)
+      # - traefik.http.routers.generic-https-redirect.priority=1
+      # - traefik.http.routers.generic-https-redirect.middlewares=https-redirect
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    command:
+      - --providers.docker
+      - --providers.docker.constraints=Label(`traefik.constraint-label`, `public`)
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.http.address=:80
+      # - --entrypoints.https.address=:443
+      - --accesslog
+      - --accesslog.format=json
+      - --accesslog.fields.headers.names.X-Varnish-Routed=keep
+      - --accesslog.fields.headers.names.RequestHost=keep
+      - --log
+      - --log.level=DEBUG
+      - --api
+
   dokpool-zeoclient:
     profiles:
       - dokpool_review
@@ -14,8 +53,19 @@ services:
       LISTEN_PORT: 8081
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: false
-    networks:
-      - dokpool-backend
+    labels:
+        - traefik.enable=true
+        - traefik.constraint-label=public
+        ## Virtual Host Monster
+        - traefik.http.middlewares.dokpool-public.addprefix.prefix=/VirtualHostBase/https/plone.localhost/Plone/VirtualHostRoot
+        # Service
+        - traefik.http.services.dokpool-varnish.loadbalancer.server.port=8081
+        # Middleware
+        # Router: Varnish Public
+        - traefik.http.routers.dokpool-public.rule=Host(`plone.localhost`)
+        - traefik.http.routers.dokpool-public.entrypoints=http
+        - traefik.http.routers.dokpool-public.service=dokpool-varnish
+        - traefik.http.routers.dokpool-public.middlewares=gzip
 
   dokpool-zeoclient-init:
     profiles:
@@ -26,8 +76,6 @@ services:
     environment:
       LISTEN_PORT: 8082
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
-    networks:
-      - dokpool-backend
 
   # Only for development & test
   # On production, we use the central patroni postgres
@@ -42,8 +90,6 @@ services:
       POSTGRES_DB: plone
     ports:
       - "5432:5432"
-    networks:
-      - dokpool-backend
 
   dokpool-purger:
     profiles:
@@ -61,15 +107,19 @@ services:
     image: varnish
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
-    environment:
-      - VARNISH_BACKEND_HOST=dokpool-zeoclient2
-      - VARNISH_BACKEND_PORT=8081
-    ports:
-      - 80:80
-    networks:
-      - dokpool-backend
-      - traefik_frontend
 
-networks:
-  traefik_frontend:
-  dokpool-backend:
+    labels:
+      - traefik.enable=true
+      - traefik.constraint-label=public
+      # SERVICE
+      - traefik.http.services.dokpool-varnish.loadbalancer.server.port=8081
+    networks:
+      default:
+        aliases:
+          - plone.localhost
+    depends_on:
+      - dokpool-loadbalancer
+      - dokpool-zeoclient
+    ports:
+      - "80:80"
+
