@@ -1,7 +1,9 @@
+from Acquisition import aq_get
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
+from docpool.base.utils import get_content_area
 from docpool.base.utils import getGroupsForCurrentUser
 from docpool.elan.config import ELAN_APP
 from docpool.rei.config import REI_APP
@@ -54,8 +56,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
 
         self.navtree_add_apps_menu(tree)
 
-        if not IArchiving(self.context).is_archive:
-            self.navtree_add_contentarea(tree)
+        self.navtree_add_contentarea(tree)
 
         # for tab in tree[self.navtree_path]:
         #     if "config" in tab["id"]:
@@ -219,19 +220,15 @@ def getFoldersForCurrentUser(context):
 
     user = api.user.get_current()
 
-    if not safe_hasattr(context, "myDocumentPool"):
+    content_area = get_content_area(context)
+    if not content_area:
         return
 
-    docpool = context.myDocumentPool()
-    content_folder = docpool.get("content")
-    if not content_folder:
-        return
-
-    groups = getGroupsForCurrentUser(context)
+    groups = getGroupsForCurrentUser(content_area)
     if not groups:  # User is reader only
         return
 
-    groups_folder = content_folder["Groups"]
+    groups_folder = content_area["Groups"]
     groups_folder_path = "/".join(groups_folder.getPhysicalPath())
     has_group = False
     group_result = []
@@ -254,7 +251,7 @@ def getFoldersForCurrentUser(context):
         # strangely, member folders for users with '-' in their username
         # are created with double dashes
         user_name = user.getUserName().replace("-", "--")
-        members_folder = content_folder["Members"]
+        members_folder = content_area["Members"]
         members_folder_path = "/".join(members_folder.getPhysicalPath())
         member_tree = _folderTree(context, f"{members_folder_path}/{user_name}")
         # A folder for the user has not been found, e.g. in archive
@@ -273,7 +270,7 @@ def getFoldersForCurrentUser(context):
         or "Site Administrator" in roles
         or any(("Receivers" in group["id"]) for group in groups)
     ):
-        transfers = content_folder.get("Transfers")
+        transfers = content_area.get("Transfers")
         if transfers:
             path = "/".join(transfers.getPhysicalPath())
             transfers_tree = _folderTree(context, path)

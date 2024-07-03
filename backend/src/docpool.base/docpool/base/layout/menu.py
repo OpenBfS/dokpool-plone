@@ -1,5 +1,7 @@
 """ Menu
 """
+
+from docpool.base.content.archiving import IArchiving
 from plone import api
 from plone.app.contentmenu.menu import FactoriesMenu
 from plone.app.contentmenu.menu import WorkflowMenu
@@ -10,6 +12,8 @@ class DPFactoriesMenu(FactoriesMenu):
 
     def getMenuItems(self, obj, request):
         """Safely get menu items"""
+        if IArchiving(obj).is_archive:
+            return
         menu_items = super().getMenuItems(obj, request)
 
         if not api.user.has_permission("Docpool: Manage Addable Types", obj=obj):

@@ -6,17 +6,12 @@ from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone import api
 from plone.api.exc import CannotGetPortalError
-from plone.base.utils import safe_hasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
-from Products.CMFPlone.utils import base_hasattr
+from plone.base.utils import base_hasattr
 from Products.CMFPlone.utils import parent
-from zc.relation.interfaces import ICatalog
 from zope.component import getMultiAdapter
-from zope.component import getUtility
 from zope.component.hooks import getSite
-from zope.intid.interfaces import IIntIds
-from zope.security import checkPermission
 
 import logging
 import re
@@ -112,18 +107,25 @@ def getAllowedDocumentTypesForGroup(self):
     return res
 
 
+def get_content_area(obj):
+    """Acquire the nearest ContentArea"""
+    if obj.portal_type == "ContentArea":
+        return obj
+
+    if content_area := aq_get(obj, "content", None):
+        if content_area.portal_type == "ContentArea":
+            return content_area
+
+
 def getGroupsForCurrentUser(obj):
     """Return groups that can create content based on GroupFolders."""
     results = []
-    if obj.portal_type == "DocumentPool":
-        context = obj
-    else:
-        if safe_hasattr(obj, "myDocumentPool"):
-            context = obj.myDocumentPool()
-        else:
-            return results
+    content_area = get_content_area(obj)
+
     gtool = getToolByName(obj, "portal_groups")
-    for brain in api.content.find(context=context, portal_type="GroupFolder"):
+    for brain in api.content.find(
+        context=content_area, portal_type="GroupFolder", sort_on="path"
+    ):
         try:
             grp = gtool.getGroupById(brain.id)
             etypes = grp.getProperty("allowedDocTypes", [])
