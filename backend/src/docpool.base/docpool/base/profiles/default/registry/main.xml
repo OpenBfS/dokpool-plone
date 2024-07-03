@@ -27,7 +27,6 @@
       <element>InfoFolder</element>
       <element>DPConfig</element>
       <element>DocTypes</element>
-      <element>DocumentPool</element>
       <element>CollaborationFolder</element>
       <element>ReviewFolder</element>
       <element>PrivateFolder</element>
