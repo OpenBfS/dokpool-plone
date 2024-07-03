@@ -6,9 +6,9 @@ from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone import api
 from plone.api.exc import CannotGetPortalError
+from plone.base.utils import base_hasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
-from plone.base.utils import base_hasattr
 from Products.CMFPlone.utils import parent
 from zope.component import getMultiAdapter
 from zope.component.hooks import getSite
