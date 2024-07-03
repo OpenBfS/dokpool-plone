@@ -54,18 +54,18 @@ services:
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: false
     labels:
-        - traefik.enable=true
-        - traefik.constraint-label=public
-        ## Virtual Host Monster
-        - traefik.http.middlewares.dokpool-public.addprefix.prefix=/VirtualHostBase/https/plone.localhost/Plone/VirtualHostRoot
-        # Service
-        - traefik.http.services.dokpool-varnish.loadbalancer.server.port=8081
-        # Middleware
-        # Router: Varnish Public
-        - traefik.http.routers.dokpool-public.rule=Host(`plone.localhost`)
-        - traefik.http.routers.dokpool-public.entrypoints=http
-        - traefik.http.routers.dokpool-public.service=dokpool-varnish
-        - traefik.http.routers.dokpool-public.middlewares=gzip
+      - traefik.enable=true
+      - traefik.constraint-label=public
+      ## Virtual Host Monster
+      - traefik.http.middlewares.dokpool-public.addprefix.prefix=/VirtualHostBase/https/plone.localhost/Plone/VirtualHostRoot
+      # Service
+      - traefik.http.services.dokpool-varnish.loadbalancer.server.port=8081
+      # Middleware
+      # Router: Varnish Public
+      - traefik.http.routers.dokpool-public.rule=Host(`plone.localhost`)
+      - traefik.http.routers.dokpool-public.entrypoints=http
+      - traefik.http.routers.dokpool-public.service=dokpool-varnish
+      - traefik.http.routers.dokpool-public.middlewares=gzip
 
   dokpool-zeoclient-init:
     profiles:
@@ -122,4 +122,3 @@ services:
       - dokpool-zeoclient
     ports:
       - "80:80"
-
