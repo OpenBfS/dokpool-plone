@@ -5,12 +5,12 @@
 <body>
 
 <div id="scenario_box" metal:define-macro="scenario_table"
-     tal:define="possible_scenarios view/scenarios;"
-     tal:condition="possible_scenarios">
+     tal:define="possible_scenarios python: view.scenarios;"
+     tal:condition="python: not context.restrictedTraverse('@@is').archive and possible_scenarios">
     <form name="scenarios" method="post" class="scenario_selection"
           tal:define="selected_scenarios view/selected_scenarios;
                       readonly request/ajax_load|nothing"
-         tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
+          tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
 
             <div tal:condition="not:selected_scenarios" class="alert alert-danger" role="alert" i18n:translate="">
                 Please select at least one scenario!
