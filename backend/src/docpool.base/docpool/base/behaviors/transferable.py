@@ -183,18 +183,18 @@ class Transferable(FlexibleView):
             else:
                 type_ = "send"
                 events = reversed(self.sender_log)
-                return [
-                    {
-                        "type": type_,
-                        "by": event["user"],
-                        "esd": event["esd_title"],
-                        "timeraw": event["timestamp"],
-                        "time": self.context.toLocalizedTime(
-                            DateTime(event["timestamp"]), long_format=1
-                        ),
-                    }
-                    for event in events
-                ]
+            return [
+                {
+                    "type": type_,
+                    "by": event["user"],
+                    "esd": event["esd_title"],
+                    "timeraw": event["timestamp"],
+                    "time": self.context.toLocalizedTime(
+                        DateTime(event["timestamp"]), long_format=1
+                    ),
+                }
+                for event in events
+            ]
 
     def transferable(self):
         """
@@ -334,13 +334,14 @@ class Transferable(FlexibleView):
                 ensureScenariosInTarget(self.context, my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
-                ITransferable(my_copy).ensureState()
+                transfer_copy = ITransferable(my_copy)
+                transfer_copy.ensureState()
                 my_copy.reindexObject()
 
                 # 7) Add entry to receiver log.
                 elancopy = IELANDocument(my_copy)
                 scenario_ids = ", ".join(elancopy.scenarios or ())
-                self.receiver_log += (
+                transfer_copy.receiver_log += (
                     dict(
                         timestamp=timestamp,
                         user=userinfo_string,
