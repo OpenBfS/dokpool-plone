@@ -26,7 +26,9 @@ class CustomPrincipalsImporter(PrincipalsImporter):
 def import_groups(data: list[dict]) -> list[GroupData]:
     """Import groups."""
     groups = []
+    not_found_pricipals = []
     acl = api.portal.get_tool("acl_users")
+    portal_groups = api.portal.get_tool("portal_groups")
     groupsIds = {item["id"] for item in acl.searchGroups()}
     for item in data:
         groupid = item["groupid"]
@@ -46,6 +48,8 @@ def import_groups(data: list[dict]) -> list[GroupData]:
             try:
                 api.group.add_user(group=group, username=principal)
             except api.exc.UserNotFoundError:
+                # A principal may be a group created after this one. We defer and try again.
+                not_found_pricipals.append({"group": groupid, "principal": principal})
                 pass
 
         # Change: Add docpool props
@@ -56,5 +60,10 @@ def import_groups(data: list[dict]) -> list[GroupData]:
             props["dp"] = item["dp"]
         if props:
             group.setGroupProperties(props)
+
+    # Try again to to add groups that dod not exists before
+    for item in not_found_pricipals:
+        if api.group.get(groupname=item["group"]):
+            portal_groups.addPrincipalToGroup(item["principal"], item["group"])
 
     return groups
