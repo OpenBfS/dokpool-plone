@@ -20,15 +20,16 @@ repos:
       - id: check-yaml
       - id: debug-statements
       - id: end-of-file-fixer
+        exclude: /src/docpool.distribution/src/docpool/distribution/distributions/docpooldemo/content
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: trailing-whitespace
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.38.2
+    rev: v3.16.0
     hooks:
       - id: pyupgrade
-        args: [--py39-plus]
+        args: [--py311-plus]
 
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
