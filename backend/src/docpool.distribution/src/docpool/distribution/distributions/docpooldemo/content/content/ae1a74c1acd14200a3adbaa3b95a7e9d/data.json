@@ -1,0 +1,59 @@
+{
+  "@id": "/Members/aufsicht_he",
+  "@type": "UserFolder",
+  "UID": "ae1a74c1acd14200a3adbaa3b95a7e9d",
+  "allow_discussion": false,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2024-03-15T08:59:01+00:00",
+  "created_by": "aufsicht_he (Bund)",
+  "creators": [
+    "aufsicht_he"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "aufsicht_he",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-15T09:59:01",
+  "modified": "2024-03-15T08:59:01+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/Members",
+    "@type": "Folder",
+    "UID": "0a7310ac634547f69bd529cbac913656",
+    "description": "Bereich f\u00fcr pers\u00f6nliche Artikel der Benutzer.",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Benutzer",
+    "type_title": "Folder"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "aufsicht_he (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2024-03-15T09:59:01",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "aufsicht_he",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-15T08:59:01+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

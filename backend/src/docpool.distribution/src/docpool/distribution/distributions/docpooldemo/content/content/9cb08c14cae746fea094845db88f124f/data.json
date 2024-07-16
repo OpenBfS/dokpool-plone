@@ -1,0 +1,61 @@
+{
+  "@id": "/config/dtypes/notification",
+  "@type": "DocType",
+  "UID": "9cb08c14cae746fea094845db88f124f",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": false,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "globalAllow": true,
+  "id": "notification",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2024-03-14T12:43:45+00:00",
+  "parent": {
+    "@id": "/config/dtypes",
+    "@type": "DocTypes",
+    "UID": "7fb61b716409481c954ccc4a51c3a909",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Globale Dokumenttypen",
+    "type_title": "Folder for Document Types"
+  },
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Meldung",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:45+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

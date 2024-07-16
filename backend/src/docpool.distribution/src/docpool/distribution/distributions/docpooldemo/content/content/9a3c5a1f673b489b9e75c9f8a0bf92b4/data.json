@@ -1,0 +1,93 @@
+{
+  "@id": "/events/aggregator",
+  "@type": "Collection",
+  "UID": "9a3c5a1f673b489b9e75c9f8a0bf92b4",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-07-16T15:17:47+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "Termine",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "aggregator",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "event_listing",
+  "limit": 1000,
+  "local_behaviors": [],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-07-16T15:17:47+00:00",
+  "parent": {
+    "@id": "/events",
+    "@type": "Folder",
+    "UID": "09114de86ee9462fbd0eaa85aa43a839",
+    "description": "Termine",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Termine",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "Event"
+      ]
+    },
+    {
+      "i": "review_state",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "published"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "start",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "Termine",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "simple_publication_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-07-16T15:17:47+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-07-16T15:17:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

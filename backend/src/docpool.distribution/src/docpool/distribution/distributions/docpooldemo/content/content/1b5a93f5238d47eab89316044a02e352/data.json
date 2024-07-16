@@ -1,0 +1,59 @@
+{
+  "@id": "/Members/user1",
+  "@type": "UserFolder",
+  "UID": "1b5a93f5238d47eab89316044a02e352",
+  "allow_discussion": false,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2024-03-14T12:45:01+00:00",
+  "created_by": "user1 (Bund)",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "user1",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:45:01",
+  "modified": "2024-03-14T12:45:01+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/Members",
+    "@type": "Folder",
+    "UID": "0a7310ac634547f69bd529cbac913656",
+    "description": "Bereich f\u00fcr pers\u00f6nliche Artikel der Benutzer.",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Benutzer",
+    "type_title": "Folder"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "user1 (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2024-03-14T13:45:01",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:45:01+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

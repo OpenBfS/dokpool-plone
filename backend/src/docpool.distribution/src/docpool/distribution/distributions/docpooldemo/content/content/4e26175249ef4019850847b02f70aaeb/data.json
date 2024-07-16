@@ -1,0 +1,74 @@
+{
+  "@id": "/hessen/content/Groups/hessen_Members",
+  "@type": "GroupFolder",
+  "UID": "4e26175249ef4019850847b02f70aaeb",
+  "allow_discussion": false,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2024-03-14T12:43:56+00:00",
+  "created_by": "admin <i>Members (Hessen)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "SimpleFolder",
+      "DPDocument"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "hessen_Members",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2024-03-14T13:43:56",
+  "modified": "2024-03-14T12:44:02+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/hessen/content/Groups",
+    "@type": "Groups",
+    "UID": "5ad4c535068c4f9a85212b13ad3a95e7",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Gruppen",
+    "type_title": "Groups Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Members (Hessen)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2024-03-14T13:43:56",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:56+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

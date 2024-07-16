@@ -1,0 +1,74 @@
+{
+  "@id": "/bund/content/Groups/bund_Journal1_Readers",
+  "@type": "GroupFolder",
+  "UID": "4285521eed55435ca72ca6bbe97f9645",
+  "allow_discussion": false,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2024-03-14T12:43:49+00:00",
+  "created_by": "admin <i>Journal 1 Reader (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "SimpleFolder",
+      "DPDocument"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "bund_Journal1_Readers",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2024-03-14T13:43:49",
+  "modified": "2024-03-14T12:43:56+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/bund/content/Groups",
+    "@type": "Groups",
+    "UID": "3ba9aa05c9e84931a7558bb3a1d0f004",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Gruppen",
+    "type_title": "Groups Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Journal 1 Reader (Bund)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2024-03-14T13:43:49",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:49+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

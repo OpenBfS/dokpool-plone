@@ -1,0 +1,108 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-doksysdokument",
+  "@type": "DPDocument",
+  "Area": null,
+  "DataType": [
+    "LADA"
+  ],
+  "Dom": [
+    "75 _deposition_ground_gamma surface activity_1 d"
+  ],
+  "Duration": "2h",
+  "InfoType": "vorwaerts",
+  "LegalBase": [
+    "IRMIS"
+  ],
+  "MeasurementCategory": [
+    "Be-10"
+  ],
+  "MeasuringProgram": "Intensivmessprogramm",
+  "NetworkOperator": [
+    "Hamburg"
+  ],
+  "OperationMode": "Routine",
+  "Purpose": "Standard-Info Bundesmessnetze",
+  "SampleType": [
+    "A1"
+  ],
+  "SamplingBegin": null,
+  "SamplingEnd": null,
+  "Status": "geprueft",
+  "TrajectoryEndLocation": null,
+  "TrajectoryEndTime": null,
+  "TrajectoryStartLocation": null,
+  "TrajectoryStartTime": null,
+  "UID": "71e76dbe3f994bda9d949ce581de9b43",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:11+00:00",
+  "created_by": "user1 (Bund) <i>Group1 (Bund)</i>",
+  "creators": [
+    "user1"
+  ],
+  "description": "foo (doksysdok)",
+  "docType": "doksysdok",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ein-doksysdokument",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "mdate": "2024-03-15T09:52:36",
+  "modified": "2024-03-15T08:52:36+00:00",
+  "modified_by": "admin <i>Group1 (Bund)</i>",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1",
+    "@type": "GroupFolder",
+    "UID": "fbbe609d5ff4472d8442af50ca9bb666",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Group1 (Bund)",
+    "type_title": "Group Folder"
+  },
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Text f\u00fcr DoksysDokument</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Ein DoksysDokument",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:11",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-03-14T12:44:11+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:11+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

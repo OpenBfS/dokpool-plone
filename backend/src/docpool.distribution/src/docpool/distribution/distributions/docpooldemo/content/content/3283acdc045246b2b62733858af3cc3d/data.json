@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-bewertung/estimation_image",
+  "@type": "Image",
+  "UID": "3283acdc045246b2b62733858af3cc3d",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:11+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "estimation_image",
+  "image": {
+    "blob_path": "3283acdc045246b2b62733858af3cc3d/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:11+00:00",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1/ein-bewertung",
+    "@type": "DPDocument",
+    "UID": "3bd70805e1594e88b8cc2bdf095d4b17",
+    "description": "foo (estimation)",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ein Bewertung",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "estimation_image",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:11+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

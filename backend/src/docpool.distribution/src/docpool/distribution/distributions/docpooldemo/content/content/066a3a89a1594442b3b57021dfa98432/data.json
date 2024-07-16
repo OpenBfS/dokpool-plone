@@ -1,0 +1,75 @@
+{
+  "@id": "/hessen/contentconfig/scen/routinemode",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": null,
+  "Status": "active",
+  "TimeOfEvent": "2024-03-14T13:43:11",
+  "UID": "066a3a89a1594442b3b57021dfa98432",
+  "allow_discussion": false,
+  "changelog": "[{\"Date\": \"14.03.2024 13:43\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}, {\"Date\": \"14.03.2024 13:43\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"routine\", \"Alerting status\": \"none\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}]",
+  "contributors": [],
+  "created": "2024-03-14T12:43:58+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "routinemode",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:43:58",
+  "modified": "2024-03-14T12:44:03+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/hessen/contentconfig/scen",
+    "@type": "DPEvents",
+    "UID": "56886cb2bbc84df1973439d92fd51d52",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ereignisse",
+    "type_title": "DP Events"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Normalfall",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2024-03-14T13:43:58",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:58+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

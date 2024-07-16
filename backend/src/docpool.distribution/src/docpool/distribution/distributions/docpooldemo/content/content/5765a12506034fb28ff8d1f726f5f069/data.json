@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-information_bevoelkerung/info_public_image",
+  "@type": "Image",
+  "UID": "5765a12506034fb28ff8d1f726f5f069",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:11+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "info_public_image",
+  "image": {
+    "blob_path": "5765a12506034fb28ff8d1f726f5f069/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:12+00:00",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1/ein-information_bevoelkerung",
+    "@type": "DPDocument",
+    "UID": "fb735744cecc4ad3802267604bbab91c",
+    "description": "foo (info_public)",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ein Information_Bev\u00f6lkerung",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "info_public_image",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:11+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

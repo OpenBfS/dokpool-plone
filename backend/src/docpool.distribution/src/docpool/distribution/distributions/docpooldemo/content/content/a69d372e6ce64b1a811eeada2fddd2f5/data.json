@@ -1,0 +1,55 @@
+{
+  "@id": "/bund/contentconfig/scen/kernkraftwerk-1",
+  "@type": "DPNuclearPowerStation",
+  "UID": "a69d372e6ce64b1a811eeada2fddd2f5",
+  "allow_discussion": false,
+  "contributors": [],
+  "coordinates": "POINT(12.240313700000002 48.59873489999998)",
+  "created": "2024-03-14T12:44:04+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "kernkraftwerk-1",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:04+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen",
+    "@type": "DPEvents",
+    "UID": "59f1bffd1fd34f518d73284a8388eeef",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ereignisse",
+    "type_title": "DP Events"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Kernkraftwerk 1",
+  "type_title": "DP Nuclear Power Station",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:04+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,1117 @@
+{
+  "groups": [
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "",
+      "email": "",
+      "groupid": "Administrators",
+      "groups": [],
+      "principals": [],
+      "roles": [
+        "Manager"
+      ],
+      "title": "Administrators"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "",
+      "email": "",
+      "groupid": "Reviewers",
+      "groups": [],
+      "principals": [],
+      "roles": [
+        "Reviewer"
+      ],
+      "title": "Reviewers"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "",
+      "email": "",
+      "groupid": "Site Administrators",
+      "groups": [],
+      "principals": [],
+      "roles": [
+        "Site Administrator"
+      ],
+      "title": "Site Administrators"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for the administration of the DocPool.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Administrators",
+      "groups": [],
+      "principals": [
+        "bund_doksysadmin",
+        "bund_dpadmin",
+        "bund_elanadmin",
+        "bund_reiadmin"
+      ],
+      "roles": [],
+      "title": "Administrators (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for the definition of scenarios, ticker texts and additional content.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_ContentAdministrators",
+      "groups": [],
+      "principals": [
+        "bund_contentadmin"
+      ],
+      "roles": [],
+      "title": "Content Administrators (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users with access to Doksys functions.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_DoksysUsers",
+      "groups": [],
+      "principals": [
+        "bund_doksysadmin",
+        "user1"
+      ],
+      "roles": [],
+      "title": "Doksys Users (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users with access to ELAN functions.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_ELANUsers",
+      "groups": [],
+      "principals": [
+        "bund_contentadmin",
+        "bund_dpadmin",
+        "bund_elanadmin",
+        "user1"
+      ],
+      "roles": [],
+      "title": "ELAN Users (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal1 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal1_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 1 Editors (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal1 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal1_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 1 Reader (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal2 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal2_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 2 Editors (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal2 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal2_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 2 Reader (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal3 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal3_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 3 Editors (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal3 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal3_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 3 Reader (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal4 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal4_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 4 Editors (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal4 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal4_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 4 Reader (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal5 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal5_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 5 Editors (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal5 in Bund.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Journal5_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 5 Reader (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users of the DocPool.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Members",
+      "groups": [],
+      "principals": [
+        "aufsicht_by",
+        "aufsicht_he",
+        "betreiber_he",
+        "bfs_rei",
+        "bmu_rei",
+        "bund_contentadmin",
+        "bund_dpadmin",
+        "bund_elanadmin",
+        "user1"
+      ],
+      "roles": [],
+      "title": "Members (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for the definition of structure and types.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_REIContentAdministrators",
+      "groups": [],
+      "principals": [
+        "bund_dpadmin"
+      ],
+      "roles": [],
+      "title": "REI Content Administrators (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users with access to REI functions.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_REIUsers",
+      "groups": [],
+      "principals": [
+        "aufsicht_by",
+        "aufsicht_he",
+        "betreiber_he",
+        "bfs_rei",
+        "bmu_rei",
+        "bund_dpadmin",
+        "user1"
+      ],
+      "roles": [],
+      "title": "REI Users (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for publishing content received from other ESDs.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Receivers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Content Receivers (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for sending content to other ESDs - if allowed by them.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_Senders",
+      "groups": [],
+      "principals": [
+        "user1"
+      ],
+      "roles": [],
+      "title": "Content Senders (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can manage situation reports.",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_SituationReportAdmins",
+      "groups": [],
+      "principals": [
+        "bund_contentadmin",
+        "bund_dpadmin",
+        "bund_elanadmin"
+      ],
+      "roles": [],
+      "title": "Situation Report Admins/Lagebild (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_aufsicht",
+      "groups": [],
+      "principals": [
+        "bund_aufsicht_by",
+        "bund_aufsicht_he"
+      ],
+      "roles": [],
+      "title": "Aufsicht (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "reireport"
+      ],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_aufsicht_by",
+      "groups": [
+        "bund_aufsicht"
+      ],
+      "principals": [
+        "aufsicht_by"
+      ],
+      "roles": [],
+      "title": "Aufsicht_by (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "reireport"
+      ],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_aufsicht_he",
+      "groups": [
+        "bund_aufsicht"
+      ],
+      "principals": [
+        "aufsicht_he"
+      ],
+      "roles": [],
+      "title": "Aufsicht_he (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "reireport"
+      ],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_betreiber_he",
+      "groups": [],
+      "principals": [
+        "betreiber_he"
+      ],
+      "roles": [],
+      "title": "Betreiber_he (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_bfs_rei",
+      "groups": [],
+      "principals": [
+        "bfs_rei"
+      ],
+      "roles": [],
+      "title": "Bfs_rei (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_bmu_rei",
+      "groups": [],
+      "principals": [
+        "bmu_rei"
+      ],
+      "roles": [],
+      "title": "Bmu_rei (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "otherprojection",
+        "nppinformation",
+        "estimation",
+        "doksysdok",
+        "operation_map",
+        "eventinformation",
+        "information_expert_advisor",
+        "info_public",
+        "info_ecc",
+        "sitrep",
+        "situationreport",
+        "protectiveactions",
+        "instructions",
+        "mediareport",
+        "mediarelease",
+        "notification",
+        "measurement_order",
+        "mresult_flight",
+        "groundcontamination",
+        "mresult_feed",
+        "mresult_water",
+        "mresult_insitu",
+        "mresult_food",
+        "airactivity",
+        "gammadoserate",
+        "gammadoserate_mobile",
+        "gammadoserate_timeseries",
+        "mresult_other",
+        "note",
+        "note_measurement_teams",
+        "lasair_lasat_projection",
+        "rodosrun_elan",
+        "rodosprojection",
+        "inquiry_measurement_order",
+        "other_document",
+        "measurement_requirements",
+        "trajectory",
+        "weatherinformation"
+      ],
+      "description": "",
+      "dp": "d11a1b32b3ab4a0cae91c80cf948f609",
+      "email": "",
+      "groupid": "bund_group1",
+      "groups": [],
+      "principals": [
+        "user1"
+      ],
+      "roles": [],
+      "title": "Group1 (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for the administration of the DocPool.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Administrators",
+      "groups": [],
+      "principals": [
+        "hessen_doksysadmin",
+        "hessen_dpadmin",
+        "hessen_elanadmin"
+      ],
+      "roles": [],
+      "title": "Administrators (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for the definition of scenarios, ticker texts and additional content.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_ContentAdministrators",
+      "groups": [],
+      "principals": [
+        "hessen_contentadmin"
+      ],
+      "roles": [],
+      "title": "Content Administrators (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users with access to Doksys functions.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_DoksysUsers",
+      "groups": [],
+      "principals": [
+        "hessen_doksysadmin",
+        "user2"
+      ],
+      "roles": [],
+      "title": "Doksys Users (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users with access to ELAN functions.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_ELANUsers",
+      "groups": [],
+      "principals": [
+        "hessen_contentadmin",
+        "hessen_dpadmin",
+        "hessen_elanadmin",
+        "user2"
+      ],
+      "roles": [],
+      "title": "ELAN Users (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal1 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal1_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 1 Editors (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal1 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal1_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 1 Reader (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal2 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal2_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 2 Editors (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal2 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal2_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 2 Reader (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal3 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal3_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 3 Editors (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal3 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal3_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 3 Reader (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal4 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal4_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 4 Editors (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal4 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal4_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 4 Reader (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal5 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal5_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 5 Editors (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal5 in Hessen.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Journal5_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 5 Reader (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users of the DocPool.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Members",
+      "groups": [],
+      "principals": [
+        "hessen_contentadmin",
+        "hessen_dpadmin",
+        "hessen_elanadmin",
+        "user2"
+      ],
+      "roles": [],
+      "title": "Members (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for publishing content received from other ESDs.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Receivers",
+      "groups": [],
+      "principals": [
+        "user2"
+      ],
+      "roles": [],
+      "title": "Content Receivers (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for sending content to other ESDs - if allowed by them.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_Senders",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Content Senders (Hessen)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can manage situation reports.",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_SituationReportAdmins",
+      "groups": [],
+      "principals": [
+        "hessen_contentadmin",
+        "hessen_dpadmin",
+        "hessen_elanadmin"
+      ],
+      "roles": [],
+      "title": "Situation Report Admins/Lagebild (Hessen)"
+    },
+    {
+      "allowedDocTypes": [
+        "otherprojection",
+        "nppinformation",
+        "estimation",
+        "doksysdok",
+        "operation_map",
+        "eventinformation",
+        "information_expert_advisor",
+        "info_public",
+        "info_ecc",
+        "sitrep",
+        "situationreport",
+        "protectiveactions",
+        "instructions",
+        "mediareport",
+        "mediarelease",
+        "notification",
+        "measurement_order",
+        "mresult_flight",
+        "groundcontamination",
+        "mresult_feed",
+        "mresult_water",
+        "mresult_insitu",
+        "mresult_food",
+        "airactivity",
+        "gammadoserate",
+        "gammadoserate_mobile",
+        "gammadoserate_timeseries",
+        "mresult_other",
+        "note",
+        "note_measurement_teams",
+        "lasair_lasat_projection",
+        "rodosrun_elan",
+        "rodosprojection",
+        "inquiry_measurement_order",
+        "other_document",
+        "measurement_requirements",
+        "trajectory",
+        "weatherinformation"
+      ],
+      "description": "",
+      "dp": "03fc7164baa240ef976c30134fffbd82",
+      "email": "",
+      "groupid": "hessen_group2",
+      "groups": [],
+      "principals": [
+        "user2"
+      ],
+      "roles": [],
+      "title": "Group2 (Hessen)"
+    }
+  ],
+  "members": [
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "aufsicht_by (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_aufsicht_by"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}fSwi3YDjCO8vGMHGVl8gxBPQMweNMtOdaOnL",
+      "roles": [
+        "Member"
+      ],
+      "username": "aufsicht_by"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "aufsicht_he (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_aufsicht_he"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}g2ysyFnJLQfZTuQZjGdl7hCAFdRKQoOoR0yQ",
+      "roles": [
+        "Member"
+      ],
+      "username": "aufsicht_he"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "betreiber_he (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_betreiber_he"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}D41RpZW1PQljKN3XHi9H5Jj/NEzIoE/g8VKX",
+      "roles": [
+        "Member"
+      ],
+      "username": "betreiber_he"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "bfs_rei (Bund)",
+      "groups": [
+        "bund_bfs_rei",
+        "bund_Members",
+        "bund_REIUsers"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}xxH/HmtjabdUauZbmRningqWbSs1lo/b5L9W",
+      "roles": [
+        "Member"
+      ],
+      "username": "bfs_rei"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "bmu_rei (Bund)",
+      "groups": [
+        "bund_bmu_rei",
+        "bund_Members",
+        "bund_REIUsers"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}CZ89dEYeAyE71Rvf6wq7S4WvPnIbJJfzq+Vb",
+      "roles": [
+        "Member"
+      ],
+      "username": "bmu_rei"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "Content Admin (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_ContentAdministrators",
+        "bund_ELANUsers",
+        "bund_SituationReportAdmins"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}D4lYBqHKa7dRuoDaPfmGDLCP7r2x7FYakief",
+      "roles": [
+        "Member"
+      ],
+      "username": "bund_contentadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "DokSys Administrator (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_Administrators"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}/+GlC8WUP0S3dif17EhNN1fqMgPxcfQXAEy9",
+      "roles": [
+        "Member"
+      ],
+      "username": "bund_doksysadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "DocPool Administrator (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_REIContentAdministrators",
+        "bund_ELANUsers",
+        "bund_SituationReportAdmins",
+        "bund_Administrators"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}04/tEFUgvpFfLwYkokOl0t4mYhpkMQd+xbiv",
+      "roles": [
+        "Member"
+      ],
+      "username": "bund_dpadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "ELAN Administrator (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_ELANUsers",
+        "bund_SituationReportAdmins",
+        "bund_Administrators"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}ULqDXEBZv6cXRCUwASgJGO4goYoKS0Z5Gd6D",
+      "roles": [
+        "Member"
+      ],
+      "username": "bund_elanadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "REI Administrator (Bund)",
+      "groups": [
+        "bund_Administrators"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}U/vQtyg2+pjQyPmld2OZtDtlNi+oaX+L/B63",
+      "roles": [
+        "Member"
+      ],
+      "username": "bund_reiadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "",
+      "fullname": "Docpool Administrator",
+      "groups": [],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}sh0gcL0taXbqJd+sK9Z4PwXagWXcJWDjISu1",
+      "roles": [
+        "ELANUser",
+        "REIUser",
+        "Member",
+        "Site Administrator"
+      ],
+      "username": "dpadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "",
+      "fullname": "Docpool Manager",
+      "groups": [],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}E+wP/8sG/2YrE4uNOCbyioMu0qvLUt/R8uDU",
+      "roles": [
+        "ELANUser",
+        "Manager",
+        "REIUser",
+        "Member"
+      ],
+      "username": "dpmanager"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "",
+      "fullname": "ELAN Administrator",
+      "groups": [],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}vagWtmOhU//alYMPdeftgd5DiozofX8rDd7V",
+      "roles": [
+        "ELANUser",
+        "Member",
+        "Site Administrator"
+      ],
+      "username": "elanadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "",
+      "fullname": "ELAN Manager",
+      "groups": [],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}ROQ31PZyTYHCrmd/eyNDk2CYPTcyBwEaAkAs",
+      "roles": [
+        "ELANUser",
+        "Manager",
+        "Member"
+      ],
+      "username": "elanmanager"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "Content Admin (Hessen)",
+      "groups": [
+        "hessen_Members",
+        "hessen_ContentAdministrators",
+        "hessen_SituationReportAdmins",
+        "hessen_ELANUsers"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}gdQk7mMduYvRcPftpfacIeQ/N/e2Xg0KONg6",
+      "roles": [
+        "Member"
+      ],
+      "username": "hessen_contentadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "DokSys Administrator (Hessen)",
+      "groups": [
+        "hessen_Administrators",
+        "hessen_DoksysUsers"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}R7v9rCqMp2KKVG5edxU0vUlhHcNyIa9oTYrM",
+      "roles": [
+        "Member"
+      ],
+      "username": "hessen_doksysadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "DocPool Administrator (Hessen)",
+      "groups": [
+        "hessen_Members",
+        "hessen_SituationReportAdmins",
+        "hessen_ELANUsers",
+        "hessen_Administrators"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}gyFmlWHRv2TBWZa2CxddR9sYSKW65wmYDVBO",
+      "roles": [
+        "Member"
+      ],
+      "username": "hessen_dpadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "test@starzel.de",
+      "fullname": "ELAN Administrator (Hessen)",
+      "groups": [
+        "hessen_Members",
+        "hessen_SituationReportAdmins",
+        "hessen_ELANUsers",
+        "hessen_Administrators"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}MzIbPox76xKOWP/l+anjNT25ojC0U2xtdcvr",
+      "roles": [
+        "Member"
+      ],
+      "username": "hessen_elanadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "",
+      "fullname": "REI Administrator",
+      "groups": [],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}SUqeBxLoIJ62tp0X62YCrxT4wB81C3vSuRXt",
+      "roles": [
+        "REIUser",
+        "Site Administrator",
+        "Member"
+      ],
+      "username": "reiadmin"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "",
+      "fullname": "REI Manager",
+      "groups": [],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}TlJLoC6A8PSe/Nk+VwH7lErJ3EhMwS+xONDK",
+      "roles": [
+        "REIUser",
+        "Manager",
+        "Member"
+      ],
+      "username": "reimanager"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "user1 (Bund)",
+      "groups": [
+        "bund_Senders",
+        "bund_Members",
+        "bund_group1",
+        "bund_REIUsers",
+        "bund_ELANUsers",
+        "bund_DoksysUsers"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}FFBzTRrZM9MM9D+pD0uwzUljxG1BH5J502PQ",
+      "roles": [
+        "Member"
+      ],
+      "username": "user1"
+    },
+    {
+      "description": "",
+      "dp": "",
+      "email": "tester@plone.org",
+      "fullname": "user2 (Hessen)",
+      "groups": [
+        "hessen_Members",
+        "hessen_group2",
+        "hessen_DoksysUsers",
+        "hessen_ELANUsers",
+        "hessen_Receivers"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}unfD8jJRPugvuw0owvN7x1APUHSNuWOTo0KL",
+      "roles": [
+        "Member"
+      ],
+      "username": "user2"
+    }
+  ]
+}

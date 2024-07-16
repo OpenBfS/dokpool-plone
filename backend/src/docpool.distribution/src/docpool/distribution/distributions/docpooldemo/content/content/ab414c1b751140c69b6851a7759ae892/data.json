@@ -1,0 +1,58 @@
+{
+  "@id": "/hessen/searches",
+  "@type": "Folder",
+  "UID": "ab414c1b751140c69b6851a7759ae892",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "searches",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "modified": "2024-03-14T12:44:03+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "/hessen",
+    "@type": "DocumentPool",
+    "UID": "03fc7164baa240ef976c30134fffbd82",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Hessen",
+    "type_title": "Document Pool"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Standardsuchen",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:00+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

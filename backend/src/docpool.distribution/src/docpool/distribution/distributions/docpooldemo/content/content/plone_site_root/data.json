@@ -1,0 +1,38 @@
+{
+  "@id": "/Plone",
+  "@type": "Plone Site",
+  "UID": "plone_site_root",
+  "allow_discussion": null,
+  "contributors": [],
+  "creators": [
+    "admin"
+  ],
+  "description": "Herzlichen Gl\u00fcckwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "Plone",
+  "is_folderish": true,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "parent": {},
+  "review_state": null,
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p class=\"discreet\">Wenn Sie diese Seite anstelle des von Ihnen erwarteten Inhalts sehen, hat der Betreiber dieser Website gerade erst Plone installiert. Bitte benachrichtigen Sie NICHT das Plone Team, sondern den Betreiber dieser Website.</p><h2>So starten Sie!</h2><p>Bevor Sie sich mit Ihrer neuen Plone-Website vertraut machen, stellen Sie bitte sicher, dass</p><ol> <li>Sie als Administrator angemeldet sind.        <span class=\"discreet\">(Sie finden im Men\u00fc unten links den Eintrag 'Konfiguration'.)</span></li> <li><a href=\"http://nohost/Plone/@@mail-controlpanel\">Sie den E-Mail-Dienst konfiguriert haben</a>. <span class=\"discreet\">(Plone ben\u00f6tigt einen SMTP-Server zur Benutzerregistrierung und um Benutzern die M\u00f6glichkeit zu geben, ein vergessenes Passwort neu zu setzen.)</span></li> <li><a href=\"http://nohost/Plone/@@security-controlpanel\">Sie wissen, welche Sicherheitseinstellungen f\u00fcr Ihre Website g\u00fcltig sind</a>. <span class=\"discreet\">(Das betrifft zum Beispiel die Selbstregistrierung und das Setzen von Passw\u00f6rtern)</span></li></ol><h2>Machen Sie sich mit Plone vertraut!</h2><p>Anschlie\u00dfend empfehlen wir Ihnen Folgendes:</p><ul> <li>Lesen Sie, <a class=\"link-plain\" href=\"https://plone.com/features/\">welche neuen Funktionen Plone</a> enth\u00e4lt (in Englisch),</li> <li>Lesen Sie die <a class=\"link-plain\" href=\"https://docs.plone.org\">Dokumentation</a> (in Englisch)</li><li>Folgen Sie einem <a class=\"link-plain\" href=\"https://training.plone.org\">Training</a></li><p>Danke, dass Sie Plone einsetzen. Wir hoffen, dass Sie begeistert sein werden!</p><p>Ihr Plone-Team</p></ul>",
+    "encoding": "utf-8"
+  },
+  "title": "Willkommen bei Plone",
+  "type_title": "Plone Site",
+  "workflow_history": {}
+}

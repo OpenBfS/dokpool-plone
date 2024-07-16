@@ -1,0 +1,84 @@
+{
+  "@id": "/bund/esd/current-situation/notes",
+  "@type": "ELANDocCollection",
+  "UID": "96278229ea6c466a99adb467309b8975",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "notes",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "limit": 1000,
+  "lock": {},
+  "modified": "2024-03-14T12:43:56+00:00",
+  "parent": {
+    "@id": "/bund/esd/current-situation",
+    "@type": "ELANSection",
+    "UID": "8cb27a116b754961968b7bc102e76c96",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "LAGE",
+    "type_title": "Section"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "DPDocument",
+        "SituationReport",
+        "SRModule"
+      ]
+    },
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "note"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "MITTEILUNGEN",
+  "type_title": "ELAN Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

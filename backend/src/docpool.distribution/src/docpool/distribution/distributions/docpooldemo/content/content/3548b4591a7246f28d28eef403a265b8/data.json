@@ -1,0 +1,93 @@
+{
+  "@id": "/news/aggregator",
+  "@type": "Collection",
+  "UID": "3548b4591a7246f28d28eef403a265b8",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-07-16T15:17:47+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "Nachrichten",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "aggregator",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "summary_view",
+  "limit": 1000,
+  "local_behaviors": [],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-07-16T15:17:47+00:00",
+  "parent": {
+    "@id": "/news",
+    "@type": "Folder",
+    "UID": "7ee2da609a544c55a60729fb24f65812",
+    "description": "Nachrichten",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Nachrichten",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "News Item"
+      ]
+    },
+    {
+      "i": "review_state",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "published"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "effective",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "Nachrichten",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "simple_publication_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-07-16T15:17:47+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-07-16T15:17:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

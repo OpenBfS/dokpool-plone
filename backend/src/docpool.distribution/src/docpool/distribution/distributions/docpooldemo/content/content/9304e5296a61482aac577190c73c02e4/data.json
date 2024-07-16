@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-information_notfallstationen/info_ecc_image",
+  "@type": "Image",
+  "UID": "9304e5296a61482aac577190c73c02e4",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:12+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "info_ecc_image",
+  "image": {
+    "blob_path": "9304e5296a61482aac577190c73c02e4/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:12+00:00",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1/ein-information_notfallstationen",
+    "@type": "DPDocument",
+    "UID": "ecbc3f848e98457d9332a37767bca7e2",
+    "description": "foo (info_ecc)",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ein Information_Notfallstationen",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "info_ecc_image",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:12+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

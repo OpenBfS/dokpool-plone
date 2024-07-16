@@ -1,0 +1,98 @@
+{
+  "@id": "/bund/contentconfig/scen/test-event/journal1",
+  "@type": "Journal",
+  "UID": "02d14bf74dd14bf2af9eae03407d3237",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:04+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.annotations": {
+    "journal.journalentries": [
+      {
+        "created": "2024-03-14T13:44:04",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:04",
+        "text": "<p>This is demo journal entry 1</p>",
+        "timestamp": "1710420244.580412",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:04",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:04",
+        "text": "<p>This is demo journal entry 2</p>",
+        "timestamp": "1710420244.6356091",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:04",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:04",
+        "text": "<p>This is demo journal entry 3</p>",
+        "timestamp": "1710420244.690822",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:04",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:04",
+        "text": "<p>This is demo journal entry 4</p>",
+        "timestamp": "1710420244.746727",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:04",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:04",
+        "text": "<p>This is demo journal entry 5</p>",
+        "timestamp": "1710420244.8016078",
+        "title": ""
+      }
+    ]
+  },
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "journal1",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:05+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen/test-event",
+    "@type": "DPEvent",
+    "UID": "5500de30f9304b52bf45cbd53d7ddb5a",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event",
+    "type_title": "DP Event"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch BfS",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:04+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

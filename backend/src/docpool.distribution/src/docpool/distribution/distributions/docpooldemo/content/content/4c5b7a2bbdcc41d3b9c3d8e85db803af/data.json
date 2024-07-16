@@ -1,0 +1,80 @@
+{
+  "@id": "/esd/overview",
+  "@type": "ELANDocCollection",
+  "UID": "4c5b7a2bbdcc41d3b9c3d8e85db803af",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.events.IDocumentPoolUndeleteable"
+  ],
+  "exportimport.versions": {},
+  "id": "overview",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "limit": 1000,
+  "lock": {},
+  "modified": "2024-03-14T12:43:46+00:00",
+  "parent": {
+    "@id": "/esd",
+    "@type": "ELANCurrentSituation",
+    "UID": "c6fe560fab2a4ec1a75c45a87799eb66",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Vorlage aktuelle Situation",
+    "type_title": "Current Situation"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "DPDocument",
+        "SituationReport",
+        "SRModule"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "\u00dcberblick",
+  "type_title": "ELAN Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:46+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

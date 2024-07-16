@@ -1,0 +1,80 @@
+{
+  "@id": "/bund/archive/archived-event_14-03-2024-13-44/archived-event",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": "POLYGON((12.124842841725044 48.60077830054228,12.157801826095657 48.51533914735478,12.702998359223052 48.63164629148582,12.865046699043434 48.77393903963252,12.124842841725044 48.60077830054228))",
+  "EventCoordinates": "POINT(12.240313700000002 48.59873489999998)",
+  "EventPhase": null,
+  "EventType": "Test",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": [
+    "A",
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "Status": "closed",
+  "TimeOfEvent": "2024-03-14T13:44:07",
+  "UID": "4f1aa276d3584a5fa28b4c9dafa1afee",
+  "allow_discussion": false,
+  "changelog": "[{\"Date\": \"14.03.2024 13:44\", \"User\": \"admin\", \"Status\": \"inactive\", \"EventType\": \"Test\", \"Operation mode\": \"routine\", \"Alerting status\": \"none\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"A, A1, A2, A3\", \"Sectorizing networks\": \"Testnetz\"}]",
+  "contributors": [],
+  "created": "2024-03-14T12:44:07+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "Die Beschreibung",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "archived-event",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:44:07",
+  "modified": "2024-03-14T12:44:17+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/bund/archive/archived-event_14-03-2024-13-44",
+    "@type": "ELANArchive",
+    "UID": "a60e9d2b38f24f2fa57284af615fe503",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event that was archived 14.03.2024 13:44",
+    "type_title": "Archive"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Test Event that was archived",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:07",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:07+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

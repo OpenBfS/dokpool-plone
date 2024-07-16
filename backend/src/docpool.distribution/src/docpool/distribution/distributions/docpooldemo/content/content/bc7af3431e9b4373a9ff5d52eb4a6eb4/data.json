@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/archive/archived-event_14-03-2024-13-44/esd",
+  "@type": "ELANCurrentSituation",
+  "UID": "bc7af3431e9b4373a9ff5d52eb4a6eb4",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:16+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "esd",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:17+00:00",
+  "parent": {
+    "@id": "/bund/archive/archived-event_14-03-2024-13-44",
+    "@type": "ELANArchive",
+    "UID": "a60e9d2b38f24f2fa57284af615fe503",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event that was archived 14.03.2024 13:44",
+    "type_title": "Archive"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Elektronische Lagedarstellung",
+  "type_title": "Current Situation",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:16+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,59 @@
+{
+  "@id": "/hessen/help",
+  "@type": "Text",
+  "UID": "0e3d30d4fc4145eda8e05515ce4ef168",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:58+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "help",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:43:58",
+  "modified": "2024-03-14T12:44:03+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/hessen",
+    "@type": "DocumentPool",
+    "UID": "03fc7164baa240ef976c30134fffbd82",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Hessen",
+    "type_title": "Document Pool"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "text": null,
+  "title": "Hilfe",
+  "type_title": "Textpage",
+  "version": "current",
+  "wdate": "2024-03-14T13:43:58",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:58+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

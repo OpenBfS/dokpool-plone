@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/config",
+  "@type": "DPConfig",
+  "UID": "ef32bd3d4b47429ea0a4219d3d5b1afe",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "config",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-14T12:43:55+00:00",
+  "parent": {
+    "@id": "/bund",
+    "@type": "DocumentPool",
+    "UID": "d11a1b32b3ab4a0cae91c80cf948f609",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Bund",
+    "type_title": "Document Pool"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Konfiguration",
+  "type_title": "Docpool Configuration Area",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

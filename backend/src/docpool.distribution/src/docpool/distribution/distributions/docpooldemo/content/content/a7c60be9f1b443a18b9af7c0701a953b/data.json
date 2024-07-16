@@ -1,0 +1,80 @@
+{
+  "@id": "/hessen/esd/recent",
+  "@type": "ELANDocCollection",
+  "UID": "a7c60be9f1b443a18b9af7c0701a953b",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.events.IDocumentPoolUndeleteable"
+  ],
+  "exportimport.versions": {},
+  "id": "recent",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "limit": 1000,
+  "lock": {},
+  "modified": "2024-03-14T12:44:03+00:00",
+  "parent": {
+    "@id": "/hessen/esd",
+    "@type": "ELANCurrentSituation",
+    "UID": "2533470be68743f5a7fa867843724314",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Aktuelle Lage",
+    "type_title": "Current Situation"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "DPDocument",
+        "SituationReport",
+        "SRModule"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "Alle Dokumente",
+  "type_title": "ELAN Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:58+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,61 @@
+{
+  "@id": "/hessen/config/dtypes/information_expert_advisor",
+  "@type": "DocType",
+  "UID": "b676024d297a4755bb23bac839c8af60",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": false,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "globalAllow": true,
+  "id": "information_expert_advisor",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2024-03-14T12:44:02+00:00",
+  "parent": {
+    "@id": "/hessen/config/dtypes",
+    "@type": "DocTypes",
+    "UID": "1181359af8704efe964df0e28db69674",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Dokumenttypen",
+    "type_title": "Folder for Document Types"
+  },
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "FBE_Information",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:57+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

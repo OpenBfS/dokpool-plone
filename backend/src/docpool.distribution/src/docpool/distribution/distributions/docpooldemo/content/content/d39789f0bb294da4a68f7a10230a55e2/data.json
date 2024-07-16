@@ -1,0 +1,54 @@
+{
+  "@id": "/hessen/contentconfig/dbconfig",
+  "@type": "DashboardsConfig",
+  "UID": "d39789f0bb294da4a68f7a10230a55e2",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:58+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "dbconfig",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:03+00:00",
+  "parent": {
+    "@id": "/hessen/contentconfig",
+    "@type": "ELANContentConfig",
+    "UID": "e72a33f275d844cc97cac1fb62eecc42",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Konfiguration Inhalte",
+    "type_title": "ELAN Content Configuration"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Dokumentsammlungen Pinnwand",
+  "type_title": "Dashboards Configuration",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:58+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

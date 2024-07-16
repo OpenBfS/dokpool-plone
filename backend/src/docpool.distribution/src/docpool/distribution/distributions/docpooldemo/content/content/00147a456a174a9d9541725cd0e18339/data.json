@@ -1,0 +1,77 @@
+{
+  "@id": "/bund/contentconfig/scen/jetzt-ist-schon-wieder-was-passiert",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "initialized",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "intensive",
+  "SectorizingSampleTypes": [
+    "G4"
+  ],
+  "Status": "active",
+  "TimeOfEvent": "2024-03-15T09:52:00",
+  "UID": "00147a456a174a9d9541725cd0e18339",
+  "allow_discussion": false,
+  "changelog": "[{\"Date\": \"15.03.2024 09:53\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"intensive\", \"Alerting status\": \"initialized\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"G4\", \"Sectorizing networks\": \"Testnetz\"}]",
+  "contributors": [],
+  "created": "2024-03-15T08:53:59+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "Saucer that mountain carajillo foam",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "jetzt-ist-schon-wieder-was-passiert",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-15T09:53:59",
+  "modified": "2024-03-15T08:53:59+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/bund/contentconfig/scen",
+    "@type": "DPEvents",
+    "UID": "59f1bffd1fd34f518d73284a8388eeef",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ereignisse",
+    "type_title": "DP Events"
+  },
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Jetzt ist schon wieder was passiert",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2024-03-15T09:53:59",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-15T08:53:59+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

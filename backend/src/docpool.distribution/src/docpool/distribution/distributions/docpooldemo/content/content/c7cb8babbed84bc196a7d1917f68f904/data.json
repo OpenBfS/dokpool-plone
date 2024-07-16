@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/config/dtypes",
+  "@type": "DocTypes",
+  "UID": "c7cb8babbed84bc196a7d1917f68f904",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "dtypes",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-14T12:43:55+00:00",
+  "parent": {
+    "@id": "/bund/config",
+    "@type": "DPConfig",
+    "UID": "ef32bd3d4b47429ea0a4219d3d5b1afe",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Konfiguration",
+    "type_title": "Docpool Configuration Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Dokumenttypen",
+  "type_title": "Folder for Document Types",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

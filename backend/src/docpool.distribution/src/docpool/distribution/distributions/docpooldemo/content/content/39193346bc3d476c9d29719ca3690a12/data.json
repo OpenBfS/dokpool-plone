@@ -1,0 +1,61 @@
+{
+  "@id": "/bund/config/dtypes/info_public",
+  "@type": "DocType",
+  "UID": "39193346bc3d476c9d29719ca3690a12",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": false,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "globalAllow": true,
+  "id": "info_public",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2024-03-14T12:43:55+00:00",
+  "parent": {
+    "@id": "/bund/config/dtypes",
+    "@type": "DocTypes",
+    "UID": "c7cb8babbed84bc196a7d1917f68f904",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Dokumenttypen",
+    "type_title": "Folder for Document Types"
+  },
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Information_Bev\u00f6lkerung",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

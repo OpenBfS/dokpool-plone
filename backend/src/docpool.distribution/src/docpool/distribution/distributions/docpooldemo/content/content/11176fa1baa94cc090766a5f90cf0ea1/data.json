@@ -1,0 +1,54 @@
+{
+  "@id": "/hessen/contentconfig/scen/test-event/journal1",
+  "@type": "Journal",
+  "UID": "11176fa1baa94cc090766a5f90cf0ea1",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:18+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "journal1",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:18+00:00",
+  "parent": {
+    "@id": "/hessen/contentconfig/scen/test-event",
+    "@type": "DPEvent",
+    "UID": "91f9ba95f9cf48d1834379b738d3abd0",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event",
+    "type_title": "DP Event"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch BfS",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:18+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

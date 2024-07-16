@@ -1,0 +1,74 @@
+{
+  "@id": "/bund/content/Groups/bund_bfs_rei",
+  "@type": "GroupFolder",
+  "UID": "e76bde222b114abbaea33b8b7ce1dd51",
+  "allow_discussion": false,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2024-03-14T12:44:04+00:00",
+  "created_by": "admin <i>Bfs_rei (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "SimpleFolder",
+      "DPDocument"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "bund_bfs_rei",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2024-03-14T13:44:04",
+  "modified": "2024-03-14T12:44:04+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/bund/content/Groups",
+    "@type": "Groups",
+    "UID": "3ba9aa05c9e84931a7558bb3a1d0f004",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Gruppen",
+    "type_title": "Groups Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Bfs_rei (Bund)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:04",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:04+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

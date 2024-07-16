@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/archive/archived-event_14-03-2024-13-44/esd/meteorology",
+  "@type": "ELANSection",
+  "UID": "5d7e70772f894137b986db0202ae9b0f",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "meteorology",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:17+00:00",
+  "parent": {
+    "@id": "/bund/archive/archived-event_14-03-2024-13-44/esd",
+    "@type": "ELANCurrentSituation",
+    "UID": "bc7af3431e9b4373a9ff5d52eb4a6eb4",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Elektronische Lagedarstellung",
+    "type_title": "Current Situation"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "METEOROLOGIE",
+  "type_title": "Section",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:17+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

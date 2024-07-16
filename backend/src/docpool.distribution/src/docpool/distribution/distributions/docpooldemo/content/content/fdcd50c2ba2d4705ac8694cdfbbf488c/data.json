@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/contentconfig/scen/jetzt-ist-schon-wieder-was-passiert/journal3",
+  "@type": "Journal",
+  "UID": "fdcd50c2ba2d4705ac8694cdfbbf488c",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-15T08:53:59+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "journal3",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-15T08:53:59+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen/jetzt-ist-schon-wieder-was-passiert",
+    "@type": "DPEvent",
+    "UID": "00147a456a174a9d9541725cd0e18339",
+    "description": "Saucer that mountain carajillo foam",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Jetzt ist schon wieder was passiert",
+    "type_title": "DP Event"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch SSK",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-15T08:53:59+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

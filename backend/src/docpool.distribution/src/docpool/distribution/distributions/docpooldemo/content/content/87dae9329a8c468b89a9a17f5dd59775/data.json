@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/archive/archived-event_14-03-2024-13-44/content/Groups/bund_group1/eine-elan-bodenprobe-zum-archivieren/ein-bild",
+  "@type": "Image",
+  "UID": "87dae9329a8c468b89a9a17f5dd59775",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:16+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ein-bild",
+  "image": {
+    "blob_path": "87dae9329a8c468b89a9a17f5dd59775/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:17+00:00",
+  "parent": {
+    "@id": "/bund/archive/archived-event_14-03-2024-13-44/content/Groups/bund_group1/eine-elan-bodenprobe-zum-archivieren",
+    "@type": "DPDocument",
+    "UID": "d57f543a69024988912e705cd9b4a845",
+    "description": "foo",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Eine ELAN Bodenprobe zum archivieren",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Ein Bild",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:16+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,59 @@
+{
+  "@id": "/contentconfig/impressum",
+  "@type": "Text",
+  "UID": "b86a3b315ed74800b646ab4a6bf84d8b",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "impressum",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:43:45",
+  "modified": "2024-03-14T12:43:45+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/contentconfig",
+    "@type": "ELANContentConfig",
+    "UID": "be33016ccd4945c2aa5ed63acaaccebe",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Konfiguration Inhalte",
+    "type_title": "ELAN Content Configuration"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "text": null,
+  "title": "Impressum",
+  "type_title": "Textpage",
+  "version": "current",
+  "wdate": "2024-03-14T13:43:45",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:45+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

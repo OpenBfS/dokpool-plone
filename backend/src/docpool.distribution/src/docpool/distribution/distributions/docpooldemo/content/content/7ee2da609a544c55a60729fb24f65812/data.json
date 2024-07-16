@@ -1,0 +1,86 @@
+{
+  "@id": "/news",
+  "@type": "Folder",
+  "UID": "7ee2da609a544c55a60729fb24f65812",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-07-16T15:17:47+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "Nachrichten",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "News Item"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "Document",
+      "Folder",
+      "Link",
+      "File",
+      "Image",
+      "News Item",
+      "Event",
+      "Text",
+      "Groups",
+      "Users",
+      "DocumentPool",
+      "DPConfig",
+      "DashboardsConfig",
+      "Dashboard",
+      "DPTransfersArea",
+      "ELANInfos",
+      "ELANCurrentSituation",
+      "ELANContentConfig",
+      "ELANArchives"
+    ]
+  },
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "news",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [],
+  "lock": {},
+  "modified": "2024-07-16T15:17:47+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "/",
+    "@type": "Plone Site",
+    "UID": "plone_site_root",
+    "description": "Herzlichen Gl\u00fcckwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.",
+    "title": "Willkommen bei Plone",
+    "type_title": "Plone Site"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Nachrichten",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "simple_publication_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-07-16T15:17:47+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-07-16T15:17:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

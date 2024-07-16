@@ -1,0 +1,53 @@
+{
+  "@id": "/searches",
+  "@type": "Folder",
+  "UID": "c026fa2731cd4f24add6cd827f343734",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "searches",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [],
+  "lock": {},
+  "modified": "2024-03-14T12:43:46+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "/",
+    "@type": "Plone Site",
+    "UID": "plone_site_root",
+    "description": "Herzlichen Gl\u00fcckwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.",
+    "title": "Willkommen bei Plone",
+    "type_title": "Plone Site"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Predefined Searches",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:46+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

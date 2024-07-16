@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/esd/dashboard",
+  "@type": "Dashboard",
+  "UID": "bb40b4a2138d4e499974f868493bee2b",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "dashboard",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:43:56+00:00",
+  "parent": {
+    "@id": "/bund/esd",
+    "@type": "ELANCurrentSituation",
+    "UID": "1dff7438eb2940928af69a1c0c1caa0e",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Aktuelle Lage",
+    "type_title": "Current Situation"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Pinnwand",
+  "type_title": "Dashboard",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:48+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

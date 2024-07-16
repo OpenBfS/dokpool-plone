@@ -1,0 +1,114 @@
+{
+  "@id": "/esd/front-page",
+  "@type": "Document",
+  "UID": "5def1d9fc92e488c9840cc03580a6e8b",
+  "allow_discussion": false,
+  "changeActor": "admin",
+  "changeNote": null,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.events.IDocumentPoolUndeleteable"
+  ],
+  "exportimport.versions": {
+    "0": {
+      "@id": "/esd/front-page",
+      "@type": "Document",
+      "UID": "3b94928744594ef4be0bb9fd40957ec7",
+      "allow_discussion": false,
+      "contributors": [],
+      "created": "2024-06-10T12:38:52+00:00",
+      "creators": [
+        "admin"
+      ],
+      "description": "",
+      "effective": null,
+      "exclude_from_nav": false,
+      "expires": null,
+      "id": "front-page",
+      "is_folderish": false,
+      "language": "",
+      "layout": "document_view",
+      "lock": {
+        "locked": false,
+        "stealable": true
+      },
+      "modified": "2024-06-10T12:38:52+00:00",
+      "parent": {
+        "@id": "/esd",
+        "@type": "ELANCurrentSituation",
+        "description": "",
+        "image_field": null,
+        "image_scales": {},
+        "review_state": "published",
+        "title": "Vorlage aktuelle Situation",
+        "type_title": "Current Situation"
+      },
+      "relatedItems": [],
+      "review_state": "published",
+      "rights": "",
+      "subjects": [],
+      "table_of_contents": null,
+      "text": null,
+      "title": "Elektronische Lagedarstellung",
+      "type_title": "Page",
+      "version": 0,
+      "working_copy": null,
+      "working_copy_of": null
+    }
+  },
+  "id": "front-page",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "document_view",
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-03-14T12:43:45+00:00",
+  "parent": {
+    "@id": "/esd",
+    "@type": "ELANCurrentSituation",
+    "UID": "c6fe560fab2a4ec1a75c45a87799eb66",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Vorlage aktuelle Situation",
+    "type_title": "Current Situation"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "",
+    "encoding": "utf-8"
+  },
+  "title": "Elektronische Lagedarstellung",
+  "type_title": "Page",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:45+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

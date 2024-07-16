@@ -1,0 +1,54 @@
+{
+  "@id": "/hessen/esd/incident",
+  "@type": "ELANSection",
+  "UID": "07f59ac304ef4cfd8f6e7ac6650a175b",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "incident",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:03+00:00",
+  "parent": {
+    "@id": "/hessen/esd",
+    "@type": "ELANCurrentSituation",
+    "UID": "2533470be68743f5a7fa867843724314",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Aktuelle Lage",
+    "type_title": "Current Situation"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "EREIGNIS",
+  "type_title": "Section",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:58+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
