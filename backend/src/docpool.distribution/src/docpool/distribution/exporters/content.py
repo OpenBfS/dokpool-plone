@@ -111,7 +111,6 @@ def export_marker_interfaces(item, obj):
 
 
 class CustomContentExporter(ContentExporter):
-
     obj_hooks = [global_obj_hook]
     data_hooks = [
         global_dict_hook,

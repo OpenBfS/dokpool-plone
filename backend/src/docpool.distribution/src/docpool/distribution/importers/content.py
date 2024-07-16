@@ -12,9 +12,9 @@ from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
-
 import dateutil
 import logging
+
 
 logger = logging.getLogger(__name__)
 
@@ -187,7 +187,6 @@ def global_obj_hook(item, obj):
 
 
 class CustomContentImporter(ContentImporter):
-
     data_hooks = [global_dict_hook]
     pre_deserialize_hooks = [global_obj_hook_before_deserializing]
     obj_hooks = [global_obj_hook]

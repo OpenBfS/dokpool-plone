@@ -7,12 +7,10 @@ from plone.exportimport.utils.principals.members import _get_base_user_data
 from plone.exportimport.utils.principals.members import _get_user_password
 from plone.exportimport.utils.principals.members import _get_user_properties
 from plone.exportimport.utils.principals.members import _get_user_schema_fields
-from typing import List
 
 
 class CustomPrincipalsExporter(PrincipalsExporter):
-
-    def dump(self) -> List[Path]:
+    def dump(self) -> list[Path]:
         """Serialize object and dump it to disk."""
         data = {
             "groups": principals_utils.export_groups(),
@@ -25,7 +23,7 @@ class CustomPrincipalsExporter(PrincipalsExporter):
         return [filepath]
 
 
-def export_members() -> List[dict]:
+def export_members() -> list[dict]:
     """Serialize all members as a list of dictionaries."""
     acl_users = api.portal.get_tool("acl_users")
     fields = _get_user_schema_fields()

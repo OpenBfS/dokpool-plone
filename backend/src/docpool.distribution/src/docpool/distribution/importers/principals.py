@@ -3,19 +3,18 @@ from plone.exportimport import logger
 from plone.exportimport.importers.principals import PrincipalsImporter
 from plone.exportimport.utils import principals as principals_utils
 from Products.PlonePAS.tools.groupdata import GroupData
-from typing import List
 
 
 class CustomPrincipalsImporter(PrincipalsImporter):
     name: str = "principals"
 
-    def _import_groups(self, groups=List[dict]) -> int:
+    def _import_groups(self, groups=list[dict]) -> int:
         logger.debug(f"- Principals: Read {len(groups)} groups from {self.filepath}")
         total = len(import_groups(groups))
         logger.debug(f"- Principals: Imported {total} groups")
         return total
 
-    def _import_members(self, members=List[dict]) -> int:
+    def _import_members(self, members=list[dict]) -> int:
         logger.debug(f"- Principals: Read {len(members)} groups from {self.filepath}")
         # Change: Exclude existing members
         members = [m for m in members if not api.user.get(username=m["username"])]
@@ -24,7 +23,7 @@ class CustomPrincipalsImporter(PrincipalsImporter):
         return total
 
 
-def import_groups(data: List[dict]) -> List[GroupData]:
+def import_groups(data: list[dict]) -> list[GroupData]:
     """Import groups."""
     groups = []
     acl = api.portal.get_tool("acl_users")
