@@ -29,7 +29,15 @@ def post_handler(
     catalog = api.portal.get_tool("portal_catalog")
     pghandler = ZLogHandler(steps=1000)
     catalog.reindexIndex(
-        ["created", "modified", "mdate", "apps_supported", "changed", "scenarios"],
+        [
+            "created",
+            "modified",
+            "mdate",
+            "apps_supported",
+            "changed",
+            "scenarios",
+            "category",
+        ],
         REQUEST=None,
         pghandler=pghandler,
     )
