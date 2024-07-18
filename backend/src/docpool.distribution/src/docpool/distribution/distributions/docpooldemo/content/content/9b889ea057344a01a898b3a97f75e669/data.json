@@ -1,0 +1,90 @@
+{
+  "@id": "/bund/searches/nahrung",
+  "@type": "Collection",
+  "UID": "9b889ea057344a01a898b3a97f75e669",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "Ergebnisse Nahrungsmittel",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "nahrung",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-03-14T12:43:56+00:00",
+  "parent": {
+    "@id": "/bund/searches",
+    "@type": "Folder",
+    "UID": "728c5a8c681f42799abdd3fca931b6d7",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Standardsuchen",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "DPDocument"
+      ]
+    },
+    {
+      "i": "SampleTypeId",
+      "o": "plone.app.querystring.operation.string.contains",
+      "v": "N*"
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "effective",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Ergebnisse Nahrungsmittel<p></p></p>",
+    "encoding": "utf-8"
+  },
+  "title": "Ergebnisse Nahrungsmittel",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:50+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

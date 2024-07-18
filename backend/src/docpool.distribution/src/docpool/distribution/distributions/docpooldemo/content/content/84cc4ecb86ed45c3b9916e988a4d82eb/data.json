@@ -1,0 +1,55 @@
+{
+  "@id": "/bund/contentconfig/scen/testnetz",
+  "@type": "DPNetwork",
+  "UID": "84cc4ecb86ed45c3b9916e988a4d82eb",
+  "allow_discussion": false,
+  "area": null,
+  "contributors": [],
+  "created": "2024-03-14T12:44:04+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "testnetz",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:04+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen",
+    "@type": "DPEvents",
+    "UID": "59f1bffd1fd34f518d73284a8388eeef",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ereignisse",
+    "type_title": "DP Events"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Testnetz",
+  "type_title": "DP Network",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:04+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

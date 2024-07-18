@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/contentconfig/scen/test-event/journal4",
+  "@type": "Journal",
+  "UID": "ffbcf97e8814487c8ed8d2041d89b343",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:04+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "journal4",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:04+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen/test-event",
+    "@type": "DPEvent",
+    "UID": "5500de30f9304b52bf45cbd53d7ddb5a",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event",
+    "type_title": "DP Event"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch Messdienste",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:04+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

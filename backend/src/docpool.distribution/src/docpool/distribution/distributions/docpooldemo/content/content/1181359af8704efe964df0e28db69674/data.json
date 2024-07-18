@@ -1,0 +1,54 @@
+{
+  "@id": "/hessen/config/dtypes",
+  "@type": "DocTypes",
+  "UID": "1181359af8704efe964df0e28db69674",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "dtypes",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:02+00:00",
+  "parent": {
+    "@id": "/hessen/config",
+    "@type": "DPConfig",
+    "UID": "482633e26c80497886b8fe44af9a6d88",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Konfiguration",
+    "type_title": "Docpool Configuration Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Dokumenttypen",
+  "type_title": "Folder for Document Types",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:57+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

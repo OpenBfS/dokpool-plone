@@ -1,0 +1,59 @@
+{
+  "@id": "/bund/contentconfig/ticker",
+  "@type": "Text",
+  "UID": "f5613342f8d74deda7ee9d4074f4767e",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:48+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ticker",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:43:48",
+  "modified": "2024-03-14T12:43:56+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/bund/contentconfig",
+    "@type": "ELANContentConfig",
+    "UID": "4cf3d80f4e784eee9b036611fb51d67e",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Konfiguration Inhalte",
+    "type_title": "ELAN Content Configuration"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "text": null,
+  "title": "Ticker",
+  "type_title": "Textpage",
+  "version": "current",
+  "wdate": "2024-03-14T13:43:48",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:48+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

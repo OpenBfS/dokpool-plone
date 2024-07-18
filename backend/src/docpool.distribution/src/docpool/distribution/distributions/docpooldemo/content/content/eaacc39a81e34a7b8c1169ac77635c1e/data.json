@@ -1,0 +1,60 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/eine-bodenprobe/eine-datei",
+  "@type": "File",
+  "UID": "eaacc39a81e34a7b8c1169ac77635c1e",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:16+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "file": {
+    "blob_path": "eaacc39a81e34a7b8c1169ac77635c1e/file/file.pdf",
+    "content-type": "application/pdf",
+    "filename": "file.pdf",
+    "size": 8804
+  },
+  "id": "eine-datei",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:16+00:00",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1/eine-bodenprobe",
+    "@type": "DPDocument",
+    "UID": "9c3106ec743745d1ad1b7aa64bf1861b",
+    "description": "foo",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Eine Bodenprobe",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Eine Datei",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:16+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/archive/archived-event_14-03-2024-13-44/content",
+  "@type": "ContentArea",
+  "UID": "85a8c71c02024786a97ef8e5026d2660",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:16+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "content",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:16+00:00",
+  "parent": {
+    "@id": "/bund/archive/archived-event_14-03-2024-13-44",
+    "@type": "ELANArchive",
+    "UID": "a60e9d2b38f24f2fa57284af615fe503",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event that was archived 14.03.2024 13:44",
+    "type_title": "Archive"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Benutzer/Gruppen/Transferordner",
+  "type_title": "Content Area",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:16+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

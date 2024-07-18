@@ -1,0 +1,88 @@
+{
+  "@id": "/bund/content/Groups/bund_aufsicht_by/ein-bericht",
+  "@type": "DPDocument",
+  "Authority": "de_mv",
+  "MStIDs": [
+    "09121"
+  ],
+  "Medium": null,
+  "NuclearInstallations": [
+    "U13A"
+  ],
+  "Origins": [
+    "Genehmigungsinhaber"
+  ],
+  "PDFVersion": "PDF/A-1b",
+  "Period": "M1",
+  "ReiLegalBases": [
+    "REI-I"
+  ],
+  "UID": "fe0d9ce3e8ce450694ca68091db846cf",
+  "Year": 2019,
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:17+00:00",
+  "created_by": "aufsicht_by (Bund) <i>Aufsicht_by (Bund)</i>",
+  "creators": [
+    "aufsicht_by"
+  ],
+  "description": "foo",
+  "docType": "reireport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ein-bericht",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2024-03-14T13:44:17",
+  "modified": "2024-03-14T12:44:17+00:00",
+  "modified_by": null,
+  "mstids_initial_value": "09121 - Kernkraftwerk Isar1+2 GmbH",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_aufsicht_by",
+    "@type": "GroupFolder",
+    "UID": "cac60b6714bf4c668babd65500f59f86",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Aufsicht_by (Bund)",
+    "type_title": "Group Folder"
+  },
+  "review_state": "private",
+  "rights": "",
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Ein Bericht!</p>",
+    "encoding": "utf-8"
+  },
+  "title": "REI-Immissionsbericht Januar 2019 KKW Lubmin/Greifswald (Genehmigungsinhaber)",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:17",
+  "workflow_history": {
+    "rei_review_workflow_standard": [
+      {
+        "action": null,
+        "actor": "aufsicht_by",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-03-14T12:44:17+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

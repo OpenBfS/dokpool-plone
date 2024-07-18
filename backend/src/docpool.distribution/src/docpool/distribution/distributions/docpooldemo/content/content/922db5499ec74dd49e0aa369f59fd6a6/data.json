@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-medieninformation/mediarelease_image",
+  "@type": "Image",
+  "UID": "922db5499ec74dd49e0aa369f59fd6a6",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:12+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "mediarelease_image",
+  "image": {
+    "blob_path": "922db5499ec74dd49e0aa369f59fd6a6/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:12+00:00",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1/ein-medieninformation",
+    "@type": "DPDocument",
+    "UID": "38697a6425174aeeb61583230e8c78d3",
+    "description": "foo (mediarelease)",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ein Medieninformation",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "mediarelease_image",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:12+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

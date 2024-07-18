@@ -1,0 +1,81 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-messergebnis_lebensmittel",
+  "@type": "DPDocument",
+  "UID": "5742a178ea55447e8aed7893dfd460ae",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:13+00:00",
+  "created_by": "user1 (Bund) <i>Group1 (Bund)</i>",
+  "creators": [
+    "user1"
+  ],
+  "description": "foo (mresult_food)",
+  "docType": "mresult_food",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ein-messergebnis_lebensmittel",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2024-03-14T13:44:14",
+  "modified": "2024-03-14T12:44:14+00:00",
+  "modified_by": "user1 (Bund) <i>Group1 (Bund)</i>",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1",
+    "@type": "GroupFolder",
+    "UID": "fbbe609d5ff4472d8442af50ca9bb666",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Group1 (Bund)",
+    "type_title": "Group Folder"
+  },
+  "review_state": "published",
+  "rights": "",
+  "scenarios": [
+    "test-event"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Text f\u00fcr Messergebnis_Lebensmittel</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Ein Messergebnis_Lebensmittel",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:14",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-03-14T12:44:13+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:14+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

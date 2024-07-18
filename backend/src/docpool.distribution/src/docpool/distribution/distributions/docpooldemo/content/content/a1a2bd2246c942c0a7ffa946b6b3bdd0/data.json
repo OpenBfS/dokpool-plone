@@ -1,0 +1,59 @@
+{
+  "@id": "/bund/content/Members/user1",
+  "@type": "UserFolder",
+  "UID": "a1a2bd2246c942c0a7ffa946b6b3bdd0",
+  "allow_discussion": false,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2024-03-14T12:44:03+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "user1",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2024-03-14T13:44:03",
+  "modified": "2024-03-14T12:44:03+00:00",
+  "modified_by": null,
+  "parent": {
+    "@id": "/bund/content/Members",
+    "@type": "Users",
+    "UID": "f776fb81b0b249178522fa59eef1525f",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Benutzer",
+    "type_title": "Users Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "user1 (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:03",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:03+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

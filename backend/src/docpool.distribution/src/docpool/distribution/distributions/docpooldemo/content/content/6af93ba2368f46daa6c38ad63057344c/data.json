@@ -1,0 +1,178 @@
+{
+  "@id": "/bund/contentconfig/scen/test-event/journal2",
+  "@type": "Journal",
+  "UID": "6af93ba2368f46daa6c38ad63057344c",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:04+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.annotations": {
+    "journal.journalentries": [
+      {
+        "created": "2024-03-14T13:44:05",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:05",
+        "text": "<p>This is demo journal entry 1</p>",
+        "timestamp": "1710420245.872174",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:05",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:05",
+        "text": "<p>This is demo journal entry 2</p>",
+        "timestamp": "1710420245.925032",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:05",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:05",
+        "text": "<p>This is demo journal entry 3</p>",
+        "timestamp": "1710420245.980924",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 4</p>",
+        "timestamp": "1710420246.035924",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 5</p>",
+        "timestamp": "1710420246.090168",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 6</p>",
+        "timestamp": "1710420246.145769",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 7</p>",
+        "timestamp": "1710420246.201865",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 8</p>",
+        "timestamp": "1710420246.256813",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 9</p>",
+        "timestamp": "1710420246.312952",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 10</p>",
+        "timestamp": "1710420246.367233",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 11</p>",
+        "timestamp": "1710420246.423338",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 12</p>",
+        "timestamp": "1710420246.4774468",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 13</p>",
+        "timestamp": "1710420246.533727",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 14</p>",
+        "timestamp": "1710420246.587583",
+        "title": ""
+      },
+      {
+        "created": "2024-03-14T13:44:06",
+        "creator": "admin",
+        "modified": "2024-03-14T13:44:06",
+        "text": "<p>This is demo journal entry 15</p>",
+        "timestamp": "1710420246.639301",
+        "title": ""
+      }
+    ]
+  },
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "journal2",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:07+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen/test-event",
+    "@type": "DPEvent",
+    "UID": "5500de30f9304b52bf45cbd53d7ddb5a",
+    "description": "Die Beschreibung",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Test Event",
+    "type_title": "DP Event"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch RLZ",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:04+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

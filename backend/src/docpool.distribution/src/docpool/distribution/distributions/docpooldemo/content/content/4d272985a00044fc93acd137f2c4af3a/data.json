@@ -1,0 +1,95 @@
+{
+  "@id": "/bund/berichte/allprivate",
+  "@type": "Collection",
+  "UID": "4d272985a00044fc93acd137f2c4af3a",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "noch nicht freigegeben REI Berichte",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "allprivate",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view_with_actions",
+  "limit": 1000,
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-03-14T12:43:56+00:00",
+  "parent": {
+    "@id": "/bund/berichte",
+    "@type": "Folder",
+    "UID": "94200da3f5254f4596afb953d22a12fc",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Berichte",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "reireport"
+      ]
+    },
+    {
+      "i": "review_state",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "pending_bmu",
+        "private",
+        "pending_authority",
+        "pending_bfs"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "modified",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Noch freizugeben<p></p></p>",
+    "encoding": "utf-8"
+  },
+  "title": "noch nicht freigegeben",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:52+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,96 @@
+{
+  "@id": "/berichte/all",
+  "@type": "Collection",
+  "UID": "55e47c9b9dff46e18ed553f959c68a53",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "Alle REI Berichte",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "all",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-03-14T12:43:46+00:00",
+  "parent": {
+    "@id": "/berichte",
+    "@type": "Folder",
+    "UID": "bda196f366a04e738effd37d8691cf21",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "REI Berichte",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "reireport"
+      ]
+    },
+    {
+      "i": "review_state",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "pending_bfs",
+        "published",
+        "pending_bmu",
+        "private",
+        "pending_authority"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "modified",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Alle Reiberichte<p></p></p>",
+    "encoding": "utf-8"
+  },
+  "title": "Alle",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:46+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

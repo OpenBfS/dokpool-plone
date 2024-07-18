@@ -1,0 +1,92 @@
+{
+  "@id": "/bund/content/Groups/bund_aufsicht_by/ein-bericht-des-berichts",
+  "@type": "DPDocument",
+  "Authority": "de_bw",
+  "MStIDs": [
+    "03132",
+    "03141",
+    "03151",
+    "03161",
+    "03171"
+  ],
+  "Medium": "Abwasser/Fortluft",
+  "NuclearInstallations": [
+    "U08K"
+  ],
+  "Origins": [
+    "unabh\u00e4ngige Messstelle"
+  ],
+  "PDFVersion": "PDF/A-1b",
+  "Period": "M1",
+  "ReiLegalBases": [
+    "REI-E"
+  ],
+  "UID": "cece8e5e553b48e9bdfac5fdc8e4d77b",
+  "Year": 2009,
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:17+00:00",
+  "created_by": "admin <i>Aufsicht_by (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "foo",
+  "docType": "reireport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ein-bericht-des-berichts",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2024-03-14T13:44:17",
+  "modified": "2024-03-14T12:44:18+00:00",
+  "modified_by": null,
+  "mstids_initial_value": "03132 - Nieders\u00e4chsisches Ministerium f\u00fcr Umwelt, Energie, Bauen und Klimaschutz (MU), 03141 - Kernkraftwerk Lingen GmbH, 03151 - PreussenElektra GmbH Kernkraftwerk Stade, 03161 - PreussenElektra GmbH Kernkraftwerk Unterweser , 03171 - PreussenElektra GmbH Gemeinschaftskernkraftwerk Grohnde",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_aufsicht_by",
+    "@type": "GroupFolder",
+    "UID": "cac60b6714bf4c668babd65500f59f86",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Aufsicht_by (Bund)",
+    "type_title": "Group Folder"
+  },
+  "review_state": "private",
+  "rights": "",
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Ein Bericht!</p>",
+    "encoding": "utf-8"
+  },
+  "title": "REI-Emissionsbericht (Abwasser/Fortluft) Januar 2009 Karlsruher Institut f\u00fcr Technologie - Campus Nord (Einrichtungen am Standort) (unabh\u00e4ngige Messstelle)",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-03-14T13:44:17",
+  "workflow_history": {
+    "rei_review_workflow_standard": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-03-14T12:44:17+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

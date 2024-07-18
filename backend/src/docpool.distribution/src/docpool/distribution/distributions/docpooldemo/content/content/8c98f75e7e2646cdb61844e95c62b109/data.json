@@ -1,0 +1,90 @@
+{
+  "@id": "/hessen/searches/stoer",
+  "@type": "Collection",
+  "UID": "8c98f75e7e2646cdb61844e95c62b109",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "Ergebnisse Stoerfall",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "stoer",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-03-14T12:44:03+00:00",
+  "parent": {
+    "@id": "/hessen/searches",
+    "@type": "Folder",
+    "UID": "ab414c1b751140c69b6851a7759ae892",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Standardsuchen",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "DPDocument"
+      ]
+    },
+    {
+      "i": "SampleTypeId",
+      "o": "plone.app.querystring.operation.string.contains",
+      "v": "S*"
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "effective",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Ergebnisse Stoerfall<p></p></p>",
+    "encoding": "utf-8"
+  },
+  "title": "Ergebnisse Stoerfall",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:00+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

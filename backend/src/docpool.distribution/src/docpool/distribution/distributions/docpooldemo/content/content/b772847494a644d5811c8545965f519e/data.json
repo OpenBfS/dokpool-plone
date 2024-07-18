@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/contentconfig/scen/routinemode/journal3",
+  "@type": "Journal",
+  "UID": "b772847494a644d5811c8545965f519e",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:48+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "journal3",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:43:56+00:00",
+  "parent": {
+    "@id": "/bund/contentconfig/scen/routinemode",
+    "@type": "DPEvent",
+    "UID": "67ce1955c35d44c592809afd4a6094b4",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Normalfall",
+    "type_title": "DP Event"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch SSK",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:48+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/ein-massnahmenempfehlungen/protectiveactions_image",
+  "@type": "Image",
+  "UID": "ac014ae0719e4b0faf6094cfdd89cfa7",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:12+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "protectiveactions_image",
+  "image": {
+    "blob_path": "ac014ae0719e4b0faf6094cfdd89cfa7/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:12+00:00",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1/ein-massnahmenempfehlungen",
+    "@type": "DPDocument",
+    "UID": "359fbab21fd5472bbe36e524c71f06b3",
+    "description": "foo (protectiveactions)",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ein Ma\u00dfnahmenempfehlungen",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "protectiveactions_image",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user1",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:44:12+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,51 @@
+{
+  "@id": "/config",
+  "@type": "DPConfig",
+  "UID": "4a50ee3e4a7c4635a1e52245317681fb",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:45+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "config",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-14T12:43:45+00:00",
+  "parent": {
+    "@id": "/",
+    "@type": "Plone Site",
+    "UID": "plone_site_root",
+    "description": "Herzlichen Gl\u00fcckwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.",
+    "title": "Willkommen bei Plone",
+    "type_title": "Plone Site"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Globale Konfiguration",
+  "type_title": "Docpool Configuration Area",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:45+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

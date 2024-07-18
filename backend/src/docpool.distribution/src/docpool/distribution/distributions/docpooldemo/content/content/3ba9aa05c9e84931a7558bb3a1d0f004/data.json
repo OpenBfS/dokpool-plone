@@ -1,0 +1,54 @@
+{
+  "@id": "/bund/content/Groups",
+  "@type": "Groups",
+  "UID": "3ba9aa05c9e84931a7558bb3a1d0f004",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "Groups",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2024-03-15T08:54:24+00:00",
+  "parent": {
+    "@id": "/bund/content",
+    "@type": "ContentArea",
+    "UID": "1690beab0eac4ddc812fd3b9ea417778",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Benutzer/Gruppen/Transferordner",
+    "type_title": "Content Area"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Gruppen",
+  "type_title": "Groups Area",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:46+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

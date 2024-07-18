@@ -1,0 +1,29 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="docpool.distribution"
+    >
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Dokpool Distribution: Install"
+      description="Package to configure a new Dokpool Distribution site"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="Dokpool Distribution: Uninstall"
+      description="Uninstall Dokpool Distribution setup."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
+
+  <!-- Hide Uninstall Profile-->
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="docpool.distribution"
+      />
+
+</configure>

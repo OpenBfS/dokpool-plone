@@ -1,0 +1,89 @@
+{
+  "@id": "/hessen/content/Transfers/von-bund/ein-meldung",
+  "@type": "DPDocument",
+  "UID": "ae520ec0a11e419f8bb9dbcadbd45905",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:12+00:00",
+  "created_by": "user1 (Bund) <i>Group1 (Bund)</i>",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "docType": "notification",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.transfer_receiver_log": [
+    {
+      "esd_title": "Bund",
+      "scenario_ids": "test-event",
+      "timestamp": "2024-07-16T14:19:52",
+      "user": "admin Group1 (Bund)"
+    }
+  ],
+  "exportimport.versions": {},
+  "id": "ein-meldung",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2024-07-16T14:19:25",
+  "modified": "2024-07-16T12:19:52+00:00",
+  "modified_by": "admin <i>Group1 (Bund)</i>",
+  "parent": {
+    "@id": "/hessen/content/Transfers/von-bund",
+    "@type": "DPTransferFolder",
+    "UID": "d5c1d9fae83e4b438a6f7eaf286bad6d",
+    "description": "foo",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "von Bund",
+    "type_title": "Transfer Folder"
+  },
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [
+    "test-event"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Text f\u00fcr Meldung</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Eine Meldung",
+  "transferLog": null,
+  "transferred": "2024-07-16T14:19:52",
+  "transferred_by": "admin Group1 (Bund)",
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-07-16T14:19:52",
+  "workflow_history": {
+    "elan_transfer_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-07-16T12:19:52+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-07-16T12:19:52+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

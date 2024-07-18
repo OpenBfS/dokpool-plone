@@ -1,0 +1,85 @@
+[
+  {
+    "@id": "http://nohost/Plone/Members",
+    "UID": "0a7310ac634547f69bd529cbac913656",
+    "blacklist_status": [
+      {
+        "category": "group",
+        "manager": "plone.rightcolumn",
+        "status": "block"
+      },
+      {
+        "category": "content_type",
+        "manager": "plone.rightcolumn",
+        "status": "block"
+      },
+      {
+        "category": "context",
+        "manager": "plone.rightcolumn",
+        "status": "block"
+      }
+    ]
+  },
+  {
+    "@id": "http://nohost/Plone",
+    "UID": "plone_site_root",
+    "portlets": {
+      "plone.footerportlets": [
+        {
+          "assignment": {
+            "macro": "",
+            "template": "@@footer"
+          },
+          "type": "portlets.Classic",
+          "visible": true
+        },
+        {
+          "assignment": {
+            "category": "site_actions",
+            "default_icon": "action_icon.png",
+            "ptitle": "site_actions",
+            "show_icons": false,
+            "show_title": false
+          },
+          "type": "portlets.Actions",
+          "visible": true
+        },
+        {
+          "assignment": {
+            "macro": "",
+            "template": "colophon"
+          },
+          "type": "portlets.Classic",
+          "visible": true
+        }
+      ],
+      "plone.leftcolumn": [
+        {
+          "assignment": {},
+          "type": "docpool.elan.Overview",
+          "visible": true
+        },
+        {
+          "assignment": {},
+          "type": "docpool.elan.Recent",
+          "visible": true
+        },
+        {
+          "assignment": {
+            "bottomLevel": 0,
+            "currentFolderOnly": false,
+            "includeTop": false,
+            "name": "",
+            "no_icons": false,
+            "no_thumbs": false,
+            "root_uid": null,
+            "thumb_scale": null,
+            "topLevel": 1
+          },
+          "type": "portlets.Navigation",
+          "visible": true
+        }
+      ]
+    }
+  }
+]

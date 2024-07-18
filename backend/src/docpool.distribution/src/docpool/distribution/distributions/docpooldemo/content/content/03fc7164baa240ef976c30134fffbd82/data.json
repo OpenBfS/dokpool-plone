@@ -1,0 +1,58 @@
+{
+  "@id": "/hessen",
+  "@type": "DocumentPool",
+  "UID": "03fc7164baa240ef976c30134fffbd82",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:56+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customLogo": null,
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "hessen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "modified": "2024-03-14T12:44:18+00:00",
+  "parent": {
+    "@id": "/",
+    "@type": "Plone Site",
+    "UID": "plone_site_root",
+    "description": "Herzlichen Gl\u00fcckwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.",
+    "title": "Willkommen bei Plone",
+    "type_title": "Plone Site"
+  },
+  "prefix": "hessen",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "supportedApps": [
+    "elan",
+    "doksys"
+  ],
+  "title": "Hessen",
+  "type_title": "Document Pool",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:56+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

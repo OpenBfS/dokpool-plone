@@ -1,0 +1,62 @@
+{
+  "@id": "/hessen/content/Transfers/von-bund/copy_of_eine-bodenprobe/ein-bild",
+  "@type": "Image",
+  "UID": "a4bc49979db4499784d8354477713b6b",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:44:16+00:00",
+  "creators": [
+    "user1"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "ein-bild",
+  "image": {
+    "blob_path": "a4bc49979db4499784d8354477713b6b/image/image.png",
+    "content-type": "image/png",
+    "filename": "image.png",
+    "height": 56,
+    "size": 1185,
+    "width": 215
+  },
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "image_view",
+  "lock": {},
+  "modified": "2024-07-16T12:40:54+00:00",
+  "parent": {
+    "@id": "/hessen/content/Transfers/von-bund/copy_of_eine-bodenprobe",
+    "@type": "DPDocument",
+    "UID": "869f03b5672d4d8aba7243626a1f5f49",
+    "description": "foo",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Eine Bodenprobe",
+    "type_title": "Document"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Ein Bild",
+  "type_title": "Image",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-07-16T12:40:54+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

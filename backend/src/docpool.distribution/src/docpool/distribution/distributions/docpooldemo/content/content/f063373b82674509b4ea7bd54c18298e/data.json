@@ -1,0 +1,88 @@
+{
+  "@id": "/bund/content/Groups/bund_betreiber_he/5d9aee68-ed55-4d45-9d09-3eb1466e47c6",
+  "@type": "DPDocument",
+  "Authority": "de_by",
+  "MStIDs": [
+    "09300"
+  ],
+  "Medium": "Fortluft",
+  "NuclearInstallations": [
+    "U09B"
+  ],
+  "Origins": [
+    "Genehmigungsinhaber"
+  ],
+  "PDFVersion": "keine Angabe",
+  "Period": "Q1",
+  "ReiLegalBases": [
+    "REI-E"
+  ],
+  "UID": "f063373b82674509b4ea7bd54c18298e",
+  "Year": 2024,
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:51:01+00:00",
+  "created_by": "admin <i>Betreiber_he (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "Ein Bericht",
+  "docType": "reireport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "5d9aee68-ed55-4d45-9d09-3eb1466e47c6",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2024-03-18T17:36:23",
+  "modified": "2024-03-18T16:36:23+00:00",
+  "modified_by": "admin <i>Betreiber_he (Bund)</i>",
+  "mstids_initial_value": "09300 - Universit\u00e4ten in Bayern",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_betreiber_he",
+    "@type": "GroupFolder",
+    "UID": "a9fbfe9a2a454e8ebc8089475228b270",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Betreiber_he (Bund)",
+    "type_title": "Group Folder"
+  },
+  "review_state": "private",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>REI-Bericht</p>",
+    "encoding": "utf-8"
+  },
+  "title": "REI-Emissionsbericht (Fortluft) des 1. Quartals 2024 KKW Isar1 (Genehmigungsinhaber)",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-03-14T13:51:01",
+  "workflow_history": {
+    "rei_review_workflow_alternative": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-03-14T12:51:01+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

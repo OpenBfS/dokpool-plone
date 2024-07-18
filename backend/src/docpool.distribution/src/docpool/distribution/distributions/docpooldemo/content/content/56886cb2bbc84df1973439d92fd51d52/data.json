@@ -1,0 +1,54 @@
+{
+  "@id": "/hessen/contentconfig/scen",
+  "@type": "DPEvents",
+  "UID": "56886cb2bbc84df1973439d92fd51d52",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-03-14T12:43:58+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "scen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2024-03-14T12:44:18+00:00",
+  "parent": {
+    "@id": "/hessen/contentconfig",
+    "@type": "ELANContentConfig",
+    "UID": "e72a33f275d844cc97cac1fb62eecc42",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Konfiguration Inhalte",
+    "type_title": "ELAN Content Configuration"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Ereignisse",
+  "type_title": "DP Events",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-03-14T12:43:58+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
