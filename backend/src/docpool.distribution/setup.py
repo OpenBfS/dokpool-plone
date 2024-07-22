@@ -53,6 +53,5 @@ setup(
         "plone.exportimport",
     ],
     extras_require={},
-    entry_points="""
-    """,
+    entry_points={"z3c.autoinclude.plugin": ["target = plone"]},
 )
