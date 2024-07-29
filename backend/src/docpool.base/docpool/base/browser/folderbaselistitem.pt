@@ -23,10 +23,10 @@
                 <td class="actions">
                 </td>
                 <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/foldercontent"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/foldercontent"/>
                 </td>
                 <td class="metadata">
-                    <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
                 </td>
 
 </tr>

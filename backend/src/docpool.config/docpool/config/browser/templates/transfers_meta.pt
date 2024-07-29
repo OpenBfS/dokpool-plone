@@ -1,7 +1,6 @@
 <tal:block i18n:domain="docpool.base"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="transfersobj view">
-        <div metal:use-macro="here/@@transfers.macros/macros/transfers_meta"/>
+        <div metal:use-macro="context/@@transfers.macros/macros/transfers_meta"/>
     </tal:def>
 </tal:block>

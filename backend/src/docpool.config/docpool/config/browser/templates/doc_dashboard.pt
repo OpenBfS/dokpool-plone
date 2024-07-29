@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.base"
            define="view nocall:options/view;
-                   here nocall:context;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <div class="metadata"><a href="" title="" tal:attributes="title string:${context/Title}';
                                     href string:javascript:go_to('${context/absolute_url}');">

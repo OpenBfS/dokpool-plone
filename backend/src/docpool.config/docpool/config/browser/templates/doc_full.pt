@@ -1,12 +1,11 @@
 <tal:block i18n:domain="docpool.base"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
 <tal:def define="edit_allowed context/canBeEdited;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-    <div metal:use-macro="here/@@dp.macros/macros/doc_complete"/>
+    <div metal:use-macro="context/@@dp.macros/macros/doc_complete"/>
 
     <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
-      <div metal:use-macro="here/@@dp.macros/macros/fileupload"/>
+      <div metal:use-macro="context/@@dp.macros/macros/fileupload"/>
 
       <input class="context"
                   type="submit"

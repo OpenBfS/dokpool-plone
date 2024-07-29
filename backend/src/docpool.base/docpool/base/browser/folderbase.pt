@@ -18,7 +18,7 @@
                        onclick="this.form.submit()"
                 />&nbsp;<label for="activateFilter" i18n:translate="">Filter contents according to application?</label></form>
         </tal:if>
-        <div metal:use-macro="here/@@dp.macros/macros/listing"/>
+        <div metal:use-macro="context/@@dp.macros/macros/listing"/>
     </metal:content-core>
 </metal:content-core>
 

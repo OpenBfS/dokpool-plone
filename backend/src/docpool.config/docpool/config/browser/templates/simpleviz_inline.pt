@@ -1,9 +1,8 @@
 <tal:block i18n:domain="docpool.base"
            define="view nocall:options/view;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                   edit_allowed python: False;
-                   here nocall:context">
-   <div metal:use-macro="here/@@dp.macros/macros/doc_data"/>
+                   edit_allowed python: False">
+   <div metal:use-macro="context/@@dp.macros/macros/doc_data"/>
 
    <div class="visualization" tal:define="mi python: context.getMapImageObj();
                                           li python: context.getLegendImageObj();

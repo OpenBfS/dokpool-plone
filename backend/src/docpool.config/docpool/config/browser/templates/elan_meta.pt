@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.base"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="elanobj view;
                      tac elanobj/typeAndCat;
                      item_type python:tac[0];

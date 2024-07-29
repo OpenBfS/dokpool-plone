@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.rei"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="reiobj view">
         <!-- context will be the the DPDocument instance, reiobj will be the behaviour wrapper -->
         <p></p>

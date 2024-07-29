@@ -23,17 +23,17 @@
   <!-- TODO ELAN -->
   <div id="content-core" metal:fill-slot="main">
     <tal:if condition="python:context.isOverview()">
-    <h3 style="float: right;margin-right:2em;" tal:condition="here/@@is/archive"><i18n:var translate=""> Archive</i18n:var> <tal:var define="a_obj here/myELANArchive|nothing" replace="python:a_obj and a_obj.Title() or ''"/></h3>
-    <tal:if condition="not:here/@@is/archive">
+    <h3 style="float: right;margin-right:2em;" tal:condition="context/@@is/archive"><i18n:var translate=""> Archive</i18n:var> <tal:var define="a_obj context/myELANArchive|nothing" replace="python:a_obj and a_obj.Title() or ''"/></h3>
+    <tal:if condition="not:context/@@is/archive">
         <tal:def define="view view/scenario_view">
-            <div metal:use-macro="here/@@event.macros/macros/scenario_table"/>
+            <div metal:use-macro="context/@@event.macros/macros/scenario_table"/>
         </tal:def>
     </tal:if>
     <div class="cat_scen">
-    <div metal:use-macro="here/@@elan.macros/macros/cat_filter"/>
+    <div metal:use-macro="context/@@elan.macros/macros/cat_filter"/>
     </div>
     </tal:if>
-    <div metal:use-macro="here/@@dp.macros/macros/doccollection"/>
+    <div metal:use-macro="context/@@dp.macros/macros/doccollection"/>
   </div>
 
 </body>

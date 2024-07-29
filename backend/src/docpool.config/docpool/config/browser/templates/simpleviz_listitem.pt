@@ -1,7 +1,6 @@
 <table>
 <tr i18n:domain="docpool.base"
-           tal:define="view nocall:options/view;
-                   here nocall:context"
+           tal:define="view nocall:options/view"
            class="wrapper">
     <tal:def define="dpbrain options/dpbrain;
                  euid dpbrain/UID;
@@ -33,9 +32,9 @@
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
         <td class="actions" tal:condition="python:not isOverview and not isCollection">
-            <div metal:use-macro="here/@@dp.macros/macros/cb"/>
-            <div metal:use-macro="here/@@dp.macros/macros/delete"/>
-            <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+            <div metal:use-macro="context/@@dp.macros/macros/cb"/>
+            <div metal:use-macro="context/@@dp.macros/macros/delete"/>
+            <div metal:use-macro="context/@@dp.macros/macros/docactions"/>
             <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
         </td>
 
@@ -44,7 +43,7 @@
                         li python: context.getLegendImageObj();
                         files python: context.getFiles()">
 
-            <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
+            <div metal:use-macro="context/@@dp.macros/macros/doccontent"/>
 
             <tal:block tal:condition="python: mi and li">
                 <div class="map" tal:define="big python:context.getImages()[0]" tal:condition="nocall:big">

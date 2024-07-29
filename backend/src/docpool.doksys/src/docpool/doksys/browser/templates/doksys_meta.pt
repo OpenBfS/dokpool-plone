@@ -1,8 +1,7 @@
 <tal:block i18n:domain="docpool.doksys"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="doksysobj view">
         <!-- context will be the the DPDocument instance, doksysobj will be the behaviour wrapper -->
-        <div metal:use-macro="here/@@doksys.macros/macros/doksys_meta"/>
+        <div metal:use-macro="context/@@doksys.macros/macros/doksys_meta"/>
     </tal:def>
 </tal:block>

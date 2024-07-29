@@ -1,9 +1,9 @@
 <tal:block i18n:domain="docpool.elan">
     <tal:if tal:condition="view/available|nothing">
-        <div metal:use-macro="here/@@event.macros/macros/scenario_table"/>
+        <div metal:use-macro="context/@@event.macros/macros/scenario_table"/>
     </tal:if>
-    <tal:if condition="here/@@is/archive|nothing">
-        <tal:def define="a_obj here/myELANArchive|nothing" condition="nocall: a_obj">
+    <tal:if condition="context/@@is/archive|nothing">
+        <tal:def define="a_obj context/myELANArchive|nothing" condition="nocall: a_obj">
             <div class="arch_scen">
                 <h1>
                     <i18n:var translate=""> Archive</i18n:var>

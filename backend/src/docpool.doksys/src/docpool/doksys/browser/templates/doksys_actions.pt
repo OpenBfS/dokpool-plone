@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.doksys"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="exampleobj view">
         <!-- context will be the the DPDocument instance, exampleobj will be the behaviour wrapper -->
         <p></p>

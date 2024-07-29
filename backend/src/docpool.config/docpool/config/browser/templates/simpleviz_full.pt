@@ -1,8 +1,7 @@
 <tal:block i18n:domain="docpool.base"
            define="view nocall:options/view;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                   edit_allowed python: context.canBeEdited();
-                   here nocall:context">
+                   edit_allowed python: context.canBeEdited()">
 
    <div metal:use-macro="context/@@dp.macros/macros/doc_data"/>
 

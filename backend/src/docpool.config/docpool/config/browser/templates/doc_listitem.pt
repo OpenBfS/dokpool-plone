@@ -1,7 +1,6 @@
 <table>
 <tr i18n:domain="docpool.base"
-           tal:define="view nocall:options/view;
-                   here nocall:context"
+           tal:define="view nocall:options/view"
             class="wrapper">
     <tal:def define="dpbrain nocall:options/dpbrain;
                  euid dpbrain/UID;
@@ -36,20 +35,20 @@
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
                  ">
                 <td class="actions" tal:condition="python:not isOverview and not isCollection">
-                    <div metal:use-macro="here/@@dp.macros/macros/cb"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/cb"/>
                     <tal:show_actions condition="python:container_type != 'Collection'">
-                        <div metal:use-macro="here/@@dp.macros/macros/delete"/>
-                        <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+                        <div metal:use-macro="context/@@dp.macros/macros/delete"/>
+                        <div metal:use-macro="context/@@dp.macros/macros/docactions"/>
                         <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
                     </tal:show_actions>
 
                 </td>
                 <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/fileimagelist"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/doccontent"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/fileimagelist"/>
                 </td>
                 <td class="metadata">
-                    <div metal:use-macro="here/@@dp.macros/macros/doc_meta_listitem"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/doc_meta_listitem"/>
                 </td>
     </tal:def>
 </tr>

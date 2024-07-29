@@ -17,7 +17,7 @@
 		class="pat-plone-modal"
 		i18n:translate="">Edit Permissions</a>
         <br /><br />
-    	<div metal:use-macro="here/@@dp.macros/macros/listing"/>
+    	<div metal:use-macro="context/@@dp.macros/macros/listing"/>
 </metal:content-core>
 </metal:content-core>
 
