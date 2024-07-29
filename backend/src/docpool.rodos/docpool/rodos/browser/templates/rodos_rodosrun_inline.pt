@@ -1,9 +1,8 @@
 <tal:block i18n:domain="docpool.base"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="edit_allowed python:False;
                      toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-    <div metal:use-macro="here/@@dp.macros/macros/doc_complete"/>
+    <div metal:use-macro="context/@@dp.macros/macros/doc_complete"/>
     </tal:def>
     <p><b>rodos_rodosrun_inline.pt</b></p>
 </tal:block>
