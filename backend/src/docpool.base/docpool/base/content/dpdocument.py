@@ -394,7 +394,7 @@ class DPDocument(Container, Extendable, ContentBase):
         We override, so we get the content of all subobjects indexed.
         """
         st = Document.SearchableText(self)  # TODO? searchable
-        stsub = [obj.SearchableText() for obj in self.getAllContentObjects()]
+        stsub = [obj.SearchableText() for obj in self.contentValues()]
         return st + " " + " ".join(stsub)
 
     def getRepresentativeImage(self):
