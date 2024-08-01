@@ -1,6 +1,5 @@
 <tal:block i18n:domain="docpool.rodos"
-           define="view nocall:options/view;
-                   here nocall:context">
+           define="view nocall:options/view">
     <tal:def define="rodosobj view">
         <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
         <p>Rodos Actions here</p>

@@ -1,7 +1,6 @@
 <table>
 <tr i18n:domain="docpool.rodos"
-           tal:define="view nocall:options/view;
-                   here nocall:context"
+           tal:define="view nocall:options/view"
             class="wrapper">
     <tal:def define="dpbrain nocall:options/dpbrain;
                  euid dpbrain/UID;
@@ -34,21 +33,21 @@
                  ">
                 <td class="actions" tal:condition="python:not isOverview and not isCollection">
                     <p><b>rodos_rodosrun_listitem.pt</b></p>
-                    <div metal:use-macro="here/@@dp.macros/macros/cb"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/delete"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/docactions"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/cb"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/delete"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/docactions"/>
                     <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
 
                 </td>
                 <td class="title">
-                    <div metal:use-macro="here/@@dp.macros/macros/doccontent"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/fileimagelist"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/doccontent"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/fileimagelist"/>
                     <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
                 </td>
                 <td class="metadata">
-                    <div metal:use-macro="here/@@dp.macros/macros/app_icons"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/content_metadata"/>
-                    <div metal:use-macro="here/@@dp.macros/macros/has_comments"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/app_icons"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
+                    <div metal:use-macro="context/@@dp.macros/macros/has_comments"/>
                 </td>
     </tal:def>
 </tr>
