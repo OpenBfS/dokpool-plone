@@ -25,6 +25,7 @@ ANNOTATIONS_TO_EXPORT = [
     "FacetedCriteria",
     "FacetedLayout",
     "FacetedVersion",
+    "docpool_applications_key",
 ]
 
 ANNOTATIONS_KEY = "exportimport.annotations"

@@ -13,6 +13,13 @@
   "effective": null,
   "exclude_from_nav": false,
   "expires": null,
+  "exportimport.annotations": {
+    "docpool_applications_key": [
+      "elan",
+      "doksys",
+      "rei"
+    ]
+  },
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "exportimport.versions": {},
