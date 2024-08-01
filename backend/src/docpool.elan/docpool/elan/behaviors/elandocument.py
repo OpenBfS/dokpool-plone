@@ -4,6 +4,7 @@ from collections import defaultdict
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.behaviors.elandoctype import IELANDocType
 from docpool.elan.config import ELAN_APP
@@ -100,22 +101,27 @@ class ELANDocument(FlexibleView):
         return self.unknownScenario() is None
 
     def myScenarioObjects(self):
-        """ """
-        cat = getToolByName(self.context, "portal_catalog")
-        scns = getattr(self.context, "scenarios", [])
-        return [
-            s.getObject()
-            for s in cat(
-                path=self.context.dpSearchPath(), portal_type="DPEvent", getId=scns
-            )
-        ]
+        """Return all DPEvent objects in the dokpool for this object."""
+        # We can not use the catalog here since this is used in a indexer and
+        # during clear & rebuild no Events would be found.
+        # The path of events is assumed to be <docpool>/contentconfig/scen
+        results = []
+        scns = getattr(self.context.aq_base, "scenarios", [])
+        if not scns:
+            return results
+        docpool = getDocumentPoolSite(self.context)
+        if scen := docpool.unrestrictedTraverse("contentconfig/scen", None):
+            results = [
+                i
+                for i in scen.contentValues({"portal_type": "DPEvent"})
+                if i.id in scns
+            ]
+        return results
 
     def scenarioIndex(self):
         """ """
         scens = self.myScenarioObjects()
-        res = [
-            scen.getId() for scen in scens if api.content.get_state(scen) == "published"
-        ]
+        res = [scen.id for scen in scens if api.content.get_state(scen) == "published"]
         return res
 
     def debugvalues(self):
