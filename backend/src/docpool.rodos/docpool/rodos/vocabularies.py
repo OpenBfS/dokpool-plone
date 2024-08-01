@@ -11,9 +11,11 @@ class PrognosisTypesVocabulary:
     def __call__(self, context):
         return safe_simplevocabulary_from_values(
             [
+                "Potenziell betroffene Gebiete",
                 "RODOS Prognose",
-                "RODOS Diagnose",
-                "DWD Prognose",
+                "DWD Ausbreitungsrechnung ab Quelle",
+                "LASAIR/LASAT",
+                "Sonstige Ausbreitungsrechnung",
             ]
         )
 
@@ -28,46 +30,10 @@ class PrognosisFormsVocabulary:
     def __call__(self, context):
         return safe_simplevocabulary_from_values(
             [
-                "Einzeldokument",
-                "RODOS Lauf",
+                "Routinerechnung",
+                "Einzelrechnung",
             ]
         )
 
 
 PrognosisFormsVocabularyFactory = PrognosisFormsVocabulary()
-
-
-@implementer(IVocabularyFactory)
-class ReleaseSitesVocabulary:
-    """ """
-
-    def __call__(self, context):
-        return safe_simplevocabulary_from_values(
-            [
-                "ISAR",
-                "GUNDREMMINGEN",
-                "PHILIPSBURG",
-                "NECKARWESTHEIM",
-                "EMSLAND",
-                "GROHNDE",
-                "BROKDORF",
-                "FR-MUENCHEN",
-                "FR-BERLIN",
-                "LEIBSTADT",
-                "GOESGEN",
-                "BEZNAU",
-                "MUEHLEBERG",
-                "CATTENOM",
-                "FESSENHEIM",
-                "CHOOZ",
-                "TIHANGE",
-                "TEMELIN",
-                "mobiler Standort",
-            ]
-        )
-
-
-ReleaseSitesVocabularyFactory = ReleaseSitesVocabulary()
-
-
-allow_module("docpool.rodos.vocabularies")

@@ -41,7 +41,7 @@ def copyRunDisplay(self, fresh):
     """
     if not fresh:
         return
-    # FIXME: so far there is no object 'rodos' on a fresh install
+    # FIXME: so far there is no object 'rodos' on a fresh install unless the rodos app is installed
     rodos = self.rodos
     from docpool.base.utils import _copyPaste
 

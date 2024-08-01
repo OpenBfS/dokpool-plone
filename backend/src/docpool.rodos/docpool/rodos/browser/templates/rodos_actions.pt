@@ -2,6 +2,6 @@
            define="view nocall:options/view">
     <tal:def define="rodosobj view">
         <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
-        <p>Rodos Actions here</p>
+
     </tal:def>
 </tal:block>
