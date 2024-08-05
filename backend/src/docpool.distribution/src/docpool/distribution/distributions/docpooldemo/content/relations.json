@@ -1,20 +1,5 @@
 [
   {
-    "from_attribute": "Substitute",
-    "from_uuid": "00147a456a174a9d9541725cd0e18339",
-    "to_uuid": "67ce1955c35d44c592809afd4a6094b4"
-  },
-  {
-    "from_attribute": "EventLocation",
-    "from_uuid": "00147a456a174a9d9541725cd0e18339",
-    "to_uuid": "a69d372e6ce64b1a811eeada2fddd2f5"
-  },
-  {
-    "from_attribute": "SectorizingNetworks",
-    "from_uuid": "00147a456a174a9d9541725cd0e18339",
-    "to_uuid": "84cc4ecb86ed45c3b9916e988a4d82eb"
-  },
-  {
     "from_attribute": "docTypes",
     "from_uuid": "0041ba8f94e540a7878a91b9e2c3a6a5",
     "to_uuid": "1f7e405932c14448ba8cb919faef3ac5"

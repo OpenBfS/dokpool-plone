@@ -276,11 +276,6 @@
     "b1fea5b49a384f538d24c8dcd0a17291/data.json",
     "30e2c3a218854f4bb295c7b20a00d06b/data.json",
     "59f1bffd1fd34f518d73284a8388eeef/data.json",
-    "00147a456a174a9d9541725cd0e18339/data.json",
-    "07b76f4d12eb479fa36f1f329c924d0b/data.json",
-    "5896d94fb4b347fe82d6e977f7300228/data.json",
-    "fdcd50c2ba2d4705ac8694cdfbbf488c/data.json",
-    "38aa32e1841e438ebb6e805a45f5f63b/data.json",
     "a69d372e6ce64b1a811eeada2fddd2f5/data.json",
     "67ce1955c35d44c592809afd4a6094b4/data.json",
     "57ac9888833c48fda0ba10b8ee710a64/data.json",
@@ -582,7 +577,6 @@
     }
   },
   "local_permissions": {
-    "00147a456a174a9d9541725cd0e18339": {},
     "0041ba8f94e540a7878a91b9e2c3a6a5": {},
     "006660b7878743a39f5cac6f722e7f2a": {},
     "00a7ac3813e846c18627a1fbee242511": {},
@@ -599,7 +593,6 @@
     "06ca87551f614bf8b02a0ee724ce0cc3": {},
     "07130a294baa40e7b7b53aba8b68fb09": {},
     "073f423daa2e4ca3835d5fe4721edd33": {},
-    "07b76f4d12eb479fa36f1f329c924d0b": {},
     "07e24f11682d44e3a0625fc9083857b7": {},
     "07f59ac304ef4cfd8f6e7ac6650a175b": {},
     "08eea49f0b844348a95e7facf90bcaa0": {},
@@ -687,7 +680,6 @@
     "364ce77442464a5a9002c38eccd73f6a": {},
     "38697a6425174aeeb61583230e8c78d3": {},
     "389e0b086caa4dbc8bd5586335348a8a": {},
-    "38aa32e1841e438ebb6e805a45f5f63b": {},
     "39193346bc3d476c9d29719ca3690a12": {},
     "3935e472c8cc438f8806e6fdd2075cb5": {},
     "3ba9aa05c9e84931a7558bb3a1d0f004": {},
@@ -761,7 +753,6 @@
     "5765a12506034fb28ff8d1f726f5f069": {},
     "57ac9888833c48fda0ba10b8ee710a64": {},
     "581a901c78f048bab05733d608b2c954": {},
-    "5896d94fb4b347fe82d6e977f7300228": {},
     "590d7d671a874792a1129bec818a5998": {},
     "592e730ec72345d3a5389bbe8c10b2ad": {},
     "594198682dac4cb8afc20f5ca0fb8c0e": {},
@@ -1087,7 +1078,6 @@
     "fbbe609d5ff4472d8442af50ca9bb666": {},
     "fcba964735044feea28c81c48622ce47": {},
     "fcd1ba3c42614f06acde46a1ea435847": {},
-    "fdcd50c2ba2d4705ac8694cdfbbf488c": {},
     "fe05abec3d4f41f6b60c5c6587afffa4": {},
     "fe0d9ce3e8ce450694ca68091db846cf": {},
     "fe24a134cc7d403e8b0d7f111485a7d4": {},
@@ -1212,13 +1202,6 @@
     }
   },
   "local_roles": {
-    "00147a456a174a9d9541725cd0e18339": {
-      "local_roles": {
-        "admin": [
-          "Owner"
-        ]
-      }
-    },
     "0041ba8f94e540a7878a91b9e2c3a6a5": {
       "local_roles": {
         "admin": [
@@ -1361,19 +1344,6 @@
       "local_roles": {
         "admin": [
           "Owner"
-        ]
-      }
-    },
-    "07b76f4d12eb479fa36f1f329c924d0b": {
-      "local_roles": {
-        "admin": [
-          "Owner"
-        ],
-        "bund_Journal1_Editors": [
-          "JournalEditor"
-        ],
-        "bund_Journal1_Readers": [
-          "JournalReader"
         ]
       }
     },
@@ -2070,19 +2040,6 @@
         ]
       }
     },
-    "38aa32e1841e438ebb6e805a45f5f63b": {
-      "local_roles": {
-        "admin": [
-          "Owner"
-        ],
-        "bund_Journal4_Editors": [
-          "JournalEditor"
-        ],
-        "bund_Journal4_Readers": [
-          "JournalReader"
-        ]
-      }
-    },
     "39193346bc3d476c9d29719ca3690a12": {
       "local_roles": {
         "admin": [
@@ -2687,19 +2644,6 @@
       "local_roles": {
         "admin": [
           "Owner"
-        ]
-      }
-    },
-    "5896d94fb4b347fe82d6e977f7300228": {
-      "local_roles": {
-        "admin": [
-          "Owner"
-        ],
-        "bund_Journal2_Editors": [
-          "JournalEditor"
-        ],
-        "bund_Journal2_Readers": [
-          "JournalReader"
         ]
       }
     },
@@ -5419,19 +5363,6 @@
         ]
       }
     },
-    "fdcd50c2ba2d4705ac8694cdfbbf488c": {
-      "local_roles": {
-        "admin": [
-          "Owner"
-        ],
-        "bund_Journal3_Editors": [
-          "JournalEditor"
-        ],
-        "bund_Journal3_Readers": [
-          "JournalReader"
-        ]
-      }
-    },
     "fe05abec3d4f41f6b60c5c6587afffa4": {
       "local_roles": {
         "admin": [
@@ -5502,7 +5433,6 @@
     }
   },
   "ordering": {
-    "00147a456a174a9d9541725cd0e18339": 4,
     "0041ba8f94e540a7878a91b9e2c3a6a5": 3,
     "006660b7878743a39f5cac6f722e7f2a": 3,
     "00a7ac3813e846c18627a1fbee242511": 1,
@@ -5519,7 +5449,6 @@
     "06ca87551f614bf8b02a0ee724ce0cc3": 0,
     "07130a294baa40e7b7b53aba8b68fb09": 1,
     "073f423daa2e4ca3835d5fe4721edd33": 1,
-    "07b76f4d12eb479fa36f1f329c924d0b": 0,
     "07e24f11682d44e3a0625fc9083857b7": 24,
     "07f59ac304ef4cfd8f6e7ac6650a175b": 1,
     "08eea49f0b844348a95e7facf90bcaa0": 11,
@@ -5606,7 +5535,6 @@
     "364ce77442464a5a9002c38eccd73f6a": 0,
     "38697a6425174aeeb61583230e8c78d3": 14,
     "389e0b086caa4dbc8bd5586335348a8a": 1,
-    "38aa32e1841e438ebb6e805a45f5f63b": 3,
     "39193346bc3d476c9d29719ca3690a12": 32,
     "3935e472c8cc438f8806e6fdd2075cb5": 0,
     "3ba9aa05c9e84931a7558bb3a1d0f004": 2,
@@ -5680,7 +5608,6 @@
     "5765a12506034fb28ff8d1f726f5f069": 0,
     "57ac9888833c48fda0ba10b8ee710a64": 0,
     "581a901c78f048bab05733d608b2c954": 4,
-    "5896d94fb4b347fe82d6e977f7300228": 1,
     "590d7d671a874792a1129bec818a5998": 0,
     "592e730ec72345d3a5389bbe8c10b2ad": 17,
     "594198682dac4cb8afc20f5ca0fb8c0e": 7,
@@ -6002,7 +5929,6 @@
     "fbbe609d5ff4472d8442af50ca9bb666": 20,
     "fcba964735044feea28c81c48622ce47": 20,
     "fcd1ba3c42614f06acde46a1ea435847": 0,
-    "fdcd50c2ba2d4705ac8694cdfbbf488c": 2,
     "fe05abec3d4f41f6b60c5c6587afffa4": 6,
     "fe0d9ce3e8ce450694ca68091db846cf": 1,
     "fe24a134cc7d403e8b0d7f111485a7d4": 23,
