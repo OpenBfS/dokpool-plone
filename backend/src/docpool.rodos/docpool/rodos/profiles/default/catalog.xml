@@ -1,10 +1,10 @@
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
 
-    <index name="rodosPrognosisType" meta_type="FieldIndex">
+    <index name="PrognosisType" meta_type="FieldIndex">
         <indexed_attr value="PrognosisType"/>
     </index>
 
-    <index name="rodosPrognosisForm" meta_type="FieldIndex">
+    <index name="PrognosisForm" meta_type="FieldIndex">
         <indexed_attr value="PrognosisForm"/>
     </index>
 

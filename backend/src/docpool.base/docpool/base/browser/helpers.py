@@ -70,7 +70,7 @@ class SetActiveApp(BrowserView):
                 "elan": "/esd",
                 "doksys": "/searches",
                 "rei": "/berichte",
-                "rodos": "/rodos",
+                "rodos": "/potentially-affected-areas",
             }
             if (suffix := suffixes.get(app)) is not None:
                 absurl = context.myDocumentPool().absolute_url() + suffix
