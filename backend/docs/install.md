@@ -267,4 +267,3 @@ Hier wird der Export und Import des Docker-Images beschrieben:
     $ docker load -i dokpool.tar
     $ docker run --publish 8080:8080 git.starzel.de:5050/bfs/dokpool:python3
     # Open http://localhost:8080
-
