@@ -253,3 +253,18 @@ Das Label "review" setzen.
     $ docker pull git.starzel.de:5050/bfs/dokpool:python3
     $ docker run --publish 8080:8080 -v $(pwd)/data:/data git.starzel.de:5050/bfs/dokpool:python3
     # Open http://localhost:8080
+
+### Export Docker Image
+
+Da die Entwicklungsversion z.Z. noch von internen Git-Repositories abhängt, ist ein Test mit dem fertigen Docker-Image nötig.
+Hier wird der Export und Import des Docker-Images beschrieben:
+
+    $ docker login git.starzel.de:5050 -u <gitlab-login> -p <password>
+    $ docker pull git.starzel.de:5050/bfs/dokpool:python3
+    # Save the docker image to a tar file
+    $ docker save -o dokpool.tar git.starzel.de:5050/bfs/dokpool:python3
+    # Copy the tar to another machine and import
+    $ docker load -i dokpool.tar
+    $ docker run --publish 8080:8080 git.starzel.de:5050/bfs/dokpool:python3
+    # Open http://localhost:8080
+
