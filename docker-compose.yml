@@ -52,7 +52,7 @@ services:
     environment:
       LISTEN_PORT: 8081
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
-      RELSTORAGE_CREATE_SCHEMA: false
+      RELSTORAGE_CREATE_SCHEMA: "false"
     labels:
       - traefik.enable=true
       - traefik.constraint-label=public
