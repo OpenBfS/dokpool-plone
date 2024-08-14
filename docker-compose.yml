@@ -40,15 +40,16 @@ services:
     ports:
       - "5432:5432"
 
-  dokpool-purger:
-    profiles:
-      - dokpool_review
-    image: ghcr.io/kitconcept/cluster-purger:latest
-    environment:
-      PURGER_SERVICE_NAME: varnish
-      PURGER_SERVICE_PORT: 80
-      PURGER_MODE: "compose"
-      PURGER_PUBLIC_SITES: "['plone.localhost']"
+# Do we even need this? Service port isn't implemented currently so it wouldn't start up rootless anyway.
+#   dokpool-purger:
+#     profiles:
+#       - dokpool_review
+#     image: ghcr.io/kitconcept/cluster-purger:latest
+#     environment:
+#       PURGER_SERVICE_NAME: dokpool-varnish
+#       PURGER_SERVICE_PORT: 8080
+#       PURGER_MODE: "compose"
+#       PURGER_PUBLIC_SITES: "['plone.localhost']"
 
   dokpool-varnish:
     profiles:
