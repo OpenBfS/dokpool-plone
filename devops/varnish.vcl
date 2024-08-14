@@ -4,8 +4,26 @@ vcl 4.0;
 import std;
 import directors;
 
+/*
 backend traefik_loadbalancer {
     .host = "dokpool-loadbalancer";
+    .port = "8080";
+    .connect_timeout = 2s;
+    .first_byte_timeout = 300s;
+    .between_bytes_timeout  = 60s;
+}
+*/
+
+backend dokpool-zeoclient_1 {
+    .host = "dokpool_dokpool-zeoclient_1";
+    .port = "8080";
+    .connect_timeout = 2s;
+    .first_byte_timeout = 300s;
+    .between_bytes_timeout  = 60s;
+}
+
+backend dokpool-zeoclient_2 {
+    .host = "dokpool_dokpool-zeoclient_2";
     .port = "80";
     .connect_timeout = 2s;
     .first_byte_timeout = 300s;
@@ -75,7 +93,9 @@ sub process_redirects{
 
 sub vcl_init {
   new cluster_loadbalancer = directors.round_robin();
-  cluster_loadbalancer.add_backend(traefik_loadbalancer);
+  /* cluster_loadbalancer.add_backend(traefik_loadbalancer); */
+  cluster_loadbalancer.add_backend(dokpool-zeoclient_1);
+  cluster_loadbalancer.add_backend(dokpool-zeoclient_2);
 }
 
 sub vcl_recv {
