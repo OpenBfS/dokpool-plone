@@ -33,6 +33,8 @@ services:
       - dokpool_review
       - dokpool_init
     image: postgres
+    volumes:
+      - dokpool-db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: plone
       POSTGRES_PASSWORD: plone
@@ -67,3 +69,7 @@ services:
       - dokpool-zeoclient
     ports:
       - "80:80"
+
+volumes:
+  dokpool-db:
+    external: false
