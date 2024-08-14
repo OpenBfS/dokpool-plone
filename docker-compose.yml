@@ -12,7 +12,6 @@ services:
       mode: replicated
       replicas: 2
     environment:
-      LISTEN_PORT: 8081
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
 
@@ -23,7 +22,6 @@ services:
     ports:
       - 8082:8082
     environment:
-      LISTEN_PORT: 8082
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
 
   # Only for development & test
@@ -60,6 +58,9 @@ services:
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
 
+    environment:
+      VARNISH_HTTP_PORT: 8080
+
     networks:
       default:
         aliases:
@@ -68,7 +69,7 @@ services:
       - dokpool-loadbalancer
       - dokpool-zeoclient
     ports:
-      - "80:80"
+      - "8080:8080"
 
 volumes:
   dokpool-db:
