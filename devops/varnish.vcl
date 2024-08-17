@@ -24,7 +24,7 @@ backend dokpool-zeoclient_1 {
 
 backend dokpool-zeoclient_2 {
     .host = "dokpool_dokpool-zeoclient_2";
-    .port = "80";
+    .port = "8080";
     .connect_timeout = 2s;
     .first_byte_timeout = 300s;
     .between_bytes_timeout  = 60s;
