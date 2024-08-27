@@ -48,17 +48,25 @@ class LogoDocpoolViewlet(LogoViewlet):
             return True
 
     def read_git_version_file(self, filename):
-        # Get the path to the pid file :)
+        read_file = False
+        # Try to get the path from the pid file :)
         try:
             varbase = os.path.dirname(getConfiguration().pid_filename)
             project_root = os.path.abspath(os.path.join(varbase, ".."))
             file_path = os.path.join(project_root, filename)
         except AttributeError:
             # Ignore if we have no access to file
-            logger.info("No version file_path found")
-            return
-        if not os.path.isfile(file_path):
-            logger.info("No version file found")
+            pass
+
+        if os.path.isfile(file_path):
+            read_file = True
+
+        # New Plone backend docker structure
+        if os.path.isfile("/app/GIT_COMMIT"):
+            file_path = os.path.join("/app/GIT_COMMIT")
+            read_file = True
+
+        if not read_file:
             return
 
         with open(file_path) as file:
