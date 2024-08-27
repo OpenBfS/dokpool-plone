@@ -38,7 +38,7 @@ IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
 ifndef CI_COMMIT_REF_NAME
 	CI_COMMIT_REF_NAME=$$(git rev-parse --abbrev-ref HEAD)
 endif
-IMAGE_TAG=test
+IMAGE_TAG=${CI_COMMIT_REF_NAME}
 
 # get rev if not running in CI
 ifndef CI_COMMIT_SHORT_SHA
