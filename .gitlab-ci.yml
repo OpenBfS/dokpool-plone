@@ -23,6 +23,7 @@ stages:
   - test
   - build
   - deploy
+  - deploy_new
 
 before_script:
   # Git for 3rd party source packages
@@ -138,3 +139,13 @@ unit_tests:
   artifacts:
     paths:
       - parts/test/htmlreport
+
+deploy_review:
+  tags:
+    - shell
+  stage: deploy_new
+  script:
+    - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/18b65c46-4159-43ea-9989-7dc433fbccb0/run?authtoken=$authtoken
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "review_py3"'
+    - if: '$NIGHTLY_UPDATE == "True"'
