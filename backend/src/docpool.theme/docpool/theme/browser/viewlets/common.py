@@ -49,6 +49,7 @@ class LogoDocpoolViewlet(LogoViewlet):
 
     def read_git_version_file(self, filename):
         read_file = False
+        file_path = ""
         # Try to get the path from the pid file :)
         try:
             varbase = os.path.dirname(getConfiguration().pid_filename)
