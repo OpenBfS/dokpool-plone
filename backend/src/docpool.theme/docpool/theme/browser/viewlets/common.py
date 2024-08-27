@@ -1,6 +1,7 @@
 from AccessControl.SecurityInfo import allow_class
 from App.config import getConfiguration
 from docpool.base.appregistry import APP_REGISTRY
+from logging import getLogger
 from plone import api
 from plone.app.layout.viewlets.common import LogoViewlet
 from plone.app.layout.viewlets.common import ViewletBase
@@ -10,6 +11,7 @@ import datetime
 import os
 import shlex
 import subprocess
+logger = getLogger(__name__)
 
 
 class TimeViewlet(ViewletBase):
@@ -51,8 +53,10 @@ class LogoDocpoolViewlet(LogoViewlet):
             file_path = os.path.join(project_root, filename)
         except AttributeError:
             # Ignore if we have no access to file
+            logger.info("No version file_path found")
             return
         if not os.path.isfile(file_path):
+            logger.info("No version file found")
             return
 
         with open(file_path) as file:
