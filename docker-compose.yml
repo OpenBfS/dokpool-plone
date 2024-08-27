@@ -3,10 +3,7 @@ version: "3.8"
 name: dokpool
 
 services:
-
   dokpool-zeoclient:
-    profiles:
-      - dokpool_review
     image: git.starzel.de:5050/bfs/dokpool:python3
     deploy:
       mode: replicated
@@ -27,9 +24,6 @@ services:
   # Only for development & test
   # On production, we use the central patroni postgres
   dokpool-postgres:
-    profiles:
-      - dokpool_review
-      - dokpool_init
     image: postgres
     volumes:
       - dokpool-db:/var/lib/postgresql/data
@@ -40,20 +34,18 @@ services:
     ports:
       - "5432:5432"
 
-# Do we even need this? Service port isn't implemented currently so it wouldn't start up rootless anyway.
-#   dokpool-purger:
-#     profiles:
-#       - dokpool_review
-#     image: ghcr.io/kitconcept/cluster-purger:latest
-#     environment:
-#       PURGER_SERVICE_NAME: dokpool-varnish
-#       PURGER_SERVICE_PORT: 8080
-#       PURGER_MODE: "compose"
-#       PURGER_PUBLIC_SITES: "['plone.localhost']"
+  # Do we even need this? Service port isn't implemented currently so it wouldn't start up rootless anyway.
+  #   dokpool-purger:
+  #     profiles:
+  #       - dokpool_review
+  #     image: ghcr.io/kitconcept/cluster-purger:latest
+  #     environment:
+  #       PURGER_SERVICE_NAME: dokpool-varnish
+  #       PURGER_SERVICE_PORT: 8080
+  #       PURGER_MODE: "compose"
+  #       PURGER_PUBLIC_SITES: "['plone.localhost']"
 
   dokpool-varnish:
-    profiles:
-      - dokpool_review
     image: varnish
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
