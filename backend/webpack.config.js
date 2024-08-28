@@ -115,7 +115,8 @@ module.exports = () => {
     config.devServer.static.directory = path.resolve(__dirname, "./resources/");
   }
 
-  console.log(JSON.stringify(config, null, 4));
+  // Debug output
+  //console.log(JSON.stringify(config, null, 4));
 
   return config;
 };
