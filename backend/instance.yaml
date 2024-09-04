@@ -16,4 +16,4 @@ default_context:
     zope_i18n_allowed_languages: "de"
 
   db_storage: direct
-  db_blobs_location: "{{ cookiecutter.location_clienthome }}/blobstorage"
+  db_blob_location: "{{ cookiecutter.location_clienthome }}/blobstorage"

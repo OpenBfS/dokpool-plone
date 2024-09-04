@@ -14,7 +14,7 @@ default_context:
     zope_i18n_allowed_languages: "de"
 
   db_storage: relstorage
-  db_blobs_mode: cache
+  db_blob_mode: cache
   db_cache_size: 100000
   db_relstorage_postgresql_dsn: dbname='plone6' user='plone6' host='localhost' password='plone6'
   db_relstorage_keep_history: false

@@ -106,8 +106,8 @@ bin/pip:
 .PHONY: config
 config: bin/pip  ## Create instance configuration
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
-	./bin/cookiecutter -f --no-input --config-file ./instance.yaml -c 2.0.0 gh:plone/cookiecutter-zope-instance
-	./bin/cookiecutter -f --no-input --config-file ./instance_relstorage.yaml -c 2.0.0 gh:plone/cookiecutter-zope-instance
+	./bin/cookiecutter -f --no-input --config-file ./instance.yaml -c 2.1.1 gh:plone/cookiecutter-zope-instance
+	./bin/cookiecutter -f --no-input --config-file ./instance_relstorage.yaml -c 2.1.1 gh:plone/cookiecutter-zope-instance
 
 # i18n
 bin/i18ndude: bin/pip
