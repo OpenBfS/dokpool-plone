@@ -23,10 +23,11 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "elan"
+    "elan",
+    "rodos"
   ],
   "lock": {},
-  "modified": "2024-03-14T12:44:02+00:00",
+  "modified": "2024-09-10T09:23:51+00:00",
   "parent": {
     "@id": "/hessen/config/dtypes",
     "@type": "DocTypes",
@@ -42,7 +43,7 @@
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "RODOS_Prognose",
+  "title": "RODOS Rechnung",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

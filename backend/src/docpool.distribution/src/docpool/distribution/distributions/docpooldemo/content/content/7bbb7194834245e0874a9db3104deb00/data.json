@@ -34,7 +34,7 @@
     "description": "foo",
     "image_field": null,
     "image_scales": {},
-    "review_state": "published",
+    "review_state": "private",
     "title": "Eine Bodenprobe",
     "type_title": "Document"
   },

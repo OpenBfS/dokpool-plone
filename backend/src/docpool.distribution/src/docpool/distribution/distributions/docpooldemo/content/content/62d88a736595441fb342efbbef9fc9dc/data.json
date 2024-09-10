@@ -1,6 +1,8 @@
 {
-  "@id": "/bund/content/Groups/bund_group1/ein-rodos_prognose",
+  "@id": "/bund/content/Groups/bund_group1/eine-rodos-rechnung",
   "@type": "DPDocument",
+  "PrognosisForm": "Routinerechnung",
+  "PrognosisType": "RODOS Prognose",
   "UID": "62d88a736595441fb342efbbef9fc9dc",
   "allow_discussion": false,
   "contributors": [],
@@ -17,17 +19,17 @@
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "exportimport.versions": {},
-  "id": "ein-rodos_prognose",
+  "id": "eine-rodos-rechnung",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "elan"
+    "rodos"
   ],
   "lock": {},
-  "mdate": "2024-03-14T13:44:15",
-  "modified": "2024-03-14T12:44:15+00:00",
-  "modified_by": "user1 (Bund) <i>Group1 (Bund)</i>",
+  "mdate": "2024-09-10T11:25:08",
+  "modified": "2024-09-10T09:25:08+00:00",
+  "modified_by": "admin <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",
     "@type": "GroupFolder",
@@ -39,19 +41,17 @@
     "title": "Group1 (Bund)",
     "type_title": "Group Folder"
   },
+  "receiver_log": [],
   "review_state": "published",
-  "rights": "",
-  "scenarios": [
-    "test-event"
-  ],
-  "scenarios_to_keep": [],
+  "rights": null,
+  "sender_log": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",
-    "data": "<p>Text f\u00fcr RODOS_Prognose</p>",
+    "data": "<p>Text f\u00fcr RODOS Rechnung</p>",
     "encoding": "utf-8"
   },
-  "title": "Ein RODOS_Prognose",
+  "title": "Eine RODOS Rechnung",
   "transferLog": null,
   "transferred": null,
   "transferred_by": null,

@@ -29,7 +29,7 @@
   "layout": "view",
   "limit": 1000,
   "lock": {},
-  "modified": "2024-03-14T12:43:56+00:00",
+  "modified": "2024-09-10T09:23:51+00:00",
   "parent": {
     "@id": "/bund/esd/dose-projections",
     "@type": "ELANSection",
@@ -38,7 +38,7 @@
     "image_field": null,
     "image_scales": {},
     "review_state": "published",
-    "title": "PROGNOSEN",
+    "title": "AUSBREITUNGSRECHNUNGEN",
     "type_title": "Section"
   },
   "query": [

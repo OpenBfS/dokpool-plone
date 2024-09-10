@@ -1,0 +1,88 @@
+{
+  "@id": "/projections/rodosprojection",
+  "@type": "Collection",
+  "UID": "d3a351158ce5444ab66e29ce62677e7a",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-09-10T09:23:35+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "rodosprojection",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-09-10T09:23:35+00:00",
+  "parent": {
+    "@id": "/projections",
+    "@type": "Folder",
+    "UID": "7707f88610504515a0d54010f597e598",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ausbreitungsrechnungen",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "rodosprojection"
+      ]
+    },
+    {
+      "i": "PrognosisType",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "RODOS Prognose"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": null,
+  "sort_reversed": null,
+  "subjects": [],
+  "text": null,
+  "title": "RODOS-Prognosen",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-09-10T09:23:35+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

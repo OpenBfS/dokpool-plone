@@ -17,7 +17,8 @@
     "docpool_applications_key": [
       "elan",
       "doksys",
-      "rei"
+      "rei",
+      "rodos"
     ]
   },
   "exportimport.constrains": {},
@@ -29,7 +30,7 @@
   "layout": "view",
   "local_behaviors": [],
   "lock": {},
-  "modified": "2024-03-14T12:44:18+00:00",
+  "modified": "2024-09-10T09:24:31+00:00",
   "parent": {
     "@id": "/",
     "@type": "Plone Site",
@@ -45,7 +46,8 @@
   "supportedApps": [
     "elan",
     "doksys",
-    "rei"
+    "rei",
+    "rodos"
   ],
   "title": "Bund",
   "type_title": "Document Pool",

@@ -35,7 +35,7 @@
   ],
   "lock": {},
   "mdate": "2024-07-16T14:40:48",
-  "modified": "2024-07-16T12:40:48+00:00",
+  "modified": "2024-09-10T09:23:42+00:00",
   "modified_by": "admin <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",
@@ -48,12 +48,22 @@
     "title": "Group1 (Bund)",
     "type_title": "Group Folder"
   },
+  "receiver_log": [],
   "review_state": "published",
   "rights": null,
   "scenarios": [
     "test-event"
   ],
   "scenarios_to_keep": [],
+  "sender_log": [
+    {
+      "esd_title": "Hessen",
+      "scenario_ids": "test-event",
+      "timestamp": "2024-07-16T14:40:54",
+      "transferfolder_uid": "d5c1d9fae83e4b438a6f7eaf286bad6d",
+      "user": "admin Group1 (Bund)"
+    }
+  ],
   "subjects": [],
   "text": {
     "content-type": "text/html",

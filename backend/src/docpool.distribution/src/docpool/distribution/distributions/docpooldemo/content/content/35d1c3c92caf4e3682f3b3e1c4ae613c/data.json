@@ -1,0 +1,88 @@
+{
+  "@id": "/bund/projections/dwd-ausbreitungsrechnungen",
+  "@type": "Collection",
+  "UID": "35d1c3c92caf4e3682f3b3e1c4ae613c",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-09-10T09:23:35+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "dwd-ausbreitungsrechnungen",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-09-10T09:24:31+00:00",
+  "parent": {
+    "@id": "/bund/projections",
+    "@type": "Folder",
+    "UID": "2351c51012a64c3db1d0d8399234638a",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Ausbreitungsrechnungen",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "rodosprojection"
+      ]
+    },
+    {
+      "i": "PrognosisType",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "DWD Ausbreitungsrechnung ab Quelle"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": null,
+  "sort_reversed": null,
+  "subjects": [],
+  "text": null,
+  "title": "DWD-Ausbreitungsrechnungen ab Quelle",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-09-10T09:24:31+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

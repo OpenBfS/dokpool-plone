@@ -1,0 +1,81 @@
+{
+  "@id": "/bund/content/Groups/bund_group1/rodos-rechnung-fuer-gundremmingen",
+  "@type": "DPDocument",
+  "PrognosisForm": "Einzelrechnung",
+  "PrognosisType": "Potenziell betroffene Gebiete",
+  "UID": "a0d813cda5c04a04af340f1661e5fb7d",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-09-10T09:26:34+00:00",
+  "created_by": "admin <i>Group1 (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "docType": "rodosprojection",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "rodos-rechnung-fuer-gundremmingen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {},
+  "mdate": "2024-09-10T11:27:23",
+  "modified": "2024-09-10T09:27:23+00:00",
+  "modified_by": "admin <i>Group1 (Bund)</i>",
+  "parent": {
+    "@id": "/bund/content/Groups/bund_group1",
+    "@type": "GroupFolder",
+    "UID": "fbbe609d5ff4472d8442af50ca9bb666",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Group1 (Bund)",
+    "type_title": "Group Folder"
+  },
+  "receiver_log": [],
+  "review_state": "published",
+  "rights": null,
+  "sender_log": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Text</p>",
+    "encoding": "utf-8"
+  },
+  "title": "RODOS Rechnung f\u00fcr Gundremmingen",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2024-09-10T11:26:50",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2024-09-10T09:26:34+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-09-10T09:26:50+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

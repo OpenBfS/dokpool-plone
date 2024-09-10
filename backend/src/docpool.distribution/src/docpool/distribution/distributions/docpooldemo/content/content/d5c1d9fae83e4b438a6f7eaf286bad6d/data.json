@@ -45,7 +45,6 @@
     "protectiveactions": "publish",
     "reireport": "publish",
     "rodosprojection": "publish",
-    "rodosrun_elan": "publish",
     "sitrep": "publish",
     "situationreport": "publish",
     "trajectory": "publish",
@@ -63,7 +62,7 @@
   "layout": "view",
   "lock": {},
   "mdate": "2024-03-14T13:44:18",
-  "modified": "2024-07-16T12:41:37+00:00",
+  "modified": "2024-09-10T09:23:47+00:00",
   "modified_by": null,
   "parent": {
     "@id": "/hessen/content/Transfers",
