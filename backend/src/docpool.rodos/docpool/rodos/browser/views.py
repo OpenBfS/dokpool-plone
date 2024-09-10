@@ -9,11 +9,11 @@ from plone import api
 from Products.Five import BrowserView
 from zope.i18nmessageid import MessageFactory
 
+
 PMF = MessageFactory("plone")
 
 
 class AssignToElanEvent(BrowserView):
-
     def __call__(self):
         form = self.request.form
         obj = self.context
@@ -59,7 +59,6 @@ class AssignToElanEvent(BrowserView):
 
 
 class CanAssignToElanEvent(BrowserView):
-
     def __call__(self):
         obj = self.context
         if IELANDocument(obj, None):
