@@ -79,32 +79,6 @@ class ITransferable(model.Schema):
     read_permission(transferred="docpool.transfers.AccessTransfers")
     write_permission(transferred="docpool.transfers.AccessTransfers")
 
-    sender_log = schema.Text(
-        title=_("label_dpdocument_sender_log", default="Transfer sender log"),
-        description=_(
-            "description_dpdocument_sender_log",
-            default="Transfer events by which this document was sent; "
-            "used for documents not yet archived.",
-        ),
-        required=False,
-    )
-    directives.omitted("sender_log")
-    read_permission(sender_log="docpool.transfers.AccessTransfers")
-    write_permission(sender_log="docpool.transfers.AccessTransfers")
-
-    receiver_log = schema.Text(
-        title=_("label_dpdocument_sender_log", default="Transfer sender log"),
-        description=_(
-            "description_dpdocument_sender_log",
-            default="Transfer events by which this document was received; "
-            "used for documents not yet archived.",
-        ),
-        required=False,
-    )
-    directives.omitted("receiver_log")
-    read_permission(receiver_log="docpool.transfers.AccessTransfers")
-    write_permission(receiver_log="docpool.transfers.AccessTransfers")
-
     transferLog = schema.Text(
         title=_("label_dpdocument_transferlog", default="Transfer log"),
         description=_(
