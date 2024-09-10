@@ -11,7 +11,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import parent
 from zope.component import getMultiAdapter
-from zope.component.hooks import getSite
 
 import logging
 import re
@@ -203,11 +202,10 @@ def _cutPaste(source_obj, target_folder_obj, unique=False):
 
 def getDocumentPoolSite(context):
     """ """
-    # print context
     if getattr(context, "myDocumentPool", None) is not None:
         return context.myDocumentPool()
     else:
-        return getSite()
+        return api.portal.get()
 
 
 class UnrestrictedUser(BaseUnrestrictedUser):

@@ -37,7 +37,6 @@ class IRodosDoc(IDocumentExtension):
 
 
 class RodosDoc(FlexibleView):
-
     appname = RODOS_APP
 
     def __init__(self, context):
