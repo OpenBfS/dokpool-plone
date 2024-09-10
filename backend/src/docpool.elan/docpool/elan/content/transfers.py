@@ -14,31 +14,32 @@ def ensureScenariosInTarget(original, copy):
 
     """
     my_scenarios = original.doc_extension(ELAN_APP).scenarios
-    scen_source = original.myDocumentPool().contentconfig.scen
     scen = copy.myDocumentPool().contentconfig.scen
-    new_scenarios = []
+    copy_events = []
 
-    for scenario in my_scenarios:
-        if scen.hasObject(scenario):
-            copy_id = scenario
+    for orig_brain in api.content.find(UID=my_scenarios):
+        copy_id = orig_brain.getId
+        if scen.hasObject(copy_id):
             copy_event = scen[copy_id]
             if api.content.get_state(copy_event) == "private" and copy_event.Substitute:
                 substitute = copy_event.Substitute.to_object
                 if substitute.canBeAssigned():
-                    copy_id = substitute.getId()
+                    copy_event = substitute
         else:
-            orig_event = scen_source[scenario]
+            orig_event = orig_brain.getObject()
             copy_id = _copyPaste(orig_event, scen)
             copy_event = scen[copy_id]
             api.content.transition(copy_event, "retract")
 
-        new_scenarios.append(copy_id)
+        copy_events.append(copy_event)
 
     try:
-        copy.doc_extension(ELAN_APP).scenarios = new_scenarios
+        copy.doc_extension(ELAN_APP).scenarios = [e.UID() for e in copy_events]
     except Exception as e:
         log_exc(e)
     copy.reindexObject()
+
+    return [e.getId() for e in copy_events]
 
 
 def knowsScen(transfer_folder, scen_id):

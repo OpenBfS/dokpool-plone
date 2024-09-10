@@ -62,18 +62,6 @@ def get_scenarios_for_user(user):
     return scenarios
 
 
-def getScenarioIdsForCurrentUser():
-    scns = getScenariosForCurrentUser()
-    # Historically, these used to be object ids, not uids. When switching to uids for
-    # #5044, the scenarios attribute of documents and the corresponding catalog index
-    # weren't touched, so we need to convert uids to ids for that use case.
-    # Since not all call sites clearly operate on a specific docpool, we consider all
-    # uids. This will conflate events from different docpools that happen to have the
-    # same id (which likely wasn't a considered use case at the time the attribute was
-    # first created). Search results should thus remain the same as previously.
-    return list({b.getId for b in api.content.find(UID=scns)})
-
-
 def setScenariosForCurrentUser(scenarios):
     """ """
     user = api.user.get_current()

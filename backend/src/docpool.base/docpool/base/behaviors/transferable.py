@@ -326,7 +326,10 @@ class Transferable(FlexibleView):
                     transferfolder_uid=transfer_folder.UID(),
                 )
                 if elanobj:
-                    log_entry["scenario_ids"] = ", ".join(elanobj.scenarios or ())
+                    scenario_ids = ", ".join(
+                        b.getId for b in api.content.find(UID=elanobj.scenarios)
+                    )
+                    log_entry["scenario_ids"] = scenario_ids
                 self.sender_log += (log_entry,)
 
                 # 5) Make sure document type and scenarios exist in the target ESD and
@@ -334,7 +337,7 @@ class Transferable(FlexibleView):
                 transfer_folder.ensureDocTypeInTarget(dto)
 
                 if elanobj:
-                    ensureScenariosInTarget(self.context, my_copy)
+                    copy_scenario_ids = ensureScenariosInTarget(self.context, my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
                 transfer_copy = ITransferable(my_copy)
@@ -348,8 +351,7 @@ class Transferable(FlexibleView):
                     esd_title=transfer_folder.getSendingESD().Title(),
                 )
                 if elanobj:
-                    elancopy = IELANDocument(my_copy)
-                    log_entry["scenario_ids"] = ", ".join(elancopy.scenarios or ())
+                    log_entry["scenario_ids"] = ", ".join(copy_scenario_ids)
                 transfer_copy.receiver_log += (log_entry,)
 
                 msg = _(

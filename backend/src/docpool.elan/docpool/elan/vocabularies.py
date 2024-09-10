@@ -23,7 +23,7 @@ class EventVocabulary:
             return SimpleVocabulary([])
 
         items = sorted(
-            (t.Title, t.id)
+            (t.Title, t.UID)
             for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
         )
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]

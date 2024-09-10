@@ -65,22 +65,15 @@ class Renderer(base.Renderer):
         scenarios = getScenariosForCurrentUser()
         dp = self.context.myDocumentPool()
         # User could select more than one scenario
-        for scenario in scenarios:
-            event_brain = api.content.find(
-                portal_type="DPEvent",
-                context=dp,
-                UID=scenario,
-            )
-            # Since we reference scenarios by id, which may be shared, our best
-            # guess is to use the first one found that is not archived.
-            for brain in event_brain:
-                if IArchiving(brain).is_archive:
-                    continue
+        for brain in api.content.find(
+            context=dp,
+            UID=scenarios,
+        ):
+            if not IArchiving(brain).is_archive:
                 yield from api.content.find(
                     portal_type="Journal",
                     path=brain.getPath(),
                 )
-                break
 
 
 class AddForm(base.NullAddForm):
