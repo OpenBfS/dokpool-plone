@@ -48,4 +48,19 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="assign_to_elan_event"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".views.AssignToElanEvent"
+      template="templates/assign_to_elan_event.pt"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <browser:page
+      name="can_assign_to_elan_event"
+      for="*"
+      class=".views.CanAssignToElanEvent"
+      permission="zope2.View"
+      />
+
 </configure>
