@@ -27,7 +27,6 @@ def install(self):
 
     configUserFolders(self, fresh)
     createStructure(self, fresh)
-    navSettings(self)
 
 
 # Further base structures
@@ -81,15 +80,6 @@ def configUserFolders(self, fresh):
         dpmanager = mtool.getMemberById("dpmanager")
         dpmanager.setMemberProperties({"fullname": "Docpool Manager"})
         dpmanager.setSecurityProfile(password="admin")
-
-
-def navSettings(self):
-    IExcludeFromNavigation(self.news).exclude_from_nav = True
-    self.news.reindexObject()
-    IExcludeFromNavigation(self.events).exclude_from_nav = True
-    self.events.reindexObject()
-    IExcludeFromNavigation(self.Members).exclude_from_nav = True
-    self.Members.reindexObject()
 
 
 def createStructure(self, fresh):

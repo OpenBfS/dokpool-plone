@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
     xmlns:metal="http://xml.zope.org/namespaces/metal"
-    metal:use-macro="context/main_template/macros/master"
+    metal:use-macro="context/@@main_template/macros/master"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="elan.journal">
 <body>
@@ -19,10 +19,9 @@
           Description
         </div>
         <div id="parent-fieldname-text" class=""
-            tal:define="text context/text/output"
-            tal:condition="python:getattr(context.aq_base, 'text', None)">
+             tal:condition="python:getattr(context.aq_base, 'text', None)">
           <div itemprop="articleBody"
-              tal:content="structure text">The body</div>
+              tal:content="structure python:context.text.output_relative_to(view.context)">The body</div>
         </div>
       </header>
       <div tal:replace="structure provider:plone.abovecontentbody" />
