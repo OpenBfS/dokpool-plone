@@ -8,6 +8,7 @@ services:
     deploy:
       mode: replicated
       replicas: 2
+    command: "/app/scripts/build_demo_site.sh"
     environment:
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
