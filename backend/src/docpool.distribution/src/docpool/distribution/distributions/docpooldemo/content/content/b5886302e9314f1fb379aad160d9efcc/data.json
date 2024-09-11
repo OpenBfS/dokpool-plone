@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "exportimport.workflow_policy": {
     "workflow_policy_below": "elan-transfer",
     "workflow_policy_in": "elan-transfer"
@@ -24,7 +23,7 @@
   "language": "##DEFAULT##",
   "layout": "tabular_view",
   "lock": {},
-  "modified": "2024-03-14T12:43:56+00:00",
+  "modified": "2024-09-11T09:22:47+00:00",
   "parent": {
     "@id": "/bund/content",
     "@type": "ContentArea",

@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "projections",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -23,7 +22,7 @@
     "rodos"
   ],
   "lock": {},
-  "modified": "2024-09-10T09:24:31+00:00",
+  "modified": "2024-09-11T09:22:53+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "/bund",

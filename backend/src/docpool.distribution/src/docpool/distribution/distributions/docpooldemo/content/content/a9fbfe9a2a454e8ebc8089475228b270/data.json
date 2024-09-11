@@ -32,7 +32,6 @@
     ]
   },
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "exportimport.workflow_policy": {
     "workflow_policy_below": "rei_he2",
     "workflow_policy_in": "rei_he2"
@@ -44,7 +43,7 @@
   "local_behaviors": [],
   "lock": {},
   "mdate": "2024-03-14T13:44:04",
-  "modified": "2024-03-14T12:51:01+00:00",
+  "modified": "2024-09-11T09:22:54+00:00",
   "modified_by": null,
   "parent": {
     "@id": "/bund/content/Groups",

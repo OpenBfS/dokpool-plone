@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "notification_image",
   "image": {
     "blob_path": "f398b9f6981b45caa2bac242eaa2721b/image/image.png",
@@ -36,7 +35,7 @@
     "description": "",
     "image_field": null,
     "image_scales": {},
-    "review_state": "private",
+    "review_state": "published",
     "title": "Eine Meldung",
     "type_title": "Document"
   },

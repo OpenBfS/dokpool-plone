@@ -16,7 +16,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "ein-messergebnis_odl",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -26,7 +25,7 @@
   ],
   "lock": {},
   "mdate": "2024-03-14T13:44:14",
-  "modified": "2024-09-10T09:23:41+00:00",
+  "modified": "2024-09-11T09:22:46+00:00",
   "modified_by": "user1 (Bund) <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",
@@ -39,14 +38,12 @@
     "title": "Group1 (Bund)",
     "type_title": "Group Folder"
   },
-  "receiver_log": [],
   "review_state": "published",
   "rights": "",
   "scenarios": [
     "test-event"
   ],
   "scenarios_to_keep": [],
-  "sender_log": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",

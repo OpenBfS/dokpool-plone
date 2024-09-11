@@ -15,7 +15,6 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "globalAllow": true,
   "id": "rodosprojection",
   "imgPattern": null,
@@ -23,11 +22,10 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "elan",
     "rodos"
   ],
   "lock": {},
-  "modified": "2024-09-10T09:23:50+00:00",
+  "modified": "2024-09-11T09:22:57+00:00",
   "parent": {
     "@id": "/config/dtypes",
     "@type": "DocTypes",

@@ -24,7 +24,6 @@
       "user": "admin Group1 (Bund)"
     }
   ],
-  "exportimport.versions": {},
   "id": "ein-meldung",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -34,7 +33,7 @@
   ],
   "lock": {},
   "mdate": "2024-07-16T14:19:25",
-  "modified": "2024-09-10T09:23:45+00:00",
+  "modified": "2024-09-11T09:22:51+00:00",
   "modified_by": "admin <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/hessen/content/Transfers/von-bund",
@@ -47,21 +46,12 @@
     "title": "von Bund",
     "type_title": "Transfer Folder"
   },
-  "receiver_log": [
-    {
-      "esd_title": "Bund",
-      "scenario_ids": "test-event",
-      "timestamp": "2024-07-16T14:19:52",
-      "user": "admin Group1 (Bund)"
-    }
-  ],
-  "review_state": "private",
+  "review_state": "published",
   "rights": null,
   "scenarios": [
     "test-event"
   ],
   "scenarios_to_keep": [],
-  "sender_log": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",

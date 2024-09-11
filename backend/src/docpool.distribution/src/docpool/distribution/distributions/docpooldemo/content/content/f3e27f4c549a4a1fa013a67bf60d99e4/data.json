@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "exportimport.workflow_policy": {
     "workflow_policy_below": "elan-archive",
     "workflow_policy_in": "elan-archive"
@@ -27,7 +26,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2024-03-15T08:51:01+00:00",
+  "modified": "2024-09-11T09:22:54+00:00",
   "parent": {
     "@id": "/bund",
     "@type": "DocumentPool",

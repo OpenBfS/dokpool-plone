@@ -15,7 +15,6 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "globalAllow": true,
   "id": "groundcontamination",
   "imgPattern": null,
@@ -27,7 +26,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2024-03-14T12:43:45+00:00",
+  "modified": "2024-09-11T09:22:57+00:00",
   "parent": {
     "@id": "/config/dtypes",
     "@type": "DocTypes",

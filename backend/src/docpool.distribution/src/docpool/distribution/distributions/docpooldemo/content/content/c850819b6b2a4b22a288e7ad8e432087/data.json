@@ -16,7 +16,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "ein-messergebnis_gewaesser",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -26,7 +25,7 @@
   ],
   "lock": {},
   "mdate": "2024-03-14T13:44:13",
-  "modified": "2024-03-14T12:44:13+00:00",
+  "modified": "2024-09-11T09:22:46+00:00",
   "modified_by": "user1 (Bund) <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",

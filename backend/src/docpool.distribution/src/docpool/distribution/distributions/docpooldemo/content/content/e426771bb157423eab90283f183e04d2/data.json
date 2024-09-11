@@ -15,7 +15,6 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "globalAllow": true,
   "id": "rodosprojection",
   "imgPattern": null,
@@ -23,11 +22,11 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "elan",
-    "rodos"
+    "rodos",
+    "elan"
   ],
   "lock": {},
-  "modified": "2024-09-10T09:23:51+00:00",
+  "modified": "2024-09-11T09:22:57+00:00",
   "parent": {
     "@id": "/hessen/config/dtypes",
     "@type": "DocTypes",

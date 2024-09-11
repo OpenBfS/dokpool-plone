@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "file": {
     "blob_path": "7bbb7194834245e0874a9db3104deb00/file/file.pdf",
     "content-type": "application/pdf",
@@ -34,7 +33,7 @@
     "description": "foo",
     "image_field": null,
     "image_scales": {},
-    "review_state": "private",
+    "review_state": "published",
     "title": "Eine Bodenprobe",
     "type_title": "Document"
   },

@@ -18,14 +18,13 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "eine-rodos-rechnung-die-auch-in-elan-ist",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "elan",
-    "rodos"
+    "rodos",
+    "elan"
   ],
   "lock": {},
   "mdate": "2024-09-10T14:05:51",
@@ -42,14 +41,12 @@
     "title": "Group1 (Bund)",
     "type_title": "Group Folder"
   },
-  "receiver_log": [],
   "review_state": "published",
   "rights": null,
   "scenarios": [
     "test-event"
   ],
   "scenarios_to_keep": [],
-  "sender_log": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",

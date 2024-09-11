@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "ein-bild",
   "image": {
     "blob_path": "a4bc49979db4499784d8354477713b6b/image/image.png",
@@ -36,7 +35,7 @@
     "description": "foo",
     "image_field": null,
     "image_scales": {},
-    "review_state": "private",
+    "review_state": "published",
     "title": "Eine Bodenprobe",
     "type_title": "Document"
   },

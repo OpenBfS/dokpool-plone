@@ -20,7 +20,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "ground-contamination",
   "is_folderish": false,
   "item_count": 30,
@@ -29,7 +28,7 @@
   "layout": "view",
   "limit": 1000,
   "lock": {},
-  "modified": "2024-03-14T12:43:56+00:00",
+  "modified": "2024-09-11T09:22:57+00:00",
   "parent": {
     "@id": "/bund/esd/measurement-results",
     "@type": "ELANSection",

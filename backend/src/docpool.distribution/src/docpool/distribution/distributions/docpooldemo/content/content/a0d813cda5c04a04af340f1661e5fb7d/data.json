@@ -18,7 +18,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "rodos-rechnung-fuer-gundremmingen",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -41,10 +40,8 @@
     "title": "Group1 (Bund)",
     "type_title": "Group Folder"
   },
-  "receiver_log": [],
   "review_state": "published",
   "rights": null,
-  "sender_log": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",

@@ -18,7 +18,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "eine-rodos-rechnung",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -28,7 +27,7 @@
   ],
   "lock": {},
   "mdate": "2024-09-10T11:25:08",
-  "modified": "2024-09-10T09:25:08+00:00",
+  "modified": "2024-09-11T09:22:47+00:00",
   "modified_by": "admin <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",
@@ -41,10 +40,8 @@
     "title": "Group1 (Bund)",
     "type_title": "Group Folder"
   },
-  "receiver_log": [],
   "review_state": "published",
   "rights": null,
-  "sender_log": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",

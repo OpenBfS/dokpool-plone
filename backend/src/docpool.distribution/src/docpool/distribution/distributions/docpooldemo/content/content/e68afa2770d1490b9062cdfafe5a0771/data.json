@@ -17,7 +17,6 @@
   "exportimport.marker_interfaces": [
     "docpool.base.events.IDocumentPoolUndeleteable"
   ],
-  "exportimport.versions": {},
   "id": "front-page",
   "is_folderish": false,
   "language": "##DEFAULT##",
