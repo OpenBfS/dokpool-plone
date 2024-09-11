@@ -12,15 +12,6 @@ services:
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
 
-  dokpool-zeoclient-init:
-    profiles:
-      - dokpool_init
-    image: git.starzel.de:5050/bfs/dokpool:python3
-    ports:
-      - 8082:8082
-    environment:
-      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
-
   # Only for development & test
   # On production, we use the central patroni postgres
   dokpool-postgres:
