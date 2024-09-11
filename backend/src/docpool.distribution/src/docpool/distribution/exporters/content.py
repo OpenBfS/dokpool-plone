@@ -77,6 +77,12 @@ def global_dict_hook(item, obj, config):
     item = export_marker_interfaces(item, obj)
     item = export_annotations(item, obj)
 
+    # drop versioning data
+    item.pop("versioning_enabled", None)
+    item.pop("exportimport.versions", None)
+    item.pop("changeActor", None)
+    item.pop("changeNote", None)
+
     return item
 
 
