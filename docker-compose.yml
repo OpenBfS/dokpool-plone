@@ -58,7 +58,6 @@ services:
         aliases:
           - plone.localhost
     depends_on:
-      - dokpool-loadbalancer
       - dokpool-zeoclient
     ports:
       - "8080:8080"
