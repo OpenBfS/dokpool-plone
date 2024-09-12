@@ -378,9 +378,10 @@ class TestDocTypes(unittest.TestCase):
         weatherinfo = api.content.create(
             container=folder,
             type="DPDocument",
-            title="Some Document",
+            title="Weatherinfo",
             description="foo",
             docType="weatherinformation",
+            local_behaviors=["elan"],
         )
         self.assertEqual(
             weatherinfo.created_by, "foo <i>Content Administrators (Test Dokpool)</i>"
@@ -389,9 +390,10 @@ class TestDocTypes(unittest.TestCase):
         eventinfo = api.content.create(
             container=folder,
             type="DPDocument",
-            title="Some Document",
+            title="Eventinfo",
             description="foo",
             docType="eventinformation",
+            local_behaviors=["elan"],
         )
         modified(weatherinfo)
         modified(eventinfo)
@@ -408,24 +410,29 @@ class TestDocTypes(unittest.TestCase):
             1,
         )
 
-        # only the one is reindexed
-        self.assertEqual(len(api.content.find(Description="foo")), 2)
-        self.assertEqual(len(api.content.find(Description="bar")), 0)
-        weatherinfo.description = "bar"
-        eventinfo.description = "bar"
-
-        # they are not reindexed when changed like this
-        self.assertEqual(len(api.content.find(Description="bar")), 0)
+        # check the category of the weatherinfo
+        brain = api.content.find(
+            portal_type="DPDocument", dp_type="weatherinformation"
+        )[0]
+        self.assertEqual(brain.category, ["WETTER UND TRAJEKTORIEN"])
 
         # get the base-doctype for one of the two
         weatherinfo_template = docpool["config"]["dtypes"]["weatherinformation"]
 
-        # trigger reindexing content derived from this
+        # Change the Category of this item
+        source = docpool["esd"]["dose-projections"]["other-projections"]
+        api.relation.create(source, weatherinfo_template, relationship="docTypes")
+
+        # trigger reindexing some indexes of content derived from this
+        # we reindex dok_type and category
         notify(EditFinishedEvent(weatherinfo_template))
 
-        # only that one was reindexed
-        self.assertEqual(len(api.content.find(Description="foo")), 1)
-        self.assertEqual(len(api.content.find(Description="bar")), 1)
+        brain = api.content.find(
+            portal_type="DPDocument", dp_type="weatherinformation"
+        )[0]
+        self.assertCountEqual(
+            brain.category, ["WETTER UND TRAJEKTORIEN", "SONSTIGE PROGNOSEN"]
+        )
 
     def test_docpool_searchresults(self):
         docpool = self.portal["test_docpool"]

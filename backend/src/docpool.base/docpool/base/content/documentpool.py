@@ -7,6 +7,7 @@ from docpool.base.events import DocumentPoolInitializedEvent
 from docpool.base.events import DocumentPoolRemovedEvent
 from docpool.base.marker import IImportingMarker
 from persistent.list import PersistentList
+from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.autoform import directives
 from plone.base.interfaces.siteroot import IPloneSiteRoot
@@ -16,6 +17,7 @@ from plone.namedfile.field import NamedBlobImage
 from plone.protect.utils import safeWrite
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
+from Products.ZCatalog.ProgressHandler import ZLogHandler
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
@@ -83,13 +85,18 @@ class DocumentPool(Container):
 
     def reindexAll(self):
         """ """
-        cat = getToolByName(self, "portal_catalog")
-        res = cat(path=self.dpSearchPath())
-        for r in res:
-            o = r.getObject()
-            if o:
-                o.reindexObject()
-                o.reindexObjectSecurity()
+        catalog = api.portal.get_tool("portal_catalog")
+        pghandler = ZLogHandler(steps=5000)
+        catalog.reindexIndex(
+            [
+                "dp_type",
+                "apps_supported",
+                "object_provides",
+                "allowedRolesAndUsers",
+            ],
+            REQUEST=None,
+            pghandler=pghandler,
+        )
 
     def myDocumentTypes(self, ids_only=False):
         """ """

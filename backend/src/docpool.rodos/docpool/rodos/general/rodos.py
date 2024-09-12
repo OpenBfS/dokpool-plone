@@ -12,7 +12,7 @@ import transaction
 def install(plonesite):
     """ """
     fresh = True
-    if plonesite.hasObject("rodos"):
+    if plonesite.hasObject("potentially-affected-areas"):
         fresh = False  # It's a reinstall
     # configUsers(plonesite, fresh)
     createStructure(plonesite, fresh)

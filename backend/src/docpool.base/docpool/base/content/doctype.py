@@ -134,6 +134,6 @@ def updated(obj, event=None):
         try:
             # reindex object without changing the modification-date.
             log("Reindexing " + brain.getPath())
-            catalog._reindexObject(brain.getObject())
+            catalog._reindexObject(brain.getObject(), idxs=["dp_type", "category"])
         except BaseException as e:
             log(e)
