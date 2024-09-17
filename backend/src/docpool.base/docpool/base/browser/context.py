@@ -70,16 +70,16 @@ class ApplicationState(BrowserView):
         :return:
         """
         effective = self.appsPermittedForObject(request)
-        # print "permitted", effective
+        # print("permitted", effective)
         if filtered:
-            # print "activated", self.appsActivatedByCurrentUser()
+            # print("activated", self.appsActivatedByCurrentUser())
             effective = list(
                 set(effective).intersection(self.appsActivatedByCurrentUser())
             )
             effective.extend([app[0] for app in implicitApps()])
-        # print "locallyActivated", self.locallyAcivated()
+        # print("locallyActivated", self.locallyAcivated())
         effective = list(set(effective).intersection(self.locallyAcivated()))
-        # print "appsEffectiveForObject ", effective
+        # print("appsEffectiveForObject ", effective)
         return list(set(effective))
 
     def locallyAcivated(self):
