@@ -61,10 +61,13 @@ class AssignToElanEvent(BrowserView):
 class CanAssignToElanEvent(BrowserView):
     def __call__(self):
         obj = self.context
-        if IELANDocument(obj, None):
+        if obj.portal_type != "DPDocument":
+            return False
+        local_behaviors = ILocalBehaviorSupport(obj).local_behaviors
+        if not IRodosDoc(obj, None) or "rodos" not in local_behaviors:
             return False
 
-        if not IRodosDoc(obj, None):
+        if IELANDocument(obj, None) and "elan" in local_behaviors:
             return False
 
         return True
