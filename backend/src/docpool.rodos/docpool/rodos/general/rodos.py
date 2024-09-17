@@ -231,7 +231,7 @@ DTYPES = [
         TITLE: "RODOS Rechnung",
         ID: "rodosprojection",
         CHILDREN: [],
-        "local_behaviors": ["rodos"],
+        "local_behaviors": ["rodos", "elan"],
         "ref_allowedDocTypes": [],
     },
 ]
