@@ -1,5 +1,6 @@
 from AccessControl import allow_module
 from plone import api
+from plone.namedfile.browser import DisplayFile
 from zope.i18nmessageid import MessageFactory
 
 import logging
@@ -22,18 +23,9 @@ api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
-# Patch Products.PloneHotfix20210518 to allow text/html to be displayed inline.
-# TODO: Apply change to Plone 6 that does not have the HotFix
-try:
-    pkg_resources.get_distribution("Products.PloneHotfix20210518")
-except pkg_resources.DistributionNotFound:
-    pass
-else:
-    from plone.namedfile.browser import DisplayFile
 
-    if "text/html" not in DisplayFile.allowed_inline_mimetypes:
-        DisplayFile.allowed_inline_mimetypes.append("text/html")
-        assert "application/pdf" in DisplayFile.allowed_inline_mimetypes
-        logger.info(
-            "Patch Products.PloneHotfix20210518 to allow text/html to be displayed inline."
-        )
+if "text/html" not in DisplayFile.allowed_inline_mimetypes:
+    DisplayFile.allowed_inline_mimetypes.append("text/html")
+    logger.info(
+        "Patch plone.namedfile.browser.DisplayFile to allow text/html to be displayed inline."
+    )
