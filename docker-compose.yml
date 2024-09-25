@@ -3,19 +3,39 @@ version: "3.8"
 name: dokpool
 
 services:
+  dokpool-zeoclient-init:
+    profiles:
+      - init
+    image: git.starzel.de:5050/bfs/dokpool:python3
+    command: "create-site"
+    environment:
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
+      RELSTORAGE_CREATE_SCHEMA: "true"
+      DELETE_EXISTING: "1"
+    depends_on:
+      dokpool-postgres:
+        condition: service_started
+
   dokpool-zeoclient:
+    profiles:
+      - run
     image: git.starzel.de:5050/bfs/dokpool:python3
     deploy:
       mode: replicated
       replicas: 2
-    command: "/app/scripts/build_demo_site.sh"
     environment:
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
+    depends_on:
+      dokpool-postgres:
+        condition: service_started
 
   # Only for development & test
   # On production, we use the central patroni postgres
   dokpool-postgres:
+    profiles:
+      - init
+      - run
     image: postgres
     volumes:
       - dokpool-db:/var/lib/postgresql/data
@@ -38,6 +58,8 @@ services:
   #       PURGER_PUBLIC_SITES: "['plone.localhost']"
 
   dokpool-varnish:
+    profiles:
+      - run
     image: varnish
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
