@@ -4,7 +4,6 @@ from plone.namedfile.browser import DisplayFile
 from zope.i18nmessageid import MessageFactory
 
 import logging
-import pkg_resources
 
 
 logger = logging.getLogger(__name__)
