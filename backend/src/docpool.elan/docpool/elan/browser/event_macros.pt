@@ -6,7 +6,7 @@
 
 <div id="scenario_box" metal:define-macro="scenario_table"
      tal:define="possible_scenarios python: view.scenarios;"
-     tal:condition="python: not context.restrictedTraverse('@@is').archive and possible_scenarios">
+     tal:condition="python: not context.restrictedTraverse('@@is').archive() and possible_scenarios">
     <form name="scenarios" method="post" class="scenario_selection"
           tal:define="selected_scenarios view/selected_scenarios;
                       readonly request/ajax_load|nothing"
