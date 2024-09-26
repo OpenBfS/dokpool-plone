@@ -30,8 +30,6 @@ services:
       dokpool-postgres:
         condition: service_started
 
-  # Only for development & test
-  # On production, we use the central patroni postgres
   dokpool-postgres:
     profiles:
       - init
@@ -46,17 +44,6 @@ services:
     ports:
       - "5432:5432"
 
-  # Do we even need this? Service port isn't implemented currently so it wouldn't start up rootless anyway.
-  #   dokpool-purger:
-  #     profiles:
-  #       - dokpool_review
-  #     image: ghcr.io/kitconcept/cluster-purger:latest
-  #     environment:
-  #       PURGER_SERVICE_NAME: dokpool-varnish
-  #       PURGER_SERVICE_PORT: 8080
-  #       PURGER_MODE: "compose"
-  #       PURGER_PUBLIC_SITES: "['plone.localhost']"
-
   dokpool-varnish:
     profiles:
       - run
@@ -67,10 +54,6 @@ services:
     environment:
       VARNISH_HTTP_PORT: 8080
 
-    networks:
-      default:
-        aliases:
-          - plone.localhost
     depends_on:
       dokpool-zeoclient:
         condition: service_healthy

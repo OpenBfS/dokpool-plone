@@ -1,0 +1,32 @@
+---
+version: "3.8"
+name: dokpool
+
+services:
+  dokpool-zeoclient-init:
+    image: git.starzel.de:5050/bfs/dokpool:python3
+    command: "create-site"
+    environment:
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres-init' password='plone'"
+      RELSTORAGE_CREATE_SCHEMA: "true"
+      DELETE_EXISTING: "1"
+    depends_on:
+      dokpool-postgres-init:
+        condition: service_started
+
+  #  Onlyfor development & test
+  # On production, we use the central patroni postgres
+  dokpool-postgres-init:
+    image: postgres
+    volumes:
+      - dokpool-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: plone
+      POSTGRES_PASSWORD: plone
+      POSTGRES_DB: plone
+    ports:
+      - "5432:5432"
+
+volumes:
+  dokpool-db:
+    external: false
