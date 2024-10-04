@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.0.10.1
+ARG PLONE_VERSION=6.0.13
 FROM plone/server-builder:${PLONE_VERSION} as builder
 
 WORKDIR /app
@@ -23,9 +23,9 @@ EOT
 FROM plone/server-acceptance:${PLONE_VERSION}
 
 LABEL maintainer="BfS <bauer@starzel.de>" \
-      org.label-schema.name="dokpool-acceptance" \
-      org.label-schema.description="dokpool backend acceptance image." \
-      org.label-schema.vendor="BfS"
+    org.label-schema.name="dokpool-acceptance" \
+    org.label-schema.description="dokpool backend acceptance image." \
+    org.label-schema.vendor="BfS"
 
 ENV CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,dokpool"
 ENV APPLY_PROFILES="dokpool:default"
