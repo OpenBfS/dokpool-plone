@@ -3,15 +3,23 @@
         <div metal:use-macro="context/@@event.macros/macros/scenario_table"/>
     </tal:if>
     <tal:if condition="context/@@is/archive|nothing">
-        <tal:def define="a_obj context/myELANArchive|nothing" condition="nocall: a_obj">
+        <tal:def define="archive context/myELANArchive|nothing" condition="python: archive">
             <div class="arch_scen">
                 <h1>
-                    <i18n:var translate=""> Archive</i18n:var>
-                    <tal:var replace="a_obj/Title"/>
+                    <i18n:var translate="">Archive</i18n:var>
+                    <tal:var replace="python: archive.title"/>
                 </h1>
-                <p tal:content="a_obj/Description"></p>
-                <p><b>&rarr; <a href="" tal:attributes="href python:context.myDocumentPool().archive.absolute_url()"
-                                i18n:translate="">All Archives</a></b></p>
+                <p tal:condition="python: archive.description"
+                   tal:content="python: archive.description"></p>
+                <p tal:define="archived_event python: archive.get_archived_event()"
+                   tal:condition="python: archived_event">
+                  <a tal:attributes="href python: archived_event.absolute_url()"
+                     i18n:translate="">Event Information</a>
+                </p>
+                <p>
+                  <b>&rarr; <a href="" tal:attributes="href python:context.myDocumentPool().archive.absolute_url()"
+                                i18n:translate="">All Archives</a></b>
+                </p>
             </div>
         </tal:def>
     </tal:if>
