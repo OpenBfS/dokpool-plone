@@ -311,7 +311,7 @@ msgstr "Sektorierung Umweltbereiche"
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Snapshot"
-msgstr "Kopie des aktuellen Standes"
+msgstr "Teilarchivierung des aktuellen Standes"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "State"
