@@ -23,7 +23,6 @@ stages:
   - test
   - build
   - deploy
-  - deploy_new
 
 before_script:
   # Git for 3rd party source packages
@@ -106,7 +105,7 @@ build_image:
 deploy_review:
   tags:
     - shell
-  stage: deploy_new
+  stage: deploy
   script:
     - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/18b65c46-4159-43ea-9989-7dc433fbccb0/run?authtoken=$authtoken
   rules:
