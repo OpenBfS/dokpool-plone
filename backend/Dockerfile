@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.0.10.1
+ARG PLONE_VERSION=6.0.13
 
 # Stage to only build the theme
 FROM node:20-slim as node
@@ -41,7 +41,7 @@ COPY . .
 RUN <<EOT
     set -e
     apt install -y --no-install-recommends openssh-client ca-certificates
-    bin/pip install uv==0.1.45
+    bin/pip install uv==0.4.18
     bin/uv pip install mxdev
     mv requirements-docker.txt requirements.txt
     # remove all test-extras from mx.ini
