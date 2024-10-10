@@ -46,27 +46,26 @@ _---> See several `_.cfg`files in`./Plone` to be used with buildout.\*
 FIXME
 
 ```sh
-$ docker build --force-rm=true -t elan5/standalone -f Dockerfile.standalone .
+$ cd backend
+$ make build-image
 ```
 
-or for Oracle Linux
+#### Run without demo data:
 
 ```sh
-$ docker build --force-rm=true -t elan5/standalone -f Dockerfile.oel7 .
+$ docker run --name dokpool_standalone -p 8080:8080 git.starzel.de:5050/bfs/dokpool:python3
 ```
 
-#### Run:
+#### Run with demo data
 
-```sh
-$ docker run --name elan5_standalone -dp 18081:8081 elan5/standalone:latest
-```
+TODO
 
-Your running **Dokpool** is available on port 18081 on your host machine (http://localhost:18081).
+Your running **Dokpool** is available on port 8080 on your host machine (http://localhost:8080).
 
 In case you want to interact with the running container, use e.g.
 
 ```sh
-$ docker exec -it elan5_standalone "/bin/bash"
+$ docker container exec -it dokpool_standalone "/bin/bash"
 ```
 
 ### (2) Build your own standalone Dokpool/ELAN5 on a current Linux Distribution
