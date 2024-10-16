@@ -6,6 +6,7 @@ from docpool.base.utils import queryForObject
 from docpool.elan import DocpoolMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.memoize.view import memoize
 from Products.CMFPlone.utils import safe_hasattr
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
@@ -60,6 +61,7 @@ class ELANDocType(object):
         res = cc and cc.to_object.title or ""
         return res
 
+    @memoize
     def categories(self):
         """
         All categories, the document belongs to.

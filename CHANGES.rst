@@ -4,6 +4,11 @@ Changelog
 1.9.9 (unreleased)
 ------------------
 
+Fixed:
+
+- Cache expensive computation that used to cause very long-running requests
+  after editing an ELANDocType.
+  [tlotze]
 
 
 1.9.8 (20.06.24)
@@ -31,11 +36,11 @@ Changed:
 
 - Fix docpool_setup
   [pbauer]
-  
+
 Technical:
 
 - Log all wsapi calls to find out what is used (#5597, #4626)
-  [pbauer] 
+  [pbauer]
 
 
 1.9.6 (22.03.24)
