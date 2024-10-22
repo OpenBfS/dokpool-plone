@@ -234,7 +234,7 @@ supervisor: &nbsp; http://localhost:9001
 #### Admin-Login:
 
 Username: `admin`
-Password: `istrator`
+Password: `admin`
 
 ## Preparing Dokpool
 
@@ -281,7 +281,7 @@ There are several users and passwords that should not be mixed up:
   _PostgreSQL has its own user management independent from the operating system._
 
 - The accounts from the **Dokpool application** _(totally independent from the system- or database accounts.)_ These are the accounts to log into Dokpool/ELAN using a webbrowser, e.g. Firefox.
-  The initial default account for this is Username: `admin` PW: `istrator`
+  The initial default account for this is Username: `admin` PW: `admin`
 
 Additionally there are some more power users with default passwords
 

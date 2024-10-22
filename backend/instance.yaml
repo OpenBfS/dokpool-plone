@@ -1,6 +1,6 @@
 default_context:
   initial_user_name: "admin"
-  initial_user_password: "istrator"
+  initial_user_password: "admin"
   debug_mode: true
   verbose_security: true
   wsgi_fast_listen: localhost:8080

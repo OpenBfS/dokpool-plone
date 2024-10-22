@@ -1,7 +1,7 @@
 default_context:
   target: "instance_relstorage"
   initial_user_name: "admin"
-  initial_user_password: "istrator"
+  initial_user_password: "admin"
 
   zcml_package_includes: "docpool.api, docpool.base, docpool.config, docpool.distribution, docpool.theme, docpool.elan, docpool.rei, docpool.doksys, docpool.rodos, elan.journal, eea.facetednavigation, collective.eeafaceted.z3ctable, collective.impersonate, Products.PloneKeywordManager"
   zcml_package_overrides: "docpool.base, docpool.theme"
