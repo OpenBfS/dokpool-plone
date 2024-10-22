@@ -92,6 +92,14 @@ class ELANDocument(FlexibleView):
 
     @property
     def scenarios_to_keep(self):
+        """Inactive scenarios that should be kept referenced when editing.
+
+        There is the feature in editing an ELAN document to hide inactive scenarios from
+        the selection of scenarios that may be referenced. By the mechanisms of how
+        forms work, this would result in actually removing inactive scenarios from the
+        selection. So we need to transport information about these through the edit form
+        and count them in when storing the edited form data.
+        """
         return [s.id for s in self.myScenarioObjects() if s.Status != 'active']
 
     @scenarios_to_keep.setter
