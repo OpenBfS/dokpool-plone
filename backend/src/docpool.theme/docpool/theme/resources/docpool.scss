@@ -50,3 +50,29 @@ body.dpdocument-dview-commenting textarea {
   width: 100%;
   height: 20em;
 }
+
+.pat-discussion {
+  .discussion .comment {
+    padding: 0.5em;
+    position: relative;
+  }
+
+  .thread-line-vertical {
+    position: absolute;
+    top: -18px;
+    width: 2px;
+    height: 44px;
+    left: -9px;
+    background-color: #ccc; /* Farbe der Linie */
+  }
+
+  .thread-line-horizontal {
+    position: absolute;
+    background-color: #ccc; /* Farbe der Linie */
+    width: 2px;
+    transform: rotate(90deg);
+    height: 10px;
+    top: 21px;
+    left: -5px;
+  }
+}
