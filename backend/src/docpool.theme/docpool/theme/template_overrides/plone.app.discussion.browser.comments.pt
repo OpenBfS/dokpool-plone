@@ -60,34 +60,6 @@
 
           <div class="d-flex flex-row align-items-center mb-3">
 
-            <!-- commenter image -->
-            <div class="comment-image me-3"
-                 tal:condition="showCommenterImage"
-            >
-              <a href=""
-                 tal:condition="has_author_link"
-                 tal:attributes="
-                   href author_home_url;
-                 "
-              >
-                <img alt=""
-                     src="defaultUser.png"
-                     tal:attributes="
-                       src portrait_url;
-                       alt reply/author_name;
-                     "
-                />
-              </a>
-              <img alt=""
-                   src="defaultUser.png"
-                   tal:condition="not: has_author_link"
-                   tal:attributes="
-                     src portrait_url;
-                     alt reply/author_name;
-                   "
-              />
-            </div>
-
             <!-- commenter name and date -->
             <div class="comment-author">
 
