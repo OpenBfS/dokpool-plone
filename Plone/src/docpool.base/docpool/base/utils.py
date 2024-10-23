@@ -4,9 +4,11 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
+from collective.relationhelpers import api as relapi
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.i18n.normalizer.de import Normalizer
+from plone.memoize.view import memoize
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
@@ -14,15 +16,11 @@ from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import parent
 from Products.CMFPlone.utils import safe_unicode
 from unicodedata import normalize
-from zc.relation.interfaces import ICatalog
 from zope.component import getMultiAdapter
-from zope.component import getUtility
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
-from zope.intid.interfaces import IIntIds
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from zope.security import checkPermission
 
 import logging
 import re
@@ -182,28 +180,9 @@ def portalMessage(self, msg, type='info'):
     ptool.addPortalMessage(msg, type)
 
 
-def back_references(source_object, attribute_name):
-    """ Return back references from source object on specified attribute_name """
-    try:
-        catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
-        result = []
-        # print 'back_reference ',  intids.getId(aq_inner(source_object))
-        for rel in catalog.findRelations(
-            dict(
-                to_id=intids.getId(aq_inner(source_object)),
-                from_attribute=attribute_name,
-            )
-        ):
-            # print rel
-            obj = intids.queryObject(rel.from_id)
-            # print 'treffer ',  obj
-            if obj is not None and checkPermission('zope2.View', obj):
-                result.append(obj)
-        return result
-    except Exception as e:
-        log_exc(e)
-        return []
+def back_references(target_object, attribute_name):
+    """ Return sources of back references to target object on specified attribute_name """
+    return relapi.backrelations(obj=target_object, attribute=attribute_name, as_dict=False)
 
 
 def _copyPaste(source_obj, target_folder_obj, safe=True):
