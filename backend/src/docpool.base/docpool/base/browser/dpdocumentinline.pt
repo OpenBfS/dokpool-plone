@@ -2,6 +2,7 @@
 
 <iframe
   class="dpdocument-dview-commenting"
+  id="dpdocument-dview-commenting"
   tal:attributes="src string:${context/absolute_url}/commenting"
   width="100%"
   />
