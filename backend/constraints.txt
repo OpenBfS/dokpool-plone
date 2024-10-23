@@ -37,12 +37,7 @@ yafowil.widget.dict == 2.0a1
 yafowil.yaml == 2.0
 
 # eea.facetednavigation and collective.eeafaceted.z3ctable
-collective.fingerpointing == 1.8.3
 eea.facetednavigation == 16.4
-file-read-backwards == 3.1.0
-imio.helpers == 1.1.0
-imio.pyutils == 1.1.1
-natsort == 6.2.1
 z3c.batching == 3.0
 z3c.table == 3.0
 zope.dublincore == 5.0
