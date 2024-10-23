@@ -74,8 +74,8 @@ class ELANDocType(object):
                     coll.Title()
                     for coll in colls
                     if coll
+                    and coll.portal_type == 'ELANDocCollection'
                     and not coll.isArchive()
-                    and coll.getPortalTypeName() == 'ELANDocCollection'
                 ]
             )
         )

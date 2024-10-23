@@ -290,6 +290,9 @@ class ELANDocCollection(Item, Collection):
         # print len(res)
         return res
 
+    def isArchive(self):
+        return "archive" in self.getPhysicalPath()
+
 
 @adapter(IELANDocCollection, IObjectModifiedEvent)
 def update_docTypes(obj, event=None):
