@@ -8,6 +8,7 @@ from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_hasattr
+from plone.memoize.view import memoize
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope.component import getUtility
@@ -66,19 +67,19 @@ class ELANDocType:
         res = cc and cc.to_object.title or ""
         return res
 
+    @memoize
     def categories(self):
         """
         All categories, the document belongs to.
         """
-        #         colls = self.getBackReferences(relationship='doctypes')
         colls = back_references(self.context, "docTypes")
         return list(
             {
-                coll.Title()
+                coll.title
                 for coll in colls
                 if coll
+                and coll.portal_type == "ELANDocCollection"
                 and not IArchiving(coll).is_archive
-                and coll.getPortalTypeName() == "ELANDocCollection"
             }
         )
 
