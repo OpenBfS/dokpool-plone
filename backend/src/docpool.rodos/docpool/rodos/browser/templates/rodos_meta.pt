@@ -1,17 +1,15 @@
 <tal:block i18n:domain="docpool.rodos"
            define="view nocall:options/view;
                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-    <tal:def define="rodosobj view">
+    <tal:def define="rodosobj python:view">
         <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
-        <p>-------------------------------------------------</p>
-        Prognosis Form:
-        <span tal:condition="python:hasattr(rodosobj,'PrognosisForm')">
-           <tal:var replace="rodosobj/PrognosisForm"/>
-        </span><br>
-        Prognosis Type:
-        <span tal:condition="python:hasattr(rodosobj,'PrognosisType')">
+        <div>
+            <label i18n:translate="">Prognosis Form:</label>
+            <tal:var replace="rodosobj/PrognosisForm"/>
+        </div>
+        <div>
+           <label i18n:translate="">Prognosis Type:</label>
            <tal:var replace="rodosobj/PrognosisType"/>
-        </span><br>
-        <p>-------------------------------------------------</p>
+        </div>
     </tal:def>
 </tal:block>
