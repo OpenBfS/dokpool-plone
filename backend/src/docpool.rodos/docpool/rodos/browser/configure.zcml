@@ -28,27 +28,6 @@
       />
 
   <browser:page
-      name="rodos_rodosrun_full"
-      for="docpool.base.interfaces.IDPDocument"
-      template="templates/rodos_rodosrun_full.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="rodos_rodosrun_inline"
-      for="docpool.base.interfaces.IDPDocument"
-      template="templates/rodos_rodosrun_inline.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="rodos_rodosrun_listitem"
-      for="docpool.base.interfaces.IDPDocument"
-      template="templates/rodos_rodosrun_listitem.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="assign_to_elan_event"
       for="docpool.base.interfaces.IDPDocument"
       class=".views.AssignToElanEvent"
