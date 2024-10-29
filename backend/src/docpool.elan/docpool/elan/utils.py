@@ -34,6 +34,12 @@ def getOpenScenarios(self):
     return res
 
 
+def _get_scenario_selections_for_user(user):
+    selections_prop = user.getProperty("scenarios", [])
+    selections = dict(line.strip().rsplit(":", 1) for line in selections_prop)
+    return {scen: selected == "selected" for scen, selected in selections.items()}
+
+
 def getScenariosForCurrentUser():
     """ """
     mtool = api.portal.get_tool("portal_membership")
@@ -43,20 +49,16 @@ def getScenariosForCurrentUser():
 
 
 def get_scenarios_for_user(user):
-    selections_prop = user.getProperty("scenarios", [])
+    selections = _get_scenario_selections_for_user(user)
+
     global_scenarios = get_global_scenario_selection()
-
-    selections = dict(line.strip().rsplit(":", 1) for line in selections_prop)
-
     for scen, state in global_scenarios.items():
         if state in ("closed", "removed"):
             selections.pop(scen, None)
         else:
-            selections.setdefault(scen, state)
+            selections.setdefault(scen, state == "selected")
 
-    scenarios = [
-        scen for scen, selected in selections.items() if selected == "selected"
-    ]
+    scenarios = [scen for scen, selected in selections.items() if selected]
     return scenarios
 
 
