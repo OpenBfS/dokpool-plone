@@ -29,7 +29,7 @@ class IRodosDoc(IDocumentExtension):
         title=_("Prognosis Type"),
         description=_("description_rodos_PrognosisType", default=""),
         source="docpool.rodos.vocabularies.PrognosisTypes",
-        required=False,
+        required=True,
     )
     read_permission(PrognosisType="docpool.rodos.AccessRodos")
     write_permission(PrognosisType="docpool.rodos.AccessRodos")
