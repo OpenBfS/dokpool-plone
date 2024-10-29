@@ -10,7 +10,7 @@ from zope.annotation.interfaces import IAnnotations
 import transaction
 
 
-def dpAdded(self):
+def dpAdded(self, reindex=True):
     """
     @param self:
     @return:
@@ -32,8 +32,9 @@ def dpAdded(self):
         createRodosGroups(self)
         transaction.commit()
 
-    # Really?
-    self.reindexAll()
+    # No duplicate work when adding rodos to more dokpools in a upgrade-step
+    if reindex:
+        self.reindexAll()
 
 
 def copyRodosContent(dokpool, fresh):
