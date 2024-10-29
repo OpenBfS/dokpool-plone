@@ -71,8 +71,8 @@ def set_scenarios_for_user(user, scenarios):
     user.setMemberProperties(
         {
             "scenarios": [
-                "{}:{}".format(scen, "selected" if scen in scenarios else "deselected")
-                for scen in set(scenarios) | set(global_scenarios)
+                "{}:{}".format(scen, "selected" if selected else "deselected")
+                for scen, selected in scenarios.items()
                 if global_scenarios.get(scen) != "removed"
             ]
         }
