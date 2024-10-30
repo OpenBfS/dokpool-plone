@@ -30,7 +30,8 @@ class EventViewlet(ViewletBase):
         scs = getOpenScenarios(self.context)
         self.scenarios = [s.getObject() for s in scs if s.review_state == "published"]
         scs = getScenariosForCurrentUser()
-        self.selected_scenarios = scs
+        possible_ids = {s.id for s in self.scenarios}
+        self.selected_scenarios = [s for s in scs if s in possible_ids]
 
 
 class ELANViewlet(ViewletBase):
