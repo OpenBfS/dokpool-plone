@@ -20,7 +20,7 @@ class ELANDocCollectionrpopupView(BrowserView):
 
     def selected_categories(self):
         """ """
-        return getCategoriesForCurrentUser(self.context)
+        return getCategoriesForCurrentUser()
 
     def available_categories(self):
         """ """

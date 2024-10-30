@@ -192,7 +192,7 @@ class DashboardCollection(Collection):
             # Second implicit filter: the user has selected categories as a filter
             # Used for the chronological overview
             if self.isOverview():
-                usc = getCategoriesForCurrentUser(self)
+                usc = getCategoriesForCurrentUser()
                 if usc:
                     value.append(
                         {

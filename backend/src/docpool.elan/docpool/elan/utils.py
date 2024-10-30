@@ -102,7 +102,7 @@ def getAvailableCategories(self):
     return [i for i in brains if i.id not in ["recent", "overview"]]
 
 
-def getCategoriesForCurrentUser(self):
+def getCategoriesForCurrentUser():
     user = api.user.get_current()
     cs = user.getProperty("categories", None)
     if not cs:
@@ -110,7 +110,7 @@ def getCategoriesForCurrentUser(self):
     return list(cs)
 
 
-def setCategoriesForCurrentUser(self, cats):
+def setCategoriesForCurrentUser(cats):
     """ """
     if isinstance(cats, str):
         cats = [cats]
