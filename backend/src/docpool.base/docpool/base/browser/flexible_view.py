@@ -70,7 +70,7 @@ class FlexibleView(BrowserView):
             # 1. Check for a BrowserView (usually only a registered template)
             view = queryMultiAdapter((document, self.request), name=name)
             if view is not None:
-                logger.info(
+                logger.debug(
                     "Rendering view %s (%s) for %r (%s)",
                     name,
                     view.index.filename,
