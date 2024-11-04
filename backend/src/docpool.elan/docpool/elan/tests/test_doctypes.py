@@ -11,6 +11,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from plone.dexterity.interfaces import IDexterityFTI
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified
@@ -422,6 +423,9 @@ class TestDocTypes(unittest.TestCase):
         # Change the Category of this item
         source = docpool["esd"]["dose-projections"]["other-projections"]
         api.relation.create(source, weatherinfo_template, relationship="docTypes")
+
+        # flush cache on ELANDocType.categories() before reindexing
+        IAnnotations(self.request).pop("plone.memoize", None)
 
         # trigger reindexing some indexes of content derived from this
         # we reindex dok_type and category
