@@ -17,11 +17,13 @@
             </div>
 
             <table class="scenario_table table table-bordered table-info table-sm small">
-            <tal:loop tal:repeat="scenario possible_scenarios">
-                <tr tal:define="event_type python:scenario.EventType or '';
+            <tal:loop tal:repeat="uid_scenario possible_scenarios">
+                <tr tal:define="uid python:uid_scenario[0];
+                                scenario python:uid_scenario[1];
+                                event_type python:scenario.EventType or '';
                                 exercise python:event_type in ['Exercise', 'Test'];
                                 inactive python:scenario.Status == 'inactive';
-                                selected python:scenario.getId() in selected_scenarios;
+                                selected python:uid in selected_scenarios;
                                 intensive python:scenario.OperationMode == 'intensive';
                                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                                 css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected table-active' or '') + (inactive and 'inactive table-light' or '') + (intensive and 'intensive table-danger' or '')"
@@ -30,13 +32,14 @@
                                      date python:mi[0];
                                      uinfo python:mi[1]">
                         <td class="scenario_desc">
-
+                            <input type="hidden" name="pscnrs:list"
+                                   tal:attributes="value uid" />
                             <input type="checkbox" name="scnrs:list"
                                    class="form-check-input"
-                                   tal:attributes="value    scenario/getId;
+                                   tal:attributes="value    uid;
                                                    title    scenario/Title;
                                                    disabled python:readonly and 'disabled' or None;
-                                                   checked python:'checked' if scenario.getId() in selected_scenarios else None;"
+                                                   checked python:'checked' if selected else None;"
                                    onclick="this.form.submit();
                                             $('.scenario_table input').prop('disabled', true)"
                             />&nbsp;&nbsp;&nbsp;&nbsp;

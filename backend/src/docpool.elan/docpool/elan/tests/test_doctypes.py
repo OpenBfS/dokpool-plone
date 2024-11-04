@@ -446,6 +446,7 @@ class TestDocTypes(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
+        event_uid = api.content.get_uuid(event)
         folder = docpool["content"]["Groups"]["test_docpool_ELANUsers"]
         new = api.content.create(
             container=folder,
@@ -460,9 +461,14 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition="publish")
         modified(new)
         # Test setting event/scenario
-        setScenariosForCurrentUser(scenarios=[event.id])
+        scenarios = {
+            b.UID: False
+            for b in api.content.find(portal_type="DPEvent", id="routinemode")
+        }
+        scenarios[event_uid] = True
+        setScenariosForCurrentUser(scenarios=scenarios)
         scenarios = getScenariosForCurrentUser()
-        self.assertEqual(scenarios, [event.id])
+        self.assertEqual(scenarios, [event_uid])
         # Test search in catalog
         brains = api.content.find(SearchableText="willbefound")
         self.assertEqual(brains[0].getObject().description, "willbefound")

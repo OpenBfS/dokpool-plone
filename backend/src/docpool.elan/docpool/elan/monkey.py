@@ -1,5 +1,5 @@
 from docpool.base.utils import deleteMemberFolders
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import getScenarioIdsForCurrentUser
 from plone.base import PloneMessageFactory as _
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
@@ -133,7 +133,7 @@ def searchResults(self, REQUEST=None, **kw):
             kw["path"] = "%s/content" % path
         if has_search_text[-1] != "*":
             kw["SearchableText"] = has_search_text + "*"
-        scns = getScenariosForCurrentUser()
+        scns = getScenarioIdsForCurrentUser()
         rqurl = ""
         if hasattr(self.REQUEST, "URL"):
             rqurl = self.REQUEST["URL"]

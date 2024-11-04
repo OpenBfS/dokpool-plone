@@ -24,13 +24,11 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 @provider(IContextAwareDefaultFactory)
 def initializeScenarios(context):
-    scenario_ids = getScenariosForCurrentUser()
-
     catalog = getToolByName(context, "portal_catalog")
     scenarios = catalog(
         path=context.dpSearchPath(),
         portal_type="DPEvent",
-        getId=scenario_ids,
+        UID=getScenariosForCurrentUser(),
         Status="active",
     )
     return [scen.id for scen in scenarios]

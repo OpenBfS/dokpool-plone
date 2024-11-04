@@ -28,10 +28,12 @@ class EventViewlet(ViewletBase):
 
     def update(self):
         scs = getOpenScenarios(self.context)
-        self.scenarios = [s.getObject() for s in scs if s.review_state == "published"]
-        self.open_scenarios = [s.getObject() for s in scs]
+        self.scenarios = [
+            (s.UID, s.getObject()) for s in scs if s.review_state == "published"
+        ]
         scs = getScenariosForCurrentUser()
-        self.selected_scenarios = scs
+        possible_uids = {s[0] for s in self.scenarios}
+        self.selected_scenarios = [s for s in scs if s in possible_uids]
 
 
 class ELANViewlet(ViewletBase):

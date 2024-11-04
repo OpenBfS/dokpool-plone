@@ -3,7 +3,8 @@ from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import getCategoriesForCurrentUser
+from docpool.elan.utils import getScenarioIdsForCurrentUser
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
 from plone.autoform import directives
@@ -42,14 +43,6 @@ class DashboardCollection(Collection):
     APP = "base"
 
     security = ClassSecurityInfo()
-
-    def getUserSelectedCategories(self):
-        """ """
-        from docpool.elan.utils import getCategoriesForCurrentUser
-
-        usc = getCategoriesForCurrentUser(self)
-        # print usc
-        return usc
 
     def results(self, batch=True, b_start=0, b_size=10, sort_on=None, brains=False):
         """Get results override, implicit = True"""
@@ -176,7 +169,7 @@ class DashboardCollection(Collection):
             if not IArchiving(self).is_archive:
                 # First implicit filter: the user has select scenario(s) as a
                 # filter
-                uss = getScenariosForCurrentUser()
+                uss = getScenarioIdsForCurrentUser()
                 if uss:
                     # This is THE modification: append the implicit criterion
                     # for the scenario(s)
@@ -199,7 +192,7 @@ class DashboardCollection(Collection):
             # Second implicit filter: the user has selected categories as a filter
             # Used for the chronological overview
             if self.isOverview():
-                usc = self.getUserSelectedCategories()
+                usc = getCategoriesForCurrentUser()
                 if usc:
                     value.append(
                         {
