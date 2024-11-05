@@ -477,7 +477,7 @@ quoted_id = quote_plus(econtext["b"].getId());
 
 <metal:macro define-macro="docactions" i18n:domain="docpool.base">
   <tal:define define="_is nocall:context/@@is">
-    <tal:if condition="python: not (isCollection or individual) and not _is.archive and context.isClean()">
+    <tal:if condition="python: not (isCollection or individual) and not _is.archive() and context.isClean()">
         <tal:loop repeat="action actions" define="actions context/workflowActions">
             <a class="wf_action action" href=""
                onclick=""
@@ -495,7 +495,7 @@ quoted_id = quote_plus(econtext["b"].getId());
             </a>
         </tal:loop>
     </tal:if>
-    <tal:cond condition="python: not (isCollection or _is.archive)">
+    <tal:cond condition="python: not (isCollection or _is.archive())">
         <a tal:condition="nocall:unknown_dt" tal:define="unknown_dt python:context.unknownDocType()" href=""
            title="Edit unknown doc type"
            tal:attributes="href unknown_dt/absolute_url"

@@ -9,9 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 DocpoolMessageFactory = MessageFactory("docpool.base")
 
-# TODO: Remove when https://community.plone.org/t/plone-6-beta-1-released/15485/5 is fixed
 from docpool.base import appregistration  # noqa: F401
-from docpool.base import expressions  # noqa
 from docpool.base import monkey  # noqa: F401
 
 
