@@ -139,7 +139,7 @@ def dpRemoved(self):
 def deleteGroups(self):
     """ """
     prefix = (hasattr(self, "prefix") and self.prefix) or self.getId()
-    prefix = str(prefix)
+    prefix += "_"
     gtool = getToolByName(self, "portal_groups")
     # list existing groups and then delete them
     gids = gtool.getGroupIds()
@@ -152,11 +152,12 @@ def deleteGroups(self):
 def deleteUsers(self):
     """ """
     prefix = (hasattr(self, "prefix") and self.prefix) or self.getId()
-    prefix = str(prefix)
+    prefix += "_"
     mtool = getToolByName(self, "portal_membership", None)
     # Get all users for this ESD and delete them
     uids = mtool.listMemberIds()
     member_ids = [i for i in uids if i.startswith(prefix)]
     logger.info("Deleting members: %s" % member_ids)
     # This also deletes the member folders and reindexes security
-    mtool.deleteMembers(member_ids=member_ids)
+    if member_ids:
+        mtool.deleteMembers(member_ids=member_ids)
