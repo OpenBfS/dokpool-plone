@@ -13,6 +13,7 @@ from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
 from zope.annotation.interfaces import IAnnotations
 
+
 logger = getLogger(__name__)
 
 # General Docpool structures

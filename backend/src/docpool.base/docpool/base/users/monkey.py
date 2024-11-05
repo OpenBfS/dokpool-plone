@@ -15,7 +15,9 @@ from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.controlpanel.browser.usergroups import UsersGroupsControlPanelView
+from Products.CMFPlone.controlpanel.browser.usergroups import (
+    UsersGroupsControlPanelView,
+)
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import normalizeString
 from Products.PlonePAS.tools.groups import GroupsTool
@@ -25,6 +27,7 @@ from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
 
 logger = getLogger(__name__)
 
