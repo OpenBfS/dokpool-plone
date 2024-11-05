@@ -11,7 +11,13 @@ from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five import BrowserView
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
+
+import logging
+
+
+log = logging.getLogger(__name__)
 
 
 class DokpoolVersion(BrowserView):
@@ -134,3 +140,30 @@ class ChangeState(BrowserView):
         if self.back_to_referer and (last_referer := self.request.get("HTTP_REFERER")):
             return self.request.response.redirect(last_referer)
         return self.context.restrictedTraverse("@@view")()
+
+
+class CanChangePassword(BrowserView):
+    def __call__(self):
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name="plone_portal_state"
+        )
+
+        member = portal_state.member()
+        # IMIS-Users uses SSO and cannot change their password
+        if member.getId()[:2] == "i-":
+            return False
+
+        # User with only these roles should not change their password.
+        # They are usually shared by multiple people.
+        # FIXME: THIS DOES NOT WORK ! - also users which can add portal content in their group do only have these groups
+        # roles = member.getRolesInContext(self.context)
+        # read_only = ['Member', 'Authenticated', 'ELANUser', 'Reader']
+        # can_change_pwd_roles = [r for r in roles if r not in read_only]
+        # return bool(can_change_pwd_roles)
+
+        # read only ELAN-Users
+        # usually shared by multiple people
+        if (member.getId()[-2:] == "-u") or (member.getId()[-5:] == "-info"):
+            return False
+
+        return True

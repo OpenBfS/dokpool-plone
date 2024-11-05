@@ -20,7 +20,7 @@
       for="*"
       class=".actionhelpers.ActionHelpers"
       permission="zope2.View"
-      allowed_attributes="can_change_password is_rei_workflow"
+      allowed_attributes="is_rei_workflow"
       />
 
   <browser:page
@@ -196,6 +196,13 @@
       class=".helpers.Is"
       permission="zope2.View"
       allowed_attributes="admin contentadmin admin_or_contentadmin archive individual personal"
+      />
+
+  <browser:view
+      name="can_change_password"
+      for="*"
+      class=".helpers.CanChangePassword"
+      permission="zope.Public"
       />
 
   <browser:page

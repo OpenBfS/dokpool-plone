@@ -73,7 +73,7 @@
   <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Change Password</property>
    <property name="url_expr">string:${context/dp_url}/@@change-password</property>
-   <property name="available_expr">object/@@actionhelpers/can_change_password</property>
+   <property name="available_expr">object/@@can_change_password</property>
    <property name="permissions">
     <element value="Set own password"/>
    </property>
