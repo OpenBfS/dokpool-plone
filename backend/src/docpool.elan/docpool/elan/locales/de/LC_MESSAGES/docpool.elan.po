@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-02-27 14:02+0000\n"
+"POT-Creation-Date: 2024-11-06 10:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,6 +201,7 @@ msgid "Emergency"
 msgstr "Notfall"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/browser/viewlets/events.pt
 msgid "Event Information"
 msgstr "Ereignisinformationen"
 
@@ -233,6 +234,14 @@ msgstr "Filter"
 msgid "Home"
 msgstr "Home"
 
+#: docpool.elan/docpool/elan/browser/dpevent.py
+msgid "Initialized"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.py
+msgid "Intensive"
+msgstr ""
+
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Intensive mode"
 msgstr "Intensivbetrieb"
@@ -252,6 +261,10 @@ msgstr "Ort"
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Metadata"
 msgstr "Metadaten"
+
+#: docpool.elan/docpool/elan/browser/dpevent.py
+msgid "None"
+msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
@@ -282,6 +295,7 @@ msgstr "Inhalte des Ereignisses löschen"
 msgid "Recent"
 msgstr "Letzte Änderungen"
 
+#: docpool.elan/docpool/elan/browser/dpevent.py
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
 msgstr "Kleine Lage"
