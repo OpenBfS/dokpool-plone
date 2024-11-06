@@ -3,16 +3,10 @@ from Acquisition import aq_get
 from Acquisition import aq_inner
 from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.discussion.browser.conversation import ConversationView
-from Products.PlonePAS.tools.memberdata import MemberData
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
 
-import logging
 import ssl
-import traceback
-
-
-log = logging.getLogger(__name__)
 
 
 # from plone.app.controlpanel.usergroups import UsersOverviewControlPanel
@@ -132,31 +126,3 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
 
 
 ssl._create_default_https_context = ssl._create_unverified_context
-
-
-def setMemberProperties(self, mapping, **kw):
-    # We're never interested in login times as sessions are created by SSO anyway.
-    # Login times used to be the main cause by far for writing member properties, which
-    # are suspected to be a DB hotspot causing ConflictErrors, see #4325.
-    for key in ('login_time', 'last_login_time'):
-        mapping.pop(key, None)
-    if not mapping:
-        return
-
-    # XXX 4325: temporarily keep watching the member property setter to confirm that
-    # removal of login time logging actually prevents most DB ConflictErrors.
-    request = aq_get(self, 'REQUEST', None)
-    if request is None:
-        request = getRequest()
-    log.info(
-        'Setting member properties:\n{0} at {1}\n{2}'.format(
-            str(list(mapping)),
-            request['URL'],
-            '\n'.join(item.splitlines()[0] for item in traceback.format_stack())
-        )
-    )
-    self._orig_setMemberProperties(mapping, **kw)
-
-
-MemberData._orig_setMemberProperties = MemberData.setMemberProperties
-MemberData.setMemberProperties = setMemberProperties
