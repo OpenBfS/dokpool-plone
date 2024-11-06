@@ -119,9 +119,10 @@ class TestEvent(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
-        self._set_user_scenarios({"test_event": True})
-        scenarios = self._get_user_scenarios()
-        self.assertEqual(1, scenarios.count(api.content.get_uuid(event)))
+        event_uid = api.content.get_uuid(event)
+        self.assertEqual(1, self._get_user_scenarios().count(event_uid))
+        self._set_user_scenarios({event_uid: True})
+        self.assertEqual(1, self._get_user_scenarios().count(event_uid))
 
     def test_removal_keeps_working_for_arbitrary_dpevents(self):
         event = api.content.create(
