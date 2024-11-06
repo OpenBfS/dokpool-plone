@@ -306,7 +306,7 @@
             <guard-role>Owner</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Site Administrator</guard-role>
-            <guard-expression>here/objectCount</guard-expression>
+            <guard-expression>python: here.objectCount()</guard-expression>
         </guard>
     </transition>
     <transition transition_id="submit_bmu" title="Submit to BMU"
