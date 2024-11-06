@@ -106,7 +106,7 @@ StatusVocabularyFactory = StatusVocabulary()
 
 @implementer(IVocabularyFactory)
 class ModesVocabulary:
-    def __call__(self, context):
+    def __call__(self, context=None):
         terms = []
         terms.append(
             SimpleVocabulary.createTerm("routine", "routine", _("Routine mode"))
@@ -226,7 +226,7 @@ allow_module("docpool.elan.vocabularies")
 
 @implementer(IVocabularyFactory)
 class AlertingStatusVocabulary:
-    def __call__(self, context):
+    def __call__(self, context=None):
         values = [
             ("none", "keine"),
             ("initialized", "ausgelöst"),

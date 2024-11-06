@@ -22,6 +22,7 @@ from plone import api
 from plone.autoform import directives
 from plone.base.i18nl10n import utranslate
 from plone.base.interfaces.siteroot import IPloneSiteRoot
+from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.interfaces import IActionSucceededEvent
@@ -44,6 +45,7 @@ from zope.interface import Invalid
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+from zope.schema.interfaces import IVocabularyFactory
 
 import datetime
 import json
@@ -652,6 +654,16 @@ def eventAdded(obj, event=None):
 
 def addLogEntry(obj):
     changelog = json.loads(obj.changelog or "[]")
+    modes_vocabulary = getUtility(
+        IVocabularyFactory, "docpool.elan.vocabularies.Modes"
+    )()
+    modes = safe_text(modes_vocabulary.getTerm(obj.OperationMode).title)
+    alerting_status_vocabulary = getUtility(
+        IVocabularyFactory, "docpool.elan.vocabularies.AlertingStatus"
+    )()
+    alerting_status = safe_text(
+        alerting_status_vocabulary.getTerm(obj.AlertingStatus).title
+    )
     entry = {}
     entry["Date"] = api.portal.get_localized_time(
         datetime.datetime.now(), long_format=1
@@ -659,8 +671,8 @@ def addLogEntry(obj):
     entry["User"] = obj._getUserInfoString()
     entry["Status"] = obj.Status
     entry["EventType"] = obj.EventType
-    entry["Operation mode"] = obj.OperationMode
-    entry["Alerting status"] = obj.AlertingStatus
+    entry["Operation mode"] = modes
+    entry["Alerting status"] = alerting_status
     entry["Alerting note"] = obj.AlertingNote
     entry["Phase"] = obj.phaseInfo()
     entry["Sectorizing sample types"] = ", ".join(
