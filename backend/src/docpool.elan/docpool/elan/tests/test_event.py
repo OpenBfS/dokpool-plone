@@ -19,15 +19,12 @@ class TestEvent(unittest.TestCase):
         self.container = docpool["contentconfig"]["scen"]
 
     def _get_user_scenarios(self):
-        pm = api.portal.get_tool("portal_membership")
-        test_user = pm.getMemberById(TEST_USER_ID)
-        scenarios = get_scenarios_for_user(test_user)
-        return scenarios
+        test_user = api.user.get(TEST_USER_ID)
+        return get_scenarios_for_user(test_user)
 
     def _set_user_scenarios(self, scenarios):
-        pm = api.portal.get_tool("portal_membership")
-        test_user = pm.getMemberById(TEST_USER_ID)
-        scenarios = set_scenarios_for_user(test_user, scenarios)
+        test_user = api.user.get(TEST_USER_ID)
+        set_scenarios_for_user(test_user, scenarios)
 
     def test_types_available(self):
         portal_types = api.portal.get_tool("portal_types")
