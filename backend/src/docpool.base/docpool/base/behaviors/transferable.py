@@ -283,6 +283,7 @@ class Transferable(FlexibleView):
                     # TODO The following is inefficient in that it creates a list of
                     # full objects, but it effectively filters elanobj.scenarios for
                     # those that actually exist in the catalog. Is this necessary?
+                    # FIXME: The following logic appears to be broken, see #5723.
                     scens = elanobj.myScenarioObjects()
                     if scens:
                         scen_id = scens[0].getId()
