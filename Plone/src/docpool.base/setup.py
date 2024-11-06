@@ -4,6 +4,9 @@ from setuptools import setup
 
 version = '1.9.8'
 
+setup(
+    name='docpool.base',
+    version=version,
     description="",
     long_description="""\
 """,
