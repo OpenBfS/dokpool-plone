@@ -4,9 +4,6 @@ from setuptools import setup
 
 version = '1.9.8'
 
-setup(
-    name='docpool.base',
-    version=version,
     description="",
     long_description="""\
 """,
@@ -49,6 +46,7 @@ setup(
         'eea.facetednavigation',
         'collective.eeafaceted.z3ctable',
         'z3c.unconfigure',
+        'collective.relationhelpers',
         'Products.ATContentTypes',  # needed for some tests until we upgrade to 5.2
     ],
     entry_points="""
