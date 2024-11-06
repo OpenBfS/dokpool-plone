@@ -51,7 +51,7 @@ class TestEvent(unittest.TestCase):
             title="Test Event",
         )
         scenarios = self._get_user_scenarios()
-        self.assertIn(api.content.get_uuid(event), scenarios)
+        self.assertIn(event.UID(), scenarios)
 
     def test_archived_event_is_moved(self):
         event = api.content.create(
@@ -77,7 +77,7 @@ class TestEvent(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
-        event_uid = api.content.get_uuid(event)
+        event_uid = event.UID()
         scenarios = self._get_user_scenarios()
         self.assertIn(event_uid, scenarios)
         event.archiveAndClose(self.layer["request"])
@@ -91,7 +91,7 @@ class TestEvent(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
-        event_uid = api.content.get_uuid(event)
+        event_uid = event.UID()
         scenarios = self._get_user_scenarios()
         self.assertIn(event_uid, scenarios)
         api.content.delete(event)
@@ -105,7 +105,7 @@ class TestEvent(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
-        event_uid = api.content.get_uuid(event)
+        event_uid = event.UID()
         scenarios = self._get_user_scenarios()
         self.assertIn(event_uid, scenarios)
         self._set_user_scenarios({event_uid: False})
@@ -119,7 +119,7 @@ class TestEvent(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
-        event_uid = api.content.get_uuid(event)
+        event_uid = event.UID()
         self.assertEqual(1, self._get_user_scenarios().count(event_uid))
         self._set_user_scenarios({event_uid: True})
         self.assertEqual(1, self._get_user_scenarios().count(event_uid))

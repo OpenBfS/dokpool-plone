@@ -446,7 +446,7 @@ class TestDocTypes(unittest.TestCase):
             id="test_event",
             title="Test Event",
         )
-        event_uid = api.content.get_uuid(event)
+        event_uid = event.UID()
         folder = docpool["content"]["Groups"]["test_docpool_ELANUsers"]
         new = api.content.create(
             container=folder,
