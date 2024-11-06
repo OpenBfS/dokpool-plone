@@ -1,14 +1,31 @@
 Changelog
 =========
 
-1.9.9 (unreleased)
+1.9.9 (11.11.24)
 ------------------
+
+Technical:
+
+- Added docker stack configuration
+  [jbuermeyer,slindner]
+
+- Added dependency collective.relationshelpers
+  [pbauer]
+
+- remove logger for member properties (#4325)
+  [tlotze]
+
 
 Fixed:
 
-- Cache expensive computation that used to cause very long-running requests
-  after editing an ELANDocType.
-  [tlotze]
+- Improve performance (#5742)
+  - Cache expensive computation that used to cause very long-running requests after editing an ELANDocType.
+    [tlotze]
+  - Do not use the very slow python-script isArchive when calculating the categories
+    [pbauer]
+  - Replace slow back_references with faster api from relationhelpers 
+    [pbauer]
+
 
 
 1.9.8 (20.06.24)
