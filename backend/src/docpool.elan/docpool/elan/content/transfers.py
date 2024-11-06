@@ -1,7 +1,7 @@
 from docpool.base.utils import _copyPaste
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getOpenScenarios
-from Products.CMFCore.utils import getToolByName
+from plone import api
 from Products.CMFPlone.utils import log_exc
 
 
@@ -17,26 +17,23 @@ def ensureScenariosInTarget(original, copy):
     scen_source = original.myDocumentPool().contentconfig.scen
     scen = copy.myDocumentPool().contentconfig.scen
     new_scenarios = []
-    wftool = getToolByName(original, "portal_workflow")
+
     for scenario in my_scenarios:
         if scen.hasObject(scenario):
-            s = scen._getOb(scenario)
-            if wftool.getInfoFor(s, "review_state") == "private":
-                sscen = s.Substitute and s.Substitute.to_object or None
-                if sscen and sscen.canBeAssigned():
-                    substitute = sscen.getId()
-                    new_scenarios.append(substitute)
-                else:
-                    new_scenarios.append(scenario)
-            else:
-                new_scenarios.append(scenario)
+            copy_id = scenario
+            copy_event = scen[copy_id]
+            if api.content.get_state(copy_event) == "private" and copy_event.Substitute:
+                substitute = copy_event.Substitute.to_object
+                if substitute.canBeAssigned():
+                    copy_id = substitute.getId()
         else:
-            s = scen_source._getOb(scenario)
-            id = _copyPaste(s, scen)
-            new_scen = scen._getOb(id)
-            wftool = getToolByName(original, "portal_workflow")
-            wftool.doActionFor(new_scen, "retract")
-            new_scenarios.append(id)
+            orig_event = scen_source[scenario]
+            copy_id = _copyPaste(orig_event, scen)
+            copy_event = scen[copy_id]
+            api.content.transition(copy_event, "retract")
+
+        new_scenarios.append(copy_id)
+
     try:
         copy.doc_extension(ELAN_APP).scenarios = new_scenarios
     except Exception as e:
