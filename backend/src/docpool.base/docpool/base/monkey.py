@@ -5,12 +5,7 @@ from Products.PlonePAS.tools.groupdata import GroupDataTool
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.globalrequest import getRequest
 
-import logging
 import ssl
-import traceback
-
-
-log = logging.getLogger(__name__)
 
 
 def getURL(self, relative=0, original=False):
@@ -49,34 +44,6 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-
-def setMemberProperties(self, mapping, **kw):
-    # We're never interested in login times as sessions are created by SSO anyway.
-    # Login times used to be the main cause by far for writing member properties, which
-    # are suspected to be a DB hotspot causing ConflictErrors, see #4325.
-    for key in ("login_time", "last_login_time"):
-        mapping.pop(key, None)
-    if not mapping:
-        return
-
-    # XXX 4325: temporarily keep watching the member property setter to confirm that
-    # removal of login time logging actually prevents most DB ConflictErrors.
-    request = aq_get(self, "REQUEST", None)
-    if request is None:
-        request = getRequest()
-    log.info(
-        "Setting member properties:\n{} at {}\n{}".format(
-            str(list(mapping)),
-            request["URL"],
-            "\n".join(item.splitlines()[0] for item in traceback.format_stack()),
-        )
-    )
-    self._orig_setMemberProperties(mapping, **kw)
-
-
-# TODO: Remove Logging setMemberProperties for Plone 6
-# MemberData._orig_setMemberProperties = MemberData.setMemberProperties
-# MemberData.setMemberProperties = setMemberProperties
 
 # XXX PropertyManagers expect methods called to provide options for select variables to
 # be available as an object attribute. Should be modernised some day.
