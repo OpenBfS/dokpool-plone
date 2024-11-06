@@ -654,16 +654,21 @@ def eventAdded(obj, event=None):
 
 def addLogEntry(obj):
     changelog = json.loads(obj.changelog or "[]")
-    modes_vocabulary = getUtility(
-        IVocabularyFactory, "docpool.elan.vocabularies.Modes"
-    )()
-    modes = safe_text(modes_vocabulary.getTerm(obj.OperationMode).title)
-    alerting_status_vocabulary = getUtility(
-        IVocabularyFactory, "docpool.elan.vocabularies.AlertingStatus"
-    )()
-    alerting_status = safe_text(
-        alerting_status_vocabulary.getTerm(obj.AlertingStatus).title
-    )
+
+    modes = obj.OperationMode
+    if modes is not None:
+        modes_vocabulary = getUtility(
+            IVocabularyFactory, "docpool.elan.vocabularies.Modes"
+        )()
+        modes = safe_text(modes_vocabulary.getTerm(obj.OperationMode).title)
+    alerting_status = obj.AlertingStatus
+    if alerting_status is not None:
+        alerting_status_vocabulary = getUtility(
+            IVocabularyFactory, "docpool.elan.vocabularies.AlertingStatus"
+        )()
+        alerting_status = safe_text(
+            alerting_status_vocabulary.getTerm(obj.AlertingStatus).title
+        )
     entry = {}
     entry["Date"] = api.portal.get_localized_time(
         datetime.datetime.now(), long_format=1
