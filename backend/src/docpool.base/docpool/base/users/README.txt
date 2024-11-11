@@ -37,7 +37,7 @@ Groups-Management
 Groups have two additional properties: allowedDocTypes, dp
 These are initialized in docpool.config.general.base.createGroups when installing docpool.base
 The available options are taken from the docpool.base.utils.possibleDocTypes and docpool.base.utils.possibleDocumentPools
-To fix getting the option these are pachted onto GroupDataTool in docpool.base.monkey
+To fix getting the option these are patched onto GroupDataTool in docpool.base.monkey
 
 
 view @@usergroup-groupdetails overridden for IPloneSiteRoot and IDocumentPool
@@ -47,10 +47,9 @@ Custom template usergroups_groupdetails.pt
   * hide links to Group Portlets and Group Dashboard
   * Only show if content is a DocumentPool
   * Allow value|title options in select and multiple select fields
+  * The fields email and dp are dropped (See https://redmine-koala.bfs.de/issues/5787).
+    Email is not used and dp is automatically set and should not be changed.
 
-TODO: Hide fields email, db from being editable when viewing or adding a group (so far this is done in css):
-https://redmine-koala.bfs.de/issues/2219
-.portaltype-elanesd #formfield-form-esd, .portaltype-elanesd .field.esd, .template-user-information .field.portrait, .template-usergroup-groupdetails .field input[name="email:string"], .template-usergroup-groupdetails .field label[for="dp"], .template-usergroup-groupdetails .field label[for="email"], .template-usergroup-groupdetails .field select[name="dp:text"]
 
 View GroupDetailsControlPanel subclassed:
   * set value of dp to content uuid (which is a DocumentPool)
