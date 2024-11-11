@@ -80,6 +80,9 @@
                 tal:define="targetobject context/portal_groupdata;">
 
               <fieldset>
+                <tal:dp tal:condition="python:context.portal_type != 'DocumentPool'">
+                  <div class="alert alert-danger" role="alert" i18n:translate="">Adding a group is only allowed in a dokpool!</div>
+                </tal:dp>
                 <tal:dp tal:condition="python:context.portal_type == 'DocumentPool'">
                   <div class="mb-3" metal:define-slot="name">
                      <label class="form-label" for="groupname" i18n:translate="label_name">Name</label>
@@ -92,6 +95,7 @@
                   </div>
 
                   <tal:properties repeat="property targetobject/propertyMap">
+                    <tal:hide tal:condition="python: property['id'] not in ['dp', 'email']">
                       <div class="field mb-3"
                            tal:define="id property/id;
                                        type property/type;
@@ -203,6 +207,7 @@
                       </div>
 
                       </div>
+                    </tal:hide>
                   </tal:properties>
 
                   <input type="hidden" name="form.submitted" value="1" class="form-control"/>
