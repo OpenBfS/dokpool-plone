@@ -10,7 +10,6 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Contributor</permission-role>
-   <permission-role>ContentSender</permission-role>
    <permission-role>Site Administrator</permission-role>
    <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
@@ -25,7 +24,6 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Contributor</permission-role>
-   <permission-role>ContentSender</permission-role>
    <permission-role>Site Administrator</permission-role>
    <permission-role>DocPoolAdmin</permission-role>
   </permission-map>
