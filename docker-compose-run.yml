@@ -27,8 +27,6 @@ services:
       - "5432:5432"
 
   dokpool-varnish:
-    profiles:
-      - run
     image: varnish
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
