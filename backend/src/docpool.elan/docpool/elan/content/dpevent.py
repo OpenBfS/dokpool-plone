@@ -85,7 +85,7 @@ class IDPEvent(IContentBase):
     """ """
 
     directives.write_permission(Substitute="docpool.elan.ManageDPEvents")
-    directives.widget(Substitute="z3c.form.browser.select.SelectFieldWidget")
+    directives.widget(Substitute="plone.app.z3cform.widgets.select.SelectFieldWidget")
     Substitute = RelationChoice(
         title=_("label_dpevent_substitute", default="Substitute event"),
         description=_(
@@ -127,7 +127,9 @@ class IDPEvent(IContentBase):
     )
 
     directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
-    directives.widget(EventLocation="z3c.form.browser.select.SelectFieldWidget")
+    directives.widget(
+        EventLocation="plone.app.z3cform.widgets.select.SelectFieldWidget"
+    )
     EventLocation = RelationChoice(
         title=_("Event location"),
         vocabulary="docpool.elan.vocabularies.PowerStations",
