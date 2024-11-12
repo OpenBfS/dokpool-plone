@@ -286,7 +286,7 @@
       <value_type type="plone.registry.field.URI"/>
     </field>
     <value>
-      <element>http://127.0.0.1:8100</element>
+      <element>http://dokpool-varnish:8080</element>
     </value>
   </record>
   <record name="plone.cachepurging.interfaces.ICachePurgingSettings.domains" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="domains">
@@ -299,7 +299,7 @@
       <value_type type="plone.registry.field.URI"/>
     </field>
     <value>
-      <element>http://elan.your.org</element>
+      <element>https://review-bfs.starzel.de</element>
     </value>
   </record>
   <record name="plone.cachepurging.interfaces.ICachePurgingSettings.enabled" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="enabled">
@@ -308,7 +308,7 @@
       <description>If disabled, no purging will take place</description>
       <title>Enable purging</title>
     </field>
-    <value>False</value>
+    <value>True</value>
   </record>
   <record name="plone.cachepurging.interfaces.ICachePurgingSettings.virtualHosting" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="virtualHosting">
     <field type="plone.registry.field.Bool">
