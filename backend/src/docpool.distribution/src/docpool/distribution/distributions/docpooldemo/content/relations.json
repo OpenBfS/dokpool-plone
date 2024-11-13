@@ -441,11 +441,6 @@
   },
   {
     "from_attribute": "docTypes",
-    "from_uuid": "933e3e8311ad4d969376b9690ec417d9",
-    "to_uuid": "bf905478545148c4bff8e105e5ee97e4"
-  },
-  {
-    "from_attribute": "docTypes",
     "from_uuid": "96278229ea6c466a99adb467309b8975",
     "to_uuid": "9df37f3a47c64758acf7cb1e39e3709c"
   },

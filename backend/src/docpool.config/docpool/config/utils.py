@@ -1,4 +1,8 @@
+from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+from plone.app.relationfield.behavior import IRelatedItems
+from plone.app.textfield import RichTextValue
+from plone.base.utils import safe_hasattr
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.relation import RelationValue
 from zope.component import getUtility
@@ -107,6 +111,14 @@ def setAttributes(obj, objdef):
     ):
         # Workaround issue in folder_contents of Plone 6.0.0a6
         IExcludeFromNavigation(obj).exclude_from_nav = False
+
+    # Fix unset attributes
+    if IRelatedItems.providedBy(obj):
+        if not safe_hasattr(obj.aq_base, "relatedItems"):
+            obj.relatedItems = []
+    if IRichText.providedBy(obj):
+        if not safe_hasattr(obj.aq_base, "text"):
+            obj.text = RichTextValue("", "text/html", "text/x-html-safe")
 
 
 def ploneId(context, title):

@@ -1,6 +1,8 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.utils import get_content_area
+from logging import getLogger
 from plone.app.users.browser import userdatapanel
 from plone.app.users.browser.register import BaseRegistrationForm
 from plone.app.users.browser.schemaeditor import getFromBaseSchema
@@ -16,7 +18,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups import (
     UsersGroupsControlPanelView,
 )
-from Products.CMFPlone.log import log
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import normalizeString
 from Products.PlonePAS.tools.groups import GroupsTool
@@ -26,6 +27,9 @@ from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
+
+logger = getLogger(__name__)
 
 
 def email_as_username(self):
@@ -49,7 +53,7 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
     from docpool.base import DocpoolMessageFactory as _
     from docpool.base.utils import portalMessage
 
-    log("Adding group %s" % id)
+    logger.info("Adding group %s", id)
     ret = GroupsTool._old_addGroup(
         self,
         id,
@@ -86,12 +90,10 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
     if hasattr(context, "Groups"):
         groups = context.Groups
         if not groups.hasObject(group_id):  # left over Group folder?
-            log("Creating group folder")
-            groups.invokeFactory(
-                "GroupFolder", id=group_id, title=title
-            )  # if not we create a new folder
+            logger.info("Creating group folder")
+            groups.invokeFactory("GroupFolder", id=group_id, title=title)
         else:
-            log("Old group folder in the way")
+            logger.info("Old group folder in the way")
             portalMessage(
                 context,
                 _("There was an existing group folder of the same name. Please check!"),
@@ -117,7 +119,7 @@ def removeGroup(self, group_id, REQUEST=None):
     esd_uid = g.getProperty("dp")
     # print group_id, esd_uid
     # do the delete
-    log("Removing group %s" % group_id)
+    logger.info("Removing group %s", group_id)
     ret = GroupsTool._old_removeGroup(self, group_id, REQUEST)
     # Check if the group folder can be deleted
     context = self
@@ -125,8 +127,11 @@ def removeGroup(self, group_id, REQUEST=None):
         catalog = getToolByName(self, "portal_catalog")
         result = catalog({"UID": esd_uid})
         if len(result) == 1:
-            esd = result[0].getObject()
-            context = esd.content
+            try:
+                esd = result[0].getObject()
+                context = get_content_area(esd)
+            except KeyError:
+                pass
     if base_hasattr(context, "Groups"):
         groups = context.Groups
         if groups.hasObject(group_id):

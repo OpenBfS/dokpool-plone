@@ -36,7 +36,8 @@ class TestNavigation(unittest.TestCase):
         add_user(docpool, "user1", ["group1"], enabled_apps=["elan", "doksys"])
         content = docpool["content"]
         self.assertEqual(content.keys(), ["Transfers", "Members", "Groups"])
-        self.assertTrue(content["Members"]["user1"])
+        self.assertIn("user1", content["Members"])
+        self.assertNotIn("user1", self.portal["Members"])
 
         # assign app to groupfolder to make is show up in navigation (#5434)
         group_folder = content["Groups"]["bund_group1"]

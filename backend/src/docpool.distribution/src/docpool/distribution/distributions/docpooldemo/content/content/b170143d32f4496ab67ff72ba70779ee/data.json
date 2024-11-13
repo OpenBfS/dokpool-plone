@@ -1,0 +1,92 @@
+{
+  "@id": "/potentially-affected-areas/isar",
+  "@type": "Collection",
+  "UID": "b170143d32f4496ab67ff72ba70779ee",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-09-10T09:23:35+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "isar",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2024-09-10T09:23:35+00:00",
+  "parent": {
+    "@id": "/potentially-affected-areas",
+    "@type": "Folder",
+    "UID": "4fb5690649824482a1a7b734151c75a1",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Potenziell betroffenen Gebiete",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "rodosprojection"
+      ]
+    },
+    {
+      "i": "PrognosisType",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "Potenziell betroffene Gebiete"
+      ]
+    },
+    {
+      "i": "Title",
+      "o": "plone.app.querystring.operation.string.contains",
+      "v": "ISAR"
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": null,
+  "sort_reversed": null,
+  "subjects": [],
+  "text": null,
+  "title": "ISAR",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-09-10T09:23:35+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

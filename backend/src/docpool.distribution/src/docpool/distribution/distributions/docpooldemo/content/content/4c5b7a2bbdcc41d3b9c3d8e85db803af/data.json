@@ -23,7 +23,6 @@
   "exportimport.marker_interfaces": [
     "docpool.base.events.IDocumentPoolUndeleteable"
   ],
-  "exportimport.versions": {},
   "id": "overview",
   "is_folderish": false,
   "item_count": 30,

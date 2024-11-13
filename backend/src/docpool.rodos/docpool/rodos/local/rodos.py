@@ -1,56 +1,57 @@
 from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.base.utils import _copyPaste
 from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.config import RODOS_APP
+from plone import api
+from plone.base.utils import get_installer
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
 import transaction
 
 
-def dpAdded(self):
+def dpAdded(self, reindex=True):
     """
     @param self:
     @return:
 
     """
+    portal = api.portal.get()
+    installer = get_installer(portal)
+    if not installer.is_product_installed("docpool.rodos"):
+        raise RuntimeError("docpool.rodos is not installed!")
     annotations = IAnnotations(self)
     fresh = RODOS_APP not in annotations[APPLICATIONS_KEY]
     if fresh:
         annotations[APPLICATIONS_KEY].append(RODOS_APP)
-
-    copyRunDisplay(self, fresh)
-    transaction.commit()
-
-    if fresh:
+        copyRodosContent(self, fresh)
         # connectTypesAndCategories(self) # TOOD: only when RODOS doctypes need to be added to ELAN categories
         # self.rodos.correctAllDocTypes() # TODO: if the run display templates contains collections
         # with references to global doctypes, which need to be adapted to local
         # doctypes.
         createRodosGroups(self)
-    self.reindexAll()
+        transaction.commit()
 
-    # TODO: further initializations?
+    # No duplicate work when adding rodos to more dokpools in a upgrade-step
+    if reindex:
+        self.reindexAll()
 
 
-def copyRunDisplay(self, fresh):
+def copyRodosContent(dokpool, fresh):
     """
 
-    @param self:
-    @param fresh:
+    @param self: DocumentPool
+    @param fresh: bool
     @return:
     """
     if not fresh:
         return
-    # FIXME: so far there is no object 'rodos' on a fresh install
-    rodos = self.rodos
-    from docpool.base.utils import _copyPaste
 
-    _copyPaste(rodos, self, safe=False)
-    self.rodos.setTitle(_("Run Display"))
-    self.rodos.reindexObject()
-    # make sure the run display is first
-    # TODO if more complex (e.g. second after 'esd')
-    self.moveObject("rodos", 0)
+    portal = api.portal.get()
+    _copyPaste(portal["potentially-affected-areas"], dokpool, safe=False)
+    _copyPaste(portal["projections"], dokpool, safe=False)
+    dokpool["potentially-affected-areas"].reindexObject()
+    dokpool["projections"].reindexObject()
 
 
 def dpRemoved(self):
@@ -102,6 +103,9 @@ def createRodosGroups(docpool):
         "%s_RodosContentAdministrators" % prefix, ["Owner"]
     )
     # and to navigation
-    docpool.rodos.manage_setLocalRoles(
+    docpool["potentially-affected-areas"].manage_setLocalRoles(
+        "%s_RodosContentAdministrators" % prefix, ["ContentAdmin"]
+    )
+    docpool["projections"].manage_setLocalRoles(
         "%s_RodosContentAdministrators" % prefix, ["ContentAdmin"]
     )

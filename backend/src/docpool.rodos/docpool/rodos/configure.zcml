@@ -47,9 +47,4 @@
       component=".vocabularies.PrognosisFormsVocabularyFactory"
       />
 
-  <utility
-      name="docpool.rodos.vocabularies.ReleaseSites"
-      component=".vocabularies.ReleaseSitesVocabularyFactory"
-      />
-
 </configure>

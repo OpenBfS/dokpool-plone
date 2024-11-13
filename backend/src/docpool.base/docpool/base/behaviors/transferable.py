@@ -259,7 +259,9 @@ class Transferable(FlexibleView):
             timestamp = datetime.now()
             userinfo_string = self.context._getUserInfoString(plain=True)
             dto = self.context.docTypeObj()
-            elanobj = IELANDocument(self.context)
+
+            # For ELAN we also need to handle the scenario.
+            elanobj = IELANDocument(self.context, None)
 
             for target in targets:
                 # 1) Determine target transfer folder object.
@@ -275,27 +277,27 @@ class Transferable(FlexibleView):
                         error_message(esd_to_title, _("Doc type not accepted."))
                         continue
 
-                # b) Is my Scenario known, are unknown Scenarios accepted?
-                scen_ok = transfer_folder.unknownScenDefault != "block"
-                if not scen_ok:
-                    # check my precise Scenario
-                    # FIXME: ELAN dependency
-                    # TODO The following is inefficient in that it creates a list of
-                    # full objects, but it effectively filters elanobj.scenarios for
-                    # those that actually exist in the catalog. Is this necessary?
-                    # FIXME: The following logic appears to be broken, see #5723.
-                    scens = elanobj.myScenarioObjects()
-                    if scens:
-                        scen_id = scens[0].getId()
-                        if not knowsScen(transfer_folder, scen_id):
-                            error_message(
-                                esd_to_title,
-                                _("Unknown scenario not accepted."),
-                            )
+                if elanobj:
+                    # b) Is my Scenario known, are unknown Scenarios accepted?
+                    scen_ok = transfer_folder.unknownScenDefault != "block"
+                    if not scen_ok:
+                        # check my precise Scenario
+                        # TODO The following is inefficient in that it creates a list of
+                        # full objects, but it effectively filters elanobj.scenarios for
+                        # those that actually exist in the catalog. Is this necessary?
+                        # FIXME: The following logic appears to be broken, see #5723.
+                        scens = elanobj.myScenarioObjects()
+                        if scens:
+                            scen_id = scens[0].getId()
+                            if not knowsScen(transfer_folder, scen_id):
+                                error_message(
+                                    esd_to_title,
+                                    _("Unknown scenario not accepted."),
+                                )
+                                continue
+                        else:
+                            error_message(esd_to_title, _("Document has no scenario."))
                             continue
-                    else:
-                        error_message(esd_to_title, _("Document has no scenario."))
-                        continue
 
                 # At this point, transfer is allowed.
                 logger.info(
@@ -317,22 +319,22 @@ class Transferable(FlexibleView):
                 my_copy.transferred_by = userinfo_string
 
                 # 4) Add entry to sender log.
-                scenario_ids = ", ".join(elanobj.scenarios or ())
-                self.sender_log += (
-                    dict(
-                        timestamp=timestamp,
-                        user=userinfo_string,
-                        scenario_ids=scenario_ids,
-                        esd_title=esd_to_title,
-                        transferfolder_uid=transfer_folder.UID(),
-                    ),
+                log_entry = dict(
+                    timestamp=timestamp,
+                    user=userinfo_string,
+                    esd_title=esd_to_title,
+                    transferfolder_uid=transfer_folder.UID(),
                 )
+                if elanobj:
+                    log_entry["scenario_ids"] = ", ".join(elanobj.scenarios or ())
+                self.sender_log += (log_entry,)
 
                 # 5) Make sure document type and scenarios exist in the target ESD and
                 #    are in a suitable state.
                 transfer_folder.ensureDocTypeInTarget(dto)
 
-                ensureScenariosInTarget(self.context, my_copy)
+                if elanobj:
+                    ensureScenariosInTarget(self.context, my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
                 transfer_copy = ITransferable(my_copy)
@@ -340,16 +342,15 @@ class Transferable(FlexibleView):
                 my_copy.reindexObject()
 
                 # 7) Add entry to receiver log.
-                elancopy = IELANDocument(my_copy)
-                scenario_ids = ", ".join(elancopy.scenarios or ())
-                transfer_copy.receiver_log += (
-                    dict(
-                        timestamp=timestamp,
-                        user=userinfo_string,
-                        scenario_ids=scenario_ids,
-                        esd_title=transfer_folder.getSendingESD().Title(),
-                    ),
+                log_entry = dict(
+                    timestamp=timestamp,
+                    user=userinfo_string,
+                    esd_title=transfer_folder.getSendingESD().Title(),
                 )
+                if elanobj:
+                    elancopy = IELANDocument(my_copy)
+                    log_entry["scenario_ids"] = ", ".join(elancopy.scenarios or ())
+                transfer_copy.receiver_log += (log_entry,)
 
                 msg = _(
                     "Transferred to ${target_title}",
@@ -379,8 +380,9 @@ class Transferable(FlexibleView):
                     api.content.transition(self.context, "publish")
                 if dstate == "published" and perm == "confirm":
                     api.content.transition(self.context, "retract")
-            uscn = IELANDocument(self.context).unknownScenario()
-            if uscn:
+
+            elanobj = IELANDocument(self.context, None)
+            if elanobj and elanobj.unknownScenario():
                 # Documents with unknown scenarios must be private
                 try:
                     api.content.transition(self.context, "retract")
@@ -427,7 +429,7 @@ def automatic_transfer(obj):
 
 def is_sender(obj):
     roles = api.user.get_roles(obj=obj)
-    if "Manager" in roles or "Site Administrator" in roles:
+    if "Manager" in roles or "Site Administrator" in roles or "ContentSender" in roles:
         return True
     groups = api.user.get_current().getGroups()
     for group in groups:

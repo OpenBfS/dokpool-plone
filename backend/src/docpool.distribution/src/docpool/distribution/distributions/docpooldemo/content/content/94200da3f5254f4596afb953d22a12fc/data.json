@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "berichte",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -23,7 +22,7 @@
     "rei"
   ],
   "lock": {},
-  "modified": "2024-03-14T12:43:56+00:00",
+  "modified": "2024-09-11T09:22:42+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "/bund",

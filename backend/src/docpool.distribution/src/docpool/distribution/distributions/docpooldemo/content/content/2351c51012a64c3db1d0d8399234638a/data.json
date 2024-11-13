@@ -1,0 +1,57 @@
+{
+  "@id": "/bund/projections",
+  "@type": "Folder",
+  "UID": "2351c51012a64c3db1d0d8399234638a",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2024-09-10T09:23:35+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "projections",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {},
+  "modified": "2024-09-11T09:22:53+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "/bund",
+    "@type": "DocumentPool",
+    "UID": "d11a1b32b3ab4a0cae91c80cf948f609",
+    "description": "",
+    "image_field": null,
+    "image_scales": {},
+    "review_state": "published",
+    "title": "Bund",
+    "type_title": "Document Pool"
+  },
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Ausbreitungsrechnungen",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2024-09-10T09:24:31+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

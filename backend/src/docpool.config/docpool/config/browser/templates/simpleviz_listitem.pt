@@ -30,6 +30,7 @@
                  rs dpbrain/review_state;
                  item_wf_state_class python:'state-' + normalizeString(rs);
                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                 dp_type python:context.dp_type();
                  ">
         <td class="actions" tal:condition="python:not isOverview and not isCollection">
             <div metal:use-macro="context/@@dp.macros/macros/cb"/>
@@ -65,15 +66,17 @@
 
             <tal:block tal:condition="python: files"
                        tal:repeat="pdf python: files">
-                <tal:block tal:condition="python: mi or li">
-                    <a href="${python: pdf.absolute_url()}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
+                <tal:block tal:condition="python:dp_type != 'rodosprojection' or (dp_type == 'rodosprojection' and pdf.id == 'rodos.html')">
+                  <tal:block tal:condition="python: mi or li">
+                      <a href="${python: pdf.absolute_url()}" target="_blank" i18n:domain="docpool.config" i18n:translate="">Printable version</a>
+                  </tal:block>
+                  <tal:block tal:condition="python: not mi or not li">
+                      <a href="${python: pdf.absolute_url()}" target="_blank" i18n:domain="docpool.config">
+                          <span tal:content="python: pdf.Title()"/>
+                      </a>
+                  </tal:block>
+                  <br>
                 </tal:block>
-                <tal:block tal:condition="python: not mi or not li">
-                    <a href="${python: pdf.absolute_url()}" target="_blank" i18n:domain="docpool.config">
-                        <span tal:content="python: pdf.Title()"/>
-                    </a>
-                </tal:block>
-                <br>
             </tal:block>
 
         </td>

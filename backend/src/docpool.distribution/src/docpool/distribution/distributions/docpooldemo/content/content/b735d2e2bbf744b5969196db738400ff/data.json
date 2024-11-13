@@ -14,13 +14,12 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "dose-projections",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "modified": "2024-03-14T12:43:56+00:00",
+  "modified": "2024-09-11T09:22:54+00:00",
   "parent": {
     "@id": "/bund/esd",
     "@type": "ELANCurrentSituation",
@@ -33,9 +32,9 @@
     "type_title": "Current Situation"
   },
   "review_state": "published",
-  "rights": "",
+  "rights": null,
   "subjects": [],
-  "title": "PROGNOSEN",
+  "title": "AUSBREITUNGSRECHNUNGEN",
   "type_title": "Section",
   "version": "current",
   "workflow_history": {

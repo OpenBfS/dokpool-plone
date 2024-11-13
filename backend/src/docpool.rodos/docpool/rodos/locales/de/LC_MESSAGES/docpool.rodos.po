@@ -53,12 +53,12 @@ msgstr "Prognosenende"
 
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Prognosis Form"
-msgstr "Einzeldokument/RODOS-Lauf"
+msgstr "RODOS Typ"
 
 #: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Prognosis Type"
-msgstr "Prognosenart"
+msgstr "Rechnungsart"
 
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Project Name"
@@ -180,7 +180,7 @@ msgstr ""
 #. Default: "Prognosis Form"
 #: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
 msgid "label_rodos_PrognosisForm"
-msgstr ""
+msgstr "RODOS Typ"
 
 #. Default: "Project Name"
 #: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py

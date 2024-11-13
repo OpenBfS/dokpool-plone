@@ -175,7 +175,6 @@ buttons = view.dp_buttons(batch)
 <div tal:omit-tag="" metal:define-macro="fileimagelist">
     <div class="file" tal:define="files context/getFiles" tal:condition="files"
          tal:repeat="d files">
-        <span tal:condition="python:context.dp_type() != 'rodosrun_elan' or (context.dp_type() == 'rodosrun_elan' and 'rodos' in d.Title())">
         <a href=""
            target="_blank"
            title=""
@@ -194,7 +193,6 @@ size = human_readable_size(size)
 
         (<span tal:content="python: ctype_short"/>,&nbsp;<span
             tal:content="python: size"/>)
-        </span>
     </div>
     <div class="images" tal:define="images context/getImages" tal:condition="images">
         <div tal:repeat="b images" class="image">

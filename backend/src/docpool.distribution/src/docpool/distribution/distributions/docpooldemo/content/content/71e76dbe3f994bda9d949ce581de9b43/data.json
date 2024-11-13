@@ -47,7 +47,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "ein-doksysdokument",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -57,7 +56,7 @@
   ],
   "lock": {},
   "mdate": "2024-03-15T09:52:36",
-  "modified": "2024-03-15T08:52:36+00:00",
+  "modified": "2024-09-11T09:22:44+00:00",
   "modified_by": "admin <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",

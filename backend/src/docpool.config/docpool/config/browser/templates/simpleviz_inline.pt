@@ -12,11 +12,11 @@
          <tal:block tal:condition="python: mi and li">
             <div class="map">
                <a href="${python: mi.absolute_url()}" i18n:domain="docpool.config" i18n:translate="" target="_blank">
-                  <tal:insert replace="structure python: context.getMapImage()"/>
+                  <tal:insert replace="structure python: mi"/>
                </a>
             </div>
             <div class="legend">
-               <tal:insert replace="structure python: context.getLegendImage()"/>
+               <tal:insert replace="structure python: li"/>
             </div>
          </tal:block>
 

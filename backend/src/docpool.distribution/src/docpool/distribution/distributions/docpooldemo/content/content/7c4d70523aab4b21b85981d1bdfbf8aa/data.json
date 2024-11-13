@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/content/Groups/bund_group1/ein-rodos_prognose/rodosprojection_image",
+  "@id": "/bund/content/Groups/bund_group1/eine-rodos-rechnung/rodosprojection_image",
   "@type": "Image",
   "UID": "7c4d70523aab4b21b85981d1bdfbf8aa",
   "allow_discussion": false,
@@ -14,7 +14,6 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "id": "rodosprojection_image",
   "image": {
     "blob_path": "7c4d70523aab4b21b85981d1bdfbf8aa/image/image.png",
@@ -30,14 +29,14 @@
   "lock": {},
   "modified": "2024-03-14T12:44:15+00:00",
   "parent": {
-    "@id": "/bund/content/Groups/bund_group1/ein-rodos_prognose",
+    "@id": "/bund/content/Groups/bund_group1/eine-rodos-rechnung",
     "@type": "DPDocument",
     "UID": "62d88a736595441fb342efbbef9fc9dc",
     "description": "foo (rodosprojection)",
     "image_field": null,
     "image_scales": {},
     "review_state": "published",
-    "title": "Ein RODOS_Prognose",
+    "title": "Eine RODOS Rechnung",
     "type_title": "Document"
   },
   "review_state": "published",

@@ -1,0 +1,57 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.rodos"
+      xml:lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+
+<tal:def tal:define="dpevents python:view.events">
+
+
+    <form method="post"
+          id="assign_to_elan_event"
+          name="assigntoelanevent"
+          action="#"
+          tal:attributes="action string:${context/absolute_url}/@@assign_to_elan_event">
+
+        <h2 i18n:translate="">Assign to ELAN Event</h2>
+
+    <div class="form-group">
+      <p class="help-block" i18n:translate="help_events">Select the event this rodos-prognosis should be assigned to.</p>
+
+        <div tal:repeat="dpevent python: dpevents">
+          <label tal:attributes="for python: dpevent.id" class="form-check-label">
+              <input type="radio" name="dpevent:list"
+                     class="form-check-input"
+                     tal:attributes="value python: dpevent.id;
+                                     title python: dpevent.Title;
+                                     id python: dpevent.id;
+                                     checked python: view.current_event == dpevent.id;">
+            <span tal:replace="python:dpevent.Title">Event Title</span>
+          </label>
+      </div>
+
+    </div>
+
+    <div class="formControls">
+      <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"
+       tal:define="alert_msg python:context.translate('alert_transition', default='Do you really want assign to content to a event?', domain='docpool.rodos', escape_for_js=True)"
+       tal:attributes="onclick string:return confirm('${alert_msg}');"/>
+      <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
+    </div>
+
+  </form>
+
+</tal:def>
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

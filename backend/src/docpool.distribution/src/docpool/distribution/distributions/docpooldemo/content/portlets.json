@@ -1,26 +1,5 @@
 [
   {
-    "@id": "http://nohost/Plone/Members",
-    "UID": "0a7310ac634547f69bd529cbac913656",
-    "blacklist_status": [
-      {
-        "category": "group",
-        "manager": "plone.rightcolumn",
-        "status": "block"
-      },
-      {
-        "category": "content_type",
-        "manager": "plone.rightcolumn",
-        "status": "block"
-      },
-      {
-        "category": "context",
-        "manager": "plone.rightcolumn",
-        "status": "block"
-      }
-    ]
-  },
-  {
     "@id": "http://nohost/Plone",
     "UID": "plone_site_root",
     "portlets": {

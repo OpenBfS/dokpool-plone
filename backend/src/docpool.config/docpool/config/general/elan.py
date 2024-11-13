@@ -241,7 +241,7 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: "ELANSection",
-        TITLE: "PROGNOSEN",
+        TITLE: "AUSBREITUNGSRECHNUNGEN",
         ID: "dose-projections",
         CHILDREN: [
             {
@@ -250,13 +250,6 @@ ESDCOLLECTIONS = [
                 ID: "rodos-projections",
                 CHILDREN: [],
                 DOCTYPES: ["rodosprojection"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "LASAIR / LASAT",
-                ID: "lasair-lasat",
-                CHILDREN: [],
-                DOCTYPES: ["lasair_lasat_projection"],
             },
             {
                 TYPE: "ELANDocCollection",
@@ -402,13 +395,13 @@ DTYPES = [
         CHILDREN: [],
         "local_behaviors": ["elan", "doksys"],
     },
-    {
-        TYPE: "DocType",
-        TITLE: "RODOS_Prognose",
-        ID: "rodosprojection",
-        CHILDREN: [],
-        "local_behaviors": ["elan"],
-    },
+    # {
+    #     TYPE: "DocType",
+    #     TITLE: "RODOS Rechnung",
+    #     ID: "rodosprojection",
+    #     CHILDREN: [],
+    #     "local_behaviors": ["elan"],
+    # },
     {
         TYPE: "DocType",
         TITLE: "Andere_Prognose",
@@ -602,13 +595,6 @@ DTYPES = [
         TYPE: "DocType",
         TITLE: "Prognose_LASAIR_LASAT",
         ID: "lasair_lasat_projection",
-        CHILDREN: [],
-        "local_behaviors": ["elan"],
-    },
-    {
-        TYPE: "DocType",
-        TITLE: "RODOS Lauf",
-        ID: "rodosrun_elan",
         CHILDREN: [],
         "local_behaviors": ["elan"],
     },

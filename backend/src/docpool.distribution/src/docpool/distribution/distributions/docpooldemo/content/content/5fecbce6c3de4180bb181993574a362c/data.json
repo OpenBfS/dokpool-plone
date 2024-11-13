@@ -25,7 +25,6 @@
       "user": "admin Group1 (Bund)"
     }
   ],
-  "exportimport.versions": {},
   "id": "ein-meldung",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -35,7 +34,7 @@
   ],
   "lock": {},
   "mdate": "2024-07-16T14:19:25",
-  "modified": "2024-07-16T12:19:25+00:00",
+  "modified": "2024-09-11T09:22:45+00:00",
   "modified_by": "admin <i>Group1 (Bund)</i>",
   "parent": {
     "@id": "/bund/content/Groups/bund_group1",

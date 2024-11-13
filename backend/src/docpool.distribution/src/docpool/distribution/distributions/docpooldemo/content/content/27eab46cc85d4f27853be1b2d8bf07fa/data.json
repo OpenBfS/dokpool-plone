@@ -201,7 +201,6 @@
     "eea.facetednavigation.settings.interfaces.IHidePloneLeftColumn",
     "eea.facetednavigation.settings.interfaces.IHidePloneRightColumn"
   ],
-  "exportimport.versions": {},
   "id": "rei-suche",
   "is_folderish": true,
   "language": "##DEFAULT##",

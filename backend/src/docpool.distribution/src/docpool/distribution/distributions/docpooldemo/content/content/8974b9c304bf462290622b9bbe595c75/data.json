@@ -15,7 +15,6 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "globalAllow": true,
   "id": "mresult_other",
   "imgPattern": null,
@@ -27,7 +26,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2024-03-14T12:44:02+00:00",
+  "modified": "2024-09-11T09:22:58+00:00",
   "parent": {
     "@id": "/hessen/config/dtypes",
     "@type": "DocTypes",

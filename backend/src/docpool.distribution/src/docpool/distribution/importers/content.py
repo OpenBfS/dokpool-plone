@@ -135,16 +135,16 @@ def global_dict_hook(item, config):
 def global_obj_hook(item, obj):
     SCHEMA_CACHE.clear()
     # Import Placeful Workflow
-    # wf_policy = item.get("exportimport.workflow_policy")
-    # if wf_policy:
-    #     obj.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
-    #     wf_policy_config = obj[WorkflowPolicyConfig_id]
-    #     wf_policy_config.setPolicyIn(
-    #         wf_policy["workflow_policy_in"], update_security=True
-    #     )
-    #     wf_policy_config.setPolicyBelow(
-    #         wf_policy["workflow_policy_below"], update_security=True
-    #     )
+    wf_policy = item.get("exportimport.workflow_policy")
+    if wf_policy:
+        obj.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
+        wf_policy_config = obj[WorkflowPolicyConfig_id]
+        wf_policy_config.setPolicyIn(
+            wf_policy["workflow_policy_in"], update_security=True
+        )
+        wf_policy_config.setPolicyBelow(
+            wf_policy["workflow_policy_below"], update_security=True
+        )
 
     adapted = IExcludeFromNavigation(obj, None)
     if adapted is not None and adapted.exclude_from_nav is not True:

@@ -15,7 +15,6 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "exportimport.versions": {},
   "globalAllow": true,
   "id": "information_expert_advisor",
   "imgPattern": null,
@@ -26,7 +25,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2024-03-14T12:43:55+00:00",
+  "modified": "2024-09-11T09:22:58+00:00",
   "parent": {
     "@id": "/bund/config/dtypes",
     "@type": "DocTypes",
