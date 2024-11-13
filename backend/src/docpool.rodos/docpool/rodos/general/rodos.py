@@ -117,6 +117,8 @@ AREAS_COLLECTIONS = [
             prognosis_type_query,
             make_title_query(area),
         ],
+        "sort_on": "changed",
+        "sort_reversed": True,
     }
     for area in AREAS
 ]
@@ -135,6 +137,8 @@ BASICSTRUCTURE = [
                 ID: "all",
                 "local_behaviors": ["rodos"],
                 "query": [dp_type_query, prognosis_type_query],
+                "sort_on": "changed",
+                "sort_reversed": True,
             }
         ]
         + AREAS_COLLECTIONS,
@@ -163,6 +167,8 @@ BASICSTRUCTURE = [
                         ],
                     },
                 ],
+                "sort_on": "changed",
+                "sort_reversed": True,
             },
             {
                 TYPE: "Collection",
@@ -177,6 +183,8 @@ BASICSTRUCTURE = [
                         "v": ["RODOS Prognose"],
                     },
                 ],
+                "sort_on": "changed",
+                "sort_reversed": True,
             },
             {
                 TYPE: "Collection",
@@ -191,6 +199,8 @@ BASICSTRUCTURE = [
                         "v": ["DWD Ausbreitungsrechnung ab Quelle"],
                     },
                 ],
+                "sort_on": "changed",
+                "sort_reversed": True,
             },
             {
                 TYPE: "Collection",
@@ -205,6 +215,8 @@ BASICSTRUCTURE = [
                         "v": ["LASAIR/LASAT"],
                     },
                 ],
+                "sort_on": "changed",
+                "sort_reversed": True,
             },
             {
                 TYPE: "Collection",
@@ -219,6 +231,8 @@ BASICSTRUCTURE = [
                         "v": ["Sonstige Ausbreitungsrechnung"],
                     },
                 ],
+                "sort_on": "changed",
+                "sort_reversed": True,
             },
         ],
     },
