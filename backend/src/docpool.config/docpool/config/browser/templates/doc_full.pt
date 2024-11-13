@@ -9,6 +9,7 @@
 
       <input class="context"
                   type="submit"
+                  class="btn btn-primary"
                   name="form.button.save"
                   value="Finish uploads and publish"
                   tal:define="_is nocall:context/@@is"

@@ -69,10 +69,10 @@
     </tal:block>
 
     <div class="formControls">
-      <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"
+      <input type="submit" title="Absenden des Formulares" class="input-sichern btn btn-primary context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"
        tal:define="alert_msg python:context.translate('alert_transition', default='Do you really want apply this transition?', domain='docpool.base', escape_for_js=True)"
        tal:attributes="onclick string:return confirm('${alert_msg}');"/>
-      <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
+      <input type="submit" title="Verlassen des Formulars" class="input-abbrechen btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
     </div>
 
   </form>
