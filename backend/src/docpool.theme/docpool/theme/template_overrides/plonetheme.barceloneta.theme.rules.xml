@@ -43,6 +43,8 @@
 
   <replace css:theme="#scenario_box" css:content="#portal-top #scenario_box" mode="raw" />
   <drop css:content="#portal-top #scenario_box"  />
+  <after css:theme="#scenario_box-wrapper" css:content=".arch_scen" mode="raw"/>
+  <drop css:content="#portal-header .arch_scen"  />
 
   <replace css:theme-children="#portal-top" css:content-children="#portal-header" />
 
