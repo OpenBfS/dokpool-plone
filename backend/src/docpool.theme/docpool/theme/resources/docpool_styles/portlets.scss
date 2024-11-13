@@ -37,6 +37,16 @@
       }
     }
 
+    .section-separator {
+      span {
+        font-size: 0;
+        margin: 5px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid black;
+      }
+    }
+
     .number_of_children.text-bg-secondary {
       font-size: 0.75rem;
       background-color: #ccc;
