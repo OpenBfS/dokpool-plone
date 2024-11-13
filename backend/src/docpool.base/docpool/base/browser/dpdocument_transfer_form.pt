@@ -58,8 +58,8 @@
         </tal:block>
 
         <div class="formControls" i18n:domain="plone">
-          <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply;title"/>
-          <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
+          <input type="submit" title="Absenden des Formulares" class="input-sichern context btn btn-primary" name="form.button.submit" value="Apply" i18n:attributes="value label_apply;title"/>
+          <input type="submit" title="Verlassen des Formulars" class="input-abbrechen btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
         </div>
       </form>
 </tal:def>

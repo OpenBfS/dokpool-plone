@@ -28,10 +28,10 @@
         </tal:editor>
       </div>
       <div class="formControls">
-        <input id="form-buttons-save" name="form.buttons.save" value="Save" type="submit"
+        <input id="form-buttons-save" name="form.buttons.save" class="btn btn-primary" value="Save" type="submit"
             i18n:domain="plone"
             i18n:attributes="value" />
-        <input id="form-buttons-cancel" name="form.buttons.cancel" value="Cancel" type="submit"
+        <input id="form-buttons-cancel" name="form.buttons.cancel" class="btn btn-secondary" value="Cancel" type="submit"
             i18n:domain="plone"
             i18n:attributes="value" />
       </div>

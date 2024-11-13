@@ -44,7 +44,7 @@ buttons = view.dp_buttons(batch)
                            name=""
                            value=""
                            i18n:attributes="value"
-                           tal:attributes="value button/title; name button/url; class button/cssclass|nothing">
+                           tal:attributes="value button/title; name button/url; class python: button['cssclass'] + ' btn btn-primary' if 'cssclass' in button else 'btn btn-primary'">
                 </tal:loop>
                 </div>
                 <table id="fctable"
@@ -129,7 +129,7 @@ buttons = view.dp_buttons(batch)
                            name=""
                            value=""
                            i18n:attributes="value"
-                           tal:attributes="value button/title; name button/url; class button/cssclass|nothing"/>
+                           tal:attributes="value button/title; name button/url; class python: button['cssclass'] + ' btn btn-primary' if 'cssclass' in button else 'btn btn-primary'"/>
                 </tal:buttons>
                 </div>
                 <div metal:use-macro="context/batch_macros/macros/navigation" />
