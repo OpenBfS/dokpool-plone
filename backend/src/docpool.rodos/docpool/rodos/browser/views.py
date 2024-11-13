@@ -51,7 +51,7 @@ class AssignToElanEvent(BrowserView):
 
         # Assign to event
         obj.doc_extension(ELAN_APP).scenarios = self.event_uid
-        obj.reindexObject(idxs=["apps_supported", "scenarios"])
+        obj.update_modified()
 
         msg = _("Assigned to ELAN event")
         api.portal.show_message(msg, self.request)
