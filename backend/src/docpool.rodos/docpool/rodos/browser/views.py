@@ -2,7 +2,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getOpenScenarios
+from docpool.elan.utils import getActiveScenarios
 from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.rodos.behaviors.rodosdoc import IRodosDoc
 from plone import api
@@ -22,7 +22,7 @@ class AssignToElanEvent(BrowserView):
             api.portal.show_message(msg, self.request)
             return self.request.response.redirect(obj.absolute_url())
 
-        dpevents = getOpenScenarios(obj)
+        dpevents = getActiveScenarios(obj)
         self.events = [i for i in dpevents if i.review_state == "published"]
         self.current_event = None
 
