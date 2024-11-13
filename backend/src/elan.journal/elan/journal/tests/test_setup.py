@@ -24,7 +24,6 @@ ADD_PERMISSIONS = (
         expected=[
             "ContentAdmin",
             "DocPoolAdmin",
-            "EventEditor",
             "JournalEditor",
             "Manager",
             "Site Administrator",

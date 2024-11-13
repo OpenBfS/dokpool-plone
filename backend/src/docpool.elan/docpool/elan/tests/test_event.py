@@ -214,11 +214,9 @@ class TestEvent(unittest.TestCase):
             event.journal1._View_Permission,
             (
                 "Manager",
-                "Owner",
                 "ContentAdmin",
                 "Site Administrator",
                 "DocPoolAdmin",
-                "EventEditor",
                 "JournalEditor",
                 "JournalReader",
             ),
@@ -227,11 +225,9 @@ class TestEvent(unittest.TestCase):
             event.journal1._Modify_portal_content_Permission,
             (
                 "Manager",
-                "Owner",
                 "ContentAdmin",
                 "Site Administrator",
                 "DocPoolAdmin",
-                "EventEditor",
                 "JournalEditor",
             ),
         )

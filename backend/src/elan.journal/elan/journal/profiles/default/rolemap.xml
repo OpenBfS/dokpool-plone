@@ -18,7 +18,6 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
       <role name="ContentAdmin"/>
-      <role name="EventEditor"/>
       <role name="JournalEditor" />
     </permission>
   </permissions>
