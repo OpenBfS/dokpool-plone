@@ -1,6 +1,5 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
-from collections import defaultdict
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
@@ -31,7 +30,7 @@ def initializeScenarios(context):
         UID=getScenariosForCurrentUser(),
         Status="active",
     )
-    return [scen.id for scen in scenarios]
+    return [scen.UID for scen in scenarios]
 
 
 @provider(IFormFieldProvider)
@@ -93,7 +92,7 @@ class ELANDocument(FlexibleView):
         selection. So we need to transport information about these through the edit form
         and count them in when storing the edited form data.
         """
-        return [s.id for s in self.myScenarioObjects() if s.Status != "active"]
+        return [s.UID() for s in self.myScenarioObjects() if s.Status != "active"]
 
     @scenarios_to_keep.setter
     def scenarios_to_keep(self, value):
@@ -108,8 +107,8 @@ class ELANDocument(FlexibleView):
 
     def myScenarioObjects(self):
         """Return all DPEvent objects in the dokpool for this object."""
-        # We can not use the catalog here since this is used in a indexer and
-        # during clear & rebuild no Events would be found.
+        # We can not use the catalog (and therefore, plone.api.content.get()) here since
+        # this is used in a indexer and during clear & rebuild no Events would be found.
         # The path of events is assumed to be <docpool>/contentconfig/scen
         results = []
         scns = getattr(self.context.aq_base, "scenarios", [])
@@ -120,14 +119,14 @@ class ELANDocument(FlexibleView):
             results = [
                 i
                 for i in scen.contentValues({"portal_type": "DPEvent"})
-                if i.id in scns
+                if i.UID() in scns
             ]
         return results
 
     def scenarioIndex(self):
         """ """
         scens = self.myScenarioObjects()
-        res = [scen.id for scen in scens if api.content.get_state(scen) == "published"]
+        res = [s.UID() for s in scens if api.content.get_state(s) == "published"]
         return res
 
     def debugvalues(self):
@@ -137,22 +136,11 @@ class ELANDocument(FlexibleView):
 
     def getScenarioNames(self):
         """ """
-        cat = getToolByName(self.context, "portal_catalog")
-        scns = self.scenarios
-        # FIXME: As long as events are referenced by id, which may not be unique,
-        # uniquify titles: for each id, use distinct titles of non-archived events
-        # or, failing that, of archived events. Sounds like a reasonable compromise
-        # between general applicability and catering to the most likely use case of
-        # a single partly archived event.
-        brains_by_id = defaultdict(list)
-        for b in cat(
-            path=self.context.dpSearchPath(), portal_type="DPEvent", getId=scns
-        ):
-            brains_by_id[b.getId].append(b)
-        titles = []
-        for id, brains in brains_by_id.items():
-            active = [b for b in brains if "/archive" not in b.getPath()]
-            titles.extend({b.Title for b in active or brains})
+        # Uniquify titles: While scenarios are UIDs and thus unique, they may
+        # refer to events with the same title, most commonly in the case of
+        # partly archived events.
+        scns = api.content.find(UID=self.scenarios)
+        titles = list({brain.Title for brain in scns})
         return titles
 
     def unknownScenario(self):

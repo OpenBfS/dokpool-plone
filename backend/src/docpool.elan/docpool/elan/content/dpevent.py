@@ -509,7 +509,7 @@ class DPEvent(Container, ContentBase):
         scns = IELANDocument(obj).scenarios
         # Drop duplicates
         scns = list(set(scns))
-        scns.remove(self.id)
+        scns.remove(self.UID())
         obj.scenarios = scns
 
         # 2. Remove elan behavior if there are no other events but other behaviors
@@ -530,7 +530,7 @@ class DPEvent(Container, ContentBase):
         :return: list of brains
         """
         #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
-        args = {"portal_type": "DPDocument", "scenarios": self.getId()}
+        args = {"portal_type": "DPDocument", "scenarios": self.UID()}
         args.update(kwargs)
         return api.content.find(**args)
 
@@ -768,7 +768,7 @@ def eventPublished(obj, event=None):
                 docobj = doc.getObject()
                 scens = docobj.scenarios
                 # print docobj, scens
-                if scens and obj.getId() in scens:
+                if scens and obj.UID() in scens:
                     docobj.reindexObject()
                     # print "changed", docobj
             except Exception as e:
