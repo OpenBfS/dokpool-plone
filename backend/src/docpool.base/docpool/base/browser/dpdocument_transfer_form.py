@@ -50,11 +50,12 @@ class TransferForm(BrowserView):
                 targets.extend(allowed)
                 items.append(obj)
 
-        to_title = lambda target: api.content.get(UID=target).myDocumentPool().Title()
-        return dict(
-            items=items,
-            targets=[
-                dict(id=target, esd_to_title=to_title(target))
-                for target in set(targets)
-            ],
-        )
+        target_infos = []
+        portal_catalog = api.portal.get_tool("portal_catalog")
+        for target in targets:
+            # ContentSenders do not need access to the target folders!
+            brains = portal_catalog.unrestrictedSearchResults(UID=target)
+            obj = brains[0]._unrestrictedGetObject()
+            to_title = obj.myDocumentPool().title
+            target_infos.append({"id": target, "esd_to_title": to_title})
+        return {"items": items, "targets": target_infos}

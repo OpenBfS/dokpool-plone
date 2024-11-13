@@ -429,7 +429,7 @@ def automatic_transfer(obj):
 
 def is_sender(obj):
     roles = api.user.get_roles(obj=obj)
-    if "Manager" in roles or "Site Administrator" in roles:
+    if "Manager" in roles or "Site Administrator" in roles or "ContentSender" in roles:
         return True
     groups = api.user.get_current().getGroups()
     for group in groups:

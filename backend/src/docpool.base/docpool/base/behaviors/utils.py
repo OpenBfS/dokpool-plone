@@ -30,12 +30,17 @@ def allowed_targets(context):
             dto = dto_()
     dt_id = dto.id if dto else "---"
 
-    brains = api.content.find(object_provides=IDPTransferFolder, sendingESD=esd.UID())
+    targets = []
+    portal_catalog = api.portal.get_tool("portal_catalog")
 
-    dt_perm = lambda brain: brain.getObject().doctypePermissions.get(dt_id, False)
-    targets = [
-        brain.UID for brain in brains if not (perm := dt_perm(brain)) or perm != "block"
-    ]
+    # ContentSenders do not need access to the target folders!
+    for brain in portal_catalog.unrestrictedSearchResults(
+        object_provides=IDPTransferFolder.__identifier__, sendingESD=esd.UID()
+    ):
+        obj = brain._unrestrictedGetObject()
+        permission = obj.doctypePermissions.get(dt_id, False)
+        if not permission or permission != "block":
+            targets.append(brain.UID)
 
     transferable = ITransferable(context, None)
     if transferable is not None:
