@@ -24,7 +24,7 @@ def initializeLocalBehaviors(context):
 @provider(IFormFieldProvider)
 class ILocalBehaviorSupport(model.Schema):
     # Note: This field is set to hidden in add and edit forms
-    # for users without zope2.ViewManagementScreens
+    # for users without View management screens (zope2.ViewManagementScreens)
     # See https://redmine-koala.bfs.de/issues/5432
     directives.widget(local_behaviors=CheckBoxFieldWidget)
     local_behaviors = schema.List(

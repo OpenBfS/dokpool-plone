@@ -17,7 +17,7 @@ class AddForm(BootstrapActions, add.DefaultAddForm):
         # Setting the field to hidden will still use the defaultFactory.
         if "ILocalBehaviorSupport.local_behaviors" not in self.widgets:
             return
-        if not api.user.has_permission("zope2.ViewManagementScreens", obj=self.context):
+        if not api.user.has_permission("View management screens", obj=self.context):
             self.widgets["ILocalBehaviorSupport.local_behaviors"].mode = "hidden"
 
 
@@ -32,7 +32,7 @@ class EditForm(BootstrapActions, edit.DefaultEditForm):
         # Hide local_behaviors
         if "ILocalBehaviorSupport.local_behaviors" not in self.widgets:
             return
-        if not api.user.has_permission("zope2.ViewManagementScreens", obj=self.context):
+        if not api.user.has_permission("View management screens", obj=self.context):
             self.widgets["ILocalBehaviorSupport.local_behaviors"].mode = "hidden"
 
 
