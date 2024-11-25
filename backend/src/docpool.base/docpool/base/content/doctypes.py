@@ -10,3 +10,5 @@ class IDocTypes(model.Schema):
 @implementer(IDocTypes)
 class DocTypes(Container):
     """ """
+
+    APP = "base"
