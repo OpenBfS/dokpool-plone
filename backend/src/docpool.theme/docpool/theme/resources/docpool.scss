@@ -79,3 +79,8 @@ body.dpdocument-dview-commenting textarea {
     left: -5px;
   }
 }
+
+// Override eea.faceted styling
+.select2-results .select2-highlighted {
+  color: #00628e !important;
+}
