@@ -105,7 +105,7 @@ class Transferable(FlexibleView):
 
     @property
     def transferred_by(self):
-        return self.context.transferred_by
+        return getattr(self.context, "transferred_by", None)
 
     @transferred_by.setter
     def transferred_by(self, value):
@@ -127,7 +127,7 @@ class Transferable(FlexibleView):
 
     @property
     def transferLog(self):
-        return self.context.transferLog
+        return getattr(self.context, "transferLog", None)
 
     @transferLog.setter
     def transferLog(self, value):
