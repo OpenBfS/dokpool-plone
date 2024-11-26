@@ -53,7 +53,7 @@
              "
              tal:condition="python:canReview or review_state == 'published'"
              tal:attributes="
-               class python:'comment level-{depth} {state}'.format(depth= depth, state=colorclass(review_state));
+               class python:'comment level-{depth}'.format(depth= depth);
                id comment_id;
              "
         >
@@ -65,12 +65,7 @@
             <!-- commenter name and date -->
             <div class="comment-author">
 
-              <a href=""
-                 tal:condition="has_author_link"
-                 tal:attributes="
-                   href author_home_url;
-                 "
-              >${reply/author_name}</a>
+              <div><strong>${reply/author_name}</strong></div>
 
               <span tal:condition="not: has_author_link">${reply/author_name}</span>
 
