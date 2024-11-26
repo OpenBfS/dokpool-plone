@@ -21,13 +21,16 @@
 
 #meta_items {
   img {
-    background-color: #ffffff;
+    background-color: transparent;
     background-image: url("../static/bfs-plus-icon.png");
     background-repeat: no-repeat;
-    padding-left: 30px;
+    padding-left: 20px;
     margin-top: 10px;
     height: 24px !important;
     margin-bottom: 10px;
+    &.collapsible {
+      cursor: pointer;
+    }
   }
 
   > img.active {
