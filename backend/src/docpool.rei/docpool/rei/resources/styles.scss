@@ -27,6 +27,10 @@
       }
     }
   }
+
+  .faceted-area .widget-body dt > a {
+    display: none;
+  }
 }
 
 #faceted_table {
