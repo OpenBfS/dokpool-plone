@@ -9,9 +9,11 @@
              i18n:attributes="title">
 
         <img src="plone-logo.svg" alt=""
+                tal:define="logo context/logoSrc|nothing;
+                            logo python:logo or view.img_src;"
                  tal:attributes="alt view/logo_title;
                         title view/logo_title;
-                        src view/img_src" /></a>
+                        src logo" /></a>
 
     <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app.get('logo', False)">
 
