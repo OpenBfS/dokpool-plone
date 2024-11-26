@@ -103,27 +103,27 @@ class Transferable(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    def _get_transferred_by(self):
+    @property
+    def transferred_by(self):
         return self.context.transferred_by
 
-    def _set_transferred_by(self, value):
+    @transferred_by.setter
+    def transferred_by(self, value):
         if not value:
             return
         context = aq_inner(self.context)
         context.transferred_by = value
 
-    transferred_by = property(_get_transferred_by, _set_transferred_by)
-
-    def _get_transferred(self):
+    @property
+    def transferred(self):
         return getattr(self.context, "transferred", None)
 
-    def _set_transferred(self, value):
+    @transferred.setter
+    def transferred(self, value):
         if not value:
             return
         context = aq_inner(self.context)
         context.transferred = value
-
-    transferred = property(_get_transferred, _set_transferred)
 
     @property
     def transferLog(self):
