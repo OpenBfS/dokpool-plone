@@ -5,6 +5,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.extendable import Extendable
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.pdfconversion import data
 from docpool.base.pdfconversion import get_images
@@ -30,6 +31,8 @@ from plone.dexterity.content import Container
 from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.resource.interfaces import IResourceDirectory
+from plone.restapi.deserializer.dxcontent import DeserializeFromJson
+from plone.restapi.interfaces import IFieldDeserializer
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -39,10 +42,13 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
+from zope.component import queryMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.interface import implementer
+from zope.interface import Interface
+from zope.schema.interfaces import ValidationError
 
 import re
 
@@ -724,3 +730,37 @@ def updateContainerModified(obj, event=None):
     if not IArchiving(obj).is_archive:
         obj.update_modified()
         obj.reindexObject()  # New fulltext maybe needed
+
+
+@adapter(IDPDocument, Interface)
+class DeserializeFromJsonDPDocument(DeserializeFromJson):
+    name = "local_behaviors"
+
+    def get_schema_data(self, data, validate_all, create=False):
+        # The method name suggests it only retrieves data but in fact, it actually
+        # modifies the context object. It is thus OK to add another modification.
+        if self.name in data:
+            self.set_local_behaviors(data[self.name])
+        return super().get_schema_data(data, validate_all, create)
+
+    def set_local_behaviors(self, local_behaviors):
+        field = ILocalBehaviorSupport[self.name]
+
+        # XXX check permissions
+
+        deserializer = queryMultiAdapter(
+            (field, self.context, self.request), IFieldDeserializer
+        )
+        if deserializer is None:
+            return
+
+        try:
+            value = deserializer(local_behaviors)
+        except (ValueError, ValidationError):
+            # This happens again in super() call, so don't duplicate the error handling.
+            return
+
+        # XXX handle overwriting existing same value?
+
+        lb = ILocalBehaviorSupport(self.context)
+        lb.local_behaviors = value
