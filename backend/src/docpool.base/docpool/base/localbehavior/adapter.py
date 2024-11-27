@@ -1,7 +1,5 @@
 from Acquisition import aq_get
 from docpool.base.appregistry import BEHAVIOR_REGISTRY
-from docpool.base.content.dpdocument import IDPDocument
-from docpool.base.interfaces import IExtension
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupporting
 from plone.dexterity.behavior import DexterityBehaviorAssignable
 from plone.dexterity.schema import SCHEMA_CACHE
@@ -38,6 +36,8 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
             saved_behaviors = local_behaviors
         edited_behaviors.update(saved_behaviors)
 
+        from docpool.base.content.dpdocument import IDPDocument
+
         if IDPDocument.providedBy(self.context):
             dp_app_state = getMultiAdapter((self.context, request), name="dp_app_state")
             available_apps = dp_app_state.appsEffectiveForObject(request)
@@ -51,6 +51,8 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
 
 def isSupported(available_apps, behavior_interface):
+    from docpool.base.interfaces import IExtension
+
     if behavior_interface.extends(IExtension):
         if available_apps:
             return set(
