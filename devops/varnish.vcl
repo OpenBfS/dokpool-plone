@@ -4,18 +4,8 @@ vcl 4.0;
 import std;
 import directors;
 
-/*
-backend traefik_loadbalancer {
-    .host = "dokpool-loadbalancer";
-    .port = "8080";
-    .connect_timeout = 2s;
-    .first_byte_timeout = 300s;
-    .between_bytes_timeout  = 60s;
-}
-*/
-
 backend dokpool-zeoclient_1 {
-    .host = "dokpool_dokpool-zeoclient_1";
+    .host = "dokpool-zeoclient-1";
     .port = "8080";
     .connect_timeout = 2s;
     .first_byte_timeout = 300s;
@@ -23,7 +13,7 @@ backend dokpool-zeoclient_1 {
 }
 
 backend dokpool-zeoclient_2 {
-    .host = "dokpool_dokpool-zeoclient_2";
+    .host = "dokpool-zeoclient-2";
     .port = "8080";
     .connect_timeout = 2s;
     .first_byte_timeout = 300s;
