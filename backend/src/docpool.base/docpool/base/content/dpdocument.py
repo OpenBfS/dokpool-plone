@@ -36,6 +36,7 @@ from plone.restapi.interfaces import IFieldDeserializer
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
+from z3c.form.interfaces import IDataManager
 from zExceptions import BadRequest
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
@@ -744,7 +745,9 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         return super().get_schema_data(data, validate_all, create)
 
     def set_local_behaviors(self, local_behaviors):
+        lb = ILocalBehaviorSupport(self.context)
         field = ILocalBehaviorSupport[self.name]
+        dm = queryMultiAdapter((lb, field), IDataManager)
 
         # XXX check permissions
 
@@ -760,7 +763,7 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
             # This happens again in super() call, so don't duplicate the error handling.
             return
 
-        # XXX handle overwriting existing same value?
-
-        lb = ILocalBehaviorSupport(self.context)
-        lb.local_behaviors = value
+        # Just make sure local_behaviors are set before computing relevant schemas for
+        # validation; leave consideration about object creation to the framework.
+        if dm.get() != value:
+            dm.set(value)
