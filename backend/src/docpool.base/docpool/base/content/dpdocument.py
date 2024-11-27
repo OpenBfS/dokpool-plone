@@ -90,35 +90,6 @@ class IDPDocument(IContentBase):
 
 @implementer(IDPDocument)
 class DPDocument(Container, Extendable, ContentBase):
-    def change_state(self, id, action, REQUEST=None):
-        """ """
-        if REQUEST:
-            alsoProvides(REQUEST, IDisableCSRFProtection)
-        if not action:
-            return self.restrictedTraverse("@@view")()
-        doc = None
-        try:
-            doc = self._getOb(id)
-        except BaseException:
-            pass
-        if doc:
-            wftool = getToolByName(self, "portal_workflow")
-            try:
-                wftool.doActionFor(doc, action)
-                if str(action) == "publish":
-                    # when publishing we also publish any document inside the current
-                    # document
-                    for subdoc in doc.getDPDocuments():
-                        try:
-                            wftool.doActionFor(subdoc, action)
-                        except BaseException:
-                            pass
-            except BaseException:
-                return self.restrictedTraverse("@@view")()
-            if REQUEST:
-                portalMessage(self, _("The document state has been changed."), "info")
-                return self.restrictedTraverse("@@view")()
-
     def isClean(self):
         """
         Is this document free for further action like publishing or transfer.

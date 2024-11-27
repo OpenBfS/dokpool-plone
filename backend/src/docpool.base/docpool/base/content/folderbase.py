@@ -21,39 +21,6 @@ class FolderBase(Container, ContentBase):
         """ """
         return self
 
-    def change_state(self, id, action, backToReferer=False, REQUEST=None):
-        """ """
-        if REQUEST:
-            alsoProvides(REQUEST, IDisableCSRFProtection)
-        if not action:
-            return self.restrictedTraverse("@@view")()
-        doc = None
-        try:
-            doc = self._getOb(id)
-        except BaseException:
-            pass
-        if doc:
-            wftool = getToolByName(self, "portal_workflow")
-            try:
-                wftool.doActionFor(doc, action)
-                if (
-                    str(action) == "publish"
-                ):  # when publishing we also publish any document inside the current document
-                    for subdoc in doc.getDPDocuments():
-                        try:
-                            wftool.doActionFor(subdoc, action)
-                        except BaseException:
-                            pass
-            except BaseException:
-                return self.restrictedTraverse("@@view")()
-            if REQUEST:
-                last_referer = REQUEST.get("HTTP_REFERER")
-                portalMessage(self, _("The document state has been changed."), "info")
-                if backToReferer and last_referer:
-                    return REQUEST.RESPONSE.redirect(last_referer)
-                else:
-                    return self.restrictedTraverse("@@view")()
-
     def canBeDeleted(self, principal_deleted=False):
         """ """
         mtool = getToolByName(self, "portal_membership")

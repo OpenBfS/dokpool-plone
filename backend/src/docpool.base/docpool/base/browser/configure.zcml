@@ -199,6 +199,13 @@
       />
 
   <browser:page
+      name="change_state"
+      for="*"
+      class=".helpers.ChangeState"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="dview"
       for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
       class=".collection.CollectionDocView"

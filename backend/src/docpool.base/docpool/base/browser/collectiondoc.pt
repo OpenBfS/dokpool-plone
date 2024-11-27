@@ -48,7 +48,7 @@
                        title=""
                        tal:define="a_title python: view.translate_wf_action(doc, action);"
                        tal:attributes="onclick string:return confirm('${doc/Title}: ${alert_msg}');
-                                        href python:'%s/change_state?id=%s&action=%s&backToReferer=1' % (myfolder_url, doc.getId(), a_id);
+                                        href python:'%s/@@change_state?action=%s&back_to_referer=1' % (doc.absolute_url(), a_id);
                                         title a_title;" i18n:attributes="title">
                         <br /><i18n:var translate="">Document workflow: </i18n:var> <tal:var replace="a_title" i18n:translate=""></tal:var>
                     </a>

@@ -1,3 +1,4 @@
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.utils import activateAppFilter
 from docpool.base.utils import get_docpool_for_user
 from docpool.base.utils import is_admin
@@ -7,6 +8,7 @@ from docpool.base.utils import is_personal
 from docpool.base.utils import setApplicationsForCurrentUser
 from pkg_resources import get_distribution
 from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five import BrowserView
 from zope.interface import alsoProvides
@@ -96,3 +98,39 @@ class Is(BrowserView):
 
     def personal(self):
         return is_personal(self.context)
+
+
+class ChangeState(BrowserView):
+    """Change the workflow-state of any document.
+    Replaces published instance-methods (#5831).
+    """
+
+    def __call__(self, uid=None, action=None, back_to_referer=False):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.back_to_referer = back_to_referer
+        if not action:
+            return self.redirect()
+
+        if not uid:
+            obj = self.context
+        else:
+            obj = api.content.get(UID=uid)
+            if not obj:
+                return self.redirect()
+        try:
+            api.content.transition(obj, transition=action)
+            if action == "publish":
+                for subobj in obj.getDPDocuments():
+                    try:
+                        api.content.transition(subobj, transition=action)
+                    except InvalidParameterError:
+                        pass
+        except InvalidParameterError:
+            return self.redirect()
+        api.portal.show_message(_("The document state has been changed."), self.request)
+        return self.redirect()
+
+    def redirect(self):
+        if self.back_to_referer and (last_referer := self.request.get("HTTP_REFERER")):
+            return self.request.response.redirect(last_referer)
+        return self.context.restrictedTraverse("@@view")()
