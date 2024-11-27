@@ -5,7 +5,7 @@ import std;
 import directors;
 
 backend dokpool-zeoclient_1 {
-    .host = "dokpool-zeoclient-1";
+    .host = "dokpool_zeoclient_1";
     .port = "8080";
     .connect_timeout = 2s;
     .first_byte_timeout = 300s;
@@ -13,7 +13,7 @@ backend dokpool-zeoclient_1 {
 }
 
 backend dokpool-zeoclient_2 {
-    .host = "dokpool-zeoclient-2";
+    .host = "dokpool_zeoclient_2";
     .port = "8080";
     .connect_timeout = 2s;
     .first_byte_timeout = 300s;
