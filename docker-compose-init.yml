@@ -22,7 +22,7 @@ services:
     environment:
       POSTGRES_USER: plone
       POSTGRES_PASSWORD: plone
-      POSTGRES_DB: plone
+      POSTGRES_DB: dokpool
     ports:
       - "5432:5432"
 
