@@ -747,3 +747,4 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         # validation; leave consideration about object creation to the framework.
         if dm.get() != value:
             dm.set(value)
+            self.mark_field_as_changed(ILocalBehaviorSupport, self.name)
