@@ -10,14 +10,12 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
-from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import ContextProperty
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
 from docpool.elan.behaviors.elandocument import IELANDocument
-from docpool.elan.config import ELAN_APP
 from docpool.elan.content.transfers import ensureScenariosInTarget
 from docpool.elan.content.transfers import knowsScen
 from logging import getLogger
@@ -285,9 +283,6 @@ class Transferable(FlexibleView):
                 # 2) Put a copy of me in transfer folder, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
                 my_copy = transfer_folder._getOb(new_id)
-                behaviors = set(ILocalBehaviorSupport(self.context).local_behaviors)
-                behaviors.add(ELAN_APP)
-                ILocalBehaviorSupport(my_copy).local_behaviors = list(behaviors)
 
                 # 3) Add transfer information to the copies.
                 my_copy.transferred = timestamp
