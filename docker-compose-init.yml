@@ -3,7 +3,7 @@ name: dokpool
 
 services:
   zeoclient-init:
-    image: registry.starzel.de/bfs/dokpool:python3
+    image: git.starzel.de:5050/bfs/dokpool:python3
     command: "create-site"
     environment:
       RELSTORAGE_DSN: "dbname='dokpool' user='plone' host='postgres-init' password='plone'"
