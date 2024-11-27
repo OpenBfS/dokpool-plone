@@ -127,7 +127,9 @@ class GetUserFolder(Service):
             return serializer(include_items=False)
         else:
             self.request.response.setStatus(404)
-            return dict(error=dict(message=f"User {username} has no user folder in {esdpath}"))
+            return dict(
+                error=dict(message=f"User {username} has no user folder in {esdpath}")
+            )
 
 
 @implementer(IPublishTraverse)
