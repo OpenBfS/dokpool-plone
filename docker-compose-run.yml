@@ -1,21 +1,20 @@
 ---
-version: "3.8"
 name: dokpool
 
 services:
-  dokpool-zeoclient:
+  zeoclient:
     image: registry.starzel.de/bfs/dokpool:python3
     deploy:
       mode: replicated
       replicas: 2
     environment:
-      RELSTORAGE_DSN: "dbname='plone' user='plone' host='dokpool-postgres' password='plone'"
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
     depends_on:
-      dokpool-postgres:
+      postgres:
         condition: service_started
 
-  dokpool-postgres:
+  postgres:
     image: postgres
     volumes:
       - dokpool-db:/var/lib/postgresql/data
@@ -26,7 +25,7 @@ services:
     ports:
       - "5432:5432"
 
-  dokpool-varnish:
+  varnish:
     image: varnish
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
@@ -35,7 +34,7 @@ services:
       VARNISH_HTTP_PORT: 8080
 
     depends_on:
-      dokpool-zeoclient:
+      zeoclient:
         condition: service_healthy
     ports:
       - "8080:8080"
