@@ -26,6 +26,7 @@ from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
 from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
+from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.memoize import ram
@@ -33,6 +34,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.resource.interfaces import IResourceDirectory
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
 from plone.restapi.interfaces import IFieldDeserializer
+from plone.supermodel.utils import mergedTaggedValueDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -736,6 +738,9 @@ def updateContainerModified(obj, event=None):
 @adapter(IDPDocument, Interface)
 class DeserializeFromJsonDPDocument(DeserializeFromJson):
     name = "local_behaviors"
+    write_permission = mergedTaggedValueDict(
+        ILocalBehaviorSupport, WRITE_PERMISSIONS_KEY
+    ).get(name)
 
     def get_schema_data(self, data, validate_all, create=False):
         # The method name suggests it only retrieves data but in fact, it actually
@@ -749,7 +754,11 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         field = ILocalBehaviorSupport[self.name]
         dm = queryMultiAdapter((lb, field), IDataManager)
 
-        # XXX check permissions
+        if not dm.canWrite():
+            return
+
+        if not self.check_permission(self.write_permission):
+            return
 
         deserializer = queryMultiAdapter(
             (field, self.context, self.request), IFieldDeserializer
