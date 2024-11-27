@@ -125,6 +125,9 @@ class GetUserFolder(Service):
         if obj:
             serializer = queryMultiAdapter((obj, self.request), ISerializeToJson)
             return serializer(include_items=False)
+        else:
+            self.request.response.setStatus(404)
+            return dict(error=dict(message=f"User {username} has no user folder in {esdpath}"))
 
 
 @implementer(IPublishTraverse)
