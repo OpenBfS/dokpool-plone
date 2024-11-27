@@ -8,7 +8,7 @@ services:
       mode: replicated
       replicas: 2
     environment:
-      RELSTORAGE_DSN: "dbname='plone' user='plone' host='postgres' password='plone'"
+      RELSTORAGE_DSN: "dbname='dokpool' user='plone' host='postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
     depends_on:
       postgres:

@@ -6,7 +6,7 @@ services:
     image: registry.starzel.de/bfs/dokpool:python3
     command: "create-site"
     environment:
-      RELSTORAGE_DSN: "dbname='plone' user='plone' host='postgres-init' password='plone'"
+      RELSTORAGE_DSN: "dbname='dokpool' user='plone' host='postgres-init' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "true"
       DELETE_EXISTING: "1"
     depends_on:
