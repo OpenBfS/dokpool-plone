@@ -5,6 +5,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.extendable import Extendable
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.pdfconversion import data
 from docpool.base.pdfconversion import get_images
@@ -25,24 +26,32 @@ from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
 from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
+from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.resource.interfaces import IResourceDirectory
+from plone.restapi.deserializer.dxcontent import DeserializeFromJson
+from plone.restapi.interfaces import IFieldDeserializer
+from plone.supermodel.utils import mergedTaggedValueDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
+from z3c.form.interfaces import IDataManager
 from zExceptions import BadRequest
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
+from zope.component import queryMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.interface import implementer
+from zope.interface import Interface
+from zope.schema.interfaces import ValidationError
 
 import re
 
@@ -724,3 +733,46 @@ def updateContainerModified(obj, event=None):
     if not IArchiving(obj).is_archive:
         obj.update_modified()
         obj.reindexObject()  # New fulltext maybe needed
+
+
+@adapter(IDPDocument, Interface)
+class DeserializeFromJsonDPDocument(DeserializeFromJson):
+    name = "local_behaviors"
+    write_permission = mergedTaggedValueDict(
+        ILocalBehaviorSupport, WRITE_PERMISSIONS_KEY
+    ).get(name)
+
+    def get_schema_data(self, data, validate_all, create=False):
+        # The method name suggests it only retrieves data but in fact, it actually
+        # modifies the context object. It is thus OK to add another modification.
+        if self.name in data:
+            self.set_local_behaviors(data[self.name])
+        return super().get_schema_data(data, validate_all, create)
+
+    def set_local_behaviors(self, local_behaviors):
+        lb = ILocalBehaviorSupport(self.context)
+        field = ILocalBehaviorSupport[self.name]
+        dm = queryMultiAdapter((lb, field), IDataManager)
+
+        if not dm.canWrite():
+            return
+
+        if not self.check_permission(self.write_permission):
+            return
+
+        deserializer = queryMultiAdapter(
+            (field, self.context, self.request), IFieldDeserializer
+        )
+        if deserializer is None:
+            return
+
+        try:
+            value = deserializer(local_behaviors)
+        except (ValueError, ValidationError):
+            # This happens again in super() call, so don't duplicate the error handling.
+            return
+
+        # Just make sure local_behaviors are set before computing relevant schemas for
+        # validation; leave consideration about object creation to the framework.
+        if dm.get() != value:
+            dm.set(value)

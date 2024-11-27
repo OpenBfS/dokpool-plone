@@ -42,4 +42,6 @@
       name="getIcon"
       />
 
+  <adapter factory=".dpdocument.DeserializeFromJsonDPDocument" />
+
 </configure>
