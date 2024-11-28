@@ -26,8 +26,6 @@
  <property name="behaviors">
      <element value="plone.dublincore" />
      <element value="plone.namefromtitle" />
-     <element value="plone.textindexer" />
-     <element value="plone.excludefromnavigation" />
      <element value="plone.constraintypes" />
      <element value="docpool.localbehavior" />
 </property>
