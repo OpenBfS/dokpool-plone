@@ -83,7 +83,7 @@
                    tal:attributes="value showAll"/>
 
             <div class="mb-3 input-group">
-                <a class="pat-plone-modal btn btn-success me-3" id="add-group"
+                <a class="btn btn-success me-3" id="add-group"
                     tal:attributes="href string:${dp_url}/@@usergroup-groupdetails"
                     i18n:translate="label_add_new_group">Add New Group</a>
                 <span class="input-group-text" id="quickSearchLabel" i18n:translate="label_group_search">Group Search</span>

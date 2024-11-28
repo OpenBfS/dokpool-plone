@@ -60,7 +60,7 @@
 
 
         <div class="mb-3 input-group">
-          <a class="pat-plone-modal me-3 btn btn-success " id="add-user"
+          <a class="me-3 btn btn-success " id="add-user"
              data-pat-plone-modal='{
                 "actionOptions": {
                   "redirectOnResponse": true,
