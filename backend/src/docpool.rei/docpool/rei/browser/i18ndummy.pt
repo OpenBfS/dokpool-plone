@@ -9,9 +9,9 @@
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
         <i18n:dummy translate="Private"></i18n:dummy>
-        <i18n:dummy translate="Published BMU"></i18n:dummy>
+        <i18n:dummy translate="Published BMUV"></i18n:dummy>
         <i18n:dummy translate="Revised"></i18n:dummy>
-        <i18n:dummy translate="Pending BMU"></i18n:dummy>
+        <i18n:dummy translate="Pending BMUV"></i18n:dummy>
         <i18n:dummy translate="Pending BfS"></i18n:dummy>
         <i18n:dummy translate="Pending authority"></i18n:dummy>
 
@@ -25,8 +25,8 @@
         <i18n:dummy translate="submit_authority"></i18n:dummy>
         <i18n:dummy translate="submit_bfs"></i18n:dummy>
         <i18n:dummy translate="submit_bmu"></i18n:dummy>
-        <i18n:dummy translate="Publish BMU"></i18n:dummy>
-        <i18n:dummy translate="Published BMU"></i18n:dummy>
+        <i18n:dummy translate="Publish BMUV"></i18n:dummy>
+        <i18n:dummy translate="Published BMUV"></i18n:dummy>
         <i18n:dummy translate="alert_publish_popup"></i18n:dummy>
         <i18n:dummy translate="alert_reject_to_authority_popup"></i18n:dummy>
         <i18n:dummy translate="alert_reject_to_bfs_popup"></i18n:dummy>

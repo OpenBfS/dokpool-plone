@@ -62,7 +62,7 @@
             <group-role>Reviewer</group-role>
         </group-map>
     </state>
-    <state state_id="pending_bmu" title="Pending BMU" i18n:attributes="title">
+    <state state_id="pending_bmu" title="Pending BMUV" i18n:attributes="title">
         <exit-transition transition_id="publish"/>
         <exit-transition transition_id="reject_to_bfs"/>
         <exit-transition transition_id="retract_to_bfs"/>
@@ -146,7 +146,7 @@
             <permission-role>Site Administrator</permission-role>
         </permission-map>
     </state>
-    <state state_id="published" title="Published BMU" i18n:attributes="title">
+    <state state_id="published" title="Published BMUV" i18n:attributes="title">
         <description>Visible to everyone, editable by the owner.</description>
         <exit-transition transition_id="retract_for_revision"/>
         <permission-map name="Access contents information" acquired="False">
@@ -234,7 +234,7 @@
         <description>Publishing the item makes it visible to other users.
         </description>
         <action url="%(content_url)s/content_status_modify?workflow_action=publish"
-                category="workflow" icon="" i18n:translate="">Publish BMU</action>
+                category="workflow" icon="" i18n:translate="">Publish BMUV</action>
         <guard>
             <guard-role>Reviewer</guard-role>
             <guard-role>Manager</guard-role>
@@ -309,11 +309,11 @@
             <guard-expression>python: here.objectCount()</guard-expression>
         </guard>
     </transition>
-    <transition transition_id="submit_bmu" title="Submit to BMU"
+    <transition transition_id="submit_bmu" title="Submit to BMUV"
                 new_state="pending_bmu" trigger="USER" before_script=""
                 after_script="">
         <action url="%(content_url)s/content_status_modify?workflow_action=submit_bmu"
-                category="workflow" icon="" i18n:translate="">Submit to BMU</action>
+                category="workflow" icon="" i18n:translate="">Submit to BMUV</action>
         <guard>
             <guard-role>Contributor</guard-role>
             <guard-role>Manager</guard-role>

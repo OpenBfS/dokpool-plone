@@ -305,7 +305,7 @@ msgid "Au-201"
 msgstr ""
 
 #: docpool/doksys/vocabularies/network_operators.py
-msgid "BMU"
+msgid "BMUV"
 msgstr ""
 
 #: docpool/doksys/vocabularies/network_operators.py
