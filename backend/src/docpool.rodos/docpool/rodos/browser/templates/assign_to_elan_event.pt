@@ -26,13 +26,13 @@
       <p class="help-block" i18n:translate="help_events">Select the event this rodos-prognosis should be assigned to.</p>
 
         <div tal:repeat="dpevent python: dpevents">
-          <label tal:attributes="for python: dpevent.id" class="form-check-label">
+          <label tal:attributes="for python: dpevent.UID" class="form-check-label">
               <input type="radio" name="dpevent:list"
                      class="form-check-input"
-                     tal:attributes="value python: dpevent.id;
+                     tal:attributes="value python: dpevent.UID;
                                      title python: dpevent.Title;
-                                     id python: dpevent.id;
-                                     checked python: view.current_event == dpevent.id;">
+                                     id python: dpevent.UID;
+                                     checked python: view.current_event == dpevent.UID;">
             <span tal:replace="python:dpevent.Title">Event Title</span>
           </label>
       </div>

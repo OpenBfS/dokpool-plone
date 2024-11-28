@@ -29,8 +29,8 @@ class AssignToElanEvent(BrowserView):
         if current_event := getScenariosForCurrentUser():
             current_event_id = current_event[0]
             for brain in self.events:
-                if brain.id == current_event_id:
-                    self.current_event = brain.id
+                if brain.UID == current_event_id:
+                    self.current_event = brain.UID
                     break
 
         if form.get("form.button.cancel"):

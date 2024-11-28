@@ -18,7 +18,7 @@
     <metal:macro define-macro="transfers_actions" i18n:domain="docpool.base">
          <tal:if define="_is nocall:context/@@is"
                  condition="python: not _is.archive() and transfersobj.transferable() and transfersobj.allowedTargets()">
-          <a class="transfer action" tal:condition="not:context/@@is/individual"
+          <a class="transfer action" tal:condition="python: not _is.individual()"
               href=""
               title="Transfer"
               tal:attributes="href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % ('/'.join(context.absolute_url().split('/')[:-1]), context.absolute_url_path())"
