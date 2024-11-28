@@ -32,7 +32,7 @@
       for="docpool.base.interfaces.IDPDocument"
       class=".views.AssignToElanEvent"
       template="templates/assign_to_elan_event.pt"
-      permission="cmf.ModifyPortalContent"
+      permission="zope2.ViewManagementScreens"
       />
 
   <browser:page

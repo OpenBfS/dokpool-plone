@@ -61,6 +61,8 @@ class AssignToElanEvent(BrowserView):
 class CanAssignToElanEvent(BrowserView):
     def __call__(self):
         obj = self.context
+        if not api.user.has_permission("View management screens", obj=obj):
+            return False
         if obj.portal_type != "DPDocument":
             return False
         local_behaviors = ILocalBehaviorSupport(obj).local_behaviors
