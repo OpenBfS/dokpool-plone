@@ -218,7 +218,7 @@ class Transferable(FlexibleView):
         return False
 
     def allowedTargets(self):
-        return allowed_targets(self.context)
+        return [i["uid"] for i in allowed_targets(self.context)]
 
     security.declareProtected("Docpool: Send Content", "transferToAll")
 

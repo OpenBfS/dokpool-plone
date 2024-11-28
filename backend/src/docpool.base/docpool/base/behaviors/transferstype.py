@@ -1,7 +1,6 @@
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.utils import allowed_targets
-from plone import api
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -16,8 +15,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 @provider(IContextSourceBinder)
 def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
-    target_title = lambda target: api.content.get(UID=target).from_to_title()
-    return SimpleVocabulary([SimpleTerm(t, t, target_title(t)) for t in targets])
+    return SimpleVocabulary(
+        [SimpleTerm(t["uid"], t["uid"], t["from_to_title"]) for t in targets]
+    )
 
 
 @provider(IFormFieldProvider)
@@ -68,11 +68,7 @@ class TransfersType:
         if not value:
             # avoid unnecessary interaction with the zope.sqlalchemy datamanager
             return []
-        allowed = {target for target in allowed_targets(self.context)}
-        return sorted(
-            value.intersection(allowed),
-            key=lambda target: api.content.get(UID=target).from_to_title(),
-        )
+        return [i["uid"] for i in allowed_targets(self.context) if i["uid"] in value]
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
@@ -84,6 +80,6 @@ class TransfersType:
         context = aq_inner(self.context)
         unaffected = set(getattr(context, "automaticTransferTargets", ()) or ())
         if unaffected:
-            allowed = (target for target in allowed_targets(context))
+            allowed = (target["uid"] for target in allowed_targets(context))
             unaffected.difference_update(allowed)
         context.automaticTransferTargets = tuple(unaffected.union(value))

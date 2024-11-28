@@ -1,5 +1,6 @@
 from docpool.base.content.doctype import DocType
 from docpool.base.content.dptransferfolder import IDPTransferFolder
+from operator import itemgetter
 from plone import api
 
 
@@ -40,7 +41,8 @@ def allowed_targets(context):
         obj = brain._unrestrictedGetObject()
         permission = obj.doctypePermissions.get(dt_id, False)
         if not permission or permission != "block":
-            targets.append(brain.UID)
+            from_to_title = obj.from_to_title()
+            targets.append({"uid": brain.UID, "from_to_title": from_to_title})
 
     transferable = ITransferable(context, None)
     if transferable is not None:
@@ -50,6 +52,6 @@ def allowed_targets(context):
             for entry in transferable.sender_log
             if entry["timestamp"] > mdate
         }
-        targets = [t for t in targets if t not in sent_to_since_last_modified]
+        targets = [t for t in targets if t["uid"] not in sent_to_since_last_modified]
 
-    return targets
+    return sorted(targets, key=itemgetter("from_to_title"))
