@@ -56,8 +56,8 @@ msgid "PDF Version"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Pending BMU"
-msgstr "An BMU eingereicht"
+msgid "Pending BMUV"
+msgstr "An BMUV eingereicht"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "Pending BfS"
@@ -76,11 +76,11 @@ msgid "Private"
 msgstr "Privat/gruppenintern"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Publish BMU"
+msgid "Publish BMUV"
 msgstr "Freigeben"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Published BMU"
+msgid "Published BMUV"
 msgstr "Freigegeben"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -169,7 +169,7 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "alert_submit_bmu_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
+msgstr "Wollen Sie dieses Dokument wirklich ans BMUV einreichen?"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "alert_submit_popup"
@@ -351,4 +351,4 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
 msgid "submit_bmu"
-msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
+msgstr "Wollen Sie dieses Dokument wirklich ans BMUV einreichen?"

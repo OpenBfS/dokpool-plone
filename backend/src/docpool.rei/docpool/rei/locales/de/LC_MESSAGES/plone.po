@@ -18,8 +18,8 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
-msgid "Pending BMU"
-msgstr "An BMU eingereicht"
+msgid "Pending BMUV"
+msgstr "An BMUV eingereicht"
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
@@ -41,12 +41,12 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
-msgid "Publish BMU"
+msgid "Publish BMUV"
 msgstr "Freigeben"
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
-msgid "Published BMU"
+msgid "Published BMUV"
 msgstr "Freigegeben"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -103,8 +103,8 @@ msgstr "An die Aufsichtsbehörde einreichen"
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml
-msgid "Submit to BMU"
-msgstr "An BMU einreichen"
+msgid "Submit to BMUV"
+msgstr "An BMUV einreichen"
 
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_alternative/definition.xml
 #: docpool.rei/docpool/rei/profiles/default/workflows/rei_review_workflow_standard/definition.xml

@@ -293,8 +293,8 @@ msgid "Paste could not find clipboard content."
 msgstr "Keine Inhalte mehr in der Zwischenablage."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Pending BMU"
-msgstr "An BMU eingereicht"
+msgid "Pending BMUV"
+msgstr "An BMUV eingereicht"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Pending BfS"
@@ -329,7 +329,7 @@ msgid "Published"
 msgstr "Veröffentlicht"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Published BMU"
+msgid "Published BMUV"
 msgstr "Freigegeben"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -405,8 +405,8 @@ msgid "Submit to Authority"
 msgstr "An die Aufsichtsbehörde einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Submit to BMU"
-msgstr "An BMU einreichen"
+msgid "Submit to BMUV"
+msgstr "An BMUV einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit to BfS"
@@ -570,7 +570,7 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_bmu_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BMU einreichen?"
+msgstr "Wollen Sie dieses Dokument wirklich ans BMUV einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
@@ -968,7 +968,7 @@ msgstr "An BfS eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_bmu - Show document"
-msgstr "An BMU eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "An BMUV eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private"

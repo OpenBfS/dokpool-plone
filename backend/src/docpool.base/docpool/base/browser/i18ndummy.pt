@@ -11,7 +11,7 @@
         <i18n:dummy translate="private"></i18n:dummy>
         <i18n:dummy translate="published"></i18n:dummy>
         <i18n:dummy translate="Private"></i18n:dummy>
-        <i18n:dummy translate="Published BMU"></i18n:dummy>
+        <i18n:dummy translate="Published BMUV"></i18n:dummy>
         <i18n:dummy translate="Pending review"></i18n:dummy>
 
         <i18n:dummy translate="alert_delete_popup"></i18n:dummy>
@@ -36,7 +36,7 @@
         <i18n:dummy translate="alert_submit_bfs_popup"></i18n:dummy>
         <i18n:dummy translate="alert_submit_bmu_popup"></i18n:dummy>
         <i18n:dummy translate="submit_bmu"></i18n:dummy>
-        <i18n:dummy translate="Pending BMU"></i18n:dummy>
+        <i18n:dummy translate="Pending BMUV"></i18n:dummy>
         <i18n:dummy translate="Pending BfS"></i18n:dummy>
         <i18n:dummy translate="Pending authority"></i18n:dummy>
         <i18n:dummy translate="Published"></i18n:dummy>
@@ -49,7 +49,7 @@
         <i18n:dummy translate="Send back to NPP operator"></i18n:dummy>
         <i18n:dummy translate="Send back to authority"></i18n:dummy>
         <i18n:dummy translate="Submit to Authority"></i18n:dummy>
-        <i18n:dummy translate="Submit to BMU"></i18n:dummy>
+        <i18n:dummy translate="Submit to BMUV"></i18n:dummy>
         <i18n:dummy translate="Submit to BfS"></i18n:dummy>
 
         <i18n:dummy translate="private - Show document"></i18n:dummy>

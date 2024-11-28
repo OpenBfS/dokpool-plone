@@ -58,7 +58,7 @@ msgid "PDF Version"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Pending BMU"
+msgid "Pending BMUV"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
@@ -78,11 +78,11 @@ msgid "Private"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Publish BMU"
+msgid "Publish BMUV"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Published BMU"
+msgid "Published BMUV"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
