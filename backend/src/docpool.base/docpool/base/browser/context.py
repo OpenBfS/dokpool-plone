@@ -121,7 +121,6 @@ class ApplicationState(BrowserView):
 
         return list(set(res))
 
-    @memoize
     def appsAvailableToCurrentUser(self):
         """
         Determines the list of apps, that are actually available to the current user in
