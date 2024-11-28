@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-07-27 12:11+0000\n"
+"POT-Creation-Date: 2024-11-28 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,66 +15,51 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Language: de\n"
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Calculation Date"
-msgstr "Rechnung vom"
+#: docpool.rodos/docpool/rodos/browser/templates/assign_to_elan_event.pt
+#: docpool.rodos/docpool/rodos/profiles/default/actions.xml
+msgid "Assign to ELAN Event"
+msgstr "Einem ELAN Ereignis zuweisen"
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Date"
-msgstr "Datum"
+#: docpool.rodos/docpool/rodos/browser/views.py
+msgid "Assigned to ELAN event"
+msgstr "Das Dokument wurde einem ELAN Ereignis zugewiesen"
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "End of release"
-msgstr "Freisetzungsende"
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "DWD Ausbreitungsrechnung ab Quelle"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "LASAIR/LASAT"
+msgstr ""
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Makes documents support Rodos functions"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Metadata"
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Potenziell betroffene Gebiete"
 msgstr ""
-
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Model"
-msgstr "Modell"
-
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Numeric Weather Prediction Date"
-msgstr "Wetter"
-
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Prognosis Begin"
-msgstr "Prognosenbeginn"
-
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Prognosis End"
-msgstr "Prognosenende"
 
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Prognosis Form"
 msgstr "RODOS Typ"
+
+#: docpool.rodos/docpool/rodos/browser/templates/rodos_meta.pt
+msgid "Prognosis Form:"
+msgstr "RODOS Typ:"
 
 #: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
 #: docpool.rodos/docpool/rodos/profiles/default/registry.xml
 msgid "Prognosis Type"
 msgstr "Rechnungsart"
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Project Name"
-msgstr "Laufkennung"
+#: docpool.rodos/docpool/rodos/browser/templates/rodos_meta.pt
+msgid "Prognosis Type:"
+msgstr "Rechnungsart:"
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Project User"
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "RODOS Prognose"
 msgstr ""
-
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Release Site"
-msgstr "Freisetzungsort"
-
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Report ID"
-msgstr "UUID"
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Rodos DocType"
@@ -84,130 +69,36 @@ msgstr ""
 msgid "RodosDoc"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/local/rodos.py
-msgid "Run Display"
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Select a value ..."
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
-msgid "Start of release"
-msgstr "Freisetzungsbeginn"
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Sonstige Ausbreitungsrechnung"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/views.py
+msgid "This is already a ELAN document."
+msgstr "Dieses Dokument ist bereits ein ELAN Dokument."
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Type extension for Rodos types"
 msgstr ""
 
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_CalculationDate"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_Model"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_NumericWeatherPredictionDate"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_PrognosisBegin"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_PrognosisEnd"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_PrognosisForm"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_PrognosisType"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_ProjectName"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_ProjectUser"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_ReleaseSite"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_ReleaseStart"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_ReleaseStop"
-msgstr ""
-
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "description_rodos_ReportId"
-msgstr ""
+#: docpool.rodos/docpool/rodos/browser/templates/i18ndummy.pt
+msgid "alert_assign_to_elan"
+msgstr "Wollen Sie dieses Dokument wirklich einem ELAN Ereignis zuweisen?"
 
 #: docpool.rodos/docpool/rodos/configure.zcml
 msgid "docpool.rodos"
 msgstr ""
 
-#. Default: "Calculation Date"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_CalculationDate"
-msgstr ""
+#. Default: "Select the event this rodos-prognosis should be assigned to."
+#: docpool.rodos/docpool/rodos/browser/templates/assign_to_elan_event.pt
+msgid "help_events"
+msgstr "Wählen Sie das Ereignis, dem diese RODOS-Prognose zugewisen werden soll."
 
-#. Default: "Model"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_Model"
-msgstr ""
-
-#. Default: "Numeric Weather Prediction Date"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_NumericWeatherPredictionDate"
-msgstr ""
-
-#. Default: "Prognosis Begin"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_PrognosisBegin"
-msgstr ""
-
-#. Default: "Prognosis End"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_PrognosisEnd"
-msgstr ""
-
-#. Default: "Prognosis Form"
+#. Default: "RODOS Typ"
 #: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
 msgid "label_rodos_PrognosisForm"
 msgstr "RODOS Typ"
-
-#. Default: "Project Name"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_ProjectName"
-msgstr ""
-
-#. Default: "Project User"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_ProjectUser"
-msgstr ""
-
-#. Default: "Release Site"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_ReleaseSite"
-msgstr ""
-
-#. Default: "Release Start"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_ReleaseStart"
-msgstr ""
-
-#. Default: "Release Stop"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_ReleaseStop"
-msgstr ""
-
-#. Default: "Report ID"
-#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
-msgid "label_rodos_ReportId"
-msgstr ""

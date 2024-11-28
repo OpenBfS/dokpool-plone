@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2024-03-25 19:10+0000\n"
+"POT-Creation-Date: 2024-11-28 09:04+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -420,8 +420,7 @@ msgstr ""
 msgid "The document has been published."
 msgstr ""
 
-#: docpool.base/docpool/base/content/dpdocument.py
-#: docpool.base/docpool/base/content/folderbase.py
+#: docpool.base/docpool/base/browser/helpers.py
 msgid "The document state has been changed."
 msgstr ""
 

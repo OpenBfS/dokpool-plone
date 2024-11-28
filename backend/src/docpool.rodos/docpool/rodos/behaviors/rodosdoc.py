@@ -16,7 +16,6 @@ from zope.interface import provider
 class IRodosDoc(IDocumentExtension):
     PrognosisForm = schema.Choice(
         title=_("label_rodos_PrognosisForm", default="RODOS Typ"),
-        description=_("description_rodos_PrognosisForm", default=""),
         source="docpool.rodos.vocabularies.PrognosisForms",
         required=False,
     )
@@ -27,7 +26,6 @@ class IRodosDoc(IDocumentExtension):
 
     PrognosisType = schema.Choice(
         title=_("Prognosis Type"),
-        description=_("description_rodos_PrognosisType", default=""),
         source="docpool.rodos.vocabularies.PrognosisTypes",
         required=True,
     )

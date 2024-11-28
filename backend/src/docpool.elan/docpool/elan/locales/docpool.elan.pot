@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-11-06 10:22+0000\n"
+"POT-Creation-Date: 2024-11-28 08:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,14 +237,6 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/dpevent.py
-msgid "Initialized"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/dpevent.py
-msgid "Intensive"
-msgstr ""
-
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Intensive mode"
 msgstr ""
@@ -263,10 +255,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Metadata"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/dpevent.py
-msgid "None"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
@@ -298,7 +286,6 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/dpevent.py
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
 msgstr ""

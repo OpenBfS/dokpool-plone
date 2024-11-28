@@ -1,9 +1,9 @@
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getActiveScenarios
 from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.behaviors.rodosdoc import IRodosDoc
 from plone import api
 from Products.Five import BrowserView

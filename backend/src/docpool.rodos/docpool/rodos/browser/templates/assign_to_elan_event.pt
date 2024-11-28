@@ -39,11 +39,11 @@
 
     </div>
 
-    <div class="formControls">
-      <input type="submit" title="Absenden des Formulares" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"
-       tal:define="alert_msg python:context.translate('alert_transition', default='Do you really want assign to content to a event?', domain='docpool.rodos', escape_for_js=True)"
+    <div class="formControls" i18n:domain="plone">
+      <input type="submit" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"
+       tal:define="alert_msg python:context.translate('alert_assign_to_elan', default='Do you really want to assign this content to a event?', domain='docpool.rodos', escape_for_js=True)"
        tal:attributes="onclick string:return confirm('${alert_msg}');"/>
-      <input type="submit" title="Verlassen des Formulars" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
+      <input type="submit" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
     </div>
 
   </form>
