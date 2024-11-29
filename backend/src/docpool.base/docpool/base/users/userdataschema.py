@@ -42,7 +42,7 @@ class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
         return self.context.getProperty("dp", "")
 
     @dp.setter
-    def set_dp(self, value):
+    def dp(self, value):
         return self.context.setMemberProperties({"dp": value})
 
 
