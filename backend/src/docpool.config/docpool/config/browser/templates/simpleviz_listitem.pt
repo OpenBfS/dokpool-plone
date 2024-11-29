@@ -39,7 +39,7 @@
             <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
         </td>
 
-        <td class="title"
+        <td i18n:attributes="data-title" data-title="Title / Description / Text" class="title"
             tal:define="mi python: context.getMapImageObj();
                         li python: context.getLegendImageObj();
                         files python: context.getFiles()">
@@ -81,7 +81,7 @@
 
         </td>
 
-        <td class="metadata">
+        <td i18n:attributes="data-title" data-title="Metadata" class="metadata">
             <div metal:use-macro="context/@@dp.macros/macros/doc_meta_listitem"/>
         </td>
     </tal:def>

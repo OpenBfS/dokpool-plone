@@ -43,11 +43,11 @@
                     </tal:show_actions>
 
                 </td>
-                <td class="title">
+                <td i18n:attributes="data-title" data-title="Title / Description / Text"  class="title">
                     <div metal:use-macro="context/@@dp.macros/macros/doccontent"/>
                     <div metal:use-macro="context/@@dp.macros/macros/fileimagelist"/>
                 </td>
-                <td class="metadata">
+                <td i18n:attributes="data-title" data-title="Metadata" class="metadata">
                     <div metal:use-macro="context/@@dp.macros/macros/doc_meta_listitem"/>
                 </td>
     </tal:def>

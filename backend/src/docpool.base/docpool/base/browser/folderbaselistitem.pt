@@ -22,10 +22,10 @@
 
                 <td class="actions">
                 </td>
-                <td class="title">
+                <td i18n:attributes="data-title" data-title="Title / Description / Text" class="title">
                     <div metal:use-macro="context/@@dp.macros/macros/foldercontent"/>
                 </td>
-                <td class="metadata">
+                <td i18n:attributes="data-title" data-title="Metadata" class="metadata">
                     <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
                 </td>
 
