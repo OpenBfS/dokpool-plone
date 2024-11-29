@@ -37,13 +37,13 @@ class IEnhancedUserDataSchema(model.Schema):
 class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedUserDataSchema
 
-    def get_dp(self):
+    @property
+    def dp(self):
         return self.context.getProperty("dp", "")
 
+    @dp.setter
     def set_dp(self, value):
         return self.context.setMemberProperties({"dp": value})
-
-    dp = property(get_dp, set_dp)
 
 
 @adapter(Interface, IDocpoolBaseLayer, UserDataPanel)

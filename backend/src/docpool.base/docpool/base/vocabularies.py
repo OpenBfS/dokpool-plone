@@ -191,25 +191,16 @@ DocumentPoolVocabularyFactory = DocumentPoolVocabulary()
 class UserDocumentPoolVocabulary:
     """ """
 
-    def __call__(self, context, raw=False):
+    def __call__(self, context):
         site = getSite()
         cat = getToolByName(site, "portal_catalog", None)
         if cat is None:
-            if not raw:
-                return SimpleVocabulary([])
-            else:
-                return []
+            return []
         esds = cat.unrestrictedSearchResults(
             {"portal_type": "DocumentPool", "sort_on": "sortable_title"}
         )
-        # print len(esds)
-        esds = [(brain.UID, brain.Title) for brain in esds]
-        # print esds
-        if not raw:
-            items = [SimpleTerm(i[0], i[0], i[1]) for i in esds]
-            return SimpleVocabulary(items)
-        else:
-            return esds
+        items = [SimpleTerm(brain.UID, brain.UID, brain.Title) for brain in esds]
+        return SimpleVocabulary(items)
 
 
 UserDocumentPoolVocabularyFactory = UserDocumentPoolVocabulary()

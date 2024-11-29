@@ -38,13 +38,12 @@ def email_as_username(self):
 
 
 def applyProperties(self, userid, data):
-    # we need to add the correct DP reference to the data
+    # Set the current docpool reference to the data
     if base_hasattr(self.context, "myDocumentPool"):
         dp = self.context
-        prefix = dp.prefix or dp.getId()
-        prefix = str(prefix)
+        prefix = dp.prefix or dp.id
         data["dp"] = dp.UID()
-        data["groups"].append("%s_Members" % prefix)
+        data["groups"].append(f"{prefix}_Members")
 
         BaseRegistrationForm._old_applyProperties(self, userid, data)
 
