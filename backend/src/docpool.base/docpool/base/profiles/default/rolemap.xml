@@ -468,5 +468,10 @@
       <role name="Site Administrator"/>
       <role name="DocPoolAdmin"/>
     </permission>
+    <permission name="Modify constrain types" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="DocPoolAdmin"/>
+    </permission>
   </permissions>
 </rolemap>
