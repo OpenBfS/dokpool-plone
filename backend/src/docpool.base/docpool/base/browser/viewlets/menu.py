@@ -56,7 +56,8 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
 
         self.navtree_add_apps_menu(tree)
 
-        self.navtree_add_contentarea(tree)
+        if not IArchiving(self.context).is_archive:
+            self.navtree_add_contentarea(tree)
 
         # for tab in tree[self.navtree_path]:
         #     if "config" in tab["id"]:
