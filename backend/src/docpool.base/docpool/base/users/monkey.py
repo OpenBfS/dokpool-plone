@@ -108,9 +108,11 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
             # get the new or old folder and edit it
             gf = groups_container._getOb(group_id)
             gf.title = title
-        dp_app_state = api.content.get_view("dp_app_state", context, getRequest())
-        local_behaviors = dp_app_state.effectiveAppsHere()
-        ILocalBehaviorSupport(gf).local_behaviors = list(local_behaviors)
+        request = getRequest() or context.REQUEST
+        if request:
+            dp_app_state = api.content.get_view("dp_app_state", context, request)
+            local_behaviors = dp_app_state.effectiveAppsHere()
+            ILocalBehaviorSupport(gf).local_behaviors = list(local_behaviors)
         mtool = getToolByName(context, "portal_membership")
         mtool.setLocalRoles(gf, [group_id], "Owner")
         gf.update_immediately_addable_types()
