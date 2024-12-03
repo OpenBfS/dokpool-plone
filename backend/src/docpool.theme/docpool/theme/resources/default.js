@@ -46,6 +46,11 @@ jQuery(document).on("click", ".collapsible", function () {
   }
 });
 
+// Resets filter in the Chronologie popup
+jQuery(document).on("click", ".cat_filter #reset_filter", function () {
+  jQuery("#cat_select option").removeAttr("selected");
+});
+
 $(function () {
   // Adds the docType string to the edit heading
   // https://redmine-koala.bfs.de/issues/5282

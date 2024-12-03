@@ -7,7 +7,6 @@
 <div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected_categories python:view.selected_categories()">
     <form name="categories" method="post" class="category_selection"
           tal:attributes="action string:selectCategories">
-        <!-- label for="scnrs" i18n:translate="">Show content only for:</label-->
         <div class="multiselection">
             <select multiple="multiple" id="cat_select" name="cats:list" size="5">
                 <tal:loop tal:repeat="category python:view.available_categories()">
@@ -23,8 +22,9 @@
                 class="context btn btn-primary"
                 value="Filter"
                 i18n:attributes="value"/>
-        <input onclick="jQuery('#cat_select option').removeAttr('selected');"
+        <input
                type="submit"
+               id="reset_filter"
                name="form.button.Save"
                class="context btn btn-primary"
                value="All"
