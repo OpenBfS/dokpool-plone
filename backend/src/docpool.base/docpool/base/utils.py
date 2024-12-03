@@ -29,6 +29,19 @@ RARELY_USED_TYPES = {
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.:+]+')
 
 
+def ContextProperty(name, skip_empty=False):
+    def getter(self):
+        return getattr(self.context, name, None)
+
+    def setter(self, value):
+        if skip_empty and not value:
+            return
+        context = aq_inner(self.context)
+        setattr(context, name, value)
+
+    return property(getter, setter)
+
+
 def queryForObject(self, **kwa):
     """ """
     cat = getToolByName(self, "portal_catalog")
