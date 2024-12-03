@@ -1,5 +1,6 @@
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.utils import ContextProperty
 from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.config import RODOS_APP
 from plone.app.dexterity.textindexer.directives import searchable
@@ -41,21 +42,8 @@ class RodosDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    @property
-    def PrognosisType(self):
-        return self.context.PrognosisType
-
-    @PrognosisType.setter
-    def PrognosisType(self, value):
-        self.context.PrognosisType = value
-
-    @property
-    def PrognosisForm(self):
-        return self.context.PrognosisForm
-
-    @PrognosisForm.setter
-    def PrognosisForm(self, value):
-        self.context.PrognosisForm = value
+    PrognosisType = ContextProperty("PrognosisType")
+    PrognosisForm = ContextProperty("PrognosisForm")
 
     def isClean(self):
         """

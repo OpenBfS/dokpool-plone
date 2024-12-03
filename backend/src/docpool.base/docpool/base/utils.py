@@ -29,9 +29,9 @@ RARELY_USED_TYPES = {
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.:+]+')
 
 
-def ContextProperty(name, skip_empty=False):
+def ContextProperty(name, default=None, skip_empty=False):
     def getter(self):
-        return getattr(self.context, name, None)
+        return getattr(self.context, name, default)
 
     def setter(self, value):
         if skip_empty and not value:

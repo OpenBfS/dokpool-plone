@@ -1,7 +1,7 @@
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.utils import ContextProperty
 from docpool.doksys import DocpoolMessageFactory as _
 from docpool.doksys.config import DOKSYS_APP
 from plone.app.z3cform.widget import SelectFieldWidget
@@ -228,222 +228,33 @@ class DoksysDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    def _get_Purpose(self):
-        return self.context.Purpose
-
-    def _set_Purpose(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Purpose = value
-
-    Purpose = property(_get_Purpose, _set_Purpose)
-
-    def _get_OperationMode(self):
-        return self.context.OperationMode
-
-    def _set_OperationMode(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.OperationMode = value
-
-    OperationMode = property(_get_OperationMode, _set_OperationMode)
-
-    def _get_NetworkOperator(self):
-        return self.context.NetworkOperator
-
-    def _set_NetworkOperator(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.NetworkOperator = value
-
-    NetworkOperator = property(_get_NetworkOperator, _set_NetworkOperator)
-
-    def _get_LegalBase(self):
-        return self.context.LegalBase
-
-    def _set_LegalBase(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.LegalBase = value
-
-    LegalBase = property(_get_LegalBase, _set_LegalBase)
-
-    def _get_MeasuringProgram(self):
-        return self.context.MeasuringProgram
-
-    def _set_MeasuringProgram(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.MeasuringProgram = value
-
-    MeasuringProgram = property(_get_MeasuringProgram, _set_MeasuringProgram)
-
-    def _get_DataType(self):
-        return self.context.DataType
-
-    def _set_DataType(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.DataType = value
-
-    DataType = property(_get_DataType, _set_DataType)
-
-    def _get_SampleType(self):
-        return self.context.SampleType
-
-    def _set_SampleType(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.SampleType = value
-
-    SampleType = property(_get_SampleType, _set_SampleType)
+    OperationMode = ContextProperty("OperationMode", skip_empty=True)
+    Purpose = ContextProperty("Purpose", skip_empty=True)
+    NetworkOperator = ContextProperty("NetworkOperator", default=[], skip_empty=True)
+    LegalBase = ContextProperty("LegalBase", default=[], skip_empty=True)
+    MeasuringProgram = ContextProperty("MeasuringProgram", skip_empty=True)
+    DataType = ContextProperty("context.DataType", default=[], skip_empty=True)
+    SampleType = ContextProperty("SampleType", default=[], skip_empty=True)
+    Dom = ContextProperty("Dom", default=[], skip_empty=True)
+    InfoType = ContextProperty("InfoType", skip_empty=True)
+    MeasurementCategory = ContextProperty(
+        "MeasurementCategory", default=[], skip_empty=True
+    )
+    Duration = ContextProperty("Duration", skip_empty=True)
+    Status = ContextProperty("Status", skip_empty=True)
+    SamplingBegin = ContextProperty("SamplingBegin", skip_empty=True)
+    SamplingEnd = ContextProperty("SamplingEnd", skip_empty=True)
+    TrajectoryStartLocation = ContextProperty(
+        "TrajectoryStartLocation", skip_empty=True
+    )
+    TrajectoryEndLocation = ContextProperty("TrajectoryEndLocation", skip_empty=True)
+    TrajectoryStartTime = ContextProperty("TrajectoryStartTime", skip_empty=True)
+    TrajectoryEndTime = ContextProperty("TrajectoryEndTime", skip_empty=True)
+    Area = ContextProperty("Area", skip_empty=True)
 
     def sample_type_display(self):
         voc = getUtility(IVocabularyFactory, "docpool.doksys.SampleType")()
         return ", ".join(voc.getTerm(i).title for i in self.SampleType)
-
-    def _get_Dom(self):
-        return self.context.Dom
-
-    def _set_Dom(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Dom = value
-
-    Dom = property(_get_Dom, _set_Dom)
-
-    def _get_InfoType(self):
-        return self.context.InfoType
-
-    def _set_InfoType(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.InfoType = value
-
-    InfoType = property(_get_InfoType, _set_InfoType)
-
-    def _get_MeasurementCategory(self):
-        return self.context.MeasurementCategory
-
-    def _set_MeasurementCategory(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.MeasurementCategory = value
-
-    MeasurementCategory = property(_get_MeasurementCategory, _set_MeasurementCategory)
-
-    def _get_Duration(self):
-        return self.context.Duration
-
-    def _set_Duration(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Duration = value
-
-    Duration = property(_get_Duration, _set_Duration)
-
-    def _get_Status(self):
-        return self.context.Status
-
-    def _set_Status(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Status = value
-
-    Status = property(_get_Status, _set_Status)
-
-    def _get_SamplingBegin(self):
-        return self.context.SamplingBegin
-
-    def _set_SamplingBegin(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.SamplingBegin = value
-
-    SamplingBegin = property(_get_SamplingBegin, _set_SamplingBegin)
-
-    def _get_SamplingEnd(self):
-        return self.context.SamplingEnd
-
-    def _set_SamplingEnd(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.SamplingEnd = value
-
-    SamplingEnd = property(_get_SamplingEnd, _set_SamplingEnd)
-
-    def _get_TrajectoryStartLocation(self):
-        return self.context.TrajectoryStartLocation
-
-    def _set_TrajectoryStartLocation(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.TrajectoryStartLocation = value
-
-    TrajectoryStartLocation = property(
-        _get_TrajectoryStartLocation, _set_TrajectoryStartLocation
-    )
-
-    def _get_TrajectoryEndLocation(self):
-        return self.context.TrajectoryEndLocation
-
-    def _set_TrajectoryEndLocation(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.TrajectoryEndLocation = value
-
-    TrajectoryEndLocation = property(
-        _get_TrajectoryEndLocation, _set_TrajectoryEndLocation
-    )
-
-    def _get_TrajectoryStartTime(self):
-        return self.context.TrajectoryStartTime
-
-    def _set_TrajectoryStartTime(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.TrajectoryStartTime = value
-
-    TrajectoryStartTime = property(_get_TrajectoryStartTime, _set_TrajectoryStartTime)
-
-    def _get_TrajectoryEndTime(self):
-        return self.context.TrajectoryEndTime
-
-    def _set_TrajectoryEndTime(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.TrajectoryEndTime = value
-
-    TrajectoryEndTime = property(_get_TrajectoryEndTime, _set_TrajectoryEndTime)
-
-    def _get_Area(self):
-        return self.context.Area
-
-    def _set_Area(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.Area = value
-
-    Area = property(_get_Area, _set_Area)
 
     def isClean(self):
         """

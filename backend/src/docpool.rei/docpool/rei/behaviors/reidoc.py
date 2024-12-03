@@ -4,6 +4,7 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.interfaces import IDPDocument
 from docpool.base.marker import IImportingMarker
+from docpool.base.utils import ContextProperty
 from docpool.base.utils import execute_under_special_role
 from docpool.rei import DocpoolMessageFactory as _
 from docpool.rei.config import REI_APP
@@ -209,53 +210,12 @@ class REIDoc(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    @property
-    def Authority(self):
-        return self.context.Authority
-
-    @Authority.setter
-    def Authority(self, value):
-        self.context.Authority = value
-
-    @property
-    def MStIDs(self):
-        return self.context.MStIDs
-
-    @MStIDs.setter
-    def MStIDs(self, value):
-        self.context.MStIDs = value
-
-    @property
-    def mstids_initial_value(self):
-        return self.context.mstids_initial_value
-
-    @mstids_initial_value.setter
-    def mstids_initial_value(self, value):
-        self.context.mstids_initial_value = value
-
-    @property
-    def ReiLegalBases(self):
-        return self.context.ReiLegalBases
-
-    @ReiLegalBases.setter
-    def ReiLegalBases(self, value):
-        self.context.ReiLegalBases = value
-
-    @property
-    def Year(self):
-        return self.context.Year
-
-    @Year.setter
-    def Year(self, value):
-        self.context.Year = value
-
-    @property
-    def Period(self):
-        return self.context.Period
-
-    @Period.setter
-    def Period(self, value):
-        self.context.Period = value
+    Authority = ContextProperty("Authority")
+    MStIDs = ContextProperty("MStIDs")
+    mstids_initial_value = ContextProperty("mstids_initial_value")
+    ReiLegalBases = ContextProperty("ReiLegalBases")
+    Year = ContextProperty("Year")
+    Period = ContextProperty("Period")
 
     @property
     def Medium(self):
@@ -267,29 +227,9 @@ class REIDoc(FlexibleView):
         if self.context.ReiLegalBases and "REI-E" in self.context.ReiLegalBases:
             self.context.Medium = value
 
-    @property
-    def NuclearInstallations(self):
-        return self.context.NuclearInstallations
-
-    @NuclearInstallations.setter
-    def NuclearInstallations(self, value):
-        self.context.NuclearInstallations = value
-
-    @property
-    def PDFVersion(self):
-        return self.context.PDFVersion
-
-    @PDFVersion.setter
-    def PDFVersion(self, value):
-        self.context.PDFVersion = value
-
-    @property
-    def Origins(self):
-        return self.context.Origins
-
-    @Origins.setter
-    def Origins(self, value):
-        self.context.Origins = value
+    NuclearInstallations = ContextProperty("NuclearInstallations")
+    PDFVersion = ContextProperty("PDFVersion")
+    Origins = ContextProperty("Origins")
 
     def isClean(self):
         """
