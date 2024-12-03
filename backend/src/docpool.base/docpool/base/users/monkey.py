@@ -1,8 +1,10 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.utils import get_content_area
 from logging import getLogger
+from plone import api
 from plone.app.users.browser import userdatapanel
 from plone.app.users.browser.register import BaseRegistrationForm
 from plone.app.users.browser.schemaeditor import getFromBaseSchema
@@ -24,6 +26,7 @@ from Products.PlonePAS.tools.groups import GroupsTool
 from zope.component import getAdapter
 from zope.component.globalregistry import provideAdapter
 from zope.component.hooks import getSite
+from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -85,12 +88,16 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
         if len(result) == 1:
             esd = result[0].getObject()
             context = esd.content
-    # print context
-    if hasattr(context, "Groups"):
-        groups = context.Groups
-        if not groups.hasObject(group_id):  # left over Group folder?
+    if context.hasObject("Groups"):
+        groups_container = context.Groups
+        if not groups_container.hasObject(group_id):  # left over Group folder?
             logger.info("Creating group folder")
-            groups.invokeFactory("GroupFolder", id=group_id, title=title)
+            gf = api.content.create(
+                container=groups_container,
+                type="GroupFolder",
+                id=group_id,
+                title=title,
+            )
         else:
             logger.info("Old group folder in the way")
             portalMessage(
@@ -99,13 +106,15 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
                 "error",
             )
             # get the new or old folder and edit it
-            gf = groups._getOb(group_id)
-            gf.setTitle(title)
-            gf.reindexObject()
-        gf = groups._getOb(group_id)  # get the new or old folder and edit it
+            gf = groups_container._getOb(group_id)
+            gf.title = title
+        dp_app_state = api.content.get_view("dp_app_state", context, getRequest())
+        local_behaviors = dp_app_state.effectiveAppsHere()
+        ILocalBehaviorSupport(gf).local_behaviors = list(local_behaviors)
         mtool = getToolByName(context, "portal_membership")
         mtool.setLocalRoles(gf, [group_id], "Owner")
         gf.update_immediately_addable_types()
+        gf.reindexObject()
     return ret
 
 
