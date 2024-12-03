@@ -1,9 +1,12 @@
 from datetime import datetime
+from elan.journal import _
 from elan.journal.browser.base import BaseView
 from elan.journal.logger import logger
 from time import time
 from zope.datetime import rfc1123_date
+from zope.i18n import translate
 from zope.publisher.browser import BrowserView
+from zope.security import checkPermission
 
 
 class RecentUpdates(BrowserView, BaseView):
@@ -100,3 +103,15 @@ class RecentUpdates(BrowserView, BaseView):
         updates = self.context.get_journalentries()
         updates = [u for u in updates if u["timestamp"] > str(time() - 60)]
         return updates
+
+    # TODO Refactor as this is a copy from updates.py
+    def can_edit_objects(self):
+        return checkPermission("cmf.ModifyPortalContent", self.context)
+
+    def can_delete_objects(self):
+        return checkPermission("zope2.DeleteObjects", self.context)
+
+    def delete_confirmation(self):
+        msg = _("Do you really want to delete this item?")
+        msg = translate(msg, "elan.journal", context=self.request)
+        return f"return confirm('{msg}')"

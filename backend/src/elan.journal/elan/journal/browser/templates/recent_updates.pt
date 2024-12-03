@@ -8,6 +8,23 @@
       <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
           tal:repeat="update view/latest_journalentries"
           tal:attributes="data-timestamp update/timestamp">
+        <div class="journalentry-helpers">
+          <a href="@@edit-journalentry"
+             class="btn btn-primary"
+             role="button"
+             tal:condition="view/can_edit_objects"
+             tal:attributes="href string:@@edit-journalentry?id=${update/id}"
+             i18n:domain="plone"
+             i18n:translate="">Edit</a>
+          <a href="@@delete-journalentry"
+             class="btn btn-danger"
+             role="button"
+             tal:condition="view/can_delete_objects"
+             tal:attributes="href string:@@delete-journalentry?id=${update/id};
+            onclick view/delete_confirmation"
+             i18n:domain="plone"
+             i18n:translate="">Delete</a>
+        </div>
         <h2 class="journalentry-title" itemprop="headline"
             tal:condition="update/title"
             tal:content="update/title" />

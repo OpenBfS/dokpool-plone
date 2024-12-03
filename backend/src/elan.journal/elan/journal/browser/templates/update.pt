@@ -87,15 +87,7 @@
           </time>
         </div>
       </article>
-<!--
-      <div class="journalentry" data-timestamp=""
-          tal:condition="not:view/has_updates"
-          tal:attributes="data-timestamp view/now">
-        <p class="journalentry-title">
-          <strong i18n:translate="">No entries yet for this Journal.</strong>
-        </p>
-      </div>
--->
+
       <tal:batchnavigation
           define="batchnavigation nocall:context/@@batchnavigation"
           replace="structure python:batchnavigation(batch)"
