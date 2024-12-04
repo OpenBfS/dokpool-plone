@@ -206,6 +206,10 @@ debug: instance/etc/zope.ini ## Run debug console
 fg: ## Start a Plone instance in debug-mode on localhost:8080
 	PYTHONWARNINGS=ignore ./bin/runwsgi -d instance/etc/zope.ini
 
+.PHONY: fg-relstorage
+fg-relstorage: ## Start a Plone instance on localhost:8080
+	PYTHONWARNINGS=ignore ./bin/runwsgi -d instance_relstorage/etc/zope.ini
+
 .PHONY: build-image
 build-image: ## Build Docker Image
 	@DOCKER_BUILDKIT=1 docker buildx build --load --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA) .
