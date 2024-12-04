@@ -8,7 +8,7 @@ services:
       mode: replicated
       replicas: 2
     environment:
-      RELSTORAGE_DSN: "dbname='dokpool' user='plone' host='postgres' password='plone'"
+      RELSTORAGE_DSN: "dbname='dokpool' user='dokpool' host='postgres' password='dokpool'"
       RELSTORAGE_CREATE_SCHEMA: "false"
     depends_on:
       postgres:
@@ -19,9 +19,9 @@ services:
     volumes:
       - dokpool-db:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: plone
-      POSTGRES_PASSWORD: plone
-      POSTGRES_DB: plone
+      POSTGRES_USER: dokpool
+      POSTGRES_PASSWORD: dokpool
+      POSTGRES_DB: dokpool
     ports:
       - "5432:5432"
 

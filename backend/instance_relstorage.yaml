@@ -16,5 +16,5 @@ default_context:
   db_storage: relstorage
   db_blob_mode: cache
   db_cache_size: 100000
-  db_relstorage_postgresql_dsn: dbname='dokpool' user='plone' host='localhost' password='plone'
+  db_relstorage_postgresql_dsn: dbname='dokpool' user='dokpool' host='localhost' password='dokpool'
   db_relstorage_keep_history: false
