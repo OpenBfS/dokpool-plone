@@ -13,6 +13,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
+from docpool.base.utils import ContextProperty
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
 from docpool.elan.behaviors.elandocument import IELANDocument
@@ -103,38 +104,9 @@ class Transferable(FlexibleView):
         self.context = context
         self.request = context.REQUEST
 
-    @property
-    def transferred_by(self):
-        return getattr(self.context, "transferred_by", None)
-
-    @transferred_by.setter
-    def transferred_by(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.transferred_by = value
-
-    @property
-    def transferred(self):
-        return getattr(self.context, "transferred", None)
-
-    @transferred.setter
-    def transferred(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.transferred = value
-
-    @property
-    def transferLog(self):
-        return getattr(self.context, "transferLog", None)
-
-    @transferLog.setter
-    def transferLog(self, value):
-        if not value:
-            return
-        context = aq_inner(self.context)
-        context.transferLog = value
+    transferred_by = ContextProperty("transferred_by", skip_empty=True)
+    transferred = ContextProperty("transferred", skip_empty=True)
+    transferLog = ContextProperty("transferLog", skip_empty=True)
 
     @property
     def sender_log(self):
