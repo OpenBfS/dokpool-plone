@@ -262,7 +262,7 @@ def updated(obj, event=None):
     # the read permissions for the sending ESD accordingly.
     log("TransferFolder updated: %s" % str(obj))
 
-    if not IArchiving(obj).is_archive():
+    if not IArchiving(obj).is_archive:
         if obj.permLevel == "read/write":
             obj.grantReadAccess()
         else:
