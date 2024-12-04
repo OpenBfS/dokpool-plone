@@ -111,6 +111,7 @@ class DocumentTypesVocabulary:
                 ("active", "active"),
                 ("inactive", "inactive"),
                 ("closed", "closed"),
+                ("none", "none"),
             ]
         )
         items.sort()

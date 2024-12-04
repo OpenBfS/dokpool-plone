@@ -7,14 +7,11 @@ from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.marker import IImportingMarker
-from docpool.base.utils import _copyPaste
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
-from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from persistent.mapping import PersistentMapping
-from plone import api
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
@@ -129,27 +126,6 @@ class DPTransferFolder(FolderBase):
                 return [dt for dt in myDts if dt[0] in theirDts]
 
         return execute_under_special_role(self, "Manager", doIt)
-
-    def ensureDocTypeInTarget(self, doctype):
-        """If my document type is unknown in the target ESD, copy it to the target.
-
-        Set it to private state.
-
-        """
-        config = self.myDocumentPool()["config"]["dtypes"]
-        if doctype.id in config:
-            return
-
-        copy_id = _copyPaste(doctype, config)
-        copy_obj = config[copy_id]
-
-        # Set intermediate category
-        copy_obj.doc_extension(ELAN_APP).setCCategory("recent")
-
-        api.content.transition(copy_obj, transition="retract")
-        copy_obj.reindexObject()
-        copy_obj.reindexObjectSecurity()
-        config.reindexObject()
 
     def getSendingESD(self):
         """ """
