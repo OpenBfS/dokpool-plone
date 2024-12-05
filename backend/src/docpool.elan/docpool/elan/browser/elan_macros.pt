@@ -49,15 +49,16 @@
 
 <metal:macro define-macro="elan_meta" i18n:domain="docpool.elan">
 
-    <span tal:define="scns elanobj/getScenarioNames|nothing" tal:condition="scns">
-        <label i18n:translate="">Belongs to scenario:</label>
-        <span tal:content="python:', '.join(scns)"/>
-    </span>
-    <div style="margin-top:3px;" tal:condition="cat" tal:define="cat elanobj/category">
-        <label i18n:translate="">Content from:</label>
-        <span tal:content="string:${item_type}" />
-        <span tal:content="python:elanobj.cat_convert()" />
-    </div>
+  <dl class="doc_metadata">
+    <tal:scns define="scns elanobj/getScenarioNames|nothing" condition="scns">
+        <dt i18n:translate="">Belongs to scenario:</dt>
+        <dd tal:content="python:', '.join(scns)" />
+    </tal:scns>
+    <tal:cat condition="cat" define="cat elanobj/category">
+        <dt i18n:translate="">Content from:</dt>
+        <dd>${item_type} ${python:elanobj.cat_convert()}</dd>
+    </tal:cat>
+  </dl>
 </metal:macro>
 
 

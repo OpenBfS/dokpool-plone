@@ -40,9 +40,21 @@
 
   .content {
     padding: 0;
+    padding-left: 1em;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+  }
+}
+
+dl.doc_metadata {
+  dt:before {
+    display: block;
+    content: "";
+  }
+  dt,
+  dd {
+    display: inline;
   }
 }
 
