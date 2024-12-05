@@ -37,6 +37,9 @@ buttons = view.dp_buttons(batch)
                 <input type="hidden" name="orig_template" value="view"/>
 
                 <div metal:use-macro="context/batch_macros/macros/navigation" />
+                <div tal:condition="not: batch"
+                     i18n:domain="plone"
+                     i18n:translate="description_no_items_in_folder"></div>
                 <div class="buttons">
                 <tal:loop tal:repeat="button buttons" tal:condition="batch">
                     <input class="context"
