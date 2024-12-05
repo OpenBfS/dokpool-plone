@@ -46,7 +46,7 @@
 
     <ul tal:attributes="class python:'navTree navTreeLevel'+str(level)"
         tal:condition="python: show_children and children and bottomLevel and level &lt; bottomLevel
-                       or is_current or is_section">
+                       or is_current or is_in_path or is_section">
         <span tal:replace="structure python:view.recurse(children=children, level=level+1, bottomLevel=bottomLevel)" />
     </ul>
     </tal:level>
