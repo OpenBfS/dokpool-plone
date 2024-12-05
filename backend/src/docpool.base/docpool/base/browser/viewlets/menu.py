@@ -46,6 +46,24 @@ class DropDownMenuStrategy(DefaultNavtreeStrategy):
 
 
 class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
+    _item_markup_template_nolink = (
+        '<li class="{id}{has_sub_class} nav-item">'
+        '<a class="state-{review_state} nav-link"{aria_haspopup}>{title}</a>{opener}'  # noqa: E 501
+        "{sub}"
+        "</li>"
+    )
+
+    @property
+    def _item_markup_template(self):
+        class Wrapped:
+            @staticmethod
+            def format(**item):
+                if item.get("url") is None:
+                    return self._item_markup_template_nolink.format(**item)
+                return common.GlobalSectionsViewlet._item_markup_template.format(**item)
+
+        return Wrapped()
+
     @property
     @memoize
     def navtree(self):
@@ -87,7 +105,6 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                 id="apps",
                 path=f"{self.navtree_path}/apps",
                 uid="apps",
-                url="",
                 title=root_title,
                 review_state="visible",
                 # item_class="applications",
@@ -139,7 +156,6 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                 id="content",
                 path=content_path,
                 uid="content",
-                url="",
                 title=utranslate("docpool.base", "Content Area", context=self.context),
                 review_state="visible",
             )
