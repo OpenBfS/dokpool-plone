@@ -90,21 +90,19 @@
 
   </table>
 
-  <div id="meta_items">
-      <div tal:define="widget python:view.widgets['EventCoordinates'];"
-          tal:condition="python:context.EventCoordinates"
-          class="field">
-          <label tal:content="widget/label" />
-          <div tal:content="structure widget/render"/>
-      </div>
+  <dl id="meta_items">
+    <tal:field define="widget python:view.widgets['EventCoordinates']"
+               condition="python:context.EventCoordinates">
+      <dt tal:content="widget/label" />
+      <dd class="field" tal:content="structure widget/render" />
+    </tal:field>
 
-      <div tal:define="widget python:view.widgets['AreaOfInterest'];"
-          tal:condition="python:context.AreaOfInterest"
-          class="field">
-          <label tal:content="widget/label" />
-          <div tal:content="structure widget/render"/>
-      </div>
-  </div>
+    <tal:field define="widget python:view.widgets['AreaOfInterest']"
+               tal:condition="python:context.AreaOfInterest">
+      <dt tal:content="widget/label" />
+      <dd class="field" tal:content="structure widget/render" />
+    </tal:field>
+  </dl>
 
     <h4 i18n:translate="">Changelog</h4>
     <table class="listing responsive table table-striped table-bordered"
