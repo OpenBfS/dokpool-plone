@@ -28,6 +28,7 @@
     margin-top: 10px;
     height: 24px !important;
     margin-bottom: 10px;
+
     &.collapsible {
       cursor: pointer;
     }
@@ -83,4 +84,24 @@ body.dpdocument-dview-commenting textarea {
 // Override eea.faceted styling
 .select2-results .select2-highlighted {
   color: #00628e !important;
+}
+
+body {
+  /* Checkbox-Styling */
+  .form-check-input {
+    border: 1px solid #4d4d4d;
+    background-color: #fff;
+    border-radius: 0.25em;
+  }
+
+  /* Checkbox hover Effekt */
+  .form-check-input:hover {
+    border-color: #007bb1;
+  }
+
+  /* Checkbox wenn angeklickt */
+  .form-check-input:checked {
+    background-color: #007bb1;
+    border-color: #007bb1;
+  }
 }
