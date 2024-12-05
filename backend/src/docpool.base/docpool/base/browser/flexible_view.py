@@ -1,14 +1,10 @@
-from Acquisition import aq_base
 from docpool.base.utils import extendOptions
 from logging import getLogger
-from plone.app.contenttypes.interfaces import IFile
 from plone.base.utils import base_hasattr
-from plone.base.utils import safe_hasattr
 from Products.Five.browser import BrowserView
 from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
-from zope.pagetemplate.interfaces import IPageTemplateSubclassing
 
 
 logger = getLogger(__name__)
@@ -67,7 +63,7 @@ class FlexibleView(BrowserView):
             ]
 
         for name in names:
-            # 1. Check for a BrowserView (usually only a registered template)
+            # Check for a BrowserView (usually only a registered template)
             view = queryMultiAdapter((document, self.request), name=name)
             if view is not None:
                 logger.debug(
@@ -89,37 +85,6 @@ class FlexibleView(BrowserView):
                 # more sane.
                 options["view"] = self
                 return view(**options)
-
-            # 2. Acquire a skin template (deprecated)
-            data = ""
-            if not doctype:
-                # to acqucire the template from
-                doctype = document
-            if safe_hasattr(doctype, name):
-                template = aq_base(getattr(doctype, name))
-                logger.info(
-                    "Rendering template %s (%s) for %r (%s)",
-                    "/".join(template._filepath.split("/")[-2:]),
-                    vtype,
-                    document,
-                    typename,
-                )
-                if IFile.providedBy(template):
-                    f = template.file.open()
-                    data = f.read()
-                elif IPageTemplateSubclassing.providedBy(template):
-                    data = template.read()
-                template = OnTheFlyTemplate(id="flexible", text=data)
-                template = template.__of__(self.context)
-                # This "view" will run with security restrictions. The code will not be
-                # able to access protected attributes and functions.
-                # Todo WTF ? We do this to bypass security stuff?
-                # BUT: code included via macros works!
-                options = extendOptions(self.context, self.request, options)
-                # Debug here
-                return template(
-                    view=self, context=self.context, request=self.request, **options
-                )
 
     def myView(self, vtype, **options):
         """
