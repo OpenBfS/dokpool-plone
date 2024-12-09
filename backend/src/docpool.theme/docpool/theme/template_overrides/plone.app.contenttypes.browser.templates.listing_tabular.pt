@@ -51,7 +51,7 @@
 
                   <thead>
                     <tr>
-                      <th class="text-nowrap"></th>
+                      <th class="text-nowrap" tal:replace="python: None"></th>
                       <th class="text-nowrap"
                           tal:repeat="field tabular_fields"
                           tal:content="python:view.tabular_field_label(field)"
@@ -86,7 +86,7 @@
 
                         <tr metal:define-macro="listitem">
 
-                          <td>
+                          <td tal:replace="python: None">
                             <tal:icon tal:condition="python: item_type == 'File'"
                                       tal:replace="structure python:icons.tag(item_mime_type_icon)"
                             />

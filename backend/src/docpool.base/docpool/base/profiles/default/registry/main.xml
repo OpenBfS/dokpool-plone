@@ -49,6 +49,9 @@
   <record name="plone.show_excluded_items">
     <value>True</value>
   </record>
+  <record name="plone.no_thumbs_tables">
+    <value>True</value>
+  </record>
   <record name="plone.image_objects">
     <value>
       <element>Image</element>
