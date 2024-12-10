@@ -39,6 +39,14 @@ services:
     ports:
       - "8080:8080"
 
+  proxy:
+    image: httpd
+    volumes:
+      - ./devops/custom_apacheconf/httpd_modified.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./devops/custom_apacheconf:/usr/local/apache2/conf/extra/:ro
+    ports:
+      - "9080:80"
+
 volumes:
   dokpool-db:
     external: false
