@@ -8,7 +8,7 @@ services:
       mode: replicated
       replicas: 2
     environment:
-      RELSTORAGE_DSN: "dbname='dokpool' user='dokpool' host='postgres' password='dokpool'"
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='postgres' password='plone'"
       RELSTORAGE_CREATE_SCHEMA: "false"
     depends_on:
       postgres:
@@ -29,15 +29,14 @@ services:
     image: varnish
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
-
     environment:
-      VARNISH_HTTP_PORT: 8080
+      VARNISH_HTTP_PORT: 8090
 
     depends_on:
       zeoclient:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "8080:8090"
 
   proxy:
     image: httpd
