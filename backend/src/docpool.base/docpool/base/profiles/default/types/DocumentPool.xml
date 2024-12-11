@@ -27,7 +27,6 @@
      <element value="plone.dublincore" />
      <element value="plone.namefromtitle" />
      <element value="plone.constraintypes" />
-     <element value="docpool.localbehavior" />
 </property>
 
  <!-- View information -->
