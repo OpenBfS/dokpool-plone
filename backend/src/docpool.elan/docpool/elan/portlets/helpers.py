@@ -34,7 +34,7 @@ class NavigationHelper(BrowserView):
         # For content we can query the catalog for DPDocuments
         if item["portal_type"] in folder_types:
             brains = api.content.find(
-                path={"query": item["path"], "depth": 1},
+                path={"query": item["path"], "depth": -1},
                 portal_type=["DPDocument"],
             )
             return len(brains) or None
