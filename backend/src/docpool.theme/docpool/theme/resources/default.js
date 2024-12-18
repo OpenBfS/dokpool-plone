@@ -47,8 +47,13 @@ jQuery(document).on("click", ".collapsible", function () {
 });
 
 // Resets filter in the Chronologie popup
+const categoriesForm = document.getElementById("categories");
+const categoriesSelect = document.getElementById("cat_select");
+
 jQuery(document).on("click", ".cat_filter #reset_filter", function () {
-  jQuery("#cat_select option").removeAttr("selected");
+  event.preventDefault();
+  categoriesSelect.value = "";
+  categoriesForm.submit();
 });
 
 $(function () {
