@@ -290,13 +290,8 @@ class DPDocument(Container, Extendable, ContentBase):
         dto = self.docTypeObj()
         if dto:
             if not raw:
-                # We only publish immediately when uploads are not allowed
-                # and if we are not in a personal folder
-                return (
-                    dto.publishImmediately
-                    and not dto.allowUploads
-                    and not is_individual(self)
-                )
+                # We only publish immediately if we are not in a personal folder
+                return dto.publishImmediately and not is_individual(self)
             else:
                 return dto.publishImmediately
         else:
