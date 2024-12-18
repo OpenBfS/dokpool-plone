@@ -39,6 +39,7 @@ class WorkflowActionView(BrowserView):
 
     def __call__(self):
         form = self.request.form
+        portal = api.portal.get()
         self.pworkflow = getToolByName(self.context, "portal_workflow")
         self.putils = getToolByName(self.context, "plone_utils")
         self.transition_id = form.get("transition", None)
@@ -50,8 +51,9 @@ class WorkflowActionView(BrowserView):
         # the folder_listing passes paths
         paths = self.request.get("paths", [])
         for path in paths:
-            obj = api.content.get(path=path)
-            if not obj:
+            # We use unrestrictedTraverse because the user may not have access to all parents
+            obj = portal.unrestrictedTraverse(path)
+            if not obj or not api.user.has_permission("View", obj=obj):
                 continue
             item = {
                 "title": obj.title,

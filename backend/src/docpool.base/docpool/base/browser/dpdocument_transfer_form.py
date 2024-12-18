@@ -33,13 +33,15 @@ class TransferForm(BrowserView):
     def transfer_infos(self):
         targets = []
         items = []
+        portal = api.portal.get()
         # the folder_listing passes paths
         paths = self.request.get("paths", [])
         if not paths and self.dpdocids:
             # handle individual transfer
             paths = self.dpdocids
         for path in paths:
-            obj = api.content.get(path=path)
+            # We use unrestrictedTraverse because the user may not have access to all parents
+            obj = portal.unrestrictedTraverse(path)
             if not obj:
                 continue
             try:

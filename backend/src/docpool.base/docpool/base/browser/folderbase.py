@@ -162,8 +162,10 @@ class FolderDeleteForm(form.Form, FolderAction):
 
     def more_info(self):
         """Render linkintegrity-info for all items that are to be deleted."""
+        portal = api.portal.get()
         paths = self.request.get("paths", [])
-        objects = [api.content.get(path=str(path)) for path in paths]
+        # We use unrestrictedTraverse because the user may not have access to all parents
+        objects = [portal.unrestrictedTraverse(path) for path in paths]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if not objects:
             return self.redirect_info(_("No items to delete."))
