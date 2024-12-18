@@ -42,13 +42,13 @@ def email_as_username(self):
 
 def applyProperties(self, userid, data):
     # Set the current docpool reference to the data
-    if base_hasattr(self.context, "myDocumentPool"):
-        dp = self.context
-        prefix = dp.prefix or dp.id
-        data["dp"] = dp.UID()
-        data["groups"].append(f"{prefix}_Members")
+    if data["dp"]:
+        dp = api.content.get(UID=data["dp"])
+        if dp:
+            prefix = dp.prefix or dp.id
+            data["groups"].append(f"{prefix}_Members")
 
-        BaseRegistrationForm._old_applyProperties(self, userid, data)
+    BaseRegistrationForm._old_applyProperties(self, userid, data)
 
 
 def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args, **kw):
