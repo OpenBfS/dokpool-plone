@@ -52,6 +52,7 @@ class UserDataPanelExtender(extensible.FormExtender):
         fields = field.Fields(IEnhancedUserDataSchema)
         self.add(fields)
         self.form.fields["email"].field.required = False
+        self.form.fields["dp"].field.readonly = False
 
 
 @adapter(Interface, IDocpoolBaseLayer, RegistrationForm)
@@ -68,3 +69,5 @@ class AddUserFormExtender(extensible.FormExtender):
         fields = field.Fields(IEnhancedUserDataSchema)
         self.add(fields)
         self.form.fields["email"].field.required = False
+        if self.context.portal_type == "DocumentPool":
+            self.form.fields["dp"].field.readonly = True
