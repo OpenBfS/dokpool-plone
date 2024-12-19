@@ -8,7 +8,6 @@
 <?python
 # Work around Unauthorized Errors in Plone 6
 from Products.CMFPlone import Batch
-import os
 from plone.batching.interfaces import IBatch
 request = econtext["request"]
 view = econtext["view"]
@@ -98,7 +97,7 @@ buttons = view.dp_buttons(batch)
                     </thead>
 
                     <tbody>
-                    <tal:items tal:repeat="dpbrain batch">
+                    <tal:items tal:repeat="dpbrain python:batch">
                         <span tal:condition="python: dpbrain.is_folderish">
                         <tr tal:define="item_id dpbrain/id|dpbrain/getId;
                                    item_obj dpbrain/getObject|nothing;
