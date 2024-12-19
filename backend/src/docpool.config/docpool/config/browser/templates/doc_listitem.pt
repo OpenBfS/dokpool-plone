@@ -17,7 +17,7 @@
                  myfolder_url nocall:options/myfolder_url;
                  item_description dpbrain/Description;
                  dview_url python:'%s/@@dview?d=%s&disable_border=1' % (myfolder_url, euid);
-                 use_dview python:container_type == 'Collection' or isCollection;
+                 use_dview python:container_type in ['Collection', 'ELANDocCollection', 'DashboardCollection'] or isCollection;
                  item_url python:dview_url if use_dview else dpbrain.getURL(original=True);
                  item_url python:eurl if isOverview else item_url;
                  item_modified dpbrain/getMdate;
