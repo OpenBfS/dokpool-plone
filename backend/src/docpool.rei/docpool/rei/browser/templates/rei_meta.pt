@@ -31,8 +31,8 @@
         <br>
 
         <label i18n:translate="label_rei_Origins">Origins</label>:
-        <span tal:condition="python:hasattr(reiobj,'Origins')">
-           <tal:var replace="python: ', '.join(reiobj.Origins)"/>
+        <span tal:condition="python:hasattr(reiobj, 'Origins')">
+           <tal:var replace="python: reiobj.origins_display()"/>
         </span><br>
 
         <label i18n:translate="label_rei_MStIDs">MStIDs</label>:

@@ -263,6 +263,12 @@ class REIDoc(FlexibleView):
     def sampling_stop_localized(self):
         return api.portal.get_localized_time(self.StopSampling)
 
+    def origins_display(self):
+        voc = getUtility(
+            IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary"
+        )()
+        return ", ".join(voc.getTerm(i).title for i in getattr(self, "Origins", []))
+
     def mstids_display(self):
         voc = getUtility(
             IVocabularyFactory, "docpool.rei.vocabularies.MStIDVocabulary"
