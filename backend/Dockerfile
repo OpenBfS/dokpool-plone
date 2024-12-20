@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.0.13
+ARG PLONE_VERSION=6.0.14
 
 # Stage to only build the theme
 FROM node:20-slim as node
