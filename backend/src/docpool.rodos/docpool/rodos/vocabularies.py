@@ -1,5 +1,4 @@
 from docpool.rodos import DocpoolMessageFactory as _
-from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -35,11 +34,12 @@ class PrognosisFormsVocabulary:
     """ """
 
     def __call__(self, context):
-        return safe_simplevocabulary_from_values(
-            [
-                "Routinerechnung",
-                "Einzelrechnung",
-            ]
+        values = [
+            ("Routinerechnung", _("Routinerechnung")),
+            ("Einzelrechnung", _("Einzelrechnung")),
+        ]
+        return SimpleVocabulary(
+            [SimpleTerm(value, value, title) for value, title in values]
         )
 
 
