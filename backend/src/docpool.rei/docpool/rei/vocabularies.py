@@ -1,6 +1,5 @@
 from AccessControl.SecurityInfo import allow_module
 from datetime import date
-from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -44,11 +43,12 @@ class ReiLegalBaseVocabulary:
     """ """
 
     def __call__(self, context=None):
-        return safe_simplevocabulary_from_values(
-            [
-                "REI-E",
-                "REI-I",
-            ]
+        values = [
+            "REI-E",
+            "REI-I",
+        ]
+        return SimpleVocabulary(
+            [SimpleTerm(value=value, token=value, title=value) for value in values]
         )
 
 
@@ -60,12 +60,13 @@ class MediumVocabulary:
     """ """
 
     def __call__(self, context=None):
-        return safe_simplevocabulary_from_values(
-            [
-                "Fortluft",
-                "Abwasser",
-                "Abwasser/Fortluft",
-            ]
+        values = [
+            "Fortluft",
+            "Abwasser",
+            "Abwasser/Fortluft",
+        ]
+        return SimpleVocabulary(
+            [SimpleTerm(value=value, token=value, title=value) for value in values]
         )
 
 
@@ -110,18 +111,19 @@ class PDFVersionVocabulary:
     """ """
 
     def __call__(self, context=None):
-        return safe_simplevocabulary_from_values(
-            [
-                "keine Angabe",
-                "PDF/A-1b",
-                "PDF/A-1a",
-                "PDF/A-2a",
-                "PDF/A-2b",
-                "PDF/A-2u",
-                "PDF/A-3a",
-                "PDF/A-3b",
-                "PDF/A-3u",
-            ]
+        values = [
+            "keine Angabe",
+            "PDF/A-1b",
+            "PDF/A-1a",
+            "PDF/A-2a",
+            "PDF/A-2b",
+            "PDF/A-2u",
+            "PDF/A-3a",
+            "PDF/A-3b",
+            "PDF/A-3u",
+        ]
+        return SimpleVocabulary(
+            [SimpleTerm(value=value, token=value, title=value) for value in values]
         )
 
 
@@ -298,16 +300,21 @@ class OriginVocabulary:
     """ """
 
     def __call__(self, context=None):
-        items = [
-            "Strahlenschutzverantwortlicher",
-            "unabhängige Messstelle",
+        values = [
+            ("Strahlenschutzverantwortlicher", "Strahlenschutzverantwortlicher"),
+            ("unabhaengige Messstelle", "unabhängige Messstelle"),
         ]
         # Already existing Reports that have the now obsolete value "Genehmigungsinhaber"
         # need to find that in the vocabulary as well.
         origins = getattr(context, "Origins", []) or []
         if "Genehmigungsinhaber" in origins:
-            items.append("Genehmigungsinhaber")
-        return safe_simplevocabulary_from_values(items)
+            values.append(("Genehmigungsinhaber", "Genehmigungsinhaber"))
+        return SimpleVocabulary(
+            [
+                SimpleTerm(value=value, token=value, title=title)
+                for value, title in values
+            ]
+        )
 
 
 OriginVocabularyFactory = OriginVocabulary()

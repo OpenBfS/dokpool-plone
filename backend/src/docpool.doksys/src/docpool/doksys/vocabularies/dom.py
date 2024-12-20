@@ -1,6 +1,7 @@
-from plone.app.vocabularies.terms import safe_simplevocabulary_from_values
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
@@ -359,7 +360,9 @@ class Dom:
             "968 ___therm. power_3 months",
             "969 ___therm. power_1 year",
         ]
-        return safe_simplevocabulary_from_values(values)
+        return SimpleVocabulary(
+            [SimpleTerm(value=value, token=value, title=value) for value in values]
+        )
 
 
 DomFactory = Dom()
