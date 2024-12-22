@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2024-11-28 09:04+0000\n"
-"PO-Revision-Date: 2019-02-08 08:11+0100\n"
+"POT-Creation-Date: 2024-12-22 20:45+0000\n"
+"PO-Revision-Date: 2024-12-22 21:45+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -236,7 +236,9 @@ msgstr "Unterstützung für Anwendungen"
 msgid "Makes documents transferable between pools"
 msgstr "Macht Dokumente übertragbar zwischen Dokpools"
 
+#: docpool.base/docpool/base/browser/collectionlistitem.pt
 #: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt
 msgid "Metadata"
 msgstr "Metadaten"
 
@@ -444,7 +446,9 @@ msgstr "Es gibt Kommentare."
 msgid "There was an existing group folder of the same name. Please check!"
 msgstr "Es gibt bereits einen Gruppenordner desselben Namens. Bitte prüfen!"
 
+#: docpool.base/docpool/base/browser/collectionlistitem.pt
 #: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt
 msgid "Title / Description / Text"
 msgstr "Titel / Kurzbeschreibung / Text"
 

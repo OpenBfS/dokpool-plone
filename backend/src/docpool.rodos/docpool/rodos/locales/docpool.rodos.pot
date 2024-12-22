@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-11-28 09:04+0000\n"
+"POT-Creation-Date: 2024-12-22 20:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,10 @@ msgstr ""
 
 #: docpool.rodos/docpool/rodos/vocabularies.py
 msgid "DWD Ausbreitungsrechnung ab Quelle"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Einzelrechnung"
 msgstr ""
 
 #: docpool.rodos/docpool/rodos/vocabularies.py
@@ -69,6 +73,10 @@ msgstr ""
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "RodosDoc"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Routinerechnung"
 msgstr ""
 
 #: docpool.rodos/docpool/rodos/vocabularies.py
