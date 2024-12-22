@@ -364,14 +364,6 @@ class Transferable(FlexibleView):
                 if dstate == "published" and perm == "confirm":
                     api.content.transition(self.context, "retract")
 
-            elanobj = IELANDocument(self.context, None)
-            if elanobj and elanobj.unknownScenario():
-                # Documents with unknown scenarios must be private
-                try:
-                    api.content.transition(self.context, "retract")
-                except BaseException:
-                    pass
-
 
 @adapter(IDPDocument, IActionSucceededEvent)
 def automatic_transfer_on_publish(obj, event=None):
