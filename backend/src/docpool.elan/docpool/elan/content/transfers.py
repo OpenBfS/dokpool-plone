@@ -37,7 +37,6 @@ def ensureScenariosInTarget(original, copy):
         copy.doc_extension(ELAN_APP).scenarios = [e.UID() for e in copy_events]
     except Exception as e:
         log_exc(e)
-    copy.reindexObject()
 
     return [e.getId() for e in copy_events]
 
