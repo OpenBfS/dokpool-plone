@@ -18,7 +18,7 @@ class TransferForm(BrowserView):
             return self.index()
 
         for dpdocid in dpdocids:
-            doc = self.context._getOb(dpdocid)
+            doc = self.context._getOb(dpdocid.split("/")[-1])
             dpdoc = doc.doc_extension(TRANSFERS_APP)
             dpdoc.transferToTargets(targets)
             log(f'Transfer "{doc.title}" to transfer folders {targets}')

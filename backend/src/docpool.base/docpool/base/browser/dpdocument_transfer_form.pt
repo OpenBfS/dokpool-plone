@@ -54,7 +54,7 @@
         </table>
 
         <tal:block tal:repeat="item items">
-          <input type="hidden" name="dpdocids:list" value="1" tal:attributes="value python:item.id" />
+          <input type="hidden" name="dpdocids:list" value="1" tal:attributes="value python:item.absolute_url_path()" />
         </tal:block>
 
         <div class="formControls" i18n:domain="plone">
