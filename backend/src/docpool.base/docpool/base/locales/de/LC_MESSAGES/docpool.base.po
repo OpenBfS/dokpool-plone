@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2024-12-22 20:45+0000\n"
-"PO-Revision-Date: 2024-12-22 21:45+0100\n"
+"POT-Creation-Date: 2024-12-22 20:52+0000\n"
+"PO-Revision-Date: 2024-12-22 21:57+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "Einfügen nicht erlaubt."
 
 #: docpool.base/docpool/base/behaviors/transferable.py
 msgid "Doc type not accepted."
-msgstr ""
+msgstr "Dokumententyp wurde nicht akzeptiert."
 
 #: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
 msgid "Docpool Configuration Area"
@@ -108,7 +108,7 @@ msgstr "Dokumenttypen"
 
 #: docpool.base/docpool/base/behaviors/transferable.py
 msgid "Document has no scenario."
-msgstr "Dokument hat kein Ereignis zugeordnet"
+msgstr "Dem Dokument ist kein Ereignis zugeordnet."
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
@@ -275,8 +275,8 @@ msgid "No map image"
 msgstr "Kein Kartenbild vorhanden"
 
 #: docpool.base/docpool/base/behaviors/transferable.py
-msgid "No transfer to"
-msgstr "Keine Übertragung zu"
+msgid "No transfer to ${title}. ${msg}"
+msgstr "Keine Übertragung zu ${title}. ${msg}"
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "One or more items not moveable."
@@ -500,7 +500,7 @@ msgstr "Unbekannter Fehler. Bitte prüfen Sie das Log."
 
 #: docpool.base/docpool/base/behaviors/transferable.py
 msgid "Unknown scenario not accepted."
-msgstr "Unbekanntes Ereignis wurde nicht akzeptiert"
+msgstr "Unbekanntes Ereignis wurde nicht akzeptiert."
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"

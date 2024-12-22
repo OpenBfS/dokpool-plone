@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-12-22 20:45+0000\n"
+"POT-Creation-Date: 2024-12-22 20:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -276,7 +276,7 @@ msgid "No map image"
 msgstr ""
 
 #: docpool.base/docpool/base/behaviors/transferable.py
-msgid "No transfer to"
+msgid "No transfer to ${title}. ${msg}"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.py

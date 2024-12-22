@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2024-12-22 20:45+0000\n"
+"POT-Creation-Date: 2024-12-22 20:52+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -275,7 +275,7 @@ msgid "No map image"
 msgstr ""
 
 #: docpool.base/docpool/base/behaviors/transferable.py
-msgid "No transfer to"
+msgid "No transfer to ${title}. ${msg}"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.py
