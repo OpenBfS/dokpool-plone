@@ -58,7 +58,7 @@ msgstr "Ein oder mehr Objekte kopieren oder ausschneiden, um sie einzufügen."
 
 #: docpool.base/docpool/base/browser/dpdocument_transition_form.py
 msgid "Could not transition: ${title}"
-msgstr "Konnte Statuswchsel nicht durchführen: ${title}"
+msgstr "Konnte Statuswechsel nicht durchführen: ${title}"
 
 #: docpool.base/docpool/base/browser/review_history.py
 msgid "Create"
