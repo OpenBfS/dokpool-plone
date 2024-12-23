@@ -36,6 +36,7 @@
      <element value="plone.namefromtitle" />
      <element value="plone.textindexer" />
      <element value="plone.excludefromnavigation" />
+     <element value="docpool.localbehavior" />
 </property>
 
  <!-- View information -->
