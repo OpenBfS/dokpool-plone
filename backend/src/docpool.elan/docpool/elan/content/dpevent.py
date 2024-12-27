@@ -586,7 +586,7 @@ class DPEvent(Container, ContentBase):
             journal_id = f"journal{str(index)}"
             # Skip if it already exists
             if self.get(journal_id):
-                pass
+                continue
             journal = api.content.create(
                 container=self,
                 type="Journal",
