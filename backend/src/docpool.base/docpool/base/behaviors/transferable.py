@@ -309,14 +309,17 @@ class Transferable(FlexibleView):
 
                 # 5) Make sure document type and scenarios exist in the target ESD and
                 #    are in a suitable state.
-                transfer_folder.ensureDocTypeInTarget(dto)
+                private = False
+                if not my_copy.docTypeObj():
+                    my_copy.docType = "none"
+                    private = True
 
                 if elanobj:
                     copy_scenario_ids = ensureScenariosInTarget(self.context, my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
                 transfer_copy = ITransferable(my_copy)
-                transfer_copy.ensureState()
+                transfer_copy.ensureState(private)
                 my_copy.reindexObject()
 
                 # 7) Add entry to receiver log.
@@ -337,14 +340,22 @@ class Transferable(FlexibleView):
 
         execute_under_special_role(self.context, "Manager", doIt)
 
-    def ensureState(self):
+    def ensureState(self, private=False):
         """Put a transferred object in a state corresponding to the doctype permission.
 
         If there is no restriction on the transfer folder (permission is 'publish'),
         make sure workflow state of the copy is private if permission is 'needs
         confirmation' but public if it is 'publish'.
 
+        Allow override if there is a reason to make sure the document is private under
+        any condition.
+
         """
+        if private:
+            if api.content.get_state(self.context) != "private":
+                api.content.transition(self.context, "retract")
+            return
+
         if self.transferred:
             tf = self.context.myDPTransferFolder()
             dtObj = self.context.docTypeObj()
