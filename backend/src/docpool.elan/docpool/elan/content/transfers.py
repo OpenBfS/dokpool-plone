@@ -6,11 +6,14 @@ from Products.CMFPlone.utils import log_exc
 
 
 def ensureScenariosInTarget(original, copy):
-    """If original's scenarios are unknown in the target ESD, copy them to the target.
+    """Handle scenario assignments on document transfer.
 
-    Set them to private state. For those with an equivalent scenario in the target that
-    is in private state, check if it defines a published substitute scenario. If it
-    does, change the scenario for the copy to that one.
+    For each scenario assigned to the original, try to identify a scenario at the target
+    ESD, matching by object id. Copy unmatched scenarios to target ESD.
+
+    According to #5872, make sure copied scenarios are in published state. For each
+    existing equivalent scenario in the target that is in private state, if it defines
+    a published substitute scenario, replace it with that.
 
     """
     my_scenarios = original.doc_extension(ELAN_APP).scenarios
@@ -29,7 +32,8 @@ def ensureScenariosInTarget(original, copy):
             orig_event = orig_brain.getObject()
             copy_id = _copyPaste(orig_event, scen)
             copy_event = scen[copy_id]
-            api.content.transition(copy_event, "retract")
+            if api.content.get_state(copy_event) == "private":
+                api.content.transition(copy_event, "publish")
 
         copy_events.append(copy_event)
 
@@ -37,7 +41,6 @@ def ensureScenariosInTarget(original, copy):
         copy.doc_extension(ELAN_APP).scenarios = [e.UID() for e in copy_events]
     except Exception as e:
         log_exc(e)
-    copy.reindexObject()
 
     return [e.getId() for e in copy_events]
 
