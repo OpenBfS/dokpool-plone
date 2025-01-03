@@ -13,7 +13,7 @@ class DPFactoriesMenu(FactoriesMenu):
     def getMenuItems(self, obj, request):
         """Safely get menu items"""
         if IArchiving(obj).is_archive:
-            return
+            return []
         menu_items = super().getMenuItems(obj, request)
 
         if not api.user.has_permission("Docpool: Manage Addable Types", obj=obj):
