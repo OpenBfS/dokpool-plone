@@ -417,8 +417,14 @@ class DPEvent(Container, ContentBase):
 
         # 5. and copy the local roles
         if not isTransfer:
-            mtool = api.portal.get_tool("portal_membership")
-            mtool.setLocalRoles(new, [foldername], "Owner", reindex=False)
+            localroles = getattr(old_parent, "__ac_local_roles__", [])
+            if localroles:
+                for userid in localroles:
+                    new.manage_setLocalRoles(userid=userid, roles=localroles[userid])
+            block = getattr(old_parent, "__ac_local_roles_block__", False)
+            if block:
+                new.__ac_local_roles_block__ = block
+
         return new
 
     def can_move(self, obj):
