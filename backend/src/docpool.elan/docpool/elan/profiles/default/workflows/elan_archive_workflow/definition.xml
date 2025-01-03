@@ -108,7 +108,6 @@
   <description>Puts your item in a review queue, so it can be published on the site.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit for publication</action>
   <guard>
-   <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
    <guard-role>Site Administrator</guard-role>
   </guard>
