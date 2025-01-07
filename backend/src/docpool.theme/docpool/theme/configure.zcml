@@ -50,4 +50,9 @@
       layer=".interfaces.ICustomTheme"
       />
 
+  <adapter
+      factory=".layout.DocpoolBodyClasses"
+      for="* *"
+      />
+
 </configure>

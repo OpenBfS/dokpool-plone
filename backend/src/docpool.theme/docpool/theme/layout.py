@@ -1,26 +1,19 @@
-""" Override the default Plone layout utility.
-"""
 from docpool.base.content.dpdocument import IDPDocument
 from plone import api
-from plone.app.layout.globals import layout as base
+from plone.app.layout.globals.interfaces import IBodyClassAdapter
+from zope.interface import implementer
 
 
-class LayoutPolicy(base.LayoutPolicy):
-    """
-    Enhanced layout policy helper.
+@implementer(IBodyClassAdapter)
+class DocpoolBodyClasses:
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
 
-    Extend the Plone standard class to have some more <body> CSS classes
-    based on the current context.
-    """
-
-    def bodyClass(self, template, view):
-        """Returns the CSS class to be used on the body tag."""
-
-        # Get content parent
-        body_class = base.LayoutPolicy.bodyClass(self, template, view)
-
+    def get_classes(self, template, view):
+        """Custom body classes adapter."""
+        body_classes = []
         if IDPDocument.providedBy(self.context):
             state = api.content.get_state(obj=self.context)
-            return body_class + " docstate-" + state
-        else:
-            return body_class
+            body_classes.append("docstate-" + state)
+        return body_classes
