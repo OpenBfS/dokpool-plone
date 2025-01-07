@@ -308,8 +308,7 @@ dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', dom
           <span tal:define="files context/getFiles" tal:condition="python: files">
             <label i18n:translate="">Files:</label>
             <ul tal:define="multiple_files python:len(files) > 1">
-             <span tal:repeat="d files">
-              <li><a href="" target="_blank" tal:attributes="href python:d.absolute_url()"
+              <li tal:repeat="d files"><a href="" target="_blank" tal:attributes="href python:d.absolute_url()"
                      tal:content="structure python:d.title_or_id()">documents</a>
 <?python
 from Products.CMFPlone.utils import human_readable_size
@@ -351,7 +350,6 @@ quoted_id = quote_plus(econtext["d"].getId());
                    </tal:block>
               </tal:if>
               </li>
-             </span>
             </ul>
           </span>
 </metal:macro>
