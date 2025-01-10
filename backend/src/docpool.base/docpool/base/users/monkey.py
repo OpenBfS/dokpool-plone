@@ -15,6 +15,7 @@ from plone.base.interfaces import ISecuritySchema
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups import (
@@ -23,7 +24,10 @@ from Products.CMFPlone.controlpanel.browser.usergroups import (
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import normalizeString
 from Products.PlonePAS.tools.groups import GroupsTool
+from zExceptions import BadRequest
+from zExceptions import Forbidden
 from zope.component import getAdapter
+from zope.component import getUtility
 from zope.component.globalregistry import provideAdapter
 from zope.component.hooks import getSite
 from zope.globalrequest import getRequest
@@ -216,3 +220,85 @@ GroupIdVocabulary.__call__ = getGroupIds
 def __csrfinit__(self, context, request):
     alsoProvides(request, IDisableCSRFProtection)
     UsersGroupsControlPanelView.__init__(self, context, request)
+
+
+def patched_deleteMembers(self, member_ids):
+    # Dokpool patch: do not reindex allowedRolesAndUsers https://redmine-koala.bfs.de/issues/5855
+
+    # this method exists to bypass the 'Manage Users' permission check
+    # in the CMF member tool's version
+    context = aq_inner(self.context)
+    mtool = getToolByName(self.context, "portal_membership")
+
+    # Delete members in acl_users.
+    acl_users = context.acl_users
+    if isinstance(member_ids, str):
+        member_ids = (member_ids,)
+    member_ids = list(member_ids)
+    for member_id in member_ids[:]:
+        member = mtool.getMemberById(member_id)
+        if member is None:
+            member_ids.remove(member_id)
+        else:
+            if not member.canDelete():
+                raise Forbidden
+            if "Manager" in member.getRoles() and not self.is_zope_manager:
+                raise Forbidden
+    try:
+        acl_users.userFolderDelUsers(member_ids)
+    except (AttributeError, NotImplementedError):
+        raise NotImplementedError(
+            "The underlying User Folder " "doesn't support deleting members."
+        )
+
+    # Delete member data in portal_memberdata.
+    mdtool = getToolByName(context, "portal_memberdata", None)
+    if mdtool is not None:
+        for member_id in member_ids:
+            mdtool.deleteMemberData(member_id)
+
+    # Delete members' local roles.
+    # Dokpool patch: do not reindex allowedRolesAndUsers
+    mtool.deleteLocalRoles(getUtility(ISiteRoot), member_ids, reindex=0, recursive=1)
+
+
+FALSE_VALUES = (0, "0", False, "false", "no")
+
+
+def patched_usersdelete_reply(self):
+    # Dokpool patch: do not reindex allowedRolesAndUsers https://redmine-koala.bfs.de/issues/5855
+    user = self._get_user(self._get_user_id)
+    if not user:
+        return self.reply_no_content(status=404)
+    if not self.is_zope_manager:
+        current_roles = user.getRoles()
+        if "Manager" in current_roles:
+            raise BadRequest(
+                "You don't have permission to delete a user with 'Manager' role."
+            )
+
+    delete_memberareas = (
+        self.request.get("delete_memberareas", True) not in FALSE_VALUES
+    )
+
+    delete_localroles = self.request.get("delete_localroles", True) not in FALSE_VALUES
+
+    try:
+        self.acl_users.userFolderDelUsers((self._get_user_id,))
+    except (AttributeError, NotImplementedError):
+        return self.reply_no_content(status=404)
+
+    if delete_memberareas:
+        # Delete member data in portal_memberdata.
+        mdtool = getToolByName(self.context, "portal_memberdata", None)
+        if mdtool is not None:
+            mdtool.deleteMemberData(self._get_user_id)
+
+    if delete_localroles:
+        # Delete members' local roles.
+        # Dokpool patch: do not reindex allowedRolesAndUsers
+        self.portal_membership.deleteLocalRoles(
+            getUtility(ISiteRoot), (self._get_user_id,), reindex=0, recursive=1
+        )
+
+    return self.reply_no_content()

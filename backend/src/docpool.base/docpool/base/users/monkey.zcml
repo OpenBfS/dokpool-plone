@@ -50,4 +50,22 @@
       preserveOriginal="false"
       />
 
+  <monkey:patch
+      description="Do not reindex security after deleting local roles"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
+      original="deleteMembers"
+      replacement=".monkey.patched_deleteMembers"
+      docstringWarning="false"
+      preservedoc="false"
+      />
+
+  <monkey:patch
+      description="Do not reindex security after deleting local roles with restapi"
+      class="plone.restapi.services.users.delete.UsersDelete"
+      original="reply"
+      replacement=".monkey.patched_usersdelete_reply"
+      docstringWarning="false"
+      preservedoc="false"
+      />
+
 </configure>
