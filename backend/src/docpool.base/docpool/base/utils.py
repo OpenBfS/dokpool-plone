@@ -151,18 +151,22 @@ def getGroupsForCurrentUser(obj):
 
 def deleteMemberFolders(self, member_ids):
     """ """
-    for mid in member_ids:
+    for member_id in member_ids:
+        member_id = member_id.replace("-", "--")
         try:
+            # Delete MemberFoder from docpool
             members = self.content.Members
-            members.manage_delObjects([mid.replace("-", "--")])
+            if members.hasObject(member_id):
+                members.manage_delObjects([member_id])
         except Exception as e:
             log_exc(e)
-            try:
-                self.portal_membership.getMembersFolder().manage_delObjects(
-                    [mid.replace("-", "--")]
-                )
-            except Exception as e:
-                log_exc(e)
+        try:
+            # Delete MemberFoder from portal
+            members_folder = self.portal_membership.getMembersFolder()
+            if members_folder.hasObject(member_id):
+                members_folder.manage_delObjects([member_id])
+        except Exception as e:
+            log_exc(e)
 
 
 def getUserInfo(self, username=None):
