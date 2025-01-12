@@ -241,7 +241,7 @@ def getFoldersForCurrentUser(context):
     if not content_area:
         return
 
-    groups = getGroupsForCurrentUser(content_area)
+    groups = getGroupsForCurrentUser(content_area, sort_on="getObjPositionInParent")
     if not groups:  # User is reader only
         return
 
