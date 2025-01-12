@@ -247,17 +247,15 @@ def getFoldersForCurrentUser(context):
 
     groups_folder = content_area["Groups"]
     groups_folder_path = "/".join(groups_folder.getPhysicalPath())
-    has_group = False
+    # ELAN groups which can produce documents
+    elan_groups = [group["id"] for group in groups if group["etypes"]]
     group_result = []
-    for group in groups:
-        if group["etypes"]:
-            # Group is ELAN group which can produce documents
-            has_group = True
-            if groups_folder.get(group["id"]):
-                gft = _folderTree(context, f"{groups_folder_path}/{group['id']}")
-                if "show_children" in gft:
-                    gft["item_class"] = "personal"
-                    group_result.append(gft)
+    for group_id in elan_groups:
+        if groups_folder.get(group_id):
+            gft = _folderTree(context, f"{groups_folder_path}/{group_id}")
+            if "show_children" in gft:
+                gft["item_class"] = "personal"
+                group_result.append(gft)
 
     # show personal folder unless we're in elan or rei
     dp_app_state = getMultiAdapter((context, getRequest()), name="dp_app_state")
@@ -275,7 +273,7 @@ def getFoldersForCurrentUser(context):
             member_tree["item_class"] = "personal"
             member_result = [member_tree]
 
-    if has_group and not group_result:
+    if elan_groups and not group_result:
         # If the groups are not navigable (i.e. in archive): only member folder
         return member_result
 
