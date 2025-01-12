@@ -1,10 +1,12 @@
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import activateAppFilter
 from docpool.base.utils import get_docpool_for_user
 from docpool.base.utils import is_admin
 from docpool.base.utils import is_contentadmin
 from docpool.base.utils import is_individual
 from docpool.base.utils import is_personal
+from docpool.base.utils import is_rei_workflow
 from docpool.base.utils import setApplicationsForCurrentUser
 from pkg_resources import get_distribution
 from plone import api
@@ -104,6 +106,13 @@ class Is(BrowserView):
 
     def personal(self):
         return is_personal(self.context)
+
+    def rei_workflow(self):
+        # rei workflow is only possible on dpdocument
+        if IDPDocument.providedBy(self.context):
+            return is_rei_workflow(self.context)
+        else:
+            log.info("Rei WF only possible on dpdocument")
 
 
 class ChangeState(BrowserView):

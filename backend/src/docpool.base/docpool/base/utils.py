@@ -26,6 +26,11 @@ RARELY_USED_TYPES = {
     "PrivateFolder",
 }
 
+REI_workflows = {
+    "rei_review_workflow_alternative",
+    "rei_review_workflow_standard",
+}
+
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.:+]+')
 
 
@@ -418,6 +423,12 @@ def is_individual(context):
 
 def is_personal(context):
     return "content" in context.getPhysicalPath() and context.getId() != "content"
+
+
+def is_rei_workflow(context):
+    wf_tool = api.portal.get_tool("portal_workflow")
+    workflow = wf_tool.getWorkflowsFor(context)[0]
+    return workflow.id in REI_workflows
 
 
 def get_docpool_for_user(user=None):

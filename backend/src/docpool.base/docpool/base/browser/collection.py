@@ -1,5 +1,6 @@
 from docpool.base.browser.folderbase import FolderBaseView
 from docpool.base.utils import extendOptions
+from docpool.base.utils import is_rei_workflow
 from plone import api
 from plone.app.contenttypes.browser.collection import CollectionView as BaseView
 from Products.CMFCore.utils import getToolByName
@@ -63,14 +64,7 @@ class CollectionDocView(BrowserView):
             return view()
 
     def _translation_domain(self, doc):
-        actionhelpers = api.content.get_view(
-            name="actionhelpers",
-            context=doc,
-            request=self.request,
-        )
-        if actionhelpers.is_rei_workflow(doc):
-            return "docpool.rei"
-        return "docpool.base"
+        return "docpool.rei" if is_rei_workflow(doc) else "docpool.base"
 
     def translate_wf_action(self, doc, wf_action):
         translation_domain = self._translation_domain(doc)

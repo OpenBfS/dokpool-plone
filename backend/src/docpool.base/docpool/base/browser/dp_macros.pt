@@ -219,15 +219,14 @@ size = human_readable_size(size)
 
 <metal:macro define-macro="doccontent"
     tal:define="auth_token context/@@authenticator/token;
-                portal context/@@plone_portal_state/portal;
-                actionhelpers portal/@@actionhelpers">
+                portal context/@@plone_portal_state/portal">
 
 <?python
 # Work around Unauthorized Errors in Plone 6
-actionhelpers = econtext["actionhelpers"]
+from docpool.base.utils import is_rei_workflow
 dpbrain = econtext["dpbrain"]
 context = econtext["context"]
-if actionhelpers.is_rei_workflow(dpbrain):
+if is_rei_workflow(dpbrain.getObject()):
     domain = "docpool.rei"
 else:
     domain = "docpool.base"
