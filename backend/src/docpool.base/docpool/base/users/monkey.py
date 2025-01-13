@@ -45,12 +45,18 @@ def email_as_username(self):
 
 
 def applyProperties(self, userid, data):
-    # Set the current docpool reference to the data
-    if data["dp"]:
+    """Set dp when creating a user."""
+    dp = None
+    if data.get("dp"):
+        # User created on portal and a dp is selected
         dp = api.content.get(UID=data["dp"])
-        if dp:
-            prefix = dp.prefix or dp.id
-            data["groups"].append(f"{prefix}_Members")
+    elif self.context.portal_type == "DocumentPool":
+        # User created within a dp (field dp is readonly and not in data)
+        dp = self.context
+        data["dp"] = self.context.UID()
+    if dp:
+        prefix = dp.prefix or dp.id
+        data["groups"].append(f"{prefix}_Members")
 
     BaseRegistrationForm._old_applyProperties(self, userid, data)
 
