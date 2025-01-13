@@ -16,14 +16,6 @@
       />
 
   <browser:page
-      name="actionhelpers"
-      for="*"
-      class=".actionhelpers.ActionHelpers"
-      permission="zope2.View"
-      allowed_attributes="can_change_password is_rei_workflow"
-      />
-
-  <browser:page
       name="dp.macros"
       for="*"
       template="dp_macros.pt"
@@ -195,7 +187,14 @@
       for="*"
       class=".helpers.Is"
       permission="zope2.View"
-      allowed_attributes="admin contentadmin admin_or_contentadmin archive individual personal"
+      allowed_attributes="admin contentadmin admin_or_contentadmin archive individual personal rei_workflow"
+      />
+
+  <browser:view
+      name="can_change_password"
+      for="*"
+      class=".helpers.CanChangePassword"
+      permission="zope.Public"
       />
 
   <browser:page
