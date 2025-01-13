@@ -308,7 +308,7 @@
       <description>If disabled, no purging will take place</description>
       <title>Enable purging</title>
     </field>
-    <value>True</value>
+    <value>False</value>
   </record>
   <record name="plone.cachepurging.interfaces.ICachePurgingSettings.virtualHosting" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="virtualHosting">
     <field type="plone.registry.field.Bool">
