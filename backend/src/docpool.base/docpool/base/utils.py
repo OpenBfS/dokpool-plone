@@ -134,14 +134,14 @@ def get_content_area(obj):
             return content_area
 
 
-def getGroupsForCurrentUser(obj):
+def getGroupsForCurrentUser(obj, sort_on="path"):
     """Return groups that can create content based on GroupFolders."""
     results = []
     content_area = get_content_area(obj)
 
     gtool = getToolByName(obj, "portal_groups")
     for brain in api.content.find(
-        context=content_area, portal_type="GroupFolder", sort_on="path"
+        context=content_area, portal_type="GroupFolder", sort_on=sort_on
     ):
         try:
             grp = gtool.getGroupById(brain.id)
