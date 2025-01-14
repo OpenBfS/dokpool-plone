@@ -10,6 +10,22 @@
   background-color: #92c2e4;
 }
 
+// Special separator styling: https://redmine-koala.bfs.de/issues/5806
+.navbar .separator {
+  a {
+    font-size: 0;
+    display: block;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      border-bottom: 1px white solid;
+      width: 85%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
 // Different from bootstrap, we have labels under the heading:
 .form-label {
   margin-bottom: 0;
@@ -52,6 +68,7 @@ dl.doc_metadata {
     display: block;
     content: "";
   }
+
   dt,
   dd {
     display: inline;
