@@ -13,6 +13,8 @@ services:
     depends_on:
       postgres:
         condition: service_started
+    networks:
+      - net
 
   postgres:
     image: postgres
@@ -24,6 +26,8 @@ services:
       POSTGRES_DB: dokpool
     ports:
       - "5432:5432"
+    networks:
+      - net
 
   varnish:
     image: varnish:vmod
@@ -41,6 +45,8 @@ services:
         condition: service_healthy
     ports:
       - "8080:8090"
+    networks:
+      - net
 
   proxy:
     image: httpd
@@ -49,7 +55,18 @@ services:
       - ./devops/custom_apacheconf:/usr/local/apache2/conf/extra/:ro
     ports:
       - "9080:80"
+    networks:
+      - net
 
 volumes:
   dokpool-db:
     external: false
+
+networks:
+  net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
+          ip_range: 172.25.0.0/24
+          gateway: 172.25.0.1

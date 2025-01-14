@@ -10,11 +10,11 @@ probe dokpool_probe {
 	   	.initial = 7;
 	   	.threshold = 6;
 	   	.interval = 5s;
-	   }
+}
 
 acl dokpoolnet_acl {
-	   	"172.19"/24;
-	   }
+    "172.25"/24;
+}
 
 
 backend default {
@@ -29,9 +29,7 @@ backend default {
 acl purge {
   "localhost";
   "127.0.0.1";
-  "172.16.0.0/12";
-  "10.0.0.0/8";
-  "192.168.0.0/16";
+  "172.25.0.0/24";
 }
 
 sub detect_protocol{
@@ -54,7 +52,7 @@ sub detect_auth{
   if (
       (req.http.Cookie && (
         req.http.Cookie ~ "__ac(_(name|password|persistent))?=" || req.http.Cookie ~ "_ZopeId" || req.http.Cookie ~ "auth_token")) ||
-      (req.http.Authenticate) ||
+      (req.http.Authenticate) || (req.http.X_SHIB_USER) ||
       (req.http.Authorization)
   ) {
     set req.http.x-auth = true;
