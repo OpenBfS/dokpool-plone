@@ -4,6 +4,7 @@ from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.search.handler import SearchHandler
 from plone.restapi.services import Service
+from Products.PlonePAS.utils import cleanId
 from zope.component import queryMultiAdapter
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
@@ -110,7 +111,7 @@ class GetUserFolder(Service):
     def reply(self):
         esdpath = None
         user = api.user.get_current()
-        username = user.getUserName().replace("-", "--")
+        username = cleanId(user.getUserName())
         if self.params:
             brains = api.content.find(portal_type="DocumentPool", getId=self.params[0])
             if brains and len(brains) == 1:

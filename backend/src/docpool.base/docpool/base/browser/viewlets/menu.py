@@ -17,6 +17,7 @@ from plone.base.utils import safe_hasattr
 from plone.memoize.view import memoize
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
+from Products.PlonePAS.utils import cleanId
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
@@ -262,11 +263,10 @@ def getFoldersForCurrentUser(context):
     effective_apps = dp_app_state.effectiveAppsHere()
     member_result = []
     if not effective_apps.intersection((ELAN_APP, REI_APP)):
-        # strangely, member folders for users with '-' in their username
-        # are created with double dashes
-        user_name = user.getUserName().replace("-", "--")
         members_folder = content_area["Members"]
         members_folder_path = "/".join(members_folder.getPhysicalPath())
+        # member folders for users with '-' in their username are created with double dashes
+        user_name = cleanId(user.getUserName())
         member_tree = _folderTree(context, f"{members_folder_path}/{user_name}")
         # A folder for the user has not been found, e.g. in archive
         if "show_children" in member_tree:

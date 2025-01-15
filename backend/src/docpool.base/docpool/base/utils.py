@@ -10,6 +10,7 @@ from plone.base.utils import base_hasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import parent
+from Products.PlonePAS.utils import cleanId
 from zope.component import getMultiAdapter
 
 import logging
@@ -157,7 +158,7 @@ def getGroupsForCurrentUser(obj, sort_on="path"):
 def deleteMemberFolders(self, member_ids):
     """ """
     for member_id in member_ids:
-        member_id = member_id.replace("-", "--")
+        member_id = cleanId(member_id)
         try:
             # Delete MemberFoder from docpool
             members = self.content.Members
