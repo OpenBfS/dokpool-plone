@@ -7,7 +7,7 @@ pypdf == 5.0.1
 
 # Migration and Demo content
 collective.exportimport == 1.12
-plone.distribution == 3.0.0b2
+plone.distribution == 2.0.0b1
 plone.exportimport == 1.0.0a8
 
 # Relstorage
