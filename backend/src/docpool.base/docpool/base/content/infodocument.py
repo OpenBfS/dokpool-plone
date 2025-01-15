@@ -27,6 +27,9 @@ class InfoDocument(DPDocument):
     def category(self):
         return []
 
+    def docTypeObj(self):
+        return None
+
     def typeAndCat(self):
         """ """
         return (None, [])
