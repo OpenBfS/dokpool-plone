@@ -8,6 +8,7 @@ from plone import api
 from plone.supermodel import model
 from zope.interface import implementer
 
+
 logger = getLogger(__name__)
 
 
