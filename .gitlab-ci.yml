@@ -98,6 +98,7 @@ build_image:
     # On the shell-runner we only have 3.7 and don't need anything newer for now.
     - sed -i'' -e 's/PYTHON_VERSION_MIN=3\.11/PYTHON_VERSION_MIN=3.7/g' Makefile
     - make build-image-ci
+    - make build-image-varnish-ci
   rules:
     - if: '$CI_COMMIT_BRANCH == "python3"'
     - if: '$NIGHTLY_UPDATE == "True"'

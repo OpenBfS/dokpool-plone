@@ -30,7 +30,7 @@ services:
       - net
 
   varnish:
-    image: varnish:vmod
+    image: git.starzel.de:5050/bfs/dokpool:varnish
     build:
       context: ./devops/varnish-build/
       dockerfile: Dockerfile
