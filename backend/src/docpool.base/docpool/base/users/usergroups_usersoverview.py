@@ -1,5 +1,4 @@
 from Acquisition import aq_inner
-from docpool.base.utils import deleteMemberFolders
 from plone.base import PloneMessageFactory as PMF
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
@@ -18,7 +17,7 @@ class UsersOverviewControlPanel(UOCP):
     def manageUser(self, users=[], resetpassword=[], delete=[]):
         """
         Override in order to change password reset behavior: set password == userid
-        and to delete user folders - if possible - when user is deleted
+        when user is deleted
         Valid for Plone 6.0.0b3
         """
         CheckAuthenticator(self.request)
@@ -80,7 +79,6 @@ class UsersOverviewControlPanel(UOCP):
 
             if delete:
                 self.deleteMembers(delete)
-                deleteMemberFolders(context, delete)
 
             if users_with_reset_passwords:
                 reset_passwords_message = PMF(

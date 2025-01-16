@@ -37,11 +37,12 @@ class UserFolder(SimpleFolder):
                     old_url = self.absolute_url()
                     dp = api.content.get(UID=dp_uid)
                     members = dp.content.Members
-                    _cutPaste(self, members, unique=True)
-                    logger.info(
-                        "Moved UserFolder %s to %s",
-                        old_url,
-                        self.absolute_url(),
-                    )
+                    new = _cutPaste(self, members, unique=True)
+                    if new:
+                        logger.info(
+                            "Moved UserFolder %s to %s",
+                            old_url,
+                            new.absolute_url(),
+                        )
 
         execute_under_special_role(self, "Manager", moveFolder)

@@ -163,4 +163,6 @@
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       />
 
+  <subscriber handler=".events.pricipaldeleted_handler" />
+
 </configure>

@@ -155,26 +155,6 @@ def getGroupsForCurrentUser(obj, sort_on="path"):
     return results
 
 
-def deleteMemberFolders(self, member_ids):
-    """ """
-    for member_id in member_ids:
-        member_id = cleanId(member_id)
-        try:
-            # Delete MemberFoder from docpool
-            members = self.content.Members
-            if members.hasObject(member_id):
-                members.manage_delObjects([member_id])
-        except Exception as e:
-            log_exc(e)
-        try:
-            # Delete MemberFoder from portal
-            members_folder = self.portal_membership.getMembersFolder()
-            if members_folder.hasObject(member_id):
-                members_folder.manage_delObjects([member_id])
-        except Exception as e:
-            log_exc(e)
-
-
 def getUserInfo(self, username=None):
     mtool = getToolByName(self, "portal_membership")
     if username:
@@ -208,6 +188,7 @@ def back_references(target, relationship):
 
 
 def _copyPaste(source_obj, target_folder_obj, safe=True):
+    """api.content.copy but returns id."""
     result = api.content.copy(
         source=aq_inner(source_obj), target=target_folder_obj, safe_id=safe
     )
@@ -217,10 +198,11 @@ def _copyPaste(source_obj, target_folder_obj, safe=True):
 
 
 def _cutPaste(source_obj, target_folder_obj, unique=False):
+    """api.content.move with optional check that id is not already in the target folder."""
     if unique:
         if target_folder_obj.hasObject(source_obj.getId()):
             return
-    result = api.content.move(source=source_obj, target=target_folder_obj, safe_id=True)
+    return api.content.move(source=source_obj, target=target_folder_obj, safe_id=True)
 
 
 def getDocumentPoolSite(context):
