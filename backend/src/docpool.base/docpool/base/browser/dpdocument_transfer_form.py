@@ -4,12 +4,22 @@ from docpool.base.config import TRANSFERS_APP
 from plone import api
 from Products.CMFPlone.utils import log
 from Products.Five.browser import BrowserView
+from zope.i18nmessageid import MessageFactory
+
+
+PMF = MessageFactory("plone")
 
 
 class TransferForm(BrowserView):
     def __call__(self, dpdocids=None, targets=None):
         request = self.request
         self.dpdocids = dpdocids
+
+        if request.form.get("form.button.cancel"):
+            msg = PMF("Changes canceled.")
+            api.portal.show_message(msg, self.request)
+            return request.response.redirect(self.context.absolute_url())
+
         if not request.form.get("form.button.submit", None):
             return self.index()
 
@@ -54,10 +64,13 @@ class TransferForm(BrowserView):
 
         target_infos = []
         portal_catalog = api.portal.get_tool("portal_catalog")
-        for target in targets:
+        for target in set(targets):
             # ContentSenders do not need access to the target folders!
             brains = portal_catalog.unrestrictedSearchResults(UID=target)
             obj = brains[0]._unrestrictedGetObject()
             to_title = obj.myDocumentPool().title
             target_infos.append({"id": target, "esd_to_title": to_title})
-        return {"items": items, "targets": target_infos}
+        return {
+            "items": items,
+            "targets": sorted(target_infos, key=lambda x: x["esd_to_title"]),
+        }
