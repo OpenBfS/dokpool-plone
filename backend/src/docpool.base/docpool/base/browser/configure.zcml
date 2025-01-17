@@ -341,7 +341,7 @@
       for="*"
       class=".dpdocument_transfer_form.TransferForm"
       template="dpdocument_transfer_form.pt"
-      permission="docpool.transfers.SendContent"
+      permission="zope2.View"
       />
 
 </configure>

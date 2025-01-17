@@ -28,7 +28,7 @@ class TransferForm(BrowserView):
             return self.index()
 
         for dpdocid in dpdocids:
-            doc = self.context._getOb(dpdocid.split("/")[-1])
+            doc = api.content.get(path=dpdocid)
             dpdoc = doc.doc_extension(TRANSFERS_APP)
             dpdoc.transferToTargets(targets)
             log(f'Transfer "{doc.title}" to transfer folders {targets}')
@@ -43,15 +43,13 @@ class TransferForm(BrowserView):
     def transfer_infos(self):
         targets = []
         items = []
-        portal = api.portal.get()
         # the folder_listing passes paths
         paths = self.request.get("paths", [])
         if not paths and self.dpdocids:
             # handle individual transfer
             paths = self.dpdocids
         for path in paths:
-            # We use unrestrictedTraverse because the user may not have access to all parents
-            obj = portal.unrestrictedTraverse(path)
+            obj = api.content.get(path=path)
             if not obj:
                 continue
             try:

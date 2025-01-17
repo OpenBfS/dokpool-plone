@@ -51,10 +51,7 @@ class WorkflowActionView(BrowserView):
         # the folder_listing passes paths
         paths = self.request.get("paths", [])
         for path in paths:
-            # We use unrestrictedTraverse because the user may not have access to all parents
-            obj = portal.unrestrictedTraverse(path)
-            if not obj or not api.user.has_permission("View", obj=obj):
-                continue
+            obj = api.content.get(path=path)
             item = {
                 "title": obj.title,
                 "path": path,
