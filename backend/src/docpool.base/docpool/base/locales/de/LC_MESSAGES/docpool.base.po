@@ -256,7 +256,7 @@ msgstr "Keine Inhalte oder Ziele ausgewählt!"
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
 msgid "No items or targets to transfer to!"
-msgstr "Keine Einträge ausgewählt / keine Ziele verfügbar."
+msgstr "Keine Einträge ausgewählt / keine Ziele verfügbar / keine Berechtigung."
 
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "No items or transitions!"

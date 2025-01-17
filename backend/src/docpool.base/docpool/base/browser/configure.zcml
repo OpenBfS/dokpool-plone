@@ -232,6 +232,16 @@
       />
 
   <browser:page
+      name="docpool_collection_view_with_actions_for_dashboardcollections"
+      for="docpool.base.content.dashboardcollection.IDashboardCollection"
+      class=".collection.DashboardCollectionView"
+      template="docpool_collection_view_with_actions.pt"
+      permission="zope2.View"
+      menu="plone_displayviews"
+      title="Docpool listing with bulk actions for DashboardCollections"
+      />
+
+  <browser:page
       name="listitem"
       for="..interfaces.IInfoLink"
       class=".infolink.InfoLinklistitemView"
@@ -331,7 +341,7 @@
       for="*"
       class=".dpdocument_transfer_form.TransferForm"
       template="dpdocument_transfer_form.pt"
-      permission="docpool.transfers.SendContent"
+      permission="zope2.View"
       />
 
 </configure>

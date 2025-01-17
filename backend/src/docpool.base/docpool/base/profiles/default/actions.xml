@@ -162,9 +162,9 @@
    <property name="title" i18n:translate="">Transfer</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
-   <property name="available_expr">python:not path('context/@@is/individual') and checkPermission("Docpool: Send Content", object)</property>
+   <property name="available_expr"></property>
    <property name="permissions">
-    <element value="Docpool: Send Content"/>
+    <element value="View"/>
    </property>
    <property name="visible">True</property>
   </object>
