@@ -1,6 +1,7 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
@@ -73,18 +74,53 @@ class FolderBaseView(BrowserView):
             else:
                 return []
 
-        show_delete_action = False
+        # Check if delete-action should be shown
         delete_action = [i for i in button_actions if i["id"] == "delete"]
         delete_action = delete_action[0] if delete_action else None
         if delete_action:
+            show_delete_action = False
             for item in items:
                 obj = item.getObject()
                 if api.user.has_permission("Delete objects", obj=obj):
                     show_delete_action = True
                     # shortcut
                     break
-        if not show_delete_action:
-            button_actions.remove(delete_action)
+            if not show_delete_action:
+                button_actions.remove(delete_action)
+
+        # Check if transfer-action should be shown
+        transfer_action = [i for i in button_actions if i["id"] == "transfer"]
+        transfer_action = transfer_action[0] if transfer_action else None
+        if transfer_action:
+            show_transfer_action = False
+            for item in items:
+                obj = item.getObject()
+                if api.user.has_permission("Docpool: Send Content", obj=obj):
+                    try:
+                        adapted = ITransferable(obj)
+                    except TypeError:
+                        continue
+                    if adapted.transferable() and (allowed := adapted.allowedTargets()):
+                        show_transfer_action = True
+                        # shortcut
+                        break
+            if not show_transfer_action:
+                button_actions.remove(transfer_action)
+
+        # Check if transition-action should be shown
+        portal_workflow = api.portal.get_tool("portal_workflow")
+        transition_action = [i for i in button_actions if i["id"] == "transition"]
+        transition_action = transition_action[0] if transition_action else None
+        if transition_action:
+            show_transition_action = False
+            for item in items:
+                obj = item.getObject()
+                if portal_workflow.getTransitionsFor(obj):
+                    show_transition_action = True
+                    # shortcut
+                    break
+            if not show_transition_action:
+                button_actions.remove(transition_action)
 
         for button in button_actions:
             # Make proper classes for our buttons
