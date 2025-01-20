@@ -367,14 +367,8 @@ def set_title(obj, event=None):
         medium = f"({adapted.Medium}) "
     else:
         medium = ""
-    origins = "({})".format(", ".join(adapted.Origins))
-    new_title = "REI-{legal} {medium}{period} {installations} {origins}".format(
-        legal=legal,
-        period=period,
-        installations=installations,
-        medium=medium,
-        origins=origins,
-    )
+    origins = f"({adapted.origins_display()})"
+    new_title = f"REI-{legal} {medium}{period} {installations} {origins}"
     obj.title = new_title
     obj.reindexObject(idxs=["Title"])
 
