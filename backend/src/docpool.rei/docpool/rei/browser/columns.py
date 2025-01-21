@@ -135,7 +135,11 @@ class Origin(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        return populate_a_tag(obj, ", ".join(obj.Origins))
+        voc = getUtility(
+            IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary"
+        )()
+        origins = ", ".join(voc.getTerm(i).title for i in obj.Origins)
+        return populate_a_tag(obj, origins)
 
 
 class Metadata(BaseColumn):
