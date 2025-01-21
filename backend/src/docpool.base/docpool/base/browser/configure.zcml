@@ -308,6 +308,14 @@
   </class>
 
   <browser:page
+      name="edit"
+      for="docpool.base.content.dpdocument.IDPDocument"
+      class=".dpdocument.EditView"
+      permission="cmf.ModifyPortalContent"
+      layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+      />
+
+  <browser:page
       name="dashboard"
       for="..interfaces.IDPDocument"
       class=".dpdocument.DPDocumentdashboardView"
