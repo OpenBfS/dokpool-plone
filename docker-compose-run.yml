@@ -52,9 +52,13 @@ services:
     image: httpd
     volumes:
       - ./devops/custom_apacheconf/httpd_modified.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./devops/custom_apacheconf/htaccess:/usr/local/apache2/conf/htaccess:ro
+      - ./devops/custom_apacheconf/self-signed.crt:/usr/local/apache2/conf/self-signed.crt:ro
+      - ./devops/custom_apacheconf/self-signed.key:/usr/local/apache2/conf/self-signed.key:ro
       - ./devops/custom_apacheconf:/usr/local/apache2/conf/extra/:ro
     ports:
-      - "9080:80"
+      - "80:80"
+      - "443:443"
     networks:
       - net
 
