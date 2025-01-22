@@ -48,19 +48,20 @@ services:
     networks:
       - net
 
-  proxy:
-    image: httpd
-    volumes:
-      - ./devops/custom_apacheconf/httpd_modified.conf:/usr/local/apache2/conf/httpd.conf:ro
-      - ./devops/custom_apacheconf/htaccess:/usr/local/apache2/conf/htaccess:ro
-      - ./devops/custom_apacheconf/self-signed.crt:/usr/local/apache2/conf/self-signed.crt:ro
-      - ./devops/custom_apacheconf/self-signed.key:/usr/local/apache2/conf/self-signed.key:ro
-      - ./devops/custom_apacheconf:/usr/local/apache2/conf/extra/:ro
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - net
+# Disabled for now: https://redmine-koala.bfs.de/issues/5926
+#  proxy:
+#    image: httpd
+#    volumes:
+#      - ./devops/custom_apacheconf/httpd_modified.conf:/usr/local/apache2/conf/httpd.conf:ro
+#      - ./devops/custom_apacheconf/htaccess:/usr/local/apache2/conf/htaccess:ro
+#      - ./devops/custom_apacheconf/self-signed.crt:/usr/local/apache2/conf/self-signed.crt:ro
+#      - ./devops/custom_apacheconf/self-signed.key:/usr/local/apache2/conf/self-signed.key:ro
+#      - ./devops/custom_apacheconf:/usr/local/apache2/conf/extra/:ro
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    networks:
+#      - net
 
 volumes:
   dokpool-db:
