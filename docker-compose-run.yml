@@ -13,9 +13,11 @@ services:
     depends_on:
       postgres:
         condition: service_started
+    networks:
+      - net
 
   postgres:
-    image: postgres
+    image: postgres:16.3
     volumes:
       - dokpool-db:/var/lib/postgresql/data
     environment:
@@ -24,21 +26,52 @@ services:
       POSTGRES_DB: dokpool
     ports:
       - "5432:5432"
+    networks:
+      - net
 
   varnish:
-    image: varnish
+    image: git.starzel.de:5050/bfs/dokpool:varnish
+    build:
+      context: ./devops/varnish-build/
+      dockerfile: Dockerfile
+      args:
+        - VMOD_DEPS= "curl pkg-config nproc make gcc automake libtoolize libgetdns-dev"
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
-
     environment:
-      VARNISH_HTTP_PORT: 8080
-
+      VARNISH_HTTP_PORT: 8090
     depends_on:
       zeoclient:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "8080:8090"
+    networks:
+      - net
+
+# Disabled for now: https://redmine-koala.bfs.de/issues/5926
+#  proxy:
+#    image: httpd
+#    volumes:
+#      - ./devops/custom_apacheconf/httpd_modified.conf:/usr/local/apache2/conf/httpd.conf:ro
+#      - ./devops/custom_apacheconf/htaccess:/usr/local/apache2/conf/htaccess:ro
+#      - ./devops/custom_apacheconf/self-signed.crt:/usr/local/apache2/conf/self-signed.crt:ro
+#      - ./devops/custom_apacheconf/self-signed.key:/usr/local/apache2/conf/self-signed.key:ro
+#      - ./devops/custom_apacheconf:/usr/local/apache2/conf/extra/:ro
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    networks:
+#      - net
 
 volumes:
   dokpool-db:
     external: false
+
+networks:
+  net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
+          ip_range: 172.25.0.0/24
+          gateway: 172.25.0.1

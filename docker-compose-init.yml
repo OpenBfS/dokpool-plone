@@ -16,7 +16,7 @@ services:
   #  Onlyfor development & test
   # On production, we use the central patroni postgres
   postgres-init:
-    image: postgres
+    image: postgres:16.3
     volumes:
       - dokpool-db:/var/lib/postgresql/data
     environment:

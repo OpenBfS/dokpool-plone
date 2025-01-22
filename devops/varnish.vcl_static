@@ -3,33 +3,30 @@ vcl 4.0;
 
 import std;
 import directors;
-import dynamic;
 
-probe dokpool_probe {
-	   	.window = 8;
-	   	.initial = 7;
-	   	.threshold = 6;
-	   	.interval = 5s;
+backend dokpool-zeoclient_1 {
+    .host = "dokpool_zeoclient_1";
+    .port = "8080";
+    .connect_timeout = 2s;
+    .first_byte_timeout = 300s;
+    .between_bytes_timeout  = 60s;
 }
 
-acl dokpoolnet_acl {
-    "172.25"/24;
+backend dokpool-zeoclient_2 {
+    .host = "dokpool_zeoclient_2";
+    .port = "8080";
+    .connect_timeout = 2s;
+    .first_byte_timeout = 300s;
+    .between_bytes_timeout  = 60s;
 }
-
-
-backend default {
-  # The `.host` parameter is not very relevant here as we'll use the dynamic
-  # director as a DNS resolver for that domain.
-  .host = "";
-  .port = "8080";
-}
-
 
 /* Only allow PURGE from localhost and API-Server */
 acl purge {
   "localhost";
   "127.0.0.1";
-  "172.25.0.0/24";
+  "172.16.0.0/12";
+  "10.0.0.0/8";
+  "192.168.0.0/16";
 }
 
 sub detect_protocol{
@@ -52,7 +49,7 @@ sub detect_auth{
   if (
       (req.http.Cookie && (
         req.http.Cookie ~ "__ac(_(name|password|persistent))?=" || req.http.Cookie ~ "_ZopeId" || req.http.Cookie ~ "auth_token")) ||
-      (req.http.Authenticate) || (req.http.X_SHIB_USER) ||
+      (req.http.Authenticate) ||
       (req.http.Authorization)
   ) {
     set req.http.x-auth = true;
@@ -74,7 +71,7 @@ sub detect_requesttype{
 }
 
 sub process_redirects{
-  // Add manual redirect
+  // Add manual redurect
   if (req.url ~ "^/old-folder/(.*)") {
     set req.http.x-redirect-to = regsub(req.url, "^/old-folder/(.*)", "^/new-folder/\1");
   }
@@ -85,15 +82,14 @@ sub process_redirects{
 }
 
 sub vcl_init {
-	   	new dokpool_dir = dynamic.director(
-	   		port = "8080",
-	   		probe = dokpool_probe,
-	   		whitelist = dokpoolnet_acl,
-	   		ttl = 10s);
+  new cluster_loadbalancer = directors.round_robin();
+  /* cluster_loadbalancer.add_backend(traefik_loadbalancer); */
+  cluster_loadbalancer.add_backend(dokpool-zeoclient_1);
+  cluster_loadbalancer.add_backend(dokpool-zeoclient_2);
 }
 
 sub vcl_recv {
-  set req.backend_hint = dokpool_dir.backend("zeoclient");
+  set req.backend_hint = cluster_loadbalancer.backend();
   set req.http.X-Varnish-Routed = "1";
 
   # Annotate request with x-forwarded-proto

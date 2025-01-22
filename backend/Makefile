@@ -34,6 +34,8 @@ FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${B
 
 IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
 
+IMAGE_TAG_VARNISH=varnish
+
 # get branch name if not running in CI
 ifndef CI_COMMIT_REF_NAME
 	CI_COMMIT_REF_NAME=$$(git rev-parse --abbrev-ref HEAD)
@@ -217,6 +219,14 @@ build-image: ## Build Docker Image
 .PHONY: build-image-ci
 build-image-ci: build-image ## Build Docker Image
 	@DOCKER_BUILDKIT=1 docker push $(IMAGE_NAME):$(IMAGE_TAG)
+
+.PHONY: build-image-varnish
+build-image-varnish: ## Build Docker Image
+	@DOCKER_BUILDKIT=1 docker buildx build --load --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG_VARNISH) --file ../devops/varnish-build/Dockerfile .
+
+.PHONY: build-image-ci
+build-image-varnish-ci: build-image-varnish ## Build Docker Image
+	@DOCKER_BUILDKIT=1 docker push $(IMAGE_NAME):$(IMAGE_TAG_VARNISH)
 
 # Theme and Webpack stuff
 # theme vars
