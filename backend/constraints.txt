@@ -6,7 +6,7 @@ pygeoif == 1.5.0
 pypdf == 5.0.1
 
 # Migration and Demo content
-collective.exportimport == 1.12
+collective.exportimport == 1.13
 plone.distribution == 2.0.0b1
 plone.exportimport == 1.0.0a8
 
