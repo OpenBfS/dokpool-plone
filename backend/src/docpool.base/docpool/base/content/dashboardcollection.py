@@ -5,6 +5,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getCategoriesForCurrentUser
 from docpool.elan.utils import getScenariosForCurrentUser
+from plone import api
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
 from plone.autoform import directives
@@ -216,13 +217,12 @@ class DashboardCollection(Collection):
             # m = self.content
 
             mpath = "content"
-            # Just one path allowed in the path criterion. Must be the part
-            # after the portal root, e.g. '/Members'
+            # Just one path allowed in the path criterion.
             value.append(
                 {
                     "i": "path",
                     "o": "plone.app.querystring.operation.string.path",
-                    "v": "/%s" % mpath,
+                    "v": f"/{api.portal.get().id}/{self.myDocumentPool().id}/{mpath}",
                 }
             )
 
