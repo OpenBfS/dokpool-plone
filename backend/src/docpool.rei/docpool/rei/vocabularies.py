@@ -306,8 +306,10 @@ class OriginVocabulary:
         ]
         # Already existing Reports that have the now obsolete value "Genehmigungsinhaber"
         # need to find that in the vocabulary as well.
-        origins = getattr(context, "Origins", []) or []
-        if "Genehmigungsinhaber" in origins:
+        # Same when the voc is instanciated without context.
+        if context is None or "Genehmigungsinhaber" in (
+            getattr(context, "Origins", []) or []
+        ):
             values.append(("Genehmigungsinhaber", "Genehmigungsinhaber"))
         return SimpleVocabulary(
             [

@@ -82,7 +82,7 @@ class Period(BaseColumn):
             return
         period_vocabulary = getUtility(
             IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary"
-        )()
+        )(obj)
         period = safe_text(period_vocabulary.getTerm(obj.Period).title)
         year = str(obj.Year)
         return populate_a_tag(obj, period + " " + year)
@@ -102,7 +102,7 @@ class Authority(BaseColumn):
             return
         voc = getUtility(
             IVocabularyFactory, "docpool.rei.vocabularies.AuthorityVocabulary"
-        )()
+        )(obj)
         return populate_a_tag(obj, voc.getTerm(obj.Authority).title)
 
 
@@ -118,7 +118,7 @@ class NuclearInstallation(BaseColumn):
             return
         voc = getUtility(
             IVocabularyFactory, "docpool.rei.vocabularies.NuclearInstallationVocabulary"
-        )()
+        )(obj)
         installations = ", ".join(
             voc.getTerm(i).title for i in obj.NuclearInstallations
         )
@@ -137,7 +137,7 @@ class Origin(BaseColumn):
             return
         voc = getUtility(
             IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary"
-        )()
+        )(obj)
         origins = ", ".join(voc.getTerm(i).title for i in obj.Origins)
         return populate_a_tag(obj, origins)
 
