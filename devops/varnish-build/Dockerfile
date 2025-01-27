@@ -1,6 +1,6 @@
 FROM varnish:7.6
 
-# set the user to root, and install build dependencies
+# set the user to root
 USER root
 USER varnish
 COPY varnish.vcl_example /etc/varnish/default.vcl
