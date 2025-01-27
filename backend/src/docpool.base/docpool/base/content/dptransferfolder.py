@@ -26,6 +26,8 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 logger = getLogger(__name__)
 
+DEFAULT_DTPERMISSION = "publish"
+
 
 class IDPTransferFolder(model.Schema, IFolderBase):
     """ """
@@ -95,6 +97,9 @@ class DPTransferFolder(FolderBase):
         super().__init__(*args, **kw)
         self.doctypePermissions = PersistentMapping()
 
+    def doctype_permission(self, doctype):
+        return self.doctypePermissions.get(doctype, DEFAULT_DTPERMISSION)
+
     # TODO should be indexed
     def from_to_title(self):
         sending_esd = self.getSendingESD()
@@ -106,8 +111,8 @@ class DPTransferFolder(FolderBase):
         """
         Do I specifically accept this doc type?
         """
-        perm = self.doctypePermissions.get(dt_id, False)
-        return perm and perm != "block"
+        perm = self.doctype_permission(dt_id)
+        return perm != "block"
 
     def getMatchingDocumentTypes(self, ids_only=True):
         """ """

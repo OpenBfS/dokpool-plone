@@ -39,8 +39,8 @@ def allowed_targets(context):
         object_provides=IDPTransferFolder.__identifier__, sendingESD=esd.UID()
     ):
         obj = brain._unrestrictedGetObject()
-        permission = obj.doctypePermissions.get(dt_id, False)
-        if not permission or permission != "block":
+        permission = obj.doctype_permission(dt_id)
+        if permission != "block":
             from_to_title = obj.from_to_title()
             targets.append({"uid": brain.UID, "from_to_title": from_to_title})
 
