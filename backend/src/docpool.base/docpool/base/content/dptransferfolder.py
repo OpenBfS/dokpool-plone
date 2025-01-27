@@ -26,6 +26,8 @@ from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
 logger = getLogger(__name__)
 
+DEFAULT_DTPERMISSION = "publish"
+
 
 class IDPTransferFolder(model.Schema, IFolderBase):
     """ """
@@ -95,6 +97,9 @@ class DPTransferFolder(FolderBase):
         super().__init__(*args, **kw)
         self.doctypePermissions = PersistentMapping()
 
+    def doctype_permission(self, doctype):
+        return self.doctypePermissions.get(doctype, DEFAULT_DTPERMISSION)
+
     # TODO should be indexed
     def from_to_title(self):
         sending_esd = self.getSendingESD()
@@ -106,8 +111,8 @@ class DPTransferFolder(FolderBase):
         """
         Do I specifically accept this doc type?
         """
-        perm = self.doctypePermissions.get(dt_id, False)
-        return perm and perm != "block"
+        perm = self.doctype_permission(dt_id)
+        return perm != "block"
 
     def getMatchingDocumentTypes(self, ids_only=True):
         """ """
@@ -221,8 +226,6 @@ def created(obj, event=None):
     if IImportingMarker.providedBy(getRequest()):
         return
     log("TransferFolder created: %s" % str(obj))
-    dts = obj.getMatchingDocumentTypes(ids_only=True)
-    obj.doctypePermissions.update(dict.fromkeys(dts, "publish"))
 
     # Also, if the permissions include read access,
     # set the local Reader role for the members of
@@ -268,15 +271,6 @@ def transfer_folders_for(obj):
         esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__
     )
     return [brain.getObject() for brain in brains]
-
-
-@adapter(IDocType, IObjectAddedEvent)
-def doctype_added(obj, event=None):
-    if IImportingMarker.providedBy(getRequest()):
-        return
-    dt_id = obj.getId()
-    for tf in transfer_folders_for(obj):
-        tf.doctypePermissions.setdefault(dt_id, "publish")
 
 
 @adapter(IDocType, IObjectRemovedEvent)

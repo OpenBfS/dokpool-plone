@@ -357,7 +357,7 @@ class Transferable(FlexibleView):
             tstate = api.content.get_state(obj=dtObj)
             if tstate == "published":  # we do this for valid types only
                 # determine the applicable permission
-                perm = tf.doctypePermissions.get(dtObj.getId())
+                perm = tf.doctype_permission(dtObj.getId())
                 dstate = api.content.get_state(self.context)
                 if dstate == "private" and perm == "publish":
                     api.content.transition(self.context, "publish")

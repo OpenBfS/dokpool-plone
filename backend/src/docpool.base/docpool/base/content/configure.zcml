@@ -16,7 +16,6 @@
   <subscriber handler=".dptransferfolder.created" />
   <subscriber handler=".dptransferfolder.updated" />
   <subscriber handler=".dptransferfolder.deleted" />
-  <subscriber handler=".dptransferfolder.doctype_added" />
   <subscriber handler=".dptransferfolder.doctype_will_be_removed" />
 
   <class class=".documentpool.DocumentPool">
