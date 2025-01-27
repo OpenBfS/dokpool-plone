@@ -10,4 +10,3 @@ else
         echo ".... not running"
         exit 1
 fi
-
