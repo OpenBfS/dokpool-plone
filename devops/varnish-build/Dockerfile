@@ -11,6 +11,6 @@ RUN set -e; \
     apt-get -y purge --auto-remove $VMOD_DEPS varnish-dev; \
     rm -rf /var/lib/apt/lists/*
 USER varnish
-COPY varnish.vcl /etc/varnish/default.vcl
+COPY varnish.vcl_example /etc/varnish/default.vcl
 COPY healthcheck.sh ./
 HEALTHCHECK --interval=10s CMD ./healthcheck.sh
