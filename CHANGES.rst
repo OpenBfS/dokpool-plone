@@ -4,22 +4,108 @@ Changelog
 2.0.0 (unreleased)
 ------------------
 
-- Python 3 Migration #4345
-  This is a mayor breaking change with many refactorings.
-  Updating a existing installation requires the data to be moved to a new instance using exportimport.
-  See the ticket #4345 for links to all subtasks.
-  [everyone]
+This is a mayor release with many breaking changes and refactorings.
 
-- Cleanup packages structure #4076
-  Remove docpool.caching and move code to docpool.base
-  Remove docpool.video
-  Remove docpool.dashboard and move code to docpool.base
-  Make etag module of docpool.base pluggable and move elan-specifics to docpool.elan
-  Remove docpool.policy
-  Remove elan.policy and move code and dependecies to docpool.config
-  Remove docpool.localbehavior and move code to docpool.base
-  Remove docpool.menu and move code to docpool.base.browser.viewlets
+- Python 3 Migration and Upgrade to Plone 6. #4345 #4824
+  Updating a existing installation requires the data to be moved to a new instance using exportimport.
+  See #4345 for links to all subtasks.
+  [pbauer, slindner, tlotze]
+
+- Cleanup packages structure. #4076
+  Remove docpool.caching and move code to docpool.base.
+  Remove docpool.video.
+  Remove docpool.dashboard and move code to docpool.base.
+  Make etag module of docpool.base pluggable and move elan-specifics to docpool.elan.
+  Remove docpool.policy.
+  Remove elan.policy and move code and dependecies to docpool.config.
+  Remove docpool.localbehavior and move code to docpool.base.
+  Remove docpool.menu and move code to docpool.base.browser.viewlets.
+  Remove docpool.transfers and move code to docpool.base.
+  Remove docpool.example.
+  Remove elan.sitrep.
+  Remove docpool.event and move code to docpool.elan.
+  Remove docpool.users and move code to docpool.base.users.
+  Remove elan.esd and move code to docpool.elan.
+  Remove elan.theme and move code to docpool.theme.
+  [pbauer, tlotze]
+
+- Drop special ELAN-DB and use of SQLAlchemy and Elixir. Remove package docpool.dbaccess. #3954
+  [lotze]
+
+- Reimplement Theme based on Plone 6 and use webpack. #4826
+  [slindner]
+
+- Rewrite Navigation for Plone 6. #4825
+  [tlotze]
+
+- Fix inheritance of instance-classes. Stop inheriting from Item and Document since they clash with Container. Drop unused interface IExtendable. #4851
+  [pbauer]
+
+- Refactor FlexibleView and migrate templates rendered by it to BrowserViews. #4840
+  [pbauer]
+
+- Remove all skin-templates and -scripts and replace with browser views. #4831 #5467
   [tlotze, pbauer]
+
+- Refactor archiving and snapshot of events. #4870
+  [pbauer]
+
+- Refactor transfers. #4833 #5653
+  [tlotze]
+
+- Upgrade faceted-navigation to Plone 6 and Python 3. #4943
+  [slindner]
+
+- Switch to pip/uv install based on cookieplone and deploy with docker containers. #5488
+  [pbauer, slindner]
+
+- Implement dokpool in IMIS3 stack. #5484
+  [slindner]
+
+- Refactor integration and changes to discussion/commenting. #5043 #5518
+  [pbauer]
+
+- In navigation portlet show number of items that will be visible in a folder or collection. #4858 #5898
+  [pbauer]
+
+- Refactor local behaviors. #5432 #5565
+  [tlotze, pbauer]
+
+- Refactor the control of visibility of app-specific content. #5434
+  [pbauer]
+
+- For better test-content remove docpool_setup and add distribution in new package docpool.distribution. #5681
+  [pbauer]
+
+- Refactor redirect on frontpage. #5450
+  [pbauer]
+
+- Remove wsapi4plone and wsapi4elan and replace with custom restapi endpoints. #4626
+  [pbauer]
+
+- Refactor indexes to prevent empty indexes on clear&rebuild. #5700 #5565
+  [pbauer]
+
+- Switch event-selection for users and documents from id to uuid. #5546 #5745 #5260 #5044 #4379
+  [tlotze]
+
+- Reimplement RODOS-app. #2609
+  [pbauer]
+
+- Add view with bulk actions for ELANDocCollections and DashboardCollections. #4343
+  [pbauer]
+
+- Remove dependency on collective.geo and openlayers. Use WKT fields for now. #3663
+  [pbauer]
+
+- Improve performance. #4481
+  [pbauer, tlotze]
+
+- Fix design for content below an inaccessible navigation-root. #5447
+  [pbauer]
+
+- Add view @@json for admins that serializes content using restapi. #5551
+  [pbauer]
 
 
 1.9.2 (04.08.22)
@@ -27,13 +113,13 @@ Changelog
 
 Changed:
 
-- Limit blob-cache to 25GB #4739
+- Limit blob-cache to 25GB. #4739
   [slindner]
 
-- Speed up archiving events, bring back combined snapshot and purge #4870
+- Speed up archiving events, bring back combined snapshot and purge. #4870
   [pbauer]
 
-- Update SampleType vocabulary and change sorting on NetworksVocabulary #4902
+- Update SampleType vocabulary and change sorting on NetworksVocabulary. #4902
   [kprobst]
 
 - Adapted simpleviz templates for dtypes (visualisation of non-map+legend-attachments) #4903
