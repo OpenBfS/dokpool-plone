@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 This is a mayor release with many breaking changes and refactorings.
+The following list only contains the mayor changes.
 
 - Python 3 Migration and Upgrade to Plone 6. #4345 #4824
   Updating a existing installation requires the data to be moved to a new instance using exportimport.
@@ -106,6 +107,179 @@ This is a mayor release with many breaking changes and refactorings.
 
 - Add view @@json for admins that serializes content using restapi. #5551
   [pbauer]
+
+
+1.9.9 (11.11.24)
+------------------
+
+Technical:
+
+- Added docker stack configuration
+  [jbuermeyer,slindner]
+
+- Added dependency collective.relationshelpers
+  [pbauer]
+
+- remove logger for member properties (#4325)
+  [tlotze]
+
+
+Fixed:
+
+- Improve performance (#5742)
+  - Cache expensive computation that used to cause very long-running requests after editing an ELANDocType.
+    [tlotze]
+  - Do not use the very slow python-script isArchive when calculating the categories
+    [pbauer]
+  - Replace slow back_references with faster api from relationhelpers
+    [pbauer]
+
+
+1.9.8 (20.06.24)
+------------------
+
+Technical:
+
+- Update journal print styling
+  [pbauer]
+
+- Update bundle files
+  [slindner]
+
+- revert logging of wsapi calls (#4626)
+  [kprobst]
+
+
+1.9.7 (06.05.24)
+------------------
+
+Changed:
+
+- Prevent leaking local behaviors of parent to newly created object (#5565)
+  [pbauer]
+
+- Fix docpool_setup
+  [pbauer]
+
+Technical:
+
+- Log all wsapi calls to find out what is used (#5597, #4626)
+  [pbauer]
+
+
+1.9.6 (22.03.24)
+------------------
+
+Changed:
+
+- Change originvocab for REI (#5479)
+  [pbauer]
+
+Added:
+
+- add json view for admins for debugging (#5551)
+  [pbauer]
+
+Technical:
+
+- upgrade postgresql to 14 in Dockerfile.pgsql to fit ubuntu:latest
+  [mlechner]
+
+
+1.9.5 (27.11.23)
+-----------------
+
+Fixed:
+
+- Add upgrade-steps to fix rebuild catalog and fix intid-catalog(#5413
+  [pbauer]
+
+
+1.9.4 (01.08.23)
+------------------
+
+Changed:
+
+- Update REI vocabularies #5137
+  [kprobst]
+
+- log errors for events not found in UID index (while working on #5260)
+  [tlotze]
+
+Fixed:
+
+- Disable direct role-assignment to Users and Groups in docpools for non-managers #4391
+  [pbauer]
+
+- ugrade-step to update rolemappings #4560
+  [pbauer]
+
+- do not show journals from archived events #4993
+  [tlotze]
+
+- fix archiving event GNU-2022-Tyche #5007
+  [pbauer]
+
+- fix event selection: per docpool, distinguish events with same id #5044
+  [tlotze]
+
+- fix upgrade step for event selection by uid #5044
+  [tlotze]
+
+- fix printable version for simpleviz_inline.pt #5045
+  [kprobst]
+
+- fix logic for selecting folder action buttons #5135
+  [tlotze]
+
+- fix access to DPDocument method in #4819-related patches on all portal objects #5150
+  [slindner]
+
+- uniquify displayed event titles for a document that is associated with
+  multiple events by the same id (e.g., partly archived) #5260
+  [tlotze]
+
+- Remove old REI-I Medium values #5302
+  [slindner]
+
+Added:
+
+- allow infodocument as defaultpage #4643
+  [pbauer]
+
+Technical:
+
+- prevent varnish from timing out event archival #3792
+  [tlotze,kprobst]
+
+- make authentication condition configurable for varnish #4539
+  [tlotze]
+
+- remove the workaround for SQLAlchemyError #4830
+  [tlotze]
+
+- customize varnish backend error page #4904
+  [tlotze]
+
+- Blob-cache should be bytes #5096
+  [slindner]
+
+
+1.9.3 (21.10.22)
+------------------
+
+Changed:
+
+- Limit blob-cache to 25GB #4739
+  [slindner]
+
+Fixed:
+
+- Move blob-cache setting to prod cfg #4739
+  [slindner]
+
+- Show comments in archive. #4819
+  [tlotze]
 
 
 1.9.2 (04.08.22)
