@@ -2,11 +2,17 @@
   .faceted-widget {
     fieldset {
       white-space: normal;
+
+      ul li {
+        display: flex;
+      }
     }
   }
+
   #z3ctabel-toggles {
     float: right;
   }
+
   .faceted-criteria legend {
     color: #007bb1 !important;
   }
@@ -14,13 +20,16 @@
   .table_faceted_results {
     .z3ctable-toggle-metatitle {
       border-bottom: unset;
+
       img {
         width: 20px;
         height: 20px;
       }
     }
+
     .z3ctable-toggle-metadata {
       border-bottom: unset;
+
       img {
         width: 20px;
         height: 20px;
@@ -39,6 +48,7 @@
       width: 15px;
     }
   }
+
   .th_header_ReiLegalBases {
     white-space: nowrap;
   }
