@@ -4,8 +4,8 @@ Changelog
 2.0.0 (unreleased)
 ------------------
 
-This is a mayor release with many breaking changes and refactorings.
-The following list only contains the mayor changes.
+This is a major release with many breaking changes and refactorings.
+The following list only contains the major changes.
 
 - Python 3 Migration and Upgrade to Plone 6. (#4345, #4824)
   Updating a existing installation requires the data to be moved to a new instance using exportimport.
