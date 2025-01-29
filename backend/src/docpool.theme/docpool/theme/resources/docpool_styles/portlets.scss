@@ -1,3 +1,14 @@
+@media (min-width: 992px) {
+  body.col-one.col-content {
+    #portal-column-one {
+      width: 30% !important;
+    }
+    #portal-column-content {
+      width: 70% !important;
+    }
+  }
+}
+
 .portlet {
   a {
     text-decoration: none;
