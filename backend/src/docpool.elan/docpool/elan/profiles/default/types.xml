@@ -1,18 +1,47 @@
-<object name="portal_types" meta_type="Plone Types Tool">
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Types Tool"
+        name="portal_types"
+>
 
-     <object name="DPDocument" meta_type="Dexterity FTI" />
-     <object name="DocType" meta_type="Dexterity FTI" />
-     <object name="DPEvent" meta_type="Dexterity FTI" />
-     <object name="DPEvents" meta_type="Dexterity FTI" />
-     <object name="DPNetwork" meta_type="Dexterity FTI" />
-     <object name="DPNuclearPowerStation" meta_type="Dexterity FTI" />
+  <object meta_type="Dexterity FTI"
+          name="DPDocument"
+  />
+  <object meta_type="Dexterity FTI"
+          name="DocType"
+  />
+  <object meta_type="Dexterity FTI"
+          name="DPEvent"
+  />
+  <object meta_type="Dexterity FTI"
+          name="DPEvents"
+  />
+  <object meta_type="Dexterity FTI"
+          name="DPNetwork"
+  />
+  <object meta_type="Dexterity FTI"
+          name="DPNuclearPowerStation"
+  />
 
-     <object name="ELANInfos" meta_type="Dexterity FTI" />
-     <object name="ELANDocCollection" meta_type="Dexterity FTI" />
-     <object name="ELANArchive" meta_type="Dexterity FTI" />
-     <object name="ELANCurrentSituation" meta_type="Dexterity FTI" />
-     <object name="ELANSection" meta_type="Dexterity FTI" />
-     <object name="ELANContentConfig" meta_type="Dexterity FTI" />
-     <object name="ELANArchives" meta_type="Dexterity FTI" />
+  <object meta_type="Dexterity FTI"
+          name="ELANInfos"
+  />
+  <object meta_type="Dexterity FTI"
+          name="ELANDocCollection"
+  />
+  <object meta_type="Dexterity FTI"
+          name="ELANArchive"
+  />
+  <object meta_type="Dexterity FTI"
+          name="ELANCurrentSituation"
+  />
+  <object meta_type="Dexterity FTI"
+          name="ELANSection"
+  />
+  <object meta_type="Dexterity FTI"
+          name="ELANContentConfig"
+  />
+  <object meta_type="Dexterity FTI"
+          name="ELANArchives"
+  />
 
 </object>

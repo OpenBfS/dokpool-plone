@@ -1,29 +1,81 @@
-﻿<?xml version="1.0"?>
-<object name="portal_placeful_workflow" meta_type="Placeful Workflow Tool">
- <property name="title"></property>
- <property name="max_chain_length" type="int">1</property>
- <object name="rei_bw" meta_type="WorkflowPolicy"/>
- <object name="rei_rp" meta_type="WorkflowPolicy"/>
- <object name="rei_bb" meta_type="WorkflowPolicy"/>
- <object name="rei_bb2" meta_type="WorkflowPolicy"/>
- <object name="rei_be" meta_type="WorkflowPolicy"/>
- <object name="rei_by" meta_type="WorkflowPolicy"/>
- <object name="rei_he1" meta_type="WorkflowPolicy"/>
- <object name="rei_he2" meta_type="WorkflowPolicy"/>
- <object name="rei_mv" meta_type="WorkflowPolicy"/>
- <object name="rei_ni" meta_type="WorkflowPolicy"/>
- <object name="rei_ni1" meta_type="WorkflowPolicy"/>
- <object name="rei_nw" meta_type="WorkflowPolicy"/>
- <object name="rei_nw1" meta_type="WorkflowPolicy"/>
- <object name="rei_nw2" meta_type="WorkflowPolicy"/>
- <object name="rei_sh1" meta_type="WorkflowPolicy"/>
- <object name="rei_sh2" meta_type="WorkflowPolicy"/>
- <object name="rei_BfE1" meta_type="WorkflowPolicy"/>
- <object name="rei_BfE2" meta_type="WorkflowPolicy"/>
- <object name="rei_sl" meta_type="WorkflowPolicy"/>
- <object name="rei_sn" meta_type="WorkflowPolicy"/>
- <object name="rei_sn1" meta_type="WorkflowPolicy"/>
- <object name="rei_sn2" meta_type="WorkflowPolicy"/>
- <object name="rei_zdbtest_standard" meta_type="WorkflowPolicy"/>
- <object name="rei_zdbtest" meta_type="WorkflowPolicy"/>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Placeful Workflow Tool"
+        name="portal_placeful_workflow"
+>
+  <property name="title" />
+  <property name="max_chain_length"
+            type="int"
+  >1</property>
+  <object meta_type="WorkflowPolicy"
+          name="rei_bw"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_rp"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_bb"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_bb2"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_be"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_by"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_he1"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_he2"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_mv"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_ni"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_ni1"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_nw"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_nw1"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_nw2"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_sh1"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_sh2"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_BfE1"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_BfE2"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_sl"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_sn"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_sn1"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_sn2"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_zdbtest_standard"
+  />
+  <object meta_type="WorkflowPolicy"
+          name="rei_zdbtest"
+  />
 </object>

@@ -1,15 +1,17 @@
-<?xml version="1.0"?>
-<object name="dp-double-review-bayern-folder" meta_type="WorkflowPolicy">
- <property name="title">DP Double Review Bayern Workflow</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="dp_double_review_bayern_workflow"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="dp_double_review_bayern_workflow"/>
-  </type>
-  <type type_id="ReviewFolder">
-   <bound-workflow workflow_id="dp_double_review_bayern_workflow"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="dp-double-review-bayern-folder"
+>
+  <property name="title">DP Double Review Bayern Workflow</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="dp_double_review_bayern_workflow" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="dp_double_review_bayern_workflow" />
+    </type>
+    <type type_id="ReviewFolder">
+      <bound-workflow workflow_id="dp_double_review_bayern_workflow" />
+    </type>
+  </bindings>
 </object>

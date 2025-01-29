@@ -1,15 +1,17 @@
-<?xml version="1.0"?>
-<object name="dp-private-folder" meta_type="WorkflowPolicy">
- <property name="title">DP Private Workflow</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="dp_private_workflow"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="dp_private_workflow"/>
-  </type>
-  <type type_id="InfoDocument">
-   <bound-workflow workflow_id="dp_private_workflow"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="dp-private-folder"
+>
+  <property name="title">DP Private Workflow</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="dp_private_workflow" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="dp_private_workflow" />
+    </type>
+    <type type_id="InfoDocument">
+      <bound-workflow workflow_id="dp_private_workflow" />
+    </type>
+  </bindings>
 </object>

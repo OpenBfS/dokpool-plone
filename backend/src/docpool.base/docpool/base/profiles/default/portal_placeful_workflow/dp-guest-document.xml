@@ -1,12 +1,14 @@
-<?xml version="1.0"?>
-<object name="dp-guest-document" meta_type="WorkflowPolicy">
- <property name="title">DP Guest Document</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="dp_collaboration_workflow"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="dp_guest_workflow"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="dp-guest-document"
+>
+  <property name="title">DP Guest Document</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="dp_collaboration_workflow" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="dp_guest_workflow" />
+    </type>
+  </bindings>
 </object>

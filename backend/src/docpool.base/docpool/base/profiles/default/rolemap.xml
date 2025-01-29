@@ -1,477 +1,639 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <roles>
-    <role name="DocPoolAdmin"/>
-    <role name="ContentAdmin"/>
-    <role name="DocPoolUser"/>
-    <role name="ContentReceiver"/>
-    <role name="ContentSender"/>
+    <role name="DocPoolAdmin" />
+    <role name="ContentAdmin" />
+    <role name="DocPoolUser" />
+    <role name="ContentReceiver" />
+    <role name="ContentSender" />
   </roles>
   <permissions>
-    <permission name="Access contents information" acquire="True">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Member"/>
-      <role name="Reader"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Access inactive portal content" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Add portal content" acquire="False">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Add portal events" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Add portal folders" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Add portal member" acquire="False">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Allow sendto" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="CMFEditions: Access previous versions" acquire="True">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="CMFEditions: Apply version control" acquire="True">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="CMFEditions: Checkout to location" acquire="True">
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="CMFEditions: Revert to previous versions" acquire="True">
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="CMFEditions: Save new version" acquire="True">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="CMFPlacefulWorkflow: Manage workflow policies" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Change local roles" acquire="True">
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Content rules: Manage rules" acquire="False">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Copy or Move" acquire="True">
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Delete objects" acquire="True">
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add CollaborationFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add ContentArea" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DocType" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DocTypes" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DPDocument" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-    </permission>
-    <permission name="Docpool: Add DocumentPool" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Docpool: Add SimpleFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add GroupFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add Groups" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add InfoDocument" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add InfoFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Docpool: Add InfoLink" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add PrivateFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add ReviewFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add Text" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add UserFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add Users" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add Dashboard" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DashboardsConfig" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DashboardCollection" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="Reviewer"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Docpool: Manage Addable Types" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DPTransferFolder" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Add DPTransfersArea" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Receive Content" acquire="True">
-      <role name="ContentReceiver"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Docpool: Send Content" acquire="True">
-      <role name="ContentSender"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="FTP access" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="List folder contents" acquire="False">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="List portal members" acquire="True">
-      <role name="Manager"/>
-      <role name="Member"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="List undoable changes" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Mail forgotten password" acquire="False">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Manage properties" acquire="True">
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Modify portal content" acquire="True">
-      <role name="Editor"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Modify view template" acquire="True">
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Plone Site Setup: Users and Groups" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Portlets: Manage own portlets" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Portlets: Manage portlets" acquire="True">
-      <role name="Manager"/>
-    </permission>
-    <permission name="Portlets: View dashboard" acquire="True">
-      <role name="Manager"/>
-    </permission>
-    <permission name="Request review" acquire="True">
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Review comments" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Review portal content" acquire="True">
-      <role name="Manager"/>
-      <role name="Reviewer"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="Search ZCatalog" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Set own password" acquire="False">
-      <role name="Authenticated"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Set own properties" acquire="False">
-      <role name="Authenticated"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Sharing page: Delegate roles" acquire="False">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Sharing page: Delegate Reviewer role" acquire="False">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Undo changes" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Use mailhost services" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Use version control" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="View" acquire="True">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Member"/>
-      <role name="Reader"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-    </permission>
-    <permission name="View Groups" acquire="True">
-      <role name="Manager"/>
-      <role name="Member"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="View History" acquire="True">
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="View management screens" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="WebDAV Lock items" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="WebDAV Unlock items" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="WebDAV access" acquire="True">
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add Collection" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add Document" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add Event" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add File" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add Folder" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add Image" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add Link" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="plone.app.contenttypes: Add News Item" acquire="True">
-      <role name="Contributor"/>
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-    </permission>
-    <permission name="Modify constrain types" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
+    <permission acquire="True"
+                name="Access contents information"
+    >
+      <role name="Contributor" />
+      <role name="Editor" />
+      <role name="Member" />
+      <role name="Reader" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Access inactive portal content"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="False"
+                name="Add portal content"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Add portal events"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="Add portal folders"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="False"
+                name="Add portal member"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Allow sendto"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="CMFEditions: Access previous versions"
+    >
+      <role name="Contributor" />
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="CMFEditions: Apply version control"
+    >
+      <role name="Contributor" />
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="CMFEditions: Checkout to location"
+    >
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="CMFEditions: Revert to previous versions"
+    >
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="CMFEditions: Save new version"
+    >
+      <role name="Contributor" />
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="CMFPlacefulWorkflow: Manage workflow policies"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Change local roles"
+    >
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="False"
+                name="Content rules: Manage rules"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Copy or Move"
+    >
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Delete objects"
+    >
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add CollaborationFolder"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add ContentArea"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DocType"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DocTypes"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DPDocument"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DocumentPool"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add SimpleFolder"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add GroupFolder"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add Groups"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add InfoDocument"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add InfoFolder"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add InfoLink"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add PrivateFolder"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add ReviewFolder"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add Text"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add UserFolder"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add Users"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add Dashboard"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DashboardsConfig"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DashboardCollection"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="Reviewer" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Manage Addable Types"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DPTransferFolder"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Add DPTransfersArea"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Receive Content"
+    >
+      <role name="ContentReceiver" />
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Docpool: Send Content"
+    >
+      <role name="ContentSender" />
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="FTP access"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="False"
+                name="List folder contents"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="List portal members"
+    >
+      <role name="Manager" />
+      <role name="Member" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="List undoable changes"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="False"
+                name="Mail forgotten password"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Manage properties"
+    >
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Modify portal content"
+    >
+      <role name="Editor" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Modify view template"
+    >
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Plone Site Setup: Users and Groups"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="Portlets: Manage own portlets"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="Portlets: Manage portlets"
+    >
+      <role name="Manager" />
+    </permission>
+    <permission acquire="True"
+                name="Portlets: View dashboard"
+    >
+      <role name="Manager" />
+    </permission>
+    <permission acquire="True"
+                name="Request review"
+    >
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Review comments"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Review portal content"
+    >
+      <role name="Manager" />
+      <role name="Reviewer" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Search ZCatalog"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="False"
+                name="Set own password"
+    >
+      <role name="Authenticated" />
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="False"
+                name="Set own properties"
+    >
+      <role name="Authenticated" />
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="False"
+                name="Sharing page: Delegate roles"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="False"
+                name="Sharing page: Delegate Reviewer role"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Undo changes"
+    >
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Use mailhost services"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="Use version control"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="View"
+    >
+      <role name="Contributor" />
+      <role name="Editor" />
+      <role name="Member" />
+      <role name="Reader" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="View Groups"
+    >
+      <role name="Manager" />
+      <role name="Member" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="View History"
+    >
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="View management screens"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="WebDAV Lock items"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="WebDAV Unlock items"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="WebDAV access"
+    >
+      <role name="Site Administrator" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add Collection"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add Document"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add Event"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add File"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add Folder"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add Image"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add Link"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="plone.app.contenttypes: Add News Item"
+    >
+      <role name="Contributor" />
+      <role name="Manager" />
+      <role name="Owner" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+    </permission>
+    <permission acquire="True"
+                name="Modify constrain types"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
     </permission>
   </permissions>
 </rolemap>

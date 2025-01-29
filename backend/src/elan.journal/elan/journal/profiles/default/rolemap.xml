@@ -1,23 +1,27 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <roles>
-    <role name="JournalEditor"/>
-    <role name="JournalReader"/>
+    <role name="JournalEditor" />
+    <role name="JournalReader" />
   </roles>
   <permissions>
-    <permission name="elan.journal: Add Journal" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
-      <role name="EventEditor"/>
+    <permission acquire="True"
+                name="elan.journal: Add Journal"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
+      <role name="EventEditor" />
       <role name="JournalEditor" />
     </permission>
-    <permission name="elan.journal: Add JournalEntry" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="DocPoolAdmin"/>
-      <role name="ContentAdmin"/>
+    <permission acquire="True"
+                name="elan.journal: Add JournalEntry"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="DocPoolAdmin" />
+      <role name="ContentAdmin" />
       <role name="JournalEditor" />
     </permission>
   </permissions>

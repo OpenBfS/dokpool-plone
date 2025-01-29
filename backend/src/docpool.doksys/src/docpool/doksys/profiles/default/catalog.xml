@@ -1,83 +1,153 @@
-<?xml version="1.0"?>
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
- <property name="title">Indexes all content in the site</property>
- <property name="unwrapobjects" type="boolean">True</property>
- <object name="htmltext_lexicon" meta_type="ZCTextIndex Lexicon">
-  <element name="HTML aware splitter" group="Word Splitter"/>
-  <element name="Case Normalizer" group="Case Normalizer"/>
-  <element name="Remove listed stop words only" group="Stop Words"/>
- </object>
- <object name="plaintext_lexicon" meta_type="ZCTextIndex Lexicon">
-  <element name="Whitespace splitter" group="Word Splitter"/>
-  <element name="Case Normalizer" group="Case Normalizer"/>
-  <element name="Remove listed stop words only" group="Stop Words"/>
- </object>
- <object name="plone_lexicon" meta_type="ZCTextIndex Lexicon">
-  <element name="Unicode Whitespace splitter" group="Word Splitter"/>
-  <element name="Unicode Ignoring Accents Case Normalizer" group="Case Normalizer"/>
- </object>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Catalog Tool"
+        name="portal_catalog"
+>
+  <property name="title">Indexes all content in the site</property>
+  <property name="unwrapobjects"
+            type="boolean"
+  >True</property>
+  <object meta_type="ZCTextIndex Lexicon"
+          name="htmltext_lexicon"
+  >
+    <element group="Word Splitter"
+             name="HTML aware splitter"
+    />
+    <element group="Case Normalizer"
+             name="Case Normalizer"
+    />
+    <element group="Stop Words"
+             name="Remove listed stop words only"
+    />
+  </object>
+  <object meta_type="ZCTextIndex Lexicon"
+          name="plaintext_lexicon"
+  >
+    <element group="Word Splitter"
+             name="Whitespace splitter"
+    />
+    <element group="Case Normalizer"
+             name="Case Normalizer"
+    />
+    <element group="Stop Words"
+             name="Remove listed stop words only"
+    />
+  </object>
+  <object meta_type="ZCTextIndex Lexicon"
+          name="plone_lexicon"
+  >
+    <element group="Word Splitter"
+             name="Unicode Whitespace splitter"
+    />
+    <element group="Case Normalizer"
+             name="Unicode Ignoring Accents Case Normalizer"
+    />
+  </object>
 
   <!--<column value="my_meta_column"/>-->
-    <index name="NetworkOperator" meta_type="KeywordIndex">
-        <indexed_attr value="NetworkOperator"/>
-    </index>
-    <index name="Dom" meta_type="KeywordIndex">
-        <indexed_attr value="Dom"/>
-    </index>
-    <index name="LegalBase" meta_type="KeywordIndex">
-        <indexed_attr value="LegalBase"/>
-    </index>
-    <index name="MeasuringProgram" meta_type="FieldIndex">
-        <indexed_attr value="MeasuringProgram"/>
-    </index>
-    <index name="SamplingBegin" meta_type="DateIndex">
-        <indexed_attr value="SamplingBegin"/>
-    </index>
-    <index name="SamplingEnd" meta_type="DateIndex">
-        <indexed_attr value="SamplingEnd"/>
-    </index>
-    <index name="Purpose" meta_type="FieldIndex">
-        <indexed_attr value="Purpose"/>
-    </index>
-    <index name="TrajectoryStartLocation" meta_type="FieldIndex">
-        <indexed_attr value="TrajectoryStartLocation"/>
-    </index>
-    <index name="TrajectoryEndLocation" meta_type="FieldIndex">
-        <indexed_attr value="TrajectoryEndLocation"/>
-    </index>
-    <index name="TrajectoryStartTime" meta_type="DateIndex">
-        <indexed_attr value="TrajectoryStartTime"/>
-    </index>
-    <index name="TrajectoryEndTime" meta_type="DateIndex">
-        <indexed_attr value="TrajectoryEndTime"/>
-    </index>
-    <index name="Status" meta_type="FieldIndex">
-        <indexed_attr value="Status"/>
-    </index>
-    <index name="OperationMode" meta_type="FieldIndex">
-        <indexed_attr value="OperationMode"/>
-    </index>
-    <index name="DataType" meta_type="KeywordIndex">
-        <indexed_attr value="DataType"/>
-    </index>
-    <index name="SampleTypeId" meta_type="ZCTextIndex">
-        <indexed_attr value="SampleType"/>
-        <extra name="index_type" value="Okapi BM25 Rank"/>
-        <extra name="lexicon_id" value="plone_lexicon"/>
-    </index>
-    <index name="SampleType" meta_type="KeywordIndex">
-        <indexed_attr value="SampleType"/>
-    </index>
-    <index name="MeasurementCategory" meta_type="KeywordIndex">
-        <indexed_attr value="MeasurementCategory"/>
-    </index>
-    <index name="Duration" meta_type="FieldIndex">
-        <indexed_attr value="Duration"/>
-    </index>
-    <index name="Type" meta_type="FieldIndex">
-        <indexed_attr value="Type"/>
-    </index>
-    <index name="Area" meta_type="FieldIndex">
-        <indexed_attr value="Area"/>
-    </index>
+  <index meta_type="KeywordIndex"
+         name="NetworkOperator"
+  >
+    <indexed_attr value="NetworkOperator" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="Dom"
+  >
+    <indexed_attr value="Dom" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="LegalBase"
+  >
+    <indexed_attr value="LegalBase" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="MeasuringProgram"
+  >
+    <indexed_attr value="MeasuringProgram" />
+  </index>
+  <index meta_type="DateIndex"
+         name="SamplingBegin"
+  >
+    <indexed_attr value="SamplingBegin" />
+  </index>
+  <index meta_type="DateIndex"
+         name="SamplingEnd"
+  >
+    <indexed_attr value="SamplingEnd" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Purpose"
+  >
+    <indexed_attr value="Purpose" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="TrajectoryStartLocation"
+  >
+    <indexed_attr value="TrajectoryStartLocation" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="TrajectoryEndLocation"
+  >
+    <indexed_attr value="TrajectoryEndLocation" />
+  </index>
+  <index meta_type="DateIndex"
+         name="TrajectoryStartTime"
+  >
+    <indexed_attr value="TrajectoryStartTime" />
+  </index>
+  <index meta_type="DateIndex"
+         name="TrajectoryEndTime"
+  >
+    <indexed_attr value="TrajectoryEndTime" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Status"
+  >
+    <indexed_attr value="Status" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="OperationMode"
+  >
+    <indexed_attr value="OperationMode" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="DataType"
+  >
+    <indexed_attr value="DataType" />
+  </index>
+  <index meta_type="ZCTextIndex"
+         name="SampleTypeId"
+  >
+    <indexed_attr value="SampleType" />
+    <extra name="index_type"
+           value="Okapi BM25 Rank"
+    />
+    <extra name="lexicon_id"
+           value="plone_lexicon"
+    />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="SampleType"
+  >
+    <indexed_attr value="SampleType" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="MeasurementCategory"
+  >
+    <indexed_attr value="MeasurementCategory" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Duration"
+  >
+    <indexed_attr value="Duration" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Type"
+  >
+    <indexed_attr value="Type" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Area"
+  >
+    <indexed_attr value="Area" />
+  </index>
 </object>

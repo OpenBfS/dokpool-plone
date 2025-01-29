@@ -1,12 +1,14 @@
-﻿<?xml version="1.0"?>
-<object name="rei_bw" meta_type="WorkflowPolicy">
- <property name="title">REI Baden-Wuerttemberg</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="rei_review_workflow_alternative"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="(Default)"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="rei_bw"
+>
+  <property name="title">REI Baden-Wuerttemberg</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="rei_review_workflow_alternative" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="(Default)" />
+    </type>
+  </bindings>
 </object>

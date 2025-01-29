@@ -38,3 +38,8 @@ da64389d65ded9c5714734c1e8dbc70b0b8c5616
 # Date:   Mon Feb 19 16:37:57 2024 +0100
 # move Plone to backend (to sync with Plone default setup)
 7aff5e55958da42b1bee45a1b6ffce7e9163d29f
+
+# Author: Philip Bauer <bauer@starzel.de>
+# Date:   Wed Jan 29 15:53:04 2025 +0100
+# format all xml and zcml files using make format
+465dee1604d80b1cac3604c4016a6af53e53c521

@@ -1,12 +1,19 @@
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Catalog Tool"
+        name="portal_catalog"
+>
 
-    <index name="scenarios" meta_type="KeywordIndex">
-		<indexed_attr value="scenarios"/>
-    </index>
-    <index name="category" meta_type="KeywordIndex">
-        <indexed_attr value="category"/>
-    </index>
-    <column value="category"/>
-    <column value="cat_path"/>
+  <index meta_type="KeywordIndex"
+         name="scenarios"
+  >
+    <indexed_attr value="scenarios" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="category"
+  >
+    <indexed_attr value="category" />
+  </index>
+  <column value="category" />
+  <column value="cat_path" />
 
 </object>

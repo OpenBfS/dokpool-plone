@@ -1,22 +1,32 @@
-<?xml version="1.0"?>
-<object name="content_type_registry" meta_type="Content Type Registry">
- <predicate name="ATDocument_ext" content_type_name="Document"
-    predicate_type="extension">
-  <argument value="stx,rst,rest"/>
- </predicate>
- <predicate name="application_xhtml+xml" content_type_name="File"
-    predicate_type="major_minor">
-  <argument value="application"/>
-  <argument value="xhtml+xml"/>
- </predicate>
- <predicate name="message_rfc822" content_type_name="File"
-    predicate_type="major_minor">
-  <argument value="message"/>
-  <argument value="rfc822"/>
- </predicate>
- <predicate name="text" content_type_name="File"
-    predicate_type="major_minor">
-  <argument value="text"/>
-  <argument value=""/>
- </predicate>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Content Type Registry"
+        name="content_type_registry"
+>
+  <predicate content_type_name="Document"
+             name="ATDocument_ext"
+             predicate_type="extension"
+  >
+    <argument value="stx,rst,rest" />
+  </predicate>
+  <predicate content_type_name="File"
+             name="application_xhtml+xml"
+             predicate_type="major_minor"
+  >
+    <argument value="application" />
+    <argument value="xhtml+xml" />
+  </predicate>
+  <predicate content_type_name="File"
+             name="message_rfc822"
+             predicate_type="major_minor"
+  >
+    <argument value="message" />
+    <argument value="rfc822" />
+  </predicate>
+  <predicate content_type_name="File"
+             name="text"
+             predicate_type="major_minor"
+  >
+    <argument value="text" />
+    <argument value="" />
+  </predicate>
 </object>

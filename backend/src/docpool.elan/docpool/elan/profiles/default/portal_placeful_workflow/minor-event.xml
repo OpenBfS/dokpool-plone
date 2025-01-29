@@ -1,12 +1,14 @@
-<?xml version="1.0"?>
-<object name="minor-event" meta_type="WorkflowPolicy">
- <property name="title">Minor Event Workflow</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="dp_minor_event_workflow"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="(Default)"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="minor-event"
+>
+  <property name="title">Minor Event Workflow</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="dp_minor_event_workflow" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="(Default)" />
+    </type>
+  </bindings>
 </object>

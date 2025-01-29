@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="elan.journal"
-      interface="elan.journal.interfaces.IBrowserLayer"
-      />
+  <layer interface="elan.journal.interfaces.IBrowserLayer"
+         name="elan.journal"
+  />
 </layers>

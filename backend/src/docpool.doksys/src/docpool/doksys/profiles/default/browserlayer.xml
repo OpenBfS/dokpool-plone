@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="docpool.doksys"
-      interface="docpool.doksys.interfaces.IDocpoolDoksysLayer"
-      />
+  <layer interface="docpool.doksys.interfaces.IDocpoolDoksysLayer"
+         name="docpool.doksys"
+  />
 </layers>

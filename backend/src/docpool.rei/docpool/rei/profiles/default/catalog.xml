@@ -1,42 +1,77 @@
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
-    <index name="StartSampling" meta_type="DateIndex">
-        <property name="index_naive_time_as_local">True</property>
-    </index>
-    <index name="StopSampling" meta_type="DateIndex">
-        <property name="index_naive_time_as_local">True</property>
-    </index>
-    <index name="Medium" meta_type="FieldIndex">
-        <indexed_attr value="Medium"/>
-    </index>
-    <index name="MSt" meta_type="KeywordIndex">
-        <indexed_attr value="MStIDs"/>
-    </index>
-    <index name="Authority" meta_type="FieldIndex">
-        <indexed_attr value="Authority"/>
-    </index>
-    <index name="ReiLegalBases" meta_type="KeywordIndex">
-        <indexed_attr value="ReiLegalBases"/>
-    </index>
-    <index name="Origins" meta_type="KeywordIndex">
-        <indexed_attr value="Origins"/>
-    </index>
-    <index name="NuclearInstallations" meta_type="KeywordIndex">
-        <indexed_attr value="NuclearInstallations"/>
-    </index>
-    <index name="Period" meta_type="FieldIndex">
-        <indexed_attr value="Period"/>
-    </index>
-    <index name="PDFVersion" meta_type="ZCTextIndex">
-        <indexed_attr value="PDFVersion"/>
-        <extra name="index_type" value="Okapi BM25 Rank"/>
-        <extra name="lexicon_id" value="plone_lexicon"/>
-    </index>
-    <index name="Year" meta_type="ZCTextIndex">
-        <indexed_attr value="Year"/>
-        <extra name="index_type" value="Okapi BM25 Rank"/>
-        <extra name="lexicon_id" value="plone_lexicon"/>
-    </index>
-    <index name="report_year" meta_type="FieldIndex">
-        <indexed_attr value="report_year"/>
-    </index>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Catalog Tool"
+        name="portal_catalog"
+>
+  <index meta_type="DateIndex"
+         name="StartSampling"
+  >
+    <property name="index_naive_time_as_local">True</property>
+  </index>
+  <index meta_type="DateIndex"
+         name="StopSampling"
+  >
+    <property name="index_naive_time_as_local">True</property>
+  </index>
+  <index meta_type="FieldIndex"
+         name="Medium"
+  >
+    <indexed_attr value="Medium" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="MSt"
+  >
+    <indexed_attr value="MStIDs" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Authority"
+  >
+    <indexed_attr value="Authority" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="ReiLegalBases"
+  >
+    <indexed_attr value="ReiLegalBases" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="Origins"
+  >
+    <indexed_attr value="Origins" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="NuclearInstallations"
+  >
+    <indexed_attr value="NuclearInstallations" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="Period"
+  >
+    <indexed_attr value="Period" />
+  </index>
+  <index meta_type="ZCTextIndex"
+         name="PDFVersion"
+  >
+    <indexed_attr value="PDFVersion" />
+    <extra name="index_type"
+           value="Okapi BM25 Rank"
+    />
+    <extra name="lexicon_id"
+           value="plone_lexicon"
+    />
+  </index>
+  <index meta_type="ZCTextIndex"
+         name="Year"
+  >
+    <indexed_attr value="Year" />
+    <extra name="index_type"
+           value="Okapi BM25 Rank"
+    />
+    <extra name="lexicon_id"
+           value="plone_lexicon"
+    />
+  </index>
+  <index meta_type="FieldIndex"
+         name="report_year"
+  >
+    <indexed_attr value="report_year" />
+  </index>
 </object>
