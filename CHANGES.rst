@@ -7,12 +7,12 @@ Changelog
 This is a mayor release with many breaking changes and refactorings.
 The following list only contains the mayor changes.
 
-- Python 3 Migration and Upgrade to Plone 6. #4345 #4824
+- Python 3 Migration and Upgrade to Plone 6. (#4345, #4824)
   Updating a existing installation requires the data to be moved to a new instance using exportimport.
   See #4345 for links to all subtasks.
   [pbauer, slindner, tlotze]
 
-- Cleanup packages structure. #4076
+- Cleanup packages structure. (#4076)
   Remove docpool.caching and move code to docpool.base.
   Remove docpool.video.
   Remove docpool.dashboard and move code to docpool.base.
@@ -30,82 +30,82 @@ The following list only contains the mayor changes.
   Remove elan.theme and move code to docpool.theme.
   [pbauer, tlotze]
 
-- Drop special ELAN-DB and use of SQLAlchemy and Elixir. Remove package docpool.dbaccess. #3954
+- Drop special ELAN-DB and use of SQLAlchemy and Elixir. Remove package docpool.dbaccess. (#3954)
   [lotze]
 
-- Reimplement Theme based on Plone 6 and use webpack. #4826
+- Reimplement Theme based on Plone 6 and use webpack. (#4826)
   [slindner]
 
-- Rewrite Navigation for Plone 6. #4825
+- Rewrite Navigation for Plone 6. (#4825)
   [tlotze]
 
-- Fix inheritance of instance-classes. Stop inheriting from Item and Document since they clash with Container. Drop unused interface IExtendable. #4851
+- Fix inheritance of instance-classes. Stop inheriting from Item and Document since they clash with Container. Drop unused interface IExtendable. (#4851)
   [pbauer]
 
-- Refactor FlexibleView and migrate templates rendered by it to BrowserViews. #4840
+- Refactor FlexibleView and migrate templates rendered by it to BrowserViews. (#4840)
   [pbauer]
 
-- Remove all skin-templates and -scripts and replace with browser views. #4831 #5467
+- Remove all skin-templates and -scripts and replace with browser views. (#4831, #5467)
   [tlotze, pbauer]
 
-- Refactor archiving and snapshot of events. #4870
+- Refactor archiving and snapshot of events. (#4870)
   [pbauer]
 
-- Refactor transfers. #4833 #5653
+- Refactor transfers. (#4833, #5653)
   [tlotze]
 
-- Upgrade faceted-navigation to Plone 6 and Python 3. #4943
+- Upgrade faceted-navigation to Plone 6 and Python 3. (#4943)
   [slindner]
 
-- Switch to pip/uv install based on cookieplone and deploy with docker containers. #5488
+- Switch to pip/uv install based on cookieplone and deploy with docker containers. (#5488)
   [pbauer, slindner]
 
-- Implement dokpool in IMIS3 stack. #5484
+- Implement dokpool in IMIS3 stack. (#5484)
   [slindner]
 
-- Refactor integration and changes to discussion/commenting. #5043 #5518
+- Refactor integration and changes to discussion/commenting. (#5043, #5518)
   [pbauer]
 
-- In navigation portlet show number of items that will be visible in a folder or collection. #4858 #5898
+- In navigation portlet show number of items that will be visible in a folder or collection. (#4858, #5898)
   [pbauer]
 
-- Refactor local behaviors. #5432 #5565
+- Refactor local behaviors. (#5432, #5565)
   [tlotze, pbauer]
 
-- Refactor the control of visibility of app-specific content. #5434
+- Refactor the control of visibility of app-specific content. (#5434)
   [pbauer]
 
-- For better test-content remove docpool_setup and add distribution in new package docpool.distribution. #5681
+- For better test-content remove docpool_setup and add distribution in new package docpool.distribution. (#5681)
   [pbauer]
 
-- Refactor redirect on frontpage. #5450
+- Refactor redirect on frontpage. (#5450)
   [pbauer]
 
-- Remove wsapi4plone and wsapi4elan and replace with custom restapi endpoints. #4626
+- Remove wsapi4plone and wsapi4elan and replace with custom restapi endpoints. (#4626)
   [pbauer]
 
-- Refactor indexes to prevent empty indexes on clear&rebuild. #5700 #5565
+- Refactor indexes to prevent empty indexes on clear&rebuild. (#5700, #5565)
   [pbauer]
 
-- Switch event-selection for users and documents from id to uuid. #5546 #5745 #5260 #5044 #4379
+- Switch event-selection for users and documents from id to uuid. (#5546, #5745, #5260, #5044, #4379)
   [tlotze]
 
-- Reimplement RODOS-app. #2609
+- Reimplement RODOS-app. (#2609)
   [pbauer]
 
-- Add view with bulk actions for ELANDocCollections and DashboardCollections. #4343
+- Add view with bulk actions for ELANDocCollections and DashboardCollections. (#4343)
   [pbauer]
 
-- Remove dependency on collective.geo and openlayers. Use WKT fields for now. #3663
+- Remove dependency on collective.geo and openlayers. Use WKT fields for now. (#3663)
   [pbauer]
 
-- Improve performance. #4481
+- Improve performance. (#4481)
   [pbauer, tlotze]
 
-- Fix design for content below an inaccessible navigation-root. #5447
+- Fix design for content below an inaccessible navigation-root. (#5447)
   [pbauer]
 
-- Add view @@json for admins that serializes content using restapi. #5551
+- Add view @@json for admins that serializes content using restapi. (#5551)
   [pbauer]
 
 
