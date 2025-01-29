@@ -65,12 +65,15 @@
     padding: 2px 15px;
   }
 
+  &.portletRecent header a,
   &#overviewportlet a {
     color: #656565;
     font-size: 18px;
+    font-weight: 700;
   }
 }
 
 .portletRecent .card-body > ul > li {
+  font-size: 18px;
   padding: 0.3rem !important;
 }
