@@ -1,11 +1,18 @@
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Catalog Tool"
+        name="portal_catalog"
+>
 
-    <index name="PrognosisType" meta_type="FieldIndex">
-        <indexed_attr value="PrognosisType"/>
-    </index>
+  <index meta_type="FieldIndex"
+         name="PrognosisType"
+  >
+    <indexed_attr value="PrognosisType" />
+  </index>
 
-    <index name="PrognosisForm" meta_type="FieldIndex">
-        <indexed_attr value="PrognosisForm"/>
-    </index>
+  <index meta_type="FieldIndex"
+         name="PrognosisForm"
+  >
+    <indexed_attr value="PrognosisForm" />
+  </index>
 
 </object>

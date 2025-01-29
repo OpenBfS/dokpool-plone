@@ -1,15 +1,17 @@
-<?xml version="1.0"?>
-<object name="dp-review-folder" meta_type="WorkflowPolicy">
- <property name="title">DP Review Workflow</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="dp_review_workflow"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="dp_review_workflow"/>
-  </type>
-  <type type_id="ReviewFolder">
-   <bound-workflow workflow_id="dp_review_workflow"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="dp-review-folder"
+>
+  <property name="title">DP Review Workflow</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="dp_review_workflow" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="dp_review_workflow" />
+    </type>
+    <type type_id="ReviewFolder">
+      <bound-workflow workflow_id="dp_review_workflow" />
+    </type>
+  </bindings>
 </object>

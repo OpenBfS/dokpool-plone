@@ -1,5 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <registry>
-  <record name="plone.app.caching.interfaces.IPloneCacheSettings.cacheStopRequestVariables" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="cacheStopRequestVariables">
+  <record field="cacheStopRequestVariables"
+          interface="plone.app.caching.interfaces.IPloneCacheSettings"
+          name="plone.app.caching.interfaces.IPloneCacheSettings.cacheStopRequestVariables"
+  >
     <field type="plone.registry.field.Tuple">
       <default>
         <element>statusmessages</element>
@@ -16,7 +20,10 @@
       <element>SearchableText</element>
     </value>
   </record>
-  <record name="plone.app.caching.interfaces.IPloneCacheSettings.contentTypeRulesetMapping" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="contentTypeRulesetMapping">
+  <record field="contentTypeRulesetMapping"
+          interface="plone.app.caching.interfaces.IPloneCacheSettings"
+          name="plone.app.caching.interfaces.IPloneCacheSettings.contentTypeRulesetMapping"
+  >
     <field type="plone.registry.field.Dict">
       <description>Maps content type names to ruleset names</description>
       <key_type type="plone.registry.field.ASCIILine">
@@ -52,7 +59,10 @@
       <element key="DPEvents">plone.content.folderView</element>
     </value>
   </record>
-  <record name="plone.app.caching.interfaces.IPloneCacheSettings.enableCompression" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="enableCompression">
+  <record field="enableCompression"
+          interface="plone.app.caching.interfaces.IPloneCacheSettings"
+          name="plone.app.caching.interfaces.IPloneCacheSettings.enableCompression"
+  >
     <field type="plone.registry.field.Bool">
       <default>False</default>
       <description>Determine whether GZip compression should be enabled for standard responses</description>
@@ -60,7 +70,10 @@
     </field>
     <value>False</value>
   </record>
-  <record name="plone.app.caching.interfaces.IPloneCacheSettings.purgedContentTypes" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="purgedContentTypes">
+  <record field="purgedContentTypes"
+          interface="plone.app.caching.interfaces.IPloneCacheSettings"
+          name="plone.app.caching.interfaces.IPloneCacheSettings.purgedContentTypes"
+  >
     <field type="plone.registry.field.Tuple">
       <default>
         <element>File</element>
@@ -97,7 +110,10 @@
       <element>SimpleFolder</element>
     </value>
   </record>
-  <record name="plone.app.caching.interfaces.IPloneCacheSettings.templateRulesetMapping" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="templateRulesetMapping">
+  <record field="templateRulesetMapping"
+          interface="plone.app.caching.interfaces.IPloneCacheSettings"
+          name="plone.app.caching.interfaces.IPloneCacheSettings.templateRulesetMapping"
+  >
     <field type="plone.registry.field.Dict">
       <description>Maps skin layer page template names to ruleset names</description>
       <key_type type="plone.registry.field.ASCIILine">
@@ -135,7 +151,7 @@
       <description>A list of ETag component names to include</description>
       <required>False</required>
       <title>ETags</title>
-      <value_type type="plone.registry.field.ASCIILine"/>
+      <value_type type="plone.registry.field.ASCIILine" />
     </field>
     <value>
       <element>roles</element>
@@ -174,7 +190,7 @@
       <required>False</required>
       <title>Vary</title>
     </field>
-    <value/>
+    <value />
   </record>
   <record name="plone.app.caching.strongCaching.anonOnly">
     <field type="plone.registry.field.Bool">
@@ -189,9 +205,9 @@
       <description>A list of ETag component names to include</description>
       <required>False</required>
       <title>ETags</title>
-      <value_type type="plone.registry.field.ASCIILine"/>
+      <value_type type="plone.registry.field.ASCIILine" />
     </field>
-    <value/>
+    <value />
   </record>
   <record name="plone.app.caching.strongCaching.lastModified">
     <field type="plone.registry.field.Bool">
@@ -223,7 +239,7 @@
       <required>False</required>
       <title>Shared maximum age</title>
     </field>
-    <value/>
+    <value />
   </record>
   <record name="plone.app.caching.strongCaching.vary">
     <field type="plone.registry.field.ASCIILine">
@@ -231,7 +247,7 @@
       <required>False</required>
       <title>Vary</title>
     </field>
-    <value/>
+    <value />
   </record>
   <record name="plone.app.caching.weakCaching.anonOnly">
     <field type="plone.registry.field.Bool">
@@ -246,7 +262,7 @@
       <description>A list of ETag component names to include</description>
       <required>False</required>
       <title>ETags</title>
-      <value_type type="plone.registry.field.ASCIILine"/>
+      <value_type type="plone.registry.field.ASCIILine" />
     </field>
     <value>
       <element>roles</element>
@@ -277,32 +293,41 @@
       <required>False</required>
       <title>Vary</title>
     </field>
-    <value/>
+    <value />
   </record>
-  <record name="plone.cachepurging.interfaces.ICachePurgingSettings.cachingProxies" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="cachingProxies">
+  <record field="cachingProxies"
+          interface="plone.cachepurging.interfaces.ICachePurgingSettings"
+          name="plone.cachepurging.interfaces.ICachePurgingSettings.cachingProxies"
+  >
     <field type="plone.registry.field.Tuple">
       <description>Provide the URLs of each proxy to which PURGE requests shoudl be sent.</description>
       <title>Caching proxies</title>
-      <value_type type="plone.registry.field.URI"/>
+      <value_type type="plone.registry.field.URI" />
     </field>
     <value>
       <element>http://dokpool-varnish:8080</element>
     </value>
   </record>
-  <record name="plone.cachepurging.interfaces.ICachePurgingSettings.domains" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="domains">
+  <record field="domains"
+          interface="plone.cachepurging.interfaces.ICachePurgingSettings"
+          name="plone.cachepurging.interfaces.ICachePurgingSettings.domains"
+  >
     <field type="plone.registry.field.Tuple">
-      <default/>
+      <default />
       <description>This option is only relevant if you are using virtual hosting and you have enabled the option to send PURGE requests with virtual hosting URLs above. If you your site is served on multiple domains e.g. http://example.org and http://www.example.org you may wish to purge both. If so, list all your domains here</description>
-      <missing_value/>
+      <missing_value />
       <required>False</required>
       <title>Domains</title>
-      <value_type type="plone.registry.field.URI"/>
+      <value_type type="plone.registry.field.URI" />
     </field>
     <value>
       <element>https://review-bfs.starzel.de</element>
     </value>
   </record>
-  <record name="plone.cachepurging.interfaces.ICachePurgingSettings.enabled" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="enabled">
+  <record field="enabled"
+          interface="plone.cachepurging.interfaces.ICachePurgingSettings"
+          name="plone.cachepurging.interfaces.ICachePurgingSettings.enabled"
+  >
     <field type="plone.registry.field.Bool">
       <default>True</default>
       <description>If disabled, no purging will take place</description>
@@ -310,7 +335,10 @@
     </field>
     <value>False</value>
   </record>
-  <record name="plone.cachepurging.interfaces.ICachePurgingSettings.virtualHosting" interface="plone.cachepurging.interfaces.ICachePurgingSettings" field="virtualHosting">
+  <record field="virtualHosting"
+          interface="plone.cachepurging.interfaces.ICachePurgingSettings"
+          name="plone.cachepurging.interfaces.ICachePurgingSettings.virtualHosting"
+  >
     <field type="plone.registry.field.Bool">
       <default>False</default>
       <description>This option is only relevant if you are using virtual hosting with Zope's VirtualHostMonster. This relies on special tokens (VirtualHostBase and VirtualHostRoot) in the URL to instruct Zope about the types of URLs that the user sees. If virtual host URLs are in use and this option is set, PURGE requests will be sent to the caching proxy with the virtual hosting tokens in place. This makes sense if there is a web server in front of your caching proxy performing the rewrites necessary to translate a user-facing URL into a virtual hosting URL, so that the requests the caching proxy sees have the rewrite information in them. Conversely, if the rewrite is done in or behind the caching proxy, you want to disable this option, so that the PURGE requests use URLs that match those seen by the caching proxy as they come from the client.</description>
@@ -318,7 +346,10 @@
     </field>
     <value>True</value>
   </record>
-  <record name="plone.caching.interfaces.ICacheSettings.enabled" interface="plone.caching.interfaces.ICacheSettings" field="enabled">
+  <record field="enabled"
+          interface="plone.caching.interfaces.ICacheSettings"
+          name="plone.caching.interfaces.ICacheSettings.enabled"
+  >
     <field type="plone.registry.field.Bool">
       <default>False</default>
       <description>If not set, no caching operations will be attempted</description>
@@ -326,7 +357,10 @@
     </field>
     <value>True</value>
   </record>
-  <record name="plone.caching.interfaces.ICacheSettings.operationMapping" interface="plone.caching.interfaces.ICacheSettings" field="operationMapping">
+  <record field="operationMapping"
+          interface="plone.caching.interfaces.ICacheSettings"
+          name="plone.caching.interfaces.ICacheSettings.operationMapping"
+  >
     <field type="plone.registry.field.Dict">
       <description>Maps rule set names to operation names</description>
       <key_type type="plone.registry.field.DottedName">
@@ -350,8 +384,8 @@
     <field type="plone.registry.field.List">
       <description>A list of operations to call, in order</description>
       <title>Operations</title>
-      <value_type type="plone.registry.field.DottedName"/>
+      <value_type type="plone.registry.field.DottedName" />
     </field>
-    <value/>
+    <value />
   </record>
 </registry>

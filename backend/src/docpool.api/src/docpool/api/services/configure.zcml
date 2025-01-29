@@ -2,54 +2,55 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="docpool.api">
+    i18n_domain="docpool.api"
+    >
 
   <plone:service
-    method="GET"
-    name="@get_primary_documentpool"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".services.GetPrimaryDocumentpool"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".services.GetPrimaryDocumentpool"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@get_primary_documentpool"
+      />
 
   <plone:service
-    method="GET"
-    name="@get_documentpools"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".services.GetDocumentpools"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".services.GetDocumentpools"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@get_documentpools"
+      />
 
   <plone:service
-    method="GET"
-    name="@get_user_folder"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".services.GetUserFolder"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".services.GetUserFolder"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@get_user_folder"
+      />
 
   <plone:service
-    method="GET"
-    name="@get_group_folders"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".services.GetGroupFolders"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".services.GetGroupFolders"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@get_group_folders"
+      />
 
   <plone:service
-    method="GET"
-    name="@get_transfer_folders"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".services.GetTransferFolders"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".services.GetTransferFolders"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@get_transfer_folders"
+      />
 
   <plone:service
-    method="GET"
-    name="@scenario-history"
-    for="docpool.elan.content.dpevent.IDPEvent"
-    factory=".services.GetScenarioHistory"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".services.GetScenarioHistory"
+      for="docpool.elan.content.dpevent.IDPEvent"
+      permission="zope2.View"
+      name="@scenario-history"
+      />
 
 </configure>

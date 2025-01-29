@@ -1,52 +1,82 @@
-<?xml version="1.0"?>
-<object name="portal_workflow" meta_type="Plone Workflow Tool">
-<!-- Workflow allocation -->
- <object name="dp_one_state_workflow" meta_type="Workflow"/>
- <object name="dp_admin_workflow" meta_type="Workflow"/>
- <object name="dp_doc_workflow" meta_type="Workflow"/>
- <object name="dp_private_workflow" meta_type="Workflow"/>
- <object name="dp_privateinfo_workflow" meta_type="Workflow"/>
- <object name="dp_folder_workflow" meta_type="Workflow"/>
- <object name="dp_principalfolder_workflow" meta_type="Workflow"/>
- <object name="dp_doctype_workflow" meta_type="Workflow"/>
- <object name="dp_collaboration_workflow" meta_type="Workflow"/>
- <object name="dp_guest_workflow" meta_type="Workflow"/>
- <object name="dp_review_workflow" meta_type="Workflow"/>
- <object name="dp_double_review_bayern_workflow" meta_type="Workflow"/>
- <object name="dp_private_bayern_workflow" meta_type="Workflow"/>
- <object name="dp_review_bayern_workflow" meta_type="Workflow"/>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="dp_one_state_workflow"/>
-  </default>
-  <type type_id="Discussion Item">
-   <bound-workflow workflow_id="dp_one_state_workflow"/>
-  </type>
-  <type type_id="File">
-   <bound-workflow workflow_id="dp_one_state_workflow"/>
-  </type>
-  <type type_id="Folder">
-   <bound-workflow workflow_id="dp_one_state_workflow"/>
-  </type>
-  <type type_id="Image">
-   <bound-workflow workflow_id="dp_one_state_workflow"/>
-  </type>
-  <type type_id="Document">
-   <bound-workflow workflow_id="dp_one_state_workflow"/>
-  </type>
-  <type type_id="Plone Site"/>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Workflow Tool"
+        name="portal_workflow"
+>
+  <!-- Workflow allocation -->
+  <object meta_type="Workflow"
+          name="dp_one_state_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_admin_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_doc_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_private_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_privateinfo_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_folder_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_principalfolder_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_doctype_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_collaboration_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_guest_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_review_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_double_review_bayern_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_private_bayern_workflow"
+  />
+  <object meta_type="Workflow"
+          name="dp_review_bayern_workflow"
+  />
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </default>
+    <type type_id="Discussion Item">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
+    <type type_id="File">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
+    <type type_id="Folder">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
+    <type type_id="Image">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
+    <type type_id="Document">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
+    <type type_id="Plone Site" />
 
 
-   <type type_id="InfoFolder">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="InfoFolder">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
 
 
 
-   <type type_id="InfoDocument">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="InfoDocument">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
 
 
@@ -57,23 +87,23 @@
 
 
 
-   <type type_id="DPDocument">
-    <bound-workflow workflow_id="dp_doc_workflow" />
-   </type>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="dp_doc_workflow" />
+    </type>
 
 
 
 
-   <type type_id="DocType">
-    <bound-workflow workflow_id="dp_doctype_workflow" />
-   </type>
+    <type type_id="DocType">
+      <bound-workflow workflow_id="dp_doctype_workflow" />
+    </type>
 
 
 
 
-   <type type_id="SimpleFolder">
-    <bound-workflow workflow_id="dp_folder_workflow" />
-   </type>
+    <type type_id="SimpleFolder">
+      <bound-workflow workflow_id="dp_folder_workflow" />
+    </type>
 
 
 
@@ -81,9 +111,9 @@
 
 
 
-   <type type_id="DocTypes">
-    <bound-workflow workflow_id="dp_admin_workflow" />
-   </type>
+    <type type_id="DocTypes">
+      <bound-workflow workflow_id="dp_admin_workflow" />
+    </type>
 
 
 
@@ -91,73 +121,73 @@
 
 
 
-   <type type_id="FolderBase">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="FolderBase">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
 
 
 
-   <type type_id="GroupFolder">
-    <bound-workflow workflow_id="dp_principalfolder_workflow" />
-   </type>
+    <type type_id="GroupFolder">
+      <bound-workflow workflow_id="dp_principalfolder_workflow" />
+    </type>
 
 
 
 
-   <type type_id="UserFolder">
-    <bound-workflow workflow_id="dp_principalfolder_workflow" />
-   </type>
+    <type type_id="UserFolder">
+      <bound-workflow workflow_id="dp_principalfolder_workflow" />
+    </type>
 
 
 
 
-   <type type_id="Groups">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="Groups">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
 
 
 
-   <type type_id="Users">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="Users">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
-   <type type_id="ReviewFolder">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="ReviewFolder">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
-   <type type_id="CollaborationFolder">
-    <bound-workflow workflow_id="dp_private_workflow" />
-   </type>
+    <type type_id="CollaborationFolder">
+      <bound-workflow workflow_id="dp_private_workflow" />
+    </type>
 
-   <type type_id="PrivateFolder">
-    <bound-workflow workflow_id="dp_private_workflow" />
-   </type>
+    <type type_id="PrivateFolder">
+      <bound-workflow workflow_id="dp_private_workflow" />
+    </type>
 
-   <type type_id="DocumentPool">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="DocumentPool">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
-   <type type_id="ContentArea">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="ContentArea">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
-   <type type_id="DPConfig">
-    <bound-workflow workflow_id="dp_admin_workflow" />
-   </type>
+    <type type_id="DPConfig">
+      <bound-workflow workflow_id="dp_admin_workflow" />
+    </type>
 
-   <type type_id="DashboardCollection">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="DashboardCollection">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
-   <type type_id="DashboardsConfig">
-    <bound-workflow workflow_id="dp_admin_workflow" />
-   </type>
+    <type type_id="DashboardsConfig">
+      <bound-workflow workflow_id="dp_admin_workflow" />
+    </type>
 
-   <type type_id="Dashboard">
-    <bound-workflow workflow_id="dp_one_state_workflow" />
-   </type>
+    <type type_id="Dashboard">
+      <bound-workflow workflow_id="dp_one_state_workflow" />
+    </type>
 
- </bindings>
+  </bindings>
 </object>

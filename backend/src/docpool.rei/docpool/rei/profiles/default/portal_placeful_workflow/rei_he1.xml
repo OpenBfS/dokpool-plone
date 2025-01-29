@@ -1,12 +1,14 @@
-﻿<?xml version="1.0"?>
-<object name="rei_he1" meta_type="WorkflowPolicy">
- <property name="title">REI Hessen standard</property>
- <bindings>
-  <default>
-   <bound-workflow workflow_id="rei_review_workflow_standard"/>
-  </default>
-  <type type_id="DPDocument">
-   <bound-workflow workflow_id="(Default)"/>
-  </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="WorkflowPolicy"
+        name="rei_he1"
+>
+  <property name="title">REI Hessen standard</property>
+  <bindings>
+    <default>
+      <bound-workflow workflow_id="rei_review_workflow_standard" />
+    </default>
+    <type type_id="DPDocument">
+      <bound-workflow workflow_id="(Default)" />
+    </type>
+  </bindings>
 </object>

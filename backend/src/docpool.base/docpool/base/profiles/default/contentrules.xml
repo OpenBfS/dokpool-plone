@@ -1,18 +1,25 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <contentrules>
- <rule name="rule-1" title="ELD Ping-Pong vermeiden" cascading="False"
-    description="" enabled="True"
-    event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
-    stop-after="False">
-  <conditions>
-   <condition type="plone.conditions.TalesExpression">
-    <property name="tales_expression">python: 'Austausch BW' in context.created_by</property>
-   </condition>
-  </conditions>
-  <actions>
-   <action type="plone.actions.Delete"/>
-  </actions>
- </rule>
- <assignment name="rule-1" bubbles="True" enabled="True"
-    location="/baden-wuerttemberg/content/Transfers/dokumente-aus-bund"/>
+  <rule cascading="False"
+        description=""
+        enabled="True"
+        event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        name="rule-1"
+        stop-after="False"
+        title="ELD Ping-Pong vermeiden"
+  >
+    <conditions>
+      <condition type="plone.conditions.TalesExpression">
+        <property name="tales_expression">python: 'Austausch BW' in context.created_by</property>
+      </condition>
+    </conditions>
+    <actions>
+      <action type="plone.actions.Delete" />
+    </actions>
+  </rule>
+  <assignment bubbles="True"
+              enabled="True"
+              location="/baden-wuerttemberg/content/Transfers/dokumente-aus-bund"
+              name="rule-1"
+  />
 </contentrules>

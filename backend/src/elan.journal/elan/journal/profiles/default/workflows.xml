@@ -1,10 +1,14 @@
-<?xml version="1.0"?>
-<object name="portal_workflow" meta_type="Plone Workflow Tool">
-<!-- Workflow allocation -->
- <object name="dp_journal_workflow" meta_type="Workflow"/>
- <bindings>
-   <type type_id="Journal">
-    <bound-workflow workflow_id="dp_journal_workflow" />
-   </type>
- </bindings>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Workflow Tool"
+        name="portal_workflow"
+>
+  <!-- Workflow allocation -->
+  <object meta_type="Workflow"
+          name="dp_journal_workflow"
+  />
+  <bindings>
+    <type type_id="Journal">
+      <bound-workflow workflow_id="dp_journal_workflow" />
+    </type>
+  </bindings>
 </object>

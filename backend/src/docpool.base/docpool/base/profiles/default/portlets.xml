@@ -1,7 +1,31 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <portlets>
-    <assignment remove="true" name="navigation" category="context" key="/" manager="plone.leftcolumn" type="portlets.Navigation" />
-    <assignment remove="true" name="calendar" category="context" key="/" manager="plone.rightcolumn" type="portlets.Calendar" />
-    <assignment remove="true" name="events" category="context" key="/" manager="plone.rightcolumn" type="portlets.Events" />
-    <assignment remove="true" name="news" category="context" key="/" manager="plone.rightcolumn" type="portlets.News" />
+  <assignment category="context"
+              key="/"
+              manager="plone.leftcolumn"
+              name="navigation"
+              remove="true"
+              type="portlets.Navigation"
+  />
+  <assignment category="context"
+              key="/"
+              manager="plone.rightcolumn"
+              name="calendar"
+              remove="true"
+              type="portlets.Calendar"
+  />
+  <assignment category="context"
+              key="/"
+              manager="plone.rightcolumn"
+              name="events"
+              remove="true"
+              type="portlets.Events"
+  />
+  <assignment category="context"
+              key="/"
+              manager="plone.rightcolumn"
+              name="news"
+              remove="true"
+              type="portlets.News"
+  />
 </portlets>

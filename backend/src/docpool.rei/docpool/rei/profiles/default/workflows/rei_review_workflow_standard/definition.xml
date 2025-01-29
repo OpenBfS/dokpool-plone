@@ -1,381 +1,533 @@
-<?xml version="1.0"?>
-<dc-workflow
-        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-        workflow_id="rei_review_workflow_standard"
-        title="REI Review Workflow standard"
-        description=""
-        i18n:domain="plone"
-        state_variable="review_state"
-        initial_state="private"
-        manager_bypass="False"
-        i18n:attributes="title; description">
-    <group>bund_bfs_rei</group>
-    <group>bund_bmu_rei</group>
-    <group>bund_aufsicht</group>
-    <permission>Access contents information</permission>
-    <permission>Add portal content</permission>
-    <permission>Delete objects</permission>
-    <permission>Modify portal content</permission>
-    <permission>Sharing page: Delegate roles</permission>
-    <permission>View</permission>
-    <state state_id="pending_bfs" title="Pending BfS" i18n:attributes="title">
-        <exit-transition transition_id="reject_to_authority"/>
-        <exit-transition transition_id="retract_to_authority"/>
-        <exit-transition transition_id="submit_bmu"/>
-        <permission-map name="Access contents information" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Editor</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Add portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Delete objects" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Modify portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Sharing page: Delegate roles" acquired="True">
-        </permission-map>
-        <permission-map name="View" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Editor</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <group-map name="bund_aufsicht">
-            <group-role>Editor</group-role>
-            <group-role>Owner</group-role>
-        </group-map>
-        <group-map name="bund_bfs_rei">
-            <group-role>Contributor</group-role>
-            <group-role>Reviewer</group-role>
-        </group-map>
-    </state>
-    <state state_id="pending_bmu" title="Pending BMUV" i18n:attributes="title">
-        <exit-transition transition_id="publish"/>
-        <exit-transition transition_id="reject_to_bfs"/>
-        <exit-transition transition_id="retract_to_bfs"/>
-        <permission-map name="Access contents information" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Add portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Delete objects" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-            </permission-map>
-        <permission-map name="Modify portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Sharing page: Delegate roles" acquired="True">
-        </permission-map>
-        <permission-map name="View" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <group-map name="bund_aufsicht">
-            <group-role>Editor</group-role>
-        </group-map>
-        <group-map name="bund_bfs_rei">
-            <group-role>Contributor</group-role>
-            <group-role>Owner</group-role>
-        </group-map>
-        <group-map name="bund_bmu_rei">
-            <group-role>Contributor</group-role>
-            <group-role>Reviewer</group-role>
-        </group-map>
-    </state>
-    <state state_id="private" title="Private" i18n:attributes="title">
-        <description>Can only be seen and edited by the owner.</description>
-        <exit-transition transition_id="submit_bfs"/>
-        <permission-map name="Access contents information" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Add portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Delete objects" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Modify portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Sharing page: Delegate roles" acquired="False">
-            <permission-role>Manager</permission-role>
-        </permission-map>
-        <permission-map name="View" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-    </state>
-    <state state_id="published" title="Published BMUV" i18n:attributes="title">
-        <description>Visible to everyone, editable by the owner.</description>
-        <exit-transition transition_id="retract_for_revision"/>
-        <permission-map name="Access contents information" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>REIUser</permission-role>
-            <permission-role>Reader</permission-role>
-            <permission-role>Reviewer</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Add portal content" acquired="False">
-        </permission-map>
-        <permission-map name="Delete objects" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Modify portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Sharing page: Delegate roles" acquired="False">
-        </permission-map>
-        <permission-map name="View" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>REIUser</permission-role>
-            <permission-role>Reader</permission-role>
-            <permission-role>Reviewer</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <group-map name="bund_bfs_rei">
-            <group-role>Contributor</group-role>
-            <group-role>Owner</group-role>
-        </group-map>
-        <group-map name="bund_bmu_rei">
-            <group-role>Reviewer</group-role>
-        </group-map>
-    </state>
-    <state state_id="revised" title="Revised">
-        <permission-map name="Access contents information" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>REIUser</permission-role>
-            <permission-role>Reader</permission-role>
-            <permission-role>Reviewer</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Add portal content" acquired="False">
-        </permission-map>
-        <permission-map name="Delete objects" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-        </permission-map>
-        <permission-map name="Modify portal content" acquired="False">
-            <permission-role>DocPoolAdmin</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <permission-map name="Sharing page: Delegate roles" acquired="True">
-        </permission-map>
-        <permission-map name="View" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Manager</permission-role>
-            <permission-role>Owner</permission-role>
-            <permission-role>REIUser</permission-role>
-            <permission-role>Reader</permission-role>
-            <permission-role>Reviewer</permission-role>
-            <permission-role>Site Administrator</permission-role>
-        </permission-map>
-        <group-map name="bund_bfs_rei">
-            <group-role>Contributor</group-role>
-        </group-map>
-        <group-map name="bund_bmu_rei">
-            <group-role>Reviewer</group-role>
-        </group-map>
-    </state>
-    <transition transition_id="publish" title="Reviewer publishes content"
-                new_state="published" trigger="USER" before_script=""
-                after_script="">
-        <description>Publishing the item makes it visible to other users.
+<?xml version="1.0" encoding="utf-8"?>
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             description=""
+             initial_state="private"
+             manager_bypass="False"
+             state_variable="review_state"
+             title="REI Review Workflow standard"
+             workflow_id="rei_review_workflow_standard"
+             i18n:attributes="title; description"
+             i18n:domain="plone"
+>
+  <group>bund_bfs_rei</group>
+  <group>bund_bmu_rei</group>
+  <group>bund_aufsicht</group>
+  <permission>Access contents information</permission>
+  <permission>Add portal content</permission>
+  <permission>Delete objects</permission>
+  <permission>Modify portal content</permission>
+  <permission>Sharing page: Delegate roles</permission>
+  <permission>View</permission>
+  <state state_id="pending_bfs"
+         title="Pending BfS"
+         i18n:attributes="title"
+  >
+    <exit-transition transition_id="reject_to_authority" />
+    <exit-transition transition_id="retract_to_authority" />
+    <exit-transition transition_id="submit_bmu" />
+    <permission-map acquired="False"
+                    name="Access contents information"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>Editor</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Add portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Delete objects"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Modify portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="True"
+                    name="Sharing page: Delegate roles"
+    >
+</permission-map>
+    <permission-map acquired="False"
+                    name="View"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>Editor</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <group-map name="bund_aufsicht">
+      <group-role>Editor</group-role>
+      <group-role>Owner</group-role>
+    </group-map>
+    <group-map name="bund_bfs_rei">
+      <group-role>Contributor</group-role>
+      <group-role>Reviewer</group-role>
+    </group-map>
+  </state>
+  <state state_id="pending_bmu"
+         title="Pending BMUV"
+         i18n:attributes="title"
+  >
+    <exit-transition transition_id="publish" />
+    <exit-transition transition_id="reject_to_bfs" />
+    <exit-transition transition_id="retract_to_bfs" />
+    <permission-map acquired="False"
+                    name="Access contents information"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Add portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Delete objects"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Modify portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="True"
+                    name="Sharing page: Delegate roles"
+    >
+</permission-map>
+    <permission-map acquired="False"
+                    name="View"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <group-map name="bund_aufsicht">
+      <group-role>Editor</group-role>
+    </group-map>
+    <group-map name="bund_bfs_rei">
+      <group-role>Contributor</group-role>
+      <group-role>Owner</group-role>
+    </group-map>
+    <group-map name="bund_bmu_rei">
+      <group-role>Contributor</group-role>
+      <group-role>Reviewer</group-role>
+    </group-map>
+  </state>
+  <state state_id="private"
+         title="Private"
+         i18n:attributes="title"
+  >
+    <description>Can only be seen and edited by the owner.</description>
+    <exit-transition transition_id="submit_bfs" />
+    <permission-map acquired="False"
+                    name="Access contents information"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Add portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Delete objects"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Modify portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Sharing page: Delegate roles"
+    >
+      <permission-role>Manager</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="View"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+  </state>
+  <state state_id="published"
+         title="Published BMUV"
+         i18n:attributes="title"
+  >
+    <description>Visible to everyone, editable by the owner.</description>
+    <exit-transition transition_id="retract_for_revision" />
+    <permission-map acquired="False"
+                    name="Access contents information"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>REIUser</permission-role>
+      <permission-role>Reader</permission-role>
+      <permission-role>Reviewer</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Add portal content"
+    >
+</permission-map>
+    <permission-map acquired="False"
+                    name="Delete objects"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Modify portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Sharing page: Delegate roles"
+    >
+</permission-map>
+    <permission-map acquired="False"
+                    name="View"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>REIUser</permission-role>
+      <permission-role>Reader</permission-role>
+      <permission-role>Reviewer</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <group-map name="bund_bfs_rei">
+      <group-role>Contributor</group-role>
+      <group-role>Owner</group-role>
+    </group-map>
+    <group-map name="bund_bmu_rei">
+      <group-role>Reviewer</group-role>
+    </group-map>
+  </state>
+  <state state_id="revised"
+         title="Revised"
+  >
+    <permission-map acquired="False"
+                    name="Access contents information"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>REIUser</permission-role>
+      <permission-role>Reader</permission-role>
+      <permission-role>Reviewer</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Add portal content"
+    >
+</permission-map>
+    <permission-map acquired="False"
+                    name="Delete objects"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Modify portal content"
+    >
+      <permission-role>DocPoolAdmin</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <permission-map acquired="True"
+                    name="Sharing page: Delegate roles"
+    >
+</permission-map>
+    <permission-map acquired="False"
+                    name="View"
+    >
+      <permission-role>Contributor</permission-role>
+      <permission-role>Manager</permission-role>
+      <permission-role>Owner</permission-role>
+      <permission-role>REIUser</permission-role>
+      <permission-role>Reader</permission-role>
+      <permission-role>Reviewer</permission-role>
+      <permission-role>Site Administrator</permission-role>
+    </permission-map>
+    <group-map name="bund_bfs_rei">
+      <group-role>Contributor</group-role>
+    </group-map>
+    <group-map name="bund_bmu_rei">
+      <group-role>Reviewer</group-role>
+    </group-map>
+  </state>
+  <transition after_script=""
+              before_script=""
+              new_state="published"
+              title="Reviewer publishes content"
+              transition_id="publish"
+              trigger="USER"
+  >
+    <description>Publishing the item makes it visible to other users.
         </description>
-        <action url="%(content_url)s/content_status_modify?workflow_action=publish"
-                category="workflow" icon="" i18n:translate="">Publish BMUV</action>
-        <guard>
-            <guard-role>Reviewer</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-        </guard>
-    </transition>
-    <transition transition_id="reject_to_authority"
-                title="Send back to authority" new_state="private"
-                trigger="USER" before_script="" after_script="">
-        <action url="%(content_url)s/content_status_modify?workflow_action=reject_to_authority"
-                category="workflow" icon="" i18n:translate="">Send back to authority</action>
-        <guard>
-            <guard-role>Contributor</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-        </guard>
-    </transition>
-    <transition transition_id="reject_to_bfs" title="Send back to BfS"
-                new_state="pending_bfs" trigger="USER" before_script=""
-                after_script="">
-        <action url="%(content_url)s/content_status_modify?workflow_action=reject_to_bfs"
-                category="workflow" icon="" i18n:translate="">Send back to BfS</action>
-        <guard>
-            <guard-role>Reviewer</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-        </guard>
-    </transition>
-    <transition transition_id="retract_for_revision" title=""
-                new_state="revised" trigger="USER" before_script=""
-                after_script="">
-        <action url="" category="workflow" icon="" i18n:translate="">Retract for Revision</action>
-        <guard>
-            <guard-role>Contributor</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-            <guard-group>bund_bfs_rei</guard-group>
-        </guard>
-    </transition>
-    <transition transition_id="retract_to_authority"
-                title="Retract to authority" new_state="private"
-                trigger="USER" before_script="" after_script="">
-        <action url="%(content_url)s/content_status_modify?workflow_action=retract_to_authority"
-                category="workflow" icon="" i18n:translate="">Retract to authority</action>
-        <guard>
-            <guard-role>Owner</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-        </guard>
-    </transition>
-    <transition transition_id="retract_to_bfs" title="Retract to BfS"
-                new_state="pending_bfs" trigger="USER" before_script=""
-                after_script="">
-        <action url="%(content_url)s/content_status_modify?workflow_action=retract_to_bfs"
-                category="workflow" icon="" i18n:translate="">Retract to BfS</action>
-        <guard>
-            <guard-role>Contributor</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-            <guard-group>bund_bfs_rei</guard-group>
-        </guard>
-    </transition>
-    <transition transition_id="submit_bfs" title="Submit to BfS"
-                new_state="pending_bfs" trigger="USER" before_script=""
-                after_script="">
-        <action url="%(content_url)s/content_status_modify?workflow_action=submit_bfs"
-                category="workflow" icon="" i18n:translate="">Submit to BfS</action>
-        <guard>
-            <guard-role>Owner</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-            <guard-expression>python: here.objectCount()</guard-expression>
-        </guard>
-    </transition>
-    <transition transition_id="submit_bmu" title="Submit to BMUV"
-                new_state="pending_bmu" trigger="USER" before_script=""
-                after_script="">
-        <action url="%(content_url)s/content_status_modify?workflow_action=submit_bmu"
-                category="workflow" icon="" i18n:translate="">Submit to BMUV</action>
-        <guard>
-            <guard-role>Contributor</guard-role>
-            <guard-role>Manager</guard-role>
-            <guard-role>Site Administrator</guard-role>
-        </guard>
-    </transition>
-    <worklist worklist_id="reviewer_queue" title="">
-        <description>Reviewer tasks</description>
-        <action url="%(portal_url)s/search?review_state=pending"
-                category="global" icon="">Pending (%(count)d)</action>
-        <guard>
-            <guard-permission>Review portal content</guard-permission>
-        </guard>
-        <match name="review_state" values="pending"/>
-    </worklist>
-    <variable variable_id="action" for_catalog="False" for_status="True"
-              update_always="True">
-        <description>Previous transition</description>
-        <default>
-            <expression>transition/getId|nothing</expression>
-        </default>
-        <guard>
-        </guard>
-    </variable>
-    <variable variable_id="actor" for_catalog="False" for_status="True"
-              update_always="True">
-        <description>The ID of the user who performed the previous transition
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=publish"
+            i18n:translate=""
+    >Publish BMUV</action>
+    <guard>
+      <guard-role>Reviewer</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="private"
+              title="Send back to authority"
+              transition_id="reject_to_authority"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=reject_to_authority"
+            i18n:translate=""
+    >Send back to authority</action>
+    <guard>
+      <guard-role>Contributor</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="pending_bfs"
+              title="Send back to BfS"
+              transition_id="reject_to_bfs"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=reject_to_bfs"
+            i18n:translate=""
+    >Send back to BfS</action>
+    <guard>
+      <guard-role>Reviewer</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="revised"
+              title=""
+              transition_id="retract_for_revision"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url=""
+            i18n:translate=""
+    >Retract for Revision</action>
+    <guard>
+      <guard-role>Contributor</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+      <guard-group>bund_bfs_rei</guard-group>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="private"
+              title="Retract to authority"
+              transition_id="retract_to_authority"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=retract_to_authority"
+            i18n:translate=""
+    >Retract to authority</action>
+    <guard>
+      <guard-role>Owner</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="pending_bfs"
+              title="Retract to BfS"
+              transition_id="retract_to_bfs"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=retract_to_bfs"
+            i18n:translate=""
+    >Retract to BfS</action>
+    <guard>
+      <guard-role>Contributor</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+      <guard-group>bund_bfs_rei</guard-group>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="pending_bfs"
+              title="Submit to BfS"
+              transition_id="submit_bfs"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=submit_bfs"
+            i18n:translate=""
+    >Submit to BfS</action>
+    <guard>
+      <guard-role>Owner</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+      <guard-expression>python: here.objectCount()</guard-expression>
+    </guard>
+  </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="pending_bmu"
+              title="Submit to BMUV"
+              transition_id="submit_bmu"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            url="%(content_url)s/content_status_modify?workflow_action=submit_bmu"
+            i18n:translate=""
+    >Submit to BMUV</action>
+    <guard>
+      <guard-role>Contributor</guard-role>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>
+    </guard>
+  </transition>
+  <worklist title=""
+            worklist_id="reviewer_queue"
+  >
+    <description>Reviewer tasks</description>
+    <action category="global"
+            icon=""
+            url="%(portal_url)s/search?review_state=pending"
+    >Pending (%(count)d)</action>
+    <guard>
+      <guard-permission>Review portal content</guard-permission>
+    </guard>
+    <match name="review_state"
+           values="pending"
+    />
+  </worklist>
+  <variable for_catalog="False"
+            for_status="True"
+            update_always="True"
+            variable_id="action"
+  >
+    <description>Previous transition</description>
+    <default>
+      <expression>transition/getId|nothing</expression>
+    </default>
+    <guard>
+</guard>
+  </variable>
+  <variable for_catalog="False"
+            for_status="True"
+            update_always="True"
+            variable_id="actor"
+  >
+    <description>The ID of the user who performed the previous transition
         </description>
-        <default>
-            <expression>user/getId</expression>
-        </default>
-        <guard>
-        </guard>
-    </variable>
-    <variable variable_id="comments" for_catalog="False" for_status="True"
-              update_always="True">
-        <description>Comment about the last transition</description>
-        <default>
-            <expression>python:state_change.kwargs.get('comment', '')
+    <default>
+      <expression>user/getId</expression>
+    </default>
+    <guard>
+</guard>
+  </variable>
+  <variable for_catalog="False"
+            for_status="True"
+            update_always="True"
+            variable_id="comments"
+  >
+    <description>Comment about the last transition</description>
+    <default>
+      <expression>python:state_change.kwargs.get('comment', '')
             </expression>
-        </default>
-        <guard>
-        </guard>
-    </variable>
-    <variable variable_id="review_history" for_catalog="False"
-              for_status="False" update_always="False">
-        <description>Provides access to workflow history</description>
-        <default>
-            <expression>state_change/getHistory</expression>
-        </default>
-        <guard>
-            <guard-permission>Request review</guard-permission>
-            <guard-permission>Review portal content</guard-permission>
-        </guard>
-    </variable>
-    <variable variable_id="time" for_catalog="False" for_status="True"
-              update_always="True">
-        <description>When the previous transition was performed</description>
-        <default>
-            <expression>state_change/getDateTime</expression>
-        </default>
-        <guard>
-        </guard>
-    </variable>
+    </default>
+    <guard>
+</guard>
+  </variable>
+  <variable for_catalog="False"
+            for_status="False"
+            update_always="False"
+            variable_id="review_history"
+  >
+    <description>Provides access to workflow history</description>
+    <default>
+      <expression>state_change/getHistory</expression>
+    </default>
+    <guard>
+      <guard-permission>Request review</guard-permission>
+      <guard-permission>Review portal content</guard-permission>
+    </guard>
+  </variable>
+  <variable for_catalog="False"
+            for_status="True"
+            update_always="True"
+            variable_id="time"
+  >
+    <description>When the previous transition was performed</description>
+    <default>
+      <expression>state_change/getDateTime</expression>
+    </default>
+    <guard>
+</guard>
+  </variable>
 </dc-workflow>

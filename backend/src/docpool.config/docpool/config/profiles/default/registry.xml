@@ -1,10 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-          i18n:domain="docpool.config">
-  <records prefix="plone.resources/docpool-config"
-            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js"></value>
-      <value key="css">
-        <element>++plone++docpool.config/docpool-config.less</element>
-      </value>
+          i18n:domain="docpool.config"
+>
+  <records interface="Products.CMFPlone.interfaces.IResourceRegistry"
+           prefix="plone.resources/docpool-config"
+  >
+    <value key="js" />
+    <value key="css">
+      <element>++plone++docpool.config/docpool-config.less</element>
+    </value>
   </records>
 </registry>

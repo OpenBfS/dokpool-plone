@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <version>1009</version>
-    <dependencies>
-        <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
-        <dependency>profile-eea.facetednavigation:default</dependency>
-        <dependency>profile-collective.impersonate:default</dependency>
-        <dependency>profile-plone.app.contenttypes:default</dependency>
-    </dependencies>
+  <version>1009</version>
+  <dependencies>
+    <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency>
+    <dependency>profile-eea.facetednavigation:default</dependency>
+    <dependency>profile-collective.impersonate:default</dependency>
+    <dependency>profile-plone.app.contenttypes:default</dependency>
+  </dependencies>
 </metadata>

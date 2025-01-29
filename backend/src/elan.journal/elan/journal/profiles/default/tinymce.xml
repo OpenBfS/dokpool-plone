@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object>
   <resourcetypes>
     <linkable purge="False">
-      <element value="Journal"/>
+      <element value="Journal" />
     </linkable>
   </resourcetypes>
 </object>

@@ -1,11 +1,13 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <roles>
-    <role name="RodosUser"/>
+    <role name="RodosUser" />
   </roles>
   <permissions>
-    <permission name="Docpool: Access Rodos Content" acquire="True">
-      <role name="RodosUser"/>
+    <permission acquire="True"
+                name="Docpool: Access Rodos Content"
+    >
+      <role name="RodosUser" />
     </permission>
   </permissions>
 </rolemap>

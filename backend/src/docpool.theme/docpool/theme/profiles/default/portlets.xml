@@ -1,39 +1,35 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <portlets>
-   <assignment
-     remove="true"
-     name="calendar"
-     category="context"
-     key="/"
-     manager="plone.rightcolumn"
-     type="portlets.Calendar"
-     />
+  <assignment category="context"
+              key="/"
+              manager="plone.rightcolumn"
+              name="calendar"
+              remove="true"
+              type="portlets.Calendar"
+  />
 
-   <assignment
-     remove="true"
-     name="events"
-     category="context"
-     key="/"
-     manager="plone.rightcolumn"
-     type="portlets.Events"
-     />
+  <assignment category="context"
+              key="/"
+              manager="plone.rightcolumn"
+              name="events"
+              remove="true"
+              type="portlets.Events"
+  />
 
- <assignment
-     remove="true"
-     manager="plone.leftcolumn"
-     category="context"
-     key="/"
-     type="portlets.Login"
-     name="login"
-     />
+  <assignment category="context"
+              key="/"
+              manager="plone.leftcolumn"
+              name="login"
+              remove="true"
+              type="portlets.Login"
+  />
 
-  <assignment
-     remove="true"
-     manager="plone.rightcolumn"
-     category="context"
-     key="/"
-     type="portlets.Review"
-     name="review"
-     />
+  <assignment category="context"
+              key="/"
+              manager="plone.rightcolumn"
+              name="review"
+              remove="true"
+              type="portlets.Review"
+  />
 
 </portlets>

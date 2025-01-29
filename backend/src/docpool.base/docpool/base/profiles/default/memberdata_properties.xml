@@ -1,6 +1,14 @@
-<?xml version="1.0"?>
-<object name="portal_memberdata" meta_type="Plone Memberdata Tool">
-    <property name="dp" type="string"></property>
-    <property name="apps" type="lines"></property>
-    <property name="filter_active" type="boolean"></property>
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Memberdata Tool"
+        name="portal_memberdata"
+>
+  <property name="dp"
+            type="string"
+  />
+  <property name="apps"
+            type="lines"
+  />
+  <property name="filter_active"
+            type="boolean"
+  />
 </object>

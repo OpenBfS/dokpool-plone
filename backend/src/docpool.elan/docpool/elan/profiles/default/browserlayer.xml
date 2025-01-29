@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="docpool.elan"
-      interface="docpool.elan.interfaces.IDocpoolElanLayer"
-      />
+  <layer interface="docpool.elan.interfaces.IDocpoolElanLayer"
+         name="docpool.elan"
+  />
 </layers>

@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="docpool.api"
-      interface="docpool.api.interfaces.IDocpoolApiLayer"
-      />
+  <layer interface="docpool.api.interfaces.IDocpoolApiLayer"
+         name="docpool.api"
+  />
 </layers>

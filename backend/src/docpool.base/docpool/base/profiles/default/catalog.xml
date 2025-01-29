@@ -1,23 +1,36 @@
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Catalog Tool"
+        name="portal_catalog"
+>
 
-    <index name="dp_type" meta_type="FieldIndex">
-        <indexed_attr value="dp_type"/>
-    </index>
-    <index name="mdate" meta_type="DateIndex">
-        <indexed_attr value="getMdate"/>
-    </index>
-    <!-- changed is the same index as mdate except for transferred content where it holds the transfer-date -->
-    <index name="changed" meta_type="DateIndex">
-        <indexed_attr value="changed"/>
-    </index>
-    <index name="apps_supported" meta_type="KeywordIndex">
-        <indexed_attr value="apps_supported"/>
-    </index>
-    <index name="sendingESD" meta_type="FieldIndex">
-        <indexed_attr value="sendingESD"/>
-    </index>
+  <index meta_type="FieldIndex"
+         name="dp_type"
+  >
+    <indexed_attr value="dp_type" />
+  </index>
+  <index meta_type="DateIndex"
+         name="mdate"
+  >
+    <indexed_attr value="getMdate" />
+  </index>
+  <!-- changed is the same index as mdate except for transferred content where it holds the transfer-date -->
+  <index meta_type="DateIndex"
+         name="changed"
+  >
+    <indexed_attr value="changed" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="apps_supported"
+  >
+    <indexed_attr value="apps_supported" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="sendingESD"
+  >
+    <indexed_attr value="sendingESD" />
+  </index>
 
-    <column value="getMdate"/>
-    <column value="changed"/>
-    <column value="apps_supported"/>
+  <column value="getMdate" />
+  <column value="changed" />
+  <column value="apps_supported" />
 </object>

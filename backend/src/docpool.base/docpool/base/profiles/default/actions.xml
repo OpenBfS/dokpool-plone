@@ -1,190 +1,336 @@
-<?xml version="1.0"?>
-<object name="portal_actions" meta_type="Plone Actions Tool"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <action-provider name="portal_actions"/>
- <object name="document_actions" meta_type="CMF Action Category">
-  <object name="rss" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Plone Actions Tool"
+        name="portal_actions"
+>
+  <action-provider name="portal_actions" />
+  <object meta_type="CMF Action Category"
+          name="document_actions"
+  >
+    <object meta_type="CMF Action"
+            name="rss"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="print"
+            i18n:domain="plone"
+    >
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="extedit"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
   </object>
-  <object name="print" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">True</property>
+  <object meta_type="CMF Action Category"
+          name="site_actions"
+  >
+    <object meta_type="CMF Action"
+            name="sitemap"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="accessibility"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="contact"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="impressum"
+            i18n:domain="docpool.base"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Imprint</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:${context/portal_url}/impressum?popup_load=1</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr" />
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="help"
+            i18n:domain="docpool.base"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Help</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:${context/dp_url}/help?popup_load=1</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr" />
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
   </object>
-  <object name="extedit" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
+  <object meta_type="CMF Action Category"
+          name="portal_tabs"
+  >
+    <object meta_type="CMF Action"
+            name="index_html"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
   </object>
- </object>
- <object name="site_actions" meta_type="CMF Action Category">
-  <object name="sitemap" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
+  <object meta_type="CMF Action Category"
+          name="user"
+  >
+    <object meta_type="CMF Action"
+            name="mystuff"
+            remove="true"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="dashboard"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="edit_dashboard"
+            i18n:domain="docpool.base"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Edit Dashboard</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
+      <property name="link_target" />
+      <property name="icon_expr">string:pin-angle</property>
+      <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="preferences"
+            i18n:domain="plone"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Change Password</property>
+      <property name="url_expr">string:${context/dp_url}/@@change-password</property>
+      <property name="available_expr">object/@@can_change_password</property>
+      <property name="permissions">
+        <element value="Set own password" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="review-comments"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="logout"
+            i18n:domain="plone"
+    >
+      <property name="url_expr">string:javascript:close_overview()</property>
+      <property name="icon_expr">string:plone-logout</property>
+      <property name="permissions">
+        <element value="View" />
+      </property>
+    </object>
+    <object meta_type="CMF Action"
+            name="dashboard"
+            i18n:domain="docpool.base"
+    >
+      <property name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
+      <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
+      <property name="permissions" />
+    </object>
+    <object meta_type="CMF Action"
+            name="usermanagement"
+            i18n:domain="docpool.base"
+    >
+      <property name="title"
+                i18n:translate=""
+      >User Management</property>
+      <property name="url_expr">string:${context/dp_url}/@@usergroup-userprefs</property>
+      <property name="icon_expr">string:plone-group</property>
+      <property name="available_expr">context/@@is/admin</property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="impersonate"
+            i18n:domain="plone"
+    >
+      <property name="icon_expr">string:person-exclamation</property>
+    </object>
   </object>
-  <object name="accessibility" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
+  <object meta_type="CMF Action Category"
+          name="object_buttons"
+  >
+    <object meta_type="CMF Action"
+            name="ical_import_enable"
+            i18n:domain="plone.app.event"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="ical_import_disable"
+            i18n:domain="plone.app.event"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="copy"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="rename"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="redirection"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
   </object>
-  <object name="contact" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
+  <object meta_type="CMF Action Category"
+          name="folder_buttons"
+  >
+    <property name="title" />
+    <object meta_type="CMF Action"
+            name="delete"
+            i18n:domain="plone"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Delete</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:@@folder_delete:method</property>
+      <property name="available_expr" />
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="change_state"
+            i18n:domain="plone"
+    >
+      <property name="visible">False</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="cut"
+            i18n:domain="plone"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Cut</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:@@folder_cut:method</property>
+      <property name="available_expr">python:checkPermission("Delete objects", object)</property>
+      <property name="permissions">
+        <element value="Copy or Move" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="paste"
+            i18n:domain="plone"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Paste</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:@@folder_paste:method</property>
+      <property name="available_expr">folder/cb_dataValid</property>
+      <property name="permissions">
+        <element value="Add portal content" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="transfer"
+            i18n:domain="docpool.base"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Transfer</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
+      <property name="available_expr" />
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="transition"
+            i18n:domain="plone"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Transition</property>
+      <property name="description"
+                i18n:translate=""
+      />
+      <property name="url_expr">string:@@dpdocument_transition_form:method</property>
+      <property name="available_expr" />
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
   </object>
-  <object name="impressum" meta_type="CMF Action" i18n:domain="docpool.base">
-   <property name="title" i18n:translate="">Imprint</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:${context/portal_url}/impressum?popup_load=1</property>
-   <property name="link_target"></property>
-   <property name="icon_expr"></property>
-   <property name="available_expr"></property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">True</property>
+  <object meta_type="CMF Action Category"
+          name="object"
+  >
+    <object meta_type="CMF Action"
+            name="folderContents"
+            i18n:domain="plone"
+    >
+      <property name="available_expr">python:context.portal_type != "DPDocument"</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="local_roles"
+            i18n:domain="plone"
+    >
+      <property name="available_expr">context/@@is/admin_or_contentadmin</property>
+    </object>
   </object>
-  <object name="help" meta_type="CMF Action" i18n:domain="docpool.base">
-   <property name="title" i18n:translate="">Help</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:${context/dp_url}/help?popup_load=1</property>
-   <property name="link_target"></property>
-   <property name="icon_expr"></property>
-   <property name="available_expr"></property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
- </object>
- <object name="portal_tabs" meta_type="CMF Action Category">
-  <object name="index_html" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
-  </object>
- </object>
- <object name="user" meta_type="CMF Action Category">
-  <object name="mystuff" meta_type="CMF Action" i18n:domain="plone" remove="true">
-   <property name="visible">False</property>
-  </object>
-  <object name="dashboard" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
-  </object>
-  <object name="edit_dashboard" meta_type="CMF Action" i18n:domain="docpool.base">
-   <property name="title" i18n:translate="">Edit Dashboard</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
-   <property name="link_target"></property>
-   <property name="icon_expr">string:pin-angle</property>
-   <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
-   <property name="permissions"></property>
-   <property name="visible">True</property>
-  </object>
-  <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Change Password</property>
-   <property name="url_expr">string:${context/dp_url}/@@change-password</property>
-   <property name="available_expr">object/@@can_change_password</property>
-   <property name="permissions">
-    <element value="Set own password"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
-  <object name="review-comments" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
-  </object>
-  <object name="logout" meta_type="CMF Action" i18n:domain="plone">
-   <property name="url_expr">string:javascript:close_overview()</property>
-   <property name="icon_expr">string:plone-logout</property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-  </object>
-  <object name="dashboard" meta_type="CMF Action" i18n:domain="docpool.base">
-   <property name="url_expr">string:${context/dp_url}/esd/dashboard/edit</property>
-   <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
-   <property name="permissions"></property>
-  </object>
-  <object name="usermanagement" meta_type="CMF Action" i18n:domain="docpool.base">
-   <property name="title" i18n:translate="">User Management</property>
-   <property name="url_expr">string:${context/dp_url}/@@usergroup-userprefs</property>
-   <property name="icon_expr">string:plone-group</property>
-   <property name="available_expr">context/@@is/admin</property>
-   <property name="permissions"></property>
-   <property name="visible">True</property>
-  </object>
-  <object name="impersonate" meta_type="CMF Action" i18n:domain="plone">
-   <property name="icon_expr">string:person-exclamation</property>
-  </object>
- </object>
- <object name="object_buttons" meta_type="CMF Action Category">
-  <object name="ical_import_enable" meta_type="CMF Action" i18n:domain="plone.app.event">
-   <property name="visible">False</property>
-  </object>
-  <object name="ical_import_disable" meta_type="CMF Action" i18n:domain="plone.app.event">
-   <property name="visible">False</property>
-  </object>
-  <object name="copy" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
-  </object>
-  <object name="rename" meta_type="CMF Action" i18n:domain="plone">
-   <property name="visible">False</property>
-  </object>
-  <object name="redirection" meta_type="CMF Action" i18n:domain="plone">
-    <property name="visible">False</property>
-  </object>
- </object>
- <object name="folder_buttons" meta_type="CMF Action Category">
-  <property name="title"></property>
-  <object name="delete" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Delete</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:@@folder_delete:method</property>
-   <property name="available_expr"></property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
-  <object name="change_state" meta_type="CMF Action" i18n:domain="plone">
-    <property name="visible">False</property>
-  </object>
-  <object name="cut" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Cut</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:@@folder_cut:method</property>
-   <property name="available_expr">python:checkPermission("Delete objects", object)</property>
-   <property name="permissions">
-    <element value="Copy or Move"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
-  <object name="paste" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Paste</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:@@folder_paste:method</property>
-   <property name="available_expr">folder/cb_dataValid</property>
-   <property name="permissions">
-    <element value="Add portal content"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
-  <object name="transfer" meta_type="CMF Action" i18n:domain="docpool.base">
-   <property name="title" i18n:translate="">Transfer</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:@@dpdocument_transfer_form:method</property>
-   <property name="available_expr"></property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
-  <object name="transition" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Transition</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:@@dpdocument_transition_form:method</property>
-   <property name="available_expr"></property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
- </object>
- <object name="object" meta_type="CMF Action Category">
-  <object name="folderContents" meta_type="CMF Action" i18n:domain="plone">
-   <property name="available_expr">python:context.portal_type != "DPDocument"</property>
-  </object>
-  <object name="local_roles" meta_type="CMF Action" i18n:domain="plone">
-   <property name="available_expr">context/@@is/admin_or_contentadmin</property>
-  </object>
- </object>
 </object>

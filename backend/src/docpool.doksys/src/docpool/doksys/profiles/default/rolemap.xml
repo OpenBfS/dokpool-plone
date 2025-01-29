@@ -1,11 +1,13 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <roles>
-    <role name="DoksysUser"/>
+    <role name="DoksysUser" />
   </roles>
   <permissions>
-    <permission name="Docpool: Access Doksys Content" acquire="True">
-      <role name="DoksysUser"/>
+    <permission acquire="True"
+                name="Docpool: Access Doksys Content"
+    >
+      <role name="DoksysUser" />
     </permission>
   </permissions>
 </rolemap>

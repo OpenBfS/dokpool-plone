@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-          i18n:domain="docpool.base">
+          i18n:domain="docpool.base"
+>
   <record name="plone.external_links_open_new_window">
     <value>True</value>
   </record>

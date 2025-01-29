@@ -186,8 +186,8 @@
       name="is"
       for="*"
       class=".helpers.Is"
-      permission="zope2.View"
       allowed_attributes="admin contentadmin admin_or_contentadmin archive individual personal rei_workflow"
+      permission="zope2.View"
       />
 
   <browser:view
