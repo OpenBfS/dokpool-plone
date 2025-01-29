@@ -34,6 +34,11 @@ baf67076ffc37814be3b80d6d9ea289a9b29eb44
 # coding style: fix non-Unix-style line endings
 da64389d65ded9c5714734c1e8dbc70b0b8c5616
 
+# Author: Thomas Lotze <lotze@starzel.de>
+# Date:   Wed Nov 09 17:56:17 2022 +0100
+# zpretty
+f4b58f553686daf1e32586d88b8e7b1054ea6213
+
 # Author: Philip Bauer <bauer@starzel.de>
 # Date:   Mon Feb 19 16:37:57 2024 +0100
 # move Plone to backend (to sync with Plone default setup)
