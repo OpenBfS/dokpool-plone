@@ -169,6 +169,11 @@
       />
 
   <permission
+      id="docpool.base.ChangeDocTypeForDPDocument"
+      title="Docpool: Change docType for DPDocument"
+      />
+
+  <permission
       id="docpool.transfers.AddTransferable"
       title="Docpool: Add Transferable"
       />
