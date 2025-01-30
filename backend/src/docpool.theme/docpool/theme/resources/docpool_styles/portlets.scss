@@ -1,3 +1,14 @@
+@media (min-width: 992px) {
+  body.col-one.col-content {
+    #portal-column-one {
+      width: 30% !important;
+    }
+    #portal-column-content {
+      width: 70% !important;
+    }
+  }
+}
+
 .portlet {
   a {
     text-decoration: none;
@@ -68,12 +79,12 @@
   &.portletRecent header a,
   &#overviewportlet a {
     color: #656565;
-    font-size: 18px;
+    font-size: 0.9rem;
     font-weight: 700;
   }
 }
 
 .portletRecent .card-body > ul > li {
-  font-size: 18px;
+  font-size: 0.9rem;
   padding: 0.3rem !important;
 }
