@@ -7,6 +7,7 @@
 - Various specialist and technical documents for the routine monitoring of environmental radioactivity within the framework of the "Integrated Measurement and Information System" IMIS are managed in **IMIS DokSys**
 - The **RODOS** application manages calculations from the prognosis and decision support model RODOS ("Realtime Online Decision Support System") of the future environmental contamination and the expected doses to the affected population in a radiological emergency
 
+
 #### Contact
 
 Bundesamt für Strahlenschutz / General Office for Radiation Protection\
@@ -26,9 +27,9 @@ Publicly available repo:
 git clone https://github.com/OpenBfS/dokpool-plone.git
 ```
 
-#### Latest Release
+## Package Info
 
-2.0.0
+coming soon
 
 ## Building
 
@@ -40,7 +41,7 @@ For rapid, simple testing/demonstration
 #### (1) Build image (dokpool-plone6-standalone)
 
 ```
-git checkout 2.0.0
+git checkout <tag>
 cd backend
 docker build --force-rm=true -t dokpool-plone6-standalone -f Dockerfile .
 ```
@@ -72,7 +73,12 @@ $ docker exec -it dokpool_plone6_standalone_8081 /bin/bash
 
 coming soon
 
-## Configuration in Webbrowser: Create a Dokpool site with demo content
+## Access to the Application (Plone WebUI)
+
+Your running Dokpool is available on port 8081 on your host machine (http://localhost:8081).
+
+
+## Create a Dokpool site with demo content
 
 On the intro screen (create a site) of http://localhost:8081,
 click on „_Dokpool Site with demo content"_ -> Create
@@ -93,6 +99,7 @@ The site will be available via
 - http://localhost:8081/\<Path Identifier> (e.g. http://localhost:8081/dokpool)
 
 If Dokpool was started according to (2b), changes will be saved in backend/data even if the docker container is removed.
+
 
 ## Development
 
