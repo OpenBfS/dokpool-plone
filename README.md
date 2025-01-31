@@ -1,21 +1,19 @@
 # Dokpool
 
-**Dokpool** is a CMS based on Plone 5, a website developed for handling documents in multiple contexts, using several editorial roles and workflows. The main application for **Dokpool** is ELAN5, an Electronic Situation Display for the emergency management.
+**Dokpool** is a CMS based on Plone6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows. The main application for **Dokpool** is ELAN, an Electronic Situation Display for the emergency management.
 
 #### Contact
 
 Bundesamt für Strahlenschutz / General Office for Radiation Protection
-SW2 Notfallschutz, Zentralstelle des Bundes (ZdB)
 Willy-Brandt-Strasse 5
 38226 Salzgitter
 info@bfs.de
 
 #### License
 
-**Dokpool** including ELAN5 and most of its components are published using the [GNU GPL v>=3](http://www.gnu.org/licenses/gpl-3.0) license.
-See `LICENSE` for more details.
+**Dokpool** including ELAN and most of its components are published using the [GNU GPL v>=3](http://www.gnu.org/licenses/gpl-3.0) license.
 
-## Sources
+#### Sources
 
 Publicly available repo:
 
@@ -23,364 +21,110 @@ Publicly available repo:
 git clone https://github.com/OpenBfS/dokpool-plone.git
 ```
 
+#### Latest Release
+
+2.0.0
+
 ## Building
 
-(1) For _rapid simple testing/demonstrations_ we provide Dockerfiles in `./Docker` .
+### Running Dokpool in standalone docker container
+
+For rapid, simple testing/demonstration
 _---> See Docker (https://www.docker.com) for further information on this Container technology._
 
-(2) If you want to run **Dokpool** _in a current Linux Distribution_ there are several ways.
-&nbsp; &nbsp; &nbsp; (a) run **Dokpool** _as simple test installation_ using ZODB/SQLite Backend
-&nbsp; &nbsp; &nbsp; (b) or run it _in a production environment_ using PostgreSQL as Backend.
-&nbsp; &nbsp; &nbsp; Using Varnish/Supervisor, **Dokpool** can be configured to run in a _multi instance mode_ as well.
-_---> See several `_.cfg`files in`./Plone` to be used with buildout.\*
+#### (1) Build image (bfs/dokpool-plone6-standalone)
 
-### Prerequisites:
-
-- If you want to start from scratch, just go on.
-- If you want to use a preconfigured Dokpool, you need a zodb-Backup (created with plonebackup) of a zodb or adequate Dumps of a PostgreSQL. --> _See various Dockerfiles in_ `./Docker` _that take care of this._
-  _Containers using zodb/sqlite as backend run standalone using sqlite- and zope-Databases but are not recommended for production use!_
-- For production use a PostgreSQL-DB backend is recommended.
-
-### (1) Build using Docker Containers:
-
-FIXME
-
-```sh
-$ cd backend
-$ make build-image
+```
+git checkout 2.0.0
+cd backend
+docker build --force-rm=true -t bfs/dokpool-plone6-standalone -f Dockerfile .
 ```
 
-#### Run without demo data:
+#### (2) Start docker container (dokpool_plone6_standalone_8081)
 
-```sh
-$ docker run --name dokpool_standalone -p 8080:8080 git.starzel.de:5050/bfs/dokpool:python3
+##### (2a) to use with demo data, changes will not be saved locally if docker container is removed:
+
+```
+cd backend
+docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 bfs/dokpool-plone6-standalone
 ```
 
-#### Run with demo data
+##### (2b) with external data-volume, changes will be saved in backend/data even if docker container is removed
 
-TODO
+```
+cd backend
+mkdir data # if not yet existing
+docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 --volume $(pwd)/data:/data bfs/dokpool-plone6-standalone
+```
 
-Your running **Dokpool** is available on port 8080 on your host machine (http://localhost:8080).
+#### (3) Access to the Application
+
+Your running Dokpool is available on port 8081 on your host machine (http://localhost:8081).
 
 In case you want to interact with the running container, use e.g.
 
-```sh
-$ docker container exec -it dokpool_standalone "/bin/bash"
+```
+$ docker exec -it dokpool_plone6_standalone_8081 /bin/bash
 ```
 
-### (2) Build your own standalone Dokpool/ELAN5 on a current Linux Distribution
+#### (4) Create a Dokpool site with demo content
 
-To build **Dokpool** on a current Linux Distribution you simply have to clone the repository, run a few commands from command line interface and get it running.
-**Dokpool** refuses to run as root. Add a system account (e.g. elan) which can be used to run Dokpool.
+On the intro screen (create a site) of http://localhost:8081,
+click on „_Dokpool Site with demo content"_ -> Create
 
-#### Requirements:
+Fill in the form:
 
-- Libraries:
+- Path Identifier: dokpool
+- Title: Dokpool Test
+- Site Description: Test with docpooldemo
+- Site Logo: ()
+- Language: (if English, the menues and system notifications will be in English, demo content is only available in German at the moment)
+- Timezone
+- **Check „Create Example Content“**
 
-```sh
-$ apt install build-essential sudo cron curl git libffi-dev libjpeg-dev libssl-dev libxslt1-dev libz-dev lynx poppler-utils socat unzip wv libldap2-dev libsasl2-dev libssl-dev pipenv
-```
+The site will be available via
 
-- System account (e.g. `elan`) which can be used to run Dokpool:
+- http://localhost:8081 under „Existing Sites“ (docpooldemo)
+- http://localhost:8081/\<Path Identifier> (e.g. http://localhost:8081/dokpool)
 
-```sh
-$ addgroup --gid 1005 elan
-$ adduser --gid 1005 --disabled-login --disabled-password --home /srv/elan elan
-$ sudo su - elan
-```
+If Dokpool was started according to (2b), changes will be saved in backend/data even if the docker container is removed.
 
-- Git (to clone the Repo).
-- Python 3.11
-- Pipenv (min. version 2022.11.30)
+### Running Dokpool with docker-compose stack
 
-```sh
-$ sudo pip install --upgrade pipenv
-```
+coming soon
 
-- Node/npm (min. version 18.12.1/ 8.19.2)
+### Development
 
-```sh
-$ sudo curl -sL https://deb.nodesource.com/setup_18.x | bash -
-$ sudo apt-get install -y nodejs
-```
+coming soon
 
-#### (a) Dokpool with sqlite:
+## More Information
 
-#### Build Plone:
-
-```sh
-$ git clone https://github.com/OpenBfS/dokpool-plone.git
-$ cd dokpool-plone/Plone
-$ git checkout python3
-# Create a virtualenv and install dependencies
-$ pipenv install
-$ pipenv run buildout
-```
-
-#### Build JS/CSS:
-
-```sh
-$ npm run build
-```
-
-#### Run / Start instance:
-
-```sh
-# first activate python virtual env, if your installation runs within a virtualenv
-$ cd dokpool-plone/Plone
-$ ./bin/instance fg
-```
-
-#### Stop instance:
-
-```sh
-$ CTRL-C
-```
-
-#### (b) Dokpool with PostgreSQL
-
-#### Installation and Preparation of Postgres:
-
-**Install Postgres Server and Client:**
-
-```sh
-$ apt-get install postgresql-server-dev postgresql-client
-```
-
-**Establish Access to Postgres Configuration File**
-Check if `pg_config` can be called from the system prompt
-
-```sh
-$ pg_config
-```
-
-if not (answer: `command not found`):
-add path to postgres config file to environment variable:
-
-- locate the file `pg_config` in your Postgres Directory on the server, e.g. in `/usr/pgsql-9.5/bin`
-- the path to this file mus be added to the `PATH` variable of user `elan`
-
-```sh
-(if logged in as elan:)
-$ PATH=$PATH:/usr/pgsql-9.5/bin
-$ export PATH
-```
-
-**Create the Needed Databases and Database Users:**
-
-```sh
-#Create database zodb (user zodbuser, password zodb)
-$ sudo -u postgres createdb -O zodbuser zodb
-#Create database elan (user elan, password elan)
-$ sudo -u postgres createdb -O elan elan
-```
-
-#### Build:
-
-```sh
-$ git clone https://github.com/OpenBfS/dokpool-plone.git
-$ cd dokpool-plone/Plone
-# you can do all the following steps in a virtual python environment
-$ pipenv install
-# go on whether you have a virtual python env or not
-$ pipenv shell
-$ buildout -vc relstorage.cfg
-```
-
-#### Rebuild:
-
-```sh
-$ cd dokpool-plone/Plone
-# first activate python virtual env, if your installation runs within a virtualenv
-$ ./bin/buildout -Nvc relstorage.cfg
-```
-
-#### Run / Start Application:
-
-```sh
-$ cd dokpool-plone/Plone
-# first activate python virtual env, if your installation runs within a virtualenv
-$ ./bin/supervisord
-```
-
-#### Shutdown / Stop Application:
-
-```sh
-$ cd dokpool-plone/Plone
-# first activate python virtual env, if your installation runs within a virtualenv
-$ ./bin/supervisorctl shutdown all
-```
-
-## Backup and Restore Standalone Instances
-
-```sh
-$ cd dokpool-plone/Plone
-$ ./bin/plonebackup-full
-# backups will be stored in
-# dokpool-plone/Plone/var/plonebackups
-$ ./bin/plonebackup-restore
-```
-
-## Access to the Application
-
-#### URLs:
-
-instance / instance1 (if started via supervisord): &nbsp; http://localhost:8081
-instance2 (- if started via supervisord): &nbsp; http://localhost:8082
-varnish (- if started via supervisord): &nbsp; http://localhost:8100
-supervisor: &nbsp; http://localhost:9001
+Accounts to log into Dokpool/ELAN using a webbrowser, e.g. Firefox.
 
 #### Admin-Login:
 
 Username: `admin`
 Password: `admin`
 
-## Preparing Dokpool
+### Users and Passwords
 
-#### Create a Plone Site, Install Policy
+Additionally, there are some more power users with default passwords
 
-- open your application (http://localhost:8081)
-- login as `admin`
-- create a Plone Site (via button), e.g. `docpool` _(choose name, title, language)_
-- go to "_Site Setup_" (http://localhost:8081/docpool/@@overview-controlpanel)
-- go to "_Addons_" (http://localhost:8081/docpool/@@prefs_install_products_form) and install `elan.policy` and `wsapi4elancore`
-- go to "_Resource Registries_" (http://localhost:8081/docpool/@@resourceregistry-controlpanel) and compile the Bundles `docpool`, `docpool-anon`, `docpool-config`, `docpool-dashboard`, `docpool-menu`, `docpool-nonadmin` and `elan-sitrep`
-- Then you can open your website with http://localhost:8081/docpool
+at DokPool-Level (http://localhost:8081/docpool/@@usergroup-userprefs)
 
-#### Create a Docpool
+- `elanmanager` / `admin`
+- `dpmanager` / `admin`
+- `elanadmin` / `admin`
+- `edpadmin` / `admin`
 
-- logon to your Plone Site as `admin`
-- Add a docpool via Plone Tool Bar / menu item "Add"
-- give a `<name>` and a `<prefix>` and select the available applications (e.g. ELAN)
-- after that, you can logon to the docpool with `<prefix>_elanadmin` / `admin`
+and at ELAN-Level (http://localhost:8081/docpool/`<name>`/@@usergroup-userprefs)
 
-## Known Issues
+- `<name>_elanadmin` / `admin` (E.g. `bund_elanadmin`)
+- `<name>_dpadmin` / `admin`
 
-coming soon
+Also, there are user in the Bund/Hessen Dokpool with access to Elan, Doksys and REI and in the ContentSender group:
 
-## Mailing Lists
+- `user1` / `dp_user1` (for the bund docpool)
+- `user2` / `dp_user2` (for the hessen docpool)
 
-coming soon
-
-## Contributing
-
-coming soon
-
-## More Information
-
-#### Users and Passwords
-
-There are several users and passwords that should not be mixed up:
-
-- The password of the **system user** "`elan`" - just needed for login/logout the system.
-  There is a **system account** "`postgres`" as well, running the PostgreSQL database cluster.
-  _Usually you do not have to set a password for this account._
-
-- The passwords of the **database accounts** "`elan`" and "`zodbuser`" - needed by `Dokpool` to get access to the two databases in the PostgreSQL database cluster. User "`elan`" should have "`elan`" as password and "`zodbuser`" should have "`zodb`".
-  _PostgreSQL has its own user management independent from the operating system._
-
-- The accounts from the **Dokpool application** _(totally independent from the system- or database accounts.)_ These are the accounts to log into Dokpool/ELAN using a webbrowser, e.g. Firefox.
-  The initial default account for this is Username: `admin` PW: `admin`
-
-Additionally there are some more power users with default passwords
-
-at DokPool-Level (http://localhost:8081/docpool@@usergroup-userprefs)
-
-- `elanmanager / admin`
-- `dpmanager / admin`
-- `elanadmin / admin`
-- `dpadmin /admin`
-
-and at ELAN-Level (http://localhost:8081/docpool/<name>@@usergroup-userprefs)
-
-- `<name>_elanadmin`
-- `<name>_dpadmin`
-
-**Default passwords should be changed before Dokpool goes to production mode**
-
-- login as specific user and change your own password in the user menu
-
-#### Language
-
-Basically, Plone is supporting different languages which can be set when creating a Plone Site.
-
-**Configuration of language-specific _portal properties_, _document types_ and _navigation items_ of `Dokpool` in external files:**
-For English, German and Romanian, there are already configuration files that can be copied to standard configuration files before buildout is run.
-
-portal properties:
-
-```
-dokpool-plone/Plone/src/elan.policy/elan/policy/profiles/default/properties.xml
-dokpool-plone/Plone/src/elan.policy/elan/policy/profiles/default/properties_en.xml
-dokpool-plone/Plone/src/elan.policy/elan/policy/profiles/default/properties_de.xml
-dokpool-plone/Plone/src/elan.policy/elan/policy/profiles/default/properties_ro.xml
-```
-
-```
-$ cp dokpool-plone/Plone/src/elan.policy/elan/policy/profiles/default/properties_de.xml dokpool-plone/Plone/src/elan.policy/elan/policy/profiles/default/properties.xml
-```
-
-configuration (general):
-
-```
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/base.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/base_en.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/base_de.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/base_ro.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/elan.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/elan_en.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/elan_de.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/general/elan_ro.py
-```
-
-```
-$ cp dokpool-plone/Plone/src/docpool.config/docpool/config/general/base_de.py dokpool-plone/Plone/src/docpool.config/docpool/config/general/base.py
-$ dokpool-plone/Plone/src/docpool.config/docpool/config/general/elan_de.py dokpool-plone/Plone/src/docpool.config/docpool/config/general/elan.py
-```
-
-configuration (local):
-
-```
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/base.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/base_en.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/base_de.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/base_ro.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/elan.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/elan_en.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/elan_de.py
-dokpool-plone/Plone/src/docpool.config/docpool/config/local/elan_ro.py
-```
-
-```
-$ cp dokpool-plone/Plone/src/docpool.config/docpool/config/local/base_de.py dokpool-plone/Plone/src/docpool.config/docpool/config/local/base.py
-$ dokpool-plone/Plone/src/docpool.config/docpool/config/local/elan_de.py dokpool-plone/Plone/src/docpool.config/docpool/config/local/elan.py
-```
-
-**Translation of text strings**
-Plone i18n uses the standard gettext system for internationalization. In every product, there are special .po-files in which the text strings used in the application can be translated, e.g.
-
-```
-dokpool-plone/Plone/src/docpool.base/docpool/base/locales/de/LC_MESSAGES/docpool.base.po
-```
-
-The relevant translations will be used if
-
-- the plone site has been created in the target language
-- the browser language has been switched to the target language
-- the target language is configured in the relevant sections of `buildout.cfg`, e.g.
-
-```
-[i18nize_docpoolbase]
-recipe = collective.recipe.template
-input = ${buildout:directory}/buildout.d/i18nize.in
-output = ${buildout:bin-directory}/i18nize_docpoolbase
-mode = 775
-dollar = $
-domain = docpool.base
-packagepath = ${buildout:directory}/src/docpool.base/docpool/base
-languages = en de
-```
-
-#### Browser based Configuration
-
-Further documentation on browser based configuration of the Plone Site and `Dokpool` (_e.g. scenarios, dashboard, modular situation report_) will soon be available on our ELAN Demo website.
+**Default passwords should be changed before Dokpool goes to production mode: Login as specific user and change your own password in the user menu**
