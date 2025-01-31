@@ -100,7 +100,7 @@ build_image:
     - make build-image-ci
     - make build-image-varnish-ci
   rules:
-    - if: '$CI_COMMIT_BRANCH == "python3"'
+    - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_review:
@@ -110,5 +110,5 @@ deploy_review:
   script:
     - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/18b65c46-4159-43ea-9989-7dc433fbccb0/run?authtoken=$authtoken
   rules:
-    - if: '$CI_COMMIT_BRANCH == "python3"'
+    - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$NIGHTLY_UPDATE == "True"'
