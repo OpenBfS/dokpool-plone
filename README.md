@@ -1,11 +1,11 @@
 # Dokpool
 
-**Dokpool** is a CMS based on Plone6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows.  
-- The main application for **Dokpool** is **ELAN**, an Electronic Situation Display for the management of radiological emergencies. In ELAN, the contents of a radiological emergency are recorded and made available to relevant parties in a workflow process.  
-- In **REI**, reports from the operators and monitoring bodies of nuclear facilities are recorded and made available to the competent authorities in accordance with the REI Directive on Emission and Immission Monitoring of Nuclear Facilities.  
-- Various specialist and technical documents for the routine monitoring of environmental radioactivity within the framework of the "Integrated Measurement and Information System" IMIS are managed in **IMIS DokSys**
-- The **RODOS** application manages calculations from the prognosis and decision support model RODOS ("Realtime Online Decision Support System") of the future environmental contamination and the expected doses to the affected population in a radiological emergency 
+**Dokpool** is a CMS based on Plone6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows.
 
+- The main application for **Dokpool** is **ELAN**, an Electronic Situation Display for the management of radiological emergencies. In ELAN, the contents of a radiological emergency are recorded and made available to relevant parties in a workflow process.
+- In **REI**, reports from the operators and monitoring bodies of nuclear facilities are recorded and made available to the competent authorities in accordance with the REI Directive on Emission and Immission Monitoring of Nuclear Facilities.
+- Various specialist and technical documents for the routine monitoring of environmental radioactivity within the framework of the "Integrated Measurement and Information System" IMIS are managed in **IMIS DokSys**
+- The **RODOS** application manages calculations from the prognosis and decision support model RODOS ("Realtime Online Decision Support System") of the future environmental contamination and the expected doses to the affected population in a radiological emergency
 
 #### Contact
 
@@ -93,7 +93,6 @@ The site will be available via
 - http://localhost:8081/\<Path Identifier> (e.g. http://localhost:8081/dokpool)
 
 If Dokpool was started according to (2b), changes will be saved in backend/data even if the docker container is removed.
-
 
 ## Development
 
