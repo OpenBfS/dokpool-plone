@@ -2,7 +2,7 @@
 ARG PLONE_VERSION=6.0.14
 
 # Stage to only build the theme
-FROM node:20-slim as node
+FROM node:20-slim AS node
 
 WORKDIR /app
 
@@ -22,14 +22,12 @@ COPY package-lock.json package-lock.json
 COPY webpack.config.js webpack.config.js
 
 # Build theme
-RUN <<EOT
-    set -e
-    npm ci
-    npm run build
-EOT
+RUN set -e
+RUN npm ci
+RUN npm run build
 
 # Stage to build dokpool
-FROM plone/server-builder:${PLONE_VERSION} as builder
+FROM plone/server-builder:${PLONE_VERSION} AS builder
 ARG GIT_COMMIT='Not detected'
 
 WORKDIR /app
@@ -38,19 +36,17 @@ WORKDIR /app
 COPY . .
 
 # Install local requirements and pre-compile mo files
-RUN <<EOT
-    set -e
-    apt install -y --no-install-recommends openssh-client ca-certificates
-    bin/pip install uv==0.4.18
-    bin/uv pip install mxdev
-    mv requirements-docker.txt requirements.txt
-    # remove all test-extras from mx.ini
-    sed -i'' -e '/extras \= test/d' mx.ini
-    bin/mxdev -c mx.ini
-    bin/uv pip install -r requirements-mxdev.txt
-    bin/python /compile_mo.py
-    echo ${GIT_COMMIT} > GIT_COMMIT
-EOT
+RUN set -e
+RUN apt install -y --no-install-recommends openssh-client ca-certificates
+RUN bin/pip install uv==0.4.18
+RUN bin/uv pip install mxdev
+RUN mv requirements-docker.txt requirements.txt
+RUN # remove all test-extras from mx.ini
+RUN sed -i'' -e '/extras \= test/d' mx.ini
+RUN bin/mxdev -c mx.ini
+RUN bin/uv pip install -r requirements-mxdev.txt
+RUN bin/python /compile_mo.py
+RUN echo ${GIT_COMMIT} > GIT_COMMIT
 
 # New layer that has all code so the site can run
 FROM plone/server-prod-config:${PLONE_VERSION}
@@ -69,7 +65,5 @@ COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /ap
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true
 
-RUN <<EOT
-    set -e
-    ln -s /data /app/var
-EOT
+RUN set -e
+RUN ln -s /data /app/var
