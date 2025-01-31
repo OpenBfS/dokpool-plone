@@ -1,6 +1,11 @@
 # Dokpool
 
-**Dokpool** is a CMS based on Plone6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows. The main application for **Dokpool** is ELAN, an Electronic Situation Display for the emergency management.
+**Dokpool** is a CMS based on Plone6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows.  
+- The main application for **Dokpool** is **ELAN**, an Electronic Situation Display for the management of radiological emergencies. In ELAN, the contents of a radiological emergency are recorded and made available to relevant parties in a workflow process.  
+- In **REI**, reports from the operators and monitoring bodies of nuclear facilities are recorded and made available to the competent authorities in accordance with the REI Directive on Emission and Immission Monitoring of Nuclear Facilities.  
+- Various specialist and technical documents for the routine monitoring of environmental radioactivity within the framework of the "Integrated Measurement and Information System" IMIS are managed in **IMIS DokSys**
+- The **RODOS** application manages calculations from the prognosis and decision support model RODOS ("Realtime Online Decision Support System") of the future environmental contamination and the expected doses to the affected population in a radiological emergency 
+
 
 #### Contact
 
@@ -57,17 +62,17 @@ mkdir data # if not yet existing
 docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 --volume $(pwd)/data:/data bfs/dokpool-plone6-standalone
 ```
 
-#### (3) Access to the Application
-
-Your running Dokpool is available on port 8081 on your host machine (http://localhost:8081).
-
 In case you want to interact with the running container, use e.g.
 
 ```
 $ docker exec -it dokpool_plone6_standalone_8081 /bin/bash
 ```
 
-#### (4) Create a Dokpool site with demo content
+### Running Dokpool with docker-compose stack
+
+coming soon
+
+## Configuration in Webbrowser: Create a Dokpool site with demo content
 
 On the intro screen (create a site) of http://localhost:8081,
 click on „_Dokpool Site with demo content"_ -> Create
@@ -89,11 +94,8 @@ The site will be available via
 
 If Dokpool was started according to (2b), changes will be saved in backend/data even if the docker container is removed.
 
-### Running Dokpool with docker-compose stack
 
-coming soon
-
-### Development
+## Development
 
 coming soon
 
