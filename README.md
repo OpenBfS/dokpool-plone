@@ -9,9 +9,9 @@
 
 #### Contact
 
-Bundesamt für Strahlenschutz / General Office for Radiation Protection
-Willy-Brandt-Strasse 5
-38226 Salzgitter
+Bundesamt für Strahlenschutz / General Office for Radiation Protection\
+Willy-Brandt-Strasse 5\
+38226 Salzgitter\
 info@bfs.de
 
 #### License
@@ -35,14 +35,14 @@ git clone https://github.com/OpenBfS/dokpool-plone.git
 ### Running Dokpool in standalone docker container
 
 For rapid, simple testing/demonstration
-_---> See Docker (https://www.docker.com) for further information on this Container technology._
+-> See Docker (https://www.docker.com) for further information on this Container technology.
 
-#### (1) Build image (bfs/dokpool-plone6-standalone)
+#### (1) Build image (dokpool-plone6-standalone)
 
 ```
 git checkout 2.0.0
 cd backend
-docker build --force-rm=true -t bfs/dokpool-plone6-standalone -f Dockerfile .
+docker build --force-rm=true -t dokpool-plone6-standalone -f Dockerfile .
 ```
 
 #### (2) Start docker container (dokpool_plone6_standalone_8081)
@@ -51,7 +51,7 @@ docker build --force-rm=true -t bfs/dokpool-plone6-standalone -f Dockerfile .
 
 ```
 cd backend
-docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 bfs/dokpool-plone6-standalone
+docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 dokpool-plone6-standalone
 ```
 
 ##### (2b) with external data-volume, changes will be saved in backend/data even if docker container is removed
@@ -59,7 +59,7 @@ docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081
 ```
 cd backend
 mkdir data # if not yet existing
-docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 --volume $(pwd)/data:/data bfs/dokpool-plone6-standalone
+docker run --restart=always --name dokpool_plone6_standalone_8081 --publish 8081:8080 --volume $(pwd)/data:/data dokpool-plone6-standalone
 ```
 
 In case you want to interact with the running container, use e.g.
