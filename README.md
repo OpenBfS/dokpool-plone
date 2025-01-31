@@ -7,7 +7,6 @@
 - Various specialist and technical documents for the routine monitoring of environmental radioactivity within the framework of the "Integrated Measurement and Information System" IMIS are managed in **IMIS DokSys**
 - The **RODOS** application manages calculations from the prognosis and decision support model RODOS ("Realtime Online Decision Support System") of the future environmental contamination and the expected doses to the affected population in a radiological emergency
 
-
 #### Contact
 
 Bundesamt für Strahlenschutz / General Office for Radiation Protection\
@@ -77,7 +76,6 @@ coming soon
 
 Your running Dokpool is available on port 8081 on your host machine (http://localhost:8081).
 
-
 ## Create a Dokpool site with demo content
 
 On the intro screen (create a site) of http://localhost:8081,
@@ -99,7 +97,6 @@ The site will be available via
 - http://localhost:8081/\<Path Identifier> (e.g. http://localhost:8081/dokpool)
 
 If Dokpool was started according to (2b), changes will be saved in backend/data even if the docker container is removed.
-
 
 ## Development
 
