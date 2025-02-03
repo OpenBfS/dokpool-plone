@@ -3,7 +3,7 @@ name: dokpool
 
 services:
   zeoclient:
-    image: git.starzel.de:5050/bfs/dokpool:python3
+    image: git.starzel.de:5050/bfs/dokpool:develop
     deploy:
       mode: replicated
       replicas: 2
