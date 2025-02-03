@@ -84,7 +84,7 @@ build:
     - docker tag bfs/dokpool:latest git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
     - docker push git.starzel.de:5050/bfs/dokpool:$CI_COMMIT_REF_NAME
   only:
-  - review
+  - develop_plone51
 
 deploy_dev:
   tags:
@@ -100,7 +100,7 @@ deploy_dev:
     - docker stop dokpool-review || true
     - docker rm dokpool-review || true
     # Start instance and build demo data
-    - docker run --detach --publish 8081:8081 --name dokpool-review git.starzel.de:5050/bfs/dokpool:review
+    - docker run --detach --publish 8081:8081 --name dokpool-review git.starzel.de:5050/bfs/dokpool:develop_plone51
     # Create the vanilla plone site
     - /usr/bin/wget -O- --user=admin --password=istrator --post-data='site_id=dokpool&form.submitted=True&title=dokpool&default_language=de&portal_timezone=Europe/Berlin&extension_ids=plonetheme.barceloneta:default&extension_ids=plone.app.contenttypes:plone-content' http://127.0.0.1:8081/@@plone-addsite
     # Log in to the server.  This only needs to be done once.
@@ -110,7 +110,7 @@ deploy_dev:
     name: dev
     url: https://review-one-bfs.starzel.de/
   only:
-  - review
+  - develop_plone51
 
 undeploy_dev:
   tags:
