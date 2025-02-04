@@ -17,7 +17,7 @@ services:
       - net
 
   postgres:
-    image: postgres:16.3
+    image: postgres:16.6
     volumes:
       - dokpool-db:/var/lib/postgresql/data
     environment:
