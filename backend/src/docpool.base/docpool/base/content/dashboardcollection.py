@@ -2,10 +2,10 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
+from docpool.base.utils import get_content_area
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getCategoriesForCurrentUser
 from docpool.elan.utils import getScenariosForCurrentUser
-from plone import api
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
 from plone.autoform import directives
@@ -214,15 +214,14 @@ class DashboardCollection(Collection):
 
             # Now we restrict the search to the paths to Members and Groups.
             # This ensures that in case of archives we only get results from the correct subset.
-            # m = self.content
-
-            mpath = "content"
+            content_area = get_content_area(self)
+            content_area_path = "/".join(content_area.getPhysicalPath())
             # Just one path allowed in the path criterion.
             value.append(
                 {
                     "i": "path",
                     "o": "plone.app.querystring.operation.string.path",
-                    "v": f"/{api.portal.get().id}/{self.myDocumentPool().id}/{mpath}",
+                    "v": content_area_path,
                 }
             )
 
