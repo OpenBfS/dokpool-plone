@@ -4,6 +4,10 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
+Fixed:
+
+- Fix issue that content in archives was not displayed in collections. (#5948)
+  [pbauer]
 
 
 2.0.0 (2025-01-31)
