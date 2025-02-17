@@ -36,7 +36,7 @@
         <div class="journalentry-text" itemprop="text"
             tal:content="structure update/text" />
         <div class="journalentry-byline" tal:define="item_creator update/creator;
-                                                     pas_member nocall:context/@@pas_member;
+                                                     pas_member nocall: context/@@pas_member;
                                                      author python:pas_member.info(item_creator);
                                                      creator_fullname author/name_or_id;
                                                            ">

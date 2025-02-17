@@ -19,13 +19,12 @@ batch   = results if IBatch.providedBy(results) else Batch(results, b_size, b_st
 buttons = view.dp_buttons(batch)
 ?>
 
-    <tal:results define="    site_properties context/portal_properties/site_properties;
-                             use_view_action site_properties/typesUseViewActionInListings|python:();
+    <tal:results define="    use_view_action python:context.portal_registry['plone.types_use_view_action_in_listings'];
+                             allow_anon_views_about python:context.portal_registry['plone.allow_anon_views_about'];
                              isAnon context/@@plone_portal_state/anonymous;
                              normalizeString nocall: context/plone_utils/normalizeString;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
-                             pas_member nocall:context/@@pas_member;
+                             pas_member nocall: context/@@pas_member;
                              container_type python: context.portal_type;">
         <tal:listing>
 
@@ -513,14 +512,13 @@ quoted_id = quote_plus(econtext["b"].getId());
 <div tal:omit-tag="" metal:define-macro="doccollection">
         <tal:results define="b_start python:int(request.get('b_start', 0));
                              batch python:context.results(b_start=b_start);
-                             site_properties context/portal_properties/site_properties;
-                             use_view_action site_properties/typesUseViewActionInListings|python:();
+                             use_view_action python:context.portal_registry['plone.types_use_view_action_in_listings'];
                              isAnon context/@@plone_portal_state/anonymous;
                              normalizeString nocall: context/plone_utils/normalizeString;
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
+                             show_about python:not isAnon or context.portal_registry['plone.allow_anon_views_about'];
                              navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                             pas_member nocall:context/@@pas_member;
+                             pas_member nocall: context/@@pas_member;
                              buttons python:[];
                              container_type python: context.portal_type;">
             <tal:listing condition="batch">
