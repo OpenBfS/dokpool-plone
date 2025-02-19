@@ -9,6 +9,8 @@ Fixed:
 - Fix issue that content in archives was not displayed in collections. (#5948)
   [pbauer]
 
+- Prevent anonymous calls to setActiveApp. (#5938)
+  [pbauer]
 
 2.0.0 (2025-01-31)
 ------------------

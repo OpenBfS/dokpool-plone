@@ -179,7 +179,7 @@
       name="setActiveApp"
       for="*"
       class=".helpers.SetActiveApp"
-      permission="zope.Public"
+      permission="zope2.View"
       />
 
   <browser:page
