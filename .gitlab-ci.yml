@@ -51,7 +51,6 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
 
   # Check Python version
-  - python -V
   - python3 -V
   - whereis python
 
