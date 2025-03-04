@@ -12,6 +12,10 @@ Fixed:
 - Prevent anonymous calls to setActiveApp. (#5938)
   [pbauer]
 
+- Fix viewing/editing the fields of a DPDocument in /dexterity-types/DPDocument/@@fields. (#5970)
+  [pbauer]
+
+
 2.0.0 (2025-01-31)
 ------------------
 
