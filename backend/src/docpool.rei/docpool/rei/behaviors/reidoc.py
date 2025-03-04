@@ -211,7 +211,7 @@ class REIDoc(FlexibleView):
         self.request = context.REQUEST
 
     Authority = ContextProperty("Authority")
-    MStIDs = ContextProperty("MStIDs")
+    MStIDs = ContextProperty("MStIDs", default=[])
     mstids_initial_value = ContextProperty("mstids_initial_value")
     ReiLegalBases = ContextProperty("ReiLegalBases")
     Year = ContextProperty("Year")

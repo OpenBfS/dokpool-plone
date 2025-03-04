@@ -12,6 +12,10 @@ Fixed:
 - Prevent anonymous calls to setActiveApp. (#5938)
   [pbauer]
 
+- Fix editing reireports without MStIDs. (#5969)
+  [pbauer]
+
+
 2.0.0 (2025-01-31)
 ------------------
 
