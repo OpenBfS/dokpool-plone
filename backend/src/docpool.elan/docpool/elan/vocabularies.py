@@ -1,6 +1,7 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
+from plone import api
 from plone.app.vocabularies.catalog import StaticCatalogVocabulary
 from plone.base.utils import safe_bytes
 from Products.CMFCore.utils import getToolByName
@@ -16,16 +17,15 @@ class EventVocabulary:
     """ """
 
     def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = sorted(
-            (t.Title, t.UID)
-            for t in cat({"portal_type": "DPEvent", "path": path, "dp_type": "active"})
-        )
+        query = {
+            "portal_type": "DPEvent",
+            "dp_type": "active",
+        }
+        if getattr(context, "myDocumentPool", None) is not None:
+            query["path"] = (
+                "/".join(context.myDocumentPool().getPhysicalPath()) + "/contentconfig"
+            )
+        items = sorted((t.Title, t.UID) for t in api.content.find(**query))
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
