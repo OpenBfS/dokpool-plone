@@ -327,7 +327,7 @@ class DPDocument(Container, Extendable, ContentBase):
             "Owner", self
         ) or mtool.getAuthenticatedMember().has_role("Reviewer", self)
 
-    def change_position(self, position, id, ptype):
+    def change_position(self, position, obj_id, ptype):
         """
         Move a file or an image within the document.
         """
@@ -335,12 +335,13 @@ class DPDocument(Container, Extendable, ContentBase):
         alsoProvides(request, IDisableCSRFProtection)
         position = position.lower()
         # we need to find all other ids for the same type
-        ssids = [o.getId for o in self.getFolderContents({"portal_type": ptype})]
-        # print ssids
+        ssids = [
+            i.id for i in api.content.find(context=self, depth=1, portal_type=ptype)
+        ]
         if position == "up":
-            self.moveObjectsUp(id, 1, ssids)
+            self.moveObjectsUp(obj_id, subset_ids=ssids)
         elif position == "down":
-            self.moveObjectsDown(id, 1, ssids)
+            self.moveObjectsDown(obj_id, subset_ids=ssids)
         self.plone_utils.reindexOnReorder(self)
         return self.restrictedTraverse("@@view")()
 

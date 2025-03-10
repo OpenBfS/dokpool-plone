@@ -336,14 +336,14 @@ quoted_id = quote_plus(econtext["d"].getId());
                     <a href=""
                        title="Move item up"
                        i18n:attributes="title title_move_item_up;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=up&amp;id=${quoted_id}&amp;ptype=File">
+                       tal:attributes="href string:${view/base_url}/change_position?position=up&amp;obj_id=${quoted_id}&amp;ptype=File">
                       &#9650;
                     </a>
                     &nbsp;
                     <a href=""
                        title="Move item down"
                        i18n:attributes="title title_move_item_down;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=down&amp;id=${quoted_id}&amp;ptype=File">
+                       tal:attributes="href string:${view/base_url}/change_position?position=down&amp;obj_id=${quoted_id}&amp;ptype=File">
                       &#9660;
                     </a>
                    </tal:block>
@@ -407,14 +407,14 @@ quoted_id = quote_plus(econtext["b"].getId());
                     <a href=""
                        title="Move item up"
                        i18n:attributes="title title_move_item_up;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=up&amp;id=${quoted_id}&amp;ptype=Image">
+                       tal:attributes="href string:${view/base_url}/change_position?position=up&amp;obj_id=${quoted_id}&amp;ptype=Image">
                       &#9668;
                     </a>
                     &nbsp;
                     <a href=""
                        title="Move item down"
                        i18n:attributes="title title_move_item_down;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=down&amp;id=${quoted_id}&amp;ptype=Image">
+                       tal:attributes="href string:${view/base_url}/change_position?position=down&amp;obj_id=${quoted_id}&amp;ptype=Image">
                       &#9658;
                     </a>
                    </tal:block>
