@@ -25,12 +25,6 @@ class GroupFolder(SimpleFolder):
         """ """
         return self
 
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
     def update_immediately_addable_types(self):
         constrain = ISelectableConstrainTypes(self)
         constrain.setConstrainTypesMode(constraintypes.ENABLED)
