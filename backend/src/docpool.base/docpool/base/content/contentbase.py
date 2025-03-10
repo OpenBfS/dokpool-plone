@@ -1,4 +1,3 @@
-from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from Acquisition import aq_get
 from Acquisition import aq_inner

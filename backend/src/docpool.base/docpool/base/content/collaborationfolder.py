@@ -3,7 +3,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
-from plone.api import user
+from plone import api
 from plone.base.utils import safe_text
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
@@ -58,7 +58,7 @@ class CollaborationFolder(SimpleFolder):
     def customMenu(self, menu_items):
         """ """
         # print user.get_roles(obj=self)
-        if "Reviewer" not in user.get_roles(obj=self):
+        if "Reviewer" not in api.user.get_roles(obj=self):
             return SimpleFolder.customMenu(self, menu_items)
         else:
             # print "Reviewer"
@@ -97,7 +97,3 @@ class CollaborationFolder(SimpleFolder):
                 else:
                     res.append(menu_item)
             return res
-
-    def myCollaborationFolder(self):
-        """ """
-        return self

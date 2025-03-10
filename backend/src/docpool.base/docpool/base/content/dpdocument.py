@@ -7,7 +7,6 @@ from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.extendable import Extendable
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
-from docpool.base.pdfconversion import data
 from docpool.base.pdfconversion import get_images
 from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
@@ -18,7 +17,6 @@ from logging import getLogger
 from PIL import Image
 from plone import api
 from plone import namedfile
-from plone.api import content
 from plone.app.contenttypes.content import Document
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
@@ -237,18 +235,6 @@ class DPDocument(Container, Extendable, ContentBase):
                 return dt
         return None
 
-    def vocabDocType(self):
-        """ """
-        cat = getToolByName(self, "portal_catalog")
-        types = cat(
-            {
-                "portal_type": "DocType",
-                "sort_on": "sortable_title",
-                "path": self.dpSearchPath(),
-            }
-        )
-        return [(brain.id, brain.Title) for brain in types]
-
     def dp_type(self):
         """ """
         return self.docType
@@ -427,73 +413,11 @@ class DPDocument(Container, Extendable, ContentBase):
         else:
             return None
 
-    def autocreateSubdocuments(self):
-        """
-        TODO: specifically for XMLRPC usage
-        """
-        # * Von den allowed Types alle autocreatable Types durchgehen und ihre Muster
-        #   "ausprobieren"
-        # * Wenn Files oder Images gefunden zu einem Muster: entsprechendes DPDocument
-        #   erzeugen und Files/Images verschieben
-        return "ok"
-
-    def setDPProperty(self, name, value, ptype="string"):
-        """ """
-        alsoProvides(self.REQUEST, IDisableCSRFProtection)
-        if not self.hasProperty(name):
-            self.manage_addProperty(name, value, ptype)
-        else:
-            self._updateProperty(name, value)
-        return "set"
-
-    def deleteDPProperty(self, name):
-        """ """
-        alsoProvides(self.REQUEST, IDisableCSRFProtection)
-        if self.hasProperty(name):
-            self._delProperty(name)
-            return "deleted"
-        return "unknown"
-
-    def getDPProperty(self, name):
-        """ """
-        if self.hasProperty(name):
-            return self.getProperty(name)
-
-    def getDPProperties(self):
-        """ """
-        return self.propertyItems()
-
-    def readPropertiesFromFile(self):
-        """ """
-        files = self.getFiles()
-        msg = "none"
-        for f in files:
-            if f.getId() == "properties.txt":
-                d = StringIO(data(f))
-                props = d.readlines()
-                for prop in props:
-                    if prop and len(prop) > 2:
-                        name, value = prop.split("=")
-                        name = name.strip()
-                        value = value.strip()
-                        ptype = "string"
-                        try:
-                            name, ptype = name.split(":")
-                        except BaseException:
-                            pass
-                        self.setDPProperty(name, value, ptype)
-                        msg = "set"
-        return msg
-
     def getFileOrImageByPattern(self, pattern):
         """ """
-        #        print pattern
-        #        print self.getAllContentObjects()
         p = re.compile(pattern, re.IGNORECASE)
         for obj in self.getAllContentObjects():
-            #            print obj.getId()
             if p.match(obj.getId()):
-                #                print obj
                 return obj
 
     def getMapImageObj(self):
@@ -610,51 +534,17 @@ class DPDocument(Container, Extendable, ContentBase):
             data, filename = result
             return namedfile.NamedImage(data, filename=safe_text(filename))
 
-    def myState(self):
-        """ """
-        return content.get_state(self, "None")
-
     def getFirstImage(self, scale=""):
         img = self.getFirstImageObj()
         if img:
             return f"<img src='{img.absolute_url()}{scale}' />"
-        else:
-            return None
 
     def getFirstImageObj(self):
-        """
-
-        @return:
-        """
+        """ """
         imgs = self.getImages()
         if imgs:
             img = imgs[0]
             return img
-        else:
-            return None
-
-    def getLocalBehaviors(self):
-        """
-
-        :return:
-        """
-        from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
-
-        print(type(self.local_behaviors))
-        print(self.local_behaviors)
-        return ILocalBehaviorSupport(self).local_behaviors
-
-    def myDPDocument(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
 
     def getAllContentObjects(self):
         """ """
