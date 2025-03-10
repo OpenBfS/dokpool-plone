@@ -40,11 +40,14 @@ class DPDocumentView(FlexibleView):
         """ """
         return quote_plus(string)
 
-    def getFolderContents(self, kwargs):
+    def folder_contents(self):
         """ """
-        kwargs["object_provides"] = [IDPDocument.__identifier__]
-        res = [b for b in self.context.getFolderContents(kwargs)]
-        return res
+        query = {
+            "sort_on": "mdate",
+            "sort_order": "reverse",
+            "object_provides": [IDPDocument.__identifier__],
+        }
+        return api.content.find(context=self.context, depth=1, **query)
 
     def dp_buttons(self, items):
         return []

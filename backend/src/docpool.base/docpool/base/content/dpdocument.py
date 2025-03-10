@@ -657,19 +657,28 @@ class DPDocument(Container, Extendable, ContentBase):
 
     def getAllContentObjects(self):
         """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
+        return [
+            i.getObject()
+            for i in api.content.find(
+                context=self, depth=1, sort_on="getObjPositionInParent"
+            )
+        ]
 
     def getFiles(self, **kwargs):
         """ """
-        args = {"portal_type": "File"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        kwargs["portal_type"] = "File"
+        kwargs["sort_on"] = "getObjPositionInParent"
+        return [
+            i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)
+        ]
 
     def getImages(self, **kwargs):
         """ """
-        args = {"portal_type": "Image"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        kwargs["portal_type"] = "Image"
+        kwargs["sort_on"] = "getObjPositionInParent"
+        return [
+            i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)
+        ]
 
     @property
     def allow_discussion(self):

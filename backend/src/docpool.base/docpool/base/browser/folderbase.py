@@ -134,23 +134,28 @@ class FolderBaseView(BrowserView):
             button["cssclass"] = "context"
         return button
 
-    def getFolderContents(self, kwargs):
+    def folder_contents(self):
         """ """
+        query = {
+            "sort_on": "mdate",
+            "sort_order": "reverse",
+        }
         contentlisting = self.context.restrictedTraverse("@@contentlisting")
-        kwargs["object_provides"] = [
+        query["object_provides"] = [
             IFolderBase.__identifier__,
             ICollection.__identifier__,
         ]
-        res = [b for b in contentlisting(**kwargs)]
-        apps = self.isFilteredBy()
-        if apps:
-            kwargs["apps_supported"] = apps[0]
-        kwargs["object_provides"] = [
+        results = [b for b in contentlisting(**query)]
+
+        query["object_provides"] = [
             IDPDocument.__identifier__,
             IInfoLink.__identifier__,
         ]
-        res.extend([b for b in contentlisting(**kwargs)])
-        return res
+        apps = self.isFilteredBy()
+        if apps:
+            query["apps_supported"] = apps[0]
+        results.extend([b for b in contentlisting(**query)])
+        return results
 
     @view.memoize
     def isFilteredBy(self):

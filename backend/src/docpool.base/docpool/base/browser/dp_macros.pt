@@ -13,7 +13,7 @@ request = econtext["request"]
 view = econtext["view"]
 b_start = request.get('b_start', 0)
 b_size  = request.get('b_size', 10)
-results = view.getFolderContents({'sort_on':'mdate','sort_order':'reverse'})
+results = view.folder_contents()
 # Prevent duplicate batching when used for a DashboardCollection
 batch   = results if IBatch.providedBy(results) else Batch(results, b_size, b_start, orphan=1)
 buttons = view.dp_buttons(batch)

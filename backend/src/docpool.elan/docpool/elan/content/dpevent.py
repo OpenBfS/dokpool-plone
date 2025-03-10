@@ -564,8 +564,8 @@ class DPEvent(Container, ContentBase):
         navSettings(arc)
 
         # copy the ESD folders
-        for brain in esd.getFolderContents(
-            {"portal_type": ["ELANSection", "ELANDocCollection"]}
+        for brain in api.content.find(
+            context=esd, portal_type=["ELANSection", "ELANDocCollection"]
         ):
             api.content.copy(brain.getObject(), arc.esd)
         arc.esd.setDefaultPage("overview")
