@@ -76,6 +76,11 @@ class Renderer(base.Renderer):
     def get_obj_url(self, brain):
         url = brain.getURL()
         if url.startswith("http"):
+            # External links
+            return url
+        if getattr(self.context, "myDocumentPool", None) is None:
+            # We're not within a dokpool
+            print(url)
             return url
         dp_url = self.context.myDocumentPool().absolute_url()
         return f"{dp_url}/{url}"

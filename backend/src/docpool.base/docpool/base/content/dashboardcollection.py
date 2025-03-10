@@ -8,6 +8,7 @@ from docpool.elan.utils import getCategoriesForCurrentUser
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone.app.contenttypes.content import Collection
 from plone.app.contenttypes.content import ICollection
+from plone.app.querystring.querybuilder import QueryBuilder
 from plone.autoform import directives
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.permissions import View
@@ -17,6 +18,7 @@ from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope.component import getUtility
+from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.intid.interfaces import IIntIds
@@ -146,10 +148,11 @@ class DashboardCollection(Collection):
 
     def getQuery(self, **kwargs):
         """Get the query dict from the request or from the object"""
-        from plone.app.querystring.querybuilder import QueryBuilder
-        from zope.component.hooks import getSite
+        content_area = get_content_area(self)
+        if not content_area:
+            # only show content when there is a content area (i.e. if it's in a dokpool)
+            return []
 
-        # print "modified get"
         request = self.REQUEST
         alsoProvides(request, IDisableCSRFProtection)
         raw = kwargs.get("raw", None)
@@ -158,7 +161,7 @@ class DashboardCollection(Collection):
         if not value:
             self.setDocTypesUpdateCollection()  # Not yet initialized
             value = self.query
-        # print value
+
         if raw == True:
             # We actually wanted the raw value, should have called getRaw
             return value
@@ -214,9 +217,7 @@ class DashboardCollection(Collection):
 
             # Now we restrict the search to the paths to Members and Groups.
             # This ensures that in case of archives we only get results from the correct subset.
-            content_area = get_content_area(self)
             content_area_path = "/".join(content_area.getPhysicalPath())
-            # Just one path allowed in the path criterion.
             value.append(
                 {
                     "i": "path",
