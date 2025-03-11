@@ -205,3 +205,11 @@ watch-theme: ## Develop the theme
 .PHONY: build-theme
 build-theme: ## Build the theme
 	cd $(BACKEND_FOLDER) && npm run build
+
+.PHONY: watch-ui
+watch-ui: ## Develop the theme
+	cd $(BACKEND_FOLDER) && npm run watchui
+
+.PHONY: build-ui
+build-ui: ## Build the theme
+	cd $(BACKEND_FOLDER) && npm run buildui

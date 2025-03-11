@@ -12,7 +12,10 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",
     "start": "NODE_ENV=development webpack serve --config webpack.config.js",
-    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
+    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch",
+    "buildui": "NODE_ENV=production webpack --config webpack.configui.js",
+    "startui": "NODE_ENV=development webpack serve --config webpack.configui.js",
+    "watchui": "NODE_ENV=development webpack --config webpack.configui.js --watch"
   },
   "repository": {
     "type": "git",
