@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="docpool.theme"
+    >
+
+  <include
+      package="z3c.jbot"
+      file="meta.zcml"
+      />
+  <browser:jbot
+      directory="template_overrides"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+>>>>>>> 41387dc4 (fixup! create docpool.ui package to implement new UI theme)
+</configure>
