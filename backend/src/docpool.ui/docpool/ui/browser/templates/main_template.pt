@@ -1,0 +1,25 @@
+<metal:page define-macro="master">
+<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
+
+<html
+  <head>
+  </head>
+  <body>
+
+    <metal:content metal:define-macro="content">
+
+      <metal:slot define-slot="body">
+
+          <metal:bodytext define-slot="main">
+              <metal:text define-slot="content-core" tal:content="nothing">
+              </metal:text>
+          </metal:bodytext>
+
+      </metal:slot>
+
+    </metal:content>
+
+  </body>
+</html>
+
+</metal:page>
