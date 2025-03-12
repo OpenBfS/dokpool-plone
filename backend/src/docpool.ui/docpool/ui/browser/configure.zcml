@@ -22,4 +22,12 @@
       layer="docpool.ui.interfaces.IUITheme"
   />
 
+  <browser:page
+      for="*"
+      name="listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+  />
+
 </configure>
