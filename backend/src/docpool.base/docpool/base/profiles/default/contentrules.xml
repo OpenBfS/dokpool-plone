@@ -10,7 +10,7 @@
   >
     <conditions>
       <condition type="plone.conditions.TalesExpression">
-        <property name="tales_expression">python: 'Austausch BW' in context.created_by</property>
+        <property name="tales_expression">python: 'Austausch BW' in here.created_by</property>
       </condition>
     </conditions>
     <actions>
