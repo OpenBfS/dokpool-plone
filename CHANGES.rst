@@ -12,6 +12,11 @@ Fixed:
 - Prevent anonymous calls to setActiveApp. (#5938)
   [pbauer]
 
+- Reduce odds for ConflictErrors: avoid writing member data that didn't
+  actually change. (#5983)
+  [tlotze]
+
+
 2.0.0 (2025-01-31)
 ------------------
 

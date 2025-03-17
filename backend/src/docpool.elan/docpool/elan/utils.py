@@ -73,15 +73,13 @@ def set_scenarios_for_user(user, scenarios):
     selections.update(scenarios)
 
     global_scenarios = get_global_scenario_selection()
-    user.setMemberProperties(
-        {
-            "scenarios": [
-                "{}:{}".format(scen, "selected" if selected else "deselected")
-                for scen, selected in selections.items()
-                if global_scenarios.get(scen) != "removed"
-            ]
-        }
-    )
+    value = [
+        "{}:{}".format(scen, "selected" if selected else "deselected")
+        for scen, selected in selections.items()
+        if global_scenarios.get(scen) != "removed"
+    ]
+    if sorted(user.getProperty("scenarios", [])) != sorted(value):
+        user.setMemberProperties({"scenarios": value})
 
 
 def get_global_scenario_selection():
@@ -115,4 +113,5 @@ def setCategoriesForCurrentUser(cats):
     if isinstance(cats, str):
         cats = [cats]
     user = api.user.get_current()
-    user.setMemberProperties({"categories": cats})
+    if sorted(user.getProperty("categories", [])) != sorted(cats):
+        user.setMemberProperties({"categories": cats})
