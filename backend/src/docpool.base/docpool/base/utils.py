@@ -332,7 +332,8 @@ def setApplicationsForCurrentUser(self, apps):
     # Keep it simple at the moment, maybe we need the stuff above later...
     new = apps
     # print "setApplicationsForCurrentUser ", new
-    user.setMemberProperties({"apps": tuple(new)})
+    if sorted(user.getProperty("apps", ())) != sorted(new):
+        user.setMemberProperties({"apps": tuple(new)})
 
 
 def activateAppFilter(self, activate=False):
@@ -343,7 +344,8 @@ def activateAppFilter(self, activate=False):
     @return:
     """
     user = api.user.get_current()
-    user.setMemberProperties({"filter_active": activate})
+    if user.getProperty("filter_activate", None) != activate:
+        user.setMemberProperties({"filter_active": activate})
 
 
 def extendOptions(context, request, options):
