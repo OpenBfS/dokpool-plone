@@ -344,7 +344,7 @@ def activateAppFilter(self, activate=False):
     @return:
     """
     user = api.user.get_current()
-    if user.getProperty("filter_activate", None) != activate:
+    if user.getProperty("filter_active", None) != activate:
         user.setMemberProperties({"filter_active": activate})
 
 
