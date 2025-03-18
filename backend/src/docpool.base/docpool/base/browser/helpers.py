@@ -148,7 +148,7 @@ class ChangeState(BrowserView):
     def redirect(self):
         if self.back_to_referer and (last_referer := self.request.get("HTTP_REFERER")):
             return self.request.response.redirect(last_referer)
-        return self.context.restrictedTraverse("@@view")()
+        return self.request.response.redirect(self.context.absolute_url())
 
 
 class CanChangePassword(BrowserView):
