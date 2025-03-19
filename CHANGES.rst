@@ -16,6 +16,7 @@ Fixed:
   actually change. (#5983)
   [tlotze]
 - Fix viewing/editing the fields of a DPDocument in /dexterity-types/DPDocument/@@fields. (#5970)
+- Fix editing reireports without MStIDs. (#5969)
   [pbauer]
 
 
