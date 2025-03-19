@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="docpool.base"
+    >
+
+  <include package="collective.monkeypatcher" />
+
+  <monkey:patch
+      original="setMemberProperties"
+      replacement=".monkey.setMemberProperties"
+      class="Products.PlonePAS.tools.memberdata.MemberData"
+      preserveOriginal="true"
+      preservedoc="true"
+      docstringWarning="false"
+      description="Avoid ConflictErrors from writing login times to DB."
+      />
+
+</configure>
