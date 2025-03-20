@@ -14,6 +14,7 @@ window.$ = jQuery;
 
 // Global styles
 import("./docpool_styles/header-timetable.scss");
+import("./docpool_styles/header.scss");
 import("./docpool_styles/footer.scss");
 
 // Test for the first css selectors, returns null if not found otherwise returns the element
