@@ -14,7 +14,6 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_text
-from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -25,9 +24,11 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 def initializeScenarios(context):
     query = {
         "portal_type": "DPEvent",
-        "dp_type": "active",
         "UID": getScenariosForCurrentUser(),
+        "Status": "active",
     }
+    if getattr(context, "dpSearchPath", None):
+        query["path"] = context.dpSearchPath()
     scenarios = api.content.find(**query)
     return [scen.UID for scen in scenarios]
 
