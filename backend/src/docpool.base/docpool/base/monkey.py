@@ -45,6 +45,18 @@ if not hasattr(AbstractCatalogBrain, "original_getURL"):
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
+def setMemberProperties(self, mapping, **kw):
+    # We're never interested in login times as sessions are created by SSO anyway.
+    # Login times used to be the main cause by far for writing member properties, which
+    # are suspected to be a DB hotspot causing ConflictErrors, see #4325.
+    for key in ("login_time", "last_login_time"):
+        mapping.pop(key, None)
+    if not mapping:
+        return
+
+    self._old_setMemberProperties(mapping, **kw)
+
+
 # XXX PropertyManagers expect methods called to provide options for select variables to
 # be available as an object attribute. Should be modernised some day.
 GroupDataTool.possibleDocTypes = possibleDocTypes

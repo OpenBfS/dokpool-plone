@@ -24,6 +24,7 @@
   <include package=".behaviors" />
   <include package=".users" />
   <include file="upgrades.zcml" />
+  <include file="monkey.zcml" />
 
   <include package="plone.app.relationfield" />
   <include
