@@ -584,6 +584,10 @@ msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 msgid "alert_transition"
 msgstr "Wollen Sie die gewählte Statusänderung wirklich duchführen?"
 
+#: docpool.elan/docpool/elan/browser/i18ndummy.pt
+msgid "Submit for publication"
+msgstr "Einreichen"
+
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "back to"
