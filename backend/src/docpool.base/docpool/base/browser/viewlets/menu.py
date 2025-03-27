@@ -54,6 +54,14 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         "</li>"
     )
 
+    redirect_to_map = {
+        "base": "",
+        "elan": "/esd",
+        "doksys": "/searches",
+        "rei": "/berichte",
+        "rodos": "/potentially-affected-areas",
+    }
+
     @property
     def _item_markup_template(self):
         class Wrapped:
@@ -117,7 +125,13 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
 
         for dp, app_names in dp_apps:
             dp_id = dp.getId()
-            url = (self.context if current_dp_id == dp_id else dp).absolute_url()
+            physical_path = self.context.getPhysicalPath()
+            keep_context = (
+                current_dp_id == dp_id
+                and "content" in physical_path
+                and "archive" not in physical_path
+            )
+            url = (self.context if keep_context else dp).absolute_url()
             dp_path = f"{self.navtree_path}/apps/{dp_id}"
             tree[apps_path].append(
                 dict(
@@ -134,13 +148,21 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                 {appName(i): i for i in app_names}.items()
             ):
                 app_id = f"{dp_id}-{app_name}"
+                params = (
+                    ""
+                    if (
+                        keep_context
+                        or (redirect_to := self.redirect_to_map.get(app_name)) is None
+                    )
+                    else f"&redirect_to={redirect_to}"
+                )
                 tree[dp_path].append(
                     dict(
                         id=app_id,
                         path=f"{dp_path}/{app_name}",
                         uid=app_id,
                         title=f"{app_title}",
-                        url=f"{url}/setActiveApp?app={app_name}",
+                        url=f"{url}/setActiveApp?app={app_name}{params}",
                         review_state="visible",
                         # item_class=app_title,
                     )

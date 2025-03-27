@@ -22,6 +22,9 @@ Fixed:
 - Fix editing reireports without MStIDs. (#5969)
   [pbauer]
 
+- In Docpool/App menu, compute targets prior to redirect. (#5997)
+  [tlotze]
+
 
 Added:
 

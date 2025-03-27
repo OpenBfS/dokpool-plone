@@ -50,11 +50,10 @@ class TestNavigation(unittest.TestCase):
         # result: personal folder is in navigation
         view = docpool.restrictedTraverse("setActiveApp")
         view.request.form.update(app="doksys")
-        url = view()
+        view()
         dp_app_state = docpool.restrictedTraverse("dp_app_state")
         self.assertFalse(dp_app_state.isCurrentlyActive("elan"))
 
-        self.assertEqual(url, "http://nohost/plone/bund/searches")
         view = docpool.restrictedTraverse("@@view")
         html = view()
         # personal folder is there
@@ -68,8 +67,7 @@ class TestNavigation(unittest.TestCase):
         # result: personal folder is not in navigation
         view = docpool.restrictedTraverse("setActiveApp")
         view.request.form.update(app="elan")
-        url = view()
-        self.assertEqual(url, "http://nohost/plone/bund/esd")
+        view()
         esd = docpool.esd
         dp_app_state = esd.restrictedTraverse("dp_app_state")
         # purge caching on request
