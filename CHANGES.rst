@@ -15,8 +15,18 @@ Fixed:
 - Reduce odds for ConflictErrors: avoid writing member data that didn't
   actually change. (#5983)
   [tlotze]
+
 - Fix viewing/editing the fields of a DPDocument in /dexterity-types/DPDocument/@@fields. (#5970)
+  [pbauer]
+
 - Fix editing reireports without MStIDs. (#5969)
+  [pbauer]
+
+
+Added:
+
+- Add marker interface ISkipAutomaticTransferMarker to allow skipping automatc transfers for
+  certain containers (#5982)
   [pbauer]
 
 

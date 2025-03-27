@@ -30,4 +30,6 @@
 
   <subscriber handler=".transferable.automatic_transfer_on_publish" />
 
+  <interface interface=".transferable.ISkipAutomaticTransferMarker" />
+
 </configure>

@@ -30,6 +30,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.globalrequest import getRequest
+from zope.interface import Interface
 from zope.interface import provider
 
 
@@ -56,6 +57,10 @@ def transferring():
             yield False
         finally:
             del annotations[KEY]
+
+
+class ISkipAutomaticTransferMarker(Interface):
+    """Marker interface for containers whose content should be ignored for automatic transfers."""
 
 
 @provider(IFormFieldProvider)
@@ -379,6 +384,8 @@ def automatic_transfer(obj):
         # workflow state. Objects published for this reason should not be transferred.
         return
     if IImportingMarker.providedBy(getRequest()):
+        return
+    if ISkipAutomaticTransferMarker.providedBy(obj.__parent__):
         return
 
     try:
