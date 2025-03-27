@@ -29,6 +29,9 @@ Added:
   certain containers (#5982)
   [pbauer]
 
+- Add scenario_ids to serialized DPDocument (#5999)
+  [pbauer]
+
 
 2.0.0 (2025-01-31)
 ------------------
