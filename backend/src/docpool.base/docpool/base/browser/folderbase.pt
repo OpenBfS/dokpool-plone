@@ -13,7 +13,7 @@
 <!--                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
                     </div> -->
                 </tal:if>
-                <input type="checkbox" name="activateFilter" value="yes"
+                <input type="checkbox" name="activateFilter" id="activateFilter" value="yes"
                        tal:attributes="checked python:'checked' if isFiltered else None;"
                        onclick="this.form.submit()"
                 />&nbsp;<label for="activateFilter" i18n:translate="">Filter contents according to application?</label></form>
