@@ -42,5 +42,6 @@
       />
 
   <adapter factory=".dpdocument.DeserializeFromJsonDPDocument" />
+  <adapter factory=".dpdocument.SerializeToJsonDPDocument" />
 
 </configure>

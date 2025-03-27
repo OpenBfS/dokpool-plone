@@ -13,8 +13,6 @@ from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import is_individual
-from docpool.base.utils import portalMessage
-from docpool.base.utils import queryForObject
 from io import StringIO
 from logging import getLogger
 from PIL import Image
@@ -34,6 +32,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.resource.interfaces import IResourceDirectory
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
 from plone.restapi.interfaces import IFieldDeserializer
+from plone.restapi.serializer.dxcontent import SerializeFolderToJson
 from plone.supermodel.utils import mergedTaggedValueDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log
@@ -743,3 +742,18 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         if dm.get() != value:
             dm.set(value)
             self.mark_field_as_changed(ILocalBehaviorSupport, self.name)
+
+
+@adapter(IDPDocument, Interface)
+class SerializeToJsonDPDocument(SerializeFolderToJson):
+    def __call__(self, version=None, include_items=True):
+        """Add id of scenario to json used for data-transfer with BW (#5999)."""
+        result = super().__call__(version=version, include_items=include_items)
+
+        scenario_ids = []
+        for scenario in result.get("scenarios", []):
+            if brains := api.content.find(UID=scenario["token"]):
+                scenario_ids.append(brains[0].id)
+        if scenario_ids:
+            result["scenario_ids"] = scenario_ids
+        return result
