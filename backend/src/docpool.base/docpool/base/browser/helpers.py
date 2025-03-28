@@ -76,17 +76,11 @@ class SetActiveApp(BrowserView):
             return self.request.response.redirect(context.absolute_url())
         setApplicationsForCurrentUser(context, [app])
         activateAppFilter(context, True)
-        absurl = context.absolute_url()
-        if "content" not in absurl:
-            suffixes = {
-                "base": "",
-                "elan": "/esd",
-                "doksys": "/searches",
-                "rei": "/berichte",
-                "rodos": "/potentially-affected-areas",
-            }
-            if (suffix := suffixes.get(app)) is not None:
-                absurl = context.myDocumentPool().absolute_url() + suffix
+        absurl = (
+            context.myDocumentPool().absolute_url() + redirect_to
+            if (redirect_to := self.request.get("redirect_to"))
+            else context.absolute_url()
+        )
         return self.request.response.redirect(absurl)
 
 
