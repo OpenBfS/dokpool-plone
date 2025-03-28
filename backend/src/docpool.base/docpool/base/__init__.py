@@ -1,7 +1,9 @@
 from AccessControl import allow_module
 from plone import api
+from plone.app.upgrade.utils import alias_module
 from plone.namedfile.browser import DisplayFile
 from zope.i18nmessageid import MessageFactory
+from zope.interface import Interface
 
 import logging
 
@@ -20,6 +22,12 @@ api.__allow_access_to_unprotected_subobjects__ = 1
 api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
+
+class IBBB(Interface):
+    pass
+
+
+alias_module("contentimport.interfaces.IContentimportLayer", IBBB)
 
 if "text/html" not in DisplayFile.allowed_inline_mimetypes:
     DisplayFile.allowed_inline_mimetypes.append("text/html")
