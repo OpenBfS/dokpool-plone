@@ -71,6 +71,9 @@ class SetActiveApp(BrowserView):
         alsoProvides(self.request, IDisableCSRFProtection)
         context = self.context
         app = self.request.get("app")
+        if app not in ["base", "doksys", "elan", "rei", "rodos"]:
+            # prevent invalid apps (#5996)
+            return self.request.response.redirect(context.absolute_url())
         setApplicationsForCurrentUser(context, [app])
         activateAppFilter(context, True)
         absurl = context.absolute_url()
