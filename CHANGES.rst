@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.1 (unreleased)
+2.0.1 (2025-03-31)
 ------------------
 
 Changed:
@@ -55,6 +55,11 @@ Fixed:
 - Hide usermanagement-action from local admins without admin-role on dokpool. (#2609)
   [pbauer]
 
+- Update translation (#5785)
+  [pbauer]
+
+- Add some space before pdflink (#5942)
+  [pbauer]
 
 Added:
 
