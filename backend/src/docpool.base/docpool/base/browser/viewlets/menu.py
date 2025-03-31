@@ -59,7 +59,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         "elan": "/esd",
         "doksys": "/searches",
         "rei": "/berichte",
-        "rodos": "/potentially-affected-areas",
+        "rodos": "/projections",
     }
 
     @property
