@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-12-22 20:52+0000\n"
+"POT-Creation-Date: 2025-03-31 07:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/localbehavior/configure.zcml
 msgid "Add local behavior support"
+msgstr ""
+
+#: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
+msgid "Adding a group is only allowed in a dokpool!"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/print.pt
@@ -95,6 +99,10 @@ msgid "Docpool Configuration Area"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool listing with bulk actions for DashboardCollections"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
 msgstr ""
 
@@ -131,10 +139,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "Edit Dashboard"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/dptransferfolder.pt
-msgid "Edit Permissions"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
@@ -367,10 +371,6 @@ msgstr ""
 msgid "Search for user or group"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
-msgid "Select"
-msgstr ""
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Select a value ..."
 msgstr ""
@@ -401,6 +401,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit for publication"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt

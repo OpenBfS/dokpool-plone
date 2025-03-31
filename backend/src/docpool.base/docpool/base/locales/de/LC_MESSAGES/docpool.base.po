@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2024-12-22 20:52+0000\n"
+"POT-Creation-Date: 2025-03-31 07:02+0000\n"
 "PO-Revision-Date: 2024-12-22 21:57+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -31,6 +31,10 @@ msgstr "${transitioned} Einträge geändert!"
 #: docpool.base/docpool/base/localbehavior/configure.zcml
 msgid "Add local behavior support"
 msgstr "Unterstützung für Anwendungen hinzufügen"
+
+#: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
+msgid "Adding a group is only allowed in a dokpool!"
+msgstr "Gruppen dürfen nur in Dokpools angelegt werden!"
 
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
@@ -94,6 +98,10 @@ msgid "Docpool Configuration Area"
 msgstr "Dokpool Konfiguration"
 
 #: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool listing with bulk actions for DashboardCollections"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
 msgstr "Dokpool Ansicht"
 
@@ -131,10 +139,6 @@ msgstr "Bearbeiten"
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "Edit Dashboard"
 msgstr "Pinnwand bearbeiten"
-
-#: docpool.base/docpool/base/browser/dptransferfolder.pt
-msgid "Edit Permissions"
-msgstr "Berechtigungen bearbeiten"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Edit the document"
@@ -366,10 +370,6 @@ msgstr "Revidiert"
 msgid "Search for user or group"
 msgstr "Nach Nutzern oder Gruppen suchen"
 
-#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
-msgid "Select"
-msgstr "Auswählen"
-
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Select a value ..."
 msgstr "Bitte eine Auswahl treffen..."
@@ -400,6 +400,10 @@ msgstr "Einfache Textseite."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit"
+msgstr "Einreichen"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit for publication"
 msgstr "Einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -583,10 +587,6 @@ msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_transition"
 msgstr "Wollen Sie die gewählte Statusänderung wirklich duchführen?"
-
-#: docpool.elan/docpool/elan/browser/i18ndummy.pt
-msgid "Submit for publication"
-msgstr "Einreichen"
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt

@@ -81,7 +81,7 @@
 
               <fieldset>
                 <tal:dp tal:condition="python:context.portal_type != 'DocumentPool'">
-                  <div class="alert alert-danger" role="alert" i18n:translate="">Adding a group is only allowed in a dokpool!</div>
+                  <div class="alert alert-danger" role="alert" i18n:domain="docpool.base" i18n:translate="">Adding a group is only allowed in a dokpool!</div>
                 </tal:dp>
                 <tal:dp tal:condition="python:context.portal_type == 'DocumentPool'">
                   <div class="mb-3" metal:define-slot="name">
