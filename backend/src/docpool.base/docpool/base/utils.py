@@ -393,6 +393,12 @@ def is_admin(context=None):
     return "Manager" in roles or "Site Administrator" in roles
 
 
+def is_admin_on_dokpool(context):
+    context = getDocumentPoolSite(context)
+    roles = api.user.get_roles(obj=context)
+    return "Manager" in roles or "Site Administrator" in roles
+
+
 def is_contentadmin(context):
     if not hasattr(context, "myDocumentPool"):
         return False

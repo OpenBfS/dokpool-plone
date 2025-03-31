@@ -3,6 +3,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import activateAppFilter
 from docpool.base.utils import get_docpool_for_user
 from docpool.base.utils import is_admin
+from docpool.base.utils import is_admin_on_dokpool
 from docpool.base.utils import is_contentadmin
 from docpool.base.utils import is_individual
 from docpool.base.utils import is_personal
@@ -94,6 +95,9 @@ class Is(BrowserView):
     def admin_or_contentadmin(self):
         # TODO re #5547: check whether this is still useful after cleaning up conditions
         return is_admin(self.context) or is_contentadmin(self.context)
+
+    def admin_on_dokpool(self):
+        return is_admin_on_dokpool(self.context)
 
     def archive(self):
         return "archive" in self.context.getPhysicalPath()

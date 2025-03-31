@@ -176,7 +176,7 @@
       >User Management</property>
       <property name="url_expr">string:${context/dp_url}/@@usergroup-userprefs</property>
       <property name="icon_expr">string:plone-group</property>
-      <property name="available_expr">context/@@is/admin</property>
+      <property name="available_expr">context/@@is/admin_on_dokpool</property>
       <property name="permissions" />
       <property name="visible">True</property>
     </object>

@@ -186,7 +186,7 @@
       name="is"
       for="*"
       class=".helpers.Is"
-      allowed_attributes="admin contentadmin admin_or_contentadmin archive individual personal rei_workflow"
+      allowed_attributes="admin admin_on_dokpool contentadmin admin_or_contentadmin archive individual personal rei_workflow"
       permission="zope2.View"
       />
 
