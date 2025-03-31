@@ -4,6 +4,15 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
+Changed:
+
+- Improve ux of dpdocument_transfer_form and activateFilter by enabling click on label.
+  [pbauer]
+
+- Redirect RODOS-App to /projections. (#2609)
+  [pbauer]
+
+
 Fixed:
 
 - Fix issue that content in archives was not displayed in collections. (#5948)
@@ -12,8 +21,11 @@ Fixed:
 - Prevent anonymous calls to setActiveApp. (#5938)
   [pbauer]
 
-- Reduce odds for ConflictErrors: avoid writing member data that didn't
+- Reduce odds for ConflictErrors: Avoid writing member data that didn't
   actually change. (#5983)
+  [tlotze]
+
+- Reintroduce monkey patch to avoid storing login times. (#5983)
   [tlotze]
 
 - Fix viewing/editing the fields of a DPDocument in /dexterity-types/DPDocument/@@fields. (#5970)
@@ -25,6 +37,24 @@ Fixed:
 - In Docpool/App menu, compute targets prior to redirect. (#5997)
   [tlotze]
 
+- Fix dashboardcollection and recent-portlet when not inside a dokpool. (#5977)
+  [pbauer]
+
+- Use here instead of context in content-rule. (#5982)
+  [pbauer]
+
+- Keep view of listing after a single transition. (#5984)
+  [pbauer]
+
+- Prevent setting invalid app as memberproperties. (#5996)
+  [pbauer]
+
+- In Docpool/App menu, compute target urls prior to redirect and fix linking back from archive. (#5997)
+  [pbauer]
+
+- Hide usermanagement-action from local admins without admin-role on dokpool. (#2609)
+  [pbauer]
+
 
 Added:
 
@@ -33,6 +63,15 @@ Added:
   [pbauer]
 
 - Add scenario_ids to serialized DPDocument (#5999)
+  [pbauer]
+
+
+Technical:
+
+- Fix issue with setuptools and plone.autoinclude (#5963)
+  [pbauer]
+
+- Add alias for forgotten (not uninstalled) browserlayer of contentimport.
   [pbauer]
 
 
