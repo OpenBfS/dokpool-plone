@@ -4,6 +4,10 @@ Changelog
 2.1.0 (unreleased)
 ------------------
 
+Technical:
+
+- Upgrade to Plone 6.0.15. (#4892)
+  [pbauer]
 
 
 2.0.1 (2025-03-31)

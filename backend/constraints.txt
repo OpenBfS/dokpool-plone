@@ -1,8 +1,8 @@
--c https://dist.plone.org/release/6.0.14/constraints.txt
+-c https://dist.plone.org/release/6.0.15/constraints.txt
 
 collective.impersonate == 2.0
 Products.PloneKeywordManager == 6.0.0
-pygeoif == 1.5.0
+pygeoif == 1.5.1
 pypdf == 5.0.1
 
 # Migration and Demo content
