@@ -6,6 +6,6 @@
       i18n:domain="docpool.theme">
   <metal:content fill-slot="content-core">
     listing
-    <div id="docpool-listing"></div>
+    <div id="docpool-listing">JS/React does not work</div>
   </metal:content>
 </html>

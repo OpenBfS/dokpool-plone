@@ -1,12 +1,11 @@
 import "bootstrap";
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 
 const Listing = () => {
   console.log("test");
-  return <div>test</div>;
+  return <span class="badge text-bg-danger">I am your father</span>;
 };
 
-const el = document.getElementById("docpool-listing");
-console.log(el);
-render(<Listing />, el);
+const root = createRoot(document.getElementById("docpool-listing"));
+root.render(<Listing />);
