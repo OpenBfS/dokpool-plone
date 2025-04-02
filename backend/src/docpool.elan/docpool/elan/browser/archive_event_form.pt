@@ -1,0 +1,79 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.elan"
+      xml:lang="en"
+      metal:use-macro="context/@@main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+<tal:def tal:define="items python: view.items;">
+
+      <form method="post"
+            id="archive_event_form"
+            name="archive_event_form"
+            action="#"
+            tal:attributes="action request/URL">
+
+        <input type="hidden" name="form.uid" tal:attributes="value python: view.uid" />
+
+        <tal:archive tal:condition="python: view.action in ['archive', 'archiveAndClose']">
+            <h2 i18n:translate="">Archive Event "${python: context.title}" with ${python: len(items)} documents</h2>
+            <p i18n:translate="">The following happens when archiving:</p>
+            <ul>
+                <li i18n:translate="">Saves all content for this scenario to an archive.</li>
+                <li i18n:translate="">Deletes the original content</li>
+                <li i18n:translate="">Sets the scenario to state "closed".</li>
+                <li i18n:translate="">Content that is assigned to more that this scenario is copied into the archive.</li>
+            </ul>
+        </tal:archive>
+
+        <tal:snapshot tal:condition="python: view.action=='snapshot'">
+            <h2 i18n:translate="">Snapshot Event with ${python: len(items)} documents</h2>
+            <p>Do you really want to create a snapshot of this event? The event stays active but all documents are moved to a archive.</p>
+            <p i18n:translate="">The following happens when creating a snapshot:</p>
+            <ul>
+                <li i18n:translate="">Create Archive for event but leave Event unchanged.</li>
+                <li i18n:translate="">Copy Journals and Event to Archive.</li>
+                <li i18n:translate="">Purge Journals.</li>
+                <li i18n:translate="">Saves all current content for this scenario to an archive, deletes the original content.</li>
+                <li i18n:translate="">Content that is assigned to more that this scenario is copied into the archive.</li>
+            </ul>
+        </tal:snapshot>
+
+        <p i18n:translate="">Dieser Vorgang kann je nach Menge der Inhalte bis zu einer Stunde dauern.
+            Wichtig: Nach XX Minuten kommt ggf. eine Fehlermeldung "Guru-Meditation". Dies bedeutet nicht, dass das Archivieren gescheitert ist.
+            Warten Sie in diesem Fall ein paar Minuten und rufen Sie das Formular erneut auf.
+            Dann wird Ihnen angezeigt ob der Archivierungsvorgang abgeschlossen ist.
+        </p>
+
+        <p class="d-inline-flex gap-1">
+            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDocuments" role="button" aria-expanded="false" aria-controls="collapseDocuments">
+                Show/Hide ${python: len(items)} Documents
+            </a>
+        </p>
+        <div class="collapse" id="collapseDocuments">
+            <ol>
+                <li tal:repeat="brain python: items">
+                    <a href=""
+                       tal:attributes="href python:brain.getURL()">
+                        <span tal:replace="python: brain.Title" />
+                    </a>
+                </li>
+            </ol>
+        </div>
+
+        <div class="formControls" i18n:domain="plone">
+          <input type="submit" class="input-sichern context btn btn-primary" name="form.button.submit" value="Apply" i18n:attributes="value label_apply;title"/>
+          <input type="submit" class="input-abbrechen btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
+        </div>
+      </form>
+</tal:def>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
