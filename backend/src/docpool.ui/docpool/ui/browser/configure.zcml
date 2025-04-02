@@ -27,8 +27,18 @@
       name="listing"
       template="templates/listing.pt"
       permission="zope.Public"
+      class=".listing.Listing"
       layer="docpool.ui.interfaces.IUITheme"
       />
+
+  <browser:page
+    for="*"
+    name="listing-item"
+    template="templates/listing-item.pt"
+    class=".listing.Item"
+    permission="zope.Public"
+    layer="docpool.ui.interfaces.IUITheme"
+  />
 
   <browser:page
       for="*"
