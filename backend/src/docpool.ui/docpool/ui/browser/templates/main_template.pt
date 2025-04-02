@@ -11,6 +11,7 @@
         plone_layout python:context.restrictedTraverse('@@plone_layout');
       ">
   <head>
+    <link rel="stylesheet" type="text/css" href="${portal_url}/++theme++barceloneta/css/barceloneta.css" />
     <link rel="stylesheet" type="text/css" href="${portal_url}/++plone++docpoolui/build/base.css" />
     <script src="${portal_url}/++plone++docpoolui/build/docpool.ui-remote.min.js"></script>
   </head>
