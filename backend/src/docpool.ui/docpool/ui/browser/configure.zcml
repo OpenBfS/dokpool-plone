@@ -20,7 +20,7 @@
       template="templates/main_template.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
-  />
+      />
 
   <browser:page
       for="*"
@@ -28,6 +28,15 @@
       template="templates/listing.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
-  />
+      />
+
+  <browser:page
+      for="*"
+      name="left"
+      template="templates/left.pt"
+      class=".left.Left"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
 
 </configure>

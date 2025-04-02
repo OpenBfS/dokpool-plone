@@ -8,12 +8,16 @@
       tal:define="
         portal_state python:context.restrictedTraverse('@@plone_portal_state');
         portal_url python:portal_state.portal_url();
+        plone_layout python:context.restrictedTraverse('@@plone_layout');
       ">
   <head>
     <link rel="stylesheet" type="text/css" href="${portal_url}/++plone++docpoolui/build/base.css" />
     <script src="${portal_url}/++plone++docpoolui/build/docpool.ui-remote.min.js"></script>
   </head>
-  <body>
+  <body tal:define="body_class python:plone_layout.bodyClass(template, view);"
+        tal:attributes="class body_class;
+                        python:context.restrictedTraverse('@@plone_patterns_settings')();"
+        id="visual-portal-wrapper">
 
     <metal:content metal:define-macro="content">
 
@@ -27,6 +31,10 @@
       </metal:slot>
 
     </metal:content>
+
+    <aside id="portal-column-one">
+      <tal:block replace="structure python: context.restrictedTraverse('@@left')(foo=context.title)" />
+    </aside>
 
   </body>
 </html>
