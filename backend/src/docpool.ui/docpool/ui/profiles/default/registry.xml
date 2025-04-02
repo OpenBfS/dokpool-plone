@@ -3,11 +3,11 @@
           i18n:domain="docpool.theme"
 >
   <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
-           prefix="plone.bundles/docpool.theme"
+           prefix="plone.bundles/docpool.ui"
   >
     <value key="enabled">True</value>
     <value key="jscompilation">++plone++docpoolui/build/docpool.ui-remote.min.js</value>
-    <value key="csscompilation">++plone++docpoolui/build/base.css</value>
+    <value key="csscompilation">++theme++barceloneta/css/barceloneta.css</value>
     <value key="load_defer">False</value>
     <value key="load_async">False</value>
     <value key="depends">plone</value>
