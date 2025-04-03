@@ -20,34 +20,35 @@
 
         <input type="hidden" name="form.uid" tal:attributes="value python: view.uid" />
 
-        <tal:archive tal:condition="python: view.action in ['archive', 'archiveAndClose']">
-            <h2 i18n:translate="">Archive Event "${python: context.title}" with ${python: len(items)} documents</h2>
+        <tal:archive tal:condition="python: view.__name__=='archiveAndClose'">
+            <h1 i18n:translate="">Archive Event</h1>
+            <p i18n:translate="">Here you can archive the event "${python: context.title}" with ${python: len(items)} documents.</p>
             <p i18n:translate="">The following happens when archiving:</p>
             <ul>
-                <li i18n:translate="">Saves all content for this scenario to an archive.</li>
-                <li i18n:translate="">Deletes the original content</li>
-                <li i18n:translate="">Sets the scenario to state "closed".</li>
-                <li i18n:translate="">Content that is assigned to more that this scenario is copied into the archive.</li>
+                <li i18n:translate="">All content for this event is saved in an archive.</li>
+                <li i18n:translate="">Deletes the original content.</li>
+                <li i18n:translate="">Sets the event to state "closed".</li>
+                <li i18n:translate="">Content that is assigned to more than this event is copied into the archive instead of moved.</li>
             </ul>
         </tal:archive>
 
-        <tal:snapshot tal:condition="python: view.action=='snapshot'">
-            <h2 i18n:translate="">Snapshot Event with ${python: len(items)} documents</h2>
-            <p>Do you really want to create a snapshot of this event? The event stays active but all documents are moved to a archive.</p>
+        <tal:snapshot tal:condition="python: view.__name__=='snapshot'">
+            <h1 i18n:translate="">Snapshot Event</h1>
+            <p>Here you can create a snapshot of the event <em>${python: context.title}</em> with ${python: len(items)} documents.</p>
             <p i18n:translate="">The following happens when creating a snapshot:</p>
             <ul>
-                <li i18n:translate="">Create Archive for event but leave Event unchanged.</li>
+                <li i18n:translate="">The event stays active but documents are moved to an archive.</li>
                 <li i18n:translate="">Copy Journals and Event to Archive.</li>
                 <li i18n:translate="">Purge Journals.</li>
-                <li i18n:translate="">Saves all current content for this scenario to an archive, deletes the original content.</li>
-                <li i18n:translate="">Content that is assigned to more that this scenario is copied into the archive.</li>
+                <li i18n:translate="">Content that is assigned to more than this event is copied into the archive instead of moved.</li>
             </ul>
         </tal:snapshot>
 
-        <p i18n:translate="">Dieser Vorgang kann je nach Menge der Inhalte bis zu einer Stunde dauern.
-            Wichtig: Nach XX Minuten kommt ggf. eine Fehlermeldung "Guru-Meditation". Dies bedeutet nicht, dass das Archivieren gescheitert ist.
-            Warten Sie in diesem Fall ein paar Minuten und rufen Sie das Formular erneut auf.
-            Dann wird Ihnen angezeigt ob der Archivierungsvorgang abgeschlossen ist.
+        <p i18n:translate="">Depending on the number of documents in this event this can take up to an hour.
+            Important: After XX minutes you may see a error-message "Guru-Meditation".
+            This does not mean that the process failed but that a timeout has happened.
+            Please keep waiting a couple of minuted and open this page again.
+            You will see if the process has finished or is still runnning.
         </p>
 
         <p class="d-inline-flex gap-1">

@@ -28,7 +28,7 @@ logger = getLogger(__name__)
 PMF = MessageFactory("plone")
 
 
-class Archive(BrowserView):
+class ArchiveAndClose(BrowserView):
     def __call__(self):
         request = self.request
         if IArchiving(self.context).is_archive:
@@ -40,7 +40,6 @@ class Archive(BrowserView):
             self.uid = form.get("form.uid")
         else:
             self.uid = str(uuid.uuid4())
-        self.action = self.__name__
 
         contentarea = aq_get(self.context, "content")
         contentarea_path = "/".join(contentarea.getPhysicalPath())
@@ -89,7 +88,7 @@ class Archive(BrowserView):
         info[self.uid] = {
             "user": api.user.get_current().getId(),
             "time": datetime.now(),
-            "action": self.action,
+            "action": self.__name__,
             "state": "in_progress",
         }
         self.context.set_archiving_info(info)
@@ -362,7 +361,7 @@ class Archive(BrowserView):
         return arc
 
 
-class Snapshot(Archive):
+class Snapshot(ArchiveAndClose):
     def process_action(self):
         """
         Similar to archiveAndClose but leave the old event as is.

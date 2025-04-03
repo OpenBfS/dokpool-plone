@@ -38,19 +38,11 @@
       />
 
   <browser:page
-      name="archive"
-      for="..interfaces.IDPEvent"
-      class=".archive_event_form.Archive"
-      template="archive_event_form.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="archiveAndClose"
       for="..interfaces.IDPEvent"
-      class=".archive_event_form.Archive"
+      class=".archive_event_form.ArchiveAndClose"
       template="archive_event_form.pt"
-      permission="zope2.View"
+      permission="cmf.ModifyPortalContent"
       />
 
   <browser:page
@@ -58,7 +50,7 @@
       for="..interfaces.IDPEvent"
       class=".archive_event_form.Snapshot"
       template="archive_event_form.pt"
-      permission="zope2.View"
+      permission="cmf.ModifyPortalContent"
       />
 
   <browser:page
