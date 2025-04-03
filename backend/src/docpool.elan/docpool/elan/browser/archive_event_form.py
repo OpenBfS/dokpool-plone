@@ -148,7 +148,7 @@ class ArchiveAndClose(BrowserView):
                 transaction.savepoint(optimistic=True)
 
         # 4. Move DPEvent into archive and redirect to it
-        archived_event = api.content.move(self.context, target=archive)
+        archived_event = api.content.move(self.context, target=archive, safe_id=True)
         archived_event.reindexObject()
         # local roles were set when adding items to the archive but reindexing was deferred.
         archive_contentarea.reindexObjectSecurity()
@@ -343,6 +343,7 @@ class ArchiveAndClose(BrowserView):
             type="ELANArchive",
             id=ploneId(self.context, f"{self.context.id}_{now}"),
             title=f"{self.context.title} {now}",
+            safe_id=True,
         )
         arc.description = self.context.description
         # create the document folders
@@ -406,7 +407,7 @@ class Snapshot(ArchiveAndClose):
                 transaction.savepoint(optimistic=True)
 
         # 3. Copy DPEvent and Journals into snapshot
-        copied_event = api.content.copy(self.context, target=archive)
+        copied_event = api.content.copy(self.context, target=archive, safe_id=True)
         copied_event.Status = "closed"
         copied_event.reindexObject()
 
