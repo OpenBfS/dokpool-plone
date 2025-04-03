@@ -11,7 +11,8 @@
 <metal:content-core fill-slot="main">
 <metal:content-core define-macro="main">
 <tal:def tal:define="items python: view.items;
-                     toLocalizedTime nocall: plone_view/toLocalizedTime;">
+                     toLocalizedTime nocall: plone_view/toLocalizedTime;
+                     _is nocall: context/@@is;">
 
       <form method="post"
             id="archive_event_form"
@@ -28,7 +29,7 @@
 
                 <p>After some minutes you can reload this page in your browser
                 in order to see, if the process has finished or is still running.</p>
-                <input type="submit" class="btn btn-danger activate-spinner" name="form.button.restart" value="Restart" i18n:attributes="value label_restart;title"/>
+                <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger activate-spinner" name="form.button.restart" value="Restart" i18n:attributes="value label_restart;title"/>
             </div>
 
 
@@ -72,7 +73,7 @@
           <input type="submit" class="btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
         </div>
 
-        <div class="card" tal:condition="python: view.full_archiving_info">
+        <div class="card" tal:condition="python: _is.admin_or_contentadmin and view.full_archiving_info">
             <div class="card-body">
             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
                 Show Debug-Info
@@ -84,7 +85,7 @@
                         <dd class="col-sm-10" tal:content="python: info[key]" />
                     </tal:block>
                 </dl>
-                <input type="submit" class="btn btn-danger" name="form.button.purge" value="Purge" i18n:attributes="value label_purge;title"/>
+                <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger" name="form.button.purge" value="Purge" i18n:attributes="value label_purge;title"/>
             </div>
             </div>
         </div>
