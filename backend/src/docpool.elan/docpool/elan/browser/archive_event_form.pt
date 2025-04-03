@@ -10,7 +10,8 @@
 
 <metal:content-core fill-slot="main">
 <metal:content-core define-macro="main">
-<tal:def tal:define="items python: view.items;">
+<tal:def tal:define="items python: view.items;
+                     toLocalizedTime nocall: plone_view/toLocalizedTime;">
 
       <form method="post"
             id="archive_event_form"
@@ -20,15 +21,28 @@
 
         <input type="hidden" name="form.uid" tal:attributes="value python: view.uid" />
 
+            <div class="alert alert-danger" role="alert" tal:condition="python: view.archiving_info and not view.archiving_info['finished']">
+                <p><strong>Watch out:</strong>
+                This event is already being archived by ${python: view.archiving_info["user"]}.<br/>
+                Start time: ${python: toLocalizedTime(view.archiving_info["started"], long_format=True)}</p>
+
+                <p>After some minutes you can reload this page in your browser
+                in order to see, if the process has finished or is still running.</p>
+                <input type="submit" class="btn btn-danger activate-spinner" name="form.button.restart" value="Restart" i18n:attributes="value label_restart;title"/>
+            </div>
+
+
+
         <tal:archive tal:condition="python: view.__name__=='archiveAndClose'">
             <h1 i18n:translate="">Archive Event</h1>
-            <p i18n:translate="">Here you can archive the event "${python: context.title}" with ${python: len(items)} documents.</p>
+            <p i18n:translate="">Archive event <em>"${python: context.title}"</em> with ${python: len(items)} entries.</p>
             <p i18n:translate="">The following happens when archiving:</p>
             <ul>
                 <li i18n:translate="">All content for this event is saved in an archive.</li>
-                <li i18n:translate="">Deletes the original content.</li>
-                <li i18n:translate="">Sets the event to state "closed".</li>
-                <li i18n:translate="">Content that is assigned to more than this event is copied into the archive instead of moved.</li>
+                <li i18n:translate="">Original content is moved to the archive.</li>
+                <li i18n:translate="">Entries that are also assigned to other events are copied into the archive instead of moved.</li>
+                <li i18n:translate="">The event and its journals are moved to the archive.</li>
+                <li i18n:translate="">The event state is set to "closed".</li>
             </ul>
         </tal:archive>
 
@@ -44,33 +58,37 @@
             </ul>
         </tal:snapshot>
 
-        <p i18n:translate="">Depending on the number of documents in this event this can take up to an hour.
-            Important: After XX minutes you may see a error-message "Guru-Meditation".
+        <p i18n:translate="">Depending on the number of entries in this event this can take an hour or longer.</p>
+
+        <p i18n:translate=""><strong>Important:</strong><br/>
+            After some minutes, an error-message "Error 503 Backend fetch failed" may appear in your browser.
             This does not mean that the process failed but that a timeout has happened.
-            Please keep waiting a couple of minuted and open this page again.
+            Please keep waiting a couple of minuted and reload this page in your browser.
             You will see if the process has finished or is still runnning.
         </p>
 
-        <p class="d-inline-flex gap-1">
-            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDocuments" role="button" aria-expanded="false" aria-controls="collapseDocuments">
-                Show/Hide ${python: len(items)} Documents
-            </a>
-        </p>
-        <div class="collapse" id="collapseDocuments">
-            <ol>
-                <li tal:repeat="brain python: items">
-                    <a href=""
-                       tal:attributes="href python:brain.getURL()">
-                        <span tal:replace="python: brain.Title" />
-                    </a>
-                </li>
-            </ol>
+        <div class="formControls" i18n:domain="plone">
+          <input type="submit" class="context btn btn-primary activate-spinner" name="form.button.submit" value="Archive" i18n:attributes="value label_archive;title"/>
+          <input type="submit" class="btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
         </div>
 
-        <div class="formControls" i18n:domain="plone">
-          <input type="submit" class="input-sichern context btn btn-primary" name="form.button.submit" value="Apply" i18n:attributes="value label_apply;title"/>
-          <input type="submit" class="input-abbrechen btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
+        <div class="card" tal:condition="python: view.full_archiving_info">
+            <div class="card-body">
+            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
+                Show Debug-Info
+            </a>
+            <div class="collapse" id="collapseDebug">
+                <dl class="row" tal:repeat="info python: view.full_archiving_info">
+                    <tal:block tal:repeat="key python: info.keys()">
+                        <dt class="col-sm-2" tal:content="python: key" />
+                        <dd class="col-sm-10" tal:content="python: info[key]" />
+                    </tal:block>
+                </dl>
+                <input type="submit" class="btn btn-danger" name="form.button.purge" value="Purge" i18n:attributes="value label_purge;title"/>
+            </div>
+            </div>
         </div>
+
       </form>
 </tal:def>
 </metal:content-core>

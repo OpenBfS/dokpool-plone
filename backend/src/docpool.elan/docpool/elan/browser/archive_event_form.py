@@ -17,7 +17,6 @@ from logging import getLogger
 from plone import api
 from Products.CMFPlone.utils import log_exc
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.i18nmessageid import MessageFactory
 
 import transaction
@@ -31,76 +30,101 @@ PMF = MessageFactory("plone")
 class ArchiveAndClose(BrowserView):
     def __call__(self):
         request = self.request
-        if IArchiving(self.context).is_archive:
-            logger.info("Item is already archived!")
-            return request.response.redirect(self.context.absolute_url())
-
         form = self.request.form
+
+        contentarea = aq_get(self.context, "content")
+        contentarea_path = "/".join(contentarea.getPhysicalPath())
+        self.items = self._getDocumentsForScenario(path=contentarea_path)
+        self.full_archiving_info = self.context.get_archiving_info()
+        self.archiving_info = (
+            self.full_archiving_info[-1] if self.full_archiving_info else {}
+        )
+
         if form.get("form.uid"):
             self.uid = form.get("form.uid")
         else:
             self.uid = str(uuid.uuid4())
 
-        contentarea = aq_get(self.context, "content")
-        contentarea_path = "/".join(contentarea.getPhysicalPath())
-        self.items = self._getDocumentsForScenario(path=contentarea_path)
+        if form.get("form.button.purge"):
+            msg = _("Archiving Info purged!")
+            api.portal.show_message(msg, self.request)
+            self.context.purge_archiving_info()
+            self.full_archiving_info = None
+            self.archiving_info = None
+            return self.index()
 
-        archiving_info = self.context.get_archiving_info()
+        if IArchiving(self.context).is_archive:
+            logger.info("Item is already archived!")
+            return request.response.redirect(self.context.absolute_url())
+
         if (
-            archiving_info
-            and self.uid in archiving_info
-            and archiving_info[self.uid]["state"] != "completed"
+            self.archiving_info
+            and self.uid == self.archiving_info["uid"] == self.uid
+            and not self.archiving_info["finished"]
         ):
             # Most likely reloading the form after the process started.
             # Reasons:
-            # * There was a timeout or a guru-meditation-error and Users wants to start again.
-            # * User is impatient :)
+            # * There was a timeout or a and user wants to start again.
             # We tell people to wait a bit longer.
             msg = _(
-                "Item being archived right now! Please try again in a couple of minutes."
+                "Item is being archived right now! Please try again in a couple of minutes."
             )
             logger.info(msg)
-            logger.info(archiving_info)
-            api.portal.show_message(msg, self.request)
-            return self.index()
+            logger.debug(self.full_archiving_info)
+            if not form.get("form.button.restart"):
+                return self.index()
 
-        elif archiving_info and self.uid not in archiving_info:
-            # We have old archiving-info for one of these reasons:
+        elif (
+            self.archiving_info
+            and self.uid != self.archiving_info["uid"]
+            and not self.archiving_info["finished"]
+        ):
+            # The last run ist still active for one of these reasons:
             # * A previous snapshot was finished (ok, maybe display and show link to it?)
             # * A archiving-process is still running
             # * The archiving process was interrupted by a traceback or restart
-            # TODO: How should we handele these cases?
+            # TODO: How should we handle these cases?
             msg = _("Item has old archiving info!")
             logger.info(msg)
-            logger.info(archiving_info)
+            logger.debug(self.full_archiving_info)
             api.portal.show_message(msg, self.request)
+            if not form.get("form.button.restart"):
+                return self.index()
 
         if form.get("form.button.cancel"):
             msg = PMF("Changes canceled.")
             api.portal.show_message(msg, self.request)
             return request.response.redirect(self.context.absolute_url())
 
-        if not form.get("form.button.submit", None):
+        if not form.get("form.button.submit") and not form.get("form.button.restart"):
             return self.index()
 
         # Create and store info
-        info = {}
-        info[self.uid] = {
+        info = {
             "user": api.user.get_current().getId(),
-            "time": datetime.now(),
+            "started": datetime.now(),
+            "finished": None,
             "action": self.__name__,
-            "state": "in_progress",
+            "uid": self.uid,
+            "items": len(self.items),
         }
         self.context.set_archiving_info(info)
-        # We commit to make the state of the event being archived available before archiving is finished
+        # Commit to make info available before archiving is finished
+        transaction.get().note(
+            f"Store archiving info for {self.context.absolute_url()}"
+        )
         transaction.commit()
 
         target = self.process_action()
 
         # Mark as completed
-        info[self.uid]["state"] = "completed"
-        self.context.set_archiving_info(info)
+        info["finished"] = datetime.now()
+        if self.__name__ == "snapshot":
+            info["snapshot"] = target.absolute_url()
 
+        # Don't run set_archiving_info(info) since it would create a new item!
+        # The old one will be updated.
+        transaction.get().note(f"Archiving finished: {target.absolute_url()}")
         request.response.redirect(target.absolute_url())
 
     def process_action(self):
@@ -319,7 +343,6 @@ class ArchiveAndClose(BrowserView):
         Collects all DPDocuments for the current scenario
         :return: list of brains
         """
-        #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
         args = {
             "portal_type": "DPDocument",
             "scenarios": self.context.UID(),

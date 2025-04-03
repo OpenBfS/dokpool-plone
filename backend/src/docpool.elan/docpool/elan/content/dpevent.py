@@ -8,6 +8,7 @@ from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_global_scenario_selection
 from logging import getLogger
+from persistent.list import PersistentList
 from plone import api
 from plone.autoform import directives
 from plone.base.i18nl10n import utranslate
@@ -237,10 +238,17 @@ class DPEvent(Container, ContentBase):
         return utranslate("docpool.elan", "snapshot_confirm_msg", context=self)
 
     def get_archiving_info(self):
-        return IAnnotations(self).get(ARCHIVING_KEY, {})
+        return IAnnotations(self).get(ARCHIVING_KEY, [])
 
     def set_archiving_info(self, info):
-        IAnnotations(self)[ARCHIVING_KEY] = info
+        annotations = IAnnotations(self)
+        if ARCHIVING_KEY not in annotations:
+            annotations[ARCHIVING_KEY] = PersistentList()
+        annotations[ARCHIVING_KEY].append(info)
+
+    def purge_archiving_info(self):
+        IAnnotations(self).pop(ARCHIVING_KEY, None)
+        self._p_changed = True
 
     def selectGlobally(self):
         global_scenarios = get_global_scenario_selection()
