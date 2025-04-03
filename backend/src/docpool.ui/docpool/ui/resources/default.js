@@ -1,30 +1,37 @@
 import "bootstrap";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 
-const fetchItem = async (item, itemHTML, setItemHTML) => {
-  const response = await fetch("http://localhost:8080/Plone/listing-item?title=" + item);
-  let html_body = response.body;
-  setItemHTML(html_body);
-};
-
 const Listing = ({ items }) => {
-  const [itemHTML, setItemHTML] = useState({});
+  const [data, setData] = useState([]);
 
-  items = JSON.parse(items);
-  for (let item in items) {
-    console.log(item);
-    fetchItem(item, itemHTML, setItemHTML);
-  }
+  useEffect(() => {
+    let json_items = JSON.parse(items);
+    const fetchData = async () => {
+      const urls = json_items.map((item) => `http://localhost:8080/Plone/listing-item?title=${item}`);
+      console.log(urls);
+      try {
+        const responses = await Promise.all(urls.map((url) => fetch(url)));
+        const html = await Promise.all(responses.map((res) => res.text()));
+        console.log(html);
+        setData(html);
+      } catch (error) {
+        console.error("Fehler beim Laden der Daten", error);
+      }
+    };
+
+    fetchData();
+  }, [items]);
 
   return (
     <ul>
-      {items.map((item) => {
-        <li key={item} dangerouslySetInnerHTML={{ __html: itemHTML[item] }}></li>;
-      })}
+      {data.map((item, index) => (
+        <li key={index} dangerouslySetInnerHTML={{ __html: item }}></li>
+      ))}
     </ul>
   );
 };
+
 const root = document.getElementById("docpool-listing");
 const react_root = createRoot(root);
 react_root.render(<Listing items={root.getAttribute("data-listing-items")} />);
