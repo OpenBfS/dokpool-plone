@@ -109,7 +109,7 @@ class Archive(BrowserView):
         # 1. Disable scenario to prevent new data from being added for it
         global_scenarios = get_global_scenario_selection()
         global_scenarios[self.context.UID()] = "closed"
-        self.Status = "closed"
+        self.context.Status = "closed"
         transaction.savepoint(optimistic=True)
 
         # 2. Create Archive
@@ -146,7 +146,7 @@ class Archive(BrowserView):
         archive_contentarea.reindexObjectSecurity()
         logger.info("Finished archiving DPEvent %s", archived_event.title)
         api.portal.show_message(_("Scenario archived"), self.request)
-        return self.request.response.redirect(archived_event.absolute_url())
+        return archived_event
 
     def _ensureTargetFolder(self, obj, target):
         """
