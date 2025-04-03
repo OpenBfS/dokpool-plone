@@ -72,3 +72,8 @@ $(function () {
     $("h1.documentFirstHeading").text(title + " (" + value + ")");
   }
 });
+
+// Add eventlistener for spinner
+jQuery(document).on("click", ".activate-spinner", function () {
+  $("#visual-portal-wrapper").append('<div id="portal-spinner"><div class="spinner-border" role="status"><span class="visually-hidden">Please wait...</span></div></div>');
+});

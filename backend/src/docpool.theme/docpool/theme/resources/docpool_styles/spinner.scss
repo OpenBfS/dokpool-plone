@@ -1,0 +1,25 @@
+/* Spinner */
+
+#portal-spinner {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: show;
+    width: 36px;
+    height: 36px;
+    margin: auto;
+}
+
+#portal-spinner:before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-color: rgba(0, 0, 0, 0.2);
+}
