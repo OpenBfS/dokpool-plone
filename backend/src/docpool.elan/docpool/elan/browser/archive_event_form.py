@@ -23,6 +23,7 @@ from zope.i18nmessageid import MessageFactory
 import transaction
 import uuid
 
+
 logger = getLogger(__name__)
 PMF = MessageFactory("plone")
 
@@ -46,13 +47,19 @@ class Archive(BrowserView):
         self.items = self._getDocumentsForScenario(path=contentarea_path)
 
         archiving_info = self.context.get_archiving_info()
-        if archiving_info and self.uid in archiving_info and archiving_info[self.uid]["state"] != "completed":
+        if (
+            archiving_info
+            and self.uid in archiving_info
+            and archiving_info[self.uid]["state"] != "completed"
+        ):
             # Most likely reloading the form after the process started.
             # Reasons:
             # * There was a timeout or a guru-meditation-error and Users wants to start again.
             # * User is impatient :)
             # We tell people to wait a bit longer.
-            msg = _("Item being archived right now! Please try again in a couple of minutes.")
+            msg = _(
+                "Item being archived right now! Please try again in a couple of minutes."
+            )
             logger.info(msg)
             logger.info(archiving_info)
             api.portal.show_message(msg, self.request)
@@ -115,7 +122,9 @@ class Archive(BrowserView):
         # 2. Create Archive
         archive = self._createArchive()
         archive_contentarea = archive.content
-        logger.info("Archiving DPEvent %s to %s", self.context.title, archive.absolute_url())
+        logger.info(
+            "Archiving DPEvent %s to %s", self.context.title, archive.absolute_url()
+        )
         contentarea = aq_get(self.context, "content")
         contentarea_path = "/".join(contentarea.getPhysicalPath())
 
@@ -179,7 +188,9 @@ class Archive(BrowserView):
         if foldername in target:
             if not isTransfer:
                 mtool = api.portal.get_tool("portal_membership")
-                mtool.setLocalRoles(target[foldername], [foldername], "Owner", reindex=False)
+                mtool.setLocalRoles(
+                    target[foldername], [foldername], "Owner", reindex=False
+                )
             return target[foldername]
 
         # 4. if it doesn't exist: create it
@@ -310,7 +321,11 @@ class Archive(BrowserView):
         :return: list of brains
         """
         #        args = {'object_provides':IDPDocument.__identifier__, 'scenarios': self.getId()}
-        args = {"portal_type": "DPDocument", "scenarios": self.context.UID(), "sort_on": "sortable_title"}
+        args = {
+            "portal_type": "DPDocument",
+            "scenarios": self.context.UID(),
+            "sort_on": "sortable_title",
+        }
         args.update(kwargs)
         return api.content.find(**args)
 
@@ -338,7 +353,9 @@ class Archive(BrowserView):
         navSettings(arc)
 
         # copy the ESD folders
-        for brain in api.content.find(context=esd, portal_type=["ELANSection", "ELANDocCollection"]):
+        for brain in api.content.find(
+            context=esd, portal_type=["ELANSection", "ELANDocCollection"]
+        ):
             api.content.copy(brain.getObject(), arc.esd)
         arc.esd.setDefaultPage("overview")
 
@@ -361,7 +378,11 @@ class Snapshot(Archive):
         # 1. Create Archive
         archive = self._createArchive()
         archive_contentarea = aq_get(archive, "content")
-        logger.info("Create snapshot of DPEvent %s in %s", self.context.title, archive.absolute_url())
+        logger.info(
+            "Create snapshot of DPEvent %s in %s",
+            self.context.title,
+            archive.absolute_url(),
+        )
 
         # 2. Move or Copy related DPDocuments (previously done by purge)
         contentarea = aq_get(self.context, "content")
