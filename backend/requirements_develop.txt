@@ -1,6 +1,0 @@
-# Use default requirements
--r requirements.txt
-
-# Extend with some Dev tools for local development
-Products.PDBDebugMode
-pdbpp

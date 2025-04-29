@@ -78,7 +78,7 @@ unit_tests:
     # build
     - cd backend
     - export VIRTUAL_ENV=$(pwd)
-    - make build-dev
+    - make install
     - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:
