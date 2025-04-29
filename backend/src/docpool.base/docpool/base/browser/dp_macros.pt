@@ -224,13 +224,15 @@ size = human_readable_size(size)
 <?python
 # Work around Unauthorized Errors in Plone 6
 from docpool.base.utils import is_rei_workflow
+from zope.i18n import translate
 dpbrain = econtext["dpbrain"]
 context = econtext["context"]
+request = econtext["request"]
 if is_rei_workflow(dpbrain.getObject()):
     domain = "docpool.rei"
 else:
     domain = "docpool.base"
-dpbrain_title = context.translate(dpbrain.review_state + ' - Show document', domain=domain)
+dpbrain_title = translate(dpbrain.review_state + ' - Show document', domain=domain, context=request)
 ?>
 
     <a href=""

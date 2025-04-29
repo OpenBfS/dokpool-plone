@@ -158,13 +158,14 @@ class Transferable(FlexibleView):
             else:
                 type_ = "send"
                 events = reversed(self.sender_log)
+            plone_view = api.content.get_view("plone", self.context, self.request)
             return [
                 {
                     "type": type_,
                     "by": event["user"],
                     "esd": event["esd_title"],
                     "timeraw": event["timestamp"],
-                    "time": self.context.toLocalizedTime(
+                    "time": plone_view.toLocalizedTime(
                         DateTime(event["timestamp"]), long_format=1
                     ),
                 }
