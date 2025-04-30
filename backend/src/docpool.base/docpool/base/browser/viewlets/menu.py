@@ -81,6 +81,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             return tree
 
         self.navtree_add_apps_menu(tree)
+        self.navtree_add_transfer_config(tree)
 
         if not IArchiving(self.context).is_archive:
             self.navtree_add_contentarea(tree)
@@ -193,6 +194,22 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         tree[path] = []
         for child in folder.get("children", ()):
             self.recurse_folder(child, path, tree)
+
+    def navtree_add_transfer_config(self, tree):
+        if not safe_hasattr(self.context, "myDocumentPool"):
+            return
+        dp = self.context.myDocumentPool()
+        config_path = f"{self.navtree_path}/config"
+        tree[config_path].append(
+            dict(
+                id="transfer_config",
+                path=f"{config_path}/@@transfer_config",
+                uid="transfer_config",
+                title=utranslate("docpool.base", "Transfer config", context=self.context),
+                url=f"{dp['config'].absolute_url()}/@@transfer_config",
+                review_state="visible",
+            )
+        )
 
 
 def adaptQuery(query, context):
