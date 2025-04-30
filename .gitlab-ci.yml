@@ -1,5 +1,5 @@
 # Official Python Image
-image: python:3.11.6-bullseye
+image: python:3.13.3-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
@@ -54,18 +54,53 @@ before_script:
   - python3 -V
   - whereis python
 
-lint_tests:
+# lint_tests:
+#   tags:
+#     - docker
+#   stage: test
+#   script:
+#     # Install pre-commit
+#     - pip install --upgrade pip
+#     - pip install pipx
+#     - pipx ensurepath
+#     - pipx install uv
+#     # lint test
+#     - make format
+
+.base_ruff:
   tags:
     - docker
   stage: test
+  interruptible: true
+  image:
+    name: ghcr.io/astral-sh/ruff:0.11.7-alpine
+  before_script:
+    - cd $CI_PROJECT_DIR
+    - ruff --version
+
+Ruff Check:
+  tags:
+    - docker
+  extends: .base_ruff
   script:
-    # Install pre-commit
-    - pip install --upgrade pip
-    - pip install pipx
-    - pipx ensurepath
-    - pipx install pre-commit==3.6.0
-    # lint test
-    - pipx run -- pre-commit run --a
+    - ruff check --config backend/pyproject.toml --output-format=gitlab > code-quality-report.json
+  artifacts:
+    reports:
+      codequality: $CI_PROJECT_DIR/code-quality-report.json
+
+Ruff Format:
+  tags:
+    - docker
+  extends: .base_ruff
+  script:
+    - ruff format --diff --config backend/pyproject.toml
+
+Ruff ISort:
+  tags:
+    - docker
+  extends: .base_ruff
+  script:
+    - ruff format check --select I --diff --config backend/pyproject.toml
 
 unit_tests:
   tags:
@@ -78,6 +113,10 @@ unit_tests:
     # build
     - cd backend
     - export VIRTUAL_ENV=$(pwd)
+    - pip install --upgrade pip
+    - pip install pipx
+    - pipx ensurepath
+    - pipx install uv
     - make install
     - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
