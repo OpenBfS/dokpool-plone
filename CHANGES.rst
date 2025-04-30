@@ -9,6 +9,10 @@ Technical:
 - Upgrade to Plone 6.0.15. (#4892)
   [pbauer]
 
+Changed:
+
+- Remove table style, increase width. (#5907)
+  [slindner]
 
 2.0.1 (2025-03-31)
 ------------------
