@@ -114,9 +114,7 @@ unit_tests:
     - cd backend
     - export VIRTUAL_ENV=$(pwd)
     - pip install --upgrade pip
-    - pip install pipx
-    - pipx ensurepath
-    - pipx install uv
+    - pip install uv
     - make install
     - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
