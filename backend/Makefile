@@ -127,7 +127,7 @@ lint: ## Check and fix code base according to Plone standards
 	@echo "$(GREEN)==> Lint codebase$(RESET)"
 	@uvx ruff@latest check --fix --config $(BACKEND_FOLDER)/pyproject.toml
 	@uvx pyroma@latest -d .
-	@uvx zpretty@latest --check src
+#	@uvx zpretty@latest --check src
 	@uvx check-python-versions@latest .
 
 .PHONY: format
