@@ -59,6 +59,7 @@ lint_tests:
     - docker
   stage: test
   script:
+    - cd backend
     # Install pre-commit
     - pip install --upgrade pip
     - pip install uv
