@@ -174,11 +174,6 @@ class FileUploadView(BaseFileUploadView):
             content_type = "application/msword"
         if content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
             content_type = "application/vnd.ms-excel"
-        # Determine if the default file/image types are DX or AT based
-        ctr = api.portal.get_tool("content_type_registry")
-        type_ = ctr.findTypeName(filename.lower(), "", "") or "File"
-        pt = api.portal.get_tool("portal_types")
-
         obj = IDXFileFactory(context)(filename, content_type, filedata)
         if hasattr(obj, "file"):
             size = obj.file.getSize()

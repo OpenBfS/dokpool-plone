@@ -1,12 +1,14 @@
 from Acquisition import aq_base
 from Acquisition import aq_inner
+from logging import getLogger
 from plone import api
 from plone.base import PloneMessageFactory as _
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.WorkflowCore import WorkflowException
-from Products.CMFPlone.utils import log
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+logger = getLogger(__name__)
 
 
 class ReviewHistoryView(BrowserView):
@@ -71,9 +73,9 @@ class ReviewHistoryView(BrowserView):
             review_history.reverse()
 
         except WorkflowException:
-            log(
-                "docpool.base.browser.review_history: %s has no associated workflow" % context.absolute_url(),
-                severity=logging.DEBUG,
+            logger.debug(
+                "docpool.base.browser.review_history: %s has no associated workflow",
+                context.absolute_url(),
             )
 
         return review_history

@@ -39,7 +39,6 @@ class WorkflowActionView(BrowserView):
 
     def __call__(self):
         form = self.request.form
-        portal = api.portal.get()
         self.pworkflow = getToolByName(self.context, "portal_workflow")
         self.putils = getToolByName(self.context, "plone_utils")
         self.transition_id = form.get("transition", None)

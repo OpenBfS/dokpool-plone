@@ -92,7 +92,7 @@ lint.select = [
     # pycodestyle
     # "E", "W",
     # pyflakes
-    # "F",
+    "F",
     # pygrep-hooks
     # "PGH",
     # pyupgrade

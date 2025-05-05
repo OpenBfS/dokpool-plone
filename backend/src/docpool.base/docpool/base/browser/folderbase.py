@@ -98,7 +98,7 @@ class FolderBaseView(BrowserView):
                         adapted = ITransferable(obj)
                     except TypeError:
                         continue
-                    if adapted.transferable() and (allowed := adapted.allowedTargets()):
+                    if adapted.transferable() and adapted.allowedTargets():
                         show_transfer_action = True
                         # shortcut
                         break
