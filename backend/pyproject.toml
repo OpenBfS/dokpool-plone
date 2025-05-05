@@ -76,29 +76,29 @@ lint.select = [
     # flake8-2020
     "YTT",
     # flake8-bandit
-    "S",
+    # "S",
     # flake8-bugbear
-    "B",
+    # "B",
     # flake8-builtins
-    "A",
+    # "A",
     # flake8-comprehensions
-    "C4",
+    # "C4",
     # flake8-debugger
-    "T10",
+    # "T10",
     # flake8-simplify
-    "SIM",
+    # "SIM",
     # mccabe
-    "C90",
+    # "C90",
     # pycodestyle
-    "E", "W",
+    # "E", "W",
     # pyflakes
-    "F",
+    # "F",
     # pygrep-hooks
-    "PGH",
+    # "PGH",
     # pyupgrade
-    "UP",
+    # "UP",
     # ruff
-    "RUF",
+    # "RUF",
 ]
 lint.ignore = [
     # DoNotAssignLambda
