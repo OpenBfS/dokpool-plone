@@ -80,9 +80,9 @@ class JournalEntryViewTestCase(ViewTestCase):
         view.publishTraverse(self.request, timestamp)
         rendered = view()
         self.assertIn('itemtype="http://schema.org/BlogPosting"', rendered)
-        self.assertIn('<span property="rnews:author">test-user</span>', rendered)
-        self.assertIn('<span property="rnews:datePublished">', rendered)
-        self.assertNotIn('<span property="rnews:dateModified">', rendered)
+        self.assertIn('<span property="rnews:author" >test-user</span>', rendered)
+        self.assertIn('<span property="rnews:datePublished"', rendered)
+        self.assertNotIn('<span property="rnews:dateModified" >', rendered)
         self.assertIn(f'data-timestamp="{timestamp}"', rendered)
 
 

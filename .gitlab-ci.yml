@@ -5,6 +5,7 @@ image: python:3.13.3-bullseye
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+  UV_CACHE_DIR: "$HOME/.cache/uv"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -14,6 +15,7 @@ variables:
 cache:
   paths:
     - ${PIP_CACHE_DIR}
+    - ${UV_CACHE_DIR}
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
