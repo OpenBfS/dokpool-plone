@@ -15,9 +15,7 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
         if not request or isinstance(request, str):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
             return
-        edited_behaviors = request.get(
-            "form.widgets.ILocalBehaviorSupport.local_behaviors", []
-        )
+        edited_behaviors = request.get("form.widgets.ILocalBehaviorSupport.local_behaviors", [])
         edited_behaviors = set(edited_behaviors)
 
         local_behaviors = getattr(self.context, "local_behaviors", [])
@@ -55,9 +53,9 @@ def isSupported(available_apps, behavior_interface):
 
     if behavior_interface.extends(IExtension):
         if available_apps:
-            return set(
-                BEHAVIOR_REGISTRY.get(behavior_interface.__identifier__, [])
-            ).intersection(available_apps)
+            return set(BEHAVIOR_REGISTRY.get(behavior_interface.__identifier__, [])).intersection(
+                available_apps
+            )
         else:
             return False
     else:

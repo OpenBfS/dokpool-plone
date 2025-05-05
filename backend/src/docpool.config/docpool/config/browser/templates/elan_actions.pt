@@ -1,11 +1,16 @@
-<tal:block i18n:domain="docpool.base"
-           define="view nocall:options/view;
-                   isCollection options/isCollection;">
-    <tal:def define="elanobj view;
-                     tac elanobj/typeAndCat;
-                     item_type python:tac[0];
-                     item_cat python:tac[1];
-                     item_cat python:', '.join(item_cat);">
-        <div metal:use-macro="context/@@elan.macros/macros/elan_actions"/>
-    </tal:def>
+<tal:block define="
+             view nocall:options/view;
+             isCollection options/isCollection;
+           "
+           i18n:domain="docpool.base"
+>
+  <tal:def define="
+             elanobj view;
+             tac elanobj/typeAndCat;
+             item_type python:tac[0];
+             item_cat python:tac[1];
+             item_cat python:', '.join(item_cat);
+           ">
+    <div metal:use-macro="context/@@elan.macros/macros/elan_actions"></div>
+  </tal:def>
 </tal:block>

@@ -32,9 +32,7 @@ class Renderer(navigation.Renderer):
 
         # Otherwise build the normal navigation
         strategy = getMultiAdapter((context, self.data), INavtreeStrategy)
-        ft = buildFolderTree(
-            context, obj=context, query=queryBuilder(), strategy=strategy
-        )
+        ft = buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
         # print ft
         return ft
 

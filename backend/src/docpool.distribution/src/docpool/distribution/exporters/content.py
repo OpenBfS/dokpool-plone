@@ -58,7 +58,7 @@ def global_dict_hook(item, obj, config):
         # To avoid a conflict between @id and id
         item["@id"] = f"/{item['id']}"
 
-    if not item.get("creators") and getattr(obj.aq_base, "creators"):
+    if not item.get("creators") and obj.aq_base.creators:
         item["creators"] = IJsonCompatible(obj.creators, obj)
 
     if obj.isPrincipiaFolderish and WorkflowPolicyConfig_id in obj.keys():

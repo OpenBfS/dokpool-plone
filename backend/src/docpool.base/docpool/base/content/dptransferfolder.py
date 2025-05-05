@@ -179,17 +179,13 @@ class DPTransferFolder(FolderBase):
         """ """
         kwargs["portal_type"] = "File"
         kwargs["sort_on"] = "getObjPositionInParent"
-        return [
-            i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)
-        ]
+        return [i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)]
 
     def getImages(self, **kwargs):
         """ """
         kwargs["portal_type"] = "Image"
         kwargs["sort_on"] = "getObjPositionInParent"
-        return [
-            i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)
-        ]
+        return [i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)]
 
 
 @adapter(IDPTransferFolder, IObjectAddedEvent)
@@ -227,9 +223,7 @@ def updated(obj, event=None):
 def deleted(obj, event=None):
     log("TransferFolder deleted: %s" % str(obj))
     if not IArchiving(obj).is_archive:
-        if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
-            event.object
-        ):
+        if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(event.object):
             # do not modify content from the site or docpool that will be deleted
             return
         # Revoke any read access
@@ -242,9 +236,7 @@ def transfer_folders_for(obj):
     except AttributeError:
         return []
 
-    brains = queryForObjects(
-        esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__
-    )
+    brains = queryForObjects(esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)
     return [brain.getObject() for brain in brains]
 
 

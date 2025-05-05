@@ -1,5 +1,6 @@
 """Setup tests for this package."""
-from docpool.rei.testing import DOCPOOL_REI_INTEGRATION_TESTING  # noqa
+
+from docpool.rei.testing import DOCPOOL_REI_INTEGRATION_TESTING
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
@@ -24,7 +25,5 @@ class TestVocabularies(unittest.TestCase):
         )
         self.assertTrue(IVocabularyFactory.providedBy(factory))
         voc = factory()
-        self.assertEqual(
-            len(voc), 18, msg="There should be 18 Authorities in the vocabulary"
-        )  # noqa
+        self.assertEqual(len(voc), 18, msg="There should be 18 Authorities in the vocabulary")
         self.assertIn("de_hh", voc.by_token)

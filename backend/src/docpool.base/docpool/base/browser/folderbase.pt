@@ -1,26 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal"
-      i18n:domain="docpool.base" xml:lang="en" metal:use-macro="context/main_template/macros/master"
-      xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.base"
+>
+  <body>
 
-<metal:content-core fill-slot="content-core">
-    <metal:content-core define-macro="content-core">
+    <metal:content-core fill-slot="content-core">
+      <metal:content-core define-macro="content-core">
         <tal:if condition="context/@@is/personal">
-            <form name="appfilter" method="post" class="app_filter" tal:define="isFiltered view/isFilteredBy"
-                  tal:attributes="action string:${context/absolute_url}/activateAppFilter">
-                <tal:if condition="isFiltered">
-<!--                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
+          <form class="app_filter"
+                method="post"
+                name="appfilter"
+                tal:define="
+                  isFiltered view/isFilteredBy;
+                "
+                tal:attributes="
+                  action string:${context/absolute_url}/activateAppFilter;
+                "
+          >
+            <tal:if condition="isFiltered">
+              <!--                    <div class="documentDescription" i18n:translate="">Filter is active: Only contents for current application are shown!
                     </div> -->
-                </tal:if>
-                <input type="checkbox" name="activateFilter" id="activateFilter" value="yes"
-                       tal:attributes="checked python:'checked' if isFiltered else None;"
-                       onclick="this.form.submit()"
-                />&nbsp;<label for="activateFilter" i18n:translate="">Filter contents according to application?</label></form>
+            </tal:if>
+            <input id="activateFilter"
+                   name="activateFilter"
+                   onclick="this.form.submit()"
+                   type="checkbox"
+                   value="yes"
+                   tal:attributes="
+                     checked python:'checked' if isFiltered else None;
+                   "
+            />&nbsp;<label for="activateFilter"
+                   i18n:translate=""
+            >Filter contents according to application?</label></form>
         </tal:if>
-        <div metal:use-macro="context/@@dp.macros/macros/listing"/>
+        <div metal:use-macro="context/@@dp.macros/macros/listing"></div>
+      </metal:content-core>
     </metal:content-core>
-</metal:content-core>
 
-</body>
+  </body>
 </html>

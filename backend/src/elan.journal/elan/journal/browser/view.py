@@ -10,7 +10,6 @@ def _updates_cachekey(method, self):
 
 
 class View(BrowserView, BaseView):
-
     """Default view for Journal."""
 
     @ram.cache(_updates_cachekey)

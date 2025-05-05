@@ -41,9 +41,7 @@ def dpAdded(self):
 
         placeful_wf = getToolByName(self, "portal_placeful_workflow")
         try:
-            self.archive.manage_addProduct[
-                "CMFPlacefulWorkflow"
-            ].manage_addWorkflowPolicyConfig()
+            self.archive.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
         except BadRequest as e:
             # print type(e)
             log_exc(e)
@@ -134,21 +132,19 @@ def createELANUsers(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    mtool.addMember(
-        "%s_elanadmin" % prefix, "ELAN Administrator (%s)" % title, ["Member"], []
-    )
+    mtool.addMember("%s_elanadmin" % prefix, "ELAN Administrator (%s)" % title, ["Member"], [])
     elanadmin = mtool.getMemberById("%s_elanadmin" % prefix)
-    elanadmin.setMemberProperties(
-        {"fullname": "ELAN Administrator (%s)" % title, "dp": self.UID()}
-    )
+    elanadmin.setMemberProperties({
+        "fullname": "ELAN Administrator (%s)" % title,
+        "dp": self.UID(),
+    })
     elanadmin.setSecurityProfile(password="admin")
-    mtool.addMember(
-        "%s_contentadmin" % prefix, "Content Admin (%s)" % title, ["Member"], []
-    )
+    mtool.addMember("%s_contentadmin" % prefix, "Content Admin (%s)" % title, ["Member"], [])
     contentadmin = mtool.getMemberById("%s_contentadmin" % prefix)
-    contentadmin.setMemberProperties(
-        {"fullname": "Content Admin (%s)" % title, "dp": self.UID()}
-    )
+    contentadmin.setMemberProperties({
+        "fullname": "Content Admin (%s)" % title,
+        "dp": self.UID(),
+    })
     contentadmin.setSecurityProfile(password="admin")
 
 
@@ -196,9 +192,7 @@ def createELANGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_ContentAdministrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup(
-        "%s_contentadmin" % prefix, "%s_ContentAdministrators" % prefix
-    )
+    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_ContentAdministrators" % prefix)
     # Group for ELAN application rights
     props = {
         "allowedDocTypes": [],
@@ -218,15 +212,9 @@ def createELANGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_SituationReportAdmins" % prefix, properties=props)
-    gtool.addPrincipalToGroup(
-        "%s_contentadmin" % prefix, "%s_SituationReportAdmins" % prefix
-    )
-    gtool.addPrincipalToGroup(
-        "%s_dpadmin" % prefix, "%s_SituationReportAdmins" % prefix
-    )
-    gtool.addPrincipalToGroup(
-        "%s_elanadmin" % prefix, "%s_SituationReportAdmins" % prefix
-    )
+    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_SituationReportAdmins" % prefix)
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_SituationReportAdmins" % prefix)
+    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_SituationReportAdmins" % prefix)
 
 
 def copyCurrentSituation(self, fresh):

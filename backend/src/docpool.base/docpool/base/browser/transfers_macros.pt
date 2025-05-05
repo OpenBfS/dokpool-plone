@@ -1,34 +1,58 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
-     xmlns:metal="http://xml.zope.org/namespaces/metal"
-     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-     i18n:domain="docpool.base">
-    <body>
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.base"
+>
+  <body>
 
 
-    <metal:macro define-macro="transfers_meta" i18n:domain="docpool.base">
-          <span tal:define="transfers transfersobj/transferEvents" tal:condition="transfers">
-          <tal:loop repeat="transfer transfers">
-          <span class="transferlog" tal:attributes="title string:${transfer/by} ${transfer/time}"
-              tal:content="python:transfer['type'] == 'send' and '--> %s' % transfer['esd'] or '<-- %s' % transfer['esd']"></span>
-          </tal:loop>
-          </span>
-          <br>
+    <metal:macro define-macro="transfers_meta"
+                 i18n:domain="docpool.base"
+    >
+      <span tal:define="
+              transfers transfersobj/transferEvents;
+            "
+            tal:condition="transfers"
+      >
+        <tal:loop repeat="transfer transfers">
+          <span class="transferlog"
+                tal:content="python:transfer['type'] == 'send' and '--> %s' % transfer['esd'] or '<-- %s' % transfer['esd']"
+                tal:attributes="
+                  title string:${transfer/by} ${transfer/time};
+                "
+          ></span>
+        </tal:loop>
+      </span>
+      <br />
     </metal:macro>
 
-    <metal:macro define-macro="transfers_actions" i18n:domain="docpool.base">
-         <tal:if define="_is nocall:context/@@is;
-                         myfolder_url options/myfolder_url"
-                 condition="python: not _is.archive() and transfersobj.transferable() and transfersobj.allowedTargets()">
-          <a class="transfer action" tal:condition="python: not _is.individual()"
-              href=""
-              title="Transfer"
-              tal:attributes="href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % (myfolder_url, context.absolute_url_path())"
-              i18n:attributes="title">
-              <img src="" tal:attributes="src string:${context/portal_url}/++plone++docpool.base/transfer.png"/>
-          </a>
-        </tal:if>
+    <metal:macro define-macro="transfers_actions"
+                 i18n:domain="docpool.base"
+    >
+      <tal:if define="
+                _is nocall:context/@@is;
+                myfolder_url options/myfolder_url;
+              "
+              condition="python: not _is.archive() and transfersobj.transferable() and transfersobj.allowedTargets()"
+      >
+        <a class="transfer action"
+           href=""
+           title="Transfer"
+           tal:condition="python: not _is.individual()"
+           tal:attributes="
+             href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % (myfolder_url, context.absolute_url_path());
+           "
+           i18n:attributes="title"
+        >
+          <img src=""
+               tal:attributes="
+                 src string:${context/portal_url}/++plone++docpool.base/transfer.png;
+               "
+          />
+        </a>
+      </tal:if>
     </metal:macro>
 
 
-    </body>
+  </body>
 </html>

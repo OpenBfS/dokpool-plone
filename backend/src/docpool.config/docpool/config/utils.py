@@ -53,9 +53,7 @@ def createPloneObjects(parent, definitions, fresh=False):
 
         # alle zusaetzlichen Attribute im Objekt setzen
         setAttributes(obj, objdef)
-        notify(
-            ObjectModifiedEvent(obj)
-        )  # Otherwise relations will not be correctly indexed
+        notify(ObjectModifiedEvent(obj))  # Otherwise relations will not be correctly indexed
         obj.reindexObject()
         # alle angegebenen Kinder erzeugen
         if CHILDREN in objdef:
@@ -66,7 +64,7 @@ def setAttributes(obj, objdef):
     from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 
     for attr in objdef:
-        if not attr in specialAttributes:
+        if attr not in specialAttributes:
             if attr[:4] == "ref_":  # references
                 # print attr
                 method = attr.split("_")[1]
@@ -81,12 +79,7 @@ def setAttributes(obj, objdef):
                     rel = RelationValue(to_id)
                     values.append(rel)
                 if not values:
-                    print(
-                        "No values {} configured for object {} ".format(
-                            objdef[attr],
-                            objdef,
-                        )
-                    )
+                    print(f"No values {objdef[attr]} configured for object {objdef} ")
 
                 specialMethod = getattr(obj, method)
                 if callable(specialMethod):
@@ -94,10 +87,7 @@ def setAttributes(obj, objdef):
                 else:
                     setattr(obj, method, values)
             else:
-                if (
-                    attr == "setExcludeFromNav"
-                    and IExcludeFromNavigation(obj, None) is not None
-                ):
+                if attr == "setExcludeFromNav" and IExcludeFromNavigation(obj, None) is not None:
                     IExcludeFromNavigation(obj).exclude_from_nav = objdef[attr]
                 elif attr == "local_behaviors":
                     lbs = ILocalBehaviorSupport(obj)
@@ -105,10 +95,7 @@ def setAttributes(obj, objdef):
                 else:
                     # Dexterity based
                     setattr(obj, attr, objdef[attr])
-    if (
-        "setExcludeFromNav" not in objdef
-        and IExcludeFromNavigation(obj, None) is not None
-    ):
+    if "setExcludeFromNav" not in objdef and IExcludeFromNavigation(obj, None) is not None:
         # Workaround issue in folder_contents of Plone 6.0.0a6
         IExcludeFromNavigation(obj).exclude_from_nav = False
 

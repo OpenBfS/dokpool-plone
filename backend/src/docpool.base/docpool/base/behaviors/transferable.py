@@ -1,8 +1,8 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from contextlib import contextmanager
-from datetime import datetime
 from DateTime import DateTime
+from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
 from docpool.base.behaviors.utils import allowed_targets
@@ -148,7 +148,7 @@ class Transferable(FlexibleView):
         """Query metadata of past transfers ("transfer events") of the context object."""
         if IArchiving(self.context).is_archive:
             logRaw = self.transferLog
-            logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime") or ""
+            logRaw = (logRaw and logRaw.replace("datetime.datetime", "datetime")) or ""
             return eval(logRaw)
 
         else:
@@ -165,9 +165,7 @@ class Transferable(FlexibleView):
                     "by": event["user"],
                     "esd": event["esd_title"],
                     "timeraw": event["timestamp"],
-                    "time": plone_view.toLocalizedTime(
-                        DateTime(event["timestamp"]), long_format=1
-                    ),
+                    "time": plone_view.toLocalizedTime(DateTime(event["timestamp"]), long_format=1),
                 }
                 for event in events
             ]
@@ -302,9 +300,7 @@ class Transferable(FlexibleView):
                     transferfolder_uid=transfer_folder.UID(),
                 )
                 if elanobj:
-                    scenario_ids = ", ".join(
-                        b.getId for b in api.content.find(UID=elanobj.scenarios)
-                    )
+                    scenario_ids = ", ".join(b.getId for b in api.content.find(UID=elanobj.scenarios))
                     log_entry["scenario_ids"] = scenario_ids
                 self.sender_log += (log_entry,)
 

@@ -20,9 +20,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.container = docpool["contentconfig"]["scen"]["routinemode"]
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.container, "Journal", "journal")
-        self.view = api.content.get_view(
-            "base-journalentry", self.journal, self.request
-        )
+        self.view = api.content.get_view("base-journalentry", self.journal, self.request)
         adapter = IJournalEntryContainer(self.journal)
         adapter.add(JournalEntry("", "Check me!"))
 

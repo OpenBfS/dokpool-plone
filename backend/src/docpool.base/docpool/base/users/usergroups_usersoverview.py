@@ -44,9 +44,7 @@ class UsersOverviewControlPanel(UOCP):
                     # If the email field was disabled (ie: non-writeable), the
                     # property might not exist.
                     if user.email != member.getProperty("email"):
-                        utils.setMemberProperties(
-                            member, REQUEST=context.REQUEST, email=user.email
-                        )
+                        utils.setMemberProperties(member, REQUEST=context.REQUEST, email=user.email)
                         utils.addPortalMessage(PMF("Changes applied."))
 
                 # If reset password has been checked email user a new password
@@ -54,9 +52,7 @@ class UsersOverviewControlPanel(UOCP):
                 if hasattr(user, "resetpassword"):
                     if "Manager" in current_roles and not self.is_zope_manager:
                         raise Forbidden
-                    if not context.unrestrictedTraverse(
-                        "@@overview-controlpanel"
-                    ).mailhost_warning():
+                    if not context.unrestrictedTraverse("@@overview-controlpanel").mailhost_warning():
                         pw = regtool.generatePassword()
                     else:
                         ######
@@ -69,9 +65,7 @@ class UsersOverviewControlPanel(UOCP):
                     if ("Manager" in roles) != ("Manager" in current_roles):
                         raise Forbidden
 
-                acl_users.userFolderEditUser(
-                    user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST
-                )
+                acl_users.userFolderEditUser(user.id, pw, roles, member.getDomains(), REQUEST=context.REQUEST)
                 if pw and pw != user.id:
                     context.REQUEST.form["new_password"] = pw
                     regtool.mailPassword(user.id, context.REQUEST)

@@ -1,5 +1,4 @@
-"""Common configuration constants
-"""
+"""Common configuration constants"""
 
 PROJECTNAME = "docpool.doksys"
 

@@ -73,9 +73,7 @@ class GetDocumentpools(Service):
         if self.params:
             try:
                 with api.env.adopt_user(self.params[0]):
-                    brains = api.content.find(
-                        portal_type="DocumentPool", sort_on="path"
-                    )
+                    brains = api.content.find(portal_type="DocumentPool", sort_on="path")
             except api.exc.UserNotFoundError:
                 self.request.response.setStatus(404)
                 return {
@@ -128,9 +126,7 @@ class GetUserFolder(Service):
             return serializer(include_items=False)
         else:
             self.request.response.setStatus(404)
-            return dict(
-                error=dict(message=f"User {username} has no user folder in {esdpath}")
-            )
+            return dict(error=dict(message=f"User {username} has no user folder in {esdpath}"))
 
 
 @implementer(IPublishTraverse)

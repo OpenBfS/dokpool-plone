@@ -140,9 +140,7 @@ def get_images(doc, page_start=0, pages=1):
         )
         # create the OFS.Image objects
         image_full_object = OFSImage(image_id, image_title, raw_image_preview)
-        image_thumb_object = OFSImage(
-            image_thumb_id, image_thumb_title, raw_image_thumb
-        )
+        image_thumb_object = OFSImage(image_thumb_id, image_thumb_title, raw_image_thumb)
         # add the objects to the images dict
         images[image_id] = image_full_object
         images[image_thumb_id] = image_thumb_object
@@ -171,7 +169,7 @@ def ghostscript_transform(doc, page_num):
         first_page,
         last_page,
         "-r200",
-        "-sOutputFile=%stdout",  # noqa
+        "-sOutputFile=%stdout",
         "-",
     ]
 
@@ -179,9 +177,7 @@ def ghostscript_transform(doc, page_num):
     # run the ghostscript command on the pdf file, capture the output
     # png file of the specified page number
     bufsize = -1
-    gs_process = subprocess.Popen(
-        gs_cmd, bufsize=bufsize, stdout=subprocess.PIPE, stdin=subprocess.PIPE
-    )
+    gs_process = subprocess.Popen(gs_cmd, bufsize=bufsize, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
     gs_process.stdin.write(data(doc))
     image_result = gs_process.communicate()[0]
     gs_process.stdin.close()
@@ -189,10 +185,7 @@ def ghostscript_transform(doc, page_num):
     if return_code == 0:
         logger.info("Ghostscript processed one page of a pdf file.")
     else:
-        logger.warn(
-            "Ghostscript process did not exit cleanly! "
-            "Error Code: {}".format(return_code)
-        )
+        logger.warn(f"Ghostscript process did not exit cleanly! Error Code: {return_code}")
         image_result = None
     return image_result
 

@@ -137,9 +137,7 @@ class ChangeState(BrowserView):
             api.content.transition(obj, transition=action)
             if action == "publish":
                 # Also publish contained DPDocuments
-                for brain in api.content.find(
-                    context=self, depth=1, portal_type="DPDocument"
-                ):
+                for brain in api.content.find(context=self, depth=1, portal_type="DPDocument"):
                     subobj = brain.getObject()
                     try:
                         api.content.transition(subobj, transition=action)
@@ -158,9 +156,7 @@ class ChangeState(BrowserView):
 
 class CanChangePassword(BrowserView):
     def __call__(self):
-        portal_state = getMultiAdapter(
-            (self.context, self.request), name="plone_portal_state"
-        )
+        portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
 
         member = portal_state.member()
         # IMIS-Users uses SSO and cannot change their password

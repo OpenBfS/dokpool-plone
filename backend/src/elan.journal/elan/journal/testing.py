@@ -2,6 +2,7 @@
 
 For Plone 5 we need to install plone.app.contenttypes.
 """
+
 from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
@@ -56,9 +57,7 @@ class Fixture(PloneSandboxLayer):
 
 FIXTURE = Fixture()
 
-INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name="elan.journal:Integration"
-)
+INTEGRATION_TESTING = IntegrationTesting(bases=(FIXTURE,), name="elan.journal:Integration")
 
 FUNCTIONAL_TESTING = FunctionalTesting(bases=(FIXTURE,), name="elan.journal:Functional")
 

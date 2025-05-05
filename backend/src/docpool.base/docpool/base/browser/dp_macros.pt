@@ -1,11 +1,12 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      i18n:domain="docpool.base">
-<body>
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.base"
+>
+  <body>
 
-<metal:listingmacro define-macro="listing">
+    <metal:listingmacro define-macro="listing">
 
-<?python
+      <?python
 # Work around Unauthorized Errors in Plone 6
 from Products.CMFPlone import Batch
 from plone.batching.interfaces import IBatch
@@ -19,51 +20,74 @@ batch   = results if IBatch.providedBy(results) else Batch(results, b_size, b_st
 buttons = view.dp_buttons(batch)
 ?>
 
-    <tal:results define="    use_view_action python:context.portal_registry['plone.types_use_view_action_in_listings'];
-                             allow_anon_views_about python:context.portal_registry['plone.allow_anon_views_about'];
-                             isAnon context/@@plone_portal_state/anonymous;
-                             normalizeString nocall: context/plone_utils/normalizeString;
-                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                             pas_member nocall: context/@@pas_member;
-                             container_type python: context.portal_type;">
+      <tal:results define="
+                     use_view_action python:context.portal_registry['plone.types_use_view_action_in_listings'];
+                     allow_anon_views_about python:context.portal_registry['plone.allow_anon_views_about'];
+                     isAnon context/@@plone_portal_state/anonymous;
+                     normalizeString nocall: context/plone_utils/normalizeString;
+                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                     pas_member nocall: context/@@pas_member;
+                     container_type python: context.portal_type;
+                   ">
         <tal:listing>
 
-            <form name="folderContentsForm"
-                  method="post"
-                  action="folder_object"
-                  tal:attributes="action context/absolute_url"
-                  class="kssattr-serveraction-foldercontents_update_table">
-                <input tal:replace="structure context/@@authenticator/authenticator"/>
-                <input type="hidden" name="orig_template" value="view"/>
+          <form class="kssattr-serveraction-foldercontents_update_table"
+                action="folder_object"
+                method="post"
+                name="folderContentsForm"
+                tal:attributes="
+                  action context/absolute_url;
+                "
+          >
+            <input tal:replace="structure context/@@authenticator/authenticator" />
+            <input name="orig_template"
+                   type="hidden"
+                   value="view"
+            />
 
-                <div metal:use-macro="context/batch_macros/macros/navigation" />
-                <div tal:condition="python: not batch and container_type != 'DPDocument'"
-                     i18n:domain="plone"
-                     i18n:translate="description_no_items_in_folder"></div>
-                <div class="buttons">
-                <tal:loop tal:repeat="button buttons" tal:condition="batch">
-                    <input class="context"
-                           type="submit"
-                           name=""
-                           value=""
-                           i18n:attributes="value"
-                           tal:attributes="value button/title; name button/url; class python: button['cssclass'] + ' btn btn-primary' if 'cssclass' in button else 'btn btn-primary'">
-                </tal:loop>
-                </div>
-                <table id="fctable"
-                       class="table table-striped responsive"
-                       summary="Content listing"
-                       tal:condition="batch"
-                       i18n:domain="docpool.base"
-                       i18n:attributes="summary summary_content_listing;"
-                       tal:define="isOverview python:0">
-                    <thead>
-                    <tr>
-                        <metal:header_slot metal:define-slot="listingheader">
-                            <th class="nosort actions">
-                              <input type="checkbox" name="checkall" id="checkall"
-                                     title="Toggle all" i18n:attributes="title label_toggle" />
-                                <script type="text/javascript">
+            <div metal:use-macro="context/batch_macros/macros/navigation"></div>
+            <div tal:condition="python: not batch and container_type != 'DPDocument'"
+                 i18n:domain="plone"
+                 i18n:translate="description_no_items_in_folder"
+            ></div>
+            <div class="buttons">
+              <tal:loop tal:condition="batch"
+                        tal:repeat="button buttons"
+              >
+                <input class="context"
+                       name=""
+                       type="submit"
+                       value=""
+                       tal:attributes="
+                         value button/title;
+                         name button/url;
+                         class python: button['cssclass'] + ' btn btn-primary' if 'cssclass' in button else 'btn btn-primary';
+                       "
+                       i18n:attributes="value"
+                />
+              </tal:loop>
+            </div>
+            <table class="table table-striped responsive"
+                   id="fctable"
+                   summary="Content listing"
+                   tal:define="
+                     isOverview python:0;
+                   "
+                   tal:condition="batch"
+                   i18n:attributes="summary summary_content_listing;"
+                   i18n:domain="docpool.base"
+            >
+              <thead>
+                <tr>
+                  <metal:header_slot metal:define-slot="listingheader">
+                    <th class="nosort actions">
+                      <input id="checkall"
+                             name="checkall"
+                             title="Toggle all"
+                             type="checkbox"
+                             i18n:attributes="title label_toggle"
+                      />
+                      <script type="text/javascript">
                                    // Check or Uncheck All checkboxes
                                    $("#checkall").change(function(){
                                      var checked = $(this).is(':checked');
@@ -87,106 +111,150 @@ buttons = view.dp_buttons(batch)
                                     }
 
                                   });
-                                </script>
-                            </th>
-                            <th class="nosort title" i18n:translate="">Title / Description / Text</th>
-                            <th class="nosort metadata" i18n:translate="">Metadata</th>
-                        </metal:header_slot>
-                    </tr>
-                    </thead>
+                      </script>
+                    </th>
+                    <th class="nosort title"
+                        i18n:translate=""
+                    >Title / Description / Text</th>
+                    <th class="nosort metadata"
+                        i18n:translate=""
+                    >Metadata</th>
+                  </metal:header_slot>
+                </tr>
+              </thead>
 
-                    <tbody>
-                    <tal:items tal:repeat="dpbrain python:batch">
-                        <span tal:condition="python: dpbrain.is_folderish">
-                        <tr tal:define="item_id dpbrain/id|dpbrain/getId;
-                                   item_obj dpbrain/getObject|nothing;
-                				   isFolder dpbrain/is_folderish;
-                				   item_folder_class python:isFolder and 'folder' or ''"
-                            tal:attributes="class string:itemRow $item_folder_class';
-                                       id string:item_${dpbrain/UID};">
+              <tbody>
+                <tal:items tal:repeat="dpbrain python:batch">
+                  <span tal:condition="python: dpbrain.is_folderish">
+                    <tr tal:define="
+                          item_id dpbrain/id|dpbrain/getId;
+                          item_obj dpbrain/getObject|nothing;
+                          isFolder dpbrain/is_folderish;
+                          item_folder_class python:isFolder and 'folder' or '';
+                        "
+                        tal:attributes="
+                          class string:itemRow $item_folder_class';
+                          id string:item_${dpbrain/UID};
+                        "
+                    >
 
-                            <metal:block define-slot="entry">
-                                <tal:if condition="nocall:item_obj">
-                                    <td class="loading_indicator" colspan="3">
-                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif" />
-                                    </td>
-                                    <script type="text/javascript">
+                      <metal:block define-slot="entry">
+                        <tal:if condition="nocall:item_obj">
+                          <td class="loading_indicator"
+                              colspan="3"
+                          >
+                            <img tal:attributes="
+                                   src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif;
+                                 " />
+                          </td>
+                          <script type="text/javascript">
                                         jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=0&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
-                                    </script>
+                          </script>
 
-                                    <!--tal:insertview
+                          <!--tal:insertview
                                             replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
-                                </tal:if>
-                            </metal:block>
-                        </tr>
-                        </span>
-                    </tal:items>
-                    </tbody>
-                </table>
-                <div class="buttons">
-                <tal:buttons tal:repeat="button buttons">
-                    <input class="context"
-                           type="submit"
-                           name=""
-                           value=""
-                           i18n:attributes="value"
-                           tal:attributes="value button/title; name button/url; class python: button['cssclass'] + ' btn btn-primary' if 'cssclass' in button else 'btn btn-primary'"/>
-                </tal:buttons>
-                </div>
-                <div metal:use-macro="context/batch_macros/macros/navigation" />
-            </form>
+                        </tal:if>
+                      </metal:block>
+                    </tr>
+                  </span>
+                </tal:items>
+              </tbody>
+            </table>
+            <div class="buttons">
+              <tal:buttons tal:repeat="button buttons">
+                <input class="context"
+                       name=""
+                       type="submit"
+                       value=""
+                       tal:attributes="
+                         value button/title;
+                         name button/url;
+                         class python: button['cssclass'] + ' btn btn-primary' if 'cssclass' in button else 'btn btn-primary';
+                       "
+                       i18n:attributes="value"
+                />
+              </tal:buttons>
+            </div>
+            <div metal:use-macro="context/batch_macros/macros/navigation"></div>
+          </form>
 
         </tal:listing>
-    </tal:results>
-</metal:listingmacro>
+      </tal:results>
+    </metal:listingmacro>
 
-<metal:cbmacro define-macro="cb">
-    <input type="checkbox"
-           class="noborder"
-           name="paths:list" id="#"
-           value="#"
-           alt=""
-           title=""
-           tal:attributes="value   dpbrain/getPath;
-                                     id      string:cb_${item_id};
-                                     checked nothing"/>
-    <input type="hidden" name="selected_obj_paths:list" value="#"
-           tal:attributes="value dpbrain/getPath"/>
-    <label tal:content="title_or_id"
-           tal:attributes="for string:cb_${item_id}"
-           class="hiddenStructure">
+    <metal:cbmacro define-macro="cb">
+      <input class="noborder"
+             id="#"
+             alt=""
+             name="paths:list"
+             title=""
+             type="checkbox"
+             value="#"
+             tal:attributes="
+               value   dpbrain/getPath;
+               id      string:cb_${item_id};
+               checked nothing;
+             "
+      />
+      <input name="selected_obj_paths:list"
+             type="hidden"
+             value="#"
+             tal:attributes="
+               value dpbrain/getPath;
+             "
+      />
+      <label class="hiddenStructure"
+             tal:content="title_or_id"
+             tal:attributes="
+               for string:cb_${item_id};
+             "
+      >
         Item Title
-    </label>
-</metal:cbmacro>
+      </label>
+    </metal:cbmacro>
 
-<metal:delmacro define-macro="delete">
-    <tal:if condition="dpbrainobj/canBeDeleted">
-        <a href=""
-           tal:define="icons python:context.restrictedTraverse('@@iconresolver');"
-           class="link-overlay action pat-plone-modal"
-           data-pat-plone-modal='{"actionOptions": {"reloadWindowOnClose": false, "redirectOnResponse":true, "timeout":10000}, "width": "80%", "buttons": ".formControls > button"}'
+    <metal:delmacro define-macro="delete">
+      <tal:if condition="dpbrainobj/canBeDeleted">
+        <a class="link-overlay action pat-plone-modal"
+           href=""
            title="Delete"
-           tal:attributes="href python:'%s/delete_confirmation' % dpbrainobj.absolute_url()"
+           data-pat-plone-modal='{"actionOptions": {"reloadWindowOnClose": false, "redirectOnResponse":true, "timeout":10000}, "width": "80%", "buttons": ".formControls &gt; button"}'
+           tal:define="
+             icons python:context.restrictedTraverse('@@iconresolver');
+           "
+           tal:attributes="
+             href python:'%s/delete_confirmation' % dpbrainobj.absolute_url();
+           "
            i18n:attributes="title"
-        ><img src="${python:icons.url('trash')}"/>
+        ><img src="${python:icons.url('trash')}" />
         </a>
-    </tal:if>
-</metal:delmacro>
+      </tal:if>
+    </metal:delmacro>
 
-<div tal:omit-tag="" metal:define-macro="fileimagelist">
-    <div class="file" tal:define="files context/getFiles" tal:condition="files"
-         tal:repeat="d files">
+    <div metal:define-macro="fileimagelist"
+         tal:omit-tag=""
+    >
+      <div class="file"
+           tal:define="
+             files context/getFiles;
+           "
+           tal:condition="files"
+           tal:repeat="d files"
+      >
         <a href=""
            target="_blank"
            title=""
-           tal:attributes="title python:'open attachment';
-                               href python:d.absolute_url()"
-           tal:content="python:d.title_or_id()">documents
+           tal:content="python:d.title_or_id()"
+           tal:attributes="
+             title python:'open attachment';
+             href python:d.absolute_url();
+           "
+        >documents
         </a>
 
-<?python
+        <?python
 # Work around Unauthorized Errors in Plone 6
 from Products.CMFPlone.utils import human_readable_size
 ctype_short = econtext["view"].ctype_short(econtext["d"])
@@ -194,34 +262,50 @@ size = econtext["d"].get_size()
 size = human_readable_size(size)
 ?>
 
-        (<span tal:content="python: ctype_short"/>,&nbsp;<span
-            tal:content="python: size"/>)
-    </div>
-    <div class="images" tal:define="images context/getImages" tal:condition="images">
-        <div tal:repeat="b images" class="image">
+        (<span tal:content="python: ctype_short"></span>,&nbsp;<span tal:content="python: size"></span>)
+      </div>
+      <div class="images"
+           tal:define="
+             images context/getImages;
+           "
+           tal:condition="images"
+      >
+        <div class="image"
+             tal:repeat="b images"
+        >
 
-<?python
+          <?python
 # Work around Unauthorized Errors in Plone 6
 from Products.CMFPlone.utils import human_readable_size
 size = econtext["b"].get_size()
 size = human_readable_size(size)
 ?>
 
-            <a href="" tal:attributes="href python:b.absolute_url();title python:'show image';" target="_blank">
-                <img tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb'">
-            </a>
-            <div class="imgdata"><span tal:content="structure python:b.title_or_id()"/>(<span
-                    tal:content="python: size"/>)
-            </div>
+          <a href=""
+             target="_blank"
+             tal:attributes="
+               href python:b.absolute_url();
+               title python:'show image';
+             "
+          >
+            <img tal:attributes="
+                   src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb';
+                 " />
+          </a>
+          <div class="imgdata"><span tal:content="structure python:b.title_or_id()"></span>(<span tal:content="python: size"></span>)
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<metal:macro define-macro="doccontent"
-    tal:define="auth_token context/@@authenticator/token;
-                portal context/@@plone_portal_state/portal">
+    <metal:macro define-macro="doccontent"
+                 tal:define="
+                   auth_token context/@@authenticator/token;
+                   portal context/@@plone_portal_state/portal;
+                 "
+    >
 
-<?python
+      <?python
 # Work around Unauthorized Errors in Plone 6
 from docpool.base.utils import is_rei_workflow
 from zope.i18n import translate
@@ -235,39 +319,60 @@ else:
 dpbrain_title = translate(dpbrain.review_state + ' - Show document', domain=domain, context=request)
 ?>
 
-    <a href=""
-        title=""
-        i18n:attributes="title"
-        tal:attributes="title dpbrain_title;
-                        href string:javascript:go_to('${item_url}?_authenticator=${auth_token}');
-                        class string:$item_type_class $item_wf_state_class"
-        tal:content="dpbrain/Title">Title
-    </a>
-    <div class="description" tal:condition="python:item_description"
-         tal:content="structure string:$item_description"> description
-    </div>
-    <div class="fulltext" tal:content="structure dpbrainobj/text/output|nothing"/>
-</metal:macro>
+      <a href=""
+         title=""
+         tal:content="dpbrain/Title"
+         tal:attributes="
+           title dpbrain_title;
+           href string:javascript:go_to('${item_url}?_authenticator=${auth_token}');
+           class string:$item_type_class $item_wf_state_class;
+         "
+         i18n:attributes="title"
+      >Title
+      </a>
+      <div class="description"
+           tal:condition="python:item_description"
+           tal:content="structure string:$item_description"
+      >
+         description
+      </div>
+      <div class="fulltext"
+           tal:content="structure dpbrainobj/text/output|nothing"
+      ></div>
+    </metal:macro>
 
-<metal:macro define-macro="foldercontent">
-    <img src="" tal:attributes="src string:${context/portal_url}/++plone++docpool.base/folder.png"/>
-    <a href=""
-       title="Show folder"
-       i18n:attributes="title"
-       tal:attributes="href string:javascript:go_to('${item_url}');
-                               class string:$item_type_class $item_wf_state_class a.contenttype-folder::before "
-       tal:content="dpbrain/Title">Title
-    </a>
-    <div class="description" tal:condition="python:item_description"
-         tal:content="structure string:$item_description"> description
-    </div>
+    <metal:macro define-macro="foldercontent">
+      <img src=""
+           tal:attributes="
+             src string:${context/portal_url}/++plone++docpool.base/folder.png;
+           "
+      />
+      <a href=""
+         title="Show folder"
+         tal:content="dpbrain/Title"
+         tal:attributes="
+           href string:javascript:go_to('${item_url}');
+           class string:$item_type_class $item_wf_state_class a.contenttype-folder::before;
+         "
+         i18n:attributes="title"
+      >Title
+      </a>
+      <div class="description"
+           tal:condition="python:item_description"
+           tal:content="structure string:$item_description"
+      >
+         description
+      </div>
 
-</metal:macro>
-<metal:macro define-macro="fileupload">
-    <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
+    </metal:macro>
+    <metal:macro define-macro="fileupload">
+      <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
         <form action="${context/absolute_url}/@@upload">
-            <div id="uploader" class="pat-upload" data-pat-upload='ajaxUpload: false; autoCleanResults: false;'>
-            </div>
+          <div class="pat-upload"
+               id="uploader"
+               data-pat-upload="ajaxUpload: false; autoCleanResults: false;"
+          >
+          </div>
         </form>
         <script type="text/javascript">
 		      jQuery('#uploader').bind('uploadAllCompleted', function (e, data) {
@@ -275,162 +380,237 @@ dpbrain_title = translate(dpbrain.review_state + ' - Show document', domain=doma
 		      });
 
         </script>
-    </tal:if>
-</metal:macro>
+      </tal:if>
+    </metal:macro>
 
-<div tal:omit-tag="" metal:define-macro="doc_complete" i18n:domain="docpool.base">
-    <div metal:use-macro="context/@@dp.macros/macros/doc_data"/>
-    <br/>
-    <div metal:use-macro="context/@@dp.macros/macros/doc_files"/>
-    <br/>
-    <div metal:use-macro="context/@@dp.macros/macros/doc_images"/>
-    <br/>
-    <div metal:use-macro="context/@@dp.macros/macros/doc_subdocuments"/>
-</div>
-
-<div tal:omit-tag="" metal:define-macro="doc_subdocuments" i18n:domain="docpool.base">
-    <div metal:use-macro="context/@@dp.macros/macros/listing"/>
-</div>
-
-
-<metal:macro define-macro="doc_data" i18n:domain="docpool.base">
-    <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
-    <div id="meta_items">
-        <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
+    <div metal:define-macro="doc_complete"
+         tal:omit-tag=""
+         i18n:domain="docpool.base"
+    >
+      <div metal:use-macro="context/@@dp.macros/macros/doc_data"></div>
+      <br />
+      <div metal:use-macro="context/@@dp.macros/macros/doc_files"></div>
+      <br />
+      <div metal:use-macro="context/@@dp.macros/macros/doc_images"></div>
+      <br />
+      <div metal:use-macro="context/@@dp.macros/macros/doc_subdocuments"></div>
     </div>
-    <tal:if condition="htmltext" define="htmltext context/text/output|nothing">
-        <label i18n:translate="">Content:</label>
-        <span tal:attributes="id string:html_${context/getId}" tal:content="structure htmltext"/>
-    </tal:if>
-</metal:macro>
 
-<metal:macro define-macro="doc_files" i18n:domain="docpool.base"
-       tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
-          <span tal:define="files context/getFiles" tal:condition="python: files">
-            <label i18n:translate="">Files:</label>
-            <ul tal:define="multiple_files python:len(files) > 1">
-              <li tal:repeat="d files"><a href="" target="_blank" tal:attributes="href python:d.absolute_url()"
-                     tal:content="structure python:d.title_or_id()">documents</a>
-<?python
+    <div metal:define-macro="doc_subdocuments"
+         tal:omit-tag=""
+         i18n:domain="docpool.base"
+    >
+      <div metal:use-macro="context/@@dp.macros/macros/listing"></div>
+    </div>
+
+
+    <metal:macro define-macro="doc_data"
+                 i18n:domain="docpool.base"
+    >
+      <div metal:use-macro="context/@@dp.macros/macros/content_metadata"></div>
+      <div id="meta_items">
+        <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()" />
+      </div>
+      <tal:if define="
+                htmltext context/text/output|nothing;
+              "
+              condition="htmltext"
+      >
+        <label i18n:translate="">Content:</label>
+        <span tal:content="structure htmltext"
+              tal:attributes="
+                id string:html_${context/getId};
+              "
+        ></span>
+      </tal:if>
+    </metal:macro>
+
+    <metal:macro define-macro="doc_files"
+                 tal:define="
+                   icons python:context.restrictedTraverse('@@iconresolver');
+                 "
+                 i18n:domain="docpool.base"
+    >
+      <span tal:define="
+              files context/getFiles;
+            "
+            tal:condition="python: files"
+      >
+        <label i18n:translate="">Files:</label>
+        <ul tal:define="
+              multiple_files python:len(files) > 1;
+            ">
+          <li tal:repeat="d files"><a href=""
+               target="_blank"
+               tal:content="structure python:d.title_or_id()"
+               tal:attributes="
+                 href python:d.absolute_url();
+               "
+            >documents</a>
+            <?python
 from Products.CMFPlone.utils import human_readable_size
 c_type = econtext["d"].content_type()
 size = human_readable_size(econtext["d"].get_size())
 ?>
-                  (<span tal:content="python:c_type"/>,&nbsp;<span
-                        tal:content="python:size"/>)
-                  <a tal:attributes="href python: d.absolute_url() + '/delete_confirmation'"
-                     tal:condition="python: edit_allowed"
-                          href="#"
-                          id="btn-delete"
-                          class="btn"
-                          title=""
-                          target="_top"
-                          aria-label="Delete"
-                          data-original-title="Delete">
-                    <tal:icon tal:replace="structure python:icons.tag('trash')" />
-                  </a>
-                <tal:if condition="python:multiple_files and edit_allowed">
-<?python
+            (<span tal:content="python:c_type"></span>,&nbsp;<span tal:content="python:size"></span>)
+            <a class="btn"
+               id="btn-delete"
+               aria-label="Delete"
+               href="#"
+               target="_top"
+               title=""
+               data-original-title="Delete"
+               tal:condition="python: edit_allowed"
+               tal:attributes="
+                 href python: d.absolute_url() + '/delete_confirmation';
+               "
+            >
+              <tal:icon tal:replace="structure python:icons.tag('trash')" />
+            </a>
+            <tal:if condition="python:multiple_files and edit_allowed">
+              <?python
 from urllib.parse import quote_plus
 quoted_id = quote_plus(econtext["d"].getId());
 ?>
-                   <tal:block>
-                    <a href=""
-                       title="Move item up"
-                       i18n:attributes="title title_move_item_up;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=up&amp;obj_id=${quoted_id}&amp;ptype=File">
+              <tal:block>
+                <a href=""
+                   title="Move item up"
+                   tal:attributes="
+                     href string:${view/base_url}/change_position?position=up&amp;obj_id=${quoted_id}&amp;ptype=File;
+                   "
+                   i18n:attributes="title title_move_item_up;"
+                >
                       &#9650;
-                    </a>
+                </a>
                     &nbsp;
-                    <a href=""
-                       title="Move item down"
-                       i18n:attributes="title title_move_item_down;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=down&amp;obj_id=${quoted_id}&amp;ptype=File">
+                <a href=""
+                   title="Move item down"
+                   tal:attributes="
+                     href string:${view/base_url}/change_position?position=down&amp;obj_id=${quoted_id}&amp;ptype=File;
+                   "
+                   i18n:attributes="title title_move_item_down;"
+                >
                       &#9660;
-                    </a>
-                   </tal:block>
-              </tal:if>
-              </li>
-            </ul>
-          </span>
-</metal:macro>
+                </a>
+              </tal:block>
+            </tal:if>
+          </li>
+        </ul>
+      </span>
+    </metal:macro>
 
-<metal:macro define-macro="doc_images" i18n:domain="docpool.base"
-        tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
+    <metal:macro define-macro="doc_images"
+                 tal:define="
+                   icons python:context.restrictedTraverse('@@iconresolver');
+                 "
+                 i18n:domain="docpool.base"
+    >
 
-          <span tal:define="images context/getImages" tal:condition="images">
-            <label i18n:translate="">Images:</label>
-            <table class="table table-borderless">
-            <tr tal:define="multiple_images python:len(images) > 1">
+      <span tal:define="
+              images context/getImages;
+            "
+            tal:condition="images"
+      >
+        <label i18n:translate="">Images:</label>
+        <table class="table table-borderless">
+          <tr tal:define="
+                multiple_images python:len(images) > 1;
+              ">
             <span tal:repeat="b images">
               <span tal:condition="python:b.getId() != 'icpdf.gif'">
-              <td>
-              <span tal:content="structure python:b.title_or_id()">images</span>&nbsp;&nbsp;<br><br>
-              <a href="" tal:attributes="href python:b.absolute_url(); title python:b.title_or_id()" target="_blank">
-                 <img tal:condition="multiple_images"
-                      tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview'" border="0"
-                      width="80%" height="auto"/>
-                 <img tal:condition="not:multiple_images"
-                      tal:attributes="src python:'/'.join(b.getPhysicalPath()) + '/@@images/image'" border="0"
-                      width="100%" height="auto"/>
-                  <br/>
-              </a>
+                <td>
+                  <span tal:content="structure python:b.title_or_id()">images</span>&nbsp;&nbsp;<br /><br />
+                  <a href=""
+                     target="_blank"
+                     tal:attributes="
+                       href python:b.absolute_url();
+                       title python:b.title_or_id();
+                     "
+                  >
+                    <img border="0"
+                         height="auto"
+                         width="80%"
+                         tal:condition="multiple_images"
+                         tal:attributes="
+                           src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/preview';
+                         "
+                    />
+                    <img border="0"
+                         height="auto"
+                         width="100%"
+                         tal:condition="not:multiple_images"
+                         tal:attributes="
+                           src python:'/'.join(b.getPhysicalPath()) + '/@@images/image';
+                         "
+                    />
+                    <br />
+                  </a>
 
-<?python
+                  <?python
 from Products.CMFPlone.utils import human_readable_size
 c_type = econtext["b"].content_type()
 size = human_readable_size(econtext["b"].get_size())
 ?>
 
-                 (<span tal:content="python:c_type"/>
-                 <span tal:content="python:size"/>)
+                  (<span tal:content="python:c_type"></span>
+                  <span tal:content="python:size"></span>)
 
-                <span tal:condition="python:b.Description()"
-                      tal:content="python:b.Description()"/>
-                  <a tal:attributes="href python: b.absolute_url() + '/delete_confirmation'"
+                  <span tal:condition="python:b.Description()"
+                        tal:content="python:b.Description()"
+                  ></span>
+                  <a class="btn"
+                     id="btn-delete"
+                     aria-label="Delete"
+                     href="#"
+                     target="_top"
+                     title=""
+                     data-original-title="Delete"
                      tal:condition="python: edit_allowed"
-                          href="#"
-                          id="btn-delete"
-                          class="btn"
-                          title=""
-                          target="_top"
-                          aria-label="Delete"
-                          data-original-title="Delete">
+                     tal:attributes="
+                       href python: b.absolute_url() + '/delete_confirmation';
+                     "
+                  >
                     <tal:icon tal:replace="structure python:icons.tag('trash')" />
                   </a>
 
-              <tal:if condition="python:multiple_images and edit_allowed">
-<?python
+                  <tal:if condition="python:multiple_images and edit_allowed">
+                    <?python
 from urllib.parse import quote_plus
 quoted_id = quote_plus(econtext["b"].getId());
 ?>
 
-                   <tal:block>
-                    <a href=""
-                       title="Move item up"
-                       i18n:attributes="title title_move_item_up;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=up&amp;obj_id=${quoted_id}&amp;ptype=Image">
+                    <tal:block>
+                      <a href=""
+                         title="Move item up"
+                         tal:attributes="
+                           href string:${view/base_url}/change_position?position=up&amp;obj_id=${quoted_id}&amp;ptype=Image;
+                         "
+                         i18n:attributes="title title_move_item_up;"
+                      >
                       &#9668;
-                    </a>
+                      </a>
                     &nbsp;
-                    <a href=""
-                       title="Move item down"
-                       i18n:attributes="title title_move_item_down;"
-                       tal:attributes="href string:${view/base_url}/change_position?position=down&amp;obj_id=${quoted_id}&amp;ptype=Image">
+                      <a href=""
+                         title="Move item down"
+                         tal:attributes="
+                           href string:${view/base_url}/change_position?position=down&amp;obj_id=${quoted_id}&amp;ptype=Image;
+                         "
+                         i18n:attributes="title title_move_item_down;"
+                      >
                       &#9658;
-                    </a>
-                   </tal:block>
-              </tal:if>
-              </td>
+                      </a>
+                    </tal:block>
+                  </tal:if>
+                </td>
               </span>
             </span>
-            </tr>
-          </table>
-          <br><br>
-         </span>
-</metal:macro>
+          </tr>
+        </table>
+        <br /><br />
+      </span>
+    </metal:macro>
 
-<!--<metal:macro define-macro="app_icons">
+    <!--<metal:macro define-macro="app_icons">
     <span class="app_icons">
     <tal:loop repeat="icon python:context.myExtensionIcons(request)">
         <img src="${context/portal_url}/${icon}" class="app_icon"/>
@@ -438,156 +618,219 @@ quoted_id = quote_plus(econtext["b"].getId());
     </span>
 </metal:macro>
 -->
-<metal:macro define-macro="content_metadata">
-    <tal:def define="item_modified context/getMdate;
+    <metal:macro define-macro="content_metadata">
+      <tal:def define="
+                 item_modified context/getMdate;
                  item_created context/CreationDate;
-                 item_creator context/Creator;">
-      <dl class="doc_metadata">
-        <tal:mod condition="python:item_modified and (toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1))">
-          <dt i18n:translate="">modified:</dt>
+                 item_creator context/Creator;
+               ">
+        <dl class="doc_metadata">
+          <tal:mod condition="python:item_modified and (toLocalizedTime(item_modified, long_format=1) != toLocalizedTime(item_created, long_format=1))">
+            <dt i18n:translate="">modified:</dt>
+            <dd>
+              <tal:time replace="python:str(toLocalizedTime(item_modified, long_format=1))" />
+              <tal:var i18n:translate="">LT</tal:var>,
+              <tal:by replace="structure python:context.modified_by" />
+            </dd>
+          </tal:mod>
+          <dt i18n:translate="">created:</dt>
           <dd>
-            <tal:time replace="python:str(toLocalizedTime(item_modified, long_format=1))" />
-            <tal:var i18n:translate="">LT</tal:var>,
-            <tal:by replace="structure python:context.modified_by" />
+            <tal:var replace="python:str(toLocalizedTime(item_created, long_format=1))" />
+            <tal:var i18n:translate="">LT</tal:var>
+            <tal:var content="structure python:context.created_by" />
           </dd>
-        </tal:mod>
-        <dt i18n:translate="">created:</dt>
-        <dd>
-          <tal:var replace="python:str(toLocalizedTime(item_created, long_format=1))" />
-          <tal:var i18n:translate="">LT</tal:var>
-          <tal:var content="structure python:context.created_by" />
-        </dd>
-      </dl>
-    </tal:def>
-</metal:macro>
+        </dl>
+      </tal:def>
+    </metal:macro>
 
-<metal:macro define-macro="has_comments" i18n:domain="docpool.base">
-          <span tal:condition="context/hasComments">
-              <b><u><a href="" title="" tal:attributes="title python:'show document';
-                                                  href string:javascript:go_to('${item_url}');">
-                   <i18n:txt translate="">There are comments.</i18n:txt>
-              </a></u></b>
-          </span>
-</metal:macro>
+    <metal:macro define-macro="has_comments"
+                 i18n:domain="docpool.base"
+    >
+      <span tal:condition="context/hasComments">
+        <b><u><a href=""
+               title=""
+               tal:attributes="
+                 title python:'show document';
+                 href string:javascript:go_to('${item_url}');
+               "
+            >
+              <i18n:txt translate="">There are comments.</i18n:txt>
+            </a></u></b>
+      </span>
+    </metal:macro>
 
-<metal:macro define-macro="doc_meta_listitem" i18n:domain="docpool.base">
-<!--    <div metal:use-macro="context/@@dp.macros/macros/app_icons"/> -->
-    <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
-    <div id="meta_items">
-        <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()"/>
-    </div>
-    <div metal:use-macro="context/@@dp.macros/macros/has_comments"/>
+    <metal:macro define-macro="doc_meta_listitem"
+                 i18n:domain="docpool.base"
+    >
+      <!--    <div metal:use-macro="context/@@dp.macros/macros/app_icons"/> -->
+      <div metal:use-macro="context/@@dp.macros/macros/content_metadata"></div>
+      <div id="meta_items">
+        <tal:insertview replace="structure python:context.restrictedTraverse('@@meta')()" />
+      </div>
+      <div metal:use-macro="context/@@dp.macros/macros/has_comments"></div>
 
-</metal:macro>
+    </metal:macro>
 
-<metal:macro define-macro="docactions" i18n:domain="docpool.base">
-  <tal:define define="_is nocall:context/@@is">
-    <tal:if condition="python: not (isCollection or individual) and not _is.archive() and context.isClean()">
-        <tal:loop repeat="action actions" define="actions context/workflowActions">
-            <a class="wf_action action" href=""
+    <metal:macro define-macro="docactions"
+                 i18n:domain="docpool.base"
+    >
+      <tal:define define="
+                    _is nocall:context/@@is;
+                  ">
+        <tal:if condition="python: not (isCollection or individual) and not _is.archive() and context.isClean()">
+          <tal:loop define="
+                      actions context/workflowActions;
+                    "
+                    repeat="action actions"
+          >
+            <a class="wf_action action"
+               href=""
                onclick=""
                title=""
-               tal:define="a_id action/id;
-                      a_title action/title;
-                      a_icon action/icon;
-                      alert_msg python:context.translate('alert_' + a_id + '_popup', default='Do you really want to publish this document?', domain='docpool.base', escape_for_js=True)"
-               tal:attributes="onclick string:return confirm('${context/Title}: ${alert_msg}');
-                      href python:'%s/@@change_state?uid=%s&amp;action=%s&amp;back_to_referer=1' % (myfolder_url, context.UID(), a_id);
-                      title a_title;
-                      "
-               i18n:attributes="title" >
-                <img src="" tal:attributes="src string:${context/portal_url}/${a_icon}"/>
+               tal:define="
+                 a_id action/id;
+                 a_title action/title;
+                 a_icon action/icon;
+                 alert_msg python:context.translate('alert_' + a_id + '_popup', default='Do you really want to publish this document?', domain='docpool.base', escape_for_js=True);
+               "
+               tal:attributes="
+                 onclick string:return confirm('${context/Title}: ${alert_msg}');
+                 href python:'%s/@@change_state?uid=%s&amp;action=%s&amp;back_to_referer=1' % (myfolder_url, context.UID(), a_id);
+                 title a_title;
+               "
+               i18n:attributes="title"
+            >
+              <img src=""
+                   tal:attributes="
+                     src string:${context/portal_url}/${a_icon};
+                   "
+              />
             </a>
-        </tal:loop>
-    </tal:if>
-    <tal:cond condition="python: not (isCollection or _is.archive())">
-        <a tal:condition="nocall:unknown_dt" tal:define="unknown_dt python:context.unknownDocType()" href=""
-           title="Edit unknown doc type"
-           tal:attributes="href unknown_dt/absolute_url"
-           i18n:attributes="title">
-            <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
-        </a>
-    </tal:cond>
-  </tal:define>
-</metal:macro>
+          </tal:loop>
+        </tal:if>
+        <tal:cond condition="python: not (isCollection or _is.archive())">
+          <a href=""
+             title="Edit unknown doc type"
+             tal:define="
+               unknown_dt python:context.unknownDocType();
+             "
+             tal:condition="nocall:unknown_dt"
+             tal:attributes="
+               href unknown_dt/absolute_url;
+             "
+             i18n:attributes="title"
+          >
+            <img src=""
+                 tal:attributes="
+                   src string:${context/portal_url}/publish.png;
+                 "
+            />
+          </a>
+        </tal:cond>
+      </tal:define>
+    </metal:macro>
 
-<div tal:omit-tag="" metal:define-macro="doccollection">
-        <tal:results define="b_start python:int(request.get('b_start', 0));
-                             batch python:context.results(b_start=b_start);
-                             use_view_action python:context.portal_registry['plone.types_use_view_action_in_listings'];
-                             isAnon context/@@plone_portal_state/anonymous;
-                             normalizeString nocall: context/plone_utils/normalizeString;
-                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                             show_about python:not isAnon or context.portal_registry['plone.allow_anon_views_about'];
-                             navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                             pas_member nocall: context/@@pas_member;
-                             buttons python:[];
-                             container_type python: context.portal_type;">
-            <tal:listing condition="batch">
+    <div metal:define-macro="doccollection"
+         tal:omit-tag=""
+    >
+      <tal:results define="
+                     b_start python:int(request.get('b_start', 0));
+                     batch python:context.results(b_start=b_start);
+                     use_view_action python:context.portal_registry['plone.types_use_view_action_in_listings'];
+                     isAnon context/@@plone_portal_state/anonymous;
+                     normalizeString nocall: context/plone_utils/normalizeString;
+                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                     show_about python:not isAnon or context.portal_registry['plone.allow_anon_views_about'];
+                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                     pas_member nocall: context/@@pas_member;
+                     buttons python:[];
+                     container_type python: context.portal_type;
+                   ">
+        <tal:listing condition="batch">
 
-                <table id="sortable"
-                       class="table table-striped table-bordered responsive"
-                       summary="Content listing"
-                       i18n:attributes="summary summary_content_listing;"
-                       i18n:domain="docpool.base"
-                       tal:define="isOverview python:context.getId()=='overview' and 1 or 0">
-                    <thead class="table-secondary">
-                    <metal:header_slot metal:define-slot="listingheader">
-                        <th class="nosort actions" tal:condition="python:False"></th>
-                        <th class="nosort title" i18n:translate="">Title / Description / Text</th>
-                        <th class="nosort metadata" i18n:translate="">Metadata</th>
-                    </metal:header_slot>
-                    </thead>
+          <table class="table table-striped table-bordered responsive"
+                 id="sortable"
+                 summary="Content listing"
+                 tal:define="
+                   isOverview python:context.getId()=='overview' and 1 or 0;
+                 "
+                 i18n:attributes="summary summary_content_listing;"
+                 i18n:domain="docpool.base"
+          >
+            <thead class="table-secondary">
+              <metal:header_slot metal:define-slot="listingheader">
+                <th class="nosort actions"
+                    tal:condition="python:False"
+                ></th>
+                <th class="nosort title"
+                    i18n:translate=""
+                >Title / Description / Text</th>
+                <th class="nosort metadata"
+                    i18n:translate=""
+                >Metadata</th>
+              </metal:header_slot>
+            </thead>
 
-                    <tbody class="table-group-divider">
-                    <tal:items tal:repeat="dpbrain batch">
-                        <tr tal:define="oddrow  python:repeat['dpbrain'].index % 2 == 0;
-                   				   item_id dpbrain/getId;
-                   				   item_obj dpbrain/getObject|nothing;
-                   				   isFolder dpbrain/is_folderish;
-                				   item_folder_class python:isFolder and 'folder' or ''"
-                            tal:attributes="class string:itemRow $item_folder_class';
-                                        id string:item_${dpbrain/UID};">
+            <tbody class="table-group-divider">
+              <tal:items tal:repeat="dpbrain batch">
+                <tr tal:define="
+                      oddrow  python:repeat['dpbrain'].index % 2 == 0;
+                      item_id dpbrain/getId;
+                      item_obj dpbrain/getObject|nothing;
+                      isFolder dpbrain/is_folderish;
+                      item_folder_class python:isFolder and 'folder' or '';
+                    "
+                    tal:attributes="
+                      class string:itemRow $item_folder_class';
+                      id string:item_${dpbrain/UID};
+                    "
+                >
 
-                            <metal:block define-slot="entry">
-                                <tal:if condition="nocall:item_obj">
-                                    <td class="loading_indicator" colspan="3">
-                                    <img tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif" />
-                                    </td>
-                                    <script type="text/javascript">
+                  <metal:block define-slot="entry">
+                    <tal:if condition="nocall:item_obj">
+                      <td class="loading_indicator"
+                          colspan="3"
+                      >
+                        <img tal:attributes="
+                               src string:${context/@@plone_portal_state/portal_url}/++plone++docpool/spinner_small.gif;
+                             " />
+                      </td>
+                      <script type="text/javascript">
                                         jQuery('#item_${dpbrain/UID}').load('${item_obj/absolute_url}/@@listitem?myfolder_url=${context/absolute_url}&isOverview=${isOverview}&isCollection=1&container_type=${container_type}&ajax_load=1 .wrapper > *', function(responseTxt, statusTxt, xhr){
                                             jQuery('.pat-plone-modal').patPloneModal();
                                         });
-                                    </script>
+                      </script>
 
-                                    <!--tal:insertview
+                      <!--tal:insertview
                                             replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=False,myfolder=context,buttons=buttons)"/-->
-                                </tal:if>
-                            </metal:block>
+                    </tal:if>
+                  </metal:block>
 
-                            <!--metal:block define-slot="entry">
+                  <!--metal:block define-slot="entry">
                                 <tal:if condition="nocall:item_obj">
                                     <tal:insertview
                                             replace="structure python:item_obj.restrictedTraverse('@@listitem')(dpbrain=dpbrain,isOverview=isOverview,isCollection=True,myfolder=context,buttons=buttons)"/>
                                 </tal:if>
                             </metal:block-->
-                        </tr>
-                    </tal:items>
-                    </tbody>
-                </table>
-                <div metal:use-macro="context/batch_macros/macros/navigation"/>
+                </tr>
+              </tal:items>
+            </tbody>
+          </table>
+          <div metal:use-macro="context/batch_macros/macros/navigation"></div>
 
-            </tal:listing>
-            <metal:empty metal:define-slot="no_items_in_listing">
-                <p class="discreet" i18n:domain="docpool.base"
-                   tal:condition="not: batch"
-                   i18n:translate="description_no_items_in_folder">
+        </tal:listing>
+        <metal:empty metal:define-slot="no_items_in_listing">
+          <p class="discreet"
+             tal:condition="not: batch"
+             i18n:domain="docpool.base"
+             i18n:translate="description_no_items_in_folder"
+          >
                     There are currently no items in this folder.
-                </p>
-            </metal:empty>
+          </p>
+        </metal:empty>
 
-        </tal:results>
-</div>
+      </tal:results>
+    </div>
 
-</body>
+  </body>
 </html>

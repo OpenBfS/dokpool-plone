@@ -43,13 +43,11 @@ def add_user(
         roles=("Member",),
         properties={"fullname": user_fullname},
     )
-    user.setMemberProperties(
-        {
-            "fullname": user_fullname,
-            "dp": docpool_uid,
-            "apps": enabled_apps,
-        }
-    )
+    user.setMemberProperties({
+        "fullname": user_fullname,
+        "dp": docpool_uid,
+        "apps": enabled_apps,
+    })
     # add the user to specified groups
     for groupname in groupnames:
         real_groupname = f"{prefix}_{groupname}"

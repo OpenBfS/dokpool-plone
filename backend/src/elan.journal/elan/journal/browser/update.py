@@ -9,7 +9,6 @@ from zope.security import checkPermission
 
 
 class Update(View):
-
     """View to add entries to a Journal."""
 
     @property
@@ -41,8 +40,6 @@ class Update(View):
             return self.request.response.redirect(self.context.absolute_url())
         self.start = int(self.request.get("b_start", 0))
         if self.start != 0:
-            msg = _(
-                "You must be on the first page of the batch to add journal entries."
-            )
+            msg = _("You must be on the first page of the batch to add journal entries.")
             api.portal.show_message(msg, self.request, type="info")
         return self.index()

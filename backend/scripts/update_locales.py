@@ -34,20 +34,18 @@ def reset_pot_creation_date(path):
 
 
 def rebuild_pot(domain, pot, target_path):
-    subprocess.call(
-        [
-            i18ndude,
-            "rebuild-pot",
-            "--pot",
-            pot,
-            "--exclude",
-            excludes,
-            "--no-line-numbers",
-            "--create",
-            domain,
-            target_path,
-        ]
-    )
+    subprocess.call([
+        i18ndude,
+        "rebuild-pot",
+        "--pot",
+        pot,
+        "--exclude",
+        excludes,
+        "--no-line-numbers",
+        "--create",
+        domain,
+        target_path,
+    ])
 
 
 def update_lang(domain, pot, locale_path, lang):
@@ -55,9 +53,12 @@ def update_lang(domain, pot, locale_path, lang):
     po = lc_messages_path / f"{domain}.po"
     if not lc_messages_path.is_dir():
         lc_messages_path.mkdir(parents=True)
-        subprocess.call(
-            ["msginit", f"--locale={lang}", f"--input={pot}", f"--output={po}"]
-        )
+        subprocess.call([
+            "msginit",
+            f"--locale={lang}",
+            f"--input={pot}",
+            f"--output={po}",
+        ])
 
     with reset_pot_creation_date(po):
         subprocess.call([i18ndude, "sync", "--pot", pot, po])

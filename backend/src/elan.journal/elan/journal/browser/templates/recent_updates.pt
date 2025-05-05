@@ -1,55 +1,88 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="elan.journal"
-    tal:omit-tag="">
-<body tal:omit-tag="">
-    <section id="journal-entries" tal:omit-tag="">
-      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
-          tal:repeat="update view/latest_journalentries"
-          tal:attributes="data-timestamp update/timestamp">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xml:lang="en"
+      tal:omit-tag=""
+      i18n:domain="elan.journal"
+>
+  <body tal:omit-tag="">
+    <section id="journal-entries"
+             tal:omit-tag=""
+    >
+      <article class="journalentry"
+               itemprop="comment"
+               itemscope
+               itemtype="http://schema.org/Comment"
+               tal:repeat="update view/latest_journalentries"
+               tal:attributes="
+                 data-timestamp update/timestamp;
+               "
+      >
         <div class="journalentry-helpers">
-          <a href="@@edit-journalentry"
-             class="btn btn-primary"
+          <a class="btn btn-primary"
+             href="@@edit-journalentry"
              role="button"
              tal:condition="view/can_edit_objects"
-             tal:attributes="href string:@@edit-journalentry?id=${update/id}"
+             tal:attributes="
+               href string:@@edit-journalentry?id=${update/id};
+             "
              i18n:domain="plone"
-             i18n:translate="">Edit</a>
-          <a href="@@delete-journalentry"
-             class="btn btn-danger"
+             i18n:translate=""
+          >Edit</a>
+          <a class="btn btn-danger"
+             href="@@delete-journalentry"
              role="button"
              tal:condition="view/can_delete_objects"
-             tal:attributes="href string:@@delete-journalentry?id=${update/id};
-            onclick view/delete_confirmation"
+             tal:attributes="
+               href string:@@delete-journalentry?id=${update/id};
+               onclick view/delete_confirmation;
+             "
              i18n:domain="plone"
-             i18n:translate="">Delete</a>
+             i18n:translate=""
+          >Delete</a>
         </div>
-        <h2 class="journalentry-title" itemprop="headline"
+        <h2 class="journalentry-title"
+            itemprop="headline"
             tal:condition="update/title"
-            tal:content="update/title" />
-        <div class="journalentry-text" itemprop="text"
-            tal:content="structure update/text" />
-        <div class="journalentry-byline" tal:define="item_creator update/creator;
-                                                     pas_member nocall: context/@@pas_member;
-                                                     author python:pas_member.info(item_creator);
-                                                     creator_fullname author/name_or_id;
-                                                           ">
-          <p tal:condition="view/show_byline" i18n:translate="">
+            tal:content="update/title"
+        ></h2>
+        <div class="journalentry-text"
+             itemprop="text"
+             tal:content="structure update/text"
+        ></div>
+        <div class="journalentry-byline"
+             tal:define="
+               item_creator update/creator;
+               pas_member nocall: context/@@pas_member;
+               author python:pas_member.info(item_creator);
+               creator_fullname author/name_or_id;
+             "
+        >
+          <p tal:condition="view/show_byline"
+             i18n:translate=""
+          >
               By
             <span itemprop="author"
-                tal:content="creator_fullname"
-                i18n:name="byline" />
+                  tal:content="creator_fullname"
+                  i18n:name="byline"
+            ></span>
           </p>
-          <time itemprop="datePublished" title="2014-08-28 14h31" datetime="2014-08-28T14:31:02.402"
-              tal:attributes="datetime update/isoformat;
-                              title update/datetime;
-                              data-date update/date;
-                              data-time update/time">
-            <span class="journalentry-time" tal:content="update/time" />
+          <time datetime="2014-08-28T14:31:02.402"
+                itemprop="datePublished"
+                title="2014-08-28 14h31"
+                tal:attributes="
+                  datetime update/isoformat;
+                  title update/datetime;
+                  data-date update/date;
+                  data-time update/time;
+                "
+          >
+            <span class="journalentry-time"
+                  tal:content="update/time"
+            ></span>
           </time>
         </div>
       </article>
     </section>
-</body>
+  </body>
 </html>

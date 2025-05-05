@@ -28,9 +28,7 @@ import datetime
 
 @provider(IContextAwareDefaultFactory)
 def initializeMdate(context):
-    return (
-        context.created().asdatetime().replace(tzinfo=None) or datetime.datetime.now()
-    )
+    return context.created().asdatetime().replace(tzinfo=None) or datetime.datetime.now()
 
 
 class IContentBase(model.Schema):
@@ -93,9 +91,9 @@ class ContentBase:
 
     def getMdate(self):
         """ """
-        return (
-            base_hasattr(self, "mdate") and self.mdate
-        ) or self.created().asdatetime().replace(tzinfo=None)
+        return (base_hasattr(self, "mdate") and self.mdate) or self.created().asdatetime().replace(
+            tzinfo=None
+        )
 
     def changed(self):
         """Overridden for transferable content."""
@@ -128,9 +126,7 @@ class ContentBase:
         """
         Checks if the content has been created in a group folder.
         """
-        return (
-            "Groups" in self.getPhysicalPath() or "Transfers" in self.getPhysicalPath()
-        )
+        return "Groups" in self.getPhysicalPath() or "Transfers" in self.getPhysicalPath()
 
     def myGroup(self):
         """Return the title of nearest group-folder.

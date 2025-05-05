@@ -1,11 +1,11 @@
 # Official Python Image
-image: python:3.11.6-bullseye
+image: python:3.13.3-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
-  PRE_COMMIT_HOME: "${CI_PROJECT_DIR}/.cache/pre-commit"
+  UV_CACHE_DIR: "$HOME/.cache/uv"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -14,8 +14,8 @@ variables:
 # them in a virtualenv and cache it as well.
 cache:
   paths:
-    - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
+    - ${UV_CACHE_DIR}
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
@@ -59,13 +59,11 @@ lint_tests:
     - docker
   stage: test
   script:
-    # Install pre-commit
+    - cd backend
     - pip install --upgrade pip
-    - pip install pipx
-    - pipx ensurepath
-    - pipx install pre-commit==3.6.0
+    - pip install uv
     # lint test
-    - pipx run -- pre-commit run --a
+    - make lint
 
 unit_tests:
   tags:
@@ -78,7 +76,9 @@ unit_tests:
     # build
     - cd backend
     - export VIRTUAL_ENV=$(pwd)
-    - make build-dev
+    - pip install --upgrade pip
+    - pip install uv
+    - make install
     - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:

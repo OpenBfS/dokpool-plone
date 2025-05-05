@@ -403,7 +403,7 @@
     <permission acquire="True"
                 name="Docpool: Change docType for DPDocument"
     >
-      <role name="Site Administrator"/>
+      <role name="Site Administrator" />
     </permission>
     <permission acquire="True"
                 name="Modify view template"

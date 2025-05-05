@@ -60,9 +60,7 @@ class FolderBaseView(BrowserView):
         buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, "portal_actions")
-        button_actions = portal_actions.listActionInfos(
-            object=context, categories=("folder_buttons",)
-        )
+        button_actions = portal_actions.listActionInfos(object=context, categories=("folder_buttons",))
 
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
@@ -100,7 +98,7 @@ class FolderBaseView(BrowserView):
                         adapted = ITransferable(obj)
                     except TypeError:
                         continue
-                    if adapted.transferable() and (allowed := adapted.allowedTargets()):
+                    if adapted.transferable() and adapted.allowedTargets():
                         show_transfer_action = True
                         # shortcut
                         break
@@ -173,9 +171,7 @@ class FolderBaseView(BrowserView):
 
 class FolderAction:
     def view_url(self):
-        context_state = api.content.get_view(
-            "plone_context_state", self.context, self.request
-        )
+        context_state = api.content.get_view("plone_context_state", self.context, self.request)
         return context_state.view_url()
 
     def redirect(self):
@@ -210,9 +206,7 @@ class FolderDeleteForm(form.Form, FolderAction):
         objects = [i for i in objects if self.check_delete_permission(i)]
         if not objects:
             return self.redirect_info(_("No items to delete."))
-        adapter = api.content.get_view(
-            "delete_confirmation_info", self.context, self.request
-        )
+        adapter = api.content.get_view("delete_confirmation_info", self.context, self.request)
         if adapter:
             return adapter(objects)
         return ""
@@ -260,9 +254,7 @@ class FolderCutForm(BrowserView, FolderAction):
             msg = _("One or more selected items is locked.")
         else:
             transaction_note(f"Cut {ids} from {self.context.absolute_url()}")
-            return self.redirect_info(
-                _("${count} item(s) cut.", mapping={"count": len(ids)})
-            )
+            return self.redirect_info(_("${count} item(s) cut.", mapping={"count": len(ids)}))
 
         return self.redirect_error(msg)
 

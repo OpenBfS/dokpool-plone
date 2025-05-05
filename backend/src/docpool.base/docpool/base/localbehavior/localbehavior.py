@@ -31,8 +31,7 @@ class ILocalBehaviorSupport(model.Schema):
         title="Behaviors",
         description=_(
             "description_local_behaviors",
-            default="Select applications supported for this content,"
-            " changes will be applied after saving",
+            default="Select applications supported for this content, changes will be applied after saving",
         ),
         required=False,
         defaultFactory=initializeLocalBehaviors,
