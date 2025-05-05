@@ -48,3 +48,13 @@ f4b58f553686daf1e32586d88b8e7b1054ea6213
 # Date:   Wed Jan 29 15:53:04 2025 +0100
 # format all xml and zcml files using make format
 465dee1604d80b1cac3604c4016a6af53e53c521
+
+# Author: Philip Bauer <bauer@starzel.de>
+# Date:   Mon May 5 13:46:29 2025 +0200
+# ruff: apply format and all automatic fixes (#6012)
+17e40702c8545147f1699bb8741d509e8a28c851
+
+# Author: Philip Bauer <bauer@starzel.de>
+# Date:   Mon May 5 14:17:49 2025 +0200
+# zpretty everything (#6012)
+30fad5d15674253817f7446b093a4587492e41d0
