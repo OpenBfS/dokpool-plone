@@ -69,7 +69,6 @@
                      itemprop="comment"
                      itemscope
                      itemtype="http://schema.org/Comment"
-                     data-timestamp
                      tal:repeat="update batch"
                      tal:attributes="
                        data-timestamp update/timestamp;

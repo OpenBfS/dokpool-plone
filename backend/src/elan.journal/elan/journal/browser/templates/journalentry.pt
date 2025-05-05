@@ -95,7 +95,6 @@
                      itemprop="comment"
                      itemscope
                      itemtype="http://schema.org/Comment"
-                     data-timestamp
                      tal:attributes="
                        data-timestamp update/timestamp;
                      "

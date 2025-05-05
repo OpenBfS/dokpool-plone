@@ -44,7 +44,6 @@
                      itemprop="comment"
                      itemscope
                      itemtype="http://schema.org/Comment"
-                     data-timestamp
                      tal:repeat="update view/updates"
                      tal:attributes="
                        data-timestamp update/timestamp;
