@@ -66,13 +66,12 @@ def createDoksysUsers(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    mtool.addMember(
-        "%s_doksysadmin" % prefix, "DokSys Administrator (%s)" % title, ["Member"], []
-    )
+    mtool.addMember("%s_doksysadmin" % prefix, "DokSys Administrator (%s)" % title, ["Member"], [])
     doksysadmin = mtool.getMemberById("%s_doksysadmin" % prefix)
-    doksysadmin.setMemberProperties(
-        {"fullname": "DokSys Administrator (%s)" % title, "dp": self.UID()}
-    )
+    doksysadmin.setMemberProperties({
+        "fullname": "DokSys Administrator (%s)" % title,
+        "dp": self.UID(),
+    })
     doksysadmin.setSecurityProfile(password="admin")
 
 

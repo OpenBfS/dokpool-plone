@@ -76,7 +76,7 @@ def is_point_or_polygon(value):
             wkt = from_wkt(value)
         except Exception:
             raise Invalid("Value is not a valid WKT.")
-        if not wkt.geom_type in ["Point", "Polygon"]:
+        if wkt.geom_type not in ["Point", "Polygon"]:
             raise Invalid("Value is neither Point nor Polygon.")
     return True
 
@@ -90,7 +90,7 @@ class IDPEvent(IContentBase):
         title=_("label_dpevent_substitute", default="Substitute event"),
         description=_(
             "description_dpevent_substitute",
-            default="Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.",  # noqa: E501
+            default="Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.",
         ),
         required=False,
         source="docpool.elan.vocabularies.EventSubstitutes",
@@ -127,9 +127,7 @@ class IDPEvent(IContentBase):
     )
 
     directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
-    directives.widget(
-        EventLocation="plone.app.z3cform.widgets.select.SelectFieldWidget"
-    )
+    directives.widget(EventLocation="plone.app.z3cform.widgets.select.SelectFieldWidget")
     EventLocation = RelationChoice(
         title=_("Event location"),
         vocabulary="docpool.elan.vocabularies.PowerStations",
@@ -174,7 +172,7 @@ class IDPEvent(IContentBase):
         description=_(
             "description_dpevent_alert_note",
             default='Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be "initialized" to send it.',
-        ),  # noqa: E501
+        ),
         required=False,
     )
 
@@ -184,9 +182,7 @@ class IDPEvent(IContentBase):
         value_type=schema.Choice(source="docpool.elan.vocabularies.SampleType"),
     )
 
-    directives.widget(
-        SectorizingNetworks="z3c.form.browser.select.CollectionSelectFieldWidget"
-    )
+    directives.widget(SectorizingNetworks="z3c.form.browser.select.CollectionSelectFieldWidget")
     SectorizingNetworks = RelationList(
         title=_("Sectorizing networks"),
         required=False,
@@ -319,9 +315,7 @@ class DPEvent(Container, ContentBase):
         # 1. Create Archive
         archive = self._createArchive()
         archive_contentarea = archive.content
-        logger.info(
-            "Create snapshot of DPEvent %s in %s", self.title, archive.absolute_url()
-        )
+        logger.info("Create snapshot of DPEvent %s in %s", self.title, archive.absolute_url())
 
         # 2. Move or Copy related DPDocuments (previously done by purge)
         contentarea = self.content
@@ -401,9 +395,7 @@ class DPEvent(Container, ContentBase):
         if foldername in target:
             if not isTransfer:
                 mtool = api.portal.get_tool("portal_membership")
-                mtool.setLocalRoles(
-                    target[foldername], [foldername], "Owner", reindex=False
-                )
+                mtool.setLocalRoles(target[foldername], [foldername], "Owner", reindex=False)
             return target[foldername]
 
         # 4. if it doesn't exist: create it
@@ -564,9 +556,7 @@ class DPEvent(Container, ContentBase):
         navSettings(arc)
 
         # copy the ESD folders
-        for brain in api.content.find(
-            context=esd, portal_type=["ELANSection", "ELANDocCollection"]
-        ):
+        for brain in api.content.find(context=esd, portal_type=["ELANSection", "ELANDocCollection"]):
             api.content.copy(brain.getObject(), arc.esd)
         arc.esd.setDefaultPage("overview")
 
@@ -589,7 +579,7 @@ class DPEvent(Container, ContentBase):
             # Skip empty lines
             if not title:
                 continue
-            journal_id = f"journal{str(index)}"
+            journal_id = f"journal{index!s}"
             # Skip if it already exists
             if self.get(journal_id):
                 continue
@@ -624,10 +614,7 @@ class DPEvent(Container, ContentBase):
         Is it published? Is it active?
         """
         wftool = getToolByName(self, "portal_workflow")
-        return (
-            wftool.getInfoFor(self, "review_state") == "published"
-            and self.Status == "active"
-        )
+        return wftool.getInfoFor(self, "review_state") == "published" and self.Status == "active"
 
     def bounds(self, fieldname="AreaOfInterest"):
         coordinates = self.coordinates(fieldname)
@@ -665,22 +652,16 @@ def addLogEntry(obj):
 
     modes = obj.OperationMode
     if modes is not None:
-        modes_vocabulary = getUtility(
-            IVocabularyFactory, "docpool.elan.vocabularies.Modes"
-        )()
+        modes_vocabulary = getUtility(IVocabularyFactory, "docpool.elan.vocabularies.Modes")()
         modes = safe_text(modes_vocabulary.getTerm(obj.OperationMode).title)
     alerting_status = obj.AlertingStatus
     if alerting_status is not None:
         alerting_status_vocabulary = getUtility(
             IVocabularyFactory, "docpool.elan.vocabularies.AlertingStatus"
         )()
-        alerting_status = safe_text(
-            alerting_status_vocabulary.getTerm(obj.AlertingStatus).title
-        )
+        alerting_status = safe_text(alerting_status_vocabulary.getTerm(obj.AlertingStatus).title)
     entry = {}
-    entry["Date"] = api.portal.get_localized_time(
-        datetime.datetime.now(), long_format=1
-    )
+    entry["Date"] = api.portal.get_localized_time(datetime.datetime.now(), long_format=1)
     entry["User"] = obj._getUserInfoString()
     entry["Status"] = obj.Status
     entry["EventType"] = obj.EventType
@@ -692,9 +673,7 @@ def addLogEntry(obj):
         obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
     )
     entry["Sectorizing networks"] = ", ".join(
-        (n.to_object.title for n in obj.SectorizingNetworks)
-        if obj.SectorizingNetworks is not None
-        else " "
+        (n.to_object.title for n in obj.SectorizingNetworks) if obj.SectorizingNetworks is not None else " "
     )
     # Check if there are changes to prevent duplicate log entries.
     if changelog and entry == changelog[-1]:
@@ -747,9 +726,7 @@ def eventRemoved(obj, event=None):
     Make sure the routinemode event cannot be removed unless the whole docpool
     or the whole Plonesite is being deleted.
     """
-    if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
-        event.object
-    ):
+    if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(event.object):
         return
     if obj.id == "routinemode":
         raise RuntimeError('The "routinemode" event cannot be removed.')

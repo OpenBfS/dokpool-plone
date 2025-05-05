@@ -31,6 +31,4 @@ alias_module("contentimport.interfaces.IContentimportLayer", IBBB)
 
 if "text/html" not in DisplayFile.allowed_inline_mimetypes:
     DisplayFile.allowed_inline_mimetypes.append("text/html")
-    logger.info(
-        "Patch plone.namedfile.browser.DisplayFile to allow text/html to be displayed inline."
-    )
+    logger.info("Patch plone.namedfile.browser.DisplayFile to allow text/html to be displayed inline.")

@@ -38,9 +38,7 @@ def _addPlugin(pas, pluginid="trusted_proxy_auth"):
         if not interface.providedBy(plugin):
             continue
         pas.plugins.activatePlugin(interface, plugin.getId())
-        pas.plugins.movePluginsDown(
-            interface, [x[0] for x in pas.plugins.listPlugins(interface)[:-1]]
-        )
+        pas.plugins.movePluginsDown(interface, [x[0] for x in pas.plugins.listPlugins(interface)[:-1]])
 
 
 def setupTrustedProxyAuthPlugin():

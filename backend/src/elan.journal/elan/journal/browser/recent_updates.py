@@ -10,7 +10,6 @@ from zope.security import checkPermission
 
 
 class RecentUpdates(BrowserView, BaseView):
-
     """Helper view for Journal."""
 
     def _needs_hard_refresh(self):
@@ -22,18 +21,12 @@ class RecentUpdates(BrowserView, BaseView):
         the view and update pages using JavaScript.
         """
         if self.context._last_journalentry_edition > str(time() - 60):
-            logger.debug(
-                "A journal entry was deleted withing the last minute. "
-                "Setting status code 205."
-            )
+            logger.debug("A journal entry was deleted withing the last minute. Setting status code 205.")
             self.request.RESPONSE.setStatus(205)
             return True
 
         if self.context._last_journalentry_deletion > str(time() - 60):
-            logger.debug(
-                "A journal entry was edited withing the last minute. "
-                "Setting status code 205."
-            )
+            logger.debug("A journal entry was edited withing the last minute. Setting status code 205.")
             self.request.RESPONSE.setStatus(205)
             return True
 

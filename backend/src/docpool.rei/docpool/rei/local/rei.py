@@ -94,21 +94,15 @@ def createREIGroups(docpool):
         "dp": docpool.UID(),
     }
     gtool.addGroup("%s_REIContentAdministrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup(
-        "%s_dpadmin" % prefix, "%s_REIContentAdministrators" % prefix
-    )
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_REIContentAdministrators" % prefix)
     gtool.addPrincipalToGroup("%s_reiadmin" % prefix, "%s_Administrators" % prefix)
 
     # Set REI role as a local role for the new group
     docpool.manage_setLocalRoles("%s_REIUsers" % prefix, ["REIUser"])
     # Set content admin access to config
-    docpool.config.manage_setLocalRoles(
-        "%s_REIContentAdministrators" % prefix, ["Owner"]
-    )
+    docpool.config.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["Owner"])
     # and to navigation
-    docpool.berichte.manage_setLocalRoles(
-        "%s_REIContentAdministrators" % prefix, ["ContentAdmin"]
-    )
+    docpool.berichte.manage_setLocalRoles("%s_REIContentAdministrators" % prefix, ["ContentAdmin"])
 
 
 def createREIUsers(docpool):
@@ -117,11 +111,10 @@ def createREIUsers(docpool):
     prefix = docpool.prefix or docpool.getId()
     prefix = str(prefix)
     title = docpool.Title()
-    mtool.addMember(
-        "%s_reiadmin" % prefix, "REI Administrator (%s)" % title, ["Member"], []
-    )
+    mtool.addMember("%s_reiadmin" % prefix, "REI Administrator (%s)" % title, ["Member"], [])
     reiadmin = mtool.getMemberById("%s_reiadmin" % prefix)
-    reiadmin.setMemberProperties(
-        {"fullname": "REI Administrator (%s)" % title, "dp": docpool.UID()}
-    )
+    reiadmin.setMemberProperties({
+        "fullname": "REI Administrator (%s)" % title,
+        "dp": docpool.UID(),
+    })
     reiadmin.setSecurityProfile(password="admin")

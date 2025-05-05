@@ -31,9 +31,7 @@ class IDashboardCollection(ICollection):
         title=_("label_elandoccollection_doctypes", default="Document Types"),
         description=_("description_elandoccollection_doctypes", default=""),
         required=False,
-        value_type=RelationChoice(
-            title=_("Document Types"), source="docpool.base.vocabularies.DocType"
-        ),
+        value_type=RelationChoice(title=_("Document Types"), source="docpool.base.vocabularies.DocType"),
     )
 
     directives.widget(docTypes="z3c.form.browser.select.CollectionSelectFieldWidget")
@@ -108,13 +106,11 @@ class DashboardCollection(Collection):
         # This returns the corresponding Type Object(s)
         types = self.docTypes
         if types:
-            params.append(
-                {
-                    "i": "dp_type",
-                    "o": "plone.app.querystring.operation.selection.is",
-                    "v": [t.to_object.getId() for t in types if t.to_object],
-                }
-            )  # getId() vorher
+            params.append({
+                "i": "dp_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": [t.to_object.getId() for t in types if t.to_object],
+            })  # getId() vorher
 
         self.query = params
         self.sort_on = "changed"
@@ -155,7 +151,7 @@ class DashboardCollection(Collection):
 
         request = self.REQUEST
         alsoProvides(request, IDisableCSRFProtection)
-        raw = kwargs.get("raw", None)
+        raw = kwargs.get("raw")
         implicit_filter = kwargs.get("implicit", False)
         value = self.query  # .raw
         if not value:
@@ -177,54 +173,44 @@ class DashboardCollection(Collection):
                 if uss:
                     # This is THE modification: append the implicit criterion
                     # for the scenario(s)
-                    value.append(
-                        {
-                            "i": "scenarios",
-                            "o": "plone.app.querystring.operation.selection.is",
-                            "v": uss,
-                        }
-                    )
+                    value.append({
+                        "i": "scenarios",
+                        "o": "plone.app.querystring.operation.selection.is",
+                        "v": uss,
+                    })
                 else:  # If nothing selected, don't show results!
-                    value.append(
-                        {
-                            "i": "scenarios",
-                            "o": "plone.app.querystring.operation.selection.is",
-                            "v": ["dontfindanything"],
-                        }
-                    )
+                    value.append({
+                        "i": "scenarios",
+                        "o": "plone.app.querystring.operation.selection.is",
+                        "v": ["dontfindanything"],
+                    })
                     # print value
             # Second implicit filter: the user has selected categories as a filter
             # Used for the chronological overview
             if self.isOverview():
                 usc = getCategoriesForCurrentUser()
                 if usc:
-                    value.append(
-                        {
-                            "i": "category",
-                            "o": "plone.app.querystring.operation.selection.is",
-                            "v": usc,
-                        }
-                    )
+                    value.append({
+                        "i": "category",
+                        "o": "plone.app.querystring.operation.selection.is",
+                        "v": usc,
+                    })
 
             # Third implicit filter: only results with ELAN support are wanted.
-            value.append(
-                {
-                    "i": "apps_supported",
-                    "o": "plone.app.querystring.operation.selection.is",
-                    "v": [ELAN_APP],
-                }
-            )
+            value.append({
+                "i": "apps_supported",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": [ELAN_APP],
+            })
 
             # Now we restrict the search to the paths to Members and Groups.
             # This ensures that in case of archives we only get results from the correct subset.
             content_area_path = "/".join(content_area.getPhysicalPath())
-            value.append(
-                {
-                    "i": "path",
-                    "o": "plone.app.querystring.operation.string.path",
-                    "v": content_area_path,
-                }
-            )
+            value.append({
+                "i": "path",
+                "o": "plone.app.querystring.operation.string.path",
+                "v": content_area_path,
+            })
 
         sort_on = kwargs.get("sort_on", self.sort_on)
         sort_order = "reverse" if self.sort_reversed else "ascending"

@@ -33,9 +33,7 @@ class TransferForm(BrowserView):
             dpdoc.transferToTargets(targets)
             log(f'Transfer "{doc.title}" to transfer folders {targets}')
 
-        msg = _(
-            "${transferred} Items transferred!", mapping={"transferred": len(dpdocids)}
-        )
+        msg = _("${transferred} Items transferred!", mapping={"transferred": len(dpdocids)})
         api.portal.show_message(msg, request)
         request.response.redirect(self.context.absolute_url())
         return self.index()

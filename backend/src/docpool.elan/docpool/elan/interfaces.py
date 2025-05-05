@@ -1,5 +1,5 @@
-from docpool.elan.content.dpevent import IDPEvent
-from docpool.elan.content.dpevents import IDPEvents
+from docpool.elan.content.dpevent import IDPEvent  # noqa: F401
+from docpool.elan.content.dpevents import IDPEvents  # noqa: F401
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 

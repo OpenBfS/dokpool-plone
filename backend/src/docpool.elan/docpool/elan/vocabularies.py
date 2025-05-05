@@ -22,9 +22,7 @@ class EventVocabulary:
             "dp_type": "active",
         }
         if getattr(context, "myDocumentPool", None) is not None:
-            query["path"] = (
-                "/".join(context.myDocumentPool().getPhysicalPath()) + "/contentconfig"
-            )
+            query["path"] = "/".join(context.myDocumentPool().getPhysicalPath()) + "/contentconfig"
         items = sorted((t.Title, t.UID) for t in api.content.find(**query))
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
@@ -60,9 +58,7 @@ class EventRefVocabulary:
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted(
-            (t.Title, t.UID) for t in cat({"portal_type": "DPEvent", "path": path})
-        )
+        items = sorted((t.Title, t.UID) for t in cat({"portal_type": "DPEvent", "path": path}))
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
@@ -108,12 +104,8 @@ StatusVocabularyFactory = StatusVocabulary()
 class ModesVocabulary:
     def __call__(self, context=None):
         terms = []
-        terms.append(
-            SimpleVocabulary.createTerm("routine", "routine", _("Routine mode"))
-        )
-        terms.append(
-            SimpleVocabulary.createTerm("intensive", "intensive", _("Intensive mode"))
-        )
+        terms.append(SimpleVocabulary.createTerm("routine", "routine", _("Routine mode")))
+        terms.append(SimpleVocabulary.createTerm("intensive", "intensive", _("Intensive mode")))
         return SimpleVocabulary(terms)
 
 
@@ -182,10 +174,7 @@ class SampleType:
             ("Z2", "Bodenschätze"),
             ("Z3", "Bedarfsgegenstände und Kosmetische Mittel"),
         ]
-        terms = [
-            SimpleTerm(value, safe_bytes(value), f"{value} {title}")
-            for value, title in items
-        ]
+        terms = [SimpleTerm(value, safe_bytes(value), f"{value} {title}") for value, title in items]
         return SimpleVocabulary(terms)
 
 
@@ -268,10 +257,7 @@ class CategoriesVocabulary:
         if cat is None:
             return SimpleVocabulary([])
 
-        items = sorted(
-            (t.Title, t.getId)
-            for t in cat({"portal_type": "ELANDocCollection", "path": path})
-        )
+        items = sorted((t.Title, t.getId) for t in cat({"portal_type": "ELANDocCollection", "path": path}))
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 

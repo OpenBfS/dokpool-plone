@@ -1,6 +1,5 @@
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.utils import _copyPaste
-from docpool.rodos import DocpoolMessageFactory as _
 from docpool.rodos.config import RODOS_APP
 from plone import api
 from plone.base.utils import get_installer
@@ -92,20 +91,14 @@ def createRodosGroups(docpool):
         "dp": docpool.UID(),
     }
     gtool.addGroup("%s_RodosContentAdministrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup(
-        "%s_dpadmin" % prefix, "%s_RodosContentAdministrators" % prefix
-    )
+    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_RodosContentAdministrators" % prefix)
 
     # Set Rodos role as a local role for the new group
     docpool.manage_setLocalRoles("%s_RodosUsers" % prefix, ["RodosUser"])
     # Set content admin access to config
-    docpool.config.manage_setLocalRoles(
-        "%s_RodosContentAdministrators" % prefix, ["Owner"]
-    )
+    docpool.config.manage_setLocalRoles("%s_RodosContentAdministrators" % prefix, ["Owner"])
     # and to navigation
     docpool["potentially-affected-areas"].manage_setLocalRoles(
         "%s_RodosContentAdministrators" % prefix, ["ContentAdmin"]
     )
-    docpool["projections"].manage_setLocalRoles(
-        "%s_RodosContentAdministrators" % prefix, ["ContentAdmin"]
-    )
+    docpool["projections"].manage_setLocalRoles("%s_RodosContentAdministrators" % prefix, ["ContentAdmin"])

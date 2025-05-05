@@ -89,9 +89,7 @@ def global_dict_hook(item, config):
         # This is only relevant for items in the site-root.
         # Most items containers are usually looked up by the uuid of the old parent
         item["@id"] = item["@id"].replace(f"/{old_portal_id}/", f"/{new_portal_id}/", 1)
-        item["parent"]["@id"] = item["parent"]["@id"].replace(
-            f"/{old_portal_id}", f"/{new_portal_id}", 1
-        )
+        item["parent"]["@id"] = item["parent"]["@id"].replace(f"/{old_portal_id}", f"/{new_portal_id}", 1)
 
     # handle fields that should be set using a simple setter instead of a deserializer
     # this works around issues with validation
@@ -139,12 +137,8 @@ def global_obj_hook(item, obj):
     if wf_policy:
         obj.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
         wf_policy_config = obj[WorkflowPolicyConfig_id]
-        wf_policy_config.setPolicyIn(
-            wf_policy["workflow_policy_in"], update_security=True
-        )
-        wf_policy_config.setPolicyBelow(
-            wf_policy["workflow_policy_below"], update_security=True
-        )
+        wf_policy_config.setPolicyIn(wf_policy["workflow_policy_in"], update_security=True)
+        wf_policy_config.setPolicyBelow(wf_policy["workflow_policy_below"], update_security=True)
 
     adapted = IExcludeFromNavigation(obj, None)
     if adapted is not None and adapted.exclude_from_nav is not True:

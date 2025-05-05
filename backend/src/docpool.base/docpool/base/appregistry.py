@@ -32,15 +32,13 @@ def registerApp(
         BEHAVIOR_REGISTRY[typeBehavior.__identifier__] = (
             BEHAVIOR_REGISTRY.get(typeBehavior.__identifier__, None)
             and BEHAVIOR_REGISTRY[typeBehavior.__identifier__].append(name)
-            or [name]
-        )
+        ) or [name]
 
     if documentBehavior:
         BEHAVIOR_REGISTRY[documentBehavior.__identifier__] = (
             BEHAVIOR_REGISTRY.get(documentBehavior.__identifier__, None)
             and BEHAVIOR_REGISTRY[documentBehavior.__identifier__].append(name)
-            or [name]
-        )
+        ) or [name]
 
 
 def appName(name):
@@ -81,10 +79,7 @@ def activeApps():
     @return:
     """
     apps = sorted(APP_REGISTRY.keys())
-    return [
-        (appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname])
-        for appname in apps
-    ]
+    return [(appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname]) for appname in apps]
 
 
 def extendingApps():
@@ -122,6 +117,5 @@ def selectableApps():
     return [
         (appname, APP_REGISTRY[appname]["title"], APP_REGISTRY[appname])
         for appname in apps
-        if APP_REGISTRY[appname].get("documentBehavior", None)
-        and not APP_REGISTRY[appname]["implicit"]
+        if APP_REGISTRY[appname].get("documentBehavior", None) and not APP_REGISTRY[appname]["implicit"]
     ]

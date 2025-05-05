@@ -48,9 +48,7 @@ def allowed_targets(context):
     if transferable is not None:
         mdate = context.getMdate()
         sent_to_since_last_modified = {
-            entry["transferfolder_uid"]
-            for entry in transferable.sender_log
-            if entry["timestamp"] > mdate
+            entry["transferfolder_uid"] for entry in transferable.sender_log if entry["timestamp"] > mdate
         }
         targets = [t for t in targets if t["uid"] not in sent_to_since_last_modified]
 

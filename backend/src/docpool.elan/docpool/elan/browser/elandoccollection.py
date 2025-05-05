@@ -24,9 +24,7 @@ class ELANDocCollectionrpopupView(BrowserView):
 
     def available_categories(self):
         """ """
-        return [
-            safe_text(brain.Title) for brain in getAvailableCategories(self.context)
-        ]
+        return [safe_text(brain.Title) for brain in getAvailableCategories(self.context)]
 
     def scenario_view(self):
         """ """

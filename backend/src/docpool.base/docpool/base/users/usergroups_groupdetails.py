@@ -70,8 +70,7 @@ class GroupDetailsControlPanel(GDCP):
                 )
                 if not success:
                     msg = PMF(
-                        "Could not add group ${name}, perhaps a user or group with "
-                        "this name already exists.",
+                        "Could not add group ${name}, perhaps a user or group with this name already exists.",
                         mapping={"name": addname},
                     )
                     IStatusMessage(self.request).add(msg, "error")
@@ -109,7 +108,7 @@ class GroupDetailsControlPanel(GDCP):
                 # exist
                 self.group.setGroupProperties(processed)
 
-            IStatusMessage(self.request).add(msg, type=self.group and "info" or "error")
+            IStatusMessage(self.request).add(msg, type=(self.group and "info") or "error")
             if self.group and not self.groupname:
                 target_url = "{}/{}".format(
                     self.context.absolute_url(),

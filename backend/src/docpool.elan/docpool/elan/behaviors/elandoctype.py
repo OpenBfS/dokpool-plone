@@ -31,9 +31,7 @@ def getDefaultCategory(context):
 @provider(IFormFieldProvider)
 class IELANDocType(IDocTypeExtension):
     contentCategory = RelationChoice(
-        title=_(
-            "label_doctype_contentcategory", default="Choose category for this type "
-        ),
+        title=_("label_doctype_contentcategory", default="Choose category for this type "),
         description=_("description_doctype_contentcategory", default=""),
         required=False,
         # TODO: Why would we want a defaultFactory?
@@ -64,7 +62,7 @@ class ELANDocType:
         The primary category that the documents of this type belong to.
         """
         cc = self.context.contentCategory
-        res = cc and cc.to_object.title or ""
+        res = (cc and cc.to_object.title) or ""
         return res
 
     @memoize
@@ -73,15 +71,11 @@ class ELANDocType:
         All categories, the document belongs to.
         """
         colls = back_references(self.context, "docTypes")
-        return list(
-            {
-                coll.title
-                for coll in colls
-                if coll
-                and coll.portal_type == "ELANDocCollection"
-                and not IArchiving(coll).is_archive
-            }
-        )
+        return list({
+            coll.title
+            for coll in colls
+            if coll and coll.portal_type == "ELANDocCollection" and not IArchiving(coll).is_archive
+        })
 
     def getDefaultCategory(self):
         """ """
@@ -101,9 +95,7 @@ class ELANDocType:
         mpath = "/"
         if safe_hasattr(self.context, "dpSearchPath"):
             mpath = self.context.dpSearchPath()
-        o = queryForObject(
-            self.context, path=mpath, portal_type="ELANDocCollection", id=id
-        )
+        o = queryForObject(self.context, path=mpath, portal_type="ELANDocCollection", id=id)
         # print "CCategory", o
         intids = getUtility(IIntIds)
         to_id = intids.getId(o)

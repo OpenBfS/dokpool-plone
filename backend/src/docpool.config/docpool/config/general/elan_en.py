@@ -39,9 +39,7 @@ def configUsers(self, fresh):
         elanadmin = mtool.getMemberById("elanadmin")
         elanadmin.setMemberProperties({"fullname": "ELAN Administrator"})
         elanadmin.setSecurityProfile(password="admin")
-        mtool.addMember(
-            "elanmanager", "ELAN Manager (global)", ["Manager", "Member"], []
-        )
+        mtool.addMember("elanmanager", "ELAN Manager (global)", ["Manager", "Member"], [])
         elanmanager = mtool.getMemberById("elanmanager")
         elanmanager.setMemberProperties({"fullname": "ELAN Manager"})
         elanmanager.setSecurityProfile(password="admin")
@@ -447,9 +445,7 @@ def connectTypesAndCategories(self):
 
     # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
     try:
-        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory(
-            "notifications"
-        )
+        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory("notifications")
     except Exception as e:
         log_exc(e)
     try:
@@ -457,87 +453,59 @@ def connectTypesAndCategories(self):
     except BaseException:
         pass
     try:
-        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory(
-            "event-npp-information"
-        )
+        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory("event-npp-information")
     except BaseException:
         pass
     try:
-        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory(
-            "event-npp-information"
-        )
+        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory("event-npp-information")
     except BaseException:
         pass
     try:
-        self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory(
-            "weather-information"
-        )
+        self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory("weather-information")
     except BaseException:
         pass
     try:
-        self.config.dtypes.trajectory.type_extension(ELAN_APP).setCCategory(
-            "trajectories"
-        )
+        self.config.dtypes.trajectory.type_extension(ELAN_APP).setCCategory("trajectories")
     except BaseException:
         pass
     try:
-        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
-            "rodos-projections"
-        )
+        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory("rodos-projections")
     except BaseException:
         pass
     try:
-        self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory(
-            "state-projections"
-        )
+        self.config.dtypes.stateprojection.type_extension(ELAN_APP).setCCategory("state-projections")
     except BaseException:
         pass
     try:
-        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory(
-            "other-projections"
-        )
+        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory("other-projections")
     except BaseException:
         pass
     try:
-        self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory(
-            "gamma-dose-rate"
-        )
+        self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory("gamma-dose-rate")
     except BaseException:
         pass
     try:
-        self.config.dtypes.gammadoserate_timeseries.type_extension(
-            ELAN_APP
-        ).setCCategory("gamma-dose-rate")
+        self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory("gamma-dose-rate")
     except BaseException:
         pass
     try:
-        self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory(
-            "gamma-dose-rate"
-        )
+        self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory("gamma-dose-rate")
     except BaseException:
         pass
     try:
-        self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory(
-            "air-activity"
-        )
+        self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory("air-activity")
     except BaseException:
         pass
     try:
-        self.config.dtypes.groundcontamination.type_extension(ELAN_APP).setCCategory(
-            "ground-contamination"
-        )
+        self.config.dtypes.groundcontamination.type_extension(ELAN_APP).setCCategory("ground-contamination")
     except BaseException:
         pass
     try:
-        self.config.dtypes.mresult_feed.type_extension(ELAN_APP).setCCategory(
-            "food-and-feed"
-        )
+        self.config.dtypes.mresult_feed.type_extension(ELAN_APP).setCCategory("food-and-feed")
     except BaseException:
         pass
     try:
-        self.config.dtypes.mresult_food.type_extension(ELAN_APP).setCCategory(
-            "food-and-feed"
-        )
+        self.config.dtypes.mresult_food.type_extension(ELAN_APP).setCCategory("food-and-feed")
     except BaseException:
         pass
     try:
@@ -545,44 +513,30 @@ def connectTypesAndCategories(self):
     except BaseException:
         pass
     try:
-        self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory(
-            "situation-reports"
-        )
+        self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory("situation-reports")
     except BaseException:
         pass
     try:
-        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory(
-            "situation-reports"
-        )
+        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory("situation-reports")
     except BaseException:
         pass
     try:
-        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory(
-            "protective-actions"
-        )
+        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory("protective-actions")
     except BaseException:
         pass
     try:
-        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
-            "protective-actions"
-        )
+        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory("protective-actions")
     except BaseException:
         pass
     try:
-        self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory(
-            "protective-actions"
-        )
+        self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory("protective-actions")
     except BaseException:
         pass
     try:
-        self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory(
-            "media-releases"
-        )
+        self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory("media-releases")
     except BaseException:
         pass
     try:
-        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory(
-            "instructions-to-the-public"
-        )
+        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory("instructions-to-the-public")
     except BaseException:
         pass

@@ -106,9 +106,7 @@ class DPDocumentcommentingView(BrowserView):
         return ViewPageTemplateFile("dpdocumentcommenting.pt")(self)
 
     def viewlet_html(self):
-        manager = queryMultiAdapter(
-            (self.context, self.request, self), IViewletManager, "plone.belowcontent"
-        )
+        manager = queryMultiAdapter((self.context, self.request, self), IViewletManager, "plone.belowcontent")
         if manager:
             if viewlet := manager.get("plone.comments"):
                 viewlet.update()
@@ -172,15 +170,9 @@ class FileUploadView(BaseFileUploadView):
         filename = filedata.filename
         content_type = mimetypes.guess_type(filename)[0] or ""
         # Workaround for docx and xlsx files
-        if (
-            content_type
-            == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        ):
+        if content_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             content_type = "application/msword"
-        if (
-            content_type
-            == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        ):
+        if content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
             content_type = "application/vnd.ms-excel"
         # Determine if the default file/image types are DX or AT based
         ctr = api.portal.get_tool("content_type_registry")
@@ -197,14 +189,12 @@ class FileUploadView(BaseFileUploadView):
         else:
             return
         result = {"type": content_type, "size": size}
-        result.update(
-            {
-                "url": obj.absolute_url(),
-                "name": obj.getId(),
-                "UID": IUUID(obj),
-                "filename": filename,
-            }
-        )
+        result.update({
+            "url": obj.absolute_url(),
+            "name": obj.getId(),
+            "UID": IUUID(obj),
+            "filename": filename,
+        })
         return result
 
 
@@ -230,9 +220,7 @@ class AddView(add.DefaultAddView):
 class DPDocumentEditForm(EditForm):
     def updateWidgets(self):
         super().updateWidgets()
-        if not api.user.has_permission(
-            "Docpool: Change docType for DPDocument", obj=self.context
-        ):
+        if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
 
 

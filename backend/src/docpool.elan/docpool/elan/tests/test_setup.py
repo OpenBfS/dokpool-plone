@@ -1,5 +1,6 @@
 """Setup tests for this package."""
-from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING  # noqa: E501
+
+from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID

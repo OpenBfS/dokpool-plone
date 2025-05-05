@@ -33,7 +33,6 @@ ADD_PERMISSIONS = (
 
 
 class InstallTestCase(unittest.TestCase):
-
     """Ensure product is properly installed."""
 
     layer = INTEGRATION_TESTING
@@ -56,7 +55,6 @@ class InstallTestCase(unittest.TestCase):
 
 
 class UninstallTestCase(unittest.TestCase):
-
     """Ensure product is properly uninstalled."""
 
     layer = INTEGRATION_TESTING

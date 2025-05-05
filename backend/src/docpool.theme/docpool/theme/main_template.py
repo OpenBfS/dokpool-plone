@@ -10,10 +10,7 @@ class MainTemplate(OrigMainTemplate):
 
     @property
     def template_name(self):
-        if (
-            self.request.form.get("popup_load")
-            or self.request["URL"].find("@@inline") > -1
-        ):
+        if self.request.form.get("popup_load") or self.request["URL"].find("@@inline") > -1:
             return self.popup_template_name
         return super().template_name
 

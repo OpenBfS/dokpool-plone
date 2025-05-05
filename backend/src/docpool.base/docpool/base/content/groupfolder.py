@@ -28,16 +28,14 @@ class GroupFolder(SimpleFolder):
     def update_immediately_addable_types(self):
         constrain = ISelectableConstrainTypes(self)
         constrain.setConstrainTypesMode(constraintypes.ENABLED)
-        constrain.setLocallyAllowedTypes(
-            (
-                "DPDocument",
-                "SimpleFolder",
-                "PrivateFolder",
-                "ReviewFolder",
-                "CollaborationFolder",
-                "InfoFolder",
-                "Collection",
-            )
-        )
+        constrain.setLocallyAllowedTypes((
+            "DPDocument",
+            "SimpleFolder",
+            "PrivateFolder",
+            "ReviewFolder",
+            "CollaborationFolder",
+            "InfoFolder",
+            "Collection",
+        ))
         # retain order of allowed types just like the stock form does
         constrain.setImmediatelyAddableTypes(("DPDocument", "SimpleFolder"))

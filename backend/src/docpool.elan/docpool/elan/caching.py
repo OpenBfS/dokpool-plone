@@ -30,10 +30,8 @@ class AppCaching:
         return pieces
 
 
-cacheTimes.update(
-    {
-        "ELANArchive": 7200,
-        "ELANCurrentSituation": 300,
-        "ELANDocCollection": 300,
-    }
-)
+cacheTimes.update({
+    "ELANArchive": 7200,
+    "ELANCurrentSituation": 300,
+    "ELANDocCollection": 300,
+})

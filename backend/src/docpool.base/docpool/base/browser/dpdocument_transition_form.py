@@ -1,5 +1,5 @@
-"""A BrowserView to replace the Controller Python Script "folder_publish"
-"""
+"""A BrowserView to replace the Controller Python Script "folder_publish" """
+
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
 from operator import itemgetter
@@ -59,9 +59,7 @@ class WorkflowActionView(BrowserView):
                 "transitions": [],
             }
             for transition in self.pworkflow.getTransitionsFor(obj):
-                transition_title = translate(
-                    transition["name"], domain="plone", context=self.request
-                )
+                transition_title = translate(transition["name"], domain="plone", context=self.request)
                 tdata = {"id": transition["id"], "title": transition_title}
                 item["transitions"].append(transition_title)
                 if tdata not in self.transitions:
@@ -106,9 +104,7 @@ class WorkflowActionView(BrowserView):
                 if obj.EffectiveDate() == "None":
                     obj.setEffectiveDate(DateTime())
 
-                self.pworkflow.doActionFor(
-                    obj, self.transition_id, comment=self.comments
-                )
+                self.pworkflow.doActionFor(obj, self.transition_id, comment=self.comments)
                 if self.putils.isDefaultPage(obj):
                     self.transition(obj.aq_parent, bypass_recurse=True)
                 recurse = self.recurse and not bypass_recurse
@@ -120,6 +116,4 @@ class WorkflowActionView(BrowserView):
             except ConflictError:
                 raise
             except Exception:
-                self.errors.append(
-                    _("Could not transition: ${title}", mapping={"title": obj.title})
-                )
+                self.errors.append(_("Could not transition: ${title}", mapping={"title": obj.title}))

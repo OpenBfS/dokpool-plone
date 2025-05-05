@@ -47,9 +47,7 @@ class ReiLegalBaseVocabulary:
             "REI-E",
             "REI-I",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 ReiLegalBaseVocabularyFactory = ReiLegalBaseVocabulary()
@@ -65,9 +63,7 @@ class MediumVocabulary:
             "Abwasser",
             "Abwasser/Fortluft",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 MediumVocabularyFactory = MediumVocabulary()
@@ -122,9 +118,7 @@ class PDFVersionVocabulary:
             "PDF/A-3b",
             "PDF/A-3u",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 PDFVersionVocabularyFactory = PDFVersionVocabulary()
@@ -307,16 +301,11 @@ class OriginVocabulary:
         # Already existing Reports that have the now obsolete value "Genehmigungsinhaber"
         # need to find that in the vocabulary as well.
         # Same when the voc is instanciated without context.
-        if context is None or "Genehmigungsinhaber" in (
-            getattr(context, "Origins", []) or []
-        ):
+        if context is None or "Genehmigungsinhaber" in (getattr(context, "Origins", []) or []):
             values.append(("Genehmigungsinhaber", "Genehmigungsinhaber"))
-        return SimpleVocabulary(
-            [
-                SimpleTerm(value=value, token=value, title=title)
-                for value, title in values
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm(value=value, token=value, title=title) for value, title in values
+        ])
 
 
 OriginVocabularyFactory = OriginVocabulary()

@@ -59,9 +59,7 @@ class TestNavigation(unittest.TestCase):
         # personal folder is there
         self.assertIn('<a href="http://nohost/plone/bund/content/Members/user1"', html)
         # group folder is there
-        self.assertIn(
-            '<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html
-        )
+        self.assertIn('<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html)
 
         # enable elan
         # result: personal folder is not in navigation
@@ -78,10 +76,6 @@ class TestNavigation(unittest.TestCase):
         view = esd.restrictedTraverse("@@view")
         html = view()
         # personal folder is not there
-        self.assertNotIn(
-            '<a href="http://nohost/plone/bund/content/Members/user1"', html
-        )
+        self.assertNotIn('<a href="http://nohost/plone/bund/content/Members/user1"', html)
         # group folder is there
-        self.assertIn(
-            '<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html
-        )
+        self.assertIn('<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html)

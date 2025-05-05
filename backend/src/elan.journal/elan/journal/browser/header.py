@@ -2,7 +2,6 @@ from plone.app.layout.viewlets.common import ViewletBase
 
 
 class Header(ViewletBase):
-
     """A viewlet to include a header in the Journal."""
 
     def available(self):

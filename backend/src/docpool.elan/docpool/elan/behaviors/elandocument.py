@@ -116,11 +116,7 @@ class ELANDocument(FlexibleView):
             return results
         docpool = getDocumentPoolSite(self.context)
         if scen := docpool.unrestrictedTraverse("contentconfig/scen", None):
-            results = [
-                i
-                for i in scen.contentValues({"portal_type": "DPEvent"})
-                if i.UID() in scns
-            ]
+            results = [i for i in scen.contentValues({"portal_type": "DPEvent"}) if i.UID() in scns]
         return results
 
     def scenarioIndex(self):

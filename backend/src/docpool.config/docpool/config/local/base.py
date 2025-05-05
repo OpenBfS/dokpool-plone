@@ -10,7 +10,6 @@ from logging import getLogger
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import log_exc
 from zope.annotation.interfaces import IAnnotations
 
 
@@ -58,13 +57,12 @@ def createUsers(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    mtool.addMember(
-        "%s_dpadmin" % prefix, "DocPool Administrator (%s)" % title, ["Member"], []
-    )
+    mtool.addMember("%s_dpadmin" % prefix, "DocPool Administrator (%s)" % title, ["Member"], [])
     dpadmin = mtool.getMemberById("%s_dpadmin" % prefix)
-    dpadmin.setMemberProperties(
-        {"fullname": "DocPool Administrator (%s)" % title, "dp": self.UID()}
-    )
+    dpadmin.setMemberProperties({
+        "fullname": "DocPool Administrator (%s)" % title,
+        "dp": self.UID(),
+    })
     dpadmin.setSecurityProfile(password="admin")
 
 

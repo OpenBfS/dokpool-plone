@@ -81,9 +81,7 @@ class IREIDoc(IDocumentExtension):
     NuclearInstallations = schema.List(
         title=_("label_rei_NuclearInstallations", default="NuclearInstallations"),
         description=_("description_rei_NuclearInstallation", default=""),
-        value_type=schema.Choice(
-            source="docpool.rei.vocabularies.NuclearInstallationVocabulary"
-        ),
+        value_type=schema.Choice(source="docpool.rei.vocabularies.NuclearInstallationVocabulary"),
         required=True,
         missing_value=[],
     )
@@ -95,9 +93,7 @@ class IREIDoc(IDocumentExtension):
     ReiLegalBases = schema.List(
         title=_("label_rei_ReiLegalBases", default="ReiLegalBases"),
         description=_("description_rei_ReiLegalBases", default=""),
-        value_type=schema.Choice(
-            source="docpool.rei.vocabularies.ReiLegalBaseVocabulary"
-        ),
+        value_type=schema.Choice(source="docpool.rei.vocabularies.ReiLegalBaseVocabulary"),
         required=True,
         missing_value=[],
     )
@@ -149,9 +145,7 @@ class IREIDoc(IDocumentExtension):
 
     directives.widget(MStIDs=SelectFieldWidget)
     MStIDs = schema.List(
-        title=_(
-            "label_rei_MStID", default="Bericht enthält Daten folgender Messstellen"
-        ),
+        title=_("label_rei_MStID", default="Bericht enthält Daten folgender Messstellen"),
         description=_("description_rei_MStID", default=""),
         value_type=schema.Choice(source="docpool.rei.vocabularies.MStIDVocabulary"),
         required=False,
@@ -264,27 +258,19 @@ class REIDoc(FlexibleView):
         return api.portal.get_localized_time(self.StopSampling)
 
     def origins_display(self):
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary"
-        )()
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary")()
         return ", ".join(voc.getTerm(i).title for i in getattr(self, "Origins", []))
 
     def mstids_display(self):
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.MStIDVocabulary"
-        )()
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.MStIDVocabulary")()
         return ", ".join(voc.getTerm(i).title for i in getattr(self, "MStIDs", []))
 
     def period_display(self):
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary"
-        )()
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary")()
         return f"{voc.getTerm(self.Period).title} {self.Year}"
 
     def nuclear_installations_display(self):
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.NuclearInstallationVocabulary"
-        )()
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.NuclearInstallationVocabulary")()
         return ", ".join(voc.getTerm(i).title for i in self.NuclearInstallations)
 
     def review_history(self):
@@ -297,9 +283,7 @@ class REIDoc(FlexibleView):
         return execute_under_special_role(self, "Reviewer", show_review_history)
 
     def authority_display(self):
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.AuthorityVocabulary"
-        )()
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.AuthorityVocabulary")()
         return voc.getTerm(self.Authority).title
 
 
@@ -345,13 +329,9 @@ def set_title(obj, event=None):
         "M11": "{}",
         "M12": "{}",
     }
-    period_vocabulary = getUtility(
-        IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary"
-    )()
+    period_vocabulary = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary")()
     period_template = period_mapping.get(adapted.Period)
-    period_prefix = period_template.format(
-        period_vocabulary.getTerm(adapted.Period).title
-    )
+    period_prefix = period_template.format(period_vocabulary.getTerm(adapted.Period).title)
     period = f"{period_prefix} {adapted.Year}"
 
     installations = re.split(r", U[A-Z0-9]{3}", adapted.nuclear_installations_display())

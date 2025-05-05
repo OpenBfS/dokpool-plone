@@ -1,6 +1,6 @@
+from DateTime import DateTime
 from datetime import datetime
 from datetime import timedelta
-from DateTime import DateTime
 from elan.journal.interfaces import IBrowserLayer
 from elan.journal.testing import INTEGRATION_TESTING
 from elan.journal.tests.utils import _create_journalentries

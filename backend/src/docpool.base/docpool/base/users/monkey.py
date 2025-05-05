@@ -78,12 +78,12 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
     )
     if not ret:
         return ret
-    esd_uid = properties and properties.get("dp", None) or None
+    esd_uid = (properties and properties.get("dp", None)) or None
     if not esd_uid:
-        esd_uid = kw.get("dp", None)
-    title = properties and properties.get("title", None) or None
+        esd_uid = kw.get("dp")
+    title = (properties and properties.get("title", None)) or None
     if not title:
-        title = kw.get("title", None)
+        title = kw.get("title")
     group_id = id
     g = self.getGroupById(group_id)
     if not esd_uid:
@@ -161,9 +161,7 @@ def removeGroup(self, group_id, REQUEST=None):
             else:
                 portalMessage(
                     context,
-                    _(
-                        "The group folder could not be deleted because of protected documents. Please check!"
-                    ),
+                    _("The group folder could not be deleted because of protected documents. Please check!"),
                     "error",
                 )
     return ret
@@ -173,9 +171,7 @@ def getUserDataSchema():
     portal = getSite()
     schema = getattr(portal, "_v_userdata_schema", None)
     if schema is None:
-        portal._v_userdata_schema = schema = getFromBaseSchema(
-            IUserDataSchema, form_name="In User Profile"
-        )
+        portal._v_userdata_schema = schema = getFromBaseSchema(IUserDataSchema, form_name="In User Profile")
         # as schema is a generated supermodel,
         # needed adapters can only be registered at run time
         provideAdapter(UserDataPanelAdapter, (IPloneSiteRoot,), schema)
@@ -196,10 +192,7 @@ def getGroupIds(self, context):
     for g in groups:
         # Filter local groups
 
-        if (
-            context.getPortalTypeName() == "DocumentPool"
-            and not g.getProperty("dp") == context.UID()
-        ):
+        if context.getPortalTypeName() == "DocumentPool" and not g.getProperty("dp") == context.UID():
             continue
         if g.id.find("Members") > -1:
             continue
@@ -253,9 +246,7 @@ def patched_deleteMembers(self, member_ids):
     try:
         acl_users.userFolderDelUsers(member_ids)
     except (AttributeError, NotImplementedError):
-        raise NotImplementedError(
-            "The underlying User Folder " "doesn't support deleting members."
-        )
+        raise NotImplementedError("The underlying User Folder doesn't support deleting members.")
 
     # Delete member data in portal_memberdata.
     mdtool = getToolByName(context, "portal_memberdata", None)
@@ -279,13 +270,9 @@ def patched_usersdelete_reply(self):
     if not self.is_zope_manager:
         current_roles = user.getRoles()
         if "Manager" in current_roles:
-            raise BadRequest(
-                "You don't have permission to delete a user with 'Manager' role."
-            )
+            raise BadRequest("You don't have permission to delete a user with 'Manager' role.")
 
-    delete_memberareas = (
-        self.request.get("delete_memberareas", True) not in FALSE_VALUES
-    )
+    delete_memberareas = self.request.get("delete_memberareas", True) not in FALSE_VALUES
 
     delete_localroles = self.request.get("delete_localroles", True) not in FALSE_VALUES
 

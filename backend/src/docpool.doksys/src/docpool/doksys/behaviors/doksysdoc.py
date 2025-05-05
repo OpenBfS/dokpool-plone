@@ -182,9 +182,7 @@ class IDoksysDoc(IDocumentExtension):
     write_permission(TrajectoryStartLocation="docpool.doksys.AccessDoksys")
 
     TrajectoryEndLocation = schema.TextLine(
-        title=_(
-            "label_doksys_trajectory_end_location", default="Trajectory End Location"
-        ),
+        title=_("label_doksys_trajectory_end_location", default="Trajectory End Location"),
         description=_("description_doksys_trajectory_end_location", default=""),
         required=False,
     )
@@ -237,16 +235,12 @@ class DoksysDoc(FlexibleView):
     SampleType = ContextProperty("SampleType", default=[], skip_empty=True)
     Dom = ContextProperty("Dom", default=[], skip_empty=True)
     InfoType = ContextProperty("InfoType", skip_empty=True)
-    MeasurementCategory = ContextProperty(
-        "MeasurementCategory", default=[], skip_empty=True
-    )
+    MeasurementCategory = ContextProperty("MeasurementCategory", default=[], skip_empty=True)
     Duration = ContextProperty("Duration", skip_empty=True)
     Status = ContextProperty("Status", skip_empty=True)
     SamplingBegin = ContextProperty("SamplingBegin", skip_empty=True)
     SamplingEnd = ContextProperty("SamplingEnd", skip_empty=True)
-    TrajectoryStartLocation = ContextProperty(
-        "TrajectoryStartLocation", skip_empty=True
-    )
+    TrajectoryStartLocation = ContextProperty("TrajectoryStartLocation", skip_empty=True)
     TrajectoryEndLocation = ContextProperty("TrajectoryEndLocation", skip_empty=True)
     TrajectoryStartTime = ContextProperty("TrajectoryStartTime", skip_empty=True)
     TrajectoryEndTime = ContextProperty("TrajectoryEndTime", skip_empty=True)

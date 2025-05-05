@@ -15,9 +15,7 @@ def pre_handler(answers: dict) -> dict:
     return answers
 
 
-def post_handler(
-    distribution: Distribution, site: PloneSite, answers: dict
-) -> PloneSite:
+def post_handler(distribution: Distribution, site: PloneSite, answers: dict) -> PloneSite:
     """Run after site creation."""
     logger.info(f"{site.id}: Running {distribution.name} post_handler")
 

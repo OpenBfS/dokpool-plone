@@ -360,9 +360,7 @@ class Dom:
             "968 ___therm. power_3 months",
             "969 ___therm. power_1 year",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 DomFactory = Dom()

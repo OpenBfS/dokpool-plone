@@ -30,8 +30,7 @@ class ReviewHistoryView(BrowserView):
         context = aq_inner(self.context)
         # check if the current user has the proper permissions
         if not (
-            _checkPermission("Request review", context)
-            or _checkPermission("Review portal content", context)
+            _checkPermission("Request review", context) or _checkPermission("Review portal content", context)
         ):
             return []
 
@@ -59,9 +58,7 @@ class ReviewHistoryView(BrowserView):
 
             for r in review_history:
                 r["type"] = "workflow"
-                r["transition_title"] = self.getTitleForTransition(r["action"]) or _(
-                    "Create"
-                )
+                r["transition_title"] = self.getTitleForTransition(r["action"]) or _("Create")
                 r["state_title"] = self.getTitleForState(r["review_state"])
                 actorid = r["actor"]
                 r["actorid"] = actorid
@@ -75,8 +72,7 @@ class ReviewHistoryView(BrowserView):
 
         except WorkflowException:
             log(
-                "docpool.base.browser.review_history: "
-                "%s has no associated workflow" % context.absolute_url(),
+                "docpool.base.browser.review_history: %s has no associated workflow" % context.absolute_url(),
                 severity=logging.DEBUG,
             )
 

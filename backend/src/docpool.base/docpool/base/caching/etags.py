@@ -22,9 +22,7 @@ class DokPoolApps:
         pieces = [";".join(apps)]
 
         for app in apps:
-            app_caching = queryMultiAdapter(
-                (context, self.request), name=f"app_caching_{app}"
-            )
+            app_caching = queryMultiAdapter((context, self.request), name=f"app_caching_{app}")
             if app_caching:
                 pieces.extend(app_caching.etag_pieces())
 
