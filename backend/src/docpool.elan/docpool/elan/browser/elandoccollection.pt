@@ -1,15 +1,19 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal" i18n:domain="docpool.elan"
-      xml:lang="en" metal:use-macro="context/main_template/macros/master"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<body>
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.elan"
+>
+  <body>
 
-<metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core">
-        <div metal:use-macro="context/@@dp.macros/macros/doccollection"/>
-</metal:content-core>
-</metal:content-core>
+    <metal:content-core fill-slot="content-core">
+      <metal:content-core define-macro="content-core">
+        <div metal:use-macro="context/@@dp.macros/macros/doccollection"></div>
+      </metal:content-core>
+    </metal:content-core>
 
-</body>
+  </body>
 </html>

@@ -51,7 +51,9 @@
 
                   <thead>
                     <tr>
-                      <th class="text-nowrap" tal:replace="python: None"></th>
+                      <th class="text-nowrap"
+                          tal:replace="python: None"
+                      ></th>
                       <th class="text-nowrap"
                           tal:repeat="field tabular_fields"
                           tal:content="python:view.tabular_field_label(field)"
@@ -127,8 +129,7 @@
                                 "
                                 tal:condition="python:field == 'Creator'"
                             >
-                              <tal:author condition="python: author"
-                              >
+                              <tal:author condition="python: author">
                       ${name}
                               </tal:author>
                             </td>

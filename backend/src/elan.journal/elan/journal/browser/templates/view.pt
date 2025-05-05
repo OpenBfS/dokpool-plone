@@ -1,64 +1,103 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    metal:use-macro="context/@@main_template/macros/master"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="elan.journal">
-<body>
-  <metal:block fill-slot="main">
-    <article itemscope="" itemtype="http://schema.org/BlogPosting">
-      <header>
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-        <h1 class="documentFirstHeading" itemprop="headline"
-            tal:content="context/Title">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="context/@@main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="elan.journal"
+>
+  <body>
+    <metal:block fill-slot="main">
+      <article itemscope
+               itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div tal:replace="structure provider:plone.abovecontenttitle"></div>
+          <h1 class="documentFirstHeading"
+              itemprop="headline"
+              tal:content="context/Title"
+          >
           Title
-        </h1>
-<!--         <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
-        <div class="documentDescription" itemprop="description"
-            tal:content="context/Description">
+          </h1>
+          <!--         <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
+          <div class="documentDescription"
+               itemprop="description"
+               tal:content="context/Description"
+          >
           Description
-        </div>
-        <div id="parent-fieldname-text" class=""
-             tal:condition="python:getattr(context.aq_base, 'text', None)">
-          <div itemprop="articleBody"
-              tal:content="structure python:context.text.output_relative_to(view.context)">The body</div>
-        </div>
-      </header>
-      <div tal:replace="structure provider:plone.abovecontentbody" />
-      <div id="content-core" itemprop="articleBody">
-    <section id="journal-entries">
-      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
-          tal:repeat="update view/updates"
-          tal:attributes="data-timestamp update/timestamp">
-        <h2 class="journalentry-title" itemprop="headline"
-            tal:condition="update/title"
-            tal:content="update/title" />
-        <div class="journalentry-text" itemprop="text"
-            tal:content="structure update/text" />
-        <div class="journalentry-byline" tal:define="item_creator update/creator;
-                                                     pas_member nocall: context/@@pas_member;
-                                                     author python:pas_member.info(item_creator);
-                                                     creator_fullname author/name_or_id;
-                                                           ">
-          <p tal:condition="view/show_byline" i18n:translate="">
+          </div>
+          <div class=""
+               id="parent-fieldname-text"
+               tal:condition="python:getattr(context.aq_base, 'text', None)"
+          >
+            <div itemprop="articleBody"
+                 tal:content="structure python:context.text.output_relative_to(view.context)"
+            >The body</div>
+          </div>
+        </header>
+        <div tal:replace="structure provider:plone.abovecontentbody"></div>
+        <div id="content-core"
+             itemprop="articleBody"
+        >
+          <section id="journal-entries">
+            <article class="journalentry"
+                     itemprop="comment"
+                     itemscope
+                     itemtype="http://schema.org/Comment"
+                     data-timestamp
+                     tal:repeat="update view/updates"
+                     tal:attributes="
+                       data-timestamp update/timestamp;
+                     "
+            >
+              <h2 class="journalentry-title"
+                  itemprop="headline"
+                  tal:condition="update/title"
+                  tal:content="update/title"
+              ></h2>
+              <div class="journalentry-text"
+                   itemprop="text"
+                   tal:content="structure update/text"
+              ></div>
+              <div class="journalentry-byline"
+                   tal:define="
+                     item_creator update/creator;
+                     pas_member nocall: context/@@pas_member;
+                     author python:pas_member.info(item_creator);
+                     creator_fullname author/name_or_id;
+                   "
+              >
+                <p tal:condition="view/show_byline"
+                   i18n:translate=""
+                >
               By
-            <span itemprop="author"
-                tal:content="creator_fullname"
-                i18n:name="byline" />
-          </p>
-          <time itemprop="datePublished" title="2014-08-28 14h31" datetime="2014-08-28T14:31:02.402"
-              tal:attributes="datetime update/isoformat;
-                              title update/datetime;
-                              data-date update/date;
-                              data-time update/time;
-                              data-timestamp update/timestamp">
-            <a tal:attributes="href string:${context/absolute_url}/journalentry/${update/timestamp}">
-              <span class="journalentry-time" tal:content="update/time" />
-            </a>
-          </time>
-        </div>
-      </article>
-<!--
+                  <span itemprop="author"
+                        tal:content="creator_fullname"
+                        i18n:name="byline"
+                  ></span>
+                </p>
+                <time datetime="2014-08-28T14:31:02.402"
+                      itemprop="datePublished"
+                      title="2014-08-28 14h31"
+                      tal:attributes="
+                        datetime update/isoformat;
+                        title update/datetime;
+                        data-date update/date;
+                        data-time update/time;
+                        data-timestamp update/timestamp;
+                      "
+                >
+                  <a tal:attributes="
+                       href string:${context/absolute_url}/journalentry/${update/timestamp};
+                     ">
+                    <span class="journalentry-time"
+                          tal:content="update/time"
+                    ></span>
+                  </a>
+                </time>
+              </div>
+            </article>
+            <!--
       <div class="journalentry" data-timestamp=""
           tal:condition="not:view/has_updates"
           tal:attributes="data-timestamp view/now">
@@ -67,11 +106,11 @@
         </p>
       </div>
 -->
-    </section>
-      </div>
-      <div tal:replace="structure provider:plone.belowcontentbody" />
-    </article>
-    <script>
+          </section>
+        </div>
+        <div tal:replace="structure provider:plone.belowcontentbody"></div>
+      </article>
+      <script>
         /* show dates for journal-entries older than today */
         var today = new Date().toISOString().substr(0, 10);
         $("time a").each(function () {
@@ -86,8 +125,8 @@
                 "<span class='journalentry-time'>" + time + "</span></a>");
             }
         });
-    </script>
-    <script tal:condition="view/automatic_updates_enabled">
+      </script>
+      <script tal:condition="view/automatic_updates_enabled">
         /* keep page updated */
         setInterval(function () {
             "use strict";
@@ -118,7 +157,7 @@
                 }
             });
         }, 1000 * 20);
-    </script>
-  </metal:block>
-</body>
+      </script>
+    </metal:block>
+  </body>
 </html>

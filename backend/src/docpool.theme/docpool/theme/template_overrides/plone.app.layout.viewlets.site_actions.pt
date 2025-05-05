@@ -1,18 +1,25 @@
 <ul id="portal-siteactions"
     tal:condition="view/site_actions"
-    i18n:domain="plone">
+    i18n:domain="plone"
+>
 
-    <li tal:repeat="saction view/site_actions"
-        tal:attributes="id string:siteaction-${saction/id}"><a
-           href=""
-           tal:define="title saction/title;
-                       id saction/id;"
-           i18n:attributes="title"
-           i18n:translate=""
-           tal:content="title"
-           tal:attributes="href saction/url;
-                           onclick string:makePopUp(800, 1000, this.href, '${saction/title}', 200, 200, 1, 1);; return false;;;
-                           target saction/link_target|nothing;
-                           title title;"
-           >Site action</a></li>
+  <li tal:repeat="saction view/site_actions"
+      tal:attributes="
+        id string:siteaction-${saction/id};
+      "
+  ><a href=""
+       tal:define="
+         title saction/title;
+         id saction/id;
+       "
+       tal:content="title"
+       tal:attributes="
+         href saction/url;
+         onclick string:makePopUp(800, 1000, this.href, '${saction/title}', 200, 200, 1, 1);; return false;;;
+         target saction/link_target|nothing;
+         title title;
+       "
+       i18n:attributes="title"
+       i18n:translate=""
+    >Site action</a></li>
 </ul>

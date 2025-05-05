@@ -1,8 +1,13 @@
 <tal:block i18n:domain="docpool.elan">
   <div id="mesz"
-       tal:define="local_time python: view.get_local_time();
-                   utc_time python: view.get_utc_time();">
-    <table class="table table-bordered" id="time_table">
+       tal:define="
+         local_time python: view.get_local_time();
+         utc_time python: view.get_utc_time();
+       "
+  >
+    <table class="table table-bordered"
+           id="time_table"
+    >
       <tr class="times">
         <td class="zone">
           <tal:var i18n:translate="">LT</tal:var>

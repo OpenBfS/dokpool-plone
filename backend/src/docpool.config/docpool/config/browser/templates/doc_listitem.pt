@@ -1,55 +1,67 @@
 <table>
-<tr i18n:domain="docpool.base"
-           tal:define="view nocall:options/view"
-            class="wrapper">
-    <tal:def define="dpbrain nocall:options/dpbrain;
-                 euid dpbrain/UID;
-                 eurl dpbrain/getURL;
-                 item_id dpbrain/id|dpbrain/getId;
-                 item_title dpbrain/Title|dpbrain/title_or_id;
-                 title_or_id python:item_title or item_id;
-                 buttons options/buttons|nothing;
-                 dpbrainobj dpbrain/getObject;
-                 isOverview options/isOverview;
-                 isCollection options/isCollection;
-                 container_type options/container_type | nothing;
-                 individual context/@@is/individual;
-                 myfolder_url nocall:options/myfolder_url;
-                 item_description dpbrain/Description;
-                 dview_url python:'%s/@@dview?d=%s&disable_border=1' % (myfolder_url, euid);
-                 use_dview python:container_type in ['Collection', 'ELANDocCollection', 'DashboardCollection'] or isCollection;
-                 item_url python:dview_url if use_dview else dpbrain.getURL(original=True);
-                 item_url python:eurl if isOverview else item_url;
-                 item_modified dpbrain/getMdate;
-                 item_created dpbrain/CreationDate;
-                 item_creator dpbrain/Creator;
-                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                 pas_member nocall: context/@@pas_member;
-                 author python:pas_member.info(item_creator);
-                 creator_fullname author/name_or_id;
-                 item_ptype dpbrain/portal_type;
-                 normalizeString nocall: context/plone_utils/normalizeString;
-                 item_type_class python:'contenttype-' + normalizeString(item_ptype);
-                 rs dpbrain/review_state;
-                 item_wf_state_class python:'state-' + normalizeString(rs);
-                 navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                 ">
-                <td class="actions" tal:condition="python:not isOverview and not isCollection">
-                    <div metal:use-macro="context/@@dp.macros/macros/cb"/>
-                    <tal:show_actions condition="python:container_type != 'Collection'">
-                        <div metal:use-macro="context/@@dp.macros/macros/delete"/>
-                        <div metal:use-macro="context/@@dp.macros/macros/docactions"/>
-                        <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)"/>
-                    </tal:show_actions>
+  <tr class="wrapper"
+      tal:define="
+        view nocall:options/view;
+      "
+      i18n:domain="docpool.base"
+  >
+    <tal:def define="
+               dpbrain nocall:options/dpbrain;
+               euid dpbrain/UID;
+               eurl dpbrain/getURL;
+               item_id dpbrain/id|dpbrain/getId;
+               item_title dpbrain/Title|dpbrain/title_or_id;
+               title_or_id python:item_title or item_id;
+               buttons options/buttons|nothing;
+               dpbrainobj dpbrain/getObject;
+               isOverview options/isOverview;
+               isCollection options/isCollection;
+               container_type options/container_type | nothing;
+               individual context/@@is/individual;
+               myfolder_url nocall:options/myfolder_url;
+               item_description dpbrain/Description;
+               dview_url python:'%s/@@dview?d=%s&disable_border=1' % (myfolder_url, euid);
+               use_dview python:container_type in ['Collection', 'ELANDocCollection', 'DashboardCollection'] or isCollection;
+               item_url python:dview_url if use_dview else dpbrain.getURL(original=True);
+               item_url python:eurl if isOverview else item_url;
+               item_modified dpbrain/getMdate;
+               item_created dpbrain/CreationDate;
+               item_creator dpbrain/Creator;
+               toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+               pas_member nocall: context/@@pas_member;
+               author python:pas_member.info(item_creator);
+               creator_fullname author/name_or_id;
+               item_ptype dpbrain/portal_type;
+               normalizeString nocall: context/plone_utils/normalizeString;
+               item_type_class python:'contenttype-' + normalizeString(item_ptype);
+               rs dpbrain/review_state;
+               item_wf_state_class python:'state-' + normalizeString(rs);
+               navigation_root_url context/@@plone_portal_state/navigation_root_url;
+             ">
+      <td class="actions"
+          tal:condition="python:not isOverview and not isCollection"
+      >
+        <div metal:use-macro="context/@@dp.macros/macros/cb"></div>
+        <tal:show_actions condition="python:container_type != 'Collection'">
+          <div metal:use-macro="context/@@dp.macros/macros/delete"></div>
+          <div metal:use-macro="context/@@dp.macros/macros/docactions"></div>
+          <tal:insertview replace="structure python:context.restrictedTraverse('@@actions')(isCollection=isCollection)" />
+        </tal:show_actions>
 
-                </td>
-                <td i18n:attributes="data-title" data-title="Title / Description / Text"  class="title">
-                    <div metal:use-macro="context/@@dp.macros/macros/doccontent"/>
-                    <div metal:use-macro="context/@@dp.macros/macros/fileimagelist"/>
-                </td>
-                <td i18n:attributes="data-title" data-title="Metadata" class="metadata">
-                    <div metal:use-macro="context/@@dp.macros/macros/doc_meta_listitem"/>
-                </td>
+      </td>
+      <td class="title"
+          data-title="Title / Description / Text"
+          i18n:attributes="data-title"
+      >
+        <div metal:use-macro="context/@@dp.macros/macros/doccontent"></div>
+        <div metal:use-macro="context/@@dp.macros/macros/fileimagelist"></div>
+      </td>
+      <td class="metadata"
+          data-title="Metadata"
+          i18n:attributes="data-title"
+      >
+        <div metal:use-macro="context/@@dp.macros/macros/doc_meta_listitem"></div>
+      </td>
     </tal:def>
-</tr>
+  </tr>
 </table>

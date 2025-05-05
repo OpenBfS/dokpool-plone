@@ -1,66 +1,111 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="docpool.elan">
-<body>
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.elan"
+>
+  <body>
 
-<div metal:define-macro="cat_filter" class="cat_filter" tal:define="selected_categories python:view.selected_categories()">
-    <form name="categories" method="post" class="category_selection"
-          tal:attributes="action string:selectCategories">
+    <div class="cat_filter"
+         metal:define-macro="cat_filter"
+         tal:define="
+           selected_categories python:view.selected_categories();
+         "
+    >
+      <form class="category_selection"
+            method="post"
+            name="categories"
+            tal:attributes="
+              action string:selectCategories;
+            "
+      >
         <div class="multiselection">
-            <select multiple="multiple" id="cat_select" name="cats:list" size="5">
-                <tal:loop tal:repeat="category python:view.available_categories()">
-                    <option tal:attributes="selected python:'selected' if category in selected_categories else None;"
-                            tal:content="python: category">Category
-                    </option>
-                </tal:loop>
-            </select>
+          <select id="cat_select"
+                  multiple="multiple"
+                  name="cats:list"
+                  size="5"
+          >
+            <tal:loop tal:repeat="category python:view.available_categories()">
+              <option tal:content="python: category"
+                      tal:attributes="
+                        selected python:'selected' if category in selected_categories else None;
+                      "
+              >Category
+              </option>
+            </tal:loop>
+          </select>
         </div>
-        <input
-                type="submit"
-                name="form.button.Save"
-                class="context btn btn-primary"
-                value="Filter"
-                i18n:attributes="value"/>
-        <input
+        <input class="context btn btn-primary"
+               name="form.button.Save"
                type="submit"
+               value="Filter"
+               i18n:attributes="value"
+        />
+        <input class="context btn btn-primary"
                id="reset_filter"
                name="form.button.Save"
-               class="context btn btn-primary"
+               type="submit"
                value="All"
-               i18n:attributes="value"/>
-    </form>
-    <div class="cat_info">
-        <span><i18n:text translate="">Current filter:</i18n:text> <tal:var replace="python:', '.join(selected_categories)"/></span>
+               i18n:attributes="value"
+        />
+      </form>
+      <div class="cat_info">
+        <span><i18n:text translate="">Current filter:</i18n:text>
+          <tal:var replace="python:', '.join(selected_categories)" /></span>
+      </div>
     </div>
-</div>
 
-<metal:macro define-macro="elan_actions" i18n:domain="docpool.elan">
-    <tal:cond define="_is nocall:context/@@is"
-              condition="python: not (isCollection or _is.archive())">
-        <a tal:condition="nocall:unknown_scen" tal:define="unknown_scen python:elanobj.unknownScenario()" href=""
+    <metal:macro define-macro="elan_actions"
+                 i18n:domain="docpool.elan"
+    >
+      <tal:cond define="
+                  _is nocall:context/@@is;
+                "
+                condition="python: not (isCollection or _is.archive())"
+      >
+        <a href=""
            title="Edit unknown scenario"
-           tal:attributes="href unknown_scen/absolute_url"
-           i18n:attributes="title">
-            <img src="" tal:attributes="src string:${context/portal_url}/publish.png"/>
+           tal:define="
+             unknown_scen python:elanobj.unknownScenario();
+           "
+           tal:condition="nocall:unknown_scen"
+           tal:attributes="
+             href unknown_scen/absolute_url;
+           "
+           i18n:attributes="title"
+        >
+          <img src=""
+               tal:attributes="
+                 src string:${context/portal_url}/publish.png;
+               "
+          />
         </a>
-    </tal:cond>
-</metal:macro>
+      </tal:cond>
+    </metal:macro>
 
-<metal:macro define-macro="elan_meta" i18n:domain="docpool.elan">
+    <metal:macro define-macro="elan_meta"
+                 i18n:domain="docpool.elan"
+    >
 
-  <dl class="doc_metadata">
-    <tal:scns define="scns elanobj/getScenarioNames|nothing" condition="scns">
-        <dt i18n:translate="">Belongs to scenario:</dt>
-        <dd tal:content="python:', '.join(scns)" />
-    </tal:scns>
-    <tal:cat condition="cat" define="cat elanobj/category">
-        <dt i18n:translate="">Content from:</dt>
-        <dd>${item_type} ${python:elanobj.cat_convert()}</dd>
-    </tal:cat>
-  </dl>
-</metal:macro>
+      <dl class="doc_metadata">
+        <tal:scns define="
+                    scns elanobj/getScenarioNames|nothing;
+                  "
+                  condition="scns"
+        >
+          <dt i18n:translate="">Belongs to scenario:</dt>
+          <dd tal:content="python:', '.join(scns)"></dd>
+        </tal:scns>
+        <tal:cat define="
+                   cat elanobj/category;
+                 "
+                 condition="cat"
+        >
+          <dt i18n:translate="">Content from:</dt>
+          <dd>${item_type} ${python:elanobj.cat_convert()}</dd>
+        </tal:cat>
+      </dl>
+    </metal:macro>
 
 
-</body>
+  </body>
 </html>
