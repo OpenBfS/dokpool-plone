@@ -84,7 +84,7 @@ lint.select = [
     # flake8-comprehensions
     # "C4",
     # flake8-debugger
-    # "T10",
+    "T10",
     # flake8-simplify
     # "SIM",
     # mccabe
@@ -94,7 +94,7 @@ lint.select = [
     # pyflakes
     "F",
     # pygrep-hooks
-    # "PGH",
+    "PGH",
     # pyupgrade
     # "UP",
     # ruff
