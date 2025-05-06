@@ -19,7 +19,9 @@ class Renderer(navigation.Renderer):
         navigation.Renderer.__init__(self, context, request, view, manager, data)
 
     @memoize
-    def getNavTree(self, _marker=[]):
+    def getNavTree(self, _marker=None):
+        if _marker is None:
+            _marker = []
         context = aq_inner(self.context)
 
         if is_personal(context):

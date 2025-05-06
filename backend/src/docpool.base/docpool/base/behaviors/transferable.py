@@ -214,7 +214,7 @@ class Transferable(FlexibleView):
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
-    def transferToTargets(self, targets=[]):
+    def transferToTargets(self, targets=None):
         """
         1) Determine all transfer folder objects.
         2) Put a copy of me in each of them, preserving timestamps.
@@ -224,6 +224,9 @@ class Transferable(FlexibleView):
         6) Set workflow state of the copies according to folder permissions.
         7) Add entries to receiver logs.
         """
+
+        if targets is None:
+            targets = []
 
         def error_message(esd_to_title, msg):
             pmsg = _(

@@ -95,7 +95,7 @@ class GroupDetailsControlPanel(GDCP):
                 msg = PMF("Group name required.")
 
             processed = {}
-            for id, property in self.gdtool.propertyItems():
+            for id, property in self.gdtool.propertyItems():  # noqa: B007
                 # BfS: Here we take the "dp" from the request (set above)
                 processed[id] = self.request.get(id, None)
                 try:

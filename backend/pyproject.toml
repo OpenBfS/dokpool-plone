@@ -78,7 +78,7 @@ lint.select = [
     # flake8-bandit
     # "S",
     # flake8-bugbear
-    # "B",
+    "B",
     # flake8-builtins
     # "A",
     # flake8-comprehensions

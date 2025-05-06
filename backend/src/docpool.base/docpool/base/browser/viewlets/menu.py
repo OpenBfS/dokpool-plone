@@ -310,9 +310,11 @@ def getFoldersForCurrentUser(context):
     return transfers_result
 
 
-def _folderTree(context, path, filter={}):
+def _folderTree(context, path, filter=None):
     """Return tree of tabs based on content structure"""
 
+    if filter is None:
+        filter = {}
     queryBuilder = DropDownMenuQueryBuilder(context)
     query = queryBuilder()
     query.update(filter)

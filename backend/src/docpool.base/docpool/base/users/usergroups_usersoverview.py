@@ -14,7 +14,7 @@ logger = logging.getLogger("Products.CMFPlone")
 
 
 class UsersOverviewControlPanel(UOCP):
-    def manageUser(self, users=[], resetpassword=[], delete=[]):
+    def manageUser(self, users=[], resetpassword=[], delete=[]):  # noqa: B006
         """
         Override in order to change password reset behavior: set password == userid
         when user is deleted

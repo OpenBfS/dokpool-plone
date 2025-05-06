@@ -61,7 +61,7 @@ def applyProperties(self, userid, data):
     BaseRegistrationForm._old_applyProperties(self, userid, data)
 
 
-def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args, **kw):
+def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args, **kw):  # noqa: B006
     from docpool.base import DocpoolMessageFactory as _
     from docpool.base.utils import portalMessage
 
@@ -73,7 +73,7 @@ def addGroup(self, id, roles=[], groups=[], properties=None, REQUEST=None, *args
         groups=groups,
         properties=properties,
         REQUEST=REQUEST,
-        *args,
+        *args,  # noqa: B026
         **kw,
     )
     if not ret:
@@ -246,7 +246,7 @@ def patched_deleteMembers(self, member_ids):
     try:
         acl_users.userFolderDelUsers(member_ids)
     except (AttributeError, NotImplementedError):
-        raise NotImplementedError("The underlying User Folder doesn't support deleting members.")
+        raise NotImplementedError("The underlying User Folder doesn't support deleting members.")  # noqa: B904
 
     # Delete member data in portal_memberdata.
     mdtool = getToolByName(context, "portal_memberdata", None)

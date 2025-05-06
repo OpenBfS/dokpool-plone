@@ -15,7 +15,7 @@ def add_user(
     docpool,
     username,
     groupnames=None,
-    enabled_apps=["elan", "doksys", "rei"],
+    enabled_apps=None,
 ):
     """Create a User and a Group for a docpool for testing.
 
@@ -25,6 +25,8 @@ def add_user(
     * assigning the docpool
 
     """
+    if enabled_apps is None:
+        enabled_apps = ["elan", "doksys", "rei"]
     docpool_title = docpool.Title()
     prefix = docpool.prefix or docpool.id
     docpool_uid = IUUID(docpool)

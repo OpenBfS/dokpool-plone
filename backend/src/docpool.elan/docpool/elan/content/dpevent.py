@@ -63,8 +63,8 @@ def is_coordinate(value):
     if value:
         try:
             wkt = from_wkt(value)
-        except Exception:
-            raise Invalid("Value is no a valid WKT.")
+        except Exception as exc:
+            raise Invalid("Value is no a valid WKT.") from exc
         if not wkt.geom_type == "Point":
             raise Invalid("Value is not a Point.")
     return True
@@ -74,8 +74,8 @@ def is_point_or_polygon(value):
     if value:
         try:
             wkt = from_wkt(value)
-        except Exception:
-            raise Invalid("Value is not a valid WKT.")
+        except Exception as exc:
+            raise Invalid("Value is not a valid WKT.") from exc
         if wkt.geom_type not in ["Point", "Polygon"]:
             raise Invalid("Value is neither Point nor Polygon.")
     return True
@@ -347,7 +347,7 @@ class DPEvent(Container, ContentBase):
         # 4. Empty current Journals and copy local roles
         for journal in self.contentValues({"portal_type": "Journal"}):
             adapter = IJournalEntryContainer(journal)
-            for id, update in enumerate(adapter):
+            for id, _update in enumerate(adapter):
                 adapter.delete(id)
             # Copy local roles to journals
             copied_journal = copied_event[journal.id]
