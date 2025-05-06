@@ -18,9 +18,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.controlpanel.browser.usergroups import (
-    UsersGroupsControlPanelView,
-)
+from Products.CMFPlone.controlpanel.browser.usergroups import UsersGroupsControlPanelView
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import normalizeString
 from Products.PlonePAS.tools.groups import GroupsTool

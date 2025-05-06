@@ -3,9 +3,7 @@ from logging import exception
 from plone.base.utils import safe_callable
 from plone.namedfile.file import FileChunk
 from plone.namedfile.interfaces import IStableImageScale
-from plone.namedfile.scaling import (
-    DefaultImageScalingFactory as OriginalImageScalingFactory,
-)
+from plone.namedfile.scaling import DefaultImageScalingFactory as OriginalImageScalingFactory
 from plone.namedfile.scaling import ImageScale
 from plone.namedfile.scaling import ImageScaling as OriginalImageScaling
 from plone.scale.scale import scaleImage

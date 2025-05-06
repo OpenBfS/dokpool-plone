@@ -55,9 +55,7 @@ class SimpleFolder(FolderBase):
                     if not dt.getObject().globalAllow:  # only generally allowed doctypes
                         continue
                     # Get behavior of menu_item
-                    from docpool.base.localbehavior.localbehavior import (
-                        ILocalBehaviorSupport,
-                    )
+                    from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 
                     item_behavior = ILocalBehaviorSupport(dt.getObject()).local_behaviors
 

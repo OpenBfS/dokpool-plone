@@ -15,10 +15,7 @@ class PrognosisTypesVocabulary:
             ("Sonstige Ausbreitungsrechnung", _("Sonstige Ausbreitungsrechnung")),
             ("Potenziell betroffene Gebiete", _("Potenziell betroffene Gebiete")),
             ("RODOS Prognose", _("RODOS Prognose")),
-            (
-                "DWD Ausbreitungsrechnung ab Quelle",
-                _("DWD Ausbreitungsrechnung ab Quelle"),
-            ),
+            ("DWD Ausbreitungsrechnung ab Quelle", _("DWD Ausbreitungsrechnung ab Quelle")),
             ("LASAIR/LASAT", _("LASAIR/LASAT")),
         ]
         return SimpleVocabulary([SimpleTerm(value, value, title) for value, title in values])

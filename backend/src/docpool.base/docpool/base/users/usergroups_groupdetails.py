@@ -3,9 +3,7 @@ from plone.base import PloneMessageFactory as PMF
 from plone.base.utils import base_hasattr
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import (
-    GroupDetailsControlPanel as GDCP,
-)
+from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import GroupDetailsControlPanel as GDCP
 from Products.statusmessages.interfaces import IStatusMessage
 
 

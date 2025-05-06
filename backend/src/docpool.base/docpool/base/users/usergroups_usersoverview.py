@@ -2,9 +2,7 @@ from Acquisition import aq_inner
 from plone.base import PloneMessageFactory as PMF
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import (
-    UsersOverviewControlPanel as UOCP,
-)
+from Products.CMFPlone.controlpanel.browser.usergroups_usersoverview import UsersOverviewControlPanel as UOCP
 from zExceptions import Forbidden
 
 import logging
