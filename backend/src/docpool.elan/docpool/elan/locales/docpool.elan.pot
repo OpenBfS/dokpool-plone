@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-05-13 16:10+0000\n"
+"POT-Creation-Date: 2025-05-13 17:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,6 +77,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Archive Event"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Archived"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchives.xml
@@ -223,6 +227,11 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Entries"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
 msgstr ""
@@ -289,6 +298,10 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/event_macros.pt
+msgid "Number of entries"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
@@ -349,6 +362,7 @@ msgid "Sectorizing sample types"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
+#: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Show Debug-Info"
 msgstr ""
 
@@ -414,6 +428,7 @@ msgid "This event is already being archived by"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Title/Description"
 msgstr ""
 
@@ -470,6 +485,10 @@ msgstr ""
 #. Default: "No items changed yet."
 #: docpool.elan/docpool/elan/portlets/recent.pt
 msgid "box_recent_no_items"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "by"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
@@ -574,6 +593,7 @@ msgstr ""
 
 #. Default: "Purge"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
+#: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "label_purge"
 msgstr ""
 

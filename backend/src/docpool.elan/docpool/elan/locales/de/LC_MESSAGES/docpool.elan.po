@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-05-13 16:10+0000\n"
+"POT-Creation-Date: 2025-05-13 17:10+0000\n"
 "PO-Revision-Date: 2024-12-05 15:56+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,6 +75,10 @@ msgstr "Archiv"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Archive Event"
 msgstr "Ereignis archivieren"
+
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Archived"
+msgstr "Archiviert"
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchives.xml
 msgid "Archives"
@@ -220,6 +224,11 @@ msgstr "Unbekanntes Ereignis bearbeiten"
 msgid "Emergency"
 msgstr "Notfall"
 
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Entries"
+msgstr "Einträge"
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
 msgstr "Einträge, die weiteren Ereignissen zugewiesen sind, werden in das Archiv kopiert anstatt verschoben."
@@ -286,6 +295,10 @@ msgstr "Ort"
 msgid "Metadata"
 msgstr "Metadaten"
 
+#: docpool.elan/docpool/elan/browser/event_macros.pt
+msgid "Number of entries"
+msgstr "Anzahl der Einträge"
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
@@ -346,6 +359,7 @@ msgid "Sectorizing sample types"
 msgstr "Sektorierung Umweltbereiche"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
+#: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Show Debug-Info"
 msgstr "Debug-Infos anzeigen"
 
@@ -411,6 +425,7 @@ msgid "This event is already being archived by"
 msgstr "Für dieses Ereignis läuft bereits die Erstellung eines Snapshots oder eine Archivierung durch"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
 
@@ -468,6 +483,10 @@ msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 #: docpool.elan/docpool/elan/portlets/recent.pt
 msgid "box_recent_no_items"
 msgstr "Noch keine Änderungen"
+
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "by"
+msgstr "durch"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "closed"
@@ -571,6 +590,7 @@ msgstr "Art des Ereignisses"
 
 #. Default: "Purge"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
+#: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "label_purge"
 msgstr "Archivierungsinfos löschen"
 
