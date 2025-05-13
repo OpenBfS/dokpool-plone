@@ -14,6 +14,9 @@ Changed:
 - Remove table style, increase width. (#5907)
   [slindner]
 
+- Use plone-server-builder images for CI (#5871)
+  [slindner]
+
 2.0.1 (2025-03-31)
 ------------------
 
