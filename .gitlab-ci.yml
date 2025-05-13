@@ -38,8 +38,9 @@ lint_tests:
     - make format
 
 unit_tests:
+  image: plone/server-builder:6.1.1
   tags:
-    - docker
+    - dind
   stage: test
   script:
     - apt update
