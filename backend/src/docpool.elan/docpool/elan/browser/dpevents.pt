@@ -9,33 +9,32 @@
     <body>
         <metal:content-core fill-slot="content-core">
         <metal:content-core define-macro="content-core">
-        <table style="width:65%;"
-               class="elanlisting table table-striped table-bordered"
+        <table class="table table-striped table-responsive table-bordered"
                tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
             <thead>
                 <tr>
                     <th i18n:translate="">Created</th>
                     <th i18n:translate="">Title/Description</th>
                     <th i18n:translate="">Status</th>
+                    <th i18n:translate="">Entries</th>
                 </tr>
             </thead>
             <tbody>
                 <tr tal:repeat="scenario python:context.getDPEvents(sort_on='modified', sort_order='reverse')">
-                    <td style="width:20%;">
+                    <td>
                         <span tal:define="mi python:scenario.modInfo(show_created=True);
                                           date python:mi[0];
                                           uinfo python:mi[1];">
                             <tal:var replace="uinfo"/>
                             <i>
-                                ,<br />
+                                <br />
                                 <tal:var replace="python:toLocalizedTime(date, long_format=1)"/>
                                 (<tal:var i18n:translate="">LT</tal:var>)
                             </i>
                         </span>
                     </td>
-                    <td style="width:40%;"
-                        tal:define="event_type python:scenario.EventType or ''">
-                        <a href="" tal:attributes="href scenario/absolute_url">
+                    <td tal:define="event_type python:scenario.EventType or ''">
+                        <a href="" tal:attributes="href python: scenario.absolute_url()">
                             <tal:if condition="python: event_type == 'Exercise'">
                                 <em i18n:translate="">++++ Exercise ++++</em>
                                 <br>
@@ -45,14 +44,15 @@
                                 <br>
                             </tal:if>
 
-                            <b tal:content="scenario/Title">
+                            <b tal:content="python: scenario.title">
                                 Title
                             </b>
                         </a>
                         <br>
-                        <span tal:content="python:scenario.Description()" />
+                        <span tal:content="python:scenario.description" />
                     </td>
-                <td style="width:5%;" i18n:translate="" tal:content="scenario/Status"></td>
+                <td i18n:translate="" tal:content="scenario/Status"></td>
+                <td tal:content="python: view.number_of_entries(scenario)"></td>
             </tr>
         </tbody>
     </table>
