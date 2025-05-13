@@ -91,7 +91,7 @@
       <property name="icon_expr">string:clipboard2-plus</property>
       <property name="url_expr">string:$object_url/@@snapshot</property>
       <property name="link_target" />
-      <property name="icon_expr" />
+      <property name="icon_expr">string:archive</property>
       <property name="available_expr">python: object.portal_type == 'DPEvent' and object.Status != 'closed' and object.restrictedTraverse("@@is").admin_or_contentadmin()</property>
       <property name="permissions" />
       <property name="visible">True</property>
@@ -108,7 +108,7 @@
       />
       <property name="url_expr">string:$object_url/@@archiveAndClose</property>
       <property name="link_target" />
-      <property name="icon_expr" />
+      <property name="icon_expr">string:archive</property>
       <property name="available_expr">python: object.portal_type == 'DPEvent' and object.Status == 'inactive' and object.restrictedTraverse("@@is").admin_or_contentadmin()</property>
       <property name="permissions" />
       <property name="visible">True</property>
