@@ -64,7 +64,7 @@
         <p i18n:translate=""><strong>Important:</strong><br/>
             After some minutes, an error-message "Error 503 Backend fetch failed" may appear in your browser.
             This does not mean that the process failed but that a timeout has happened.
-            Please keep waiting a couple of minuted and reload this page in your browser.
+            Please keep waiting a couple of minutes and reload this page in your browser.
             You will see if the process has finished or is still runnning.
         </p>
 
