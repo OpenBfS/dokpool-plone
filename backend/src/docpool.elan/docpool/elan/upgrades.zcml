@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="docpool.elan"
+    >
+
+  <genericsetup:registerProfile
+      name="to_1000"
+      title="Upgrade profile for docpool.elan"
+      directory="profiles/to_1000"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+     />
+
+  <genericsetup:upgradeSteps
+      source="0.0.7"
+      destination="1000"
+      profile="docpool.elan:default">
+    <genericsetup:upgradeStep
+        title="Update archive actions"
+        handler="docpool.elan.upgrades.to_1000"
+        />
+  </genericsetup:upgradeSteps>
+
+</configure>
