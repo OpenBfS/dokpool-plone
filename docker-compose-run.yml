@@ -34,8 +34,6 @@ services:
     build:
       context: ./devops/varnish-build/
       dockerfile: Dockerfile
-      args:
-        - VMOD_DEPS= "curl pkg-config nproc make gcc automake libtoolize libgetdns-dev"
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
     environment:
