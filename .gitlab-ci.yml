@@ -55,8 +55,9 @@ before_script:
   - whereis python
 
 lint_tests:
+  image: plone/server-builder:6.1.1
   tags:
-    - docker
+    - dind
   stage: test
   script:
     - cd backend
@@ -64,6 +65,7 @@ lint_tests:
     - pip install uv
     # lint test
     - make lint
+    - make format
 
 unit_tests:
   tags:
