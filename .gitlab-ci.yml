@@ -6,6 +6,7 @@ image: python:3.13.3-bullseye
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
   UV_CACHE_DIR: "$HOME/.cache/uv"
+  PLONE_VERSION: "6.1.1"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -25,7 +26,7 @@ stages:
   - deploy
 
 lint_tests:
-  image: plone/server-builder:6.1.1
+  image: plone/server-builder:$PLONE_VERSION
   tags:
     - dind
   stage: test
@@ -38,7 +39,7 @@ lint_tests:
     - make format
 
 unit_tests:
-  image: plone/server-builder:6.1.1
+  image: plone/server-builder:$PLONE_VERSION
   tags:
     - dind
   stage: test
