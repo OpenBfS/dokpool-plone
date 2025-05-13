@@ -57,6 +57,11 @@ class ArchiveAndClose(BrowserView):
             logger.info("Item is already archived!")
             return request.response.redirect(self.context.absolute_url())
 
+        if form.get("form.button.cancel"):
+            msg = PMF("Changes canceled.")
+            api.portal.show_message(msg, self.request)
+            return request.response.redirect(self.context.absolute_url())
+
         if (
             self.archiving_info
             and self.uid == self.archiving_info["uid"] == self.uid
@@ -74,7 +79,7 @@ class ArchiveAndClose(BrowserView):
             if not form.get("form.button.restart"):
                 return self.index()
 
-        elif (
+        if (
             self.archiving_info
             and self.uid != self.archiving_info["uid"]
             and not self.archiving_info["finished"]
@@ -90,11 +95,6 @@ class ArchiveAndClose(BrowserView):
             api.portal.show_message(msg, self.request)
             if not form.get("form.button.restart"):
                 return self.index()
-
-        if form.get("form.button.cancel"):
-            msg = PMF("Changes canceled.")
-            api.portal.show_message(msg, self.request)
-            return request.response.redirect(self.context.absolute_url())
 
         if not form.get("form.button.submit") and not form.get("form.button.restart"):
             return self.index()

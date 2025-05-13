@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-11-28 08:47+0000\n"
+"POT-Creation-Date: 2025-05-13 16:10+0000\n"
 "PO-Revision-Date: 2024-12-05 15:56+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,10 @@ msgstr "++++ Übung ++++"
 msgid "++++ Test ++++"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Active Journals are purged."
+msgstr "Die aktuellen Ereignistagebücher werden geleert."
+
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Add New Scenario"
 msgstr "Neues Ereignis anlegen"
@@ -37,6 +41,10 @@ msgstr ""
 #: docpool.elan/docpool/elan/behaviors/configure.zcml
 msgid "Adds the ability to choose categories to DocTypes"
 msgstr ""
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "After some minutes you can reload this page in your browser in order to see, if the process has finished or is still running."
+msgstr "Nach einigen Minuten können Sie diese Seite in Ihrem Browser neu laden, um zu sehen, ob der Prozess beendet ist oder noch läuft."
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Alerting note"
@@ -54,11 +62,19 @@ msgstr "Alle"
 msgid "All Archives"
 msgstr "Alle Archive"
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "All content for this event is saved in an archive."
+msgstr "Der gesamte Inhalt des Ereignisses wird in ein Archiv gespeichert."
+
 #: docpool.elan/docpool/elan/browser/elandoccollectionrpopup.pt
 #: docpool.elan/docpool/elan/browser/viewlets/events.pt
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Archive"
 msgstr "Archiv"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Archive Event"
+msgstr "Ereignis archivieren"
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchives.xml
 msgid "Archives"
@@ -68,6 +84,10 @@ msgstr "Archive"
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Archiving"
 msgstr "Archivieren"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "Archiving Info purged!"
+msgstr "Archivierungsinfos gelöscht!"
 
 #: docpool.elan/docpool/elan/content/dpnetwork.py
 msgid "Area coordinates"
@@ -90,10 +110,6 @@ msgstr "Zu Ereignis:"
 msgid "Changelog"
 msgstr "Ereignis-Historie"
 
-#: docpool.elan/docpool/elan/monkey.py
-msgid "Changes applied."
-msgstr "Änderungen angewandt."
-
 #: docpool.elan/docpool/elan/portlets/overview.pt
 msgid "Chronological Overview"
 msgstr "Chronologie"
@@ -110,7 +126,7 @@ msgstr "Koordinaten"
 msgid "Created"
 msgstr "Erzeugt"
 
-#: docpool.elan/docpool/elan/content/dpevent.py
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Created snapshot of event."
 msgstr "Teilarchiv des Ereignisses erstellt."
 
@@ -149,6 +165,10 @@ msgstr "Daten"
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Depending on the number of entries in this event this can take an hour or longer."
+msgstr "Abhängig von der Anzahl der Einträge in diesem Ereignis kann dies bis zu einer Stunde oder länger dauern."
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
@@ -200,6 +220,10 @@ msgstr "Unbekanntes Ereignis bearbeiten"
 msgid "Emergency"
 msgstr "Notfall"
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
+msgstr "Einträge, die weiteren Ereignissen zugewiesen sind, werden in das Archiv kopiert anstatt verschoben."
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/browser/viewlets/events.pt
 msgid "Event Information"
@@ -238,6 +262,14 @@ msgstr "Home"
 msgid "Intensive mode"
 msgstr "Intensivbetrieb"
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "Item has old archiving info!"
+msgstr "Dieses Ereignis hat alte Archivierungsinfos!"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "Item is being archived right now! Please try again in a couple of minutes."
+msgstr "Dieses Ereignis wird momentan archiviert. Bitte versuchen Sie es in ein paar Minuten erneut."
+
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Journals"
 msgstr ""
@@ -262,6 +294,10 @@ msgstr "Betriebsart"
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Operation mode and Alerting"
 msgstr "Betriebsart und Alarmierung"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Original content is moved to the archive."
+msgstr "Der gesamte Inhalt des Ereignisses wird in ein Archiv gespeichert."
 
 #: docpool.elan/docpool/elan/portlets/overview.py
 msgid "Overview"
@@ -295,7 +331,7 @@ msgstr "Routinebetrieb"
 msgid "Scenario & Phase"
 msgstr "Szenario & Phase"
 
-#: docpool.elan/docpool/elan/content/dpevent.py
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
 msgstr "Ereignis archiviert"
 
@@ -309,10 +345,22 @@ msgstr "Sektorierung Netze"
 msgid "Sectorizing sample types"
 msgstr "Sektorierung Umweltbereiche"
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Show Debug-Info"
+msgstr "Debug-Infos anzeigen"
+
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Snapshot"
 msgstr "Teilarchivierung des aktuellen Standes"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Snapshot Event"
+msgstr "Einen Snapshot zu einem Ereignis erstellen"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Start time:"
+msgstr "Startzeit:"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "State"
@@ -326,6 +374,30 @@ msgstr "Status"
 msgid "Test"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "The event and its journals are copied to the archive."
+msgstr "Das Ereignis und die Ereignistagbücher werden in das Archiv kopiert."
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "The event and its journals are moved to the archive."
+msgstr "Das Ereignis und die Ereignistagbücher werden in das Archiv verschoben."
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "The event state (active/inactive) is maintained."
+msgstr "Der Status des Ereignisses (aktiv/inaktiv) wird beibehalten"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "The event state is set to \"closed\"."
+msgstr "Der Status des Ereignisses wird auf \"geschlossen\" gesetzt."
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "The following happens when archiving:"
+msgstr "Die folgenden Schritte laufen bei einer Archivierung ab:"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "The following happens when creating a snapshot:"
+msgstr "Die folgenden Schritte laufen bei der Erstellung eines Snapshots ab:"
+
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "The location of an item"
 msgstr "Der Ortsbezug eines Inhalts"
@@ -333,6 +405,10 @@ msgstr "Der Ortsbezug eines Inhalts"
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "The time and date an item was last modified by a user"
 msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "This event is already being archived by"
+msgstr "Für dieses Ereignis läuft bereits die Erstellung eines Snapshots oder eine Archivierung durch"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Title/Description"
@@ -346,11 +422,19 @@ msgstr "Art des Ereignisses"
 msgid "Uninstalls the docpool.elan add-on."
 msgstr ""
 
+#: docpool.elan/docpool/elan/upgrades.zcml
+msgid "Upgrade profile for docpool.elan"
+msgstr ""
+
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
 #: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
 msgid "View"
 msgstr ""
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "Watch out:"
+msgstr "ACHTUNG:"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "active"
@@ -431,14 +515,14 @@ msgstr ""
 msgid "docpool.elan (uninstall)"
 msgstr ""
 
-#. Default: "A password reset e-mail could not be sent to the following users: ${user_ids}"
-#: docpool.elan/docpool/elan/monkey.py
-msgid "failed_passwords_msg"
-msgstr "Nicht erforderlich."
-
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "inactive"
 msgstr "Inaktiv"
+
+#. Default: "Archive"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "label_archive"
+msgstr "Archivieren"
 
 #. Default: "Choose category for this type "
 #: docpool.elan/docpool/elan/behaviors/elandoctype.py
@@ -485,10 +569,20 @@ msgstr "Ereigniszeit"
 msgid "label_dpevent_type"
 msgstr "Art des Ereignisses"
 
+#. Default: "Purge"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "label_purge"
+msgstr "Archivierungsinfos löschen"
+
 #. Default: "Recently Modified"
 #: docpool.elan/docpool/elan/portlets/recent.pt
 msgid "label_recent"
 msgstr "Aktuelle Einträge"
+
+#. Default: "Restart"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "label_restart"
+msgstr "Vorgang erneut starten"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "private"
@@ -498,11 +592,31 @@ msgstr "privat"
 msgid "published"
 msgstr "Veröffentlicht"
 
-#. Default: "The following users have been sent an e-mail with link to reset their password: ${user_ids}"
-#: docpool.elan/docpool/elan/monkey.py
-msgid "reset_passwords_msg"
-msgstr "Nicht erforderlich"
-
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "snapshot_confirm_msg"
 msgstr "Wollen Sie wirklich dieses Ereignis teilarchivieren? Das Ereignis bleibt dabei erhalten, alle Dokumente werden in ein Archiv verschoben."
+
+#. Default: "Archive event"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "subtitle_archive"
+msgstr "Archiviere Ereignis"
+
+#. Default: "entries"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "subtitle_entries"
+msgstr "Einträgen"
+
+#. Default: "Create a snapshot of the event"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "subtitle_snapshot"
+msgstr "Erstelle Snapshot zum Ereignis"
+
+#. Default: "with"
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "subtitle_with"
+msgstr "mit"
+
+#. Default: "<strong>Important:</strong><br /> After some minutes, an error-message \"Error 503 Backend fetch failed\" may appear in your browser. This does not mean that the process failed but that a timeout has happened. Please keep waiting a couple of minutes and reload this page in your browser. You will see if the process has finished or is still runnning."
+#: docpool.elan/docpool/elan/browser/archive_event_form.pt
+msgid "timeout-help"
+msgstr "<strong>Wichtig:</strong><br /> Es ist möglich, dass nach einigen Minuten die Fehlermeldung \"Error 503 Backend fetch failed\" in Ihrem Browser angezeigt wird. Das bedeutet nicht, dass der Prozess fehlgeschlagen ist, aber dass ein Timeout aufgetreten ist. Bitte warten Sie ein paar Minuten und laden diese Seite in Ihrem Browser neu. Im Formular wird Ihnen dann angezeigt, ob der Prozess beendet ist oder noch läuft."

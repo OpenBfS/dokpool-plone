@@ -23,11 +23,11 @@
         <input type="hidden" name="form.uid" tal:attributes="value python: view.uid" />
 
             <div class="alert alert-danger" role="alert" tal:condition="python: view.archiving_info and not view.archiving_info['finished']">
-                <p><strong>Watch out:</strong>
-                This event is already being archived by ${python: view.archiving_info["user"]}.<br/>
-                Start time: ${python: toLocalizedTime(view.archiving_info["started"], long_format=True)}</p>
+                <p><strong i18n:translate="">Watch out:</strong>
+                <span i18n:translate="">This event is already being archived by</span> ${python: view.archiving_info["user"]}.<br/>
+                <span i18n:translate="">Start time:</span> ${python: toLocalizedTime(view.archiving_info["started"], long_format=True)}</p>
 
-                <p>After some minutes you can reload this page in your browser
+                <p i18n:translate="">After some minutes you can reload this page in your browser
                 in order to see, if the process has finished or is still running.</p>
                 <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger activate-spinner" name="form.button.restart" value="Restart" i18n:attributes="value label_restart;title"/>
             </div>
@@ -36,7 +36,7 @@
 
         <tal:archive tal:condition="python: view.__name__=='archiveAndClose'">
             <h1 i18n:translate="">Archive Event</h1>
-            <p i18n:translate="">Archive event <em>"${python: context.title}"</em> with ${python: len(items)} entries.</p>
+            <p><span i18n:translate="subtitle_archive">Archive event</span> <em>${python: context.title}</em> <span i18n:translate="subtitle_with">with</span> ${python: len(items)} <span i18n:translate="subtitle_entries">entries</span>.</p>
             <p i18n:translate="">The following happens when archiving:</p>
             <ul>
                 <li i18n:translate="">All content for this event is saved in an archive.</li>
@@ -49,33 +49,34 @@
 
         <tal:snapshot tal:condition="python: view.__name__=='snapshot'">
             <h1 i18n:translate="">Snapshot Event</h1>
-            <p>Here you can create a snapshot of the event <em>${python: context.title}</em> with ${python: len(items)} documents.</p>
+            <p><span i18n:translate="subtitle_snapshot">Create a snapshot of the event</span> <em>${python: context.title}</em> <span i18n:translate="subtitle_with">with</span> ${python: len(items)} <span i18n:translate="subtitle_entries">entries</span>.</p>
             <p i18n:translate="">The following happens when creating a snapshot:</p>
             <ul>
-                <li i18n:translate="">The event stays active but documents are moved to an archive.</li>
-                <li i18n:translate="">Copy Journals and Event to Archive.</li>
-                <li i18n:translate="">Purge Journals.</li>
-                <li i18n:translate="">Content that is assigned to more than this event is copied into the archive instead of moved.</li>
+                <li i18n:translate="">Original content is moved to the archive.</li>
+                <li i18n:translate="">Entries that are also assigned to other events are copied into the archive instead of moved.</li>
+                <li i18n:translate="">The event and its journals are copied to the archive.</li>
+                <li i18n:translate="">The event state (active/inactive) is maintained.</li>
+                <li i18n:translate="">Active Journals are purged.</li>
             </ul>
         </tal:snapshot>
 
         <p i18n:translate="">Depending on the number of entries in this event this can take an hour or longer.</p>
 
-        <p i18n:translate=""><strong>Important:</strong><br/>
+        <p i18n:translate="timeout-help"><strong>Important:</strong><br/>
             After some minutes, an error-message "Error 503 Backend fetch failed" may appear in your browser.
             This does not mean that the process failed but that a timeout has happened.
             Please keep waiting a couple of minutes and reload this page in your browser.
             You will see if the process has finished or is still runnning.
         </p>
 
-        <div class="formControls" i18n:domain="plone">
-          <input type="submit" class="context btn btn-primary activate-spinner" name="form.button.submit" value="Archive" i18n:attributes="value label_archive;title"/>
-          <input type="submit" class="btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
+        <div class="formControls">
+          <input type="submit" class="context btn btn-primary activate-spinner" name="form.button.submit" value="Archive" title="" i18n:attributes="value label_archive;title"/>
+          <input type="submit" i18n:domain="plone" class="btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
         </div>
 
         <div class="card" tal:condition="python: _is.admin_or_contentadmin and view.full_archiving_info">
             <div class="card-body">
-            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
+            <a i18n:translate="" class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
                 Show Debug-Info
             </a>
             <div class="collapse" id="collapseDebug">
