@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
-import time
+
 import json
+import time
 
 
 class Listing(BrowserView):
@@ -17,10 +18,10 @@ class Item(BrowserView):
 
     def __call__(self, title=None):
         self.title = title
-        if title == '1':
+        if title == "1":
             time.sleep(2)
-        if title == '2':
+        if title == "2":
             time.sleep(5)
-        if title == '3':
+        if title == "3":
             time.sleep(10)
         return self.index()

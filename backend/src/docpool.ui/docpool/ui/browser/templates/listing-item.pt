@@ -1,21 +1,36 @@
-<div class="d-flex align-items-center border-bottom py-2" tal:define="title view/title">
-  <div class="text-center me-3" style="width: 80px;">
+<div class="d-flex align-items-center border-bottom py-2"
+     tal:define="
+       title view/title;
+     "
+>
+  <div class="text-center me-3"
+       style="width: 80px;"
+  >
     <div class="fw-bold">15:45</div>
     <div class="text-muted small">16.12.2021</div>
   </div>
   <div class="me-3">
-   <a href="#" class="btn btn-sm btn-outline-primary btn-favorite" tal:attributes="data python: 'favorite-id-' + title">Favorite</a>
+    <a class="btn btn-sm btn-outline-primary btn-favorite"
+       href="#"
+       tal:attributes="
+         data python: 'favorite-id-' + title;
+       "
+    >Favorite</a>
   </div>
   <div class="flex-grow-1">
 
     <h2 tal:content="title"></h2>
     <div class="fw-semibold">Messungen</div>
-    <div class="text-muted text-truncate" style="max-width: 100%;">
+    <div class="text-muted text-truncate"
+         style="max-width: 100%;"
+    >
       dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget...
     </div>
   </div>
-  <div class="text-end ms-3" style="min-width: 150px;">
-    <div>Paul Müller</div>
+  <div class="text-end ms-3"
+       style="min-width: 150px;"
+  >
+    <div>Paul M&uuml;ller</div>
     <div class="text-muted small">Messzentrale BfS (Bund)</div>
   </div>
 </div>
