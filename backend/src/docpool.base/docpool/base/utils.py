@@ -155,8 +155,8 @@ def getGroupsForCurrentUser(obj, sort_on="path"):
     return results
 
 
-def getUserInfo(self, username=None):
-    mtool = getToolByName(self, "portal_membership")
+def getUserInfo(obj, username=None):
+    mtool = api.portal.get_tool("portal_membership")
     if username:
         user = mtool.getMemberById(username)
     else:
@@ -169,8 +169,14 @@ def getUserInfo(self, username=None):
     if not fullname:
         fullname = userid
     primary_group = None
-    if self.isInGroupFolder():
-        primary_group = self.myGroup()
+    path = obj.getPhysicalPath()
+    if "Groups" in path or "Transfers" in path:
+        if "Groups" in path:
+            i = path.index("Groups")
+            primary_group = obj.unrestrictedTraverse("/".join(path[: i + 2])).title
+        else:
+            primary_group = "Transfers"
+
     return userid, fullname, primary_group
 
 

@@ -38,8 +38,9 @@
                   tal:define="number_of_children python: nav_helper.number_of_children(node)"
                   tal:condition="python: number_of_children"
                   tal:content="python: number_of_children"
-                  title="Anzahl der Inhalte"
-                  i18n:attributes="title">
+                  title="Number of entries"
+                  i18n:attributes="title"
+                  i18n:domain="docpool.elan">
                 5
             </span>
         </a>

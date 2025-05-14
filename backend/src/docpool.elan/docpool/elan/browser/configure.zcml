@@ -96,6 +96,13 @@
       />
 
   <browser:page
+      name="view"
+      for="..content.elanarchives.IELANArchives"
+      class=".elanarchives.ELANArchivesView"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="refresh_recent"
       for="*"
       class=".refresh.RefreshRecent"

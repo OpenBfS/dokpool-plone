@@ -56,6 +56,12 @@
                             <span class="scentitle"
                                   tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
                                   tal:content="string:${scenario/Title}">Event1</span>
+                            <span
+                                class="number_of_children badge text-bg-secondary"
+                                title="Number of entries"
+                                i18n:attributes="title"
+                                tal:content="python: view.number_of_entries(scenario)"
+                                />
                         </td>
                         <td>
                           <a class="pat-plone-modal scenario-info"
