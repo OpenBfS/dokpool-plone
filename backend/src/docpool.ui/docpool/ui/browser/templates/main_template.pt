@@ -1,38 +1,46 @@
 <metal:page define-macro="master">
-<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
+  <tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      tal:define="
-        portal_state python:context.restrictedTraverse('@@plone_portal_state');
-        portal_url python:portal_state.portal_url();
-        plone_layout python:context.restrictedTraverse('@@plone_layout');
-      ">
-  <body tal:define="body_class python:plone_layout.bodyClass(template, view);"
-        tal:attributes="class body_class;
-                        python:context.restrictedTraverse('@@plone_patterns_settings')();"
-        id="visual-portal-wrapper">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        xmlns:metal="http://xml.zope.org/namespaces/metal"
+        xmlns:tal="http://xml.zope.org/namespaces/tal"
+        tal:define="
+          portal_state python:context.restrictedTraverse('@@plone_portal_state');
+          portal_url python:portal_state.portal_url();
+          plone_layout python:context.restrictedTraverse('@@plone_layout');
+        "
+  >
+    <body id="visual-portal-wrapper"
+          tal:define="
+            body_class python:plone_layout.bodyClass(template, view);
+          "
+          tal:attributes="
+            class body_class;
+            python:context.restrictedTraverse('@@plone_patterns_settings')();
+          "
+    >
 
-    <metal:content metal:define-macro="content">
+      <metal:content metal:define-macro="content">
 
-      <metal:slot define-slot="body">
+        <metal:slot define-slot="body">
 
           <metal:bodytext define-slot="main">
-              <metal:text define-slot="content-core" tal:content="nothing">
-              </metal:text>
+            <metal:text define-slot="content-core"
+                        tal:content="nothing"
+            >
+            </metal:text>
           </metal:bodytext>
 
-      </metal:slot>
+        </metal:slot>
 
-    </metal:content>
+      </metal:content>
 
-    <aside id="portal-column-one">
-      <tal:block replace="structure python: context.restrictedTraverse('@@left')(foo=context.title)" />
-    </aside>
+      <aside id="portal-column-one">
+        <tal:block replace="structure python: context.restrictedTraverse('@@left')(foo=context.title)" />
+      </aside>
 
-  </body>
-</html>
+    </body>
+  </html>
 
 </metal:page>

@@ -1,10 +1,16 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       metal:use-macro="context/@@main_template/macros/master"
-      i18n:domain="docpool.theme">
+      xml:lang="en"
+      i18n:domain="docpool.theme"
+>
   <metal:content fill-slot="content-core">
-    <div tal:attributes="data-listing-items python: view.items" id="docpool-listing">JS/React does not work</div>
+    <div id="docpool-listing"
+         tal:attributes="
+           data-listing-items python: view.items;
+         "
+    >JS/React does not work</div>
   </metal:content>
 </html>
