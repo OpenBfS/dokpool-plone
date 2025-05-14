@@ -4,6 +4,18 @@ Changelog
 2.1.0 (unreleased)
 ------------------
 
+Changed:
+
+- Improve event archiving by using a form and preventing triggering it multiple times. (#5998)
+  [pbauer]
+
+
+Added:
+
+- Show number of entries in event-picker, archive-listing and event-listing. (#5759)
+  [pbauer]
+
+
 Technical:
 
 - Upgrade to Plone 6.0.15. (#4892)

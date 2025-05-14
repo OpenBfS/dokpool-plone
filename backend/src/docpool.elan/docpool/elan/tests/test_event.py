@@ -61,7 +61,12 @@ class TestEvent(unittest.TestCase):
             title="Test Event",
         )
         self.assertIn(event.id, self.container)
-        event.archiveAndClose(self.layer["request"])
+        archive_form = event.restrictedTraverse("@@archiveAndClose")
+        # Render form
+        archive_form()
+        # Submit form
+        self.layer["request"].form["form.button.submit"] = True
+        archive_form()
         self.assertNotIn(event.id, self.container)
         archived_event = api.content.get(UID=event.UID())
         self.assertEqual(archived_event.__parent__.portal_type, "ELANArchive")
@@ -78,7 +83,9 @@ class TestEvent(unittest.TestCase):
         event_uid = event.UID()
         scenarios = self._get_user_scenarios()
         self.assertIn(event_uid, scenarios)
-        event.archiveAndClose(self.layer["request"])
+        archive_form = event.restrictedTraverse("@@archiveAndClose")
+        self.layer["request"].form["form.button.submit"] = True
+        archive_form()
         scenarios = self._get_user_scenarios()
         self.assertNotIn(event_uid, scenarios)
 

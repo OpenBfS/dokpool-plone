@@ -55,8 +55,9 @@
                   "
                   tal:condition="python: number_of_children"
                   tal:content="python: number_of_children"
+                  title="Number of entries"
                   i18n:attributes="title"
-            >
+                  i18n:domain="docpool.elan">
                 5
             </span>
           </a>

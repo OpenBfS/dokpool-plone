@@ -88,22 +88,22 @@
                     </span>&nbsp;&nbsp;
                   </tal:if>
 
-                  <span class="scentitle"
-                        tal:content="string:${scenario/Title}"
-                        tal:attributes="
-                          title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1));
-                        "
-                  >Event1</span>
-                </td>
-                <td>
-                  <a class="pat-plone-modal scenario-info"
-                     href=""
-                     title="Klicken für Informationen zum Ereignis"
-                     data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
-                     tal:attributes="
-                       href python:scenario.absolute_url();
-                     "
-                  >
+                            <span class="scentitle"
+                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
+                                  tal:content="string:${scenario/Title}">Event1</span>
+                            <span
+                                class="number_of_children badge text-bg-secondary"
+                                title="Number of entries"
+                                i18n:attributes="title"
+                                tal:content="python: view.number_of_entries(scenario)"
+                                />
+                        </td>
+                        <td>
+                          <a class="pat-plone-modal scenario-info"
+                             data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+                             href=""
+                             title="Klicken für Informationen zum Ereignis"
+                             tal:attributes="href python:scenario.absolute_url()">
                             Info
                   </a>
                 </td>
