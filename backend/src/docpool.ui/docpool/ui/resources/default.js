@@ -9,12 +9,12 @@ const Listing = ({items}) => {
   const buttonRefs = useRef({});
   const eventHandlers = useRef({});
 
+  // Init fetch with first items
   useEffect(() => {
     const fetchData = async () => {
       // Parse items inside the effect to avoid re-parsing on every render
       const parsedItems = JSON.parse(items);
       const urls = parsedItems.map((item) => `http://localhost:8080/Plone/listing-item?title=${item}`);
-      console.log(urls);
 
       // Empty the data array
       setData(new Array(urls.length).fill(null));
@@ -40,8 +40,8 @@ const Listing = ({items}) => {
     fetchData();
   }, [items]);
 
+  // Add event listener to all buttons
   useEffect(() => {
-    // Add event listener to all buttons
     Object.keys(buttonRefs.current).forEach(key => {
       const button = buttonRefs.current[key];
       if (button) {
@@ -52,7 +52,6 @@ const Listing = ({items}) => {
             console.log(`Button ${key} wurde geklickt!`);
           };
         }
-        // Add the event listener using the stored handler
         button.addEventListener('click', eventHandlers.current[key]);
       }
     });
@@ -62,14 +61,13 @@ const Listing = ({items}) => {
       Object.keys(buttonRefs.current).forEach(key => {
         const button = buttonRefs.current[key];
         if (button && eventHandlers.current[key]) {
-          // Remove the event listener using the same handler reference
           button.removeEventListener('click', eventHandlers.current[key]);
         }
       });
     };
   }, [data]);
 
-  // Filter the data based on the selected filter
+  // Filter the data
   const filteredData = data.map((item, index) => {
     // If filter is "all" or the item's title matches the filter, include it
     if (filter === "all" || (item && item.title === filter)) {
