@@ -49,15 +49,15 @@
             />
             <span tal:content="node/Title">Selected Item Title</span>
             <span class="number_of_children badge text-bg-secondary"
-                  title="Anzahl der Inhalte"
+                  title="Number of entries"
                   tal:define="
                     number_of_children python: nav_helper.number_of_children(node);
                   "
                   tal:condition="python: number_of_children"
                   tal:content="python: number_of_children"
-                  title="Number of entries"
                   i18n:attributes="title"
-                  i18n:domain="docpool.elan">
+                  i18n:domain="docpool.elan"
+            >
                 5
             </span>
           </a>

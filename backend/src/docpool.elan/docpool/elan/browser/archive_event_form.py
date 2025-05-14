@@ -36,9 +36,7 @@ class ArchiveAndClose(BrowserView):
         contentarea_path = "/".join(contentarea.getPhysicalPath())
         self.items = self._getDocumentsForScenario(path=contentarea_path)
         self.full_archiving_info = self.context.get_archiving_info()
-        self.archiving_info = (
-            self.full_archiving_info[-1] if self.full_archiving_info else {}
-        )
+        self.archiving_info = self.full_archiving_info[-1] if self.full_archiving_info else {}
 
         if form.get("form.uid"):
             self.uid = form.get("form.uid")
@@ -71,9 +69,7 @@ class ArchiveAndClose(BrowserView):
             # Reasons:
             # * There was a timeout or a and user wants to start again.
             # We tell people to wait a bit longer.
-            msg = _(
-                "Item is being archived right now! Please try again in a couple of minutes."
-            )
+            msg = _("Item is being archived right now! Please try again in a couple of minutes.")
             logger.info(msg)
             logger.debug(self.full_archiving_info)
             if not form.get("form.button.restart"):
@@ -110,9 +106,7 @@ class ArchiveAndClose(BrowserView):
         }
         self.context.set_archiving_info(info)
         # Commit to make info available before archiving is finished
-        transaction.get().note(
-            f"Store archiving info for {self.context.absolute_url()}"
-        )
+        transaction.get().note(f"Store archiving info for {self.context.absolute_url()}")
         transaction.commit()
 
         target = self.process_action()
@@ -145,9 +139,7 @@ class ArchiveAndClose(BrowserView):
         # 2. Create Archive
         archive = self._createArchive()
         archive_contentarea = archive.content
-        logger.info(
-            "Archiving DPEvent %s to %s", self.context.title, archive.absolute_url()
-        )
+        logger.info("Archiving DPEvent %s to %s", self.context.title, archive.absolute_url())
         contentarea = aq_get(self.context, "content")
         contentarea_path = "/".join(contentarea.getPhysicalPath())
 
@@ -211,9 +203,7 @@ class ArchiveAndClose(BrowserView):
         if foldername in target:
             if not isTransfer:
                 mtool = api.portal.get_tool("portal_membership")
-                mtool.setLocalRoles(
-                    target[foldername], [foldername], "Owner", reindex=False
-                )
+                mtool.setLocalRoles(target[foldername], [foldername], "Owner", reindex=False)
             return target[foldername]
 
         # 4. if it doesn't exist: create it
@@ -376,9 +366,7 @@ class ArchiveAndClose(BrowserView):
         navSettings(arc)
 
         # copy the ESD folders
-        for brain in api.content.find(
-            context=esd, portal_type=["ELANSection", "ELANDocCollection"]
-        ):
+        for brain in api.content.find(context=esd, portal_type=["ELANSection", "ELANDocCollection"]):
             api.content.copy(brain.getObject(), arc.esd)
         arc.esd.setDefaultPage("overview")
 

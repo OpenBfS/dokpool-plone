@@ -9,9 +9,12 @@
 >
   <body>
 
-<metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core"
-    tal:define="_is nocall: context/@@is">
+    <metal:content-core fill-slot="content-core">
+      <metal:content-core define-macro="content-core"
+                          tal:define="
+                            _is nocall: context/@@is;
+                          "
+      >
 
         <h4 i18n:translate="">Event Information</h4>
 
@@ -213,25 +216,48 @@
           </tbody>
         </table>
 
-    <div class="card" tal:condition="python: _is.admin_or_contentadmin and context.get_archiving_info()">
-        <div class="card-body">
-        <a i18n:translate="" class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
+        <div class="card"
+             tal:condition="python: _is.admin_or_contentadmin and context.get_archiving_info()"
+        >
+          <div class="card-body">
+            <a class="btn btn-secondary"
+               aria-controls="collapseDebug"
+               aria-expanded="false"
+               href="#collapseDebug"
+               role="button"
+               data-bs-toggle="collapse"
+               i18n:translate=""
+            >
             Show Debug-Info
-        </a>
-        <div class="collapse" id="collapseDebug">
-            <dl class="row" tal:repeat="info python: context.get_archiving_info()">
+            </a>
+            <div class="collapse"
+                 id="collapseDebug"
+            >
+              <dl class="row"
+                  tal:repeat="info python: context.get_archiving_info()"
+              >
                 <tal:block tal:repeat="key python: info.keys()">
-                    <dt class="col-sm-2" tal:content="python: key" />
-                    <dd class="col-sm-10" tal:content="python: info[key]" />
+                  <dt class="col-sm-2"
+                      tal:content="python: key"
+                  ></dt>
+                  <dd class="col-sm-10"
+                      tal:content="python: info[key]"
+                  ></dd>
                 </tal:block>
-            </dl>
-            <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger" name="form.button.purge" value="Purge" i18n:attributes="value label_purge;title"/>
+              </dl>
+              <input class="btn btn-danger"
+                     name="form.button.purge"
+                     type="submit"
+                     value="Purge"
+                     tal:condition="python: _is.admin"
+                     i18n:attributes="value label_purge;title"
+              />
+            </div>
+          </div>
         </div>
-        </div>
-    </div>
 
-</metal:content-core>
-</metal:content-core>
+      </metal:content-core>
+    </metal:content-core>
 
   </body>
 </html>
