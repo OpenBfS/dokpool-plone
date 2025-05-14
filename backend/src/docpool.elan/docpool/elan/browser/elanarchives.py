@@ -17,7 +17,9 @@ class ELANArchivesView(BrowserView):
             "sort_on": "modified",
             "sort_order": "reverse",
         }
-        return [obj.getObject() for obj in api.content.find(context=self.context, **query)]
+        return [
+            obj.getObject() for obj in api.content.find(context=self.context, **query)
+        ]
 
     def number_of_entries(self, archive):
         contentarea = aq_get(archive, "content")
