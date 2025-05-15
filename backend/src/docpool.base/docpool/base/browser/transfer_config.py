@@ -1,6 +1,5 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
-from docpool.base.behaviors.transferstype import possible_targets_vocabulary_factory
 from plone.autoform import directives
 from plone.autoform.form import AutoExtensibleForm
 from plone.dexterity.interfaces import IDexterityEditForm
@@ -39,12 +38,7 @@ class ITransferConfig(model.Schema):
         ),
         required=False,
         missing_value=(),
-        value_type=schema.Choice(
-            # XXX Create a source that lists all target folders in any docpool
-            # configured for this source DP. The possible_targets vocab only works as a
-            # side effect of no target folder blocking transfers of a DPConfig folder.
-            source=possible_targets_vocabulary_factory
-        ),
+        value_type=schema.Choice(source="docpool.transfers.vocabularies.TransferTargets"),
     )
     directives.widget(targets=CheckBoxFieldWidget)
 

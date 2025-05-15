@@ -255,6 +255,10 @@
       name="docpool.transfers.vocabularies.DTPermOptions"
       component=".vocabularies.DTPermOptionsVocabularyFactory"
       />
+  <utility
+      name="docpool.transfers.vocabularies.TransferTargets"
+      component=".vocabularies.TransferTargetsVocabularyFactory"
+      />
 
   <subscriber handler=".events.delete_handler" />
 

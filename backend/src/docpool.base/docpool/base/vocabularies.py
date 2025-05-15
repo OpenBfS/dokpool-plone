@@ -5,6 +5,7 @@ from docpool.base.appregistry import activeApps
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import selectableApps
 from docpool.base.content.doctype import IDocType
+from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
@@ -248,6 +249,25 @@ class DTPermOptionsVocabulary:
 
 
 DTPermOptionsVocabularyFactory = DTPermOptionsVocabulary()
+
+
+@provider(IVocabularyFactory)
+def TransferTargetsVocabularyFactory(context=None):
+    """Collect transfer folders across all docpools which have the context docpool
+    configured as a sending ESD. This is not about doctype configuration.
+    """
+    if context is None:
+        return ()
+    esd = getDocumentPoolSite(context)
+    # Don't query for sorted results as our key attribute isn't part of the brain.
+    brains = api.content.find(
+        object_provides=IDPTransferFolder.__identifier__,
+        sendingESD=esd.UID(),
+        unrestricted=True,  # ContentSenders do not need access to the target folders.
+    )
+    items = [(brain.getObject().from_to_title(), brain.UID) for brain in brains]
+    return SimpleVocabulary([SimpleTerm(uid, title=from_to_title) for from_to_title, uid in sorted(items)])
+
 
 allow_module("docpool.base.vocabularies")
 allow_class(DocumentPoolVocabulary)
