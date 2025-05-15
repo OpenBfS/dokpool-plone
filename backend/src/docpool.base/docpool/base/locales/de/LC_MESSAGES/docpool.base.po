@@ -36,6 +36,10 @@ msgstr "Unterstützung für Anwendungen hinzufügen"
 msgid "Adding a group is only allowed in a dokpool!"
 msgstr "Gruppen dürfen nur in Dokpools angelegt werden!"
 
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "Apply"
+msgstr "Anwenden"
+
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
 msgstr "Archiv"
@@ -474,6 +478,10 @@ msgstr "Transferordner"
 msgid "Transfer Folder: filter not active!"
 msgstr "Transferordner: kein Filter aktiv!"
 
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "Transfer config"
+msgstr "Konfiguration der Transfers"
+
 #: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "Transfer target"
 msgstr "Übertragungsziel"
@@ -596,6 +604,16 @@ msgstr "zurück zu"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "created:"
 msgstr "erzeugt:"
+
+#. Default: "Which document types to configure."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_document_types"
+msgstr "Zu konfigurierende Dokumenttypen."
+
+#. Default: "Which automatic transfer targets to set or unset for the types selected above."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_transfer_targets"
+msgstr "Automatische Transferziele, die für die oben ausgewählten Typen gesetzt oder entfernt werden sollen."
 
 #: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "description_collaborationfolder_allowedpartnerdoctypes"
@@ -943,6 +961,16 @@ msgstr "Text"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "label_toggle"
 msgstr "Alle umschalten"
+
+#. Default: "Document types"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_document_types"
+msgstr ""
+
+#. Default: "Transfer targets"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_transfer_targets"
+msgstr ""
 
 #. Default: "Applications"
 #: docpool.base/docpool/base/users/personalpreferences.py
