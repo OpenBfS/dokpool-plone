@@ -1,0 +1,35 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# Romanian translations for PACKAGE package.
+# Philip Bauer <bauer@starzel.de>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-04-10 09:36+0000\n"
+"PO-Revision-Date: 2025-05-19 17:02+0200\n"
+"Last-Translator: Philip Bauer <bauer@starzel.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.api\n"
+"Language: ro\n"
+
+#: docpool/api/configure.zcml
+msgid "Installs the docpool.api add-on."
+msgstr ""
+
+#: docpool/api/configure.zcml
+msgid "Uninstalls the docpool.api add-on."
+msgstr ""
+
+#: docpool/api/configure.zcml
+msgid "docpool.api"
+msgstr ""
+
+#: docpool/api/configure.zcml
+msgid "docpool.api (uninstall)"
+msgstr ""

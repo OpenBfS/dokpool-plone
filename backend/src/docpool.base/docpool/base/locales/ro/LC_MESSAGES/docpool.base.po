@@ -1,0 +1,1041 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# Romanian translations for PACKAGE package.
+# Philip Bauer <bauer@starzel.de>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2025-03-31 07:02+0000\n"
+"PO-Revision-Date: 2025-05-19 17:02+0200\n"
+"Last-Translator: Philip Bauer <bauer@starzel.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.base\n"
+"Language: ro\n"
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "${count} item(s) cut."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+msgid "${transferred} Items transferred!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "${transitioned} Items transitioned!"
+msgstr ""
+
+#: docpool.base/docpool/base/localbehavior/configure.zcml
+msgid "Add local behavior support"
+msgstr ""
+
+#: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
+msgid "Adding a group is only allowed in a dokpool!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/print.pt
+msgid "Archive"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPTransfersArea.xml
+msgid "Area for Transfer Folders"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "Available transitions"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+msgid "Content Area"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "Content:"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Copy or cut one or more items to paste."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transition_form.py
+msgid "Could not transition: ${title}"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/review_history.py
+msgid "Create"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
+msgid "DPDocument"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DashboardCollection.xml
+msgid "Dashboard Collection"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DashboardsConfig.xml
+msgid "Dashboards Configuration"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Delete"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Disallowed to paste item(s)."
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Doc type not accepted."
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "Docpool Configuration Area"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool listing with bulk actions for DashboardCollections"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool view"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/configure.zcml
+msgid "Docpool view with bulk actions"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dashboard.py
+#: docpool.base/docpool/base/content/dashboardcollection.py
+msgid "Document Types"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document has no scenario."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt
+msgid "Document state"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt
+msgid "Document workflow:"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DocType.xml
+msgid "DocumentType"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "Edit"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Edit Dashboard"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/collectiondoc.pt
+msgid "Edit the document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "Edit unknown doc type"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DocumentPool.xml
+msgid "Electronic Situation Display"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "Files:"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.pt
+msgid "Filter contents according to application?"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+msgid "Folder (Collaboration)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/ReviewFolder.xml
+msgid "Folder (Review)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/PrivateFolder.xml
+msgid "Folder (private)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/FolderBase.xml
+msgid "Folder Base"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
+msgid "Folder for Document Types"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
+msgid "General information"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
+msgid "General information (generic type)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
+msgid "Group Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Groups.xml
+msgid "Groups Area"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Help"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "Images:"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Imprint"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoFolder.xml
+msgid "Info-Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/configure.zcml
+msgid "Installs the docpool.base add-on."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Item(s) pasted."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Items deleted."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "LT"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/InfoLink.xml
+msgid "Link"
+msgstr ""
+
+#: docpool.base/docpool/base/localbehavior/configure.zcml
+msgid "Local Behavior Support"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Makes documents transferable between pools"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/collectionlistitem.pt
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt
+msgid "Metadata"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dashboard.pt
+msgid "No current data"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items deleted."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+msgid "No items or targets selected!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "No items or targets to transfer to!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "No items or transitions!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "No items to delete."
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py
+msgid "No legend image"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py
+msgid "No map image"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "No transfer to ${title}. ${msg}"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "One or more items not moveable."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "One or more selected items is locked."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "One or more selected items is no longer available."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Paste could not find clipboard content."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending BMUV"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Pending review"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPTransferFolder.xml
+msgid "Permissions"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Please select one or more items to cut."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Publish"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Published"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Published BMUV"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Reject"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract for Revision"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract to BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract to NPP Operator"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Retract to authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Revised"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/sharing.py
+msgid "Search for user or group"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Select a value ..."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back to BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back to NPP operator"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back to authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "Show folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/SimpleFolder.xml
+msgid "Simple Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Text.xml
+msgid "Simple pages of text."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit for publication"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit to Authority"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit to BMUV"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Submit to BfS"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Text.xml
+msgid "Textpage"
+msgstr ""
+
+#: docpool.base/docpool/base/content/simplefolder.py
+msgid "The document has been published."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/helpers.py
+msgid "The document state has been changed."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "The following items will be transferred:"
+msgstr ""
+
+#: docpool.base/docpool/base/users/monkey.py
+msgid "The group folder could not be deleted because of protected documents. Please check!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "There are comments."
+msgstr ""
+
+#: docpool.base/docpool/base/users/monkey.py
+msgid "There was an existing group folder of the same name. Please check!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/collectionlistitem.pt
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.base/docpool/base/browser/folderbaselistitem.pt
+msgid "Title / Description / Text"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+#: docpool.base/docpool/base/browser/transfers_macros.pt
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Transfer"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Transfer DocType"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/DPTransferFolder.xml
+msgid "Transfer Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dptransferfolder.pt
+msgid "Transfer Folder: filter not active!"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "Transfer target"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+msgid "Transfer to<br>"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Transferable"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Transferred to ${target_title}"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/configure.zcml
+msgid "Type extension for transferable types"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Unauthorized to paste item(s)."
+msgstr ""
+
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "Unknown error occured. Please check your logs"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Unknown scenario not accepted."
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
+msgid "User Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "User Management"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/Users.xml
+msgid "Users Area"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
+#: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
+#: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
+msgid "View"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_delete_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_publish_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_to_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_to_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_reject_to_npp_operator_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_for_revision_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_retract_to_npp_operator_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_authority_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_bfs_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_bmu_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_submit_popup"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "alert_transition"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "back to"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "created:"
+msgstr ""
+
+#: docpool.base/docpool/base/content/collaborationfolder.py
+msgid "description_collaborationfolder_allowedpartnerdoctypes"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "description_contentbase_created_by"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "description_contentbase_mdate"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "description_contentbase_modified_by"
+msgstr ""
+
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "description_contentbase_wdate"
+msgstr ""
+
+#. Default: "Select the document types you want to show in this dashboard."
+#: docpool.base/docpool/base/content/dashboard.py
+msgid "description_dashboard_dbcollections"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_alloweddoctypes"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "description_doctype_allowtransfer"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_allowuploads"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "description_doctype_automatictransfertargets"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_customviewtemplate"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_globalallow"
+msgstr ""
+
+#. Default: "If image exists, it will be used as a visual representation for objects of this type."
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_imgpattern"
+msgstr ""
+
+#. Default: "Used for automatically creating objects of this type from collections of files and images."
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_partspattern"
+msgstr ""
+
+#. Default: "If PDF exists, an image will be created from its first page as a visual representation for objects of this type."
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_pdfpattern"
+msgstr ""
+
+#: docpool.base/docpool/base/content/doctype.py
+msgid "description_doctype_publishimmediately"
+msgstr ""
+
+#: docpool.base/docpool/base/content/documentpool.py
+msgid "description_documentpool_customlogo"
+msgstr ""
+
+#. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
+#: docpool.base/docpool/base/content/documentpool.py
+msgid "description_documentpool_prefix"
+msgstr ""
+
+#: docpool.base/docpool/base/content/documentpool.py
+msgid "description_documentpool_supportedapps"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py
+msgid "description_dpdocument_doctype"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dpdocument.py
+msgid "description_dpdocument_text"
+msgstr ""
+
+#. Default: "Only used for archived documents."
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "description_dpdocument_transferlog"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "description_dpdocument_transferred"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "description_dpdocument_transferred_by"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_permlevel"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_sendingesd"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_unknowndtdefault"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "description_dptransferfolder_unknownscendefault"
+msgstr ""
+
+#: docpool.base/docpool/base/content/dashboardcollection.py
+msgid "description_elandoccollection_doctypes"
+msgstr ""
+
+#. Default: "Select applications supported for this content, changes will be applied after saving"
+#: docpool.base/docpool/base/localbehavior/localbehavior.py
+msgid "description_local_behaviors"
+msgstr ""
+
+#. Default: "There are currently no items in this folder."
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "description_no_items_in_folder"
+msgstr ""
+
+#. Default: "Leave blank to enable all types configured for the group."
+#: docpool.base/docpool/base/content/simplefolder.py
+msgid "description_simplefolder_alloweddoctypes"
+msgstr ""
+
+#: docpool.base/docpool/base/content/text.py
+msgid "description_text_text"
+msgstr ""
+
+#: docpool.base/docpool/base/users/personalpreferences.py
+msgid "description_user_apps"
+msgstr ""
+
+#: docpool.base/docpool/base/users/userdataschema.py
+msgid "description_user_dp"
+msgstr ""
+
+#: docpool.base/docpool/base/configure.zcml
+msgid "docpool.base"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "don't accept"
+msgstr ""
+
+#. Default: "Select the transition to be used for modifying the items state."
+#: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
+msgid "help_change_status_action"
+msgstr ""
+
+#. Default: "Anonymous User"
+#: docpool.base/docpool/base/browser/review_history.py
+msgid "label_anonymous_user"
+msgstr ""
+
+#. Default: "Cancel"
+#: docpool.base/docpool/base/browser/folderbase.py
+msgid "label_cancel"
+msgstr ""
+
+#. Default: "Document types allowed for the guest group(s)"
+#: docpool.base/docpool/base/content/collaborationfolder.py
+msgid "label_collaborationfolder_allowedpartnerdoctypes"
+msgstr ""
+
+#. Default: "Created by"
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "label_contentbase_created_by"
+msgstr ""
+
+#. Default: "Date of last user action"
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "label_contentbase_mdate"
+msgstr ""
+
+#. Default: "Modified by"
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "label_contentbase_modified_by"
+msgstr ""
+
+#. Default: "Date of last workflow action"
+#: docpool.base/docpool/base/content/contentbase.py
+msgid "label_contentbase_wdate"
+msgstr ""
+
+#. Default: "Dashboard"
+#: docpool.base/docpool/base/profiles/default/types/Dashboard.xml
+msgid "label_dashboard"
+msgstr ""
+
+#. Default: "Document Types"
+#: docpool.base/docpool/base/content/dashboard.py
+msgid "label_dashboard_dbcollections"
+msgstr ""
+
+#. Default: "Allow commenting on this type"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_allow_discussion"
+msgstr ""
+
+#. Default: "Types are allowed as part of this type"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_alloweddoctypes"
+msgstr ""
+
+#. Default: "Can documents of this type be sent to other ESDs?"
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "label_doctype_allowtransfer"
+msgstr ""
+
+#. Default: "Can contain documents and images"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_allowuploads"
+msgstr ""
+
+#. Default: "Where are documents of this type transferred automatically?"
+#: docpool.base/docpool/base/behaviors/transferstype.py
+msgid "label_doctype_automatictransfertargets"
+msgstr ""
+
+#. Default: "Custom View Template"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_customviewtemplate"
+msgstr ""
+
+#. Default: "Can be used everywhere (not only as part of another type)"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_globalallow"
+msgstr ""
+
+#. Default: "Name pattern for representative image"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_imgpattern"
+msgstr ""
+
+#. Default: "Name pattern for files and images belonging to this type"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_partspattern"
+msgstr ""
+
+#. Default: "Name pattern for representative PDF"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_pdfpattern"
+msgstr ""
+
+#. Default: "Publish immediately?"
+#: docpool.base/docpool/base/content/doctype.py
+msgid "label_doctype_publishimmediately"
+msgstr ""
+
+#. Default: "Custom Logo"
+#: docpool.base/docpool/base/content/documentpool.py
+msgid "label_documentpool_customlogo"
+msgstr ""
+
+#. Default: "Prefix names"
+#: docpool.base/docpool/base/content/documentpool.py
+msgid "label_documentpool_prefix"
+msgstr ""
+
+#. Default: "Applications supported in this document pool"
+#: docpool.base/docpool/base/content/documentpool.py
+msgid "label_documentpool_supportedapps"
+msgstr ""
+
+#. Default: "Document Type"
+#: docpool.base/docpool/base/content/dpdocument.py
+msgid "label_dpdocument_doctype"
+msgstr ""
+
+#. Default: "Text"
+#: docpool.base/docpool/base/content/dpdocument.py
+msgid "label_dpdocument_text"
+msgstr ""
+
+#. Default: "Transfer log"
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "label_dpdocument_transferlog"
+msgstr ""
+
+#. Default: "Date of last transfer"
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "label_dpdocument_transferred"
+msgstr ""
+
+#. Default: "Transferred by"
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "label_dpdocument_transferred_by"
+msgstr ""
+
+#. Default: "Permissions by document type"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_doctypepermissions"
+msgstr ""
+
+#. Default: "Permission level"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_permlevel"
+msgstr ""
+
+#. Default: "The organisation sending content via this transfer folder"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_sendingesd"
+msgstr ""
+
+#. Default: "Default for unknown document types"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_unknowndtdefault"
+msgstr ""
+
+#. Default: "Default for unknown scenarios"
+#: docpool.base/docpool/base/content/dptransferfolder.py
+msgid "label_dptransferfolder_unknownscendefault"
+msgstr ""
+
+#. Default: "Document Types"
+#: docpool.base/docpool/base/content/dashboardcollection.py
+msgid "label_elandoccollection_doctypes"
+msgstr ""
+
+#. Default: "Document types allowed in this folder"
+#: docpool.base/docpool/base/content/simplefolder.py
+msgid "label_simplefolder_alloweddoctypes"
+msgstr ""
+
+#. Default: "Text"
+#: docpool.base/docpool/base/content/text.py
+msgid "label_text_text"
+msgstr ""
+
+#. Default: "Toggle all"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "label_toggle"
+msgstr ""
+
+#. Default: "Applications"
+#: docpool.base/docpool/base/users/personalpreferences.py
+msgid "label_user_apps"
+msgstr ""
+
+#. Default: "DocPool"
+#: docpool.base/docpool/base/users/userdataschema.py
+msgid "label_user_dp"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "modified:"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "needs confirmation"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_authority - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bfs - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "pending_bmu - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "private - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "publish immediately"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "published"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "published - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "read/write"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "revised - Show document"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "submit_bmu"
+msgstr ""
+
+#. Default: "Content listing"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "summary_content_listing"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "suspended"
+msgstr ""
+
+#. Default: "Can manage site"
+#: docpool.base/docpool/base/permissions.py
+msgid "title_can_manage_site"
+msgstr ""
+
+#. Default: "Move item down"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "title_move_item_down"
+msgstr ""
+
+#. Default: "Move item up"
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "title_move_item_up"
+msgstr ""
+
+#: docpool.base/docpool/base/vocabularies.py
+msgid "write"
+msgstr ""

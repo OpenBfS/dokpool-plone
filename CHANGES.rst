@@ -10,10 +10,19 @@ Changed:
   [pbauer]
 
 
+Fixed:
+
+- Use overrides.zcml to register custom importers in docpool.distribution to fix ConfigurationConflictError. (#6056)
+  [pbauer]
+
+
 Added:
 
 - Show number of entries in event-picker, archive-listing and event-listing. (#5759)
   [pbauer]
+
+- i18n structure for Romania. (#6020)
+  [slindner]
 
 
 Technical:

@@ -1,0 +1,4164 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# Romanian translations for PACKAGE package.
+# Philip Bauer <bauer@starzel.de>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-04-10 09:36+0000\n"
+"PO-Revision-Date: 2025-05-19 17:02+0200\n"
+"Last-Translator: Philip Bauer <bauer@starzel.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.doksys\n"
+"Language: ro\n"
+
+#: docpool/doksys/vocabularies/duration.py
+msgid "10Min"
+msgstr ""
+
+#: docpool/doksys/vocabularies/duration.py
+msgid "1Mo"
+msgstr ""
+
+#: docpool/doksys/vocabularies/duration.py
+msgid "1a"
+msgstr ""
+
+#: docpool/doksys/vocabularies/duration.py
+msgid "1d"
+msgstr ""
+
+#: docpool/doksys/vocabularies/duration.py
+msgid "1h"
+msgstr ""
+
+#: docpool/doksys/vocabularies/duration.py
+msgid "2h"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "AVV IMIS"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ac-223"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ac-224"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ac-225"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ac-226"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ac-227"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ac-228"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-102"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-103"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-104"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-104m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-105"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-106"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-106m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-108"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-108m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-109m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-110"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-110m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-111"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-112"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ag-115"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Al-26"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Al-28"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-237"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-238"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-239"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-240"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-241"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-242"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-242m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-243"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-244"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-244m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-245"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-246"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Am-246m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ar-37"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ar-39"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ar-41"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Area"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-69"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-70"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-71"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-72"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-73"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-74"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-76"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-77"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "As-78"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "At-207"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "At-211"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "At-215"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "At-216"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "At-217"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "At-218"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-193"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-194"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-195"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-195m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-198"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-198m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-199"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-200"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-200m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Au-201"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BMUV"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BSH"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-126"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-128"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-131"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-131m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-133"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-133m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-135m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-137m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-139"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-140"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-141"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ba-142"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Baden-Wuerttemberg"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Bayern"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Be-10"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Be-7"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Berlin"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfE"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfG"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfS (ABI)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfS (LSt. AB)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfS (LSt. TW ...)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfS (ODL)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfS (Spuren)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "BfS/ZdB"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-200"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-201"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-202"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-203"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-205"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-206"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-207"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-210"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-210m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-211"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-212"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-213"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bi-214"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bk-245"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bk-246"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bk-247"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bk-249"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Bk-250"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-74"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-74m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-75"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-76"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-77"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-80"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-80m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-82"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-83"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Br-84"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Brandenburg"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Bremen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Bundeswehr"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "C-11"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "C-14"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ca-41"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ca-45"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ca-47"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ca-49"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-104"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-107"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-109"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-113"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-113m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-115"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-115m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-117"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cd-117m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-134"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-135"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-137"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-137m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-139"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-141"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-143"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ce-144"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-244"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-246"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-248"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-249"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-250"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-251"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-252"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-253"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cf-254"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cl-36"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cl-38"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cl-39"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-238"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-240"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-241"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-242"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-243"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-24344"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-244"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-245"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-246"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-247"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-248"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-249"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cm-250"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-55"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-56"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-57"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-58"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-58m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-60"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-60m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-61"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Co-62m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cr-48"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cr-49"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cr-51"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-125"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-126"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-127"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-128"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-129"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-130"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-131"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-132"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-134"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-134m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-135"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-135m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-136"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-137"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-138"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cs-Gesamt"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cu-60"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cu-61"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cu-62"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cu-64"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cu-66"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Cu-67"
+msgstr ""
+
+#: docpool/doksys/vocabularies/area.py
+msgid "D"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "DENSE"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "DWD"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Data Type"
+msgstr ""
+
+#: docpool/doksys/behaviors/configure.zcml
+msgid "DoksysDoc"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Dom"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Duration"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Dy-155"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Dy-157"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Dy-159"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Dy-165"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Dy-166"
+msgstr ""
+
+#: docpool/doksys/vocabularies/area.py
+msgid "EU"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "EURDEP"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "End Location"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "End Time"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Endlager (Bundesaufsicht)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Er-161"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Er-165"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Er-169"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Er-171"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Er-172"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Es-250"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Es-251"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Es-253"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Es-254"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Es-254m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-145"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-146"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-148"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-149"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-150 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-150 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-152"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-152m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-154"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-155"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-156"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-157"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Eu-158"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "F-18"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fe-52"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fe-55"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fe-59"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fe-60"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "FhG"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fm-252"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fm-253"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fm-254"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fm-255"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fm-257"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fr-219"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fr-220"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fr-221"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fr-222"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Fr-223"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha-120h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha-2,5h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha-24h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha-5h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha-kuenstl."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Alpha-natuerl."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta-10h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta-120h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta-24h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta-2h_verz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta-kuenstl."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Beta-natuerl."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Gamma"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "G-Gamma-kuenstl."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-65"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-66"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-67"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-68"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-70"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-72"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ga-73"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-OD"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-OD-Brutto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-OD-Netto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-ODL"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-ODL-Brutto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-ODL-Netto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-ODL-kuenstl."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-ODL-max"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gamma-ODL-min"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-145"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-146"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-148"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-149"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-151"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-152"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-153"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Gd-159"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-66"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-67"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-68"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-69"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-71"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-75"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-77"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ge-78"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "H-3"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Hamburg"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Hessen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-170"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-172"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-173"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-175"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-177m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-178m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-179m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-180m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-181"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-182"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-182m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-183"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hf-184"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-193"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-193m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-194"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-195"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-195m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-197"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-197m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-199m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Hg-203"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-155"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-157"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-159"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-161"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-162"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-162m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-164"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-164m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-166"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-166m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ho-167"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-120"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-120m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-121"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-122"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-123"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-124"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-125"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-126"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-128"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-129"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-130"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-131"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-131E"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-131G"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-131GO"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-131O"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-132"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-132m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-133"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-133E"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-133G"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-133GO"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-133O"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-134"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-135"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-135E"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-135G"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-135GO"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "I-135O"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "IRMIS"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-109"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-110 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-110 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-111"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-112"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-113m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-114"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-114m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-115"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-115m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-116m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-117"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-117m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-119"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "In-119m"
+msgstr ""
+
+#: docpool/doksys/configure.zcml
+msgid "Installs the docpool.doksys add-on."
+msgstr ""
+
+#: docpool/doksys/vocabularies/operation_mode.py
+msgid "Intensiv"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measuring_program.py
+msgid "Intensivmessprogramm"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-182"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-184"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-185"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-186 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-186 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-187"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-188"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-189"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-190"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-190m1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-190m2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-191m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-192"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-192m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-194"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-194m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-195"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ir-195m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "K-38"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "K-40"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "K-42"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "K-43"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "K-44"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "K-45"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "KFÜ"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-74"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-76"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-77"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-79"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-81"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-81m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-83m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-85"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-85m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-87"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-88"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Kr-89"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-131"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-132"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-134"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-135"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-137"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-138"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-140"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-141"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-142"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "La-143"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "Land"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Legal Base"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-169"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-170"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-171"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-172"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-173"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-174"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-174m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-176"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-176m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-177"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-177m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-178"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-178m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Lu-179"
+msgstr ""
+
+#: docpool/doksys/vocabularies/area.py
+msgid "ME"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "MRI"
+msgstr ""
+
+#: docpool/doksys/behaviors/configure.zcml
+msgid "Makes documents support doksys functions"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Md-257"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Md-258"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Measurement Category"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Measuring Program"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Mecklenburg-Vorpommern"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "Messergebnisse"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Metadata"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mg-28"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mn-51"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mn-52"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mn-52m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mn-53"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mn-54"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mn-56"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mo-101"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mo-90"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mo-93"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mo-93m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Mo-99"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "N-13"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Na-22"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Na-24"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-88"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-89 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-89 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-90"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-93m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-94"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-95"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-95m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-96"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-97"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-97m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nb-98"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-136"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-138"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-139"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-139m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-141"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-141m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-149"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nd-151"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ne-19"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Network Operator"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutr-OD-Brutto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutr-OD-Netto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutr-ODL-Brutto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutr-ODL-Netto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutr-ODL-max"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutr-ODL-min"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutronen-OD"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Neutronen-ODL"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ni-56"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ni-57"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ni-59"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ni-63"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ni-65"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ni-66"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Niedersachsen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Niederschlag"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Nordrhein-Westfalen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-232"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-233"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-234"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-235"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-236 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-236 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-237"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-238"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-239"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-240"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Np-240m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Nullmessung"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "O-15"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Operation Mode"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-180"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-181"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-182"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-185"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-189m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-190m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-191"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-191m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-193"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Os-194"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "P-30"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "P-32"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "P-33"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "PTB"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-227"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-228"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-230"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-231"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-232"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-233"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-234"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pa-234m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Park"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-195m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-198"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-199"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-200"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-201"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-202"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-202m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-203"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-205"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-209"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-210"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-211"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-212"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pb-214"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pd-100"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pd-101"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pd-103"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pd-107"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pd-109"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-141"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-142"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-143"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-144"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-145"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-146"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-148"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-148m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-149"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-150"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pm-151"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-203"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-205"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-207"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-210"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-211"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-212"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-213"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-214"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-215"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-216"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Po-218"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-136"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-137"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-138"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-138m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-139"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-142"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-142m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-143"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-144"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-144m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-145"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pr-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-186"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-188"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-189"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-191"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-193"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-193m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-195m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-197"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-197m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-199"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pt-200"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-234"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-235"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-236"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-237"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-238"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-239"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-23940"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-240"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-241"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-242"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-243"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-244"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-245"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Pu-246"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Purpose"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measuring_program.py
+msgid "REI"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "REI-E"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "REI-I"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-222"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-223"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-224"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-225"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-226"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-227"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ra-228"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-79"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-80"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-81"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-81m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-82"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-82m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-83"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-84"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-86"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-87"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-88"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rb-89"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-177"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-178"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-180"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-181"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-182 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-182 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-184"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-184m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-186"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-186m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-187"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-188"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-188m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Re-189"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Regen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rest-Beta"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-100"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-101"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-101m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-102"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-102m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-103m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-105"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-106"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-106m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-107"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-99"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rh-99m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Rheinland-Pfalz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rn-218"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rn-219"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rn-220"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rn-222"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Rn-Gesamt"
+msgstr ""
+
+#: docpool/doksys/vocabularies/operation_mode.py
+msgid "Routine"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measuring_program.py
+msgid "Routinemessprogramm"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ru-103"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ru-105"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ru-106"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ru-94"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ru-97"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "S-35"
+msgstr ""
+
+#: docpool/doksys/vocabularies/legal_base.py
+msgid "SPARSE"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Saarland"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Sachsen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Sachsen-Anhalt"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Sample Type"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Sample Type Id"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Sampling Begin"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Sampling End"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-115"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-116"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-116m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-117"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-118m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-119"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-120 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-120 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-122"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-124"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-124m1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-124m2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-125"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-126"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-126m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-127"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-128 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-128 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-129"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-130"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sb-131"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-43"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-44"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-44m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-46"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-47"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-48"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sc-49"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Schleswig-Holstein"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Schnee"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-70"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-73"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-73m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-75"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-77m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-79"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-81"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-81m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Se-83"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Si-31"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Si-32"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-141"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-141m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-142"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-145"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-146"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-151"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-153"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-155"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sm-156"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-110"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-111"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-113"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-117m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-119m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-121"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-121m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-123"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-123m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-125"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-126"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-127"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sn-128"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "Soll-Ist-Vergleich"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Sonstige"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measuring_program.py
+msgid "Spontanproben Bund"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-80"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-81"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-82"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-83"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-85"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-85m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-87m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-89"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-90"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-91"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sr-92"
+msgstr ""
+
+#: docpool/doksys/vocabularies/purpose.py
+msgid "Standard-Info Bundesmessnetze"
+msgstr ""
+
+#: docpool/doksys/vocabularies/purpose.py
+msgid "Standard-Info DWD"
+msgstr ""
+
+#: docpool/doksys/local/doksys.py
+msgid "Standardsuchen"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Start Location"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Start Time"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Status"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "SumPARK"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Summe"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Sumrelv"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-172"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-173"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-174"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-175"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-176"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-177"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-178 1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-178 2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-179"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-180"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-180m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-182"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-182m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-183"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-184"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-185"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ta-186"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-147"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-149"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-150"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-151"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-153"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-154"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-155"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-156"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-156m1"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-156m2"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-157"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-158"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-160"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tb-161"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-101"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-104"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-93"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-93m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-94"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-94m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-95"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-95m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-96"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-96m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-97"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-97m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-98"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-99"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tc-99m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-116"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-121"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-121m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-123"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-123m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-125m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-127"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-127m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-129"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-129m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-131"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-131m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-132"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-133"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-133m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Te-134"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Temperatur"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-226"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-227"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-228"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-229"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-230"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-231"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-232"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Th-234"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "Thueringen"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ti-44"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Ti-45"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-194"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-194m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-195"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-197"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-198"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-198m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-199"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-200"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-201"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-202"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-204"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-206"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-207"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-208"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tl-209"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-162"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-166"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-167"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-170"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-171"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-172"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-173"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Tm-175"
+msgstr ""
+
+#: docpool/doksys/profiles/default/registry.xml
+msgid "Type"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-230"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-231"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-232"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-233"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-234"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-235"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-236"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-237"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-238"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-239"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-240"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "U-nat"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "Ueberblick"
+msgstr ""
+
+#: docpool/doksys/configure.zcml
+msgid "Uninstalls the docpool.doksys add-on."
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "V-47"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "V-48"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "V-49"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-176"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-177"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-178"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-179"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-181"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-185"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-187"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "W-188"
+msgstr ""
+
+#: docpool/doksys/vocabularies/area.py
+msgid "World"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-120"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-121"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-122"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-123"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-125"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-127"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-129m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-131m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-133"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-133m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-135"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-135m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-137"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Xe-138"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-86"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-86m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-87"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-88"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-90"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-90m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-91"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-91m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-92"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-93"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-94"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Y-95"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-162"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-166"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-167"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-169"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-175"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-177"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Yb-178"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "ZdB-Testnetz"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-62"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-63"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-65"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-69"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-69m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-71m"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zn-72"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zr-86"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zr-88"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zr-89"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zr-93"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zr-95"
+msgstr ""
+
+#: docpool/doksys/vocabularies/measurement_category.py
+msgid "Zr-97"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "auslaend. Messnetze"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "brutto"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_Dom"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_area"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_data_type"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_duration"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_infotype"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_legal_base"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_measurement_category"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_measuring_program"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_network_operator"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_operation_mode"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_purpose"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_sample_type"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_sampling_begin"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_sampling_end"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_status"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_trajectory_end_location"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_trajectory_end_time"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_trajectory_start_location"
+msgstr ""
+
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "description_doksys_trajectory_start_time"
+msgstr ""
+
+#: docpool/doksys/configure.zcml
+msgid "docpool.doksys"
+msgstr ""
+
+#: docpool/doksys/configure.zcml
+msgid "docpool.doksys (uninstall)"
+msgstr ""
+
+#: docpool/doksys/vocabularies/status.py
+msgid "geprueft"
+msgstr ""
+
+#. Default: "Description of Measurement"
+#: docpool/doksys/behaviors/doksysdoc.py
+msgid "label_doksys_Dom"
+msgstr ""
+
+#. Default: "Area"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_area"
+msgstr ""
+
+#. Default: "Data Type"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_data_type"
+msgstr ""
+
+#. Default: "Duration"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_duration"
+msgstr ""
+
+#. Default: "InfoType"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_infotype"
+msgstr ""
+
+#. Default: "Legal Base"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_legal_base"
+msgstr ""
+
+#. Default: "Measurement Category"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_measurement_category"
+msgstr ""
+
+#. Default: "Measuring Program"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_measuring_program"
+msgstr ""
+
+#. Default: "Network Operator"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_network_operator"
+msgstr ""
+
+#. Default: "Operation Mode"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_operation_mode"
+msgstr ""
+
+#. Default: "Purpose"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_purpose"
+msgstr ""
+
+#. Default: "Sample Type"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_sample_type"
+msgstr ""
+
+#. Default: "Sampling Begin"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_sampling_begin"
+msgstr ""
+
+#. Default: "Sampling End"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_sampling_end"
+msgstr ""
+
+#. Default: "Status"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_status"
+msgstr ""
+
+#. Default: "Trajectory End Location"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_trajectory_end_location"
+msgstr ""
+
+#. Default: "Trajectory End Time"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_trajectory_end_time"
+msgstr ""
+
+#. Default: "Trajectory Start Location"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_trajectory_start_location"
+msgstr ""
+
+#. Default: "Trajectory Start Time"
+#: docpool/doksys/behaviors/doksysdoc.py
+#: docpool/doksys/browser/doksys_macros.pt
+msgid "label_doksys_trajectory_start_time"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "nass"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "netto"
+msgstr ""
+
+#: docpool/doksys/vocabularies/status.py
+msgid "nicht geprueft"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "rueckwaerts"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "trocken"
+msgstr ""
+
+#: docpool/doksys/vocabularies/network_operators.py
+msgid "vTI"
+msgstr ""
+
+#: docpool/doksys/vocabularies/infotype.py
+msgid "vorwaerts"
+msgstr ""

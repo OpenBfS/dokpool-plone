@@ -9,8 +9,8 @@ default_context:
   environment:
     zope_i18n_compile_mo_files: true
     CHAMELEON_CACHE: "{{ cookiecutter.location_clienthome }}/cache"
-    PTS_LANGUAGES: "de"
-    zope_i18n_allowed_languages: "de"
+    PTS_LANGUAGES: "de en ro"
+    zope_i18n_allowed_languages: "de en ro"
 
   db_storage: relstorage
   db_blob_mode: cache
