@@ -22,35 +22,6 @@
       pre_handler=".handlers.pre_handler"
       />
 
-  <!-- plone.exportimport -->
-  <adapter
-      factory=".exporters.content.CustomContentExporter"
-      provides="plone.exportimport.interfaces.INamedExporter"
-      for="plone.base.interfaces.siteroot.IPloneSiteRoot"
-      name="plone.exporter.content"
-      />
-
-  <adapter
-      factory=".exporters.principals.CustomPrincipalsExporter"
-      provides="plone.exportimport.interfaces.INamedExporter"
-      for="plone.base.interfaces.siteroot.IPloneSiteRoot"
-      name="plone.exporter.principals"
-      />
-
-  <adapter
-      factory=".importers.content.CustomContentImporter"
-      provides="plone.exportimport.interfaces.INamedImporter"
-      for="plone.base.interfaces.siteroot.IPloneSiteRoot"
-      name="plone.importer.content"
-      />
-
-  <adapter
-      factory=".importers.principals.CustomPrincipalsImporter"
-      provides="plone.exportimport.interfaces.INamedImporter"
-      for="plone.base.interfaces.siteroot.IPloneSiteRoot"
-      name="plone.importer.principals"
-      />
-
   <configure zcml:condition="not-installed contentimport">
     <adapter factory=".serializer.convert_journalentry" />
     <adapter factory=".serializer.convert_criterion" />
