@@ -24,7 +24,7 @@
                  item_created dpbrain/CreationDate;
                  item_creator dpbrain/Creator;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                 pas_member context/@@pas_member;
+                 pas_member nocall:context/@@pas_member;
                  author python:pas_member.info(item_creator);
                  creator_fullname author/name_or_id;
                  item_ptype dpbrain/portal_type;

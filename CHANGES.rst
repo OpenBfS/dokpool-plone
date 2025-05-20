@@ -1,6 +1,36 @@
 Changelog
 =========
 
+2.1.0 (2025-05-20)
+------------------
+
+Changed:
+
+- Improve event archiving by using a form and preventing triggering it multiple times. (#5998)
+  [pbauer]
+
+
+Fixed:
+
+- Use overrides.zcml to register custom importers in docpool.distribution to fix ConfigurationConflictError. (#6056)
+  [pbauer]
+
+
+Added:
+
+- Show number of entries in event-picker, archive-listing and event-listing. (#5759)
+  [pbauer]
+
+- i18n structure for Romania. (#6020)
+  [slindner]
+
+
+Technical:
+
+- Upgrade to Plone 6.0.15. (#4892)
+  [pbauer]
+
+
 2.0.1 (2025-03-31)
 ------------------
 

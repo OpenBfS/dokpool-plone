@@ -1,8 +1,10 @@
 from AccessControl.SecurityInfo import allow_module
+from Acquisition import aq_get
 from docpool.base.content.archiving import IArchiving
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getOpenScenarios
 from docpool.elan.utils import getScenariosForCurrentUser
+from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
@@ -34,6 +36,14 @@ class EventViewlet(ViewletBase):
         scs = getScenariosForCurrentUser()
         possible_uids = {s[0] for s in self.scenarios}
         self.selected_scenarios = [s for s in scs if s in possible_uids]
+
+    def number_of_entries(self, dpevent):
+        contentarea = aq_get(dpevent, "content")
+        args = {
+            "portal_type": "DPDocument",
+            "scenarios": dpevent.UID(),
+        }
+        return len(api.content.find(context=contentarea, **args))
 
 
 class ELANViewlet(ViewletBase):

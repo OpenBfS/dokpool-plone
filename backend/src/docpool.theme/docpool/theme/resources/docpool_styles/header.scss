@@ -9,4 +9,10 @@
 #scenario_box-wrapper {
   margin-left: 20px;
   margin-right: 20px;
+
+  .number_of_children.text-bg-secondary {
+    font-size: 0.75rem;
+    background-color: #bbb;
+    color: #666;
+  }
 }

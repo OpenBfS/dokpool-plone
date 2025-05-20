@@ -42,15 +42,13 @@
   </property>
 
   <!-- View information -->
-  <property name="default_view">tabular_view</property>
+  <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="view_methods">
     <element value="view" />
-
     <element value="summary_view" />
     <element value="tabular_view" />
     <element value="listing_view" />
-
   </property>
   <alias from="(Default)"
          to="(dynamic view)"

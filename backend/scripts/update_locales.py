@@ -6,7 +6,7 @@ import sys
 
 
 packages = sys.argv[1:]
-languages = ["de", "en"]
+languages = ["de", "en", "ro"]
 
 i18ndude = "i18ndude"
 
@@ -56,7 +56,12 @@ def update_lang(domain, pot, locale_path, lang):
     if not lc_messages_path.is_dir():
         lc_messages_path.mkdir(parents=True)
         subprocess.call(
-            ["msginit", f"--locale={lang}", f"--input={pot}", f"--output={po}"]
+            [
+                "msginit",
+                f"--locale={lang}",
+                f"--input={pot}",
+                f"--output={po}",
+            ]
         )
 
     with reset_pot_creation_date(po):
@@ -64,7 +69,11 @@ def update_lang(domain, pot, locale_path, lang):
 
 
 def update_pkg(pkg):
-    locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
+    try:
+        locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
+    except TypeError:  # no locales directory in this package
+        return
+
     domain = pkg
     pot = locale_path / f"{domain}.pot"
     target_path = locale_path.parent

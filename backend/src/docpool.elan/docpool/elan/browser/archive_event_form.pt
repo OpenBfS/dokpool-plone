@@ -1,0 +1,100 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.elan"
+      xml:lang="en"
+      metal:use-macro="context/@@main_template/macros/master"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<body>
+
+<metal:content-core fill-slot="main">
+<metal:content-core define-macro="main">
+<tal:def tal:define="items python: view.items;
+                     toLocalizedTime nocall: plone_view/toLocalizedTime;
+                     _is nocall: context/@@is;">
+
+      <form method="post"
+            id="archive_event_form"
+            name="archive_event_form"
+            action="#"
+            tal:attributes="action request/URL">
+
+        <input type="hidden" name="form.uid" tal:attributes="value python: view.uid" />
+
+            <div class="alert alert-danger" role="alert" tal:condition="python: view.archiving_info and not view.archiving_info['finished']">
+                <p><strong i18n:translate="">Watch out:</strong>
+                <span i18n:translate="">This event is already being archived by</span> ${python: view.archiving_info["user"]}.<br/>
+                <span i18n:translate="">Start time:</span> ${python: toLocalizedTime(view.archiving_info["started"], long_format=True)}</p>
+
+                <p i18n:translate="">After some minutes you can reload this page in your browser
+                in order to see, if the process has finished or is still running.</p>
+                <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger activate-spinner" name="form.button.restart" value="Restart" i18n:attributes="value label_restart;title"/>
+            </div>
+
+
+
+        <tal:archive tal:condition="python: view.__name__=='archiveAndClose'">
+            <h1 i18n:translate="">Archive Event</h1>
+            <p><span i18n:translate="subtitle_archive">Archive event</span> <em>${python: context.title}</em> <span i18n:translate="subtitle_with">with</span> ${python: len(items)} <span i18n:translate="subtitle_entries">entries</span>.</p>
+            <p i18n:translate="">The following happens when archiving:</p>
+            <ul>
+                <li i18n:translate="">All content for this event is saved in an archive.</li>
+                <li i18n:translate="">Original content is moved to the archive.</li>
+                <li i18n:translate="">Entries that are also assigned to other events are copied into the archive instead of moved.</li>
+                <li i18n:translate="">The event and its journals are moved to the archive.</li>
+                <li i18n:translate="">The event state is set to "closed".</li>
+            </ul>
+        </tal:archive>
+
+        <tal:snapshot tal:condition="python: view.__name__=='snapshot'">
+            <h1 i18n:translate="">Snapshot Event</h1>
+            <p><span i18n:translate="subtitle_snapshot">Create a snapshot of the event</span> <em>${python: context.title}</em> <span i18n:translate="subtitle_with">with</span> ${python: len(items)} <span i18n:translate="subtitle_entries">entries</span>.</p>
+            <p i18n:translate="">The following happens when creating a snapshot:</p>
+            <ul>
+                <li i18n:translate="">Original content is moved to the archive.</li>
+                <li i18n:translate="">Entries that are also assigned to other events are copied into the archive instead of moved.</li>
+                <li i18n:translate="">The event and its journals are copied to the archive.</li>
+                <li i18n:translate="">The event state (active/inactive) is maintained.</li>
+                <li i18n:translate="">Active Journals are purged.</li>
+            </ul>
+        </tal:snapshot>
+
+        <p i18n:translate="">Depending on the number of entries in this event this can take an hour or longer.</p>
+
+        <p i18n:translate="timeout-help"><strong>Important:</strong><br/>
+            After some minutes, an error-message "Error 503 Backend fetch failed" may appear in your browser.
+            This does not mean that the process failed but that a timeout has happened.
+            Please keep waiting a couple of minutes and reload this page in your browser.
+            You will see if the process has finished or is still runnning.
+        </p>
+
+        <div class="formControls">
+          <input type="submit" class="context btn btn-primary activate-spinner" name="form.button.submit" value="Archive" title="" i18n:attributes="value label_archive;title"/>
+          <input type="submit" i18n:domain="plone" class="btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
+        </div>
+
+        <div class="card" tal:condition="python: _is.admin_or_contentadmin and view.full_archiving_info">
+            <div class="card-body">
+            <a i18n:translate="" class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
+                Show Debug-Info
+            </a>
+            <div class="collapse" id="collapseDebug">
+                <dl class="row" tal:repeat="info python: view.full_archiving_info">
+                    <tal:block tal:repeat="key python: info.keys()">
+                        <dt class="col-sm-2" tal:content="python: key" />
+                        <dd class="col-sm-10" tal:content="python: info[key]" />
+                    </tal:block>
+                </dl>
+                <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger" name="form.button.purge" value="Purge" i18n:attributes="value label_purge;title"/>
+            </div>
+            </div>
+        </div>
+
+      </form>
+</tal:def>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
