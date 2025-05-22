@@ -30,6 +30,8 @@ dependencies = [
     "pas.plugins.ldap",
     "eea.facetednavigation",
     "collective.impersonate",
+    "RelStorage",
+    "psycopg2",
 ]
 
 [project.optional-dependencies]
