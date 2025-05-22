@@ -1,28 +1,45 @@
 <tal:block i18n:domain="docpool.elan">
   <tal:if tal:condition="view/available|nothing">
-    <div metal:use-macro="context/@@event.macros/macros/scenario_table"/>
+    <div metal:use-macro="context/@@event.macros/macros/scenario_table"></div>
   </tal:if>
   <tal:if condition="context/@@is/archive|nothing">
-    <tal:def define="archive context/myELANArchive|nothing" condition="python: archive">
+    <tal:def define="
+               archive context/myELANArchive|nothing;
+             "
+             condition="python: archive"
+    >
 
       <div class="arch_scen card border-info mb-3">
         <div class="card-header">
           <i18n:var translate="">Archive</i18n:var>
-          <tal:var replace="python: archive.title"/>
+          <tal:var replace="python: archive.title" />
         </div>
 
         <div class="card-body">
           <h5 class="card-title"
-            tal:condition="python: archive.description"
-               tal:content="python: archive.description">
+              tal:condition="python: archive.description"
+              tal:content="python: archive.description"
+          >
           </h5>
-          <p class="card-text" tal:define="archived_event python: archive.get_archived_event()"
-             tal:condition="python: archived_event">
-            <a tal:attributes="href python: archived_event.absolute_url()"
-               i18n:translate="">Event Information</a>
+          <p class="card-text"
+             tal:define="
+               archived_event python: archive.get_archived_event();
+             "
+             tal:condition="python: archived_event"
+          >
+            <a tal:attributes="
+                 href python: archived_event.absolute_url();
+               "
+               i18n:translate=""
+            >Event Information</a>
           </p>
-            <a  class="btn btn-primary" href="" tal:attributes="href python:context.myDocumentPool().archive.absolute_url()"
-               i18n:translate="">All Archives</a>
+          <a class="btn btn-primary"
+             href=""
+             tal:attributes="
+               href python:context.myDocumentPool().archive.absolute_url();
+             "
+             i18n:translate=""
+          >All Archives</a>
         </div>
       </div>
     </tal:def>

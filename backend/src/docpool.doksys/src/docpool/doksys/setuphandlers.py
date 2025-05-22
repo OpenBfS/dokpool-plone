@@ -75,9 +75,7 @@ def create_today_collection(plonesite):
 
     title = "Dokumente von Heute"
     description = "Dokumente seit heute 0:00 Uhr"
-    _createObjectByType(
-        "Collection", container, id="today", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="today", title=title, description=description)
     new = container["today"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -117,9 +115,7 @@ def create_since_yesterday_collection(plonesite):
 
     title = "Dokumente seit Gestern"
     description = "Dokumente der letzten 24 Stunden"
-    _createObjectByType(
-        "Collection", container, id="yesterday", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="yesterday", title=title, description=description)
     new = container["yesterday"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -186,16 +182,12 @@ def create_purpose_collections(plonesite):
             "v": "Standard-Info Bundesmessnetze",
         },
     ]
-    new.text = RichTextValue(
-        "<p>Standard-Info Bundesmessnetze<p>", "text/html", "text/x-html-safe"
-    )
+    new.text = RichTextValue("<p>Standard-Info Bundesmessnetze<p>", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
 
     title = "Standard-Info DWD"
     description = "Standard-Info DWD"
-    _createObjectByType(
-        "Collection", container, id="dwd", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="dwd", title=title, description=description)
     new = container["dwd"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -230,9 +222,7 @@ def create_sample_collections(plonesite):
         return
     title = "Ergebnisse Boden"
     description = "Ergebnisse Boden"
-    _createObjectByType(
-        "Collection", container, id="boden", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="boden", title=title, description=description)
     new = container["boden"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -259,9 +249,7 @@ def create_sample_collections(plonesite):
 
     title = "Ergebnisse Futtermittel"
     description = "Ergebnisse Futtermittel"
-    _createObjectByType(
-        "Collection", container, id="futter", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="futter", title=title, description=description)
     new = container["futter"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -283,16 +271,12 @@ def create_sample_collections(plonesite):
             "v": "F*",
         },
     ]
-    new.text = RichTextValue(
-        "<p>Ergebnisse Futtermittel<p>", "text/html", "text/x-html-safe"
-    )
+    new.text = RichTextValue("<p>Ergebnisse Futtermittel<p>", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Gewaesser"
     description = "Ergebnisse Gewaesser"
-    _createObjectByType(
-        "Collection", container, id="wasser", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="wasser", title=title, description=description)
     new = container["wasser"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -314,16 +298,12 @@ def create_sample_collections(plonesite):
             "v": "G*",
         },
     ]
-    new.text = RichTextValue(
-        "<p>Ergebnisse Gewaesser<p>", "text/html", "text/x-html-safe"
-    )
+    new.text = RichTextValue("<p>Ergebnisse Gewaesser<p>", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Luft"
     description = "Ergebnisse Luft"
-    _createObjectByType(
-        "Collection", container, id="luft", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="luft", title=title, description=description)
     new = container["luft"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -350,9 +330,7 @@ def create_sample_collections(plonesite):
 
     title = "Ergebnisse Nahrungsmittel"
     description = "Ergebnisse Nahrungsmittel"
-    _createObjectByType(
-        "Collection", container, id="nahrung", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="nahrung", title=title, description=description)
     new = container["nahrung"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -374,16 +352,12 @@ def create_sample_collections(plonesite):
             "v": "N*",
         },
     ]
-    new.text = RichTextValue(
-        "<p>Ergebnisse Nahrungsmittel<p>", "text/html", "text/x-html-safe"
-    )
+    new.text = RichTextValue("<p>Ergebnisse Nahrungsmittel<p>", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
 
     title = "Ergebnisse Stoerfall"
     description = "Ergebnisse Stoerfall"
-    _createObjectByType(
-        "Collection", container, id="stoer", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="stoer", title=title, description=description)
     new = container["stoer"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
 
@@ -405,9 +379,7 @@ def create_sample_collections(plonesite):
             "v": "S*",
         },
     ]
-    new.text = RichTextValue(
-        "<p>Ergebnisse Stoerfall<p>", "text/html", "text/x-html-safe"
-    )
+    new.text = RichTextValue("<p>Ergebnisse Stoerfall<p>", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
 
     print("Sample Type Collection angelegt")

@@ -1,90 +1,131 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="docpool.elan">
-<body>
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.elan"
+>
+  <body>
 
-<div id="scenario_box" metal:define-macro="scenario_table"
-     tal:define="possible_scenarios python: view.scenarios;"
-     tal:condition="python: not context.restrictedTraverse('@@is').archive() and possible_scenarios">
-    <form name="scenarios" method="post" class="scenario_selection"
-          tal:define="selected_scenarios view/selected_scenarios;
-                      readonly request/ajax_load|nothing"
-          tal:attributes="action python:context.absolute_url() + '/@@event_select_action'">
+    <div id="scenario_box"
+         metal:define-macro="scenario_table"
+         tal:define="
+           possible_scenarios python: view.scenarios;
+         "
+         tal:condition="python: not context.restrictedTraverse('@@is').archive() and possible_scenarios"
+    >
+      <form class="scenario_selection"
+            method="post"
+            name="scenarios"
+            tal:define="
+              selected_scenarios view/selected_scenarios;
+              readonly request/ajax_load|nothing;
+            "
+            tal:attributes="
+              action python:context.absolute_url() + '/@@event_select_action';
+            "
+      >
 
-            <div tal:condition="not:selected_scenarios" class="alert alert-danger" role="alert" i18n:translate="">
+        <div class="alert alert-danger"
+             role="alert"
+             tal:condition="not:selected_scenarios"
+             i18n:translate=""
+        >
                 Please select at least one scenario!
-            </div>
+        </div>
 
-            <table class="scenario_table table table-bordered table-info table-sm small">
-            <tal:loop tal:repeat="uid_scenario possible_scenarios">
-                <tr tal:define="uid python:uid_scenario[0];
-                                scenario python:uid_scenario[1];
-                                event_type python:scenario.EventType or '';
-                                exercise python:event_type in ['Exercise', 'Test'];
-                                inactive python:scenario.Status == 'inactive';
-                                selected python:uid in selected_scenarios;
-                                intensive python:scenario.OperationMode == 'intensive';
-                                toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                                css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected table-active' or '') + (inactive and 'inactive table-light' or '') + (intensive and 'intensive table-danger' or '')"
-                    tal:attributes="class css_class">
-                    <tal:def define="mi python:scenario.modInfo();
-                                     date python:mi[0];
-                                     uinfo python:mi[1]">
-                        <td class="scenario_desc">
-                            <input type="hidden" name="pscnrs:list"
-                                   tal:attributes="value uid" />
-                            <input type="checkbox" name="scnrs:list"
-                                   class="form-check-input"
-                                   tal:attributes="value    uid;
-                                                   title    scenario/Title;
-                                                   disabled python:readonly and 'disabled' or None;
-                                                   checked python:'checked' if selected else None;"
-                                   onclick="this.form.submit();
+        <table class="scenario_table table table-bordered table-info table-sm small">
+          <tal:loop tal:repeat="uid_scenario possible_scenarios">
+            <tr tal:define="
+                  uid python:uid_scenario[0];
+                  scenario python:uid_scenario[1];
+                  event_type python:scenario.EventType or '';
+                  exercise python:event_type in ['Exercise', 'Test'];
+                  inactive python:scenario.Status == 'inactive';
+                  selected python:uid in selected_scenarios;
+                  intensive python:scenario.OperationMode == 'intensive';
+                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                  css_class python:(exercise and 'exercise ' or '') + (selected and 'sselected table-active' or '') + (inactive and 'inactive table-light' or '') + (intensive and 'intensive table-danger' or '');
+                "
+                tal:attributes="
+                  class css_class;
+                "
+            >
+              <tal:def define="
+                         mi python:scenario.modInfo();
+                         date python:mi[0];
+                         uinfo python:mi[1];
+                       ">
+                <td class="scenario_desc">
+                  <input name="pscnrs:list"
+                         type="hidden"
+                         tal:attributes="
+                           value uid;
+                         "
+                  />
+                  <input class="form-check-input"
+                         name="scnrs:list"
+                         onclick="this.form.submit();
                                             $('.scenario_table input').prop('disabled', true)"
-                            />&nbsp;&nbsp;&nbsp;&nbsp;
+                         type="checkbox"
+                         tal:attributes="
+                           value    uid;
+                           title    scenario/Title;
+                           disabled python:readonly and 'disabled' or None;
+                           checked python:'checked' if selected else None;
+                         "
+                  />&nbsp;&nbsp;&nbsp;&nbsp;
 
-                            <tal:if condition="python: exercise">
-                            <span class="exerciseflag"
-                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))">
+                  <tal:if condition="python: exercise">
+                    <span class="exerciseflag"
+                          tal:attributes="
+                            title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1));
+                          "
+                    >
                                 +++
-                                <span tal:replace="python:scenario.event_type_title() or ''" i18n:translate=""></span>
+                      <span tal:replace="python:scenario.event_type_title() or ''"
+                            i18n:translate=""
+                      ></span>
                                 +++
-                            </span>&nbsp;&nbsp;
-                            </tal:if>
+                    </span>&nbsp;&nbsp;
+                  </tal:if>
 
-                            <span class="scentitle"
-                                  tal:attributes="title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1))"
-                                  tal:content="string:${scenario/Title}">Event1</span>
-                            <span
-                                class="number_of_children badge text-bg-secondary"
-                                title="Number of entries"
-                                i18n:attributes="title"
-                                tal:content="python: view.number_of_entries(scenario)"
-                                />
-                        </td>
-                        <td>
-                          <a class="pat-plone-modal scenario-info"
-                             data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
-                             href=""
-                             title="Klicken für Informationen zum Ereignis"
-                             tal:attributes="href python:scenario.absolute_url()">
+                  <span class="scentitle"
+                        tal:content="string:${scenario/Title}"
+                        tal:attributes="
+                          title python:'%s %s %s %s %s' % (scenario.Description(), scenario.phaseInfo(),' - ',uinfo, toLocalizedTime(date, long_format=1));
+                        "
+                  >Event1</span>
+                  <span class="number_of_children badge text-bg-secondary"
+                        title="Number of entries"
+                        tal:content="python: view.number_of_entries(scenario)"
+                        i18n:attributes="title"
+                  ></span>
+                </td>
+                <td>
+                  <a class="pat-plone-modal scenario-info"
+                     href=""
+                     title="Klicken für Informationen zum Ereignis"
+                     data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+                     tal:attributes="
+                       href python:scenario.absolute_url();
+                     "
+                  >
                             Info
-                          </a>
-                        </td>
-                    </tal:def>
-                </tr>
-            </tal:loop>
+                  </a>
+                </td>
+              </tal:def>
+            </tr>
+          </tal:loop>
         </table>
-        <input tal:condition="not:readonly"
-               type="hidden"
+        <input class="context"
                name="form.button.Save"
-               class="context"
+               type="hidden"
                value="Filter"
-               i18n:attributes="value"/>
-    </form>
+               tal:condition="not:readonly"
+               i18n:attributes="value"
+        />
+      </form>
 
-</div>
+    </div>
 
-</body>
+  </body>
 </html>

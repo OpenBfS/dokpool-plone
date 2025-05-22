@@ -57,9 +57,7 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.impersonate)
 
     def setUpPloneSite(self, portal):
-        portal.acl_users.userFolderAddUser(
-            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
-        )
+        portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])
 
 
 DOCPOOL_API_FIXTURE = DocpoolApiLayer()

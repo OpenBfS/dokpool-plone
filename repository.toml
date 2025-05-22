@@ -1,0 +1,20 @@
+[repository]
+name = "dokpool"
+managed_by_uv = false
+changelog = "CHANGES.md"
+version = "version.txt"
+compose = "docker-compose.yml"
+
+[backend]
+path = "backend"
+
+[backend.package]
+name = "dokpool"
+path = "backend"
+base_package = "Products.CMFPlone"
+publish = false
+
+[cookieplone]
+template = "project"
+template_version = "6dc6a251d476dc61ea05b01e6bfb71ed28842492"
+generated_date = "2025-04-29 08:48:08"

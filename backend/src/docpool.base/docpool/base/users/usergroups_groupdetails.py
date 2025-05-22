@@ -3,9 +3,7 @@ from plone.base import PloneMessageFactory as PMF
 from plone.base.utils import base_hasattr
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import (
-    GroupDetailsControlPanel as GDCP,
-)
+from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import GroupDetailsControlPanel as GDCP
 from Products.statusmessages.interfaces import IStatusMessage
 
 
@@ -70,8 +68,7 @@ class GroupDetailsControlPanel(GDCP):
                 )
                 if not success:
                     msg = PMF(
-                        "Could not add group ${name}, perhaps a user or group with "
-                        "this name already exists.",
+                        "Could not add group ${name}, perhaps a user or group with this name already exists.",
                         mapping={"name": addname},
                     )
                     IStatusMessage(self.request).add(msg, "error")
@@ -96,7 +93,7 @@ class GroupDetailsControlPanel(GDCP):
                 msg = PMF("Group name required.")
 
             processed = {}
-            for id, property in self.gdtool.propertyItems():
+            for id, property in self.gdtool.propertyItems():  # noqa: B007
                 # BfS: Here we take the "dp" from the request (set above)
                 processed[id] = self.request.get(id, None)
                 try:
@@ -109,7 +106,7 @@ class GroupDetailsControlPanel(GDCP):
                 # exist
                 self.group.setGroupProperties(processed)
 
-            IStatusMessage(self.request).add(msg, type=self.group and "info" or "error")
+            IStatusMessage(self.request).add(msg, type=(self.group and "info") or "error")
             if self.group and not self.groupname:
                 target_url = "{}/{}".format(
                     self.context.absolute_url(),

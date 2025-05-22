@@ -52,39 +52,31 @@ class SimpleFolder(FolderBase):
         for menu_item in menu_items:
             if menu_item.get("id") == "DPDocument":
                 for dt in dts:
-                    if (
-                        not dt.getObject().globalAllow
-                    ):  # only generally allowed doctypes
+                    if not dt.getObject().globalAllow:  # only generally allowed doctypes
                         continue
                     # Get behavior of menu_item
-                    from docpool.base.localbehavior.localbehavior import (
-                        ILocalBehaviorSupport,
-                    )
+                    from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 
-                    item_behavior = ILocalBehaviorSupport(
-                        dt.getObject()
-                    ).local_behaviors
+                    item_behavior = ILocalBehaviorSupport(dt.getObject()).local_behaviors
 
-                    if not app in item_behavior:
+                    if app not in item_behavior:
                         continue
                     if not filter or dt.id in self.allowedDocTypes:
-                        res.append(
-                            {
-                                "extra": {
-                                    "separator": None,
-                                    "id": dt.id,
-                                    "class": "contenttype-%s" % dt.id,
-                                },
-                                "submenu": None,
-                                "description": "",
-                                "title": safe_text(dt.Title),
-                                "action": "%s/++add++DPDocument?form.widgets.docType:list=%s"
-                                % (self.absolute_url(), dt.id),
-                                "selected": False,
+                        res.append({
+                            "extra": {
+                                "separator": None,
                                 "id": dt.id,
-                                "icon": None,
-                            }
-                        )
+                                "class": "contenttype-%s" % dt.id,
+                            },
+                            "submenu": None,
+                            "description": "",
+                            "title": safe_text(dt.Title),
+                            "action": "%s/++add++DPDocument?form.widgets.docType:list=%s"
+                            % (self.absolute_url(), dt.id),
+                            "selected": False,
+                            "id": dt.id,
+                            "icon": None,
+                        })
             else:
                 res.append(menu_item)
         return res

@@ -31,9 +31,7 @@ def configUsers(plonesite, fresh):
         rodosadmin = mtool.getMemberById("rodosadmin")
         rodosadmin.setMemberProperties({"fullname": "RODOS Administrator"})
         rodosadmin.setSecurityProfile(password="admin")
-        mtool.addMember(
-            "rodosmanager", "RODOS Manager (global)", ["Manager", "Member"], []
-        )
+        mtool.addMember("rodosmanager", "RODOS Manager (global)", ["Manager", "Member"], [])
         rodosmanager = mtool.getMemberById("rodosmanager")
         rodosmanager.setMemberProperties({"fullname": "RODOS Manager"})
         rodosmanager.setSecurityProfile(password="admin")

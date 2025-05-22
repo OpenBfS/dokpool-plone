@@ -43,6 +43,9 @@
       <element>DPTransferFolder</element>
     </value>
   </record>
+  <record name="plone.sitemap_depth">
+    <value>4</value>
+  </record>
   <record name="plone.default_page_types">
     <value purge="false">
       <element>InfoDocument</element>

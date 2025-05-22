@@ -1,38 +1,49 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      xml:lang="en"
+      i18n:domain="plone"
+>
 
-    <metal:block fill-slot="top_slot"
-                 tal:define="dummy python:request.set('disable_border',1)" />
+  <metal:block fill-slot="top_slot"
+               tal:define="
+                 dummy python:request.set('disable_border',1);
+               "
+  />
 
-    <body>
+  <body>
 
-        <metal:main fill-slot="main">
+    <metal:main fill-slot="main">
 
-        <h1 class="documentFirstHeading" i18n:translate="">
+      <h1 class="documentFirstHeading"
+          i18n:translate=""
+      >
             Delete selected items
-        </h1>
+      </h1>
 
-        <div id="content-core">
+      <div id="content-core">
 
-            <tal:block replace="structure view/more_info">
-            </tal:block>
+        <tal:block replace="structure view/more_info">
+        </tal:block>
 
-            <metal:block use-macro="context/@@ploneform-macros/titlelessform" >
-                <metal:block fill-slot="formtop">
-                    <tal:paths tal:repeat="path python:request.get('paths', [])">
-                        <input type="hidden"
-                               name="paths:list"
-                               tal:attributes="value python: path" />
-                    </tal:paths>
-                </metal:block>
-            </metal:block>
+        <metal:block use-macro="context/@@ploneform-macros/titlelessform">
+          <metal:block fill-slot="formtop">
+            <tal:paths tal:repeat="path python:request.get('paths', [])">
+              <input name="paths:list"
+                     type="hidden"
+                     tal:attributes="
+                       value python: path;
+                     "
+              />
+            </tal:paths>
+          </metal:block>
+        </metal:block>
 
-        </div>
+      </div>
 
-        </metal:main>
-    </body>
+    </metal:main>
+  </body>
 </html>

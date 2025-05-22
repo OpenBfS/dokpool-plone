@@ -1,7 +1,12 @@
-<tal:block i18n:domain="docpool.base"
-           define="view nocall:options/view">
-    <tal:def define="edit_allowed python:False;
-                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
-    <div metal:use-macro="context/@@dp.macros/macros/doc_complete"/>
-    </tal:def>
+<tal:block define="
+             view nocall:options/view;
+           "
+           i18n:domain="docpool.base"
+>
+  <tal:def define="
+             edit_allowed python:False;
+             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+           ">
+    <div metal:use-macro="context/@@dp.macros/macros/doc_complete"></div>
+  </tal:def>
 </tal:block>

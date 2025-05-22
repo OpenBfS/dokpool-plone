@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import UTC
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.dpdocument import IDPDocument
@@ -14,7 +14,7 @@ def maxdate(*dates):
     try:
         return max(dates)
     except TypeError:
-        return max(date.replace(tzinfo=timezone.utc) for date in dates)
+        return max(date.replace(tzinfo=UTC) for date in dates)
     else:
         return dates[0]
 

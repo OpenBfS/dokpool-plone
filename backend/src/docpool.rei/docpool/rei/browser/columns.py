@@ -30,10 +30,7 @@ class ReiReport(BaseColumn):
             title = files[0].title
             url = files[0].absolute_url()
             pdf_link = f'<a title="{safe_text(title)}" href={url} target="_blank">PDF ansehen</a><br>'
-        return (
-            pdf_link
-            + f'<a title="{safe_text(obj.Title())}" href={obj.absolute_url()}>zum Dokument</a>'
-        )
+        return pdf_link + f'<a title="{safe_text(obj.Title())}" href={obj.absolute_url()}>zum Dokument</a>'
 
 
 class ReiLegalBases(BaseColumn):
@@ -80,9 +77,7 @@ class Period(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        period_vocabulary = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary"
-        )(obj)
+        period_vocabulary = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.PeriodVocabulary")(obj)
         period = safe_text(period_vocabulary.getTerm(obj.Period).title)
         year = str(obj.Year)
         return populate_a_tag(obj, period + " " + year)
@@ -100,9 +95,7 @@ class Authority(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.AuthorityVocabulary"
-        )(obj)
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.AuthorityVocabulary")(obj)
         return populate_a_tag(obj, voc.getTerm(obj.Authority).title)
 
 
@@ -116,12 +109,8 @@ class NuclearInstallation(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.NuclearInstallationVocabulary"
-        )(obj)
-        installations = ", ".join(
-            voc.getTerm(i).title for i in obj.NuclearInstallations
-        )
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.NuclearInstallationVocabulary")(obj)
+        installations = ", ".join(voc.getTerm(i).title for i in obj.NuclearInstallations)
         return populate_a_tag(obj, installations)
 
 
@@ -135,9 +124,7 @@ class Origin(BaseColumn):
         obj = self._getObject(item)
         if not obj:
             return
-        voc = getUtility(
-            IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary"
-        )(obj)
+        voc = getUtility(IVocabularyFactory, "docpool.rei.vocabularies.OriginVocabulary")(obj)
         origins = ", ".join(voc.getTerm(i).title for i in obj.Origins)
         return populate_a_tag(obj, origins)
 
@@ -153,8 +140,6 @@ class Metadata(BaseColumn):
         if not obj:
             return
         obj_url = item.original_getURL()
-        title_html = '<a href="#" class="pat-contentloader-bfs rei-eea-search metatitle" data-pat-contentloader-bfs="content:#row_{0} .rei_title;target:#target_{0}"><div title="Titel auf- bzw. zuklappen" >Open</div></a><h4 class="rei_title" style="display:none">{1}</h4>'.format(
-            item.UID, safe_text(obj.Title())
-        )
+        title_html = f'<a href="#" class="pat-contentloader-bfs rei-eea-search metatitle" data-pat-contentloader-bfs="content:#row_{item.UID} .rei_title;target:#target_{item.UID}"><div title="Titel auf- bzw. zuklappen" >Open</div></a><h4 class="rei_title" style="display:none">{safe_text(obj.Title())}</h4>'
         metadata_html = f'<a href="#" class="pat-contentloader-bfs rei-eea-search metadata" data-pat-contentloader-bfs="url:{obj_url}/@@meta?ajax=true;target:#target_{item.UID}"><div title="Metadaten auf- bzw. zuklappen" >Open</div></a><div id="target_{item.UID}"></div>'
         return title_html + metadata_html

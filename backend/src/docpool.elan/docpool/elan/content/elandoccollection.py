@@ -39,7 +39,5 @@ def enableSyndication(obj, event=None):
 
     syn_tool = getToolByName(obj, "portal_syndication", None)
     if syn_tool is not None:
-        if syn_tool.isSiteSyndicationAllowed() and not syn_tool.isSyndicationAllowed(
-            obj
-        ):
+        if syn_tool.isSiteSyndicationAllowed() and not syn_tool.isSyndicationAllowed(obj):
             syn_tool.enableSyndication(obj)

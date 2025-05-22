@@ -3,9 +3,7 @@ from logging import exception
 from plone.base.utils import safe_callable
 from plone.namedfile.file import FileChunk
 from plone.namedfile.interfaces import IStableImageScale
-from plone.namedfile.scaling import (
-    DefaultImageScalingFactory as OriginalImageScalingFactory,
-)
+from plone.namedfile.scaling import DefaultImageScalingFactory as OriginalImageScalingFactory
 from plone.namedfile.scaling import ImageScale
 from plone.namedfile.scaling import ImageScaling as OriginalImageScaling
 from plone.scale.scale import scaleImage
@@ -54,17 +52,13 @@ class ImageScaling(OriginalImageScaling):
             if callable(value):
                 value = value()
 
-            scale_view = ImageScale(
-                self.context, self.request, data=value, fieldname=name
-            )
+            scale_view = ImageScale(self.context, self.request, data=value, fieldname=name)
             return scale_view.__of__(self.context)
         if image is not None:
             return image
         raise NotFound(self, name, self.request)
 
-    def create(
-        self, fieldname, direction="thumbnail", height=None, width=None, **parameters
-    ):
+    def create(self, fieldname, direction="thumbnail", height=None, width=None, **parameters):
         """factory for image scales, see `IImageScaleStorage.scale`"""
         orig_value = getattr(self.context, fieldname)
 
@@ -100,22 +94,16 @@ class ImageScaling(OriginalImageScaling):
                 parameters["quality"] = quality
 
         try:
-            result = scaleImage(
-                orig_data, direction=direction, height=height, width=width, **parameters
-            )
+            result = scaleImage(orig_data, direction=direction, height=height, width=width, **parameters)
         except (ConflictError, KeyboardInterrupt):
             raise
         except Exception:
-            exception(
-                'could not scale "%r" of %r', orig_value, self.context.absolute_url()
-            )
+            exception('could not scale "%r" of %r', orig_value, self.context.absolute_url())
             return
         if result is not None:
             data, format, dimensions = result
             mimetype = "image/%s" % format.lower()
-            value = orig_value.__class__(
-                data, contentType=mimetype, filename=orig_value.filename
-            )
+            value = orig_value.__class__(data, contentType=mimetype, filename=orig_value.filename)
             value.fieldname = fieldname
             return value, format, dimensions
 
@@ -159,25 +147,15 @@ class ImageScalingFactory(OriginalImageScalingFactory):
             if getattr(orig_value, "contentType", "") == "image/svg+xml":
                 result = orig_data.read(), "SVG", (width, height)
             else:
-                logger.exception(
-                    'Could not scale "{!r}" of {!r}'.format(
-                        orig_value, self.context.absolute_url
-                    )
-                )
+                logger.exception(f'Could not scale "{orig_value!r}" of {self.context.absolute_url!r}')
                 return
-        except Exception as e:
-            logger.exception(
-                'Could not scale "{!r}" of {!r}'.format(
-                    orig_value, self.context.absolute_url
-                )
-            )
+        except Exception:
+            logger.exception(f'Could not scale "{orig_value!r}" of {self.context.absolute_url!r}')
             return
         if result is None:
             return
         data, format_, dimensions = result
         mimetype = f"image/{format_.lower()}"
-        value = orig_value.__class__(
-            data, contentType=mimetype, filename=orig_value.filename
-        )
+        value = orig_value.__class__(data, contentType=mimetype, filename=orig_value.filename)
         value.fieldname = fieldname
         return value, format_, dimensions

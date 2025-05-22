@@ -29,7 +29,7 @@ class AssignToElanEvent(BrowserView):
         if current_event := getScenariosForCurrentUser():
             current_event_id = current_event[0]
             for brain in self.events:
-                if brain.UID == current_event_id:
+                if current_event_id == brain.UID:
                     self.current_event = brain.UID
                     break
 

@@ -40,11 +40,14 @@ class DPDocumentView(FlexibleView):
         """ """
         return quote_plus(string)
 
-    def getFolderContents(self, kwargs):
+    def folder_contents(self):
         """ """
-        kwargs["object_provides"] = [IDPDocument.__identifier__]
-        res = [b for b in self.context.getFolderContents(kwargs)]
-        return res
+        query = {
+            "sort_on": "mdate",
+            "sort_order": "reverse",
+            "object_provides": [IDPDocument.__identifier__],
+        }
+        return api.content.find(context=self.context, depth=1, **query)
 
     def dp_buttons(self, items):
         return []
@@ -103,9 +106,7 @@ class DPDocumentcommentingView(BrowserView):
         return ViewPageTemplateFile("dpdocumentcommenting.pt")(self)
 
     def viewlet_html(self):
-        manager = queryMultiAdapter(
-            (self.context, self.request, self), IViewletManager, "plone.belowcontent"
-        )
+        manager = queryMultiAdapter((self.context, self.request, self), IViewletManager, "plone.belowcontent")
         if manager:
             if viewlet := manager.get("plone.comments"):
                 viewlet.update()
@@ -169,21 +170,10 @@ class FileUploadView(BaseFileUploadView):
         filename = filedata.filename
         content_type = mimetypes.guess_type(filename)[0] or ""
         # Workaround for docx and xlsx files
-        if (
-            content_type
-            == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        ):
+        if content_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             content_type = "application/msword"
-        if (
-            content_type
-            == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        ):
+        if content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
             content_type = "application/vnd.ms-excel"
-        # Determine if the default file/image types are DX or AT based
-        ctr = api.portal.get_tool("content_type_registry")
-        type_ = ctr.findTypeName(filename.lower(), "", "") or "File"
-        pt = api.portal.get_tool("portal_types")
-
         obj = IDXFileFactory(context)(filename, content_type, filedata)
         if hasattr(obj, "file"):
             size = obj.file.getSize()
@@ -194,14 +184,12 @@ class FileUploadView(BaseFileUploadView):
         else:
             return
         result = {"type": content_type, "size": size}
-        result.update(
-            {
-                "url": obj.absolute_url(),
-                "name": obj.getId(),
-                "UID": IUUID(obj),
-                "filename": filename,
-            }
-        )
+        result.update({
+            "url": obj.absolute_url(),
+            "name": obj.getId(),
+            "UID": IUUID(obj),
+            "filename": filename,
+        })
         return result
 
 
@@ -227,9 +215,7 @@ class AddView(add.DefaultAddView):
 class DPDocumentEditForm(EditForm):
     def updateWidgets(self):
         super().updateWidgets()
-        if not api.user.has_permission(
-            "Docpool: Change docType for DPDocument", obj=self.context
-        ):
+        if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
 
 

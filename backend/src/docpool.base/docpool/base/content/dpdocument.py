@@ -7,7 +7,6 @@ from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.extendable import Extendable
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
-from docpool.base.pdfconversion import data
 from docpool.base.pdfconversion import get_images
 from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
@@ -18,7 +17,6 @@ from logging import getLogger
 from PIL import Image
 from plone import api
 from plone import namedfile
-from plone.api import content
 from plone.app.contenttypes.content import Document
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
@@ -122,9 +120,7 @@ class DPDocument(Container, Extendable, ContentBase):
 
             placeful_wf = getToolByName(self, "portal_placeful_workflow")
             try:
-                self.manage_addProduct[
-                    "CMFPlacefulWorkflow"
-                ].manage_addWorkflowPolicyConfig()
+                self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
             except BadRequest as e:
                 log_exc(e)
             config = placeful_wf.getWorkflowPolicyConfig(self)
@@ -157,26 +153,21 @@ class DPDocument(Container, Extendable, ContentBase):
         for menu_item in res1:
             if menu_item.get("id") == "DPDocument":
                 for dt in dts:
-                    action = "{}add++DPDocument?form.widgets.docType:list={}".format(
-                        self.absolute_url(),
-                        dt.id,
-                    )
-                    res.append(
-                        {
-                            "extra": {
-                                "separator": None,
-                                "id": dt.id,
-                                "class": "contenttype-%s" % dt.id,
-                            },
-                            "submenu": None,
-                            "description": "",
-                            "title": safe_text(dt.Title),
-                            "action": action,
-                            "selected": False,
+                    action = f"{self.absolute_url()}add++DPDocument?form.widgets.docType:list={dt.id}"
+                    res.append({
+                        "extra": {
+                            "separator": None,
                             "id": dt.id,
-                            "icon": None,
-                        }
-                    )
+                            "class": "contenttype-%s" % dt.id,
+                        },
+                        "submenu": None,
+                        "description": "",
+                        "title": safe_text(dt.Title),
+                        "action": action,
+                        "selected": False,
+                        "id": dt.id,
+                        "icon": None,
+                    })
             else:
                 res.append(menu_item)
         return res
@@ -186,8 +177,8 @@ class DPDocument(Container, Extendable, ContentBase):
 
         @return:
         """
-        for obj in self.getDPDocuments():
-            if api.content.get_state(obj) != "published":
+        for brain in api.content.find(context=self, depth=1, portal_type="DPDocument"):
+            if brain.review_state != "published":
                 return False
         return True
 
@@ -216,14 +207,12 @@ class DPDocument(Container, Extendable, ContentBase):
                         break
                 else:
                     icon = ""
-                results.append(
-                    {
-                        "id": action["id"],
-                        "title": action["title"],
-                        "description": description,
-                        "icon": icon,
-                    }
-                )
+                results.append({
+                    "id": action["id"],
+                    "title": action["title"],
+                    "description": description,
+                    "icon": icon,
+                })
         return results
 
     def unknownDocType(self):
@@ -236,18 +225,6 @@ class DPDocument(Container, Extendable, ContentBase):
             if tstate == "private":
                 return dt
         return None
-
-    def vocabDocType(self):
-        """ """
-        cat = getToolByName(self, "portal_catalog")
-        types = cat(
-            {
-                "portal_type": "DocType",
-                "sort_on": "sortable_title",
-                "path": self.dpSearchPath(),
-            }
-        )
-        return [(brain.id, brain.Title) for brain in types]
 
     def dp_type(self):
         """ """
@@ -327,7 +304,7 @@ class DPDocument(Container, Extendable, ContentBase):
             "Owner", self
         ) or mtool.getAuthenticatedMember().has_role("Reviewer", self)
 
-    def change_position(self, position, id, ptype):
+    def change_position(self, position, obj_id, ptype):
         """
         Move a file or an image within the document.
         """
@@ -335,12 +312,11 @@ class DPDocument(Container, Extendable, ContentBase):
         alsoProvides(request, IDisableCSRFProtection)
         position = position.lower()
         # we need to find all other ids for the same type
-        ssids = [o.getId for o in self.getFolderContents({"portal_type": ptype})]
-        # print ssids
+        ssids = [i.id for i in api.content.find(context=self, depth=1, portal_type=ptype)]
         if position == "up":
-            self.moveObjectsUp(id, 1, ssids)
+            self.moveObjectsUp(obj_id, subset_ids=ssids)
         elif position == "down":
-            self.moveObjectsDown(id, 1, ssids)
+            self.moveObjectsDown(obj_id, subset_ids=ssids)
         self.plone_utils.reindexOnReorder(self)
         return self.restrictedTraverse("@@view")()
 
@@ -357,10 +333,7 @@ class DPDocument(Container, Extendable, ContentBase):
         if dto:
             cat = dto.contentCategory
             if cat:
-                return "{}/@@dview?d={}&disable_border=1".format(
-                    cat.absolute_url(),
-                    self.UID(),
-                )
+                return f"{cat.absolute_url()}/@@dview?d={self.UID()}&disable_border=1"
         return self.absolute_url()
 
     def SearchableText(self):
@@ -426,73 +399,11 @@ class DPDocument(Container, Extendable, ContentBase):
         else:
             return None
 
-    def autocreateSubdocuments(self):
-        """
-        TODO: specifically for XMLRPC usage
-        """
-        # * Von den allowed Types alle autocreatable Types durchgehen und ihre Muster
-        #   "ausprobieren"
-        # * Wenn Files oder Images gefunden zu einem Muster: entsprechendes DPDocument
-        #   erzeugen und Files/Images verschieben
-        return "ok"
-
-    def setDPProperty(self, name, value, ptype="string"):
-        """ """
-        alsoProvides(self.REQUEST, IDisableCSRFProtection)
-        if not self.hasProperty(name):
-            self.manage_addProperty(name, value, ptype)
-        else:
-            self._updateProperty(name, value)
-        return "set"
-
-    def deleteDPProperty(self, name):
-        """ """
-        alsoProvides(self.REQUEST, IDisableCSRFProtection)
-        if self.hasProperty(name):
-            self._delProperty(name)
-            return "deleted"
-        return "unknown"
-
-    def getDPProperty(self, name):
-        """ """
-        if self.hasProperty(name):
-            return self.getProperty(name)
-
-    def getDPProperties(self):
-        """ """
-        return self.propertyItems()
-
-    def readPropertiesFromFile(self):
-        """ """
-        files = self.getFiles()
-        msg = "none"
-        for f in files:
-            if f.getId() == "properties.txt":
-                d = StringIO(data(f))
-                props = d.readlines()
-                for prop in props:
-                    if prop and len(prop) > 2:
-                        name, value = prop.split("=")
-                        name = name.strip()
-                        value = value.strip()
-                        ptype = "string"
-                        try:
-                            name, ptype = name.split(":")
-                        except BaseException:
-                            pass
-                        self.setDPProperty(name, value, ptype)
-                        msg = "set"
-        return msg
-
     def getFileOrImageByPattern(self, pattern):
         """ """
-        #        print pattern
-        #        print self.getAllContentObjects()
         p = re.compile(pattern, re.IGNORECASE)
         for obj in self.getAllContentObjects():
-            #            print obj.getId()
             if p.match(obj.getId()):
-                #                print obj
                 return obj
 
     def getMapImageObj(self):
@@ -578,9 +489,7 @@ class DPDocument(Container, Extendable, ContentBase):
 
             pdf = doc.getRepresentativePDF()
             if pdf:
-                execute_under_special_role(
-                    doc, "Manager", DPDocument.generatePdfImage, doc, pdf
-                )
+                execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf)
                 img = doc.pdfImage()
                 dateiname = "{}.{}".format(img.getId(), "png")
                 return img.data, dateiname
@@ -594,8 +503,7 @@ class DPDocument(Container, Extendable, ContentBase):
             # TODO: Idea: support default image in DocType
             # Show Default image, if no other image is available
             img = self.restrictedTraverse(
-                api.portal.get().absolute_url()
-                + "/++plone++docpool.base/docdefaultimage.png"
+                api.portal.get().absolute_url() + "/++plone++docpool.base/docdefaultimage.png"
             )
             return img().read(), "docdefaultimage.png"
 
@@ -609,73 +517,35 @@ class DPDocument(Container, Extendable, ContentBase):
             data, filename = result
             return namedfile.NamedImage(data, filename=safe_text(filename))
 
-    def myState(self):
-        """ """
-        return content.get_state(self, "None")
-
     def getFirstImage(self, scale=""):
         img = self.getFirstImageObj()
         if img:
             return f"<img src='{img.absolute_url()}{scale}' />"
-        else:
-            return None
 
     def getFirstImageObj(self):
-        """
-
-        @return:
-        """
+        """ """
         imgs = self.getImages()
         if imgs:
             img = imgs[0]
             return img
-        else:
-            return None
-
-    def getLocalBehaviors(self):
-        """
-
-        :return:
-        """
-        from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
-
-        print(type(self.local_behaviors))
-        print(self.local_behaviors)
-        return ILocalBehaviorSupport(self).local_behaviors
-
-    def myDPDocument(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
 
     def getAllContentObjects(self):
         """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        return [
+            i.getObject() for i in api.content.find(context=self, depth=1, sort_on="getObjPositionInParent")
+        ]
 
     def getFiles(self, **kwargs):
         """ """
-        args = {"portal_type": "File"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        kwargs["portal_type"] = "File"
+        kwargs["sort_on"] = "getObjPositionInParent"
+        return [i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)]
 
     def getImages(self, **kwargs):
         """ """
-        args = {"portal_type": "Image"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        kwargs["portal_type"] = "Image"
+        kwargs["sort_on"] = "getObjPositionInParent"
+        return [i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)]
 
     @property
     def allow_discussion(self):
@@ -703,9 +573,7 @@ def updateContainerModified(obj, event=None):
 @adapter(IDPDocument, Interface)
 class DeserializeFromJsonDPDocument(DeserializeFromJson):
     name = "local_behaviors"
-    write_permission = mergedTaggedValueDict(
-        ILocalBehaviorSupport, WRITE_PERMISSIONS_KEY
-    ).get(name)
+    write_permission = mergedTaggedValueDict(ILocalBehaviorSupport, WRITE_PERMISSIONS_KEY).get(name)
 
     def get_schema_data(self, data, validate_all, create=False):
         # The method name suggests it only retrieves data but in fact, it actually
@@ -725,9 +593,7 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         if not self.check_permission(self.write_permission):
             return
 
-        deserializer = queryMultiAdapter(
-            (field, self.context, self.request), IFieldDeserializer
-        )
+        deserializer = queryMultiAdapter((field, self.context, self.request), IFieldDeserializer)
         if deserializer is None:
             return
 

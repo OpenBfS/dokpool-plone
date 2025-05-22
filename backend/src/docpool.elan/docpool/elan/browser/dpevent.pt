@@ -1,163 +1,263 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    lang="en"
-    metal:use-macro="context/@@main_template/macros/master"
-    i18n:domain="docpool.elan">
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/@@main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.elan"
+>
+  <body>
 
-<metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core"
-    tal:define="_is nocall: context/@@is">
+    <metal:content-core fill-slot="content-core">
+      <metal:content-core define-macro="content-core"
+                          tal:define="
+                            _is nocall: context/@@is;
+                          "
+      >
 
-  <h4 i18n:translate="">Event Information</h4>
+        <h4 i18n:translate="">Event Information</h4>
 
-  <table class="listing table table-striped table-bordered ">
+        <table class="listing table table-striped table-bordered">
 
-    <tr tal:define="widget python:view.widgets['Substitute']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['Substitute'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['EventType']">
-      <td tal:content="widget/label"></td>
-      <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['EventType'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['Status']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['Status'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['TimeOfEvent']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['TimeOfEvent'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['EventPhase']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['EventPhase'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['EventLocation']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['EventLocation'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-  <tal:nogeo tal:replace="nothing">
-    <tr tal:define="widget python:view.widgets['EventCoordinates']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tal:nogeo tal:replace="nothing">
+            <tr tal:define="
+                  widget python:view.widgets['EventCoordinates'];
+                ">
+              <td tal:content="widget/label"></td>
+              <td tal:content="structure widget/render"></td>
+            </tr>
 
-    <tr tal:define="widget python:view.widgets['AreaOfInterest']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
-  </tal:nogeo>
+            <tr tal:define="
+                  widget python:view.widgets['AreaOfInterest'];
+                ">
+              <td tal:content="widget/label"></td>
+              <td tal:content="structure widget/render"></td>
+            </tr>
+          </tal:nogeo>
 
-  </table>
+        </table>
 
-  <h4 i18n:translate="">Operation mode and Alerting</h4>
+        <h4 i18n:translate="">Operation mode and Alerting</h4>
 
-  <table class="listing table table-striped table-bordered">
-    <tr tal:define="widget python:view.widgets['OperationMode'];
-                    intensive python: context.OperationMode == 'intensive'">
-        <td tal:content="widget/label"></td>
-        <td><strong tal:attributes="class python: 'intensive' if intensive else ''"
-                    tal:content="structure widget/render" /></td>
-    </tr>
+        <table class="listing table table-striped table-bordered">
+          <tr tal:define="
+                widget python:view.widgets['OperationMode'];
+                intensive python: context.OperationMode == 'intensive';
+              ">
+            <td tal:content="widget/label"></td>
+            <td><strong tal:content="structure widget/render"
+                      tal:attributes="
+                        class python: 'intensive' if intensive else '';
+                      "
+              ></strong></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['AlertingStatus']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['AlertingStatus'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['AlertingNote']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['AlertingNote'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['SectorizingSampleTypes']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['SectorizingSampleTypes'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-    <tr tal:define="widget python:view.widgets['SectorizingNetworks']">
-        <td tal:content="widget/label"></td>
-        <td tal:content="structure widget/render"></td>
-    </tr>
+          <tr tal:define="
+                widget python:view.widgets['SectorizingNetworks'];
+              ">
+            <td tal:content="widget/label"></td>
+            <td tal:content="structure widget/render"></td>
+          </tr>
 
-  </table>
+        </table>
 
-  <dl id="meta_items">
-    <tal:field define="widget python:view.widgets['EventCoordinates']"
-               condition="python:context.EventCoordinates">
-      <dt tal:content="widget/label" />
-      <dd class="field" tal:content="structure widget/render" />
-    </tal:field>
+        <dl id="meta_items">
+          <tal:field define="
+                       widget python:view.widgets['EventCoordinates'];
+                     "
+                     condition="python:context.EventCoordinates"
+          >
+            <dt tal:content="widget/label"></dt>
+            <dd class="field"
+                tal:content="structure widget/render"
+            ></dd>
+          </tal:field>
 
-    <tal:field define="widget python:view.widgets['AreaOfInterest']"
-               tal:condition="python:context.AreaOfInterest">
-      <dt tal:content="widget/label" />
-      <dd class="field" tal:content="structure widget/render" />
-    </tal:field>
-  </dl>
+          <tal:field define="
+                       widget python:view.widgets['AreaOfInterest'];
+                     "
+                     tal:condition="python:context.AreaOfInterest"
+          >
+            <dt tal:content="widget/label"></dt>
+            <dd class="field"
+                tal:content="structure widget/render"
+            ></dd>
+          </tal:field>
+        </dl>
 
-    <h4 i18n:translate="">Changelog</h4>
-    <table class="listing responsive table table-striped table-bordered"
-           tal:define="changelog python:view.changelog();">
-      <thead>
-        <tr>
-          <th i18n:translate="">Date/User</th>
-          <th i18n:translate="">Type of event</th>
-          <th i18n:translate="">Phase</th>
-          <th i18n:translate="">State</th>
-          <th i18n:translate="">Operation mode</th>
-          <th i18n:translate="">Alerting status</th>
-          <th i18n:translate="">Alerting note</th>
-          <th i18n:translate="">Sectorizing sample types</th>
-          <th i18n:translate="">Sectorizing networks</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr tal:repeat="item python:changelog">
-          <td i18n:attributes="data-title" data-title="Date/User">
-            <span style="white-space: nowrap">${python: item.get('Date', '')}</span><br/>
-            <span style="white-space: nowrap">${python: item.get('User', '')}</span>
-          </td>
-          <td i18n:attributes="data-title" data-title="Type of event" i18n:translate="" tal:content="python: item.get('EventType', '')"></td>
-          <td i18n:attributes="data-title" data-title="Phase" tal:content="python: item.get('Phase', '')"></td>
-          <td i18n:attributes="data-title" data-title="State" i18n:translate="" tal:content="python: item.get('Status', '')"></td>
-          <td i18n:attributes="data-title" data-title="Operation mode" i18n:translate="" tal:content="python: item.get('Operation mode', '')"></td>
-          <td i18n:attributes="data-title" data-title="Alerting status" i18n:translate="" tal:content="python: item.get('Alerting status', '')"></td>
-          <td i18n:attributes="data-title" data-title="Alerting note" tal:content="python: item.get('Alerting note', '')"></td>
-          <td i18n:attributes="data-title" data-title="Sectorizing sample types" tal:content="python: item.get('Sectorizing sample types', '')"></td>
-          <td i18n:attributes="data-title" data-title="Sectorizing networks" tal:content="python: item.get('Sectorizing networks', '')"></td>
-        </tr>
-      </tbody>
-    </table>
+        <h4 i18n:translate="">Changelog</h4>
+        <table class="listing responsive table table-striped table-bordered"
+               tal:define="
+                 changelog python:view.changelog();
+               "
+        >
+          <thead>
+            <tr>
+              <th i18n:translate="">Date/User</th>
+              <th i18n:translate="">Type of event</th>
+              <th i18n:translate="">Phase</th>
+              <th i18n:translate="">State</th>
+              <th i18n:translate="">Operation mode</th>
+              <th i18n:translate="">Alerting status</th>
+              <th i18n:translate="">Alerting note</th>
+              <th i18n:translate="">Sectorizing sample types</th>
+              <th i18n:translate="">Sectorizing networks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:repeat="item python:changelog">
+              <td data-title="Date/User"
+                  i18n:attributes="data-title"
+              >
+                <span style="white-space: nowrap">${python: item.get('Date', '')}</span><br />
+                <span style="white-space: nowrap">${python: item.get('User', '')}</span>
+              </td>
+              <td data-title="Type of event"
+                  tal:content="python: item.get('EventType', '')"
+                  i18n:attributes="data-title"
+                  i18n:translate=""
+              ></td>
+              <td data-title="Phase"
+                  tal:content="python: item.get('Phase', '')"
+                  i18n:attributes="data-title"
+              ></td>
+              <td data-title="State"
+                  tal:content="python: item.get('Status', '')"
+                  i18n:attributes="data-title"
+                  i18n:translate=""
+              ></td>
+              <td data-title="Operation mode"
+                  tal:content="python: item.get('Operation mode', '')"
+                  i18n:attributes="data-title"
+                  i18n:translate=""
+              ></td>
+              <td data-title="Alerting status"
+                  tal:content="python: item.get('Alerting status', '')"
+                  i18n:attributes="data-title"
+                  i18n:translate=""
+              ></td>
+              <td data-title="Alerting note"
+                  tal:content="python: item.get('Alerting note', '')"
+                  i18n:attributes="data-title"
+              ></td>
+              <td data-title="Sectorizing sample types"
+                  tal:content="python: item.get('Sectorizing sample types', '')"
+                  i18n:attributes="data-title"
+              ></td>
+              <td data-title="Sectorizing networks"
+                  tal:content="python: item.get('Sectorizing networks', '')"
+                  i18n:attributes="data-title"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
 
-    <div class="card" tal:condition="python: _is.admin_or_contentadmin and context.get_archiving_info()">
-        <div class="card-body">
-        <a i18n:translate="" class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseDebug" role="button" aria-expanded="false" aria-controls="collapseDebug">
+        <div class="card"
+             tal:condition="python: _is.admin_or_contentadmin and context.get_archiving_info()"
+        >
+          <div class="card-body">
+            <a class="btn btn-secondary"
+               aria-controls="collapseDebug"
+               aria-expanded="false"
+               href="#collapseDebug"
+               role="button"
+               data-bs-toggle="collapse"
+               i18n:translate=""
+            >
             Show Debug-Info
-        </a>
-        <div class="collapse" id="collapseDebug">
-            <dl class="row" tal:repeat="info python: context.get_archiving_info()">
+            </a>
+            <div class="collapse"
+                 id="collapseDebug"
+            >
+              <dl class="row"
+                  tal:repeat="info python: context.get_archiving_info()"
+              >
                 <tal:block tal:repeat="key python: info.keys()">
-                    <dt class="col-sm-2" tal:content="python: key" />
-                    <dd class="col-sm-10" tal:content="python: info[key]" />
+                  <dt class="col-sm-2"
+                      tal:content="python: key"
+                  ></dt>
+                  <dd class="col-sm-10"
+                      tal:content="python: info[key]"
+                  ></dd>
                 </tal:block>
-            </dl>
-            <input tal:condition="python: _is.admin" type="submit" class="btn btn-danger" name="form.button.purge" value="Purge" i18n:attributes="value label_purge;title"/>
+              </dl>
+              <input class="btn btn-danger"
+                     name="form.button.purge"
+                     type="submit"
+                     value="Purge"
+                     tal:condition="python: _is.admin"
+                     i18n:attributes="value label_purge;title"
+              />
+            </div>
+          </div>
         </div>
-        </div>
-    </div>
 
-</metal:content-core>
-</metal:content-core>
+      </metal:content-core>
+    </metal:content-core>
 
-</body>
+  </body>
 </html>

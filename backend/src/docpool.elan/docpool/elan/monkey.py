@@ -3,10 +3,10 @@ from Products.CMFPlone.CatalogTool import CatalogTool
 
 
 def searchResults(self, REQUEST=None, **kw):
-    has_search_text = kw.get("SearchableText", None)
-    has_path = kw.get("path", None)
+    has_search_text = kw.get("SearchableText")
+    has_path = kw.get("path")
     # Internal means not a search by a user within search form
-    isInternal = kw.get("object_provides", None)
+    isInternal = kw.get("object_provides")
     if has_search_text and isinstance(has_search_text, type({})):
         has_search_text = has_search_text.get("query", None)
         isInternal = True

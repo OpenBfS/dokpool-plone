@@ -84,9 +84,7 @@ def create_all_collection(plonesite):
     #    container.manage_addProperty('text', '', 'string')
     title = "Alle"
     description = "Alle REI Berichte"
-    _createObjectByType(
-        "Collection", container, id="all", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="all", title=title, description=description)
     new = container["all"]
     ILocalBehaviorSupport(new).local_behaviors = [REI_APP]
 
@@ -126,9 +124,7 @@ def create_all_private_collection(plonesite):
 
     title = "noch nicht freigegeben"
     description = "noch nicht freigegeben REI Berichte"
-    _createObjectByType(
-        "Collection", container, id="allprivate", title=title, description=description
-    )
+    _createObjectByType("Collection", container, id="allprivate", title=title, description=description)
     new = container["allprivate"]
     ILocalBehaviorSupport(new).local_behaviors = [REI_APP]
 

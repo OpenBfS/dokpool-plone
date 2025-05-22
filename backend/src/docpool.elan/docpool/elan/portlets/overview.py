@@ -40,25 +40,27 @@ class Renderer(base.Renderer):
         return [o for o in self._specialObjects() if o.id not in ("recent", "overview")]
 
     def _specialObjects(self):
+        if getattr(self.context, "myDocumentPool", None) is None:
+            # Not within a docpool
+            return
+
         cs = self.context.myELANCurrentSituation()
-        yield from cs.getFolderContents(
-            {
-                "portal_type": [
-                    "Dashboard",
-                ]
-            }
+        yield from api.content.find(
+            context=cs,
+            portal_type="Dashboard",
+            sort_on="getObjPositionInParent",
         )
 
         # In archive we only return the archived journals
         if IArchiving(self.context).is_archive:
             for item in aq_chain(aq_inner(self.context)):
                 if getattr(item, "portal_type", None) == "ELANArchive":
-                    yield from api.content.find(context=item, portal_type="Journal")
+                    yield from api.content.find(
+                        context=item,
+                        portal_type="Journal",
+                        sort_on="getObjPositionInParent",
+                    )
                     return
-            return
-
-        if getattr(self.context, "myDocumentPool", None) is None:
-            # Not within a docpool
             return
 
         # Get the active journals for this scenario and document pool
@@ -73,6 +75,7 @@ class Renderer(base.Renderer):
                 yield from api.content.find(
                     portal_type="Journal",
                     path=brain.getPath(),
+                    sort_on="getObjPositionInParent",
                 )
 
 

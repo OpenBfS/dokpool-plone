@@ -1,4 +1,3 @@
-from AccessControl import ClassSecurityInfo
 from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.appregistry import appIcon
 from docpool.base.utils import getActiveAllowedPersonalBehaviorsForDocument

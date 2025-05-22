@@ -3,6 +3,7 @@ from docpool.base.browser.viewlets.menu import adaptQuery
 from docpool.base.browser.viewlets.menu import getFoldersForCurrentUser
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import is_personal
+from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
@@ -18,7 +19,9 @@ class Renderer(navigation.Renderer):
         navigation.Renderer.__init__(self, context, request, view, manager, data)
 
     @memoize
-    def getNavTree(self, _marker=[]):
+    def getNavTree(self, _marker=None):
+        if _marker is None:
+            _marker = []
         context = aq_inner(self.context)
 
         if is_personal(context):
@@ -31,9 +34,7 @@ class Renderer(navigation.Renderer):
 
         # Otherwise build the normal navigation
         strategy = getMultiAdapter((context, self.data), INavtreeStrategy)
-        ft = buildFolderTree(
-            context, obj=context, query=queryBuilder(), strategy=strategy
-        )
+        ft = buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
         # print ft
         return ft
 
@@ -48,19 +49,17 @@ class SitemapQueryBuilder(NavtreeQueryBuilder):
 
     def __init__(self, context):
         NavtreeQueryBuilder.__init__(self, context)
+        sitemap_depth = api.portal.get_registry_record("plone.sitemap_depth")
         portal_url = getToolByName(context, "portal_url")
-        portal_properties = getToolByName(context, "portal_properties")
-        navtree_properties = getattr(portal_properties, "navtree_properties")
-        sitemapDepth = navtree_properties.getProperty("sitemapDepth", 4)
         is_archive = IArchiving(context).is_archive and context.getId() != "archive"
         if is_archive:
-            sitemapDepth += 3
+            sitemap_depth += 3
         self.query["path"] = {
             "query": (
                 "/".join(context.myELANArchive().getPhysicalPath())
                 if is_archive
                 else portal_url.getPortalPath()
             ),
-            "depth": sitemapDepth,
+            "depth": sitemap_depth,
         }
         adaptQuery(self.query, context)

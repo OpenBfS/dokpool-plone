@@ -1,2 +1,1 @@
-""" Faceted view
-"""
+"""Faceted view"""

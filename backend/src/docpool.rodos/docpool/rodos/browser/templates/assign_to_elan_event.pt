@@ -1,57 +1,89 @@
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      i18n:domain="docpool.rodos"
-      xml:lang="en"
-      metal:use-macro="context/main_template/macros/master"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<body>
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.rodos"
+>
+  <body>
 
-<metal:content-core fill-slot="main">
-<metal:content-core define-macro="main">
+    <metal:content-core fill-slot="main">
+      <metal:content-core define-macro="main">
 
-<tal:def tal:define="dpevents python:view.events">
+        <tal:def tal:define="
+                   dpevents python:view.events;
+                 ">
 
 
-    <form method="post"
-          id="assign_to_elan_event"
-          name="assigntoelanevent"
-          action="#"
-          tal:attributes="action string:${context/absolute_url}/@@assign_to_elan_event">
+          <form id="assign_to_elan_event"
+                action="#"
+                method="post"
+                name="assigntoelanevent"
+                tal:attributes="
+                  action string:${context/absolute_url}/@@assign_to_elan_event;
+                "
+          >
 
-        <h2 i18n:translate="">Assign to ELAN Event</h2>
+            <h2 i18n:translate="">Assign to ELAN Event</h2>
 
-    <div class="form-group">
-      <p class="help-block" i18n:translate="help_events">Select the event this rodos-prognosis should be assigned to.</p>
+            <div class="form-group">
+              <p class="help-block"
+                 i18n:translate="help_events"
+              >Select the event this rodos-prognosis should be assigned to.</p>
 
-        <div tal:repeat="dpevent python: dpevents">
-          <label tal:attributes="for python: dpevent.UID" class="form-check-label">
-              <input type="radio" name="dpevent:list"
-                     class="form-check-input"
-                     tal:attributes="value python: dpevent.UID;
-                                     title python: dpevent.Title;
-                                     id python: dpevent.UID;
-                                     checked python: view.current_event == dpevent.UID;">
-            <span tal:replace="python:dpevent.Title">Event Title</span>
-          </label>
-      </div>
+              <div tal:repeat="dpevent python: dpevents">
+                <label class="form-check-label"
+                       tal:attributes="
+                         for python: dpevent.UID;
+                       "
+                >
+                  <input class="form-check-input"
+                         name="dpevent:list"
+                         type="radio"
+                         tal:attributes="
+                           value python: dpevent.UID;
+                           title python: dpevent.Title;
+                           id python: dpevent.UID;
+                           checked python: view.current_event == dpevent.UID;
+                         "
+                  />
+                  <span tal:replace="python:dpevent.Title">Event Title</span>
+                </label>
+              </div>
 
-    </div>
+            </div>
 
-    <div class="formControls" i18n:domain="plone">
-      <input type="submit" class="input-sichern context" name="form.button.submit" value="Apply" i18n:attributes="value label_apply; title"
-       tal:define="alert_msg python:context.translate('alert_assign_to_elan', default='Do you really want to assign this content to a event?', domain='docpool.rodos', escape_for_js=True)"
-       tal:attributes="onclick string:return confirm('${alert_msg}');"/>
-      <input type="submit" class="input-abbrechen" value="Cancel" name="form.button.cancel" i18n:attributes="value; title"/>
-    </div>
+            <div class="formControls"
+                 i18n:domain="plone"
+            >
+              <input class="input-sichern context"
+                     name="form.button.submit"
+                     type="submit"
+                     value="Apply"
+                     tal:define="
+                       alert_msg python:context.translate('alert_assign_to_elan', default='Do you really want to assign this content to a event?', domain='docpool.rodos', escape_for_js=True);
+                     "
+                     tal:attributes="
+                       onclick string:return confirm('${alert_msg}');
+                     "
+                     i18n:attributes="value label_apply; title"
+              />
+              <input class="input-abbrechen"
+                     name="form.button.cancel"
+                     type="submit"
+                     value="Cancel"
+                     i18n:attributes="value; title"
+              />
+            </div>
 
-  </form>
+          </form>
 
-</tal:def>
+        </tal:def>
 
-</metal:content-core>
-</metal:content-core>
+      </metal:content-core>
+    </metal:content-core>
 
-</body>
+  </body>
 </html>

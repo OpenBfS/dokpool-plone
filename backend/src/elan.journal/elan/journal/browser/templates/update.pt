@@ -1,110 +1,167 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    metal:use-macro="context/main_template/macros/master"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="elan.journal">
-<body>
-  <metal:block fill-slot="main">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="elan.journal"
+>
+  <body>
+    <metal:block fill-slot="main">
 
-    <article itemscope="" itemtype="http://schema.org/BlogPosting">
-      <header>
-        <div id="parent-fieldname-text" class=""
-             tal:condition="python: getattr(context.aq_base, 'text', None)">
-          <div itemprop="articleBody"
-               tal:content="structure context/text/output|nothing">The body</div>
-        </div>
-      </header>
+      <article itemscope
+               itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class=""
+               id="parent-fieldname-text"
+               tal:condition="python: getattr(context.aq_base, 'text', None)"
+          >
+            <div itemprop="articleBody"
+                 tal:content="structure context/text/output|nothing"
+            >The body</div>
+          </div>
+        </header>
 
-      <div tal:replace="structure provider:plone.abovecontentbody" />
-      <div id="content-core" itemprop="articleBody">
+        <div tal:replace="structure provider:plone.abovecontentbody"></div>
+        <div id="content-core"
+             itemprop="articleBody"
+        >
 
-      <form action="@@add-journalentry" method="post"
-          tal:attributes="action string:${context/absolute_url}/@@add-journalentry">
-        <h2 i18n:translate="">Add journal entry</h2>
-        <div class="field">
-          <tal:editor define="here nocall:context;
-                              portal_url nocall:context/portal_url;
-                              portal portal_url/getPortalObject;
-                              id string:text;
-                              inputname string:text;
-                              inputvalue nothing;
-                              here_url request/getURL;
-                              member context/portal_membership/getAuthenticatedMember;
-                              tabindex nothing;
-                              rows python:5">
-            <div metal:use-macro="context/wysiwyg_support/macros/wysiwygEditorBox">
+          <form action="@@add-journalentry"
+                method="post"
+                tal:attributes="
+                  action string:${context/absolute_url}/@@add-journalentry;
+                "
+          >
+            <h2 i18n:translate="">Add journal entry</h2>
+            <div class="field">
+              <tal:editor define="
+                            here nocall:context;
+                            portal_url nocall:context/portal_url;
+                            portal portal_url/getPortalObject;
+                            id string:text;
+                            inputname string:text;
+                            inputvalue nothing;
+                            here_url request/getURL;
+                            member context/portal_membership/getAuthenticatedMember;
+                            tabindex nothing;
+                            rows python:5;
+                          ">
+                <div metal:use-macro="context/wysiwyg_support/macros/wysiwygEditorBox">
               The WYSIWYG code
+                </div>
+              </tal:editor>
             </div>
-          </tal:editor>
-        </div>
-        <input type="submit" class="btn btn-primary mt-3" value="Publish" i18n:attributes="value" />
-      </form>
+            <input class="btn btn-primary mt-3"
+                   type="submit"
+                   value="Publish"
+                   i18n:attributes="value"
+            />
+          </form>
 
-    <section id="journal-entries" tal:define="batch view/batch">
-      <article class="journalentry" data-timestamp="" itemprop="comment" itemscope="" itemtype="http://schema.org/Comment"
-          tal:repeat="update batch"
-          tal:attributes="data-timestamp update/timestamp">
-        <div class="journalentry-helpers">
-          <a href="@@edit-journalentry"
-              class="btn btn-primary"
-              role="button"
-              tal:condition="view/can_edit_objects"
-              tal:attributes="href string:@@edit-journalentry?id=${update/id}"
-              i18n:domain="plone"
-              i18n:translate="">Edit</a>
-          <a href="@@delete-journalentry"
-              class="btn btn-danger"
-              role="button"
-              tal:condition="view/can_delete_objects"
-              tal:attributes="href string:@@delete-journalentry?id=${update/id};
-                              onclick view/delete_confirmation"
-              i18n:domain="plone"
-              i18n:translate="">Delete</a>
-        </div>
-        <h2 class="journalentry-title" itemprop="headline"
-            tal:condition="update/title"
-            tal:content="update/title" />
-        <div class="journalentry-text" itemprop="text"
-            tal:content="structure update/text" />
-        <div class="journalentry-byline" tal:define="item_creator update/creator;
-                                                     pas_member nocall:context/@@pas_member;
-                                                     author python:pas_member.info(item_creator);
-                                                     creator_fullname author/name_or_id;
-                                                     ">
-          <p i18n:translate="">
+          <section id="journal-entries"
+                   tal:define="
+                     batch view/batch;
+                   "
+          >
+            <article class="journalentry"
+                     itemprop="comment"
+                     itemscope
+                     itemtype="http://schema.org/Comment"
+                     tal:repeat="update batch"
+                     tal:attributes="
+                       data-timestamp update/timestamp;
+                     "
+            >
+              <div class="journalentry-helpers">
+                <a class="btn btn-primary"
+                   href="@@edit-journalentry"
+                   role="button"
+                   tal:condition="view/can_edit_objects"
+                   tal:attributes="
+                     href string:@@edit-journalentry?id=${update/id};
+                   "
+                   i18n:domain="plone"
+                   i18n:translate=""
+                >Edit</a>
+                <a class="btn btn-danger"
+                   href="@@delete-journalentry"
+                   role="button"
+                   tal:condition="view/can_delete_objects"
+                   tal:attributes="
+                     href string:@@delete-journalentry?id=${update/id};
+                     onclick view/delete_confirmation;
+                   "
+                   i18n:domain="plone"
+                   i18n:translate=""
+                >Delete</a>
+              </div>
+              <h2 class="journalentry-title"
+                  itemprop="headline"
+                  tal:condition="update/title"
+                  tal:content="update/title"
+              ></h2>
+              <div class="journalentry-text"
+                   itemprop="text"
+                   tal:content="structure update/text"
+              ></div>
+              <div class="journalentry-byline"
+                   tal:define="
+                     item_creator update/creator;
+                     pas_member nocall: context/@@pas_member;
+                     author python:pas_member.info(item_creator);
+                     creator_fullname author/name_or_id;
+                   "
+              >
+                <p i18n:translate="">
               By
-            <span itemprop="author"
-                tal:content="creator_fullname"
-                i18n:name="byline" />
-          </p>
-          <time itemprop="datePublished" title="2014-08-28 14h31" datetime="2014-08-28T14:31:02.402"
-              tal:attributes="datetime update/isoformat;
-                              title update/datetime;
-                              data-date update/date;
-                              data-time update/time">
-            <span class="journalentry-time" tal:content="update/time" />
-          </time>
+                  <span itemprop="author"
+                        tal:content="creator_fullname"
+                        i18n:name="byline"
+                  ></span>
+                </p>
+                <time datetime="2014-08-28T14:31:02.402"
+                      itemprop="datePublished"
+                      title="2014-08-28 14h31"
+                      tal:attributes="
+                        datetime update/isoformat;
+                        title update/datetime;
+                        data-date update/date;
+                        data-time update/time;
+                      "
+                >
+                  <span class="journalentry-time"
+                        tal:content="update/time"
+                  ></span>
+                </time>
+              </div>
+            </article>
+
+            <tal:batchnavigation define="
+                                   batchnavigation nocall:context/@@batchnavigation;
+                                 "
+                                 replace="structure python:batchnavigation(batch)"
+            />
+          </section>
+
         </div>
+        <div tal:replace="structure provider:plone.belowcontentbody"></div>
       </article>
 
-      <tal:batchnavigation
-          define="batchnavigation nocall:context/@@batchnavigation"
-          replace="structure python:batchnavigation(batch)"
-          />
-    </section>
-
-      </div>
-      <div tal:replace="structure provider:plone.belowcontentbody" />
-    </article>
-
-    <dl class="portalMessage info" id="updateMessage" style="display:none">
-        <dt i18n:domain="plone" i18n:translate="">Info</dt>
+      <dl class="portalMessage info"
+          id="updateMessage"
+          style="display:none"
+      >
+        <dt i18n:domain="plone"
+            i18n:translate=""
+        >Info</dt>
         <dd i18n:translate="">Some entries were edited or excluded from this Journal.
-          <a href="update">Refresh</a> to update it.
+          <a href="update">Refresh</a>
+           to update it.
         </dd>
-    </dl>
-    <script>
+      </dl>
+      <script>
         /* show dates for journal-entries older than today */
         var today = new Date().toISOString().substr(0, 10);
         $("time").each(function () {
@@ -117,8 +174,8 @@
                     "<span class='journalentry-time'>" + time + "</span>");
             }
         });
-    </script>
-    <script tal:condition="view/automatic_updates_enabled">
+      </script>
+      <script tal:condition="view/automatic_updates_enabled">
         /* keep page updated */
         setInterval(function () {
             "use strict";
@@ -153,7 +210,7 @@
                 }
             });
         }, 1000 * 20);
-    </script>
-  </metal:block>
-</body>
+      </script>
+    </metal:block>
+  </body>
 </html>

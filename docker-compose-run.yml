@@ -30,10 +30,12 @@ services:
       - net
 
   varnish:
-    image: git.starzel.de:5050/bfs/dokpool:varnish
-    build:
-      context: ./devops/varnish-build/
-      dockerfile: Dockerfile
+    image: varnish:7.6.1
+    healthcheck:
+      test: ["CMD", "varnishadm", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     volumes:
       - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
     environment:

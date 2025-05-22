@@ -1,8 +1,8 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from contextlib import contextmanager
-from datetime import datetime
 from DateTime import DateTime
+from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
 from docpool.base.behaviors.utils import allowed_targets
@@ -148,7 +148,7 @@ class Transferable(FlexibleView):
         """Query metadata of past transfers ("transfer events") of the context object."""
         if IArchiving(self.context).is_archive:
             logRaw = self.transferLog
-            logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime") or ""
+            logRaw = (logRaw and logRaw.replace("datetime.datetime", "datetime")) or ""
             return eval(logRaw)
 
         else:
@@ -158,15 +158,14 @@ class Transferable(FlexibleView):
             else:
                 type_ = "send"
                 events = reversed(self.sender_log)
+            plone_view = api.content.get_view("plone", self.context, self.request)
             return [
                 {
                     "type": type_,
                     "by": event["user"],
                     "esd": event["esd_title"],
                     "timeraw": event["timestamp"],
-                    "time": self.context.toLocalizedTime(
-                        DateTime(event["timestamp"]), long_format=1
-                    ),
+                    "time": plone_view.toLocalizedTime(DateTime(event["timestamp"]), long_format=1),
                 }
                 for event in events
             ]
@@ -215,7 +214,7 @@ class Transferable(FlexibleView):
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
-    def transferToTargets(self, targets=[]):
+    def transferToTargets(self, targets=None):
         """
         1) Determine all transfer folder objects.
         2) Put a copy of me in each of them, preserving timestamps.
@@ -225,6 +224,9 @@ class Transferable(FlexibleView):
         6) Set workflow state of the copies according to folder permissions.
         7) Add entries to receiver logs.
         """
+
+        if targets is None:
+            targets = []
 
         def error_message(esd_to_title, msg):
             pmsg = _(
@@ -301,9 +303,7 @@ class Transferable(FlexibleView):
                     transferfolder_uid=transfer_folder.UID(),
                 )
                 if elanobj:
-                    scenario_ids = ", ".join(
-                        b.getId for b in api.content.find(UID=elanobj.scenarios)
-                    )
+                    scenario_ids = ", ".join(b.getId for b in api.content.find(UID=elanobj.scenarios))
                     log_entry["scenario_ids"] = scenario_ids
                 self.sender_log += (log_entry,)
 

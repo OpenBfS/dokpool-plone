@@ -15,9 +15,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 @provider(IContextSourceBinder)
 def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
-    return SimpleVocabulary(
-        [SimpleTerm(t["uid"], t["uid"], t["from_to_title"]) for t in targets]
-    )
+    return SimpleVocabulary([SimpleTerm(t["uid"], t["uid"], t["from_to_title"]) for t in targets])
 
 
 @provider(IFormFieldProvider)

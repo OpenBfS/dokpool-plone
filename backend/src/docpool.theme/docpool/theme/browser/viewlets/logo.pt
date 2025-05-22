@@ -1,41 +1,76 @@
 <div id="portal-logo">
-    <a metal:define-macro="portal_logo"
-            id="portal-logo-img"
-            title="Home"
-            accesskey="1"
-             tal:attributes="href string:${view/navigation_root_url};
-                    title string:DocPool"
-             i18n:domain="docpool.elan"
-             i18n:attributes="title">
+  <a id="portal-logo-img"
+     accesskey="1"
+     metal:define-macro="portal_logo"
+     title="Home"
+     tal:attributes="
+       href string:${view/navigation_root_url};
+       title string:DocPool;
+     "
+     i18n:attributes="title"
+     i18n:domain="docpool.elan"
+  >
 
-        <img src="plone-logo.svg" alt=""
-                tal:define="logo context/logoSrc|nothing;
-                            logo python:logo or view.img_src;"
-                 tal:attributes="alt view/logo_title;
-                        title view/logo_title;
-                        src logo" /></a>
+    <img alt=""
+         src="plone-logo.svg"
+         tal:define="
+           logo context/logoSrc|nothing;
+           logo python:logo or view.img_src;
+         "
+         tal:attributes="
+           alt view/logo_title;
+           title view/logo_title;
+           src logo;
+         "
+    /></a>
 
-    <tal:app_logo tal:define="active_app view/getActiveApp" tal:condition="python: active_app.get('logo', False)">
+  <tal:app_logo tal:define="
+                  active_app view/getActiveApp;
+                "
+                tal:condition="python: active_app.get('logo', False)"
+  >
 
-        <img src="" tal:attributes="src python: '{}/{}'.format(view.site_url, active_app['logo'])">
+    <img src=""
+         tal:attributes="
+           src python: '{}/{}'.format(view.site_url, active_app['logo']);
+         "
+    />
 
-    </tal:app_logo>
-    <p class="version">${context/dokpool_version}
-        <tal:debug tal:condition="python: view.available()">
-            <span class="debug-item" style="font-size: 80%">
-               <span class="debug-label" i18n:translate="debug_viewlet_git_commit">(Git Commit</span>
-               <span class="debug-value"><a
-                       class="git_rev" i18n:translate="" tal:content="python: view.get_git_rev()" tal:attributes="href python: 'https://git.starzel.de/bfs/dokpool/commit/' + view.get_git_rev()">Git Rev</a></span>
-            </span>
+  </tal:app_logo>
+  <p class="version">${context/dokpool_version}
+    <tal:debug tal:condition="python: view.available()">
+      <span class="debug-item"
+            style="font-size: 80%"
+      >
+        <span class="debug-label"
+              i18n:translate="debug_viewlet_git_commit"
+        >(Git Commit</span>
+        <span class="debug-value"><a class="git_rev"
+             tal:content="python: view.get_git_rev()"
+             tal:attributes="
+               href python: 'https://git.starzel.de/bfs/dokpool/commit/' + view.get_git_rev();
+             "
+             i18n:translate=""
+          >Git Rev</a></span>
+      </span>
 
-            <span class="debug-item" style="font-size: 80%">
-               <span class="debug-label" i18n:translate="debug_viewlet_git_branch">Git Branch</span>
-               <span class="debug-value"><a
-                       class="git_branch" i18n:translate="" tal:content="python:view.get_git_branch()" tal:attributes="href python: 'https://git.starzel.de/bfs/dokpool/tree/' + view.get_git_branch()">Git Branch</a>)</span>
-           </span>
-        </tal:debug>
+      <span class="debug-item"
+            style="font-size: 80%"
+      >
+        <span class="debug-label"
+              i18n:translate="debug_viewlet_git_branch"
+        >Git Branch</span>
+        <span class="debug-value"><a class="git_branch"
+             tal:content="python:view.get_git_branch()"
+             tal:attributes="
+               href python: 'https://git.starzel.de/bfs/dokpool/tree/' + view.get_git_branch();
+             "
+             i18n:translate=""
+          >Git Branch</a>)</span>
+      </span>
+    </tal:debug>
 
-    </p>
+  </p>
 
 
 </div>

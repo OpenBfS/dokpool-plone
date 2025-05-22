@@ -19,19 +19,6 @@ YELLOW=`tput setaf 3`
 DISTRIBUTIONS="docpooldemo"
 ALLOWED_DISTRIBUTIONS="docpooldemo"
 
-BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-
-PLONE_VERSION=$$(cat version.txt)
-
-CODE_QUALITY_VERSION=2.1
-ifndef LOG_LEVEL
-	LOG_LEVEL=INFO
-endif
-CURRENT_USER=$$(whoami)
-USER_INFO=$$(id -u ${CURRENT_USER})
-LINT=docker run --rm -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} check
-FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} format
-
 IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
 
 # get branch name if not running in CI
@@ -46,20 +33,26 @@ ifndef CI_COMMIT_SHORT_SHA
 endif
 
 # Python checks
-PYTHON?=python3
+UV?=uv
 
 # installed?
-ifeq (, $(shell which $(PYTHON) ))
-  $(error "PYTHON=$(PYTHON) not found in $(PATH)")
+ifeq (, $(shell which $(UV) ))
+  $(error "UV=$(UV) not found in $(PATH)")
 endif
 
-# version ok?
-PYTHON_VERSION_MIN=3.11
-PYTHON_VERSION_OK=$(shell $(PYTHON) -c "import sys; print((int(sys.version_info[0]), int(sys.version_info[1])) >= tuple(map(int, '$(PYTHON_VERSION_MIN)'.split('.'))))")
-ifeq ($(PYTHON_VERSION_OK),False)
-  $(error "Need python $(PYTHON_VERSION) >= $(PYTHON_VERSION_MIN)")
-endif
+PLONE_SITE_ID=Plone
+BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+PLONE_VERSION=$(shell cat $(BACKEND_FOLDER)/version.txt)
+EXAMPLE_CONTENT_FOLDER=${BACKEND_FOLDER}/src/dokpool/setuphandlers/examplecontent
 
+VENV_FOLDER=$(BACKEND_FOLDER)/.venv
+BIN_FOLDER=$(VENV_FOLDER)/bin
+
+# Environment variables to be exported
+export PYTHONWARNINGS := ignore
+export DOCKER_BUILDKIT := 1
+
+all: build
 
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'
@@ -67,156 +60,125 @@ endif
 help: ## This help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: clean
-clean: clean-build clean-pyc clean-test clean-venv clean-instance ## remove all build, test, coverage and Python artifacts
+requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
+	@echo "$(GREEN)==> Generate constraints file$(RESET)"
+	@echo '-c https://dist.plone.org/release/$(PLONE_VERSION)/constraints.txt' > requirements.txt
+	@uvx mxdev -c mx.ini
 
-.PHONY: clean-instance
-clean-instance: ## remove existing instance
-	rm -fr instance etc inituser var
+$(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
+	@echo "$(GREEN)==> Install environment$(RESET)"
+	@uv venv $(VENV_FOLDER)
+	@uv pip install -r requirements-mxdev.txt
 
-.PHONY: clean-venv
-clean-venv: ## remove virtual environment
-	rm -fr bin include lib lib64
+.PHONY: sync
+sync: $(VENV_FOLDER) ## Sync project dependencies
+	@echo "$(GREEN)==> Sync project dependencies$(RESET)"
+	@uv pip install -r requirements-mxdev.txt
 
-.PHONY: clean-build
-clean-build: ## remove build artifacts
-	rm -fr build/
-	rm -fr dist/
-	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -rf {} +
-
-.PHONY: clean-pyc
-clean-pyc: ## remove Python file artifacts
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
-
-.PHONY: clean-test
-clean-test: ## remove test and coverage artifacts
-	rm -f .coverage
-	rm -fr htmlcov/
-
-bin/pip:
-	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
-	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter==2.6.0" "mxdev==4.0.2" "uv"
+instance/etc/zope.ini instance/etc/zope.conf instance_relstorage/etc/zope.ini instance_relstorage/etc/zope.conf: instance.yaml ## Create instance configuration
+	@echo "$(GREEN)==> Create instance configuration$(RESET)"
+	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance.yaml gh:plone/cookiecutter-zope-instance
+	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
 
 .PHONY: config
-config: bin/pip  ## Create instance configuration
-	@echo "$(GREEN)==> Create instance configuration$(RESET)"
-	./bin/cookiecutter -f --no-input --config-file ./instance.yaml -c 2.1.1 gh:plone/cookiecutter-zope-instance
-	./bin/cookiecutter -f --no-input --config-file ./instance_relstorage.yaml -c 2.1.1 gh:plone/cookiecutter-zope-instance
+config: instance/etc/zope.ini
 
-# i18n
-bin/i18ndude: bin/pip
-	@echo "$(GREEN)==> Install translation tools$(RESET)"
-	bin/uv pip install i18ndude
+.PHONY: install
+install: $(VENV_FOLDER) config ## Install Plone and dependencies
 
-.PHONY: i18n
-i18n: bin/i18ndude ## Update locales
-	@echo "$(GREEN)==> Updating locales$(RESET)"
-	ls src |xargs ./bin/python ./scripts/update_locales.py
+.PHONY: clean
+clean: ## Clean installation and instance
+	@echo "$(RED)==> Cleaning environment and build$(RESET)"
+	@rm -rf $(VENV_FOLDER) pyvenv.cfg .installed.cfg instance/etc .venv .pytest_cache .ruff_cache constraints* requirements*
 
-# TODO `make build`
-# build:
+.PHONY: remove-data
+remove-data: ## Remove all content
+	@echo "$(RED)==> Removing all content$(RESET)"
+	rm -rf $(VENV_FOLDER) instance/var
 
-.PHONY: clone-contentimport
-clone-contentimport: ## checkout contentimport
-	git clone --branch=main gitlab@git.starzel.de:bfs/contentimport.git sources/contentimport
+.PHONY: start
+start: $(VENV_FOLDER) instance/etc/zope.ini ## Start a Plone instance on localhost:8080
+	@uv run runwsgi instance/etc/zope.ini
 
-.PHONY: build-dev
-build-dev: config ## pip install Plone packages
-	@echo "$(GREEN)==> Setup Build$(RESET)"
-	bin/mxdev -c mx.ini
-	bin/uv pip install -r requirements-mxdev.txt
+.PHONY: start-relstorage
+start-relstorage: $(VENV_FOLDER) instance_relstorage/etc/zope.ini ## Start a Plone instance on localhost:8080
+	@uv run runwsgi instance_relstorage/etc/zope.ini
 
-.PHONY: build-dev-develop
-build-dev-develop: config ## pip install Plone packages with debug-tools
-	@echo "$(GREEN)==> Setup Build$(RESET)"
-	bin/mxdev -c mx_develop.ini
-	bin/uv pip install -r requirements-mxdev.txt
+.PHONY: console
+console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone instance
+	@uv run zconsole debug  instance/etc/zope.conf instance/etc/zope.conf
 
+.PHONY: create-site
+create-site: $(VENV_FOLDER) instance/etc/zope.ini ## Create a new site from scratch
+	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) ALLOWED_DISTRIBUTIONS=$(DISTRIBUTIONS) uv run zconsole run instance/etc/zope.conf ./scripts/create_site.py
+
+# Example Content
+.PHONY: update-example-content
+update-example-content: $(VENV_FOLDER) ## Export example content inside package
+	@echo "$(GREEN)==> Export example content into $(EXAMPLE_CONTENT_FOLDER) $(RESET)"
+	if [ -d $(EXAMPLE_CONTENT_FOLDER)/content ]; then rm -r $(EXAMPLE_CONTENT_FOLDER)/* ;fi
+	@uv run plone-exporter instance/etc/zope.conf $(PLONE_SITE_ID) $(EXAMPLE_CONTENT_FOLDER)
+
+# QA
+.PHONY: lint
+lint: ## Check and fix code base according to Plone standards
+	@echo "$(GREEN)==> Lint codebase$(RESET)"
+	@uvx ruff@latest check --fix --config $(BACKEND_FOLDER)/pyproject.toml
+	@uvx pyroma@latest -d .
+	@uvx check-python-versions@latest .
+	@uvx zpretty@latest --check src
 
 .PHONY: format
-format: ## Format the codebase according to our standards
+format: ## Check and fix code base according to Plone standards
 	@echo "$(GREEN)==> Format codebase$(RESET)"
-	$(FORMAT)
+	@uvx ruff@latest check --select I --fix --config $(BACKEND_FOLDER)/pyproject.toml
+	@uvx ruff@latest format --config $(BACKEND_FOLDER)/pyproject.toml
+	@uvx zpretty@latest -i src
 
-.PHONY: lint
-lint: lint-isort lint-black lint-flake8 lint-zpretty ## check code style
+# i18n
+.PHONY: i18n
+i18n: $(VENV_FOLDER) ## Update locales
+	@echo "$(GREEN)==> Updating locales$(RESET)"
+	@uv pip install i18ndude
+	@ls src |xargs uv run python ./scripts/update_locales.py
 
-.PHONY: lint-black
-lint-black: ## validate black formating
-	$(LINT) black
-
-.PHONY: lint-flake8
-lint-flake8: ## validate black formating
-	$(LINT) flake8
-
-.PHONY: lint-isort
-lint-isort: ## validate using isort
-	$(LINT) isort
-
-.PHONY: lint-pyroma
-lint-pyroma: ## validate using pyroma
-	$(LINT) pyroma
-
-.PHONY: lint-zpretty
-lint-zpretty: ## validate ZCML/XML using zpretty
-	$(LINT) zpretty
-
+# Tests
 .PHONY: test
-test: ## run tests
-	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src -D
+test: $(VENV_FOLDER) ## run tests
+	@uv run zope-testrunner --auto-color --auto-progress \
+	--test-path src/docpool.api/src \
+	--test-path src/elan.journal \
+	--test-path src/docpool.doksys/src \
+	--test-path src/docpool.elan \
+	--test-path src/docpool.rei \
+	-D
 
 .PHONY: coverage
 coverage: ## generate test-coverage report
+	@uv pip install coverage
 	@echo "$(GREEN)==> Erasing old coverage results$(RESET)"
-	./bin/coverage erase
+	@uv run coverage erase
 	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
-	./bin/coverage run -p --source=src ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src || exit 1
+	@uv run coverage run -p --source=src $(VENV_FOLDER)/bin/zope-testrunner --auto-color --auto-progress \
+	--test-path src/docpool.api/src \
+	--test-path src/elan.journal \
+	--test-path src/docpool.elan \
+	--test-path src/docpool.rei \
+	--test-path src/docpool.doksys/src \
+	|| exit 1
 	@echo "$(GREEN)==> Creating test coverage report$(RESET)"
-	./bin/coverage combine
-	./bin/coverage report
-	./bin/coverage html
+	@uv run coverage combine
+	@uv run coverage report
+	@uv run coverage html
 
-.PHONY: test_quiet
-test_quiet: ## run tests removing deprecation warnings
-	PYTHONWARNINGS=ignore ./bin/zope-testrunner --auto-color --auto-progress --test-path src/docpool.api/src --test-path src/elan.journal --test-path src/docpool.elan --test-path src/docpool.rei --test-path src/docpool.doksys/src
-
-.PHONY: create-site
-create-site: ## Create a new site from scratch
-	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) ALLOWED_DISTRIBUTIONS=$(DISTRIBUTIONS) PYTHONWARNINGS=ignore ./bin/zconsole run instance/etc/zope.conf scripts/create_site.py
-
-.PHONY: start
-start: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi instance/etc/zope.ini
-
-.PHONY: start-relstorage
-start-relstorage: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi instance_relstorage/etc/zope.ini
-
-.PHONY: debug
-debug: instance/etc/zope.ini ## Run debug console
-	PYTHONWARNINGS=ignore ./bin/zconsole debug instance/etc/zope.conf
-
-.PHONY: fg
-fg: ## Start a Plone instance in debug-mode on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi -d instance/etc/zope.ini
-
-.PHONY: fg-relstorage
-fg-relstorage: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi -d instance_relstorage/etc/zope.ini
-
+# Build Docker images
 .PHONY: build-image
-build-image: ## Build Docker Image
-	@DOCKER_BUILDKIT=1 docker buildx build --load --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA) .
+build-image:  ## Build Docker Images
+	@docker buildx build --load --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA) .
 
 .PHONY: build-image-ci
 build-image-ci: build-image ## Build Docker Image
-	@DOCKER_BUILDKIT=1 docker push $(IMAGE_NAME):$(IMAGE_TAG)
+	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
 
 # Theme and Webpack stuff
 # theme vars

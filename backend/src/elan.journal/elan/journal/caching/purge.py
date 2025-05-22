@@ -8,7 +8,6 @@ from zope.interface import implementer
 @implementer(IPurgePaths)
 @adapter(IJournal)
 class LiveBlogPurgePaths(ContentPurgePaths):
-
     """Paths to purge for LiveBlog."""
 
     def getRelativePaths(self):

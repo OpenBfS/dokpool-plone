@@ -73,9 +73,7 @@ class ApplicationState(BrowserView):
         # print("permitted", effective)
         if filtered:
             # print("activated", self.appsActivatedByCurrentUser())
-            effective = list(
-                set(effective).intersection(self.appsActivatedByCurrentUser())
-            )
+            effective = list(set(effective).intersection(self.appsActivatedByCurrentUser()))
             effective.extend([app[0] for app in implicitApps()])
         # print("locallyActivated", self.locallyAcivated())
         effective = list(set(effective).intersection(self.locallyAcivated()))
@@ -129,11 +127,7 @@ class ApplicationState(BrowserView):
         - the list of apps which are actually supported in the current context (docpool)
         @return:
         """
-        return list(
-            set(self.appsPermittedForCurrentUser()).intersection(
-                set(self.appsSupportedHere())
-            )
-        )
+        return list(set(self.appsPermittedForCurrentUser()).intersection(set(self.appsSupportedHere())))
 
     def appsActivatedByCurrentUser(self):
         """
@@ -154,9 +148,7 @@ class ApplicationState(BrowserView):
         navigation) and die apps that are supported in the current context (docpool).
         @return:
         """
-        return set(self.appsActivatedByCurrentUser()).intersection(
-            self.appsSupportedHere()
-        )
+        return set(self.appsActivatedByCurrentUser()).intersection(self.appsSupportedHere())
 
     @memoize
     def appsSupportedHere(self):

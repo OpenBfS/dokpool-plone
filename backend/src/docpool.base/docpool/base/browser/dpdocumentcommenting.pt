@@ -1,20 +1,23 @@
-<tal:comments define="viewlet_html python:view.viewlet_html()"
- condition="python: viewlet_html">
-<html
-  i18n:domain="docpool.base"
-  lang="en"
-  metal:use-macro="context/main_template/macros/master"
-  xml:lang="en"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<tal:comments define="
+                viewlet_html python:view.viewlet_html();
+              "
+              condition="python: viewlet_html"
+>
+  <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        lang="en"
+        metal:use-macro="context/main_template/macros/master"
+        xml:lang="en"
+        i18n:domain="docpool.base"
+  >
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns="http://www.w3.org/1999/xhtml"
-<body>
+    <body>
 
-  <div metal:fill-slot="content">
-    <tal:replace content="structure python:viewlet_html" />
-  </div>
+      <div metal:fill-slot="content">
+        <tal:replace content="structure python:viewlet_html" />
+      </div>
 
-</body>
-</html>
+    </body>
+  </html>
 </tal:comments>

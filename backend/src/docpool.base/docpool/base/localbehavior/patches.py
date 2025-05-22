@@ -28,9 +28,7 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
     are set, the portal_type might get ignored, depending on which
     code path is taken.
     """
-    log.debug(
-        "getAdditionalSchemata with context %r and portal_type %s", context, portal_type
-    )
+    log.debug("getAdditionalSchemata with context %r and portal_type %s", context, portal_type)
     # Usually an add-form.
     if portal_type is None:
         portal_type = context.portal_type
@@ -53,4 +51,4 @@ def patched_additionalSchemata():
     return property(additionalSchemata)  # We get a @property decorated method!
 
 
-setattr(DefaultAddForm, "additionalSchemata", patched_additionalSchemata())
+DefaultAddForm.additionalSchemata = patched_additionalSchemata()

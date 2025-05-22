@@ -1,101 +1,106 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
-     xmlns:metal="http://xml.zope.org/namespaces/metal"
-     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-     i18n:domain="docpool.doksys">
-    <body>
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.doksys"
+>
+  <body>
 
 
-    <metal:macro define-macro="doksys_meta" i18n:domain="docpool.doksys">
-        <b><span i18n:translate="label_doksys_purpose">Purpose</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'Purpose')">
-           <tal:var replace="doksysobj/Purpose"/>
-        </span><br><br>
+    <metal:macro define-macro="doksys_meta"
+                 i18n:domain="docpool.doksys"
+    >
+      <b><span i18n:translate="label_doksys_purpose">Purpose</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'Purpose')">
+        <tal:var replace="doksysobj/Purpose" />
+      </span><br /><br />
 
-        <b><span i18n:translate="label_doksys_network_operator">Network Operator</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'NetworkOperator')">
-           <tal:var replace="python:', '.join(doksysobj.NetworkOperator)"/>
-        </span><br><br>
+      <b><span i18n:translate="label_doksys_network_operator">Network Operator</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'NetworkOperator')">
+        <tal:var replace="python:', '.join(doksysobj.NetworkOperator)" />
+      </span><br /><br />
 
-        <b><span i18n:translate="label_doksys_legal_base">Legal Base</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'LegalBase')">
-           <tal:var replace="python:', '.join(doksysobj.LegalBase)"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_measuring_program">Measuring Program</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'MeasuringProgram')">
-           <tal:var replace="doksysobj/MeasuringProgram"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_data_type">Data Type</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'DataType')">
-           <tal:var replace="python:', '.join(doksysobj.DataType)"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_operation_mode">Operation Mode</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'OperationMode')">
-           <tal:var replace="doksysobj/OperationMode"/>
-        </span><br><br>
+      <b><span i18n:translate="label_doksys_legal_base">Legal Base</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'LegalBase')">
+        <tal:var replace="python:', '.join(doksysobj.LegalBase)" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_measuring_program">Measuring Program</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'MeasuringProgram')">
+        <tal:var replace="doksysobj/MeasuringProgram" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_data_type">Data Type</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'DataType')">
+        <tal:var replace="python:', '.join(doksysobj.DataType)" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_operation_mode">Operation Mode</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'OperationMode')">
+        <tal:var replace="doksysobj/OperationMode" />
+      </span><br /><br />
 
-        <b><span i18n:translate="label_doksys_sample_type">Sample Type</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'SampleType')">
-           <tal:var replace="doksysobj/sample_type_display"/>
-        </span><br>
-        <tal:nodom tal:replace="nothing">
-            <b><span i18n:translate="label_doksys_Dom">Dom</span>:</b>
-            <span tal:condition="python:hasattr(doksysobj,'Dom')">
-               <tal:var replace="python:', '.join(doksysobj.Dom)"/>
-            </span><br>
-        </tal:nodom>
-        <b><span i18n:translate="label_doksys_infotype">InfoType</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'InfoType')">
-           <tal:var replace="doksysobj/InfoType"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_measurement_category">Measurement Category</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'MeasurementCategory')">
-           <tal:var replace="python:', '.join(doksysobj.MeasurementCategory)"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_duration">Duration</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'Duration')">
-           <tal:var replace="doksysobj/Duration"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_status">Status</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'Status')">
-           <tal:var replace="doksysobj/Status"/>
-        </span><br><br>
+      <b><span i18n:translate="label_doksys_sample_type">Sample Type</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'SampleType')">
+        <tal:var replace="doksysobj/sample_type_display" />
+      </span><br />
+      <tal:nodom tal:replace="nothing">
+        <b><span i18n:translate="label_doksys_Dom">Dom</span>:</b>
+        <span tal:condition="python:hasattr(doksysobj,'Dom')">
+          <tal:var replace="python:', '.join(doksysobj.Dom)" />
+        </span><br />
+      </tal:nodom>
+      <b><span i18n:translate="label_doksys_infotype">InfoType</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'InfoType')">
+        <tal:var replace="doksysobj/InfoType" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_measurement_category">Measurement Category</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'MeasurementCategory')">
+        <tal:var replace="python:', '.join(doksysobj.MeasurementCategory)" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_duration">Duration</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'Duration')">
+        <tal:var replace="doksysobj/Duration" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_status">Status</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'Status')">
+        <tal:var replace="doksysobj/Status" />
+      </span><br /><br />
 
-        <b><span i18n:translate="label_doksys_sampling_begin">Sampling Begin</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'SamplingBegin')">
-           <tal:var replace="doksysobj/SamplingBegin"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_sampling_end">Sampling End</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'SamplingEnd')">
-           <tal:var replace="doksysobj/SamplingEnd"/>
-        </span><br><br>
+      <b><span i18n:translate="label_doksys_sampling_begin">Sampling Begin</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'SamplingBegin')">
+        <tal:var replace="doksysobj/SamplingBegin" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_sampling_end">Sampling End</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'SamplingEnd')">
+        <tal:var replace="doksysobj/SamplingEnd" />
+      </span><br /><br />
 
-        <b><span i18n:translate="label_doksys_trajectory_start_location">Trajectory Start Location</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartLocation')">
-           <tal:var replace="doksysobj/TrajectoryStartLocation"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_trajectory_end_location">Trajectory End Location</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndLocation')">
-           <tal:var replace="doksysobj/TrajectoryEndLocation"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_trajectory_start_time">Trajectory Start Time</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartTime')">
-           <tal:var replace="doksysobj/TrajectoryStartTime"/>
-        </span><br>
-        <b><span i18n:translate="label_doksys_trajectory_end_time">Trajectory End Time</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndTime')">
-           <tal:var replace="doksysobj/TrajectoryEndTime"/>
-        </span><br><br>
+      <b><span i18n:translate="label_doksys_trajectory_start_location">Trajectory Start Location</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartLocation')">
+        <tal:var replace="doksysobj/TrajectoryStartLocation" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_trajectory_end_location">Trajectory End Location</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndLocation')">
+        <tal:var replace="doksysobj/TrajectoryEndLocation" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_trajectory_start_time">Trajectory Start Time</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'TrajectoryStartTime')">
+        <tal:var replace="doksysobj/TrajectoryStartTime" />
+      </span><br />
+      <b><span i18n:translate="label_doksys_trajectory_end_time">Trajectory End Time</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'TrajectoryEndTime')">
+        <tal:var replace="doksysobj/TrajectoryEndTime" />
+      </span><br /><br />
 
-        <b><span i18n:translate="label_doksys_area">Area</span>:</b>
-        <span tal:condition="python:hasattr(doksysobj,'Area')">
-           <tal:var replace="doksysobj/Area"/>
-        </span><br>
+      <b><span i18n:translate="label_doksys_area">Area</span>:</b>
+      <span tal:condition="python:hasattr(doksysobj,'Area')">
+        <tal:var replace="doksysobj/Area" />
+      </span><br />
 
     </metal:macro>
 
-    <metal:macro define-macro="doksys_actions" i18n:domain="docpool.doksys">
+    <metal:macro define-macro="doksys_actions"
+                 i18n:domain="docpool.doksys"
+    >
     </metal:macro>
 
 
-    </body>
+  </body>
 </html>

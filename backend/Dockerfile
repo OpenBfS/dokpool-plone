@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.0.15
+ARG PLONE_VERSION=6.1.1
 
 # Stage to only build the theme
-FROM node:20-slim AS node
+FROM node:23-slim AS node
 
 WORKDIR /app
 
@@ -33,29 +33,34 @@ ARG GIT_COMMIT='Not detected'
 WORKDIR /app
 
 # Add local code
-COPY . .
+COPY scripts/ scripts/
+COPY . src
 
 # Install local requirements and pre-compile mo files
-RUN set -e
-RUN apt install -y --no-install-recommends openssh-client ca-certificates
-RUN bin/pip install uv==0.4.18
-RUN bin/uv pip install mxdev
-RUN mv requirements-docker.txt requirements.txt
-RUN # remove all test-extras from mx.ini
-RUN sed -i'' -e '/extras \= test/d' mx.ini
-RUN bin/mxdev -c mx.ini
-RUN bin/uv pip install -r requirements-mxdev.txt
-RUN bin/python /compile_mo.py
-RUN echo ${GIT_COMMIT} > GIT_COMMIT
+RUN <<EOT
+    set -e
+    apt install -y --no-install-recommends openssh-client ca-certificates
+    bin/pip install mxdev uv
+    # remove dev-extra from wrapperpackage in mx.ini
+    sed -i 's/-e .\[dev\]/./g' src/mx.ini
+    # remove all test-extras from checkouts in mx.ini
+    sed -i'' -e '/extras \= test/d' src/mx.ini
+    cd /app/src
+    # remove potentially existing virtualenv from local build
+    rm -rf .venv
+    ../bin/mxdev -c mx.ini
+    ../bin/uv pip install -r requirements-mxdev.txt
+    ../bin/python /compile_mo.py
+    echo ${GIT_COMMIT} > GIT_COMMIT
+EOT
 
-# New layer that has all code so the site can run
 FROM plone/server-prod-config:${PLONE_VERSION}
 ENV TZ="Europe/Berlin"
 
-LABEL maintainer="Philip Bauer <bauer@starzel.de>" \
-    org.label-schema.name="dokpool" \
-    org.label-schema.description="dokpool image" \
-    org.label-schema.vendor="Philip Bauer"
+LABEL maintainer="Starzel.de for Bundesamt für Strahlenschutz <info@starzel.de>" \
+    org.label-schema.name="dokpool-backend" \
+    org.label-schema.description="Dokpool backend image." \
+    org.label-schema.vendor="Starzel.de for Bundesamt für Strahlenschutz"
 
 # Copy /app from builder
 COPY --from=builder --chown=500:500 /app /app
@@ -65,5 +70,7 @@ COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /ap
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true
 
-RUN set -e
-RUN ln -s /data /app/var
+RUN <<EOT
+    set -e
+    ln -s /data /app/var
+EOT

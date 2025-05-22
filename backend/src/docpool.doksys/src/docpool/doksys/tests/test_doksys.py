@@ -1,5 +1,5 @@
 from docpool.base.content.documentpool import APPLICATIONS_KEY
-from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
+from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -40,9 +40,7 @@ class TestSetup(unittest.TestCase):
             supportedApps=("doksys",),
         )
         self.assertIn("doksys", IAnnotations(docpool)[APPLICATIONS_KEY])
-        self.assertNotIn(
-            "doksys", IAnnotations(docpool_without_doksys)[APPLICATIONS_KEY]
-        )
+        self.assertNotIn("doksys", IAnnotations(docpool_without_doksys)[APPLICATIONS_KEY])
         self.assertEqual(docpool_without_doksys.contentIds(), ["content", "config"])
         self.assertEqual(docpool.contentIds(), ["searches", "content", "config"])
 

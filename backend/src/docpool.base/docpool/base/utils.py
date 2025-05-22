@@ -10,7 +10,6 @@ from plone.base.utils import base_hasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import parent
-from Products.PlonePAS.utils import cleanId
 from zope.component import getMultiAdapter
 
 import logging
@@ -141,9 +140,7 @@ def getGroupsForCurrentUser(obj, sort_on="path"):
     content_area = get_content_area(obj)
 
     gtool = getToolByName(obj, "portal_groups")
-    for brain in api.content.find(
-        context=content_area, portal_type="GroupFolder", sort_on=sort_on
-    ):
+    for brain in api.content.find(context=content_area, portal_type="GroupFolder", sort_on=sort_on):
         try:
             grp = gtool.getGroupById(brain.id)
             etypes = grp.getProperty("allowedDocTypes", [])
@@ -187,17 +184,12 @@ def portalMessage(self, msg, type="info"):
 
 def back_references(target, relationship):
     """Return back references from source object on specified attribute_name"""
-    return [
-        i.from_object
-        for i in api.relation.get(target=target, relationship=relationship)
-    ]
+    return [i.from_object for i in api.relation.get(target=target, relationship=relationship)]
 
 
 def _copyPaste(source_obj, target_folder_obj, safe=True):
     """api.content.copy but returns id."""
-    result = api.content.copy(
-        source=aq_inner(source_obj), target=target_folder_obj, safe_id=safe
-    )
+    result = api.content.copy(source=aq_inner(source_obj), target=target_folder_obj, safe_id=safe)
     if result:
         return result.getId()
     return None
@@ -301,9 +293,7 @@ def getActiveAllowedPersonalBehaviorsForDocument(doc, request):
     try:
         dp_app_state = getMultiAdapter((doc, request), name="dp_app_state")
         if is_personal(doc):  # no personal filtering in the content area
-            permitted_apps = dp_app_state.appsEffectiveForObject(
-                request, filtered=False
-            )
+            permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=False)
         else:  # but in all other areas
             permitted_apps = dp_app_state.appsEffectiveForObject(request, filtered=True)
         permitted_apps.sort()
