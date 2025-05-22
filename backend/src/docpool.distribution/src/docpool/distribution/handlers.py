@@ -41,4 +41,6 @@ def post_handler(
         REQUEST=None,
         pghandler=pghandler,
     )
+    portal_workflow = api.portal.get_tool("portal_workflow")
+    portal_workflow.updateRoleMappings()
     return site
