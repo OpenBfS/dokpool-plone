@@ -611,6 +611,11 @@ msgstr ""
 msgid "desc_transfer_config_document_types"
 msgstr ""
 
+#. Default: "Whether to remove the selected targets for the selected types. Default is to add them."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_remove"
+msgstr ""
+
 #. Default: "Which automatic transfer targets to set or unset for the types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_transfer_targets"
@@ -966,6 +971,11 @@ msgstr ""
 #. Default: "Document types"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_document_types"
+msgstr ""
+
+#. Default: "Remove selected targets?"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_remove"
 msgstr ""
 
 #. Default: "Transfer targets"

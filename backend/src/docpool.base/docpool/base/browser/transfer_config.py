@@ -37,11 +37,21 @@ class ITransferConfig(model.Schema):
             "desc_transfer_config_transfer_targets",
             default="Which automatic transfer targets to set or unset for the types selected above.",
         ),
-        required=False,
-        missing_value=(),
+        required=True,
+        min_length=1,
         value_type=schema.Choice(source="docpool.transfers.vocabularies.TransferTargets"),
     )
     directives.widget(targets=CheckBoxFieldWidget)
+
+    remove = schema.Bool(
+        title=_("label_transfer_config_remove", default="Remove selected targets?"),
+        description=_(
+            "desc_transfer_config_remove",
+            default="Whether to remove the selected targets for the selected types. Default is to add them.",
+        ),
+        required=False,
+        default=False,
+    )
 
 
 @implementer(IDexterityEditForm)
@@ -70,8 +80,14 @@ class TransferConfigView(AutoExtensibleForm, form.Form):
 
         types = [api.content.get(UID=t) for t in data["types"]]
         targets = data["targets"]
+        remove = data["remove"]
 
         for doctype in types:
-            ITransfersType(doctype).automaticTransferTargets = targets
+            doctype_targets = set(ITransfersType(doctype).automaticTransferTargets)
+            if remove:
+                doctype_targets.difference_update(targets)
+            else:
+                doctype_targets.update(targets)
+            ITransfersType(doctype).automaticTransferTargets = list(doctype_targets)
 
         self.status = f"Configured {len(types)} types for {len(targets)} targets."
