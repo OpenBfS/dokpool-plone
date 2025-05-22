@@ -8,7 +8,6 @@ from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
 from plone.memoize.instance import memoize
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFPlone.utils import base_hasattr
 from zope.component import getMultiAdapter
@@ -49,17 +48,14 @@ class SitemapQueryBuilder(NavtreeQueryBuilder):
 
     def __init__(self, context):
         NavtreeQueryBuilder.__init__(self, context)
-        sitemap_depth = api.portal.get_registry_record("plone.sitemap_depth")
-        portal_url = getToolByName(context, "portal_url")
-        is_archive = IArchiving(context).is_archive and context.getId() != "archive"
-        if is_archive:
-            sitemap_depth += 3
+        if IArchiving(context).is_archive and context.getId() != "archive":
+            path = "/".join(context.myELANArchive().getPhysicalPath())
+            sitemap_depth = 7
+        else:
+            path = "/".join(api.portal.get().getPhysicalPath())
+            sitemap_depth = 4
         self.query["path"] = {
-            "query": (
-                "/".join(context.myELANArchive().getPhysicalPath())
-                if is_archive
-                else portal_url.getPortalPath()
-            ),
+            "query": path,
             "depth": sitemap_depth,
         }
         adaptQuery(self.query, context)
