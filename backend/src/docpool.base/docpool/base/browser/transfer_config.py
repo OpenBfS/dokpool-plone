@@ -1,5 +1,6 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
+from plone import api
 from plone.autoform import directives
 from plone.autoform.form import AutoExtensibleForm
 from plone.dexterity.interfaces import IDexterityEditForm
@@ -26,7 +27,7 @@ class ITransferConfig(model.Schema):
         ),
         required=True,
         min_length=1,
-        value_type=schema.Choice(source="docpool.base.vocabularies.DocumentTypes"),
+        value_type=schema.Choice(source="docpool.base.vocabularies.DocType"),
     )
     directives.widget(types=CheckBoxFieldWidget)
 
@@ -67,8 +68,7 @@ class TransferConfigView(AutoExtensibleForm, form.Form):
 
         logger.info(str(data))
 
-        doctypes = self.context["dtypes"]
-        types = [doctypes[t] for t in data["types"]]
+        types = [api.content.get(UID=t) for t in data["types"]]
         targets = data["targets"]
 
         for doctype in types:

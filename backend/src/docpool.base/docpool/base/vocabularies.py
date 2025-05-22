@@ -111,9 +111,7 @@ DocumentTypesVocabularyFactory = DocumentTypesVocabulary()
 
 @provider(IVocabularyFactory)
 def DocTypeVocabularyFactory(context=None, raw=False):
-    """Used for Relationfield docpool.base.content.doctype.IDocType.allowedDocTypes
-    and in docpool.base.monkey.possibleDocTypes
-    """
+    """ """
     esd = getDocumentPoolSite(context)
     path = "/".join(esd.getPhysicalPath()) + "/config"
     query = {
