@@ -39,4 +39,6 @@ def post_handler(distribution: Distribution, site: PloneSite, answers: dict) -> 
         REQUEST=None,
         pghandler=pghandler,
     )
+    portal_workflow = api.portal.get_tool("portal_workflow")
+    portal_workflow.updateRoleMappings()
     return site

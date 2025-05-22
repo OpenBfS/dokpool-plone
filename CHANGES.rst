@@ -1,7 +1,12 @@
 Changelog
 =========
 
-2.1.0 (unreleased)
+2.2.0 (unreleased)
+------------------
+
+
+
+2.1.0 (2025-05-20)
 ------------------
 
 Changed:
@@ -10,10 +15,19 @@ Changed:
   [pbauer]
 
 
+Fixed:
+
+- Use overrides.zcml to register custom importers in docpool.distribution to fix ConfigurationConflictError. (#6056)
+  [pbauer]
+
+
 Added:
 
 - Show number of entries in event-picker, archive-listing and event-listing. (#5759)
   [pbauer]
+
+- i18n structure for Romania. (#6020)
+  [slindner]
 
 
 Technical:

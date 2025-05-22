@@ -4,13 +4,13 @@ default_context:
   initial_user_password: "admin"
 
   zcml_package_includes: "docpool.api, docpool.base, docpool.config, docpool.distribution, docpool.theme, docpool.elan, docpool.rei, docpool.doksys, docpool.rodos, elan.journal, eea.facetednavigation, collective.eeafaceted.z3ctable, collective.impersonate, Products.PloneKeywordManager"
-  zcml_package_overrides: "docpool.base"
+  zcml_package_overrides: "docpool.base, docpool.distribution"
 
   environment:
     zope_i18n_compile_mo_files: true
     CHAMELEON_CACHE: "{{ cookiecutter.location_clienthome }}/cache"
-    PTS_LANGUAGES: "de"
-    zope_i18n_allowed_languages: "de"
+    PTS_LANGUAGES: "de en ro"
+    zope_i18n_allowed_languages: "de en ro"
 
   db_storage: relstorage
   db_blob_mode: cache

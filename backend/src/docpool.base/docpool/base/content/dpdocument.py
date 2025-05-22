@@ -618,7 +618,8 @@ class SerializeToJsonDPDocument(SerializeFolderToJson):
 
         scenario_ids = []
         for scenario in result.get("scenarios", []):
-            if brains := api.content.find(UID=scenario["token"]):
+            uid = scenario["token"] if isinstance(scenario, dict) else scenario
+            if brains := api.content.find(UID=uid):
                 scenario_ids.append(brains[0].id)
         if scenario_ids:
             result["scenario_ids"] = scenario_ids

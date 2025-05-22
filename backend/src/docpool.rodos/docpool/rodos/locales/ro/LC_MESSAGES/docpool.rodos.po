@@ -1,0 +1,115 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# Romanian translations for PACKAGE package.
+# Philip Bauer <bauer@starzel.de>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-12-22 20:45+0000\n"
+"PO-Revision-Date: 2025-05-19 17:02+0200\n"
+"Last-Translator: Philip Bauer <bauer@starzel.de>\n"
+"Language-Team: BfS <elan@bfs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.rodos\n"
+"Language: ro\n"
+
+#: docpool.rodos/docpool/rodos/browser/templates/assign_to_elan_event.pt
+#: docpool.rodos/docpool/rodos/profiles/default/actions.xml
+msgid "Assign to ELAN Event"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/views.py
+msgid "Assigned to ELAN event"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "DWD Ausbreitungsrechnung ab Quelle"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Einzelrechnung"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "LASAIR/LASAT"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
+msgid "Makes documents support Rodos functions"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Potenziell betroffene Gebiete"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Form"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/templates/rodos_meta.pt
+msgid "Prognosis Form:"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+#: docpool.rodos/docpool/rodos/profiles/default/registry.xml
+msgid "Prognosis Type"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/templates/rodos_meta.pt
+msgid "Prognosis Type:"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "RODOS Prognose"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
+msgid "Rodos DocType"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
+msgid "RodosDoc"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Routinerechnung"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Select a value ..."
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/vocabularies.py
+msgid "Sonstige Ausbreitungsrechnung"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/views.py
+msgid "This is already a ELAN document."
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/behaviors/configure.zcml
+msgid "Type extension for Rodos types"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/templates/i18ndummy.pt
+msgid "alert_assign_to_elan"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/configure.zcml
+msgid "docpool.rodos"
+msgstr ""
+
+#. Default: "Select the event this rodos-prognosis should be assigned to."
+#: docpool.rodos/docpool/rodos/browser/templates/assign_to_elan_event.pt
+msgid "help_events"
+msgstr ""
+
+#. Default: "RODOS Typ"
+#: docpool.rodos/docpool/rodos/behaviors/rodosdoc.py
+msgid "label_rodos_PrognosisForm"
+msgstr ""
