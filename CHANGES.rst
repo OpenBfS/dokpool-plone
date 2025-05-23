@@ -4,6 +4,28 @@ Changelog
 2.2.0 (unreleased)
 ------------------
 
+Fixed:
+
+- Fix permissions on imported example content from distribution. (#6055)
+  [pbauer]
+
+- Fix exporting content for distribution. (#6065)
+  [pbauer]
+
+- Hard-code sitemap-depth used in navigation-portlet to work with old value from registry in Plone 6.1. (#5954)
+  [pbauer]
+
+
+Technical:
+
+- Upgrade to Plone 6.1.1 (#5954)
+  [pbauer]
+
+- Update to newest version of cookieplone-templates and switch ro ruff for linting. (#6012)
+  [pbauer]
+
+- Drop all use of FSPythonScript getFolderContents.py (#5955)
+  [pbauer]
 
 
 2.1.0 (2025-05-20)
@@ -34,6 +56,7 @@ Technical:
 
 - Upgrade to Plone 6.0.15. (#4892)
   [pbauer]
+
 
 Changed:
 
