@@ -18,3 +18,8 @@ msgstr ""
 
 msgid "Allowed document types"
 msgstr "Erlaubte Dokumenttypen"
+
+#. Default: "Up to List of Users"
+#: plone.app.users/plone/app/users/browser/account-configlet.pt:17
+msgid "label_go_to_users"
+msgstr "Zurück"
