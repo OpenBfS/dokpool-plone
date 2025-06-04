@@ -14,8 +14,7 @@ const Listing = ({items}) => {
     const fetchData = async () => {
       // Parse items inside the effect to avoid re-parsing on every render
       const parsedItems = JSON.parse(items);
-      const urls = parsedItems.map((item) => `http://localhost:8080/Plone/listing-item?title=${item}`);
-
+      const urls = parsedItems.map((item) => `http://localhost:8080/Plone/listing-item?uid=${item}`);
       // Empty the data array
       setData(new Array(urls.length).fill(null));
 

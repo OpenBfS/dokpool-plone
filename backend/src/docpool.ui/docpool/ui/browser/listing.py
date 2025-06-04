@@ -1,27 +1,25 @@
 from Products.Five.browser import BrowserView
-
+from plone import api
 import json
-import time
 
 
 class Listing(BrowserView):
     """Example view called from template"""
 
-    def __call__(self, title=None):
+    def __call__(self):
         # Do we fetch form catalog? UUIDs?
-        self.items = json.dumps(("1", "2", "3"))
+        dp_documents = api.content.find(context=self.context, portal_type="DPDocument")
+        uids = [brain.UID for brain in dp_documents]
+        self.items = json.dumps(uids)
         return self.index()
 
 
 class Item(BrowserView):
     """Example view called from template"""
 
-    def __call__(self, title=None):
-        self.title = title
-        if title == "1":
-            time.sleep(2)
-        if title == "2":
-            time.sleep(5)
-        if title == "3":
-            time.sleep(10)
+    def __call__(self, uid=None):
+        self.uid = uid
+        dpdocument_obj = api.content.get(UID=uid)
+        self.dpdocument = {"title": dpdocument_obj.title, "id": uid, "docType": dpdocument_obj.docType,
+                           "url": dpdocument_obj.absolute_url()}
         return self.index()

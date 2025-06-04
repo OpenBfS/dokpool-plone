@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center border-bottom py-2"
      tal:define="
-       title view/title;
+       data view/dpdocument;
      "
 >
   <div class="text-center me-3"
@@ -13,14 +13,15 @@
     <a class="btn btn-sm btn-outline-primary btn-favorite"
        href="#"
        tal:attributes="
-         data python: 'favorite-id-' + title;
+         data python: 'favorite-id-' + data['title'];
+         href python: data['url'];
        "
     >Favorite</a>
   </div>
   <div class="flex-grow-1">
 
-    <h2 tal:content="title"></h2>
-    <div class="fw-semibold">Messungen</div>
+    <h2 tal:content="python: data['title']"></h2>
+    <div class="fw-semibold" tal:content="python: data['docType']">Messungen</div>
     <div class="text-muted text-truncate"
          style="max-width: 100%;"
     >
