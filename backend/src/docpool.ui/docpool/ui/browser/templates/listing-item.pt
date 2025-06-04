@@ -21,7 +21,9 @@
   <div class="flex-grow-1">
 
     <h2 tal:content="python: data['title']"></h2>
-    <div class="fw-semibold" tal:content="python: data['docType']">Messungen</div>
+    <div class="fw-semibold"
+         tal:content="python: data['docType']"
+    >Messungen</div>
     <div class="text-muted text-truncate"
          style="max-width: 100%;"
     >
