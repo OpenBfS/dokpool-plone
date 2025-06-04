@@ -7,6 +7,16 @@
       i18n:domain="docpool.theme"
 >
   <metal:content fill-slot="content-core">
+    <div class="limit-form-container">
+      <form method="GET" class="limit-form">
+        <label i18n:translate="">Limit results:</label>
+        <select name="limit" onchange="this.form.submit()">
+          <option value="0" tal:attributes="selected python: view.limit == 0" i18n:translate="">Show all</option>
+          <option value="5" tal:attributes="selected python: view.limit == 5">5</option>
+          <option value="10" tal:attributes="selected python: view.limit == 10">10</option>
+        </select>
+      </form>
+    </div>
     <div id="docpool-listing"
          tal:attributes="
            data-listing-items python: view.items;
