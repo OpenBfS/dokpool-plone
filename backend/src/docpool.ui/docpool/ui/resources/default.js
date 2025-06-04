@@ -5,7 +5,6 @@ import "./base.scss";
 
 const Listing = ({items}) => {
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState("all");
   const buttonRefs = useRef({});
   const eventHandlers = useRef({});
 
@@ -66,51 +65,10 @@ const Listing = ({items}) => {
     };
   }, [data]);
 
-  // Filter the data
-  const filteredData = data.map((item, index) => {
-    // If filter is "all" or the item's title matches the filter, include it
-    if (filter === "all" || (item && item.title === filter)) {
-      return { item, index };
-    }
-    return null;
-  }).filter(Boolean);
-
   return (
     <div>
-      <div className="filter-controls mb-3">
-        <div className="btn-group" role="group" aria-label="Filter options">
-          <button
-            type="button"
-            className={`btn btn-outline-primary ${filter === "all" ? "active" : ""}`}
-            onClick={() => setFilter("all")}
-          >
-            Alle
-          </button>
-          <button
-            type="button"
-            className={`btn btn-outline-primary ${filter === "1" ? "active" : ""}`}
-            onClick={() => setFilter("1")}
-          >
-            1
-          </button>
-          <button
-            type="button"
-            className={`btn btn-outline-primary ${filter === "2" ? "active" : ""}`}
-            onClick={() => setFilter("2")}
-          >
-            2
-          </button>
-          <button
-            type="button"
-            className={`btn btn-outline-primary ${filter === "3" ? "active" : ""}`}
-            onClick={() => setFilter("3")}
-          >
-            3
-          </button>
-        </div>
-      </div>
       <ul>
-        {filteredData.map(({ item, index }) => (
+        {data.map((item, index) => (
           <li key={index}>
             {item === null ? (
               <span>Wird geladen...</span>
