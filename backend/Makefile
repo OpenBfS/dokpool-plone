@@ -80,6 +80,8 @@ instance/etc/zope.ini instance/etc/zope.conf instance_relstorage/etc/zope.ini in
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
 	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance.yaml gh:plone/cookiecutter-zope-instance
 	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
+	cp templates/zope.ini instance/etc/zope.ini
+	cp templates/zope.ini instance_relstorage/etc/zope.ini
 
 .PHONY: config
 config: instance/etc/zope.ini

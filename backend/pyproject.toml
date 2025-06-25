@@ -25,7 +25,7 @@ dependencies = [
     "Products.CMFPlone==6.1.2",
     "plone.api",
     "plone.restapi",
-    "waitress_fastlisten",
+    "pyruvate==1.4.1",
     "Products.PloneKeywordManager",
     "pas.plugins.ldap",
     "eea.facetednavigation",
