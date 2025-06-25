@@ -37,6 +37,7 @@
     <div id="docpool-listing"
          tal:attributes="
            data-listing-items python: view.items;
+           data-listing-modified python: view.modified;
          "
     >JS/React does not work</div>
   </metal:content>

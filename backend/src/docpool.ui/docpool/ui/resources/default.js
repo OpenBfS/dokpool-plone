@@ -3,10 +3,11 @@ import React, {useState, useRef, useEffect} from "react";
 import {createRoot} from "react-dom/client";
 import "./base.scss";
 
-const Listing = ({items}) => {
+const Listing = ({items, modified}) => {
   const [data, setData] = useState([]);
   const buttonRefs = useRef({});
   const [hasNewData, setHasNewData] = useState(false);
+  const [modified_since, setModifiedSince] = useState(modified);
   const eventHandlers = useRef({});
 
   const changeItemById = (idToChange) => {
@@ -124,14 +125,14 @@ const Listing = ({items}) => {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
           },
-          body: JSON.stringify({query: 'test'}),
+          body: JSON.stringify({modified_since: modified_since}),
         });
 
         const result = await response.json();
 
         console.log('poll');
         // New data?
-        if (result) {
+        if (result.hasNewData) {
           setHasNewData(true);
         }
 
@@ -193,4 +194,5 @@ const Listing = ({items}) => {
 
 const root = document.getElementById("docpool-listing");
 const react_root = createRoot(root);
-react_root.render(<Listing items={root.getAttribute("data-listing-items")}/>);
+react_root.render(<Listing items={root.getAttribute("data-listing-items")}
+                  modified={root.getAttribute("data-listing-modified")}/>);

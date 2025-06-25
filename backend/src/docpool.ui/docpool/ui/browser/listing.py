@@ -1,27 +1,19 @@
+import json
+
+from docpool.ui.services.newdatacheck.post import Listing as ListingBase
 from plone import api
 from Products.Five.browser import BrowserView
 
-import json
 
-
-class Listing(BrowserView):
+class Listing(ListingBase, BrowserView):
     """Example view called from template"""
 
     def __call__(self, limit=0):
-        form = self.request.form
-        self.limit = int(form.get("limit", limit))
-
-        # Do we fetch form catalog? UUIDs?
-        dp_documents = api.content.find(
-            context=self.context, portal_type="DPDocument", sort_on="modified", sort_order="reverse"
-        )
-        uids = [brain.UID for brain in dp_documents]
-
-        if self.limit > 0:
-            uids = uids[: self.limit]
+        uids, modified = self.find(limit)
 
         # Mod-Date dazu und hash über udis & mod-date
         self.items = json.dumps(uids)
+        self.modified = json.dumps(modified.timeTime())
         return self.index()
 
 
