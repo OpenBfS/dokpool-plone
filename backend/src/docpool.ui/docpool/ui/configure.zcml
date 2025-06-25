@@ -30,5 +30,6 @@
       />
 
   <include package=".browser" />
+  <include package=".services" />
 
 </configure>
