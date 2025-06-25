@@ -6,6 +6,7 @@ import "./base.scss";
 const Listing = ({items}) => {
   const [data, setData] = useState([]);
   const buttonRefs = useRef({});
+  const [hasNewData, setHasNewData] = useState(false);
   const eventHandlers = useRef({});
 
   const changeItemById = (idToChange) => {
@@ -111,8 +112,63 @@ const Listing = ({items}) => {
     };
   }, [data]);
 
+
+  useEffect(() => {
+
+    const checkForNewData = async () => {
+      console.log('poll');
+      try {
+        const response = await fetch('http://localhost:8080/Plone/@new-data-check', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({query: 'test'}),
+        });
+
+        const result = await response.json();
+
+        console.log('poll');
+        // New data?
+        if (result) {
+          setHasNewData(true);
+        }
+
+      } catch (error) {
+        console.error('Fehler beim Prüfen auf neue Daten:', error);
+      }
+    };
+
+    const pollingInterval = setInterval(checkForNewData, 10000);
+
+    // Cleanup - Needed?
+    return () => clearInterval(pollingInterval);
+  }, []);
+
+  // Funktion zum Aktualisieren der Daten, wenn neue verfügbar sind
+  const refreshData = () => {
+    window.location.reload();
+
+    setHasNewData(false);
+  };
+
+
   return (
     <div>
+      {hasNewData && (
+        <div className="new-data-notification">
+          <div className="alert alert-info" role="alert">
+            Neue Daten sind verfügbar!
+            <button
+              className="btn btn-link"
+              onClick={refreshData}
+            >
+              Jetzt aktualisieren
+            </button>
+          </div>
+        </div>
+      )}
       <ul>
         {data.map((item, index) => (
           <li key={index}>
