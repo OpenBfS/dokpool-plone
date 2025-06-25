@@ -66,6 +66,8 @@ LABEL maintainer="Starzel.de for Bundesamt für Strahlenschutz <info@starzel.de>
 COPY --from=builder --chown=500:500 /app /app
 # Add compiled theme from node
 COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /app/src/src/docpool.theme/docpool/theme/static
+# Experimental: Use pyruvate
+COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
 
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true
