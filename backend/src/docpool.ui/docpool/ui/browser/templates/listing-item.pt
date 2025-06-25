@@ -12,18 +12,26 @@
   <div class="me-3">
     <a class="btn btn-sm btn-outline-primary btn-favorite"
        href="#"
+       tal:condition="python: data['wf_status'] != 'published'"
+       tal:content="python: data['wf_status']"
        tal:attributes="
-         data python: 'favorite-id-' + data['title'];
-         href python: data['url'];
+         data-item-url python: data['url'];
+         data-item-id python: data['id'];
        "
-    >Favorite</a>
+    >WF Status</a>
   </div>
   <div class="flex-grow-1">
-
-    <h2 tal:content="python: data['title']"></h2>
+    <a href="#"
+       tal:attributes="
+         href python: data['url'];
+       "
+    >
+      <h2 tal:content="python: data['title']"></h2>
+    </a>
     <div class="fw-semibold"
          tal:content="python: data['docType']"
-    >Messungen</div>
+    >Messungen
+    </div>
     <div class="text-muted text-truncate"
          style="max-width: 100%;"
     >

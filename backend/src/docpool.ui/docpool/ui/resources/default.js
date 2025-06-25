@@ -8,6 +8,52 @@ const Listing = ({items}) => {
   const buttonRefs = useRef({});
   const eventHandlers = useRef({});
 
+  const changeItemById = (idToChange) => {
+    setData(prevData => {
+
+      // Find element
+      const indexToChange = prevData.findIndex(item => item && item.id === idToChange);
+
+      // Not found
+      if (indexToChange === -1) {
+        return prevData;
+      }
+
+      const newData = [...prevData];
+      const currentItem = newData[indexToChange];
+
+      // Temp DOM-Element
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = currentItem.html;
+
+      // Find button
+      const button = tempDiv.querySelector('.btn-favorite');
+
+      if (button) {
+        button.textContent = 'public';
+
+        // Update HTML
+        newData[indexToChange] = {
+          ...currentItem,
+          html: tempDiv.innerHTML
+        };
+      }
+
+      return newData;
+
+    });
+  };
+
+  const setWFStatus = async (itemUrl, id) => {
+    const response = await fetch(itemUrl + "/@workflow/publish", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+      },
+    });
+    changeItemById(id);
+  }
+
   // Init fetch with first items
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +72,7 @@ const Listing = ({items}) => {
           // Update items in the array
           setData(prevData => {
             const newData = [...prevData];
-            newData[index] = { html, title: parsedItems[index] };
+            newData[index] = {html, id: parsedItems[index]};
             return newData;
           });
         } catch (error) {
@@ -47,7 +93,7 @@ const Listing = ({items}) => {
         if (!eventHandlers.current[key]) {
           eventHandlers.current[key] = (e) => {
             e.preventDefault();
-            console.log(`Button ${key} wurde geklickt!`);
+            setWFStatus(button.dataset.itemUrl, button.dataset.itemId);
           };
         }
         button.addEventListener('click', eventHandlers.current[key]);
@@ -77,7 +123,7 @@ const Listing = ({items}) => {
                    ref={el => {
                      // Search for Button an assign ref
                      if (el) {
-                        buttonRefs.current[index] = el.querySelector('.btn-favorite');
+                       buttonRefs.current[index] = el.querySelector('.btn-favorite');
                      }
                    }}
               ></div>
