@@ -28,11 +28,11 @@ const Listing = ({items, modified}) => {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = currentItem.html;
 
-      // Find Link
-      const link = tempDiv.querySelector('a.dropdown-item.publish');
+      // Find status display
+      const status_display = tempDiv.querySelector('.card-text.text-uppercase.small');
 
-      if (link) {
-        link.textContent = 'public';
+      if (status_display) {
+        status_display.textContent = 'public';
 
         // Update HTML
         newData[indexToChange] = {
