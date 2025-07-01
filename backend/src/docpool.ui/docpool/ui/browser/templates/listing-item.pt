@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center border-bottom py-2"
+<div class="d-flex align-items-center border py-2 shadow-sm mb-2"
      tal:define="
        portal_state context/@@plone_portal_state;
        plone_view nocall:context/@@plone;
@@ -17,7 +17,7 @@
   <div class="card text-bg-light me-3"
        style="width: 6rem;"
   >
-    <img class="card-img-top"
+    <img class="card-img-top doktype"
          alt="Type"
          src="docType"
          tal:attributes="
@@ -26,15 +26,15 @@
            src python: f'{portal_url}/++plone++docpoolui/icons/otherprojection.png';
          "
     />
-    <div class="card-body text-bg-secondary">
-      <span class="card-text text-uppercase small"
-            tal:content="python: data['state_title']"
-            tal:attributes="
-              data-item-url python: data['url'];
-              data-item-id python: data['id'];
-            "
-            i18n:translate=""
-      >Review state</span>
+    <div class="card-body text-bg-secondary review-state">
+      <p class="card-text text-uppercase text-center small"
+         tal:content="python: data['state_title']"
+         tal:attributes="
+           data-item-url python: data['url'];
+           data-item-id python: data['id'];
+         "
+         i18n:translate=""
+      >Review state</p>
     </div>
   </div>
   <div class="flex-grow-1">
@@ -58,7 +58,7 @@
     >Messzentrale BfS (Bund)</div>
   </div>
 
-  <div class="ms-3">
+  <div class="ms-3 bg-dark">
     <div class="dropdown">
       <a class="btn btn-secondary text-bg-secondary btn-sm"
          aria-expanded="false"

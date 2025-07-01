@@ -53,7 +53,8 @@
         </select>
       </form>
     </div>
-    <div id="docpool-listing"
+    <div class="m-2"
+         id="docpool-listing"
          tal:attributes="
            data-listing-items python: view.items;
            data-listing-modified python: view.modified;
