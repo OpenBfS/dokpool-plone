@@ -1,8 +1,8 @@
-import json
-
 from plone import api
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
+
+import json
 
 
 class Listing:
@@ -10,15 +10,25 @@ class Listing:
         form = self.request.form
         self.limit = int(form.get("limit", limit))
 
-        # Do we fetch form catalog? UUIDs?
-        dp_documents = api.content.find(
-            context=self.context,
-            portal_type="DPDocument",
-            sort_on="modified",
-            sort_order="reverse",
+        self.dokType = form.get("dokType")
+        self.documenttypes_vocabulary = api.portal.get_vocabulary(
+            "docpool.base.vocabularies.DocumentTypes", self.context
         )
-        uids = [brain.UID for brain in dp_documents]
-        modified = max(brain.modified for brain in dp_documents)
+
+        query = {
+            "context": self.context,
+            "portal_type": "DPDocument",
+            "sort_on": "modified",
+            "sort_order": "reverse",
+        }
+        if self.limit:
+            query["sort_limit"] = self.limit
+        if self.dokType:
+            query["dp_type"] = self.dokType
+
+        brains = api.content.find(**query)
+        uids = [brain.UID for brain in brains]
+        modified = max(brain.modified for brain in brains) if brains else None
 
         if self.limit > 0:
             uids = uids[: self.limit]
@@ -31,4 +41,4 @@ class NewDataCheck(Listing, Service):
         _, modified = self.find()
         data = json_body(self.request)
         modified_since = json.loads(data.get("modified_since", ""))
-        return {"hasNewData": modified.timeTime() != modified_since}
+        return {"hasNewData": (modified.timeTime() if modified else None) != modified_since}

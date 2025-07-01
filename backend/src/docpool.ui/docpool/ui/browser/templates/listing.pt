@@ -7,11 +7,13 @@
       i18n:domain="docpool.theme"
 >
   <metal:content fill-slot="content-core">
-    <div class="limit-form-container">
-      <form class="limit-form"
+    <div class="filter-form-container">
+      <form class="filter-form"
             method="GET"
       >
-        <label i18n:translate="">Limit results:</label>
+        <label for="limit"
+               i18n:translate=""
+        >Limit results:</label>
         <select name="limit"
                 onchange="this.form.submit()"
         >
@@ -31,6 +33,23 @@
                     selected python: view.limit == 10;
                   "
           >10</option>
+        </select>
+        <label for="dokType"
+               i18n:domain="docpool.base"
+               i18n:translate=""
+        >label_dpdocument_doctype</label>
+        <select name="dokType"
+                onchange="this.form.submit()"
+        >
+          <option value="">All</option>
+          <tal:doktypes tal:repeat="dokType python: view.documenttypes_vocabulary">
+            <option value="${python: dokType.token}"
+                    tal:attributes="
+                      selected python: view.dokType == dokType.token;
+                    "
+                    i18n:translate=""
+            >${python: dokType.title}</option>
+          </tal:doktypes>
         </select>
       </form>
     </div>

@@ -10,11 +10,11 @@ const Listing = ({items, modified}) => {
   const [modified_since, setModifiedSince] = useState(modified);
   const eventHandlers = useRef({});
 
-  const changeItemById = (idToChange) => {
+  const changeItemByUid = (uidToChange) => {
     setData(prevData => {
 
       // Find element
-      const indexToChange = prevData.findIndex(item => item && item.id === idToChange);
+      const indexToChange = prevData.findIndex(item => item && item.uid === uidToChange);
 
       // Not found
       if (indexToChange === -1) {
@@ -28,11 +28,11 @@ const Listing = ({items, modified}) => {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = currentItem.html;
 
-      // Find button
-      const button = tempDiv.querySelector('.btn-favorite');
+      // Find Link
+      const link = tempDiv.querySelector('a.dropdown-item.publish');
 
-      if (button) {
-        button.textContent = 'public';
+      if (link) {
+        link.textContent = 'public';
 
         // Update HTML
         newData[indexToChange] = {
@@ -46,14 +46,14 @@ const Listing = ({items, modified}) => {
     });
   };
 
-  const setWFStatus = async (itemUrl, id) => {
+  const setWFStatus = async (itemUrl, uid) => {
     const response = await fetch(itemUrl + "/@workflow/publish", {
       method: "POST",
       headers: {
         "Accept": "application/json",
       },
     });
-    changeItemById(id);
+    changeItemByUid(uid);
   }
 
   // Init fetch with first items
@@ -74,7 +74,7 @@ const Listing = ({items, modified}) => {
           // Update items in the array
           setData(prevData => {
             const newData = [...prevData];
-            newData[index] = {html, id: parsedItems[index]};
+            newData[index] = {html, uid: parsedItems[index]};
             return newData;
           });
         } catch (error) {
@@ -95,7 +95,7 @@ const Listing = ({items, modified}) => {
         if (!eventHandlers.current[key]) {
           eventHandlers.current[key] = (e) => {
             e.preventDefault();
-            setWFStatus(button.dataset.itemUrl, button.dataset.itemId);
+            setWFStatus(button.dataset.itemUrl, button.dataset.itemUid);
           };
         }
         button.addEventListener('click', eventHandlers.current[key]);
@@ -180,7 +180,7 @@ const Listing = ({items, modified}) => {
                    ref={el => {
                      // Search for Button an assign ref
                      if (el) {
-                       buttonRefs.current[index] = el.querySelector('.btn-favorite');
+                       buttonRefs.current[index] = el.querySelector('a.dropdown-item.publish');
                      }
                    }}
               ></div>
