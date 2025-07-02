@@ -1,5 +1,4 @@
 {
-  "eslint.workingDirectories": ["./frontend"],
   "flake8.cwd": "${workspaceFolder}/backend",
   "flake8.args": ["--config=pyproject.toml"],
   "ruff.organizeImports": true,

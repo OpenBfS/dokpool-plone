@@ -46,6 +46,7 @@ PLONE_VERSION=$(shell cat $(BACKEND_FOLDER)/version.txt)
 EXAMPLE_CONTENT_FOLDER=${BACKEND_FOLDER}/src/dokpool/setuphandlers/examplecontent
 
 VENV_FOLDER=$(BACKEND_FOLDER)/.venv
+export VIRTUAL_ENV=$(VENV_FOLDER)
 BIN_FOLDER=$(VENV_FOLDER)/bin
 
 # Environment variables to be exported
@@ -89,7 +90,7 @@ install: $(VENV_FOLDER) config ## Install Plone and dependencies
 .PHONY: clean
 clean: ## Clean installation and instance
 	@echo "$(RED)==> Cleaning environment and build$(RESET)"
-	@rm -rf $(VENV_FOLDER) pyvenv.cfg .installed.cfg instance/etc .venv .pytest_cache .ruff_cache constraints* requirements*
+	@rm -rf $(VENV_FOLDER) pyvenv.cfg .installed.cfg instance/etc instance_relstorage/etc .venv .pytest_cache .ruff_cache constraints* requirements*
 
 .PHONY: remove-data
 remove-data: ## Remove all content
@@ -98,15 +99,15 @@ remove-data: ## Remove all content
 
 .PHONY: start
 start: $(VENV_FOLDER) instance/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@uv run runwsgi instance/etc/zope.ini
+	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini
 
 .PHONY: start-relstorage
 start-relstorage: $(VENV_FOLDER) instance_relstorage/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@uv run runwsgi instance_relstorage/etc/zope.ini
+	@$(BIN_FOLDER)/runwsgi instance_relstorage/etc/zope.ini
 
 .PHONY: console
 console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone instance
-	@uv run zconsole debug  instance/etc/zope.conf instance/etc/zope.conf
+	@$(BIN_FOLDER)/zconsole debug  instance/etc/zope.conf instance/etc/zope.conf
 
 .PHONY: create-site
 create-site: $(VENV_FOLDER) instance/etc/zope.ini ## Create a new site from scratch
@@ -117,7 +118,7 @@ create-site: $(VENV_FOLDER) instance/etc/zope.ini ## Create a new site from scra
 update-example-content: $(VENV_FOLDER) ## Export example content inside package
 	@echo "$(GREEN)==> Export example content into $(EXAMPLE_CONTENT_FOLDER) $(RESET)"
 	if [ -d $(EXAMPLE_CONTENT_FOLDER)/content ]; then rm -r $(EXAMPLE_CONTENT_FOLDER)/* ;fi
-	@uv run plone-exporter instance/etc/zope.conf $(PLONE_SITE_ID) $(EXAMPLE_CONTENT_FOLDER)
+	@$(BIN_FOLDER)/plone-exporter instance/etc/zope.conf $(PLONE_SITE_ID) $(EXAMPLE_CONTENT_FOLDER)
 
 # QA
 .PHONY: lint
@@ -145,7 +146,7 @@ i18n: $(VENV_FOLDER) ## Update locales
 # Tests
 .PHONY: test
 test: $(VENV_FOLDER) ## run tests
-	@uv run zope-testrunner --auto-color --auto-progress \
+	@$(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.api/src \
 	--test-path src/elan.journal \
 	--test-path src/docpool.doksys/src \
@@ -159,7 +160,7 @@ coverage: ## generate test-coverage report
 	@echo "$(GREEN)==> Erasing old coverage results$(RESET)"
 	@uv run coverage erase
 	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
-	@uv run coverage run -p --source=src $(VENV_FOLDER)/bin/zope-testrunner --auto-color --auto-progress \
+	@uv run coverage run -p --source=src $(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.api/src \
 	--test-path src/elan.journal \
 	--test-path src/docpool.elan \

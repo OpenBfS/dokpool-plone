@@ -9,12 +9,12 @@ compose = "docker-compose.yml"
 path = "backend"
 
 [backend.package]
-name = "dokpool"
+name = "dokpoolwrapper"
 path = "backend"
 base_package = "Products.CMFPlone"
 publish = false
 
 [cookieplone]
 template = "project"
-template_version = "6dc6a251d476dc61ea05b01e6bfb71ed28842492"
+template_version = "d3c64e92c947928ea9bba83c1514b0f491dc97fb"
 generated_date = "2025-04-29 08:48:08"
