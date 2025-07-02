@@ -11,7 +11,8 @@ module.exports = () => {
   let config = {
     entry: {
       "docpool.ui.min": path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/index.js"),
-      base: path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/base.scss"),
+      barceloneta: path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/barceloneta/barceloneta.scss"),
+      docpool: path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/docpool.scss"),
     },
   };
 
@@ -34,11 +35,15 @@ module.exports = () => {
     }),
   );
 
-  // Compile our base styling and bootstrap separate from the other files,
+  // Compile our docpool styling and bootstrap separate from the other files,
   // to be loaded immediately to avoid flash of unstyled content.
   config.plugins.push(new MiniCssExtractPlugin());
   config.module.rules.push({
-    test: /base\.scss$/,
+    test: /docpool\.scss$/,
+    use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+  });
+  config.module.rules.push({
+    test: /barceloneta\.scss$/,
     use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
   });
   if (process.env.NODE_ENV === "development") {
