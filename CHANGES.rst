@@ -18,7 +18,7 @@ Fixed:
 
 Technical:
 
-- Upgrade to Plone 6.1.1 (#5954)
+- Upgrade to Plone 6.1.2 (#5954)
   [pbauer]
 
 - Update to newest version of cookieplone-templates and switch ro ruff for linting. (#6012)
