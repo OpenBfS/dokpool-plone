@@ -33,7 +33,6 @@
   "homepage": "https://github.com/OpenBfS/dokpool-plone#readme",
   "devDependencies": {
     "@patternslib/dev": "<4",
-    "bootstrap": "^5.3.3",
     "mini-css-extract-plugin": "^2.8.1",
     "postcss-loader": "^8.1.0"
   },
