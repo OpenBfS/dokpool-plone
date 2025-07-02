@@ -1,0 +1,102 @@
+// Theme import structure is based on Bootstrap documentation
+// https://getbootstrap.com/docs/5.3/customize/sass/#importing
+
+// Barceloneta and Bootstrap import are using --load-path=node_modules
+
+// Roboto is not included in this template and therefore we disable the setup here.
+$enable-roboto-webfont: false !default;
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../../../../../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+@import "variables";
+
+// 3. Include remainder of required Barceloneta and Bootstrap stylesheets
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/variables.colors.plone";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/variables.colors.dark.plone";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/variables.properties";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/variables.barceloneta";
+@import "../../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+@import "maps";
+
+// 5. Include remainder of required parts
+@import "../../../../../../node_modules/bootstrap/scss/maps";
+@import "../../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../../../node_modules/bootstrap/scss/root";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/mixins/mixin.portlets.plone";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/mixins/mixin.font.plone";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/root_variables";
+
+// 6. Bootstrap base parts as needed
+@import "../../../../../../node_modules/bootstrap/scss/utilities";
+@import "../../../../../../node_modules/bootstrap/scss/reboot";
+@import "../../../../../../node_modules/bootstrap/scss/type";
+@import "../../../../../../node_modules/bootstrap/scss/images";
+@import "../../../../../../node_modules/bootstrap/scss/containers";
+@import "../../../../../../node_modules/bootstrap/scss/grid";
+@import "../../../../../../node_modules/bootstrap/scss/helpers";
+
+// 7. Bootstrap components
+@import "../../../../../../node_modules/bootstrap/scss/tables";
+@import "../../../../../../node_modules/bootstrap/scss/forms";
+@import "../../../../../../node_modules/bootstrap/scss/buttons";
+@import "../../../../../../node_modules/bootstrap/scss/transitions";
+@import "../../../../../../node_modules/bootstrap/scss/dropdown";
+@import "../../../../../../node_modules/bootstrap/scss/button-group";
+@import "../../../../../../node_modules/bootstrap/scss/nav";
+@import "../../../../../../node_modules/bootstrap/scss/navbar";
+@import "../../../../../../node_modules/bootstrap/scss/card";
+@import "../../../../../../node_modules/bootstrap/scss/accordion";
+@import "../../../../../../node_modules/bootstrap/scss/breadcrumb";
+@import "../../../../../../node_modules/bootstrap/scss/pagination";
+@import "../../../../../../node_modules/bootstrap/scss/badge";
+@import "../../../../../../node_modules/bootstrap/scss/alert";
+@import "../../../../../../node_modules/bootstrap/scss/progress";
+@import "../../../../../../node_modules/bootstrap/scss/list-group";
+@import "../../../../../../node_modules/bootstrap/scss/close";
+@import "../../../../../../node_modules/bootstrap/scss/toasts";
+@import "../../../../../../node_modules/bootstrap/scss/modal";
+@import "../../../../../../node_modules/bootstrap/scss/tooltip";
+@import "../../../../../../node_modules/bootstrap/scss/popover";
+@import "../../../../../../node_modules/bootstrap/scss/carousel";
+@import "../../../../../../node_modules/bootstrap/scss/spinners";
+@import "../../../../../../node_modules/bootstrap/scss/offcanvas";
+@import "../../../../../../node_modules/bootstrap/scss/placeholders";
+
+// 8. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../../../../../../node_modules/bootstrap/scss/utilities/api";
+
+// 9. Barceloneta base
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/alerts";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/forms";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/controlpanels";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/login";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/toolbar";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/grid";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/content_base";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/content_tables";
+
+// Barceloneta full
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/cards";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/scaffolding";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/icons";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/header";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/sitenav";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/breadcrumbs";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/content";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/comments";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/portlets";
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/footer";
+
+@import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/print";
+
+// @import "@plone/plonetheme-barceloneta-base/scss/roboto-webfont";
+
+
+// 9. Add additional custom code here
+// Its an extra css file, as we dont need it in the backend
+//@import "../docpool";
