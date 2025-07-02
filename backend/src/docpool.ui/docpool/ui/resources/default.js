@@ -1,7 +1,8 @@
 import "bootstrap";
 import React, {useState, useRef, useEffect} from "react";
 import {createRoot} from "react-dom/client";
-import "./base.scss";
+// TODO Can be removed already compiled with webpack?
+import "./docpool.scss";
 
 const Listing = ({items, modified}) => {
   const [data, setData] = useState([]);
