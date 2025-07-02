@@ -41,7 +41,7 @@
     "@babel/preset-react": "^7.26.3",
     "@patternslib/patternslib": ">=9.9.10",
     "@plone/mockup": ">=5.1.12",
-    "@plone/plonetheme-barceloneta-base": "^3.1.8",
+    "@plone/plonetheme-barceloneta-base": "^3.2.4",
     "jquery": "^3.7.1",
     "jquery.marquee": "^1.6.0",
     "react": "^19.1.0",
