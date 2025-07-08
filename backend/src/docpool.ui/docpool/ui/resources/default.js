@@ -127,8 +127,9 @@ const Listing = ({items, modified}) => {
 
   // Funktion zum Aktualisieren der Daten, wenn neue verfügbar sind
   const refreshData = () => {
+    // TODO Sollte fetchData() aufrufen. Diese muss dann aber auch data-listing-modified updaten.
     window.location.reload();
-
+    //fetchData();
     setHasNewData(false);
   };
 
