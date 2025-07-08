@@ -11,42 +11,6 @@ const Listing = ({items, modified}) => {
   const [modified_since, setModifiedSince] = useState(modified);
   const eventHandlers = useRef({});
 
-  const changeItemByUid = (uidToChange) => {
-    setData(prevData => {
-
-      // Find element
-      const indexToChange = prevData.findIndex(item => item && item.uid === uidToChange);
-
-      // Not found
-      if (indexToChange === -1) {
-        return prevData;
-      }
-
-      const newData = [...prevData];
-      const currentItem = newData[indexToChange];
-
-      // Temp DOM-Element
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = currentItem.html;
-
-      // Find status display
-      const status_display = tempDiv.querySelector('.card-text.text-uppercase.small');
-
-      if (status_display) {
-        status_display.textContent = 'public';
-
-        // Update HTML
-        newData[indexToChange] = {
-          ...currentItem,
-          html: tempDiv.innerHTML
-        };
-      }
-
-      return newData;
-
-    });
-  };
-
   const setWFStatus = async (itemUrl, uid) => {
     const response = await fetch(itemUrl + "/@workflow/publish", {
       method: "POST",
@@ -54,7 +18,6 @@ const Listing = ({items, modified}) => {
         "Accept": "application/json",
       },
     });
-    changeItemByUid(uid);
   }
 
   // Init fetch with first items
