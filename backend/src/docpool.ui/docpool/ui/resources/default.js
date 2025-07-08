@@ -6,15 +6,32 @@ import "./docpool.scss";
 
 const Listing = ({items, modified}) => {
   const [data, setData] = useState([]);
+  const [itemUids, setItemUids] = useState([]);
   const buttonRefs = useRef({});
   const [hasNewData, setHasNewData] = useState(false);
   const [modified_since, setModifiedSince] = useState(modified);
   const eventHandlers = useRef({});
 
+  // Items beim ersten Laden in den State laden
+  useEffect(() => {
+    try {
+      const parsedItems = JSON.parse(items);
+      setItemUids(parsedItems);
+    } catch (error) {
+      console.error('Fehler beim Parsen der Items:', error);
+      setItemUids([]);
+    }
+  }, [] );
+
+  // Fetch data when itemUids change
+  useEffect(() => {
+    fetchData();
+  }, [itemUids]);
+
   const fetchData = async () => {
-    // Parse items inside the effect to avoid re-parsing on every render
-    const parsedItems = JSON.parse(items);
-    const urls = parsedItems.map((item) => `http://localhost:8080/Plone/listing-item?uid=${item}`);
+    if (itemUids.length === 0) return;
+
+    const urls = itemUids.map((uid) => `http://localhost:8080/Plone/listing-item?uid=${uid}`);
     // Empty the data array
     setData(new Array(urls.length).fill(null));
 
@@ -31,7 +48,7 @@ const Listing = ({items, modified}) => {
         // Update items in the array
         setData(prevData => {
           const newData = [...prevData];
-          newData[index] = {html, uid: parsedItems[index]};
+          newData[index] = {html, uid: itemUids[index]};
           return newData;
         });
       } catch (error) {
@@ -51,13 +68,9 @@ const Listing = ({items, modified}) => {
       alert(`Error ${response.statusText}`);
       throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
     }
-    await fetchData()
+    await fetchData();
   }
 
-  // Init fetch with first items
-  useEffect(() => {
-    fetchData();
-  }, [items]);
 
   // Add event listener to all buttons
   useEffect(() => {
@@ -86,9 +99,7 @@ const Listing = ({items, modified}) => {
     };
   }, [data]);
 
-
   useEffect(() => {
-
     const checkForNewData = async () => {
       console.log('poll');
       try {
@@ -127,12 +138,9 @@ const Listing = ({items, modified}) => {
 
   // Funktion zum Aktualisieren der Daten, wenn neue verfügbar sind
   const refreshData = () => {
-    // TODO Sollte fetchData() aufrufen. Diese muss dann aber auch data-listing-modified updaten.
-    window.location.reload();
-    //fetchData();
+    fetchData();
     setHasNewData(false);
   };
-
 
   return (
     <div>
