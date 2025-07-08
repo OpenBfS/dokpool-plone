@@ -22,6 +22,10 @@ const Listing = ({items, modified}) => {
     urls.forEach(async (url, index) => {
       try {
         const response = await fetch(url);
+        if (!response.ok) {
+          alert(`Error ${response.statusText}`);
+          throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+        }
         const html = await response.text();
 
         // Update items in the array
@@ -43,6 +47,10 @@ const Listing = ({items, modified}) => {
         "Accept": "application/json",
       },
     });
+    if (!response.ok) {
+      alert(`Error ${response.statusText}`);
+      throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+    }
     await fetchData()
   }
 
@@ -92,6 +100,11 @@ const Listing = ({items, modified}) => {
           },
           body: JSON.stringify({modified_since: modified_since}),
         });
+
+        if (!response.ok) {
+          alert(`Error ${response.statusText}`);
+          throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+        }
 
         const result = await response.json();
 
@@ -160,4 +173,4 @@ const Listing = ({items, modified}) => {
 const root = document.getElementById("docpool-listing");
 const react_root = createRoot(root);
 react_root.render(<Listing items={root.getAttribute("data-listing-items")}
-                  modified={root.getAttribute("data-listing-modified")}/>);
+                           modified={root.getAttribute("data-listing-modified")}/>);
