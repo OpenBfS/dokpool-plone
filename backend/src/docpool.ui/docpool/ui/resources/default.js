@@ -11,6 +11,31 @@ const Listing = ({items, modified}) => {
   const [modified_since, setModifiedSince] = useState(modified);
   const eventHandlers = useRef({});
 
+  const fetchData = async () => {
+    // Parse items inside the effect to avoid re-parsing on every render
+    const parsedItems = JSON.parse(items);
+    const urls = parsedItems.map((item) => `http://localhost:8080/Plone/listing-item?uid=${item}`);
+    // Empty the data array
+    setData(new Array(urls.length).fill(null));
+
+    // Process each URL
+    urls.forEach(async (url, index) => {
+      try {
+        const response = await fetch(url);
+        const html = await response.text();
+
+        // Update items in the array
+        setData(prevData => {
+          const newData = [...prevData];
+          newData[index] = {html, uid: parsedItems[index]};
+          return newData;
+        });
+      } catch (error) {
+        console.error(`Error on URL ${url}`, error);
+      }
+    });
+  };
+
   const setWFStatus = async (itemUrl, uid) => {
     const response = await fetch(itemUrl + "/@workflow/publish", {
       method: "POST",
@@ -18,35 +43,11 @@ const Listing = ({items, modified}) => {
         "Accept": "application/json",
       },
     });
+    await fetchData()
   }
 
   // Init fetch with first items
   useEffect(() => {
-    const fetchData = async () => {
-      // Parse items inside the effect to avoid re-parsing on every render
-      const parsedItems = JSON.parse(items);
-      const urls = parsedItems.map((item) => `http://localhost:8080/Plone/listing-item?uid=${item}`);
-      // Empty the data array
-      setData(new Array(urls.length).fill(null));
-
-      // Process each URL
-      urls.forEach(async (url, index) => {
-        try {
-          const response = await fetch(url);
-          const html = await response.text();
-
-          // Update items in the array
-          setData(prevData => {
-            const newData = [...prevData];
-            newData[index] = {html, uid: parsedItems[index]};
-            return newData;
-          });
-        } catch (error) {
-          console.error(`Error on URL ${url}`, error);
-        }
-      });
-    };
-
     fetchData();
   }, [items]);
 
