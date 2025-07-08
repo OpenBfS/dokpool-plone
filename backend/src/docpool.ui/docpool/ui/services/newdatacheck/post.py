@@ -39,6 +39,4 @@ class Listing:
 class NewDataCheck(Listing, Service):
     def reply(self):
         _, modified = self.find()
-        data = json_body(self.request)
-        modified_since = json.loads(data.get("modified_since", ""))
-        return {"hasNewData": (modified.timeTime() if modified else None) != modified_since}
+        return {"modified_last": (modified.timeTime() if modified else None) }

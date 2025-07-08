@@ -9,10 +9,10 @@ const Listing = ({items, modified}) => {
   const [itemUids, setItemUids] = useState([]);
   const buttonRefs = useRef({});
   const [hasNewData, setHasNewData] = useState(false);
-  const [modified_since, setModifiedSince] = useState(modified);
+  const [modified_since, setModifiedSince] = useState();
   const eventHandlers = useRef({});
 
-  // Items beim ersten Laden in den State laden
+  // Items beim ersten Laden items & modified in den State laden
   useEffect(() => {
     try {
       const parsedItems = JSON.parse(items);
@@ -21,7 +21,8 @@ const Listing = ({items, modified}) => {
       console.error('Fehler beim Parsen der Items:', error);
       setItemUids([]);
     }
-  }, [] );
+    setModifiedSince(modified);
+  }, []);
 
   // Fetch data when itemUids change
   useEffect(() => {
@@ -99,46 +100,51 @@ const Listing = ({items, modified}) => {
     };
   }, [data]);
 
-  useEffect(() => {
-    const checkForNewData = async () => {
-      console.log('poll');
-      try {
-        const response = await fetch('http://localhost:8080/Plone/@new-data-check', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({modified_since: modified_since}),
-        });
+  const checkForNewData = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/Plone/@new-data-check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({modified_since: modified_since}),
+      });
 
-        if (!response.ok) {
-          alert(`Error ${response.statusText}`);
-          throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
-        }
-
-        const result = await response.json();
-
-        console.log('poll');
-        // New data?
-        if (result.hasNewData) {
-          setHasNewData(true);
-        }
-
-      } catch (error) {
-        console.error('Fehler beim Prüfen auf neue Daten:', error);
+      if (!response.ok) {
+        alert(`Error ${response.statusText}`);
+        throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
       }
-    };
 
-    const pollingInterval = setInterval(checkForNewData, 10000);
+      const result = await response.json();
 
+      // New data?
+      if (result.modified_last > modified_since) {
+        setHasNewData(true);
+      }
+      return result.modified_last;
+
+    } catch (error) {
+      console.error('Fehler beim Prüfen auf neue Daten:', error);
+    }
+  };
+
+  useEffect(() => {
+    const pollingInterval = setInterval(() => {
+          console.log('polling');
+          checkForNewData();
+        },10000);
     // Cleanup - Needed?
     return () => clearInterval(pollingInterval);
-  }, []);
+  }, [modified_since]);
 
   // Funktion zum Aktualisieren der Daten, wenn neue verfügbar sind
-  const refreshData = () => {
+  const refreshData = async () => {
+    // Fetch new items
     fetchData();
+    // Fetch new modified and update state
+    const new_modified = await checkForNewData()
+    setModifiedSince(new_modified)
     setHasNewData(false);
   };
 
