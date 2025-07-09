@@ -148,8 +148,8 @@ class Transferable(FlexibleView):
         """Query metadata of past transfers ("transfer events") of the context object."""
         if IArchiving(self.context).is_archive:
             logRaw = self.transferLog
-            logRaw = (logRaw and logRaw.replace("datetime.datetime", "datetime")) or ""
-            return eval(logRaw)
+            logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime")
+            return eval(logRaw) if logRaw else None
 
         else:
             if self.transferred:
