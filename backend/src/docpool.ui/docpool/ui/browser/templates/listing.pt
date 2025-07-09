@@ -11,48 +11,79 @@
       <form class="filter-form"
             method="GET"
       >
-        <label for="limit"
-               i18n:translate=""
-        >Limit results:</label>
-        <select name="limit"
-                onchange="this.form.submit()"
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle"
+                  aria-expanded="false"
+                  type="button"
+                  data-bs-auto-close="outside"
+                  data-bs-toggle="dropdown"
+          >
+                Limit results
+          </button>
+          <div class="dropdown-menu p-4">
+            <tal:limit tal:repeat="limit_value python: [0, 5, 10]">
+              <div class="form-check">
+                <input class="form-check-input"
+                       id="${python: limit_value}"
+                       name="limit"
+                       onchange="this.form.submit()"
+                       type="radio"
+                       value="${python: limit_value}"
+                       tal:attributes="
+                         checked python: view.limit == limit_value;
+                       "
+                />
+                <label class="form-check-label"
+                       for="${python: limit_value}"
+                >
+                            ${python: limit_value or 'Alle'}
+                </label>
+              </div>
+            </tal:limit>
+          </div>
+        </div>
+
+        <div class="dropdown m-2"
+             tal:define="
+               selected_doktypes python: view.selected_doktypes;
+             "
         >
-          <option value="0"
-                  tal:attributes="
-                    selected python: view.limit == 0;
-                  "
-                  i18n:translate=""
-          >Show all</option>
-          <option value="5"
-                  tal:attributes="
-                    selected python: view.limit == 5;
-                  "
-          >5</option>
-          <option value="10"
-                  tal:attributes="
-                    selected python: view.limit == 10;
-                  "
-          >10</option>
-        </select>
-        <label for="dokType"
-               i18n:domain="docpool.base"
-               i18n:translate=""
-        >label_dpdocument_doctype</label>
-        <select name="dokType"
-                onchange="this.form.submit()"
-        >
-          <option value="">All</option>
-          <tal:doktypes tal:repeat="dokType python: view.documenttypes_vocabulary">
-            <option value="${python: dokType.token}"
-                    tal:attributes="
-                      selected python: view.dokType == dokType.token;
-                    "
-                    i18n:translate=""
-            >${python: dokType.title}</option>
-          </tal:doktypes>
-        </select>
+          <button class="btn btn-primary dropdown-toggle"
+                  aria-expanded="false"
+                  type="button"
+                  data-bs-auto-close="outside"
+                  data-bs-toggle="dropdown"
+          >
+                Eintragsart
+          </button>
+          <div class="dropdown-menu p-2">
+            <tal:doktypes tal:repeat="doktype python: view.documenttypes_vocabulary">
+              <div class="form-check">
+                <input class="form-check-input"
+                       id="${python: doktype.token}"
+                       name="selected_doktypes:list"
+                       onchange="this.form.submit()"
+                       type="checkbox"
+                       value="${python: doktype.token}"
+                       tal:attributes="
+                         checked python: doktype.token in selected_doktypes;
+                       "
+                />
+                <label class="form-check-label"
+                       for="${python: doktype.token}"
+                       i18n:translate=""
+                >
+                    ${python: doktype.title}
+                </label>
+              </div>
+            </tal:doktypes>
+          </div>
+        </div>
+
       </form>
     </div>
+
     <div class="m-2"
          id="docpool-listing"
          tal:attributes="

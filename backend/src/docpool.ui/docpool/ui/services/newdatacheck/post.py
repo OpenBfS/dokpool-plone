@@ -1,8 +1,5 @@
 from plone import api
-from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
-
-import json
 
 
 class Listing:
@@ -10,7 +7,7 @@ class Listing:
         form = self.request.form
         self.limit = int(form.get("limit", limit))
 
-        self.dokType = form.get("dokType")
+        self.selected_doktypes = form.get("selected_doktypes") or []
         self.documenttypes_vocabulary = api.portal.get_vocabulary(
             "docpool.base.vocabularies.DocumentTypes", self.context
         )
@@ -23,8 +20,8 @@ class Listing:
         }
         if self.limit:
             query["sort_limit"] = self.limit
-        if self.dokType:
-            query["dp_type"] = self.dokType
+        if self.selected_doktypes:
+            query["dp_type"] = self.selected_doktypes
 
         brains = api.content.find(**query)
         uids = [brain.UID for brain in brains]
@@ -39,4 +36,4 @@ class Listing:
 class NewDataCheck(Listing, Service):
     def reply(self):
         _, modified = self.find()
-        return {"modified_last": (modified.timeTime() if modified else None) }
+        return {"modified_last": (modified.timeTime() if modified else None)}
