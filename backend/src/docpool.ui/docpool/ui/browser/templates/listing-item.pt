@@ -14,7 +14,7 @@
          tal:content="python: toLocalizedTime(data['date'], long_format=0)"
     >16.12.2021</div>
   </div>
-  <div class="card text-bg-light me-3"
+  <div class="card me-3"
        style="width: 6rem;"
   >
     <img class="card-img-top doktype"
@@ -26,7 +26,7 @@
            src python: f'{portal_url}/++plone++docpoolui/icons/otherprojection.png';
          "
     />
-    <div class="card-body text-bg-secondary review-state">
+    <div class="card-body review-state ${python:data['state_class']}">
       <p class="card-text text-uppercase text-center small"
          tal:content="python: data['state_title']"
          tal:attributes="
@@ -69,21 +69,26 @@
         &#8942;
       </a>
       <ul class="dropdown-menu">
-        <li tal:condition="python: data['review_state'] != 'published'">
-          <a class="dropdown-item publish"
-             href="#"
-             tal:attributes="
-               data-item-url python: data['url'];
-               data-item-uid python: data['uid'];
-             "
-          >Publish me!</a>
-        </li>
+        <tal:transitions tal:repeat="transition python: data['available_transitions']">
+          <li>
+            <a class="dropdown-item transition"
+               href="#"
+               tal:attributes="
+                 data-item-url python: data['url'];
+                 data-item-uid python: data['uid'];
+                 data-transition-id python: transition['id'];
+               "
+               i18n:domain="plone"
+               i18n:translate=""
+            >${python: transition['name']}</a>
+          </li>
+        </tal:transitions>
         <li><a class="dropdown-item"
              href="#"
-          >Noch nichts</a></li>
+          >Drucken</a></li>
         <li><a class="dropdown-item"
              href="#"
-          >Immer noch nichts</a></li>
+          >Sonst noch was?</a></li>
       </ul>
     </div>
   </div>

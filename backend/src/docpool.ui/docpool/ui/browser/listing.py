@@ -1,7 +1,9 @@
 from docpool.base.utils import is_rei_workflow
 from docpool.ui.services.newdatacheck.post import Listing as ListingBase
 from plone import api
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.Five.browser import BrowserView
+from zope.component import queryUtility
 from zope.i18n import translate
 
 import json
@@ -30,10 +32,11 @@ class Item(BrowserView):
         portal_workflow = api.portal.get_tool("portal_workflow")
         review_state = api.content.get_state(obj)
         state_title = portal_workflow.getTitleForStateOnType(review_state, obj.portal_type)
-        domain = "docpool.base"
-        if is_rei_workflow(obj):
-            domain = "docpool.rei"
-        state_title = translate(state_title, domain=domain, context=request)
+        workflow_i18n_domain = "docpool.rei" if is_rei_workflow(obj) else "docpool.base"
+        translated_state_title = translate(state_title, domain=workflow_i18n_domain, context=request)
+        idnormalizer = queryUtility(IIDNormalizer)
+        state_class = f"state-{idnormalizer.normalize(review_state)}"
+        available_transitions = portal_workflow.getTransitionsFor(obj)
 
         if userinfo := obj.modified_by or obj.created_by:
             userinfo = userinfo.replace("<i>", "--separator--<i>", 1)
@@ -46,7 +49,9 @@ class Item(BrowserView):
             "id": obj.id,
             "description": obj.description,
             "review_state": review_state,
-            "state_title": state_title,
+            "state_title": translated_state_title,
+            "state_class": state_class,
+            "available_transitions": available_transitions,
             "uid": uid,
             "docType": obj.docType,
             "url": obj.absolute_url(),

@@ -58,8 +58,8 @@ const Listing = ({items, modified}) => {
     });
   };
 
-  const setWFStatus = async (itemUrl, uid) => {
-    const response = await fetch(itemUrl + "/@workflow/publish", {
+  const setWFStatus = async (itemUrl, uid, transition) => {
+    const response = await fetch(itemUrl + "/@workflow/" + transition, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -82,7 +82,7 @@ const Listing = ({items, modified}) => {
         if (!eventHandlers.current[key]) {
           eventHandlers.current[key] = (e) => {
             e.preventDefault();
-            setWFStatus(button.dataset.itemUrl, button.dataset.itemUid);
+            setWFStatus(button.dataset.itemUrl, button.dataset.itemUid, button.dataset.transitionId);
           };
         }
         button.addEventListener('click', eventHandlers.current[key]);
@@ -173,7 +173,7 @@ const Listing = ({items, modified}) => {
                    ref={el => {
                      // Search for Button an assign ref
                      if (el) {
-                       buttonRefs.current[index] = el.querySelector('a.dropdown-item.publish');
+                       buttonRefs.current[index] = el.querySelector('a.dropdown-item.transition');
                      }
                    }}
               ></div>

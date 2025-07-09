@@ -40,4 +40,20 @@ li {
   p.small {
     font-size: 0.6em;
   }
+
+  &.state-published {
+    color: #fff !important;
+    background-color: #007bb1;
+  }
+
+  &.state-private {
+    color: #fff !important;
+    background-color: darkred;
+  }
+
+  &.state-pending {
+    color: #fff !important;
+    background-color: orange;
+  }
+
 }
