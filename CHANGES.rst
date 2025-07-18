@@ -4,6 +4,12 @@ Changelog
 2.2.0 (unreleased)
 ------------------
 
+Changed:
+
+- Open RODOS at /potentially-affected-areas instead of /projections. (#6149)
+  [pbauer]
+
+
 Fixed:
 
 - Fix permissions on imported example content from distribution. (#6055)
