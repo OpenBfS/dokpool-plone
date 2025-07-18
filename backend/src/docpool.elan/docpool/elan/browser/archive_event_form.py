@@ -84,11 +84,7 @@ class ArchiveAndClose(BrowserView):
             # * A previous snapshot was finished (ok, maybe display and show link to it?)
             # * A archiving-process is still running
             # * The archiving process was interrupted by a traceback or restart
-            # TODO: How should we handle these cases?
-            msg = _("Item has old archiving info!")
-            logger.info(msg)
             logger.debug(self.full_archiving_info)
-            api.portal.show_message(msg, self.request)
             if not form.get("form.button.restart"):
                 return self.index()
 
