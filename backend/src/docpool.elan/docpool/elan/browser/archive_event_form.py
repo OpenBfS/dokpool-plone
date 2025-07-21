@@ -53,6 +53,7 @@ class ArchiveAndClose(BrowserView):
 
         if IArchiving(self.context).is_archive:
             logger.info("Item is already archived!")
+            api.portal.show_message(_("Scenario archived"), self.request)
             return request.response.redirect(self.context.absolute_url())
 
         if form.get("form.button.cancel"):
