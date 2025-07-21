@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-12-22 20:45+0000\n"
+"POT-Creation-Date: 2025-07-21 13:32+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -94,6 +94,10 @@ msgstr ""
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Type extension for Rodos types"
+msgstr ""
+
+#: docpool.rodos/docpool/rodos/browser/views.py
+msgid "You need to select an ELAN Event."
 msgstr ""
 
 #: docpool.rodos/docpool/rodos/browser/templates/i18ndummy.pt
