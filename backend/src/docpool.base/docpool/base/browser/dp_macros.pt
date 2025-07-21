@@ -247,10 +247,10 @@ buttons = view.dp_buttons(batch)
            target="_blank"
            title="open attachment"
            tal:content="python:d.title_or_id()"
-           i18n:attributes="title"
            tal:attributes="
              href python:d.absolute_url();
            "
+           i18n:attributes="title"
         >documents
         </a>
 
