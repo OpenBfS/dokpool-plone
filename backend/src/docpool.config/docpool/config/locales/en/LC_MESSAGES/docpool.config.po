@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-12-05 17:23+0000\n"
+"POT-Creation-Date: 2025-07-21 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,10 +13,6 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-
-#: docpool.config/docpool/config/browser/templates/simpleviz_listitem.pt
-msgid "<img src=\"${DYNAMIC_CONTENT}\">"
-msgstr ""
 
 #: docpool.config/docpool/config/local/elan.py
 #: docpool.config/docpool/config/local/elan_de.py
