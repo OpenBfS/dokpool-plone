@@ -37,7 +37,7 @@ class NetworkOperators:
             ("BSH", _("BSH")),
             ("BfS (LSt. AB)", _("BfS (LSt. AB)")),
             ("BfS (LSt. TW ...)", _("BfS (LSt. TW ...)")),
-            ("BMU", _("BMUV")),
+            ("BMU", _("BMUKN")),
             ("MRI", _("MRI")),
             ("Park", _("Park")),
             ("Sonstige", _("Sonstige")),

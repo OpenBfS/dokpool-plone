@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-03-31 07:02+0000\n"
+"POT-Creation-Date: 2025-07-21 06:59+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -301,7 +301,7 @@ msgid "Paste could not find clipboard content."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Pending BMUV"
+msgid "Pending BMUKN"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -337,7 +337,7 @@ msgid "Published"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Published BMUV"
+msgid "Published BMUKN"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -413,7 +413,7 @@ msgid "Submit to Authority"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Submit to BMUV"
+msgid "Submit to BMUKN"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -481,7 +481,7 @@ msgid "Transfer target"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
-msgid "Transfer to<br>"
+msgid "Transfer to<br />"
 msgstr ""
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
@@ -962,6 +962,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "needs confirmation"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "open attachment"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt

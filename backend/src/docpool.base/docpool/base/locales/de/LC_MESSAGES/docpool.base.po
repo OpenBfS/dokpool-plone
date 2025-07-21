@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-03-31 07:02+0000\n"
+"POT-Creation-Date: 2025-07-21 06:59+0000\n"
 "PO-Revision-Date: 2024-12-22 21:57+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -299,8 +299,8 @@ msgid "Paste could not find clipboard content."
 msgstr "Keine Inhalte mehr in der Zwischenablage."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Pending BMUV"
-msgstr "An BMUV eingereicht"
+msgid "Pending BMUKN"
+msgstr "An BMUKN eingereicht"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Pending BfS"
@@ -335,7 +335,7 @@ msgid "Published"
 msgstr "Veröffentlicht"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Published BMUV"
+msgid "Published BMUKN"
 msgstr "Freigegeben"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -411,8 +411,8 @@ msgid "Submit to Authority"
 msgstr "An die Aufsichtsbehörde einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Submit to BMUV"
-msgstr "An BMUV einreichen"
+msgid "Submit to BMUKN"
+msgstr "An BMUKN einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit to BfS"
@@ -479,8 +479,8 @@ msgid "Transfer target"
 msgstr "Übertragungsziel"
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
-msgid "Transfer to<br>"
-msgstr "Übertragung nach<br>"
+msgid "Transfer to<br />"
+msgstr "Übertragung nach<br />"
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Transferable"
@@ -578,7 +578,7 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_bmu_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BMUV einreichen?"
+msgstr "Wollen Sie dieses Dokument wirklich ans BMUKN einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
@@ -962,6 +962,10 @@ msgstr "geändert:"
 msgid "needs confirmation"
 msgstr "benötigt Bestätigung"
 
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "open attachment"
+msgstr "Anhang öffnen"
+
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending - Show document"
 msgstr "zur Redaktion eingereicht - Klicken, um das Dokument anzuzeigen"
@@ -976,7 +980,7 @@ msgstr "An BfS eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_bmu - Show document"
-msgstr "An BMUV eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "An BMUKN eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private"
