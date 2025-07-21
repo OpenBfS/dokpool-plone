@@ -303,7 +303,7 @@ msgid "Au-201"
 msgstr ""
 
 #: docpool/doksys/vocabularies/network_operators.py
-msgid "BMUV"
+msgid "BMUKN"
 msgstr ""
 
 #: docpool/doksys/vocabularies/network_operators.py

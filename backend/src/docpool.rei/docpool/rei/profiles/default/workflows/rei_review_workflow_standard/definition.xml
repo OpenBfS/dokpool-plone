@@ -78,7 +78,7 @@
     </group-map>
   </state>
   <state state_id="pending_bmu"
-         title="Pending BMUV"
+         title="Pending BMUKN"
          i18n:attributes="title"
   >
     <exit-transition transition_id="publish" />
@@ -192,7 +192,7 @@
     </permission-map>
   </state>
   <state state_id="published"
-         title="Published BMUV"
+         title="Published BMUKN"
          i18n:attributes="title"
   >
     <description>Visible to everyone, editable by the owner.</description>
@@ -315,7 +315,7 @@
             icon=""
             url="%(content_url)s/content_status_modify?workflow_action=publish"
             i18n:translate=""
-    >Publish BMUV</action>
+    >Publish BMUKN</action>
     <guard>
       <guard-role>Reviewer</guard-role>
       <guard-role>Manager</guard-role>
@@ -436,7 +436,7 @@
   <transition after_script=""
               before_script=""
               new_state="pending_bmu"
-              title="Submit to BMUV"
+              title="Submit to BMUKN"
               transition_id="submit_bmu"
               trigger="USER"
   >
@@ -444,7 +444,7 @@
             icon=""
             url="%(content_url)s/content_status_modify?workflow_action=submit_bmu"
             i18n:translate=""
-    >Submit to BMUV</action>
+    >Submit to BMUKN</action>
     <guard>
       <guard-role>Contributor</guard-role>
       <guard-role>Manager</guard-role>

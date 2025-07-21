@@ -84,10 +84,7 @@
             <div class="image"
                  tal:repeat="b images"
             >
-              <a href="${python: context.absolute_url()}"
-                 i18n:domain="docpool.config"
-                 i18n:translate=""
-              >
+              <a href="${python: context.absolute_url()}">
                 <img tal:attributes="
                        src python:'/'.join(b.getPhysicalPath()) + '/@@images/image/thumb';
                      " />

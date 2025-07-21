@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-04-10 09:36+0000\n"
+"POT-Creation-Date: 2025-07-21 07:44+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -58,32 +58,8 @@ msgstr ""
 msgid "PDF Version"
 msgstr ""
 
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Pending BMUV"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Pending BfS"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Pending authority"
-msgstr ""
-
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Period"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Private"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Publish BMUV"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Published BMUV"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
@@ -96,10 +72,6 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "REIDoc"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "Revised"
 msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
@@ -116,66 +88,6 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Year"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_delete_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_publish_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_reject_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_reject_to_authority_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_reject_to_bfs_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_reject_to_npp_operator_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_retract_for_revision_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_retract_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_retract_to_authority_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_retract_to_bfs_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_retract_to_npp_operator_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_submit_authority_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_submit_bfs_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_submit_bmu_popup"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "alert_submit_popup"
 msgstr ""
 
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
@@ -310,48 +222,4 @@ msgstr ""
 #. Default: "Bericht enthält Daten folgender Messstellen"
 #: docpool.rei/docpool/rei/behaviors/reidoc.py
 msgid "label_rei_mstids_initial_value"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "published - Show document"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "reject_to_authority"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "reject_to_bfs"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "reject_to_npp_operator"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "retract_for_revision"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "retract_to_authority"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "retract_to_bfs"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "retract_to_npp_operator"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "submit_authority"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "submit_bfs"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/i18ndummy.pt
-msgid "submit_bmu"
 msgstr ""

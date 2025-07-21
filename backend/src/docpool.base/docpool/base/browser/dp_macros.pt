@@ -245,12 +245,12 @@ buttons = view.dp_buttons(batch)
       >
         <a href=""
            target="_blank"
-           title=""
+           title="open attachment"
            tal:content="python:d.title_or_id()"
            tal:attributes="
-             title python:'open attachment';
              href python:d.absolute_url();
            "
+           i18n:attributes="title"
         >documents
         </a>
 
@@ -304,26 +304,11 @@ size = human_readable_size(size)
                    portal context/@@plone_portal_state/portal;
                  "
     >
-
-      <?python
-# Work around Unauthorized Errors in Plone 6
-from docpool.base.utils import is_rei_workflow
-from zope.i18n import translate
-dpbrain = econtext["dpbrain"]
-context = econtext["context"]
-request = econtext["request"]
-if is_rei_workflow(dpbrain.getObject()):
-    domain = "docpool.rei"
-else:
-    domain = "docpool.base"
-dpbrain_title = translate(dpbrain.review_state + ' - Show document', domain=domain, context=request)
-?>
-
       <a href=""
          title=""
          tal:content="dpbrain/Title"
          tal:attributes="
-           title dpbrain_title;
+           title python: dpbrain.review_state + ' - Show document';
            href string:javascript:go_to('${item_url}?_authenticator=${auth_token}');
            class string:$item_type_class $item_wf_state_class;
          "
