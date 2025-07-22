@@ -10,21 +10,36 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 @provider(IVocabularyFactory)
 def LocalBehaviorsVocabularyFactory(context):
-    """
-    The local behaviors available to an object are determined as follows:
-    - For a doctype, all behaviors allowed in the docpool are relevant.
-    - For a document, the behavior must be allowed in the docpool, available to the current user and supported by the
-    doctype of the document.
-    @param context:
-    @return:
+    """Vocabulary factory for available local behaviors based on context.
+    
+    This factory provides the vocabulary of available applications that can be
+    assigned as local behaviors to content objects. The available options depend
+    on the context:
+    
+    - **For doctypes in config**: All behaviors allowed in the DocumentPool are relevant
+      - Global config: Applications permitted for the current user
+      - Local config: Applications supported in the current DocumentPool
+    - **For documents**: Applications must be permitted in the DocumentPool,
+      available to the current user, and supported by the document's doctype
+    
+    The vocabulary excludes applications marked as 'implicit' since these
+    are automatically applied and shouldn't be manually selectable.
+    
+    Args:
+        context: The content object context for which to build the vocabulary
+        
+    Returns:
+        SimpleVocabulary: Vocabulary containing available application choices
     """
     request = getRequest()
     path = request.physicalPathFromURL(request.getURL())
     dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
+    
     if "config" in path:
-        if path.index("config") == 2:  # global config
+        # We're in a configuration context (doctype or DocumentPool config)
+        if path.index("config") == 2:  # global config at site level
             apps = dp_app_state.appsPermittedForCurrentUser()
-        else:
+        else:  # local DocumentPool config
             apps = dp_app_state.appsSupportedHere()
         return SimpleVocabulary([
             SimpleTerm(app[0], title=_(app[1]))
@@ -32,7 +47,8 @@ def LocalBehaviorsVocabularyFactory(context):
             if app[0] in apps
             if not app[2]["implicit"]
         ])
-    else:  # It's a document
+    else:
+        # We're working with a document - check permitted apps for this object
         available_apps = dp_app_state.appsPermittedForObject(request)
         return SimpleVocabulary([
             SimpleTerm(app[0], title=_(app[1]))

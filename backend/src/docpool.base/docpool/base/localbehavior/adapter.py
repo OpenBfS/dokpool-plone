@@ -10,7 +10,36 @@ from zope.component import getMultiAdapter
 
 @adapter(ILocalBehaviorSupporting)
 class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
+    """Adapter that provides dynamic behavior enumeration for local behavior supporting content.
+
+    This adapter extends Plone's standard behavior assignment mechanism to support
+    object-based (local) behaviors in addition to type-based behaviors. It determines
+    which behaviors should be active for a specific content object based on:
+
+    1. The object's assigned local_behaviors (stored on the object)
+    2. Form data during editing (temporary behavior assignment)
+    3. Available applications in the current DocumentPool context
+    4. The object's doctype configuration (for DPDocuments)
+
+    This enables the core Dokpool functionality where the same content type
+    (DPDocument) can have different behaviors, fields, and views depending on
+    which applications (ELAN, REI, RODOS, DOKSYS) it's assigned to.
+    """
+
     def enumerateBehaviors(self):
+        """Enumerate all behaviors that should be active for this content object.
+
+        This method determines which behaviors should be applied by combining:
+        - Behaviors being edited in the current form
+        - Previously saved behaviors on the object
+        - Available applications in the current context
+
+        The method caches previously saved behaviors in the request to handle
+        cases where behaviors might change during form processing.
+
+        Yields:
+            BehaviorRegistration: Each behavior that should be active for this object
+        """
         request = aq_get(self.context, "REQUEST", None)
         if not request or isinstance(request, str):
             # Shortcut when Request is '<Special Object Used to Force Acquisition>'
@@ -49,6 +78,23 @@ class DexterityLocalBehaviorAssignable(DexterityBehaviorAssignable):
 
 
 def isSupported(available_apps, behavior_interface):
+    """Check if a behavior interface is supported given the available applications.
+
+    This function determines whether a specific behavior should be active based on:
+    - Whether it's an IExtension behavior (app-specific) or core behavior
+    - Which applications are currently available/active
+    - The behavior's registration in the BEHAVIOR_REGISTRY
+
+    Args:
+        available_apps (list): List of application identifiers that are available
+                              (e.g., ['elan', 'rei'])
+        behavior_interface (Interface): The behavior interface to check
+
+    Returns:
+        bool or set: True if supported (for non-extension behaviors),
+                    set intersection if extension behavior matches available apps,
+                    False if extension behavior with no available apps
+    """
     from docpool.base.interfaces import IExtension
 
     if behavior_interface.extends(IExtension):
