@@ -12,11 +12,11 @@ log = logging.getLogger("docpool.localbehavior")
 
 def additionalSchemata(self):
     """Get additional schemata for forms with local behavior support.
-    
+
     This method is used to patch Plone's default form behavior to include
     only the schema fields that are appropriate for the current context,
     taking into account local behavior restrictions.
-    
+
     Returns:
         generator: Additional schema interfaces that should be included in the form
     """
@@ -33,7 +33,7 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
     are both:
     1. Permitted in the current DocumentPool context
     2. Activated by the current user
-    
+
     This ensures that users only see form fields for applications they have access to
     and have chosen to work with, providing a cleaner and more secure interface.
 
@@ -45,12 +45,12 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
     in a portal_type (and the context is irrelevant then). If both
     are set, the portal_type might get ignored, depending on which
     code path is taken.
-    
+
     Args:
         context: The content object context
-        portal_type (str): The portal type identifier 
+        portal_type (str): The portal type identifier
         request: The current HTTP request
-        
+
     Yields:
         Interface: Schema interfaces that should be included in forms
     """
@@ -75,11 +75,11 @@ def getAdditionalSchemataWithLocalbehavior(context, portal_type, request):
 
 def patched_additionalSchemata():
     """Create a property-wrapped version of additionalSchemata for monkey patching.
-    
+
     This function is used to create a proper property decorator around the
     additionalSchemata method so it can be monkey patched onto Plone's
     DefaultAddForm class.
-    
+
     Returns:
         property: A property-wrapped version of the additionalSchemata method
     """
