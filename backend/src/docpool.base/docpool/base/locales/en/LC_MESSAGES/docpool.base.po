@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-07-24 14:29+0000\n"
+"POT-Creation-Date: 2025-07-24 14:32+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -775,6 +775,16 @@ msgstr ""
 #. Default: "Select the transition to be used for modifying the items state."
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "help_change_status_action"
+msgstr ""
+
+#. Default: "Deselect all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-deselect-all"
+msgstr ""
+
+#. Default: "Select all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-select-all"
 msgstr ""
 
 #. Default: "Anonymous User"

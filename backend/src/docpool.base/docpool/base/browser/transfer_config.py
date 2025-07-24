@@ -47,7 +47,11 @@ class ITransferConfig(model.Schema):
         min_length=1,
         value_type=schema.Choice(source="docpool.base.vocabularies.DocType"),
     )
-    directives.widget(types=CheckBoxFieldWidget)
+    directives.widget(
+        "types",
+        CheckBoxFieldWidget,
+        template=ViewPageTemplateFile("templates/checklist_input.pt"),
+    )
 
     targets = schema.List(
         title=_("label_transfer_config_transfer_targets", default="Transfer targets"),

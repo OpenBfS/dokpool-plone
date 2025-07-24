@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-24 14:29+0000\n"
+"POT-Creation-Date: 2025-07-24 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -776,6 +776,16 @@ msgstr ""
 #. Default: "Select the transition to be used for modifying the items state."
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
 msgid "help_change_status_action"
+msgstr ""
+
+#. Default: "Deselect all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-deselect-all"
+msgstr ""
+
+#. Default: "Select all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-select-all"
 msgstr ""
 
 #. Default: "Anonymous User"
