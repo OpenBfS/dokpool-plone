@@ -101,4 +101,8 @@ class TransferConfigView(AutoExtensibleForm, form.Form):
                 doctype_targets.difference_update(targets)
             ITransfersType(doctype).automaticTransferTargets = list(doctype_targets)
 
-        self.status = f"Configured {len(types)} types for {len(targets)} targets."
+        self.status = _(
+            "status_transfer_config_success",
+            default="Configured ${targets} target(s) for ${types} type(s).",
+            mapping=dict(targets=len(targets), types=len(types)),
+        )

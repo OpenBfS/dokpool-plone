@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-24 11:20+0000\n"
+"POT-Creation-Date: 2025-07-24 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1052,6 +1052,11 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "revised - Show document"
+msgstr ""
+
+#. Default: "Configured ${targets} target(s) for ${types} type(s)."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "status_transfer_config_success"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt

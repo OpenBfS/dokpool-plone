@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-07-24 11:20+0000\n"
+"POT-Creation-Date: 2025-07-24 12:10+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -1051,6 +1051,11 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "revised - Show document"
+msgstr ""
+
+#. Default: "Configured ${targets} target(s) for ${types} type(s)."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "status_transfer_config_success"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
