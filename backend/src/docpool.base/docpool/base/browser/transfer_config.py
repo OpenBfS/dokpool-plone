@@ -11,6 +11,7 @@ from z3c.form import form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.interface import implementer
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -67,9 +68,12 @@ class TransferConfigView(AutoExtensibleForm, form.Form):
     label = _("Transfer config")
     ignoreContext = True
     schema = ITransferConfig
+    template = ViewPageTemplateFile("templates/transfer_config.pt")
 
     def update(self):
         self.portal_type = self.context.portal_type
+        self.request.setupLocale()
+        self.language = self.request._locale.id.language
         super().update()
 
     def updateActions(self):

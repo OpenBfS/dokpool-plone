@@ -1,0 +1,45 @@
+<div class="form-text">
+  <tal:block condition="python:view.language=='de'">
+    <p>
+      Hier k&ouml;nnen Sie konfigurieren
+    </p>
+    <ul>
+      <li>
+        welche Dokumenttypen bei Ver&ouml;ffentlichung automatisch an andere
+        Dokpools &uuml;bertragen werden sollen
+      </li>
+      <li>
+        bzw. welche Dokumenttypen nicht mehr automatisch &uuml;bertragen werden
+        sollen.
+      </li>
+    </ul>
+    <p>
+      Die aktuellen oder neu vorgenommenen Transfereinstellungen zu den
+      einzelnen Dokumenttypen k&ouml;nnen Sie jederzeit unter &bdquo;Konfiguration &gt;
+      Dokumenttypen&ldquo; kontrollieren (&bdquo;Wohin werden Dokumente dieses Typs
+      automatisch &uuml;bermittelt&ldquo;).
+    </p>
+  </tal:block>
+  <tal:block condition="python:view.language!='de'">
+    <p>
+      Here you can configure
+    </p>
+    <ul>
+      <li>
+        which document types shall be automatically transferred to other
+        docpools upon publication
+      </li>
+      <li>
+        or which document types shall no longer be automatically transferred,
+        resp.
+      </li>
+    </ul>
+    <p>
+      You can always check current and updated transfer settings for each
+      document type at &ldquo;Configuration &gt; Document types&rdquo; (&ldquo;Where are documents
+      of this type transferred automatically?&rdquo;).
+    </p>
+  </tal:block>
+</div>
+
+<metal:use use-macro="context/@@ploneform-macros/titlelessform" />
