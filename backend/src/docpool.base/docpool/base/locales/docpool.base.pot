@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-24 12:10+0000\n"
+"POT-Creation-Date: 2025-07-24 14:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -785,6 +785,7 @@ msgstr ""
 
 #. Default: "Cancel"
 #: docpool.base/docpool/base/browser/folderbase.py
+#: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_cancel"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-07-24 12:10+0000\n"
+"POT-Creation-Date: 2025-07-24 14:29+0000\n"
 "PO-Revision-Date: 2025-07-24 14:10+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -784,6 +784,7 @@ msgstr ""
 
 #. Default: "Cancel"
 #: docpool.base/docpool/base/browser/folderbase.py
+#: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_cancel"
 msgstr "Abbrechen"
 

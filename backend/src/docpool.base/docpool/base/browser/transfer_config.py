@@ -106,3 +106,7 @@ class TransferConfigView(AutoExtensibleForm, form.Form):
             default="Configured ${targets} target(s) for ${types} type(s).",
             mapping=dict(targets=len(targets), types=len(types)),
         )
+
+    @button.buttonAndHandler(_("label_cancel", default="Cancel"), name="cancel")
+    def handle_cancel(self, action):
+        return self.request.response.redirect(self.context.myDocumentPool().absolute_url())
