@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-21 06:59+0000\n"
+"POT-Creation-Date: 2025-07-24 09:59+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -612,11 +612,6 @@ msgstr ""
 msgid "desc_transfer_config_document_types"
 msgstr ""
 
-#. Default: "Whether to remove the selected targets for the selected types. Default is to add them."
-#: docpool.base/docpool/base/browser/transfer_config.py
-msgid "desc_transfer_config_remove"
-msgstr ""
-
 #. Default: "Which automatic transfer targets to set or unset for the types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_transfer_targets"
@@ -969,12 +964,22 @@ msgstr ""
 msgid "label_toggle"
 msgstr ""
 
+#. Default: "add"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add"
+msgstr ""
+
+#. Default: "Automatic transfer for selected document types:"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add_or_remove"
+msgstr ""
+
 #. Default: "Document types"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_document_types"
 msgstr ""
 
-#. Default: "Remove selected targets?"
+#. Default: "remove"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_remove"
 msgstr ""

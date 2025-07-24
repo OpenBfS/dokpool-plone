@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-07-21 06:59+0000\n"
-"PO-Revision-Date: 2024-12-22 21:57+0100\n"
+"POT-Creation-Date: 2025-07-24 09:59+0000\n"
+"PO-Revision-Date: 2025-07-24 11:57+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -610,11 +610,6 @@ msgstr "erzeugt:"
 msgid "desc_transfer_config_document_types"
 msgstr "Zu konfigurierende Dokumenttypen."
 
-#. Default: "Whether to remove the selected targets for the selected types. Default is to add them."
-#: docpool.base/docpool/base/browser/transfer_config.py
-msgid "desc_transfer_config_remove"
-msgstr "Sollen die ausgewählten Ziele für die gewählten Typen entfernt werden? Ansonsten werden sie hinzugefügt."
-
 #. Default: "Which automatic transfer targets to set or unset for the types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_transfer_targets"
@@ -967,15 +962,25 @@ msgstr "Text"
 msgid "label_toggle"
 msgstr "Alle umschalten"
 
+#. Default: "add"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add"
+msgstr "einrichten"
+
+#. Default: "Automatic transfer for selected document types:"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add_or_remove"
+msgstr "Automatischen Transfer für die gewählten Dokumenttypen:"
+
 #. Default: "Document types"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_document_types"
 msgstr ""
 
-#. Default: "Remove selected targets?"
+#. Default: "remove"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_remove"
-msgstr "Ausgewählte Ziele entfernen?"
+msgstr "abschalten"
 
 #. Default: "Transfer targets"
 #: docpool.base/docpool/base/browser/transfer_config.py
