@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-24 09:59+0000\n"
+"POT-Creation-Date: 2025-07-24 11:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -606,12 +606,12 @@ msgstr ""
 msgid "created:"
 msgstr ""
 
-#. Default: "Which document types to configure."
+#. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_document_types"
 msgstr ""
 
-#. Default: "Which automatic transfer targets to set or unset for the types selected above."
+#. Default: "Automatic transfer targets to add or remove for the document types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_transfer_targets"
 msgstr ""

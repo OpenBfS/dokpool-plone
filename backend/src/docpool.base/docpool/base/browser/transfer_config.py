@@ -41,7 +41,7 @@ class ITransferConfig(model.Schema):
         title=_("label_transfer_config_document_types", default="Document types"),
         description=_(
             "desc_transfer_config_document_types",
-            default="Which document types to configure.",
+            default="Document types that shall be transferred from now on, or whose transferral shall be ended.",
         ),
         required=True,
         min_length=1,
@@ -53,7 +53,7 @@ class ITransferConfig(model.Schema):
         title=_("label_transfer_config_transfer_targets", default="Transfer targets"),
         description=_(
             "desc_transfer_config_transfer_targets",
-            default="Which automatic transfer targets to set or unset for the types selected above.",
+            default="Automatic transfer targets to add or remove for the document types selected above.",
         ),
         required=True,
         min_length=1,

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-07-24 09:59+0000\n"
+"POT-Creation-Date: 2025-07-24 11:20+0000\n"
 "PO-Revision-Date: 2019-02-07 16:46+0100\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -605,12 +605,12 @@ msgstr ""
 msgid "created:"
 msgstr "created:"
 
-#. Default: "Which document types to configure."
+#. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_document_types"
 msgstr ""
 
-#. Default: "Which automatic transfer targets to set or unset for the types selected above."
+#. Default: "Automatic transfer targets to add or remove for the document types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_transfer_targets"
 msgstr ""
