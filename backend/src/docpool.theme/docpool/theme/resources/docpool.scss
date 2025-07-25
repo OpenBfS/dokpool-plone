@@ -135,15 +135,16 @@ body {
   }
 }
 
-// Hide non-default-tabs for non-admins when adding and editing content
-.pat-autotoc.autotabs .autotoc-nav {
+// Hide non-default-tabs in edit and add-form for non-admins when adding and editing content
+// Do not target link-modal!
+form.pat-autotoc.autotabs > .autotoc-nav {
   display: none;
 }
 
 body.userrole-manager,
 body.userrole-site-administrator,
 body.userrole-contentadmin {
-  .pat-autotoc.autotabs .autotoc-nav {
+  form.pat-autotoc.autotabs > .autotoc-nav {
     display: block;
   }
 }
