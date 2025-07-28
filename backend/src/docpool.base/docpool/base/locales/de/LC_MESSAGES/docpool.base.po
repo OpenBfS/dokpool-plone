@@ -605,10 +605,20 @@ msgstr "zurück zu"
 msgid "created:"
 msgstr "erzeugt:"
 
+#. Default: "Document types"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_document_types"
+msgstr "Dokumenttypen"
+
 #. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_document_types"
 msgstr "Dokumenttypen, die ab sofort übertragen werden sollen oder deren Übertragung eingestellt werden soll."
+
+#. Default: "Transfer targets"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_transfer_targets"
+msgstr "Transferziele"
 
 #. Default: "Automatic transfer targets to add or remove for the document types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
@@ -1066,7 +1076,6 @@ msgstr "revidiert - Klicken, um das Dokument anzuzeigen"
 
 #. Default: "Configured ${targets} target(s) for ${types} type(s)."
 #: docpool.base/docpool/base/browser/transfer_config.py
-#, fuzzy
 msgid "status_transfer_config_success"
 msgstr "Es wurden ${targets} Transferziel(e) für ${types} Dokumenttyp(en) konfiguriert."
 
