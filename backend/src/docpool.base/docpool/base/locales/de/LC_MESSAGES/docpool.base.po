@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
 "POT-Creation-Date: 2025-07-24 14:32+0000\n"
-"PO-Revision-Date: 2025-07-24 16:34+0200\n"
+"PO-Revision-Date: 2025-07-28 12:16+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -605,20 +605,10 @@ msgstr "zurück zu"
 msgid "created:"
 msgstr "erzeugt:"
 
-#. Default: "Document types"
-#: docpool.base/docpool/base/browser/transfer_config.py
-msgid "label_transfer_config_document_types"
-msgstr "Dokumenttypen"
-
 #. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_document_types"
 msgstr "Dokumenttypen, die ab sofort übertragen werden sollen oder deren Übertragung eingestellt werden soll."
-
-#. Default: "Transfer targets"
-#: docpool.base/docpool/base/browser/transfer_config.py
-msgid "label_transfer_config_transfer_targets"
-msgstr "Transferziele"
 
 #. Default: "Automatic transfer targets to add or remove for the document types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
@@ -996,7 +986,7 @@ msgstr "Automatischen Transfer für die gewählten Dokumenttypen:"
 #. Default: "Document types"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_document_types"
-msgstr ""
+msgstr "Dokumenttypen"
 
 #. Default: "remove"
 #: docpool.base/docpool/base/browser/transfer_config.py
@@ -1006,7 +996,7 @@ msgstr "abschalten"
 #. Default: "Transfer targets"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_transfer_targets"
-msgstr ""
+msgstr "Transferziele"
 
 #. Default: "Applications"
 #: docpool.base/docpool/base/users/personalpreferences.py
