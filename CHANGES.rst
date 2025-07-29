@@ -18,6 +18,8 @@ Changed:
 - Rename BMUV to BMUKN and add upgdate REI-Workflows. (#6123)
   [pbauer]
 
+- Hide "No items" in dtype config (#6059)
+  [slindner]
 
 Fixed:
 
