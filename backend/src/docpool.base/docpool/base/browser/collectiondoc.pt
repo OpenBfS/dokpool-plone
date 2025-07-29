@@ -43,7 +43,7 @@
                     state python:view.wf_state(doc);
                   ">
               <i18n:var translate="">Document state</i18n:var>:
-              <span class="state-${state/id}">${state/title}</span>
+              <span class="state-${state/id}" i18n:domain="plone" i18n:translate="">${state/title}</span>
             </span>
             <tal:loop define="
                         actions doc/workflowActions;
@@ -68,6 +68,7 @@
                                           escape_for_js=True);
                         ">
 
+                <br /><i18n:var translate="">Document workflow:</i18n:var>
                 <a class="wf_action action"
                    href=""
                    onclick=""
@@ -82,9 +83,8 @@
                    "
                    i18n:attributes="title"
                 >
-                  <br /><i18n:var translate="">Document workflow:
-                  </i18n:var>
                   <tal:var replace="a_title"
+                           i18n:domain="plone"
                            i18n:translate=""
                   />
                 </a>
