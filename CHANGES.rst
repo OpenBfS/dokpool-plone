@@ -9,6 +9,15 @@ Changed:
 - Open RODOS at /potentially-affected-areas instead of /projections. (#6149)
   [pbauer]
 
+- Update names in REI vocabularies. (#6100)
+  [pbauer]
+
+- Allow to assign a RODOS entry to more than one ELAN events. (#6151)
+  [pbauer]
+
+- Rename BMUV to BMUKN and add upgdate REI-Workflows. (#6123)
+  [pbauer]
+
 
 Fixed:
 
@@ -19,6 +28,15 @@ Fixed:
   [pbauer]
 
 - Hard-code sitemap-depth used in navigation-portlet to work with old value from registry in Plone 6.1. (#5954)
+  [pbauer]
+
+- Show message when redirecting from form to archived Event. (#6131)
+  [pbauer]
+
+- Fix viewing archived items that have no transferLog. (#6136)
+  [pbauer]
+
+- Do not target link-modal when hiding tabs from normal users when editing. (#6152 and #5880)
   [pbauer]
 
 
