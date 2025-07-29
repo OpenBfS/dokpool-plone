@@ -968,7 +968,7 @@ msgstr "Anhang öffnen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending - Show document"
-msgstr "zur Redaktion eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_authority - Show document"
