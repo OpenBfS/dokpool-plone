@@ -64,6 +64,13 @@
         <i18n:dummy translate="Select a value ..."></i18n:dummy>
         <i18n:dummy translate="alert_transition"></i18n:dummy>
 
+        <dummy i18n:domain="plone"
+               i18n:translate="description_quit_to_log_out"
+        ></dummy>
+        <dummy i18n:domain="plone"
+               i18n:translate="heading_quit_to_log_out"
+        ></dummy>
+
       </metal:content-core>
     </metal:content-core>
   </body>
