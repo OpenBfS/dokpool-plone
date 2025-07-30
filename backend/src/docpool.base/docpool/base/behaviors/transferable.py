@@ -26,12 +26,15 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFCore.interfaces import IActionSucceededEvent
+from Products.CMFPlone.utils import log
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 from zope.interface import provider
+
+import logging
 
 
 logger = getLogger(__name__)
@@ -228,6 +231,9 @@ class Transferable(FlexibleView):
         if targets is None:
             targets = []
 
+        catalog = api.portal.get_tool("portal_catalog")
+        scenarios_index = catalog._catalog.getIndex("scenarios")
+
         def error_message(esd_to_title, msg):
             pmsg = _(
                 "No transfer to ${title}. ${msg}",
@@ -337,6 +343,14 @@ class Transferable(FlexibleView):
                     mapping={"target_title": esd_to_title},
                 )
                 api.portal.show_message(msg, self.request)
+
+                brain = api.content.find(UID=transfer_copy.UID())[0]
+                index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
+                if set(getattr(transfer_copy, "scenarios", [])) != set(index_entry):
+                    log(
+                        f"Inconsistent scenarios index for {'/'.join(transfer_copy.getPhysicalPath())}",
+                        severity=logging.ERROR,
+                    )
 
         execute_under_special_role(self.context, "Manager", doIt)
 
