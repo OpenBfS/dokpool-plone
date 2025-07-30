@@ -39,6 +39,9 @@ Fixed:
 - Do not target link-modal when hiding tabs from normal users when editing. (#6152 and #5880)
   [pbauer]
 
+- Add workaround for faulty index scenarios: Only archive entries that belong to the archived event. (#6125)
+  [pbauer]
+
 
 Technical:
 
