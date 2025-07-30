@@ -88,10 +88,7 @@ class ITransferable(model.Schema):
 
     transferLog = schema.Text(
         title=_("label_dpdocument_transferlog", default="Transfer log"),
-        description=_(
-            "description_dpdocument_transferlog",
-            default="Only used for archived documents.",
-        ),
+        description=_("description_dpdocument_transferlog", default="Only used for archived documents."),
         required=False,
     )
     directives.omitted("transferLog")
@@ -235,10 +232,7 @@ class Transferable(FlexibleView):
         scenarios_index = catalog._catalog.getIndex("scenarios")
 
         def error_message(esd_to_title, msg):
-            pmsg = _(
-                "No transfer to ${title}. ${msg}",
-                mapping=dict(title=esd_to_title, msg=msg),
-            )
+            pmsg = _("No transfer to ${title}. ${msg}", mapping=dict(title=esd_to_title, msg=msg))
             portalMessage(self.context, pmsg, type="error")
 
         def doIt():
@@ -276,22 +270,14 @@ class Transferable(FlexibleView):
                         if scens:
                             scen_id = scens[0].getId()
                             if not knowsScen(transfer_folder, scen_id):
-                                error_message(
-                                    esd_to_title,
-                                    _("Unknown scenario not accepted."),
-                                )
+                                error_message(esd_to_title, _("Unknown scenario not accepted."))
                                 continue
                         else:
                             error_message(esd_to_title, _("Document has no scenario."))
                             continue
 
                 # At this point, transfer is allowed.
-                logger.info(
-                    "Transfer {} to {}.".format(
-                        "/".join(self.context.getPhysicalPath()),
-                        esd_to_title,
-                    )
-                )
+                logger.info("Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
 
                 # 2) Put a copy of me in transfer folder, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
@@ -338,10 +324,7 @@ class Transferable(FlexibleView):
                     log_entry["scenario_ids"] = ", ".join(copy_scenario_ids)
                 transfer_copy.receiver_log += (log_entry,)
 
-                msg = _(
-                    "Transferred to ${target_title}",
-                    mapping={"target_title": esd_to_title},
-                )
+                msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
                 api.portal.show_message(msg, self.request)
 
                 brain = api.content.find(UID=transfer_copy.UID())[0]
@@ -411,12 +394,7 @@ def automatic_transfer(obj):
         if already_transferring:
             return
 
-        logger.info(
-            'Automatic transfer of "{}" from {}'.format(
-                obj.Title(),
-                "/".join(obj.getPhysicalPath()),
-            )
-        )
+        logger.info('Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
         try:
             return tObj.transferToAll()
         except BaseException:
@@ -427,8 +405,4 @@ def is_sender(obj):
     roles = api.user.get_roles(obj=obj)
     if "Manager" in roles or "Site Administrator" in roles or "ContentSender" in roles:
         return True
-    groups = api.user.get_current().getGroups()
-    for group in groups:
-        if "Senders" in group:
-            return True
-    return False
+    return any("Senders" in group for group in api.user.get_current().getGroups())
