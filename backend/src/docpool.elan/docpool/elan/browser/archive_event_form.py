@@ -150,6 +150,10 @@ class ArchiveAndClose(BrowserView):
         )
         for index, brain in enumerate(brains, start=1):
             obj = brain.getObject()
+            if self.context.UID() not in IELANDocument(obj).scenarios:
+                # If the object is not part of the current event, the index is wrong and we skip it
+                logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
+                continue
             target_folder = self._ensureTargetFolder(obj, archive_contentarea)
             if self.can_move(obj):
                 self._move_to_archive(target_folder, obj)
@@ -404,6 +408,10 @@ class Snapshot(ArchiveAndClose):
         )
         for index, brain in enumerate(brains, start=1):
             obj = brain.getObject()
+            if self.context.UID() not in IELANDocument(obj).scenarios:
+                # If the object is not part of the current event, the index is wrong and we skip it
+                logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
+                continue
             target_folder = self._ensureTargetFolder(obj, archive_contentarea)
             if self.can_move(obj):
                 self._move_to_archive(target_folder, obj)
