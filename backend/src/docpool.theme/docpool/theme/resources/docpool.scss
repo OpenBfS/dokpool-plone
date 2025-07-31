@@ -170,3 +170,9 @@ body.userrole-contentadmin {
     font-size: 1.125rem;
   }
 }
+
+// Hide "No items" in Konfiguration (config) for dtypes only
+// https://redmine-koala.bfs.de/issues/6059
+body.portaltype-doctype.section-config.subsection-dtypes #folder-listing {
+  display: none;
+}
