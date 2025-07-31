@@ -19,6 +19,12 @@ Changed:
   [pbauer]
 
 
+Added:
+
+- Add a form @@transfer_config to set transfer targets for a selection of doctypes. (#5233)
+  [tlotze]
+
+
 Fixed:
 
 - Fix permissions on imported example content from distribution. (#6055)
@@ -30,7 +36,7 @@ Fixed:
 - Hard-code sitemap-depth used in navigation-portlet to work with old value from registry in Plone 6.1. (#5954)
   [pbauer]
 
-- Show message when redirecting from form to archived Event. (#6131)
+- Show message when redirecting from archiving-form to archived Event. (#6131)
   [pbauer]
 
 - Fix viewing archived items that have no transferLog. (#6136)
