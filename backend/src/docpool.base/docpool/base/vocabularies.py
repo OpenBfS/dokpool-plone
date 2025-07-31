@@ -2,6 +2,7 @@ from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import activeApps
+from docpool.base.appregistry import appName
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import selectableApps
 from docpool.base.content.doctype import IDocType
@@ -263,7 +264,14 @@ def TransferTargetsVocabularyFactory(context=None):
         sendingESD=esd.UID(),
         unrestricted=True,  # ContentSenders do not need access to the target folders.
     )
-    items = [(brain.getObject().from_to_title(), brain.UID) for brain in brains]
+    targets = (brain.getObject() for brain in brains)
+    items = [
+        (
+            f"{t.from_to_title()} ({', '.join(appName(app) for app in t.myDocumentPool().supportedApps)})",
+            t.UID(),
+        )
+        for t in targets
+    ]
     return SimpleVocabulary([SimpleTerm(uid, title=from_to_title) for from_to_title, uid in sorted(items)])
 
 
