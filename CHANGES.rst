@@ -24,6 +24,9 @@ Added:
 - Add a form @@transfer_config to set transfer targets for a selection of doctypes. (#5233)
   [tlotze]
 
+- Show active apps of targets in transfer form. (#5994)
+  [pbauer]
+
 
 Fixed:
 
