@@ -1,6 +1,6 @@
 from Acquisition import aq_inner
-from docpool.base.appregistry import appName
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.appregistry import appName
 from docpool.base.behaviors.utils import allowed_targets
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
@@ -18,9 +18,9 @@ def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
     terms = []
     for target in targets:
-        target_apps = ", ".join([appName(app) for app in target['target_apps']])
+        target_apps = ", ".join([appName(app) for app in target["target_apps"]])
         title = f"{target['from_to_title']} ({target_apps})"
-        terms.append(SimpleTerm(target['uid'], target['uid'], title))
+        terms.append(SimpleTerm(target["uid"], target["uid"], title))
     return SimpleVocabulary(terms)
 
 

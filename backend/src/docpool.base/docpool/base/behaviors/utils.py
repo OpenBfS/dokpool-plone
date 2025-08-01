@@ -43,7 +43,11 @@ def allowed_targets(context):
         if permission != "block":
             from_to_title = obj.from_to_title()
             target_docpool = obj.myDocumentPool()
-            targets.append({"uid": brain.UID, "from_to_title": from_to_title, "target_apps": target_docpool.supportedApps})
+            targets.append({
+                "uid": brain.UID,
+                "from_to_title": from_to_title,
+                "target_apps": target_docpool.supportedApps,
+            })
 
     transferable = ITransferable(context, None)
     if transferable is not None:
