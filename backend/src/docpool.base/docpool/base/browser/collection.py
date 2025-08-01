@@ -2,10 +2,7 @@ from docpool.base.browser.folderbase import FolderBaseView
 from docpool.base.utils import extendOptions
 from docpool.base.utils import is_rei_workflow
 from plone import api
-from plone.app.contenttypes.browser.collection import (
-    CollectionView as CollectionBaseView,
-)
-from Products.CMFCore.utils import getToolByName
+from plone.app.contenttypes.browser.collection import CollectionView as CollectionBaseView
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.i18n import translate
@@ -22,7 +19,7 @@ class CollectionView(CollectionBaseView):
         # set batch size in request to fool the macro 'listing' from dp_macros.pt
         self.request.set("b_size", self.b_size)
 
-    def getFolderContents(self, kwargs):
+    def folder_contents(self):
         """Since we use a template intended for folders we need to get content
         differently.
         """
@@ -102,7 +99,7 @@ class DashboardCollectionView(CollectionBaseView):
         # set batch size in request to fool the macro 'listing' from dp_macros.pt
         self.request.set("b_size", self.b_size)
 
-    def getFolderContents(self, kwargs):
+    def folder_contents(self):
         """Since we use a template intended for folders we need to get content
         differently.
         """

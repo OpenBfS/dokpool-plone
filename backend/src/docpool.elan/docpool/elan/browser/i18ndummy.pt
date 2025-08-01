@@ -1,17 +1,17 @@
 <span i18n:domain="docpool.elan">
 
-<i18n:dummy translate="archive_confirm_msg"></i18n:dummy>
-<i18n:dummy translate="snapshot_confirm_msg"></i18n:dummy>
-<i18n:dummy translate="private"></i18n:dummy>
-<i18n:dummy translate="published"></i18n:dummy>
-<i18n:dummy translate="alert_delete_popup"></i18n:dummy>
-<i18n:dummy translate="alert_reject_popup"></i18n:dummy>
-<i18n:dummy translate="alert_retract_popup"></i18n:dummy>
-<i18n:dummy translate="alert_submit_popup"></i18n:dummy>
-<i18n:dummy translate="alert_publish_popup"></i18n:dummy>
-<i18n:dummy translate="Home"></i18n:dummy>
-<i18n:dummy translate="Archiving"></i18n:dummy>
-<i18n:dummy translate="Purge"></i18n:dummy>
-<i18n:dummy translate="Snapshot"></i18n:dummy>
+  <i18n:dummy translate="archive_confirm_msg"></i18n:dummy>
+  <i18n:dummy translate="snapshot_confirm_msg"></i18n:dummy>
+  <i18n:dummy translate="private"></i18n:dummy>
+  <i18n:dummy translate="published"></i18n:dummy>
+  <i18n:dummy translate="alert_delete_popup"></i18n:dummy>
+  <i18n:dummy translate="alert_reject_popup"></i18n:dummy>
+  <i18n:dummy translate="alert_retract_popup"></i18n:dummy>
+  <i18n:dummy translate="alert_submit_popup"></i18n:dummy>
+  <i18n:dummy translate="alert_publish_popup"></i18n:dummy>
+  <i18n:dummy translate="Home"></i18n:dummy>
+  <i18n:dummy translate="Archiving"></i18n:dummy>
+  <i18n:dummy translate="Purge"></i18n:dummy>
+  <i18n:dummy translate="Snapshot"></i18n:dummy>
 
 </span>

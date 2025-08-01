@@ -20,9 +20,7 @@ class IDocType(model.Schema):
     """ """
 
     allowUploads = schema.Bool(
-        title=_(
-            "label_doctype_allowuploads", default="Can contain documents and images"
-        ),
+        title=_("label_doctype_allowuploads", default="Can contain documents and images"),
         description=_("description_doctype_allowuploads", default=""),
         required=False,
         default=True,
@@ -83,9 +81,7 @@ class IDocType(model.Schema):
     )
 
     pdfPattern = schema.TextLine(
-        title=_(
-            "label_doctype_pdfpattern", default="Name pattern for representative PDF"
-        ),
+        title=_("label_doctype_pdfpattern", default="Name pattern for representative PDF"),
         description=_(
             "description_doctype_pdfpattern",
             default="If PDF exists, an image will be created from its first page as a visual representation for objects of this type.",

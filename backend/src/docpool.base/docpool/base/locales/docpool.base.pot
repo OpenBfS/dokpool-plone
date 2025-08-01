@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-03-31 07:02+0000\n"
+"POT-Creation-Date: 2025-07-24 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
 msgid "Adding a group is only allowed in a dokpool!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "Apply"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/print.pt
@@ -300,7 +304,7 @@ msgid "Paste could not find clipboard content."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Pending BMUV"
+msgid "Pending BMUKN"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -336,7 +340,7 @@ msgid "Published"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Published BMUV"
+msgid "Published BMUKN"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -412,7 +416,7 @@ msgid "Submit to Authority"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Submit to BMUV"
+msgid "Submit to BMUKN"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -475,12 +479,16 @@ msgstr ""
 msgid "Transfer Folder: filter not active!"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "Transfer config"
+msgstr ""
+
 #: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "Transfer target"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
-msgid "Transfer to<br>"
+msgid "Transfer to<br />"
 msgstr ""
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
@@ -596,6 +604,16 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "created:"
+msgstr ""
+
+#. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_document_types"
+msgstr ""
+
+#. Default: "Automatic transfer targets to add or remove for the document types selected above."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_transfer_targets"
 msgstr ""
 
 #: docpool.base/docpool/base/content/collaborationfolder.py
@@ -760,6 +778,16 @@ msgstr ""
 msgid "help_change_status_action"
 msgstr ""
 
+#. Default: "Deselect all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-deselect-all"
+msgstr ""
+
+#. Default: "Select all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-select-all"
+msgstr ""
+
 #. Default: "Anonymous User"
 #: docpool.base/docpool/base/browser/review_history.py
 msgid "label_anonymous_user"
@@ -767,6 +795,7 @@ msgstr ""
 
 #. Default: "Cancel"
 #: docpool.base/docpool/base/browser/folderbase.py
+#: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_cancel"
 msgstr ""
 
@@ -945,6 +974,31 @@ msgstr ""
 msgid "label_toggle"
 msgstr ""
 
+#. Default: "add"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add"
+msgstr ""
+
+#. Default: "Automatic transfer for selected document types:"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add_or_remove"
+msgstr ""
+
+#. Default: "Document types"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_document_types"
+msgstr ""
+
+#. Default: "remove"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_remove"
+msgstr ""
+
+#. Default: "Transfer targets"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_transfer_targets"
+msgstr ""
+
 #. Default: "Applications"
 #: docpool.base/docpool/base/users/personalpreferences.py
 msgid "label_user_apps"
@@ -961,6 +1015,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "needs confirmation"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "open attachment"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -1005,6 +1063,11 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "revised - Show document"
+msgstr ""
+
+#. Default: "Configured ${targets} target(s) for ${types} type(s)."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "status_transfer_config_success"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt

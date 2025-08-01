@@ -3,7 +3,6 @@ from plone.memoize import view
 
 
 class BaseView:
-
     """Base view with helper methods for Journal."""
 
     @property
@@ -15,6 +14,5 @@ class BaseView:
     @view.memoize
     def show_byline(self):
         """Return True if user is allowed to view 'about' information."""
-        site_props = api.portal.get_tool("portal_properties").site_properties
-        allow_view = site_props.getProperty("allowAnonymousViewAbout", True)
+        allow_view = api.portal.get_registry_record("plone.allow_anon_views_about")
         return not self.is_anonymous or allow_view

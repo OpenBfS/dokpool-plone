@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-05-13 17:10+0000\n"
+"POT-Creation-Date: 2025-07-18 11:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -269,10 +269,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Intensive mode"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/archive_event_form.py
-msgid "Item has old archiving info!"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.py

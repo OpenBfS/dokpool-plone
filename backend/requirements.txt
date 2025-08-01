@@ -1,14 +1,1 @@
--c constraints.txt
-
-setuptools
-zope.testrunner
-Products.PloneKeywordManager
-pas.plugins.ldap
-eea.facetednavigation
-collective.impersonate
-waitress_fastlisten
-coverage
-
-# We use the same requirements.txt for filestorage and relstorage
-RelStorage
-psycopg2
+-c https://dist.plone.org/release/6.1.2/constraints.txt

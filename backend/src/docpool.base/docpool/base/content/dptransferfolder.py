@@ -12,6 +12,7 @@ from docpool.base.utils import queryForObject
 from docpool.base.utils import queryForObjects
 from logging import getLogger
 from persistent.mapping import PersistentMapping
+from plone import api
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
@@ -174,47 +175,17 @@ class DPTransferFolder(FolderBase):
         """ """
         return self
 
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
     def getFiles(self, **kwargs):
         """ """
-        args = {"portal_type": "File"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        kwargs["portal_type"] = "File"
+        kwargs["sort_on"] = "getObjPositionInParent"
+        return [i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)]
 
     def getImages(self, **kwargs):
         """ """
-        args = {"portal_type": "Image"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getSRModules(self, **kwargs):
-        """ """
-        args = {"portal_type": "SRModule"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getSituationReports(self, **kwargs):
-        """ """
-        args = {"portal_type": "SituationReport"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
+        kwargs["portal_type"] = "Image"
+        kwargs["sort_on"] = "getObjPositionInParent"
+        return [i.getObject() for i in api.content.find(context=self, depth=1, **kwargs)]
 
 
 @adapter(IDPTransferFolder, IObjectAddedEvent)
@@ -252,9 +223,7 @@ def updated(obj, event=None):
 def deleted(obj, event=None):
     log("TransferFolder deleted: %s" % str(obj))
     if not IArchiving(obj).is_archive:
-        if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(
-            event.object
-        ):
+        if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(event.object):
             # do not modify content from the site or docpool that will be deleted
             return
         # Revoke any read access
@@ -267,9 +236,7 @@ def transfer_folders_for(obj):
     except AttributeError:
         return []
 
-    brains = queryForObjects(
-        esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__
-    )
+    brains = queryForObjects(esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)
     return [brain.getObject() for brain in brains]
 
 

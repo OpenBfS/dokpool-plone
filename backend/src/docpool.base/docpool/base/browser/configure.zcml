@@ -352,4 +352,11 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="transfer_config"
+      for="docpool.base.content.dpconfig.DPConfig"
+      class=".transfer_config.TransferConfigView"
+      permission="zope2.View"
+      />
+
 </configure>

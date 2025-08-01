@@ -39,7 +39,7 @@ class Dashboard(Item):
         get the most recent document (if available).
         """
         res = []
-        for c in self.dbCollections and self.dbCollections or []:
+        for c in (self.dbCollections and self.dbCollections) or []:
             coll = c.to_object
             docs = coll.results(b_size=1)
             if len(docs) > 0:

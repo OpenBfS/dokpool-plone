@@ -1,6 +1,5 @@
-"""Adapt a Journal with a container of journal-entries.
+"""Adapt a Journal with a container of journal-entries."""
 
-"""
 from datetime import datetime
 from elan.journal.interfaces import IJournal
 from persistent import Persistent
@@ -22,7 +21,6 @@ class IJournalEntryContainer(Interface):
 
 
 class IJournalEntry(Interface):
-
     """An entry to a Journal."""
 
     creator = Attribute("Id of user creating the journalentry.")

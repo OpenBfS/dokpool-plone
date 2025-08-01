@@ -135,30 +135,6 @@ class DocumentPool(Container):
         """ """
         return self
 
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getContentAreas(self, **kwargs):
-        """ """
-        args = {"portal_type": "ContentArea"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
-    def getDPConfigs(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPConfig"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]
-
 
 @adapter(IDocumentPool, IObjectAddedEvent)
 def docPoolAdded(obj, event=None):

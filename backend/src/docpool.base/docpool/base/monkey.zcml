@@ -10,10 +10,10 @@
       original="setMemberProperties"
       replacement=".monkey.setMemberProperties"
       class="Products.PlonePAS.tools.memberdata.MemberData"
-      preserveOriginal="true"
       preservedoc="true"
       docstringWarning="false"
       description="Avoid ConflictErrors from writing login times to DB."
+      preserveOriginal="true"
       />
 
 </configure>

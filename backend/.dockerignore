@@ -2,12 +2,15 @@
 .gitattributes
 bin
 Dockerfile
+Dockerfile.acceptance
 include
 instance
 instance_relstorage
 instance.yaml
+instance_relstorage.yaml
 lib
 lib64
 Makefile
 pyvenv.cfg
 var
+.venv

@@ -27,9 +27,7 @@ def dpAdded(self):
     setTransfersLocalRoles(self)
 
 
-TRANSFER_AREA = [
-    {TYPE: "DPTransfersArea", TITLE: "Transfers", ID: "Transfers", CHILDREN: []}
-]
+TRANSFER_AREA = [{TYPE: "DPTransfersArea", TITLE: "Transfers", ID: "Transfers", CHILDREN: []}]
 
 
 def setTransfersLocalRoles(self):
@@ -39,9 +37,7 @@ def setTransfersLocalRoles(self):
     self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
     self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
     if base_hasattr(self, "contentconfig"):
-        self.contentconfig.scen.manage_setLocalRoles(
-            "%s_Receivers" % prefix, ["ContentReceiver"]
-        )
+        self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
 
@@ -79,9 +75,7 @@ def createTransferArea(self, fresh):
     self.content.moveObject("Transfers", 0)
     placeful_wf = getToolByName(self, "portal_placeful_workflow")
     try:
-        self.content.Transfers.manage_addProduct[
-            "CMFPlacefulWorkflow"
-        ].manage_addWorkflowPolicyConfig()
+        self.content.Transfers.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
     except BadRequest as e:
         # print type(e)
         log(e)

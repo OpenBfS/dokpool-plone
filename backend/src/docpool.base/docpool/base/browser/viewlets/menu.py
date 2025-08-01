@@ -1,4 +1,3 @@
-from Acquisition import aq_get
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
@@ -49,7 +48,7 @@ class DropDownMenuStrategy(DefaultNavtreeStrategy):
 class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
     _item_markup_template_nolink = (
         '<li class="{id}{has_sub_class} nav-item">'
-        '<a class="state-{review_state} nav-link"{aria_haspopup}>{title}</a>{opener}'  # noqa: E 501
+        '<a class="state-{review_state} nav-link"{aria_haspopup}>{title}</a>{opener}'
         "{sub}"
         "</li>"
     )
@@ -59,7 +58,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         "elan": "/esd",
         "doksys": "/searches",
         "rei": "/berichte",
-        "rodos": "/projections",
+        "rodos": "/potentially-affected-areas",
     }
 
     @property
@@ -82,6 +81,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             return tree
 
         self.navtree_add_apps_menu(tree)
+        self.navtree_add_transfer_config(tree)
 
         if not IArchiving(self.context).is_archive:
             self.navtree_add_contentarea(tree)
@@ -98,9 +98,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         adaptQuery(query, self.context)
 
     def navtree_add_apps_menu(self, tree):
-        current_dp, current_app, dp_apps = getApplicationDocPoolsForCurrentUser(
-            self.context
-        )
+        current_dp, current_app, dp_apps = getApplicationDocPoolsForCurrentUser(self.context)
         app_title = appName(current_app) if current_app else None
 
         if current_dp:
@@ -127,9 +125,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             dp_id = dp.getId()
             physical_path = self.context.getPhysicalPath()
             keep_context = (
-                current_dp_id == dp_id
-                and "content" in physical_path
-                and "archive" not in physical_path
+                current_dp_id == dp_id and "content" in physical_path and "archive" not in physical_path
             )
             url = (self.context if keep_context else dp).absolute_url()
             dp_path = f"{self.navtree_path}/apps/{dp_id}"
@@ -144,16 +140,11 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
                     # item_class=app_title,
                 )
             )
-            for app_title, app_name in sorted(
-                {appName(i): i for i in app_names}.items()
-            ):
+            for app_title, app_name in sorted({appName(i): i for i in app_names}.items()):
                 app_id = f"{dp_id}-{app_name}"
                 params = (
                     ""
-                    if (
-                        keep_context
-                        or (redirect_to := self.redirect_to_map.get(app_name)) is None
-                    )
+                    if (keep_context or (redirect_to := self.redirect_to_map.get(app_name)) is None)
                     else f"&redirect_to={redirect_to}"
                 )
                 tree[dp_path].append(
@@ -203,6 +194,22 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         tree[path] = []
         for child in folder.get("children", ()):
             self.recurse_folder(child, path, tree)
+
+    def navtree_add_transfer_config(self, tree):
+        if not safe_hasattr(self.context, "myDocumentPool"):
+            return
+        dp = self.context.myDocumentPool()
+        config_path = f"{self.navtree_path}/config"
+        tree[config_path].append(
+            dict(
+                id="transfer_config",
+                path=f"{config_path}/@@transfer_config",
+                uid="transfer_config",
+                title=utranslate("docpool.base", "Transfer config", context=self.context),
+                url=f"{dp['config'].absolute_url()}/@@transfer_config",
+                review_state="visible",
+            )
+        )
 
 
 def adaptQuery(query, context):
@@ -320,9 +327,11 @@ def getFoldersForCurrentUser(context):
     return transfers_result
 
 
-def _folderTree(context, path, filter={}):
+def _folderTree(context, path, filter=None):
     """Return tree of tabs based on content structure"""
 
+    if filter is None:
+        filter = {}
     queryBuilder = DropDownMenuQueryBuilder(context)
     query = queryBuilder()
     query.update(filter)

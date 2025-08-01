@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      tal:define="
+        items view/items;
+        items python:list(items);
+        single_checkbox python:len(items) == 1;
+      "
+      tal:omit-tag=""
+      i18n:domain="docpool.base"
+>
+  <div class="pat-checklist"
+       id="${view/id}"
+       data-pat-checklist=".checklist-select-all .checklist-deselect-all"
+       tal:condition="python:len(items) &gt; 0"
+       tal:omit-tag="single_checkbox"
+  >
+    <div tal:condition="not:single_checkbox">
+      <button class="checklist-select-all"
+              i18n:translate="label-select-all"
+      >
+        Select all
+      </button>
+      <button class="checklist-deselect-all"
+              i18n:translate="label-deselect-all"
+      >
+        Deselect all
+      </button>
+    </div>
+    <div class="form-check"
+         id="${python:single_checkbox and view.id or None}"
+         tal:repeat="item items"
+    ><!--! NOTE:
+           Since most people import the "CheckBoxFieldWidget"
+           directly from z3c.form.browser.checkbox our adapter
+           which sets the Bootstrap "form-check-input" css class
+           isn't invoked. For this reason we manually add the
+           class here in the template.
+           When all imports are refactored to
+           "plone.app.z3cform.widgets.checkbox.CheckBoxFieldWidget"
+           this can be cleaned up. -->
+      <input checked="${python:'checked' if item['checked'] else None}"
+             name="${item/name}"
+             type="checkbox"
+             value="${item/value}"
+             tal:attributes="
+               view/attributes;
+               class string:${view/attributes/class} form-check-input;
+               id item/id;
+             "
+      />
+      <label class="form-check-label ${python:getattr(view, 'label_css_class', '')}"
+             for="${item/id}"
+      >
+        <span class="label">${item/label}</span>
+      </label>
+    </div>
+  </div>
+  <input name="${view/name}-empty-marker"
+         type="hidden"
+         value="1"
+  />
+</html>

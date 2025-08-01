@@ -1,33 +1,41 @@
 <table i18n:domain="docpool.base">
-<tr tal:define="options view/options;
-                 dpbrain options/dpbrain;
-                 isOverview options/isOverview;
-                 item_description dpbrain/Description;
-                 item_url dpbrain/getURL;
-                 item_type dpbrain/Type;
-                 normalizeString nocall: context/plone_utils/normalizeString;
-                 rs dpbrain/review_state;
-                 item_wf_state_class python:'state-' + normalizeString(rs);
-                 item_modified dpbrain/ModificationDate;
-                 item_created dpbrain/CreationDate;
-                 item_creator dpbrain/Creator;
-                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                 pas_member nocall:context/@@pas_member;
-                 author python:pas_member.info(item_creator);
-                 creator_fullname author/name_or_id;
-                 item_ptype dpbrain/portal_type;
-                 item_type_class python:'contenttype-' + normalizeString(item_ptype);
-                 "
-    class="wrapper">
+  <tr class="wrapper"
+      tal:define="
+        options view/options;
+        dpbrain options/dpbrain;
+        isOverview options/isOverview;
+        item_description dpbrain/Description;
+        item_url dpbrain/getURL;
+        item_type dpbrain/Type;
+        normalizeString nocall: context/plone_utils/normalizeString;
+        rs dpbrain/review_state;
+        item_wf_state_class python:'state-' + normalizeString(rs);
+        item_modified dpbrain/ModificationDate;
+        item_created dpbrain/CreationDate;
+        item_creator dpbrain/Creator;
+        toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+        pas_member nocall: context/@@pas_member;
+        author python:pas_member.info(item_creator);
+        creator_fullname author/name_or_id;
+        item_ptype dpbrain/portal_type;
+        item_type_class python:'contenttype-' + normalizeString(item_ptype);
+      "
+  >
 
-                <td class="actions">
-                </td>
-                <td i18n:attributes="data-title" data-title="Title / Description / Text" class="title">
-                    <div metal:use-macro="context/@@dp.macros/macros/foldercontent"/>
-                </td>
-                <td i18n:attributes="data-title" data-title="Metadata" class="metadata">
-                    <div metal:use-macro="context/@@dp.macros/macros/content_metadata"/>
-                </td>
+    <td class="actions">
+    </td>
+    <td class="title"
+        data-title="Title / Description / Text"
+        i18n:attributes="data-title"
+    >
+      <div metal:use-macro="context/@@dp.macros/macros/foldercontent"></div>
+    </td>
+    <td class="metadata"
+        data-title="Metadata"
+        i18n:attributes="data-title"
+    >
+      <div metal:use-macro="context/@@dp.macros/macros/content_metadata"></div>
+    </td>
 
-</tr>
+  </tr>
 </table>

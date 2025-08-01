@@ -1,4 +1,5 @@
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.appregistry import appName
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.config import TRANSFERS_APP
 from plone import api
@@ -33,9 +34,7 @@ class TransferForm(BrowserView):
             dpdoc.transferToTargets(targets)
             log(f'Transfer "{doc.title}" to transfer folders {targets}')
 
-        msg = _(
-            "${transferred} Items transferred!", mapping={"transferred": len(dpdocids)}
-        )
+        msg = _("${transferred} Items transferred!", mapping={"transferred": len(dpdocids)})
         api.portal.show_message(msg, request)
         request.response.redirect(self.context.absolute_url())
         return self.index()
@@ -66,7 +65,9 @@ class TransferForm(BrowserView):
             # ContentSenders do not need access to the target folders!
             brains = portal_catalog.unrestrictedSearchResults(UID=target)
             obj = brains[0]._unrestrictedGetObject()
-            to_title = obj.myDocumentPool().title
+            target_docpool = obj.myDocumentPool()
+            target_apps = ", ".join([appName(app) for app in target_docpool.supportedApps])
+            to_title = f"{target_docpool.title} ({target_apps})"
             target_infos.append({"id": target, "esd_to_title": to_title})
         return {
             "items": items,

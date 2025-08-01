@@ -2,9 +2,11 @@ from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import activeApps
+from docpool.base.appregistry import appName
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import selectableApps
 from docpool.base.content.doctype import IDocType
+from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
@@ -26,13 +28,9 @@ class AvailableAppsVocabulary:
     def __call__(self, context):
         dp_app_state = getMultiAdapter((context, context.REQUEST), name="dp_app_state")
         available = dp_app_state.appsPermittedForCurrentUser()
-        return SimpleVocabulary(
-            [
-                SimpleTerm(app[0], title=_(app[1]))
-                for app in activeApps()
-                if app[0] in available
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm(app[0], title=_(app[1])) for app in activeApps() if app[0] in available
+        ])
 
 
 AvailableAppsVocabularyFactory = AvailableAppsVocabulary()
@@ -43,9 +41,7 @@ class ActiveAppsVocabulary:
     """ """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [SimpleTerm(app[0], title=_(app[1])) for app in activeApps()]
-        )
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in activeApps()])
 
 
 ActiveAppsVocabularyFactory = ActiveAppsVocabulary()
@@ -56,9 +52,7 @@ class ExtendingAppsVocabulary:
     """ """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [SimpleTerm(app[0], title=_(app[1])) for app in extendingApps()]
-        )
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in extendingApps()])
 
 
 ExtendingAppsVocabularyFactory = ExtendingAppsVocabulary()
@@ -69,9 +63,7 @@ class SelectableAppsVocabulary:
     """ """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [SimpleTerm(app[0], title=_(app[1])) for app in selectableApps()]
-        )
+        return SimpleVocabulary([SimpleTerm(app[0], title=_(app[1])) for app in selectableApps()])
 
 
 SelectableAppsVocabularyFactory = SelectableAppsVocabulary()
@@ -85,9 +77,7 @@ class DTOptionsVocabulary:
         # print context
         if not context:
             return []
-        return SimpleVocabulary(
-            [SimpleTerm(dt[0], title=dt[1]) for dt in context.getMatchingDocTypes()]
-        )
+        return SimpleVocabulary([SimpleTerm(dt[0], title=dt[1]) for dt in context.getMatchingDocTypes()])
 
 
 DTOptionsVocabularyFactory = DTOptionsVocabulary()
@@ -105,15 +95,13 @@ class DocumentTypesVocabulary:
             return SimpleVocabulary([])
 
         items = [(t.Title, t.id) for t in cat({"portal_type": "DocType", "path": path})]
-        items.extend(
-            [
-                ("infodoc", "infodoc"),
-                ("active", "active"),
-                ("inactive", "inactive"),
-                ("closed", "closed"),
-                ("none", "none"),
-            ]
-        )
+        items.extend([
+            ("infodoc", "infodoc"),
+            ("active", "active"),
+            ("inactive", "inactive"),
+            ("closed", "closed"),
+            ("none", "none"),
+        ])
         items.sort()
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
@@ -124,9 +112,7 @@ DocumentTypesVocabularyFactory = DocumentTypesVocabulary()
 
 @provider(IVocabularyFactory)
 def DocTypeVocabularyFactory(context=None, raw=False):
-    """Used for Relationfield docpool.base.content.doctype.IDocType.allowedDocTypes
-    and in docpool.base.monkey.possibleDocTypes
-    """
+    """ """
     esd = getDocumentPoolSite(context)
     path = "/".join(esd.getPhysicalPath()) + "/config"
     query = {
@@ -172,11 +158,12 @@ class DocumentPoolVocabulary:
                 return SimpleVocabulary([])
             else:
                 return []
-        esds = cat.unrestrictedSearchResults(
-            {"portal_type": "DocumentPool", "sort_on": "sortable_title"}
-        )
+        esds = cat.unrestrictedSearchResults({
+            "portal_type": "DocumentPool",
+            "sort_on": "sortable_title",
+        })
         # print len(esds)
-        esds = [(brain.UID, brain.Title) for brain in esds if brain.UID != my_uid]
+        esds = [(brain.UID, brain.Title) for brain in esds if my_uid != brain.UID]
         # print esds
         if not raw:
             items = [SimpleTerm(i[0], i[0], i[1]) for i in esds]
@@ -197,9 +184,10 @@ class UserDocumentPoolVocabulary:
         cat = getToolByName(site, "portal_catalog", None)
         if cat is None:
             return []
-        esds = cat.unrestrictedSearchResults(
-            {"portal_type": "DocumentPool", "sort_on": "sortable_title"}
-        )
+        esds = cat.unrestrictedSearchResults({
+            "portal_type": "DocumentPool",
+            "sort_on": "sortable_title",
+        })
         items = [SimpleTerm(brain.UID, brain.UID, brain.Title) for brain in esds]
         return SimpleVocabulary(items)
 
@@ -211,13 +199,11 @@ UserDocumentPoolVocabularyFactory = UserDocumentPoolVocabulary()
 def DashboardCollectionsVocabularyFactory(context=None):
     esd = getDocumentPoolSite(context)
     path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-    return StaticCatalogVocabulary(
-        {
-            "portal_type": "DashboardCollection",
-            "sort_on": "sortable_title",
-            "path": path,
-        }
-    )
+    return StaticCatalogVocabulary({
+        "portal_type": "DashboardCollection",
+        "sort_on": "sortable_title",
+        "path": path,
+    })
 
 
 @implementer(IVocabularyFactory)
@@ -225,13 +211,11 @@ class PermissionsVocabulary:
     """ """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [
-                SimpleTerm("write", title=_("write")),
-                SimpleTerm("read/write", title=_("read/write")),
-                SimpleTerm("suspend", title=_("suspended")),
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm("write", title=_("write")),
+            SimpleTerm("read/write", title=_("read/write")),
+            SimpleTerm("suspend", title=_("suspended")),
+        ])
 
 
 PermissionsVocabularyFactory = PermissionsVocabulary()
@@ -242,12 +226,10 @@ class UnknownOptionsVocabulary:
     """ """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [
-                SimpleTerm("block", title=_("don't accept")),
-                SimpleTerm("confirm", title=_("needs confirmation")),
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm("block", title=_("don't accept")),
+            SimpleTerm("confirm", title=_("needs confirmation")),
+        ])
 
 
 UnknownOptionsVocabularyFactory = UnknownOptionsVocabulary()
@@ -258,16 +240,40 @@ class DTPermOptionsVocabulary:
     """ """
 
     def __call__(self, context):
-        return SimpleVocabulary(
-            [
-                SimpleTerm("block", title=_("don't accept")),
-                SimpleTerm("confirm", title=_("needs confirmation")),
-                SimpleTerm("publish", title=_("publish immediately")),
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm("block", title=_("don't accept")),
+            SimpleTerm("confirm", title=_("needs confirmation")),
+            SimpleTerm("publish", title=_("publish immediately")),
+        ])
 
 
 DTPermOptionsVocabularyFactory = DTPermOptionsVocabulary()
+
+
+@provider(IVocabularyFactory)
+def TransferTargetsVocabularyFactory(context=None):
+    """Collect transfer folders across all docpools which have the context docpool
+    configured as a sending ESD. This is not about doctype configuration.
+    """
+    if context is None:
+        return ()
+    esd = getDocumentPoolSite(context)
+    # Don't query for sorted results as our key attribute isn't part of the brain.
+    brains = api.content.find(
+        object_provides=IDPTransferFolder.__identifier__,
+        sendingESD=esd.UID(),
+        unrestricted=True,  # ContentSenders do not need access to the target folders.
+    )
+    targets = (brain.getObject() for brain in brains)
+    items = [
+        (
+            f"{t.from_to_title()} ({', '.join(appName(app) for app in t.myDocumentPool().supportedApps)})",
+            t.UID(),
+        )
+        for t in targets
+    ]
+    return SimpleVocabulary([SimpleTerm(uid, title=from_to_title) for from_to_title, uid in sorted(items)])
+
 
 allow_module("docpool.base.vocabularies")
 allow_class(DocumentPoolVocabulary)

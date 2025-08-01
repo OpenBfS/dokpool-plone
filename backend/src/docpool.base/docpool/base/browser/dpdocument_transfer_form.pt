@@ -1,70 +1,122 @@
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      i18n:domain="docpool.base"
-      xml:lang="en"
-      metal:use-macro="context/main_template/macros/master"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<body>
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.base"
+>
+  <body>
 
-<metal:content-core fill-slot="main">
-<metal:content-core define-macro="main">
-<tal:def tal:define="transfer_infos python:view.transfer_infos();
-                     items python:transfer_infos['items'];
-                     targets python:transfer_infos['targets'];
-                     can_transfer python: items and targets;
-                     ">
+    <metal:content-core fill-slot="main">
+      <metal:content-core define-macro="main">
+        <tal:def tal:define="
+                   transfer_infos python:view.transfer_infos();
+                   items python:transfer_infos['items'];
+                   targets python:transfer_infos['targets'];
+                   can_transfer python: items and targets;
+                 ">
 
-      <div tal:condition="python: not can_transfer">
-        <h2 i18n:translate="">No items or targets to transfer to!</h2>
-        <span><a href="" tal:attributes="href python:context.absolute_url()">&rarr; <span i18n:translate="">back to</span> <span tal:content="python:context.title_or_id()" /></a></span>
-      </div>
+          <div tal:condition="python: not can_transfer">
+            <h2 i18n:translate="">No items or targets to transfer to!</h2>
+            <span><a href=""
+                 tal:attributes="
+                   href python:context.absolute_url();
+                 "
+              >&rarr;
+                <span i18n:translate="">back to</span>
+                <span tal:content="python:context.title_or_id()"></span></a></span>
+          </div>
 
-      <form method="post"
-            id="doctransferform"
-            name="transferform"
-            action="#"
-            tal:condition="python: can_transfer"
-            tal:attributes="action string:${context/absolute_url}/@@dpdocument_transfer_form">
+          <form id="doctransferform"
+                action="#"
+                method="post"
+                name="transferform"
+                tal:condition="python: can_transfer"
+                tal:attributes="
+                  action string:${context/absolute_url}/@@dpdocument_transfer_form;
+                "
+          >
 
-        <input type="hidden" name="form.submitted" value="1" />
+            <input name="form.submitted"
+                   type="hidden"
+                   value="1"
+            />
 
-        <h2 i18n:translate="">Transfer</h2>
-        <p i18n:translate="">The following items will be transferred:</p>
-        <ul>
-          <li tal:repeat="item items" tal:content="python: item.title" />
-        </ul>
+            <h2 i18n:translate="">Transfer</h2>
+            <p i18n:translate="">The following items will be transferred:</p>
+            <ul>
+              <li tal:repeat="item items"
+                  tal:content="python: item.title"
+              ></li>
+            </ul>
 
-        <table class="table listing">
-          <thead>
-            <tr>
-              <th class="nosort" width="5"></th>
-              <th class="nosort" i18n:translate="">Transfer to<br></th>
-            </tr>
-          </thead>
-          <tbody>
-             <tr tal:repeat="target targets">
-                 <td>
-                    <input type="checkbox" title="" alt="" value="" name="targets:list" class="noborder" tal:attributes="id target/id; value target/id;">
-                 </td>
-                 <td valign="top"><label tal:attributes="for target/id" tal:content="target/esd_to_title">Test1</label></td>
-             </tr>
-          </tbody>
-        </table>
+            <table class="table listing">
+              <thead>
+                <tr>
+                  <th class="nosort"
+                      width="5"
+                  ></th>
+                  <th class="nosort"
+                      i18n:translate=""
+                  >Transfer to<br /></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr tal:repeat="target targets">
+                  <td>
+                    <input class="noborder"
+                           alt=""
+                           name="targets:list"
+                           title=""
+                           type="checkbox"
+                           value=""
+                           tal:attributes="
+                             id target/id;
+                             value target/id;
+                           "
+                    />
+                  </td>
+                  <td valign="top"><label tal:content="target/esd_to_title"
+                           tal:attributes="
+                             for target/id;
+                           "
+                    >Test1</label></td>
+                </tr>
+              </tbody>
+            </table>
 
-        <tal:block tal:repeat="item items">
-          <input type="hidden" name="dpdocids:list" value="1" tal:attributes="value python:item.absolute_url_path()" />
-        </tal:block>
+            <tal:block tal:repeat="item items">
+              <input name="dpdocids:list"
+                     type="hidden"
+                     value="1"
+                     tal:attributes="
+                       value python:item.absolute_url_path();
+                     "
+              />
+            </tal:block>
 
-        <div class="formControls" i18n:domain="plone">
-          <input type="submit" class="input-sichern context btn btn-primary" name="form.button.submit" value="Apply" i18n:attributes="value label_apply;title"/>
-          <input type="submit" class="input-abbrechen btn btn-secondary" value="Cancel" name="form.button.cancel" i18n:attributes="value;title"/>
-        </div>
-      </form>
-</tal:def>
-</metal:content-core>
-</metal:content-core>
+            <div class="formControls"
+                 i18n:domain="plone"
+            >
+              <input class="input-sichern context btn btn-primary"
+                     name="form.button.submit"
+                     type="submit"
+                     value="Apply"
+                     i18n:attributes="value label_apply;title"
+              />
+              <input class="input-abbrechen btn btn-secondary"
+                     name="form.button.cancel"
+                     type="submit"
+                     value="Cancel"
+                     i18n:attributes="value;title"
+              />
+            </div>
+          </form>
+        </tal:def>
+      </metal:content-core>
+    </metal:content-core>
 
-</body>
+  </body>
 </html>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-03-31 07:02+0000\n"
-"PO-Revision-Date: 2024-12-22 21:57+0100\n"
+"POT-Creation-Date: 2025-07-24 14:32+0000\n"
+"PO-Revision-Date: 2025-07-28 12:16+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,10 @@ msgstr "Unterstützung für Anwendungen hinzufügen"
 #: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
 msgid "Adding a group is only allowed in a dokpool!"
 msgstr "Gruppen dürfen nur in Dokpools angelegt werden!"
+
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "Apply"
+msgstr "Anwenden"
 
 #: docpool.base/docpool/base/browser/print.pt
 msgid "Archive"
@@ -299,8 +303,8 @@ msgid "Paste could not find clipboard content."
 msgstr "Keine Inhalte mehr in der Zwischenablage."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Pending BMUV"
-msgstr "An BMUV eingereicht"
+msgid "Pending BMUKN"
+msgstr "An BMUKN eingereicht"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Pending BfS"
@@ -335,7 +339,7 @@ msgid "Published"
 msgstr "Veröffentlicht"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Published BMUV"
+msgid "Published BMUKN"
 msgstr "Freigegeben"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
@@ -411,8 +415,8 @@ msgid "Submit to Authority"
 msgstr "An die Aufsichtsbehörde einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
-msgid "Submit to BMUV"
-msgstr "An BMUV einreichen"
+msgid "Submit to BMUKN"
+msgstr "An BMUKN einreichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Submit to BfS"
@@ -474,13 +478,17 @@ msgstr "Transferordner"
 msgid "Transfer Folder: filter not active!"
 msgstr "Transferordner: kein Filter aktiv!"
 
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "Transfer config"
+msgstr "Konfiguration der Transfers"
+
 #: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "Transfer target"
 msgstr "Übertragungsziel"
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
-msgid "Transfer to<br>"
-msgstr "Übertragung nach<br>"
+msgid "Transfer to<br />"
+msgstr "Übertragung nach<br />"
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Transferable"
@@ -578,7 +586,7 @@ msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_bmu_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BMUV einreichen?"
+msgstr "Wollen Sie dieses Dokument wirklich ans BMUKN einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
@@ -596,6 +604,16 @@ msgstr "zurück zu"
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "created:"
 msgstr "erzeugt:"
+
+#. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_document_types"
+msgstr "Dokumenttypen, die ab sofort übertragen werden sollen oder deren Übertragung eingestellt werden soll."
+
+#. Default: "Automatic transfer targets to add or remove for the document types selected above."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "desc_transfer_config_transfer_targets"
+msgstr "Automatische Transfers, die für die oben ausgewählten Dokumenttypen eingerichtet oder abgeschaltet werden sollen."
 
 #: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "description_collaborationfolder_allowedpartnerdoctypes"
@@ -759,6 +777,16 @@ msgstr "nicht annehmen"
 msgid "help_change_status_action"
 msgstr "Wählen sie den Statuswechsel, der benutzt werden soll, um den Status der Einträge zu ändern. Einträge, für die dieser Statuswechsel nicht gültig ist, bleiben unverändert."
 
+#. Default: "Deselect all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-deselect-all"
+msgstr "Alle abwählen"
+
+#. Default: "Select all"
+#: docpool.base/docpool/base/browser/templates/checklist_input.pt
+msgid "label-select-all"
+msgstr "Alle wählen"
+
 #. Default: "Anonymous User"
 #: docpool.base/docpool/base/browser/review_history.py
 msgid "label_anonymous_user"
@@ -766,6 +794,7 @@ msgstr ""
 
 #. Default: "Cancel"
 #: docpool.base/docpool/base/browser/folderbase.py
+#: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_cancel"
 msgstr "Abbrechen"
 
@@ -944,6 +973,31 @@ msgstr "Text"
 msgid "label_toggle"
 msgstr "Alle umschalten"
 
+#. Default: "add"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add"
+msgstr "einrichten"
+
+#. Default: "Automatic transfer for selected document types:"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_add_or_remove"
+msgstr "Automatischen Transfer für die gewählten Dokumenttypen:"
+
+#. Default: "Document types"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_document_types"
+msgstr "Dokumenttypen"
+
+#. Default: "remove"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_remove"
+msgstr "abschalten"
+
+#. Default: "Transfer targets"
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "label_transfer_config_transfer_targets"
+msgstr "Transferziele"
+
 #. Default: "Applications"
 #: docpool.base/docpool/base/users/personalpreferences.py
 msgid "label_user_apps"
@@ -962,9 +1016,13 @@ msgstr "geändert:"
 msgid "needs confirmation"
 msgstr "benötigt Bestätigung"
 
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "open attachment"
+msgstr "Anhang öffnen"
+
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending - Show document"
-msgstr "zur Redaktion eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_authority - Show document"
@@ -976,7 +1034,7 @@ msgstr "An BfS eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_bmu - Show document"
-msgstr "An BMUV eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "An BMUKN eingereicht - Klicken, um das Dokument anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private"
@@ -1005,6 +1063,11 @@ msgstr "lesen/schreiben"
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "revised - Show document"
 msgstr "revidiert - Klicken, um das Dokument anzuzeigen"
+
+#. Default: "Configured ${targets} target(s) for ${types} type(s)."
+#: docpool.base/docpool/base/browser/transfer_config.py
+msgid "status_transfer_config_success"
+msgstr "Es wurden ${targets} Transferziel(e) für ${types} Dokumenttyp(en) konfiguriert."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "submit_bmu"

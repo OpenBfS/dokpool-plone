@@ -55,13 +55,12 @@ def createUsers(self):
     prefix = self.prefix or self.getId()
     prefix = str(prefix)
     title = self.Title()
-    mtool.addMember(
-        "%s_dpadmin" % prefix, "DocPool Administrator (%s)" % title, ["Member"], []
-    )
+    mtool.addMember("%s_dpadmin" % prefix, "DocPool Administrator (%s)" % title, ["Member"], [])
     dpadmin = mtool.getMemberById("%s_dpadmin" % prefix)
-    dpadmin.setMemberProperties(
-        {"fullname": "DocPool Administrator (%s)" % title, "dp": self.UID()}
-    )
+    dpadmin.setMemberProperties({
+        "fullname": "DocPool Administrator (%s)" % title,
+        "dp": self.UID(),
+    })
     dpadmin.setSecurityProfile(password="admin")
 
 
@@ -143,9 +142,7 @@ def deleteGroups(self):
     gids = gtool.getGroupIds()
     for gid in gids:
         if gid.startswith(prefix):
-            gtool.removeGroup(
-                gid
-            )  # also deletes the group folder via event subscribers
+            gtool.removeGroup(gid)  # also deletes the group folder via event subscribers
 
 
 def deleteUsers(self):

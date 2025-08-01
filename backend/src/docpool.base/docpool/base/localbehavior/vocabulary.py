@@ -26,21 +26,17 @@ def LocalBehaviorsVocabularyFactory(context):
             apps = dp_app_state.appsPermittedForCurrentUser()
         else:
             apps = dp_app_state.appsSupportedHere()
-        return SimpleVocabulary(
-            [
-                SimpleTerm(app[0], title=_(app[1]))
-                for app in extendingApps()
-                if app[0] in apps
-                if not app[2]["implicit"]
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm(app[0], title=_(app[1]))
+            for app in extendingApps()
+            if app[0] in apps
+            if not app[2]["implicit"]
+        ])
     else:  # It's a document
         available_apps = dp_app_state.appsPermittedForObject(request)
-        return SimpleVocabulary(
-            [
-                SimpleTerm(app[0], title=_(app[1]))
-                for app in extendingApps()
-                if app[0] in available_apps
-                if not app[2]["implicit"]
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm(app[0], title=_(app[1]))
+            for app in extendingApps()
+            if app[0] in available_apps
+            if not app[2]["implicit"]
+        ])

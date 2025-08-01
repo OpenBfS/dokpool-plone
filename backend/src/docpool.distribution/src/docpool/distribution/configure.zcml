@@ -22,7 +22,7 @@
       pre_handler=".handlers.pre_handler"
       />
 
-  <configure zcml:condition="not-installed contentimport">
+  <configure>
     <adapter factory=".serializer.convert_journalentry" />
     <adapter factory=".serializer.convert_criterion" />
   </configure>

@@ -28,11 +28,7 @@ def export_members() -> list[dict]:
     acl_users = api.portal.get_tool("acl_users")
     fields = _get_user_schema_fields()
     data = []
-    users = [
-        user
-        for user in acl_users.searchUsers()
-        if not user["pluginid"] == "mutable_properties"
-    ]
+    users = [user for user in acl_users.searchUsers() if not user["pluginid"] == "mutable_properties"]
     for user in users:
         user_id = user["userid"]
         member = api.user.get(user_id)

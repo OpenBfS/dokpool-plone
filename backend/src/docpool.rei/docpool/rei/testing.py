@@ -43,9 +43,7 @@ class DocpoolReiCleanLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.rei)
 
     def setUpPloneSite(self, portal):
-        portal.acl_users.userFolderAddUser(
-            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
-        )
+        portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])
 
 
 DOCPOOL_REI_FIXTURE = DocpoolReiLayer()

@@ -26,9 +26,7 @@ class InfoFolder(FolderBase):
 
             placeful_wf = getToolByName(self, "portal_placeful_workflow")
             try:
-                self.manage_addProduct[
-                    "CMFPlacefulWorkflow"
-                ].manage_addWorkflowPolicyConfig()
+                self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
             except BadRequest as e:
                 log_exc(e)
             config = placeful_wf.getWorkflowPolicyConfig(self)

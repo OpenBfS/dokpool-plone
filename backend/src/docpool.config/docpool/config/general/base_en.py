@@ -6,7 +6,6 @@ from docpool.config.utils import TYPE
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
-from Products.PythonScripts.PythonScript import PythonScript
 
 import transaction
 
@@ -69,9 +68,7 @@ def configUserFolders(self, fresh):
         dpadmin = mtool.getMemberById("dpadmin")
         dpadmin.setMemberProperties({"fullname": "Docpool Administrator"})
         dpadmin.setSecurityProfile(password="admin")
-        mtool.addMember(
-            "dpmanager", "Docpool Manager (global)", ["Manager", "Member"], []
-        )
+        mtool.addMember("dpmanager", "Docpool Manager (global)", ["Manager", "Member"], [])
         dpmanager = mtool.getMemberById("dpmanager")
         dpmanager.setMemberProperties({"fullname": "Docpool Manager"})
         dpmanager.setSecurityProfile(password="admin")
@@ -107,7 +104,7 @@ def configureFiltering(self):
     tid = "safe_html"
 
     pt = getToolByName(self, "portal_transforms")
-    if not tid in pt.objectIds():
+    if tid not in pt.objectIds():
         return
 
     trans = pt[tid]
@@ -241,9 +238,7 @@ def configureFiltering(self):
 def createGroups(self):
     gdata = getToolByName(self, "portal_groupdata")
     try:
-        gdata.manage_addProperty(
-            "allowedDocTypes", "possibleDocTypes", "multiple selection"
-        )
+        gdata.manage_addProperty("allowedDocTypes", "possibleDocTypes", "multiple selection")
     except BaseException:
         pass
     try:

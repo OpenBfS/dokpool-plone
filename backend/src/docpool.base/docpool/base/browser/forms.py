@@ -1,5 +1,4 @@
 from plone import api
-from plone.app.z3cform.views import BootstrapActions
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
 from plone.dexterity.interfaces import IDexterityEditForm
@@ -7,7 +6,7 @@ from plone.z3cform import layout
 from zope.interface import classImplements
 
 
-class AddForm(BootstrapActions, add.DefaultAddForm):
+class AddForm(add.DefaultAddForm):
     def updateWidgets(self):
         """"""
         super().updateWidgets()
@@ -25,7 +24,7 @@ class AddView(add.DefaultAddView):
     form = AddForm
 
 
-class EditForm(BootstrapActions, edit.DefaultEditForm):
+class EditForm(edit.DefaultEditForm):
     def updateWidgets(self):
         super().updateWidgets()
         # See https://redmine-koala.bfs.de/issues/5432

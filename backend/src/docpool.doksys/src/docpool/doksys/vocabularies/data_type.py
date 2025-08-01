@@ -12,9 +12,7 @@ class DataType:
             "LADA",
             "EURDEP",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 DataTypeFactory = DataType()

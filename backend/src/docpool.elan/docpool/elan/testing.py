@@ -4,7 +4,6 @@ from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
-from plone.app.testing import login
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -60,9 +59,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
             supportedApps=("elan",),
         )
         notify(EditFinishedEvent(docpool))
-        portal.acl_users.userFolderAddUser(
-            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
-        )
+        portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])
 
 
 DOCPOOL_EVENT_FIXTURE = DocpoolEventLayer()

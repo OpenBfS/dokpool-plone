@@ -1,11 +1,12 @@
 # Official Python Image
-image: python:3.11.6-bullseye
+image: python:3.13.3-bullseye
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
-  PRE_COMMIT_HOME: "${CI_PROJECT_DIR}/.cache/pre-commit"
+  UV_CACHE_DIR: "$HOME/.cache/uv"
+  PLONE_VERSION: "6.1.1"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -14,8 +15,8 @@ variables:
 # them in a virtualenv and cache it as well.
 cache:
   paths:
-    - ${PRE_COMMIT_HOME}
     - ${PIP_CACHE_DIR}
+    - ${UV_CACHE_DIR}
 
 # Set execution order: first run jobs on 'test' stage on parallel
 # then run jobs on 'report' stage
@@ -24,52 +25,23 @@ stages:
   - build
   - deploy
 
-before_script:
-  # Git for 3rd party source packages
-  # - sudo apt-get update && sudo apt-get install -y --no-install-recommends git
-  - git --version
-
-  ## Install ssh-agent if not already installed, it is required by Docker.
-  - "command -v ssh-agent >/dev/null || ( sudo apt-get update -y && sudo apt-get install openssh-client -y )"
-
-  ## Run ssh-agent (inside the build environment)
-  - eval $(ssh-agent -s)
-
-  ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-  ## We're using tr to fix line endings which makes ed25519 keys work
-  ## without extra base64 encoding.
-  ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-
-  ## Create the SSH directory and give it the right permissions
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-
-  ## Assuming you created the SSH_KNOWN_HOSTS variable, uncomment the
-  ## following two lines.
-  - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
-
-  # Check Python version
-  - python3 -V
-  - whereis python
-
 lint_tests:
+  image: plone/server-builder:$PLONE_VERSION
   tags:
-    - docker
+    - dind
   stage: test
   script:
-    # Install pre-commit
+    - cd backend
     - pip install --upgrade pip
-    - pip install pipx
-    - pipx ensurepath
-    - pipx install pre-commit==3.6.0
+    - pip install uv
     # lint test
-    - pipx run -- pre-commit run --a
+    - make lint
+    - make format
 
 unit_tests:
+  image: plone/server-builder:$PLONE_VERSION
   tags:
-    - docker
+    - dind
   stage: test
   script:
     - apt update
@@ -78,7 +50,9 @@ unit_tests:
     # build
     - cd backend
     - export VIRTUAL_ENV=$(pwd)
-    - make build-dev
+    - pip install --upgrade pip
+    - pip install uv
+    - make install
     - make coverage
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+\%)/'
   artifacts:

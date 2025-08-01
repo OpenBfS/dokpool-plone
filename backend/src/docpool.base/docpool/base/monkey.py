@@ -19,12 +19,14 @@ def getURL(self, relative=0, original=False):
         request = getRequest()
     if (
         # original set we ignore this special code
-        (not original)
-        # only valid for DPDocuments
-        and self.portal_type == "DPDocument"
-        # resolveid does not exist in url
-        and not request["URL"].find("resolveuid") > -1
-        and not request["URL"].find("Transfers") > -1
+        (
+            (not original)
+            # only valid for DPDocuments
+            and self.portal_type == "DPDocument"
+            # resolveid does not exist in url
+            and not request["URL"].find("resolveuid") > -1
+            and not request["URL"].find("Transfers") > -1
+        )
         or "overview" in str(request.get("myfolder_url", "/"))
     ):
         if self.cat_path:

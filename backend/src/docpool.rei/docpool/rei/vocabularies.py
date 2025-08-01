@@ -47,9 +47,7 @@ class ReiLegalBaseVocabulary:
             "REI-E",
             "REI-I",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 ReiLegalBaseVocabularyFactory = ReiLegalBaseVocabulary()
@@ -65,9 +63,7 @@ class MediumVocabulary:
             "Abwasser",
             "Abwasser/Fortluft",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 MediumVocabularyFactory = MediumVocabulary()
@@ -122,9 +118,7 @@ class PDFVersionVocabulary:
             "PDF/A-3b",
             "PDF/A-3u",
         ]
-        return SimpleVocabulary(
-            [SimpleTerm(value=value, token=value, title=value) for value in values]
-        )
+        return SimpleVocabulary([SimpleTerm(value=value, token=value, title=value) for value in values])
 
 
 PDFVersionVocabularyFactory = PDFVersionVocabulary()
@@ -165,7 +159,7 @@ class MStIDVocabulary:
             ("03151", "PreussenElektra GmbH Kernkraftwerk Stade"),
             ("03161", "PreussenElektra GmbH Kernkraftwerk Unterweser "),
             ("03171", "PreussenElektra GmbH Gemeinschaftskernkraftwerk Grohnde"),
-            ("03191", "Kernkraftwerke Lippe-Ems GmbH Kernkraftwerk Emsland"),
+            ("03191", "RWE Nuclear GmbH - RAE Emsland"),
             ("03201", "BGZ Gesellschaft für Zwischenlagerung mbH Betrieb Gorleben"),
             ("03211", "Konrad Schacht II"),
             ("03221", "Advanced Nuclear Fuels GmbH"),
@@ -307,16 +301,11 @@ class OriginVocabulary:
         # Already existing Reports that have the now obsolete value "Genehmigungsinhaber"
         # need to find that in the vocabulary as well.
         # Same when the voc is instanciated without context.
-        if context is None or "Genehmigungsinhaber" in (
-            getattr(context, "Origins", []) or []
-        ):
+        if context is None or "Genehmigungsinhaber" in (getattr(context, "Origins", []) or []):
             values.append(("Genehmigungsinhaber", "Genehmigungsinhaber"))
-        return SimpleVocabulary(
-            [
-                SimpleTerm(value=value, token=value, title=title)
-                for value, title in values
-            ]
-        )
+        return SimpleVocabulary([
+            SimpleTerm(value=value, token=value, title=title) for value, title in values
+        ])
 
 
 OriginVocabularyFactory = OriginVocabulary()
@@ -362,7 +351,7 @@ class NuclearInstallationVocabulary:
             ("U03A", "Brennelemente-Zwischenlager Grohnde (BZD)"),
             ("U03B", "Brennelementefertigungsanl. Lingen"),
             ("U03C", "Brennelemente-Zwischenlager Unterweser (BZU)"),
-            ("U03E", "KKW Emsland"),
+            ("U03E", "RAE Emsland"),
             ("U03G", "KKW Grohnde"),
             ("U03K", "Endlager Konrad"),
             ("U03L", "KKW Lingen"),

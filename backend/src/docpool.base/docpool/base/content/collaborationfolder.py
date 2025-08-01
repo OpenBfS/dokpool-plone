@@ -3,7 +3,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.content.simplefolder import SimpleFolder
 from docpool.base.utils import getAllowedDocumentTypesForGroup
-from plone.api import user
+from plone import api
 from plone.base.utils import safe_text
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
@@ -22,9 +22,7 @@ class ICollaborationFolder(model.Schema, ISimpleFolder):
             "label_collaborationfolder_allowedpartnerdoctypes",
             default="Document types allowed for the guest group(s)",
         ),
-        description=_(
-            "description_collaborationfolder_allowedpartnerdoctypes", default=""
-        ),
+        description=_("description_collaborationfolder_allowedpartnerdoctypes", default=""),
         required=True,
         value_type=schema.Choice(source="docpool.base.vocabularies.GroupDocType"),
     )
@@ -42,9 +40,7 @@ class CollaborationFolder(SimpleFolder):
 
         placeful_wf = getToolByName(self, "portal_placeful_workflow")
         try:
-            self.manage_addProduct[
-                "CMFPlacefulWorkflow"
-            ].manage_addWorkflowPolicyConfig()
+            self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
         except BadRequest as e:
             log_exc(e)
         config = placeful_wf.getWorkflowPolicyConfig(self)
@@ -58,7 +54,7 @@ class CollaborationFolder(SimpleFolder):
     def customMenu(self, menu_items):
         """ """
         # print user.get_roles(obj=self)
-        if "Reviewer" not in user.get_roles(obj=self):
+        if "Reviewer" not in api.user.get_roles(obj=self):
             return SimpleFolder.customMenu(self, menu_items)
         else:
             # print "Reviewer"
@@ -72,50 +68,24 @@ class CollaborationFolder(SimpleFolder):
                 if menu_item.get("id") == "DPDocument":
                     for dt in dts:
                         # print dt.id
-                        if (
-                            not dt.getObject().globalAllow
-                        ):  # only generally allowed doctypes
+                        if not dt.getObject().globalAllow:  # only generally allowed doctypes
                             continue
                         if not filter or dt.id in self.allowedPartnerDocTypes:
-                            res.append(
-                                {
-                                    "extra": {
-                                        "separator": None,
-                                        "id": dt.id,
-                                        "class": "contenttype-%s" % dt.id,
-                                    },
-                                    "submenu": None,
-                                    "description": "",
-                                    "title": safe_text(dt.Title),
-                                    "action": "%s/++add++DPDocument?form.widgets.docType:list=%s"
-                                    % (self.absolute_url(), dt.id),
-                                    "selected": False,
+                            res.append({
+                                "extra": {
+                                    "separator": None,
                                     "id": dt.id,
-                                    "icon": None,
-                                }
-                            )
+                                    "class": "contenttype-%s" % dt.id,
+                                },
+                                "submenu": None,
+                                "description": "",
+                                "title": safe_text(dt.Title),
+                                "action": "%s/++add++DPDocument?form.widgets.docType:list=%s"
+                                % (self.absolute_url(), dt.id),
+                                "selected": False,
+                                "id": dt.id,
+                                "icon": None,
+                            })
                 else:
                     res.append(menu_item)
             return res
-
-    def myCollaborationFolder(self):
-        """ """
-        return self
-
-    def getFirstChild(self):
-        """ """
-        fc = self.getFolderContents()
-        if len(fc) > 0:
-            return fc[0].getObject()
-        else:
-            return None
-
-    def getAllContentObjects(self):
-        """ """
-        return [obj.getObject() for obj in self.getFolderContents()]
-
-    def getDPDocuments(self, **kwargs):
-        """ """
-        args = {"portal_type": "DPDocument"}
-        args.update(kwargs)
-        return [obj.getObject() for obj in self.getFolderContents(args)]

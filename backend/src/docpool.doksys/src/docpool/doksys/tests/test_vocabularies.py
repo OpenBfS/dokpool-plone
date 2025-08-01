@@ -1,5 +1,5 @@
 from docpool.doksys import _
-from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING  # noqa
+from docpool.doksys.testing import DOCPOOL_DOKSYS_INTEGRATION_TESTING
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from zope.component import getUtility
@@ -24,9 +24,7 @@ class TestVocabularies(unittest.TestCase):
 
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
-        self.assertEqual(
-            vocabulary.getTerm("Schleswig-Holstein").title, _("Schleswig-Holstein")
-        )
+        self.assertEqual(vocabulary.getTerm("Schleswig-Holstein").title, _("Schleswig-Holstein"))
 
     def test_all_vocabularies(self):
         vocabularies = [

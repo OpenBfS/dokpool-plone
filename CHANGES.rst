@@ -1,6 +1,79 @@
 Changelog
 =========
 
+2.2.0 (2025-08-01)
+------------------
+
+Changed:
+
+- Open RODOS at /potentially-affected-areas instead of /projections. (#6149)
+  [pbauer]
+
+- Update names in REI vocabularies. (#6100)
+  [pbauer]
+
+- Allow to assign a RODOS entry to more than one ELAN events. (#6151)
+  [pbauer]
+
+- Rename BMUV to BMUKN and add upgdate REI-Workflows. (#6123)
+  [pbauer]
+
+- Hide "No items" in dtype config (#6059)
+  [slindner]
+
+- Change wording on logged-out screen (#4514)
+  [pbauer]
+
+Added:
+
+- Add a form @@transfer_config to set transfer targets for a selection of doctypes. (#5233)
+  [tlotze]
+
+- Show active apps of targets in transfer form. (#5994)
+  [pbauer]
+
+
+Fixed:
+
+- Fix permissions on imported example content from distribution. (#6055)
+  [pbauer]
+
+- Fix exporting content for distribution. (#6065)
+  [pbauer]
+
+- Hard-code sitemap-depth used in navigation-portlet to work with old value from registry in Plone 6.1. (#5954)
+  [pbauer]
+
+- Show message when redirecting from archiving-form to archived Event. (#6131)
+  [pbauer]
+
+- Fix viewing archived items that have no transferLog. (#6136)
+  [pbauer]
+
+- Do not target link-modal when hiding tabs from normal users when editing. (#6152 and #5880)
+  [pbauer]
+
+- Add workaround for faulty index scenarios: Only archive entries that belong to the archived event. (#6125)
+  [pbauer]
+
+- Fix translation in archive info (#6127)
+  [pbauer]
+
+- Translate link in @@user-information (#5761)
+  [pbauer]
+
+Technical:
+
+- Upgrade to Plone 6.1.2 (#5954)
+  [pbauer]
+
+- Update to newest version of cookieplone-templates and switch ro ruff for linting. (#6012)
+  [pbauer]
+
+- Drop all use of FSPythonScript getFolderContents.py (#5955)
+  [pbauer]
+
+
 2.1.0 (2025-05-20)
 ------------------
 
@@ -30,6 +103,14 @@ Technical:
 - Upgrade to Plone 6.0.15. (#4892)
   [pbauer]
 
+
+Changed:
+
+- Remove table style, increase width. (#5907)
+  [slindner]
+
+- Use plone-server-builder images for CI (#5871)
+  [slindner]
 
 2.0.1 (2025-03-31)
 ------------------

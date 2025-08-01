@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: docpool.base\n"
+"POT-Creation-Date: 2025-07-29 11:35+0000\n"
+"PO-Revision-Date: 2016-01-15 11:31+0100\n"
+"Last-Translator: Bfs devs\n"
+"Language-Team: devs@devs.de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: de\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "description_quit_to_log_out"
+msgstr "Bitte schließen Sie Ihren Browser, um sich abzumelden."
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "heading_quit_to_log_out"
+msgstr "Abmelden"
+
+#: CMFPlone/browser/login/templates/logged_out.pt:29
+msgid "${text_logged_out_link} and click 'Cancel' when prompted with an authentication prompt."
+msgstr " "

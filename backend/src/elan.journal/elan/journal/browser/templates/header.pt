@@ -1,15 +1,20 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xml:lang="en"
+      tal:omit-tag=""
       i18n:domain="elan.journal"
-      tal:omit-tag="">
-<body tal:omit-tag="">
-  <tal:viewlet condition="view/available">
-    <div id="journal-header">
-      <img tal:define="scale context/@@images"
-          tal:replace="structure python:scale.scale('image').tag()" />
-    </div>
-  </tal:viewlet>
-</body>
+>
+  <body tal:omit-tag="">
+    <tal:viewlet condition="view/available">
+      <div id="journal-header">
+        <img tal:define="
+               scale context/@@images;
+             "
+             tal:replace="structure python:scale.scale('image').tag()"
+        />
+      </div>
+    </tal:viewlet>
+  </body>
 </html>

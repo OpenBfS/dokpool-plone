@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-05-13 17:10+0000\n"
+"POT-Creation-Date: 2025-07-18 11:51+0000\n"
 "PO-Revision-Date: 2024-12-05 15:56+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -272,10 +272,6 @@ msgid "Intensive mode"
 msgstr "Intensivbetrieb"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
-msgid "Item has old archiving info!"
-msgstr "Dieses Ereignis hat alte Archivierungsinfos!"
-
-#: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Item is being archived right now! Please try again in a couple of minutes."
 msgstr "Dieses Ereignis wird momentan archiviert. Bitte versuchen Sie es in ein paar Minuten erneut."
 
@@ -310,7 +306,7 @@ msgstr "Betriebsart und Alarmierung"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Original content is moved to the archive."
-msgstr "Der gesamte Inhalt des Ereignisses wird in ein Archiv gespeichert."
+msgstr "Nur diesem Ereignis zugewiesene Inhalte werden in das Archiv verschoben."
 
 #: docpool.elan/docpool/elan/portlets/overview.py
 msgid "Overview"

@@ -17,7 +17,6 @@ from zope.publisher.interfaces import IPublishTraverse
 
 @implementer(IPublishTraverse)
 class JournalEntryView(BrowserView, BaseView):
-
     """Default view for a Journal's entry."""
 
     def __init__(self, context, request):
@@ -45,7 +44,6 @@ class JournalEntryView(BrowserView, BaseView):
 
 
 class BaseJournalEntryView(BrowserView):
-
     """Base view with helper methods for journal-entries."""
 
     def _redirect_with_status_message(self, msg, type="info"):
@@ -76,7 +74,6 @@ class BaseJournalEntryView(BrowserView):
 
 
 class AddJournalEntryView(BaseJournalEntryView):
-
     """Add an entry to the Journal."""
 
     def __call__(self):
@@ -104,7 +101,6 @@ class AddJournalEntryView(BaseJournalEntryView):
 
 
 class EditJournalEntryView(BaseJournalEntryView):
-
     """Edit an entry in the Journal."""
 
     def __call__(self):
@@ -160,7 +156,6 @@ class EditJournalEntryView(BaseJournalEntryView):
 
 
 class DeleteJournalEntryView(BaseJournalEntryView):
-
     """Delete an entry from the Journal."""
 
     def __call__(self):

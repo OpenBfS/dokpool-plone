@@ -71,9 +71,7 @@ class TestEvent(unittest.TestCase):
         archived_event = api.content.get(UID=event.UID())
         self.assertEqual(archived_event.__parent__.portal_type, "ELANArchive")
         self.assertEqual(archived_event.Status, "closed")
-        self.assertEqual(
-            archived_event.keys(), ["journal1", "journal2", "journal3", "journal4"]
-        )
+        self.assertEqual(archived_event.keys(), ["journal1", "journal2", "journal3", "journal4"])
 
     def test_archived_event_is_not_active_for_users(self):
         event = api.content.create(

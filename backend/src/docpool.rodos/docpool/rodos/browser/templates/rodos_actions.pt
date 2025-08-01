@@ -1,7 +1,12 @@
-<tal:block i18n:domain="docpool.rodos"
-           define="view nocall:options/view">
-    <tal:def define="rodosobj view">
-        <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
+<tal:block define="
+             view nocall:options/view;
+           "
+           i18n:domain="docpool.rodos"
+>
+  <tal:def define="
+             rodosobj view;
+           ">
+    <!-- context will be the the DPDocument instance, rodosobj will be the behaviour wrapper -->
 
-    </tal:def>
+  </tal:def>
 </tal:block>

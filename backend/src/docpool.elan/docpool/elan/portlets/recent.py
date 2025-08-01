@@ -46,9 +46,7 @@ class Renderer(base.Renderer):
 
         context = aq_inner(self.context)
         try:
-            self.collection = (
-                context.esd.recent
-            )  # Acquire ELANCollection for recent documents
+            self.collection = context.esd.recent  # Acquire ELANCollection for recent documents
         except BaseException:
             self.collection = None
 
@@ -88,9 +86,7 @@ class Renderer(base.Renderer):
     @memoize
     def _data(self):
         try:
-            return self.collection.results(
-                batch=True, b_start=0, b_size=5, sort_on=None, brains=True
-            )
+            return self.collection.results(batch=True, b_start=0, b_size=5, sort_on=None, brains=True)
         except BaseException:
             return []
 

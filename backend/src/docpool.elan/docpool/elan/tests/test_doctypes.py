@@ -337,9 +337,7 @@ class TestDocTypes(unittest.TestCase):
         self.assertFalse(bool(getAllowedDocumentTypes(folder)))
 
         # add a user to test with
-        user = api.user.create(
-            email="foo@plone.org", username="foo", password="verysecret"
-        )
+        user = api.user.create(email="foo@plone.org", username="foo", password="verysecret")
 
         # add the user to the groups
         api.group.add_user(groupname="test_docpool_ContentAdministrators", user=user)
@@ -384,9 +382,7 @@ class TestDocTypes(unittest.TestCase):
             docType="weatherinformation",
             local_behaviors=["elan"],
         )
-        self.assertEqual(
-            weatherinfo.created_by, "foo <i>Content Administrators (Test Dokpool)</i>"
-        )
+        self.assertEqual(weatherinfo.created_by, "foo <i>Content Administrators (Test Dokpool)</i>")
 
         eventinfo = api.content.create(
             container=folder,
@@ -401,9 +397,7 @@ class TestDocTypes(unittest.TestCase):
 
         # they can be found using the index dp_type
         self.assertEqual(
-            len(
-                api.content.find(portal_type="DPDocument", dp_type="weatherinformation")
-            ),
+            len(api.content.find(portal_type="DPDocument", dp_type="weatherinformation")),
             1,
         )
         self.assertEqual(
@@ -412,9 +406,7 @@ class TestDocTypes(unittest.TestCase):
         )
 
         # check the category of the weatherinfo
-        brain = api.content.find(
-            portal_type="DPDocument", dp_type="weatherinformation"
-        )[0]
+        brain = api.content.find(portal_type="DPDocument", dp_type="weatherinformation")[0]
         self.assertEqual(brain.category, ["WETTER UND TRAJEKTORIEN"])
 
         # get the base-doctype for one of the two
@@ -431,12 +423,8 @@ class TestDocTypes(unittest.TestCase):
         # we reindex dok_type and category
         notify(EditFinishedEvent(weatherinfo_template))
 
-        brain = api.content.find(
-            portal_type="DPDocument", dp_type="weatherinformation"
-        )[0]
-        self.assertCountEqual(
-            brain.category, ["WETTER UND TRAJEKTORIEN", "SONSTIGE PROGNOSEN"]
-        )
+        brain = api.content.find(portal_type="DPDocument", dp_type="weatherinformation")[0]
+        self.assertCountEqual(brain.category, ["WETTER UND TRAJEKTORIEN", "SONSTIGE PROGNOSEN"])
 
     def test_docpool_searchresults(self):
         docpool = self.portal["test_docpool"]
@@ -464,10 +452,7 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition="publish")
         modified(new)
         # Test setting event/scenario
-        scenarios = {
-            b.UID: False
-            for b in api.content.find(portal_type="DPEvent", id="routinemode")
-        }
+        scenarios = {b.UID: False for b in api.content.find(portal_type="DPEvent", id="routinemode")}
         scenarios[event_uid] = True
         setScenariosForCurrentUser(scenarios=scenarios)
         scenarios = getScenariosForCurrentUser()
@@ -511,9 +496,7 @@ class TestDocTypes(unittest.TestCase):
                 "plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled"
             )
         )
-        self.assertFalse(
-            weatherinfo.restrictedTraverse("@@conversation_view").enabled()
-        )
+        self.assertFalse(weatherinfo.restrictedTraverse("@@conversation_view").enabled())
         # inherited from doctype
         doctype = weatherinfo.docTypeObj()
         self.assertFalse(doctype.allow_discussion_on_dpdocument)

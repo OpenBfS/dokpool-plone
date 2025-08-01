@@ -5,4 +5,15 @@
     i18n_domain="docpool.base"
     >
 
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="1009"
+      destination="1010"
+      >
+    <genericsetup:upgradeStep
+        title="Update REI Workflow to change BMUV to BMUKN"
+        handler="docpool.base.upgrades.to_1010"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

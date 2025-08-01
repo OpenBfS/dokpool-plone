@@ -16,13 +16,11 @@ tests = []
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTests(
-        [
-            layered(
-                robotsuite.RobotTestSuite(t, noncritical=["Expected Failure"]),
-                layer=ROBOT_TESTING,
-            )
-            for t in tests
-        ]
-    )
+    suite.addTests([
+        layered(
+            robotsuite.RobotTestSuite(t, noncritical=["Expected Failure"]),
+            layer=ROBOT_TESTING,
+        )
+        for t in tests
+    ])
     return suite
