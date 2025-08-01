@@ -21,6 +21,9 @@ Changed:
 - Hide "No items" in dtype config (#6059)
   [slindner]
 
+- Change wording on logged-out screen (#4514)
+  [pbauer]
+
 Added:
 
 - Add a form @@transfer_config to set transfer targets for a selection of doctypes. (#5233)
@@ -53,6 +56,11 @@ Fixed:
 - Add workaround for faulty index scenarios: Only archive entries that belong to the archived event. (#6125)
   [pbauer]
 
+- Fix translation in archive info (#6127)
+  [pbauer]
+
+- Translate link in @@user-information (#5761)
+  [pbauer]
 
 Technical:
 
