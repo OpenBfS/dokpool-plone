@@ -1,0 +1,42 @@
+repos:
+  - repo: local
+    hooks:
+      # On first call to ruff, explicitly make sure to use and cache an
+      # environment at the latest version. Subsequently, make sure to use the
+      # cached version but avoid updating it again.
+      - id: ruff-lint
+        name: ruff-lint
+        entry: uvx ruff@latest check --select I --fix --force-exclude --config backend/pyproject.toml
+        language: system
+        types_or: [python, pyi, jupyter]
+
+      - id: ruff-format
+        name: ruff-format
+        entry: uvx --isolated ruff format --force-exclude --config backend/pyproject.toml
+        language: system
+        types_or: [python, pyi, jupyter]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=1403]
+      - id: check-ast
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-xml
+        types: [file]
+        files: \.(xml|zcml)$
+      - id: check-yaml
+      - id: debug-statements
+#      - id: end-of-file-fixer
+#        exclude: frontend/jsconfig.json
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+
+  - repo: https://github.com/mondeja/pre-commit-po-hooks
+    rev: v1.7.3
+    hooks:
+      - id: obsolete-messages
+      - id: fuzzy-messages
