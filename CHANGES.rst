@@ -1,10 +1,6 @@
 Changelog
 =========
 
-2.3.0 (unreleased)
-------------------
-
-
 2.2.0 (2025-08-01)
 ------------------
 
@@ -65,6 +61,10 @@ Fixed:
 
 - Translate link in @@user-information (#5761)
   [pbauer]
+
+- Fix individual transitions in dview and listings (#6188) 
+  [pbauer]
+
 
 Technical:
 
