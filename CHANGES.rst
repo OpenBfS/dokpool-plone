@@ -62,6 +62,10 @@ Fixed:
 - Translate link in @@user-information (#5761)
   [pbauer]
 
+- Fix individual transitions in dview and listings (#6188) 
+  [pbauer]
+
+
 Technical:
 
 - Upgrade to Plone 6.1.2 (#5954)

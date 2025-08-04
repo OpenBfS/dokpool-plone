@@ -137,7 +137,7 @@ class ChangeState(BrowserView):
             api.content.transition(obj, transition=action)
             if action == "publish":
                 # Also publish contained DPDocuments
-                for brain in api.content.find(context=self, depth=1, portal_type="DPDocument"):
+                for brain in api.content.find(context=obj, depth=1, portal_type="DPDocument"):
                     subobj = brain.getObject()
                     try:
                         api.content.transition(subobj, transition=action)
