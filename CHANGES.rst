@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.2.0 (2025-08-01)
+2.2.0 (2025-08-05)
 ------------------
 
 Changed:
@@ -62,8 +62,11 @@ Fixed:
 - Translate link in @@user-information (#5761)
   [pbauer]
 
-- Fix individual transitions in dview and listings (#6188) 
+- Fix individual transitions in dview and listings (#6188)
   [pbauer]
+
+- Fix transfer logging introduced in previous release. (#6194)
+  [tlotze]
 
 
 Technical:

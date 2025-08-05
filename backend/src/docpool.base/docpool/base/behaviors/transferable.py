@@ -277,7 +277,7 @@ class Transferable(FlexibleView):
                             continue
 
                 # At this point, transfer is allowed.
-                logger.info("Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
+                logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
 
                 # 2) Put a copy of me in transfer folder, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
@@ -327,11 +327,11 @@ class Transferable(FlexibleView):
                 msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
                 api.portal.show_message(msg, self.request)
 
-                brain = api.content.find(UID=transfer_copy.UID())[0]
+                brain = api.content.find(UID=my_copy.UID())[0]
                 index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
                 if set(getattr(transfer_copy, "scenarios", [])) != set(index_entry):
                     log(
-                        f"Inconsistent scenarios index for {'/'.join(transfer_copy.getPhysicalPath())}",
+                        f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
                         severity=logging.ERROR,
                     )
 
@@ -394,7 +394,7 @@ def automatic_transfer(obj):
         if already_transferring:
             return
 
-        logger.info('Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
+        logger.info(f'Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
         try:
             return tObj.transferToAll()
         except BaseException:
