@@ -327,11 +327,11 @@ class Transferable(FlexibleView):
                 msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
                 api.portal.show_message(msg, self.request)
 
-                brain = api.content.find(UID=transfer_copy.UID())[0]
+                brain = api.content.find(UID=my_copy.UID())[0]
                 index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
                 if set(getattr(transfer_copy, "scenarios", [])) != set(index_entry):
                     log(
-                        f"Inconsistent scenarios index for {'/'.join(transfer_copy.getPhysicalPath())}",
+                        f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
                         severity=logging.ERROR,
                     )
 

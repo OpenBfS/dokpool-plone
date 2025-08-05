@@ -4,6 +4,11 @@ Changelog
 2.3.0 (unreleased)
 ------------------
 
+Fixed:
+
+- Fix transfer logging introduced in previous release. (#6194)
+  [tlotze]
+
 
 2.2.0 (2025-08-01)
 ------------------
@@ -66,7 +71,7 @@ Fixed:
 - Translate link in @@user-information (#5761)
   [pbauer]
 
-- Fix individual transitions in dview and listings (#6188) 
+- Fix individual transitions in dview and listings (#6188)
   [pbauer]
 
 
