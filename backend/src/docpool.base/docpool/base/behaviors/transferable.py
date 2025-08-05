@@ -277,7 +277,7 @@ class Transferable(FlexibleView):
                             continue
 
                 # At this point, transfer is allowed.
-                logger.info("Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
+                logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
 
                 # 2) Put a copy of me in transfer folder, preserving timestamps.
                 new_id = _copyPaste(self.context, transfer_folder)
@@ -394,7 +394,7 @@ def automatic_transfer(obj):
         if already_transferring:
             return
 
-        logger.info('Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
+        logger.info(f'Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
         try:
             return tObj.transferToAll()
         except BaseException:
