@@ -124,7 +124,7 @@ update-example-content: $(VENV_FOLDER) ## Export example content inside package
 .PHONY: lint
 lint: ## Check and fix code base according to Plone standards
 	@echo "$(GREEN)==> Lint codebase$(RESET)"
-	@uvx ruff@latest check --fix --config $(BACKEND_FOLDER)/pyproject.toml
+	@uvx ruff@latest check --ignore I --fix --config $(BACKEND_FOLDER)/pyproject.toml
 	@uvx pyroma@latest -d .
 	@uvx check-python-versions@latest .
 	@uvx zpretty@latest --check src
