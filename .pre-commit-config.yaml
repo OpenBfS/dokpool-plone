@@ -6,7 +6,7 @@ repos:
       # cached version but avoid updating it again.
       - id: ruff-lint
         name: ruff-lint
-        entry: uvx ruff@latest check --select I --fix --force-exclude --config backend/pyproject.toml
+        entry: uvx ruff@latest check --fix --force-exclude --config backend/pyproject.toml
         language: system
         types_or: [python, pyi, jupyter]
 
