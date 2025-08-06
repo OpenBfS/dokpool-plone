@@ -40,3 +40,21 @@ repos:
     hooks:
       - id: obsolete-messages
       - id: fuzzy-messages
+
+  - repo: https://github.com/collective/zpretty
+    rev: 3.1.1
+    hooks:
+      - id: zpretty
+        args: ["backend/src/"]
+
+  - repo: https://github.com/regebro/pyroma
+    rev: "5.0"
+    hooks:
+      - id: pyroma
+        args: ["backend/"]
+
+  - repo: https://github.com/mgedmin/check-python-versions
+    rev: "0.22.1"
+    hooks:
+      - id: check-python-versions
+        args: ["backend/"]
