@@ -73,7 +73,6 @@ packages = ["src/docpoolwrapper"]
 [tool.ruff]
 target-version = "py312"
 line-length = 110
-fix = true
 lint.select = [
     # flake8-2020
     "YTT",
