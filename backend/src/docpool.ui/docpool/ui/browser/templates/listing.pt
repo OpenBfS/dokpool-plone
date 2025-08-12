@@ -58,12 +58,14 @@
                 Eintragsart
           </button>
           <div class="dropdown-menu p-2">
+            <button class="btn btn-primary mt-2"
+                    type="submit">Submit</button>
+
             <tal:doktypes tal:repeat="doktype python: view.documenttypes_vocabulary">
               <div class="form-check">
                 <input class="form-check-input"
-                       id="${python: doktype.token}"
+                       id="${python: 'selected_doktypes-' + doktype.token}"
                        name="selected_doktypes:list"
-                       onchange="this.form.submit()"
                        type="checkbox"
                        value="${python: doktype.token}"
                        tal:attributes="
@@ -71,13 +73,16 @@
                        "
                 />
                 <label class="form-check-label"
-                       for="${python: doktype.token}"
+                       for="${python: 'selected_doktypes-' + doktype.token}"
                        i18n:translate=""
                 >
                     ${python: doktype.title}
                 </label>
               </div>
             </tal:doktypes>
+            <button class="btn btn-primary mt-2"
+                    type="submit">Submit</button>
+
           </div>
         </div>
 
