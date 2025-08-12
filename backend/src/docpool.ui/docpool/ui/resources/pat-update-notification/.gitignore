@@ -1,0 +1,6 @@
+.env
+dist/
+node_modules/
+stats.json
+yarn-error.log
+pat-*

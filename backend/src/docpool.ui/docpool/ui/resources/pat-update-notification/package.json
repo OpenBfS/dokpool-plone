@@ -1,0 +1,47 @@
+{
+    "name": "@patternslib/pat-update-notification",
+    "version": "0.0.0",
+    "description": "A pattern for update-notification",
+    "license": "MIT",
+    "main": "./src/update-notification.js",
+    "dependencies": {
+        "@patternslib/patternslib": ">=9.10.3",
+        "jquery": "^3.7.1"
+    },
+    "devDependencies": {
+        "@patternslib/dev": "3.8.1"
+    },
+    "scripts": {
+        "start": "NODE_ENV=development webpack serve --config webpack.config.js",
+        "watch": "NODE_ENV=development webpack --config webpack.config.js --watch",
+        "build": "NODE_ENV=production webpack --config webpack.config.js",
+        "build:dev": "NODE_ENV=development webpack --config webpack.config.js",
+        "build:stats": "NODE_ENV=production webpack --config webpack.config.js --json > stats.json",
+        "test": "jest"
+    },
+    "files": [
+        "/dist",
+        "/src"
+    ],
+    "engines": {
+        "node": ">=22"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "author": {
+        "name": "Syslab GesmbH",
+        "email": "dev@syslab.com"
+    },
+    "homepage": "https://github.com/patternslib/pat-update-notification",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/patternslib/pat-update-notification.git"
+    },
+    "keywords": [
+        "patternslib"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
+}
