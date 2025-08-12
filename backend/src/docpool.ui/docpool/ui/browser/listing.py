@@ -38,7 +38,6 @@ class Item(BrowserView):
         idnormalizer = queryUtility(IIDNormalizer)
         state_class = f"state-{idnormalizer.normalize(review_state)}"
         available_transitions = portal_workflow.getTransitionsFor(obj)
-        self.addTokenToUrl = addTokenToUrl
 
         if userinfo := obj.modified_by or obj.created_by:
             userinfo = userinfo.replace("<i>", "--separator--<i>", 1)

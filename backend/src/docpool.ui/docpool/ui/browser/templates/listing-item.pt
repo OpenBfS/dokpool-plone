@@ -71,13 +71,11 @@
       <ul class="dropdown-menu">
         <tal:transitions tal:repeat="transition python: data['available_transitions']">
           <li>
-            <a class="dropdown-item transition"
+            <a class="dropdown-item transition pat-inject"
                href="#"
+               data-pat-inject="source: #listing; target: #listing; trigger: default &amp;&amp; source: #global_statusmessage; target: #global_statusmessage; trigger: default "
                tal:attributes="
-                 data-item-url python: data['url'];
-                 data-item-uid python: data['uid'];
-                 data-transition-id python: transition['id'];
-                 href python: view.addTokenToUrl(transition['url']);
+                 href python:'%s/@@change_state?action=%s&amp;back_to_referer=1' % (data['url'], transition['id']);
                  id python: 'workflow-transition-' + transition['id'];
                "
                i18n:domain="plone"
