@@ -2,7 +2,6 @@ from docpool.base.utils import is_rei_workflow
 from docpool.ui.services.newdatacheck.post import Listing as ListingBase
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-from plone.protect.utils import addTokenToUrl
 from Products.Five.browser import BrowserView
 from zope.component import queryUtility
 from zope.i18n import translate
