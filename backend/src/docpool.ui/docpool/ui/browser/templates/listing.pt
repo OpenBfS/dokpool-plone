@@ -90,11 +90,16 @@
     </div>
 
     <div class="m-2"
-         id="docpool-listing"
-         tal:attributes="
-           data-listing-items python: view.items;
-           data-listing-modified python: view.modified;
-         "
-    >JS/React does not work</div>
+         id="listing">
+        <ul>
+        <li tal:repeat="item python: view.items" >
+            <a class="pat-inject"
+               tal:attributes="href python: '@@listing-item?uid='+ item"
+               data-pat-inject="trigger: autoload-visible; delay: 5; target: self"
+               tal:content="python: '@@listing-item?uid='+ item">
+            </a>
+        </li>
+        </ul>
+    </div>
   </metal:content>
 </html>

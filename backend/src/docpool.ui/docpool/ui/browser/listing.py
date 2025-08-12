@@ -2,6 +2,7 @@ from docpool.base.utils import is_rei_workflow
 from docpool.ui.services.newdatacheck.post import Listing as ListingBase
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from plone.protect.utils import addTokenToUrl
 from Products.Five.browser import BrowserView
 from zope.component import queryUtility
 from zope.i18n import translate
@@ -16,7 +17,7 @@ class Listing(ListingBase, BrowserView):
         uids, modified = self.find(limit)
 
         # Mod-Date dazu und hash über udis & mod-date
-        self.items = json.dumps(uids)
+        self.items = uids
         self.modified = json.dumps(modified.timeTime()) if modified else None
         return self.index()
 
@@ -37,6 +38,7 @@ class Item(BrowserView):
         idnormalizer = queryUtility(IIDNormalizer)
         state_class = f"state-{idnormalizer.normalize(review_state)}"
         available_transitions = portal_workflow.getTransitionsFor(obj)
+        self.addTokenToUrl = addTokenToUrl
 
         if userinfo := obj.modified_by or obj.created_by:
             userinfo = userinfo.replace("<i>", "--separator--<i>", 1)

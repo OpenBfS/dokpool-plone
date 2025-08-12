@@ -77,6 +77,8 @@
                  data-item-url python: data['url'];
                  data-item-uid python: data['uid'];
                  data-transition-id python: transition['id'];
+                 href python: view.addTokenToUrl(transition['url']);
+                 id python: 'workflow-transition-' + transition['id'];
                "
                i18n:domain="plone"
                i18n:translate=""
