@@ -15,7 +15,7 @@ class Listing:
         query = {
             "context": self.context,
             "portal_type": "DPDocument",
-            "sort_on": "modified",
+            "sort_on": "mdate",
             "sort_order": "reverse",
         }
         if self.limit:
