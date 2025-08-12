@@ -59,7 +59,8 @@
           </button>
           <div class="dropdown-menu p-2">
             <button class="btn btn-primary mt-2"
-                    type="submit">Submit</button>
+                    type="submit"
+            >Submit</button>
 
             <tal:doktypes tal:repeat="doktype python: view.documenttypes_vocabulary">
               <div class="form-check">
@@ -81,7 +82,8 @@
               </div>
             </tal:doktypes>
             <button class="btn btn-primary mt-2"
-                    type="submit">Submit</button>
+                    type="submit"
+            >Submit</button>
 
           </div>
         </div>
@@ -90,16 +92,20 @@
     </div>
 
     <div class="m-2"
-         id="listing">
-        <ul>
-        <li tal:repeat="item python: view.items" >
-            <a class="pat-inject"
-               tal:attributes="href python: '@@listing-item?uid='+ item"
-               data-pat-inject="trigger: autoload-visible; delay: 5; target: self"
-               tal:content="python: '@@listing-item?uid='+ item">
-            </a>
+         id="listing"
+    >
+      <ul>
+        <li tal:repeat="item python: view.items">
+          <a class="pat-inject"
+             data-pat-inject="trigger: autoload-visible; delay: 5; target: self"
+             tal:content="python: '@@listing-item?uid='+ item"
+             tal:attributes="
+               href python: '@@listing-item?uid='+ item;
+             "
+          >
+          </a>
         </li>
-        </ul>
+      </ul>
     </div>
   </metal:content>
 </html>
