@@ -29,6 +29,7 @@ setup(
         "setuptools",
         "z3c.jbot",
         "zope.interface",
+        "plone.patternslib",
         # -*- Extra requirements: -*-
     ],
     entry_points="""
