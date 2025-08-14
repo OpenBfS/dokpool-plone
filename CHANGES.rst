@@ -4,6 +4,12 @@ Changelog
 2.3.0 (unreleased)
 ------------------
 
+Technical:
+
+- Have varnish log differences between Shibboleth and Plone users in order to
+  analyze spontaneous identification issues. (#4539)
+  [tlotze]
+
 
 2.2.0 (2025-08-05)
 ------------------
