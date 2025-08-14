@@ -1,6 +1,7 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import activateAppFilter
+from docpool.base.utils import get_current_state_title
 from docpool.base.utils import get_docpool_for_user
 from docpool.base.utils import is_admin
 from docpool.base.utils import is_admin_on_dokpool
@@ -15,6 +16,7 @@ from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five import BrowserView
 from zope.component import getMultiAdapter
+from zope.i18n import translate
 from zope.interface import alsoProvides
 
 import logging
@@ -145,7 +147,15 @@ class ChangeState(BrowserView):
                         pass
         except InvalidParameterError:
             return self.redirect()
-        api.portal.show_message(_("The document state has been changed."), self.request)
+
+        new_review_state = api.content.get_state(obj)
+        state_title = get_current_state_title(obj, new_review_state)
+        translated_state_title = translate(state_title, domain="docpool.base", context=self.request)
+        msg = _(
+            "New review state for ${title}: ${new_state}",
+            mapping={"title": obj.title, "new_state": translated_state_title},
+        )
+        api.portal.show_message(msg, self.request)
         return self.redirect()
 
     def redirect(self):
