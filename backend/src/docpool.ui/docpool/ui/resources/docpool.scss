@@ -1,10 +1,10 @@
-ul {
-  padding-left: 0;
-}
-
-li {
-  list-style: none;
-}
+$plone-default-private-color: #ff0000;
+$plone-default-pending-color: #ccd111;
+$plone-default-pending_bfs-color: #ffaa00;
+$plone-default-pending_authority-color: #d07317;
+$plone-default-pending_bmu-color: #75a30a;
+$plone-default-published-color: #007bb1;
+$plone-default-revised-color: #7a561f;
 
 .filter-form-container {
   margin-bottom: 20px;
@@ -43,17 +43,52 @@ li {
 
   &.state-published {
     color: #fff !important;
-    background-color: #007bb1;
+    background-color: $plone-default-published-color;
   }
 
   &.state-private {
-    color: #fff !important;
-    background-color: darkred;
+    color: #000 !important;
+    background-color: $plone-default-private-color;
   }
 
   &.state-pending {
     color: #fff !important;
-    background-color: orange;
+    background-color: $plone-default-pending-color;
   }
+
+  &.state-pending_bfs {
+    color: #000 !important;
+    background-color: $plone-default-pending_bfs-color;
+  }
+
+  &.state-pending_bmu {
+    color: #fff !important;
+    background-color: $plone-default-pending_bmu-color;
+  }
+
+  &.state-revised {
+    color: #fff !important;
+    background-color: $plone-default-revised-color;
+  }
+
+}
+
+#listing > a {
+    display: block;
+    min-height: 84px;
+}
+
+#listing > a.pat-inject.executed {
+    height: auto;
+}
+
+#listing a {
+    text-decoration: none;
+}
+
+#listing .listing-item {
+    .doctype-box {
+        min-width: 95px;
+    }
 
 }

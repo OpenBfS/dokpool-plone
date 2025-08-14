@@ -4,10 +4,10 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       metal:use-macro="context/@@main_template/macros/master"
       xml:lang="en"
-      i18n:domain="docpool.theme"
+      i18n:domain="docpool.base"
 >
   <metal:content fill-slot="content-core">
-    <div class="filter-form-container pat-update-notification"
+    <div class="pat-update-notification container"
          id="dokpool-listing"
          tal:attributes="
            data-listing-modified python: view.modified;
@@ -16,103 +16,104 @@
       <form class="filter-form"
             method="GET"
       >
-
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle"
-                  aria-expanded="false"
-                  type="button"
-                  data-bs-auto-close="outside"
-                  data-bs-toggle="dropdown"
-          >
-          Limit results
-          </button>
-          <div class="dropdown-menu p-4">
-            <tal:limit tal:repeat="limit_value python: [0, 5, 10]">
-              <div class="form-check">
-                <input class="form-check-input"
-                       id="${python: limit_value}"
-                       name="limit"
-                       onchange="this.form.submit()"
-                       type="radio"
-                       value="${python: limit_value}"
-                       tal:attributes="
-                         checked python: view.limit == limit_value;
-                       "
-                />
-                <label class="form-check-label"
-                       for="${python: limit_value}"
-                >
+        <div class="d-flex flex-row">
+          <div class="m-2 dropdown">
+            <button class="btn btn-primary dropdown-toggle"
+                    aria-expanded="false"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+                    i18n:translate=""
+            >
+          Anzahl der Eintr&auml;ge
+            </button>
+            <div class="dropdown-menu p-4">
+              <tal:limit tal:repeat="limit_value python: [0, 5, 10]">
+                <div class="form-check">
+                  <input class="form-check-input"
+                         id="${python: limit_value}"
+                         name="limit"
+                         onchange="this.form.submit()"
+                         type="radio"
+                         value="${python: limit_value}"
+                         tal:attributes="
+                           checked python: view.limit == limit_value;
+                         "
+                  />
+                  <label class="form-check-label"
+                         for="${python: limit_value}"
+                  >
               ${python: limit_value or 'Alle'}
-                </label>
-              </div>
-            </tal:limit>
+                  </label>
+                </div>
+              </tal:limit>
+            </div>
           </div>
-        </div>
-
-        <div class="dropdown m-2"
-             tal:define="
-               selected_doktypes python: view.selected_doktypes;
-             "
-        >
-          <button class="btn btn-primary dropdown-toggle"
-                  aria-expanded="false"
-                  type="button"
-                  data-bs-auto-close="outside"
-                  data-bs-toggle="dropdown"
+          <div class="m-2 dropdown"
+               tal:define="
+                 selected_doktypes python: view.selected_doktypes;
+               "
           >
+            <button class="btn btn-primary dropdown-toggle"
+                    aria-expanded="false"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+            >
           Eintragsart
-          </button>
-          <div class="dropdown-menu p-2">
-            <button class="btn btn-primary mt-2"
-                    type="submit"
-            >Submit
             </button>
+            <div class="dropdown-menu p-2 pat-checklist">
+              <button class="btn btn-primary mt-2"
+                      type="submit"
+                      i18n:translate=""
+              >Submit</button>
 
-            <tal:doktypes tal:repeat="doktype python: view.documenttypes_vocabulary">
-              <div class="form-check">
-                <input class="form-check-input"
-                       id="${python: 'selected_doktypes-' + doktype.token}"
-                       name="selected_doktypes:list"
-                       type="checkbox"
-                       value="${python: doktype.token}"
-                       tal:attributes="
-                         checked python: doktype.token in selected_doktypes;
-                       "
-                />
-                <label class="form-check-label"
-                       for="${python: 'selected_doktypes-' + doktype.token}"
-                       i18n:translate=""
-                >
+              <div class="form-check"><label><input class="form-check-input toggle-all"
+                         type="checkbox"
+                  /><span i18n:translate="label_toggle">Toggle all</span></label></div>
+              <tal:doktypes tal:repeat="doktype python: view.documenttypes_vocabulary">
+                <div class="form-check">
+                  <input class="form-check-input"
+                         id="${python: 'selected_doktypes-' + doktype.token}"
+                         name="selected_doktypes:list"
+                         type="checkbox"
+                         value="${python: doktype.token}"
+                         tal:attributes="
+                           checked python: doktype.token in selected_doktypes;
+                         "
+                  />
+                  <label class="form-check-label"
+                         for="${python: 'selected_doktypes-' + doktype.token}"
+                         i18n:translate=""
+                  >
               ${python: doktype.title}
-                </label>
-              </div>
-            </tal:doktypes>
-            <button class="btn btn-primary mt-2"
-                    type="submit"
-            >Submit
-            </button>
-
+                  </label>
+                </div>
+              </tal:doktypes>
+              <button class="btn btn-primary mt-2"
+                      type="submit"
+                      i18n:translate=""
+              >Submit</button>
+            </div>
           </div>
-        </div>
 
+        </div>
       </form>
     </div>
 
-    <div class="m-2"
+    <div class="m-2 container border-bottom"
          id="listing"
     >
-      <ul>
-        <li tal:repeat="item python: view.items">
-          <a class="pat-inject"
-             data-pat-inject="trigger: autoload-visible; delay: 5; target: self"
-             tal:content="python: '@@listing-item?uid='+ item"
-             tal:attributes="
-               href python: '@@listing-item?uid='+ item;
-             "
-          >
-          </a>
-        </li>
-      </ul>
+      <tal:block tal:repeat="item python: view.items">
+        <a class="pat-inject"
+           data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
+           tal:content="python: '@@listing-item?uid='+ item"
+           tal:attributes="
+             href python: '@@listing-item?uid='+ item;
+           "
+        >
+        </a>
+      </tal:block>
     </div>
   </metal:content>
 </html>
