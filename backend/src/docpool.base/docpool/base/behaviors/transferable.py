@@ -245,88 +245,94 @@ class Transferable(FlexibleView):
             portalMessage(self.context, pmsg, type="error")
 
         def doIt():
+            # TODO The idea of this function is to avoid executing do_target multiple times under the manager
+            # role but if performance turns out not to be an issue, the loop might be done by the outer method
+            # directly.
             for target in targets:
-                # 1) Determine target transfer folder object.
-                transfer_folder = api.content.get(UID=target)
-                esd_to_title = transfer_folder.myDocumentPool().Title()
+                do_target(target)
 
-                # Check permissions:
-                # a) Is my DocType accepted, are unknown DocTypes accepted?
-                udt_ok = transfer_folder.unknownDtDefault != "block"
-                if not udt_ok:
-                    # check my precise DocType
-                    if not transfer_folder.acceptsDT(dto.getId()):
-                        error_message(esd_to_title, _("Doc type not accepted."))
-                        continue
+        def do_target(target):
+            # 1) Determine target transfer folder object.
+            transfer_folder = api.content.get(UID=target)
+            esd_to_title = transfer_folder.myDocumentPool().Title()
 
-                do_elan = elanobj and ELAN_APP in transfer_folder.myDocumentPool().supportedApps
+            # Check permissions:
+            # a) Is my DocType accepted, are unknown DocTypes accepted?
+            udt_ok = transfer_folder.unknownDtDefault != "block"
+            if not udt_ok:
+                # check my precise DocType
+                if not transfer_folder.acceptsDT(dto.getId()):
+                    error_message(esd_to_title, _("Doc type not accepted."))
+                    return
 
-                # b) Check app-specific conditions that might deny transfer.
-                if do_elan:
-                    app_transfer = IAppSpecificTransfer((self.context, transfer_folder), name=ELAN_APP)
-                    try:
-                        app_transfer.assert_allowed()
-                    except BaseException as exc:
-                        error_message(esd_to_title, exc.args[0])
-                        continue
+            do_elan = elanobj and ELAN_APP in transfer_folder.myDocumentPool().supportedApps
 
-                # At this point, transfer is allowed.
-                logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
+            # b) Check app-specific conditions that might deny transfer.
+            if do_elan:
+                app_transfer = IAppSpecificTransfer((self.context, transfer_folder), name=ELAN_APP)
+                try:
+                    app_transfer.assert_allowed()
+                except BaseException as exc:
+                    error_message(esd_to_title, exc.args[0])
+                    return
 
-                # 2) Put a copy of me in transfer folder, preserving timestamps.
-                new_id = _copyPaste(self.context, transfer_folder)
-                my_copy = transfer_folder._getOb(new_id)
+            # At this point, transfer is allowed.
+            logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
 
-                # 3) Add transfer information to the copies.
-                my_copy.transferred = timestamp
-                my_copy.transferred_by = userinfo_string
+            # 2) Put a copy of me in transfer folder, preserving timestamps.
+            new_id = _copyPaste(self.context, transfer_folder)
+            my_copy = transfer_folder._getOb(new_id)
 
-                # 4) Add entry to sender log.
-                log_entry = dict(
-                    timestamp=timestamp,
-                    user=userinfo_string,
-                    esd_title=esd_to_title,
-                    transferfolder_uid=transfer_folder.UID(),
+            # 3) Add transfer information to the copies.
+            my_copy.transferred = timestamp
+            my_copy.transferred_by = userinfo_string
+
+            # 4) Add entry to sender log.
+            log_entry = dict(
+                timestamp=timestamp,
+                user=userinfo_string,
+                esd_title=esd_to_title,
+                transferfolder_uid=transfer_folder.UID(),
+            )
+            if do_elan:
+                log_entry.update(app_transfer.sender_log_entry())
+            self.sender_log += (log_entry,)
+
+            # 5) Make sure document type and scenarios exist in the target ESD and
+            #    are in a suitable state.
+            private = False
+            if not my_copy.docTypeObj():
+                my_copy.docType = "none"
+                private = True
+
+            if do_elan:
+                app_transfer(my_copy)
+
+            # 6) Set workflow state of the copy according to folder permissions.
+            transfer_copy = ITransferable(my_copy)
+            transfer_copy.ensureState(private)
+            my_copy.reindexObject()
+
+            # 7) Add entry to receiver log.
+            log_entry = dict(
+                timestamp=timestamp,
+                user=userinfo_string,
+                esd_title=transfer_folder.getSendingESD().Title(),
+            )
+            if do_elan:
+                log_entry.update(app_transfer.receiver_log_entry())
+            transfer_copy.receiver_log += (log_entry,)
+
+            msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
+            api.portal.show_message(msg, self.request)
+
+            brain = api.content.find(UID=my_copy.UID())[0]
+            index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
+            if set(getattr(my_copy, "scenarios", [])) != set(index_entry):
+                log(
+                    f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
+                    severity=logging.ERROR,
                 )
-                if do_elan:
-                    log_entry.update(app_transfer.sender_log_entry())
-                self.sender_log += (log_entry,)
-
-                # 5) Make sure document type and scenarios exist in the target ESD and
-                #    are in a suitable state.
-                private = False
-                if not my_copy.docTypeObj():
-                    my_copy.docType = "none"
-                    private = True
-
-                if do_elan:
-                    app_transfer(my_copy)
-
-                # 6) Set workflow state of the copy according to folder permissions.
-                transfer_copy = ITransferable(my_copy)
-                transfer_copy.ensureState(private)
-                my_copy.reindexObject()
-
-                # 7) Add entry to receiver log.
-                log_entry = dict(
-                    timestamp=timestamp,
-                    user=userinfo_string,
-                    esd_title=transfer_folder.getSendingESD().Title(),
-                )
-                if do_elan:
-                    log_entry.update(app_transfer.receiver_log_entry())
-                transfer_copy.receiver_log += (log_entry,)
-
-                msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
-                api.portal.show_message(msg, self.request)
-
-                brain = api.content.find(UID=my_copy.UID())[0]
-                index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
-                if set(getattr(my_copy, "scenarios", [])) != set(index_entry):
-                    log(
-                        f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
-                        severity=logging.ERROR,
-                    )
 
         execute_under_special_role(self.context, "Manager", doIt)
 
