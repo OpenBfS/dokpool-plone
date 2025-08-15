@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-07-24 14:32+0000\n"
+"POT-Creation-Date: 2025-09-25 12:42+0000\n"
 "PO-Revision-Date: 2025-07-28 12:16+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -117,10 +117,6 @@ msgstr "Docpool Ansicht mit Mehrfach-Aktionen"
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "Document Types"
 msgstr "Dokumenttypen"
-
-#: docpool.base/docpool/base/behaviors/transferable.py
-msgid "Document has no scenario."
-msgstr "Dem Dokument ist kein Ereignis zugeordnet."
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
@@ -509,10 +505,6 @@ msgstr "Fehlende Berechtigungen für das Einfügen."
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unknown error occured. Please check your logs"
 msgstr "Unbekannter Fehler. Bitte prüfen Sie das Log."
-
-#: docpool.base/docpool/base/behaviors/transferable.py
-msgid "Unknown scenario not accepted."
-msgstr "Unbekanntes Ereignis wurde nicht akzeptiert."
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"

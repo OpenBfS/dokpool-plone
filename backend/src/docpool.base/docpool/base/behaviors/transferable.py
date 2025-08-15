@@ -17,8 +17,6 @@ from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
-from docpool.elan.content.transfers import ensureScenariosInTarget
-from docpool.elan.content.transfers import knowsScen
 from logging import getLogger
 from plone import api
 from plone.autoform import directives
@@ -65,6 +63,10 @@ def transferring():
 
 class ISkipAutomaticTransferMarker(Interface):
     """Marker interface for containers whose content should be ignored for automatic transfers."""
+
+
+class IAppSpecificTransfer(Interface):
+    pass
 
 
 @provider(IFormFieldProvider)
@@ -260,24 +262,14 @@ class Transferable(FlexibleView):
 
                 do_elan = elanobj and ELAN_APP in transfer_folder.myDocumentPool().supportedApps
 
+                # b) Check app-specific conditions that might deny transfer.
                 if do_elan:
-                    # b) Is my Scenario known, are unknown Scenarios accepted?
-                    scen_ok = transfer_folder.unknownScenDefault != "block"
-                    if not scen_ok:
-                        # check my precise Scenario
-                        # TODO The following is inefficient in that it creates a list of
-                        # full objects, but it effectively filters elanobj.scenarios for
-                        # those that actually exist in the catalog. Is this necessary?
-                        # FIXME: The following logic appears to be broken, see #5723.
-                        scens = elanobj.myScenarioObjects()
-                        if scens:
-                            scen_id = scens[0].getId()
-                            if not knowsScen(transfer_folder, scen_id):
-                                error_message(esd_to_title, _("Unknown scenario not accepted."))
-                                continue
-                        else:
-                            error_message(esd_to_title, _("Document has no scenario."))
-                            continue
+                    app_transfer = IAppSpecificTransfer((self.context, transfer_folder), name=ELAN_APP)
+                    try:
+                        app_transfer.assert_allowed()
+                    except BaseException as exc:
+                        error_message(esd_to_title, exc.args[0])
+                        continue
 
                 # At this point, transfer is allowed.
                 logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
@@ -298,8 +290,7 @@ class Transferable(FlexibleView):
                     transferfolder_uid=transfer_folder.UID(),
                 )
                 if do_elan:
-                    scenario_ids = ", ".join(b.getId for b in api.content.find(UID=elanobj.scenarios))
-                    log_entry["scenario_ids"] = scenario_ids
+                    log_entry.update(app_transfer.sender_log_entry())
                 self.sender_log += (log_entry,)
 
                 # 5) Make sure document type and scenarios exist in the target ESD and
@@ -310,7 +301,7 @@ class Transferable(FlexibleView):
                     private = True
 
                 if do_elan:
-                    copy_scenario_ids = ensureScenariosInTarget(self.context, my_copy)
+                    app_transfer(my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
                 transfer_copy = ITransferable(my_copy)
@@ -324,7 +315,7 @@ class Transferable(FlexibleView):
                     esd_title=transfer_folder.getSendingESD().Title(),
                 )
                 if do_elan:
-                    log_entry["scenario_ids"] = ", ".join(copy_scenario_ids)
+                    log_entry.update(app_transfer.receiver_log_entry())
                 transfer_copy.receiver_log += (log_entry,)
 
                 msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})

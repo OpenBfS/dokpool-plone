@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-24 14:32+0000\n"
+"POT-Creation-Date: 2025-09-25 12:42+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -118,10 +118,6 @@ msgstr ""
 #: docpool.base/docpool/base/content/dashboard.py
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "Document Types"
-msgstr ""
-
-#: docpool.base/docpool/base/behaviors/transferable.py
-msgid "Document has no scenario."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
@@ -510,10 +506,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unknown error occured. Please check your logs"
-msgstr ""
-
-#: docpool.base/docpool/base/behaviors/transferable.py
-msgid "Unknown scenario not accepted."
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
