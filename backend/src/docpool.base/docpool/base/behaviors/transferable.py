@@ -10,13 +10,12 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import ContextProperty
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
-from docpool.elan.behaviors.elandocument import IELANDocument
-from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from plone import api
 from plone.autoform import directives
@@ -29,6 +28,7 @@ from Products.CMFPlone.utils import log
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 from zope.interface import provider
@@ -223,9 +223,10 @@ class Transferable(FlexibleView):
         2) Put a copy of me in each of them, preserving timestamps.
         3) Add transfer information the copies.
         4) Add entries to sender logs.
-        5) Make sure document types and scenarios exist in the target ESDs.
-        6) Set workflow state of the copies according to folder permissions.
-        7) Add entries to receiver logs.
+        5) Make sure about document type in the target ESD.
+        6) Apply app-specific transfer steps.
+        7) Set workflow state of the copies according to folder permissions.
+        8) Add entries to receiver logs.
         """
 
         if targets is None:
@@ -236,9 +237,6 @@ class Transferable(FlexibleView):
         timestamp = datetime.now()
         userinfo_string = self.context._getUserInfoString(plain=True)
         dto = self.context.docTypeObj()
-
-        # For ELAN we also need to handle the scenario.
-        elanobj = IELANDocument(self.context, None)
 
         def error_message(esd_to_title, msg):
             pmsg = _("No transfer to ${title}. ${msg}", mapping=dict(title=esd_to_title, msg=msg))
@@ -265,11 +263,19 @@ class Transferable(FlexibleView):
                     error_message(esd_to_title, _("Doc type not accepted."))
                     return
 
-            do_elan = elanobj and ELAN_APP in transfer_folder.myDocumentPool().supportedApps
+            # Collect transfer specifics for apps supported by both original and target.
+            app_transfers = []
+            for app in ILocalBehaviorSupport(self.context).local_behaviors:
+                if app not in transfer_folder.myDocumentPool().supportedApps:
+                    continue
+                app_transfer = queryMultiAdapter(
+                    (self.context, transfer_folder), IAppSpecificTransfer, name=app
+                )
+                if app_transfer is not None:
+                    app_transfers.append(app_transfer)
 
             # b) Check app-specific conditions that might deny transfer.
-            if do_elan:
-                app_transfer = IAppSpecificTransfer((self.context, transfer_folder), name=ELAN_APP)
+            for app_transfer in app_transfers:
                 try:
                     app_transfer.assert_allowed()
                 except BaseException as exc:
@@ -294,32 +300,32 @@ class Transferable(FlexibleView):
                 esd_title=esd_to_title,
                 transferfolder_uid=transfer_folder.UID(),
             )
-            if do_elan:
+            for app_transfer in app_transfers:
                 log_entry.update(app_transfer.sender_log_entry())
             self.sender_log += (log_entry,)
 
-            # 5) Make sure document type and scenarios exist in the target ESD and
-            #    are in a suitable state.
+            # 5) Make sure about document type in the target ESD.
             private = False
             if not my_copy.docTypeObj():
                 my_copy.docType = "none"
                 private = True
 
-            if do_elan:
+            # 6) Apply app-specific transfer steps.
+            for app_transfer in app_transfers:
                 app_transfer(my_copy)
 
-            # 6) Set workflow state of the copy according to folder permissions.
+            # 7) Set workflow state of the copy according to folder permissions.
             transfer_copy = ITransferable(my_copy)
             transfer_copy.ensureState(private)
             my_copy.reindexObject()
 
-            # 7) Add entry to receiver log.
+            # 8) Add entry to receiver log.
             log_entry = dict(
                 timestamp=timestamp,
                 user=userinfo_string,
                 esd_title=transfer_folder.getSendingESD().Title(),
             )
-            if do_elan:
+            for app_transfer in app_transfers:
                 log_entry.update(app_transfer.receiver_log_entry())
             transfer_copy.receiver_log += (log_entry,)
 
