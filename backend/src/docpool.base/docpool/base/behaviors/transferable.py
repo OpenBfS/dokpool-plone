@@ -16,6 +16,7 @@ from docpool.base.utils import ContextProperty
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
 from docpool.elan.behaviors.elandocument import IELANDocument
+from docpool.elan.config import ELAN_APP
 from docpool.elan.content.transfers import ensureScenariosInTarget
 from docpool.elan.content.transfers import knowsScen
 from logging import getLogger
@@ -257,7 +258,9 @@ class Transferable(FlexibleView):
                         error_message(esd_to_title, _("Doc type not accepted."))
                         continue
 
-                if elanobj:
+                do_elan = elanobj and ELAN_APP in transfer_folder.myDocumentPool().supportedApps
+
+                if do_elan:
                     # b) Is my Scenario known, are unknown Scenarios accepted?
                     scen_ok = transfer_folder.unknownScenDefault != "block"
                     if not scen_ok:
@@ -294,7 +297,7 @@ class Transferable(FlexibleView):
                     esd_title=esd_to_title,
                     transferfolder_uid=transfer_folder.UID(),
                 )
-                if elanobj:
+                if do_elan:
                     scenario_ids = ", ".join(b.getId for b in api.content.find(UID=elanobj.scenarios))
                     log_entry["scenario_ids"] = scenario_ids
                 self.sender_log += (log_entry,)
@@ -306,7 +309,7 @@ class Transferable(FlexibleView):
                     my_copy.docType = "none"
                     private = True
 
-                if elanobj:
+                if do_elan:
                     copy_scenario_ids = ensureScenariosInTarget(self.context, my_copy)
 
                 # 6) Set workflow state of the copy according to folder permissions.
@@ -320,7 +323,7 @@ class Transferable(FlexibleView):
                     user=userinfo_string,
                     esd_title=transfer_folder.getSendingESD().Title(),
                 )
-                if elanobj:
+                if do_elan:
                     log_entry["scenario_ids"] = ", ".join(copy_scenario_ids)
                 transfer_copy.receiver_log += (log_entry,)
 
