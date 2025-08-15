@@ -229,23 +229,22 @@ class Transferable(FlexibleView):
         """
 
         if targets is None:
-            targets = []
+            return
 
         catalog = api.portal.get_tool("portal_catalog")
         scenarios_index = catalog._catalog.getIndex("scenarios")
+        timestamp = datetime.now()
+        userinfo_string = self.context._getUserInfoString(plain=True)
+        dto = self.context.docTypeObj()
+
+        # For ELAN we also need to handle the scenario.
+        elanobj = IELANDocument(self.context, None)
 
         def error_message(esd_to_title, msg):
             pmsg = _("No transfer to ${title}. ${msg}", mapping=dict(title=esd_to_title, msg=msg))
             portalMessage(self.context, pmsg, type="error")
 
         def doIt():
-            timestamp = datetime.now()
-            userinfo_string = self.context._getUserInfoString(plain=True)
-            dto = self.context.docTypeObj()
-
-            # For ELAN we also need to handle the scenario.
-            elanobj = IELANDocument(self.context, None)
-
             for target in targets:
                 # 1) Determine target transfer folder object.
                 transfer_folder = api.content.get(UID=target)
