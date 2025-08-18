@@ -44,14 +44,18 @@ class ELANSpecificTransfer:
         return dict(scenario_ids=scenario_ids)
 
     def __call__(self, copy):
-        self.copy_scenario_ids = ensureScenariosInTarget(self.original, copy)
+        self.copy_scenarios = list(ensureScenariosInTarget(self.elanobj.scenarios, copy.myDocumentPool()))
+        try:
+            IELANDocument(copy).scenarios = [s.UID() for s in self.copy_scenarios]
+        except Exception as e:
+            log_exc(e)
 
     def receiver_log_entry(self):
-        return dict(scenario_ids=", ".join(self.copy_scenario_ids))
+        return dict(scenario_ids=", ".join(s.getId() for s in self.copy_scenarios))
 
 
-def ensureScenariosInTarget(original, copy):
-    """Handle scenario assignments on document transfer.
+def ensureScenariosInTarget(scenarios, target_docpool):
+    """Prepare target scenarios on document transfer.
 
     For each scenario assigned to the original, try to identify a scenario at the target
     ESD, matching by object id. Copy unmatched scenarios to target ESD.
@@ -61,11 +65,9 @@ def ensureScenariosInTarget(original, copy):
     a published substitute scenario, replace it with that.
 
     """
-    my_scenarios = original.doc_extension(ELAN_APP).scenarios
-    scen = copy.myDocumentPool().contentconfig.scen
-    copy_events = []
+    scen = target_docpool.contentconfig.scen
 
-    for orig_brain in api.content.find(UID=my_scenarios):
+    for orig_brain in api.content.find(UID=scenarios):
         copy_id = orig_brain.getId
         if scen.hasObject(copy_id):
             copy_event = scen[copy_id]
@@ -80,11 +82,4 @@ def ensureScenariosInTarget(original, copy):
             if api.content.get_state(copy_event) == "private":
                 api.content.transition(copy_event, "publish")
 
-        copy_events.append(copy_event)
-
-    try:
-        copy.doc_extension(ELAN_APP).scenarios = [e.UID() for e in copy_events]
-    except Exception as e:
-        log_exc(e)
-
-    return [e.getId() for e in copy_events]
+        yield copy_event
