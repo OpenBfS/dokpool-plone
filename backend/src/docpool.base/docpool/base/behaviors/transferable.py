@@ -265,8 +265,10 @@ class Transferable(FlexibleView):
 
             # Collect transfer specifics for apps supported by both original and target.
             app_transfers = []
-            for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            apps_to_remove = set()
+            for app in (lbs := ILocalBehaviorSupport(self.context)).local_behaviors:
                 if app not in transfer_folder.myDocumentPool().supportedApps:
+                    apps_to_remove.add(app)
                     continue
                 app_transfer = queryMultiAdapter(
                     (self.context, transfer_folder), IAppSpecificTransfer, name=app
@@ -311,6 +313,7 @@ class Transferable(FlexibleView):
                 private = True
 
             # 6) Apply app-specific transfer steps.
+            ILocalBehaviorSupport(my_copy).local_behaviors = set(lbs.local_behaviors) - apps_to_remove
             for app_transfer in app_transfers:
                 app_transfer(my_copy)
 
