@@ -34,7 +34,7 @@ class ELANSpecificTransfer:
             scens = self.elanobj.myScenarioObjects()
             if scens:
                 scen_id = scens[0].getId()
-                if not knowsScen(self.transfer_folder, scen_id):
+                if not any(scen.getId == scen_id for scen in getOpenScenarios(self.transfer_folder)):
                     raise ValueError(_("Unknown scenario not accepted."))
             else:
                 raise ValueError(_("Document has no scenario."))
@@ -88,12 +88,3 @@ def ensureScenariosInTarget(original, copy):
         log_exc(e)
 
     return [e.getId() for e in copy_events]
-
-
-def knowsScen(transfer_folder, scen_id):
-    """
-    Do I know this scenario?
-    """
-    scens = getOpenScenarios(transfer_folder)
-    scen_ids = [scen.getId for scen in scens]
-    return scen_id in scen_ids
