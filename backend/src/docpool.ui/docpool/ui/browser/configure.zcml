@@ -40,13 +40,4 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
-  <browser:page
-      name="left"
-      for="*"
-      class=".left.Left"
-      template="templates/left.pt"
-      permission="zope.Public"
-      layer="docpool.ui.interfaces.IUITheme"
-      />
-
 </configure>
