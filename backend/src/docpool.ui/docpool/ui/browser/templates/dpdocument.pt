@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      tal:define="
+        dummy python:request.set('ajax_load',1);
+      "
+      i18n:domain="docpool.base"
+>
+
+  <body>
+    <metal:body fill-slot="body"
+                tal:define="
+                  apps python: view.apps();
+                "
+    >
+
+      <div id="header">
+      </div>
+
+      <div class="container"
+           id="content"
+      >
+
+        <div class="row">
+          <div class="col-sm-6">
+            <h1 tal:content="python: context.title"></h1>
+          </div>
+          <div class="col-sm-6">
+
+            <div class="actions">
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">Previous</li>
+                <li class="list-group-item">Next</li>
+                <li class="list-group-item">
+                  <a href="edit"
+                     tal:attributes="
+                       href python: context.absolute_url() + '/@@edit';
+                     "
+                  >Edit</a>
+                </li>
+                <li class="list-group-item">Delete</li>
+                <li class="list-group-item">Print</li>
+                <li class="list-group-item">Favorite</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <p class="description"
+               tal:condition="python: context.description"
+               tal:content="python: context.description"
+            ></p>
+            <div tal:condition="python: context.text"
+                 tal:replace="structure python: context.text.output_relative_to(context)"
+            ></div>
+            <div>TODO: Images</div>
+          </div>
+
+          <div class="col-sm-4">
+
+            <div tal:condition="python: 'elan' in apps">
+
+              <dl class="doc_metadata"
+                  tal:define="
+                    elanobj python: apps['elan'];
+                    typeAndCat python: elanobj.typeAndCat();
+                    doktype python: typeAndCat[0];
+                    categories python: typeAndCat[1];
+                  "
+              >
+                <tal:scns define="
+                            scns elanobj.getScenarioNames();
+                          "
+                          condition="python: scns"
+                >
+                  <dt i18n:domain="docpool.elan"
+                      i18n:translate=""
+                  >Belongs to scenario:</dt>
+                  <dd tal:content="python: ', '.join(scns)"></dd>
+                </tal:scns>
+                <tal:cat condition="python: categories">
+                  <dt i18n:domain="docpool.elan"
+                      i18n:translate=""
+                  >Content from:</dt>
+                  <dd>${python: doktype} (${python: ', '.join(categories)})</dd>
+                </tal:cat>
+              </dl>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </metal:body>
+  </body>
+</html>

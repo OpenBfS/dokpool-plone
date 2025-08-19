@@ -35,9 +35,11 @@
   </div>
 
   <div class="flex-fill">
-    <a href="#"
+    <a class="pat-plone-modal"
+       href="#"
+       data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
        tal:attributes="
-         href python: data['url'];
+         href python: data['url'] + '?ajax_load=1';
        "
     >
       <h2 tal:content="python: data['title']"></h2>

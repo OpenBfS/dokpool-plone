@@ -40,4 +40,13 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:page
+      name="view"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".dpdocument.DPDocumentView"
+      template="templates/dpdocument.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
 </configure>
