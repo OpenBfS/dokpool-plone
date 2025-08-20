@@ -152,6 +152,7 @@ test: $(VENV_FOLDER) ## run tests
 	--test-path src/docpool.doksys/src \
 	--test-path src/docpool.elan \
 	--test-path src/docpool.rei \
+	--test-path src/docpool.ui \
 	-D
 
 .PHONY: coverage
@@ -166,6 +167,7 @@ coverage: ## generate test-coverage report
 	--test-path src/docpool.elan \
 	--test-path src/docpool.rei \
 	--test-path src/docpool.doksys/src \
+	--test-path src/docpool.ui \
 	|| exit 1
 	@echo "$(GREEN)==> Creating test coverage report$(RESET)"
 	@uv run coverage combine
