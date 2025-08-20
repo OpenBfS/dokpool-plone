@@ -49,4 +49,23 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <!-- The default view and edit views for debugging purposes -->
+  <configure package="plone.app.dexterity.browser">
+    <browser:page
+        name="base_view"
+        for="plone.dexterity.interfaces.IDexterityItem"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="item.pt"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="base_view"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="container.pt"
+        permission="cmf.ManagePortal"
+        />
+  </configure>
+
 </configure>
