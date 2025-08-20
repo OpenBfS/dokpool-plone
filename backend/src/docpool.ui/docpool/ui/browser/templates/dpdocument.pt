@@ -62,7 +62,7 @@
 
           <div class="col-sm-4">
 
-            <div tal:condition="python: 'elan' in apps">
+            <tal:elan condition="python: 'elan' in apps">
 
               <dl class="doc_metadata"
                   tal:define="
@@ -90,7 +90,8 @@
                 </tal:cat>
               </dl>
 
-            </div>
+            </tal:elan>
+
           </div>
 
         </div>
