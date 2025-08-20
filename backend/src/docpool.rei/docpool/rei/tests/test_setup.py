@@ -6,6 +6,7 @@ from zope.schema.interfaces import IVocabularyFactory
 
 import unittest
 
+
 class TestVocabularies(unittest.TestCase):
     """Test that docpool.rei is properly installed."""
 
