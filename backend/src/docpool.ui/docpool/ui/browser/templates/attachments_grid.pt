@@ -1,0 +1,56 @@
+<tal:attachments define="
+                   items python: view.items();
+                   icons python:context.restrictedTraverse('@@iconresolver');
+                 "
+                 condition="python: items"
+>
+
+  <div id="attachments">
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col"
+           tal:repeat="item python: items"
+      >
+        <div class="h-100"
+             tal:define="
+               is_image python: item.portal_type == 'Image';
+             "
+        >
+          <tal:image condition="python: is_image">
+            <a class="pat-plone-modal"
+               data-pat-plone-modal='{"content": "#content-core", "templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+               tal:attributes="
+                 href python: item.getURL() + '/image_view_fullscreen';
+               "
+            >
+              <img class="rounded mx-auto d-block"
+                   tal:attributes="
+                     src python: item.getURL() + '/@@images/image/preview';
+                   "
+              />
+            </a>
+          </tal:image>
+          <tal:file condition="python: not is_image">
+            <p class="placeholder"></p>
+          </tal:file>
+          <p tal:content="python: item.title">Title</p>
+          <p tal:content="python: item.description">Description.</p>
+          <a class="pat-plone-modal"
+             data-pat-plone-modal='{"content": "#content-core", "templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+             tal:condition="python: is_image"
+             tal:attributes="
+               href python: item.getURL() + '/image_view_fullscreen';
+             "
+          ><img src="${python:icons.url('eye')}" /></a>
+          <a href=""
+             tal:attributes="
+               href python: item.getURL() + '/@@download';
+             "
+          ><img src="${python:icons.url('download')}" /></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</tal:attachments>

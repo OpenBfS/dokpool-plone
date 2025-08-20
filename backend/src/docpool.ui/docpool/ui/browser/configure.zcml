@@ -49,6 +49,42 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:page
+      name="attachments"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".attachments.Attachments"
+      template="templates/attachments.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="attachments_list"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".attachments.Attachments"
+      template="templates/attachments_list.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="attachments_grid"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".attachments.Attachments"
+      template="templates/attachments_grid.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="attachments_gallery"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".attachments.Attachments"
+      template="templates/attachments_gallery.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
   <!-- The default view and edit views for debugging purposes -->
   <configure package="plone.app.dexterity.browser">
     <browser:page

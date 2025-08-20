@@ -1,0 +1,61 @@
+<tal:attachments define="
+                   items python: view.items();
+                   icons python:context.restrictedTraverse('@@iconresolver');
+                 "
+                 condition="python: items"
+>
+
+  <div class="d-flex">
+    <div class="p-2 flex-grow-1">
+      <label><span i18n:translate="">Documents</span>
+        (${python: len(items)})</label>
+    </div>
+    <div>
+      <button class="btn btn-light"
+              type="button"
+      ><img src="${python:icons.url('download')}" />
+        zip download (<span tal:replace="python: view.total_size()">556,5 Kb</span>)</button>
+    </div>
+    <div class="ms-2">
+      <div class="btn-group"
+           aria-label="Basic example"
+           role="group"
+      >
+        <a class="btn btn-light pat-inject"
+           href="@@attachments_list"
+           type="button"
+           data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+           tal:attributes="
+             href python: context.absolute_url() + '/@@attachments_list';
+           "
+        ><img src="${python:icons.url('list-columns-reverse')}" /></a>
+        <a class="btn btn-light pat-inject"
+           href="@@attachments_grid"
+           type="button"
+           data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+           tal:attributes="
+             href python: context.absolute_url() + '/@@attachments_grid';
+           "
+        ><img src="${python:icons.url('grid')}" /></a>
+        <a class="btn btn-light pat-inject"
+           href="@@attachments_gallery"
+           type="button"
+           data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+           tal:attributes="
+             href python: context.absolute_url() + '/@@attachments_gallery';
+           "
+        ><img src="${python:icons.url('image')}" /></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="attachments">
+    <a class="pat-inject"
+       data-pat-inject="source: #attachments; target: #attachments; trigger: autoload-visible"
+       tal:attributes="
+         href python: context.absolute_url() + '/@@attachments_list';
+       "
+    ></a>
+  </div>
+
+</tal:attachments>

@@ -1,0 +1,49 @@
+<tal:attachments define="
+                   items python: view.items();
+                   icons python:context.restrictedTraverse('@@iconresolver');
+                 "
+                 condition="python: items"
+>
+
+  <div id="attachments">
+
+    <table class="table table-striped">
+      <tbody>
+        <tr tal:repeat="item python: items">
+          <td>
+            <a target="_blank"
+               tal:content="python: item.title"
+               tal:attributes="
+                 href python: item.getURL() + '/view';
+               "
+            >
+            </a>
+            <div class="float-end">
+              <span class="badge text-bg-secondary"
+                    tal:content="python: item.content_type().split('/')[-1]"
+              ></span>
+              <span tal:content="python: item.getSize()"></span>
+            </div>
+          </td>
+          <td>
+            <div class="float-end">
+              <a href=""
+                 tal:attributes="
+                   href python: item.getURL() + '/@@download';
+                 "
+              ><img src="${python:icons.url('file-arrow-down')}" /></a>
+              <a href=""
+                 tal:attributes="
+                   href python: item.getURL() + '/@@download';
+                 "
+              ><img src="${python:icons.url('download')}" /></a>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</tal:attachments>
