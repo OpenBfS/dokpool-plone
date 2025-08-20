@@ -18,17 +18,24 @@ class DocpoolUiLayer(PloneSandboxLayer):
         # layer.
         import collective.impersonate
         import docpool.base
+        import docpool.config
+        import docpool.elan
+        import docpool.ui
         import eea.facetednavigation
         import plone.restapi
 
+        self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.base)
+        self.loadZCML(package=docpool.config)
+        self.loadZCML(package=docpool.elan)
+        self.loadZCML(package=docpool.ui)
+        # required since we need to be able to add DBTranfers
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)
-        self.loadZCML(package=plone.restapi)
-        self.loadZCML(package=docpool.ui)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.ui:default")
+        applyProfile(portal, "docpool.base:default")
 
 
 class DocpoolUiCleanLayer(PloneSandboxLayer):
