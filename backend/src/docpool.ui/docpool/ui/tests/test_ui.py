@@ -1,8 +1,17 @@
+from docpool.api.browser.setup import add_user
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
+from plone.app.testing import login
+from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.dexterity.events import EditFinishedEvent
+from plone.namedfile.file import NamedBlobImage
+from zope.event import notify
 
+import os
 import unittest
 
 
@@ -21,3 +30,104 @@ class TestUI(unittest.TestCase):
         listing_view = api.content.get_view("listing", self.portal, self.request)
         # Nothing found - no UIDs and no modified date
         self.assertEqual(listing_view.find(), ([], None))
+
+
+class TestUIFeatures(unittest.TestCase):
+    """Test docpool.ui features."""
+
+    layer = DOCPOOL_UI_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        self.setup_content()
+
+    def setup_content(self):
+        self.docpool = api.content.create(
+            container=self.portal,
+            type="DocumentPool",
+            id="bund",
+            title="Bund",
+            prefix="bund",
+            supportedApps=("elan",),
+        )
+        notify(EditFinishedEvent(self.docpool))
+
+        add_user(self.docpool, "user1", ["group1"], enabled_apps=["elan"])
+        content = self.docpool["content"]
+        self.assertEqual(content.keys(), ["Transfers", "Members", "Groups"])
+        self.assertIn("user1", content["Members"])
+        self.assertNotIn("user1", self.portal["Members"])
+
+        # assign app to groupfolder to make is show up in navigation (#5434)
+        self.group_folder = content["Groups"]["bund_group1"]
+        ILocalBehaviorSupport(self.group_folder).local_behaviors = ["elan"]
+        self.group_folder.reindexObject(idxs=["apps_supported"])
+        logout()
+        login(self.portal, "user1")
+
+        # create entry
+        self.entry = api.content.create(
+            container=self.group_folder,
+            type="DPDocument",
+            title="A Weatherinfo",
+            description="foo",
+            docType="weatherinformation",
+            local_behaviors=["elan"],
+        )
+        self.assertEqual(self.entry.created_by, "user1 (Bund) <i>Group1 (Bund)</i>")
+        # add attachments
+        filename = os.path.join(os.path.dirname(__file__), "image.png")
+        with open(filename, "rb") as f:
+            FILE_DATA = f.read()
+
+        api.content.create(
+            container=self.entry,
+            type="Image",
+            title="Some Image",
+            description="foo",
+            image=NamedBlobImage(data=FILE_DATA, filename="image.png"),
+        )
+        api.content.create(
+            container=self.entry,
+            type="Image",
+            title="Another Image",
+            description="bar",
+            image=NamedBlobImage(data=FILE_DATA, filename="image2.png"),
+        )
+
+    def test_listing_view_with_entries(self):
+        listing_view = api.content.get_view("listing", self.group_folder, self.request)
+        # One item is found
+        self.assertEqual(listing_view.find(), ([self.entry.UID()], self.entry.modified()))
+
+        # render listing view
+        html = listing_view()
+        self.assertIn(
+            f'<a class="pat-inject" data-pat-inject="trigger: autoload-visible; delay: 50; target: self" href="@@listing-item?uid={self.entry.UID()}" >',
+            html,
+        )
+
+    def test_dpdocument_view(self):
+        dpdocument_view = api.content.get_view("view", self.entry, self.request)
+        self.assertEqual(list(dpdocument_view.apps().keys()), ["elan"])
+        html = dpdocument_view()
+        self.assertIn("<h1>A Weatherinfo</h1>", html)
+
+    def test_attachments_view(self):
+        attachments_view = api.content.get_view("attachments", self.entry, self.request)
+        html = attachments_view()
+        self.assertIn("(2)", html)
+        self.assertIn("zip download", html)
+
+    def test_attachments_list_view(self):
+        attachments_list_view = api.content.get_view("attachments_list", self.entry, self.request)
+        html = attachments_list_view()
+        self.assertIn(f"{self.entry['another-image'].absolute_url()}/@@download", html)
+
+    def test_attachments_grid_view(self):
+        attachments_grid_view = api.content.get_view("attachments_grid", self.entry, self.request)
+        html = attachments_grid_view()
+        self.assertIn(f"{self.entry['another-image'].absolute_url()}/@@download", html)

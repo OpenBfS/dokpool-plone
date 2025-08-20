@@ -18,7 +18,6 @@ class DocpoolUiLayer(PloneSandboxLayer):
         # layer.
         import collective.impersonate
         import docpool.base
-        import docpool.config
         import docpool.elan
         import docpool.ui
         import eea.facetednavigation
@@ -26,16 +25,16 @@ class DocpoolUiLayer(PloneSandboxLayer):
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.base)
-        self.loadZCML(package=docpool.config)
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.ui)
-        # required since we need to be able to add DBTranfers
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, "docpool.ui:default")
         applyProfile(portal, "docpool.base:default")
+        applyProfile(portal, "docpool.elan:default")
+        applyProfile(portal, "elan.journal:default")
+        applyProfile(portal, "docpool.ui:default")
 
 
 class DocpoolUiCleanLayer(PloneSandboxLayer):
@@ -65,15 +64,14 @@ DOCPOOL_UI_INTEGRATION_TESTING = IntegrationTesting(
     bases=(DOCPOOL_UI_FIXTURE,), name="DocpoolUiLayer:IntegrationTesting"
 )
 
-DOCPOOL_UI_FUNCTIONAL_FULL_TESTING = FunctionalTesting(
+DOCPOOL_UI_FUNCTIONAL_CLEAN_TESTING = FunctionalTesting(
     bases=(DOCPOOL_UI_CLEAN_FIXTURE,),
-    name="DocpoolUiLayer:FunctionalFullTesting",
+    name="DocpoolUiLayer:FunctionalCleanTesting",
 )
 
 DOCPOOL_UI_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(DOCPOOL_UI_FIXTURE,), name="DocpoolUiLayer:FunctionalTesting"
 )
-
 
 DOCPOOL_UI_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(DOCPOOL_UI_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, WSGI_SERVER_FIXTURE),

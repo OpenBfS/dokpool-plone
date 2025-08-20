@@ -36,10 +36,6 @@
 
       </metal:content>
 
-      <aside id="portal-column-one">
-        <tal:block replace="structure python: context.restrictedTraverse('@@left')(foo=context.title)" />
-      </aside>
-
     </body>
   </html>
 
