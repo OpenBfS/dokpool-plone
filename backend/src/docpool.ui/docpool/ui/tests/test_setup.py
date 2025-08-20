@@ -1,12 +1,14 @@
 """Setup tests for this package."""
 
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.base.utils import get_installer
 
 import unittest
 
 
-class TestVocabularies(unittest.TestCase):
+class TestSetup(unittest.TestCase):
     """Test that docpool.UI is properly installed."""
 
     layer = DOCPOOL_UI_INTEGRATION_TESTING
@@ -16,6 +18,7 @@ class TestVocabularies(unittest.TestCase):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
         self.installer = get_installer(self.portal)
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
     def test_product_installed(self):
         """Test if docpool.api is installed."""
