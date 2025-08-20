@@ -169,7 +169,7 @@ coverage: ## generate test-coverage report
 	|| exit 1
 	@echo "$(GREEN)==> Creating test coverage report$(RESET)"
 	@uv run coverage combine
-	@uv run coverage report
+	@uv run coverage report --precision=3
 	@uv run coverage html
 
 # Build Docker images
