@@ -73,7 +73,7 @@
                   "
               >
                 <tal:scns define="
-                            scns elanobj.getScenarioNames();
+                            scns python: elanobj.getScenarioNames();
                           "
                           condition="python: scns"
                 >
