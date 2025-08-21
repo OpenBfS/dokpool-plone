@@ -22,6 +22,7 @@ class Attachments(BrowserView):
 def complete_size_in_bytes(values):
     """Calculate total sum of sizes ["1.2 KB", "2 MB"] as stored on brains."""
     SIZE_CONST = {
+        "B": 1,
         "KB": 1024,
         "MB": 1024**2,
         "GB": 1024**3,

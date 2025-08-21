@@ -3,6 +3,7 @@ from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
+from plone.api.exc import MissingParameterError
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
@@ -109,6 +110,41 @@ class TestUIFeatures(unittest.TestCase):
             f'<a class="pat-inject" data-pat-inject="trigger: autoload-visible; delay: 50; target: self" href="@@listing-item?uid={self.entry.UID()}" >',
             html,
         )
+
+    def test_listing_item_view(self):
+        uid = self.entry.UID()
+
+        # The view can be used anywhere. On the portal:
+        listing_item_view = api.content.get_view("listing-item", self.portal, self.request)
+        html = listing_item_view(uid=uid)
+        self.assertIn("<h2>A Weatherinfo</h2>", html)
+
+        # On itself:
+        listing_item_view = api.content.get_view("listing-item", self.entry, self.request)
+        html = listing_item_view(uid=uid)
+        self.assertIn("<h2>A Weatherinfo</h2>", html)
+
+        # On a group-folder:
+        listing_item_view = api.content.get_view("listing-item", self.group_folder, self.request)
+        html = listing_item_view(uid=uid)
+        self.assertIn("<h2>A Weatherinfo</h2>", html)
+
+        # Test data
+        data = listing_item_view.dpdocument
+        self.assertEqual(data["state_title"], "Private")
+        self.assertEqual(data["modified_by_group"], "<i>Group1 (Bund)</i>")
+        self.assertEqual(data["modified_by_user"], "user1 (Bund)")
+        self.assertEqual(data["available_transitions"][0]["id"], "publish")
+
+        # It needs the valid uid of a DPDocument the user can access
+        with self.assertRaises(MissingParameterError):
+            listing_item_view()
+
+        with self.assertRaises(MissingParameterError):
+            listing_item_view(uid="foo")
+
+        with self.assertRaises(AttributeError):
+            listing_item_view(uid=self.group_folder.UID())
 
     def test_dpdocument_view(self):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)

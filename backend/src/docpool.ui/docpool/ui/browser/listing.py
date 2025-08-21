@@ -26,7 +26,6 @@ class Item(BrowserView):
     """Example view called from template"""
 
     def __call__(self, uid=None):
-        self.uid = uid
         obj = api.content.get(UID=uid)
 
         review_state = api.content.get_state(obj)
@@ -39,7 +38,7 @@ class Item(BrowserView):
 
         if userinfo := obj.modified_by or obj.created_by:
             userinfo = userinfo.replace("<i>", "--separator--<i>", 1)
-            modified_by_user = userinfo.split("--separator--")[0]
+            modified_by_user = userinfo.split("--separator--")[0].strip()
             modified_by_group = userinfo.split("--separator--")[1] if "--separator--" in userinfo else ""
 
         show_transfer_action = False
