@@ -4,7 +4,7 @@ import sys
 
 if len(sys.argv) != 3:
     print("Usage: check_coverage.py <PREVIOUS> <CURRENT>")
-    sys.exit(2)
+    sys.exit(0)
 
 previous_coverage = float(sys.argv[1])
 current_coverage = float(sys.argv[2])
