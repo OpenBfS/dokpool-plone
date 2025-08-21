@@ -21,26 +21,32 @@
            aria-label="Basic example"
            role="group"
       >
-        <a class="btn btn-light pat-inject"
+        <a class="btn btn-light pat-inject pat-switch attachments-switcher active"
+           id="attachments_list"
            href="@@attachments_list"
            type="button"
            data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+           data-pat-switch=".attachments-switcher active &amp;&amp; #attachments_list add: active"
            tal:attributes="
              href python: context.absolute_url() + '/@@attachments_list';
            "
         ><img src="${python:icons.url('list-columns-reverse')}" /></a>
-        <a class="btn btn-light pat-inject"
+        <a class="btn btn-light pat-inject pat-switch attachments-switcher"
+           id="attachments_grid"
            href="@@attachments_grid"
            type="button"
            data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+           data-pat-switch=".attachments-switcher active &amp;&amp; #attachments_grid add: active"
            tal:attributes="
              href python: context.absolute_url() + '/@@attachments_grid';
            "
         ><img src="${python:icons.url('grid')}" /></a>
-        <a class="btn btn-light pat-inject"
+        <a class="btn btn-light pat-inject pat-switch attachments-switcher"
+           id="attachments_gallery"
            href="@@attachments_gallery"
            type="button"
            data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+           data-pat-switch=".attachments-switcher active &amp;&amp; #attachments_gallery add: active"
            tal:attributes="
              href python: context.absolute_url() + '/@@attachments_gallery';
            "
