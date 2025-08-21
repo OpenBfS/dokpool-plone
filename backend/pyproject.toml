@@ -139,4 +139,6 @@ branch = true
 parallel = true
 omit = [
   "src/docpoolwrapper/locales/*.py",
+  "*/tests/*",
+  "*/testing.py",
 ]

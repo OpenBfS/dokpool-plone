@@ -8,9 +8,7 @@ from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from plone.dexterity.events import EditFinishedEvent
 from plone.namedfile.file import NamedBlobImage
-from zope.event import notify
 
 import os
 import unittest
@@ -43,19 +41,10 @@ class TestUIFeatures(unittest.TestCase):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        self.docpool = self.portal["bund"]
         self.setup_content()
 
     def setup_content(self):
-        self.docpool = api.content.create(
-            container=self.portal,
-            type="DocumentPool",
-            id="bund",
-            title="Bund",
-            prefix="bund",
-            supportedApps=("elan",),
-        )
-        notify(EditFinishedEvent(self.docpool))
-
         add_user(self.docpool, "user1", ["group1"], enabled_apps=["elan"])
         content = self.docpool["content"]
         self.assertEqual(content.keys(), ["Transfers", "Members", "Groups"])
