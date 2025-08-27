@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Register the package-specific browser layer,
+     so that it will be activated
+     when this product is installed. --><layers>
+
+</layers>

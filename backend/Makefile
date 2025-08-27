@@ -155,6 +155,12 @@ test: $(VENV_FOLDER) ## run tests
 	--test-path src/docpool.ui \
 	-D
 
+# E2E Tests
+.PHONY: test-e2e
+test-e2e: $(VENV_FOLDER) ## run e2e tests
+	@uv run playwright install
+	@uv run pytest tests/
+
 .PHONY: coverage
 coverage: ## generate test-coverage report
 	@uv pip install coverage
