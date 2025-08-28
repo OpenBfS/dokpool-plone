@@ -15,5 +15,5 @@ class TestPwNews:
 
     def test_news_listing(self) -> None:
         page = self.page
-        page.goto(f"{self.plone_url}")
-        expect(page.locator("ul#portal-globalnav li.apps a")).to_contain_text("Docpools")
+        page.goto(f"{self.plone_url}/bund/esd")
+        expect(page.get_by_role("heading", name="Elektronische Lagedarstellung"))
