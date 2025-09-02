@@ -32,6 +32,8 @@ dependencies = [
     "collective.impersonate",
     "RelStorage",
     "psycopg2",
+    "pytest-playwright",
+    "pytest_plone",
 ]
 
 [project.optional-dependencies]
