@@ -30,7 +30,8 @@ class Pattern extends BasePattern {
         console.log(modified_since);
 
         function checkForNewData() {
-            return fetch('http://localhost:8080/Plone/@new-data-check', {
+            let baseUrl = document.body.dataset.portalUrl;
+            return fetch(baseUrl + '/@new-data-check', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
