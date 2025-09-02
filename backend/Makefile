@@ -157,8 +157,13 @@ test: $(VENV_FOLDER) ## run tests
 
 # E2E Tests
 .PHONY: test-e2e
-test-e2e: $(VENV_FOLDER) ## run e2e tests
+install-e2e: $(VENV_FOLDER) ## run e2e tests
 	@uv run playwright install
+	@uv run playwright install-deps
+
+# E2E Tests
+.PHONY: test-e2e
+test-e2e: $(VENV_FOLDER) ## run e2e tests
 	@uv run pytest tests/
 
 .PHONY: coverage
