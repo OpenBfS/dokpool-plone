@@ -82,6 +82,9 @@ acceptance_tests:
     - pip install uv
     - make install-e2e
     - make test-e2e
+  artifacts:
+    paths:
+      - screenshots/
 
 build_image:
   tags:
