@@ -72,7 +72,7 @@ unit_tests:
       - backend/htmlcov/
 
 acceptance_tests:
-  image: plone/server-builder:$PLONE_VERSION
+  image: git.starzel.de:5050/bfs/dokpool:develop
   tags:
     - dind
   stage: test
