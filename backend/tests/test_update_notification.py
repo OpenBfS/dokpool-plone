@@ -17,6 +17,9 @@ class TestUpdateNotification:
         page = self.page
         page.goto(f"{self.plone_url}/bund/listing")
         # Tests if the DPDocument exists
+        page.screenshot(path="screenshots/listing.png")
         first_list_item = page.locator(".listing-item h2").first
         expect(first_list_item).to_have_text("Weatherinfo")
-        page.pause()
+        # Test publish the DPDocument
+        page.get_by_role("button", name="⋮").click()
+        page.get_by_role("link", name="Publish", exact=True)
