@@ -80,7 +80,7 @@ acceptance_tests:
     - cd backend
     - pip install --upgrade pip
     - pip install uv
-    - make make test-e2e
+    - make test-e2e
 
 build_image:
   tags:
