@@ -16,4 +16,4 @@ class TestPwNews:
     def test_news_listing(self) -> None:
         page = self.page
         page.goto(f"{self.plone_url}/bund/esd")
-        expect(page.get_by_role("heading", name="Elektronische Lagedarstellung"))
+        expect(page.get_by_role("heading", name="Digitale Lagedarstellung"))
