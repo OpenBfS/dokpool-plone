@@ -20,6 +20,8 @@ class TestUpdateNotification:
         page.screenshot(path="screenshots/listing.png")
         first_list_item = page.locator(".listing-item h2").first
         expect(first_list_item).to_have_text("Weatherinfo")
-        # Test publish the DPDocument
+        # Publish the DPDocument
         page.get_by_role("button", name="⋮").click()
-        page.get_by_role("link", name="Publish", exact=True)
+        page.locator("#workflow-transition-publish").click()
+        status_msg = page.locator(".statusmessage-info").first
+        expect(status_msg).to_contain_text(" Info: New review state for Weatherinfo: Published")
