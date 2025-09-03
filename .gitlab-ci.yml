@@ -82,8 +82,8 @@ acceptance_tests:
     - pip install uv
     - npm ci
     - make build-ui
-    - make install-e2e
-    - make test-e2e
+    - make install-acceptance
+    - make test-acceptance
   artifacts:
     paths:
       - screenshots/
