@@ -80,6 +80,7 @@ acceptance_tests:
     - cd backend
     - pip install --upgrade pip
     - pip install uv
+    - npm ci
     - make build-ui
     - make install-e2e
     - make test-e2e
