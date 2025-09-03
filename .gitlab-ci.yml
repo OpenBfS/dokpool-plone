@@ -72,7 +72,7 @@ unit_tests:
       - backend/htmlcov/
 
 acceptance_tests:
-  image: git.starzel.de:5050/bfs/dokpool:develop
+  image: git.starzel.de:5050/bfs/dokpool:acceptance
   tags:
     - dind
   stage: test
