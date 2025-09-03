@@ -134,6 +134,10 @@ ignore = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# addopts = "--browser chromium"
+# addopts = "-v --browser chromium --headed"
+# The following config will enable the chromium browser and slow down the steps, so one can follow them.
+addopts = "-v --browser chromium --headed --slowmo 900"
 
 [tool.coverage.run]
 source_pkgs = ["docpoolwrapper", "tests"]
