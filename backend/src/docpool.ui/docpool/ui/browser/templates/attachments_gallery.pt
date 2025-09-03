@@ -1,3 +1,39 @@
-<div id="attachments">
-TODO...
-</div>
+<tal:attachments define="
+                   items python: view.items();
+                   icons python:context.restrictedTraverse('@@iconresolver');
+                 "
+                 condition="python: items"
+>
+
+  <div id="attachments">
+
+    <div class="pat-gallery"
+         data-pat-gallery="item-selector: a.gallery-item"
+    >
+      <div tal:repeat="item python: items">
+        <div tal:define="
+               is_image python: item.portal_type == 'Image';
+             ">
+          <tal:image condition="python: is_image">
+            <a class="gallery-item"
+               tal:attributes="
+                 href python: item.getURL() + '/@@images/image/large';
+               "
+            >
+              <img class="img-fluid"
+                   tal:attributes="
+                     src python: item.getURL() + '/@@images/image/preview';
+                   "
+              />
+            </a>
+          </tal:image>
+          <tal:file condition="python: not is_image">
+            <p class="placeholder"></p>
+          </tal:file>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</tal:attachments>
