@@ -1,4 +1,7 @@
 # syntax=docker/dockerfile:1
+# This image prepares the test environment for the acceptance tests.
+# TODO Automate the build process
+# For now its build locally and pushed to our registry
 ARG PYTHON_VERSION=3.12
 ARG PLONE_VERSION=6.1.2
 FROM plone/server-builder:${PLONE_VERSION} AS builder
