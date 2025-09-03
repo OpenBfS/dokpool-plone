@@ -13,6 +13,9 @@ from plone.app.testing import TEST_USER_ID
 from plone.dexterity.events import EditFinishedEvent
 from plone.testing import zope
 from zope.event import notify
+from zope.lifecycleevent import modified
+
+import transaction
 
 
 class DocpoolPlaywrightLayer(PloneSandboxLayer):
@@ -60,7 +63,21 @@ class DocpoolPlaywrightLayer(PloneSandboxLayer):
             supportedApps=("elan",),
         )
         notify(EditFinishedEvent(dp))
+        # Add a DPDocument to the docpool
+        groups = dp["content"]["Groups"]
+        folder = groups["bund_Administrators"]
+        weatherinfo = api.content.create(
+            container=folder,
+            type="DPDocument",
+            title="Weatherinfo",
+            description="foo",
+            docType="weatherinformation",
+            local_behaviors=["elan"],
+        )
+        notify(EditFinishedEvent(weatherinfo))
+        modified(weatherinfo)
         portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])
+        transaction.commit()
 
 
 DOCPOOL_PLAYWRIGHT_FIXTURE = DocpoolPlaywrightLayer()

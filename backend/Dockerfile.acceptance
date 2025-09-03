@@ -1,0 +1,22 @@
+# syntax=docker/dockerfile:1
+# This image prepares the test environment for the acceptance tests.
+# TODO Automate the build process
+# For now its build locally and pushed to our registry
+ARG PYTHON_VERSION=3.12
+ARG PLONE_VERSION=6.1.2
+FROM plone/server-builder:${PLONE_VERSION} AS builder
+
+ARG PLONE_VERSION
+
+WORKDIR /app
+
+# Node.js installieren
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+ && apt-get install -y nodejs \
+ && apt-get clean && rm -rf /var/lib/apt/lists/
+
+ RUN pip install --upgrade pip \
+  && pip install uv \
+  && uv pip install pytest-playwright \
+  && uv run playwright install \
+  && uv run playwright install-deps \
