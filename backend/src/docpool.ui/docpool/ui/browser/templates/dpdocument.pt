@@ -50,14 +50,26 @@
 
         <div class="row">
           <div class="col-sm-8">
-            <p class="description"
-               tal:condition="python: context.description"
-               tal:content="python: context.description"
-            ></p>
-            <div tal:condition="python: context.text"
-                 tal:replace="structure python: context.text.output_relative_to(context)"
-            ></div>
-            <div>TODO: Images</div>
+
+            <div tal:condition="python: getattr(context.aq_base, 'description')">
+              <label i18n:domain="plone"
+                     i18n:translate=""
+              >Description</label>
+              <p class="description"
+                 tal:content="python: context.description"
+              ></p>
+            </div>
+
+            <div tal:condition="python: getattr(context.aq_base, 'text')">
+              <label i18n:domain="plone"
+                     i18n:translate=""
+              >Text</label>
+              <div tal:condition="python: context.aq_base.text"
+                   tal:replace="structure python: context.text.output_relative_to(view.context)"
+              ></div>
+            </div>
+
+            <tal:attachments replace="structure python: context.restrictedTraverse('@@attachments')()" />
           </div>
 
           <div class="col-sm-4">
