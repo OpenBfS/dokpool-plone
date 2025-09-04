@@ -101,11 +101,11 @@ remove-data: ## Remove all content
 
 .PHONY: start
 start: $(VENV_FOLDER) instance/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini
+	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini config_file=zope.conf
 
 .PHONY: start-relstorage
 start-relstorage: $(VENV_FOLDER) instance_relstorage/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance_relstorage/etc/zope.ini
+	@$(BIN_FOLDER)/runwsgi instance_relstorage/etc/zope.ini config_file=zope.conf
 
 .PHONY: console
 console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone instance
