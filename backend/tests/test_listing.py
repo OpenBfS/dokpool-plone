@@ -34,7 +34,7 @@ class TestUpdateNotification:
         page.wait_for_selector("div.modal-wrapper")
         expect(page.locator("div.modal-wrapper")).to_have_count(1)
         metadata = page.locator(".modal-content dl.doc_metadata dd").first
-        expect(metadata).to_contain_text("Normalfall")
+        expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
         # Close modal
         page.get_by_role("button", name="Close").click()
         expect(page.locator("div.modal-wrapper")).to_have_count(0)
