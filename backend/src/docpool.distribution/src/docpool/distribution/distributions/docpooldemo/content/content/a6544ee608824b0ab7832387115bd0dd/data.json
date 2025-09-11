@@ -1,0 +1,44 @@
+{
+  "@id": "/bund/informationen-bund/links/bundesamt-fuer-strahlenschutz-bfs",
+  "@type": "Link",
+  "UID": "a6544ee608824b0ab7832387115bd0dd",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:51:41+00:00",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "bundesamt-fuer-strahlenschutz-bfs",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "link_redirect_view",
+  "local_behaviors": [],
+  "lock": {},
+  "modified": "2025-09-10T12:52:08+00:00",
+  "remoteUrl": "http://www.bfs.de",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Bundesamt f\u00fcr Strahlenschutz (BfS)",
+  "type_title": "Link",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:51:41+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

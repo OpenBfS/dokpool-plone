@@ -1,0 +1,49 @@
+{
+  "@id": "/bund/archive",
+  "@type": "ELANArchives",
+  "UID": "3e15a1b46d3e4d759dafec176712b4ba",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:30:29+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.workflow_policy": {
+    "workflow_policy_below": "elan-archive",
+    "workflow_policy_in": "elan-archive"
+  },
+  "id": "archive",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T12:30:30+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Archive",
+  "type_title": "Archives",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:30:29+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

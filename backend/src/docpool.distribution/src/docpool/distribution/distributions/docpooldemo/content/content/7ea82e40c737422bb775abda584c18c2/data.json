@@ -1,0 +1,47 @@
+{
+  "@id": "/brandenburg/help",
+  "@type": "Text",
+  "UID": "7ea82e40c737422bb775abda584c18c2",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:24:47+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "help",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-10T15:24:47",
+  "modified": "2025-09-10T13:24:47+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "text": null,
+  "title": "Hilfe",
+  "type_title": "Textpage",
+  "version": "current",
+  "wdate": "2025-09-10T15:24:47",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:24:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

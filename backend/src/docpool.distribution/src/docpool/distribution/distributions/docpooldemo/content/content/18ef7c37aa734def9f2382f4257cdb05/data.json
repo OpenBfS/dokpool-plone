@@ -1,0 +1,46 @@
+{
+  "@id": "/berlin/searches",
+  "@type": "Folder",
+  "UID": "18ef7c37aa734def9f2382f4257cdb05",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:25+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "searches",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T13:22:25+00:00",
+  "nextPreviousEnabled": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Standardsuchen",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:24+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

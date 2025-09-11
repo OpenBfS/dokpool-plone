@@ -1,0 +1,49 @@
+{
+  "@id": "/bund/imis-infos/imis-veranstaltungen/grundlagen-schulung",
+  "@type": "InfoFolder",
+  "UID": "86d347793fb54e62841a3ce043a70b62",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:00:47+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "Hier finden Sie alle Informationen zur IMIS-Grundschulung (\"Klassische\" IMIS-Schulung). Diese Schulung wird 2x im Jahr (ca. Februar und ca. November) online angeboten.",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "grundlagen-schulung",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "mdate": "2025-09-10T15:00:47",
+  "modified": "2025-09-10T13:01:13+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Grundlagen-Schulung",
+  "type_title": "Info-Folder",
+  "version": "current",
+  "wdate": "2025-09-10T15:00:47",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:00:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

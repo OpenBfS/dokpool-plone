@@ -1,0 +1,49 @@
+{
+  "@id": "/berlin/archive",
+  "@type": "ELANArchives",
+  "UID": "c70a7aa2dbe4401cb7dce7c848baa5de",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:25+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.workflow_policy": {
+    "workflow_policy_below": "elan-archive",
+    "workflow_policy_in": "elan-archive"
+  },
+  "id": "archive",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T13:22:26+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Archive",
+  "type_title": "Archives",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

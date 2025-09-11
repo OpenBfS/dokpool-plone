@@ -1,0 +1,42 @@
+{
+  "@id": "/berlin/contentconfig",
+  "@type": "ELANContentConfig",
+  "UID": "3d98a0a6d15a4a4a8fea0bab54ee2e7c",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:25+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "contentconfig",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2025-09-10T13:22:25+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Konfiguration Inhalte",
+  "type_title": "ELAN Content Configuration",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,63 @@
+{
+  "@id": "/bund/contentconfig/scen/routinemode",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": null,
+  "Status": "active",
+  "TimeOfEvent": "2025-09-10T14:06:49",
+  "UID": "0e39ef14056a4058847dd6f48594ba9f",
+  "allow_discussion": null,
+  "changelog": "[{\"Date\": \"10.09.2025 14:30\", \"User\": \"rescue\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}, {\"Date\": \"10.09.2025 14:30\", \"User\": \"rescue\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}]",
+  "contributors": [],
+  "created": "2025-09-10T12:30:29+00:00",
+  "created_by": "rescue",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "routinemode",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-10T14:30:29",
+  "modified": "2025-09-10T12:30:29+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Normalfall",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2025-09-10T14:30:29",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:30:29+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

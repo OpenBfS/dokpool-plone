@@ -1,0 +1,46 @@
+{
+  "@id": "/bund/insitu-uebersicht",
+  "@type": "Folder",
+  "UID": "1e4f55215b324d14b2b76b2f56716fc9",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:04:48+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "insitu-uebersicht",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T13:04:48+00:00",
+  "nextPreviousEnabled": false,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Insitu \u00dcbersicht",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:04:48+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,53 @@
+{
+  "@id": "/bund/rei-infos/dokumente/historie-der-stammdatenaenderungen",
+  "@type": "InfoDocument",
+  "UID": "a33535ce29eb45cf9a307bb4726698e4",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-11T07:09:49+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "docType": "infodoc",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "historie-der-stammdatenaenderungen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2025-09-11T09:10:21",
+  "modified": "2025-09-11T07:10:21+00:00",
+  "modified_by": "DocPool Administrator (Bund)",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>\u00dcbersicht der Stammdaten\u00e4nderungen im pdf-Dokument</p>\r\n<p>Stand: 06.03.2023</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Historie der Stammdaten\u00e4nderungen",
+  "type_title": "General information",
+  "version": "current",
+  "wdate": "2025-09-11T09:09:49",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-11T07:09:49+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
