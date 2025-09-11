@@ -1,8 +1,10 @@
 from plone import api
 from plone.exportimport import logger
 from plone.exportimport.importers.principals import PrincipalsImporter
-from plone.exportimport.utils import principals as principals_utils
+from plone.exportimport.utils.principals.members import _run_as_manager
 from Products.PlonePAS.tools.groupdata import GroupData
+from Products.PlonePAS.tools.memberdata import MemberData
+from typing import List
 
 
 class CustomPrincipalsImporter(PrincipalsImporter):
@@ -18,7 +20,7 @@ class CustomPrincipalsImporter(PrincipalsImporter):
         logger.debug(f"- Principals: Read {len(members)} groups from {self.filepath}")
         # Change: Exclude existing members
         members = [m for m in members if not api.user.get(username=m["username"])]
-        total = len(principals_utils.import_members(members))
+        total = len(import_members(members))
         logger.debug(f"- Principals: Imported {total} members")
         return total
 
@@ -67,3 +69,39 @@ def import_groups(data: list[dict]) -> list[GroupData]:
             portal_groups.addPrincipalToGroup(item["principal"], item["group"])
 
     return groups
+
+
+def import_members(data: List[dict]) -> MemberData:
+    """Import member information from the provided list of dictionaries."""
+    members = []
+    pr = api.portal.get_tool("portal_registration")
+    with _run_as_manager(pr):
+        for item in data:
+            username = item["username"]
+            email = item["email"]
+            if api.user.get(username=username) is not None:
+                logger.error(f"Skipping: User {username} already exists!")
+                continue
+            elif not email:
+                # Change start: Import users without email by setting a dummy email
+                logger.info(f"Importing user {username} without email: {item}")
+                item["email"] = "ihotline@bfs.de"
+                # Change end
+            password = item.pop("password")
+            roles = item.pop("roles", [])
+            groups = item.pop("groups", [])
+            try:
+                pr.addMember(username, password, roles, [], item)
+            except ValueError:
+                logger.info(f"ValueError {username} : {item}")
+                continue
+            else:
+                user = api.user.get(username=username)
+            for groupname in groups:
+                try:
+                    api.group.add_user(groupname=groupname, user=user)
+                except (api.exc.GroupNotFoundError, KeyError):
+                    pass
+            members.append(user)
+
+    return members
