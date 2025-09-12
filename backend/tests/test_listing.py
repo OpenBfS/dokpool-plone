@@ -13,11 +13,10 @@ class TestUpdateNotification:
         self.page = playwright_page_factory(username=SITE_OWNER_NAME, password=SITE_OWNER_PASSWORD)
         self.plone_url = self.portal.absolute_url()
 
-    def test_listing(self):
+    def test_publish_dpdocument(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/listing")
         # Tests if the DPDocument exists
-        page.screenshot(path="screenshots/listing.png")
         first_list_item = page.locator(".listing-item h2").first
         expect(first_list_item).to_have_text("Weatherinfo")
         # Publish the DPDocument
@@ -25,3 +24,17 @@ class TestUpdateNotification:
         page.locator("#workflow-transition-publish").click()
         status_msg = page.locator(".statusmessage-info").first
         expect(status_msg).to_contain_text(" Info: New review state for Weatherinfo: Published")
+
+    def test_modal_open_close(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Open modal
+        page.get_by_role("link", name="Weatherinfo", exact=True).click()
+        # Wait for modal to open
+        page.wait_for_selector("div.modal-wrapper")
+        expect(page.locator("div.modal-wrapper")).to_have_count(1)
+        metadata = page.locator(".modal-content dl.doc_metadata dd").first
+        expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
+        # Close modal
+        page.get_by_role("button", name="Close").click()
+        expect(page.locator("div.modal-wrapper")).to_have_count(0)
