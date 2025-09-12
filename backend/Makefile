@@ -80,6 +80,8 @@ instance/etc/zope.ini instance/etc/zope.conf instance_relstorage/etc/zope.ini in
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
 	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance.yaml gh:plone/cookiecutter-zope-instance
 	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
+	cp templates/zope.ini instance/etc/zope.ini
+	cp templates/zope.ini instance_relstorage/etc/zope.ini
 
 .PHONY: config
 config: instance/etc/zope.ini
@@ -99,11 +101,11 @@ remove-data: ## Remove all content
 
 .PHONY: start
 start: $(VENV_FOLDER) instance/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini
+	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini config_file=zope.conf
 
 .PHONY: start-relstorage
 start-relstorage: $(VENV_FOLDER) instance_relstorage/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance_relstorage/etc/zope.ini
+	@$(BIN_FOLDER)/runwsgi instance_relstorage/etc/zope.ini config_file=zope.conf
 
 .PHONY: console
 console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone instance
