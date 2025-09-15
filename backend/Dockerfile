@@ -39,6 +39,7 @@ COPY . src
 # Install local requirements and pre-compile mo files
 RUN <<EOT
     set -e
+    echo ${GIT_COMMIT} > GIT_COMMIT
     apt install -y --no-install-recommends openssh-client ca-certificates
     bin/pip install mxdev uv
     # remove dev-extra from wrapperpackage in mx.ini
@@ -51,7 +52,6 @@ RUN <<EOT
     ../bin/mxdev -c mx.ini
     ../bin/uv pip install -r requirements-mxdev.txt
     ../bin/python /compile_mo.py
-    echo ${GIT_COMMIT} > GIT_COMMIT
 EOT
 
 FROM plone/server-prod-config:${PLONE_VERSION}
