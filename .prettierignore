@@ -2,3 +2,8 @@
 backend/src/docpool.theme/docpool/theme/static/build
 # Exclude distribution
 backend/src/docpool.distribution/src/docpool/distribution/distributions/docpooldemo/content
+# Exclude vscode
+.vscode
+# Exclude devops
+devops
+*.html

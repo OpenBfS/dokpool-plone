@@ -34,6 +34,11 @@ lint_tests:
     - cd backend
     - pip install --upgrade pip
     - pip install uv
+    # Node.js installieren
+    - curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    - apt-get install -y nodejs
+    - apt-get clean && rm -rf /var/lib/apt/lists/
+    - npm install prettier
     # lint test
     - make lint
     - make format

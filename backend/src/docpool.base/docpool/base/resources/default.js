@@ -6,7 +6,8 @@ import("./styles.scss");
 const iframe = document.getElementById("dpdocument-dview-commenting");
 if (iframe) {
   iframe.onload = function () {
-    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const iframeDocument =
+      iframe.contentDocument || iframe.contentWindow.document;
 
     const style = document.createElement("style");
     style.innerHTML = `
