@@ -29,8 +29,8 @@ repos:
         files: \.(xml|zcml)$
       - id: check-yaml
       - id: debug-statements
-#      - id: end-of-file-fixer
-#        exclude: frontend/jsconfig.json
+      #      - id: end-of-file-fixer
+      #        exclude: frontend/jsconfig.json
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: trailing-whitespace
@@ -58,3 +58,8 @@ repos:
     hooks:
       - id: check-python-versions
         args: ["backend/"]
+
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: "v3.6.2" # Use the sha / tag you want to point at
+    hooks:
+      - id: prettier

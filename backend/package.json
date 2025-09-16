@@ -12,7 +12,9 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",
     "start": "NODE_ENV=development webpack serve --config webpack.config.js",
-    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
+    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch",
+    "prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
+    "prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}' "
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "@plone/plonetheme-barceloneta-base": "^3.1.8",
     "jquery": "^3.7.1",
     "jquery.marquee": "^1.6.0",
+    "prettier": "^3.6.2",
     "schema-utils": "^4.2.0",
     "svg-url-loader": "^8.0.0",
     "underscore": "^1.13.6",
