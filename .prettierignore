@@ -1,4 +1,4 @@
 # Exclude the build files
-backend/src/docpool.theme/docpool/theme/webpack_resources/theme
+backend/src/docpool.theme/docpool/theme/static/build
 # Exclude distribution
 backend/src/docpool.distribution/src/docpool/distribution/distributions/docpooldemo/content
