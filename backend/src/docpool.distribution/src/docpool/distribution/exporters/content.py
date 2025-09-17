@@ -83,6 +83,10 @@ def global_dict_hook(item, obj, config):
     item.pop("changeActor", None)
     item.pop("changeNote", None)
 
+    # fix sorting of local_behaviors
+    if item.get("local_behaviors"):
+        item["local_behaviors"] = sorted(item["local_behaviors"])
+
     return item
 
 
