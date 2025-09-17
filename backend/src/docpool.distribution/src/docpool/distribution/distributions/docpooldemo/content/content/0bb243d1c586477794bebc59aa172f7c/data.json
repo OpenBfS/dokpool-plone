@@ -1,0 +1,61 @@
+{
+  "@id": "/brandenburg/contentconfig/scen/uebung-imis-2025",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Exercise",
+  "Journals": [
+    "Einsatztagebuch Senatsverwaltung",
+    "Einsatztagebuch Feuerwehr"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": [],
+  "Status": "active",
+  "TimeOfEvent": "2025-09-17T15:36:00",
+  "UID": "0bb243d1c586477794bebc59aa172f7c",
+  "allow_discussion": null,
+  "changelog": "[{\"Date\": \"17.09.2025 15:40\", \"User\": \"Demouser (Berlin)\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
+  "contributors": [],
+  "created": "2025-09-17T13:40:38+00:00",
+  "created_by": "Demouser (Berlin)",
+  "creators": [
+    "demouser-be"
+  ],
+  "description": "IMIS \u00dcbung 2025 ohne Probenahme",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "uebung-imis-2025",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-17T15:40:38",
+  "modified": "2025-09-17T14:09:38+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "\u00dcbung IMIS 2025",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2025-09-17T16:09:38",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-17T14:09:38+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -49,7 +49,8 @@
       "principals": [
         "bb_doksysadmin",
         "bb_dpadmin",
-        "bb_elanadmin"
+        "bb_elanadmin",
+        "demouser-bb"
       ],
       "roles": [],
       "title": "Administrators (Brandenburg)"
@@ -62,7 +63,8 @@
       "groupid": "bb_ContentAdministrators",
       "groups": [],
       "principals": [
-        "bb_contentadmin"
+        "bb_contentadmin",
+        "demouser-bb"
       ],
       "roles": [],
       "title": "Content Administrators (Brandenburg)"
@@ -75,7 +77,8 @@
       "groupid": "bb_DoksysUsers",
       "groups": [],
       "principals": [
-        "bb_doksysadmin"
+        "bb_doksysadmin",
+        "demouser-bb"
       ],
       "roles": [],
       "title": "Doksys Users (Brandenburg)"
@@ -90,7 +93,9 @@
       "principals": [
         "bb_contentadmin",
         "bb_dpadmin",
-        "bb_elanadmin"
+        "bb_elanadmin",
+        "demouser-bb",
+        "demouser-be"
       ],
       "roles": [],
       "title": "ELAN Users (Brandenburg)"
@@ -215,7 +220,9 @@
       "principals": [
         "bb_contentadmin",
         "bb_dpadmin",
-        "bb_elanadmin"
+        "bb_elanadmin",
+        "demouser-bb",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Members (Brandenburg)"
@@ -258,6 +265,35 @@
       "title": "Situation Report Admins/Lagebild (Brandenburg)"
     },
     {
+      "allowedDocTypes": [
+        "protectiveactions",
+        "instructions",
+        "groundcontamination",
+        "mresult_feed",
+        "mresult_water",
+        "mresult_insitu",
+        "mresult_food",
+        "airactivity",
+        "gammadoserate",
+        "gammadoserate_mobile",
+        "gammadoserate_timeseries",
+        "mresult_other",
+        "note",
+        "situationreport",
+        "other_document"
+      ],
+      "description": "f\u00fcr Inhalte ELAN",
+      "dp": "32fdd578bc7d446081ce5d64b7015724",
+      "email": null,
+      "groupid": "bb_e-lavg",
+      "groups": [],
+      "principals": [
+        "demouser-bb"
+      ],
+      "roles": [],
+      "title": "LAVG (Brandenburg)"
+    },
+    {
       "allowedDocTypes": [],
       "description": "Responsible for the administration of the DocPool.",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
@@ -267,7 +303,8 @@
       "principals": [
         "be_doksysadmin",
         "be_dpadmin",
-        "be_elanadmin"
+        "be_elanadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Administrators (Berlin)"
@@ -280,7 +317,8 @@
       "groupid": "be_ContentAdministrators",
       "groups": [],
       "principals": [
-        "be_contentadmin"
+        "be_contentadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Content Administrators (Berlin)"
@@ -293,7 +331,8 @@
       "groupid": "be_DoksysUsers",
       "groups": [],
       "principals": [
-        "be_doksysadmin"
+        "be_doksysadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Doksys Users (Berlin)"
@@ -308,7 +347,8 @@
       "principals": [
         "be_contentadmin",
         "be_dpadmin",
-        "be_elanadmin"
+        "be_elanadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "ELAN Users (Berlin)"
@@ -433,7 +473,9 @@
       "principals": [
         "be_contentadmin",
         "be_dpadmin",
-        "be_elanadmin"
+        "be_elanadmin",
+        "demouser",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Members (Berlin)"
@@ -470,7 +512,8 @@
       "groupid": "be_RodosUsers",
       "groups": [],
       "principals": [
-        "be_dpadmin"
+        "be_dpadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Rodos Users (Berlin)"
@@ -500,6 +543,58 @@
       ],
       "roles": [],
       "title": "Situation Report Admins/Lagebild (Berlin)"
+    },
+    {
+      "allowedDocTypes": [
+        "otherprojection",
+        "nppinformation",
+        "estimation",
+        "doksysdok",
+        "operation_map",
+        "eventinformation",
+        "information_expert_advisor",
+        "info_public",
+        "info_ecc",
+        "sitrep",
+        "situationreport",
+        "protectiveactions",
+        "instructions",
+        "mediareport",
+        "mediarelease",
+        "notification",
+        "measurement_order",
+        "mresult_flight",
+        "groundcontamination",
+        "mresult_feed",
+        "mresult_water",
+        "mresult_insitu",
+        "mresult_food",
+        "airactivity",
+        "gammadoserate",
+        "gammadoserate_mobile",
+        "gammadoserate_timeseries",
+        "mresult_other",
+        "note",
+        "note_measurement_teams",
+        "lasair_lasat_projection",
+        "reireport",
+        "rodosprojection",
+        "inquiry_measurement_order",
+        "other_document",
+        "measurement_requirements",
+        "trajectory",
+        "weatherinformation"
+      ],
+      "description": "IIA Atomaufsicht, Strahlenschutz, Strahlenmessstelle",
+      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
+      "email": null,
+      "groupid": "be_e-be-atom",
+      "groups": [],
+      "principals": [
+        "demouser-be"
+      ],
+      "roles": [],
+      "title": "SenMVKU IIA (Berlin)"
     },
     {
       "allowedDocTypes": [],
@@ -553,7 +648,8 @@
       "principals": [
         "bund_contentadmin",
         "bund_dpadmin",
-        "bund_elanadmin"
+        "bund_elanadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "ELAN Users (Bund)"
@@ -678,7 +774,8 @@
       "principals": [
         "bund_contentadmin",
         "bund_dpadmin",
-        "bund_elanadmin"
+        "bund_elanadmin",
+        "demouser-be"
       ],
       "roles": [],
       "title": "Members (Bund)"
@@ -1079,6 +1176,53 @@
         "Member"
       ],
       "username": "bund_reiadmin"
+    },
+    {
+      "description": "",
+      "dp": "32fdd578bc7d446081ce5d64b7015724",
+      "email": "example@example.com",
+      "fullname": "Demouser (Brandenburg)",
+      "groups": [
+        "bb_Administrators",
+        "bb_ContentAdministrators",
+        "bb_DoksysUsers",
+        "bb_ELANUsers",
+        "bb_Members",
+        "bb_e-lavg"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}+T7cqdY0EMFPgUf+WSzbSreOT+VIT6czkDjG",
+      "roles": [
+        "Member"
+      ],
+      "username": "demouser-bb"
+    },
+    {
+      "description": "",
+      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
+      "email": "example@example.com",
+      "fullname": "Demouser (Berlin)",
+      "groups": [
+        "bb_ELANUsers",
+        "bb_Members",
+        "be_Administrators",
+        "be_ContentAdministrators",
+        "be_DoksysUsers",
+        "be_ELANUsers",
+        "be_Members",
+        "be_RodosUsers",
+        "be_e-be-atom",
+        "bund_ELANUsers",
+        "bund_Members"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}1VWmbX+jW2or4CxHzHTrfkblBb7m8q4s+wH8",
+      "roles": [
+        "Member"
+      ],
+      "username": "demouser-be"
     },
     {
       "description": "",

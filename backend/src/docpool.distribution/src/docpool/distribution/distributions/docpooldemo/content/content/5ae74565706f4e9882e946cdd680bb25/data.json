@@ -1,12 +1,12 @@
 {
-  "@id": "/berlin/contentconfig/scen",
-  "@type": "DPEvents",
-  "UID": "44b4f78163b3427bb22bbceec4975ad8",
+  "@id": "/brandenburg/contentconfig/scen/uebung-imis-2025/journal2",
+  "@type": "Journal",
+  "UID": "5ae74565706f4e9882e946cdd680bb25",
   "allow_discussion": null,
   "contributors": [],
-  "created": "2025-09-10T13:22:25+00:00",
+  "created": "2025-09-17T13:40:38+00:00",
   "creators": [
-    "admin"
+    "demouser-be"
   ],
   "description": "",
   "effective": null,
@@ -14,26 +14,26 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "scen",
+  "id": "journal2",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "modified": "2025-09-17T13:40:38+00:00",
+  "modified": "2025-09-17T14:09:38+00:00",
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "Ereignisse",
-  "type_title": "DP Events",
+  "title": "Einsatztagebuch Feuerwehr",
+  "type_title": "Journal",
   "version": "current",
   "workflow_history": {
-    "dp_one_state_workflow": [
+    "dp_journal_workflow": [
       {
         "action": null,
         "actor": "admin",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-10T13:22:25+00:00"
+        "time": "2025-09-17T14:09:38+00:00"
       }
     ]
   },

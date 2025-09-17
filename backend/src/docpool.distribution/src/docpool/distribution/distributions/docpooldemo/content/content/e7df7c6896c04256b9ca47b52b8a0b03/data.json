@@ -28,7 +28,7 @@
   "layout": "view",
   "limit": 1000,
   "lock": {},
-  "modified": "2025-09-10T13:22:25+00:00",
+  "modified": "2025-09-17T13:46:50+00:00",
   "query": [
     {
       "i": "portal_type",
@@ -38,10 +38,17 @@
         "SituationReport",
         "SRModule"
       ]
+    },
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "rodosprojection"
+      ]
     }
   ],
   "review_state": "published",
-  "rights": "",
+  "rights": null,
   "sort_on": "changed",
   "sort_reversed": true,
   "subjects": [],

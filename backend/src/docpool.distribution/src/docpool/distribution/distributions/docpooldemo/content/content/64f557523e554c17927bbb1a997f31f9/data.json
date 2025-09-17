@@ -1,0 +1,51 @@
+{
+  "@id": "/brandenburg/content/Transfers/dokumente-aus-bund",
+  "@type": "DPTransferFolder",
+  "UID": "64f557523e554c17927bbb1a997f31f9",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-17T14:03:27+00:00",
+  "created_by": "admin <i>Transfers</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "doctypePermissions": null,
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "dokumente-aus-bund",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-17T16:03:27",
+  "modified": "2025-09-17T14:03:27+00:00",
+  "modified_by": null,
+  "permLevel": "read/write",
+  "review_state": "published",
+  "rights": null,
+  "sendingESD": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+  "subjects": [],
+  "title": "Dokumente aus Bund",
+  "type_title": "Transfer Folder",
+  "unknownDtDefault": "confirm",
+  "unknownScenDefault": "confirm",
+  "version": "current",
+  "wdate": "2025-09-17T16:03:27",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-17T14:03:27+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -146,6 +146,11 @@
   },
   {
     "from_attribute": "docTypes",
+    "from_uuid": "45efa6e0e37d4a0c8e832cbe98811ad4",
+    "to_uuid": "11b1ec70229a4b55b5c1d87de5b4bed5"
+  },
+  {
+    "from_attribute": "docTypes",
     "from_uuid": "47ace14280d5414eaf4f097228ad05d2",
     "to_uuid": "08403c642a124edaa0aafcc2fa6cbcd9"
   },
@@ -355,6 +360,16 @@
     "to_uuid": "b163f56e5b5b4638945fbb9586fdf145"
   },
   {
+    "from_attribute": "contentCategory",
+    "from_uuid": "8f0a933756d2440fa2571249271a3ddc",
+    "to_uuid": "6d4148a6109047ca93c20ef03f7a41dc"
+  },
+  {
+    "from_attribute": "docTypes",
+    "from_uuid": "922a59e9062b4effa4bc5cd60d4633f3",
+    "to_uuid": "c33c450f1bdb43d5bb597f958c8965dc"
+  },
+  {
     "from_attribute": "docTypes",
     "from_uuid": "952b4b59180d44a284d52328ba96a861",
     "to_uuid": "6fd07b31ea304192953711f2a5e963a4"
@@ -373,6 +388,11 @@
     "from_attribute": "docTypes",
     "from_uuid": "98325e07e22e46e3979b5f54028c8f81",
     "to_uuid": "81269a59e35544c1b108b48377397f1e"
+  },
+  {
+    "from_attribute": "contentCategory",
+    "from_uuid": "9e4290d99a6e42528a9fb0144da4a05c",
+    "to_uuid": "7e8f158c648347ac801bd6956d64bf0b"
   },
   {
     "from_attribute": "docTypes",
@@ -505,6 +525,11 @@
     "to_uuid": "f7171bdcf07f4301b672e8ad7affa092"
   },
   {
+    "from_attribute": "contentCategory",
+    "from_uuid": "be08d044b63f4bbd82219cf69aafced4",
+    "to_uuid": "8c8c49c8ca144b9e992e36ba3a07c3aa"
+  },
+  {
     "from_attribute": "docTypes",
     "from_uuid": "c16106842f1c460a9737dea61f8088be",
     "to_uuid": "3836957f6c154081abf1a281ad4e22c8"
@@ -576,6 +601,11 @@
   },
   {
     "from_attribute": "docTypes",
+    "from_uuid": "e7df7c6896c04256b9ca47b52b8a0b03",
+    "to_uuid": "d5236c7b8e074b60bb59c5cd653af552"
+  },
+  {
+    "from_attribute": "docTypes",
     "from_uuid": "e7f37d69399a46978852754c54909617",
     "to_uuid": "98c7fc935268462aa38c05cea9b6198f"
   },
@@ -588,6 +618,11 @@
     "from_attribute": "docTypes",
     "from_uuid": "e803dbdd204e438b9e267b343c1cc50a",
     "to_uuid": "e586bfd8280948bbacdcba2f96212875"
+  },
+  {
+    "from_attribute": "contentCategory",
+    "from_uuid": "e8439899a66243b4ae3d47313ea62bff",
+    "to_uuid": "3b1fa97d341248629680549825d77ad3"
   },
   {
     "from_attribute": "docTypes",
