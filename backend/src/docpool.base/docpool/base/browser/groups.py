@@ -19,16 +19,15 @@ class GroupsListing(BrowserView):
         results = []
         group_tool = api.portal.get_tool("portal_groups")
         for group in group_tool.listGroups():
-            # plonegroup = group.getGroup()
             if group.id == "AuthenticatedUsers":
                 continue
             groups = []
             users = []
             for member in group.getGroupMembers():
                 if group_tool.isGroup(member):
-                    groups.append(member.id)
+                    groups.append((member.id, member.getGroupTitleOrName()))
                 else:
-                    users.append(member.id)
+                    users.append((member.id, member.getProperty("fullname")))
             member_in = group_tool.getGroupsForPrincipal(group)
             try:
                 member_in.remove("AuthenticatedUsers")
@@ -44,6 +43,7 @@ class GroupsListing(BrowserView):
                 local_roles.remove("Authenticated")
             except ValueError:
                 pass
+            local_roles = set(local_roles) - set(roles)
 
             ldap = False  # is_ldap_group(group=group)
             if ldap and has_ldap_prefix(group=group):
@@ -56,7 +56,7 @@ class GroupsListing(BrowserView):
                 "groups": groups,
                 "users": users,
                 "roles": roles,
-                "local_roles": local_roles,
+                "local_roles": set(local_roles) - set(roles),
                 "member_in": member_in,
                 "ldap": ldap,
                 "sortkey": sortkey,

@@ -11,15 +11,30 @@
 
     <metal:content-core fill-slot="main">
 
-      <h1>Groups Listing on
-        <span tal:replace="python: context.title"></span></h1>
+      <h1>Groups Listing</h1>
 
-      <style type="text/css">
-        .tableFixHead          { overflow: auto; height: 100px; }
-        .tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
-      </style>
-
-      <table class="tableFixHead table table-striped table-sm">
+      <table class="pat-datatables table table-striped table-sm"
+             id="groups-overview"
+             data-pat-datatables='{
+              "pageLength": -1,
+              "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Alle"] ],
+              "fixedHeader": true,
+              "language": {
+                  "processing": "Bitte warten...",
+                  "lengthMenu": "_MENU_ Einträge anzeigen",
+                  "zeroRecords": "Keine Einträge vorhanden.",
+                  "info": "_START_ bis _END_ von _TOTAL_ Einträgen",
+                  "infoEmpty": "Keine Einträge",
+                  "infoFiltered": "(gefiltert von _MAX_ Einträgen)",
+                  "infoPostFix": "",
+                  "search": "Filtern",
+                  "paginate": {
+                      "first":    "Erster",
+                      "previous": "Zurück",
+                      "next":     "Weiter",
+                      "last":     "Letzter"
+                   }}}'
+      >
         <thead>
           <tr>
             <th i18n:translate="groups_name">Name</th>
@@ -27,7 +42,8 @@
             <th i18n:translate="groups_members">Members</th>
             <th i18n:translate="groups_member_groups">Member in groups</th>
             <th i18n:translate="groups_global_roles">Global roles</th>
-            <th i18n:translate="groups_local_roles">Local roles</th>
+            <th><span i18n:translate="groups_local_roles">Local roles on</span>
+              <pre>${python:"/".join(context.getPhysicalPath())}</pre></th>
           </tr>
         </thead>
 
@@ -62,26 +78,29 @@
                   <tal:icon tal:replace="structure python:icons.tag('person-fill')" />
                   <a href=""
                      target="_blank"
-                     tal:content="memberuser"
                      tal:attributes="
-                       href python:portal_url + '/@@usergroup-userprefs?searchstring=' + memberuser;
+                       href python:portal_url + '/@@usergroup-userprefs?searchstring=' + memberuser[0];
                      "
                   >
+                   ${python: memberuser[1]}
+                    <span class="badge text-bg-secondary">${python: memberuser[0]}</span>
+
                   </a>
                 </li>
                 <li tal:repeat="membergroup python:group['groups']">
                   <tal:icon tal:replace="structure python:icons.tag('people-fill')" />
                   <a href=""
                      target="_blank"
-                     tal:content="membergroup"
                      tal:attributes="
-                       href python:portal_url + '/@@usergroup-groupmembership?groupname=' + membergroup;
+                       href python:portal_url + '/@@usergroup-groupmembership?groupname=' + membergroup[0];
                      "
                   >
+                    ${python: membergroup[1]}
+                    <span class="badge text-bg-secondary">${python: membergroup[0]}</span>
                   </a>
                   <a href=""
                      tal:attributes="
-                       href python:'#' + membergroup;
+                       href python:'#' + membergroup[0];
                      "
                   >
                     <tal:icon tal:replace="structure python:icons.tag('arrow-down')" />
