@@ -4,6 +4,12 @@ Changelog
 2.3.0 (unreleased)
 ------------------
 
+Fixed:
+
+- Prevent duplicate copies of ELANDocCollections when archiving an event. (#6262)
+  [pbauer]
+
+
 Technical:
 
 - Have varnish log differences between Shibboleth and Plone users in order to
