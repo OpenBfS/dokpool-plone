@@ -1,0 +1,48 @@
+{
+  "@id": "/bund/content/Groups/bund_e-lagebild-bfs/lagebilder-zur-freigabe-durch-bmu/beispiel-lagebild-fuer-freigabe-workflow-eingereicht/beispiel.pdf",
+  "@type": "File",
+  "UID": "2f890c0af72a4a59975ed10e91ac8eaf",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-23T12:27:02+00:00",
+  "creators": [
+    "demouser-stab-l-bund"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "file": {
+    "blob_path": "2f890c0af72a4a59975ed10e91ac8eaf/file/Beispiel.pdf",
+    "content-type": "application/pdf",
+    "filename": "Beispiel.pdf",
+    "size": 9520
+  },
+  "id": "beispiel.pdf",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2025-09-23T12:27:02+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Beispiel.pdf",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "demouser-stab-l-bund",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T12:27:02+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

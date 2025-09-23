@@ -1,0 +1,69 @@
+{
+  "@id": "/bund/content/Groups/bund_e-lagebild-bfs/beispiel-meldung",
+  "@type": "DPDocument",
+  "UID": "fdb4b3900ef9485aaa80ecc22b57d09f",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-23T12:03:52+00:00",
+  "created_by": "Demouser Stab L (Bund) <i>Lagebild BfS (Bund)</i>",
+  "creators": [
+    "demouser-stab-l-bund"
+  ],
+  "description": "",
+  "docType": "notification",
+  "effective": "2025-09-23T12:04:34+00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "beispiel-meldung",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-23T14:03:52",
+  "modified": "2025-09-23T12:04:34+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [
+    "e4b194cb504e47989098926df9cef057"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Foam cup cinnamon at foam rich in bar redeye caffeine fair. Redeye est saucer americano grounds steamed black extraction cappuccino. Dark steamed decaffeinated cultivar medium sweet arabica caffeine roast at eu viennese body. Decaffeinated acerbic wings whipped aroma aftertaste au gal\u00e3o body skinny ristretto and acerbic latte. Espresso mocha gal\u00e3o doppio so plunger americano seasonal.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Beispiel Meldung",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-23T14:04:34",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "demouser-stab-l-bund",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-23T12:03:52+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "demouser-stab-l-bund",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T12:04:34+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

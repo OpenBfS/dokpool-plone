@@ -1,0 +1,42 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31",
+  "@type": "ELANArchive",
+  "UID": "7c51b097491a496fbcef6c8f60088997",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-23T13:31:52+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "beispiel-notfall-archiviert_23-09-2025-15-31",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-23T13:31:54+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Beispiel Notfall (archiviert) 23.09.2025 15:31",
+  "type_title": "Archive",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:31:52+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

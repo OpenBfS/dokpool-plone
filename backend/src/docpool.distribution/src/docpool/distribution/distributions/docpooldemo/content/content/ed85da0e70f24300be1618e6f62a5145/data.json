@@ -1,0 +1,63 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": [],
+  "Status": "closed",
+  "TimeOfEvent": "2025-09-22T16:00:00",
+  "UID": "ed85da0e70f24300be1618e6f62a5145",
+  "allow_discussion": null,
+  "changelog": "[{\"Date\": \"23.09.2025 14:54\", \"User\": \"Demouser BMU (Bund)\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}, {\"Date\": \"23.09.2025 15:31\", \"User\": \"admin\", \"Status\": \"inactive\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
+  "contributors": [],
+  "created": "2025-09-23T12:54:30+00:00",
+  "created_by": "Demouser BMU (Bund)",
+  "creators": [
+    "demouser-bmu-bund"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "beispiel-notfall-archiviert",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-23T15:31:43",
+  "modified": "2025-09-23T13:31:54+00:00",
+  "modified_by": "admin",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Beispiel Notfall (archiviert)",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2025-09-23T14:54:30",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "demouser-bmu-bund",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T12:54:30+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

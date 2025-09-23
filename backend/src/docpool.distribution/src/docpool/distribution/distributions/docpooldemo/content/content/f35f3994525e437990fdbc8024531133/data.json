@@ -1,0 +1,56 @@
+{
+  "@id": "/bund/content/Groups/bund_e-lagebild-bfs/lagebilder-zur-freigabe-durch-bmu",
+  "@type": "SimpleFolder",
+  "UID": "f35f3994525e437990fdbc8024531133",
+  "allow_discussion": null,
+  "allowedDocTypes": [
+    "situationreport"
+  ],
+  "contributors": [],
+  "created": "2025-09-23T12:17:44+00:00",
+  "created_by": "admin <i>Lagebild BfS (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.workflow_policy": {
+    "workflow_policy_below": "dp-review-folder",
+    "workflow_policy_in": "dp-review-folder"
+  },
+  "id": "lagebilder-zur-freigabe-durch-bmu",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-23T14:17:44",
+  "modified": "2025-09-23T12:26:44+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Lagebilder zur Freigabe durch BMU",
+  "type_title": "Simple Folder",
+  "version": "current",
+  "wdate": "2025-09-23T14:17:44",
+  "workflow_history": {
+    "dp_folder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T12:17:44+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

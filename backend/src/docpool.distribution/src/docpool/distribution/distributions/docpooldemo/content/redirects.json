@@ -1,4 +1,16 @@
 {
   "/Plone/Members/bund_dpadmin": "/Plone/bund/content/Members/bund_dpadmin",
+  "/Plone/Members/demouser--bmu--bund": "/Plone/bund/content/Members/demouser--bmu--bund",
+  "/Plone/bund/archive/4297df1d-e4ad-4be2-b21f-9c61f455277e": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31",
+  "/Plone/bund/content/Groups/bund_bmu-stab-s/eine-medieninformation": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_bmu-stab-s/eine-medieninformation",
+  "/Plone/bund/content/Groups/bund_bmu-stab-s/eine-medieninformation/beispiel.pdf": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_bmu-stab-s/eine-medieninformation/beispiel.pdf",
+  "/Plone/bund/content/Groups/bund_e-lagebild-bfs/eine-mitteilung": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_e-lagebild-bfs/eine-mitteilung",
+  "/Plone/bund/content/Groups/bund_leitstelle-a-dwd/kommentar-zur-wetterlage": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_leitstelle-a-dwd/kommentar-zur-wetterlage",
+  "/Plone/bund/content/Groups/bund_leitstelle-a-dwd/kommentar-zur-wetterlage/beispiel.pdf": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_leitstelle-a-dwd/kommentar-zur-wetterlage/beispiel.pdf",
+  "/Plone/bund/contentconfig/scen/beispiel-notfall-archiviert": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert",
+  "/Plone/bund/contentconfig/scen/beispiel-notfall-archiviert/journal1": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert/journal1",
+  "/Plone/bund/contentconfig/scen/beispiel-notfall-archiviert/journal2": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert/journal2",
+  "/Plone/bund/contentconfig/scen/beispiel-notfall-archiviert/journal3": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert/journal3",
+  "/Plone/bund/contentconfig/scen/beispiel-notfall-archiviert/journal4": "/Plone/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert/journal4",
   "/Plone/bund/searches/informationen-bund": "/Plone/bund/informationen-bund"
 }

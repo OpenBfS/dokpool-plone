@@ -633,7 +633,10 @@
       "groupid": "bund_DoksysUsers",
       "groups": [],
       "principals": [
-        "bund_doksysadmin"
+        "bund_doksysadmin",
+        "demouser-bmu-bund",
+        "demouser-dwd",
+        "demouser-stab-l-bund"
       ],
       "roles": [],
       "title": "Doksys Users (Bund)"
@@ -649,10 +652,28 @@
         "bund_contentadmin",
         "bund_dpadmin",
         "bund_elanadmin",
-        "demouser-be"
+        "demouser-be",
+        "demouser-bmu-bund",
+        "demouser-dwd",
+        "demouser-stab-l-bund"
       ],
       "roles": [],
       "title": "ELAN Users (Bund)"
+    },
+    {
+      "allowedDocTypes": null,
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_EventEditors",
+      "groups": [],
+      "principals": [
+        "demouser-bmu-bund"
+      ],
+      "roles": [
+        "EventEditor"
+      ],
+      "title": "Event Editors (Bund)"
     },
     {
       "allowedDocTypes": [],
@@ -661,7 +682,9 @@
       "email": "",
       "groupid": "bund_Journal1_Editors",
       "groups": [],
-      "principals": [],
+      "principals": [
+        "demouser-stab-l-bund"
+      ],
       "roles": [],
       "title": "Journal 1 Editors (Bund)"
     },
@@ -775,7 +798,10 @@
         "bund_contentadmin",
         "bund_dpadmin",
         "bund_elanadmin",
-        "demouser-be"
+        "demouser-be",
+        "demouser-bmu-bund",
+        "demouser-dwd",
+        "demouser-stab-l-bund"
       ],
       "roles": [],
       "title": "Members (Bund)"
@@ -801,7 +827,9 @@
       "groupid": "bund_REIUsers",
       "groups": [],
       "principals": [
-        "bund_dpadmin"
+        "bund_dpadmin",
+        "demouser-bmu-bund",
+        "demouser-dwd"
       ],
       "roles": [],
       "title": "REI Users (Bund)"
@@ -838,7 +866,10 @@
       "groupid": "bund_RodosUsers",
       "groups": [],
       "principals": [
-        "bund_dpadmin"
+        "bund_dpadmin",
+        "demouser-bmu-bund",
+        "demouser-dwd",
+        "demouser-stab-l-bund"
       ],
       "roles": [],
       "title": "Rodos Users (Bund)"
@@ -868,6 +899,72 @@
       ],
       "roles": [],
       "title": "Situation Report Admins/Lagebild (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "nppinformation",
+        "estimation",
+        "eventinformation",
+        "protectiveactions",
+        "instructions",
+        "mediarelease",
+        "notification",
+        "note",
+        "situationreport"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_bmu-stab-s",
+      "groups": [],
+      "principals": [
+        "demouser-bmu-bund"
+      ],
+      "roles": [],
+      "title": "BMU Stab S"
+    },
+    {
+      "allowedDocTypes": [
+        "otherprojection",
+        "nppinformation",
+        "mediarelease",
+        "notification",
+        "note",
+        "situationreport",
+        "rodosprojection",
+        "trajectory",
+        "weatherinformation"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_e-lagebild-bfs",
+      "groups": [],
+      "principals": [
+        "demouser-stab-l-bund"
+      ],
+      "roles": [],
+      "title": "Lagebild BfS (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "estimation",
+        "doksysdok",
+        "airactivity",
+        "note",
+        "trajectory",
+        "weatherinformation"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_leitstelle-a-dwd",
+      "groups": [],
+      "principals": [
+        "demouser-dwd"
+      ],
+      "roles": [],
+      "title": "DWD - Leitstelle Luft (Bund)"
     },
     {
       "allowedDocTypes": [],
@@ -1223,6 +1320,70 @@
         "Member"
       ],
       "username": "demouser-be"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "example@example.com",
+      "fullname": "Demouser BMU (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_ELANUsers",
+        "bund_EventEditors",
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_RodosUsers",
+        "bund_bmu-stab-s"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}g4KsDmK9l9vXBxXA+dUkMgan3Vge1Gjf1AJh",
+      "roles": [
+        "Member"
+      ],
+      "username": "demouser-bmu-bund"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "example@example.com",
+      "fullname": "Demouser DWD (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_ELANUsers",
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_RodosUsers",
+        "bund_leitstelle-a-dwd"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}btQVHhoyBoHeULor7g00VNkKTIArOYySWxN/",
+      "roles": [
+        "Member"
+      ],
+      "username": "demouser-dwd"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "example@example.com",
+      "fullname": "Demouser Stab L (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_ELANUsers",
+        "bund_Journal1_Editors",
+        "bund_Members",
+        "bund_RodosUsers",
+        "bund_e-lagebild-bfs"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}WWrZ+bbSRyH/ytBYSbtm/tH/qBscFnipzjTo",
+      "roles": [
+        "Member"
+      ],
+      "username": "demouser-stab-l-bund"
     },
     {
       "description": "",
