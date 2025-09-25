@@ -21,8 +21,12 @@ class ELANSpecificTransfer:
         self.original = original
         self.transfer_folder = transfer_folder
         self.elanobj = IELANDocument(self.original, None)
+        self.have_elan = ELAN_APP in self.transfer_folder.myDocumentPool().supportedApps
 
     def assert_allowed(self):
+        if not self.have_elan:
+            return
+
         # Is my Scenario known, are unknown Scenarios accepted?
         scen_ok = self.transfer_folder.unknownScenDefault != "block"
         if not scen_ok:
@@ -44,6 +48,13 @@ class ELANSpecificTransfer:
         return dict(scenario_ids=scenario_ids)
 
     def __call__(self, copy):
+        if not self.have_elan:
+            try:
+                del copy.aq_base.scenarios
+            except AttributeError:
+                pass
+            return
+
         self.copy_scenarios = list(ensureScenariosInTarget(self.elanobj.scenarios, copy.myDocumentPool()))
         try:
             IELANDocument(copy).scenarios = [s.UID() for s in self.copy_scenarios]
@@ -51,6 +62,8 @@ class ELANSpecificTransfer:
             log_exc(e)
 
     def receiver_log_entry(self):
+        if not self.have_elan:
+            return {}
         return dict(scenario_ids=", ".join(s.getId() for s in self.copy_scenarios))
 
 

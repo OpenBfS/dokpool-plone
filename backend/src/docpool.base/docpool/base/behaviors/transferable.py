@@ -269,7 +269,6 @@ class Transferable(FlexibleView):
             for app in (lbs := ILocalBehaviorSupport(self.context)).local_behaviors:
                 if app not in transfer_folder.myDocumentPool().supportedApps:
                     apps_to_remove.add(app)
-                    continue
                 app_transfer = queryMultiAdapter(
                     (self.context, transfer_folder), IAppSpecificTransfer, name=app
                 )

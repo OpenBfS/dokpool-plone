@@ -23,11 +23,16 @@ class TestAppSpecificTransfer:
     def sender_log_entry(self):
         return {}
 
+    def __call__(self, copy):
+        testapp_calls.append((
+            self.original,
+            self.transfer_folder,
+            copy,
+            "testapp" in self.transfer_folder.myDocumentPool().supportedApps,
+        ))
+
     def receiver_log_entry(self):
         return {}
-
-    def __call__(self, copy):
-        testapp_calls.append((self.original, self.transfer_folder, copy))
 
 
 class TestTransferFunctional(unittest.TestCase):
@@ -77,5 +82,11 @@ class TestTransferFunctional(unittest.TestCase):
         self.assertEqual([], self.target_tf_a["note"].local_behaviors)
         # copy transferred to target that does have testapp should have it assigned
         self.assertEqual(["testapp"], self.target_tf_b["note"].local_behaviors)
-        # testapp-specific transfer code should have been run exactly for target b
-        self.assertEqual([(document, self.target_tf_b, self.target_tf_b["note"])], testapp_calls)
+        # testapp-specific transfer code should have been run for all targets
+        self.assertEqual(
+            [
+                (document, self.target_tf_a, self.target_tf_a["note"], False),
+                (document, self.target_tf_b, self.target_tf_b["note"], True),
+            ],
+            testapp_calls,
+        )
