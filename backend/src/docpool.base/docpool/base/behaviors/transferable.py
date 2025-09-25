@@ -329,7 +329,7 @@ class Transferable(FlexibleView):
 
                 brain = api.content.find(UID=my_copy.UID())[0]
                 index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
-                if set(getattr(transfer_copy, "scenarios", [])) != set(index_entry):
+                if set(getattr(my_copy, "scenarios", [])) != set(index_entry):
                     log(
                         f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
                         severity=logging.ERROR,
