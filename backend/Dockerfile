@@ -40,6 +40,7 @@ COPY . src
 RUN <<EOT
     set -e
     echo ${GIT_COMMIT} > GIT_COMMIT
+    apt update
     apt install -y --no-install-recommends openssh-client ca-certificates
     bin/pip install mxdev uv
     # remove dev-extra from wrapperpackage in mx.ini
