@@ -494,6 +494,10 @@ msgstr "Übertragbar"
 msgid "Transferred to ${target_title}"
 msgstr "Übertragen an ${target_title}"
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Transferred to ${target_title}, apps removed: ${apps}"
+msgstr "Übertragen an ${target_title}, entfernte Anwendungen: ${apps}"
+
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Type extension for transferable types"
 msgstr "Typ Erweiterung für übertragbare Typen"

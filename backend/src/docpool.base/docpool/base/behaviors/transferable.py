@@ -332,7 +332,13 @@ class Transferable(FlexibleView):
                 log_entry.update(app_transfer.receiver_log_entry())
             transfer_copy.receiver_log += (log_entry,)
 
-            msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
+            if apps_to_remove:
+                msg = _(
+                    "Transferred to ${target_title}, apps removed: ${apps}",
+                    mapping={"target_title": esd_to_title, "apps": ", ".join(sorted(apps_to_remove))},
+                )
+            else:
+                msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
             api.portal.show_message(msg, self.request)
 
             brain = api.content.find(UID=my_copy.UID())[0]

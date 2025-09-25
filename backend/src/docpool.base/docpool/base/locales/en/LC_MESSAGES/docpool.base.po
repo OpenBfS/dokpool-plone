@@ -494,6 +494,10 @@ msgstr ""
 msgid "Transferred to ${target_title}"
 msgstr ""
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Transferred to ${target_title}, apps removed: ${apps}"
+msgstr ""
+
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Type extension for transferable types"
 msgstr ""
