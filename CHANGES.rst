@@ -4,6 +4,12 @@ Changelog
 2.3.0 (unreleased)
 ------------------
 
+Added:
+
+- Add view @@groups-overview to inspect all groups and their members. (#6243)
+  [pbauer]
+
+
 Fixed:
 
 - Prevent duplicate copies of ELANDocCollections when archiving an event. (#6262)
