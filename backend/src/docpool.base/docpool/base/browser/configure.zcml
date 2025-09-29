@@ -359,4 +359,20 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="groups-overview"
+      for="*"
+      class=".groups.GroupsListing"
+      template="templates/groups.pt"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="group_members_flattened"
+      for="*"
+      class=".groups.GroupMembersFlattened"
+      template="templates/group_members_flattened.pt"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
