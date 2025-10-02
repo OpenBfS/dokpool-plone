@@ -15,6 +15,8 @@ Fixed:
 - Prevent duplicate copies of ELANDocCollections when archiving an event. (#6262)
   [pbauer]
 
+- No edit for non-Admins in docType field. (#6057)
+  [slindner]
 
 Technical:
 
@@ -53,7 +55,6 @@ Added:
 
 - Show active apps of targets in transfer form. (#5994)
   [pbauer]
-
 
 Fixed:
 

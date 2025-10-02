@@ -201,6 +201,8 @@ class AddForm(add.DefaultAddForm):
 
     def updateWidgets(self):
         super().updateWidgets()
+        if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
+            self.widgets["docType"].mode = "display"
         if "reireport" in self.request.get("form.widgets.docType", []):
             title = self.widgets["IDublinCore.title"]
             if not title.value:
