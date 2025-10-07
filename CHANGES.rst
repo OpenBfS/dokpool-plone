@@ -22,6 +22,8 @@ Technical:
   analyze spontaneous identification issues. (#4539)
   [tlotze]
 
+- Upgrade to Plone 6.1.3 (#5954)
+  [slindner]
 
 2.2.0 (2025-08-05)
 ------------------
