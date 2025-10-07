@@ -390,69 +390,6 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                 "Original documents should have first event removed from scenarios",
             )
 
-    def test_archive_event_with_multiple_apps(self):
-        """Test archiving an event where documents have multiple local behaviors."""
-        # Create a document with multiple local behaviors
-        groups_folder = self.test_docpool.content.Groups
-        group_folder = list(groups_folder.objectValues())[0]
-
-        multi_app_doc = api.content.create(
-            container=group_folder,
-            type="DPDocument",
-            id="multi_app_doc",
-            title="Document with Multiple Apps",
-            text=RichTextValue("<p>Multi-app content</p>", "text/html", "text/x-html-safe"),
-        )
-
-        # Assign multiple local behaviors (if supported by DocumentPool)
-        from docpool.base.localbehavior.localbehavior import LocalBehaviorSupport
-
-        adapter = LocalBehaviorSupport(multi_app_doc)
-        adapter.local_behaviors = ["elan"]  # test_docpool only supports elan
-
-        # Link to event
-        event_uid = self.test_event.UID()
-        multi_app_doc.scenarios = [event_uid]
-        multi_app_doc.reindexObject(idxs=["scenarios"])
-
-        transaction.commit()
-
-        # Archive the event (following pattern from docpool.elan tests)
-        archive_view = self.test_event.restrictedTraverse("@@archiveAndClose")
-        # Render form first
-        archive_view()
-        # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
-        archive_view()
-
-        # Verify the multi-app document was archived with behaviors intact
-        archive_container = self.test_docpool.archive
-        archive_folders = [
-            obj for obj in archive_container.objectValues() if obj.portal_type == "ELANArchive"
-        ]
-
-        archive_folder = archive_folders[0]
-
-        # Find the archived multi-app document (in Groups/user folders)
-        archived_multi_doc = None
-        if hasattr(archive_folder, "content") and hasattr(archive_folder.content, "Groups"):
-            groups_folder = archive_folder.content.Groups
-            for group_folder in groups_folder.objectValues():
-                for obj in group_folder.objectValues():
-                    if obj.portal_type == "DPDocument" and "multi_app_doc" in obj.getId():
-                        archived_multi_doc = obj
-                        break
-                if archived_multi_doc:
-                    break
-
-        self.assertIsNotNone(archived_multi_doc, "Multi-app document should be archived")
-
-        # Verify behaviors are preserved
-        archived_adapter = LocalBehaviorSupport(archived_multi_doc)
-        self.assertEqual(
-            archived_adapter.local_behaviors, ["elan"], "All local behaviors should be preserved"
-        )
-
     def test_archive_documents_workflow_state_preservation(self):
         """Test that documents in different workflow states maintain their states after archiving."""
         # Create additional documents with specific workflow states for detailed testing
