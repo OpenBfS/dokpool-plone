@@ -40,7 +40,7 @@ class TestSetup(unittest.TestCase):
         self.assertTrue(viewlet.available())
         viewlet.update()
         html = viewlet.render()
-        self.assertNotIn('Not detected', html)
+        self.assertNotIn("Not detected", html)
         api.portal.set_registry_record(name="docpool.show_debug_info", value=False)
         # We disable the viewlet to test its availability
         self.assertFalse(viewlet.available())

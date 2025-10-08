@@ -2,15 +2,16 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="plonetheme.tokyo">
+    i18n_domain="plonetheme.tokyo"
+    >
 
   <browser:viewlet
       name="docpool.header"
       manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-      layer="docpool.ui.interfaces.IUITheme"
       class="docpool.ui.viewlets.header.PortalHeader"
       template="header.pt"
       permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
       />
 
 </configure>
