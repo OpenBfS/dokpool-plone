@@ -27,21 +27,25 @@ class ELANSpecificTransfer:
         if not self.have_elan:
             return
 
-        # Is my Scenario known, are unknown Scenarios accepted?
-        scen_ok = self.transfer_folder.unknownScenDefault != "block"
-        if not scen_ok:
-            # check my precise Scenario
-            # TODO The following is inefficient in that it creates a list of
-            # full objects, but it effectively filters elanobj.scenarios for
-            # those that actually exist in the catalog. Is this necessary?
-            # FIXME: The following logic appears to be broken, see #5723.
-            scens = self.elanobj.myScenarioObjects()
-            if scens:
-                scen_id = scens[0].getId()
-                if not any(scen.getId == scen_id for scen in getOpenScenarios(self.transfer_folder)):
-                    raise ValueError(_("Unknown scenario not accepted."))
-            else:
-                raise ValueError(_("Document has no scenario."))
+        # Scenarios unknown at the target may either be blocked or handled (which currently means they will be
+        # created at the target later on). If they are going to be handled anyway, we're fine.
+        if self.transfer_folder.unknownScenDefault != "block":
+            return
+
+        # At this point, we're not going to be able to keep scenarios that are unknown at the target. Our
+        # policy is to veto against the transfer rather than lose scenario associations.
+
+        # TODO The following is inefficient in that it creates a list of
+        # full objects, but it effectively filters elanobj.scenarios for
+        # those that actually exist in the catalog. Is this necessary?
+        # FIXME: The following logic appears to be broken, see #5723.
+        scens = self.elanobj.myScenarioObjects()
+        if scens:
+            scen_id = scens[0].getId()
+            if not any(scen.getId == scen_id for scen in getOpenScenarios(self.transfer_folder)):
+                raise ValueError(_("Unknown scenario not accepted."))
+        else:
+            raise ValueError(_("Document has no scenario."))
 
     def sender_log_entry(self):
         scenario_ids = ", ".join(b.getId for b in api.content.find(UID=self.elanobj.scenarios))
