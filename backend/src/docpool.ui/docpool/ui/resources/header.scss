@@ -1,0 +1,74 @@
+:root {
+	--bs-primary: #324D6A; /* Graublau Dunkel1 */
+	--bs-warning: #FED86C; /* Gelb Main */
+	--bs-light: #E1E6EB; /* Graublau Hell3 */
+}
+
+body {
+	font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.app-header {
+	background-color: #ffffff;
+}
+
+.logo-block {
+	min-width: 113px;
+	height: 72px;
+}
+
+.logo-img {
+	height: 13px;
+	width: 72px;
+	object-fit: contain;
+}
+
+.divider-small {
+	height: 10px;
+	width: 10px;
+	object-fit: contain;
+}
+
+.divider-vertical {
+	height: 42px;
+	width: 1px;
+	object-fit: contain;
+}
+
+.event-card {
+	background-color: #C3DCE7; /* Hellblau(Hell2) */
+	border-bottom: 2px solid var(--bs-primary);
+	height: 72px;
+}
+
+.event-switcher {
+	background-color: var(--bs-light);
+	border: 2px solid rgba(149, 186, 131, 0.5);
+	border-top-right-radius: 8px;
+	width: 44px;
+	height: 72px;
+}
+
+.tag-badge {
+	border-top-right-radius: 12px;
+	border-bottom-right-radius: 12px;
+}
+
+.nav-btn {
+	height: 72px;
+}
+
+.btn-icon {
+	--size: 32px;
+	padding: 8px;
+	border: 0;
+	background: transparent;
+	line-height: 1;
+	border-radius: .25rem;
+}
+
+.text-primary {
+	color: var(--bs-primary) !important;
+}
+
+

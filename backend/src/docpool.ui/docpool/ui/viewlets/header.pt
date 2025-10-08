@@ -1,0 +1,71 @@
+<header id="portal-header" class="app-header border-bottom" tal:define="icons python:context.restrictedTraverse('@@iconresolver')">
+    <div class="container-fluid px-0">
+        <div class="d-flex align-items-stretch">
+            <!-- Left: Logo + System switcher -->
+            <div class="d-flex align-items-center justify-content-center flex-column px-3 logo-block border-end">
+                <a href="#" class="text-decoration-none d-flex flex-column align-items-start justify-content-center">
+                    <img src="/assets/elan-logo.png" alt="ELAN" class="logo-img mb-1">
+                    <div class="d-flex align-items-center gap-1 small text-primary fw-light">
+                        <span>BUND</span>
+                        <img src="/assets/divider-10.png" alt="" class="divider-small">
+                        <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
+                    </div>
+                </a>
+            </div>
+
+            <!-- Middle: Event pill/button area with switcher and main nav buttons -->
+            <div class="d-flex align-items-stretch flex-grow-1">
+                <!-- Event button -->
+                <div class="event-card d-flex align-items-center px-3 border-end">
+                    <div>
+                        <div class="text-primary small">Modulübung Stab L und M</div>
+                        <div class="d-flex align-items-center gap-3 mt-1">
+                            <span class="badge bg-warning text-dark tag-badge">Übung</span>
+                            <span class="small text-primary">Routinebetrieb</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event switcher narrow block -->
+                <div class="event-switcher d-flex align-items-center justify-content-center border-end">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
+                </div>
+
+                <!-- Main navigation buttons -->
+                <nav class="d-flex align-items-stretch">
+                    <a href="#" class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none">
+                        <span class="small text-primary mb-n1">Meine</span>
+                        <span class="small text-primary">Gruppenordner</span>
+                    </a>
+                    <a href="#" class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none">
+                        <span class="small text-primary mb-n1">Dokumente</span>
+                        <span class="small text-primary">Notfallschutz</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Right: Icons -->
+            <div class="d-flex align-items-center ms-auto gap-2 px-3">
+                <button class="btn btn-icon" aria-label="Suche">
+                    <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
+                </button>
+                <img src="/assets/divider-42.png" alt="" class="divider-vertical">
+                <button class="btn btn-icon" aria-label="Barrierefreiheit">
+                    <tal:icon tal:replace="structure python:icons.tag('accessibility', tag_class='me-2')" />
+                </button>
+                <button class="btn btn-icon" aria-label="Systemmeldung">
+                    <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
+                </button>
+                <button class="btn btn-icon" aria-label="Info">
+                    <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
+                </button>
+                <button class="btn btn-icon" aria-label="Konfiguration">
+                    <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='me-2')" />
+                </button>
+                <button class="btn btn-icon" aria-label="Benutzer">
+                    <tal:icon tal:replace="structure python:icons.tag('person-fill', tag_class='me-2')" />
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
