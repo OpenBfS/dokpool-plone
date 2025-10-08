@@ -66,7 +66,30 @@ class ISkipAutomaticTransferMarker(Interface):
 
 
 class IAppSpecificTransfer(Interface):
-    pass
+    """Handle application-specific logic upon transfer of a document to a transfer folder.
+
+    Applied for all apps associated with the original document, including those that are not active at the
+    target (and will therefore be removed from the document's copy).
+
+    All of the methods will be called, so even if the app doesn't apply to the copy, it gets a chance to veto
+    against the transfer, log sender state, remove app-specific data from the copy etc.
+    """
+
+    def assert_allowed():
+        """Check if this app's logic allows transferring the document to the target.
+
+        If yes, returns without error.
+        If no, raises ValueError with the reason as the exception argument.
+        """
+
+    def sender_log_entry():
+        """Return a dict of app-specific information to update the sender log with."""
+
+    def __call__(copy):
+        """Apply app-specific logic to the transferred copy of the document."""
+
+    def receiver_log_entry():
+        """Return a dict of app-specific information to update the receiver log with."""
 
 
 @provider(IFormFieldProvider)
