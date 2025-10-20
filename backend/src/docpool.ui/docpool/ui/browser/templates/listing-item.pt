@@ -73,43 +73,111 @@
         &#8942;
       </a>
       <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item"
+             href="#"
+             tal:attributes="
+               href python: f'{data['url']}/@@edit?_authenticator={token}';
+             "
+          >
+            <img src="${python:icons.url('pencil')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Edit</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item"
+             href="#"
+             tal:attributes="
+               href python: f'{data['url']}/@@edit?_authenticator={token}';
+             "
+          >
+            <img src="${python:icons.url('star')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Mark as Favorite</span>
+             (TODO)
+          </a>
+        </li>
         <tal:transitions tal:repeat="transition python: data['available_transitions']">
           <li>
             <a class="dropdown-item transition pat-inject"
                href="#"
                data-pat-inject="source: #listing; target: #listing; trigger: default &amp;&amp; source: #global_statusmessage; target: #global_statusmessage; trigger: default "
+               tal:define="
+                 icon_name python: view.transition_icon(transition['id']);
+               "
                tal:attributes="
-                 href python:'%s/@@change_state?action=%s&amp;back_to_referer=1' % (data['url'], transition['id']);
+                 href python:'%s/@@change_state?action=%s&amp;back_to_referer=1&amp;_authenticator=%s' % (data['url'], transition['id'], token);
                  id python: 'workflow-transition-' + transition['id'];
                "
-               i18n:translate=""
-            >${python: transition['name']}</a>
+            >
+              <img src="${python:icons.url(icon_name)}" />
+              <span tal:omit-tag=""
+                    i18n:translate=""
+              >
+                ${python: transition['name']}</span></a>
           </li>
         </tal:transitions>
+        <li>
+          <a class="dropdown-item"
+             href="#"
+             tal:attributes="
+               href python: f'{data['url']}/@@download?_authenticator={token}';
+             "
+          >
+            <img src="${python:icons.url('download')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Download all attachments</span>
+             (TODO)
+          </a>
+        </li>
         <li tal:condition="python: data['show_transfer_action']"><a class="dropdown-item pat-plone-modal"
              href="#"
              tal:attributes="
                href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % (context.absolute_url(), data['path']);
              "
-             i18n:translate=""
-          >Transfer</a></li>
+          >
+            <img src="${python:icons.url('box-arrow-up-right')}" />
+            <span tal:omit-tag=""
+                  i18n:translate=""
+            >Transfer</span>
 
-        <li><a class="dropdown-item"
+          </a></li>
+        <li>
+          <a class="dropdown-item pat-plone-modal"
              href="#"
-             i18n:domain="plone"
-             i18n:translate=""
-          >Delete (TODO)</a></li>
-        <li><a class="dropdown-item"
+             tal:attributes="
+               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}';
+             "
+          >
+            <img src="${python:icons.url('trash')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Delete</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item"
              href="#"
-             i18n:domain="plone"
-             i18n:translate=""
-          >Cut (TODO)</a></li>
-        <li><a class="dropdown-item"
-             href="#"
-             i18n:domain="plone"
-             i18n:translate=""
-          >Print (TODO)</a></li>
-
+             tal:attributes="
+               href python: f'{data['url']}';
+             "
+          >
+            <img src="${python:icons.url('scissors')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Cut</span>
+             (TODO)
+          </a>
+        </li>
       </ul>
     </div>
   </div>
