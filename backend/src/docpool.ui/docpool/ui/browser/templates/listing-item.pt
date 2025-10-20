@@ -5,7 +5,9 @@
        toLocalizedTime nocall:plone_view/toLocalizedTime;
        portal_url portal_state/portal_url;
        data python: view.dpdocument;
-       docType python: data['docType'];
+       doctype python: data['doctype'];
+       icons python:context.restrictedTraverse('@@iconresolver');
+       token context/@@authenticator/token;
      "
      i18n:domain="docpool.base"
 >
@@ -17,15 +19,17 @@
   </div>
 
   <div class="me-3 border-start border-end doctype-box">
-    <img class="card-img-top doktype bg-body-tertiary"
-         alt="Type"
-         src="docType"
-         tal:attributes="
-           alt python: docType;
-           title python: docType;
-           src python: f'{portal_url}/++plone++docpoolui/icons/otherprojection.png';
-         "
-    />
+    <div class="doktype-icon-container bg-body-tertiary p-2">
+        <img class="doktype-icon px-3 py-1"
+            alt="Type"
+            src="doctype"
+            tal:attributes="
+            alt python: doctype;
+            title python: doctype;
+            src python:data['doctype_icon_url'];
+            "
+        />
+    </div>
     <div class="card-body review-state ${python:data['state_class']}">
       <p class="card-text text-uppercase text-center small"
          tal:content="python: data['state_title']"
