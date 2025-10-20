@@ -35,8 +35,8 @@
                 <li class="list-group-item">Previous</li>
                 <li class="list-group-item">Next</li>
                 <li class="list-group-item">
-                  <a href="edit"
-                     class="pat-inject"
+                  <a class="pat-inject"
+                     href="edit"
                      data-pat-inject="source: #content; target: .panel-content"
                      tal:condition="python: can_edit"
                      tal:attributes="

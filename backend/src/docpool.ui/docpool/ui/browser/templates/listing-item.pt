@@ -20,15 +20,15 @@
 
   <div class="me-3 border-start border-end doctype-box">
     <div class="doktype-icon-container bg-body-tertiary p-2">
-        <img class="doktype-icon px-3 py-1"
-            alt="Type"
-            src="doctype"
-            tal:attributes="
-            alt python: doctype;
-            title python: doctype;
-            src python:data['doctype_icon_url'];
-            "
-        />
+      <img class="doktype-icon px-3 py-1"
+           alt="Type"
+           src="doctype"
+           tal:attributes="
+             alt python: doctype;
+             title python: doctype;
+             src python:data['doctype_icon_url'];
+           "
+      />
     </div>
     <div class="card-body review-state ${python:data['state_class']}">
       <p class="card-text text-uppercase text-center small"
