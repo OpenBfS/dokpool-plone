@@ -215,6 +215,8 @@ class AddView(add.DefaultAddView):
 class DPDocumentEditForm(EditForm):
     def updateWidgets(self):
         super().updateWidgets()
+        if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
+            self.widgets["docType"].mode = "display"
 
 
 EditView = layout.wrap_form(DPDocumentEditForm)

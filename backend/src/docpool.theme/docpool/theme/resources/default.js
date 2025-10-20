@@ -64,18 +64,28 @@ $(function () {
   // Only for Admins
   // https://redmine-koala.bfs.de/issues/5282
   // https://redmine-koala.bfs.de/issues/6057
-  var type = $("#form-widgets-docType");
-  if (type?.[0]) {
-    var value = null;
+  if (isAdminOrContentAdmin == null) {
+    var type = $("#form-widgets-docType");
+    if (type?.[0]) {
+      var value = null;
 
-    if (type[0].selectedIndex != null) {
-      const docTypeFormFieldList = type[0].options[type[0].selectedIndex];
-      value = docTypeFormFieldList.text;
-      $(docTypeFormFieldList).parent().parent().hide();
+      // For Add-Form as it has display mode = "input"
+      if (type[0].selectedIndex != null) {
+        const docTypeFormFieldList = type[0].options[type[0].selectedIndex];
+        value = docTypeFormFieldList.text;
+        $(docTypeFormFieldList).parent().parent().hide();
+      }
+
+      // For Edit-Form as it has display mode = "display"
+      if (type[0].querySelector(".selected-option")) {
+        const docTypeFormField = type?.[0]?.querySelector(".selected-option");
+        value = docTypeFormField.textContent;
+        // Remove the FormField
+        $(docTypeFormField).parent().parent().hide();
+      }
+      var title = $("h1.documentFirstHeading").text();
+      $("h1.documentFirstHeading").text(value ? `${title} (${value})` : title);
     }
-
-    var title = $("h1.documentFirstHeading").text();
-    $("h1.documentFirstHeading").text(value ? `${title} (${value})` : title);
   }
 });
 
