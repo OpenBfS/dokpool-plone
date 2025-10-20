@@ -39,11 +39,11 @@
   </div>
 
   <div class="flex-fill">
-    <a class="pat-plone-modal"
+    <a class="pat-modal"
        href="#"
-       data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+       data-pat-modal="class: large; source: #content"
        tal:attributes="
-         href python: data['url'] + '?ajax_load=1';
+         href python: data['url'];
        "
     >
       <h2 tal:content="python: data['title']"></h2>

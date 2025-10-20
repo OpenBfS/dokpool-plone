@@ -92,3 +92,34 @@ img.doktype-icon {
     }
 
 }
+
+div.pat-modal .header {
+  height: auto !important;
+}
+
+div.pat-modal {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 90vh;
+  min-height: 90vh;
+  background-color: white;
+}
+
+div.pat-modal.large {
+    width: 90vw;
+    margin-left: -45vw;
+}
+
+div.pat-modal::after {
+    background-color: rgba(15, 15, 15, 0.84);
+}
+
+#portal-mainnavigation,
+#portal-searchbox,
+#scenario_box {
+    display: none;
+}
+
+#portal-logo {
+    float: left;
+}
