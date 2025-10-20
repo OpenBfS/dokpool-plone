@@ -31,10 +31,10 @@ class TestUpdateNotification:
         # Open modal
         page.get_by_role("link", name="Weatherinfo", exact=True).click()
         # Wait for modal to open
-        page.wait_for_selector("div.modal-wrapper")
-        expect(page.locator("div.modal-wrapper")).to_have_count(1)
-        metadata = page.locator(".modal-content dl.doc_metadata dd").first
+        page.wait_for_selector("div#pat-modal")
+        expect(page.locator("div#pat-modal")).to_have_count(1)
+        metadata = page.locator(".panel-content dl.doc_metadata dd").first
         expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
         # Close modal
         page.get_by_role("button", name="Close").click()
-        expect(page.locator("div.modal-wrapper")).to_have_count(0)
+        expect(page.locator("div.panel-content")).to_have_count(0)
