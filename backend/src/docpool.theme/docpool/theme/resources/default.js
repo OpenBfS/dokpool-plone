@@ -61,17 +61,21 @@ jQuery(document).on("click", ".cat_filter #reset_filter", function () {
 
 $(function () {
   // Adds the docType string to the edit heading
+  // Only for Admins
   // https://redmine-koala.bfs.de/issues/5282
+  // https://redmine-koala.bfs.de/issues/6057
   var type = $("#form-widgets-docType");
-  if (type[0] != null && type[0].selectedIndex != null) {
-    var dtParam = getURLParam("form.widgets.docType:list");
-    if (typeof dtParam != "undefined") {
-      type.val(dtParam);
+  if (type?.[0]) {
+    var value = null;
+
+    if (type[0].selectedIndex != null) {
+      const docTypeFormFieldList = type[0].options[type[0].selectedIndex];
+      value = docTypeFormFieldList.text;
+      $(docTypeFormFieldList).parent().parent().hide();
     }
-    var option = type[0].options[type[0].selectedIndex];
-    var value = option.text;
+
     var title = $("h1.documentFirstHeading").text();
-    $("h1.documentFirstHeading").text(title + " (" + value + ")");
+    $("h1.documentFirstHeading").text(value ? `${title} (${value})` : title);
   }
 });
 
