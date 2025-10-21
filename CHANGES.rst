@@ -15,6 +15,19 @@ Fixed:
 - Prevent duplicate copies of ELANDocCollections when archiving an event. (#6262)
   [pbauer]
 
+- Handle supported apps when transfering documents (#5994, #6258)
+  - Don't run app-specific code if the app isn't supported by the target
+  - Remove apps from documents which aren't supported by the target
+  Decouple and generalise app-specific transfer code from generic transfer handling, break dependency of docpool.base on docpool.elan. (#5994, #6258)
+  Add some transfer tests and testing support to docpool.base.
+  [tlotze]
+
+- Fix logging of inconsistent scenarios index. (#6125)
+  [tlotze]
+
+- Fix creating transfer folder by making doctypePermissions optional. (#6257)
+  [tlotze]
+
 
 Technical:
 
@@ -22,8 +35,24 @@ Technical:
   analyze spontaneous identification issues. (#4539)
   [tlotze]
 
-- Upgrade to Plone 6.1.3 (#5954)
+- Upgrade to Plone 6.1.3. (#5954)
   [slindner]
+
+- Add tests for creating event archives and snapshots. (#6155)
+  [pbauer]
+
+- Delete dead code, get rid of duplicate interface names.
+  [tlotze]
+
+- Simplify subclassed AccountPanelSchemaAdapters. (#5908)
+  [tlotze]
+
+- Use pyruvate instead of waitress as wsgi server. (#6108)
+  [pbauer]
+
+- Add pre-commit config. (#6196)
+  [tlotze]
+
 
 2.2.0 (2025-08-05)
 ------------------
@@ -47,6 +76,7 @@ Changed:
 
 - Change wording on logged-out screen (#4514)
   [pbauer]
+
 
 Added:
 
@@ -202,6 +232,7 @@ Fixed:
 
 - Add some space before pdflink (#5942)
   [pbauer]
+
 
 Added:
 
@@ -613,9 +644,6 @@ Fixed:
 
 - Show document workflow state in dview. (#4270)
   [tlotze]
-
-
-Fixed:
 
 - Fix missing translations in Chronologie (#3708)
   [slindner]
