@@ -28,6 +28,8 @@ Fixed:
 - Fix creating transfer folder by making doctypePermissions optional. (#6257)
   [tlotze]
 
+- No edit for non-Admins in docType field. (#6057)
+  [slindner]
 
 Technical:
 
@@ -85,7 +87,6 @@ Added:
 
 - Show active apps of targets in transfer form. (#5994)
   [pbauer]
-
 
 Fixed:
 
