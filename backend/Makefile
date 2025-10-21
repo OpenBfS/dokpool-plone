@@ -151,6 +151,7 @@ i18n: $(VENV_FOLDER) ## Update locales
 .PHONY: test
 test: $(VENV_FOLDER) ## run tests
 	@$(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
+	--test-path src/docpool.base \
 	--test-path src/docpool.api/src \
 	--test-path src/elan.journal \
 	--test-path src/docpool.doksys/src \
