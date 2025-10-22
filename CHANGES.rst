@@ -9,6 +9,10 @@ Added:
 - Add view @@groups-overview to inspect all groups and their members. (#6243)
   [pbauer]
 
+- Add view @@full_review_history thats shows the history for of all workflows of an item.
+  Update history-action to use that and make it available to all readers. (#6124)
+  [pbauer]
+
 
 Fixed:
 
