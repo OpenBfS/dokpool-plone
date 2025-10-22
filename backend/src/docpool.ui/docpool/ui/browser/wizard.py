@@ -1,6 +1,11 @@
 from AccessControl import Unauthorized
 from collective.beaker.interfaces import ISession
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.base.utils import get_content_area
+from docpool.base.utils import getAllowedDocumentTypes
+from docpool.base.utils import getDocumentPoolSite
+from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.ui.utils import extract_data
 from io import BufferedRandom
 from io import BytesIO
@@ -11,6 +16,8 @@ from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
 from zope.interface import Invalid
 from zope.schema import ValidationError
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 import logging
 import mimetypes
@@ -66,7 +73,6 @@ class ContextlessWizard(BrowserView):
                 if isinstance(attachment.file, BufferedRandom):
                     # Unwrap io.BufferedRandom because it cannot be pickled by beaker
                     attachment.file = BytesIO(attachment.file.read())
-
         return data, errors
 
     def run_custom_validation(self):
@@ -140,8 +146,8 @@ class DPDocumentWizard(ContextlessWizard):
     session_base_name = f"{portal_type}_wizard"
 
     required_for_1 = []
-    required_for_2 = ["title"]
-    required_for_3 = ["title"]
+    required_for_2 = ["container_uid", "docType"]
+    required_for_3 = ["container_uid", "docType", "title"]
 
     def __call__(self):
         # Required fields for wizard step
@@ -190,8 +196,10 @@ class DPDocumentWizard(ContextlessWizard):
     def create_item(self):
         """Create the content from the data"""
         fields = [
+            "docType",
             "title",
             "text",
+            "scenarios",
         ]
 
         item_dict = {}
@@ -207,20 +215,94 @@ class DPDocumentWizard(ContextlessWizard):
             if k in fields and v:
                 item_dict[k] = v
 
-        portal = api.portal.get()
-        container = portal["bund"]["content"]["Groups"]["bund_group1"]
+        container = api.content.get(UID=self.data["container_uid"])
         new = api.content.create(
             container=container,
             type=self.portal_type,
             local_behaviors=["elan"],
             **item_dict,
         )
-        if attachments := self.data.get("attachments"):
-            for fileupload in attachments:
-                filedata = fileupload.file
-                if filedata:
-                    filename = fileupload.filename
-                    content_type = mimetypes.guess_type(filename)[0] or ""
-                    factory = IDXFileFactory(new)
-                    factory(filename, content_type, filedata.read())
+        for fileupload in self.data.get("attachments", []):
+            filename = fileupload.filename
+            content_type = mimetypes.guess_type(filename)[0] or ""
+            factory = IDXFileFactory(new)
+            factory(filename, content_type, fileupload.file.read())
         return new
+
+    def containers(self):
+        """Return uuid vocabulary of GroupFolders where user can add DPDocuments."""
+        brains = api.content.find(
+            context=get_content_area(self.context),
+            portal_type="GroupFolder",
+            sort_on="sortable_title",
+        )
+        terms = []
+
+        app = ""
+        user = api.user.get_current()
+        if user:
+            active_app = user.getProperty("apps")
+            if active_app:
+                app = active_app[0]
+
+        for brain in brains:
+            obj = brain.getObject()
+            if not api.user.has_permission("Add portal content", obj=obj):
+                continue
+
+            can_add_entries = False
+            for doctype_brain in getAllowedDocumentTypes(obj):
+                if obj.allowedDocTypes and doctype_brain.id not in obj.allowedDocTypes:
+                    continue
+                doctype_obj = doctype_brain.getObject()
+                if not doctype_obj.globalAllow:
+                    continue
+                if app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
+                    continue
+                can_add_entries = True
+                break
+
+            if can_add_entries:
+                terms.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
+        return SimpleVocabulary(terms)
+
+    def doctypes(self, container="fbbe609d5ff4472d8442af50ca9bb666"):
+        # TODO: Somehow pass the uid of the selected container
+        if not container:
+            return []
+        obj = api.content.get(UID=container)
+        app = ""
+        user = api.user.get_current()
+        if user:
+            active_app = user.getProperty("apps")
+            if active_app:
+                app = active_app[0]
+        terms = []
+        for brain in getAllowedDocumentTypes(obj):
+            if obj.allowedDocTypes and brain.id not in obj.allowedDocTypes:
+                continue
+            doctype_obj = brain.getObject()
+            if not doctype_obj.globalAllow:
+                continue
+            if app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
+                continue
+
+            terms.append(SimpleTerm(value=brain.id, token=brain.id, title=brain.Title))
+        return SimpleVocabulary(terms)
+
+    def scenarios(self):
+        vocabulary = api.portal.get_vocabulary(
+            "docpool.elan.vocabularies.Events", context=getDocumentPoolSite(self.context)
+        )
+        return vocabulary
+
+    def default_scenario(self):
+        query = {
+            "context": getDocumentPoolSite(self.context),
+            "portal_type": "DPEvent",
+            "UID": getScenariosForCurrentUser(),
+            "Status": "active",
+        }
+        default_scenarios = api.content.find(**query)
+        if default_scenarios:
+            return default_scenarios[0].UID

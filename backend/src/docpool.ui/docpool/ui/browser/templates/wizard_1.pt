@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="rowlike enableUnloadProtection"
+      <form class="enableUnloadProtection"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -34,94 +34,132 @@
                "
         />
 
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="wizard-header">
+        <h1 i18n:translate="">Create new entry</h1>
 
-              <div class="wizard-heading">
-                <h1 i18n:translate="todo_wizard_heading_create_todo">Create a new todo</h1>
-                <p i18n:translate="todo_wizard_description_todo">About what is the todo?</p>
-              </div>
-
-              <div class="wizard-controls">
-                <button class="context activate-spinner"
-                        name="form.buttons.continue"
-                        type="submit"
-                        i18n:translate="continue"
-                >Continue</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-
-            <!-- TITLE -->
-            <div class="wizard-field"
-                 id="formfield-${widget_id}"
+        <!-- CONTAINER -->
+        <div class="wizard-field"
+             id="formfield-${widget_id}"
+             tal:define="
+               widget_name string:container_uid;
+               widget_id python:widget_name.replace('.', '-');
+               widget_value python:form.get(widget_name);
+               error python:errors.get(widget_name);
+             "
+             tal:attributes="
+               class python:'wizard-field error' if error else 'wizard-field';
+             "
+        >
+          <!-- Data -->
+          <div class="wizard-field-data">
+            <h2 class="wizard-field-label">
+              <label for="${widget_name}">
+                <span tal:attributes="
+                        class python:view.is_required(widget_name);
+                      "
+                      i18n:translate=""
+                >Container</span>
+              </label>
+            </h2>
+            <div class="error-msg"
+                 tal:condition="error"
+            ><span tal:replace="error"></span></div>
+            <div class="wizard-field field"
                  tal:define="
-                   widget_name string:title;
-                   widget_id python:widget_name.replace('.', '-');
-                   widget_value python:form.get(widget_name);
-                   error python:errors.get(widget_name);
+                   containers python: view.containers();
                  "
                  tal:attributes="
-                   class python:'wizard-field error' if error else 'wizard-field';
+                   class python:error and 'wizard-field field error' or 'wizard-field field';
                  "
             >
-              <!-- Data -->
-              <div class="wizard-field-data">
-                <h2 class="wizard-field-label">
-                  <label for="${widget_name}">
-                    <span tal:attributes="
-                            class python:view.is_required(widget_name);
-                          "
-                          i18n:translate="todo_title"
-                    >Title</span>
-                  </label>
-                </h2>
-                <div class="error-msg"
-                     tal:condition="error"
-                ><span tal:replace="error"></span></div>
-                <div class="wizard-field field"
-                     tal:attributes="
-                       class python:error and 'wizard-field field error' or 'wizard-field field';
-                     "
-                >
-                  <input class="text-widget textline-field"
-                         autofocus
-                         name="${widget_name}"
-                         placeholder="Title"
-                         type="text"
-                         value="${widget_value}"
-                         i18n:attributes="placeholder todo_title"
-                  />
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="wizard-footer">
-
-              <div class="wizard-controls">
-                <button class="context activate-spinner"
-                        name="form.buttons.continue"
-                        type="submit"
+              <select class="form-select select-widget choice-field"
+                      id="${widget_id}"
+                      name="${widget_name}"
+                      size="1"
+              >
+                <option id="form-widgets-containers-novalue"
+                        value=""
+                        tal:condition="python:len(containers) > 1"
                         i18n:translate=""
-                >Continue</button>
-              </div>
-
+                >Select a container</option>
+                <option id="${item/value}"
+                        value="${item/value}"
+                        tal:repeat="item containers"
+                        tal:content="item/title"
+                        tal:attributes="
+                          selected python:item.value == widget_value;
+                        "
+                >
+                </option>
+              </select>
             </div>
           </div>
         </div>
+
+        <!-- DOCTYPE -->
+        <div class="wizard-field"
+             id="formfield-${widget_id}"
+             tal:define="
+               widget_name string:docType;
+               widget_id python:widget_name.replace('.', '-');
+               widget_value python:form.get(widget_name);
+               error python:errors.get(widget_name);
+             "
+             tal:attributes="
+               class python:'wizard-field error' if error else 'wizard-field';
+             "
+        >
+          <!-- Data -->
+          <div class="wizard-field-data">
+            <h2 class="wizard-field-label">
+              <label for="${widget_name}">
+                <span tal:attributes="
+                        class python:view.is_required(widget_name);
+                      "
+                      i18n:translate=""
+                >Doctype</span>
+              </label>
+            </h2>
+            <div class="error-msg"
+                 tal:condition="error"
+            ><span tal:replace="error"></span></div>
+            <div class="wizard-field field"
+                 tal:define="
+                   doctypes python: view.doctypes();
+                 "
+                 tal:attributes="
+                   class python:error and 'wizard-field field error' or 'wizard-field field';
+                 "
+            >
+              <select class="form-select select-widget choice-field"
+                      id="${widget_id}"
+                      name="${widget_name}"
+                      size="1"
+              >
+                <option id="form-widgets-doctypes-novalue"
+                        value=""
+                        tal:condition="python:len(doctypes) > 1"
+                        i18n:translate=""
+                >Select a Doctype</option>
+                <option id="${item/value}"
+                        value="${item/value}"
+                        tal:repeat="item doctypes"
+                        tal:content="item/title"
+                        tal:attributes="
+                          selected python:item.value == widget_value;
+                        "
+                >
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <button class="btn btn-primary"
+                name="form.buttons.continue"
+                type="submit"
+                i18n:translate=""
+        >Continue</button>
 
       </form>
 
