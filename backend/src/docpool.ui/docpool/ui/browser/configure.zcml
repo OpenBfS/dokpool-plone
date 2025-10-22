@@ -104,4 +104,31 @@
         />
   </configure>
 
+  <browser:page
+      name="dpdocument_wizard_1"
+      for="*"
+      class=".wizard.DPDocumentWizard"
+      template="templates/wizard_1.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="dpdocument_wizard_2"
+      for="*"
+      class=".wizard.DPDocumentWizard"
+      template="templates/wizard_2.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="dpdocument_wizard_3"
+      for="*"
+      class=".wizard.DPDocumentWizard"
+      template="templates/wizard_3.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
 </configure>

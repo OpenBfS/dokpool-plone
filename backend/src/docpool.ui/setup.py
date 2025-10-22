@@ -30,6 +30,7 @@ setup(
         "z3c.jbot",
         "zope.interface",
         "plone.patternslib",
+        "collective.beaker",
         # -*- Extra requirements: -*-
     ],
     entry_points="""

@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/@@main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.base"
+>
+
+  <body>
+
+    <metal:content-core fill-slot="main">
+
+      <form class="rowlike enableUnloadProtection"
+            id="form"
+            enctype="multipart/form-data"
+            method="post"
+            tal:define="
+              errors view/errors;
+              form python:view.form;
+            "
+            tal:attributes="
+              action request/URL;
+            "
+      >
+
+        <span tal:replace="structure context/@@authenticator/authenticator"></span>
+        <input name="session_name"
+               type="hidden"
+               value=""
+               tal:attributes="
+                 value python:view.session_name;
+               "
+        />
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="wizard-header">
+
+              <div class="wizard-heading">
+                <h1 i18n:translate="todo_wizard_heading_create_todo">Create a new todo</h1>
+                <p i18n:translate="todo_wizard_description_todo">About what is the todo?</p>
+              </div>
+
+              <div class="wizard-controls">
+                <button class="context activate-spinner"
+                        name="form.buttons.continue"
+                        type="submit"
+                        i18n:translate="continue"
+                >Continue</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+
+            <!-- FILE -->
+            <div class="wizard-field"
+                 id="formfield-${widget_id}"
+                 tal:define="
+                   widget_name string:attachments;
+                   widget_id python:widget_name.replace('.', '-');
+                   widget_value python:form.get(widget_name);
+                   error python:errors.get(widget_name);
+                 "
+                 tal:attributes="
+                   class python:'wizard-field error' if error else 'wizard-field';
+                 "
+            >
+              <!-- Data -->
+              <div class="wizard-field-data">
+                <h2 class="wizard-field-label">
+                  <label for="${widget_name}">
+                    <span tal:attributes="
+                            class python:view.is_required(widget_name);
+                          "
+                          i18n:translate="attachments"
+                    >Attechments</span>
+                  </label>
+                </h2>
+                <div class="error-msg"
+                     tal:condition="error"
+                ><span tal:replace="error"></span></div>
+                <div class="wizard-field field"
+                     tal:attributes="
+                       class python:error and 'wizard-field field error' or 'wizard-field field';
+                     "
+                >
+                  <input id="attachments"
+                         multiple
+                         name="attachments"
+                         type="file"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="wizard-footer">
+
+              <div class="wizard-controls">
+                <button class="context activate-spinner"
+                        name="form.buttons.continue"
+                        type="submit"
+                        i18n:translate=""
+                >Continue</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </metal:content-core>
+
+  </body>
+</html>
