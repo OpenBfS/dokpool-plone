@@ -24,6 +24,7 @@ Fixed:
   - Remove apps from documents which aren't supported by the target
   Decouple and generalise app-specific transfer code from generic transfer handling, break dependency of docpool.base on docpool.elan. (#5994, #6258)
   Add some transfer tests and testing support to docpool.base.
+  - Allow switching app filter on and off in transfer-folder view.
   [tlotze]
 
 - Fix logging of inconsistent scenarios index. (#6125)

@@ -345,14 +345,6 @@
       />
 
   <browser:page
-      name="view"
-      for="..content.dptransferfolder.IDPTransferFolder"
-      class="docpool.base.browser.folderbase.FolderBaseView"
-      template="dptransferfolder.pt"
-      permission="docpool.transfers.SendContent"
-      />
-
-  <browser:page
       name="dpdocument_transfer_form"
       for="*"
       class=".dpdocument_transfer_form.TransferForm"
