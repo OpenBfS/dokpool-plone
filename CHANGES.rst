@@ -35,6 +35,10 @@ Fixed:
 - No edit for non-Admins in docType field. (#6057)
   [slindner]
 
+- Force our translation for plone i18n domain. (#4514)
+  [slindner]
+
+
 Technical:
 
 - Have varnish log differences between Shibboleth and Plone users in order to
