@@ -69,6 +69,8 @@ COPY --from=builder --chown=500:500 /app /app
 COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /app/src/src/docpool.theme/docpool/theme/static
 # Experimental: Use pyruvate
 COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
+# Make sure we load our translation first - see #4514
+COPY --chown=500:500 templates/i18n-plone-configure.zcml /app/etc/package-includes/i18n-plone-configure.zcml
 
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true
