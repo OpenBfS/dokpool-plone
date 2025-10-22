@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="plone"
+>
+
+  <body>
+
+    <metal:content fill-slot="content-core">
+      <h3 i18n:translate="summary_review_history">Review History</h3>
+
+      <div class="reviewHistory"
+           id="review-history"
+           tal:define="
+             history python:view.history;
+             plone_view nocall:context/@@plone;
+           "
+           tal:condition="history"
+           i18n:domain="plone"
+      >
+
+        <table class="table table-striped table-responsive">
+
+          <tr>
+            <th scope="col"
+                i18n:translate="listingheader_action"
+            >Action</th>
+            <th scope="col"
+                i18n:translate="listingheader_performed_by"
+            >Performed by</th>
+            <th scope="col"
+                i18n:translate="listingheader_date_and_time"
+            >Date and Time</th>
+          </tr>
+
+          <tal:workflows tal:repeat="wf_id python: history.keys()">
+
+            <tr tal:condition="python: len(history) > 1">
+              <th colspan="3"
+                  tal:content="python: view.workflow_title(wf_id)"
+              ></th>
+            </tr>
+
+            <tal:block tal:repeat="item python:history[wf_id]">
+              <tr tal:condition="item/transition_title">
+                <td>
+                  <span tal:content="item/transition_title"
+                        i18n:translate=""
+                  >action</span>
+                </td>
+
+                <td tal:define="
+                      actorid python:item.get('actorid');
+                      actor python:item.get('actor');
+                      fullname actor/fullname|nothing;
+                      username actor/username|nothing;
+                    ">
+                  <span tal:replace="python:fullname or username or actorid"></span>
+                </td>
+
+                <td>
+                  <span tal:replace="python:plone_view.toLocalizedTime(item['time'],long_format=True)"></span>
+                  <span tal:condition="item/effective_date|nothing">
+                    (<span tal:omit-tag=""
+                          i18n:translate="label_publishing_effective"
+                    >effective</span>:
+                    <span tal:replace="python: plone_view.toLocalizedTime(item['effective_date'],long_format=True)"></span>)
+                  </span>
+                </td>
+              </tr>
+            </tal:block>
+
+          </tal:workflows>
+        </table>
+      </div>
+    </metal:content>
+
+  </body>
+</html>

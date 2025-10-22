@@ -285,6 +285,14 @@
       />
 
   <browser:page
+      name="full_review_history"
+      for="*"
+      class=".review_history.FullReviewHistoryView"
+      template="templates/full_review_history.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="dpdocument_transition_form"
       for="*"
       class=".dpdocument_transition_form.WorkflowActionView"
