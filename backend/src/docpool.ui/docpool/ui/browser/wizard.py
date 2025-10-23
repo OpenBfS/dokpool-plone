@@ -227,6 +227,10 @@ class DPDocumentWizard(ContextlessWizard):
                 content_type = item["content_type"]
                 factory = IDXFileFactory(new)
                 factory(filename, content_type, item["data"])
+        if self.data.get("visibility") == "published" and api.content.get_state(new) != "published":
+            portal_workflow = api.portal.get_tool("portal_workflow")
+            if "publish" in portal_workflow.getTransitionsFor(new):
+                api.content.transition(new, transition="publish")
         return new
 
     def containers(self):
@@ -295,6 +299,32 @@ class DPDocumentWizard(ContextlessWizard):
             "docpool.elan.vocabularies.Events", context=getDocumentPoolSite(self.context)
         )
         return vocabulary
+
+    def visibility_options(self):
+        container_title = api.content.get(UID=self.data.get("container_uid")).title
+        docpool_title = getDocumentPoolSite(self.context).title
+        app = ""
+        user = api.user.get_current()
+        if user:
+            active_app = user.getProperty("apps")
+            if active_app:
+                app = active_app[0]
+
+        options = [
+            (
+                "private",
+                _("Only for member of '${container_title}'", mapping={"container_title": container_title}),
+            ),
+            (
+                "published",
+                _(
+                    "For all users of '${app} ${docpool_title}'",
+                    mapping={"app": app.upper(), "docpool_title": docpool_title},
+                ),
+            ),
+        ]
+        terms = [SimpleTerm(value=i[0], token=i[0], title=i[1]) for i in options]
+        return SimpleVocabulary(terms)
 
     def default_scenario(self):
         query = {

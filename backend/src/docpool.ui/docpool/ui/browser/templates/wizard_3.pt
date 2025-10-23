@@ -95,6 +95,63 @@
           </div>
         </div>
 
+        <!-- VISIBILITY -->
+        <div class="wizard-field"
+             id="formfield-${widget_id}"
+             tal:define="
+               widget_name string:visibility;
+               widget_id python:widget_name.replace('.', '-');
+               widget_value python:form.get(widget_name) or 'private';
+               error python:errors.get(widget_name);
+             "
+             tal:attributes="
+               class python:'wizard-field error' if error else 'wizard-field';
+             "
+        >
+          <!-- Data -->
+          <div class="wizard-field-data">
+            <h2 class="wizard-field-label">
+              <label for="${widget_name}">
+                <span tal:attributes="
+                        class python:view.is_required(widget_name);
+                      "
+                      i18n:translate=""
+                >Visibility</span>
+              </label>
+            </h2>
+
+            <div class="wizard-field"
+                 tal:repeat="item python:view.visibility_options()"
+                 tal:attributes="
+                   class python: error and 'wizard-field error' or 'wizard-field';
+                 "
+            >
+
+              <div class="error-msg"
+                   tal:condition="error"
+              ><span tal:replace="error"></span></div>
+
+              <label>
+                <input name="${widget_name}"
+                       type="radio"
+                       value="${item/value}"
+                       tal:define="
+                         first_item repeat/item/start;
+                         has_value python:True if widget_value else False;
+                       "
+                       tal:attributes="
+                         checked python:item.value == widget_value if has_value else first_item;
+                         title item;
+                       "
+                       i18n:attributes="title"
+                />
+                <span tal:replace="item/title"></span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
         <button class="btn btn-primary"
                 name="form.buttons.continue"
                 type="submit"
