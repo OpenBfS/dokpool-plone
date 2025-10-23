@@ -10,6 +10,68 @@ from zope.component import queryUtility
 import json
 
 
+TRANSITION_ICON_MAPPING = {
+    "publish": "eye",
+    "reject_second": "box-arrow-in-left",
+    "reject_to_authority": "box-arrow-in-left",
+    "reject_to_bfs": "box-arrow-in-left",
+    "reject_to_npp_operator": "box-arrow-in-left",
+    "reject": "box-arrow-in-left",
+    "retract_for_revision": "box-arrow-in-left",
+    "retract_to_authority": "box-arrow-in-left",
+    "retract_to_bfs": "box-arrow-in-left",
+    "retract_to_npp_operator": "box-arrow-in-left",
+    "retract": "eye-slash",
+    "submit_authority": "arrow-right",
+    "submit_bfs": "arrow-right",
+    "submit_bmu": "arrow-right",
+    "submit_second": "arrow-right",
+    "submit": "arrow-right",
+}
+
+# TODO: Either configure in registry/controlpanel or on doktype
+DOCTYPE_ICON_MAPPING = {
+    "airactivity": "wind",
+    "doksysdok": "file-earmark-text",
+    "estimation": "radioactive",
+    "eventinformation": "calendar-event",
+    "gammadoserate": "radioactive",
+    "gammadoserate_mobile": "radioactive",
+    "gammadoserate_timeseries": "radioactive",
+    "groundcontamination": "radioactive",
+    "info_ecc": "info-circle",
+    "info_public": "info-circle",
+    "information_expert_advisor": "card-checklist",
+    "inquiry_measurement_order": "radioactive",
+    "instructions": "card-checklist",
+    "lasair_lasat_projection": "radioactive",
+    "measurement_order": "rulers",
+    "measurement_requirements": "rulers",
+    "mediarelease": "newspaper",
+    "mediareport": "newspaper",
+    "mresult_feed": "flask",
+    "mresult_flight": "flask",
+    "mresult_food": "flask",
+    "mresult_insitu": "flask",
+    "mresult_other": "flask",
+    "mresult_water": "flask",
+    "note": "card-text",
+    "note_measurement_teams": "flask",
+    "notification": "bell",
+    "nppinformation": "radioactive",
+    "operation_map": "map",
+    "other_document": "radioactive",
+    "otherprojection": "radioactive",
+    "protectiveactions": "radioactive",
+    "reireport": "radioactive",
+    "rodosprojection": "radioactive",
+    "sitrep": "radioactive",
+    "situationreport": "radioactive",
+    "trajectory": "compass",
+    "weatherinformation": "cloud-rain",
+}
+
+
 class Listing(ListingBase, BrowserView):
     """Example view called from template"""
 
@@ -51,6 +113,9 @@ class Item(BrowserView):
                 if adapted.transferable() and allowed_targets(obj):
                     show_transfer_action = True
 
+        icon_name = self.doctype_icon(obj.docType)
+        iconresolver = self.context.restrictedTraverse("@@iconresolver")
+
         self.dpdocument = {
             "date": obj.mdate,
             "title": obj.title,
@@ -61,7 +126,8 @@ class Item(BrowserView):
             "state_class": state_class,
             "available_transitions": available_transitions,
             "uid": uid,
-            "docType": obj.docType,
+            "doctype": obj.docType,
+            "doctype_icon_url": iconresolver.url(icon_name),
             "url": obj.absolute_url(),
             "path": obj.absolute_url_path(),
             "modified_by_user": modified_by_user,
@@ -69,3 +135,9 @@ class Item(BrowserView):
             "show_transfer_action": show_transfer_action,
         }
         return self.index()
+
+    def transition_icon(self, transition_id):
+        return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
+
+    def doctype_icon(self, doctype):
+        return DOCTYPE_ICON_MAPPING.get(doctype, "radioactive")

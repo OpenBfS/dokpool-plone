@@ -1,11 +1,11 @@
 @import "header";
 
-$plone-default-private-color: #ff0000;
+$plone-default-private-color: #AD4541;
 $plone-default-pending-color: #ccd111;
 $plone-default-pending_bfs-color: #ffaa00;
 $plone-default-pending_authority-color: #d07317;
 $plone-default-pending_bmu-color: #75a30a;
-$plone-default-published-color: #007bb1;
+$plone-default-published-color: #2C445E;
 $plone-default-revised-color: #7a561f;
 
 .filter-form-container {
@@ -31,9 +31,9 @@ $plone-default-revised-color: #7a561f;
   }
 }
 
-
-.card-img-top.doktype {
-    padding: 0.1rem 1rem;
+img.doktype-icon {
+    width: 100%;
+    filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg) brightness(97%) contrast(93%);
 }
 
 .card-body.review-state {
@@ -49,7 +49,7 @@ $plone-default-revised-color: #7a561f;
   }
 
   &.state-private {
-    color: #000 !important;
+    color: #fff !important;
     background-color: $plone-default-private-color;
   }
 
@@ -93,4 +93,35 @@ $plone-default-revised-color: #7a561f;
         min-width: 95px;
     }
 
+}
+
+div.pat-modal .header {
+  height: auto !important;
+}
+
+div.pat-modal {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 90vh;
+  min-height: 90vh;
+  background-color: white;
+}
+
+div.pat-modal.large {
+    width: 90vw;
+    margin-left: -45vw;
+}
+
+div.pat-modal::after {
+    background-color: rgba(15, 15, 15, 0.84);
+}
+
+#portal-mainnavigation,
+#portal-searchbox,
+#scenario_box {
+    display: none;
+}
+
+#portal-logo {
+    float: left;
 }

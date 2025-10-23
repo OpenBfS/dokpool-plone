@@ -4,6 +4,8 @@
       xml:lang="en"
       tal:define="
         dummy python:request.set('ajax_load',1);
+        can_edit python: context.canBeEdited();
+        token context/@@authenticator/token;
       "
       i18n:domain="docpool.base"
 >
@@ -33,9 +35,12 @@
                 <li class="list-group-item">Previous</li>
                 <li class="list-group-item">Next</li>
                 <li class="list-group-item">
-                  <a href="edit"
+                  <a class="pat-inject"
+                     href="edit"
+                     data-pat-inject="source: #content; target: .panel-content"
+                     tal:condition="python: can_edit"
                      tal:attributes="
-                       href python: context.absolute_url() + '/@@edit';
+                       href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
                      "
                   >Edit</a>
                 </li>
