@@ -34,6 +34,7 @@ dependencies = [
     "psycopg2",
     "pytest-playwright",
     "pytest_plone",
+    "Products.TemporaryFolder",
 ]
 
 [project.optional-dependencies]

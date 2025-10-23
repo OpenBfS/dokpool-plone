@@ -1,5 +1,4 @@
 from AccessControl import Unauthorized
-from collective.beaker.interfaces import ISession
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.utils import get_content_area
@@ -7,8 +6,6 @@ from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.ui.utils import extract_data
-from io import BufferedRandom
-from io import BytesIO
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
@@ -18,9 +15,9 @@ from zope.interface import Invalid
 from zope.schema import ValidationError
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from ZPublisher.HTTPRequest import FileUpload
 
 import logging
-import mimetypes
 import time
 
 
@@ -48,7 +45,7 @@ class ContextlessWizard(BrowserView):
         self.is_final_step = int(self.current_step) == self.total_steps
         self.errors = {}
         self.form = self.request.form
-        self.session = ISession(self.request)
+        self.session = self.request.SESSION
         if "session_name" in self.request.form:
             self.session_name = self.request.form["session_name"]
         else:
@@ -64,16 +61,16 @@ class ContextlessWizard(BrowserView):
         Extra method to simplify customization.
         """
         data, errors = extract_data(self.portal_type, self.request)
-
-        # handle attachments
-        if attachments := data.get("attachments"):
-            if not isinstance(attachments, list):
-                attachments = [attachments]
-            for attachment in attachments:
-                if isinstance(attachment.file, BufferedRandom):
-                    # Unwrap io.BufferedRandom because it cannot be pickled by beaker
-                    attachment.file = BytesIO(attachment.file.read())
         return data, errors
+
+    def transform_data_for_session(self, data):
+        """Apply transforms to allow storage in a session."""
+        for key, value in data.items():
+            if isinstance(value, FileUpload):
+                data[key] = transform_fileupload(value)
+            elif isinstance(value, list) and any([isinstance(i, FileUpload) for i in value]):
+                data[key] = [transform_fileupload(i) for i in value]
+        return data
 
     def run_custom_validation(self):
         """Custom validation."""
@@ -167,6 +164,7 @@ class DPDocumentWizard(ContextlessWizard):
         # Validation using schema fields
         data, errors = self.extract_data()
 
+        data = self.transform_data_for_session(data)
         self.data.update(data)
         self.errors.update(errors)
         self.run_custom_validation()
@@ -182,6 +180,7 @@ class DPDocumentWizard(ContextlessWizard):
                     type="error",
                 ),
             )
+            logger.info(self.errors)
             return self.template()
 
         # Process wizard step
@@ -190,7 +189,7 @@ class DPDocumentWizard(ContextlessWizard):
             return self.request.response.redirect(self.nextURL())
         else:
             new = self.create_item()
-            self.session.pop(self.session_name)
+            self.session.delete(self.session_name)
             return self.request.response.redirect(new.absolute_url())
 
     def create_item(self):
@@ -222,11 +221,12 @@ class DPDocumentWizard(ContextlessWizard):
             local_behaviors=["elan"],
             **item_dict,
         )
-        for fileupload in self.data.get("attachments", []):
-            filename = fileupload.filename
-            content_type = mimetypes.guess_type(filename)[0] or ""
-            factory = IDXFileFactory(new)
-            factory(filename, content_type, fileupload.file.read())
+        if self.data.get("attachments"):
+            for item in self.data["attachments"]:
+                filename = item["filename"]
+                content_type = item["content_type"]
+                factory = IDXFileFactory(new)
+                factory(filename, content_type, item["data"])
         return new
 
     def containers(self):
@@ -306,3 +306,16 @@ class DPDocumentWizard(ContextlessWizard):
         default_scenarios = api.content.find(**query)
         if default_scenarios:
             return default_scenarios[0].UID
+
+
+def transform_fileupload(value):
+    """Transform FileUpload into a dict that can be pickled in a session."""
+    if not value:
+        return
+    if not isinstance(value, FileUpload):
+        return value
+    return {
+        "data": value.read(),
+        "filename": value.filename,
+        "content_type": value.headers.get("Content-Type", ""),
+    }
