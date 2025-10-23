@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Plone Actions Tool"
+        name="portal_actions"
+>
+  <object meta_type="CMF Action Category"
+          name="object"
+  >
+    <object meta_type="CMF Action"
+            name="history"
+            i18n:domain="plone"
+    >
+      <property name="url_expr">string:${object_url}/@@full_review_history</property>
+      <property name="permissions">
+        <element value="View" />
+      </property>
+    </object>
+  </object>
+</object>

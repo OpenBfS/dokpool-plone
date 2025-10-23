@@ -258,6 +258,12 @@ sub vcl_backend_response {
 
 sub vcl_deliver {
 
+  if (resp.http.X-Debug-User &&
+      req.http.X_SHIB_USER &&
+      resp.http.X-Debug-User != req.http.X_SHIB_USER) {
+    std.log("Error: Wrong user. Shib: " + req.http.X_SHIB_USER + " Plone: " + resp.http.X-Debug-User);
+  }
+
   if (req.http.x-vcl-debug) {
     set resp.http.x-varnish-ttl = obj.ttl;
     set resp.http.x-varnish-grace = obj.grace;

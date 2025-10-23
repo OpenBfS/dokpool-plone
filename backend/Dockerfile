@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.1.2
+ARG PLONE_VERSION=6.1.3
 
 # Stage to only build the theme
 FROM node:23-slim AS node
@@ -39,6 +39,8 @@ COPY . src
 # Install local requirements and pre-compile mo files
 RUN <<EOT
     set -e
+    echo ${GIT_COMMIT} > GIT_COMMIT
+    apt update
     apt install -y --no-install-recommends openssh-client ca-certificates
     bin/pip install mxdev uv
     # remove dev-extra from wrapperpackage in mx.ini
@@ -51,7 +53,6 @@ RUN <<EOT
     ../bin/mxdev -c mx.ini
     ../bin/uv pip install -r requirements-mxdev.txt
     ../bin/python /compile_mo.py
-    echo ${GIT_COMMIT} > GIT_COMMIT
 EOT
 
 FROM plone/server-prod-config:${PLONE_VERSION}
@@ -66,6 +67,10 @@ LABEL maintainer="Starzel.de for Bundesamt für Strahlenschutz <info@starzel.de>
 COPY --from=builder --chown=500:500 /app /app
 # Add compiled theme from node
 COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /app/src/src/docpool.theme/docpool/theme/static
+# Experimental: Use pyruvate
+COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
+# Make sure we load our translation first - see #4514
+COPY --chown=500:500 templates/i18n-plone-configure.zcml /app/etc/package-includes/i18n-plone-configure.zcml
 
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true

@@ -34,6 +34,11 @@ lint_tests:
     - cd backend
     - pip install --upgrade pip
     - pip install uv
+    # Node.js installieren
+    - curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    - apt-get install -y nodejs
+    - apt-get clean && rm -rf /var/lib/apt/lists/
+    - npm install prettier
     # lint test
     - make lint
     - make format
@@ -66,7 +71,7 @@ build_image:
   script:
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
-    - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin git.starzel.de:5050
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - cd backend
     # On the shell-runner we only have 3.7 and don't need anything newer for now.
     - sed -i'' -e 's/PYTHON_VERSION_MIN=3\.11/PYTHON_VERSION_MIN=3.7/g' Makefile

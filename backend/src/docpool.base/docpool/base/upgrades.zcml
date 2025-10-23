@@ -5,6 +5,14 @@
     i18n_domain="docpool.base"
     >
 
+  <genericsetup:registerProfile
+      name="to_1011"
+      title="Upgrade profile for docpool.base"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/to_1011"
+      />
+
   <genericsetup:upgradeSteps
       profile="docpool.base:default"
       source="1009"
@@ -13,6 +21,17 @@
     <genericsetup:upgradeStep
         title="Update REI Workflow to change BMUV to BMUKN"
         handler="docpool.base.upgrades.to_1010"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="1010"
+      destination="1011"
+      >
+    <genericsetup:upgradeStep
+        title="Use full_full_review_history in history action"
+        handler="docpool.base.upgrades.to_1011"
         />
   </genericsetup:upgradeSteps>
 
