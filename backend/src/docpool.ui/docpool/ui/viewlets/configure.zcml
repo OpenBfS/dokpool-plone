@@ -14,4 +14,32 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:page
+      name="info-dropdown"
+      for="*"
+      class=".header.InfoDropdown"
+      template="header-info-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="user-dropdown"
+      for="*"
+      class=".header.UserDropdown"
+      template="header-user-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="config-dropdown"
+      for="*"
+      class=".header.ConfigDropdown"
+      template="header-config-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+
 </configure>

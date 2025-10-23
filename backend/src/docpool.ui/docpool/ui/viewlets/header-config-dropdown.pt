@@ -1,0 +1,16 @@
+<tal:header-config-dropdown tal:define="
+                              icons python:context.restrictedTraverse('@@iconresolver');
+                            ">
+  <button class="btn btn-icon"
+          aria-label="Config"
+          data-bs-toggle="dropdown"
+  >
+    <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='me-2')" />
+  </button>
+
+  <ul class="dropdown-menu menu-config-dropdown">
+    <li class="menu-item-version">
+      Config
+    </li>
+  </ul>
+</tal:header-config-dropdown>

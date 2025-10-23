@@ -1,0 +1,87 @@
+<tal:header-info-dropdown tal:define="
+                            icons python:context.restrictedTraverse('@@iconresolver');
+                          ">
+
+  <button class="btn btn-icon"
+          aria-label="Info"
+          type="button"
+          data-bs-toggle="dropdown"
+  >
+    <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
+  </button>
+  <ul class="dropdown-menu menu-info-dropdown">
+    <!-- Software Version Section -->
+    <li class="menu-item-version">
+      <div class="version-info">
+        <p class="version-label">Softwareversion</p>
+        <p class="version-number">1.9.3</p>
+      </div>
+    </li>
+
+    <!-- Menu Items -->
+    <li class="menu-item">
+      <a class="dropdown-item menu-link"
+         href="#"
+      >
+        <div class="menu-item-content">
+          <div class="menu-icon">
+            <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
+          </div>
+          <span class="menu-text">Release Info</span>
+          <div class="menu-arrow">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li class="menu-item">
+      <a class="dropdown-item menu-link"
+         href="#"
+      >
+        <div class="menu-item-content">
+          <div class="menu-icon">
+            <tal:icon tal:replace="structure python:icons.tag('accessibility', tag_class='me-2')" />
+          </div>
+          <span class="menu-text">Barrierefreiheit</span>
+          <div class="menu-arrow">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li class="menu-item">
+      <a class="dropdown-item menu-link"
+         href="#"
+      >
+        <div class="menu-item-content">
+          <div class="menu-icon">
+            <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='me-2')" />
+          </div>
+          <span class="menu-text">Hilfe</span>
+          <div class="menu-arrow">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li class="menu-item">
+      <a class="dropdown-item menu-link"
+         href="#"
+      >
+        <div class="menu-item-content">
+          <div class="menu-icon">
+            <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
+          </div>
+          <span class="menu-text">Impressum</span>
+          <div class="menu-arrow">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+
+</tal:header-info-dropdown>
