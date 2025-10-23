@@ -1,4 +1,4 @@
-import {BasePattern} from "@patternslib/patternslib/src/core/basepattern";
+import { BasePattern } from "@patternslib/patternslib/src/core/basepattern";
 import Parser from "@patternslib/patternslib/src/core/parser";
 import registry from "@patternslib/patternslib/src/core/registry";
 
@@ -31,30 +31,32 @@ class Pattern extends BasePattern {
 
         function checkForNewData() {
             let baseUrl = document.body.dataset.portalUrl;
-            return fetch(baseUrl + '/@new-data-check', {
-                method: 'POST',
+            return fetch(baseUrl + "/@new-data-check", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
                 },
-                body: JSON.stringify({modified_since: modified_since}),
+                body: JSON.stringify({ modified_since: modified_since }),
             })
-                .then(response => {
+                .then((response) => {
                     if (!response.ok) {
-                        throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+                        throw new Error(
+                            `HTTP Error: ${response.status} ${response.statusText}`,
+                        );
                     }
                     return response.json();
                 })
-                .then(result => {
+                .then((result) => {
                     if (result.modified_last > modified_since) {
                         showNewDataNotification();
                         hasNewData = true;
                     }
-                    console.log(result.modified_last)
+                    console.log(result.modified_last);
                     return result.modified_last;
                 })
-                .catch(error => {
-                    console.error('Fehler beim Prüfen auf neue Daten:', error);
+                .catch((error) => {
+                    console.error("Fehler beim Prüfen auf neue Daten:", error);
                 });
         }
         function refreshData() {
@@ -77,16 +79,17 @@ class Pattern extends BasePattern {
                 document.body.insertAdjacentHTML(
                     "beforeend",
                     '    <p class="pat-notification" data-pat-notification="type: banner">Neue Daten verfügbar! \n' +
-                    '            <button\n id="refresh-data-btn"' +
-                    '              class="btn btn-link ">' +
-                    '              Jetzt aktualisieren\n' +
-                    '            </button>\n</p>'
+                        '            <button\n id="refresh-data-btn"' +
+                        '              class="btn btn-link ">' +
+                        "              Jetzt aktualisieren\n" +
+                        "            </button>\n</p>",
                 );
-                document.getElementById("refresh-data-btn").addEventListener("click", refreshData);
-                registry.scan($('[data-pat-notification]'));
+                document
+                    .getElementById("refresh-data-btn")
+                    .addEventListener("click", refreshData);
+                registry.scan($("[data-pat-notification]"));
             }
         }
-
     }
 }
 
@@ -98,4 +101,4 @@ registry.register(Pattern);
 export default Pattern;
 // Export BasePattern as named export.
 // You can import it as ``import { Pattern } from "./update-notification";``
-export {Pattern};
+export { Pattern };
