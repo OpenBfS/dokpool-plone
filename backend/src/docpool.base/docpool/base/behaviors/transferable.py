@@ -10,14 +10,12 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
 from docpool.base.utils import ContextProperty
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import portalMessage
-from docpool.elan.behaviors.elandocument import IELANDocument
-from docpool.elan.content.transfers import ensureScenariosInTarget
-from docpool.elan.content.transfers import knowsScen
 from logging import getLogger
 from plone import api
 from plone.autoform import directives
@@ -30,6 +28,7 @@ from Products.CMFPlone.utils import log
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 from zope.interface import provider
@@ -64,6 +63,33 @@ def transferring():
 
 class ISkipAutomaticTransferMarker(Interface):
     """Marker interface for containers whose content should be ignored for automatic transfers."""
+
+
+class IAppSpecificTransfer(Interface):
+    """Handle application-specific logic upon transfer of a document to a transfer folder.
+
+    Applied for all apps associated with the original document, including those that are not active at the
+    target (and will therefore be removed from the document's copy).
+
+    All of the methods will be called, so even if the app doesn't apply to the copy, it gets a chance to veto
+    against the transfer, log sender state, remove app-specific data from the copy etc.
+    """
+
+    def assert_allowed():
+        """Check if this app's logic allows transferring the document to the target.
+
+        If yes, returns without error.
+        If no, raises ValueError with the reason as the exception argument.
+        """
+
+    def sender_log_entry():
+        """Return a dict of app-specific information to update the sender log with."""
+
+    def __call__(copy):
+        """Apply app-specific logic to the transferred copy of the document."""
+
+    def receiver_log_entry():
+        """Return a dict of app-specific information to update the receiver log with."""
 
 
 @provider(IFormFieldProvider)
@@ -220,120 +246,130 @@ class Transferable(FlexibleView):
         2) Put a copy of me in each of them, preserving timestamps.
         3) Add transfer information the copies.
         4) Add entries to sender logs.
-        5) Make sure document types and scenarios exist in the target ESDs.
-        6) Set workflow state of the copies according to folder permissions.
-        7) Add entries to receiver logs.
+        5) Make sure about document type in the target ESD.
+        6) Apply app-specific transfer steps.
+        7) Set workflow state of the copies according to folder permissions.
+        8) Add entries to receiver logs.
         """
 
         if targets is None:
-            targets = []
+            return
 
         catalog = api.portal.get_tool("portal_catalog")
         scenarios_index = catalog._catalog.getIndex("scenarios")
+        timestamp = datetime.now()
+        userinfo_string = self.context._getUserInfoString(plain=True)
+        dto = self.context.docTypeObj()
 
         def error_message(esd_to_title, msg):
             pmsg = _("No transfer to ${title}. ${msg}", mapping=dict(title=esd_to_title, msg=msg))
             portalMessage(self.context, pmsg, type="error")
 
         def doIt():
-            timestamp = datetime.now()
-            userinfo_string = self.context._getUserInfoString(plain=True)
-            dto = self.context.docTypeObj()
-
-            # For ELAN we also need to handle the scenario.
-            elanobj = IELANDocument(self.context, None)
-
+            # TODO The idea of this function is to avoid executing do_target multiple times under the manager
+            # role but if performance turns out not to be an issue, the loop might be done by the outer method
+            # directly.
             for target in targets:
-                # 1) Determine target transfer folder object.
-                transfer_folder = api.content.get(UID=target)
-                esd_to_title = transfer_folder.myDocumentPool().Title()
+                do_target(target)
 
-                # Check permissions:
-                # a) Is my DocType accepted, are unknown DocTypes accepted?
-                udt_ok = transfer_folder.unknownDtDefault != "block"
-                if not udt_ok:
-                    # check my precise DocType
-                    if not transfer_folder.acceptsDT(dto.getId()):
-                        error_message(esd_to_title, _("Doc type not accepted."))
-                        continue
+        def do_target(target):
+            # 1) Determine target transfer folder object.
+            transfer_folder = api.content.get(UID=target)
+            esd_to_title = transfer_folder.myDocumentPool().Title()
 
-                if elanobj:
-                    # b) Is my Scenario known, are unknown Scenarios accepted?
-                    scen_ok = transfer_folder.unknownScenDefault != "block"
-                    if not scen_ok:
-                        # check my precise Scenario
-                        # TODO The following is inefficient in that it creates a list of
-                        # full objects, but it effectively filters elanobj.scenarios for
-                        # those that actually exist in the catalog. Is this necessary?
-                        # FIXME: The following logic appears to be broken, see #5723.
-                        scens = elanobj.myScenarioObjects()
-                        if scens:
-                            scen_id = scens[0].getId()
-                            if not knowsScen(transfer_folder, scen_id):
-                                error_message(esd_to_title, _("Unknown scenario not accepted."))
-                                continue
-                        else:
-                            error_message(esd_to_title, _("Document has no scenario."))
-                            continue
+            # Check permissions:
+            # a) Is my DocType accepted, are unknown DocTypes accepted?
+            udt_ok = transfer_folder.unknownDtDefault != "block"
+            if not udt_ok:
+                # check my precise DocType
+                if not transfer_folder.acceptsDT(dto.getId()):
+                    error_message(esd_to_title, _("Doc type not accepted."))
+                    return
 
-                # At this point, transfer is allowed.
-                logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
-
-                # 2) Put a copy of me in transfer folder, preserving timestamps.
-                new_id = _copyPaste(self.context, transfer_folder)
-                my_copy = transfer_folder._getOb(new_id)
-
-                # 3) Add transfer information to the copies.
-                my_copy.transferred = timestamp
-                my_copy.transferred_by = userinfo_string
-
-                # 4) Add entry to sender log.
-                log_entry = dict(
-                    timestamp=timestamp,
-                    user=userinfo_string,
-                    esd_title=esd_to_title,
-                    transferfolder_uid=transfer_folder.UID(),
+            # Collect transfer specifics for apps supported by both original and target.
+            app_transfers = []
+            apps_to_remove = set()
+            for app in (lbs := ILocalBehaviorSupport(self.context)).local_behaviors:
+                if app not in transfer_folder.myDocumentPool().supportedApps:
+                    apps_to_remove.add(app)
+                app_transfer = queryMultiAdapter(
+                    (self.context, transfer_folder), IAppSpecificTransfer, name=app
                 )
-                if elanobj:
-                    scenario_ids = ", ".join(b.getId for b in api.content.find(UID=elanobj.scenarios))
-                    log_entry["scenario_ids"] = scenario_ids
-                self.sender_log += (log_entry,)
+                if app_transfer is not None:
+                    app_transfers.append(app_transfer)
 
-                # 5) Make sure document type and scenarios exist in the target ESD and
-                #    are in a suitable state.
-                private = False
-                if not my_copy.docTypeObj():
-                    my_copy.docType = "none"
-                    private = True
+            # b) Check app-specific conditions that might deny transfer.
+            for app_transfer in app_transfers:
+                try:
+                    app_transfer.assert_allowed()
+                except BaseException as exc:
+                    error_message(esd_to_title, exc.args[0])
+                    return
 
-                if elanobj:
-                    copy_scenario_ids = ensureScenariosInTarget(self.context, my_copy)
+            # At this point, transfer is allowed.
+            logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
 
-                # 6) Set workflow state of the copy according to folder permissions.
-                transfer_copy = ITransferable(my_copy)
-                transfer_copy.ensureState(private)
-                my_copy.reindexObject()
+            # 2) Put a copy of me in transfer folder, preserving timestamps.
+            new_id = _copyPaste(self.context, transfer_folder)
+            my_copy = transfer_folder._getOb(new_id)
 
-                # 7) Add entry to receiver log.
-                log_entry = dict(
-                    timestamp=timestamp,
-                    user=userinfo_string,
-                    esd_title=transfer_folder.getSendingESD().Title(),
+            # 3) Add transfer information to the copies.
+            my_copy.transferred = timestamp
+            my_copy.transferred_by = userinfo_string
+
+            # 4) Add entry to sender log.
+            log_entry = dict(
+                timestamp=timestamp,
+                user=userinfo_string,
+                esd_title=esd_to_title,
+                transferfolder_uid=transfer_folder.UID(),
+            )
+            for app_transfer in app_transfers:
+                log_entry.update(app_transfer.sender_log_entry())
+            self.sender_log += (log_entry,)
+
+            # 5) Make sure about document type in the target ESD.
+            private = False
+            if not my_copy.docTypeObj():
+                my_copy.docType = "none"
+                private = True
+
+            # 6) Apply app-specific transfer steps.
+            ILocalBehaviorSupport(my_copy).local_behaviors = set(lbs.local_behaviors) - apps_to_remove
+            for app_transfer in app_transfers:
+                app_transfer(my_copy)
+
+            # 7) Set workflow state of the copy according to folder permissions.
+            transfer_copy = ITransferable(my_copy)
+            transfer_copy.ensureState(private)
+            my_copy.reindexObject()
+
+            # 8) Add entry to receiver log.
+            log_entry = dict(
+                timestamp=timestamp,
+                user=userinfo_string,
+                esd_title=transfer_folder.getSendingESD().Title(),
+            )
+            for app_transfer in app_transfers:
+                log_entry.update(app_transfer.receiver_log_entry())
+            transfer_copy.receiver_log += (log_entry,)
+
+            if apps_to_remove:
+                msg = _(
+                    "Transferred to ${target_title}, apps removed: ${apps}",
+                    mapping={"target_title": esd_to_title, "apps": ", ".join(sorted(apps_to_remove))},
                 )
-                if elanobj:
-                    log_entry["scenario_ids"] = ", ".join(copy_scenario_ids)
-                transfer_copy.receiver_log += (log_entry,)
-
+            else:
                 msg = _("Transferred to ${target_title}", mapping={"target_title": esd_to_title})
-                api.portal.show_message(msg, self.request)
+            api.portal.show_message(msg, self.request)
 
-                brain = api.content.find(UID=my_copy.UID())[0]
-                index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
-                if set(getattr(transfer_copy, "scenarios", [])) != set(index_entry):
-                    log(
-                        f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
-                        severity=logging.ERROR,
-                    )
+            brain = api.content.find(UID=my_copy.UID())[0]
+            index_entry = scenarios_index.getEntryForObject(brain.getRID(), [])
+            if set(getattr(my_copy, "scenarios", [])) != set(index_entry):
+                log(
+                    f"Inconsistent scenarios index for {'/'.join(my_copy.getPhysicalPath())}",
+                    severity=logging.ERROR,
+                )
 
         execute_under_special_role(self.context, "Manager", doIt)
 

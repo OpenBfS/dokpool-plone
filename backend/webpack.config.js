@@ -5,18 +5,40 @@ const package_json = require("./package.json");
 const package_json_mockup = require("@plone/mockup/package.json");
 const package_json_patternslib = require("@patternslib/patternslib/package.json");
 const path = require("path");
-const webpack_config = require("@patternslib/dev/webpack/webpack.config").config;
+const webpack_config =
+  require("@patternslib/dev/webpack/webpack.config").config;
 
 module.exports = () => {
   let config = {
     entry: {
-      "docpool.theme.min": path.resolve(__dirname, "./src/docpool.theme/docpool/theme/resources/index.js"),
-      "elan.journal.min": path.resolve(__dirname, "./src/elan.journal/elan/journal/resources/index.js"),
-      "docpool.config.min": path.resolve(__dirname, "./src/docpool.config/docpool/config/resources/index.js"),
-      "docpool.base.min": path.resolve(__dirname, "./src/docpool.base/docpool/base/resources/index.js"),
-      "docpool.elan.min": path.resolve(__dirname, "./src/docpool.elan/docpool/elan/resources/index.js"),
-      "docpool.rei.min": path.resolve(__dirname, "./src/docpool.rei/docpool/rei/resources/index.js"),
-      barceloneta: path.resolve(__dirname, "./src/docpool.theme/docpool/theme/resources/barceloneta.scss"),
+      "docpool.theme.min": path.resolve(
+        __dirname,
+        "./src/docpool.theme/docpool/theme/resources/index.js",
+      ),
+      "elan.journal.min": path.resolve(
+        __dirname,
+        "./src/elan.journal/elan/journal/resources/index.js",
+      ),
+      "docpool.config.min": path.resolve(
+        __dirname,
+        "./src/docpool.config/docpool/config/resources/index.js",
+      ),
+      "docpool.base.min": path.resolve(
+        __dirname,
+        "./src/docpool.base/docpool/base/resources/index.js",
+      ),
+      "docpool.elan.min": path.resolve(
+        __dirname,
+        "./src/docpool.elan/docpool/elan/resources/index.js",
+      ),
+      "docpool.rei.min": path.resolve(
+        __dirname,
+        "./src/docpool.rei/docpool/rei/resources/index.js",
+      ),
+      barceloneta: path.resolve(
+        __dirname,
+        "./src/docpool.theme/docpool/theme/resources/barceloneta.scss",
+      ),
     },
   };
 
@@ -24,7 +46,10 @@ module.exports = () => {
     config: config,
     package_json: package_json,
   });
-  config.output.path = path.resolve(__dirname, "src/docpool.theme/docpool/theme/static/build");
+  config.output.path = path.resolve(
+    __dirname,
+    "src/docpool.theme/docpool/theme/static/build",
+  );
 
   config.plugins.push(
     mf_config({
@@ -108,7 +133,12 @@ module.exports = () => {
   config.plugins.push(new MiniCssExtractPlugin());
   config.module.rules.push({
     test: /barceloneta\.scss$/,
-    use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      "postcss-loader",
+      "sass-loader",
+    ],
   });
   if (process.env.NODE_ENV === "development") {
     config.devServer.port = "3001";

@@ -29,14 +29,6 @@ class IEnhancedPersonalPreferences(model.Schema):
 class EnhancedPersonalPreferencesAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedPersonalPreferences
 
-    def get_apps(self):
-        return self.context.getProperty("apps", [])
-
-    def set_apps(self, value):
-        return self.context.setMemberProperties({"apps": value})
-
-    dp = property(get_apps, set_apps)
-
 
 @adapter(Interface, IDocpoolBaseLayer, PersonalPreferencesPanel)
 class PersonalPreferencesPanelExtender(extensible.FormExtender):

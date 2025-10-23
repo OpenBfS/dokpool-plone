@@ -332,5 +332,14 @@
     >
       <property name="available_expr">context/@@is/admin_or_contentadmin</property>
     </object>
+    <object meta_type="CMF Action"
+            name="history"
+            i18n:domain="plone"
+    >
+      <property name="url_expr">string:${object_url}/@@full_review_history</property>
+      <property name="permissions">
+        <element value="View" />
+      </property>
+    </object>
   </object>
 </object>
