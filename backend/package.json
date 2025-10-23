@@ -15,7 +15,9 @@
     "watch": "NODE_ENV=development webpack --config webpack.config.js --watch",
     "buildui": "NODE_ENV=production webpack --config webpack.configui.js",
     "startui": "NODE_ENV=development webpack serve --config webpack.configui.js",
-    "watchui": "NODE_ENV=development webpack --config webpack.configui.js --watch"
+    "watchui": "NODE_ENV=development webpack --config webpack.configui.js --watch",
+    "prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
+    "prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,7 @@
     "@patternslib/patternslib": ">=9.9.10",
     "@plone/mockup": ">=5.1.12",
     "@plone/plonetheme-barceloneta-base": "^3.2.4",
+    "prettier": "^3.6.2",
     "jquery": "^3.7.1",
     "jquery.marquee": "^1.6.0",
     "schema-utils": "^4.2.0",

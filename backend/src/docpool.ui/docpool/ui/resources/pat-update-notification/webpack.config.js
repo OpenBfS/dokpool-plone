@@ -26,7 +26,7 @@ module.exports = () => {
                 ...package_json_patternslib.dependencies,
                 ...package_json.dependencies,
             },
-        })
+        }),
     );
 
     if (process.env.NODE_ENV === "development") {
