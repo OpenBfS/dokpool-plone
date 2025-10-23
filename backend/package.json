@@ -12,10 +12,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",
     "start": "NODE_ENV=development webpack serve --config webpack.config.js",
-    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch",
-    "buildui": "NODE_ENV=production webpack --config webpack.configui.js",
-    "startui": "NODE_ENV=development webpack serve --config webpack.configui.js",
-    "watchui": "NODE_ENV=development webpack --config webpack.configui.js --watch"
+    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
   },
   "repository": {
     "type": "git",
@@ -33,18 +30,16 @@
   "homepage": "https://github.com/OpenBfS/dokpool-plone#readme",
   "devDependencies": {
     "@patternslib/dev": "<4",
+    "bootstrap": "^5.3.3",
     "mini-css-extract-plugin": "^2.8.1",
     "postcss-loader": "^8.1.0"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.26.3",
     "@patternslib/patternslib": ">=9.9.10",
     "@plone/mockup": ">=5.1.12",
     "@plone/plonetheme-barceloneta-base": "^3.2.4",
     "jquery": "^3.7.1",
     "jquery.marquee": "^1.6.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "schema-utils": "^4.2.0",
     "svg-url-loader": "^8.0.0",
     "underscore": "^1.13.6",

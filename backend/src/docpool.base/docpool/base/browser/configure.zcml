@@ -285,6 +285,14 @@
       />
 
   <browser:page
+      name="full_review_history"
+      for="*"
+      class=".review_history.FullReviewHistoryView"
+      template="templates/full_review_history.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="dpdocument_transition_form"
       for="*"
       class=".dpdocument_transition_form.WorkflowActionView"
@@ -337,14 +345,6 @@
       />
 
   <browser:page
-      name="view"
-      for="..content.dptransferfolder.IDPTransferFolder"
-      class="docpool.base.browser.folderbase.FolderBaseView"
-      template="dptransferfolder.pt"
-      permission="docpool.transfers.SendContent"
-      />
-
-  <browser:page
       name="dpdocument_transfer_form"
       for="*"
       class=".dpdocument_transfer_form.TransferForm"
@@ -357,6 +357,22 @@
       for="docpool.base.content.dpconfig.DPConfig"
       class=".transfer_config.TransferConfigView"
       permission="zope2.View"
+      />
+
+  <browser:page
+      name="groups-overview"
+      for="*"
+      class=".groups.GroupsListing"
+      template="templates/groups.pt"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="group_members_flattened"
+      for="*"
+      class=".groups.GroupMembersFlattened"
+      template="templates/group_members_flattened.pt"
+      permission="cmf.ManagePortal"
       />
 
 </configure>

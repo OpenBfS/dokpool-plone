@@ -2,7 +2,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = "2.3.0.dev0"
+version = "2.4.0.dev0"
 
 setup(
     name="docpool.base",
@@ -45,6 +45,11 @@ setup(
         "z3c.unconfigure",
         "collective.impersonate",
     ],
+    extras_require={
+        "test": [
+            "plone.app.testing",
+        ]
+    },
     entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

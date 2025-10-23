@@ -35,11 +35,9 @@ Publicly available repo:
 ###### create journal and group (1)
 
 - in your _docpool/<name>/esd_:
-
   - add a new Content Item of _Journal-Type_, named "_journal1_" via the Toolbar (you can change the title of this item, later on)
 
 - in your _docpool/<name>_ User and Group Management:
-
   - create a group (_group1_) which should make use of the Journal
   - add the (existing) role "Journal1 Editor" to _group1_
 

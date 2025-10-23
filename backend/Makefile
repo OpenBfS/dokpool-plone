@@ -130,6 +130,7 @@ lint: ## Check and fix code base according to Plone standards
 	@uvx pyroma@latest -d .
 	@uvx check-python-versions@latest .
 	@uvx zpretty@latest --check src
+	npm run prettier
 
 .PHONY: format
 format: ## Check and fix code base according to Plone standards
@@ -137,6 +138,7 @@ format: ## Check and fix code base according to Plone standards
 	@uvx ruff@latest check --select I --fix --config $(BACKEND_FOLDER)/pyproject.toml
 	@uvx ruff@latest format --config $(BACKEND_FOLDER)/pyproject.toml
 	@uvx zpretty@latest -i src
+	npm run prettier:fix
 
 # i18n
 .PHONY: i18n
@@ -149,6 +151,7 @@ i18n: $(VENV_FOLDER) ## Update locales
 .PHONY: test
 test: $(VENV_FOLDER) ## run tests
 	@$(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
+	--test-path src/docpool.base \
 	--test-path src/docpool.api/src \
 	--test-path src/elan.journal \
 	--test-path src/docpool.doksys/src \

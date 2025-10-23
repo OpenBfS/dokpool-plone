@@ -367,7 +367,8 @@ class ArchiveAndClose(BrowserView):
         navSettings(arc)
 
         # copy the ESD folders
-        for brain in api.content.find(context=esd, portal_type=["ELANSection", "ELANDocCollection"]):
+        contentlisting = esd.restrictedTraverse("@@contentlisting")
+        for brain in contentlisting(portal_type=["ELANSection", "ELANDocCollection"]):
             api.content.copy(brain.getObject(), arc.esd)
         arc.esd.setDefaultPage("overview")
 

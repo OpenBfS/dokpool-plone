@@ -19,3 +19,12 @@ def to_1010(context=None):
             "profile-docpool.rei:default",
             steps=["workflow"],
         )
+
+
+def to_1011(context=None):
+    # Change history action to @@fullfull_review_history and View
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(
+        portal_setup,
+        "profile-docpool.base:to_1011",
+    )

@@ -61,6 +61,7 @@ class IDPTransferFolder(model.Schema, IFolderBase):
             source="docpool.transfers.vocabularies.DTPermOptions",
         ),
         key_type=schema.TextLine(),
+        required=False,
     )
 
     unknownDtDefault = schema.Choice(
@@ -93,10 +94,6 @@ class DPTransferFolder(FolderBase):
     APP = TRANSFERS_APP
 
     security = ClassSecurityInfo()
-
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
-        self.doctypePermissions = PersistentMapping()
 
     def doctype_permission(self, doctype):
         return self.doctypePermissions.get(doctype, DEFAULT_DTPERMISSION)
@@ -203,6 +200,9 @@ def created(obj, event=None):
     # the sending ESD
     if obj.permLevel == "read/write":
         obj.grantReadAccess()
+
+    if obj.doctypePermissions is None:
+        obj.doctypePermissions = PersistentMapping()
 
 
 @adapter(IDPTransferFolder, IEditFinishedEvent)

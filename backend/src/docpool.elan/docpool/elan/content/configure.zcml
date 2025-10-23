@@ -37,4 +37,6 @@
   <subscriber handler=".elandoccollection.update_docTypes" />
   <subscriber handler=".elandoccollection.enableSyndication" />
 
+  <adapter factory=".transfers.ELANSpecificTransfer" />
+
 </configure>
