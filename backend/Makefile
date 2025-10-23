@@ -82,6 +82,20 @@ instance/etc/zope.ini instance/etc/zope.conf instance_relstorage/etc/zope.ini in
 	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
 	cp templates/zope.ini instance/etc/zope.ini
 	cp templates/zope.ini instance_relstorage/etc/zope.ini
+	@echo "<zodb_db temporary>">>instance/etc/zope.conf
+	@echo "    <temporarystorage>">>instance/etc/zope.conf
+	@echo "    name Temporary database (for sessions)">>instance/etc/zope.conf
+	@echo "    </temporarystorage>">>instance/etc/zope.conf
+	@echo "    mount-point /temp_folder">>instance/etc/zope.conf
+	@echo "    container-class Products.TemporaryFolder.TemporaryContainer">>instance/etc/zope.conf
+	@echo "</zodb_db>">>instance/etc/zope.conf
+	@echo "<zodb_db temporary>">>instance_relstorage/etc/zope.conf
+	@echo "    <temporarystorage>">>instance_relstorage/etc/zope.conf
+	@echo "    name Temporary database (for sessions)">>instance_relstorage/etc/zope.conf
+	@echo "    </temporarystorage>">>instance_relstorage/etc/zope.conf
+	@echo "    mount-point /temp_folder">>instance_relstorage/etc/zope.conf
+	@echo "    container-class Products.TemporaryFolder.TemporaryContainer">>instance_relstorage/etc/zope.conf
+	@echo "</zodb_db>">>instance_relstorage/etc/zope.conf
 
 .PHONY: config
 config: instance/etc/zope.ini
@@ -161,7 +175,7 @@ test: $(VENV_FOLDER) ## run tests
 	-D
 
 # E2E Tests
-.PHONY: test-acceptance
+.PHONY: install-acceptance
 install-acceptance: $(VENV_FOLDER) ## run e2e tests
 	@uv run playwright install
 	@uv run playwright install-deps
