@@ -158,6 +158,9 @@ class DPDocumentWizard(ContextlessWizard):
             if required_value not in self.data:
                 return self.request.response.redirect(self.nextURL(previous=True))
 
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        self.app = dp_app_state.appsActivatedByCurrentUser()[0]
+
         # We can only populate fiels and widgets for the add-form once we have the container
         container = self.data.get("container_uid") or self.form.get("container_uid")
         if container:
@@ -227,7 +230,7 @@ class DPDocumentWizard(ContextlessWizard):
         new = api.content.create(
             container=container,
             type=self.portal_type,
-            local_behaviors=["elan"],
+            local_behaviors=[self.app],
             **item_dict,
         )
         if self.data.get("attachments"):
@@ -250,14 +253,6 @@ class DPDocumentWizard(ContextlessWizard):
             sort_on="sortable_title",
         )
         terms = []
-
-        app = ""
-        user = api.user.get_current()
-        if user:
-            active_app = user.getProperty("apps")
-            if active_app:
-                app = active_app[0]
-
         for brain in brains:
             obj = brain.getObject()
             if not api.user.has_permission("Add portal content", obj=obj):
@@ -270,7 +265,7 @@ class DPDocumentWizard(ContextlessWizard):
                 doctype_obj = doctype_brain.getObject()
                 if not doctype_obj.globalAllow:
                     continue
-                if app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
+                if self.app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
                     continue
                 can_add_entries = True
                 break
@@ -288,12 +283,6 @@ class DPDocumentWizard(ContextlessWizard):
         if not container:
             return []
         obj = api.content.get(UID=container)
-        app = ""
-        user = api.user.get_current()
-        if user:
-            active_app = user.getProperty("apps")
-            if active_app:
-                app = active_app[0]
         terms = []
         for brain in getAllowedDocumentTypes(obj):
             if obj.allowedDocTypes and brain.id not in obj.allowedDocTypes:
@@ -301,7 +290,7 @@ class DPDocumentWizard(ContextlessWizard):
             doctype_obj = brain.getObject()
             if not doctype_obj.globalAllow:
                 continue
-            if app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
+            if self.app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
                 continue
 
             terms.append(SimpleTerm(value=brain.id, token=brain.id, title=brain.Title))
@@ -316,13 +305,6 @@ class DPDocumentWizard(ContextlessWizard):
     def visibility_options(self):
         container_title = api.content.get(UID=self.data.get("container_uid")).title
         docpool_title = getDocumentPoolSite(self.context).title
-        app = ""
-        user = api.user.get_current()
-        if user:
-            active_app = user.getProperty("apps")
-            if active_app:
-                app = active_app[0]
-
         options = [
             (
                 "private",
@@ -332,7 +314,7 @@ class DPDocumentWizard(ContextlessWizard):
                 "published",
                 _(
                     "For all users of '${app} ${docpool_title}'",
-                    mapping={"app": app.upper(), "docpool_title": docpool_title},
+                    mapping={"app": self.app.upper(), "docpool_title": docpool_title},
                 ),
             ),
         ]
