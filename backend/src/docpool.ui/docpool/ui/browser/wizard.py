@@ -9,6 +9,7 @@ from docpool.ui.utils import extract_data
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
+from plone.dexterity.browser.add import DefaultAddForm
 from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
 from zope.interface import Invalid
@@ -157,6 +158,14 @@ class DPDocumentWizard(ContextlessWizard):
             if required_value not in self.data:
                 return self.request.response.redirect(self.nextURL(previous=True))
 
+        # We can only populate fiels and widgets for the add-form once we have the container
+        container = self.data.get("container_uid") or self.form.get("container_uid")
+        if container:
+            container = api.content.get(UID=container)
+            self.add_form = DefaultAddForm(container, self.request)
+            self.add_form.portal_type = self.portal_type
+            self.add_form.update()
+
         # Button handler
         if self.form.get("form.buttons.continue", None) is None:
             return self.template()
@@ -270,8 +279,12 @@ class DPDocumentWizard(ContextlessWizard):
                 terms.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
         return SimpleVocabulary(terms)
 
-    def doctypes(self, container="fbbe609d5ff4472d8442af50ca9bb666"):
-        # TODO: Somehow pass the uid of the selected container
+    def doctypes(self):
+        container = self.data.get("container_uid") or self.form.get("container_uid")
+        if not container:
+            all_containers = self.containers()
+            if len(all_containers) == 1:
+                container = all_containers._terms[0].value
         if not container:
             return []
         obj = api.content.get(UID=container)
