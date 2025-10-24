@@ -144,8 +144,17 @@ class DPDocumentWizard(ContextlessWizard):
     session_base_name = f"{portal_type}_wizard"
 
     required_for_1 = []
-    required_for_2 = ["container_uid", "docType"]
-    required_for_3 = ["container_uid", "docType", "title"]
+    required_for_2 = ["container_uid", "form.widgets.docType"]
+    required_for_3 = ["container_uid", "form.widgets.docType", "form.widgets.IDublinCore.title"]
+
+    custom_handled_widgets = [
+        "docType",
+        "IDublinCore.title",
+        "IDublinCore.description",
+        "text",
+        "IELANDocument.scenarios",
+        "ILocalBehaviorSupport.local_behaviors",
+    ]
 
     def __call__(self):
         # Required fields for wizard step
@@ -206,25 +215,21 @@ class DPDocumentWizard(ContextlessWizard):
 
     def create_item(self):
         """Create the content from the data"""
-        fields = [
-            "docType",
-            "title",
-            "text",
-            "scenarios",
-        ]
-
+        fields = [i.name for i in self.add_form.widgets.values()]
         item_dict = {}
-        for k, v in self.data.items():
-            if isinstance(v, RichTextValue):
+        for key, value in self.data.items():
+            if isinstance(value, RichTextValue):
                 # We need to create a fresh RichTextValue because the one in self.data
                 # was created in another request and ZODB refuses to store it with:
                 #
                 # InvalidObjectReference: ('Attempt to store an object from a foreign
                 # database connection', <Connection at 11a946f90>,
                 # <RawValueHolder: ...and RichText.>).
-                v = RichTextValue(v.raw, "text/html", "text/x-html-safe")
-            if k in fields and v:
-                item_dict[k] = v
+                value = RichTextValue(value.raw, "text/html", "text/x-html-safe")
+            if key in fields and value:
+                # only use field name when setting
+                key = key.split(".")[-1]
+                item_dict[key] = value
 
         container = api.content.get(UID=self.data["container_uid"])
         new = api.content.create(
@@ -233,8 +238,10 @@ class DPDocumentWizard(ContextlessWizard):
             local_behaviors=[self.app],
             **item_dict,
         )
-        if self.data.get("attachments"):
-            for item in self.data["attachments"]:
+        if attachments := self.data.get("attachments"):
+            if not isinstance(attachments, list):
+                attachments = [attachments]
+            for item in attachments:
                 filename = item["filename"]
                 content_type = item["content_type"]
                 factory = IDXFileFactory(new)

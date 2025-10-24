@@ -40,7 +40,7 @@ def extract_data(portal_type, request=None):
     errors = {}
     data = {}
     for widget_name in request.form:
-        name = widget_name.split("form.widgets.")[-1]
+        name = widget_name
         field_and_schema = get_field_and_schema_for_fieldname(name, fti)
         if field_and_schema:
             field, schema = field_and_schema
@@ -49,7 +49,7 @@ def extract_data(portal_type, request=None):
             # this will return a ParameterizedWidget which needs to be
             # called to get the "real" widget
             widgets = mergedTaggedValueDict(schema, WIDGETS_KEY)
-            widget = widgets.get(name)
+            widget = widgets.get(name) or widgets.get(name.split(f"{schema.__name__}.")[-1])
             if widget:
                 if isinstance(widget, str):
                     widget = resolveDottedName(widget)
@@ -60,6 +60,9 @@ def extract_data(portal_type, request=None):
                 widget = getMultiAdapter((field, request), IFieldWidget)
             widget.update()
             try:
+                # ugly hack. Why?
+                if widget_name != widget.name:
+                    widget.name = widget_name
                 raw = widget.extract()
             except MultipleErrors as e:
                 errors[name] = e
