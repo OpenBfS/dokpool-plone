@@ -3,6 +3,7 @@ from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.behaviors.elandoctype import IELANDocType
@@ -18,6 +19,9 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
+
+
+elan_only = app_only_decorator(ELAN_APP)
 
 
 @provider(IContextAwareDefaultFactory)
@@ -57,6 +61,18 @@ class IELANDocument(IDocumentExtension):
 
 
 class ELANDocument(FlexibleView):
+    # XXX re #6125: We've seen that accessing ELAN-related attributes on non-ELAN documents may not be
+    # well-defined. The simplest measure of defence is to prevent access to ELAN-specific context attributes
+    # unless ELAN is supported by the context.
+    # (Scenarios might be an empty value or some value that the document had when it used to support ELAN
+    # previously, or the attribute might be missing altogether which results in some default being computed by
+    # Dexterity.)
+    # A better solution would be to prevent adapting a document without support for a particular app to the
+    # respective app behavior interface, or have doc_extension() check for app support. This might, however,
+    # have more far-reaching consequences (e.g., indexing InfoDocuments elan's category_indexer which happens
+    # to be registered for any DPDocument), so at the time of writing this comment, we just go for preventing
+    # unsupported attribute access.
+
     __allow_access_to_unprotected_subobjects__ = 1
 
     security = ClassSecurityInfo()
@@ -68,10 +84,12 @@ class ELANDocument(FlexibleView):
         self.request = context.REQUEST
 
     @property
+    @elan_only
     def scenarios(self):
         return getattr(self.context, "scenarios", [])
 
     @scenarios.setter
+    @elan_only
     def scenarios(self, value):
         scenarios_to_keep = self.request.form.get(
             "form.widgets.IELANDocument.scenarios_to_keep", ""
@@ -111,8 +129,7 @@ class ELANDocument(FlexibleView):
         # this is used in a indexer and during clear & rebuild no Events would be found.
         # The path of events is assumed to be <docpool>/contentconfig/scen
         results = []
-        scns = getattr(self.context.aq_base, "scenarios", [])
-        if not scns:
+        if not (scns := self.scenarios):
             return results
         docpool = getDocumentPoolSite(self.context)
         if scen := docpool.unrestrictedTraverse("contentconfig/scen", None):
@@ -124,11 +141,6 @@ class ELANDocument(FlexibleView):
         scens = self.myScenarioObjects()
         res = [s.UID() for s in scens if api.content.get_state(s) == "published"]
         return res
-
-    def debugvalues(self):
-        """ """
-        print(self.context.scenarios)
-        print(self.context.docType)
 
     def getScenarioNames(self):
         """ """
