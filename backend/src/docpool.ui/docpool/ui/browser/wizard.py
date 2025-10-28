@@ -2,6 +2,7 @@ from AccessControl import Unauthorized
 from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.dpdocument import AddForm
+from docpool.base.content.archiving import IArchiving
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getAllowedDocumentTypes
@@ -273,6 +274,8 @@ class DPDocumentWizard(ContextlessWizard):
         )
         terms = []
         for brain in brains:
+            if IArchiving(brain).is_archive:
+                continue
             obj = brain.getObject()
             if not api.user.has_permission("Add portal content", obj=obj):
                 continue
@@ -330,7 +333,7 @@ class DPDocumentWizard(ContextlessWizard):
             return []
 
         container_title = container.title
-        docpool_title = getDocumentPoolSite(self.context).title
+        docpool_title = getDocumentPoolSite(container).title
         options = [
             (
                 "private",
