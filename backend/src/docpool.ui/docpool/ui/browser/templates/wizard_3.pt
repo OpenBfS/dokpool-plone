@@ -37,8 +37,12 @@
         <h1 i18n:translate="">Create new entry</h1>
 
         <!-- SCENARIOS -->
-        <tal:block tal:define="widget python:view.add_form.widgets.get('IELANDocument.scenarios')">
-            <tal:widget tal:condition="python: widget" tal:replace="structure widget/@@ploneform-render-widget" />
+        <tal:block tal:define="
+                     widget python:view.add_form.widgets.get('IELANDocument.scenarios');
+                   ">
+          <tal:widget tal:condition="python: widget"
+                      tal:replace="structure widget/@@ploneform-render-widget"
+          />
         </tal:block>
 
         <!-- VISIBILITY -->
@@ -51,10 +55,10 @@
                error python:errors.get(widget_name);
                visibility_options python: view.visibility_options();
              "
+             tal:condition="python: visibility_options"
              tal:attributes="
                class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
              "
-             tal:condition="python: visibility_options"
         >
           <!-- Data -->
           <div class="wizard-field-data">

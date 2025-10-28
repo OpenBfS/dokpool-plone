@@ -97,9 +97,11 @@
 
         <!-- DOCTYPE -->
         <tal:show tal:condition="python: False">
-        <tal:block tal:define="widget python:view.add_form.widgets['docType']">
+          <tal:block tal:define="
+                       widget python:view.add_form.widgets['docType'];
+                     ">
             <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-        </tal:block>
+          </tal:block>
         </tal:show>
 
         <!-- DOCTYPE -->
@@ -113,19 +115,19 @@
              "
              tal:attributes="
                class python: css_class;
-               id python: f'formfield-{widget_id}'
+               id python: f'formfield-{widget_id}';
              "
         >
           <!-- Data -->
           <div class="wizard-field-data">
-              <label for="${widget_name}">
-                <span tal:attributes="
-                        class python:view.is_required(widget_name);
-                      "
-                      i18n:translate=""
-                >Doctype</span>
-              </label>
-              <div class="form-text"></div>
+            <label for="${widget_name}">
+              <span tal:attributes="
+                      class python:view.is_required(widget_name);
+                    "
+                    i18n:translate=""
+              >Doctype</span>
+            </label>
+            <div class="form-text"></div>
             <div class="error-msg"
                  tal:condition="error"
             ><span tal:replace="error"></span></div>
