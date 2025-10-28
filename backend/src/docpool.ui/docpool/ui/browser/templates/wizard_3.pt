@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="enableUnloadProtection"
+      <form class="rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -37,14 +37,9 @@
         <h1 i18n:translate="">Create new entry</h1>
 
         <!-- SCENARIOS -->
-        <div class="mb-3"
-             tal:condition="python: view.app == 'elan'"
-        >
-          <h2 class="wizard-field-label"
-              tal:content="structure python: view.add_form.widgets['IELANDocument.scenarios'].label"
-          ></h2>
-          <div tal:replace="structure python: view.add_form.widgets['IELANDocument.scenarios'].render()"></div>
-        </div>
+        <tal:block tal:define="widget python:view.add_form.widgets.get('IELANDocument.scenarios')">
+            <tal:widget tal:condition="python: widget" tal:replace="structure widget/@@ploneform-render-widget" />
+        </tal:block>
 
         <!-- VISIBILITY -->
         <div class="wizard-field"

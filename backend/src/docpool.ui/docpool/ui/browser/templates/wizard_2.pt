@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="enableUnloadProtection"
+      <form class="rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -23,6 +23,7 @@
             tal:attributes="
               action request/URL;
             "
+            novalidate
       >
 
         <span tal:replace="structure context/@@authenticator/authenticator"></span>
@@ -36,89 +37,14 @@
 
         <h1 i18n:translate="">Create new entry</h1>
 
-        <!-- TITLE -->
-        <div class="wizard-field"
-             id="formfield-${widget_id}"
-             tal:define="
-               widget_name string:form.widgets.IDublinCore.title;
-               widget_id python:widget_name.replace('.', '-');
-               widget_value python:form.get(widget_name);
-               error python:errors.get(widget_name);
-             "
-             tal:attributes="
-               class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
-             "
-        >
-          <!-- Data -->
-          <div class="wizard-field-data">
-            <h2 class="wizard-field-label">
-              <label for="${widget_name}">
-                <span tal:attributes="
-                        class python:view.is_required(widget_name);
-                      "
-                      i18n:translate="title"
-                >Title</span>
-              </label>
-            </h2>
-            <div class="error-msg"
-                 tal:condition="error"
-            ><span tal:replace="error"></span></div>
-            <div class="wizard-field field"
-                 tal:attributes="
-                   class python:error and 'wizard-field field error' or 'wizard-field field';
-                 "
-            >
-              <input class="text-widget textline-field form-control"
-                     autofocus
-                     name="${widget_name}"
-                     placeholder="Title"
-                     type="text"
-                     value="${widget_value}"
-                     i18n:attributes="placeholder title"
-              />
-            </div>
-          </div>
-        </div>
+        <tal:block tal:define="widget python:view.add_form.widgets['IDublinCore.title']">
+            <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+        </tal:block>
 
-        <!-- TEXT -->
-        <div class="wizard-field"
-             id="formfield-${widget_id}"
-             tal:define="
-               widget_name string:form.widgets.text;
-               widget_id python:widget_name.replace('.', '-');
-               widget_value python:form.get(widget_name);
-               error python:errors.get(widget_name);
-             "
-             tal:attributes="
-               class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
-             "
-        >
-          <!-- Data -->
-          <div class="wizard-field-data">
-            <h2 class="wizard-field-label">
-              <label for="${widget_name}">
-                <span tal:attributes="
-                        class python:view.is_required(widget_name);
-                      "
-                      i18n:translate="todo_description"
-                >Description</span>
-              </label>
-            </h2>
-            <div class="error-msg"
-                 tal:condition="error"
-            ><span tal:replace="error"></span></div>
-            <div class="wizard-field field"
-                 tal:attributes="
-                   class python:error and 'wizard-field field error' or 'wizard-field field';
-                 "
-            >
-              <textarea class="pat-tinymce"
-                        name="${widget_name}"
-                        tal:content="widget_value"
-              ></textarea>
-            </div>
-          </div>
-        </div>
+        <tal:block tal:define="widget python:view.add_form.widgets['text']">
+            <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+        </tal:block>
+
 
         <!-- ATTACHMENTS -->
         <div class="wizard-field"
@@ -162,16 +88,13 @@
           </div>
         </div>
 
-        <div class="mb-3"
-             tal:repeat="widget_name python:view.add_form.widgets"
-        >
-          <tal:show tal:condition="python: widget_name not in view.custom_handled_widgets">
-            <h2 class="wizard-field-label"
-                tal:content="structure python: view.add_form.widgets[widget_name].label"
-            ></h2>
-            <div tal:replace="structure python: view.add_form.widgets[widget_name].render()"></div>
-          </tal:show>
-        </div>
+        <hr />
+
+        <tal:block repeat="widget view/add_form/widgets/values|nothing">
+          <tal:block tal:condition="python:widget.__name__ not in view.custom_handled_widgets">
+            <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+          </tal:block>
+        </tal:block>
 
         <button class="btn btn-secondary me-3"
                 name="form.buttons.cancel"
