@@ -1,6 +1,7 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.browser.dpdocument import AddForm
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getAllowedDocumentTypes
@@ -10,7 +11,6 @@ from docpool.ui.utils import extract_data
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
-from plone.dexterity.browser.add import DefaultAddForm
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
@@ -173,14 +173,16 @@ class DPDocumentWizard(ContextlessWizard):
         self.app = dp_app_state.appsActivatedByCurrentUser()[0]
 
         # We can only populate fiels and widgets for the add-form once we have the container
-        container = self.data.get("container_uid") or self.form.get("container_uid")
-        if container:
-            container = api.content.get(UID=container)
-            self.add_form = DefaultAddForm(container, self.request)
+        self.add_form = None
+        container_uid = self.data.get("container_uid") or self.form.get("container_uid")
+        if container_uid:
+            container = api.content.get(UID=container_uid)
+            self.add_form = AddForm(container, self.request)
             self.add_form.portal_type = self.portal_type
             self.add_form.update()
+            self.add_form.updateWidgets()
 
-        # Button handler
+        # Render form
         if self.form.get("form.buttons.continue", None) is None:
             return self.template()
 
