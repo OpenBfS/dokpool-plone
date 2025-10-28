@@ -109,10 +109,10 @@ class ContextlessWizard(BrowserView):
         """
         base_name = self.__name__.split("_")[:-1]
         base_name = "_".join(base_name)
-        if not previous:
-            next_step = int(self.current_step) + 1
-        else:
+        if previous:
             next_step = int(self.current_step) - 1
+        else:
+            next_step = int(self.current_step) + 1
         next_view = f"{base_name}_{next_step}"
         try:
             next_url = "{url}/@@{next}?session_name={session_name}".format(
@@ -166,9 +166,16 @@ class DPDocumentWizard(ContextlessWizard):
         self.required_for_step = required_for.format(current_step)
         self.required_for_next = required_for.format(current_step + 1)
 
+        # Go back if a required field is missing
         for required_value in getattr(self, self.required_for_step, []):
             if required_value not in self.data:
                 return self.request.response.redirect(self.nextURL(previous=True))
+
+        # Button handlers
+        if self.form.get("form.buttons.cancel", None) is not None:
+            return self.request.response.redirect(self.context.absolute_url())
+        if self.form.get("form.buttons.back", None) is not None:
+            return self.request.response.redirect(self.nextURL(previous=True))
 
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         self.app = dp_app_state.appsActivatedByCurrentUser()[0]
@@ -213,10 +220,9 @@ class DPDocumentWizard(ContextlessWizard):
         if not self.is_final_step:
             self.session[self.session_name] = self.data
             return self.request.response.redirect(self.nextURL())
-        else:
-            new = self.create_item()
-            self.session.delete(self.session_name)
-            return self.request.response.redirect(new.absolute_url())
+        new = self.create_item()
+        self.session.delete(self.session_name)
+        return self.request.response.redirect(new.absolute_url())
 
     def create_item(self):
         """Create the content from the data"""

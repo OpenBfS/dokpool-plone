@@ -154,12 +154,16 @@
           </div>
         </div>
 
-
+        <button class="btn btn-secondary me-3"
+                name="form.buttons.cancel"
+                type="submit"
+                i18n:translate=""
+        >Cancel</button>
         <button class="btn btn-primary"
                 name="form.buttons.continue"
                 type="submit"
                 i18n:translate=""
-        >Continue</button>
+        >Next</button>
 
       </form>
 
