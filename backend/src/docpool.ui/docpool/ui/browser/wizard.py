@@ -11,6 +11,7 @@ from docpool.ui.utils import extract_data
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
+from plone.memoize.view import memoize
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
@@ -256,6 +257,7 @@ class DPDocumentWizard(ContextlessWizard):
                 api.content.transition(new, transition="publish")
         return new
 
+    @memoize
     def containers(self):
         """Return uuid vocabulary of GroupFolders where user can add DPDocuments."""
         brains = api.content.find(
