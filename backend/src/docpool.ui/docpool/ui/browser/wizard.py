@@ -1,4 +1,5 @@
 from AccessControl import Unauthorized
+from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.utils import get_content_area
@@ -10,6 +11,7 @@ from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.browser.add import DefaultAddForm
+from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
 from zope.interface import Invalid
@@ -248,7 +250,7 @@ class DPDocumentWizard(ContextlessWizard):
                 factory(filename, content_type, item["data"])
         if self.data.get("visibility") == "published" and api.content.get_state(new) != "published":
             portal_workflow = api.portal.get_tool("portal_workflow")
-            if "publish" in portal_workflow.getTransitionsFor(new):
+            if "publish" in [i["id"] for i in portal_workflow.getTransitionsFor(new)]:
                 api.content.transition(new, transition="publish")
         return new
 
@@ -310,7 +312,14 @@ class DPDocumentWizard(ContextlessWizard):
         return vocabulary
 
     def visibility_options(self):
-        container_title = api.content.get(UID=self.data.get("container_uid")).title
+        container = api.content.get(UID=self.data.get("container_uid"))
+        workflow = self.get_workflow_for(container)
+        # check if there is a transition "publish" originating from the initial state
+        initial = workflow.states[workflow.initial_state]
+        if "publish" not in initial.transitions:
+            return []
+
+        container_title = container.title
         docpool_title = getDocumentPoolSite(self.context).title
         options = [
             (
@@ -339,9 +348,25 @@ class DPDocumentWizard(ContextlessWizard):
         if default_scenarios:
             return default_scenarios[0].UID
 
+    def get_workflow_for(self, container):
+        """Get workflow from container and future portal_type."""
+        wf_id = None
+        workflow_tool = api.portal.get_tool("portal_workflow")
+        # Inspired by PlacefulWorkflowChain: Find placeful workflow starting at target container
+        if wfpolicyconfig := aq_get(container, WorkflowPolicyConfig_id, None):
+            if chain := wfpolicyconfig.getPlacefulChainFor(self.portal_type, start_here=True):
+                wf_id = chain[0]
+
+        # Default workflow for type
+        if not wf_id and (chain := workflow_tool.getChainForPortalType(self.portal_type)):
+            wf_id = chain[0]
+
+        if wf_id:
+            return workflow_tool.getWorkflowById(wf_id)
+
 
 def transform_fileupload(value):
-    """Transform FileUpload into a dict that can be pickled in a session."""
+    """Transform FileUpload into a dict that can safely be stored in a session."""
     if not value:
         return
     if not isinstance(value, FileUpload):
