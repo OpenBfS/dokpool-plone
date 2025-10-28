@@ -148,13 +148,6 @@
       />
 
   <browser:page
-      name="dokpool_version"
-      for="*"
-      class=".helpers.DokpoolVersion"
-      permission="zope.Public"
-      />
-
-  <browser:page
       name="redirect"
       for="*"
       class=".helpers.RootRedirectView"

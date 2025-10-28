@@ -14,7 +14,32 @@
     <li class="menu-item-version">
       <div class="version-info">
         <p class="version-label">Softwareversion</p>
-        <p class="version-number">1.9.3</p>
+        <p class="version-number">${view/get_dokpool_version}</p>
+
+        <tal:debug tal:condition="python: view.available()">
+          <p class="debug-label"
+             i18n:translate="debug_viewlet_git_commit"
+          >Git Commit</p>
+          <p class="debug-value"><a class="git_rev"
+               tal:content="python: view.get_git_rev()"
+               tal:attributes="
+                 href python: 'https://git.starzel.de/bfs/dokpool/commit/' + view.get_git_rev();
+               "
+               i18n:translate=""
+            >Git Rev</a></p>
+
+          <p class="debug-label"
+             i18n:translate="debug_viewlet_git_branch"
+          >Git Branch</p>
+          <p class="debug-value"><a class="git_branch"
+               tal:content="python:view.get_git_branch()"
+               tal:attributes="
+                 href python: 'https://git.starzel.de/bfs/dokpool/tree/' + view.get_git_branch();
+               "
+               i18n:translate=""
+            >Git Branch</a></p>
+        </tal:debug>
+
       </div>
     </li>
 
