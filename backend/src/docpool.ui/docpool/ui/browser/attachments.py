@@ -1,3 +1,4 @@
+from plone import api
 from plone.base.utils import human_readable_size
 from Products.Five.browser import BrowserView
 
@@ -17,6 +18,11 @@ class Attachments(BrowserView):
         sizes = [i.getSize() for i in self.items()]
         complete = complete_size_in_bytes(sizes)
         return human_readable_size(complete)
+
+    def mimetype_name(self, content_type):
+        mtr = api.portal.get_tool("mimetypes_registry")
+        mimetypes = mtr.lookup(content_type)
+        return mimetypes[0].name() if mimetypes else content_type.split("/")[-1]
 
 
 def complete_size_in_bytes(values):
