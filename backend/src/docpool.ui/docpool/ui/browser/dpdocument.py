@@ -1,11 +1,12 @@
 from docpool.base.appregistry import APP_REGISTRY
-from Products.Five.browser import BrowserView
+from docpool.ui.browser.listing import DOCTYPE_ICON_MAPPING
+from plone.dexterity.browser.view import DefaultView
 
 import io
 import zipfile
 
 
-class DPDocumentView(BrowserView):
+class DPDocumentView(DefaultView):
     """View for all DPDocuments."""
 
     def __call__(self):
@@ -41,3 +42,6 @@ class DPDocumentView(BrowserView):
             "Content-Disposition", f'attachment; filename="{self.context.id}_attachments.zip"'
         )
         return zip_buffer.read()
+
+    def doctype_icon(self, doctype):
+        return DOCTYPE_ICON_MAPPING.get(doctype, "radioactive")

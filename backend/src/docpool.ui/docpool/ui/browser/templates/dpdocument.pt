@@ -81,31 +81,32 @@
 
             <tal:elan condition="python: 'elan' in apps">
 
-              <dl class="doc_metadata"
-                  tal:define="
-                    elanobj python: apps['elan'];
-                    typeAndCat python: elanobj.typeAndCat();
-                    doktype python: typeAndCat[0];
-                    categories python: typeAndCat[1];
-                  "
+              <div class="field mb-2 doc_metadata"
+                   tal:define="
+                     elanobj python: apps['elan'];
+                     typeAndCat python: elanobj.typeAndCat();
+                     doktype python: typeAndCat[0];
+                     categories python: typeAndCat[1];
+                   "
               >
-                <tal:scns define="
-                            scns python: elanobj.getScenarioNames();
-                          "
-                          condition="python: scns"
-                >
-                  <dt i18n:domain="docpool.elan"
-                      i18n:translate=""
-                  >Belongs to scenario:</dt>
-                  <dd tal:content="python: ', '.join(scns)"></dd>
-                </tal:scns>
+                <img src="${python:icons.url(view.doctype_icon(context.docType))}" />
                 <tal:cat condition="python: categories">
-                  <dt i18n:domain="docpool.elan"
-                      i18n:translate=""
-                  >Content from:</dt>
-                  <dd>${python: doktype} (${python: ', '.join(categories)})</dd>
+                  <div>${python: doktype} (${python: ', '.join(categories)})</div>
                 </tal:cat>
-              </dl>
+              </div>
+
+              <div class="field mb-2"
+                   tal:define="
+                     widget python: view.widgets.get('IELANDocument.scenarios');
+                   "
+                   tal:condition="python: widget"
+              >
+                <label class="small"
+                       tal:content="python: widget.label"
+                ></label>
+                <br />
+                <div tal:content="structure python: widget.render()"></div>
+              </div>
 
             </tal:elan>
 
