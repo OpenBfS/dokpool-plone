@@ -42,6 +42,7 @@
 
   <include package=".browser" />
 
+  <!-- TODO Remove as it we use it in docpool.ui
   <browser:page
       name="main_template"
       for="*"
@@ -49,6 +50,7 @@
       permission="zope.Public"
       layer=".interfaces.ICustomTheme"
       />
+  -->
 
   <adapter
       factory=".layout.DocpoolBodyClasses"
