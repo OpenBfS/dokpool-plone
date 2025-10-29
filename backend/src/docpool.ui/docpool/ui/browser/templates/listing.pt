@@ -98,7 +98,11 @@
           </div>
 
           <div class="m-3">
-            <a href="@@dpdocument_wizard_1"><img src="${python:icons.url('plus-circle')}" title="Add entry" /></a>
+            <a href="@@dpdocument_wizard_1">
+              <img src="${python:icons.url('plus-circle')}"
+                   title="Add entry"
+              />
+            </a>
           </div>
         </div>
       </form>

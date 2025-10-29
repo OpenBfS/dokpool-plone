@@ -55,8 +55,12 @@
     </div>
   </div>
 
-  <div class="ms-3" tal:condition="python: data['attachments']">
-    <span class="badge text-bg-secondary" tal:content="python: str(len(data['attachments'])) + ' Attachments'">3</span>
+  <div class="ms-3"
+       tal:condition="python: data['attachments']"
+  >
+    <span class="badge text-bg-secondary"
+          tal:content="python: str(len(data['attachments'])) + ' Attachments'"
+    >3</span>
   </div>
 
   <div class="ms-3">

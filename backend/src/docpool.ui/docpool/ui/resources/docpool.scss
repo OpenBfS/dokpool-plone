@@ -119,10 +119,8 @@ div.pat-modal::after {
   background-color: rgba(15, 15, 15, 0.84);
 }
 
-#portal-mainnavigation,
-#portal-searchbox,
-#scenario_box {
-  display: none;
+#portal-mainnavigation #portal-globalnav a {
+    color: #222 !important;
 }
 
 #portal-logo {
