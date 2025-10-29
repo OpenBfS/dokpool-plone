@@ -6,13 +6,7 @@ from Products.Five.browser import BrowserView
 class Attachments(BrowserView):
     def items(self):
         contentlisting = self.context.restrictedTraverse("@@contentlisting")
-        query = {}
-        query["portal_type"] = [
-            "Image",
-            "File",
-        ]
-        results = [b for b in contentlisting(**query)]
-        return results
+        return contentlisting(portal_type=["File", "Image"])
 
     def total_size(self):
         sizes = [i.getSize() for i in self.items()]

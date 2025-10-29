@@ -11,14 +11,15 @@
         (${python: len(items)})</label>
     </div>
     <div>
-      <button class="btn btn-light"
-              type="button"
+      <a class="btn btn-light"
+         tal:attributes="
+           href python: context.absolute_url() + '?download_attachments=1';
+         "
       ><img src="${python:icons.url('download')}" />
-        zip download (<span tal:replace="python: view.total_size()">556,5 Kb</span>)</button>
+        zip download (<span tal:replace="python: view.total_size()">556,5 Kb</span>)</a>
     </div>
     <div class="ms-2">
       <div class="btn-group"
-           aria-label="Basic example"
            role="group"
       >
         <a class="btn btn-light pat-inject pat-switch attachments-switcher active"
