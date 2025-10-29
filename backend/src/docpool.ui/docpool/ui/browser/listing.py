@@ -115,6 +115,7 @@ class Item(BrowserView):
 
         icon_name = self.doctype_icon(obj.docType)
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
+        attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
 
         self.dpdocument = {
             "date": obj.mdate,
@@ -133,6 +134,7 @@ class Item(BrowserView):
             "modified_by_user": modified_by_user,
             "modified_by_group": modified_by_group,
             "show_transfer_action": show_transfer_action,
+            "attachments": attachments,
         }
         return self.index()
 
