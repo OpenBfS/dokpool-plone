@@ -16,7 +16,7 @@
       <form class="filter-form"
             method="GET"
       >
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row justify-content-end">
           <div class="m-2 dropdown">
             <button class="btn btn-primary dropdown-toggle"
                     aria-expanded="false"
@@ -97,6 +97,9 @@
             </div>
           </div>
 
+          <div class="m-3">
+            <a href="@@dpdocument_wizard_1"><img src="${python:icons.url('plus-circle')}" title="Add entry" /></a>
+          </div>
         </div>
       </form>
     </div>
