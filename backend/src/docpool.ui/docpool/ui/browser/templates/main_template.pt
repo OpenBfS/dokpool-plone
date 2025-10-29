@@ -89,6 +89,7 @@
         </section>
 
         <aside id="portal-column-one"
+class="sidebar-desktop d-flex flex-column h-100"
                metal:define-slot="column_one_slot"
         >
           <tal:sidebar replace="structure provider:docpool.sidebar.manager" />

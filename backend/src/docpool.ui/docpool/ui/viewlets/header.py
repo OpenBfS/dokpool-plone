@@ -3,7 +3,7 @@ from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser import BrowserView
-
+from docpool.base.appregistry import APP_REGISTRY
 import os
 import shlex
 import subprocess
@@ -12,6 +12,14 @@ import subprocess
 class PortalHeader(ViewletBase):
     pass
 
+    def getActiveApp(self):
+        user = api.user.get_current()
+        if not user:
+            return {}
+        active_app = user.getProperty("apps")
+        if not active_app:
+            return {}
+        return APP_REGISTRY[active_app[0]]
 
 class InfoDropdown(BrowserView):
     def get_dokpool_version(self):
