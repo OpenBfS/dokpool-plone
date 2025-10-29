@@ -6,6 +6,9 @@
 
   <include package="plone.app.contentmenu" />
 
+  <!-- Todo: Remove as soon as all code is moved
+
   <include package=".viewlets" />
+-->
 
 </configure>
