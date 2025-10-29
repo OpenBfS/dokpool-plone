@@ -7,20 +7,21 @@
 
   <div id="attachments">
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="pat-gallery row row-cols-1 row-cols-md-3 g-4"
+         data-pat-gallery="item-selector: a.gallery-item"
+    >
       <div class="col"
            tal:repeat="item python: items"
       >
-        <div class="h-100"
+        <div class="h-100 text-bg-light"
              tal:define="
                is_image python: item.portal_type == 'Image';
              "
         >
           <tal:image condition="python: is_image">
-            <a class="pat-plone-modal"
-               data-pat-plone-modal='{"content": "#content-core", "templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+            <a class="gallery-item"
                tal:attributes="
-                 href python: item.getURL() + '/image_view_fullscreen';
+                 href python: item.getURL() + '/@@images/image/huge';
                "
             >
               <img class="rounded mx-auto d-block"
@@ -43,9 +44,11 @@
              "
           ><img src="${python:icons.url('eye')}" /></a>
           <a href=""
+             title="download"
              tal:attributes="
                href python: item.getURL() + '/@@download';
              "
+             i18n:attributes="title"
           ><img src="${python:icons.url('download')}" /></a>
         </div>
       </div>

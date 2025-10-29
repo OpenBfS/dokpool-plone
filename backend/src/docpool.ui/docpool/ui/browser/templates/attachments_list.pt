@@ -33,9 +33,12 @@
                  "
               ><img src="${python:icons.url('file-arrow-down')}" /></a>
               <a href=""
+                 title="Download"
                  tal:attributes="
                    href python: item.getURL() + '/@@download';
                  "
+                 i18n:attributes="title"
+                 i18n:domain="plone"
               ><img src="${python:icons.url('download')}" /></a>
             </div>
           </td>
