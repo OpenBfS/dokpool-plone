@@ -1,9 +1,11 @@
-$plone-default-private-color: #AD4541;
+@import "header";
+
+$plone-default-private-color: #ad4541;
 $plone-default-pending-color: #ccd111;
 $plone-default-pending_bfs-color: #ffaa00;
 $plone-default-pending_authority-color: #d07317;
 $plone-default-pending_bmu-color: #75a30a;
-$plone-default-published-color: #2C445E;
+$plone-default-published-color: #2c445e;
 $plone-default-revised-color: #7a561f;
 
 .filter-form-container {
@@ -30,8 +32,9 @@ $plone-default-revised-color: #7a561f;
 }
 
 img.doktype-icon {
-    width: 100%;
-    filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg) brightness(97%) contrast(93%);
+  width: 100%;
+  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg)
+    brightness(97%) contrast(93%);
 }
 
 .card-body.review-state {
@@ -70,27 +73,25 @@ img.doktype-icon {
     color: #fff !important;
     background-color: $plone-default-revised-color;
   }
-
 }
 
 #listing > a {
-    display: block;
-    min-height: 84px;
+  display: block;
+  min-height: 84px;
 }
 
 #listing > a.pat-inject.executed {
-    height: auto;
+  height: auto;
 }
 
 #listing a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #listing .listing-item {
-    .doctype-box {
-        min-width: 95px;
-    }
-
+  .doctype-box {
+    min-width: 95px;
+  }
 }
 
 div.pat-modal .header {
@@ -106,20 +107,20 @@ div.pat-modal {
 }
 
 div.pat-modal.large {
-    width: 90vw;
-    margin-left: -45vw;
+  width: 90vw;
+  margin-left: -45vw;
 }
 
 div.pat-modal::after {
-    background-color: rgba(15, 15, 15, 0.84);
+  background-color: rgba(15, 15, 15, 0.84);
 }
 
 #portal-mainnavigation,
 #portal-searchbox,
 #scenario_box {
-    display: none;
+  display: none;
 }
 
 #portal-logo {
-    float: left;
+  float: left;
 }

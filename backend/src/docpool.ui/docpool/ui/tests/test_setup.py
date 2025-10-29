@@ -1,6 +1,5 @@
 """Setup tests for this package."""
 
-from docpool.theme.browser.viewlets.common import LogoDocpoolViewlet
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
@@ -36,11 +35,10 @@ class TestSetup(unittest.TestCase):
     def test_debug_viewlet(self):
         self.request["URL"] = "http://nohost/plone/view"
         self.request["PARENTS"][0] = self.portal
-        viewlet = LogoDocpoolViewlet(self.portal, self.request, None, None)
-        self.assertTrue(viewlet.available())
-        viewlet.update()
-        html = viewlet.render()
+        info_dropdown_view = self.portal.restrictedTraverse("@@info-dropdown")
+        self.assertTrue(info_dropdown_view.available())
+        html = info_dropdown_view()
         self.assertNotIn("Not detected", html)
         api.portal.set_registry_record(name="docpool.show_debug_info", value=False)
         # We disable the viewlet to test its availability
-        self.assertFalse(viewlet.available())
+        self.assertFalse(info_dropdown_view.available())

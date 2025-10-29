@@ -1,0 +1,102 @@
+<header class="app-header border-bottom"
+        id="portal-header"
+        tal:define="
+          icons python:context.restrictedTraverse('@@iconresolver');
+        "
+>
+  <div class="container-fluid px-0">
+    <div class="d-flex align-items-stretch">
+      <!-- Left: Logo + System switcher -->
+      <div class="d-flex align-items-center justify-content-center flex-column px-3 logo-block border-end">
+        <a class="text-decoration-none d-flex flex-column align-items-start justify-content-center"
+           href="#"
+        >
+          <img class="logo-img mb-1"
+               alt="ELAN"
+               src="/assets/elan-logo.png"
+          />
+          <div class="d-flex align-items-center gap-1 small text-primary fw-light">
+            <span>BUND</span>
+            <img class="divider-small"
+                 alt=""
+                 src="/assets/divider-10.png"
+            />
+            <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
+          </div>
+        </a>
+      </div>
+
+      <!-- Middle: Event pill/button area with switcher and main nav buttons -->
+      <div class="d-flex align-items-stretch flex-grow-1">
+        <!-- Event button -->
+        <div class="event-card d-flex align-items-center px-3 border-end">
+          <div>
+            <div class="text-primary small">Modul&uuml;bung Stab L und M</div>
+            <div class="d-flex align-items-center gap-3 mt-1">
+              <span class="badge bg-warning text-dark tag-badge">&Uuml;bung</span>
+              <span class="small text-primary">Routinebetrieb</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event switcher narrow block -->
+        <div class="event-switcher d-flex align-items-center justify-content-center border-end">
+          <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
+        </div>
+
+        <!-- Main navigation buttons -->
+        <nav class="d-flex align-items-stretch">
+          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
+             href="#"
+          >
+            <span class="small text-primary mb-n1">Meine</span>
+            <span class="small text-primary">Gruppenordner</span>
+          </a>
+          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
+             href="#"
+          >
+            <span class="small text-primary mb-n1">Dokumente</span>
+            <span class="small text-primary">Notfallschutz</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Right: Icons -->
+      <div class="d-flex align-items-center ms-auto gap-2 px-3">
+        <button class="btn btn-icon"
+                aria-label="Suche"
+        >
+          <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
+        </button>
+        <img class="divider-vertical"
+             alt=""
+             src="/assets/divider-42.png"
+        />
+        <button class="btn btn-icon"
+                aria-label="Barrierefreiheit"
+        >
+          <tal:icon tal:replace="structure python:icons.tag('accessibility', tag_class='me-2')" />
+        </button>
+        <button class="btn btn-icon"
+                aria-label="Systemmeldung"
+        >
+          <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
+        </button>
+
+        <tal:info tal:replace="structure context/@@info-dropdown">
+          Info dropdown
+        </tal:info>
+
+        <tal:info tal:replace="structure context/@@config-dropdown">
+          Config dropdown
+        </tal:info>
+
+        <tal:info tal:replace="structure context/@@user-dropdown">
+          User dropdown
+        </tal:info>
+
+
+      </div>
+    </div>
+  </div>
+</header>

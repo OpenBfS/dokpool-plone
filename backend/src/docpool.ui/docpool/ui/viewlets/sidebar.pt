@@ -1,0 +1,106 @@
+<aside class="sidebar d-flex flex-column align-items-center py-3"
+       tal:define="
+         icons python:context.restrictedTraverse('@@iconresolver');
+       "
+>
+  <nav class="w-100 d-flex flex-column align-items-center">
+    <ul class="nav nav-pills flex-column align-items-center w-100">
+      <li class="nav-item w-100">
+        <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
+           href="#"
+        >
+          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+            <tal:icon tal:replace="structure python:icons.tag('grid-3x3-gap-fill', tag_class='me-0')" />
+          </span>
+          <span class="label text-center">&Uuml;bersicht</span>
+        </a>
+      </li>
+
+      <li class="nav-item w-100">
+        <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
+           href="#"
+        >
+          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+            <tal:icon tal:replace="structure python:icons.tag('clock', tag_class='me-0')" />
+          </span>
+          <span class="label text-center">Chronologie</span>
+        </a>
+      </li>
+
+      <li class="nav-item w-100">
+        <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
+           href="#"
+        >
+          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+            <tal:icon tal:replace="structure python:icons.tag('diagram-3-fill', tag_class='me-0')" />
+          </span>
+          <span class="label text-center">Eintragsarten</span>
+        </a>
+      </li>
+
+      <li class="nav-item w-100">
+        <a class="nav-link active d-flex flex-column align-items-center justify-content-center text-decoration-none"
+           href="#"
+        >
+          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+            <tal:icon tal:replace="structure python:icons.tag('book-half', tag_class='me-0')" />
+          </span>
+          <span class="label text-center">Protokoll</span>
+        </a>
+      </li>
+
+      <li class="nav-item w-100">
+        <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
+           href="#"
+        >
+          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+            <tal:icon tal:replace="structure python:icons.tag('check2-square', tag_class='me-0')" />
+          </span>
+          <span class="label text-center">Aufgaben (1)</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="mesz"
+       tal:define="
+         local_time python: view.get_local_time();
+         utc_time python: view.get_utc_time();
+       "
+  >
+    <table class="table table-bordered"
+           id="time_table"
+    >
+      <tr class="times">
+        <td class="zone">
+          <tal:var i18n:translate="">LT</tal:var>
+              :
+        </td>
+        <td class="time">
+          <time datetime="${python: local_time}">${python: local_time.strftime('%d.%m.%Y %H:%M')}</time>
+        </td>
+      </tr>
+      <tr class="times">
+        <td class="zone">
+          <tal:var i18n:translate="">UTC</tal:var>
+              :
+        </td>
+        <td class="time">
+          <time datetime="${python: utc_time}">${python: utc_time.strftime('%d.%m.%Y %H:%M')}</time>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="mt-auto w-100 zones d-flex align-items-center px-0">
+    <div class="col d-flex flex-column align-items-center justify-content-center pe-1">
+      <p class="name">ME(S)Z</p>
+      <p class="val">UTC</p>
+      <p class="val">JST</p>
+    </div>
+    <div class="col d-flex flex-column align-items-center justify-content-center ps-1">
+      <p class="name">14:45</p>
+      <p class="val">12:45 (-2h)</p>
+      <p class="val">00:45 (+8h)</p>
+    </div>
+  </div>
+</aside>

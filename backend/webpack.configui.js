@@ -5,14 +5,24 @@ const package_json = require("./package.json");
 const package_json_mockup = require("@plone/mockup/package.json");
 const package_json_patternslib = require("@patternslib/patternslib/package.json");
 const path = require("path");
-const webpack_config = require("@patternslib/dev/webpack/webpack.config").config;
+const webpack_config =
+  require("@patternslib/dev/webpack/webpack.config").config;
 
 module.exports = () => {
   let config = {
     entry: {
-      "docpool.ui.min": path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/index.js"),
-      barceloneta: path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/barceloneta/barceloneta.scss"),
-      docpool: path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/docpool.scss"),
+      "docpool.ui.min": path.resolve(
+        __dirname,
+        "./src/docpool.ui/docpool/ui/resources/index.js",
+      ),
+      barceloneta: path.resolve(
+        __dirname,
+        "./src/docpool.ui/docpool/ui/resources/barceloneta/barceloneta.scss",
+      ),
+      docpool: path.resolve(
+        __dirname,
+        "./src/docpool.ui/docpool/ui/resources/docpool.scss",
+      ),
     },
   };
 
@@ -20,7 +30,10 @@ module.exports = () => {
     config: config,
     package_json: package_json,
   });
-  config.output.path = path.resolve(__dirname, "src/docpool.ui/docpool/ui/static/build");
+  config.output.path = path.resolve(
+    __dirname,
+    "src/docpool.ui/docpool/ui/static/build",
+  );
 
   config.plugins.push(
     mf_config({
@@ -40,15 +53,28 @@ module.exports = () => {
   config.plugins.push(new MiniCssExtractPlugin());
   config.module.rules.push({
     test: /docpool\.scss$/,
-    use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      "postcss-loader",
+      "sass-loader",
+    ],
   });
   config.module.rules.push({
     test: /barceloneta\.scss$/,
-    use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      "postcss-loader",
+      "sass-loader",
+    ],
   });
   if (process.env.NODE_ENV === "development") {
     config.devServer.port = "3001";
-    config.devServer.static.directory = path.resolve(__dirname, "./src/docpool.ui/docpool/ui/resources/index.js");
+    config.devServer.static.directory = path.resolve(
+      __dirname,
+      "./src/docpool.ui/docpool/ui/resources/index.js",
+    );
   }
 
   // Debug output

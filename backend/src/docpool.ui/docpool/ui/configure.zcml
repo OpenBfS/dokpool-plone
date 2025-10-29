@@ -31,5 +31,6 @@
 
   <include package=".browser" />
   <include package=".services" />
+  <include package=".viewlets" />
 
 </configure>

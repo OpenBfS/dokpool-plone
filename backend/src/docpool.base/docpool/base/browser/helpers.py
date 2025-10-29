@@ -10,7 +10,6 @@ from docpool.base.utils import is_individual
 from docpool.base.utils import is_personal
 from docpool.base.utils import is_rei_workflow
 from docpool.base.utils import setApplicationsForCurrentUser
-from importlib.metadata import distribution
 from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -23,12 +22,6 @@ import logging
 
 
 log = logging.getLogger(__name__)
-
-
-class DokpoolVersion(BrowserView):
-    def __call__(self):
-        dist = distribution("docpool.base")
-        return dist.version
 
 
 class RootRedirectView(BrowserView):

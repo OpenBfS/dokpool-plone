@@ -1,0 +1,59 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plonetheme.tokyo"
+    >
+
+  <browser:viewlet
+      name="docpool.header"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+      class="docpool.ui.viewlets.header.PortalHeader"
+      template="header.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="info-dropdown"
+      for="*"
+      class=".header.InfoDropdown"
+      template="header-info-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="user-dropdown"
+      for="*"
+      class=".header.UserDropdown"
+      template="header-user-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="config-dropdown"
+      for="*"
+      class=".header.ConfigDropdown"
+      template="header-config-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:viewletManager
+      name="docpool.sidebar.manager"
+      provides=".sidebar.ISidebarManager"
+      class="plone.app.viewletmanager.manager.BaseOrderedViewletManager"
+      permission="zope2.View"
+      />
+
+
+  <browser:viewlet
+      name="docpool.sidebar.info"
+      manager=".sidebar.ISidebarManager"
+      class=".sidebar.SidebarViewlet"
+      permission="zope2.View"
+      />
+
+</configure>

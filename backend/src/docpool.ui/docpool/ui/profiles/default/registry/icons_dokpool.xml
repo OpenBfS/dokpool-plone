@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <record name="plone.icon.dokpool-user">
+    <field type="plone.registry.field.TextLine">
+      <title>Dokpool Icon user</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/dokpool-user.svg</value>
+  </record>
+
+  <record name="plone.icon.dokpool-wrench">
+    <field type="plone.registry.field.TextLine">
+      <title>Dokpool Icon Wrench</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/dokpool-wrench.svg</value>
+  </record>
+</registry>
