@@ -1,5 +1,5 @@
 @import "header";
-
+@import "sidebar";
 $plone-default-private-color: #ad4541;
 $plone-default-pending-color: #ccd111;
 $plone-default-pending_bfs-color: #ffaa00;
@@ -7,6 +7,10 @@ $plone-default-pending_authority-color: #d07317;
 $plone-default-pending_bmu-color: #75a30a;
 $plone-default-published-color: #2c445e;
 $plone-default-revised-color: #7a561f;
+
+.outer-wrapper {
+  padding-left: 205px;
+}
 
 .filter-form-container {
   margin-bottom: 20px;

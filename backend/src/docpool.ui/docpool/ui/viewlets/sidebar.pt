@@ -1,9 +1,14 @@
-<aside class="sidebar d-flex flex-column align-items-center py-3"
+<div class="sidebar d-flex flex-column align-items-center py-3"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+     "
+>
+
+  <nav class="w-100 d-flex flex-column align-items-center"
        tal:define="
          icons python:context.restrictedTraverse('@@iconresolver');
        "
->
-  <nav class="w-100 d-flex flex-column align-items-center">
+  >
     <ul class="nav nav-pills flex-column align-items-center w-100">
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
@@ -74,7 +79,7 @@
       <tr class="times">
         <td class="zone">
           <tal:var i18n:translate="">LT</tal:var>
-              :
+        :
         </td>
         <td class="time">
           <time datetime="${python: local_time}">${python: local_time.strftime('%d.%m.%Y %H:%M')}</time>
@@ -83,7 +88,7 @@
       <tr class="times">
         <td class="zone">
           <tal:var i18n:translate="">UTC</tal:var>
-              :
+        :
         </td>
         <td class="time">
           <time datetime="${python: utc_time}">${python: utc_time.strftime('%d.%m.%Y %H:%M')}</time>
@@ -103,4 +108,4 @@
       <p class="val">00:45 (+8h)</p>
     </div>
   </div>
-</aside>
+</div>
