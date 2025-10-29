@@ -1,6 +1,5 @@
 """Setup tests for this package."""
 
-from docpool.theme.browser.viewlets.common import LogoDocpoolViewlet
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
