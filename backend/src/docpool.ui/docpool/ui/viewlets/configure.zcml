@@ -41,5 +41,19 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:viewletManager
+      name="docpool.sidebar.manager"
+      provides=".sidebar.ISidebarManager"
+      class="plone.app.viewletmanager.manager.BaseOrderedViewletManager"
+      permission="zope2.View"
+      />
+
+
+  <browser:viewlet
+      name="docpool.sidebar.info"
+      manager=".sidebar.ISidebarManager"
+      class=".sidebar.SidebarViewlet"
+      permission="zope2.View"
+      />
 
 </configure>

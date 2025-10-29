@@ -158,11 +158,8 @@
 
       <aside id="portal-column-one"
              metal:define-slot="column_one_slot"
-             tal:condition="sl"
       >
-        <metal:portlets define-slot="portlets_one_slot">
-          <tal:block replace="structure provider:plone.leftcolumn" />
-        </metal:portlets>
+        <tal:sidebar replace="structure provider:docpool.sidebar.manager" />
       </aside>
 
       <aside id="portal-column-two"
