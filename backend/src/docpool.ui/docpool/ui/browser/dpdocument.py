@@ -1,5 +1,9 @@
 from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.browser.dpdocument import DPDocumentEditForm
 from plone.dexterity.browser.view import DefaultView
+from plone.dexterity.interfaces import IDexterityEditForm
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implementer
 
 import io
 import zipfile
@@ -44,3 +48,16 @@ class DPDocumentView(DefaultView):
 
     def icon_name(self):
         return self.context.docTypeObj().icon_name
+
+
+@implementer(IDexterityEditForm)
+class DPDocumentEditFormUI(DPDocumentEditForm):
+    """Edit view for all DPDocuments."""
+
+    template = ViewPageTemplateFile("templates/dpdocument-edit.pt")
+    enable_form_tabbing = False
+
+    def updateWidgets(self):
+        super().updateWidgets()
+        self.text_widget = self.widgets.pop("text", None)
+        self.description_widget = self.widgets.pop("IDublinCore.description", None)

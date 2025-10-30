@@ -50,6 +50,15 @@
       />
 
   <browser:page
+      name="edit"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".dpdocument.DPDocumentEditFormUI"
+      template="templates/dpdocument-edit.pt"
+      permission="cmf.ModifyPortalContent"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="attachments"
       for="docpool.base.interfaces.IDPDocument"
       class=".attachments.Attachments"

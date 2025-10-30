@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      tal:define="
+        dummy python:request.set('ajax_load',1);
+      "
+      i18n:domain="docpool.base"
+>
+
+  <body>
+    <metal:body fill-slot="body" >
+
+      <div id="header">
+      </div>
+
+      <div class="container"
+           id="content"
+      >
+        <!-- macros defined in plone/app/z3cform/templates/macros.pt -->
+        <metal:form use-macro="context/ploneform-macros/titlelessform">
+          <metal:fields-slot fill-slot="fields">
+            <input name="fieldset"
+                   type="hidden"
+                   tal:define="
+                     current_fieldset request/fieldset | python:None;
+                   "
+                   tal:condition="python:has_groups and enable_form_tabbing and current_fieldset is not None"
+                   tal:attributes="
+                     value current_fieldset;
+                   "
+            />
+
+            <div class="row">
+              <div class="col-sm-8">
+                <tal:widgets repeat="widget python: [
+                                     view.text_widget,
+                                     view.description_widget,
+                                     ]">
+                  <tal:widget condition="python: widget is not None">
+                    <metal:fields use-macro="context/ploneform-macros/field" />
+                  </tal:widget>
+                </tal:widgets>
+              </div>
+
+              <div class="col-sm-4 enableFormTabbing pat-autotoc">
+                <metal:fields use-macro="context/ploneform-macros/fields" />
+              </div>
+            </div>
+          </metal:fields-slot>
+        </metal:form>
+      </div>
+    </metal:body>
+  </body>
+</html>

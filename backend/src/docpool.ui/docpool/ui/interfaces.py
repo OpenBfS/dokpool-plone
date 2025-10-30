@@ -1,5 +1,5 @@
-from zope.interface import Interface
+from plone.app.z3cform.interfaces import IPloneFormLayer
 
 
-class IUITheme(Interface):
+class IUITheme(IPloneFormLayer):
     """Marker interface that defines a Zope 3 browser layer."""
