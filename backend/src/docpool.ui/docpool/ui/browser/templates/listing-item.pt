@@ -91,11 +91,18 @@
       </div>
     </div>
 
-  <div class="ms-3">
-    <div tal:content="structure python: data['modified_by_user']">Max Mustermann (Bund)</div>
-    <div class="text-muted small"
-         tal:content="structure python: data['modified_by_group']"
-    >Messzentrale BfS (Bund)</div>
+  <!-- Creator Column -->
+  <div class="py-3 px-2"
+       style="width: 158px;"
+  >
+    <div class="d-flex flex-column">
+      <span class="text-small text-gray-darker text-truncate"
+            tal:content="structure python: data['modified_by_user']"
+      >Max Mustermann (Bund)</span>
+      <span class="text-small text-gray-dark text-truncate"
+            tal:content="structure python: data['modified_by_group']"
+      >Messzentrale BfS (Bund)</span>
+    </div>
   </div>
 
   <div class="ms-3 bg-light">
