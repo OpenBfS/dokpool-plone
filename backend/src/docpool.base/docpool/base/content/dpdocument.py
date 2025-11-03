@@ -444,7 +444,7 @@ class DPDocument(Container, Extendable, ContentBase):
         @param full: True --> combine map & legend images
         @return: a tuple with an image and a filename
         """
-        alsoProvides(self.REQUEST, IDisableCSRFProtection)
+        alsoProvides(getRequest(), IDisableCSRFProtection)
 
         try:
             doc = self
