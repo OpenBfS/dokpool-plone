@@ -1,5 +1,6 @@
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
+from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import get_current_state_title
 from docpool.ui.services.newdatacheck.post import Listing as ListingBase
 from plone import api
@@ -29,48 +30,6 @@ TRANSITION_ICON_MAPPING = {
     "submit": "arrow-right",
 }
 
-# TODO: Either configure in registry/controlpanel or on doktype
-DOCTYPE_ICON_MAPPING = {
-    "airactivity": "wind",
-    "doksysdok": "file-earmark-text",
-    "estimation": "radioactive",
-    "eventinformation": "calendar-event",
-    "gammadoserate": "radioactive",
-    "gammadoserate_mobile": "radioactive",
-    "gammadoserate_timeseries": "radioactive",
-    "groundcontamination": "radioactive",
-    "info_ecc": "info-circle",
-    "info_public": "info-circle",
-    "information_expert_advisor": "card-checklist",
-    "inquiry_measurement_order": "radioactive",
-    "instructions": "card-checklist",
-    "lasair_lasat_projection": "radioactive",
-    "measurement_order": "rulers",
-    "measurement_requirements": "rulers",
-    "mediarelease": "newspaper",
-    "mediareport": "newspaper",
-    "mresult_feed": "flask",
-    "mresult_flight": "flask",
-    "mresult_food": "flask",
-    "mresult_insitu": "flask",
-    "mresult_other": "flask",
-    "mresult_water": "flask",
-    "note": "card-text",
-    "note_measurement_teams": "flask",
-    "notification": "bell",
-    "nppinformation": "radioactive",
-    "operation_map": "map",
-    "other_document": "radioactive",
-    "otherprojection": "radioactive",
-    "protectiveactions": "radioactive",
-    "reireport": "radioactive",
-    "rodosprojection": "radioactive",
-    "sitrep": "radioactive",
-    "situationreport": "radioactive",
-    "trajectory": "compass",
-    "weatherinformation": "cloud-rain",
-}
-
 
 class Listing(ListingBase, BrowserView):
     """Example view called from template"""
@@ -85,10 +44,10 @@ class Listing(ListingBase, BrowserView):
 
 
 class Item(BrowserView):
-    """Example view called from template"""
-
     def __call__(self, uid=None):
-        obj = api.content.get(UID=uid)
+        obj = api.content.get(UID=uid) if uid else self.context
+        if not IDPDocument.providedBy(obj):
+            return
 
         review_state = api.content.get_state(obj)
         review_state_title = get_current_state_title(obj, review_state)
@@ -113,7 +72,7 @@ class Item(BrowserView):
                 if adapted.transferable() and allowed_targets(obj):
                     show_transfer_action = True
 
-        icon_name = self.doctype_icon(obj.docType)
+        icon_name = obj.docTypeObj().icon_name
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
 
@@ -141,5 +100,3 @@ class Item(BrowserView):
     def transition_icon(self, transition_id):
         return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
 
-    def doctype_icon(self, doctype):
-        return DOCTYPE_ICON_MAPPING.get(doctype, "radioactive")

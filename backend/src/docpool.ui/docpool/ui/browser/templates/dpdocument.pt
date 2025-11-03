@@ -89,7 +89,7 @@
                      categories python: typeAndCat[1];
                    "
               >
-                <img src="${python:icons.url(view.doctype_icon(context.docType))}" />
+                <img src="${python:icons.url(context.docTypeObj().icon_name)}" />
                 <tal:cat condition="python: categories">
                   <div>${python: doktype} (${python: ', '.join(categories)})</div>
                 </tal:cat>

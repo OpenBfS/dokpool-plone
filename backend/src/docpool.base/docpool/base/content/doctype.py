@@ -115,6 +115,7 @@ class IDocType(model.Schema):
             default="Name of a icon (see https://icons.getbootstrap.com for reference)",
         ),
         vocabulary="docpool.base.vocabularies.Icons",
+        default="radioactive",
         required=False,
     )
     directives.widget("icon_name", SelectFieldWidget)

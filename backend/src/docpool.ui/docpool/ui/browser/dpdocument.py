@@ -1,5 +1,4 @@
 from docpool.base.appregistry import APP_REGISTRY
-from docpool.ui.browser.listing import DOCTYPE_ICON_MAPPING
 from plone.dexterity.browser.view import DefaultView
 
 import io
@@ -43,5 +42,5 @@ class DPDocumentView(DefaultView):
         )
         return zip_buffer.read()
 
-    def doctype_icon(self, doctype):
-        return DOCTYPE_ICON_MAPPING.get(doctype, "radioactive")
+    def icon_name(self):
+        return self.context.docTypeObj().icon_name
