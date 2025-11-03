@@ -1,17 +1,24 @@
+:root {
+  --sidebar-width: 113px;
+}
 
 .sidebar {
 	width: 113px;
-	min-width: 113px;
+	min-width: var(--sidebar-width);
 	background-color: #f3f3f3;
 	box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 77px;
-  left: 220px;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-right: none;
+    position: fixed;
+    top: 77px;
+    left: var(--plone-toolbar-width-collapsed);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-right: none;
+}
+
+body.plone-toolbar-left-expanded .sidebar {
+    left: var(--plone-toolbar-width);
 }
 
 .sidebar .nav { row-gap: .5rem; }

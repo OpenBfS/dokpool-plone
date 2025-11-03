@@ -8,8 +8,12 @@ $plone-default-pending_bmu-color: #75a30a;
 $plone-default-published-color: #2c445e;
 $plone-default-revised-color: #7a561f;
 
+:root {
+  --bs-gray-light: #F1F3F6;
+}
+
 .outer-wrapper {
-  padding-left: 115px;
+  padding-left: var(--sidebar-width);
 }
 
 .filter-form-container {
@@ -125,4 +129,20 @@ div.pat-modal::after {
 
 #portal-logo {
   float: left;
+}
+
+.preview-tile {
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--bs-gray-light);
+}
+
+.text-small {
+  font-size: 0.625rem; // 10px
+}
+
+.text-medium {
+  font-size: 0.875rem; // 14px
 }
