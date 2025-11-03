@@ -244,6 +244,10 @@
       component=".vocabularies.DashboardCollectionsVocabularyFactory"
       />
   <utility
+      name="docpool.base.vocabularies.Icons"
+      component=".vocabularies.IconsVocabularyFactory"
+      />
+  <utility
       name="docpool.transfers.vocabularies.Permissions"
       component=".vocabularies.PermissionsVocabularyFactory"
       />

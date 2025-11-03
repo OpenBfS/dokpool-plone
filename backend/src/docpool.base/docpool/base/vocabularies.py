@@ -11,8 +11,10 @@ from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
 from plone.app.vocabularies.catalog import StaticCatalogVocabulary
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.component.hooks import getSite
 from zope.interface import implementer
 from zope.interface import provider
@@ -273,6 +275,18 @@ def TransferTargetsVocabularyFactory(context=None):
         for t in targets
     ]
     return SimpleVocabulary([SimpleTerm(uid, title=from_to_title) for from_to_title, uid in sorted(items)])
+
+
+@provider(IVocabularyFactory)
+def IconsVocabularyFactory(context=None):
+    """All icons"""
+    icon_names = []
+    prefix = "plone.icon."
+    registry = getUtility(IRegistry)
+    for key in registry.records.keys():
+        if key.startswith(prefix):
+            icon_names.append(key[len(prefix) :])
+    return SimpleVocabulary([SimpleTerm(i, i, i) for i in icon_names])
 
 
 allow_module("docpool.base.vocabularies")

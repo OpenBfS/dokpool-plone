@@ -2,6 +2,7 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
+from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.base.utils import safe_hasattr
 from plone.dexterity.content import Container
@@ -106,6 +107,17 @@ class IDocType(model.Schema):
         description=_("description_doctype_customviewtemplate", default=""),
         required=False,
     )
+
+    icon_name = schema.Choice(
+        title=_("label_doctype_icon_name", default="Icon Name"),
+        description=_(
+            "description_doctype_icon_name",
+            default="Name of a icon (see https://icons.getbootstrap.com for reference)",
+        ),
+        vocabulary="docpool.base.vocabularies.Icons",
+        required=False,
+    )
+    directives.widget("icon_name", SelectFieldWidget)
 
 
 @implementer(IDocType)
