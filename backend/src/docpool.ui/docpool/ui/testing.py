@@ -26,8 +26,8 @@ class DocpoolUiLayer(PloneSandboxLayer):
         import docpool.elan
         import docpool.ui
         import eea.facetednavigation
-        import plone.restapi
         import plone.patternslib
+        import plone.restapi
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.base)

@@ -7,9 +7,10 @@
     <ul class="nav nav-pills flex-column align-items-center w-100">
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
-
-        tal:attributes="
-          href string:${view/navigation_root_url}/bund/listing">
+           tal:attributes="
+             href string:${view/navigation_root_url}/bund/listing;
+           "
+        >
 
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('grid-3x3-gap-fill', tag_class='me-0')" />
@@ -21,7 +22,9 @@
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
-            href string:${view/navigation_root_url}/bund/esd/overview">
+             href string:${view/navigation_root_url}/bund/esd/overview;
+           "
+        >
 
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('clock', tag_class='me-0')" />

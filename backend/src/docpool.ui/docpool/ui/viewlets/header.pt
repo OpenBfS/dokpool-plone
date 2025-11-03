@@ -1,37 +1,36 @@
 <header class="app-header border-bottom"
         id="portal-header"
-   tal:define="
-  icons python:context.restrictedTraverse('@@iconresolver');
-  "
+        tal:define="
+          icons python:context.restrictedTraverse('@@iconresolver');
+        "
 >
   <div class="container-fluid px-0">
     <div class="d-flex align-items-stretch">
       <!-- Left: Logo + System switcher -->
       <div class="d-flex align-items-center justify-content-center flex-column px-3 logo-block border-end">
-      <a class="text-decoration-none d-flex flex-column align-items-start justify-content-center"
-         accesskey="1"
-         tal:attributes="
-        href string:${view/navigation_root_url};
-        title string:DocPool;
-        "
+        <a class="text-decoration-none d-flex flex-column align-items-start justify-content-center"
+           accesskey="1"
+           tal:attributes="
+             href string:${view/navigation_root_url};
+             title string:DocPool;
+           "
+           i18n:attributes="title"
+           i18n:domain="docpool.elan"
+        >
 
-         i18n:attributes="title"
-         i18n:domain="docpool.elan"
-      >
+          <tal:app_logo tal:define="
+                          active_app view/getActiveApp;
+                        "
+                        tal:condition="python: active_app.get('logo', False)"
+          >
 
-      <tal:app_logo tal:define="
-        active_app view/getActiveApp;
-        "
-         tal:condition="python: active_app.get('logo', False)"
-      >
+            <img src=""
+                 tal:attributes="
+                   src python: '{}/{}'.format(view.site_url, active_app['logo']);
+                 "
+            />
 
-        <img src=""
-         tal:attributes="
-          src python: '{}/{}'.format(view.site_url, active_app['logo']);
-          "
-        />
-
-        </tal:app_logo>
+          </tal:app_logo>
 
 
         </a>
@@ -47,35 +46,31 @@
           <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
 
 
-        <ul class="dropdown-menu menu-config-dropdown">
-          <li class="menu-item-version">
-            <a tal:attributes="
-              href string:${view/navigation_root_url}/bund/setActiveApp?app=elan&redirect_to=/esd;">ELAN</a>
-          </li>
-          <li class="menu-item-version">
-            <a
-               tal:attributes="
-                href string:${view/navigation_root_url}/bund/setActiveApp?app=doksys&redirect_to=/searches;"
-            >IMIS Doksys</a>
-          </li>
-          <li class="menu-item-version">
-            <a
+          <ul class="dropdown-menu menu-config-dropdown">
+            <li class="menu-item-version">
+              <a tal:attributes="
+                   href string:${view/navigation_root_url}/bund/setActiveApp?app=elan&redirect_to=/esd;
+                 ">ELAN</a>
+            </li>
+            <li class="menu-item-version">
+              <a tal:attributes="
+                   href string:${view/navigation_root_url}/bund/setActiveApp?app=doksys&redirect_to=/searches;
+                 ">IMIS Doksys</a>
+            </li>
+            <li class="menu-item-version">
+              <a tal:attributes="
+                   href string:${view/navigation_root_url}/bund/setActiveApp?app=rei&redirect_to=/berichte;
+                 ">REI</a>
+            </li>
+            <li class="menu-item-version">
+              <a tal:attributes="
+                   href string:${view/navigation_root_url}/bund/setActiveApp?app=rodos&redirect_to=/potentially-affected-areas;
+                 ">RODOS</a>
+            </li>
 
-  tal:attributes="
-                href string:${view/navigation_root_url}/bund/setActiveApp?app=rei&redirect_to=/berichte;"
+          </ul>
 
-            >REI</a>
-          </li>
-          <li class="menu-item-version">
-            <a
-               tal:attributes="
-                href string:${view/navigation_root_url}/bund/setActiveApp?app=rodos&redirect_to=/potentially-affected-areas;"
-            >RODOS</a>
-          </li>
-
-        </ul>
-
-      </div>
+        </div>
       </div>
 
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->

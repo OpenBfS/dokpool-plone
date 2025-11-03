@@ -3,7 +3,6 @@ from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
-from plone.api.exc import MissingParameterError
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles

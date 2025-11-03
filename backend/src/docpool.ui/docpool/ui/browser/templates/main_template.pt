@@ -88,8 +88,8 @@
           </div>
         </section>
 
-        <aside id="portal-column-one"
-class="sidebar-desktop d-flex flex-column h-100"
+        <aside class="sidebar-desktop d-flex flex-column h-100"
+               id="portal-column-one"
                metal:define-slot="column_one_slot"
         >
           <tal:sidebar replace="structure provider:docpool.sidebar.manager" />
