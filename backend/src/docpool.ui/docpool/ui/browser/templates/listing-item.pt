@@ -136,7 +136,7 @@
       >
         &#8942;
       </a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu pe-2">
         <li>
           <a class="dropdown-item"
              href="#"
@@ -190,7 +190,7 @@
           <a class="dropdown-item"
              href="#"
              tal:attributes="
-               href python: f'{data['url']}/@@download?_authenticator={token}';
+               href python: f'{data['url']}?download_attachments=1';
              "
           >
             <img src="${python:icons.url('download')}" />
@@ -198,11 +198,12 @@
                   i18n:domain="plone"
                   i18n:translate=""
             >Download all attachments</span>
-             (TODO)
           </a>
         </li>
-        <li tal:condition="python: data['show_transfer_action']"><a class="dropdown-item pat-plone-modal"
+        <li tal:condition="python: data['show_transfer_action']">
+          <a class="dropdown-item pat-modal"
              href="#"
+             data-pat-modal="class: large; source: #content"
              tal:attributes="
                href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % (context.absolute_url(), data['path']);
              "
