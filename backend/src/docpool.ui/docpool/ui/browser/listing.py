@@ -100,3 +100,7 @@ class Item(BrowserView):
     def transition_icon(self, transition_id):
         return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
 
+    def mimetype_name(self, content_type):
+        mtr = api.portal.get_tool("mimetypes_registry")
+        mimetypes = mtr.lookup(content_type)
+        return mimetypes[0].name() if mimetypes else content_type.split("/")[-1]
