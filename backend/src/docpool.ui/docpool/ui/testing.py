@@ -27,6 +27,7 @@ class DocpoolUiLayer(PloneSandboxLayer):
         import docpool.ui
         import eea.facetednavigation
         import plone.restapi
+        import plone.patternslib
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.base)
@@ -34,6 +35,7 @@ class DocpoolUiLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.ui)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)
+        self.loadZCML(package=plone.patternslib)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.base:default")

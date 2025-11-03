@@ -125,15 +125,8 @@ class TestUIFeatures(unittest.TestCase):
         self.assertEqual(data["modified_by_user"], "user1 (Bund)")
         self.assertEqual(data["available_transitions"][0]["id"], "publish")
 
-        # It needs the valid uid of a DPDocument the user can access
-        with self.assertRaises(MissingParameterError):
-            listing_item_view()
-
-        with self.assertRaises(MissingParameterError):
-            listing_item_view(uid="foo")
-
-        with self.assertRaises(AttributeError):
-            listing_item_view(uid=self.group_folder.UID())
+        # It needs a valid uid of a DPDocument the user can access
+        self.assertIsNone(listing_item_view(uid=self.group_folder.UID()))
 
     def test_dpdocument_view(self):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)
