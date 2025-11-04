@@ -1,0 +1,31 @@
+---
+name: dokpool-gui
+
+services:
+  zeoclient-init:
+    image: git.starzel.de:5050/bfs/dokpool:gui
+    command: "create-site"
+    environment:
+      RELSTORAGE_DSN: "dbname='dokpool' user='dokpool' host='postgres-init' password='dokpool'"
+      RELSTORAGE_CREATE_SCHEMA: "true"
+      DELETE_EXISTING: "1"
+    depends_on:
+      postgres-init:
+        condition: service_started
+
+  #  Onlyfor development & test
+  # On production, we use the central patroni postgres
+  postgres-init:
+    image: postgres:16.6
+    volumes:
+      - dokpool-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: dokpool
+      POSTGRES_PASSWORD: dokpool
+      POSTGRES_DB: dokpool
+    ports:
+      - "5432:5432"
+
+volumes:
+  dokpool-gui-db:
+    external: false

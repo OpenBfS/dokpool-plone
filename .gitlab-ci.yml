@@ -97,6 +97,7 @@ build_image:
     - make build-image-ci
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_COMMIT_BRANCH == "gui"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_review:
