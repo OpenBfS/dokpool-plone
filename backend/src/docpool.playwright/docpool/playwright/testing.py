@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.playwright.tutils import setup_sdm
 from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
@@ -77,6 +77,7 @@ class DocpoolPlaywrightLayer(PloneSandboxLayer):
             description="foo",
             docType="weatherinformation",
             local_behaviors=["elan"],
+            scenarios=getScenariosForCurrentUser(),
         )
         notify(EditFinishedEvent(weatherinfo))
         modified(weatherinfo)

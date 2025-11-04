@@ -15,6 +15,7 @@ class TestUpdateNotification:
 
     def test_publish_dpdocument(self):
         page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
         # Tests if the DPDocument exists
         first_list_item = page.locator(".listing-item h2").first
@@ -27,6 +28,7 @@ class TestUpdateNotification:
 
     def test_modal_open_close(self):
         page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
         # Open modal
         page.get_by_role("link", name="Weatherinfo", exact=True).click()

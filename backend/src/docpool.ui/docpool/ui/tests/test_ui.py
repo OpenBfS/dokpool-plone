@@ -1,5 +1,6 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
@@ -65,6 +66,7 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weatherinformation",
             local_behaviors=["elan"],
+            scenarios=getScenariosForCurrentUser(),
         )
         self.assertEqual(self.entry.created_by, "user1 (Bund) <i>Group1 (Bund)</i>")
         # add attachments
