@@ -1,6 +1,6 @@
-from docpool.playwright.testing import DOCPOOL_PLAYWRIGHT_ACCEPTANCE_TESTING
-from docpool.playwright.testing import DOCPOOL_PLAYWRIGHT_FUNCTIONAL_TESTING
-from docpool.playwright.testing import DOCPOOL_PLAYWRIGHT_INTEGRATION_TESTING
+from docpool.ui.testing import DOCPOOL_UI_ACCEPTANCE_TESTING
+from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
+from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from playwright.sync_api import Page
 from plone import api
 from plone.app.testing.interfaces import SITE_OWNER_NAME
@@ -18,9 +18,9 @@ pytest_plugins = ["pytest_plone"]
 
 globals().update(
     fixtures_factory((
-        (DOCPOOL_PLAYWRIGHT_ACCEPTANCE_TESTING, "acceptance"),
-        (DOCPOOL_PLAYWRIGHT_FUNCTIONAL_TESTING, "functional"),
-        (DOCPOOL_PLAYWRIGHT_INTEGRATION_TESTING, "integration"),
+        (DOCPOOL_UI_ACCEPTANCE_TESTING, "acceptance"),
+        (DOCPOOL_UI_FUNCTIONAL_TESTING, "functional"),
+        (DOCPOOL_UI_INTEGRATION_TESTING, "integration"),
     ))
 )
 

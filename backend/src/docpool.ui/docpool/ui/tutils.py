@@ -37,7 +37,7 @@ def setup_sdm(portal):
         id=sdm_name,
         path=tf_name + "/" + toc_name,
         title="Session Data Manager",
-        requestName="TESTOFSESSION",
+        requestName="SESSION",
     )
     app = portal.__parent__
     app._setObject(idmgr_name, bidmgr)
