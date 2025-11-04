@@ -19,13 +19,13 @@ services:
   postgres:
     image: postgres:16.6
     volumes:
-      - dokpool-db:/var/lib/postgresql/data
+      - dokpool-gui-db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: dokpool
       POSTGRES_PASSWORD: dokpool
       POSTGRES_DB: dokpool
     ports:
-      - "5432:5432"
+      - "5532:5432"
     networks:
       - net
 
@@ -37,14 +37,14 @@ services:
       timeout: 5s
       retries: 3
     volumes:
-      - ./devops/varnish.vcl:/etc/varnish/default.vcl:ro
+      - ./devops/varnish-gui.vcl:/etc/varnish/default.vcl:ro
     environment:
       VARNISH_HTTP_PORT: 8090
     depends_on:
       zeoclient:
         condition: service_healthy
     ports:
-      - "8080:8090"
+      - "9080:8090"
     networks:
       - net
 
@@ -72,6 +72,6 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.25.0.0/16
-          ip_range: 172.25.0.0/24
-          gateway: 172.25.0.1
+        - subnet: 172.26.0.0/16
+          ip_range: 172.26.0.0/24
+          gateway: 172.26.0.1

@@ -18,13 +18,13 @@ services:
   postgres-init:
     image: postgres:16.6
     volumes:
-      - dokpool-db:/var/lib/postgresql/data
+      - dokpool-gui-db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: dokpool
       POSTGRES_PASSWORD: dokpool
       POSTGRES_DB: dokpool
     ports:
-      - "5432:5432"
+      - "5532:5432"
 
 volumes:
   dokpool-gui-db:
