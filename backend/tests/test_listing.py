@@ -109,13 +109,14 @@ class TestListing:
         expect(page.locator("#container_uid")).to_have_value(self.group_folder.UID())
         page.locator("#form-widgets-docType").select_option("notification")
         page.get_by_role("button", name="Next").click()
+        assert("@@dpdocument_wizard_2" in page.url)
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
-        page.locator('iframe[title="Rich Text Area"]').content_frame.get_by_label("Rich Text Area").fill(
-            "Test text"
-        )
+        page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
+        page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
         # TODO:
         # page.get_by_role("button", name="Attachments").set_input_files("SOMETHING")
         page.get_by_role("button", name="Next").click()
+        assert("@@dpdocument_wizard_3" in page.url)
 
         expect(page.get_by_role("checkbox", name="Normalfall")).to_be_checked()
         expect(page.get_by_role("radio", name="Only for member of 'Group1 (")).to_be_checked()
@@ -126,6 +127,9 @@ class TestListing:
         expect(page.get_by_role("heading", name="Example Entry")).to_be_visible()
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()
         expect(page.get_by_text("Test text")).to_be_visible()
-
+        assert("/bund/content/Groups/bund_group1/example-entry" in page.url)
         page.goto(f"{self.plone_url}/bund/listing")
         expect(page.get_by_text("Example Entry")).to_be_visible()
+        # Sync to check in Plone
+        transaction.commit()
+        assert(api.content.get_state(self.group_folder["example-entry"]) == "published")
