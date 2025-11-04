@@ -41,6 +41,13 @@
                     <metal:fields use-macro="context/ploneform-macros/field" />
                   </tal:widget>
                 </tal:widgets>
+
+                <div class="pat-upload"
+                     data-pat-upload="ajaxUpload: false;
+                                      autoCleanResults: false;
+                                      url: ${context/absolute_url}/@@upload
+                                      "
+                />
               </div>
 
               <div class="col-sm-4 enableFormTabbing pat-autotoc">
