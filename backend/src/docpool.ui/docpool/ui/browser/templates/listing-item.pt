@@ -19,7 +19,7 @@
   </div>
 
   <div class="me-3 border-start border-end doctype-box">
-    <div class="doktype-icon-container bg-body-tertiary p-2">
+    <div class="doktype-icon-container bg-body-tertiary p-3">
       <img class="doktype-icon px-3 py-1"
            alt="Type"
            src="doctype"
@@ -66,7 +66,7 @@
                     is_last repeat/item/end;
                     plus_number python: is_last and len(data['attachments']) > 3 and len(data['attachments']) - 3;
                   ">
-          <div class="preview-tile position-relative bg-light"
+          <div class="preview-tile position-relative bg-light rounded-1"
                tal:condition="python: item.portal_type == 'Image'"
           >
             <a class="pat-gallery"
@@ -91,12 +91,12 @@
               >+3</span>
             </div>
           </div>
-          <div class="preview-tile position-relative"
+          <div class="preview-tile position-relative rounded-1"
                tal:condition="python: item.portal_type != 'Image'"
           >
-            <div class="d-flex align-items-center justify-content-center h-100 bg-gray-light">
-              <span class="text-gray-main"
-                    tal:content="python: item.content_type().split('/')[-1]"
+            <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle">
+              <span class="text-gray-main bg-body-secondary p-1 rounded-1"
+                    tal:content="python: item.content_type().split('/')[-1].upper()"
               >XLS</span>
               <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
                    tal:condition="python: plus_number"

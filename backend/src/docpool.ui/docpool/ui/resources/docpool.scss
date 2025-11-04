@@ -10,6 +10,8 @@ $plone-default-revised-color: #7a561f;
 
 :root {
   --bs-gray-light: #F1F3F6;
+  --bs-gray-dark: #D9D9D9;
+  --bs-blue-gray: #6A829D;
 }
 
 .outer-wrapper {
@@ -134,9 +136,9 @@ div.pat-modal::after {
 .preview-tile {
   width: 64px;
   height: 64px;
-  border-radius: 4px;
   overflow: hidden;
   background-color: var(--bs-gray-light);
+  color: var(--bs-blue-gray);
 }
 
 .text-small {
