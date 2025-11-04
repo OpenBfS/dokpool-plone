@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# See: https://redmine-koala.bfs.de/issues/6216
 import sys
 
 

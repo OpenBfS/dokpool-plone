@@ -61,16 +61,6 @@ unit_tests:
     - pip install uv
     - make install
     - make coverage
-    # Download previous coverage
-    - PREVIOUSCOVERAGE=$(curl -s https://static.steffen-lindner.de/coverage_ui.txt)
-    - echo $PREVIOUSCOVERAGE
-    # Save current coverage
-    - uv run coverage report --precision=3 | grep TOTAL | awk '{print $NF}' | tr -d '%' > coverage_ui.txt
-    - CURRENTCOVERAGE=$(cat coverage_ui.txt)
-    - echo $CURRENTCOVERAGE
-    - python scripts/check_coverage.py $PREVIOUSCOVERAGE $CURRENTCOVERAGE
-    # Upload coverage
-    - curl -sS --ftp-ssl --ftp-pasv --insecure --user lindner-bfs:$FTP_PASSWORD -T ./coverage_ui.txt ftp://mehl.schokokeks.org/coverage_ui.txt
   coverage: '/TOTAL\s+\d+\s+\d+\s+\d+\s+\d+\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     paths:
