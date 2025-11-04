@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from docpool.playwright.tutils import setup_sdm
 from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
@@ -32,11 +33,13 @@ class DocpoolPlaywrightLayer(PloneSandboxLayer):
         import docpool.theme
         import docpool.ui
         import eea.facetednavigation
+        import plone.patternslib
         import plone.restapi
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.elan)
+        self.loadZCML(package=plone.patternslib)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.ui)
         self.loadZCML(package=eea.facetednavigation)
@@ -44,6 +47,7 @@ class DocpoolPlaywrightLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.playwright)
 
     def setUpPloneSite(self, portal):
+        setup_sdm(portal)
         applyProfile(portal, "docpool.base:default")
         applyProfile(portal, "docpool.elan:default")
         applyProfile(portal, "elan.journal:default")
