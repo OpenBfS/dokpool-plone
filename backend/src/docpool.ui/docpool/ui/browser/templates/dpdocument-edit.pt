@@ -9,7 +9,7 @@
 >
 
   <body>
-    <metal:body fill-slot="body" >
+    <metal:body fill-slot="body">
 
       <div id="header">
       </div>

@@ -65,8 +65,8 @@
 
       <div tal:replace="structure provider:plone.toolbar"></div>
 
-      <header id="portal-top"
-              class="sticky-top"
+      <header class="sticky-top"
+              id="portal-top"
               i18n:domain="plone"
       >
         <div tal:replace="structure provider:plone.portaltop"></div>
