@@ -72,6 +72,8 @@ COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /ap
 COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
 # Make sure we load our translation first - see #4514
 COPY --chown=500:500 templates/i18n-plone-configure.zcml /app/etc/package-includes/i18n-plone-configure.zcml
+# Adds the session temp storage to the zope conf
+COPY --chown=500:500 ./temp_storage.conf /app/etc/zope.conf.d/temp_storage.conf
 
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true
