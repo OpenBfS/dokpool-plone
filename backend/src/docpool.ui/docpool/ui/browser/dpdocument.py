@@ -57,7 +57,7 @@ class DPDocumentEditFormUI(DPDocumentEditForm):
     template = ViewPageTemplateFile("templates/dpdocument-edit.pt")
     enable_form_tabbing = False
 
-    def updateWidgets(self):
-        super().updateWidgets()
+    def render(self):
         self.text_widget = self.widgets.pop("text", None)
         self.description_widget = self.widgets.pop("IDublinCore.description", None)
+        return super().render()
