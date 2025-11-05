@@ -14,7 +14,7 @@ services:
       postgres:
         condition: service_started
     networks:
-      - net
+      - dokpool-gui-network
 
   postgres:
     image: postgres:16.6
@@ -27,7 +27,7 @@ services:
     ports:
       - "5532:5432"
     networks:
-      - net
+      - dokpool-gui-network
 
   varnish:
     image: varnish:7.6.1
@@ -46,7 +46,7 @@ services:
     ports:
       - "9080:8090"
     networks:
-      - net
+      - dokpool-gui-network
 
 # Disabled for now: https://redmine-koala.bfs.de/issues/5926
 #  proxy:
@@ -61,14 +61,14 @@ services:
 #      - "80:80"
 #      - "443:443"
 #    networks:
-#      - net
+#      - dokpool-gui-network
 
 volumes:
   dokpool-gui-db:
     external: false
 
 networks:
-  net:
+  dokpool-gui-network:
     ipam:
       driver: default
       config:
