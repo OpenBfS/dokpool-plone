@@ -26,8 +26,8 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.config
         import docpool.doksys
         import docpool.elan
-        import docpool.ui
         import docpool.theme
+        import docpool.ui
         import eea.facetednavigation
         import elan.journal
         import plone.patternslib

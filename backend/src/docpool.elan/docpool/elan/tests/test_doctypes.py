@@ -1,5 +1,5 @@
-from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.base.browser.dpdocument import DPDocumentView
+from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.elan.utils import setScenariosForCurrentUser
