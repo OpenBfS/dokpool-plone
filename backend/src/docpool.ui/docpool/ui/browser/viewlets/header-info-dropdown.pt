@@ -9,104 +9,74 @@
   >
     <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
   </button>
-  <ul class="dropdown-menu menu-info-dropdown">
-    <!-- Software Version Section -->
-    <li class="menu-item-version">
-      <div class="version-info">
-        <p class="version-label">Softwareversion</p>
-        <p class="version-number">${view/get_dokpool_version}</p>
-
-        <tal:debug tal:condition="python: view.available()">
-          <p class="debug-label"
-             i18n:translate="debug_viewlet_git_commit"
-          >Git Commit</p>
-          <p class="debug-value"><a class="git_rev"
+  <div class="dropdown-menu menu-info-dropdown">
+    <!-- Header: Softwareversion -->
+    <div class="px-3 py-3 bg-light">
+      <small class="d-block text-graublau-dunkel2">Softwareversion</small>
+      <div class="h5 fw-bold mb-0 text-graublau-dunkel2">${view/get_dokpool_version}</div>
+      <tal:debug tal:condition="python: view.available()">
+        <p class="debug-label small mb-0 mt-2"
+           i18n:translate="debug_viewlet_git_commit"
+        >
+           Git Commit:
+          <span class="debug-value small"><a class="git_rev"
                tal:content="python: view.get_git_rev()"
                tal:attributes="
                  href python: 'https://git.starzel.de/bfs/dokpool/commit/' + view.get_git_rev();
                "
                i18n:translate=""
-            >Git Rev</a></p>
+            >Git Rev</a></span></p>
 
-          <p class="debug-label"
-             i18n:translate="debug_viewlet_git_branch"
-          >Git Branch</p>
-          <p class="debug-value"><a class="git_branch"
+        <p class="debug-label small mb-0"
+           i18n:translate="debug_viewlet_git_branch"
+        >Git Branch:
+          <span class="debug-value"><a class="git_branch"
                tal:content="python:view.get_git_branch()"
                tal:attributes="
                  href python: 'https://git.starzel.de/bfs/dokpool/tree/' + view.get_git_branch();
                "
                i18n:translate=""
-            >Git Branch</a></p>
-        </tal:debug>
+            >Git Branch</a></span></p>
+      </tal:debug>
+    </div>
 
-      </div>
-    </li>
-
-    <!-- Menu Items -->
-    <li class="menu-item">
-      <a class="dropdown-item menu-link"
-         href="#"
-      >
-        <div class="menu-item-content">
-          <div class="menu-icon">
-            <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
-          </div>
-          <span class="menu-text">Release Info</span>
-          <div class="menu-arrow">
-            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
-          </div>
+    <!-- Menu list -->
+    <ul class="list-group list-group-flush">
+      <!-- Release Info -->
+      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+        <div class="d-flex align-items-center gap-3">
+          <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
+          <span class="text-graublau-dunkel1 small">Release Info</span>
         </div>
-      </a>
-    </li>
+        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+      </li>
 
-    <li class="menu-item">
-      <a class="dropdown-item menu-link"
-         href="#"
-      >
-        <div class="menu-item-content">
-          <div class="menu-icon">
-            <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-          </div>
-          <span class="menu-text">Barrierefreiheit</span>
-          <div class="menu-arrow">
-            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
-          </div>
+      <!-- Barrierefreiheit -->
+      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+        <div class="d-flex align-items-center gap-3">
+          <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
+          <span class="text-graublau-dunkel1 small">Barrierefreiheit</span>
         </div>
-      </a>
-    </li>
+        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+      </li>
 
-    <li class="menu-item">
-      <a class="dropdown-item menu-link"
-         href="#"
-      >
-        <div class="menu-item-content">
-          <div class="menu-icon">
-            <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='me-2')" />
-          </div>
-          <span class="menu-text">Hilfe</span>
-          <div class="menu-arrow">
-            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
-          </div>
+      <!-- Hilfe -->
+      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+        <div class="d-flex align-items-center gap-3">
+          <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='me-2')" />
+          <span class="text-graublau-dunkel1 small">Hilfe</span>
         </div>
-      </a>
-    </li>
+        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+      </li>
 
-    <li class="menu-item">
-      <a class="dropdown-item menu-link"
-         href="#"
-      >
-        <div class="menu-item-content">
-          <div class="menu-icon">
-            <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
-          </div>
-          <span class="menu-text">Impressum</span>
-          <div class="menu-arrow">
-            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-2')" />
-          </div>
+      <!-- Impressum -->
+      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+        <div class="d-flex align-items-center gap-3">
+          <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
+          <span class="text-graublau-dunkel1 small">Impressum</span>
         </div>
-      </a>
-    </li>
-  </ul>
-
+        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+      </li>
+    </ul>
+  </div>
 </tal:header-info-dropdown>
