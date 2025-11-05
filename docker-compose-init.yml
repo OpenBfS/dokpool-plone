@@ -1,9 +1,9 @@
 ---
-name: dokpool
+name: dokpool-gui
 
 services:
   zeoclient-init:
-    image: git.starzel.de:5050/bfs/dokpool:develop
+    image: git.starzel.de:5050/bfs/dokpool:gui
     command: "create-site"
     environment:
       RELSTORAGE_DSN: "dbname='dokpool' user='dokpool' host='postgres-init' password='dokpool'"
@@ -18,14 +18,14 @@ services:
   postgres-init:
     image: postgres:16.6
     volumes:
-      - dokpool-db:/var/lib/postgresql/data
+      - dokpool-gui-db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: dokpool
       POSTGRES_PASSWORD: dokpool
       POSTGRES_DB: dokpool
     ports:
-      - "5432:5432"
+      - "5532:5432"
 
 volumes:
-  dokpool-db:
+  dokpool-gui-db:
     external: false

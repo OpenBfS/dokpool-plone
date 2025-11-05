@@ -214,34 +214,26 @@ build-image-ci: build-image ## Build Docker Image
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
 
 # Theme and Webpack stuff
-# theme vars
-build_dir=$(BACKEND_FOLDER)/src/docpool.theme/docpool/theme/static/build
+# uivars
+build_dir=$(BACKEND_FOLDER)/src/docpool.ui/docpool/ui/static/build
 
-.PHONY: clean-theme
-clean-theme: ## remove theme build
+.PHONY: clean-ui
+clean-ui: ## remove  uibuild
 	rm -rf $(build_dir)
 	mkdir -p $(build_dir)
 
-.PHONY: purge-theme
-purge-theme: clean-theme ## Purge build files/node_modules/.plone cache
+.PHONY: purge-ui
+purge-ui: clean-ui ## Purge build files/node_modules/.plone cache
 	rm -rf $(BACKEND_FOLDER)/node_modules
 
-.PHONY: install-theme
-install-theme: ## Install js dependencies for webpack
+.PHONY: install-ui
+install-ui: ## Install js dependencies for webpack
 	cd $(BACKEND_FOLDER) && npm install
 
-.PHONY: watch-theme
-watch-theme: ## Develop the theme
+.PHONY: watch-ui
+watch-ui: ## Develop the ui
 	cd $(BACKEND_FOLDER) && npm run watch
 
-.PHONY: build-theme
-build-theme: ## Build the theme
-	cd $(BACKEND_FOLDER) && npm run build
-
-.PHONY: watch-ui
-watch-ui: ## Develop the theme
-	cd $(BACKEND_FOLDER) && npm run watchui
-
 .PHONY: build-ui
-build-ui: ## Build the theme
-	cd $(BACKEND_FOLDER) && npm run buildui
+build-ui: ## Build the ui
+	cd $(BACKEND_FOLDER) && npm run build

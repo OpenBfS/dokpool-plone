@@ -11,10 +11,13 @@ COPY src/docpool.base/docpool/base/resources src/docpool.base/docpool/base/resou
 COPY src/docpool.config/docpool/config/resources src/docpool.config/docpool/config/resources
 COPY src/docpool.elan/docpool/elan/resources src/docpool.elan/docpool/elan/resources
 COPY src/docpool.rei/docpool/rei/resources src/docpool.rei/docpool/rei/resources
-COPY src/docpool.theme/docpool/theme/resources src/docpool.theme/docpool/theme/resources
+COPY src/docpool.ui/docpool/ui/resources src/docpool.ui/docpool/ui/resources
 COPY src/elan.journal/elan/journal/resources src/elan.journal/elan/journal/resources
 
 COPY src/docpool.rei/docpool/rei/browser/static src/docpool.rei/docpool/rei/browser/static
+COPY src/docpool.ui/docpool/ui/static src/docpool.ui/docpool/ui/static
+# TODO Remove as soon as ui is the main pkg
+COPY src/docpool.theme/docpool/theme/resources src/docpool.theme/docpool/theme/resources
 COPY src/docpool.theme/docpool/theme/static src/docpool.theme/docpool/theme/static
 
 COPY package.json package.json
@@ -67,13 +70,15 @@ LABEL maintainer="Starzel.de for Bundesamt für Strahlenschutz <info@starzel.de>
 # Copy /app from builder
 COPY --from=builder --chown=500:500 /app /app
 # Add compiled theme from node
+COPY --from=node --chown=500:500 /app/src/docpool.ui/docpool/ui/static /app/src/src/docpool.ui/docpool/ui/static
+# TODO Remove as soon as ui is the main pkg
 COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /app/src/src/docpool.theme/docpool/theme/static
 # Experimental: Use pyruvate
 COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
 # Make sure we load our translation first - see #4514
 COPY --chown=500:500 templates/i18n-plone-configure.zcml /app/etc/package-includes/i18n-plone-configure.zcml
 # Adds the session temp storage to the zope conf
-COPY --chown=500:500 ./temp_storage.conf /app/etc/zope.conf.d/temp_storage.conf
+COPY --chown=500:500 templates/temp_storage.conf /app/etc/zope.conf.d/temp_storage.conf
 
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true
