@@ -56,7 +56,6 @@ RUN <<EOT
     ../bin/mxdev -c mx.ini
     ../bin/uv pip install -r requirements-mxdev.txt
     ../bin/python /compile_mo.py
-    echo ${GIT_COMMIT} > GIT_COMMIT
 EOT
 
 FROM plone/server-prod-config:${PLONE_VERSION}
