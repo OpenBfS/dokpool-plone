@@ -13,6 +13,8 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <include package=".viewlets" />
+
   <browser:page
       name="main_template"
       for="*"

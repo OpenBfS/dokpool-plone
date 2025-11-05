@@ -36,6 +36,9 @@
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
+           tal:attributes="
+             href string:${view/navigation_root_url}/bund/config/dtypes;
+           "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('diagram-3-fill', tag_class='me-0')" />

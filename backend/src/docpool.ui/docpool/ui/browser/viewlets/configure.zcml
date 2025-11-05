@@ -8,7 +8,7 @@
   <browser:viewlet
       name="docpool.header"
       manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-      class="docpool.ui.viewlets.header.PortalHeader"
+      class="docpool.ui.browser.viewlets.header.PortalHeader"
       template="header.pt"
       permission="zope2.View"
       layer="docpool.ui.interfaces.IUITheme"
