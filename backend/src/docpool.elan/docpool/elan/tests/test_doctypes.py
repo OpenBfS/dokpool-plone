@@ -1,4 +1,5 @@
 from docpool.elan.behaviors.elandocument import IELANDocument
+from docpool.base.browser.dpdocument import DPDocumentView
 from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.elan.utils import setScenariosForCurrentUser
@@ -505,7 +506,7 @@ class TestDocTypes(unittest.TestCase):
         fti = getUtility(IDexterityFTI, name="DPDocument")
         self.assertTrue(fti.allow_discussion)
 
-        view = weatherinfo.restrictedTraverse("view")
+        view = DPDocumentView(weatherinfo, self.request)
 
         # The view needs IViewView to render the commenting Viewlet!
         self.assertTrue(IViewView.providedBy(view))

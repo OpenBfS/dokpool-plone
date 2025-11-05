@@ -27,6 +27,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.doksys
         import docpool.elan
         import docpool.ui
+        import docpool.theme
         import eea.facetednavigation
         import elan.journal
         import plone.patternslib
@@ -36,6 +37,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=docpool.elan)
         self.loadZCML(package=docpool.config)
         self.loadZCML(package=plone.patternslib)
+        self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.ui)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=eea.facetednavigation)
@@ -43,6 +45,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.base:default")
+        applyProfile(portal, "docpool.theme:default")
         applyProfile(portal, "plone.patternslib:default")
         applyProfile(portal, "docpool.config:default")
         applyProfile(portal, "elan.journal:default")
