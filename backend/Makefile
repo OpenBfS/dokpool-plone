@@ -215,7 +215,7 @@ build-image-ci: build-image ## Build Docker Image
 
 # Theme and Webpack stuff
 # uivars
-build_dir=$(BACKEND_FOLDER)/src/docpool.theme/docpool/ui/static/build
+build_dir=$(BACKEND_FOLDER)/src/docpool.ui/docpool/ui/static/build
 
 .PHONY: clean-ui
 clean-ui: ## remove  uibuild
