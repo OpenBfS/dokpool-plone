@@ -122,7 +122,7 @@
         <button class="btn btn-icon"
                 aria-label="Barrierefreiheit"
         >
-          <tal:icon tal:replace="structure python:icons.tag('accessibility', tag_class='me-2')" />
+          <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
         </button>
         <button class="btn btn-icon"
                 aria-label="Systemmeldung"
