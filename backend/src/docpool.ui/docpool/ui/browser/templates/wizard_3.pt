@@ -36,13 +36,11 @@
 
         <h1 i18n:translate="">Create new entry</h1>
 
-        <!-- SCENARIOS -->
-        <tal:block tal:define="
-                     widget python:view.add_form.widgets.get('IELANDocument.scenarios');
-                   ">
-          <tal:widget tal:condition="python: widget"
-                      tal:replace="structure widget/@@ploneform-render-widget"
-          />
+        <!-- All additional widgets -->
+        <tal:block repeat="widget view/add_form/widgets/values|nothing">
+          <tal:block tal:condition="python:widget.__name__ not in view.custom_handled_widgets">
+            <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+          </tal:block>
         </tal:block>
 
         <!-- VISIBILITY -->

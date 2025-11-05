@@ -156,7 +156,6 @@ class DPDocumentWizard(ContextlessWizard):
         "IDublinCore.title",
         "IDublinCore.description",
         "text",
-        "IELANDocument.scenarios",
         "ILocalBehaviorSupport.local_behaviors",
     ]
 
@@ -224,6 +223,15 @@ class DPDocumentWizard(ContextlessWizard):
         new = self.create_item()
         self.session.delete(self.session_name)
         return self.request.response.redirect(new.absolute_url())
+
+    def get_widget(self, name):
+        if not self.add_form:
+            return
+        if widget := self.add_form.widgets.get(name):
+            return widget
+        for group in self.add_form.groups:
+            if widget := group.widgets.get(name):
+                return widget
 
     def create_item(self):
         """Create the content from the data"""

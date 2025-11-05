@@ -19,6 +19,7 @@
             tal:define="
               errors view/errors;
               form python:view.form;
+              doctypes python: view.doctypes();
             "
             tal:attributes="
               action request/URL;
@@ -96,15 +97,6 @@
         </div>
 
         <!-- DOCTYPE -->
-        <tal:show tal:condition="python: False">
-          <tal:block tal:define="
-                       widget python:view.add_form.widgets['docType'];
-                     ">
-            <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-          </tal:block>
-        </tal:show>
-
-        <!-- DOCTYPE -->
         <div tal:define="
                widget_name string:form.widgets.docType;
                widget_id python:widget_name.replace('.', '-');
@@ -127,14 +119,15 @@
                     i18n:translate=""
               >Doctype</span>
             </label>
+            <p tal:condition="python: not doctypes">
+              Please select a container first
+            </p>
             <div class="form-text"></div>
             <div class="error-msg"
                  tal:condition="error"
             ><span tal:replace="error"></span></div>
             <div class="wizard-field field"
-                 tal:define="
-                   doctypes python: view.doctypes();
-                 "
+                 tal:condition="python: doctypes"
                  tal:attributes="
                    class python:error and 'wizard-field field error' or 'wizard-field field';
                  "
