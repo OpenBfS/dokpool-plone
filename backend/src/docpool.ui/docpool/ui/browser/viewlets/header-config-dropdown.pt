@@ -1,6 +1,9 @@
 <tal:header-config-dropdown tal:define="
                               icons python:context.restrictedTraverse('@@iconresolver');
-                            ">
+                              dp_url context/@@dp_url;
+                            "
+                            i18n:domain="docpool.base"
+>
   <button class="btn btn-icon"
           aria-label="Config"
           data-bs-toggle="dropdown"
@@ -9,8 +12,43 @@
   </button>
 
   <ul class="dropdown-menu menu-config-dropdown">
-    <li class="menu-item-version">
-      Config
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='me-2')" />
+      <a href="${dp_url}/contentconfig/scen"
+         i18n:domain="docpool.elan"
+         i18n:translate=""
+      >Edit Scenarios</a>
+    </li>
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='me-2')" />
+      <a href="${dp_url}/archive"
+         i18n:domain="docpool.elan"
+         i18n:translate=""
+      >Edit Archives</a>
+    </li>
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='me-2')" />
+      <a href="${dp_url}/config/dtypes"
+         i18n:translate=""
+      >Eintragsarten</a>
+    </li>
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('people', tag_class='me-2')" />
+      <a href="${dp_url}/@@usergroup-userprefs"
+         i18n:translate=""
+      >User Management</a>
+    </li>
+    <li class="dropdown-item">
+      <a href="${dp_url}/contentconfig/ticker/deleteTicker"
+         i18n:domain="docpool.elan"
+         i18n:translate=""
+      >Delete Ticker</a>
+    </li>
+    <li class="dropdown-item">
+      <a href="${dp_url}/contentconfig/ticker/edit"
+         i18n:domain="docpool.elan"
+         i18n:translate=""
+      >Edit Ticker</a>
     </li>
   </ul>
 </tal:header-config-dropdown>

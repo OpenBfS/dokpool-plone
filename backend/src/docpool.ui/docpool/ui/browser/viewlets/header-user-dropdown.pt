@@ -1,5 +1,7 @@
 <tal:header-user-dropdown tal:define="
                             icons python:context.restrictedTraverse('@@iconresolver');
+                            dp_url context/@@dp_url;
+                            portal_url context/@@plone_portal_state/portal_url;
                           ">
   <button class="btn btn-icon"
           aria-label="Benutzer"
@@ -9,8 +11,34 @@
   </button>
 
   <ul class="dropdown-menu menu-user-dropdown">
-    <li class="menu-item-version">
-      User
+    <li class="dropdown-item">
+      <span i18n:domain="docpool.base"
+            i18n:translate=""
+      >Logged in as</span><br />
+      <strong class="fs-5"
+              tal:content="python: view.user_name()"
+      >Username</strong>
+    </li>
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('key', tag_class='me-2')" />
+      <a href="${dp_url}/@@change-password"
+         i18n:domain="plone"
+         i18n:translate=""
+      >Change Password</a>
+    </li>
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('people', tag_class='me-2')" />
+      <a href="${dp_url}/@@impersonate"
+         i18n:domain="plone"
+         i18n:translate=""
+      >Impersonate</a>
+    </li>
+    <li class="dropdown-item">
+      <tal:icon tal:replace="structure python:icons.tag('door-open', tag_class='me-2')" />
+      <a href="${portal_url}/logout"
+         i18n:domain="plone"
+         i18n:translate=""
+      >Logout</a>
     </li>
   </ul>
 </tal:header-user-dropdown>

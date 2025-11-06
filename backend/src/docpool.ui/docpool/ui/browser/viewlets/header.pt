@@ -47,22 +47,22 @@
 
 
           <ul class="dropdown-menu menu-config-dropdown">
-            <li class="menu-item-version">
+            <li class="dropdown-item">
               <a tal:attributes="
                    href string:${view/navigation_root_url}/bund/setActiveApp?app=elan&redirect_to=/esd;
                  ">ELAN</a>
             </li>
-            <li class="menu-item-version">
+            <li class="dropdown-item">
               <a tal:attributes="
                    href string:${view/navigation_root_url}/bund/setActiveApp?app=doksys&redirect_to=/searches;
                  ">IMIS Doksys</a>
             </li>
-            <li class="menu-item-version">
+            <li class="dropdown-item">
               <a tal:attributes="
                    href string:${view/navigation_root_url}/bund/setActiveApp?app=rei&redirect_to=/berichte;
                  ">REI</a>
             </li>
-            <li class="menu-item-version">
+            <li class="dropdown-item">
               <a tal:attributes="
                    href string:${view/navigation_root_url}/bund/setActiveApp?app=rodos&redirect_to=/potentially-affected-areas;
                  ">RODOS</a>

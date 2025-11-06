@@ -106,7 +106,11 @@ class InfoDropdown(BrowserView):
 
 
 class UserDropdown(BrowserView):
-    pass
+    def user_name(self):
+        if not api.user.is_anonymous():
+            user = api.user.get_current()
+            fullname = user.getProperty("fullname")
+            return fullname or user.getId()
 
 
 class ConfigDropdown(BrowserView):
