@@ -8,7 +8,7 @@
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
-             href string:${view/navigation_root_url}/bund/listing;
+             href string:${view/navigation_root_url}/esd/overview;
            "
         >
 
@@ -22,7 +22,7 @@
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
-             href string:${view/navigation_root_url}/bund/esd/overview;
+             href string:${view/navigation_root_url}/@@listing;
            "
         >
 
@@ -37,7 +37,7 @@
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
            tal:attributes="
-             href string:${view/navigation_root_url}/bund/config/dtypes;
+             href string:${view/navigation_root_url}/config/dtypes;
            "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
