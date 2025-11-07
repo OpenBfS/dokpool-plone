@@ -124,10 +124,12 @@ class TestListing:
         page.get_by_role("radio", name="For all users of 'ELAN Bund'").click()
         page.get_by_role("button", name="Save").click()
 
-        expect(page.get_by_role("heading", name="Example Entry")).to_be_visible()
+        assert page.url.endswith("/bund")
+        expect(page.get_by_text("Created Meldung 'Example Entry'")).to_be_visible()
+
+        page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()
         expect(page.get_by_text("Test text")).to_be_visible()
-        assert "/bund/content/Groups/bund_group1/example-entry" in page.url
         page.goto(f"{self.plone_url}/bund/listing")
         expect(page.get_by_text("Example Entry")).to_be_visible()
         # Sync to check in Plone
