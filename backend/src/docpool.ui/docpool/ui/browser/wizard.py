@@ -222,7 +222,13 @@ class DPDocumentWizard(ContextlessWizard):
             return self.request.response.redirect(self.nextURL())
         new = self.create_item()
         self.session.delete(self.session_name)
-        return self.request.response.redirect(new.absolute_url())
+        msg = _(
+            "Created ${doktype} '${title}'",
+            mapping={"doktype": new.docTypeObj().title, "title": new.title},
+        )
+        api.portal.show_message(msg, self.request)
+        # TODO: Redirect to listing (maybe with previous filters).
+        return self.request.response.redirect(self.context.absolute_url())
 
     def get_widget(self, name):
         if not self.add_form:
