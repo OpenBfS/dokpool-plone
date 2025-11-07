@@ -7,14 +7,19 @@
 
   <div id="attachments">
 
-    <table class="table table-striped">
+    <table class="pat-gallery table table-striped"
+           data-pat-gallery="item-selector: a.gallery-item"
+    >
       <tbody>
         <tr tal:repeat="item python: items">
-          <td>
-            <a target="_blank"
+          <td tal:define="
+                is_image python: item.portal_type == 'Image';
+              ">
+            <a class="gallery-item"
+               target="_blank"
                tal:content="python: item.title"
                tal:attributes="
-                 href python: item.getURL() + '/view';
+                 href python: item.getURL() + '/@@images/image/huge';
                "
             >
             </a>

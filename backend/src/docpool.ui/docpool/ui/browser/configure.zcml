@@ -70,15 +70,6 @@
       />
 
   <browser:page
-      name="attachments_list"
-      for="docpool.base.interfaces.IDPDocument"
-      class=".attachments.Attachments"
-      template="templates/attachments_list.pt"
-      permission="zope2.View"
-      layer="docpool.ui.interfaces.IUITheme"
-      />
-
-  <browser:page
       name="attachments_grid"
       for="docpool.base.interfaces.IDPDocument"
       class=".attachments.Attachments"
@@ -88,10 +79,10 @@
       />
 
   <browser:page
-      name="attachments_gallery"
+      name="attachments_list"
       for="docpool.base.interfaces.IDPDocument"
       class=".attachments.Attachments"
-      template="templates/attachments_gallery.pt"
+      template="templates/attachments_list.pt"
       permission="zope2.View"
       layer="docpool.ui.interfaces.IUITheme"
       />

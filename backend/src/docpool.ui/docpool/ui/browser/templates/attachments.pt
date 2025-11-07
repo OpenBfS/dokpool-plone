@@ -23,16 +23,6 @@
            role="group"
       >
         <a class="btn btn-light pat-inject pat-switch attachments-switcher active"
-           id="attachments_list"
-           href="@@attachments_list"
-           type="button"
-           data-pat-inject="source: #attachments; target: #attachments; trigger: default"
-           data-pat-switch=".attachments-switcher active &amp;&amp; #attachments_list add: active"
-           tal:attributes="
-             href python: context.absolute_url() + '/@@attachments_list';
-           "
-        ><img src="${python:icons.url('list-columns-reverse')}" /></a>
-        <a class="btn btn-light pat-inject pat-switch attachments-switcher"
            id="attachments_grid"
            href="@@attachments_grid"
            type="button"
@@ -43,15 +33,15 @@
            "
         ><img src="${python:icons.url('grid')}" /></a>
         <a class="btn btn-light pat-inject pat-switch attachments-switcher"
-           id="attachments_gallery"
-           href="@@attachments_gallery"
+           id="attachments_list"
+           href="@@attachments_list"
            type="button"
            data-pat-inject="source: #attachments; target: #attachments; trigger: default"
-           data-pat-switch=".attachments-switcher active &amp;&amp; #attachments_gallery add: active"
+           data-pat-switch=".attachments-switcher active &amp;&amp; #attachments_list add: active"
            tal:attributes="
-             href python: context.absolute_url() + '/@@attachments_gallery';
+             href python: context.absolute_url() + '/@@attachments_list';
            "
-        ><img src="${python:icons.url('image')}" /></a>
+        ><img src="${python:icons.url('list-columns-reverse')}" /></a>
       </div>
     </div>
   </div>
@@ -60,7 +50,7 @@
     <a class="pat-inject"
        data-pat-inject="source: #attachments; target: #attachments; trigger: autoload-visible"
        tal:attributes="
-         href python: context.absolute_url() + '/@@attachments_list';
+         href python: context.absolute_url() + '/@@attachments_grid';
        "
     ></a>
   </div>
