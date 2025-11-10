@@ -1,3 +1,20 @@
+<?python
+groups_folder = None
+emergency_info = None
+try:
+    dp = context.myDocumentPool()
+except BaseException:
+    dp = None
+else:
+    try:
+        groups_folder = dp["content"]["Groups"]
+    except BaseException:
+        pass
+    try:
+        emergency_info = dp["hintergrundinfos-ns"]
+    except BaseException:
+        pass
+?>
 <header class="app-header border-bottom"
         id="portal-header"
         tal:define="
@@ -94,16 +111,16 @@
         <!-- Main navigation buttons -->
         <nav class="d-flex align-items-stretch">
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
-             href="#"
+             href="${groups_folder/absolute_url}"
+             tal:condition="python: groups_folder is not None"
           >
-            <span class="small text-primary mb-n1">Meine</span>
-            <span class="small text-primary">Gruppenordner</span>
+            <span class="small text-primary mb-n1">My group folders</span>
           </a>
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
-             href="#"
+             href="${emergency_info/absolute_url}"
+             tal:condition="python: emergency_info is not None"
           >
-            <span class="small text-primary mb-n1">Dokumente</span>
-            <span class="small text-primary">Notfallschutz</span>
+            <span class="small text-primary mb-n1">Emergency documents</span>
           </a>
         </nav>
       </div>
