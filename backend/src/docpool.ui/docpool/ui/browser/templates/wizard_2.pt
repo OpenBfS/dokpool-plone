@@ -142,16 +142,16 @@
         </div>
 
         <button class="btn btn-secondary me-3"
+                formnovalidate="formnovalidate"
                 name="form.buttons.cancel"
                 type="submit"
                 i18n:translate=""
-                formnovalidate="formnovalidate"
         >Cancel</button>
         <button class="btn btn-outline-secondary ms-3"
+                formnovalidate="formnovalidate"
                 name="form.buttons.back"
                 type="submit"
                 i18n:translate=""
-                formnovalidate="formnovalidate"
         >Back</button>
         <button class="btn btn-primary"
                 name="form.buttons.continue"
