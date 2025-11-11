@@ -13,7 +13,6 @@ window.jQuery = jQuery;
 window.$ = jQuery;
 
 // Global styles
-import("./docpool_styles/header-timetable.scss");
 import("./docpool_styles/header.scss");
 import("./docpool_styles/footer.scss");
 

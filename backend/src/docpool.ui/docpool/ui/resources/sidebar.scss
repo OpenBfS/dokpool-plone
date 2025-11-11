@@ -3,57 +3,82 @@
 }
 
 .sidebar {
-	width: 113px;
-	min-width: var(--sidebar-width);
-	background-color: #f3f3f3;
-	box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 77px;
-    left: var(--plone-toolbar-width-collapsed);
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border-right: none;
+  width: 113px;
+  min-width: var(--sidebar-width);
+  background-color: #f3f3f3;
+  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: var(--plone-toolbar-width-collapsed);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: none;
 }
 
 body.plone-toolbar-left-expanded .sidebar {
-    left: var(--plone-toolbar-width);
+  left: var(--plone-toolbar-width);
 }
 
-.sidebar .nav { row-gap: .5rem; }
+.sidebar .nav {
+  row-gap: .5rem;
+}
 
 .sidebar .nav-link {
-	height: 72px;
-	width: 100%;
-	border-radius: .25rem; /* 4px */
-	padding: 0;
+  height: 72px;
+  width: 100%;
+  border-radius: .25rem; /* 4px */
+  padding: 0;
 }
 
 .sidebar .nav-link .label {
-	font-size: 10px;
-	line-height: 1.2;
-	color: var(--bs-primary);
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--bs-primary);
 }
 
 .sidebar .nav-link.active {
-	background-color: var(--bs-info);
-	font-weight: 600;
+  background-color: var(--bs-info);
+  font-weight: 600;
 }
 
-.sidebar .icon-24 { width: 24px; height: 24px; }
+.sidebar .icon-24 {
+  width: 24px;
+  height: 24px;
+}
 
 .sidebar .zones {
-	border-top: 1px solid #e1e6eb;
-	height: 62px;
+  border-top: 1px solid #e1e6eb;
+  height: 62px;
 }
 
-.sidebar .zones .col + .col { border-left: 1px solid #e1e6eb; }
+.sidebar .zones .col + .col {
+  border-left: 1px solid #e1e6eb;
+}
 
 .sidebar .zones p {
-	margin-bottom: 0;
-	font-size: 8px;
+  margin-bottom: 0;
+  font-size: 8px;
 }
 
-.sidebar .zones .name { color: var(--bs-primary); }
-.sidebar .zones .val { color: #6a829d; }
+.sidebar-tz {
+  font-size: .5rem; /* ~8px visual density as per design */
+}
+
+
+/* Tweak the thin divider look in footer */
+.sidebar-desktop .border-top {
+  border-top-color: #e1e6eb !important;
+}
+
+.sidebar-desktop .border-start {
+  border-left-color: #e1e6eb !important;
+}
+
+.sidebar .zones .name {
+  color: var(--bs-primary);
+}
+
+.sidebar .zones .val {
+  color: #6a829d;
+}

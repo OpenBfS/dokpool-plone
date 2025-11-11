@@ -17,3 +17,6 @@ class SidebarViewlet(common.ViewletBase):
 
     def get_utc_time(self):
         return datetime.datetime.now(datetime.UTC)
+
+    def get_jst_time(self):
+        return datetime.datetime.now(datetime.UTC) + datetime.timedelta(hours=8)

@@ -1,4 +1,4 @@
-<div class="sidebar d-flex flex-column align-items-center py-3"
+<div class="sidebar d-flex flex-column align-items-center"
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
      "
@@ -71,45 +71,46 @@
     </ul>
   </nav>
 
-  <div id="mesz"
+  <div class="mt-auto w-100 border-top pt-3"
        tal:define="
          local_time python: view.get_local_time();
          utc_time python: view.get_utc_time();
+         jst_time python: view.get_jst_time();
        "
   >
-    <table class="table table-bordered"
-           id="time_table"
-    >
-      <tr class="times">
-        <td class="zone">
-          <tal:var i18n:translate="">LT</tal:var>
-        :
-        </td>
-        <td class="time">
-          <time datetime="${python: local_time}">${python: local_time.strftime('%d.%m.%Y %H:%M')}</time>
-        </td>
-      </tr>
-      <tr class="times">
-        <td class="zone">
-          <tal:var i18n:translate="">UTC</tal:var>
-        :
-        </td>
-        <td class="time">
-          <time datetime="${python: utc_time}">${python: utc_time.strftime('%d.%m.%Y %H:%M')}</time>
-        </td>
-      </tr>
+    <table class="table table-borderless mb-0 sidebar-tz-table">
+      <tbody>
+        <tr>
+          <td class="sidebar-tz text-primary"
+              i18n:translate=""
+          >ME(S)Z</td>
+          <td class="sidebar-tz text-primary"
+              datetime="${python: local_time}"
+          >
+          ${python: local_time.strftime('%d.%m.%Y %H:%M')}
+          </td>
+        </tr>
+        <tr>
+          <td class="sidebar-tz text-secondary"
+              i18n:translate=""
+          >UTC</td>
+          <td class="sidebar-tz text-secondary"
+              datetime="${python: utc_time}"
+          >
+          ${python: utc_time.strftime('%d.%m.%Y %H:%M')}
+          </td>
+        </tr>
+        <tr>
+          <td class="sidebar-tz text-secondary"
+              i18n:translate=""
+          >JST</td>
+          <td class="sidebar-tz text-secondary"
+              datetime="${python: jst_time}"
+          >
+          ${python: jst_time.strftime('%d.%m.%Y %H:%M')}
+          </td>
+        </tr>
+      </tbody>
     </table>
-  </div>
-  <div class="mt-auto w-100 zones d-flex align-items-center px-0">
-    <div class="col d-flex flex-column align-items-center justify-content-center pe-1">
-      <p class="name">ME(S)Z</p>
-      <p class="val">UTC</p>
-      <p class="val">JST</p>
-    </div>
-    <div class="col d-flex flex-column align-items-center justify-content-center ps-1">
-      <p class="name">14:45</p>
-      <p class="val">12:45 (-2h)</p>
-      <p class="val">00:45 (+8h)</p>
-    </div>
   </div>
 </div>
