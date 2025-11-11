@@ -12,6 +12,7 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.Five.browser import BrowserView
 from zope.component import queryUtility
 
+import datetime
 import json
 
 
@@ -79,6 +80,47 @@ class Listing(BrowserView):
         if self.selected_doktypes:
             query["dp_type"] = self.selected_doktypes
 
+        # Date filter
+        if "form.button.Reset" in form:
+            self.startdate = None
+            self.starttime = None
+            self.enddate = None
+            self.endtime = None
+        else:
+            # Pass original values as string to populate the inputs
+            self.startdate = form.get("startdate") or None
+            self.starttime = form.get("starttime") or None
+            self.enddate = form.get("enddate") or None
+            self.endtime = form.get("endtime") or None
+            # Transform to use in query
+            startdate = extract_date(form.get("startdate"))
+            starttime = extract_time(form.get("starttime"))
+            enddate = extract_date(form.get("enddate"))
+            endtime = extract_time(form.get("endtime"))
+            if startdate and starttime:
+                startdate = startdate.replace(hour=starttime.hour, minute=starttime.minute)
+
+            if enddate and not endtime:
+                enddate = enddate.replace(hour=23, minute=59, second=59)
+            elif enddate and endtime:
+                enddate = enddate.replace(hour=endtime.hour, minute=endtime.minute, second=59)
+
+            if startdate and enddate:
+                query["created"] = {
+                    "query": (startdate, enddate),
+                    "range": "min:max",
+                }
+            elif startdate:
+                query["created"] = {
+                    "query": startdate,
+                    "range": "min",
+                }
+            elif enddate:
+                query["created"] = {
+                    "query": enddate,
+                    "range": "max",
+                }
+
         brains = api.content.find(**query)
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
@@ -87,6 +129,20 @@ class Listing(BrowserView):
             uids = uids[: self.limit]
 
         return uids, modified
+
+
+def extract_date(value):
+    try:
+        return datetime.datetime.strptime(value, "%Y-%m-%d")
+    except:
+        pass
+
+
+def extract_time(value):
+    try:
+        return datetime.datetime.strptime(value, "%H:%M")
+    except:
+        pass
 
 
 class Item(BrowserView):
