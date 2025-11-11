@@ -6,7 +6,11 @@
       xml:lang="en"
       i18n:domain="docpool.base"
 >
-  <metal:content fill-slot="content-core">
+  <metal:content fill-slot="content-core"
+                 tal:define="
+                   items python: view.items;
+                 "
+  >
     <div class="pat-update-notification container"
          id="dokpool-listing"
          tal:attributes="
@@ -17,6 +21,13 @@
             method="GET"
       >
         <div class="d-flex flex-row justify-content-end">
+
+          <div class="m-2">
+            <button class="btn btn-secondary translate">
+              <span tal:replace="python: len(items)"></span>
+               Entries
+            </button>
+          </div>
 
           <div class="m-2 dropdown">
             <button class="btn btn-primary dropdown-toggle"
@@ -192,7 +203,7 @@
     <div class="m-2 container border-bottom"
          id="listing"
     >
-      <tal:block tal:repeat="item python: view.items">
+      <tal:block tal:repeat="item python: items">
         <a class="pat-inject"
            data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
            tal:content="python: '@@listing-item?uid='+ item"
