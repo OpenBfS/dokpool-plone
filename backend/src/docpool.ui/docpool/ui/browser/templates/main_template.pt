@@ -166,7 +166,8 @@
         </article>
 
 
-        <footer id="portal-footer-wrapper"
+        <footer class="border-top"
+                id="portal-footer"
                 i18n:domain="plone"
         >
           <div tal:replace="structure provider:plone.portalfooter"></div>

@@ -56,4 +56,12 @@
       permission="zope2.View"
       />
 
+  <browser:viewlet
+      name="docpool.footer"
+      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+      class="docpool.ui.browser.viewlets.footer.PortalFooter"
+      template="footer.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
 </configure>

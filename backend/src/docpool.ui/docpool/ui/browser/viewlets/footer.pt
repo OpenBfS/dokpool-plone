@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-end gap-3 py-2 ps-4 pe-3">
+    <a class="text-decoration-none text-brand small-footnote"
+       href="https://www.bfs.de/DE/service/datenschutz/datenschutz_node.html"
+    >Datenschutz</a>
+    <div class="vr d-none d-sm-block"></div>
+    <a class="text-decoration-none text-brand small-footnote"
+       href="/contact-info"
+    >Kontakt</a>
+    <div class="vr d-none d-sm-block"></div>
+    <a class="text-decoration-none text-brand small-footnote"
+       href="https://www.bfs.de/DE/service/impressum/impressum_node.html"
+    >Impressum</a>
+    <div class="vr d-none d-sm-block"></div>
+    <a class="text-decoration-none text-brand small-footnote"
+       href='https://www.bfs.de/DE/service/barrierefreiheit/barrierefreiheit_node.html"'
+    >Barrierefreiheit</a>
+    <div class="vr d-none d-sm-block"></div>
+    <a class="text-decoration-none small-footnote mb-0"
+       href="https://www.bfs.de"
+    >&copy; Bundesamt f&uuml;r Strahlenschutz</a>
+  </div>
+</div>
