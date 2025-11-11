@@ -47,7 +47,7 @@
                                       autoCleanResults: false;
                                       url: ${context/absolute_url}/@@upload
                                       "
-                />
+                ></div>
               </div>
 
               <div class="col-sm-4 enableFormTabbing pat-autotoc">
