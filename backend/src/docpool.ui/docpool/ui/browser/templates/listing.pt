@@ -215,11 +215,15 @@
                            disabled python: not view.review_states[review_state]['count'] and 'disabled';
                          "
                   />
-                  <label class="form-check-label"
+                  <label class="form-check-label text-nowrap"
                          for="${python: 'review_states-' + review_state}"
-                         i18n:translate=""
                   >
-              ${python: view.review_states[review_state]['title']}&nbsp;(${python:view.review_states[review_state]['count']})
+                    <span tal:replace="python: view.review_states[review_state]['title']"
+                          i18n:translate=""
+                    ></span>
+                    <span class="badge rounded-pill text-bg-secondary"
+                          tal:content="python:view.review_states[review_state]['count']"
+                    ></span>
                   </label>
                 </div>
               </tal:doktypes>
