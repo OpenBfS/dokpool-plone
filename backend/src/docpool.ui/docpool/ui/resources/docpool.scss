@@ -79,6 +79,11 @@ img.doktype-icon {
     background-color: $plone-default-pending_bmu-color;
   }
 
+  &.state-pending_authority {
+    color: #fff !important;
+    background-color: $plone-default-pending_authority-color;
+  }
+
   &.state-revised {
     color: #fff !important;
     background-color: $plone-default-revised-color;
