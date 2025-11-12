@@ -1,3 +1,5 @@
+from copy import copy
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import BASE_APP
@@ -55,8 +57,9 @@ class Listing(BrowserView):
         self.documenttypes_vocabulary = api.portal.get_vocabulary(
             "docpool.base.vocabularies.DocumentTypes", self.context
         )
+        self.selected_review_states = form.get("review_states") or []
 
-        query = {
+        self.query = {
             "context": self.context,
             "portal_type": ["DPDocument"],
             "sort_on": "mdate",
@@ -67,18 +70,19 @@ class Listing(BrowserView):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         active_apps = dp_app_state.appsActivatedByCurrentUser()
         active_apps.extend([BASE_APP, TRANSFERS_APP])
-        query["apps_supported"] = active_apps
+        self.query["apps_supported"] = active_apps
 
         # Filter by DPEvent (ELAN only)
         if ELAN_APP in active_apps and not IArchiving(self.context).is_archive:
+            # This filters out archived entries unless the context is in an archive
             if event := getScenariosForCurrentUser():
-                query["scenarios"] = event
+                self.query["scenarios"] = event
 
         # Manual filtering
         if self.limit:
-            query["sort_limit"] = self.limit
+            self.query["sort_limit"] = self.limit
         if self.selected_doktypes:
-            query["dp_type"] = self.selected_doktypes
+            self.query["dp_type"] = self.selected_doktypes
 
         # Date filter
         if "form.button.Reset" in form:
@@ -106,22 +110,57 @@ class Listing(BrowserView):
                 enddate = enddate.replace(hour=endtime.hour, minute=endtime.minute, second=59)
 
             if startdate and enddate:
-                query["created"] = {
+                self.query["created"] = {
                     "query": (startdate, enddate),
                     "range": "min:max",
                 }
             elif startdate:
-                query["created"] = {
+                self.query["created"] = {
                     "query": startdate,
                     "range": "min",
                 }
             elif enddate:
-                query["created"] = {
+                self.query["created"] = {
                     "query": enddate,
                     "range": "max",
                 }
 
-        brains = api.content.find(**query)
+        review_state_filter_config = {
+            "private": {
+                "title": _("Gruppenintern"),
+                "review_states": ["private"],
+            },
+            "pending": {
+                "title": _("Eingereicht"),
+                "review_states": [
+                    "pending",
+                    "pending_authority",
+                    "pending_bfs",
+                    "pending_bmu",
+                    "pending_second",
+                ],
+            },
+            "published": {
+                "title": _("Öffentlich"),
+                "review_states": ["published"],
+            },
+            "revised": {
+                "title": _("Storniert"),
+                "review_states": ["revised"],
+            },
+        }
+        for state in review_state_filter_config:
+            count = self.count_options({"review_state": review_state_filter_config[state]["review_states"]})
+            review_state_filter_config[state]["count"] = count
+        self.review_states = review_state_filter_config
+
+        if self.selected_review_states:
+            filtered_by_review_states = []
+            for state in self.selected_review_states:
+                filtered_by_review_states.extend(review_state_filter_config[state]["review_states"])
+            self.query["review_state"] = filtered_by_review_states
+
+        brains = api.content.find(**self.query)
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
 
@@ -129,6 +168,11 @@ class Listing(BrowserView):
             uids = uids[: self.limit]
 
         return uids, modified
+
+    def count_options(self, extra):
+        query = copy(self.query)
+        query.update(**extra)
+        return len(api.content.find(**query))
 
 
 def extract_date(value):

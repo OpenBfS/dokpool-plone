@@ -189,6 +189,48 @@
             </div>
           </div>
 
+          <div class="m-2 dropdown"
+               tal:define="
+                 selected_review_states python: view.selected_review_states;
+               "
+          >
+            <button class="btn btn-primary dropdown-toggle"
+                    aria-expanded="false"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+            >
+                Visibility
+            </button>
+            <div class="dropdown-menu p-2">
+              <tal:doktypes tal:repeat="review_state python: view.review_states">
+                <div class="form-check">
+                  <input class="form-check-input"
+                         id="${python: 'review_states-' + review_state}"
+                         name="review_states:list"
+                         type="checkbox"
+                         value="${python: review_state}"
+                         tal:attributes="
+                           checked python: review_state in selected_review_states;
+                           disabled python: not view.review_states[review_state]['count'] and 'disabled';
+                         "
+                  />
+                  <label class="form-check-label"
+                         for="${python: 'review_states-' + review_state}"
+                         i18n:translate=""
+                  >
+              ${python: view.review_states[review_state]['title']}&nbsp;(${python:view.review_states[review_state]['count']})
+                  </label>
+                </div>
+              </tal:doktypes>
+              <button class="btn btn-primary mt-2"
+                      type="submit"
+                      i18n:domain="plone"
+                      i18n:translate=""
+              >Filter</button>
+            </div>
+          </div>
+
           <div class="m-3">
             <a href="@@dpdocument_wizard_1">
               <img src="${python:icons.url('plus-circle')}"
