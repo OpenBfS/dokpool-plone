@@ -1,4 +1,9 @@
 <?python
+from docpool.base.appregistry import appLogo as appLogo
+
+if view.current_app:
+    app_logo = appLogo(view.current_app)
+
 groups_folder = None
 emergency_info = None
 try:
@@ -34,22 +39,9 @@ else:
            i18n:attributes="title"
            i18n:domain="docpool.elan"
         >
-
-          <tal:app_logo tal:define="
-                          active_app view/getActiveApp;
-                        "
-                        tal:condition="python: active_app.get('logo', False)"
-          >
-
-            <img src=""
-                 tal:attributes="
-                   src python: '{}/{}'.format(view.site_url, active_app['logo']);
-                 "
-            />
-
-          </tal:app_logo>
-
-
+          <img src="${python: f'{view.site_url}/{app_logo}'}"
+               tal:condition="app_logo"
+          />
         </a>
         <div class="d-flex align-items-center gap-1 small text-primary fw-light">
 

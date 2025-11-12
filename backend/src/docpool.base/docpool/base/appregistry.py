@@ -49,6 +49,10 @@ def appIcon(name):
     return APP_REGISTRY[name]["icon"]
 
 
+def appLogo(name):
+    return APP_REGISTRY[name]["logo"]
+
+
 def extensionFor(obj, name):
     """
 
