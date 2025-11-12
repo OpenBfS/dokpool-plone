@@ -1,8 +1,11 @@
 from App.config import getConfiguration
 from docpool.base.appregistry import APP_REGISTRY
+from docpool.base.appregistry import appName
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
+from plone.base.i18nl10n import utranslate
+from plone.base.utils import safe_hasattr
 from Products.Five.browser import BrowserView
 
 import os
@@ -11,7 +14,11 @@ import subprocess
 
 
 class PortalHeader(ViewletBase):
-    pass
+    def update(self):
+        super().update()
+        self.current_dp, self.current_app, self.dp_apps = getApplicationDocPoolsForCurrentUser(
+            self.context, self.request
+        )
 
     def getActiveApp(self):
         user = api.user.get_current()
@@ -21,6 +28,31 @@ class PortalHeader(ViewletBase):
         if not active_app:
             return {}
         return APP_REGISTRY[active_app[0]]
+
+    @property
+    def dp_title(self):
+        return (
+            self.current_dp.title
+            if self.current_dp
+            else utranslate("docpool.base", "Docpools", context=self.context)
+        )
+
+    def apps_menu(self):
+        current_dp_id = self.current_dp.getId() if self.current_dp else None
+
+        for dp, app_names in self.dp_apps:
+            dp_id = dp.getId()
+            physical_path = self.context.getPhysicalPath()
+            keep_context = (
+                current_dp_id == dp_id and "content" in physical_path and "archive" not in physical_path
+            )
+            url = (self.context if keep_context else dp).absolute_url()
+            for app_title, app_name in sorted({appName(i): i for i in app_names}.items()):
+                params = "" if keep_context else "&redirect_to=/@@listing"
+                yield dict(
+                    title=f"{app_title} - {dp.title}",
+                    url=f"{url}/setActiveApp?app={app_name}{params}",
+                )
 
 
 class InfoDropdown(BrowserView):
@@ -115,3 +147,37 @@ class UserDropdown(BrowserView):
 
 class ConfigDropdown(BrowserView):
     pass
+
+
+def getApplicationDocPoolsForCurrentUser(context, request):
+    """
+    Determine all DocPools and their applications that the user has access to.
+    """
+    dp_app_state = api.content.get_view("dp_app_state", context, request)
+    active_apps = dp_app_state.appsActivatedByCurrentUser()
+    current_app = active_apps[0] if active_apps else None
+
+    current_dp = None
+    if safe_hasattr(context, "myDocumentPool"):
+        current_dp = context.myDocumentPool()
+
+    dps = (dp.getObject() for dp in api.content.find(portal_type="DocumentPool"))
+    ordering = api.portal.get().getOrdering()
+
+    # Quick and dirty safeguard against DocumentPools not living directly in the portal.
+    # Shouldn't happen but DocumentPool is globally allowed so just make sure.
+    def sort_key(dp):
+        try:
+            return ordering.getObjectPosition(dp.getId())
+        except ValueError:
+            return 0
+
+    pools = []
+    for dp in sorted(dps, key=sort_key):
+        dp_app_state = api.content.get_view("dp_app_state", dp, request)
+        app_names = dp_app_state.appsAvailableToCurrentUser()
+
+        if app_names:
+            pools.append((dp, app_names))
+
+    return current_dp, current_app, pools

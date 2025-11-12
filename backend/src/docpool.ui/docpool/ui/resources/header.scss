@@ -48,6 +48,10 @@ body {
   object-fit: contain;
 }
 
+.app-switcher {
+  text-transform: uppercase;
+}
+
 .event-card {
   background-color: #c3dce7; /* Hellblau(Hell2) */
   border-bottom: 2px solid var(--bs-primary);

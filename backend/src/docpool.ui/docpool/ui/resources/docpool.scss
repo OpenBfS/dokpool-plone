@@ -134,6 +134,11 @@ div.pat-modal::after {
     color: #222 !important;
 }
 
+#portal-mainnavigation #portal-globalnav .nav-item.apps {
+  // TODO Remove once the new GUI is finished
+  display: none;
+}
+
 #portal-logo {
   float: left;
 }

@@ -53,38 +53,22 @@ else:
         </a>
         <div class="d-flex align-items-center gap-1 small text-primary fw-light">
 
-          <button class="btn btn-icon"
+          <button class="btn btn-icon app-switcher"
                   aria-label="Config"
                   data-bs-toggle="dropdown"
           >
-            <span>BUND</span>
+            <span>${view/dp_title}</span>
           </button>
 
           <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
 
 
           <ul class="dropdown-menu menu-config-dropdown">
-            <li class="dropdown-item">
-              <a tal:attributes="
-                   href string:${view/navigation_root_url}/setActiveApp?app=elan&redirect_to=/@@listing;
-                 ">ELAN</a>
+            <li class="dropdown-item"
+                tal:repeat="item python: view.apps_menu()"
+            >
+              <a href="${item/url}">${item/title}</a>
             </li>
-            <li class="dropdown-item">
-              <a tal:attributes="
-                   href string:${view/navigation_root_url}/setActiveApp?app=doksys&redirect_to=/@@listing;
-                 ">IMIS Doksys</a>
-            </li>
-            <li class="dropdown-item">
-              <a tal:attributes="
-                   href string:${view/navigation_root_url}/setActiveApp?app=rei&redirect_to=/@@listing;
-                 ">REI</a>
-            </li>
-            <li class="dropdown-item">
-              <a tal:attributes="
-                   href string:${view/navigation_root_url}/setActiveApp?app=rodos&redirect_to=/@@listing;
-                 ">RODOS</a>
-            </li>
-
           </ul>
 
         </div>

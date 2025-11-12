@@ -98,6 +98,7 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
         adaptQuery(query, self.context)
 
     def navtree_add_apps_menu(self, tree):
+        # TODO Remove once the new GUI is finished (along with getApplicationDocPoolsForCurrentUser).
         current_dp, current_app, dp_apps = getApplicationDocPoolsForCurrentUser(self.context)
         app_title = appName(current_app) if current_app else None
 
