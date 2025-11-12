@@ -8,8 +8,10 @@ from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.dexterity.utils import datify
 from plone.namedfile.file import NamedBlobImage
 
+import datetime
 import os
 import unittest
 
@@ -150,3 +152,36 @@ class TestUIFeatures(unittest.TestCase):
         attachments_grid_view = api.content.get_view("attachments_grid", self.entry, self.request)
         html = attachments_grid_view()
         self.assertIn(f"{self.entry['another-image'].absolute_url()}/@@download", html)
+
+    def test_time_filter(self):
+        listing_view = api.content.get_view("listing", self.group_folder, self.request)
+        uids, _ = listing_view.find()
+        self.assertEqual(len(uids), 1)
+
+        # create entry
+        entry = api.content.create(
+            container=self.group_folder,
+            type="DPDocument",
+            title="A Weatherinfo",
+            description="foo",
+            docType="weatherinformation",
+            local_behaviors=["elan"],
+            scenarios=getScenariosForCurrentUser(),
+        )
+        uids, _ = listing_view.find()
+        self.assertEqual(len(uids), 2)
+
+        self.request.form["startdate"] = (datetime.date.today() - datetime.timedelta(days=3)).isoformat()
+        uids, _ = listing_view.find()
+        self.assertEqual(len(uids), 2)
+
+        self.request.form["enddate"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
+        uids, _ = listing_view.find()
+        self.assertEqual(len(uids), 0)
+
+        # change creation-date of entry2
+        older_date = datetime.datetime.now() - datetime.timedelta(days=2)
+        entry.creation_date = datify(older_date)
+        entry.reindexObject()
+        uids, _ = listing_view.find()
+        self.assertEqual(len(uids), 1)
