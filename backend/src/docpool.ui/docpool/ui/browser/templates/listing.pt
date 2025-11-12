@@ -37,7 +37,7 @@
                     data-bs-toggle="dropdown"
                     i18n:translate=""
             >
-            Datum
+            Time [ME(S)Z]
             </button>
             <div class="dropdown-menu p-2">
               <label class="form-label"
@@ -139,6 +139,7 @@
               </tal:limit>
             </div>
           </div>
+
           <div class="m-2 dropdown"
                tal:define="
                  selected_doktypes python: view.selected_doktypes;

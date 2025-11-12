@@ -32,7 +32,9 @@
     </div>
     <div class="card-body review-state ${python:data['state_class']}">
       <p class="card-text text-uppercase text-center small"
+         title="${python: data['state_title']}"
          tal:content="python: data['state_title']"
+         i18n:attributes="title"
          i18n:translate=""
       >Review state</p>
     </div>
