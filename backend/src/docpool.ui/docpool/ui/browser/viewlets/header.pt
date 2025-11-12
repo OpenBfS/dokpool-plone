@@ -50,10 +50,8 @@ else:
                   data-bs-toggle="dropdown"
           >
             <span>${view/dp_title}</span>
+            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
           </button>
-
-          <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
-
 
           <ul class="dropdown-menu menu-config-dropdown">
             <li class="dropdown-item"
