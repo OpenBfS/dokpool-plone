@@ -24,6 +24,7 @@ else:
         id="portal-header"
         tal:define="
           icons python:context.restrictedTraverse('@@iconresolver');
+          auth_token context/@@authenticator/token;
         "
 >
   <div class="container-fluid px-0">
@@ -67,22 +68,41 @@ else:
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->
       <div class="d-flex align-items-stretch flex-grow-1">
         <!-- Event button -->
-        <div class="event-card d-flex align-items-center px-3 border-end">
-          <div>
-            <div class="text-primary small">Modul&uuml;bung Stab L und M</div>
+        <button class="btn btn-icon event-switcher event-card d-flex align-items-center px-3 border-end"
+                aria-label="Config"
+                data-bs-toggle="dropdown"
+        >
+          <tal:selected define="
+                          scenario python: view.selected_scenario;
+                        "
+                        condition="python: scenario is not None"
+          >
+            <div class="text-primary small">${scenario/Title}</div>
             <div class="d-flex align-items-center gap-3 mt-1">
-              <span class="badge bg-warning text-dark tag-badge">&Uuml;bung</span>
-              <span class="small text-primary">Routinebetrieb</span>
+              <span class="badge bg-warning text-dark tag-badge">${scenario/EventType}</span>
+              <span class="small text-primary">${scenario/OperationMode}</span>
             </div>
+          </tal:selected>
+          <tal:selected condition="python: view.selected_scenario is None">
+            <div class="text-primary small">Select scenario</div>
+          </tal:selected>
+
+          <!-- Event switcher narrow block -->
+          <div class="d-flex align-items-center justify-content-center border-end">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
           </div>
-        </div>
+        </button>
+        <ul class="dropdown-menu menu-config-dropdown">
+          <li class="dropdown-item"
+              tal:repeat="scenario python: view.scenarios"
+          >
+            <a href="${python: f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">${scenario/Title}</a>
+          </li>
+        </ul>
+      </div>
 
-        <!-- Event switcher narrow block -->
-        <div class="event-switcher d-flex align-items-center justify-content-center border-end">
-          <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
-        </div>
-
-        <!-- Main navigation buttons -->
+      <!-- Main navigation buttons -->
+      <div class="d-flex align-items-stretch flex-grow-1">
         <nav class="d-flex align-items-stretch">
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
              href="${groups_folder/absolute_url}"
