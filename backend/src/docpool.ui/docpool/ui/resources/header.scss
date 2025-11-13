@@ -21,6 +21,14 @@ body {
     "Noto Color Emoji";
 }
 
+/// Todo Remove as appswitcher is complete
+#scenario_box {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .app-header {
   background-color: #ffffff;
 }
