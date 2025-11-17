@@ -60,7 +60,6 @@ class Listing(BrowserView):
         self.selected_review_states = form.get("review_states") or []
 
         self.query = {
-            "context": self.context,
             "portal_type": ["DPDocument"],
             "sort_on": "mdate",
             "sort_order": "reverse",
@@ -160,7 +159,13 @@ class Listing(BrowserView):
                 filtered_by_review_states.extend(review_state_filter_config[state]["review_states"])
             self.query["review_state"] = filtered_by_review_states
 
-        brains = api.content.find(**self.query)
+        # Filter by context
+        # TODO: Handle listing in content-area (which is a folder-listing)
+        # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
+        self.query["path"] = "/".join(self.context.getPhysicalPath())
+
+        catalog = api.portal.get_tool("portal_catalog")
+        brains = catalog(**self.query)
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
 
