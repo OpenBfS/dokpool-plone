@@ -11,6 +11,7 @@ from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
 from zope.component import queryUtility
 
@@ -51,6 +52,10 @@ class Listing(BrowserView):
 
     def find(self, limit=0):
         form = self.request.form
+        self.query = {
+            "portal_type": ["DPDocument"],
+        }
+
         self.limit = int(form.get("limit", limit))
 
         self.selected_doktypes = form.get("selected_doktypes") or []
@@ -59,11 +64,23 @@ class Listing(BrowserView):
         )
         self.selected_review_states = form.get("review_states") or []
 
-        self.query = {
-            "portal_type": ["DPDocument"],
-            "sort_on": "mdate",
-            "sort_order": "reverse",
+        # Sorting
+        self.sort_on_options = {
+            "newest": ("mdate", "descending", _("Newest first")),
+            "oldest": ("mdate", "ascending", _("Oldest first")),
+            "a-z": ("sortable_title", "ascending", _("A-Z")),
+            "z-a": ("sortable_title", "descending", _("Z-A")),
         }
+        self.sort_on = form.get("sort_on") or "newest"
+        sort_on_option = self.sort_on_options.get(self.sort_on) or self.sort_on_options["newest"]
+        self.query["sort_on"] = sort_on_option[0]
+        self.query["sort_order"] = sort_on_option[1]
+
+        self.searchable_text = form.get("searchable_text")
+
+        # Filter by Text
+        if self.searchable_text:
+            self.query["SearchableText"] = munge_search_term(self.searchable_text)
 
         # Filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
@@ -77,13 +94,13 @@ class Listing(BrowserView):
             if event := getScenariosForCurrentUser():
                 self.query["scenarios"] = event
 
-        # Manual filtering
+        # More manual filtering
         if self.limit:
             self.query["sort_limit"] = self.limit
         if self.selected_doktypes:
             self.query["dp_type"] = self.selected_doktypes
 
-        # Date filter
+        # Filter by Date
         if "form.button.Reset" in form:
             self.startdate = None
             self.starttime = None
@@ -124,6 +141,7 @@ class Listing(BrowserView):
                     "range": "max",
                 }
 
+        # Filter by review_state
         review_state_filter_config = {
             "private": {
                 "title": _("Gruppenintern"),

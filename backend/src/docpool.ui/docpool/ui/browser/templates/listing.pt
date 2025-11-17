@@ -240,11 +240,73 @@
             </div>
           </div>
 
-          <div class="m-3">
-            <a href="@@dpdocument_wizard_1">
-              <img src="${python:icons.url('plus-circle')}"
-                   title="Add entry"
+          <div class="m-2">
+            <div class="input-group">
+              <input class="form-control"
+                     aria-label="Search"
+                     autocomplete="off"
+                     name="searchable_text"
+                     placeholder="Search on this page"
+                     type="text"
+                     tal:attributes="
+                       value python: view.searchable_text or nothing;
+                     "
               />
+              <button class="btn border-light-subtle btn-light"
+                      type="submit"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
+              </button>
+            </div>
+          </div>
+
+          <div class="m-2 dropdown">
+            <button class="btn btn-light dropdown-toggle"
+                    aria-expanded="false"
+                    title="Sorting"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('sort-down')" />
+            </button>
+            <div class="dropdown-menu p-2">
+              <div class="form-check"
+                   tal:repeat="sort_on python: view.sort_on_options"
+              >
+                <input class="form-check-input"
+                       id="${python: sort_on}"
+                       name="sort_on"
+                       onchange="this.form.submit()"
+                       type="radio"
+                       value="${python: sort_on}"
+                       tal:attributes="
+                         checked python: view.sort_on == sort_on;
+                       "
+                />
+                <label class="form-check-label text-nowrap"
+                       for="${python: sort_on}"
+                       i18n:translate=""
+                >
+                  ${python: view.sort_on_options[sort_on][2]}
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2">
+            <a class="btn btn-light"
+               href="javascript:this.print();"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+            </a>
+          </div>
+
+          <div class="m-2">
+            <a class="btn btn-light"
+               href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('plus-circle', tag_alt='Add entry')" />
             </a>
           </div>
         </div>
