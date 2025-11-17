@@ -22,7 +22,9 @@
       >
         <div class="d-flex flex-row justify-content-end">
 
-          <div class="m-2">
+          <div class="m-2"
+               tal:replace="nothing"
+          >
             <button class="btn btn-secondary translate">
               <span tal:replace="python: len(items)"></span>
                Entries
@@ -30,7 +32,7 @@
           </div>
 
           <div class="m-2 dropdown">
-            <button class="btn btn-primary dropdown-toggle"
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -107,8 +109,10 @@
             </div>
           </div>
 
-          <div class="m-2 dropdown">
-            <button class="btn btn-primary dropdown-toggle"
+          <div class="m-2 dropdown"
+               tal:replace="nothing"
+          >
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -145,7 +149,7 @@
                  selected_doktypes python: view.selected_doktypes;
                "
           >
-            <button class="btn btn-primary dropdown-toggle"
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -195,7 +199,7 @@
                  selected_review_states python: view.selected_review_states;
                "
           >
-            <button class="btn btn-primary dropdown-toggle"
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
