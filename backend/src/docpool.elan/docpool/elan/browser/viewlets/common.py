@@ -15,6 +15,7 @@ allow_module("docpool.elan.browser.viewlets")
 allow_module("docpool.elan.browser.viewlets.common")
 
 
+# TODO Remove once the new GUI is finished
 class EventViewlet(ViewletBase):
     index = ViewPageTemplateFile("events.pt")
 

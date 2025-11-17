@@ -34,6 +34,26 @@ def getOpenScenarios(self):
     return res
 
 
+def get_scenario_for_current_user():
+    global_scenarios = get_global_scenario_selection()
+    user = api.user.get_current()
+    for scen, selected in _get_scenario_selections_for_user(user).items():
+        if selected and global_scenarios.get(scen) not in ("closed", "removed"):
+            return scen
+    for scen, state in global_scenarios.items():
+        if state == "selected":
+            return scen
+
+
+def set_scenario_for_current_user(scenario):
+    global_scenarios = get_global_scenario_selection()
+    value = [f"{scenario}:selected"] if global_scenarios.get(scenario) != "removed" else []
+    user = api.user.get_current()
+    if user.getProperty("scenarios", []) != value:
+        user.setMemberProperties({"scenarios": value})
+
+
+# TODO Remove once the new GUI is finished (5 functions)
 def _get_scenario_selections_for_user(user):
     selections_prop = user.getProperty("scenarios", [])
     selections = dict(line.strip().rsplit(":", 1) for line in selections_prop)
@@ -80,6 +100,9 @@ def set_scenarios_for_user(user, scenarios):
     ]
     if sorted(user.getProperty("scenarios", [])) != sorted(value):
         user.setMemberProperties({"scenarios": value})
+
+
+# TODO Remove once the new GUI is finished (up to here)
 
 
 def get_global_scenario_selection():

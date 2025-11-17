@@ -1,5 +1,7 @@
 from App.config import getConfiguration
 from docpool.base.appregistry import appName
+from docpool.elan.utils import get_scenario_for_current_user
+from docpool.elan.utils import getOpenScenarios
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
@@ -18,6 +20,11 @@ class PortalHeader(ViewletBase):
         self.current_dp, self.current_app, self.dp_apps = getApplicationDocPoolsForCurrentUser(
             self.context, self.request
         )
+
+        possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
+        scenarios_by_uid = {s.UID: s.getObject() for s in possible}
+        self.scenarios = scenarios_by_uid.values()
+        self.selected_scenario = scenarios_by_uid.get(get_scenario_for_current_user())
 
     @property
     def dp_title(self):

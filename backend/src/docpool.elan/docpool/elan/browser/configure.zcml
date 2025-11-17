@@ -61,6 +61,13 @@
       />
 
   <browser:page
+      name="select_scenario"
+      for="*"
+      class=".dpevents.SelectScenario"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="elan.macros"
       for="*"
       template="elan_macros.pt"

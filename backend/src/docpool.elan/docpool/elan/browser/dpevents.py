@@ -1,4 +1,5 @@
 from Acquisition import aq_get
+from docpool.elan.utils import set_scenario_for_current_user
 from docpool.elan.utils import setScenariosForCurrentUser
 from plone import api
 from Products.Five.browser import BrowserView
@@ -19,6 +20,7 @@ class DPEventsView(BrowserView):
         return len(api.content.find(context=contentarea, **args))
 
 
+# TODO Remove once the new GUI is finished
 class EventSelectAction(BrowserView):
     """
     Handles the submit of the EventViewlet
@@ -28,5 +30,12 @@ class EventSelectAction(BrowserView):
         pscnrs = self.request.get("pscnrs", [])
         scnrs = self.request.get("scnrs", [])
         setScenariosForCurrentUser({s: (s in scnrs) for s in pscnrs})
+        self.request.response.setHeader("Pragma", "no-cache")
+        return self.request.response.redirect(self.request.get("HTTP_REFERER", ""))
+
+
+class SelectScenario(BrowserView):
+    def __call__(self):
+        set_scenario_for_current_user(self.request.get("scenario"))
         self.request.response.setHeader("Pragma", "no-cache")
         return self.request.response.redirect(self.request.get("HTTP_REFERER", ""))
