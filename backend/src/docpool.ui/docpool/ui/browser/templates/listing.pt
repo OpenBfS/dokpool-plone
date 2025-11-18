@@ -11,8 +11,8 @@
                    items python: view.items;
                  "
   >
-    <div class="pat-update-notification container"
-         id="dokpool-listing"
+    <div class="m-2 container"
+         id="listing-filters"
          tal:attributes="
            data-listing-modified python: view.modified;
          "
@@ -20,17 +20,15 @@
       <form class="filter-form"
             method="GET"
       >
-        <div class="d-flex flex-row justify-content-end">
+        <div class="d-flex flex-wrap justify-content-end">
 
-          <div class="m-2">
-            <button class="btn btn-secondary translate">
-              <span tal:replace="python: len(items)"></span>
+          <div class="my-1 py-2 me-auto">
+            <span tal:replace="python: len(items)"></span>
                Entries
-            </button>
           </div>
 
-          <div class="m-2 dropdown">
-            <button class="btn btn-primary dropdown-toggle"
+          <div class="m-1 dropdown">
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -107,8 +105,10 @@
             </div>
           </div>
 
-          <div class="m-2 dropdown">
-            <button class="btn btn-primary dropdown-toggle"
+          <div class="m-1 dropdown"
+               tal:replace="nothing"
+          >
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -140,12 +140,13 @@
             </div>
           </div>
 
-          <div class="m-2 dropdown"
+          <div class="m-1 dropdown"
                tal:define="
-                 selected_doktypes python: view.selected_doktypes;
+                 selected_doctypes python: view.selected_doctypes;
+                 doctypes python: view.doctypes;
                "
           >
-            <button class="btn btn-primary dropdown-toggle"
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -156,32 +157,41 @@
             <div class="dropdown-menu p-2 pat-checklist">
               <button class="btn btn-primary mt-2"
                       type="submit"
+                      tal:condition="python: len(doctypes) > 5"
                       i18n:domain="plone"
                       i18n:translate=""
               >Filter</button>
 
-              <div class="form-check"><label><input class="form-check-input toggle-all"
+              <div class="form-check"
+                   tal:condition="python: len(doctypes) > 5"
+              ><label><input class="form-check-input toggle-all"
                          type="checkbox"
                   /><span i18n:translate="label_toggle">Toggle all</span></label></div>
-              <tal:doktypes tal:repeat="doktype python: view.documenttypes_vocabulary">
+              <tal:doctypes tal:repeat="doctype python: doctypes">
                 <div class="form-check">
                   <input class="form-check-input"
-                         id="${python: 'selected_doktypes-' + doktype.token}"
-                         name="selected_doktypes:list"
+                         id="${python: 'selected_doctypes-' + doctype}"
+                         name="selected_doctypes:list"
                          type="checkbox"
-                         value="${python: doktype.token}"
+                         value="${python: doctype}"
                          tal:attributes="
-                           checked python: doktype.token in selected_doktypes;
+                           checked python: doctype in selected_doctypes;
+                           disabled python: not doctypes[doctype]['count'] and 'disabled';
                          "
                   />
-                  <label class="form-check-label"
-                         for="${python: 'selected_doktypes-' + doktype.token}"
+                  <label class="form-check-label text-nowrap"
+                         for="${python: 'selected_doctypes-' + doctype}"
                          i18n:translate=""
                   >
-              ${python: doktype.title}
+                    <span tal:replace="python: doctypes[doctype]['title']"
+                          i18n:translate=""
+                    ></span>
+                    <span class="badge rounded-pill text-bg-secondary"
+                          tal:content="python:doctypes[doctype]['count']"
+                    ></span>
                   </label>
                 </div>
-              </tal:doktypes>
+              </tal:doctypes>
               <button class="btn btn-primary mt-2"
                       type="submit"
                       i18n:domain="plone"
@@ -190,12 +200,12 @@
             </div>
           </div>
 
-          <div class="m-2 dropdown"
+          <div class="m-1 dropdown"
                tal:define="
                  selected_review_states python: view.selected_review_states;
                "
           >
-            <button class="btn btn-primary dropdown-toggle"
+            <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
@@ -204,7 +214,7 @@
                 Visibility
             </button>
             <div class="dropdown-menu p-2">
-              <tal:doktypes tal:repeat="review_state python: view.review_states">
+              <tal:doctypes tal:repeat="review_state python: view.review_states">
                 <div class="form-check">
                   <input class="form-check-input"
                          id="${python: 'review_states-' + review_state}"
@@ -227,7 +237,7 @@
                     ></span>
                   </label>
                 </div>
-              </tal:doktypes>
+              </tal:doctypes>
               <button class="btn btn-primary mt-2"
                       type="submit"
                       i18n:domain="plone"
@@ -236,11 +246,73 @@
             </div>
           </div>
 
-          <div class="m-3">
-            <a href="@@dpdocument_wizard_1">
-              <img src="${python:icons.url('plus-circle')}"
-                   title="Add entry"
+          <div class="m-1">
+            <div class="input-group">
+              <input class="form-control"
+                     aria-label="Search"
+                     autocomplete="off"
+                     name="searchable_text"
+                     placeholder="Search on this page"
+                     type="text"
+                     tal:attributes="
+                       value python: view.searchable_text or nothing;
+                     "
               />
+              <button class="btn border-light-subtle btn-light"
+                      type="submit"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
+              </button>
+            </div>
+          </div>
+
+          <div class="m-1 me-3 dropdown">
+            <button class="btn btn-light dropdown-toggle"
+                    aria-expanded="false"
+                    title="Sorting"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('sort-down')" />
+            </button>
+            <div class="dropdown-menu p-2">
+              <div class="form-check"
+                   tal:repeat="sort_on python: view.sort_on_options"
+              >
+                <input class="form-check-input"
+                       id="${python: sort_on}"
+                       name="sort_on"
+                       onchange="this.form.submit()"
+                       type="radio"
+                       value="${python: sort_on}"
+                       tal:attributes="
+                         checked python: view.sort_on == sort_on;
+                       "
+                />
+                <label class="form-check-label text-nowrap"
+                       for="${python: sort_on}"
+                       i18n:translate=""
+                >
+                  ${python: view.sort_on_options[sort_on][2]}
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-1">
+            <a class="btn btn-light"
+               href="javascript:this.print();"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+            </a>
+          </div>
+
+          <div class="ms-1 my-1">
+            <a class="btn btn-light"
+               href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('plus-circle', tag_alt='Add entry')" />
             </a>
           </div>
         </div>

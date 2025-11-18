@@ -11,6 +11,7 @@ from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
 from zope.component import queryUtility
 
@@ -51,20 +52,28 @@ class Listing(BrowserView):
 
     def find(self, limit=0):
         form = self.request.form
+        self.query = {
+            "portal_type": ["DPDocument"],
+        }
+
         self.limit = int(form.get("limit", limit))
 
-        self.selected_doktypes = form.get("selected_doktypes") or []
-        self.documenttypes_vocabulary = api.portal.get_vocabulary(
-            "docpool.base.vocabularies.DocumentTypes", self.context
-        )
-        self.selected_review_states = form.get("review_states") or []
-
-        self.query = {
-            "context": self.context,
-            "portal_type": ["DPDocument"],
-            "sort_on": "mdate",
-            "sort_order": "reverse",
+        # Sorting
+        self.sort_on_options = {
+            "newest": ("mdate", "descending", _("Newest first")),
+            "oldest": ("mdate", "ascending", _("Oldest first")),
+            "a-z": ("sortable_title", "ascending", _("A-Z")),
+            "z-a": ("sortable_title", "descending", _("Z-A")),
         }
+        self.sort_on = form.get("sort_on") or "newest"
+        sort_on_option = self.sort_on_options.get(self.sort_on) or self.sort_on_options["newest"]
+        self.query["sort_on"] = sort_on_option[0]
+        self.query["sort_order"] = sort_on_option[1]
+
+        # Filter by Text
+        self.searchable_text = form.get("searchable_text")
+        if self.searchable_text:
+            self.query["SearchableText"] = munge_search_term(self.searchable_text)
 
         # Filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
@@ -78,13 +87,12 @@ class Listing(BrowserView):
             if event := getScenariosForCurrentUser():
                 self.query["scenarios"] = event
 
-        # Manual filtering
-        if self.limit:
-            self.query["sort_limit"] = self.limit
-        if self.selected_doktypes:
-            self.query["dp_type"] = self.selected_doktypes
+        # Filter by Doctype
+        self.selected_doctypes = form.get("selected_doctypes") or []
+        if self.selected_doctypes:
+            self.query["dp_type"] = self.selected_doctypes
 
-        # Date filter
+        # Filter by Date
         if "form.button.Reset" in form:
             self.startdate = None
             self.starttime = None
@@ -105,7 +113,7 @@ class Listing(BrowserView):
                 startdate = startdate.replace(hour=starttime.hour, minute=starttime.minute)
 
             if enddate and not endtime:
-                enddate = enddate.replace(hour=23, minute=59, second=59)
+                enddate = enddate + datetime.timedelta(days=1)
             elif enddate and endtime:
                 enddate = enddate.replace(hour=endtime.hour, minute=endtime.minute, second=59)
 
@@ -125,6 +133,7 @@ class Listing(BrowserView):
                     "range": "max",
                 }
 
+        # Filter by review_state
         review_state_filter_config = {
             "private": {
                 "title": _("Gruppenintern"),
@@ -149,18 +158,33 @@ class Listing(BrowserView):
                 "review_states": ["revised"],
             },
         }
-        for state in review_state_filter_config:
-            count = self.count_options({"review_state": review_state_filter_config[state]["review_states"]})
-            review_state_filter_config[state]["count"] = count
-        self.review_states = review_state_filter_config
-
+        self.selected_review_states = form.get("review_states") or []
         if self.selected_review_states:
             filtered_by_review_states = []
             for state in self.selected_review_states:
                 filtered_by_review_states.extend(review_state_filter_config[state]["review_states"])
             self.query["review_state"] = filtered_by_review_states
 
-        brains = api.content.find(**self.query)
+        # Filter by context
+        # TODO: Handle listing in content-area (which is a folder-listing)
+        # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
+        self.query["path"] = "/".join(self.context.getPhysicalPath())
+
+        # Prepare review_state filter options (query needs to be complete)
+        for state in review_state_filter_config:
+            count = self.count_options({"review_state": review_state_filter_config[state]["review_states"]})
+            review_state_filter_config[state]["count"] = count
+        self.review_states = review_state_filter_config
+
+        # Prepare Doctype filter options (query needs to be complete)
+        doctypes_config = {}
+        for doctype in api.portal.get_vocabulary("docpool.base.vocabularies.DocumentTypes", self.context):
+            doctypes_config[doctype.value] = {"title": doctype.title}
+            doctypes_config[doctype.value]["count"] = self.count_options({"dp_type": doctype.value})
+        self.doctypes = doctypes_config
+
+        catalog = api.portal.get_tool("portal_catalog")
+        brains = catalog(**self.query)
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
 
