@@ -4,6 +4,8 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_get
 from Acquisition import aq_inner
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from functools import wraps
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.base.utils import base_hasattr
@@ -444,3 +446,17 @@ def get_docpool_for_user(user=None):
 
     # 4. Fallback to first available dp
     return brains[0].getObject()
+
+
+def app_only_decorator(app):
+    def app_only(func):
+        @wraps(func)
+        def wrapper(self, *args, **kwargs):
+            local_behaviors = ILocalBehaviorSupport(self.context).local_behaviors
+            if app not in local_behaviors:
+                raise ValueError(f"Method or attribute requires context document with {app} support.")
+            return func(self, *args, **kwargs)
+
+        return wrapper
+
+    return app_only

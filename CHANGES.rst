@@ -4,6 +4,11 @@ Changelog
 2.4.0 (unreleased)
 ------------------
 
+Fixed:
+
+- Prevent access to ELAN-specific attributes on non-ELAN documents (which
+  turns out to be not well-defined). (#6125)
+  [tlotze]
 
 
 2.3.0 (2025-10-23)
