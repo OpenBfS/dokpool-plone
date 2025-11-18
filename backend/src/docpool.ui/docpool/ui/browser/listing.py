@@ -58,12 +58,6 @@ class Listing(BrowserView):
 
         self.limit = int(form.get("limit", limit))
 
-        self.selected_doktypes = form.get("selected_doktypes") or []
-        self.documenttypes_vocabulary = api.portal.get_vocabulary(
-            "docpool.base.vocabularies.DocumentTypes", self.context
-        )
-        self.selected_review_states = form.get("review_states") or []
-
         # Sorting
         self.sort_on_options = {
             "newest": ("mdate", "descending", _("Newest first")),
@@ -76,9 +70,8 @@ class Listing(BrowserView):
         self.query["sort_on"] = sort_on_option[0]
         self.query["sort_order"] = sort_on_option[1]
 
-        self.searchable_text = form.get("searchable_text")
-
         # Filter by Text
+        self.searchable_text = form.get("searchable_text")
         if self.searchable_text:
             self.query["SearchableText"] = munge_search_term(self.searchable_text)
 
@@ -94,11 +87,10 @@ class Listing(BrowserView):
             if event := getScenariosForCurrentUser():
                 self.query["scenarios"] = event
 
-        # More manual filtering
-        if self.limit:
-            self.query["sort_limit"] = self.limit
-        if self.selected_doktypes:
-            self.query["dp_type"] = self.selected_doktypes
+        # Filter by Doctype
+        self.selected_doctypes = form.get("selected_doctypes") or []
+        if self.selected_doctypes:
+            self.query["dp_type"] = self.selected_doctypes
 
         # Filter by Date
         if "form.button.Reset" in form:
@@ -121,7 +113,7 @@ class Listing(BrowserView):
                 startdate = startdate.replace(hour=starttime.hour, minute=starttime.minute)
 
             if enddate and not endtime:
-                enddate = enddate.replace(hour=23, minute=59, second=59)
+                enddate = enddate + datetime.timedelta(days=1)
             elif enddate and endtime:
                 enddate = enddate.replace(hour=endtime.hour, minute=endtime.minute, second=59)
 
@@ -166,11 +158,7 @@ class Listing(BrowserView):
                 "review_states": ["revised"],
             },
         }
-        for state in review_state_filter_config:
-            count = self.count_options({"review_state": review_state_filter_config[state]["review_states"]})
-            review_state_filter_config[state]["count"] = count
-        self.review_states = review_state_filter_config
-
+        self.selected_review_states = form.get("review_states") or []
         if self.selected_review_states:
             filtered_by_review_states = []
             for state in self.selected_review_states:
@@ -181,6 +169,19 @@ class Listing(BrowserView):
         # TODO: Handle listing in content-area (which is a folder-listing)
         # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
         self.query["path"] = "/".join(self.context.getPhysicalPath())
+
+        # Prepare review_state filter options (query needs to be complete)
+        for state in review_state_filter_config:
+            count = self.count_options({"review_state": review_state_filter_config[state]["review_states"]})
+            review_state_filter_config[state]["count"] = count
+        self.review_states = review_state_filter_config
+
+        # Prepare Doctype filter options (query needs to be complete)
+        doctypes_config = {}
+        for doctype in api.portal.get_vocabulary("docpool.base.vocabularies.DocumentTypes", self.context):
+            doctypes_config[doctype.value] = {"title": doctype.title}
+            doctypes_config[doctype.value]["count"] = self.count_options({"dp_type": doctype.value})
+        self.doctypes = doctypes_config
 
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog(**self.query)
