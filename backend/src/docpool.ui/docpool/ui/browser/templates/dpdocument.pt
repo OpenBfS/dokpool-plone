@@ -5,6 +5,8 @@
       tal:define="
         dummy python:request.set('ajax_load',1);
         can_edit python: context.canBeEdited();
+        can_delete python: context.canBeDeleted();
+        uuid python: view.uuid();
         token context/@@authenticator/token;
       "
       i18n:domain="docpool.base"
@@ -31,20 +33,49 @@
           <div class="col-sm-6">
 
             <div class="actions">
-              <ul class="list-group list-group-horizontal">
-                <li class="list-group-item">Previous</li>
-                <li class="list-group-item">Next</li>
+              <ul class="list-group list-group-horizontal"
+                  tal:attributes="
+                    data-current-item python: uuid;
+                  "
+              >
+                <li class="list-group-item">
+                  <a href="#"
+                     onclick="history.back(); return false;"
+                  >Back</a>
+                </li>
+                <li class="list-group-item priv">
+                  <a class="pat-inject2"
+                     href="#"
+                     data-pat-inject="trigger: default; source: #content; target: #content; history: record"
+                  >Previous</a>
+                </li>
+                <li class="list-group-item next">
+                  <a class="pat-inject2"
+                     href="#"
+                     data-pat-inject="trigger: default; source: #content; target: #content; history: record"
+                  >Next</a>
+                </li>
                 <li class="list-group-item">
                   <a class="pat-inject"
                      href="edit"
-                     data-pat-inject="source: #content; target: .panel-content"
+                     data-pat-inject="trigger: default; source: #content; target: #content-core; history: record"
                      tal:condition="python: can_edit"
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
                      "
                   >Edit</a>
                 </li>
-                <li class="list-group-item">Delete</li>
+                <li class="list-group-item">
+                  <a class="pat-inject"
+                     href="delete"
+                     data-pat-inject="source: #content; target: #content-core"
+                     tal:condition="python: can_delete"
+                     tal:attributes="
+                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}';
+                     "
+                  >Delete</a>
+                </li>
+
                 <li class="list-group-item">Print</li>
                 <li class="list-group-item">Favorite</li>
               </ul>

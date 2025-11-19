@@ -321,6 +321,9 @@
 
     <div class="m-2 container border-bottom"
          id="listing"
+         tal:attributes="
+           data-items python: view.json_items;
+         "
     >
       <tal:block tal:repeat="item python: items">
         <a class="pat-inject"

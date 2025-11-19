@@ -15,7 +15,8 @@
     <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
     <div class="text-muted small"
          tal:content="python: toLocalizedTime(data['date'], long_format=0)"
-    >16.12.2021</div>
+    >16.12.2021
+    </div>
   </div>
 
   <div class="me-3 border-start border-end doctype-box">
@@ -41,9 +42,9 @@
   </div>
 
   <div class="flex-fill">
-    <a class="pat-modal"
+    <a class="pat-inject list-item-link"
        href="#"
-       data-pat-modal="class: large; source: #content"
+       data-pat-inject="trigger: default; source: #content; target: #content-core; history: record"
        tal:attributes="
          href python: data['url'];
        "
@@ -165,7 +166,7 @@
                   i18n:domain="plone"
                   i18n:translate=""
             >Mark as Favorite</span>
-             (TODO)
+            (TODO)
           </a>
         </li>
         <tal:transitions tal:repeat="transition python: data['available_transitions']">
@@ -242,7 +243,7 @@
                   i18n:domain="plone"
                   i18n:translate=""
             >Cut</span>
-             (TODO)
+            (TODO)
           </a>
         </li>
       </ul>
