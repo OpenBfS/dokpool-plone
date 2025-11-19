@@ -1,12 +1,12 @@
 {
-  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_leitstelle-a-dwd/kommentar-zur-wetterlage/beispiel.pdf",
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_wetterdienst/kommentar-zur-wetterlage/beispiel.pdf",
   "@type": "File",
   "UID": "093fc9443add4ce8b0f6e59ce8ecbc73",
   "allow_discussion": null,
   "contributors": [],
   "created": "2025-09-23T13:04:40+00:00",
   "creators": [
-    "demouser-dwd"
+    "user-wetterdienst"
   ],
   "description": "",
   "effective": null,
@@ -36,7 +36,7 @@
     "dp_one_state_workflow": [
       {
         "action": null,
-        "actor": "demouser-dwd",
+        "actor": "user-wetterdienst",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-23T13:04:40+00:00"

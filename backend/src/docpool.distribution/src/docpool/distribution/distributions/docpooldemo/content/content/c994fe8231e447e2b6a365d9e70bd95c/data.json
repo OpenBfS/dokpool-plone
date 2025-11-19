@@ -1,12 +1,12 @@
 {
-  "@id": "/bund/content/Groups/bund_bmu-stab-s",
+  "@id": "/bund/content/Groups/bund_ministerium",
   "@type": "GroupFolder",
   "UID": "c994fe8231e447e2b6a365d9e70bd95c",
   "allow_discussion": null,
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-23T12:12:08+00:00",
-  "created_by": "admin <i>BMU Stab S</i>",
+  "created_by": "admin <i>Bundesministerium (Bund)</i>",
   "creators": [
     "admin"
   ],
@@ -30,7 +30,7 @@
     ]
   },
   "exportimport.conversation": [],
-  "id": "bund_bmu-stab-s",
+  "id": "bund_ministerium",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -44,10 +44,10 @@
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "BMU Stab S",
+  "title": "Bundesministerium (Bund)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-09-23T14:12:08",
+  "wdate": "2025-09-23T14:12:08+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {

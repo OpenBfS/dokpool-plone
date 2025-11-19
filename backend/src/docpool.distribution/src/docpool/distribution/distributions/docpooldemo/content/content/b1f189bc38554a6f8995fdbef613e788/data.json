@@ -1,17 +1,17 @@
 {
-  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_leitstelle-a-dwd/kommentar-zur-wetterlage",
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_wetterdienst/kommentar-zur-wetterlage",
   "@type": "DPDocument",
   "UID": "b1f189bc38554a6f8995fdbef613e788",
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-23T13:04:32+00:00",
-  "created_by": "Demouser DWD (Bund) <i>DWD - Leitstelle Luft (Bund)</i>",
+  "created_by": "User Wetterdienst (Bund) <i>Wetterdienst (Bund)</i>",
   "creators": [
-    "demouser-dwd"
+    "user-wetterdienst"
   ],
   "description": "",
   "docType": "weatherinformation",
-  "effective": "2025-09-23T13:04:47+00:00",
+  "effective": "2025-09-23T13:04:00+00:00",
   "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
@@ -26,7 +26,7 @@
   "lock": {},
   "mdate": "2025-09-23T15:04:40",
   "modified": "2025-09-23T13:04:47+00:00",
-  "modified_by": "Demouser DWD (Bund) <i>DWD - Leitstelle Luft (Bund)</i>",
+  "modified_by": "User Wetterdienst (Bund) <i>Wetterdienst (Bund)</i>",
   "review_state": "published",
   "rights": null,
   "scenarios": [],
@@ -43,19 +43,19 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-09-23T15:04:47",
+  "wdate": "2025-09-23T15:04:47+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {
         "action": null,
-        "actor": "demouser-dwd",
+        "actor": "user-wetterdienst",
         "comments": "",
         "review_state": "private",
         "time": "2025-09-23T13:04:32+00:00"
       },
       {
         "action": "publish",
-        "actor": "demouser-dwd",
+        "actor": "user-wetterdienst",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-23T13:04:47+00:00"

@@ -1,12 +1,12 @@
 {
-  "@id": "/brandenburg/content/Groups/bb_e-lavg",
+  "@id": "/brandenburg/content/Groups/bb_behoerde",
   "@type": "GroupFolder",
   "UID": "6dc41351b11b4d50886e662fdb8c9ef4",
   "allow_discussion": null,
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-17T14:15:28+00:00",
-  "created_by": "admin <i>LAVG (Brandenburg)</i>",
+  "created_by": "admin <i>Landesbeh\u00f6rde (Brandenburg)</i>",
   "creators": [
     "admin"
   ],
@@ -30,7 +30,7 @@
     ]
   },
   "exportimport.conversation": [],
-  "id": "bb_e-lavg",
+  "id": "bb_behoerde",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -44,10 +44,10 @@
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "LAVG (Brandenburg)",
+  "title": "Landesbeh\u00f6rde (Brandenburg)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-09-17T16:15:28",
+  "wdate": "2025-09-17T16:15:28+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {

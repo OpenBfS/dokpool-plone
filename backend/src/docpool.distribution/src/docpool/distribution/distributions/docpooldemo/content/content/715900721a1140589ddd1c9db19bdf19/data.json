@@ -1,17 +1,17 @@
 {
-  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_e-lagebild-bfs/eine-mitteilung",
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_behoerde/eine-mitteilung",
   "@type": "DPDocument",
   "UID": "715900721a1140589ddd1c9db19bdf19",
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-23T13:26:35+00:00",
-  "created_by": "Demouser Stab L (Bund) <i>Lagebild BfS (Bund)</i>",
+  "created_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
   "creators": [
-    "demouser-stab-l-bund"
+    "user-behoerde"
   ],
   "description": "",
   "docType": "note",
-  "effective": "2025-09-23T13:26:38+00:00",
+  "effective": "2025-09-23T13:26:00+00:00",
   "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
@@ -34,7 +34,7 @@
   "subjects": [],
   "text": {
     "content-type": "text/html",
-    "data": "BMU Stab S meldet Einsatzbereitschaft",
+    "data": "Bundesministerium (Bund) meldet Einsatzbereitschaft",
     "encoding": "utf-8"
   },
   "title": "Eine Mitteilung",
@@ -43,19 +43,19 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-09-23T15:26:38",
+  "wdate": "2025-09-23T15:26:38+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {
         "action": null,
-        "actor": "demouser-stab-l-bund",
+        "actor": "user-behoerde",
         "comments": "",
         "review_state": "private",
         "time": "2025-09-23T13:26:35+00:00"
       },
       {
         "action": "publish",
-        "actor": "demouser-stab-l-bund",
+        "actor": "user-behoerde",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-23T13:26:38+00:00"

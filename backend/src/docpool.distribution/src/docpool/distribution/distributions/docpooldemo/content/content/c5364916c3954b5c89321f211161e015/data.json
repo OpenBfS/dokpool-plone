@@ -1,12 +1,12 @@
 {
-  "@id": "/bund/content/Groups/bund_e-lagebild-bfs/lagebilder-zur-freigabe-durch-bmu/beispiel-lagebild-fuer-freigabe-workflow/beispiel.pdf",
+  "@id": "/bund/content/Groups/bund_behoerde/lagebilder-zur-freigabe-durch-bundesministerium/beispiel-lagebild-fuer-freigabe-workflow/beispiel.pdf",
   "@type": "File",
   "UID": "c5364916c3954b5c89321f211161e015",
   "allow_discussion": null,
   "contributors": [],
   "created": "2025-09-23T12:25:53+00:00",
   "creators": [
-    "demouser-stab-l-bund"
+    "user-behoerde"
   ],
   "description": "",
   "effective": null,
@@ -25,7 +25,7 @@
   "language": "##DEFAULT##",
   "layout": "file_view",
   "lock": {},
-  "modified": "2025-09-23T12:25:53+00:00",
+  "modified": "2025-11-19T10:25:15+00:00",
   "review_state": "published",
   "rights": "",
   "subjects": [],
@@ -36,7 +36,7 @@
     "dp_one_state_workflow": [
       {
         "action": null,
-        "actor": "demouser-stab-l-bund",
+        "actor": "user-behoerde",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-23T12:25:53+00:00"

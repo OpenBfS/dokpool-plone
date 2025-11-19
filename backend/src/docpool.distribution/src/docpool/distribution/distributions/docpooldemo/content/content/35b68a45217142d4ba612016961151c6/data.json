@@ -1,11 +1,11 @@
 {
-  "@id": "/berlin/content/Groups/be_e-be-atom/uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
+  "@id": "/berlin/content/Groups/be_ministerium/uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
   "@type": "DPDocument",
   "UID": "35b68a45217142d4ba612016961151c6",
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-17T13:32:23+00:00",
-  "created_by": "admin <i>SenMVKU IIA (Berlin)</i>",
+  "created_by": "admin <i>Landesministerium (Berlin)</i>",
   "creators": [
     "admin"
   ],
@@ -22,7 +22,7 @@
       "scenario_ids": "uebung-imis-2025",
       "timestamp": "2025-09-17T16:09:38",
       "transferfolder_uid": "2399ce81f348479d90973de8ca891d95",
-      "user": "admin SenMVKU IIA (Berlin)"
+      "user": "admin Landesministerium (Berlin)"
     }
   ],
   "id": "uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
@@ -35,7 +35,7 @@
   "lock": {},
   "mdate": "2025-09-17T15:50:48",
   "modified": "2025-09-17T13:57:40+00:00",
-  "modified_by": "Demouser (Berlin) <i>SenMVKU IIA (Berlin)</i>",
+  "modified_by": "User BE (Berlin) <i>Landesministerium (Berlin)</i>",
   "review_state": "published",
   "rights": null,
   "scenarios": [
@@ -54,7 +54,7 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-09-17T15:57:40",
+  "wdate": "2025-09-17T15:57:40+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {

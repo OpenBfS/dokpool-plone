@@ -50,7 +50,7 @@
         "bb_doksysadmin",
         "bb_dpadmin",
         "bb_elanadmin",
-        "demouser-bb"
+        "user-bb"
       ],
       "roles": [],
       "title": "Administrators (Brandenburg)"
@@ -64,7 +64,7 @@
       "groups": [],
       "principals": [
         "bb_contentadmin",
-        "demouser-bb"
+        "user-bb"
       ],
       "roles": [],
       "title": "Content Administrators (Brandenburg)"
@@ -78,7 +78,7 @@
       "groups": [],
       "principals": [
         "bb_doksysadmin",
-        "demouser-bb"
+        "user-bb"
       ],
       "roles": [],
       "title": "Doksys Users (Brandenburg)"
@@ -94,8 +94,8 @@
         "bb_contentadmin",
         "bb_dpadmin",
         "bb_elanadmin",
-        "demouser-bb",
-        "demouser-be"
+        "user-bb",
+        "user-be"
       ],
       "roles": [],
       "title": "ELAN Users (Brandenburg)"
@@ -221,8 +221,8 @@
         "bb_contentadmin",
         "bb_dpadmin",
         "bb_elanadmin",
-        "demouser-bb",
-        "demouser-be"
+        "user-bb",
+        "user-be"
       ],
       "roles": [],
       "title": "Members (Brandenburg)"
@@ -284,14 +284,14 @@
       ],
       "description": "f\u00fcr Inhalte ELAN",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": null,
-      "groupid": "bb_e-lavg",
+      "email": "",
+      "groupid": "bb_behoerde",
       "groups": [],
       "principals": [
-        "demouser-bb"
+        "user-bb"
       ],
       "roles": [],
-      "title": "LAVG (Brandenburg)"
+      "title": "Landesbeh\u00f6rde (Brandenburg)"
     },
     {
       "allowedDocTypes": [],
@@ -304,7 +304,7 @@
         "be_doksysadmin",
         "be_dpadmin",
         "be_elanadmin",
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
       "title": "Administrators (Berlin)"
@@ -318,7 +318,7 @@
       "groups": [],
       "principals": [
         "be_contentadmin",
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
       "title": "Content Administrators (Berlin)"
@@ -332,7 +332,7 @@
       "groups": [],
       "principals": [
         "be_doksysadmin",
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
       "title": "Doksys Users (Berlin)"
@@ -348,7 +348,7 @@
         "be_contentadmin",
         "be_dpadmin",
         "be_elanadmin",
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
       "title": "ELAN Users (Berlin)"
@@ -474,8 +474,7 @@
         "be_contentadmin",
         "be_dpadmin",
         "be_elanadmin",
-        "demouser",
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
       "title": "Members (Berlin)"
@@ -513,7 +512,7 @@
       "groups": [],
       "principals": [
         "be_dpadmin",
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
       "title": "Rodos Users (Berlin)"
@@ -587,14 +586,14 @@
       ],
       "description": "IIA Atomaufsicht, Strahlenschutz, Strahlenmessstelle",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": null,
-      "groupid": "be_e-be-atom",
+      "email": "",
+      "groupid": "be_ministerium",
       "groups": [],
       "principals": [
-        "demouser-be"
+        "user-be"
       ],
       "roles": [],
-      "title": "SenMVKU IIA (Berlin)"
+      "title": "Landesministerium (Berlin)"
     },
     {
       "allowedDocTypes": [],
@@ -634,9 +633,9 @@
       "groups": [],
       "principals": [
         "bund_doksysadmin",
-        "demouser-bmu-bund",
-        "demouser-dwd",
-        "demouser-stab-l-bund"
+        "user-behoerde",
+        "user-ministerium",
+        "user-wetterdienst"
       ],
       "roles": [],
       "title": "Doksys Users (Bund)"
@@ -652,23 +651,23 @@
         "bund_contentadmin",
         "bund_dpadmin",
         "bund_elanadmin",
-        "demouser-be",
-        "demouser-bmu-bund",
-        "demouser-dwd",
-        "demouser-stab-l-bund"
+        "user-be",
+        "user-behoerde",
+        "user-ministerium",
+        "user-wetterdienst"
       ],
       "roles": [],
       "title": "ELAN Users (Bund)"
     },
     {
-      "allowedDocTypes": null,
+      "allowedDocTypes": [],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "",
       "groupid": "bund_EventEditors",
       "groups": [],
       "principals": [
-        "demouser-bmu-bund"
+        "user-ministerium"
       ],
       "roles": [
         "EventEditor"
@@ -683,7 +682,7 @@
       "groupid": "bund_Journal1_Editors",
       "groups": [],
       "principals": [
-        "demouser-stab-l-bund"
+        "user-behoerde"
       ],
       "roles": [],
       "title": "Journal 1 Editors (Bund)"
@@ -798,10 +797,10 @@
         "bund_contentadmin",
         "bund_dpadmin",
         "bund_elanadmin",
-        "demouser-be",
-        "demouser-bmu-bund",
-        "demouser-dwd",
-        "demouser-stab-l-bund"
+        "user-be",
+        "user-behoerde",
+        "user-ministerium",
+        "user-wetterdienst"
       ],
       "roles": [],
       "title": "Members (Bund)"
@@ -828,8 +827,8 @@
       "groups": [],
       "principals": [
         "bund_dpadmin",
-        "demouser-bmu-bund",
-        "demouser-dwd"
+        "user-ministerium",
+        "user-wetterdienst"
       ],
       "roles": [],
       "title": "REI Users (Bund)"
@@ -867,9 +866,9 @@
       "groups": [],
       "principals": [
         "bund_dpadmin",
-        "demouser-bmu-bund",
-        "demouser-dwd",
-        "demouser-stab-l-bund"
+        "user-behoerde",
+        "user-ministerium",
+        "user-wetterdienst"
       ],
       "roles": [],
       "title": "Rodos Users (Bund)"
@@ -902,29 +901,6 @@
     },
     {
       "allowedDocTypes": [
-        "nppinformation",
-        "estimation",
-        "eventinformation",
-        "protectiveactions",
-        "instructions",
-        "mediarelease",
-        "notification",
-        "note",
-        "situationreport"
-      ],
-      "description": "",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
-      "groupid": "bund_bmu-stab-s",
-      "groups": [],
-      "principals": [
-        "demouser-bmu-bund"
-      ],
-      "roles": [],
-      "title": "BMU Stab S"
-    },
-    {
-      "allowedDocTypes": [
         "otherprojection",
         "nppinformation",
         "mediarelease",
@@ -937,14 +913,37 @@
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
-      "groupid": "bund_e-lagebild-bfs",
+      "email": "",
+      "groupid": "bund_behoerde",
       "groups": [],
       "principals": [
-        "demouser-stab-l-bund"
+        "user-behoerde"
       ],
       "roles": [],
-      "title": "Lagebild BfS (Bund)"
+      "title": "Bundesbeh\u00f6rde (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "nppinformation",
+        "estimation",
+        "eventinformation",
+        "protectiveactions",
+        "instructions",
+        "mediarelease",
+        "notification",
+        "note",
+        "situationreport"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "",
+      "groupid": "bund_ministerium",
+      "groups": [],
+      "principals": [
+        "user-ministerium"
+      ],
+      "roles": [],
+      "title": "Bundesministerium (Bund)"
     },
     {
       "allowedDocTypes": [
@@ -957,14 +956,14 @@
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
-      "groupid": "bund_leitstelle-a-dwd",
+      "email": "",
+      "groupid": "bund_wetterdienst",
       "groups": [],
       "principals": [
-        "demouser-dwd"
+        "user-wetterdienst"
       ],
       "roles": [],
-      "title": "DWD - Leitstelle Luft (Bund)"
+      "title": "Wetterdienst (Bund)"
     },
     {
       "allowedDocTypes": [],
@@ -1033,7 +1032,7 @@
     {
       "description": "",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "Content Admin (Brandenburg)",
       "groups": [
         "bb_ContentAdministrators",
@@ -1052,7 +1051,7 @@
     {
       "description": "",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DokSys Administrator (Brandenburg)",
       "groups": [
         "bb_Administrators",
@@ -1069,7 +1068,7 @@
     {
       "description": "",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DocPool Administrator (Brandenburg)",
       "groups": [
         "bb_Administrators",
@@ -1088,7 +1087,7 @@
     {
       "description": "",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "ELAN Administrator (Brandenburg)",
       "groups": [
         "bb_Administrators",
@@ -1107,7 +1106,7 @@
     {
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "Content Admin (Berlin)",
       "groups": [
         "be_ContentAdministrators",
@@ -1126,7 +1125,7 @@
     {
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DokSys Administrator (Berlin)",
       "groups": [
         "be_Administrators",
@@ -1143,7 +1142,7 @@
     {
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DocPool Administrator (Berlin)",
       "groups": [
         "be_Administrators",
@@ -1164,7 +1163,7 @@
     {
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "ELAN Administrator (Berlin)",
       "groups": [
         "be_Administrators",
@@ -1183,7 +1182,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "Content Admin (Bund)",
       "groups": [
         "bund_ContentAdministrators",
@@ -1202,7 +1201,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DokSys Administrator (Bund)",
       "groups": [
         "bund_Administrators",
@@ -1219,7 +1218,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DocPool Administrator (Bund)",
       "groups": [
         "bund_Administrators",
@@ -1242,7 +1241,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "ELAN Administrator (Bund)",
       "groups": [
         "bund_Administrators",
@@ -1261,7 +1260,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "REI Administrator (Bund)",
       "groups": [
         "bund_Administrators"
@@ -1276,124 +1275,13 @@
     },
     {
       "description": "",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "example@example.com",
-      "fullname": "Demouser (Brandenburg)",
-      "groups": [
-        "bb_Administrators",
-        "bb_ContentAdministrators",
-        "bb_DoksysUsers",
-        "bb_ELANUsers",
-        "bb_Members",
-        "bb_e-lavg"
-      ],
-      "home_page": "",
-      "location": "",
-      "password": "{SSHA}+T7cqdY0EMFPgUf+WSzbSreOT+VIT6czkDjG",
-      "roles": [
-        "Member"
-      ],
-      "username": "demouser-bb"
-    },
-    {
-      "description": "",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "example@example.com",
-      "fullname": "Demouser (Berlin)",
-      "groups": [
-        "bb_ELANUsers",
-        "bb_Members",
-        "be_Administrators",
-        "be_ContentAdministrators",
-        "be_DoksysUsers",
-        "be_ELANUsers",
-        "be_Members",
-        "be_RodosUsers",
-        "be_e-be-atom",
-        "bund_ELANUsers",
-        "bund_Members"
-      ],
-      "home_page": "",
-      "location": "",
-      "password": "{SSHA}1VWmbX+jW2or4CxHzHTrfkblBb7m8q4s+wH8",
-      "roles": [
-        "Member"
-      ],
-      "username": "demouser-be"
-    },
-    {
-      "description": "",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "example@example.com",
-      "fullname": "Demouser BMU (Bund)",
-      "groups": [
-        "bund_DoksysUsers",
-        "bund_ELANUsers",
-        "bund_EventEditors",
-        "bund_Members",
-        "bund_REIUsers",
-        "bund_RodosUsers",
-        "bund_bmu-stab-s"
-      ],
-      "home_page": "",
-      "location": "",
-      "password": "{SSHA}g4KsDmK9l9vXBxXA+dUkMgan3Vge1Gjf1AJh",
-      "roles": [
-        "Member"
-      ],
-      "username": "demouser-bmu-bund"
-    },
-    {
-      "description": "",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "example@example.com",
-      "fullname": "Demouser DWD (Bund)",
-      "groups": [
-        "bund_DoksysUsers",
-        "bund_ELANUsers",
-        "bund_Members",
-        "bund_REIUsers",
-        "bund_RodosUsers",
-        "bund_leitstelle-a-dwd"
-      ],
-      "home_page": "",
-      "location": "",
-      "password": "{SSHA}btQVHhoyBoHeULor7g00VNkKTIArOYySWxN/",
-      "roles": [
-        "Member"
-      ],
-      "username": "demouser-dwd"
-    },
-    {
-      "description": "",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "example@example.com",
-      "fullname": "Demouser Stab L (Bund)",
-      "groups": [
-        "bund_DoksysUsers",
-        "bund_ELANUsers",
-        "bund_Journal1_Editors",
-        "bund_Members",
-        "bund_RodosUsers",
-        "bund_e-lagebild-bfs"
-      ],
-      "home_page": "",
-      "location": "",
-      "password": "{SSHA}WWrZ+bbSRyH/ytBYSbtm/tH/qBscFnipzjTo",
-      "roles": [
-        "Member"
-      ],
-      "username": "demouser-stab-l-bund"
-    },
-    {
-      "description": "",
       "dp": "",
       "email": "",
       "fullname": "Docpool Administrator",
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}T6NM69a+nln0DL8i2SRsjX5YIzT0PJy0VnCZ",
+      "password": "{SSHA}/VChmfXmYl/u0WtSC+RZCTrUWl1r7k7hTzVW",
       "roles": [
         "ELANUser",
         "Member",
@@ -1410,7 +1298,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}vbn6k/5AJlbk7duCVM7WEj1ijpDGOD84KIcE",
+      "password": "{SSHA}hYTnOq9h3vA1vig1bbPQJCyKdYkTMFHHR1Lo",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1427,7 +1315,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}CB2a+OgDX20YEGIDLdlrepixh/T6JhVRIuab",
+      "password": "{SSHA}jwyquKS2+lQvMRp5dFCtRR6YtevB5hebxu8J",
       "roles": [
         "ELANUser",
         "Member",
@@ -1443,7 +1331,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}brvjv4BUa9Y9T1MNSDwL3/A1Emz6WMkyA1DC",
+      "password": "{SSHA}6vDFC1nHSRDpHQ+NhMKkAr1kKlZIULrLe3Iw",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1454,7 +1342,7 @@
     {
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DokSys Administrator (Mecklenburg-Vorpommern)",
       "groups": [
         "mv_Administrators",
@@ -1471,7 +1359,7 @@
     {
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "DocPool Administrator (Mecklenburg-Vorpommern)",
       "groups": [
         "mv_Administrators",
@@ -1493,7 +1381,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}+YKR8tToWZFwKCnXZN/aWIOPf5cSeIyPvjYe",
+      "password": "{SSHA}TlUhpDRBMfQ9Ynd6Ib4Rbd70mQ2J/VvN6HZe",
       "roles": [
         "Member",
         "REIUser",
@@ -1509,13 +1397,124 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}WO+SzwETd8qQRTLZb2Tnnb7hDOQ1iRWRqXXg",
+      "password": "{SSHA}Ak8OkqqmsqEoAmdNo9lYHQu7mDhUJsAnjLtt",
       "roles": [
         "Manager",
         "Member",
         "REIUser"
       ],
       "username": "reimanager"
+    },
+    {
+      "description": "",
+      "dp": "32fdd578bc7d446081ce5d64b7015724",
+      "email": "example@example.com",
+      "fullname": "User BB (Brandenburg)",
+      "groups": [
+        "bb_Administrators",
+        "bb_ContentAdministrators",
+        "bb_DoksysUsers",
+        "bb_ELANUsers",
+        "bb_Members",
+        "bb_behoerde"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}+T7cqdY0EMFPgUf+WSzbSreOT+VIT6czkDjG",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-bb"
+    },
+    {
+      "description": "",
+      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
+      "email": "example@example.com",
+      "fullname": "User BE (Berlin)",
+      "groups": [
+        "bb_ELANUsers",
+        "bb_Members",
+        "be_Administrators",
+        "be_ContentAdministrators",
+        "be_DoksysUsers",
+        "be_ELANUsers",
+        "be_Members",
+        "be_RodosUsers",
+        "be_ministerium",
+        "bund_ELANUsers",
+        "bund_Members"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}1VWmbX+jW2or4CxHzHTrfkblBb7m8q4s+wH8",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-be"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "example@example.com",
+      "fullname": "User Beh\u00f6rde (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_ELANUsers",
+        "bund_Journal1_Editors",
+        "bund_Members",
+        "bund_RodosUsers",
+        "bund_behoerde"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}WWrZ+bbSRyH/ytBYSbtm/tH/qBscFnipzjTo",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-behoerde"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "example@example.com",
+      "fullname": "User Ministerium (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_ELANUsers",
+        "bund_EventEditors",
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_RodosUsers",
+        "bund_ministerium"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}g4KsDmK9l9vXBxXA+dUkMgan3Vge1Gjf1AJh",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-ministerium"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "example@example.com",
+      "fullname": "User Wetterdienst (Bund)",
+      "groups": [
+        "bund_DoksysUsers",
+        "bund_ELANUsers",
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_RodosUsers",
+        "bund_wetterdienst"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}btQVHhoyBoHeULor7g00VNkKTIArOYySWxN/",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-wetterdienst"
     }
   ]
 }

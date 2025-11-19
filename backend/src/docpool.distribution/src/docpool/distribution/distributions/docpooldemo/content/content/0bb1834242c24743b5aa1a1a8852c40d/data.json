@@ -17,12 +17,12 @@
   "TimeOfEvent": "2025-09-17T15:36:00",
   "UID": "0bb1834242c24743b5aa1a1a8852c40d",
   "allow_discussion": null,
-  "changelog": "[{\"Date\": \"17.09.2025 15:40\", \"User\": \"Demouser (Berlin)\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
+  "changelog": "[{\"Date\": \"17.09.2025 15:40\", \"User\": \"User BE (Berlin)\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
   "contributors": [],
   "created": "2025-09-17T13:40:38+00:00",
-  "created_by": "Demouser (Berlin)",
+  "created_by": "User BE (Berlin)",
   "creators": [
-    "demouser-be"
+    "user-be"
   ],
   "description": "IMIS \u00dcbung 2025 ohne Probenahme",
   "effective": null,
@@ -44,12 +44,12 @@
   "title": "\u00dcbung IMIS 2025",
   "type_title": "DP Event",
   "version": "current",
-  "wdate": "2025-09-17T15:40:38",
+  "wdate": "2025-09-17T15:40:38+00:00",
   "workflow_history": {
     "dp_event_workflow": [
       {
         "action": null,
-        "actor": "demouser-be",
+        "actor": "user-be",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-17T13:40:38+00:00"

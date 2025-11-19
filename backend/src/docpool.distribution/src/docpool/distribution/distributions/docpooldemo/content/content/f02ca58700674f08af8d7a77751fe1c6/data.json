@@ -1,12 +1,12 @@
 {
-  "@id": "/bund/content/Groups/bund_leitstelle-a-dwd",
+  "@id": "/bund/content/Groups/bund_wetterdienst",
   "@type": "GroupFolder",
   "UID": "f02ca58700674f08af8d7a77751fe1c6",
   "allow_discussion": null,
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-23T12:56:44+00:00",
-  "created_by": "admin <i>DWD - Leitstelle Luft (Bund)</i>",
+  "created_by": "admin <i>Wetterdienst (Bund)</i>",
   "creators": [
     "admin"
   ],
@@ -30,7 +30,7 @@
     ]
   },
   "exportimport.conversation": [],
-  "id": "bund_leitstelle-a-dwd",
+  "id": "bund_wetterdienst",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -44,10 +44,10 @@
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "DWD - Leitstelle Luft (Bund)",
+  "title": "Wetterdienst (Bund)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-09-23T14:56:44",
+  "wdate": "2025-09-23T14:56:44+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {

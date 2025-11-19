@@ -1,12 +1,12 @@
 {
-  "@id": "/bund/content/Groups/bund_e-lagebild-bfs",
+  "@id": "/bund/content/Groups/bund_behoerde",
   "@type": "GroupFolder",
   "UID": "9c3189972461497c9ccdae8f520e27b4",
   "allow_discussion": null,
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-23T11:51:04+00:00",
-  "created_by": "admin <i>Lagebild BfS (Bund)</i>",
+  "created_by": "admin <i>Bundesbeh\u00f6rde (Bund)</i>",
   "creators": [
     "admin"
   ],
@@ -30,7 +30,7 @@
     ]
   },
   "exportimport.conversation": [],
-  "id": "bund_e-lagebild-bfs",
+  "id": "bund_behoerde",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -39,15 +39,15 @@
   ],
   "lock": {},
   "mdate": "2025-09-23T13:51:04",
-  "modified": "2025-09-23T13:31:53+00:00",
+  "modified": "2025-11-19T10:25:15+00:00",
   "modified_by": null,
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "Lagebild BfS (Bund)",
+  "title": "Bundesbeh\u00f6rde (Bund)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-09-23T13:51:04",
+  "wdate": "2025-09-23T13:51:04+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {

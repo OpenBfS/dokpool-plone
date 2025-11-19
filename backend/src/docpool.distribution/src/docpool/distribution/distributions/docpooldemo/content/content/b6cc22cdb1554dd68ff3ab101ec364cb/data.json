@@ -1,17 +1,17 @@
 {
-  "@id": "/bund/content/Groups/bund_bmu-stab-s/demo-mitteilung",
+  "@id": "/bund/content/Groups/bund_ministerium/demo-mitteilung",
   "@type": "DPDocument",
   "UID": "b6cc22cdb1554dd68ff3ab101ec364cb",
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-23T12:14:24+00:00",
-  "created_by": "Demouser BMU (Bund) <i>BMU Stab S</i>",
+  "created_by": "User Ministerium (Bund) <i>Bundesministerium (Bund)</i>",
   "creators": [
-    "demouser-bmu-bund"
+    "user-ministerium"
   ],
   "description": "",
   "docType": "note",
-  "effective": "2025-09-23T12:14:30+00:00",
+  "effective": "2025-09-23T12:14:00+00:00",
   "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
@@ -36,7 +36,7 @@
   "subjects": [],
   "text": {
     "content-type": "text/html",
-    "data": "BMU Stab S meldet Einsatzbereitschaft",
+    "data": "Bundesministerium (Bund) meldet Einsatzbereitschaft",
     "encoding": "utf-8"
   },
   "title": "Demo Mitteilung",
@@ -45,19 +45,19 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-09-23T14:14:30",
+  "wdate": "2025-09-23T14:14:30+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {
         "action": null,
-        "actor": "demouser-bmu-bund",
+        "actor": "user-ministerium",
         "comments": "",
         "review_state": "private",
         "time": "2025-09-23T12:14:24+00:00"
       },
       {
         "action": "publish",
-        "actor": "demouser-bmu-bund",
+        "actor": "user-ministerium",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-23T12:14:30+00:00"

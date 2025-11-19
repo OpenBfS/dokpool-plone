@@ -1,12 +1,12 @@
 {
-  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_bmu-stab-s/eine-medieninformation/beispiel.pdf",
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_ministerium/eine-medieninformation/beispiel.pdf",
   "@type": "File",
   "UID": "70168f2d44604f768252fb071abd9d67",
   "allow_discussion": null,
   "contributors": [],
   "created": "2025-09-23T13:24:54+00:00",
   "creators": [
-    "demouser-bmu-bund"
+    "user-ministerium"
   ],
   "description": "",
   "effective": null,
@@ -36,7 +36,7 @@
     "dp_one_state_workflow": [
       {
         "action": null,
-        "actor": "demouser-bmu-bund",
+        "actor": "user-ministerium",
         "comments": "",
         "review_state": "published",
         "time": "2025-09-23T13:24:54+00:00"

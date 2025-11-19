@@ -5,7 +5,7 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-17T13:32:23+00:00",
-  "created_by": "admin <i>SenMVKU IIA (Berlin)</i>",
+  "created_by": "admin <i>Landesministerium (Berlin)</i>",
   "creators": [
     "admin"
   ],
@@ -21,7 +21,7 @@
       "esd_title": "Berlin",
       "scenario_ids": "uebung-imis-2025",
       "timestamp": "2025-09-17T16:09:38",
-      "user": "admin SenMVKU IIA (Berlin)"
+      "user": "admin Landesministerium (Berlin)"
     }
   ],
   "id": "uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
@@ -49,11 +49,11 @@
   },
   "title": "+++\u00dcbung+++\u00dcbung+++\u00dcbung 1. Radiologisches Lagebild zur IMIS-\u00dcbung 2025",
   "transferLog": null,
-  "transferred": "2025-09-17T16:09:38",
-  "transferred_by": "admin SenMVKU IIA (Berlin)",
+  "transferred": "2025-09-17T16:09:38+00:00",
+  "transferred_by": "admin Landesministerium (Berlin)",
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-09-17T16:09:38",
+  "wdate": "2025-09-17T16:09:38+00:00",
   "workflow_history": {
     "elan_transfer_workflow": [
       {

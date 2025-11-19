@@ -485,11 +485,6 @@
     "to_uuid": "81269a59e35544c1b108b48377397f1e"
   },
   {
-    "from_attribute": "contentCategory",
-    "from_uuid": "9e4290d99a6e42528a9fb0144da4a05c",
-    "to_uuid": "7e8f158c648347ac801bd6956d64bf0b"
-  },
-  {
     "from_attribute": "docTypes",
     "from_uuid": "9fceea4beabc48f9aef724abbf090130",
     "to_uuid": "037131d91c654adcb867a58273ac7cb1"

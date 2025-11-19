@@ -1,13 +1,13 @@
 {
-  "@id": "/bund/content/Groups/bund_e-lagebild-bfs/lagebilder-zur-freigabe-durch-bmu/beispiel-lagebild-fuer-freigabe-workflow",
+  "@id": "/bund/content/Groups/bund_behoerde/lagebilder-zur-freigabe-durch-bundesministerium/beispiel-lagebild-fuer-freigabe-workflow",
   "@type": "DPDocument",
   "UID": "f96a2c7fe19d40d1bd20e5dba403d4f2",
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-23T12:24:05+00:00",
-  "created_by": "Demouser Stab L (Bund) <i>Lagebild BfS (Bund)</i>",
+  "created_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
   "creators": [
-    "demouser-stab-l-bund"
+    "user-behoerde"
   ],
   "description": "",
   "docType": "situationreport",
@@ -25,8 +25,8 @@
   ],
   "lock": {},
   "mdate": "2025-09-23T14:25:53",
-  "modified": "2025-09-23T12:25:53+00:00",
-  "modified_by": "Demouser Stab L (Bund) <i>Lagebild BfS (Bund)</i>",
+  "modified": "2025-11-19T10:25:15+00:00",
+  "modified_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
   "review_state": "private",
   "rights": null,
   "scenarios": [
@@ -45,12 +45,12 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-09-23T14:24:05",
+  "wdate": "2025-09-23T14:24:05+00:00",
   "workflow_history": {
     "dp_review_workflow": [
       {
         "action": null,
-        "actor": "demouser-stab-l-bund",
+        "actor": "user-behoerde",
         "comments": "",
         "review_state": "private",
         "time": "2025-09-23T12:24:05+00:00"

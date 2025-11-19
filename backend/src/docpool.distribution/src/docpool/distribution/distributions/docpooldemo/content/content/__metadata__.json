@@ -1,15 +1,15 @@
 {
   "__version__": "1.0.0",
   "_blob_files_": [
-    "e67f7055691f4257b8c460d5fa78d860/file/historie_stammdaten-aenderungen.pdf",
-    "a44e14a35193463f97e577eba8044ded/file/bfs_2009_bfs-schr-47-09.pdf",
-    "8f1760a60e554508b297265e887a75f0/file/landesmessstellen-strvg_empfehlung-zur-mindestausstattung-von-lmst-nach-strvg_2015-07.pdf",
     "55028c031aa9493eb4b68eaf70d2e82a/customLogo/dokpool_logo_berlin.png",
     "32fdd578bc7d446081ce5d64b7015724/customLogo/dokpool_logo_brandenburg.png",
-    "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png",
     "e84e6c60b3c34a99b9c82de2ff8f9c46/customLogo/dokpool_logo_bund.png",
     "70168f2d44604f768252fb071abd9d67/file/Beispiel.pdf",
     "093fc9443add4ce8b0f6e59ce8ecbc73/file/Beispiel.pdf",
+    "8f1760a60e554508b297265e887a75f0/file/landesmessstellen-strvg_empfehlung-zur-mindestausstattung-von-lmst-nach-strvg_2015-07.pdf",
+    "a44e14a35193463f97e577eba8044ded/file/bfs_2009_bfs-schr-47-09.pdf",
+    "e67f7055691f4257b8c460d5fa78d860/file/historie_stammdaten-aenderungen.pdf",
+    "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png",
     "c5364916c3954b5c89321f211161e015/file/Beispiel.pdf",
     "2f890c0af72a4a59975ed10e91ac8eaf/file/Beispiel.pdf"
   ],
@@ -307,11 +307,11 @@
     "42f8738f71bc40059919b02974ddafc1/data.json",
     "2c893ea80e03427d83fb1db980fe4533/data.json",
     "c188ca4087cb4a19aa01b17d6f8d3e66/data.json",
+    "7cb2802691884b82be4489a37105e312/data.json",
+    "715900721a1140589ddd1c9db19bdf19/data.json",
     "7e1ecf9e8d94468e914bbc247a7e1699/data.json",
     "5842cc8582194677a1d88917aaccabca/data.json",
     "70168f2d44604f768252fb071abd9d67/data.json",
-    "7cb2802691884b82be4489a37105e312/data.json",
-    "715900721a1140589ddd1c9db19bdf19/data.json",
     "3130be8e1a124489a752b2988023b45f/data.json",
     "b1f189bc38554a6f8995fdbef613e788/data.json",
     "093fc9443add4ce8b0f6e59ce8ecbc73/data.json",
@@ -415,8 +415,6 @@
     "a2434c4d02d44417a62eb2090a7d22fe/data.json",
     "dd1343ec7be848d6973ea3aaeccff762/data.json",
     "9122043a35f14f3cb08034f5755492a8/data.json",
-    "c994fe8231e447e2b6a365d9e70bd95c/data.json",
-    "b6cc22cdb1554dd68ff3ab101ec364cb/data.json",
     "9c3189972461497c9ccdae8f520e27b4/data.json",
     "fdb4b3900ef9485aaa80ecc22b57d09f/data.json",
     "f35f3994525e437990fdbc8024531133/data.json",
@@ -424,10 +422,11 @@
     "99cd1efb78884704a2f80abe3fdd8b6e/data.json",
     "2f890c0af72a4a59975ed10e91ac8eaf/data.json",
     "c5364916c3954b5c89321f211161e015/data.json",
+    "c994fe8231e447e2b6a365d9e70bd95c/data.json",
+    "b6cc22cdb1554dd68ff3ab101ec364cb/data.json",
     "f02ca58700674f08af8d7a77751fe1c6/data.json",
     "a99cbe8bd8c345569b2d0f312c3d8d42/data.json",
     "a86a2781674a452cbceb28f86d5e5a83/data.json",
-    "ea7353f1f4c049409237b95632b34c46/data.json",
     "1148f74318934c22b4ad0baf34514b4f/data.json",
     "6838972cf46c407599681114893dc4b1/data.json",
     "a7771f6925154a919f2818d77a6b798d/data.json",
@@ -1365,7 +1364,6 @@
     "e99f2a1afe704b56b771cb863beacb78": {},
     "ea2ac59e55354b97a32633ca5c2ce47f": {},
     "ea33caff5a89404c96271512da97d4cd": {},
-    "ea7353f1f4c049409237b95632b34c46": {},
     "eae80550afdf4eafa151eabf9da9dddf": {},
     "eb0561a12ea04a1fb8b539bf2b2676a9": {},
     "eb6b4699f1ee403b82c4f225bf3230ca": {},
@@ -1553,6 +1551,9 @@
     },
     "010ad7497f0a4fe09d2aaa805a45f2dc": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1560,6 +1561,9 @@
     },
     "01693b5994a4472a94ecd9109ae51093": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1581,6 +1585,9 @@
     },
     "01d35606ef044a96947405db935c3acc": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1588,6 +1595,9 @@
     },
     "0215269c61eb43a6a95fd53255fa174d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "ContentAdmin"
         ],
@@ -1598,6 +1608,9 @@
     },
     "037131d91c654adcb867a58273ac7cb1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1612,6 +1625,9 @@
     },
     "03ef7b0368c647bbbff61cb49cdc5adc": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1619,6 +1635,9 @@
     },
     "0404c11403b74e0ea9ab1d08ae8cd26e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1647,6 +1666,9 @@
     },
     "059187ccbfd44e978aa048eb191bc6fc": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1654,6 +1676,9 @@
     },
     "05cd837d0c63441f959c7b04fe69c0bb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal3_Editors": [
           "JournalEditor"
         ],
@@ -1674,6 +1699,9 @@
     },
     "070fff89dc50457f90961fe8cd544b24": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1681,6 +1709,9 @@
     },
     "07ec117f38e84cd2addc49322daff5ed": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal2_Editors": [
           "Owner"
         ],
@@ -1719,6 +1750,9 @@
     },
     "08acad90ec1444e09209b6f045f3c647": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1733,6 +1767,9 @@
     },
     "08b785899f104166a7745c72996e202f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1740,6 +1777,9 @@
     },
     "08e4dacba3ad4695af69cd3faf24526e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1754,7 +1794,10 @@
     },
     "093fc9443add4ce8b0f6e59ce8ecbc73": {
       "local_roles": {
-        "demouser-dwd": [
+        "admin": [
+          "Owner"
+        ],
+        "user-wetterdienst": [
           "Owner"
         ]
       }
@@ -1781,6 +1824,9 @@
     },
     "0a48536b9ae44ce19c017d63283e4ff0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1836,7 +1882,10 @@
     },
     "0bb1834242c24743b5aa1a1a8852c40d": {
       "local_roles": {
-        "demouser-be": [
+        "admin": [
+          "Owner"
+        ],
+        "user-be": [
           "Owner"
         ]
       }
@@ -1857,6 +1906,9 @@
     },
     "0bf9f9110c2f4713912331cb5c6e9610": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1864,6 +1916,9 @@
     },
     "0c03c03c673f4f5f9a5823f09ef0dfee": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1871,6 +1926,9 @@
     },
     "0c07b7e4f7e642deabc18f482d90d35e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1878,6 +1936,9 @@
     },
     "0c2f51a3b20d48a29e80a29d3f7222a8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1916,6 +1977,9 @@
     },
     "0dacd1295ab04003af0f93864f14bb1a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1923,6 +1987,9 @@
     },
     "0e39ef14056a4058847dd6f48594ba9f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1930,6 +1997,9 @@
     },
     "0e7d269972eb4ff19a18a5ec1beccbbf": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -1965,6 +2035,9 @@
     },
     "100b571b8f7a4e3d9609b3ae2a5d456b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "Owner"
         ],
@@ -1985,6 +2058,9 @@
     },
     "1148f74318934c22b4ad0baf34514b4f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Administrators": [
           "Owner"
         ],
@@ -1998,6 +2074,9 @@
     },
     "117cacc9ee7c41ec80a80829a29dd7b6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2012,6 +2091,9 @@
     },
     "11fca4f63fb949598c47ccf52aec6412": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal1_Readers": [
           "Owner"
         ],
@@ -2029,6 +2111,9 @@
     },
     "128ed29fc1684f5fa50b9f9e09ed705d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2036,6 +2121,9 @@
     },
     "134020775d9140c98734d480614fc5b1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2043,6 +2131,9 @@
     },
     "13a24d6e4e0d41c3ab2863130a752fc7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2064,6 +2155,9 @@
     },
     "14fb43ae23ad42e6a8c731a8591a9d6f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2132,6 +2226,9 @@
     },
     "17d45f23fef0418f8d4bca5494a4c0e3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2139,6 +2236,9 @@
     },
     "1848154c766c47b19cc07c514f0bb31f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2170,6 +2270,9 @@
     },
     "194d4841143a4421b1d028fbf7068006": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2184,6 +2287,9 @@
     },
     "1ac5396dfeb84a4bbb77b8989d11406f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2198,6 +2304,9 @@
     },
     "1bdefe89d1db45b5bba0d798117caafa": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2212,6 +2321,9 @@
     },
     "1c0f8514b5f145e98d95a0e06bbbddfb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2267,6 +2379,9 @@
     },
     "1e4f55215b324d14b2b76b2f56716fc9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2295,6 +2410,9 @@
     },
     "2008c2db9bad4b9ab1faf6a9d60f7643": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2302,6 +2420,9 @@
     },
     "20b4b28b11d54779b9b82721a9d8f561": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2316,6 +2437,9 @@
     },
     "229b4b3e8bff4c9bb34761cb447d8bc6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal1_Editors": [
           "Owner"
         ],
@@ -2326,6 +2450,9 @@
     },
     "22a4c23e2451487eae8646f3d3cd6255": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2350,6 +2477,9 @@
     },
     "231d5ad6ec294569a9642200908ad4b9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2364,6 +2494,9 @@
     },
     "242e0e3f5db54091b72ef900dfdcb36a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2371,6 +2504,9 @@
     },
     "2603d8703a7248faaedc7de68960e534": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2399,6 +2535,9 @@
     },
     "27eec29f114747e09d6e8384118fefe3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_RodosContentAdministrators": [
           "ContentAdmin"
         ],
@@ -2409,6 +2548,9 @@
     },
     "281a1950ed144a9e8b0e11ac7bd003ed": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2430,6 +2572,9 @@
     },
     "295e78a9b1644a5995e58b1e355c5f1e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2437,6 +2582,9 @@
     },
     "2a96e72513f64f5097b0418430cb2650": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2444,6 +2592,9 @@
     },
     "2ab2573a3c1c4088bdb87d410189bdba": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2451,6 +2602,9 @@
     },
     "2b1e6f7db44e4dfc98065f298ab270ca": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2458,6 +2612,9 @@
     },
     "2b9027adf1ea47a2bbe7602c8eb391ad": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2503,6 +2660,9 @@
     },
     "2e50a04a269b4d53a3836fd2c8b2de9a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2510,6 +2670,9 @@
     },
     "2e64b155b6114c39bc1806501e604bf7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2524,7 +2687,10 @@
     },
     "2f890c0af72a4a59975ed10e91ac8eaf": {
       "local_roles": {
-        "demouser-stab-l-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-behoerde": [
           "Owner"
         ]
       }
@@ -2548,13 +2714,16 @@
         "admin": [
           "Owner"
         ],
-        "bund_leitstelle-a-dwd": [
+        "bund_wetterdienst": [
           "Owner"
         ]
       }
     },
     "315dddcc50504892b73ca072d30f4798": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2569,6 +2738,9 @@
     },
     "31c10c81212942c3a67719030e0ae5f9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2583,6 +2755,9 @@
     },
     "32b64728e5804df28b533bcafada3f81": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2590,6 +2765,9 @@
     },
     "32f40ed800e34d24ab8ce52348950fce": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2655,19 +2833,25 @@
     },
     "346d99019c394fbba12bad28a97bf9e8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "be_Journal1_Editors": [
           "JournalEditor"
         ],
         "be_Journal1_Readers": [
           "JournalReader"
         ],
-        "demouser-be": [
+        "user-be": [
           "Owner"
         ]
       }
     },
     "34813b1d4dfc4fe7a848a03fbe707935": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -2692,6 +2876,9 @@
     },
     "3559e3aa3bde4107bfdd0a860d40e5f0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2699,6 +2886,9 @@
     },
     "3563aaa105fb45ad8eea79b0c7ce122c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2713,6 +2903,9 @@
     },
     "35cee99e0b584fd7b3edbdeb86e5eacd": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2727,6 +2920,9 @@
     },
     "368acecef0e44d0ea97cc470cc382248": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal3_Readers": [
           "Owner"
         ],
@@ -2744,6 +2940,9 @@
     },
     "371d6ee326104ef8bd548e45ed6c1f3b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -2751,6 +2950,9 @@
     },
     "378717e296554fca8a2d86a92a6ff061": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2775,6 +2977,9 @@
     },
     "3836957f6c154081abf1a281ad4e22c8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2782,6 +2987,9 @@
     },
     "38d85fe7f6174ac68ea72f8b96477be2": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2826,6 +3034,9 @@
     },
     "3b26377e6a0e4375b0b5dfaccc717c6f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2847,6 +3058,9 @@
     },
     "3bd9e3a3d1dd4e45ab78f6f70b4dd0a8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal2_Editors": [
           "JournalEditor"
         ],
@@ -2860,6 +3074,9 @@
     },
     "3c20d84d28e54cdd90cc81ea70d6f688": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2877,6 +3094,9 @@
     },
     "3d19fb10568a47d2b1501ac873326d3a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2908,6 +3128,9 @@
     },
     "3df1e446302e4799ac5f362602154399": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2915,6 +3138,9 @@
     },
     "3e15a1b46d3e4d759dafec176712b4ba": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "DocPoolAdmin"
         ],
@@ -2925,6 +3151,9 @@
     },
     "3e7b437a9955405facf6eb2db56af2b5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2939,6 +3168,9 @@
     },
     "3ea9a4f7402c46f482ce52579b0a6388": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -2956,6 +3188,9 @@
     },
     "3f8ed0b238ba4eacb67fcad178180443": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal3_Editors": [
           "JournalEditor"
         ],
@@ -2969,6 +3204,9 @@
     },
     "3fafad5e0a734d80bbced4b22febe298": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2976,6 +3214,9 @@
     },
     "3feab31b4c014dc1a4a8a01f2aa3ae4d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2990,6 +3231,9 @@
     },
     "40810a77e54643c5ad1c392eb738639b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -2997,6 +3241,9 @@
     },
     "40ba1347babc448787c18b0476b5f461": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "Site Administrator"
         ],
@@ -3010,6 +3257,9 @@
     },
     "40d1270266624fbeb6df21b9e302dffd": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3017,6 +3267,9 @@
     },
     "4143d822c80e4dc69d3ea593864916f1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3024,6 +3277,9 @@
     },
     "419f842aee684ef582830836f9be3f46": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3031,6 +3287,9 @@
     },
     "41c577682d3e43d8a5522150e1cbaef8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_REIContentAdministrators": [
           "Owner"
         ],
@@ -3041,6 +3300,9 @@
     },
     "421a7379b43f488faf0d7795dc08bf52": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3048,6 +3310,9 @@
     },
     "421ee6bde94a4afe8939c744b3c629c3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3062,19 +3327,25 @@
     },
     "42f8738f71bc40059919b02974ddafc1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal4_Editors": [
           "JournalEditor"
         ],
         "bund_Journal4_Readers": [
           "JournalReader"
         ],
-        "demouser-bmu-bund": [
+        "user-ministerium": [
           "Owner"
         ]
       }
     },
     "430eaffc6971407d92b8114b235cea87": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_RodosContentAdministrators": [
           "ContentAdmin"
         ],
@@ -3085,6 +3356,9 @@
     },
     "434eb543dffc4161b8dcc51a45c115f5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3092,6 +3366,9 @@
     },
     "4373b74befcd49d19a1cd2ac8acaa77c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "Owner"
         ],
@@ -3111,6 +3388,9 @@
     },
     "43fc8e7126c042c8a3aeb635662229d2": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3145,6 +3425,9 @@
     },
     "451314506e31467a8b33bc9bb5efa8e6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3152,6 +3435,9 @@
     },
     "4540eb93ebea402eaba0d806b9db812f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3166,6 +3452,9 @@
     },
     "45a70d7e2b664ed5b1d1542beb5d5ee8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3194,6 +3483,9 @@
     },
     "4845e806bc184d63bb6fb586ed162b69": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3280,6 +3572,9 @@
     },
     "4dab4114576f43a3b16f2787121a1443": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3297,6 +3592,9 @@
     },
     "5031b71bc88644f9b7fc321de4e326cf": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3311,6 +3609,9 @@
     },
     "525e96f5ca6b49168018efe135e7a72e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3318,6 +3619,9 @@
     },
     "5288d42304064814a955535ea302f5ee": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -3325,6 +3629,9 @@
     },
     "5318896758c04485abca7338598da174": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3339,6 +3646,9 @@
     },
     "53bd1b52a1b14a14b5d6c2c644b512fa": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3346,6 +3656,9 @@
     },
     "53eb1ab0daa54c599d1792e88735768a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3353,6 +3666,9 @@
     },
     "5406d0ac69eb401d95dcb534422f1628": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3402,6 +3718,9 @@
     },
     "5514db9479da4be3a0b52ee20efb05d3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3446,6 +3765,9 @@
     },
     "5835901ab4234a5984df7d89b97a9e15": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Members": [
           "Owner"
         ],
@@ -3456,7 +3778,10 @@
     },
     "5842cc8582194677a1d88917aaccabca": {
       "local_roles": {
-        "demouser-bmu-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-ministerium": [
           "Owner"
         ]
       }
@@ -3470,6 +3795,9 @@
     },
     "58e4a8d394ee4b4f91cd82969cceaed5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3512,6 +3840,9 @@
     },
     "5bca45958c5048a1b942d157e23f8d23": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3526,6 +3857,9 @@
     },
     "5c7649316f924597b505af70319d314c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3578,6 +3912,9 @@
     },
     "602768f7c68642a5b25d9f81d974eea2": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3585,6 +3922,9 @@
     },
     "603e6046ca8e4dc5b396f7578440c0a6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal1_Editors": [
           "JournalEditor"
         ],
@@ -3608,6 +3948,9 @@
     },
     "6101c8c73bd8426196647b4e48ee3d1a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3615,6 +3958,9 @@
     },
     "612c1e01de2b48f4b090c33f9601c552": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3622,6 +3968,9 @@
     },
     "614d3119eae74f96bd21f7ca4fa50c3a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3629,6 +3978,9 @@
     },
     "614db4963e5744969a9ad7db97b62de3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3636,6 +3988,9 @@
     },
     "617921ac4e5f49cb80b962f6a0f866dd": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3650,6 +4005,9 @@
     },
     "62361b793fd34006b69c24dbb3d5c233": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -3657,6 +4015,9 @@
     },
     "62a5b206f705491ba3a1074291736852": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3688,6 +4049,9 @@
     },
     "63fc6182c6354ab29de64e820a343dcb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal4_Readers": [
           "Owner"
         ],
@@ -3698,6 +4062,9 @@
     },
     "640115b05f924347b0b0e693bb286009": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3712,6 +4079,9 @@
     },
     "6473ed05d5d847bdb668da93305aad81": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3747,6 +4117,9 @@
     },
     "65d78544af0c4c8484de493596fbe7bb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3767,6 +4140,9 @@
     },
     "66099cb672264bbbb020b6781bd07318": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3781,19 +4157,25 @@
     },
     "668f6752377941f8ae13b83afedd7783": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "be_Journal2_Editors": [
           "JournalEditor"
         ],
         "be_Journal2_Readers": [
           "JournalReader"
         ],
-        "demouser-be": [
+        "user-be": [
           "Owner"
         ]
       }
     },
     "671f487649ae41ab80aff5cfa6b091ba": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal4_Editors": [
           "JournalEditor"
         ],
@@ -3814,6 +4196,9 @@
     },
     "6838972cf46c407599681114893dc4b1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "ContentAdmin"
         ],
@@ -3844,6 +4229,9 @@
     },
     "68d9436a115445daa71db1f7f698db66": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3858,6 +4246,9 @@
     },
     "6a7b5809a1f342d39c3d8f70e5324bae": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3913,13 +4304,16 @@
         "admin": [
           "Owner"
         ],
-        "bb_e-lavg": [
+        "bb_behoerde": [
           "Owner"
         ]
       }
     },
     "6e014aff25494405b5df6afb300555a6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3941,6 +4335,9 @@
     },
     "6fd07b31ea304192953711f2a5e963a4": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3948,6 +4345,9 @@
     },
     "700bbf4cb7494618a624911ca193b153": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -3955,7 +4355,10 @@
     },
     "70168f2d44604f768252fb071abd9d67": {
       "local_roles": {
-        "demouser-bmu-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-ministerium": [
           "Owner"
         ]
       }
@@ -3979,7 +4382,10 @@
     },
     "715900721a1140589ddd1c9db19bdf19": {
       "local_roles": {
-        "demouser-stab-l-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-behoerde": [
           "Owner"
         ]
       }
@@ -4007,6 +4413,9 @@
     },
     "7354822fdd614f5f9358d7d620940c7b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4014,6 +4423,9 @@
     },
     "737228f4759c41339196f0fef02fdab9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4028,6 +4440,9 @@
     },
     "741bbdc8e7584f83866e8e1bab70ba47": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal5_Editors": [
           "Owner"
         ],
@@ -4045,6 +4460,9 @@
     },
     "74f6dee73ce24f9a95dcf2a07c640766": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4059,6 +4477,9 @@
     },
     "75ec9e1850eb44388bf647ddda009e77": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4146,6 +4567,9 @@
     },
     "7a2f0950e5234f36a8168c7ed95bf977": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4153,6 +4577,9 @@
     },
     "7ba33bba02d545858221dfe76768dfb8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4160,6 +4587,9 @@
     },
     "7c0144c52a66455f8261789a903240e7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Receivers": [
           "ContentReceiver"
         ],
@@ -4170,6 +4600,9 @@
     },
     "7c276caa62864d1890dd2608539b3998": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4197,12 +4630,12 @@
         "admin": [
           "Owner"
         ],
-        "bund_bmu-stab-s": [
+        "bund_behoerde": [
+          "Owner"
+        ],
+        "bund_ministerium": [
           "Reader",
           "Reviewer"
-        ],
-        "bund_e-lagebild-bfs": [
-          "Owner"
         ]
       }
     },
@@ -4262,13 +4695,16 @@
         "admin": [
           "Owner"
         ],
-        "bund_bmu-stab-s": [
+        "bund_ministerium": [
           "Owner"
         ]
       }
     },
     "7e40aff030df48d4afb5276438730a8c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4283,6 +4719,9 @@
     },
     "7e8f158c648347ac801bd6956d64bf0b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4300,6 +4739,9 @@
     },
     "7ef13be5a698453795b0c025e0345a31": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "ContentAdmin"
         ],
@@ -4317,6 +4759,9 @@
     },
     "7f250fb3845f4a05aa3aa9af9a6e48c3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4324,6 +4769,9 @@
     },
     "7fbd3c3373e548149fe03e6743dff2ea": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4338,6 +4786,9 @@
     },
     "8009d9d0e86a4bfcaf89a35b1a05c27f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4345,6 +4796,9 @@
     },
     "803f8c5893c24d2f9d7800b10d9cfd2b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "dpadmin": [
           "Owner"
         ]
@@ -4352,6 +4806,9 @@
     },
     "81269a59e35544c1b108b48377397f1e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4366,6 +4823,9 @@
     },
     "8316a385cdf7476896392584eac6ecef": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4380,6 +4840,9 @@
     },
     "83db4e4527c84871864dd7e90dbb97eb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4387,6 +4850,9 @@
     },
     "8414e587952e445097b7952d620e8201": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -4394,6 +4860,9 @@
     },
     "84529a571df84f9196e24380a6bb08bb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4401,6 +4870,9 @@
     },
     "84621247b7c24cb1ae95f6d0997f3ac0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal4_Editors": [
           "JournalEditor"
         ],
@@ -4428,6 +4900,9 @@
     },
     "86d347793fb54e62841a3ce043a70b62": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -4459,6 +4934,9 @@
     },
     "8807af2036ec49fba9824263a85dbfb1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4466,6 +4944,9 @@
     },
     "882d0c6f41b44e7bb41a5c72e130fb35": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "ContentAdmin"
         ],
@@ -4476,6 +4957,9 @@
     },
     "8835103112f448c886695903bf110750": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4483,6 +4967,9 @@
     },
     "88450b28acfa4ef6b179a3ba5de4ae50": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4500,6 +4987,9 @@
     },
     "88b4b61e60d64fa484b16292e2eedd5f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4527,6 +5017,9 @@
     },
     "89ed6129513f4c7d98d205dbd7fa573a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4534,6 +5027,9 @@
     },
     "8a04ad9d54254c68832308b57b960161": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4555,6 +5051,9 @@
     },
     "8b867af7d9014d65b8836984ab38674c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4562,6 +5061,9 @@
     },
     "8b8bd223ef1144ce884288d524b30629": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4579,6 +5081,9 @@
     },
     "8c3cd2c5392e4fa0ac9ea18eab6dc29f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4586,6 +5091,9 @@
     },
     "8c67389b5b474791b22412c25f7249cb": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4593,6 +5101,9 @@
     },
     "8c8c49c8ca144b9e992e36ba3a07c3aa": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4621,6 +5132,9 @@
     },
     "8f1760a60e554508b297265e887a75f0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -4628,6 +5142,9 @@
     },
     "8f1cb6b6efc7427dae3026875b894b46": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4656,6 +5173,9 @@
     },
     "9122043a35f14f3cb08034f5755492a8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_SituationReportAdmins": [
           "Owner"
         ],
@@ -4673,6 +5193,9 @@
     },
     "91a884cb59464fe8bfd575b43975144e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4680,6 +5203,9 @@
     },
     "9222d6b224bb4792a786eb6f45382774": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4687,6 +5213,9 @@
     },
     "922a59e9062b4effa4bc5cd60d4633f3": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4724,19 +5253,25 @@
     },
     "938baef785f245e8964894e8bbabe59e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal3_Editors": [
           "JournalEditor"
         ],
         "bund_Journal3_Readers": [
           "JournalReader"
         ],
-        "demouser-bmu-bund": [
+        "user-ministerium": [
           "Owner"
         ]
       }
     },
     "94dc44a7c259436cbb80f1a6fc7893ef": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4744,6 +5279,9 @@
     },
     "952b4b59180d44a284d52328ba96a861": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4751,6 +5289,9 @@
     },
     "95590b4130ad4556b95c241b9ca9fed5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4765,6 +5306,9 @@
     },
     "95ba03bc39f14ea185234e44615a6774": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4772,6 +5316,9 @@
     },
     "9634d69fda0c45f4bd40c20e84a0186a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4800,6 +5347,9 @@
     },
     "977dfad0665e4ce8af495d9f5b27b275": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4807,6 +5357,9 @@
     },
     "97ff8b848b3040acb1a36ac9c0d505c2": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4821,6 +5374,9 @@
     },
     "98325e07e22e46e3979b5f54028c8f81": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4835,6 +5391,9 @@
     },
     "99cc4f4c4ac443c395406280e0407743": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4842,7 +5401,10 @@
     },
     "99cd1efb78884704a2f80abe3fdd8b6e": {
       "local_roles": {
-        "demouser-stab-l-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-behoerde": [
           "Owner"
         ]
       }
@@ -4873,17 +5435,20 @@
         "admin": [
           "Owner"
         ],
-        "bund_bmu-stab-s": [
+        "bund_behoerde": [
+          "Owner"
+        ],
+        "bund_ministerium": [
           "Reader",
           "Reviewer"
-        ],
-        "bund_e-lagebild-bfs": [
-          "Owner"
         ]
       }
     },
     "9c8253c9064a489ea0eeed909ce17f6b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4891,6 +5456,9 @@
     },
     "9cd6b79d99f54da882e1d987c416eabe": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4919,6 +5487,9 @@
     },
     "9ee55ea053d840428505938e55d88704": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal2_Readers": [
           "Owner"
         ],
@@ -4929,6 +5500,9 @@
     },
     "9f48a9c1619a449097735cd0072372d9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_RodosContentAdministrators": [
           "Owner"
         ],
@@ -4939,6 +5513,9 @@
     },
     "9fbececf84ba4e24ba206fbaafe58db0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4946,6 +5523,9 @@
     },
     "9fceea4beabc48f9aef724abbf090130": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4953,6 +5533,9 @@
     },
     "9fdcaeaa2528420582e99f104a105802": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4974,6 +5557,9 @@
     },
     "a0d80be607414229b808d6e373f886ee": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4995,6 +5581,9 @@
     },
     "a2434c4d02d44417a62eb2090a7d22fe": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_RodosUsers": [
           "Owner"
         ],
@@ -5005,6 +5594,9 @@
     },
     "a2f6c674f69b45c4ba2affbf142508aa": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "ContentAdmin"
         ],
@@ -5015,6 +5607,9 @@
     },
     "a33535ce29eb45cf9a307bb4726698e4": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -5029,6 +5624,9 @@
     },
     "a44e14a35193463f97e577eba8044ded": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -5036,6 +5634,9 @@
     },
     "a479ae6ce0a9452ba936f4bdc53570f9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ELANUsers": [
           "Owner"
         ],
@@ -5046,6 +5647,9 @@
     },
     "a55d4aab622749c3834050696be03a89": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5070,6 +5674,9 @@
     },
     "a609e0fddca04798a43145f332391f2b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5077,6 +5684,9 @@
     },
     "a642879d3aaf4579acd7f5fae55aa1d1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5084,6 +5694,9 @@
     },
     "a6544ee608824b0ab7832387115bd0dd": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5091,6 +5704,9 @@
     },
     "a65de2d90dab41d390a73a7c7ce1cb2e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Receivers": [
           "Owner"
         ],
@@ -5114,6 +5730,9 @@
     },
     "a7771f6925154a919f2818d77a6b798d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5128,6 +5747,9 @@
     },
     "a7b0c17ccb5e4330972aa845535ec45e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5135,6 +5757,9 @@
     },
     "a828b9f8bfed4da7adf12cd073fde209": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal3_Editors": [
           "Owner"
         ],
@@ -5152,6 +5777,9 @@
     },
     "a8524e35d6694678acd5aee8fdd7da3e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5159,6 +5787,9 @@
     },
     "a8576fc6c6b247ec8d08d2253e6b6fea": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5166,6 +5797,9 @@
     },
     "a86a2781674a452cbceb28f86d5e5a83": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -5173,6 +5807,9 @@
     },
     "a93b90ba19db40eba65d72cf0fe2923b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -5180,6 +5817,9 @@
     },
     "a98d64c26ef9400f8f4ca52e376ea9f2": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5187,6 +5827,9 @@
     },
     "a99cbe8bd8c345569b2d0f312c3d8d42": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5211,6 +5854,9 @@
     },
     "ab17a7ad3e61467fab5cd417bdc54e2a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5218,6 +5864,9 @@
     },
     "ac5230fd573148e4ac74add5ca9a7908": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5232,6 +5881,9 @@
     },
     "ad9333b44fd34406a36925885deb3535": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5266,6 +5918,9 @@
     },
     "ae8cfcfb872749c18bd3632feca743d0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5283,6 +5938,9 @@
     },
     "aed6c6ef9dec459cab6eb6c652fb280b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5290,6 +5948,9 @@
     },
     "afa1f02c43414b75a806dbe4c967fa9f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5297,6 +5958,9 @@
     },
     "afb34049a1c34a8faf9b39f383c82cc1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5325,6 +5989,9 @@
     },
     "b197e722e6aa44a284f05a12c1547fe4": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5332,7 +5999,10 @@
     },
     "b1f189bc38554a6f8995fdbef613e788": {
       "local_roles": {
-        "demouser-dwd": [
+        "admin": [
+          "Owner"
+        ],
+        "user-wetterdienst": [
           "Owner"
         ]
       }
@@ -5346,6 +6016,9 @@
     },
     "b1f7069d044843c4ac0dca665d2d74ce": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -5360,6 +6033,9 @@
     },
     "b3407de2a05c4970aa2575e1c9ffec38": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5367,6 +6043,9 @@
     },
     "b3970f3d70cd4dee96cf40d9422d71c7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5374,6 +6053,9 @@
     },
     "b45c067c1ab54fa0b6ab1dd3c9677f8d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5388,6 +6070,9 @@
     },
     "b60d8225e67d48b3832711ae0979570b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5402,7 +6087,10 @@
     },
     "b6cc22cdb1554dd68ff3ab101ec364cb": {
       "local_roles": {
-        "demouser-bmu-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-ministerium": [
           "Owner"
         ]
       }
@@ -5419,6 +6107,9 @@
     },
     "b7bdd7015ece470d9369620eed637ff1": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5426,6 +6117,9 @@
     },
     "b7fc5ee4dd0e440e844c39275335d779": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5433,6 +6127,9 @@
     },
     "b85298b0f0a6432ba7b801b81c84477c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5450,6 +6147,9 @@
     },
     "b8f5aee24bdb40358a575a365a5ef583": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5457,6 +6157,9 @@
     },
     "b9469e1c0a7c42dd9fe7bf5fe4a1ce8d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5464,6 +6167,9 @@
     },
     "b9a3d7de57c447038195329461bf4694": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5498,6 +6204,9 @@
     },
     "bac9ca61b1ec4fd6a85c8d9dbde7f108": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5522,6 +6231,9 @@
     },
     "bbda0806d19d4aad8b0811c70e3f6aac": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5536,6 +6248,9 @@
     },
     "bcab2b3c77a64794bd1faec6fa158d94": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5557,6 +6272,9 @@
     },
     "bd9ec120bd4149e0a79d2c39a806d079": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5571,6 +6289,9 @@
     },
     "be08d044b63f4bbd82219cf69aafced4": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5606,6 +6327,9 @@
     },
     "c065ba282a62483eb122ed78563bc389": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5620,6 +6344,9 @@
     },
     "c16106842f1c460a9737dea61f8088be": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5641,6 +6368,9 @@
     },
     "c1ec91999db64d8b9422c736deeafc6c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5655,6 +6385,9 @@
     },
     "c205a1aa83d94501944c971fe563c0e8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5683,6 +6416,9 @@
     },
     "c29b56b1decd43628cf83e01dd84c212": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5697,6 +6433,9 @@
     },
     "c33c450f1bdb43d5bb597f958c8965dc": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5728,6 +6467,9 @@
     },
     "c459a725800e41c79a201e2e7b373388": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal1_Editors": [
           "JournalEditor"
         ],
@@ -5741,6 +6483,9 @@
     },
     "c46a17bf74c14c988b5762d742f31565": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5755,7 +6500,10 @@
     },
     "c5364916c3954b5c89321f211161e015": {
       "local_roles": {
-        "demouser-stab-l-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-behoerde": [
           "Owner"
         ]
       }
@@ -5799,6 +6547,9 @@
     },
     "c80a71781e2a45f28f59cea0de79c725": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5813,6 +6564,9 @@
     },
     "c8957304909d4710b71416a7a571ee9f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5827,6 +6581,9 @@
     },
     "c90682081199422b94d27252d3243a52": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_REIContentAdministrators": [
           "ContentAdmin"
         ],
@@ -5847,7 +6604,7 @@
         "admin": [
           "Owner"
         ],
-        "bund_bmu-stab-s": [
+        "bund_ministerium": [
           "Owner"
         ]
       }
@@ -5864,6 +6621,9 @@
     },
     "cbb732808e4d4f1498292af49d20b022": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5871,6 +6631,9 @@
     },
     "cc5c9bcc6c5442b6841c860023596146": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal4_Editors": [
           "Owner"
         ],
@@ -5908,6 +6671,9 @@
     },
     "cdca042576a646d498de4b2ccd533be7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5922,6 +6688,9 @@
     },
     "cece0c6444884d6994b390e397b3f10f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5929,6 +6698,9 @@
     },
     "ced91578f3a44766b6cfea5ff50511c5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5936,6 +6708,9 @@
     },
     "cf6a3633058e4990a69ea6462d3b8097": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5960,6 +6735,9 @@
     },
     "d1de9ce0710c4af6bc20f80864df98c5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5967,6 +6745,9 @@
     },
     "d253cd2918b04da6b96a086ea5231960": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -5981,13 +6762,16 @@
     },
     "d34721b7f6ac4c41af936babde847aca": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal1_Editors": [
           "JournalEditor"
         ],
         "bund_Journal1_Readers": [
           "JournalReader"
         ],
-        "demouser-bmu-bund": [
+        "user-ministerium": [
           "Owner"
         ]
       }
@@ -6001,6 +6785,9 @@
     },
     "d4573d683d704868adf2786d5a717eff": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6008,6 +6795,9 @@
     },
     "d50dbc217b2745fc840a4a7f9c3c07b6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6083,6 +6873,9 @@
     },
     "d7e1c3ade14347fa80d8f3c535ab4cf7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6107,6 +6900,9 @@
     },
     "d9f4107e16964dd6b9f8ddcc4ebcdfc5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6131,6 +6927,9 @@
     },
     "dae2cb5b5a6649fca6ce60fff4dc10b8": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6155,6 +6954,9 @@
     },
     "dd1343ec7be848d6973ea3aaeccff762": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Senders": [
           "Owner"
         ],
@@ -6165,6 +6967,9 @@
     },
     "dd2f7f6f71614a289482d8927afabc52": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6172,6 +6977,9 @@
     },
     "dd4ccd2ffdca49809f4cb579f63d0cf9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6179,6 +6987,9 @@
     },
     "ddb95798b719422fa74c7de8c66c9195": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6200,6 +7011,9 @@
     },
     "de202ca6cb5f455f844ad01c061bdb1c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6207,6 +7021,9 @@
     },
     "de45d27ce6864e869f5fee2652316464": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6214,6 +7031,9 @@
     },
     "de9fcf7a23d7436187da9fb37bde2e83": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6221,6 +7041,9 @@
     },
     "deff3f141002435dabb34110be0ee45b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_REIUsers": [
           "Owner"
         ],
@@ -6231,6 +7054,9 @@
     },
     "df850b3aeca24cf5a40335f47bde3941": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6238,6 +7064,9 @@
     },
     "e030242dc733400bb93b90da5e863312": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6272,6 +7101,9 @@
     },
     "e145930094634fc8b6c43e19c9714051": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6293,6 +7125,9 @@
     },
     "e1ed07bea3b74ebd961921116f87df48": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_ContentAdministrators": [
           "ContentAdmin"
         ],
@@ -6320,6 +7155,9 @@
     },
     "e4b194cb504e47989098926df9cef057": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "elanadmin": [
           "Owner"
         ]
@@ -6334,6 +7172,9 @@
     },
     "e586bfd8280948bbacdcba2f96212875": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6348,6 +7189,9 @@
     },
     "e5fcd0d046b847f4b529caa43f859e87": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6355,6 +7199,9 @@
     },
     "e67f7055691f4257b8c460d5fa78d860": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -6376,6 +7223,9 @@
     },
     "e6e84fab82cd4ddb8a7008e80858af28": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6383,6 +7233,9 @@
     },
     "e7331bbe14214af1a7cb5d723ba4779d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6390,6 +7243,9 @@
     },
     "e74710a0bd4e4a1381bf94b80fa1a234": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6404,6 +7260,9 @@
     },
     "e7e6b848fcbb4abd97f1ea6e0a7b685f": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6418,6 +7277,9 @@
     },
     "e803dbdd204e438b9e267b343c1cc50a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6432,6 +7294,9 @@
     },
     "e84e6c60b3c34a99b9c82de2ff8f9c46": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Administrators": [
           "Site Administrator"
         ],
@@ -6463,6 +7328,9 @@
     },
     "e86c35ad7ac4424ea8546741d8956e64": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6484,6 +7352,9 @@
     },
     "e98fb6fd2f9641fd9998c9b3941e446b": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -6510,15 +7381,11 @@
         ]
       }
     },
-    "ea7353f1f4c049409237b95632b34c46": {
-      "local_roles": {
-        "demouser-bmu-bund": [
-          "Owner"
-        ]
-      }
-    },
     "eae80550afdf4eafa151eabf9da9dddf": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6526,6 +7393,9 @@
     },
     "eb0561a12ea04a1fb8b539bf2b2676a9": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6533,6 +7403,9 @@
     },
     "eb6b4699f1ee403b82c4f225bf3230ca": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6564,6 +7437,9 @@
     },
     "ecb602f78e1e4dd3a9e36928f901da82": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6578,7 +7454,10 @@
     },
     "ed85da0e70f24300be1618e6f62a5145": {
       "local_roles": {
-        "demouser-bmu-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-ministerium": [
           "Owner"
         ]
       }
@@ -6588,7 +7467,7 @@
         "admin": [
           "Owner"
         ],
-        "be_e-be-atom": [
+        "be_ministerium": [
           "Owner"
         ]
       }
@@ -6619,7 +7498,7 @@
         "admin": [
           "Owner"
         ],
-        "bund_leitstelle-a-dwd": [
+        "bund_wetterdienst": [
           "Owner"
         ]
       }
@@ -6654,6 +7533,9 @@
     },
     "f1426b5b26ed42008861cc4428715c33": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6661,6 +7543,9 @@
     },
     "f158ef071f0e4d9199deb09b5b8c1ef4": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Administrators": [
           "Owner"
         ],
@@ -6688,6 +7573,9 @@
     },
     "f22964e533fb4bd69c22754c14d98644": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_DoksysUsers": [
           "Owner"
         ],
@@ -6712,6 +7600,9 @@
     },
     "f32ac793ed3a48af88026ce8f8a30ef0": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6726,6 +7617,9 @@
     },
     "f3e14894c5c340a3ae9dd93b02820b53": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6740,6 +7634,9 @@
     },
     "f44ffea87c524e958828f01010304b88": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6747,6 +7644,9 @@
     },
     "f4836bd1704941b7b0492f03f84c8684": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6768,6 +7668,9 @@
     },
     "f5a12d380b834402b5239365b6527445": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6813,13 +7716,16 @@
     },
     "f88ea43596ca4916b133fc22e3069e59": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal2_Editors": [
           "JournalEditor"
         ],
         "bund_Journal2_Readers": [
           "JournalReader"
         ],
-        "demouser-bmu-bund": [
+        "user-ministerium": [
           "Owner"
         ]
       }
@@ -6840,6 +7746,9 @@
     },
     "f8ff1b1b14214b81a78c2107ed5e2e0d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal5_Readers": [
           "Owner"
         ],
@@ -6864,7 +7773,10 @@
     },
     "f96a2c7fe19d40d1bd20e5dba403d4f2": {
       "local_roles": {
-        "demouser-stab-l-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-behoerde": [
           "Owner"
         ]
       }
@@ -6908,6 +7820,9 @@
     },
     "fb2ea58b1f9d4242be378445ed3de41e": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6922,6 +7837,9 @@
     },
     "fbf4364c47b0471ca5f6591b1750b0ea": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6936,13 +7854,19 @@
     },
     "fdb4b3900ef9485aaa80ecc22b57d09f": {
       "local_roles": {
-        "demouser-stab-l-bund": [
+        "admin": [
+          "Owner"
+        ],
+        "user-behoerde": [
           "Owner"
         ]
       }
     },
     "fdc1a08b36de47759d667e82cdeaebc5": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6950,6 +7874,9 @@
     },
     "fe1548940a2d4770bddc11e1e3b53e25": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_Journal2_Editors": [
           "JournalEditor"
         ],
@@ -6963,6 +7890,9 @@
     },
     "fe30b53803714c258c60c46d23984b3a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6970,6 +7900,9 @@
     },
     "fe494be27eae417aa7c0b18f620c5114": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6977,6 +7910,9 @@
     },
     "fe86ce4073ed499cbbec8e4c604582f4": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -6984,6 +7920,9 @@
     },
     "ff03365742ae4b52888e8c830da95dd2": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "bund_dpadmin": [
           "Owner"
         ]
@@ -6991,6 +7930,9 @@
     },
     "plone_site_root": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -7630,7 +8572,6 @@
     "e99f2a1afe704b56b771cb863beacb78": 1,
     "ea2ac59e55354b97a32633ca5c2ce47f": 2,
     "ea33caff5a89404c96271512da97d4cd": 0,
-    "ea7353f1f4c049409237b95632b34c46": 1,
     "eae80550afdf4eafa151eabf9da9dddf": 32,
     "eb0561a12ea04a1fb8b539bf2b2676a9": 7,
     "eb6b4699f1ee403b82c4f225bf3230ca": 1,

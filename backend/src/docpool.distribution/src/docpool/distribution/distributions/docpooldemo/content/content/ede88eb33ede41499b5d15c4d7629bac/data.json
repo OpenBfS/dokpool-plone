@@ -1,12 +1,12 @@
 {
-  "@id": "/berlin/content/Groups/be_e-be-atom",
+  "@id": "/berlin/content/Groups/be_ministerium",
   "@type": "GroupFolder",
   "UID": "ede88eb33ede41499b5d15c4d7629bac",
   "allow_discussion": null,
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-17T13:23:03+00:00",
-  "created_by": "admin <i>SenMVKU IIA (Berlin)</i>",
+  "created_by": "admin <i>Landesministerium (Berlin)</i>",
   "creators": [
     "admin"
   ],
@@ -30,7 +30,7 @@
     ]
   },
   "exportimport.conversation": [],
-  "id": "be_e-be-atom",
+  "id": "be_ministerium",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -44,10 +44,10 @@
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "SenMVKU IIA (Berlin)",
+  "title": "Landesministerium (Berlin)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-09-17T15:23:03",
+  "wdate": "2025-09-17T15:23:03+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {
