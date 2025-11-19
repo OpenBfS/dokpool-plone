@@ -3,7 +3,7 @@
   "@type": "GroupFolder",
   "UID": "3eec06d1826647dea83d639c3feee512",
   "allow_discussion": null,
-  "allowedDocTypes": [],
+  "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T10:52:21+00:00",
   "created_by": "admin <i>Betreiber (Bund)</i>",
@@ -30,6 +30,10 @@
     ]
   },
   "exportimport.conversation": [],
+  "exportimport.workflow_policy": {
+    "workflow_policy_below": "rei_zdbtest",
+    "workflow_policy_in": "rei_zdbtest"
+  },
   "id": "bund_betreiber",
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -39,7 +43,7 @@
   ],
   "lock": {},
   "mdate": "2025-11-19T11:52:51",
-  "modified": "2025-11-19T10:52:51+00:00",
+  "modified": "2025-11-19T11:50:26+00:00",
   "modified_by": "admin <i>Betreiber (Bund)</i>",
   "review_state": "published",
   "rights": null,
@@ -47,7 +51,7 @@
   "title": "Betreiber (Bund)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-11-19T11:52:21",
+  "wdate": "2025-11-19T11:52:21+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {

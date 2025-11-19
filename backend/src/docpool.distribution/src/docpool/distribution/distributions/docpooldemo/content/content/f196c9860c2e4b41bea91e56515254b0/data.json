@@ -1,0 +1,90 @@
+{
+  "@id": "/bund/content/Groups/bund_betreiber/da1db2d0-a444-48f2-a9fa-9374fbc40e7e",
+  "@type": "DPDocument",
+  "Authority": "de_bw",
+  "MStIDs": [
+    "08082"
+  ],
+  "Medium": "Abwasser",
+  "NuclearInstallations": [
+    "UFRF"
+  ],
+  "Origins": [
+    "unabhaengige Messstelle"
+  ],
+  "PDFVersion": "keine Angabe",
+  "Period": "M11",
+  "ReiLegalBases": [
+    "REI-E"
+  ],
+  "UID": "f196c9860c2e4b41bea91e56515254b0",
+  "Year": 2025,
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-11-19T11:50:26+00:00",
+  "created_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "creators": [
+    "user-betreiber"
+  ],
+  "description": "",
+  "docType": "reireport",
+  "effective": "2025-11-19T11:52:34+00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "da1db2d0-a444-48f2-a9fa-9374fbc40e7e",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T12:50:31",
+  "modified": "2025-11-19T11:52:34+00:00",
+  "modified_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "mstids_initial_value": "08082 - Landeszentrale Baden-W\u00fcrttemberg (BW)",
+  "review_state": "pending_bfs",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "REI-Bericht",
+    "encoding": "utf-8"
+  },
+  "title": "REI-Emissionsbericht (Abwasser) November 2025 KKW Fessenheim (unabh\u00e4ngige Messstelle)",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-11-19T12:52:34",
+  "workflow_history": {
+    "rei_review_workflow_alternative": [
+      {
+        "action": null,
+        "actor": "user-betreiber",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-11-19T11:50:26+00:00"
+      },
+      {
+        "action": "submit_authority",
+        "actor": "user-betreiber",
+        "comments": "",
+        "review_state": "pending_authority",
+        "time": "2025-11-19T11:51:16+00:00"
+      },
+      {
+        "action": "submit_bfs",
+        "actor": "user-aufsicht",
+        "comments": "",
+        "review_state": "pending_bfs",
+        "time": "2025-11-19T11:52:34+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

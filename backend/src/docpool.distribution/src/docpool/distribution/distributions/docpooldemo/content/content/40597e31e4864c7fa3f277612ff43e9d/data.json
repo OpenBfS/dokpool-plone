@@ -1,12 +1,14 @@
 {
-  "@id": "/bund/content/Members",
-  "@type": "Users",
-  "UID": "a99cbe8bd8c345569b2d0f312c3d8d42",
+  "@id": "/bund/content/Members/user--ministerium",
+  "@type": "UserFolder",
+  "UID": "40597e31e4864c7fa3f277612ff43e9d",
   "allow_discussion": null,
+  "allowedDocTypes": null,
   "contributors": [],
-  "created": "2025-09-10T12:30:28+00:00",
+  "created": "2025-11-19T11:58:01+00:00",
+  "created_by": "User Ministerium (Bund)",
   "creators": [
-    "rescue"
+    "user-ministerium"
   ],
   "description": "",
   "effective": null,
@@ -14,26 +16,29 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "Members",
+  "id": "user--ministerium",
   "is_folderish": true,
   "language": "##DEFAULT##",
-  "layout": "tabular_view",
+  "layout": "view",
   "lock": {},
+  "mdate": "2025-11-19T12:58:01",
   "modified": "2025-11-19T11:58:01+00:00",
+  "modified_by": null,
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "Benutzer",
-  "type_title": "Users Area",
+  "title": "User Ministerium (Bund)",
+  "type_title": "User Folder",
   "version": "current",
+  "wdate": "2025-11-19T12:58:01",
   "workflow_history": {
-    "dp_one_state_workflow": [
+    "dp_principalfolder_workflow": [
       {
         "action": null,
-        "actor": "rescue",
+        "actor": "user-ministerium",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-10T12:30:28+00:00"
+        "time": "2025-11-19T11:58:01+00:00"
       }
     ]
   },

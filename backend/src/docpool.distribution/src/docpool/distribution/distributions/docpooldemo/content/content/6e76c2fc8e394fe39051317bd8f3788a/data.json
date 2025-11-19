@@ -3,7 +3,7 @@
   "@type": "GroupFolder",
   "UID": "6e76c2fc8e394fe39051317bd8f3788a",
   "allow_discussion": null,
-  "allowedDocTypes": [],
+  "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T10:46:42+00:00",
   "created_by": "admin <i>Leitstelle</i>",
@@ -47,7 +47,7 @@
   "title": "Leitstelle (Bund)",
   "type_title": "Group Folder",
   "version": "current",
-  "wdate": "2025-11-19T11:46:42",
+  "wdate": "2025-11-19T11:46:42+00:00",
   "workflow_history": {
     "dp_principalfolder_workflow": [
       {

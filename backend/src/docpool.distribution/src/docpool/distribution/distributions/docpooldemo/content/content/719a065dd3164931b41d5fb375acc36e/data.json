@@ -1,0 +1,82 @@
+{
+  "@id": "/bund/content/Groups/bund_betreiber/4eb3f2b6-4202-4265-903f-ddff4a41a191",
+  "@type": "DPDocument",
+  "Authority": "de_el",
+  "MStIDs": [],
+  "Medium": "Fortluft",
+  "NuclearInstallations": [
+    "U03K"
+  ],
+  "Origins": [
+    "Strahlenschutzverantwortlicher"
+  ],
+  "PDFVersion": "keine Angabe",
+  "Period": "Y",
+  "ReiLegalBases": [
+    "REI-E",
+    "REI-I"
+  ],
+  "UID": "719a065dd3164931b41d5fb375acc36e",
+  "Year": 2025,
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-11-19T11:43:38+00:00",
+  "created_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "creators": [
+    "user-betreiber"
+  ],
+  "description": "",
+  "docType": "reireport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "4eb3f2b6-4202-4265-903f-ddff4a41a191",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T12:44:49",
+  "modified": "2025-11-19T11:46:52+00:00",
+  "modified_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "mstids_initial_value": "",
+  "review_state": "pending_authority",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "REI-Bericht",
+    "encoding": "utf-8"
+  },
+  "title": "REI-Immissions- und Emissionsbericht (Fortluft) des Jahres 2025 Endlager Konrad (Strahlenschutzverantwortlicher)",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-11-19T12:46:52",
+  "workflow_history": {
+    "rei_review_workflow_alternative": [
+      {
+        "action": null,
+        "actor": "user-betreiber",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-11-19T11:43:38+00:00"
+      },
+      {
+        "action": "submit_authority",
+        "actor": "user-betreiber",
+        "comments": "",
+        "review_state": "pending_authority",
+        "time": "2025-11-19T11:46:52+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

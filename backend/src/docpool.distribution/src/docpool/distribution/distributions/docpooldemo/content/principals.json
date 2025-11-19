@@ -300,7 +300,7 @@
       ],
       "description": "",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": null,
+      "email": "",
       "groupid": "bb_messstelle",
       "groups": [],
       "principals": [
@@ -566,7 +566,7 @@
       ],
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": null,
+      "email": "",
       "groupid": "be_messstelle",
       "groups": [],
       "principals": [
@@ -633,7 +633,7 @@
       ],
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": null,
+      "email": "",
       "groupid": "be_rodos-rechnungen",
       "groups": [],
       "principals": [
@@ -877,6 +877,7 @@
       "principals": [
         "bund_dpadmin",
         "user-aufsicht",
+        "user-behoerde",
         "user-betreiber",
         "user-ministerium",
         "user-wetterdienst"
@@ -951,10 +952,10 @@
       "title": "Situation Report Admins/Lagebild (Bund)"
     },
     {
-      "allowedDocTypes": null,
+      "allowedDocTypes": [],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "",
       "groupid": "bund_aufsicht",
       "groups": [],
       "principals": [
@@ -992,7 +993,7 @@
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "",
       "groupid": "bund_betreiber",
       "groups": [],
       "principals": [
@@ -1002,13 +1003,39 @@
       "title": "Betreiber (Bund)"
     },
     {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "",
+      "groupid": "bund_bfs_rei",
+      "groups": [],
+      "principals": [
+        "user-behoerde"
+      ],
+      "roles": [],
+      "title": "REI Redakteure (Bund)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": "",
+      "groupid": "bund_bmu_rei",
+      "groups": [],
+      "principals": [
+        "user-ministerium"
+      ],
+      "roles": [],
+      "title": "REI Bearbeiter Ministerium (Bund)"
+    },
+    {
       "allowedDocTypes": [
         "doksysdok",
         "trajectory"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "",
       "groupid": "bund_leitstelle",
       "groups": [],
       "principals": [
@@ -1041,34 +1068,12 @@
       "title": "Bundesministerium (Bund)"
     },
     {
-      "allowedDocTypes": null,
-      "description": "",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
-      "groupid": "bund_bmu_rei",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "REI Bearbeiter Ministerium (Bund)"
-    },
-    {
-      "allowedDocTypes": null,
-      "description": "",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
-      "groupid": "bund_bfs_rei",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "REI Redakteure (Bund)"
-    },
-    {
       "allowedDocTypes": [
         "rodosprojection"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "",
       "groupid": "bund_rodos-rechnungen-wetterdienst",
       "groups": [],
       "principals": [
@@ -1168,7 +1173,7 @@
       ],
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": null,
+      "email": "",
       "groupid": "mv_messstelle",
       "groups": [],
       "principals": [
@@ -1431,7 +1436,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}NDTh0B+sYPAT3RWOH+VhelU/UTNDbbtKIHPP",
+      "password": "{SSHA}aBnhRXZ6zcHOAix55ZGNftcih1QH1rkFudeS",
       "roles": [
         "ELANUser",
         "Member",
@@ -1448,7 +1453,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}QQshz4kNvFaoMV/w0eK82q6yjkroQLDt86VY",
+      "password": "{SSHA}7jzVPfG2Ydq47LU3HvQIhSmjSOJIwhRwLzlQ",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1465,7 +1470,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}bYMXzoFSh58cbjfL1iQRmai5m+8KS6UWUWaC",
+      "password": "{SSHA}9dH/9brBPIZ8PHrIemHJdE43ozag8Z53DNDP",
       "roles": [
         "ELANUser",
         "Member",
@@ -1481,7 +1486,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}yl+AJ7WEyPNDoQpw0Hn8TCNnO0+WhtZsEar2",
+      "password": "{SSHA}PyIgZk1Dk4YuzgTfFFSQmd6Ahh9Av+wnw1Fo",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1531,7 +1536,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}5D3C11Z3QKryYeR2ACdIqidIsLidkn2yfJQS",
+      "password": "{SSHA}yyJRLG5o9NbLkXYeNwrWJVUXmGFR6Y5rExss",
       "roles": [
         "Member",
         "REIUser",
@@ -1547,7 +1552,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}YkWw2BC+euGI1ykXHOWxd4xL4p3bbN1YnL/6",
+      "password": "{SSHA}iRBStUkmZ/VP9E+OrfiJAyl3NO+Chz4xV63p",
       "roles": [
         "Manager",
         "Member",
@@ -1558,7 +1563,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "ihotline@bfs.de",
       "fullname": "User Aufsicht (Bund)",
       "groups": [
         "bund_Members",
@@ -1633,8 +1638,10 @@
         "bund_ELANUsers",
         "bund_Journal1_Editors",
         "bund_Members",
+        "bund_REIUsers",
         "bund_RodosUsers",
-        "bund_behoerde"
+        "bund_behoerde",
+        "bund_bfs_rei"
       ],
       "home_page": "",
       "location": "",
@@ -1647,7 +1654,7 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": null,
+      "email": "ihotline@bfs.de",
       "fullname": "User Betreiber (Bund)",
       "groups": [
         "bund_Members",
@@ -1674,6 +1681,7 @@
         "bund_Members",
         "bund_REIUsers",
         "bund_RodosUsers",
+        "bund_bmu_rei",
         "bund_ministerium"
       ],
       "home_page": "",
@@ -1687,7 +1695,7 @@
     {
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": null,
+      "email": "ihotline@bfs.de",
       "fullname": "User MV (Mecklenburg-Vorpommern)",
       "groups": [
         "mv_DoksysUsers",
