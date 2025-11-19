@@ -1,0 +1,85 @@
+{
+  "@id": "/berlin/potentially-affected-areas/brokdorf",
+  "@type": "Collection",
+  "UID": "c7293d47f81b465ea9bc5ee78891f61b",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:48+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "brokdorf",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2025-09-10T13:22:26+00:00",
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "rodosprojection"
+      ]
+    },
+    {
+      "i": "PrognosisType",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "Potenziell betroffene Gebiete"
+      ]
+    },
+    {
+      "i": "Title",
+      "o": "plone.app.querystring.operation.string.contains",
+      "v": "BROKDORF"
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "",
+    "encoding": "utf-8"
+  },
+  "title": "BROKDORF",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:26+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

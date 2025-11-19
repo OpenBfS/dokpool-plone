@@ -1,0 +1,49 @@
+{
+  "@id": "/config/dtypes/information_expert_advisor",
+  "@type": "DocType",
+  "UID": "0bf9f9110c2f4713912331cb5c6e9610",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2025-09-10T12:24:18+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "id": "information_expert_advisor",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T12:24:18+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "FBE_Information",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:24:18+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

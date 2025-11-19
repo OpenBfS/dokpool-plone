@@ -1,0 +1,42 @@
+{
+  "@id": "/berlin/contentconfig/scen/uebung-imis-2025/journal2",
+  "@type": "Journal",
+  "UID": "668f6752377941f8ae13b83afedd7783",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-17T13:40:38+00:00",
+  "creators": [
+    "user-be"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "journal2",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-17T13:40:38+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch Feuerwehr",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "user-be",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-17T13:40:38+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,42 @@
+{
+  "@id": "/berlin/contentconfig/scen/routinemode/journal2",
+  "@type": "Journal",
+  "UID": "65f9fda7721641a5b06455c576f80648",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:25+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "journal2",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-10T13:22:25+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch RLZ",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

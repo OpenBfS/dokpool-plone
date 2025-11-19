@@ -1,0 +1,42 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/beispiel-notfall-archiviert/journal4",
+  "@type": "Journal",
+  "UID": "42f8738f71bc40059919b02974ddafc1",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-23T12:54:30+00:00",
+  "creators": [
+    "user-ministerium"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "journal4",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-23T13:31:53+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch Messdienste",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "user-ministerium",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T12:54:30+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,76 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_ministerium/eine-medieninformation",
+  "@type": "DPDocument",
+  "UID": "5842cc8582194677a1d88917aaccabca",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-23T13:24:47+00:00",
+  "created_by": "User Ministerium (Bund) <i>Bundesministerium (Bund)</i>",
+  "creators": [
+    "user-ministerium"
+  ],
+  "description": "",
+  "docType": "mediarelease",
+  "effective": "2025-09-23T13:24:00+00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "eine-medieninformation",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-23T15:24:54",
+  "modified": "2025-09-23T13:24:59+00:00",
+  "modified_by": "User Ministerium (Bund) <i>Bundesministerium (Bund)</i>",
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "Siehe Anlage",
+    "encoding": "utf-8"
+  },
+  "title": "Eine Medieninformation",
+  "transferLog": "[]",
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-23T15:24:59+00:00",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-ministerium",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-23T13:24:47+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "user-ministerium",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:24:59+00:00"
+      }
+    ],
+    "elan_archive_workflow": [
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:31:53+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

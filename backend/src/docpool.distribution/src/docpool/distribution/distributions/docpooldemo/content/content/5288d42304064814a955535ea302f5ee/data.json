@@ -1,0 +1,53 @@
+{
+  "@id": "/bund/informationen-bund/dokumente/icrp-empfehlungen/icrp-103",
+  "@type": "InfoDocument",
+  "UID": "5288d42304064814a955535ea302f5ee",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-10T12:54:32+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "docType": "infodoc",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "icrp-103",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2025-09-10T14:55:15",
+  "modified": "2025-09-10T12:55:15+00:00",
+  "modified_by": "DocPool Administrator (Bund)",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p><span style=\"font-size: 12pt;\"><span style=\"left: 94.4882px; top: 87.8328px; font-family: sans-serif; transform: scaleX(0.886162);\">Die Empfehlungen der Internatio\u00ad</span><span style=\"left: 94.4882px; top: 151.176px; font-family: sans-serif; transform: scaleX(0.854753);\">nalen Strahlenschutzkommission </span><span style=\"left: 94.4882px; top: 214.52px; font-family: sans-serif; transform: scaleX(0.831475);\">(ICRP) von 2007</span></span></p>",
+    "encoding": "utf-8"
+  },
+  "title": "ICRP-103",
+  "type_title": "General information",
+  "version": "current",
+  "wdate": "2025-09-10T14:54:32+00:00",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:54:32+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

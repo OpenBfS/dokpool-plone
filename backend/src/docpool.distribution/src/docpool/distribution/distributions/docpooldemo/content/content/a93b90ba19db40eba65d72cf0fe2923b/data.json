@@ -1,0 +1,47 @@
+{
+  "@id": "/Members/bund_dpadmin",
+  "@type": "UserFolder",
+  "UID": "a93b90ba19db40eba65d72cf0fe2923b",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-09-11T07:01:56+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "bund_dpadmin",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-11T09:01:56",
+  "modified": "2025-09-11T07:01:56+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "DocPool Administrator (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2025-09-11T09:01:56+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-11T07:01:56+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

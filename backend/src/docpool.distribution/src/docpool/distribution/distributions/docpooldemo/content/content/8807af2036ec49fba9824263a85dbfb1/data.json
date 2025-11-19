@@ -1,0 +1,78 @@
+{
+  "@id": "/bund/searches/luft",
+  "@type": "Collection",
+  "UID": "8807af2036ec49fba9824263a85dbfb1",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:25+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "Ergebnisse Luft",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "luft",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2025-09-10T12:30:29+00:00",
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "DPDocument"
+      ]
+    },
+    {
+      "i": "SampleTypeId",
+      "o": "plone.app.querystring.operation.string.contains",
+      "v": "L*"
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "effective",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Ergebnisse Luft<p>",
+    "encoding": "utf-8"
+  },
+  "title": "Ergebnisse Luft",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:30:29+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

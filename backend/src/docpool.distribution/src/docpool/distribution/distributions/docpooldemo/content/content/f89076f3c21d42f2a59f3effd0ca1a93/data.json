@@ -1,0 +1,63 @@
+{
+  "@id": "/berlin/contentconfig/scen/routinemode",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": null,
+  "Status": "active",
+  "TimeOfEvent": "2025-09-10T14:49:56",
+  "UID": "f89076f3c21d42f2a59f3effd0ca1a93",
+  "allow_discussion": null,
+  "changelog": "[{\"Date\": \"10.09.2025 15:22\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}, {\"Date\": \"10.09.2025 15:22\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}]",
+  "contributors": [],
+  "created": "2025-09-10T13:22:25+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "routinemode",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-10T15:22:25",
+  "modified": "2025-09-10T13:22:25+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Normalfall",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2025-09-10T15:22:25+00:00",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

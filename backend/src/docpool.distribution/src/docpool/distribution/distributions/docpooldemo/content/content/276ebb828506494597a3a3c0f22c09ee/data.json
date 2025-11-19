@@ -1,0 +1,72 @@
+{
+  "@id": "/bund/content/Groups/bund_rodos-rechnungen-wetterdienst/eine-rodos-rechnung-mit-elan",
+  "@type": "DPDocument",
+  "PrognosisForm": "Einzelrechnung",
+  "PrognosisType": "RODOS Prognose",
+  "UID": "276ebb828506494597a3a3c0f22c09ee",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-11-19T12:13:23+00:00",
+  "created_by": "User Wetterdienst (Bund) <i>RODOS Rechnungen Wetterdienst (Bund)</i>",
+  "creators": [
+    "user-wetterdienst"
+  ],
+  "description": "",
+  "docType": "rodosprojection",
+  "effective": "2025-11-19T12:20:12+00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "eine-rodos-rechnung-mit-elan",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan",
+    "rodos"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T13:17:47",
+  "modified": "2025-11-19T12:20:12+00:00",
+  "modified_by": "User Wetterdienst (Bund) <i>RODOS Rechnungen Wetterdienst (Bund)</i>",
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [
+    "e4b194cb504e47989098926df9cef057"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "Redeye cappuccino grounds aged french affogato americano acerbic variety mug coffee cultivar cream cinnamon caramelization.",
+    "encoding": "utf-8"
+  },
+  "title": "Eine RODOS Rechnung mit ELAN",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-11-19T13:20:12",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-wetterdienst",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-11-19T12:13:23+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T12:20:12+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

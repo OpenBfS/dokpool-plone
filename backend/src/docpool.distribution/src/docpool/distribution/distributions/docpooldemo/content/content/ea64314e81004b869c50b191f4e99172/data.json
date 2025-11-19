@@ -1,0 +1,79 @@
+{
+  "@id": "/bund/content/Groups/bund_leitstelle/beispieldokument-leitstelle",
+  "@type": "DPDocument",
+  "Area": null,
+  "DataType": [],
+  "Dom": null,
+  "Duration": null,
+  "InfoType": null,
+  "LegalBase": null,
+  "MeasurementCategory": null,
+  "MeasuringProgram": null,
+  "NetworkOperator": null,
+  "OperationMode": "Routine",
+  "Purpose": null,
+  "SampleType": [
+    "L3"
+  ],
+  "SamplingBegin": null,
+  "SamplingEnd": null,
+  "Status": null,
+  "TrajectoryEndLocation": null,
+  "TrajectoryEndTime": null,
+  "TrajectoryStartLocation": null,
+  "TrajectoryStartTime": null,
+  "UID": "ea64314e81004b869c50b191f4e99172",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-11-19T12:27:26+00:00",
+  "created_by": "User Wetterdienst (Bund) <i>Leitstelle (Bund)</i>",
+  "creators": [
+    "user-wetterdienst"
+  ],
+  "description": "",
+  "docType": "doksysdok",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "beispieldokument-leitstelle",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T13:27:53",
+  "modified": "2025-11-19T12:27:53+00:00",
+  "modified_by": "User Wetterdienst (Bund) <i>Leitstelle (Bund)</i>",
+  "review_state": "private",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "A turkish carajillo breve variety irish aroma cultivar acerbic irish doppio filter.",
+    "encoding": "utf-8"
+  },
+  "title": "Beispieldokument Leitstelle",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-11-19T13:27:26",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-wetterdienst",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-11-19T12:27:26+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

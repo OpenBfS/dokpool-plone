@@ -1,0 +1,64 @@
+{
+  "@id": "/brandenburg/content/Groups/bb_behoerde",
+  "@type": "GroupFolder",
+  "UID": "6dc41351b11b4d50886e662fdb8c9ef4",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-09-17T14:15:28+00:00",
+  "created_by": "admin <i>Landesbeh\u00f6rde (Brandenburg)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "bb_behoerde",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-17T16:15:28",
+  "modified": "2025-09-17T14:15:28+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Landesbeh\u00f6rde (Brandenburg)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2025-09-17T16:15:28+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-17T14:15:28+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

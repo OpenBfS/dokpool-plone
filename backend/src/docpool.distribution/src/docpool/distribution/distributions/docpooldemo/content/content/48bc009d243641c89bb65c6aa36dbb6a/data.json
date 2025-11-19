@@ -1,0 +1,64 @@
+{
+  "@id": "/bund/content/Groups/bund_bmu_rei",
+  "@type": "GroupFolder",
+  "UID": "48bc009d243641c89bb65c6aa36dbb6a",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-11-19T10:54:28+00:00",
+  "created_by": "admin <i>REI Bearbeiter Ministerium (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "bund_bmu_rei",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T11:54:28",
+  "modified": "2025-11-19T10:54:28+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "REI Bearbeiter Ministerium (Bund)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2025-11-19T11:54:28+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T10:54:28+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

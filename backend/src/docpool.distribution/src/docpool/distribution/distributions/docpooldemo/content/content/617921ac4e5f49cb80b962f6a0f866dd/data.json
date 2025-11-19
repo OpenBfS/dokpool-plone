@@ -1,0 +1,44 @@
+{
+  "@id": "/searches",
+  "@type": "Folder",
+  "UID": "617921ac4e5f49cb80b962f6a0f866dd",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:25+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "searches",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [],
+  "lock": {},
+  "modified": "2025-09-10T12:24:25+00:00",
+  "nextPreviousEnabled": false,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Predefined Searches",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:24:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
