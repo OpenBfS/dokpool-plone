@@ -26,7 +26,7 @@
   ],
   "description": "",
   "docType": "reireport",
-  "effective": "2025-11-19T11:52:34+00:00",
+  "effective": "2025-11-19T11:52:00+00:00",
   "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
@@ -42,7 +42,7 @@
   "mdate": "2025-11-19T12:47:56",
   "modified": "2025-11-19T11:57:39+00:00",
   "modified_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
-  "mstids_initial_value": "",
+  "mstids_initial_value": null,
   "review_state": "pending_bmu",
   "rights": null,
   "subjects": [],
@@ -57,7 +57,7 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-11-19T12:57:39",
+  "wdate": "2025-11-19T12:57:39+00:00",
   "workflow_history": {
     "rei_review_workflow_alternative": [
       {

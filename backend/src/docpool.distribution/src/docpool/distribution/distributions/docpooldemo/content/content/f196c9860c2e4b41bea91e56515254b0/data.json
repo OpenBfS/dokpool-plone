@@ -28,7 +28,7 @@
   ],
   "description": "",
   "docType": "reireport",
-  "effective": "2025-11-19T11:52:34+00:00",
+  "effective": "2025-11-19T11:52:00+00:00",
   "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
@@ -59,7 +59,7 @@
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-11-19T12:52:34",
+  "wdate": "2025-11-19T12:52:34+00:00",
   "workflow_history": {
     "rei_review_workflow_alternative": [
       {
