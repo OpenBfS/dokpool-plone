@@ -1,4 +1,5 @@
-<div class="listing-item d-flex align-items-center border-top"
+
+<div class="listing-item d-flex align-items-center border-top position-relative"
      tal:define="
        portal_state context/@@plone_portal_state;
        plone_view nocall:context/@@plone;
@@ -11,6 +12,15 @@
      "
      i18n:domain="docpool.base"
 >
+
+  <a class="pat-inject list-item-link stretched-link"
+     href="#"
+     data-pat-inject="trigger: default; source: #content; target: #content-core; history: record"
+     tal:attributes="
+       href python: data['url'];
+     "
+  >
+    <span class="visually-hidden">Stretched link to details view</span></a>
   <div class="text-center ms-2 me-2">
     <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
     <div class="text-muted small"
@@ -42,15 +52,8 @@
   </div>
 
   <div class="flex-fill">
-    <a class="pat-inject list-item-link"
-       href="#"
-       data-pat-inject="trigger: default; source: #content; target: #content-core; history: record"
-       tal:attributes="
-         href python: data['url'];
-       "
-    >
-      <h2 tal:content="python: data['title']"></h2>
-    </a>
+
+    <h2 tal:content="python: data['title']"></h2>
     <div class="text-muted text-truncate"
          tal:content="python: data['description']"
     >
@@ -59,7 +62,7 @@
   </div>
 
   <!-- Attachment Column -->
-  <div class="py-2 px-3"
+  <div class="py-2 px-3 position-relative z-2"
        tal:condition="python: data['attachments']"
   >
     <div class="d-flex gap-2">
@@ -129,8 +132,8 @@
     </div>
   </div>
 
-  <div class="ms-3 bg-light">
-    <div class="dropdown">
+  <div class="ms-3 bg-light position-relative z-2">
+    <div class="dropdown position-relative z-3">
       <a class="btn btn-secondary text-bg-secondary btn-sm"
          aria-expanded="false"
          href="#"
