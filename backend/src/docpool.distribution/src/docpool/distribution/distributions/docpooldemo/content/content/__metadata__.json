@@ -18,7 +18,9 @@
     "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png",
     "399a21e9a60b49a0be023f1142a72735/file/rodos-rechnung.pdf",
     "e5ea3624edeb496a89f64aca4b305c55/file/rodos-rechnung.pdf",
-    "0ce762803e484ddba0d8b1df9d8bc7b6/file/rodos-rechnung.pdf"
+    "0ce762803e484ddba0d8b1df9d8bc7b6/file/rodos-rechnung.pdf",
+    "2cd86a11ecf9480bac15e677285154cf/file/bericht.pdf",
+    "abeb042567374946bf336153fd44da51/file/bericht.pdf"
   ],
   "_data_files_": [
     "plone_site_root/data.json",
@@ -445,6 +447,10 @@
     "37b74ed6923f4a5dbea923e50ac5dc9c/data.json",
     "48bc009d243641c89bb65c6aa36dbb6a/data.json",
     "6e76c2fc8e394fe39051317bd8f3788a/data.json",
+    "ea64314e81004b869c50b191f4e99172/data.json",
+    "2cd86a11ecf9480bac15e677285154cf/data.json",
+    "57df9b98ae7f4ca490c45372046ad57c/data.json",
+    "abeb042567374946bf336153fd44da51/data.json",
     "c994fe8231e447e2b6a365d9e70bd95c/data.json",
     "b6cc22cdb1554dd68ff3ab101ec364cb/data.json",
     "bbcee4ba112f441cb5b90cec812ba2c9/data.json",
@@ -895,6 +901,7 @@
     "2b9027adf1ea47a2bbe7602c8eb391ad": {},
     "2c540a48bd864a5b8288a870b42a5fee": {},
     "2c893ea80e03427d83fb1db980fe4533": {},
+    "2cd86a11ecf9480bac15e677285154cf": {},
     "2de418801c1943da9c2439bc939bf281": {},
     "2de78f8415ea42bf9dc4723596a9d439": {},
     "2dec43ce43134605a2f895b7796c981e": {},
@@ -1019,6 +1026,7 @@
     "56640f81a9e14e579bfc5b8313ccb083": {},
     "568597e91ffd45c6989760ab0a3b0cd1": {},
     "568b25f018ec488a9e5474d89f4a7ac3": {},
+    "57df9b98ae7f4ca490c45372046ad57c": {},
     "5835901ab4234a5984df7d89b97a9e15": {},
     "5842cc8582194677a1d88917aaccabca": {},
     "58ca33e78c6547009aefee1f8ea18652": {},
@@ -1255,6 +1263,7 @@
     "aa1940557a644dbcb4a462a54ce2773d": {},
     "aa9b941b8af74a7d938c89c2096e92cb": {},
     "ab17a7ad3e61467fab5cd417bdc54e2a": {},
+    "abeb042567374946bf336153fd44da51": {},
     "ac5230fd573148e4ac74add5ca9a7908": {},
     "acc74beb8a2b4157a263e67ad9005afd": {},
     "ad9333b44fd34406a36925885deb3535": {},
@@ -1427,6 +1436,7 @@
     "e99f2a1afe704b56b771cb863beacb78": {},
     "ea2ac59e55354b97a32633ca5c2ce47f": {},
     "ea33caff5a89404c96271512da97d4cd": {},
+    "ea64314e81004b869c50b191f4e99172": {},
     "eae80550afdf4eafa151eabf9da9dddf": {},
     "eb0561a12ea04a1fb8b539bf2b2676a9": {},
     "eb6b4699f1ee403b82c4f225bf3230ca": {},
@@ -2747,6 +2757,13 @@
         ]
       }
     },
+    "2cd86a11ecf9480bac15e677285154cf": {
+      "local_roles": {
+        "user-wetterdienst": [
+          "Owner"
+        ]
+      }
+    },
     "2de418801c1943da9c2439bc939bf281": {
       "local_roles": {
         "admin": [
@@ -3960,6 +3977,13 @@
           "Owner"
         ],
         "bb_Journal3_Readers": [
+          "Owner"
+        ]
+      }
+    },
+    "57df9b98ae7f4ca490c45372046ad57c": {
+      "local_roles": {
+        "user-wetterdienst": [
           "Owner"
         ]
       }
@@ -6144,6 +6168,13 @@
         ]
       }
     },
+    "abeb042567374946bf336153fd44da51": {
+      "local_roles": {
+        "user-wetterdienst": [
+          "Owner"
+        ]
+      }
+    },
     "ac5230fd573148e4ac74add5ca9a7908": {
       "local_roles": {
         "admin": [
@@ -7721,6 +7752,13 @@
         ]
       }
     },
+    "ea64314e81004b869c50b191f4e99172": {
+      "local_roles": {
+        "user-wetterdienst": [
+          "Owner"
+        ]
+      }
+    },
     "eae80550afdf4eafa151eabf9da9dddf": {
       "local_roles": {
         "admin": [
@@ -8432,6 +8470,7 @@
     "2b9027adf1ea47a2bbe7602c8eb391ad": 45,
     "2c540a48bd864a5b8288a870b42a5fee": 7,
     "2c893ea80e03427d83fb1db980fe4533": 1,
+    "2cd86a11ecf9480bac15e677285154cf": 0,
     "2de418801c1943da9c2439bc939bf281": 4,
     "2de78f8415ea42bf9dc4723596a9d439": 21,
     "2dec43ce43134605a2f895b7796c981e": 1,
@@ -8556,6 +8595,7 @@
     "56640f81a9e14e579bfc5b8313ccb083": 0,
     "568597e91ffd45c6989760ab0a3b0cd1": 15,
     "568b25f018ec488a9e5474d89f4a7ac3": 13,
+    "57df9b98ae7f4ca490c45372046ad57c": 1,
     "5835901ab4234a5984df7d89b97a9e15": 0,
     "5842cc8582194677a1d88917aaccabca": 0,
     "58ca33e78c6547009aefee1f8ea18652": 22,
@@ -8792,6 +8832,7 @@
     "aa1940557a644dbcb4a462a54ce2773d": 2,
     "aa9b941b8af74a7d938c89c2096e92cb": 0,
     "ab17a7ad3e61467fab5cd417bdc54e2a": 2,
+    "abeb042567374946bf336153fd44da51": 0,
     "ac5230fd573148e4ac74add5ca9a7908": 12,
     "acc74beb8a2b4157a263e67ad9005afd": 1,
     "ad9333b44fd34406a36925885deb3535": 1,
@@ -8964,6 +9005,7 @@
     "e99f2a1afe704b56b771cb863beacb78": 1,
     "ea2ac59e55354b97a32633ca5c2ce47f": 2,
     "ea33caff5a89404c96271512da97d4cd": 0,
+    "ea64314e81004b869c50b191f4e99172": 0,
     "eae80550afdf4eafa151eabf9da9dddf": 32,
     "eb0561a12ea04a1fb8b539bf2b2676a9": 7,
     "eb6b4699f1ee403b82c4f225bf3230ca": 1,
