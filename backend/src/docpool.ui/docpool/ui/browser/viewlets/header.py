@@ -23,8 +23,25 @@ class PortalHeader(ViewletBase):
 
         possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
         scenarios_by_uid = {s.UID: s.getObject() for s in possible}
-        self.scenarios = scenarios_by_uid.values()
-        self.selected_scenario = scenarios_by_uid.get(get_scenario_for_current_user())
+        selected_uid = get_scenario_for_current_user()
+        self.scenarios = []
+        status_vocabulary = api.portal.get_vocabulary(
+            "docpool.elan.vocabularies.Status", context=self.context
+        )
+        for status_term in status_vocabulary:
+            scenarios = [
+                dict(
+                    scenario=s,
+                    selected=(uid == selected_uid),
+                    last=False,
+                )
+                for uid, s in scenarios_by_uid.items()
+                if s.Status == status_term.value
+            ]
+            if scenarios:
+                scenarios[-1]["last"] = True
+                self.scenarios.extend(scenarios)
+        self.selected_scenario = scenarios_by_uid.get(selected_uid)
 
     @property
     def dp_title(self):

@@ -2,7 +2,9 @@
   --bs-primary: #324d6a; /* Graublau Dunkel1 */
   --bs-warning: #fed86c; /* Gelb Main */
   --bs-light: #e1e6eb; /* Graublau Hell3 */
+  --bs-gray-dark: #D9D9D9;
   --bs-blue-gray: #6A829D;
+  --bs-light-blue: #c3dce7; /* Hellblau(Hell2) */
 }
 
 body {
@@ -59,7 +61,7 @@ body {
 }
 
 .event-card {
-  background-color: #c3dce7; /* Hellblau(Hell2) */
+  background-color: var(--bs-light-blue);
   border-bottom: 2px solid var(--bs-primary);
   height: 72px;
 }
@@ -79,6 +81,48 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
   border-left: 1px solid var(--bs-blue-gray);
+}
+
+.event-dropdown-menu {
+  width: 100%;
+}
+
+.event-dropdown-menu .dropdown-item {
+  padding: 0px;
+  padding-right: var(--bs-dropdown-item-padding-x);
+}
+
+.event-dropdown-menu .dropdown-item > div {
+  padding: calc(var(--bs-dropdown-item-padding-y) + 10px) 0px;
+}
+
+.event-dropdown-menu .dropdown-item > div:first-child {
+  padding-left: var(--bs-dropdown-item-padding-x);
+}
+
+.event-dropdown-menu .dropdown-item > div > div {
+  padding-right: 20px;
+}
+
+.event-dropdown-menu .dropdown-item.last-in-section {
+  box-shadow: 0px 5px 5px var(--bs-gray-dark);
+  margin-bottom: 10px;
+}
+
+.event-dropdown-menu .selected {
+  background-color: var(--bs-light-blue);
+}
+
+.event-dropdown-menu .icon-column {
+  width: 20px;
+}
+
+.event-dropdown-menu a {
+  text-decoration: none;
+}
+
+.icon-with-text {
+  margin-right: 15px;
 }
 
 .tag-badge {

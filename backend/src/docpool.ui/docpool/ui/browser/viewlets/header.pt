@@ -92,11 +92,86 @@ else:
           <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
         </div>
       </div>
-      <ul class="dropdown-menu menu-config-dropdown">
-        <li class="dropdown-item"
-            tal:repeat="scenario python: view.scenarios"
+      <ul class="dropdown-menu menu-config-dropdown event-dropdown-menu">
+        <li class="dropdown-item event-switcher-detail d-flex align-items-stretch gap-3 border-bottom ${python:'last-in-section' if item['last'] else ''}"
+            tal:repeat="item python: view.scenarios"
         >
-          <a href="${python: f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">${scenario/Title}</a>
+          <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end ${selected_class}"
+               tal:define="
+                 scenario python: item['scenario'];
+                 selected python: item['selected'];
+                 selected_class python: 'selected' if selected else '';
+               "
+          >
+            <div class="icon-column">
+              <tal:icon condition="selected"
+                        replace="structure python:icons.tag('check-lg', tag_class='')"
+              />
+            </div>
+            <div class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</div>
+            <div class="text-primary flex-grow-1 border-end">
+              <a href="${python:
+                       f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">
+                ${scenario/Title}
+              </a>
+            </div>
+            <div class="small text-primary">${scenario/status_title}</div>
+            <div class="small text-primary">${scenario/operation_mode_title}</div>
+          </div>
+          <div class="d-flex align-items-stretch gap-3"
+               tal:define="
+                 scenario_url python: item['scenario'].absolute_url();
+               "
+          >
+            <div class="icon-column">
+              <a class="pat-plone-modal"
+                 href="${scenario_url}"
+                 data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+              >
+                <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
+              </a>
+            </div>
+            <div class="icon-column">
+              <a class="pat-plone-modal"
+                 href="${scenario_url}/@@edit"
+                 data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
+              >
+                <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="dropdown-item d-flex align-items-stretch gap-3 border-bottom last-in-section"
+            tal:condition="python: dp is not None"
+        >
+          <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end">
+            <div class="icon-column"></div>
+            <div class="text-primary flex-grow-1 border-end">
+              <a href="${python: f'{dp.absolute_url()}/archive'}">
+                Archivierte Ereignisse
+              </a>
+            </div>
+          </div>
+          <div class="d-flex align-items-stretch gap-3">
+            <div class="icon-column">
+              <a href="${python: f'{dp.absolute_url()}/archive'}">
+                <tal:icon replace="structure python:icons.tag('chevron-right', tag_class='')" />
+              </a>
+            </div>
+            <div class="icon-column"></div>
+          </div>
+        </li>
+        <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3"
+            tal:condition="python: dp is not None"
+        >
+          <div>
+            <a class="btn btn-light"
+               href="${python: dp.absolute_url()}/contentconfig/++add++DPEvents"
+            >
+              <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
+              <span class="small">Neues Ereignis anlegen</span>
+            </a>
+          </div>
         </li>
       </ul>
 

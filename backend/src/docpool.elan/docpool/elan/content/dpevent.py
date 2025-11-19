@@ -319,6 +319,10 @@ class DPEvent(Container, ContentBase):
         vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.Modes")
         return safe_text(vocab.getTerm(self.OperationMode).title)
 
+    def status_title(self):
+        vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.Status", context=self)
+        return safe_text(vocab.getTerm(self.Status).title)
+
 
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):
