@@ -1,0 +1,64 @@
+{
+  "@id": "/mecklenburg-vorpommern/content/Groups/mv_messstelle",
+  "@type": "GroupFolder",
+  "UID": "37b3d42435664a8990a4202331c7e457",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-11-19T11:09:55+00:00",
+  "created_by": "admin <i>Messstelle (Mecklenburg-Vorpommern)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "mv_messstelle",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T12:09:55",
+  "modified": "2025-11-19T11:09:55+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Messstelle (Mecklenburg-Vorpommern)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2025-11-19T12:09:55",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T11:09:55+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

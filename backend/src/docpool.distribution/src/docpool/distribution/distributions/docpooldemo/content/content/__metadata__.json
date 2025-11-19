@@ -6,12 +6,12 @@
     "e84e6c60b3c34a99b9c82de2ff8f9c46/customLogo/dokpool_logo_bund.png",
     "70168f2d44604f768252fb071abd9d67/file/Beispiel.pdf",
     "093fc9443add4ce8b0f6e59ce8ecbc73/file/Beispiel.pdf",
+    "2f890c0af72a4a59975ed10e91ac8eaf/file/Beispiel.pdf",
+    "c5364916c3954b5c89321f211161e015/file/Beispiel.pdf",
     "8f1760a60e554508b297265e887a75f0/file/landesmessstellen-strvg_empfehlung-zur-mindestausstattung-von-lmst-nach-strvg_2015-07.pdf",
     "a44e14a35193463f97e577eba8044ded/file/bfs_2009_bfs-schr-47-09.pdf",
     "e67f7055691f4257b8c460d5fa78d860/file/historie_stammdaten-aenderungen.pdf",
-    "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png",
-    "c5364916c3954b5c89321f211161e015/file/Beispiel.pdf",
-    "2f890c0af72a4a59975ed10e91ac8eaf/file/Beispiel.pdf"
+    "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png"
   ],
   "_data_files_": [
     "plone_site_root/data.json",
@@ -85,8 +85,10 @@
     "e34f6473e1294a8b9c02c501356deb67/data.json",
     "4f16d090fdd24d2e96028bf6b948be5d/data.json",
     "382bbbbfdbdd4990b25ea3494dabbf56/data.json",
+    "3ed862ea719742e694c605011048c9b7/data.json",
     "ede88eb33ede41499b5d15c4d7629bac/data.json",
     "35b68a45217142d4ba612016961151c6/data.json",
+    "c61c4704768d4f0da1b09e27e35c8bc4/data.json",
     "59f40bc975ac479c97987632b6b592a0/data.json",
     "0969b15d71b149548e6d9b99e72b3c9b/data.json",
     "3d98a0a6d15a4a4a8fea0bab54ee2e7c/data.json",
@@ -235,6 +237,7 @@
     "1535ee100461420bb71004097938f712/data.json",
     "4cd5f2f6d39b48e5b5a12f70f5f6eecd/data.json",
     "6dc41351b11b4d50886e662fdb8c9ef4/data.json",
+    "5a24157238234fe584c6b43570267b3e/data.json",
     "1e480e0ce2854bf09e96d50688e4e9a9/data.json",
     "c7dbf7bea80940c480f0bce387b0aab8/data.json",
     "2399ce81f348479d90973de8ca891d95/data.json",
@@ -415,6 +418,7 @@
     "a2434c4d02d44417a62eb2090a7d22fe/data.json",
     "dd1343ec7be848d6973ea3aaeccff762/data.json",
     "9122043a35f14f3cb08034f5755492a8/data.json",
+    "bf7f7dca76a44f3cb34ed03df15aaedc/data.json",
     "9c3189972461497c9ccdae8f520e27b4/data.json",
     "fdb4b3900ef9485aaa80ecc22b57d09f/data.json",
     "f35f3994525e437990fdbc8024531133/data.json",
@@ -422,8 +426,13 @@
     "99cd1efb78884704a2f80abe3fdd8b6e/data.json",
     "2f890c0af72a4a59975ed10e91ac8eaf/data.json",
     "c5364916c3954b5c89321f211161e015/data.json",
+    "3eec06d1826647dea83d639c3feee512/data.json",
+    "6e76c2fc8e394fe39051317bd8f3788a/data.json",
     "c994fe8231e447e2b6a365d9e70bd95c/data.json",
     "b6cc22cdb1554dd68ff3ab101ec364cb/data.json",
+    "48bc009d243641c89bb65c6aa36dbb6a/data.json",
+    "37b74ed6923f4a5dbea923e50ac5dc9c/data.json",
+    "bbcee4ba112f441cb5b90cec812ba2c9/data.json",
     "f02ca58700674f08af8d7a77751fe1c6/data.json",
     "a99cbe8bd8c345569b2d0f312c3d8d42/data.json",
     "a86a2781674a452cbceb28f86d5e5a83/data.json",
@@ -657,6 +666,7 @@
     "d0ce511016264d228559ee26d4498f98/data.json",
     "f1cea9f78f4042c38a6ab26a13e1f8f4/data.json",
     "3f3c1c37ec084d1fa4d270d55ed15f92/data.json",
+    "37b3d42435664a8990a4202331c7e457/data.json",
     "7efab4d1fdb44384a41fb2bf3b31020a/data.json",
     "3994893c6faa483a82435a9bf52b1e9e/data.json",
     "15eb525096694944a6e3f4e133abdfc9/data.json",
@@ -889,6 +899,8 @@
     "371d6ee326104ef8bd548e45ed6c1f3b": {},
     "378717e296554fca8a2d86a92a6ff061": {},
     "37b0625590b948e89b2e0b1f00702e3c": {},
+    "37b3d42435664a8990a4202331c7e457": {},
+    "37b74ed6923f4a5dbea923e50ac5dc9c": {},
     "382bbbbfdbdd4990b25ea3494dabbf56": {},
     "3836957f6c154081abf1a281ad4e22c8": {},
     "38d85fe7f6174ac68ea72f8b96477be2": {},
@@ -911,6 +923,8 @@
     "3e7b437a9955405facf6eb2db56af2b5": {},
     "3e8084cc0dab4796ba74ea4918297880": {},
     "3ea9a4f7402c46f482ce52579b0a6388": {},
+    "3ed862ea719742e694c605011048c9b7": {},
+    "3eec06d1826647dea83d639c3feee512": {},
     "3f3c1c37ec084d1fa4d270d55ed15f92": {},
     "3f8ed0b238ba4eacb67fcad178180443": {},
     "3fafad5e0a734d80bbced4b22febe298": {},
@@ -944,6 +958,7 @@
     "4849cee620824f03b8d08d80443c8786": {},
     "4885db60a2914ba78317d459a943e31c": {},
     "4897b30c0ea14d5889130468aa8a2211": {},
+    "48bc009d243641c89bb65c6aa36dbb6a": {},
     "497d483e9faf471ab6cbc76136fdf4f0": {},
     "49ff3b33336c41e58ec9471d2c93a114": {},
     "4a155ea4f4c04f75a07eefcc5515e419": {},
@@ -976,6 +991,7 @@
     "58e4a8d394ee4b4f91cd82969cceaed5": {},
     "5932794357c947ff8d8bbdee7e64d4dd": {},
     "59f40bc975ac479c97987632b6b592a0": {},
+    "5a24157238234fe584c6b43570267b3e": {},
     "5a24730e185f4a5e9cae66a98fd8f98f": {},
     "5a2faf4c1ac54d409cd250ef2c81aa04": {},
     "5ae74565706f4e9882e946cdd680bb25": {},
@@ -1031,6 +1047,7 @@
     "6dc3450382e74a65a0d05396f15a7393": {},
     "6dc41351b11b4d50886e662fdb8c9ef4": {},
     "6e014aff25494405b5df6afb300555a6": {},
+    "6e76c2fc8e394fe39051317bd8f3788a": {},
     "6e7dbcc5465d4ae09d9aa3b48f1d6d10": {},
     "6f102d2a1c6f46d78e012de981a1e8ef": {},
     "6fd07b31ea304192953711f2a5e963a4": {},
@@ -1238,6 +1255,7 @@
     "bac9ca61b1ec4fd6a85c8d9dbde7f108": {},
     "bb72dd54072d4778be9052084eb4cbc7": {},
     "bb9588dda9e04aa4b07d2460adeab7ef": {},
+    "bbcee4ba112f441cb5b90cec812ba2c9": {},
     "bbda0806d19d4aad8b0811c70e3f6aac": {},
     "bc2dd942ecfb4b0ab1c440e118b1fa35": {},
     "bcab2b3c77a64794bd1faec6fa158d94": {},
@@ -1249,6 +1267,7 @@
     "be8646f2d0e142dfaef91a33fa8c8a7c": {},
     "bee567c685b6410f8d63b303bb198907": {},
     "befa301f6bd94a69a62e7e6178398e3f": {},
+    "bf7f7dca76a44f3cb34ed03df15aaedc": {},
     "bfed8c432281485eb94b1ba318c00775": {},
     "c065ba282a62483eb122ed78563bc389": {},
     "c1561c2740554f0f90bfe054a1566e77": {},
@@ -1272,6 +1291,7 @@
     "c4c309ae75e64868aab80d2283ee1a4b": {},
     "c5364916c3954b5c89321f211161e015": {},
     "c6139f8d67d84014a2f9a4c70cd8ffb0": {},
+    "c61c4704768d4f0da1b09e27e35c8bc4": {},
     "c70a7aa2dbe4401cb7dce7c848baa5de": {},
     "c7293d47f81b465ea9bc5ee78891f61b": {},
     "c7dbf7bea80940c480f0bce387b0aab8": {},
@@ -2965,6 +2985,26 @@
         ]
       }
     },
+    "37b3d42435664a8990a4202331c7e457": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "mv_messstelle": [
+          "Owner"
+        ]
+      }
+    },
+    "37b74ed6923f4a5dbea923e50ac5dc9c": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bund_bfs_rei": [
+          "Owner"
+        ]
+      }
+    },
     "382bbbbfdbdd4990b25ea3494dabbf56": {
       "local_roles": {
         "admin": [
@@ -3172,6 +3212,26 @@
           "Owner"
         ],
         "bund_dpadmin": [
+          "Owner"
+        ]
+      }
+    },
+    "3ed862ea719742e694c605011048c9b7": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "be_messstelle": [
+          "Owner"
+        ]
+      }
+    },
+    "3eec06d1826647dea83d639c3feee512": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bund_betreiber": [
           "Owner"
         ]
       }
@@ -3518,6 +3578,16 @@
         ]
       }
     },
+    "48bc009d243641c89bb65c6aa36dbb6a": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bund_bmu_rei": [
+          "Owner"
+        ]
+      }
+    },
     "497d483e9faf471ab6cbc76136fdf4f0": {
       "local_roles": {
         "admin": [
@@ -3813,6 +3883,16 @@
     "59f40bc975ac479c97987632b6b592a0": {
       "local_roles": {
         "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "5a24157238234fe584c6b43570267b3e": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bb_messstelle": [
           "Owner"
         ]
       }
@@ -4315,6 +4395,16 @@
           "Owner"
         ],
         "rescue": [
+          "Owner"
+        ]
+      }
+    },
+    "6e76c2fc8e394fe39051317bd8f3788a": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bund_leitstelle": [
           "Owner"
         ]
       }
@@ -6229,6 +6319,16 @@
         ]
       }
     },
+    "bbcee4ba112f441cb5b90cec812ba2c9": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bund_rodos-rechnungen-wetterdienst": [
+          "Owner"
+        ]
+      }
+    },
     "bbda0806d19d4aad8b0811c70e3f6aac": {
       "local_roles": {
         "admin": [
@@ -6314,6 +6414,16 @@
     "befa301f6bd94a69a62e7e6178398e3f": {
       "local_roles": {
         "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "bf7f7dca76a44f3cb34ed03df15aaedc": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "bund_aufsicht": [
           "Owner"
         ]
       }
@@ -6511,6 +6621,16 @@
     "c6139f8d67d84014a2f9a4c70cd8ffb0": {
       "local_roles": {
         "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "c61c4704768d4f0da1b09e27e35c8bc4": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ],
+        "be_rodos-rechnungen": [
           "Owner"
         ]
       }
@@ -8097,6 +8217,8 @@
     "371d6ee326104ef8bd548e45ed6c1f3b": 0,
     "378717e296554fca8a2d86a92a6ff061": 4,
     "37b0625590b948e89b2e0b1f00702e3c": 16,
+    "37b3d42435664a8990a4202331c7e457": 5,
+    "37b74ed6923f4a5dbea923e50ac5dc9c": 30,
     "382bbbbfdbdd4990b25ea3494dabbf56": 5,
     "3836957f6c154081abf1a281ad4e22c8": 30,
     "38d85fe7f6174ac68ea72f8b96477be2": 7,
@@ -8119,6 +8241,8 @@
     "3e7b437a9955405facf6eb2db56af2b5": 23,
     "3e8084cc0dab4796ba74ea4918297880": 10,
     "3ea9a4f7402c46f482ce52579b0a6388": 0,
+    "3ed862ea719742e694c605011048c9b7": 22,
+    "3eec06d1826647dea83d639c3feee512": 28,
     "3f3c1c37ec084d1fa4d270d55ed15f92": 4,
     "3f8ed0b238ba4eacb67fcad178180443": 2,
     "3fafad5e0a734d80bbced4b22febe298": 17,
@@ -8152,6 +8276,7 @@
     "4849cee620824f03b8d08d80443c8786": 4,
     "4885db60a2914ba78317d459a943e31c": 3,
     "4897b30c0ea14d5889130468aa8a2211": 1,
+    "48bc009d243641c89bb65c6aa36dbb6a": 31,
     "497d483e9faf471ab6cbc76136fdf4f0": 0,
     "49ff3b33336c41e58ec9471d2c93a114": 14,
     "4a155ea4f4c04f75a07eefcc5515e419": 4,
@@ -8184,6 +8309,7 @@
     "58e4a8d394ee4b4f91cd82969cceaed5": 6,
     "5932794357c947ff8d8bbdee7e64d4dd": 15,
     "59f40bc975ac479c97987632b6b592a0": 1,
+    "5a24157238234fe584c6b43570267b3e": 19,
     "5a24730e185f4a5e9cae66a98fd8f98f": 3,
     "5a2faf4c1ac54d409cd250ef2c81aa04": 25,
     "5ae74565706f4e9882e946cdd680bb25": 1,
@@ -8239,6 +8365,7 @@
     "6dc3450382e74a65a0d05396f15a7393": 10,
     "6dc41351b11b4d50886e662fdb8c9ef4": 18,
     "6e014aff25494405b5df6afb300555a6": 3,
+    "6e76c2fc8e394fe39051317bd8f3788a": 26,
     "6e7dbcc5465d4ae09d9aa3b48f1d6d10": 27,
     "6f102d2a1c6f46d78e012de981a1e8ef": 22,
     "6fd07b31ea304192953711f2a5e963a4": 6,
@@ -8446,6 +8573,7 @@
     "bac9ca61b1ec4fd6a85c8d9dbde7f108": 17,
     "bb72dd54072d4778be9052084eb4cbc7": 0,
     "bb9588dda9e04aa4b07d2460adeab7ef": 11,
+    "bbcee4ba112f441cb5b90cec812ba2c9": 27,
     "bbda0806d19d4aad8b0811c70e3f6aac": 13,
     "bc2dd942ecfb4b0ab1c440e118b1fa35": 9,
     "bcab2b3c77a64794bd1faec6fa158d94": 3,
@@ -8457,6 +8585,7 @@
     "be8646f2d0e142dfaef91a33fa8c8a7c": 3,
     "bee567c685b6410f8d63b303bb198907": 31,
     "befa301f6bd94a69a62e7e6178398e3f": 3,
+    "bf7f7dca76a44f3cb34ed03df15aaedc": 29,
     "bfed8c432281485eb94b1ba318c00775": 6,
     "c065ba282a62483eb122ed78563bc389": 25,
     "c1561c2740554f0f90bfe054a1566e77": 16,
@@ -8480,6 +8609,7 @@
     "c4c309ae75e64868aab80d2283ee1a4b": 7,
     "c5364916c3954b5c89321f211161e015": 0,
     "c6139f8d67d84014a2f9a4c70cd8ffb0": 20,
+    "c61c4704768d4f0da1b09e27e35c8bc4": 21,
     "c70a7aa2dbe4401cb7dce7c848baa5de": 4,
     "c7293d47f81b465ea9bc5ee78891f61b": 7,
     "c7dbf7bea80940c480f0bce387b0aab8": 0,

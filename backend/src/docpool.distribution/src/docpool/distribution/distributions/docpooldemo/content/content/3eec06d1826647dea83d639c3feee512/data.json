@@ -1,0 +1,64 @@
+{
+  "@id": "/bund/content/Groups/bund_betreiber",
+  "@type": "GroupFolder",
+  "UID": "3eec06d1826647dea83d639c3feee512",
+  "allow_discussion": null,
+  "allowedDocTypes": [],
+  "contributors": [],
+  "created": "2025-11-19T10:52:21+00:00",
+  "created_by": "admin <i>Betreiber (Bund)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "bund_betreiber",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T11:52:51",
+  "modified": "2025-11-19T10:52:51+00:00",
+  "modified_by": "admin <i>Betreiber (Bund)</i>",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Betreiber (Bund)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2025-11-19T11:52:21",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T10:52:21+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

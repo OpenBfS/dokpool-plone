@@ -294,6 +294,22 @@
       "title": "Landesbeh\u00f6rde (Brandenburg)"
     },
     {
+      "allowedDocTypes": [
+        "doksysdok",
+        "other_document"
+      ],
+      "description": "",
+      "dp": "32fdd578bc7d446081ce5d64b7015724",
+      "email": null,
+      "groupid": "bb_messstelle",
+      "groups": [],
+      "principals": [
+        "user-bb"
+      ],
+      "roles": [],
+      "title": "Messstelle (Brandenburg)"
+    },
+    {
       "allowedDocTypes": [],
       "description": "Responsible for the administration of the DocPool.",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
@@ -545,6 +561,22 @@
     },
     {
       "allowedDocTypes": [
+        "doksysdok",
+        "other_document"
+      ],
+      "description": "",
+      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
+      "email": null,
+      "groupid": "be_messstelle",
+      "groups": [],
+      "principals": [
+        "user-be"
+      ],
+      "roles": [],
+      "title": "Messstelle (Berlin)"
+    },
+    {
+      "allowedDocTypes": [
         "otherprojection",
         "nppinformation",
         "estimation",
@@ -594,6 +626,21 @@
       ],
       "roles": [],
       "title": "Landesministerium (Berlin)"
+    },
+    {
+      "allowedDocTypes": [
+        "rodosprojection"
+      ],
+      "description": "",
+      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
+      "email": null,
+      "groupid": "be_rodos-rechnungen",
+      "groups": [],
+      "principals": [
+        "user-be"
+      ],
+      "roles": [],
+      "title": "RODOS-Rechnungen (Berlin)"
     },
     {
       "allowedDocTypes": [],
@@ -797,8 +844,10 @@
         "bund_contentadmin",
         "bund_dpadmin",
         "bund_elanadmin",
+        "user-aufsicht",
         "user-be",
         "user-behoerde",
+        "user-betreiber",
         "user-ministerium",
         "user-wetterdienst"
       ],
@@ -827,6 +876,8 @@
       "groups": [],
       "principals": [
         "bund_dpadmin",
+        "user-aufsicht",
+        "user-betreiber",
         "user-ministerium",
         "user-wetterdienst"
       ],
@@ -900,6 +951,19 @@
       "title": "Situation Report Admins/Lagebild (Bund)"
     },
     {
+      "allowedDocTypes": null,
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_aufsicht",
+      "groups": [],
+      "principals": [
+        "user-aufsicht"
+      ],
+      "roles": [],
+      "title": "Aufsicht (Bund)"
+    },
+    {
       "allowedDocTypes": [
         "otherprojection",
         "nppinformation",
@@ -924,6 +988,37 @@
     },
     {
       "allowedDocTypes": [
+        "reireport"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_betreiber",
+      "groups": [],
+      "principals": [
+        "user-betreiber"
+      ],
+      "roles": [],
+      "title": "Betreiber (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "doksysdok",
+        "trajectory"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_leitstelle",
+      "groups": [],
+      "principals": [
+        "user-wetterdienst"
+      ],
+      "roles": [],
+      "title": "Leitstelle (Bund)"
+    },
+    {
+      "allowedDocTypes": [
         "nppinformation",
         "estimation",
         "eventinformation",
@@ -944,6 +1039,43 @@
       ],
       "roles": [],
       "title": "Bundesministerium (Bund)"
+    },
+    {
+      "allowedDocTypes": null,
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_bmu_rei",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "REI Bearbeiter Ministerium (Bund)"
+    },
+    {
+      "allowedDocTypes": null,
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_bfs_rei",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "REI Redakteure (Bund)"
+    },
+    {
+      "allowedDocTypes": [
+        "rodosprojection"
+      ],
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "groupid": "bund_rodos-rechnungen-wetterdienst",
+      "groups": [],
+      "principals": [
+        "user-wetterdienst"
+      ],
+      "roles": [],
+      "title": "RODOS Rechnungen Wetterdienst (Bund)"
     },
     {
       "allowedDocTypes": [
@@ -987,7 +1119,8 @@
       "groupid": "mv_DoksysUsers",
       "groups": [],
       "principals": [
-        "mv_doksysadmin"
+        "mv_doksysadmin",
+        "user-mv"
       ],
       "roles": [],
       "title": "Doksys Users (Mecklenburg-Vorpommern)"
@@ -1000,7 +1133,8 @@
       "groupid": "mv_Members",
       "groups": [],
       "principals": [
-        "mv_dpadmin"
+        "mv_dpadmin",
+        "user-mv"
       ],
       "roles": [],
       "title": "Members (Mecklenburg-Vorpommern)"
@@ -1026,6 +1160,22 @@
       "principals": [],
       "roles": [],
       "title": "Content Senders (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [
+        "doksysdok",
+        "other_document"
+      ],
+      "description": "",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": null,
+      "groupid": "mv_messstelle",
+      "groups": [],
+      "principals": [
+        "user-mv"
+      ],
+      "roles": [],
+      "title": "Messstelle (Mecklenburg-Vorpommern)"
     }
   ],
   "members": [
@@ -1281,7 +1431,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}/VChmfXmYl/u0WtSC+RZCTrUWl1r7k7hTzVW",
+      "password": "{SSHA}NDTh0B+sYPAT3RWOH+VhelU/UTNDbbtKIHPP",
       "roles": [
         "ELANUser",
         "Member",
@@ -1298,7 +1448,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}hYTnOq9h3vA1vig1bbPQJCyKdYkTMFHHR1Lo",
+      "password": "{SSHA}QQshz4kNvFaoMV/w0eK82q6yjkroQLDt86VY",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1315,7 +1465,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}jwyquKS2+lQvMRp5dFCtRR6YtevB5hebxu8J",
+      "password": "{SSHA}bYMXzoFSh58cbjfL1iQRmai5m+8KS6UWUWaC",
       "roles": [
         "ELANUser",
         "Member",
@@ -1331,7 +1481,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}6vDFC1nHSRDpHQ+NhMKkAr1kKlZIULrLe3Iw",
+      "password": "{SSHA}yl+AJ7WEyPNDoQpw0Hn8TCNnO0+WhtZsEar2",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1381,7 +1531,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}TlUhpDRBMfQ9Ynd6Ib4Rbd70mQ2J/VvN6HZe",
+      "password": "{SSHA}5D3C11Z3QKryYeR2ACdIqidIsLidkn2yfJQS",
       "roles": [
         "Member",
         "REIUser",
@@ -1397,13 +1547,31 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}Ak8OkqqmsqEoAmdNo9lYHQu7mDhUJsAnjLtt",
+      "password": "{SSHA}YkWw2BC+euGI1ykXHOWxd4xL4p3bbN1YnL/6",
       "roles": [
         "Manager",
         "Member",
         "REIUser"
       ],
       "username": "reimanager"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "fullname": "User Aufsicht (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_aufsicht"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}ZXWqSdpZDYZm91MB/qV5/X07e/2xBMBU8v5M",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-aufsicht"
     },
     {
       "description": "",
@@ -1416,7 +1584,8 @@
         "bb_DoksysUsers",
         "bb_ELANUsers",
         "bb_Members",
-        "bb_behoerde"
+        "bb_behoerde",
+        "bb_messstelle"
       ],
       "home_page": "",
       "location": "",
@@ -1440,7 +1609,9 @@
         "be_ELANUsers",
         "be_Members",
         "be_RodosUsers",
+        "be_messstelle",
         "be_ministerium",
+        "be_rodos-rechnungen",
         "bund_ELANUsers",
         "bund_Members"
       ],
@@ -1476,6 +1647,24 @@
     {
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+      "email": null,
+      "fullname": "User Betreiber (Bund)",
+      "groups": [
+        "bund_Members",
+        "bund_REIUsers",
+        "bund_betreiber"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}N8pDeCM5TzwLRkVZslFDO1dSOOSXrG6wdYdP",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-betreiber"
+    },
+    {
+      "description": "",
+      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
       "email": "example@example.com",
       "fullname": "User Ministerium (Bund)",
       "groups": [
@@ -1497,6 +1686,24 @@
     },
     {
       "description": "",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": null,
+      "fullname": "User MV (Mecklenburg-Vorpommern)",
+      "groups": [
+        "mv_DoksysUsers",
+        "mv_Members",
+        "mv_messstelle"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}wbZ6HU+aRHuVWUsKgx/Y/gZeIW0u7XD02s0O",
+      "roles": [
+        "Member"
+      ],
+      "username": "user-mv"
+    },
+    {
+      "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
       "email": "example@example.com",
       "fullname": "User Wetterdienst (Bund)",
@@ -1506,6 +1713,8 @@
         "bund_Members",
         "bund_REIUsers",
         "bund_RodosUsers",
+        "bund_leitstelle",
+        "bund_rodos-rechnungen-wetterdienst",
         "bund_wetterdienst"
       ],
       "home_page": "",
