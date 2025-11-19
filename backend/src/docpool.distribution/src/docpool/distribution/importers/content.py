@@ -2,6 +2,7 @@ from docpool.base.marker import IImportingMarker
 from eea.facetednavigation.widgets.storage import Criterion
 from elan.journal.adapters import JournalEntry
 from persistent.list import PersistentList
+from persistent.mapping import PersistentMapping
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.dexterity.schema import SCHEMA_CACHE
 from plone.dexterity.utils import resolveDottedName
@@ -176,6 +177,10 @@ def global_obj_hook(item, obj):
         for entry in log:
             entry["timestamp"] = dateutil.parser.parse(entry["timestamp"])
         obj.transfer_sender_log = log
+
+    if obj.portal_type == "DPTransferFolder":
+        if not obj.doctypePermissions:
+            obj.doctypePermissions = PersistentMapping()
 
     return obj
 
