@@ -1,0 +1,42 @@
+{
+  "@id": "/berlin/contentconfig/scen",
+  "@type": "DPEvents",
+  "UID": "44b4f78163b3427bb22bbceec4975ad8",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:25+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "scen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-17T13:40:38+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Ereignisse",
+  "type_title": "DP Events",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

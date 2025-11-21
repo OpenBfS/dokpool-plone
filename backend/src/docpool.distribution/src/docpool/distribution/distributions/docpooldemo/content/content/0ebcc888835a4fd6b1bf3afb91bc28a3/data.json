@@ -1,0 +1,74 @@
+{
+  "@id": "/bund/content/Groups/bund_betreiber/36d65ab8-9ca5-47ba-b2bd-08e20a6ac0eb",
+  "@type": "DPDocument",
+  "Authority": "de_el",
+  "MStIDs": [],
+  "Medium": null,
+  "NuclearInstallations": [
+    "UELA"
+  ],
+  "Origins": [
+    "Strahlenschutzverantwortlicher"
+  ],
+  "PDFVersion": "keine Angabe",
+  "Period": "H2",
+  "ReiLegalBases": [
+    "REI-I"
+  ],
+  "UID": "0ebcc888835a4fd6b1bf3afb91bc28a3",
+  "Year": 2025,
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-11-19T11:46:11+00:00",
+  "created_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "creators": [
+    "user-betreiber"
+  ],
+  "description": "",
+  "docType": "reireport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "36d65ab8-9ca5-47ba-b2bd-08e20a6ac0eb",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T12:46:35",
+  "modified": "2025-11-19T11:46:35+00:00",
+  "modified_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "mstids_initial_value": null,
+  "review_state": "private",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "REI-Bericht",
+    "encoding": "utf-8"
+  },
+  "title": "REI-Immissionsbericht des 2. Halbjahres 2025 Endlager f\u00fcr radioaktive Abf\u00e4lle Asse (Strahlenschutzverantwortlicher)",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-11-19T12:46:11+00:00",
+  "workflow_history": {
+    "rei_review_workflow_alternative": [
+      {
+        "action": null,
+        "actor": "user-betreiber",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-11-19T11:46:11+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

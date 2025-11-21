@@ -206,7 +206,7 @@ def create_purpose_collections(plonesite):
         {
             "i": "Purpose",
             "o": "plone.app.querystring.operation.string.is",
-            "v": "Standard-Info Bundesmessnetze",
+            "v": "Standard-Info DWD",
         },
     ]
     new.text = RichTextValue("<p>Standard-Info DWD<p>", "text/html", "text/x-html-safe")

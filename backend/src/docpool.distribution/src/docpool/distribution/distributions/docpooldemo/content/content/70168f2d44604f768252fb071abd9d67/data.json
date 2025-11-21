@@ -1,0 +1,48 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_ministerium/eine-medieninformation/beispiel.pdf",
+  "@type": "File",
+  "UID": "70168f2d44604f768252fb071abd9d67",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-23T13:24:54+00:00",
+  "creators": [
+    "user-ministerium"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "file": {
+    "blob_path": "70168f2d44604f768252fb071abd9d67/file/Beispiel.pdf",
+    "content-type": "application/pdf",
+    "filename": "Beispiel.pdf",
+    "size": 9520
+  },
+  "id": "beispiel.pdf",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2025-09-23T13:31:53+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Beispiel.pdf",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user-ministerium",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:24:54+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

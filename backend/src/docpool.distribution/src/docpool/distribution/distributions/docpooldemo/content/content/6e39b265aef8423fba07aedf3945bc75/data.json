@@ -1,0 +1,60 @@
+{
+  "@id": "/bund/content/Groups/bund_rodos-rechnungen-wetterdienst/ein-potentiell-betroffenes-gebiet-bei-einem-unfall-in-chooz",
+  "@type": "DPDocument",
+  "PrognosisForm": "Einzelrechnung",
+  "PrognosisType": "Potenziell betroffene Gebiete",
+  "UID": "6e39b265aef8423fba07aedf3945bc75",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-11-19T12:22:08+00:00",
+  "created_by": "User Wetterdienst (Bund) <i>RODOS Rechnungen Wetterdienst (Bund)</i>",
+  "creators": [
+    "user-wetterdienst"
+  ],
+  "description": "",
+  "docType": "rodosprojection",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "ein-potentiell-betroffenes-gebiet-bei-einem-unfall-in-chooz",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {},
+  "mdate": "2025-11-19T13:22:16",
+  "modified": "2025-11-19T12:22:16+00:00",
+  "modified_by": "User Wetterdienst (Bund) <i>RODOS Rechnungen Wetterdienst (Bund)</i>",
+  "review_state": "private",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "Luwak wings aged white crema robusta decaffeinated foam robust est.",
+    "encoding": "utf-8"
+  },
+  "title": "Ein potentiell betroffenes Gebiet bei einem Unfall in CHOOZ",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-11-19T13:22:08",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-wetterdienst",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-11-19T12:22:08+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

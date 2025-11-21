@@ -1,0 +1,46 @@
+{
+  "@id": "/bund/rei-bericht-suche",
+  "@type": "Folder",
+  "UID": "8414e587952e445097b7952d620e8201",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-11T07:03:14+00:00",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "rei-bericht-suche",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "modified": "2025-09-11T07:05:07+00:00",
+  "nextPreviousEnabled": false,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "REI-Bericht Suche",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-11T07:03:14+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

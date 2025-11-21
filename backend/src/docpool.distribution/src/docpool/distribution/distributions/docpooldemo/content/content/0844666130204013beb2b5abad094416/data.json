@@ -1,0 +1,76 @@
+{
+  "@id": "/brandenburg/esd/management/coordination_measurements",
+  "@type": "ELANDocCollection",
+  "UID": "0844666130204013beb2b5abad094416",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:18+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "coordination_measurements",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "limit": 1000,
+  "lock": {},
+  "modified": "2025-09-10T13:24:48+00:00",
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "DPDocument",
+        "SituationReport",
+        "SRModule"
+      ]
+    },
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "measurement_order",
+        "operation_map",
+        "measurement_requirements",
+        "note_measurement_teams",
+        "inquiry_measurement_order"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "MESSDIENSTKOORDINATION",
+  "type_title": "ELAN Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:24:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

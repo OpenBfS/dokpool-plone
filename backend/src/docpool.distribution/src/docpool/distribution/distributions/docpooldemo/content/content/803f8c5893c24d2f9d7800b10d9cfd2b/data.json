@@ -1,0 +1,47 @@
+{
+  "@id": "/Members/dpadmin",
+  "@type": "UserFolder",
+  "UID": "803f8c5893c24d2f9d7800b10d9cfd2b",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-09-10T12:45:56+00:00",
+  "created_by": "Docpool Administrator",
+  "creators": [
+    "dpadmin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "dpadmin",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-10T14:45:56",
+  "modified": "2025-09-10T12:45:56+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Docpool Administrator",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2025-09-10T14:45:56+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:45:56+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

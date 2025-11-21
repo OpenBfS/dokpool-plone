@@ -1,0 +1,76 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/content/Groups/bund_behoerde/eine-mitteilung",
+  "@type": "DPDocument",
+  "UID": "715900721a1140589ddd1c9db19bdf19",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-23T13:26:35+00:00",
+  "created_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "creators": [
+    "user-behoerde"
+  ],
+  "description": "",
+  "docType": "note",
+  "effective": "2025-09-23T13:26:00+00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "eine-mitteilung",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-23T15:26:35",
+  "modified": "2025-09-23T13:26:38+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "Bundesministerium (Bund) meldet Einsatzbereitschaft",
+    "encoding": "utf-8"
+  },
+  "title": "Eine Mitteilung",
+  "transferLog": "[]",
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-23T15:26:38+00:00",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-behoerde",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-23T13:26:35+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "user-behoerde",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:26:38+00:00"
+      }
+    ],
+    "elan_archive_workflow": [
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:31:53+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

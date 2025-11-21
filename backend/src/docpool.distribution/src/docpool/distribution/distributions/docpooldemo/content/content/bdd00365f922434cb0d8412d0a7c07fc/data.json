@@ -1,0 +1,50 @@
+{
+  "@id": "/berlin/config/dtypes/trajectory",
+  "@type": "DocType",
+  "UID": "bdd00365f922434cb0d8412d0a7c07fc",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2025-09-10T12:24:18+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "id": "trajectory",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "doksys",
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T13:22:24+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Trajektorie",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:24+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

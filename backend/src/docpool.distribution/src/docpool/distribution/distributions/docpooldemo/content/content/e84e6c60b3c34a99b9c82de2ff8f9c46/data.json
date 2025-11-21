@@ -1,0 +1,66 @@
+{
+  "@id": "/bund",
+  "@type": "DocumentPool",
+  "UID": "e84e6c60b3c34a99b9c82de2ff8f9c46",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:30:28+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customLogo": {
+    "blob_path": "e84e6c60b3c34a99b9c82de2ff8f9c46/customLogo/dokpool_logo_bund.png",
+    "content-type": "image/png",
+    "filename": "dokpool_logo_bund.png",
+    "height": 76,
+    "size": 3337,
+    "width": 325
+  },
+  "description": "",
+  "effective": null,
+  "expires": null,
+  "exportimport.annotations": {
+    "docpool_applications_key": [
+      "base",
+      "doksys",
+      "elan",
+      "rei",
+      "rodos",
+      "transfers"
+    ]
+  },
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "bund",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-11T07:11:00+00:00",
+  "prefix": "bund",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "supportedApps": [
+    "doksys",
+    "elan",
+    "rei",
+    "rodos"
+  ],
+  "title": "Bund",
+  "type_title": "Document Pool",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "rescue",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:30:28+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

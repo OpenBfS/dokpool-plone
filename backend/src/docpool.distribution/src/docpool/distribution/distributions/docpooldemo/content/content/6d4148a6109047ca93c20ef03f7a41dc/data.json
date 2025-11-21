@@ -1,0 +1,72 @@
+{
+  "@id": "/brandenburg/esd/current-situation/situation-reports",
+  "@type": "ELANDocCollection",
+  "UID": "6d4148a6109047ca93c20ef03f7a41dc",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:18+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "situation-reports",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "limit": 1000,
+  "lock": {},
+  "modified": "2025-09-17T13:55:27+00:00",
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "DPDocument",
+        "SituationReport",
+        "SRModule"
+      ]
+    },
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "situationreport"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": null,
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "RADIOLOGISCHES LAGEBILD",
+  "type_title": "ELAN Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:24:47+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

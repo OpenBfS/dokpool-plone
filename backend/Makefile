@@ -167,6 +167,7 @@ test: $(VENV_FOLDER) ## run tests
 	@$(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.base \
 	--test-path src/docpool.api/src \
+	--test-path src/docpool.base \
 	--test-path src/elan.journal \
 	--test-path src/docpool.doksys/src \
 	--test-path src/docpool.elan \
@@ -193,6 +194,7 @@ coverage: ## generate test-coverage report
 	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
 	@uv run coverage run -p --source=src $(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.api/src \
+	--test-path src/docpool.base \
 	--test-path src/elan.journal \
 	--test-path src/docpool.elan \
 	--test-path src/docpool.rei \

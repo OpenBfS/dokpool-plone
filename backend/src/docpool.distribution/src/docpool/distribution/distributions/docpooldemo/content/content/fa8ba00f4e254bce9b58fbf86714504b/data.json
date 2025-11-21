@@ -1,0 +1,62 @@
+{
+  "@id": "/berlin/content/Groups/be_Journal4_Readers",
+  "@type": "GroupFolder",
+  "UID": "fa8ba00f4e254bce9b58fbf86714504b",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:26+00:00",
+  "created_by": "admin <i>Journal 4 Reader (Berlin)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "be_Journal4_Readers",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2025-09-10T15:22:26",
+  "modified": "2025-09-10T13:22:26+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Journal 4 Reader (Berlin)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2025-09-10T15:22:26+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:26+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

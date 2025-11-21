@@ -1,0 +1,46 @@
+{
+  "@id": "/berlin/potentially-affected-areas",
+  "@type": "Folder",
+  "UID": "3487912827894bc2a3d4621644472fe6",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:48+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "potentially-affected-areas",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "listing_view",
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {},
+  "modified": "2025-09-10T13:22:26+00:00",
+  "nextPreviousEnabled": false,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Potenziell betroffenen Gebiete",
+  "type_title": "Folder",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:26+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

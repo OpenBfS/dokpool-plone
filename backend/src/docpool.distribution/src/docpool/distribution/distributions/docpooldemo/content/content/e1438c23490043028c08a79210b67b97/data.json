@@ -1,0 +1,47 @@
+{
+  "@id": "/berlin/help",
+  "@type": "Text",
+  "UID": "e1438c23490043028c08a79210b67b97",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:25+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "help",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-10T15:22:25",
+  "modified": "2025-09-10T13:22:25+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "text": null,
+  "title": "Hilfe",
+  "type_title": "Textpage",
+  "version": "current",
+  "wdate": "2025-09-10T15:22:25+00:00",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
