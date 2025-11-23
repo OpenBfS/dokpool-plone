@@ -316,6 +316,12 @@ class DPEvent(Container, ContentBase):
         vocab = getUtility(Interface, name="docpool.elan.vocabularies.EventTypes")
         return vocab(self).getTerm(self.EventType).title
 
+    def operation_mode_title(self):
+        if self.OperationMode is None:
+            return None
+        vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.Modes")
+        return safe_text(vocab.getTerm(self.OperationMode).title)
+
 
 @adapter(IDPEvent, IObjectAddedEvent)
 def eventAdded(obj, event=None):
@@ -334,10 +340,7 @@ def eventAdded(obj, event=None):
 def addLogEntry(obj):
     changelog = json.loads(obj.changelog or "[]")
 
-    modes = obj.OperationMode
-    if modes is not None:
-        modes_vocabulary = getUtility(IVocabularyFactory, "docpool.elan.vocabularies.Modes")()
-        modes = safe_text(modes_vocabulary.getTerm(obj.OperationMode).title)
+    modes = obj.operation_mode_title()
     alerting_status = obj.AlertingStatus
     if alerting_status is not None:
         alerting_status_vocabulary = getUtility(
