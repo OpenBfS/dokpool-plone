@@ -2,6 +2,7 @@
   --bs-primary: #324d6a; /* Graublau Dunkel1 */
   --bs-warning: #fed86c; /* Gelb Main */
   --bs-light: #e1e6eb; /* Graublau Hell3 */
+  --bs-blue-gray: #6A829D;
 }
 
 body {
@@ -63,17 +64,28 @@ body {
   height: 72px;
 }
 
+.event-switcher-detail .badge,
+.event-switcher-detail .small {
+  font-size: 0.75em;
+}
+
 .event-switcher {
-  background-color: var(--bs-light);
-  border: 2px solid rgba(149, 186, 131, 0.5);
-  border-top-right-radius: 8px;
   width: 44px;
-  height: 72px;
+}
+
+.event-switcher > * {
+  width: 44px;
+  height: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-left: 1px solid var(--bs-blue-gray);
 }
 
 .tag-badge {
+  border-radius: 0px;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
+  font-weight: normal;
 }
 
 .nav-btn {
