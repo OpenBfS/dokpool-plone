@@ -93,7 +93,7 @@
               />
             </div>
             <div class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</div>
-            <div class="text-primary flex-grow-1 border-end">
+            <div class="text-primary flex-grow-1 border-end event-title-column">
               <a href="${python:
                        f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">
                 ${scenario/Title}
@@ -130,7 +130,7 @@
         >
           <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end">
             <div class="icon-column"></div>
-            <div class="text-primary flex-grow-1 border-end">
+            <div class="text-primary flex-grow-1 event-title-column">
               <a href="${python: view.dp_url}/archive"
                  i18n:translate=""
               >Archived events</a>

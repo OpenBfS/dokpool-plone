@@ -117,6 +117,15 @@ body {
   width: 20px;
 }
 
+.event-dropdown-menu .event-title-column a {
+  display: inline-block;
+  width: 100%;
+  padding-top: calc(var(--bs-dropdown-item-padding-y) + 10px);
+  padding-bottom: calc(var(--bs-dropdown-item-padding-y) + 10px);
+  margin-top: calc((var(--bs-dropdown-item-padding-y) + 10px) * -1);
+  margin-bottom: calc((var(--bs-dropdown-item-padding-y) + 10px) * -1);
+}
+
 .event-dropdown-menu a {
   text-decoration: none;
 }
