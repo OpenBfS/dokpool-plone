@@ -27,15 +27,12 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
-from zope.component import getUtility
 from zope.globalrequest import getRequest
 from zope.interface import implementer
-from zope.interface import Interface
 from zope.interface import Invalid
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
-from zope.schema.interfaces import IVocabularyFactory
 
 import datetime
 import json
@@ -313,8 +310,8 @@ class DPEvent(Container, ContentBase):
         return from_wkt(wkt)
 
     def event_type_title(self):
-        vocab = getUtility(Interface, name="docpool.elan.vocabularies.EventTypes")
-        return vocab(self).getTerm(self.EventType).title
+        vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.EventTypes", context=self)
+        return safe_text(vocab.getTerm(self.EventType).title)
 
     def operation_mode_title(self):
         if self.OperationMode is None:
@@ -343,9 +340,7 @@ def addLogEntry(obj):
     modes = obj.operation_mode_title()
     alerting_status = obj.AlertingStatus
     if alerting_status is not None:
-        alerting_status_vocabulary = getUtility(
-            IVocabularyFactory, "docpool.elan.vocabularies.AlertingStatus"
-        )()
+        alerting_status_vocabulary = api.portal.get_vocabulary("docpool.elan.vocabularies.AlertingStatus")
         alerting_status = safe_text(alerting_status_vocabulary.getTerm(obj.AlertingStatus).title)
     entry = {}
     entry["Date"] = api.portal.get_localized_time(datetime.datetime.now(), long_format=1)
