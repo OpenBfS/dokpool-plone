@@ -6,7 +6,6 @@ from docpool.elan.utils import getOpenScenarios
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.base.i18nl10n import utranslate
 from plone.base.utils import safe_hasattr
 from Products.Five.browser import BrowserView
 
@@ -52,10 +51,6 @@ class PortalHeader(ViewletBase):
                 scenarios[-1]["last"] = True
                 self.scenarios.extend(scenarios)
         self.selected_scenario = scenarios_by_uid.get(selected_uid)
-
-    @property
-    def dp_title(self):
-        return self.dp.title if self.dp else utranslate("docpool.base", "Docpools", context=self.context)
 
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None

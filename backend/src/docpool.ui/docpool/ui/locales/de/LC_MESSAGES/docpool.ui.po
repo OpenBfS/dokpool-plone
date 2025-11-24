@@ -24,11 +24,11 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.pt
 msgid "Add scenario"
-msgstr ""
+msgstr "Neues Ereignis anlegen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.pt
 msgid "Archived events"
-msgstr ""
+msgstr "Archivierte Ereignisse"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Created ${doktype} '${title}'"
@@ -64,7 +64,7 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.pt
 msgid "Select scenario"
-msgstr ""
+msgstr "Wählen Sie ein Ereignis"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Storniert"

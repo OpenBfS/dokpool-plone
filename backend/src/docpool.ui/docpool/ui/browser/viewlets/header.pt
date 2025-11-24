@@ -4,6 +4,7 @@
           icons python:context.restrictedTraverse('@@iconresolver');
           auth_token context/@@authenticator/token;
         "
+        i18n:domain="docpool.ui"
 >
   <div class="container-fluid px-0">
     <div class="d-flex align-items-stretch">
@@ -28,7 +29,10 @@
                   aria-label="Config"
                   data-bs-toggle="dropdown"
           >
-            <span>${view/dp_title}</span>
+            <span tal:condition="python: view.dp is not None">${python: view.dp.title}</span>
+            <span tal:condition="python: view.dp is None"
+                  i18n:translate=""
+            >Docpools</span>
             <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
           </button>
 
@@ -62,7 +66,9 @@
             </div>
           </div>
           <div tal:condition="python: view.selected_scenario is None">
-            <div class="text-primary small">Select scenario</div>
+            <div class="text-primary small"
+                 i18n:translate=""
+            >Select scenario</div>
           </div>
         </div>
         <!-- Event switcher narrow block -->
@@ -125,7 +131,9 @@
           <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end">
             <div class="icon-column"></div>
             <div class="text-primary flex-grow-1 border-end">
-              <a href="${python: view.dp_url}/archive">Archivierte Ereignisse</a>
+              <a href="${python: view.dp_url}/archive"
+                 i18n:translate=""
+              >Archived events</a>
             </div>
           </div>
           <div class="d-flex align-items-stretch gap-3">
@@ -145,7 +153,9 @@
                href="${python: view.dp_url}/contentconfig/++add++DPEvents"
             >
               <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
-              <span class="small">Neues Ereignis anlegen</span>
+              <span class="small"
+                    i18n:translate=""
+              >Add scenario</span>
             </a>
           </div>
         </li>
