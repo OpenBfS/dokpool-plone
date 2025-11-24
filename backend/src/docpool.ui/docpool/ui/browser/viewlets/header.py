@@ -17,9 +17,7 @@ import subprocess
 class PortalHeader(ViewletBase):
     def update(self):
         super().update()
-        self.current_dp, self.current_app, self.dp_apps = getApplicationDocPoolsForCurrentUser(
-            self.context, self.request
-        )
+        self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
 
         possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
         scenarios_by_uid = {s.UID: s.getObject() for s in possible}
@@ -45,14 +43,10 @@ class PortalHeader(ViewletBase):
 
     @property
     def dp_title(self):
-        return (
-            self.current_dp.title
-            if self.current_dp
-            else utranslate("docpool.base", "Docpools", context=self.context)
-        )
+        return self.dp.title if self.dp else utranslate("docpool.base", "Docpools", context=self.context)
 
     def apps_menu(self):
-        current_dp_id = self.current_dp.getId() if self.current_dp else None
+        current_dp_id = self.dp.getId() if self.dp else None
 
         for dp, app_names in self.dp_apps:
             dp_id = dp.getId()

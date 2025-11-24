@@ -2,7 +2,7 @@
 from docpool.base.appregistry import appLogo as appLogo
 
 if view.current_app:
-    app_logo = appLogo(view.current_app)
+    app_logo = appLogo(view.app)
 
 groups_folder = None
 emergency_info = None
