@@ -14,7 +14,16 @@ import shlex
 import subprocess
 
 
-class PortalHeader(ViewletBase):
+class EventSwitcherMixin:
+    def set_scenario_attributes(self):
+        possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
+        scenarios_by_uid = {s.UID: s.getObject() for s in possible}
+        selected_uid = get_scenario_for_current_user()
+        self.selected_scenario = scenarios_by_uid.get(selected_uid)
+        return scenarios_by_uid, selected_uid
+
+
+class PortalHeader(EventSwitcherMixin, ViewletBase):
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
@@ -30,27 +39,7 @@ class PortalHeader(ViewletBase):
         except BaseException:
             self.emergency_info_url = None
 
-        possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
-        scenarios_by_uid = {s.UID: s.getObject() for s in possible}
-        selected_uid = get_scenario_for_current_user()
-        self.scenarios = []
-        status_vocabulary = api.portal.get_vocabulary(
-            "docpool.elan.vocabularies.Status", context=self.context
-        )
-        for status_term in status_vocabulary:
-            scenarios = [
-                dict(
-                    scenario=s,
-                    selected=(uid == selected_uid),
-                    last=False,
-                )
-                for uid, s in scenarios_by_uid.items()
-                if s.Status == status_term.value
-            ]
-            if scenarios:
-                scenarios[-1]["last"] = True
-                self.scenarios.extend(scenarios)
-        self.selected_scenario = scenarios_by_uid.get(selected_uid)
+        self.set_scenario_attributes()
 
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None
@@ -68,6 +57,31 @@ class PortalHeader(ViewletBase):
                     title=f"{app_title} - {dp.title}",
                     url=f"{url}/setActiveApp?app={app_name}{params}",
                 )
+
+
+class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
+    def __call__(self):
+        self.dp_url = self.context.myDocumentPool().absolute_url()
+
+        scenarios_by_uid, selected_uid = self.set_scenario_attributes()
+        self.scenarios = []
+        status_vocabulary = api.portal.get_vocabulary(
+            "docpool.elan.vocabularies.Status", context=self.context
+        )
+        for status_term in status_vocabulary:
+            scenarios = [
+                dict(
+                    scenario=s,
+                    selected=(uid == selected_uid),
+                    last=False,
+                )
+                for uid, s in scenarios_by_uid.items()
+                if s.Status == status_term.value
+            ]
+            if scenarios:
+                scenarios[-1]["last"] = True
+                self.scenarios.extend(scenarios)
+        return super().__call__()
 
 
 class InfoDropdown(BrowserView):

@@ -15,6 +15,15 @@
       />
 
   <browser:page
+      name="event-switcher-dropdown"
+      for="*"
+      class=".header.EventSwitcherDropdown"
+      template="header-event-switcher-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="info-dropdown"
       for="*"
       class=".header.InfoDropdown"
