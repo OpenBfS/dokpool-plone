@@ -1,4 +1,5 @@
 from App.config import getConfiguration
+from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
@@ -18,6 +19,17 @@ class PortalHeader(ViewletBase):
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
+        self.dp_url = self.dp.absolute_url() if self.dp else None
+        self.app_logo = appLogo(self.app) if self.app else None
+
+        try:
+            self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()
+        except BaseException:
+            self.groups_folder_url = None
+        try:
+            self.emergency_info_url = self.dp["hintergrundinfos-ns"].absolute_url()
+        except BaseException:
+            self.emergency_info_url = None
 
         possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
         scenarios_by_uid = {s.UID: s.getObject() for s in possible}

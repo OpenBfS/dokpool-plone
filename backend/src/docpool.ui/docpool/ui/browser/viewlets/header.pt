@@ -1,25 +1,3 @@
-<?python
-from docpool.base.appregistry import appLogo as appLogo
-
-if view.current_app:
-    app_logo = appLogo(view.app)
-
-groups_folder = None
-emergency_info = None
-try:
-    dp = context.myDocumentPool()
-except BaseException:
-    dp = None
-else:
-    try:
-        groups_folder = dp["content"]["Groups"]
-    except BaseException:
-        pass
-    try:
-        emergency_info = dp["hintergrundinfos-ns"]
-    except BaseException:
-        pass
-?>
 <header class="app-header border-bottom"
         id="portal-header"
         tal:define="
@@ -40,8 +18,8 @@ else:
            i18n:attributes="title"
            i18n:domain="docpool.elan"
         >
-          <img src="${python: f'{view.site_url}/{app_logo}'}"
-               tal:condition="app_logo"
+          <img src="${python: view.site_url}/${python: view.app_logo}"
+               tal:condition="python: view.app_logo"
           />
         </a>
         <div class="d-flex align-items-center gap-1 small text-primary fw-light">
@@ -142,19 +120,17 @@ else:
           </div>
         </li>
         <li class="dropdown-item d-flex align-items-stretch gap-3 border-bottom last-in-section"
-            tal:condition="python: dp is not None"
+            tal:condition="python: view.dp_url"
         >
           <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end">
             <div class="icon-column"></div>
             <div class="text-primary flex-grow-1 border-end">
-              <a href="${python: f'{dp.absolute_url()}/archive'}">
-                Archivierte Ereignisse
-              </a>
+              <a href="${python: view.dp_url}/archive">Archivierte Ereignisse</a>
             </div>
           </div>
           <div class="d-flex align-items-stretch gap-3">
             <div class="icon-column">
-              <a href="${python: f'{dp.absolute_url()}/archive'}">
+              <a href="${python: view.dp_url}/archive">
                 <tal:icon replace="structure python:icons.tag('chevron-right', tag_class='')" />
               </a>
             </div>
@@ -162,11 +138,11 @@ else:
           </div>
         </li>
         <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3"
-            tal:condition="python: dp is not None"
+            tal:condition="python: view.dp_url"
         >
           <div>
             <a class="btn btn-light"
-               href="${python: dp.absolute_url()}/contentconfig/++add++DPEvents"
+               href="${python: view.dp_url}/contentconfig/++add++DPEvents"
             >
               <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
               <span class="small">Neues Ereignis anlegen</span>
@@ -179,14 +155,14 @@ else:
       <div class="d-flex align-items-stretch flex-grow-1">
         <nav class="d-flex align-items-stretch">
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
-             href="${groups_folder/absolute_url}"
-             tal:condition="python: groups_folder is not None"
+             href="${python: view.groups_folder_url}"
+             tal:condition="python: view.groups_folder_url"
           >
             <span class="small text-primary mb-n1">My group folders</span>
           </a>
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
-             href="${emergency_info/absolute_url}"
-             tal:condition="python: emergency_info is not None"
+             href="${python: view.emergency_info_url}"
+             tal:condition="python: view.emergency_info_url"
           >
             <span class="small text-primary mb-n1">Emergency documents</span>
           </a>
