@@ -51,6 +51,7 @@
       <div class="d-flex"
            aria-label="Event switcher"
            data-bs-toggle="dropdown"
+           tal:condition="python: view.dp is not None"
       >
         <!-- Event button -->
         <div class="event-card event-switcher-detail d-flex align-items-center px-3">
@@ -125,9 +126,7 @@
             </div>
           </div>
         </li>
-        <li class="dropdown-item d-flex align-items-stretch gap-3 border-bottom last-in-section"
-            tal:condition="python: view.dp_url"
-        >
+        <li class="dropdown-item d-flex align-items-stretch gap-3 border-bottom last-in-section">
           <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end">
             <div class="icon-column"></div>
             <div class="text-primary flex-grow-1 event-title-column">
@@ -145,9 +144,7 @@
             <div class="icon-column"></div>
           </div>
         </li>
-        <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3"
-            tal:condition="python: view.dp_url"
-        >
+        <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3">
           <div>
             <a class="btn btn-light"
                href="${python: view.dp_url}/contentconfig/++add++DPEvents"
