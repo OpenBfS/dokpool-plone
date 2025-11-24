@@ -7,6 +7,8 @@
     i18n_domain="docpool.theme"
     >
 
+  <i18n:registerTranslations directory="locales" />
+
   <genericsetup:registerProfile
       name="default"
       title="DocPool Ui"
