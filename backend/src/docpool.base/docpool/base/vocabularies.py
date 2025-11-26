@@ -16,6 +16,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.hooks import getSite
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
@@ -90,22 +91,29 @@ class DocumentTypesVocabulary:
     """ """
 
     def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/config"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
+        # When validating a widget in a add form there is no context
+        # In that case we can return all doctypes
+        context = getDocumentPoolSite(context)
+        query = {
+            "portal_type": "DocType",
+            "path": "/".join(context.getPhysicalPath()) + "/config",
+            "sort_on": "sortable_title",
+        }
+        # Filter by current app
+        request = getRequest()
+        dp_app_state = api.content.get_view("dp_app_state", context, request)
+        active_apps = dp_app_state.appsActivatedByCurrentUser()
+        query["apps_supported"] = active_apps
 
-        items = [(t.Title, t.id) for t in cat({"portal_type": "DocType", "path": path})]
+        items = [SimpleTerm(i.id, i.id, i.Title) for i in api.content.find(**query)]
+        # TODO: Can we remove these?
         items.extend([
-            ("infodoc", "infodoc"),
-            ("active", "active"),
-            ("inactive", "inactive"),
-            ("closed", "closed"),
-            ("none", "none"),
+            SimpleTerm("infodoc", "infodoc", "infodoc"),
+            SimpleTerm("active", "active", "active"),
+            SimpleTerm("inactive", "inactive", "inactive"),
+            SimpleTerm("closed", "closed", "closed"),
+            SimpleTerm("none", "none", "none"),
         ])
-        items.sort()
-        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
 
