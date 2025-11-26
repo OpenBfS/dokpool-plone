@@ -60,6 +60,7 @@ body {
   text-transform: uppercase;
 }
 
+.event-switcher,
 .event-card {
   background-color: var(--bs-light-blue);
   border-bottom: 2px solid var(--bs-primary);
@@ -129,10 +130,6 @@ body {
   padding-bottom: calc(var(--bs-dropdown-item-padding-y) + 10px);
   margin-top: calc((var(--bs-dropdown-item-padding-y) + 10px) * -1);
   margin-bottom: calc((var(--bs-dropdown-item-padding-y) + 10px) * -1);
-}
-
-.event-dropdown-menu a {
-  text-decoration: none;
 }
 
 .icon-with-text {
