@@ -263,6 +263,10 @@
       name="docpool.transfers.vocabularies.TransferTargets"
       component=".vocabularies.TransferTargetsVocabularyFactory"
       />
+  <utility
+      name="docpool.base.vocabularies.Groups"
+      component=".vocabularies.GroupsVocabularyFactory"
+      />
 
   <subscriber handler=".events.delete_handler" />
 
