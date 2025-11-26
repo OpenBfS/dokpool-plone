@@ -60,10 +60,13 @@ body {
   text-transform: uppercase;
 }
 
-.event-switcher,
-.event-card {
+.nav-active {
   background-color: var(--bs-light-blue);
   border-bottom: 2px solid var(--bs-primary);
+}
+
+.event-switcher,
+.event-card {
   height: 72px;
 }
 

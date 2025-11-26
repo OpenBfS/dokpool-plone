@@ -41,6 +41,22 @@ class PortalHeader(EventSwitcherMixin, ViewletBase):
 
         self.set_scenario_attributes()
 
+        url = self.request.getURL()
+        self.active = {
+            key: (
+                "nav-active"
+                if any(
+                    (url == (vurl := f"{self.dp_url}{val}")) or url.startswith(f"{vurl}/") for val in value
+                )
+                else ""
+            )
+            for key, value in dict(
+                esd=["/esd", "/@@listing", "/config/dtypes"],
+                groups=["/content/Groups"],
+                emergency=["/hintergrundinfos-ns"],
+            ).items()
+        }
+
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None
 

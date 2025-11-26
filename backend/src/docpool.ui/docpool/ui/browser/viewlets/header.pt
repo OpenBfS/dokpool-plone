@@ -51,8 +51,8 @@
       <div class="d-flex align-items-stretch flex-grow-1">
         <nav class="d-flex align-items-stretch">
           <!-- Event button -->
-          <a class="nav-btn event-card event-switcher-detail d-flex align-items-center px-3 text-decoration-none"
-             href="${python: view.dp_url}/esd"
+          <a class="nav-btn event-card event-switcher-detail d-flex align-items-center px-3 text-decoration-none ${python: view.active['esd']}"
+             href="${python: view.dp_url}/@@listing"
              tal:condition="python: view.dp is not None"
           >
             <div tal:define="
@@ -72,7 +72,7 @@
             >Select scenario</div>
           </a>
           <!-- Event switcher narrow block -->
-          <div class="nav-button event-switcher d-flex align-items-center justify-content-center border-end"
+          <div class="nav-button event-switcher d-flex align-items-center justify-content-center border-end ${python: view.active['esd']}"
                aria-label="Event switcher"
                onclick="$('a#event-dropdown-load').click()"
                data-bs-toggle="dropdown"
@@ -90,13 +90,13 @@
           </ul>
 
           <!-- Main navigation buttons -->
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
+          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
              href="${python: view.groups_folder_url}"
              tal:condition="python: view.groups_folder_url"
           >
             <span class="small text-primary mb-n1">My group folders</span>
           </a>
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
+          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
              href="${python: view.emergency_info_url}"
              tal:condition="python: view.emergency_info_url"
           >
