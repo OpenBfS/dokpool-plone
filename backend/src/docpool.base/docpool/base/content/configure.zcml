@@ -41,6 +41,11 @@
       name="getIcon"
       />
 
+  <adapter
+      factory=".indexer.group"
+      name="group"
+      />
+
   <adapter factory=".dpdocument.DeserializeFromJsonDPDocument" />
   <adapter factory=".dpdocument.SerializeToJsonDPDocument" />
 

@@ -246,6 +246,66 @@
             </div>
           </div>
 
+          <div class="m-1 dropdown"
+               tal:define="
+                 selected_groups python: view.selected_groups;
+                 groups python: view.groups;
+               "
+          >
+            <button class="btn btn-light dropdown-toggle"
+                    aria-expanded="false"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+            >
+          Group
+            </button>
+            <div class="dropdown-menu p-2 pat-checklist">
+              <button class="btn btn-primary mt-2"
+                      type="submit"
+                      tal:condition="python: len(groups) > 5"
+                      i18n:domain="plone"
+                      i18n:translate=""
+              >Filter</button>
+
+              <div class="form-check"
+                   tal:condition="python: len(groups) > 5"
+              ><label><input class="form-check-input toggle-all"
+                         type="checkbox"
+                  /><span i18n:translate="label_toggle">Toggle all</span></label></div>
+              <tal:groups tal:repeat="group python: groups">
+                <div class="form-check">
+                  <input class="form-check-input"
+                         id="${python: 'selected_groups-' + group}"
+                         name="selected_groups:list"
+                         type="checkbox"
+                         value="${python: group}"
+                         tal:attributes="
+                           checked python: group in selected_groups;
+                           disabled python: not groups[group]['count'] and 'disabled';
+                         "
+                  />
+                  <label class="form-check-label text-nowrap"
+                         for="${python: 'selected_groups-' + group}"
+                         i18n:translate=""
+                  >
+                    <span tal:replace="python: groups[group]['title']"
+                          i18n:translate=""
+                    ></span>
+                    <span class="badge rounded-pill text-bg-secondary"
+                          tal:content="python:groups[group]['count']"
+                    ></span>
+                  </label>
+                </div>
+              </tal:groups>
+              <button class="btn btn-primary mt-2"
+                      type="submit"
+                      i18n:domain="plone"
+                      i18n:translate=""
+              >Filter</button>
+            </div>
+          </div>
+
           <div class="m-1">
             <div class="input-group">
               <input class="form-control"
