@@ -63,6 +63,7 @@
       manager=".sidebar.ISidebarManager"
       class=".sidebar.SidebarViewlet"
       permission="zope2.View"
+      layer="docpool.elan.interfaces.IELANActive"
       />
 
   <browser:viewlet
