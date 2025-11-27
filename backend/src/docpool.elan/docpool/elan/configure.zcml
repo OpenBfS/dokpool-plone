@@ -101,6 +101,10 @@
       />
 
   <utility
+      provides="docpool.base.marker.IAppActiveMarker"
+      component=".interfaces.IELANActive"
+      />
+  <utility
       name="docpool.elan.vocabularies.Events"
       component=".vocabularies.EventVocabularyFactory"
       />
