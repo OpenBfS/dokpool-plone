@@ -50,44 +50,8 @@
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->
       <div class="d-flex align-items-stretch flex-grow-1">
         <nav class="d-flex align-items-stretch">
-          <!-- Event button -->
-          <a class="nav-btn event-card event-switcher-detail d-flex align-items-center px-3 text-decoration-none ${python: view.active['esd']}"
-             href="${python: view.dp_url}/@@listing"
-             tal:condition="python: view.dp is not None"
-          >
-            <div tal:define="
-                   scenario python: view.selected_scenario;
-                 "
-                 tal:condition="python: scenario is not None"
-            >
-              <div class="text-primary text-truncate">${scenario/Title}</div>
-              <div class="d-flex align-items-center gap-3 mt-1">
-                <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
-                <span class="small text-primary">${scenario/operation_mode_title}</span>
-              </div>
-            </div>
-            <div class="text-primary small"
-                 tal:condition="python: view.selected_scenario is None"
-                 i18n:translate=""
-            >Select scenario</div>
-          </a>
-          <!-- Event switcher narrow block -->
-          <div class="nav-button event-switcher d-flex align-items-center justify-content-center border-end ${python: view.active['esd']}"
-               aria-label="Event switcher"
-               onclick="$('a#event-dropdown-load').click()"
-               data-bs-toggle="dropdown"
-          >
-            <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
-          </div>
-          <ul class="dropdown-menu menu-config-dropdown event-dropdown-menu"
-              id="event-dropdown-menu"
-          >
-            <li><a class="pat-inject"
-                 id="event-dropdown-load"
-                 href="${python: context.absolute_url()}/@@event-switcher-dropdown"
-                 data-pat-inject="source: #event-dropdown-menu; target: #event-dropdown-menu"
-              >Loading&hellip;</a></li>
-          </ul>
+
+          <tal:headernav replace="structure provider:docpool.headernav.manager" />
 
           <!-- Main navigation buttons -->
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"

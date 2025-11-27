@@ -8,10 +8,15 @@ from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.base.utils import safe_hasattr
 from Products.Five.browser import BrowserView
+from zope.viewlet.interfaces import IViewletManager
 
 import os
 import shlex
 import subprocess
+
+
+class IHeaderNavManager(IViewletManager):
+    """Custom header navigation manager"""
 
 
 class EventSwitcherMixin:
@@ -23,7 +28,7 @@ class EventSwitcherMixin:
         return scenarios_by_uid, selected_uid
 
 
-class PortalHeader(EventSwitcherMixin, ViewletBase):
+class PortalHeader(ViewletBase):
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
@@ -39,8 +44,6 @@ class PortalHeader(EventSwitcherMixin, ViewletBase):
         except BaseException:
             self.emergency_info_url = None
 
-        self.set_scenario_attributes()
-
         url = self.request.getURL()
         self.active = {
             key: (
@@ -51,7 +54,6 @@ class PortalHeader(EventSwitcherMixin, ViewletBase):
                 else ""
             )
             for key, value in dict(
-                esd=["/esd", "/@@listing", "/config/dtypes"],
                 groups=["/content/Groups"],
                 emergency=["/hintergrundinfos-ns"],
             ).items()
@@ -73,6 +75,33 @@ class PortalHeader(EventSwitcherMixin, ViewletBase):
                     title=f"{app_title} - {dp.title}",
                     url=f"{url}/setActiveApp?app={app_name}{params}",
                 )
+
+
+class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
+    def update(self):
+        super().update()
+        try:
+            self.dp = self.context.myDocumentPool()
+        except AttributeError:
+            self.dp = None
+            return
+
+        self.dp_url = self.dp.absolute_url()
+        self.set_scenario_attributes()
+
+        url = self.request.getURL()
+        self.active = (
+            "nav-active"
+            if any(
+                (url == (vurl := f"{self.dp_url}{val}")) or url.startswith(f"{vurl}/")
+                for val in [
+                    "/esd",
+                    "/@@listing",
+                    "/config/dtypes",
+                ]
+            )
+            else ""
+        )
 
 
 class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):

@@ -66,6 +66,22 @@
       layer="docpool.elan.interfaces.IELANActive"
       />
 
+  <browser:viewletManager
+      name="docpool.headernav.manager"
+      provides=".header.IHeaderNavManager"
+      class="plone.app.viewletmanager.manager.BaseOrderedViewletManager"
+      permission="zope2.View"
+      />
+
+  <browser:viewlet
+      name="docpool.headernav.eventswitcher"
+      manager=".header.IHeaderNavManager"
+      class=".header.EventSwitcherViewlet"
+      template="header-event-switcher.pt"
+      permission="zope2.View"
+      layer="docpool.elan.interfaces.IELANActive"
+      />
+
   <browser:viewlet
       name="docpool.footer"
       manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
