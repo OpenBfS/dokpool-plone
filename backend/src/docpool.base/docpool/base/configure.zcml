@@ -280,4 +280,6 @@
       title="Sharing page: Delegate Site Administrator role"
       />
 
+  <subscriber handler=".traversal.app_active_after_traversal_subscriber" />
+
 </configure>
