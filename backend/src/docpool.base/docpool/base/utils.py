@@ -68,6 +68,17 @@ def queryForObjects(self, **kwa):
     return res
 
 
+def is_in_dp_folder(context, *subpaths):
+    path = context.getPhysicalPath()
+    dp_path = getDocumentPoolSite(context).getPhysicalPath()
+    for subpath in subpaths:
+        parent = dp_path + tuple(el for el in subpath.split("/") if el)
+        # possibly more checks like identity or depth
+        if path[: len(parent)] == parent:
+            return True
+    return False
+
+
 def is_group_folder(context):
     return "Groups" in context.getPhysicalPath() and context.getId() != "Groups"
 
