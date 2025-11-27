@@ -107,8 +107,11 @@
 
       <!-- Right: Icons -->
       <div class="d-flex align-items-center ms-auto gap-2 px-3">
-        <button class="btn btn-icon"
+        <button class="btn btn-icon collapsed"
+                aria-expanded="false"
                 aria-label="Suche"
+                data-bs-target="#portal-searchbox"
+                data-bs-toggle="collapse"
         >
           <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
         </button>
