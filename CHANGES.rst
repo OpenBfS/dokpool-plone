@@ -16,6 +16,8 @@ Fixed:
   turns out to be not well-defined). (#6125)
   [tlotze]
 
+- Increase pyruvate max header and add error logger (#6337)
+  [slindner] 
 
 2.3.0 (2025-10-23)
 ------------------
