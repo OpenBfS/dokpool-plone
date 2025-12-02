@@ -228,6 +228,18 @@ def import_annotations(obj, item):
                 entries.append(entry)
             if entries:
                 annotations[key] = entries
+        elif key == "docpool.elan.archiving":
+            if not item[ANNOTATIONS_KEY]["docpool.elan.archiving"]:
+                continue
+            entries = PersistentList()
+            for data in item[ANNOTATIONS_KEY]["docpool.elan.archiving"]:
+                if not data:
+                    continue
+                data["started"] = dateutil.parser.parse(data["started"]) if data.get("started") else None
+                data["finished"] = dateutil.parser.parse(data["finished"]) if data.get("finished") else None
+                entries.append(data)
+            if entries:
+                annotations[key] = entries
         else:
             annotations[key] = item[ANNOTATIONS_KEY][key]
     return item

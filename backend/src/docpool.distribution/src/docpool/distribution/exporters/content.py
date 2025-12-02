@@ -26,6 +26,7 @@ ANNOTATIONS_TO_EXPORT = [
     "FacetedLayout",
     "FacetedVersion",
     "docpool_applications_key",
+    "docpool.elan.archiving",
 ]
 
 ANNOTATIONS_KEY = "exportimport.annotations"
