@@ -17,6 +17,11 @@
   margin-bottom: 1em;
 }
 
+/* Hide the image button in the journal Tinymce editor */
+.portaltype-journal .bfs-editor [data-mce-name="ploneimage"] {
+  display: none !important;
+}
+
 .journalentry-helpers {
   float: right;
 }

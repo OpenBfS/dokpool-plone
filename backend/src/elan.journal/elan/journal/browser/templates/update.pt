@@ -35,8 +35,8 @@
                 "
           >
             <h2 i18n:translate="">Add journal entry</h2>
-            <div class="field">
-              <textarea class="pat-tinymce bfs-edit"
+            <div class="field bfs-editor">
+              <textarea class="pat-tinymce"
                         name="text"
                         data-pat-tinymce='{"relatedItems":{"vocabularyUrl":"${portal_url}/@@getVocabulary?name=plone.app.vocabularies.Catalog"}, "prependToUrl": "${portal_url}/resolveuid/", "linkAttribute": "uid"}'
                         tal:define="

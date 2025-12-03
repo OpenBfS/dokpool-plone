@@ -20,9 +20,9 @@
               action string:${context/absolute_url}/@@edit-journalentry;
             "
       >
-        <div class="field">
+        <div class="field bfs-editor">
 
-          <textarea class="pat-tinymce bfs-edit"
+          <textarea class="pat-tinymce"
                     name="text"
                     data-pat-tinymce='{"relatedItems":{"vocabularyUrl":"${portal_url}/@@getVocabulary?name=plone.app.vocabularies.Catalog"}, "prependToUrl": "${portal_url}/resolveuid/", "linkAttribute": "uid"}'
                     tal:define="
