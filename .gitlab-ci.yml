@@ -100,12 +100,13 @@ build_image:
     - if: '$CI_COMMIT_BRANCH == "gui"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
-deploy_review:
+deploy_gui:
   tags:
     - shell
   stage: deploy
   script:
-    - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/18b65c46-4159-43ea-9989-7dc433fbccb0/run?authtoken=$authtoken
+    - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/ed75e90b-641c-43f2-b5a1-adcbf654a25f/run?authtoken=$authtoken
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_COMMIT_BRANCH == "gui"'
     - if: '$NIGHTLY_UPDATE == "True"'
