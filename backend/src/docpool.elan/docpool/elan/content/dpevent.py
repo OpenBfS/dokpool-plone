@@ -17,7 +17,6 @@ from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
 from pygeoif import from_wkt
 from z3c.form.browser.radio import RadioFieldWidget
@@ -73,18 +72,6 @@ def is_point_or_polygon(value):
 
 class IDPEvent(IContentBase):
     """ """
-
-    directives.write_permission(Substitute="docpool.elan.ManageDPEvents")
-    directives.widget(Substitute="plone.app.z3cform.widgets.select.SelectFieldWidget")
-    Substitute = RelationChoice(
-        title=_("label_dpevent_substitute", default="Substitute event"),
-        description=_(
-            "description_dpevent_substitute",
-            default="Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events.",
-        ),
-        required=False,
-        source="docpool.elan.vocabularies.EventSubstitutes",
-    )
 
     directives.widget(EventType=RadioFieldWidget)
     EventType = schema.Choice(
@@ -287,11 +274,6 @@ class DPEvent(Container, ContentBase):
                 obj=journal,
             )
 
-    def deleteEventReferences(self):
-        """ """
-        self.Substitute = None
-        self.reindexObject()
-
     def canBeAssigned(self):
         """
         Can this scenario be assigned to documents?
@@ -372,36 +354,6 @@ def eventChanged(obj, event=None):
     if IImportingMarker.providedBy(getRequest()):
         return
     addLogEntry(obj)
-
-    if obj.Status != "active":
-        obj.deleteEventReferences()
-        # print obj.Substitute
-        if obj.Substitute:
-            sscen = obj.Substitute.to_object
-            if not sscen.canBeAssigned():
-                log("Substitute can not be assigned. Not published or not active.")
-                return
-            # Update all objects for this scenario
-            m = obj.content
-            mpath = "/".join(m.getPhysicalPath())
-            # We now query the catalog for all documents belonging to this scenario within
-            # the personal and group folders
-            args = {"portal_type": "DPDocument", "path": mpath}
-            cat = getToolByName(obj, "portal_catalog")
-            mdocs = cat(args)
-            for doc in mdocs:
-                try:
-                    docobj = doc.getObject()
-                    scens = docobj.scenarios
-                    # print docobj, scens
-                    if scens and obj.getId() in scens:
-                        scens.remove(obj.getId())
-                        scens.append(sscen.getId())
-                        docobj.scenarios = scens
-                        docobj.reindexObject()
-                        # print "changed", docobj
-                except Exception as e:
-                    log_exc(e)
 
 
 @adapter(IDPEvent, IObjectRemovedEvent)

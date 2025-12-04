@@ -54,10 +54,7 @@ def ensureScenariosInTarget(scenarios, target_docpool):
     For each scenario assigned to the original, try to identify a scenario at the target
     ESD, matching by object id. Copy unmatched scenarios to target ESD.
 
-    According to #5872, make sure copied scenarios are in published state. For each
-    existing equivalent scenario in the target that is in private state, if it defines
-    a published substitute scenario, replace it with that.
-
+    According to #5872, make sure copied scenarios are in published state.
     """
     scen = target_docpool.contentconfig.scen
 
@@ -65,10 +62,6 @@ def ensureScenariosInTarget(scenarios, target_docpool):
         copy_id = orig_brain.getId
         if scen.hasObject(copy_id):
             copy_event = scen[copy_id]
-            if api.content.get_state(copy_event) == "private" and copy_event.Substitute:
-                substitute = copy_event.Substitute.to_object
-                if substitute.canBeAssigned():
-                    copy_event = substitute
         else:
             orig_event = orig_brain.getObject()
             copy_id = _copyPaste(orig_event, scen)
