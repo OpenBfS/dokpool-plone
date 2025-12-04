@@ -124,10 +124,12 @@ class ELANDocument(FlexibleView):
         return self.unknownScenario() is None
 
     def myScenarioObjects(self):
-        """Return all DPEvent objects in the dokpool for this object."""
+        """Return DPEvent objects associated with this document."""
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
         # The path of events is assumed to be <docpool>/contentconfig/scen
+        # This implicitly filters for events present in the document's docpool but then,
+        # other events than those should not be associated with the document anyway.
         results = []
         if not (scns := self.scenarios):
             return results
