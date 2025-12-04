@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2025-09-25 12:42+0000\n"
+"POT-Creation-Date: 2025-12-04 08:09+0000\n"
 "PO-Revision-Date: 2025-07-28 12:16+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -35,6 +35,10 @@ msgstr "Unterstützung für Anwendungen hinzufügen"
 #: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
 msgid "Adding a group is only allowed in a dokpool!"
 msgstr "Gruppen dürfen nur in Dokpools angelegt werden!"
+
+#: docpool.base/docpool/base/browser/templates/group_members_flattened.pt
+msgid "All Users in ${python:view.grouptitle}"
+msgstr ""
 
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "Apply"
@@ -191,6 +195,10 @@ msgstr "Allgemeine Information"
 #: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
 msgid "Group Folder"
 msgstr "Gruppenordner"
+
+#: docpool.base/docpool/base/browser/templates/group_members_flattened.pt
+msgid "Group members plus members of groups that are in this group:"
+msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
 msgid "Groups Area"
@@ -470,10 +478,6 @@ msgstr "Dokumenttyp übertragen"
 msgid "Transfer Folder"
 msgstr "Transferordner"
 
-#: docpool.base/docpool/base/browser/dptransferfolder.pt
-msgid "Transfer Folder: filter not active!"
-msgstr "Transferordner: kein Filter aktiv!"
-
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "Transfer config"
 msgstr "Konfiguration der Transfers"
@@ -509,6 +513,10 @@ msgstr "Fehlende Berechtigungen für das Einfügen."
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unknown error occured. Please check your logs"
 msgstr "Unbekannter Fehler. Bitte prüfen Sie das Log."
+
+#: docpool.base/docpool/base/upgrades.zcml
+msgid "Upgrade profile for docpool.base"
+msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
@@ -767,6 +775,41 @@ msgstr "docpool.base"
 #: docpool.base/docpool/base/vocabularies.py
 msgid "don't accept"
 msgstr "nicht annehmen"
+
+#. Default: "All members"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_all_members"
+msgstr ""
+
+#. Default: "Global roles"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_global_roles"
+msgstr ""
+
+#. Default: "(${group_id})"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_group_id"
+msgstr ""
+
+#. Default: "Local roles on"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_local_roles"
+msgstr ""
+
+#. Default: "Member in groups"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_member_groups"
+msgstr ""
+
+#. Default: "Members"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_members"
+msgstr ""
+
+#. Default: "Name"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_name"
+msgstr ""
 
 #. Default: "Select the transition to be used for modifying the items state."
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt
