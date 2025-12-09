@@ -11,7 +11,7 @@
                    items python: view.items;
                  "
   >
-    <div class="m-2 container"
+    <div class="m-0 p-1 container"
          id="listing-filters"
          tal:attributes="
            data-listing-modified python: view.modified;
@@ -22,7 +22,7 @@
       >
         <div class="d-flex flex-wrap justify-content-end">
 
-          <div class="my-1 py-2 me-auto">
+          <div class="m-1 py-2 me-auto">
             <span tal:replace="python: len(items)"></span>
                Entries
           </div>
@@ -379,7 +379,7 @@
       </form>
     </div>
 
-    <div class="m-2 container border-bottom"
+    <div class="m-0 container border-bottom"
          id="listing"
     >
       <tal:block tal:repeat="item python: items">

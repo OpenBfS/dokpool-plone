@@ -11,27 +11,27 @@
      "
      i18n:domain="docpool.base"
 >
-  <div class="text-center ms-2 me-2">
+  <div class="text-center ms-2 me-2 dateinfo flex-shrink-0">
     <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
     <div class="text-muted small"
          tal:content="python: toLocalizedTime(data['date'], long_format=0)"
     >16.12.2021</div>
   </div>
 
-  <div class="me-3 border-start border-end doctype-box">
-    <div class="doktype-icon-container bg-body-tertiary p-3">
+  <div class="me-3 doctype-box flex-shrink-0">
+    <div class="doktype-icon-container p-3">
       <img class="doktype-icon px-3 py-1"
            alt="Type"
            src="doctype"
            tal:attributes="
              alt python: doctype;
-             title python: doctype;
+             title python:data['doctype_title'];
              src python:data['doctype_icon_url'];
            "
       />
     </div>
     <div class="card-body review-state ${python:data['state_class']}">
-      <p class="card-text text-uppercase text-center small"
+      <p class="card-text text-center small"
          title="${python: data['state_title']}"
          tal:content="python: data['state_title']"
          i18n:attributes="title"

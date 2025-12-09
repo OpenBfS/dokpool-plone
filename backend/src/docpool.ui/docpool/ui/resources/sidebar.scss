@@ -22,13 +22,13 @@ body.plone-toolbar-left-expanded .sidebar {
 }
 
 .sidebar .nav {
-  row-gap: .5rem;
+  row-gap: 0.5rem;
 }
 
 .sidebar .nav-link {
   height: 72px;
   width: 100%;
-  border-radius: .25rem; /* 4px */
+  border-radius: 0.25rem; /* 4px */
   padding: 0;
 }
 
@@ -63,9 +63,8 @@ body.plone-toolbar-left-expanded .sidebar {
 }
 
 .sidebar-tz {
-  font-size: .5rem; /* ~8px visual density as per design */
+  font-size: 0.5rem; /* ~8px visual density as per design */
 }
-
 
 /* Tweak the thin divider look in footer */
 .sidebar-desktop .border-top {
