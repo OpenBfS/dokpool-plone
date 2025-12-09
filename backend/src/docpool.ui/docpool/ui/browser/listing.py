@@ -255,8 +255,10 @@ class Item(BrowserView):
                     show_transfer_action = True
 
         icon_name = "question"  # Unknown type
+        doctype_title = "Unknown"  # Unknown type
         if docTypeObj := obj.docTypeObj():
             icon_name = docTypeObj.icon_name
+            doctype_title = docTypeObj.title
 
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
@@ -272,6 +274,7 @@ class Item(BrowserView):
             "available_transitions": available_transitions,
             "uid": uid,
             "doctype": obj.docType,
+            "doctype_title": doctype_title,
             "doctype_icon_url": iconresolver.url(icon_name),
             "url": obj.absolute_url(),
             "path": obj.absolute_url_path(),
