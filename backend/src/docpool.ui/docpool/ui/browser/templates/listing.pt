@@ -11,7 +11,7 @@
                    items python: view.items;
                  "
   >
-    <div class="m-0 p-1 container"
+    <div class="mx-2 my-0 p-1 container"
          id="listing-filters"
          tal:attributes="
            data-listing-modified python: view.modified;
@@ -22,7 +22,7 @@
       >
         <div class="d-flex flex-wrap justify-content-end">
 
-          <div class="m-1 py-2 me-auto">
+          <div class="mx-3 my-0 py-2 me-auto">
             <span tal:replace="python: len(items)"></span>
                Entries
           </div>
@@ -44,7 +44,7 @@
               >
                     Erstellt von
               </label>
-              <div class="d-flex justify-content-between mb-3">
+              <div class="d-flex justify-content-between mb-2">
                 <div>
                   <input class="form-control"
                          id="startdate"
@@ -68,7 +68,7 @@
               >
                     Erstellt bis
               </label>
-              <div class="d-flex justify-content-between mb-3">
+              <div class="d-flex justify-content-between mb-1">
                 <div>
                   <input class="form-control"
                          id="enddate"
@@ -233,7 +233,7 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <button class="btn btn-primary mt-2"
+              <button class="btn btn-primary mt-1"
                       type="submit"
                       i18n:domain="plone"
                       i18n:translate=""

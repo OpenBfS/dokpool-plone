@@ -43,9 +43,10 @@ body.plone-toolbar-left-expanded .sidebar {
   font-weight: 600;
 }
 
-.sidebar .icon-24 {
+.sidebar .icon-24 svg {
   width: 24px;
   height: 24px;
+  color: #324d6a;
 }
 
 .sidebar .zones {
@@ -81,4 +82,14 @@ body.plone-toolbar-left-expanded .sidebar {
 
 .sidebar .zones .val {
   color: #6a829d;
+}
+
+.sidebar {
+  .nav-link {
+    margin: 0 10px;
+    width: auto;
+  }
+  .nav-link:hover {
+    background-color: #c3dce7;
+  }
 }
