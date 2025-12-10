@@ -19,6 +19,8 @@ Fixed:
 - Replace old wysiwyg macro with pat-tinymce and fix journal links (#5824)
   [slindner]
 
+- Increase pyruvate max header and add error logger (#6337)
+  [slindner] 
 
 2.3.0 (2025-10-23)
 ------------------
