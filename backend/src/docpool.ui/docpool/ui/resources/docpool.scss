@@ -107,6 +107,11 @@ img.doktype-icon {
   position: sticky;
   top: 73px;
   z-index: 900;
+
+  .dropdown-menu {
+    max-height: 60vh;
+    overflow-y: scroll;
+  }
 }
 
 #listing > a {

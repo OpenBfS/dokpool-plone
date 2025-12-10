@@ -154,14 +154,7 @@
             >
           Eintragsart
             </button>
-            <div class="dropdown-menu p-2 pat-checklist">
-              <button class="btn btn-primary mt-2"
-                      type="submit"
-                      tal:condition="python: len(doctypes) > 5"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
-
+            <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
                    tal:condition="python: len(doctypes) > 5"
               ><label><input class="form-check-input toggle-all"
@@ -192,11 +185,13 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <button class="btn btn-primary mt-2"
-                      type="submit"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
+              <div class="sticky-bottom bg-white py-2">
+                <button class="btn btn-primary"
+                        type="submit"
+                        i18n:domain="plone"
+                        i18n:translate=""
+                >Filter</button>
+              </div>
             </div>
           </div>
 
@@ -260,14 +255,7 @@
             >
           Group
             </button>
-            <div class="dropdown-menu p-2 pat-checklist">
-              <button class="btn btn-primary mt-2"
-                      type="submit"
-                      tal:condition="python: len(groups) > 5"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
-
+            <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
                    tal:condition="python: len(groups) > 5"
               ><label><input class="form-check-input toggle-all"
@@ -298,11 +286,13 @@
                   </label>
                 </div>
               </tal:groups>
-              <button class="btn btn-primary mt-2"
-                      type="submit"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
+              <div class="sticky-bottom bg-white py-2">
+                <button class="btn btn-primary"
+                        type="submit"
+                        i18n:domain="plone"
+                        i18n:translate=""
+                >Filter</button>
+              </div>
             </div>
           </div>
 
